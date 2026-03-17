@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="96" fill="#1e7a5c"/>
+  <rect width="512" height="512" rx="96" fill="#2d9e7c" opacity="0.6"/>
+  <!-- Calculator body -->
+  <rect x="136" y="80" width="240" height="352" rx="28" fill="#ffffff" opacity="0.15"/>
+  <!-- Calculator screen -->
+  <rect x="160" y="104" width="192" height="72" rx="14" fill="#ffffff" opacity="0.25"/>
+  <!-- Dollar sign on screen - vertical bar -->
+  <rect x="252" y="110" width="8" height="60" rx="4" fill="#ffffff"/>
+  <!-- Dollar sign on screen - S curve -->
+  <path d="M232,124 C232,116 240,112 252,112 L260,112 C272,112 280,116 280,124 C280,132 272,134 260,136 L252,138 C240,140 232,142 232,150 C232,158 240,164 252,164 L260,164 C272,164 280,158 280,150" stroke="#ffffff" stroke-width="8" stroke-linecap="round" fill="none"/>
+  <!-- Calculator buttons - row 1 -->
+  <rect x="160" y="200" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="216" y="200" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="272" y="200" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="328" y="200" width="24" height="40" rx="10" fill="#ffffff" opacity="0.3"/>
+  <!-- Calculator buttons - row 2 -->
+  <rect x="160" y="256" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="216" y="256" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="272" y="256" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="328" y="256" width="24" height="40" rx="10" fill="#ffffff" opacity="0.3"/>
+  <!-- Calculator buttons - row 3 -->
+  <rect x="160" y="312" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="216" y="312" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="272" y="312" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <!-- Tall equals button -->
+  <rect x="328" y="312" width="24" height="96" rx="10" fill="#ffffff" opacity="0.35"/>
+  <!-- Calculator buttons - row 4 -->
+  <rect x="160" y="368" width="96" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+  <rect x="272" y="368" width="40" height="40" rx="10" fill="#ffffff" opacity="0.2"/>
+</svg>

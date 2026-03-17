@@ -1,0 +1,14 @@
+import type { Metadata } from "next";
+import RetailHospitalityPayGuidePage from "@/modules/guide/retail-hospitality-pay-guide";
+import { JsonLd } from "@/modules/seo/json-ld";
+import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
+import { SITE_CONFIG } from "@/lib/constants";
+import { AUTHORS } from "@/lib/authors";
+const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/retail-hospitality-pay-guide/`;
+const TITLE = "Retail & Hospitality Pay Guide — Award Rates, Penalties & Casual Loading";
+const DESCRIPTION = "Retail and hospitality pay rates: General Retail Industry Award, Hospitality Industry Award, casual loading (25%), weekend penalties, and public holiday rates explained.";
+export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } };
+const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Retail & Hospitality Pay Guide", item: URL }] };
+const webPage: WithContext<WebPage> = { "@context": "https://schema.org", "@type": "WebPage", name: TITLE, url: URL, publisher: { "@type": "Organization", name: SITE_CONFIG.name } };
+const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "What is the casual loading rate in retail and hospitality?", acceptedAnswer: { "@type": "Answer", text: "Casual employees in both the General Retail Industry Award and Hospitality Industry Award receive a 25% casual loading on top of the base hourly rate, compensating for no paid leave or notice of termination." } }, { "@type": "Question", name: "What are penalty rates for weekend work in retail?", acceptedAnswer: { "@type": "Answer", text: "Under the General Retail Industry Award, full-time and part-time employees receive 25% extra on Saturday and 50% extra on Sunday. Casual employees receive 50% on Sunday (inclusive of casual loading adjustments)." } }, { "@type": "Question", name: "Can casual retail workers request permanent employment?", acceptedAnswer: { "@type": "Answer", text: "Yes. Under the Fair Work Act, casual employees who have worked regular hours for 12 months can request conversion to permanent (full-time or part-time) employment. Employers must offer conversion unless there are reasonable business grounds to refuse." } }] };
+export default function Page() { return (<><JsonLd code={[breadcrumb, webPage, faq]} /><RetailHospitalityPayGuidePage /></>); }

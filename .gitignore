@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# build
+build/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+firebase-debug.log
+
+# env
+.env*
+
+# firebase
+.firebase/
+.firebaserc
+
+# generated
+*.tsbuildinfo
+next-env.d.ts
+curl_output.html

@@ -1,0 +1,12 @@
+import type { Metadata } from "next";
+import GigEconomyPayGuidePage from "@/modules/guide/gig-economy-pay-guide";
+import { JsonLd } from "@/modules/seo/json-ld";
+import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
+import { SITE_CONFIG } from "@/lib/constants";
+import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/gig-economy-pay-guide/`;
+export const metadata: Metadata = { title: "Gig Economy Tax Guide Australia — Uber, Deliveroo & Freelancer Pay", description: "Gig worker tax guide: ABN obligations, GST registration, quarterly BAS, deductions for rideshare, delivery, and freelance work. How to manage tax when you're your own boss.", alternates: { canonical: URL }, openGraph: { title: "Gig Economy Tax Guide Australia", description: "Tax & pay guide for Uber, delivery, and freelance workers in Australia.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: "Gig Economy Tax Guide Australia", description: "ABN, GST, BAS and deductions for gig workers." } };
+const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Gig Economy Pay Guide", item: URL }] };
+const webPage: WithContext<WebPage> = { "@context": "https://schema.org", "@type": "WebPage", name: "Gig Economy Tax Guide Australia", url: URL, publisher: { "@type": "Organization", name: SITE_CONFIG.name } };
+const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "Do Uber drivers need to register for GST?", acceptedAnswer: { "@type": "Answer", text: "Yes. All rideshare drivers must register for GST regardless of income level. This is mandatory from your first trip. Delivery drivers only need to register once earning over $75,000." } }, { "@type": "Question", name: "How much tax should gig workers set aside?", acceptedAnswer: { "@type": "Answer", text: "Set aside 25-30% of your gross income for tax obligations including income tax, GST (if registered), and Medicare levy." } }] };
+export default function Page() { return (<><JsonLd code={[breadcrumb, webPage, faq]} /><GigEconomyPayGuidePage /></>); }

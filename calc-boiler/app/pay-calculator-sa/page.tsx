@@ -1,0 +1,13 @@
+import type { Metadata } from "next";
+import PayCalculatorSAPage from "@/modules/state/pay-calculator-sa";
+import { JsonLd } from "@/modules/seo/json-ld";
+import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import { SITE_CONFIG } from "@/lib/constants";
+import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/pay-calculator-sa/`;
+export const metadata: Metadata = { title: "Pay Calculator SA 2025-26 — South Australia Take-Home Pay", description: "Calculate your take-home pay in South Australia. Federal tax rates, SA payroll tax, average Adelaide salaries. Free SA pay calculator.", alternates: { canonical: URL }, openGraph: { title: "Pay Calculator SA", description: "Calculate your net pay in South Australia.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: "Pay Calculator SA", description: "South Australia take-home pay calculator." } };
+const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Pay Calculator SA", item: URL }] };
+const webAppSchema: WithContext<WebApplication> = { "@context": "https://schema.org", "@type": "WebApplication", name: "Pay Calculator SA", url: URL, description: "Take-home pay calculator for South Australia.", applicationCategory: "FinanceApplication", operatingSystem: "Web", browserRequirements: "Requires JavaScript", offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
+const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "Is income tax different in SA?", acceptedAnswer: { "@type": "Answer", text: "No. Income tax is levied federally and is the same in all states." } }, { "@type": "Question", name: "What is the payroll tax rate in SA?", acceptedAnswer: { "@type": "Answer", text: "SA payroll tax is 4.95% on wages above a $1,500,000 threshold. It is an employer cost." } }] };
+const howToSchema = calculatorHowTo({ name: "How to Calculate Take-Home Pay in South Australia", url: URL, description: "Calculate your take-home pay in South Australia in under a minute.", steps: PAY_CALCULATOR_STEPS });
+export default function Page() { return (<><JsonLd code={[breadcrumb, webAppSchema, faq, ORGANIZATION_SCHEMA, howToSchema]} /><PayCalculatorSAPage /></>); }
