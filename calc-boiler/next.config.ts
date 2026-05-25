@@ -46,21 +46,9 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  async redirects() {
-    return [
-      // Common misspellings
-      { source: "/pay-calculater/", destination: "/", permanent: true },
-      { source: "/pay-calcualtor/", destination: "/", permanent: true },
-      { source: "/superannuation-calcualtor/", destination: "/superannuation-calculator/", permanent: true },
-      // Alternative URL patterns
-      { source: "/calculator/", destination: "/", permanent: true },
-      { source: "/tax/", destination: "/tax-brackets/", permanent: true },
-      { source: "/super/", destination: "/superannuation-calculator/", permanent: true },
-      // Financial year redirects
-      { source: "/tax-brackets-2024-25/", destination: "/tax-brackets/", permanent: true },
-      { source: "/tax-brackets-2025-26/", destination: "/tax-brackets/", permanent: true },
-    ];
-  },
+  // NOTE: redirects() and headers() do not execute at runtime when output: "export"
+  // is set — Next.js produces purely static HTML. All redirects/headers for production
+  // live in firebase.json so the Firebase CDN handles them at the edge.
 };
 
 export default nextConfig;

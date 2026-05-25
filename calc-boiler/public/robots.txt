@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://paycalculatoraustralia.com/sitemap.xml
+# Block faceted / parameterized URLs from being crawled as duplicates
+Disallow: /*?*
+
+Sitemap: https://pay-calculator-australia.com/sitemap.xml

@@ -299,11 +299,10 @@ export default function HomePageTemplate() {
               className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
-              Pay Calculator Australia
+              Australian Pay Calculator 2025-26 — Take-Home Pay, Tax, Super &amp; HECS
             </h1>
             <p className="mx-auto mb-5 max-w-2xl text-lg text-sandstone-dark/60">
-              See exactly how much you take home. Every dollar broken down — tax, super, Medicare, HECS.
-              <span className="ml-1 text-sandstone-dark/40">Updated for FY{SITE_CONFIG.financialYear}.</span>
+              Use Australia&apos;s most accurate free tax calculator australia to see exactly how much you take home from your salary. Our income tax calculator applies the current ATO brackets for FY{SITE_CONFIG.financialYear}, plus Medicare levy, superannuation, HECS/HELP repayments and LITO — giving you the real net pay number, not a rough estimate. Enter any annual, monthly, fortnightly, weekly or hourly figure in this pay calculator to get an instant take-home pay breakdown.
             </p>
             <TrustBar className="mx-auto" variant="dark" />
           </motion.div>
@@ -728,6 +727,90 @@ export default function HomePageTemplate() {
 
       {/* ═══ CONTENT SECTIONS ═══ */}
       <div className="mx-auto max-w-4xl space-y-20 px-4 py-20 sm:px-6 lg:px-8">
+        {/* ===== 0a. HOW THE AUSTRALIAN TAX CALCULATOR WORKS ===== */}
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2
+            className="mb-4 text-2xl font-bold text-navy"
+            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          >
+            How the Australian Tax Calculator Works
+          </h2>
+          <p className="mb-5 text-warmgray">
+            This Australian pay calculator and income tax calculator combines four FY{SITE_CONFIG.financialYear} components into a single instant take-home pay result. Each card links to its dedicated calculator and guide.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <Link href="/income-tax-calculator/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
+              <div className="mb-2 flex items-center gap-2">
+                <Receipt className="h-4 w-4 text-ochre" />
+                <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>1. Income tax</span>
+              </div>
+              <p className="text-xs text-warmgray">Bracket-based progressive rates from 0% to 45%, applied to your taxable income.</p>
+              <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">Income Tax Calculator &rarr;</span>
+            </Link>
+            <Link href="/medicare-levy/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
+              <div className="mb-2 flex items-center gap-2">
+                <Heart className="h-4 w-4 text-rose-400" />
+                <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Medicare levy</span>
+              </div>
+              <p className="text-xs text-warmgray">A 2% levy on your taxable income that funds Australia&apos;s public healthcare system.</p>
+              <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">Medicare Levy Guide &rarr;</span>
+            </Link>
+            <Link href="/superannuation-calculator/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
+              <div className="mb-2 flex items-center gap-2">
+                <PiggyBank className="h-4 w-4 text-sky-500" />
+                <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. Super (12% SG)</span>
+              </div>
+              <p className="text-xs text-warmgray">Employer Superannuation Guarantee of 12% — paid on top of your salary, not deducted.</p>
+              <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">Superannuation Calculator &rarr;</span>
+            </Link>
+            <Link href="/hecs-help-calculator/" className="group rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:-translate-y-1 hover:border-eucalyptus/30 hover:shadow-md">
+              <div className="mb-2 flex items-center gap-2">
+                <GraduationCap className="h-4 w-4 text-violet-500" />
+                <span className="font-semibold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>4. HECS/HELP</span>
+              </div>
+              <p className="text-xs text-warmgray">Income-contingent student loan repayments under the new marginal system.</p>
+              <span className="mt-2 inline-block text-xs font-medium text-eucalyptus-dark group-hover:underline">HECS-HELP Calculator &rarr;</span>
+            </Link>
+          </div>
+        </motion.section>
+
+        {/* ===== 0b. CALCULATORS FOR EVERY AUSTRALIAN ===== */}
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2
+            className="mb-4 text-2xl font-bold text-navy"
+            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          >
+            Calculators for every Australian
+          </h2>
+          <p className="mb-5 text-warmgray">
+            Beyond the headline pay calculator australia tool above, we maintain a dedicated calculator for every common Australian tax and payroll scenario. Each one uses the same FY{SITE_CONFIG.financialYear} ATO data as our income tax calculator.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <CalcLink href="/income-tax-calculator/" title="Income Tax Calculator" desc="Bracket-by-bracket Australian income tax" />
+            <CalcLink href="/take-home-pay-calculator/" title="Take-Home Pay Calculator" desc="Net pay from any gross salary" />
+            <CalcLink href="/superannuation-calculator/" title="Superannuation Calculator" desc="Employer SG contributions, 12% rate" />
+            <CalcLink href="/salary-sacrifice-calculator/" title="Salary Sacrifice Calculator" desc="Pre-tax super contribution savings" />
+            <CalcLink href="/hecs-help-calculator/" title="HECS-HELP Calculator" desc="Marginal student loan repayments" />
+            <CalcLink href="/pay-rise-calculator/" title="Pay Rise Calculator" desc="Extra take-home pay from any raise" />
+            <CalcLink href="/redundancy-pay-calculator/" title="Redundancy Pay Calculator" desc="NES entitlements and tax on redundancy" />
+            <CalcLink href="/contractor-vs-employee-calculator/" title="Contractor vs Employee" desc="Side-by-side ABN vs PAYG comparison" />
+            <CalcLink href="/gross-pay-calculator/" title="Gross Pay Calculator" desc="Reverse-calculate gross from net" />
+            <CalcLink href="/hourly-to-annual-salary-calculator/" title="Hourly to Annual Salary" desc="Convert any pay frequency" />
+            <CalcLink href="/bonus-tax-calculator/" title="Bonus Tax Calculator" desc="Tax withheld on bonuses & commissions" />
+            <CalcLink href="/fortnightly-pay-calculator/" title="Fortnightly Pay Calculator" desc="Fortnightly take-home pay breakdown" />
+          </div>
+        </motion.section>
+
         {/* ===== 1. HOW DOES THE AUSTRALIAN PAY CALCULATOR WORK? ===== */}
         <motion.section
           initial={{ opacity: 0, y: 24 }}
@@ -822,7 +905,7 @@ export default function HomePageTemplate() {
             <li>$45,001 – $80,000 at 30% = <strong>$10,500</strong></li>
           </ol>
           <p className="leading-relaxed text-warmgray">
-            Total income tax: <strong>$14,788</strong>. Your effective tax rate is <strong>18.5%</strong> — far below the 30% marginal rate. The common mistake of applying 30% to the entire $80,000 would overstate your tax by <strong>$9,212</strong>.
+            Total income tax: <strong>$14,788</strong>. Your effective tax rate is <strong>18.5%</strong> — far below the 30% marginal rate. The common mistake of applying 30% to the entire $80,000 would overstate your tax by <strong>$9,212</strong>. See the full <Link href="/tax-on/80000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $80,000</Link> worked example or compare with <Link href="/tax-on/100000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $100,000</Link>.
           </p>
 
           {/* H3: What Changed in the Stage 3 Tax Cuts? */}
@@ -836,7 +919,7 @@ export default function HomePageTemplate() {
             The Stage 3 tax cuts took effect on <strong>1 July 2024</strong> and continue into FY{SITE_CONFIG.financialYear}. The 19% bracket rate dropped to <strong>16%</strong>, and the 30% bracket ceiling expanded from $120,000 to <strong>$135,000</strong>. A worker earning $100,000 saves <strong>$2,179</strong> per year compared to the pre-Stage-3 rates. A worker earning $60,000 saves <strong>$1,179</strong>. A worker earning $150,000 saves <strong>$3,729</strong>.
           </p>
           <p className="leading-relaxed text-warmgray">
-            From <strong>1 July 2026</strong> (FY2026-27), the 16% bracket rate reduces further to <strong>15%</strong>, delivering an additional saving of up to $268 per year for workers in that bracket.
+            From <strong>1 July 2026</strong> (FY2026-27), the 16% bracket rate reduces further to <strong>15%</strong>, delivering an additional saving of up to $268 per year for workers in that bracket. Read the full <Link href="/tax-brackets/" className="font-medium text-eucalyptus-dark hover:underline">Australian tax brackets guide</Link> for stage 3 cut history and forward-looking changes.
           </p>
         </motion.section>
 
@@ -883,7 +966,7 @@ export default function HomePageTemplate() {
                 ].map((row) => (
                   <tr key={row.gross} className="transition-colors hover:bg-sandstone/50">
                     <td className="px-3 py-2.5 font-medium text-navy">
-                      <Link href={`/tax-on/${row.gross.toLocaleString()}-salary/`} className="hover:text-eucalyptus-dark hover:underline">{formatAUD(row.gross)}</Link>
+                      <Link href={`/tax-on/${row.gross}/`} className="hover:text-eucalyptus-dark hover:underline">{formatAUD(row.gross)}</Link>
                     </td>
                     <td className="px-3 py-2.5 text-right text-warmgray">{formatAUD(row.tax)}</td>
                     <td className="px-3 py-2.5 text-right text-warmgray">{formatAUD(row.medicare)}</td>
@@ -896,7 +979,7 @@ export default function HomePageTemplate() {
             </table>
           </div>
           <p className="mt-3 text-xs text-warmgray-light">
-            Figures assume Australian resident, no HECS-HELP debt, and LITO applied where eligible. Use the calculator above for your exact salary.
+            Figures assume Australian resident, no HECS-HELP debt, and LITO applied where eligible. Use this Australian pay calculator above for your exact salary, or jump to <Link href="/take-home-pay-on/60000/" className="font-medium text-eucalyptus-dark hover:underline">take-home pay on $60K</Link>, <Link href="/take-home-pay-on/90000/" className="font-medium text-eucalyptus-dark hover:underline">$90K</Link>, or <Link href="/take-home-pay-on/120000/" className="font-medium text-eucalyptus-dark hover:underline">$120K</Link>.
           </p>
         </motion.section>
 
@@ -1218,7 +1301,7 @@ export default function HomePageTemplate() {
             </table>
           </div>
           <p className="mt-3 text-xs text-warmgray-light">
-            Payroll tax is paid by employers, not employees. Average salary figures are approximate and based on ABS data. Individual take-home pay uses the same federal income tax brackets in all states.
+            Payroll tax is paid by employers, not employees. Average salary figures are approximate and based on ABS data. Individual take-home pay uses the same federal income tax brackets in all states. Compare a state-specific pay calculator: <Link href="/pay-calculator-nsw/" className="font-medium text-eucalyptus-dark hover:underline">NSW</Link>, <Link href="/pay-calculator-vic/" className="font-medium text-eucalyptus-dark hover:underline">VIC</Link>, or <Link href="/pay-calculator-qld/" className="font-medium text-eucalyptus-dark hover:underline">QLD</Link>.
           </p>
         </motion.section>
 

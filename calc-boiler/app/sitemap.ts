@@ -182,9 +182,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Build sitemap with staggered dates
   const total = allPages.length;
 
+  // lastModified reflects build time so each deploy signals freshness to Google.
+  const buildDate = new Date();
+
   return allPages.map((page, index) => ({
-    url: page.slug ? `${baseUrl}/${page.slug}/` : baseUrl,
-    lastModified: staggeredDate(index, total),
+    url: page.slug ? `${baseUrl}/${page.slug}/` : `${baseUrl}/`,
+    lastModified: page.priority >= 0.7 ? buildDate : staggeredDate(index, total),
     changeFrequency: page.changeFrequency,
     priority: page.priority,
   }));
