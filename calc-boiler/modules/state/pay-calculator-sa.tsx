@@ -88,6 +88,7 @@ export default function PayCalculatorSAPage() {
               </table>
             </div>
             <p className="text-xs text-warmgray-light mt-2">Take-home estimates assume no HECS-HELP debt, private health insurance held, and FY2025-26 tax rates. Use the calculator above for your exact figure.</p>
+            <p className="text-warmgray mt-4">Most South Australian employees in the private sector earn at or above their applicable modern award rate. The Fair Work Commission&apos;s federal modern awards apply nationally, so an SA worker in retail, wine production or hospitality earns the same award minimum as their counterparts in NSW or Victoria. Our <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link> details the FY2025-26 rates by industry classification.</p>
           </section>
 
           {/* ── H2: How Much Tax Do You Pay in South Australia? ── */}

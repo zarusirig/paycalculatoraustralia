@@ -48,8 +48,11 @@ export default function AnnualPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Annual Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Pay Calculator Australia — Take-Home Pay Per Year</h1>
-          <p className="text-lg text-warmgray">Enter your salary to see your full-year pay breakdown, including total tax, super, Medicare, and net income for FY2025-26.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary Calculator Australia — Yearly Take-Home Pay (2025-26)</h1>
+          <p className="text-lg text-warmgray">Enter any gross annual salary to see exactly what it means as a single yearly take-home figure — after income tax, the Medicare levy, HECS-HELP and super for FY2025-26.</p>
+          <div className="mt-5 rounded-xl border-l-4 border-eucalyptus-dark bg-white/80 p-4 shadow-sm">
+            <p className="text-sm text-navy"><strong>Quick answer:</strong> a gross annual salary of <strong>$80,000</strong> in Australia for FY2025-26 delivers approximately <strong>$63,933 in annual take-home pay</strong> ($14,367 income tax + $1,600 Medicare levy). At <strong>$100,000</strong> the figure is roughly <strong>$76,633</strong>; at <strong>$120,000</strong> it is approximately <strong>$89,533</strong>. Use the calculator below to enter your exact yearly salary.</p>
+          </div>
           <TrustBar className="mt-4" />
         </section>
 
@@ -113,7 +116,7 @@ export default function AnnualPayCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Annual Pay Calculated in Australia?</h2>
             <p className="text-warmgray mb-4">
-              Annual pay is calculated by subtracting income tax, Medicare levy, and any HECS-HELP repayments from your gross yearly salary for the Australian financial year running 1 July to 30 June.
+              Annual pay is calculated by subtracting income tax, Medicare levy, and any HECS-HELP repayments from your gross yearly salary for the Australian financial year running 1 July to 30 June. This annual salary calculator gives you a single yearly figure — if you need a per-cycle breakdown instead, use our <Link href="/fortnightly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Fortnightly Pay Calculator</Link>, <Link href="/monthly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Monthly Pay Calculator</Link>, or <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>. For a full per-payslip view, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
             <p className="text-warmgray mb-4">
               The Australian tax calculator applies the FY2025-26 income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Each dollar above that threshold is taxed at the marginal rate for its bracket, ranging from <strong>16%</strong> up to <strong>45%</strong> on income above <strong>$190,000</strong>.

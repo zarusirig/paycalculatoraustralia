@@ -132,11 +132,11 @@ export default function ContractorPayCalculator() {
               <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
                 Contractor Pay Calculator Australia
                 <span className="mt-2 block text-lg font-normal text-blue-300 sm:text-xl">
-                  ABN Workers, Freelancers &amp; Sole Traders — {SITE_CONFIG.financialYear}
+                  What You Take Home as a Contractor — {SITE_CONFIG.financialYear}
                 </span>
               </h1>
               <p className="mb-6 max-w-lg text-lg leading-relaxed text-sandstone-dark/50">
-                Calculate your real take-home pay as a contractor. Enter your hourly rate and see net earnings after tax, Medicare, GST, and super — broken down by day, week, fortnight, month, and year.
+                Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution and deductions — ABN vs PAYG side-by-side for FY{SITE_CONFIG.financialYear}.
               </p>
               <TrustBar className="mb-6" />
             </div>
@@ -433,6 +433,51 @@ export default function ContractorPayCalculator() {
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Superannuation for Contractors</h3>
           <p className="text-warmgray">
             Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>$30,000 per year</strong> reduce taxable income and are taxed at just <strong>15%</strong> inside the fund. Contractors earning above <strong>$250,000</strong> pay an additional <strong>15% Division 293 tax</strong> on super contributions. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
+          </p>
+        </section>
+
+        {/* Take-home by daily rate */}
+        <section>
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Take-Home by Daily Rate (FY{SITE_CONFIG.financialYear})</h2>
+          <p className="mb-4 text-warmgray">
+            A contractor charging <strong>$1,000 per day</strong> grosses approximately <strong>$240,000</strong> over 48 working weeks and takes home around <strong>$162,000</strong> after income tax and Medicare. The table below shows real take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
+          </p>
+          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+            <table className="w-full text-sm">
+              <thead className="bg-sandstone">
+                <tr>
+                  <th className="px-4 py-3 text-left font-semibold text-navy">Daily Rate</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual (48 wks × 5 days)</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Income Tax + Medicare</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Annual Take-Home</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Net Per Day</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                {[500, 750, 1000, 1200, 1500, 2000].map((dailyRate) => {
+                  const gross = dailyRate * 5 * 48;
+                  const tax = calculateIncomeTax(gross, true);
+                  const lito = calculateLITO(gross);
+                  const netTax = Math.max(0, Math.round(tax - lito));
+                  const medicare = calculateMedicareLevy(gross);
+                  const totalTax = netTax + medicare;
+                  const takeHome = gross - totalTax;
+                  const netPerDay = takeHome / (5 * 48);
+                  return (
+                    <tr key={dailyRate} className="hover:bg-sandstone">
+                      <td className="px-4 py-3 font-medium text-navy">${dailyRate}/day</td>
+                      <td className="px-4 py-3 text-right text-navy">{formatAUD(gross)}</td>
+                      <td className="px-4 py-3 text-right text-ochre">-{formatAUD(totalTax)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(takeHome)}</td>
+                      <td className="px-4 py-3 text-right text-navy">{formatAUD(netPerDay)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-sm text-warmgray-light">
+            Figures exclude GST (you remit any GST collected to the ATO). Super is self-funded — contractors choosing to pay themselves the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate should set aside that amount from the annual take-home shown above.
           </p>
         </section>
 

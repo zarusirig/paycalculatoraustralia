@@ -11,7 +11,7 @@ const PAGE_URL = `${BASE_URL}/income-tax-calculator/`;
 export const metadata: Metadata = {
   title: "Income Tax Calculator Australia 2025-26 — How Much Tax Do You Pay?",
   description:
-    "Free Australian income tax calculator. See exactly how much tax you pay on any salary with bracket-by-bracket breakdown. Updated for FY2025-26 using official ATO rates.",
+    "Calculate your Australian income tax instantly using ATO brackets for FY2025-26. See how much tax you pay on any salary from $30,000 to $200,000 — with bracket-by-bracket breakdown.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Income Tax Calculator Australia 2025-26",
@@ -58,23 +58,33 @@ const faqSchema: WithContext<FAQPage> = {
   mainEntity: [
     {
       "@type": "Question",
+      name: "How much income tax do I pay in Australia?",
+      acceptedAnswer: { "@type": "Answer", text: "Australian residents pay income tax on a progressive scale for FY2025-26: 0% up to $18,200, 16% from $18,201 to $45,000, 30% from $45,001 to $135,000, 37% from $135,001 to $190,000, and 45% above $190,000. On an $80,000 salary you pay $14,788 in income tax plus $1,600 Medicare levy — total $16,388, leaving a take-home of $63,612." },
+    },
+    {
+      "@type": "Question",
+      name: "What are the 2025-26 tax brackets?",
+      acceptedAnswer: { "@type": "Answer", text: "The FY2025-26 ATO resident tax brackets are: $0–$18,200 at 0% (tax-free threshold), $18,201–$45,000 at 16%, $45,001–$135,000 at 30%, $135,001–$190,000 at 37%, and $190,001+ at 45%. These are the same brackets as FY2024-25 after the Stage 3 tax cuts took effect on 1 July 2024." },
+    },
+    {
+      "@type": "Question",
+      name: "How is income tax calculated in Australia?",
+      acceptedAnswer: { "@type": "Answer", text: "Australia uses a progressive marginal system. Your income is sliced across the 5 ATO brackets and each slice is taxed at that bracket's rate. The portions are summed to get your gross income tax, then the Low Income Tax Offset (LITO) is subtracted, and the 2% Medicare levy is added. For example, $90,000 = $0 (on first $18,200) + $4,288 (16% on $26,800) + $13,500 (30% on $45,000) = $17,788 income tax." },
+    },
+    {
+      "@type": "Question",
+      name: "Do I pay tax on the first $18,200?",
+      acceptedAnswer: { "@type": "Answer", text: "No. The first $18,200 of your taxable income is tax-free if you claim the tax-free threshold with your primary employer. With the Low Income Tax Offset (LITO) added in, you can earn up to $22,575 before paying any net income tax. The threshold only applies to one employer — claiming it on a second job will create a tax debt." },
+    },
+    {
+      "@type": "Question",
+      name: "What is the difference between marginal and effective tax rate?",
+      acceptedAnswer: { "@type": "Answer", text: "Your marginal rate is the rate applied to the next dollar you earn — it equals the bracket rate at your current income. Your effective rate is your total income tax divided by your total income — it averages across all brackets. On $100,000, your marginal rate is 30% but your effective rate (excluding Medicare) is about 17.79%, because the first $18,200 was taxed at 0% and the next $26,800 was taxed at only 16%." },
+    },
+    {
+      "@type": "Question",
       name: "How much tax do I pay on $80,000?",
       acceptedAnswer: { "@type": "Answer", text: "On $80,000, you pay $14,788 in income tax for FY2025-26. After the 2% Medicare levy ($1,600), your total tax deductions are $16,388. Your take-home pay is $63,612 per year — $1,223.31 per week." },
-    },
-    {
-      "@type": "Question",
-      name: "Do I pay my marginal rate on my entire salary?",
-      acceptedAnswer: { "@type": "Answer", text: "No. Australia uses a progressive system. You only pay the marginal rate on the portion of income within that bracket. On $80,000, your marginal rate is 30%, but your effective rate is only 18.49%." },
-    },
-    {
-      "@type": "Question",
-      name: "What is the tax-free threshold?",
-      acceptedAnswer: { "@type": "Answer", text: "The tax-free threshold is $18,200. You pay no income tax on the first $18,200 you earn. With LITO, the effective threshold is $22,575." },
-    },
-    {
-      "@type": "Question",
-      name: "How is income tax collected?",
-      acceptedAnswer: { "@type": "Answer", text: "Your employer deducts income tax from each pay through the PAYG (Pay As You Go) withholding system. The amount withheld is based on the ATO's tax tables. You reconcile any difference when you lodge your annual tax return." },
     },
   ],
 };

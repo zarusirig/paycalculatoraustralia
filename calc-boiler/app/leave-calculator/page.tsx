@@ -9,13 +9,13 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Leave Entitlements Calculator — Annual Leave, Loading & Payout (2025-26)",
+  title: "Annual Leave Calculator Australia — How Much Your Leave Payout Actually Is (2025-26)",
   description:
-    "Calculate your annual leave balance, leave loading at 17.5% and payout on termination. Enter your salary and tenure. Free Australian leave calculator.",
+    "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading & lump-sum payouts — FY2025-26 Australian rates.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Leave Entitlements Calculator Australia",
-    description: "Calculate your annual leave accrual, leave loading, and termination payout value.",
+    title: "Annual Leave Calculator Australia — How Much Your Leave Payout Actually Is",
+    description: "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading and lump-sum payouts for FY2025-26.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Leave Entitlements Calculator",
-    description: "Calculate your annual leave balance and payout value.",
+    title: "Annual Leave Calculator Australia",
+    description: "How much your annual leave payout is actually worth — FY2025-26 rates.",
   },
 };
 
@@ -57,10 +57,34 @@ const faq: WithContext<FAQPage> = {
   mainEntity: [
     {
       "@type": "Question",
+      name: "How is annual leave payout calculated?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Annual leave payout is calculated by multiplying the employee's weekly base pay rate by the number of accrued unused weeks of leave, plus 17.5% leave loading if the Award or contract provides for it. On an $80,000 salary with 4 weeks accrued leave, the gross payout is $6,154 base ($80,000 ÷ 52 × 4) plus $1,077 leave loading where applicable, totalling around $7,231 before tax.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is leave loading taxed differently?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Leave loading of 17.5% paid out on termination is taxed at the employee's marginal income tax rate, the same as ordinary salary income. The historical concessional tax treatment for leave loading was removed by the ATO years ago. The payout is added to taxable income for the financial year it is received.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do I get tax back on unused annual leave?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Possibly. Annual leave payouts are taxed as lump-sum income at your marginal rate, which can over-withhold tax if the payout temporarily pushes you into a higher bracket for that pay period. When you lodge your annual tax return, any over-withheld tax is refunded based on actual annual income.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "How much annual leave do I get in Australia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Full-time employees get 4 weeks (20 days or 152 hours) of paid annual leave per year. Part-time employees accrue on a pro-rata basis. Shift workers may be entitled to 5 weeks.",
+        text: "Full-time employees get 4 weeks (20 days or 152 hours) of paid annual leave per year under the National Employment Standards. Part-time employees accrue on a pro-rata basis proportional to their ordinary hours. Shift workers on rotating rosters may be entitled to 5 weeks (190 hours).",
       },
     },
     {
@@ -68,7 +92,7 @@ const faq: WithContext<FAQPage> = {
       name: "What is leave loading?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Leave loading is an extra 17.5% on top of your base pay during annual leave. It depends on your Award or enterprise agreement — not all employees receive it.",
+        text: "Leave loading is an extra 17.5% on top of your base pay during annual leave. It depends on your Award or enterprise agreement — Award-free professional employees typically do not receive it. Common Awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award.",
       },
     },
     {
@@ -76,7 +100,7 @@ const faq: WithContext<FAQPage> = {
       name: "Is annual leave paid out when I leave my job?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. When your employment ends, your employer must pay out all accrued but untaken annual leave. This is a legal requirement under the National Employment Standards.",
+        text: "Yes. When your employment ends, your employer must pay out all accrued but untaken annual leave. This is a legal requirement under the National Employment Standards and applies whether you resign, are made redundant, or are dismissed.",
       },
     },
   ],

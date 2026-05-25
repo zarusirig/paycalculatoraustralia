@@ -15,7 +15,16 @@ export default function FringeBenefitsTaxPage() {
   return (
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Fringe Benefits Tax</span></li></ol></nav>
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fringe Benefits Tax (FBT) Guide Australia FY2025-26</h1><p className="text-xl text-warmgray leading-relaxed mb-6">What FBT is, how the Australian tax system calculates fringe benefits, which benefits are exempt, current FBT rates and thresholds, and how reportable fringe benefits affect your take-home pay and tax return.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fringe Benefits Tax (FBT) Guide Australia FY2025-26</h1>
+        <p className="text-xl text-warmgray leading-relaxed mb-6">What FBT is, how the Australian tax system calculates fringe benefits, which benefits are exempt, current FBT rates and thresholds, and how reportable fringe benefits affect your take-home pay and tax return.</p>
+        <div className="mb-6 bg-eucalyptus-light/40 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
+          <p className="text-base leading-relaxed">
+            <strong className="text-navy">Fringe Benefits Tax (FBT) in Australia is paid by employers</strong> on non-cash benefits given to employees. The FBT rate for FY2025-26 is <strong className="text-navy">47%</strong> (matching the top marginal rate). Type 1 gross-up factor (GST-creditable benefits) is <strong className="text-navy">2.0802</strong>; Type 2 (no GST) is <strong className="text-navy">1.8868</strong>. FBT runs from <strong className="text-navy">1 April to 31 March</strong>, not the standard financial year.
+          </p>
+        </div>
+        <TrustBar className="!max-w-none" />
+      </header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
@@ -67,7 +76,55 @@ export default function FringeBenefitsTaxPage() {
                 </tbody>
               </table>
             </div>
-            <p>Car fringe benefits are the most common category, accounting for the majority of all FBT revenue collected. For a detailed breakdown of how novated leasing reduces the taxable value of car benefits, see our <Link href="/novated-lease-guide/">Novated Lease Guide</Link>.</p>
+            <p>Car fringe benefits are the most common category, accounting for the majority of all FBT revenue collected. For a detailed breakdown of how novated leasing reduces the taxable value of car benefits, see our <Link href="/novated-lease-guide/">Novated Lease Guide</Link>. To structure a tax-effective benefits package around FBT, employees should also read our <Link href="/salary-packaging-guide/">Salary Packaging Guide</Link>.</p>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common FBT Benefits and Their Treatment</h3>
+            <p>The table below summarises the most common fringe benefits employees actually receive, the gross-up Type that applies, the standard ATO treatment, and whether the benefit is reportable on the employee&apos;s income statement.</p>
+            <div className="not-prose overflow-x-auto my-6">
+              <table className="w-full text-sm border-collapse border border-sandstone-dark/30">
+                <thead><tr className="bg-sandstone">
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Benefit Type</th>
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Type 1 or 2</th>
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Common Treatment</th>
+                  <th className="border border-sandstone-dark/30 px-4 py-3 text-left text-navy font-semibold">Reportable?</th>
+                </tr></thead>
+                <tbody>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Car (company car)</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 1</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Statutory formula: 20% of base value, or operating cost method with logbook</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes, if grossed-up value &gt; $2,000</td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Loan (below-market)</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 2</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Taxable value = (Benchmark rate − rate charged) × loan balance</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes, if grossed-up value &gt; $2,000</td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Housing</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 2</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Market value of accommodation − employee contribution</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes</td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Living-away-from-home allowance (LAFHA)</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 2</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Allowance above reasonable food and accommodation amounts is taxable</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes (excess portion)</td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Entertainment (meals, events)</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 1</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Actual method or 50/50 split; minor benefit exemption (&lt;$300) may apply</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Generally no (election available)</td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Salary packaging</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Depends on item</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Pre-tax salary swapped for benefit; treatment depends on benefit packaged — see <Link href="/salary-packaging-guide/" className="underline text-eucalyptus-dark">salary packaging guide</Link></td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Usually yes</td></tr>
+                  <tr><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Novated lease</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 1</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Statutory formula or operating cost; ECM contributions reduce taxable value; EVs may be exempt — see <Link href="/novated-lease-guide/" className="underline text-eucalyptus-dark">novated lease guide</Link></td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes (unless EV-exempt)</td></tr>
+                  <tr className="bg-sandstone/40"><td className="border border-sandstone-dark/30 px-4 py-2 font-medium text-navy">Health insurance (employer-paid)</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Type 1</td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Premium amount = taxable value; can interact with the <Link href="/private-health-insurance-medicare/" className="underline text-eucalyptus-dark">Medicare Levy Surcharge</Link></td><td className="border border-sandstone-dark/30 px-4 py-2 text-warmgray">Yes</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FBT Calculation Worked Example</h3>
+            <p>The example below grosses up a <strong>$5,000 GST-creditable (Type 1) benefit</strong> to its taxable value and calculates the employer&apos;s FBT liability for FY2025-26.</p>
+            <div className="not-prose my-6 rounded-lg border-l-4 border-eucalyptus-dark bg-sandstone/40 p-5">
+              <ol className="list-decimal pl-6 space-y-2 text-warmgray font-mono text-sm">
+                <li><strong className="text-navy">Step 1 — Taxable value of benefit:</strong> $5,000</li>
+                <li><strong className="text-navy">Step 2 — Apply Type 1 gross-up factor (GST-creditable):</strong> $5,000 × 2.0802 = <strong className="text-navy">$10,401.00</strong></li>
+                <li><strong className="text-navy">Step 3 — Apply FBT rate of 47%:</strong> $10,401.00 × 0.47 = <strong className="text-navy">$4,888.47</strong></li>
+                <li><strong className="text-navy">Step 4 — Employer remits to ATO:</strong> $4,888.47 in FBT</li>
+                <li><strong className="text-navy">Step 5 — Employee&apos;s RFBA reported on income statement:</strong> $10,401 (grossed-up amount)</li>
+              </ol>
+            </div>
+            <p>For a Type 2 benefit (no GST credit), Step 2 would use the lower 1.8868 factor: $5,000 × 1.8868 = $9,434, and the FBT would be $9,434 × 47% = <strong>$4,433.98</strong> — about $454 less than the Type 1 equivalent for the same underlying benefit value.</p>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FBT vs Income Tax — Who Pays?</h3>
+            <p>FBT and income tax are two separate Australian tax regimes. <strong>The employer pays FBT</strong> on the grossed-up taxable value of non-cash benefits at the 47% rate. The <strong>employee pays income tax</strong> only on cash wages and salary at their <Link href="/income-tax-calculator/">marginal income tax rate</Link>, with the 2% <Link href="/medicare-levy/">Medicare levy</Link> on top.</p>
+            <p>However, the employee may still see fringe benefits reported on their PAYG income statement as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong>. The RFBA is the grossed-up taxable value, and while it is not taxed again, it is added to your adjusted taxable income for the purpose of:</p>
+            <ul>
+              <li><strong>HECS-HELP repayments</strong> — RFBA counts toward the $67,000 marginal-system threshold; model the impact with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</li>
+              <li><strong>Medicare Levy Surcharge (MLS)</strong> — RFBA can push your income above the $93,000 singles threshold, triggering 1%–1.5% MLS unless you hold appropriate <Link href="/private-health-insurance-medicare/">private hospital cover</Link>.</li>
+              <li><strong>Super co-contribution</strong> — RFBA reduces eligibility for the government super co-contribution on after-tax personal contributions.</li>
+              <li><strong>Family Tax Benefit and Centrelink income tests</strong> — RFBA counts toward income-tested family assistance entitlements.</li>
+              <li><strong>Division 293 tax</strong> — for high-income earners with combined income plus low-tax super above $250,000.</li>
+            </ul>
+            <p>This is why salary packaging quotes always model the <em>combined</em> impact on take-home pay <em>and</em> RFBA, not just the headline tax saving.</p>
           </section>
 
           {/* ===== SECTION 4 ===== */}

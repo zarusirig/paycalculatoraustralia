@@ -68,11 +68,10 @@ export default function LeaveCalculatorPage() {
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Leave Entitlements Calculator 2025-26
+            Annual Leave Calculator Australia 2025-26
           </h1>
           <p className="text-lg text-warmgray">
-            Calculate your annual leave balance, leave loading at 17.5%, and payout value on termination.
-            Enter your salary and years of service to see your full entitlements.
+            Find out how much your annual leave payout is actually worth. Calculate pro-rata accrual, 17.5% leave loading, and the tax on lump-sum payouts using FY2025-26 Australian rates.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -251,6 +250,47 @@ export default function LeaveCalculatorPage() {
             </div>
             <p className="text-warmgray">
               Income tax brackets apply to leave payouts the same way they apply to regular salary. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to determine the tax payable on your leave payout amount.
+            </p>
+          </section>
+
+          {/* H2: 4-week annual leave value at common salaries */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">4-Week Annual Leave Value at Common Salaries (FY2025-26)</h2>
+            <p className="mb-4 text-warmgray">
+              The gross value of <strong>4 weeks of accrued annual leave</strong> ranges from approximately <strong>{formatAUD((50000 / 52) * 4)}</strong> at a $50,000 salary to <strong>{formatAUD((120000 / 52) * 4)}</strong> at a $120,000 salary, before leave loading or tax. The table below shows the base payout, the 17.5% leave loading where applicable, and the total gross payout (pre-tax) at 6 common salary levels.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Annual Salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Weekly Base Pay</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Base Payout (4 wks)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Leave Loading (17.5%)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Total Gross Payout</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {[50000, 60000, 75000, 90000, 100000, 120000].map((annualSalary) => {
+                    const weekly = annualSalary / 52;
+                    const basePayout = weekly * 4;
+                    const loading = basePayout * LEAVE_LOADING_RATE;
+                    const total = basePayout + loading;
+                    return (
+                      <tr key={annualSalary} className="hover:bg-sandstone">
+                        <td className="px-4 py-3 font-medium text-navy">{formatAUD(annualSalary)}</td>
+                        <td className="px-4 py-3 text-right text-warmgray">{formatAUD(weekly)}</td>
+                        <td className="px-4 py-3 text-right text-navy">{formatAUD(basePayout)}</td>
+                        <td className="px-4 py-3 text-right text-eucalyptus-dark">+{formatAUD(loading)}</td>
+                        <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(total)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-sm text-warmgray-light">
+              Figures show gross payout before income tax. Tax is applied at the employee&apos;s marginal rate in the financial year the payout is received. Leave loading is shown for reference — apply only if your Award or contract provides for it.
             </p>
           </section>
 

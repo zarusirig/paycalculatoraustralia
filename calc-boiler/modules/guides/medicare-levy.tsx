@@ -37,6 +37,35 @@ export default function MedicareLevyGuidePage() {
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
             Medicare Levy 2025-26 — Rate, Surcharge &amp; Exemptions
           </h1>
+
+          {/* DIRECT-ANSWER BLOCK (featured snippet target) */}
+          <div className="mb-6">
+            <p className="text-lg text-navy leading-relaxed mb-5 border-l-4 border-eucalyptus pl-4 bg-white/60 py-2 rounded-r-md">
+              The standard Medicare Levy is <strong>2% of your taxable income</strong>. It applies if you earn above <strong>$26,000</strong> (single, FY2025-26), with a phase-in between $26,000 and $32,500. Above <strong>$97,000</strong> (single) you may also pay a 1–1.5% Medicare Levy Surcharge unless you hold private hospital cover.
+            </p>
+
+            <h2 className="text-base font-bold text-navy mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy by taxable income (2025-26, single, no MLS)</h2>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 bg-white">
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Medicare Levy</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  <tr><td className="px-4 py-3 font-medium text-navy">$26,000</td><td className="px-4 py-3 text-right text-navy">$0</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$30,000</td><td className="px-4 py-3 text-right text-navy">$400</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$32,500</td><td className="px-4 py-3 text-right text-navy">$650</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$40,000</td><td className="px-4 py-3 text-right text-navy">$800</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$60,000</td><td className="px-4 py-3 text-right text-navy">$1,200</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$80,000</td><td className="px-4 py-3 text-right text-navy">$1,600</td></tr>
+                  <tr><td className="px-4 py-3 font-medium text-navy">$100,000</td><td className="px-4 py-3 text-right text-navy">$2,000</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
           <p className="text-lg text-warmgray">
             The Medicare levy is a {formatPercent(MEDICARE_LEVY.rate, 0)} charge on your taxable income that helps fund Australia&apos;s public healthcare system. Most resident taxpayers pay it. Here&apos;s how it works, who&apos;s exempt, and how the surcharge applies.
           </p>

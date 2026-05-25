@@ -34,6 +34,36 @@ export default function LowIncomeTaxOffsetPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Low Income Tax Offset (LITO)
           </h1>
+
+          {/* DIRECT-ANSWER BLOCK (featured snippet target) */}
+          <section aria-labelledby="lito-direct-answer" className="mb-8">
+            <p id="lito-direct-answer" className="text-lg text-navy leading-relaxed mb-6 border-l-4 border-eucalyptus pl-4">
+              The Low Income Tax Offset (LITO) for FY2025-26 is a maximum of <strong>$700</strong> for taxable incomes up to <strong>$37,500</strong>. It phases out at <strong>5 cents per dollar</strong> between $37,500 and $45,000, then <strong>1.5 cents per dollar</strong> between $45,000 and $66,667, where it reaches zero. Claim it automatically when you lodge your tax return.
+            </p>
+
+            <h2 className="text-lg font-bold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>LITO amount by taxable income (2025-26)</h2>
+            <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+              <table className="w-full text-sm text-left text-navy">
+                <thead className="bg-sandstone font-semibold text-navy">
+                  <tr>
+                    <th className="px-5 py-3">Taxable Income</th>
+                    <th className="px-5 py-3">LITO Amount (FY2025-26)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                  <tr><td className="px-5 py-3 font-semibold">$30,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$37,500</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$40,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$575</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$45,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$325</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$50,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$250</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$55,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$175</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$60,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$100</td></tr>
+                  <tr><td className="px-5 py-3 font-semibold">$66,667</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Discover how the LITO automatically slashes your tax bill by up to $700 if you earn under $66,667, and why the "real" tax-free threshold is higher than you think.
           </p>

@@ -13,7 +13,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Awards", url: "https://www.fairwork.gov.au/employment-conditions/awards", publisher: SOURCES.fwo.name },
-  { title: "Find my award", url: "https://www.fairwork.gov.au/employment-conditions/awards/find-my-award", publisher: SOURCES.fwo.name },
+  { title: "Find my award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
   { title: "Annual Wage Review 2024-25", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: "Fair Work Commission" },
   { title: "National Minimum Wage Order 2025", url: "https://www.fwc.gov.au/work-conditions/minimum-wages-and-conditions/national-minimum-wage/national-minimum-wage-orders", publisher: "Fair Work Commission" },
 ];
@@ -35,11 +35,16 @@ export default function AwardRatesGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Award Rates Guide 2025-26
+            Award Rates Australia 2025-26 — Minimum Pay by Industry &amp; Classification
           </h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The Australian industrial relations system is complex. Learn how "Modern Awards" dictate your legal minimum wage, penalty rates, and allowances based on your specific job role.
+          <p className="text-xl text-warmgray leading-relaxed mb-5">
+            Find current minimum award pay rates in Australia for FY2025-26. Hospitality, retail, building &amp; construction, nurses, teachers — covered by industry, with overtime, penalty rate &amp; allowance calculations.
           </p>
+          <div className="rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5 mb-6">
+            <p className="text-base text-navy leading-relaxed">
+              <strong>Direct answer:</strong> Modern award rates set the legal minimum pay for most Australian employees. Each award has classification levels (e.g., Level 1&ndash;6) with different hourly rates. The Fair Work Commission updates rates annually on 1 July. Overtime, weekend, public holiday and shift loadings apply on top of the base rate.
+            </p>
+          </div>
           <TrustBar className="!max-w-none" />
         </header>
 
@@ -107,6 +112,34 @@ export default function AwardRatesGuidePage() {
               <p>
                 Australia has <strong>122 Modern Awards</strong> in operation. The 10 awards listed below cover the largest number of employees and represent the most frequently searched award rates for FY2025-26. All rates shown are base hourly rates for a full-time adult employee at the entry-level classification (Level 1).
               </p>
+
+              <h3>Common Awards Quick-Reference (by Industry &amp; Code)</h3>
+              <div className="not-prose my-6">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-navy">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th className="px-5 py-4">Modern Award</th>
+                        <th className="px-5 py-4">Code</th>
+                        <th className="px-5 py-4">Typical Industry</th>
+                        <th className="px-5 py-4">Find My Award</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr><td className="px-5 py-3">General Retail Industry Award</td><td className="px-5 py-3 font-mono text-xs">MA000004</td><td className="px-5 py-3">Retail &amp; shop assistants</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Hospitality Industry (General) Award</td><td className="px-5 py-3 font-mono text-xs">MA000009</td><td className="px-5 py-3">Cafes, restaurants, pubs, hotels</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Building and Construction General On-site Award</td><td className="px-5 py-3 font-mono text-xs">MA000020</td><td className="px-5 py-3">Building &amp; construction</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Nurses Award</td><td className="px-5 py-3 font-mono text-xs">MA000034</td><td className="px-5 py-3">Nurses &amp; midwives</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Educational Services (Teachers) Award</td><td className="px-5 py-3 font-mono text-xs">MA000077</td><td className="px-5 py-3">Teachers (non-government schools)</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Manufacturing and Associated Industries Award</td><td className="px-5 py-3 font-mono text-xs">MA000010</td><td className="px-5 py-3">Manufacturing &amp; metals</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Mining Industry Award</td><td className="px-5 py-3 font-mono text-xs">MA000011</td><td className="px-5 py-3">Mining &amp; resources</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                      <tr><td className="px-5 py-3">Clerks &mdash; Private Sector Award</td><td className="px-5 py-3 font-mono text-xs">MA000002</td><td className="px-5 py-3">Office &amp; administration</td><td className="px-5 py-3"><a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark">Look up &rarr;</a></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="text-xs text-warmgray-light mt-2">Codes are issued by the Fair Work Commission. Verify your exact award and classification at fairwork.gov.au.</p>
+              </div>
+
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-navy">

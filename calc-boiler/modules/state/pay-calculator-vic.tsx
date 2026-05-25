@@ -25,7 +25,7 @@ function clamp(n: number, min: number, max: number) {
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Average Weekly Earnings (VIC)", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: "Australian Bureau of Statistics" },
-  { title: "VIC Payroll Tax", url: "https://www.sro.vic.gov.au/payroll-tax", publisher: "State Revenue Office Victoria" },
+  { title: "VIC Payroll Tax", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax", publisher: "State Revenue Office Victoria" },
 ];
 
 export default function PayCalculatorVICPage() {
@@ -139,6 +139,7 @@ export default function PayCalculatorVICPage() {
               </ol>
             </div>
             <p className="text-warmgray">Your take-home pay equals gross salary minus income tax, minus the Medicare levy, minus any HECS repayment. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see how employer super contributions grow over time.</p>
+            <p className="text-warmgray mt-4">Before tax is calculated, Victorian employees in the private sector are generally covered by federal modern awards that set their legal minimum hourly rate. See our <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link> for the FY2025-26 rates by industry. Note that Victorian state public sector employees (teachers, nurses in public hospitals, public servants) are usually covered by separate Victorian state awards or enterprise agreements rather than the federal modern awards.</p>
           </section>
 
           {/* H2: What Is the Average Salary in Victoria? */}

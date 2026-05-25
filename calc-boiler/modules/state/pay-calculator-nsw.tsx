@@ -136,6 +136,7 @@ export default function PayCalculatorNSWPage() {
               <li>Calculate employer superannuation at the SG rate of <strong>12%</strong> on top of your gross salary</li>
             </ol>
             <p className="text-warmgray">Your net pay after tax is then displayed as annual, monthly, fortnightly, and weekly amounts. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model voluntary concessional contributions that reduce your taxable income further.</p>
+            <p className="text-warmgray mt-4">Most NSW employees are covered by federal modern awards set by the Fair Work Commission, which dictate the legal minimum hourly rate before income tax applies. Find your industry-specific minimum pay in our <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link> — the same rates apply across NSW, VIC, QLD and every other state, with limited carve-outs only for state public-sector employees.</p>
           </section>
 
           {/* H2: What Is the Average Salary in New South Wales? */}

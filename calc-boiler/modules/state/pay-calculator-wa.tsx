@@ -25,7 +25,7 @@ function clamp(n: number, min: number, max: number) {
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Average Weekly Earnings (WA)", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: "Australian Bureau of Statistics" },
-  { title: "WA Payroll Tax", url: "https://www.wa.gov.au/organisation/department-of-finance/payroll-tax", publisher: "Department of Finance WA" },
+  { title: "WA Payroll Tax", url: "https://www.wa.gov.au/organisation/department-of-treasury-and-finance/about-payroll-tax", publisher: "Department of Finance WA" },
 ];
 
 export default function PayCalculatorWAPage() {
@@ -130,6 +130,7 @@ export default function PayCalculatorWAPage() {
             <p className="text-warmgray mb-4">Enter your gross annual salary, indicate whether you carry a HECS-HELP debt, and confirm your private health insurance status. The Australian tax calculator then computes your income tax using the current <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax brackets</Link>, deducts the 2% Medicare levy, and applies the Low Income Tax Offset (LITO) if eligible. The result is your net pay after tax, displayed as annual, monthly, fortnightly, and weekly amounts.</p>
             <p className="text-warmgray mb-4">Personal income tax in Australia is a federal obligation. Western Australia does not impose a state-level income tax, so the same tax brackets apply whether you earn your salary in Perth, Karratha, or Broome. The key difference for WA workers is the significantly higher average salary driven by the mining and resources sector, which directly affects the marginal rate applied to your assessable income.</p>
             <p className="text-warmgray">Your employer also pays superannuation at the SG rate of <strong>12%</strong> on top of your gross salary for FY2025-26. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to calculate the exact dollar amount flowing into your super fund.</p>
+            <p className="text-warmgray mt-4">WA has a unique twist on award coverage: while most national-system employees in Western Australia fall under federal modern awards (set by the Fair Work Commission), workers employed by sole-trader and partnership businesses in WA may instead be covered by WA state awards under the WA Industrial Relations Act. For the federal modern award minimum rates — including the Mining Industry Award and Building &amp; Construction General On-site Award — see our <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Australian award rates guide</Link>.</p>
           </section>
 
           {/* H2: What Is the Average Salary in Western Australia? */}

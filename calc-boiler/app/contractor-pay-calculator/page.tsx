@@ -11,19 +11,25 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contractor Pay Calculator Australia — ABN Hourly Rate to Net Pay (2025-26)",
+  title: "Contractor Pay Calculator Australia — What You Take Home as a Contractor (2025-26)",
   description:
-    "Calculate your contractor take-home pay after tax, Medicare, GST and super. Enter your hourly rate and see daily, weekly, fortnightly, monthly and annual net earnings. Free Australian contractor calculator.",
+    "Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution & deductions — ABN vs PAYG comparison for FY2025-26.",
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
   },
   openGraph: {
-    title: "Contractor Pay Calculator Australia — ABN Hourly Rate to Net Pay",
+    title: "Contractor Pay Calculator Australia — What You Take Home as a Contractor",
     description:
-      "Free contractor pay calculator for ABN workers, freelancers and sole traders. See your real take-home pay after tax, GST and super.",
+      "Calculate your take-home as a contractor. See net pay after GST, income tax, super self-contribution & deductions for FY2025-26.",
     url: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
     siteName: SITE_CONFIG.name,
     type: "website",
+    locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contractor Pay Calculator Australia",
+    description: "See your real take-home as a contractor in Australia.",
   },
 };
 
@@ -73,10 +79,26 @@ const faqSchema: WithContext<FAQPage> = {
   mainEntity: [
     {
       "@type": "Question",
+      name: "How much do I take home as a contractor in Australia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A contractor charging $1,000 per day grosses approximately $240,000 over 48 working weeks and takes home roughly $162,000 after income tax and the 2% Medicare levy (FY2025-26). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the 12% Super Guarantee for yourself. ABN contractors typically need to charge 30-40% more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "What is a contractor for tax purposes?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "A contractor (independent contractor or ABN worker) operates their own business and invoices clients for work. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine contractor status.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What's the difference between ABN and PAYG income tax?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "ABN contractors and PAYG employees pay the same marginal income tax brackets (0%, 16%, 30%, 37%, 45%) plus the 2% Medicare levy in FY2025-26. The difference is in how it's collected: PAYG employees have tax withheld every pay cycle by their employer, while ABN contractors invoice gross and pay tax through quarterly PAYG instalments or at year-end. Contractors also handle GST (10%) once turnover exceeds $75,000.",
       },
     },
     {

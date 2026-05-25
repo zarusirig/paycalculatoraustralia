@@ -84,6 +84,11 @@ export default function IncomeTaxCalculatorPage() {
               <p className="text-xl text-warmgray">
                 Find out exactly how much income tax you pay on any salary. Uses the official ATO tax tables for FY{SITE_CONFIG.financialYear}, including the Low Income Tax Offset (LITO).
               </p>
+              <div className="mt-6 bg-white/70 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
+                <p className="text-base leading-relaxed">
+                  <strong className="text-navy">Australian income tax for FY2025-26 uses 5 brackets:</strong> 0% up to $18,200, 16% to $45,000, 30% to $135,000, 37% to $190,000, and 45% above. Most workers also pay 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Use the calculator below for your exact figure.
+                </p>
+              </div>
               <TrustBar className="mt-4" />
             </div>
           </section>
@@ -212,28 +217,121 @@ export default function IncomeTaxCalculatorPage() {
             {/* Tax brackets table */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Income Tax Brackets for FY2025-26?</h2>
-              <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for resident taxpayers in FY2025-26, ranging from 0% on the first $18,200 to 45% on income above $190,000.</p>
+              <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for resident taxpayers in FY2025-26, ranging from 0% on the first $18,200 to 45% on income above $190,000. The table below shows the full <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline font-medium">ATO tax brackets for 2025-26</Link> with cumulative tax at the top of each bracket.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
                     <tr>
-                      <th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th>
+                      <th className="px-4 py-3 text-left font-semibold text-navy">Income Range</th>
                       <th className="px-4 py-3 text-left font-semibold text-navy">Tax Rate</th>
-                      <th className="px-4 py-3 text-left font-semibold text-navy">Tax on This Bracket</th>
+                      <th className="px-4 py-3 text-left font-semibold text-navy">Tax on Range</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Cumulative Tax</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {TAX_BRACKETS_2025_26.map((bracket, i) => (
-                      <tr key={i} className="hover:bg-sandstone">
-                        <td className="px-4 py-3 text-navy">{formatAUD(bracket.min)} – {bracket.max === Infinity ? "+" : formatAUD(bracket.max)}</td>
-                        <td className="px-4 py-3 font-medium text-navy">{formatPercent(bracket.rate, 0)}</td>
-                        <td className="px-4 py-3 text-warmgray">{bracket.label}</td>
-                      </tr>
-                    ))}
+                    {TAX_BRACKETS_2025_26.map((bracket, i) => {
+                      const rangeWidth = bracket.max === Infinity ? null : bracket.max - (bracket.min === 0 ? 0 : bracket.min - 1);
+                      const taxOnRange = rangeWidth == null ? null : Math.round(rangeWidth * bracket.rate);
+                      const cumulativeAtTop = bracket.max === Infinity ? null : Math.round(calculateIncomeTax(bracket.max));
+                      return (
+                        <tr key={i} className="hover:bg-sandstone">
+                          <td className="px-4 py-3 text-navy">{formatAUD(bracket.min)} – {bracket.max === Infinity ? "+" : formatAUD(bracket.max)}</td>
+                          <td className="px-4 py-3 font-medium text-navy">{formatPercent(bracket.rate, 0)}</td>
+                          <td className="px-4 py-3 text-warmgray">{taxOnRange == null ? "+45c per $1 over $190,000" : formatAUD(taxOnRange)}</td>
+                          <td className="px-4 py-3 text-right text-navy font-medium">{cumulativeAtTop == null ? "—" : formatAUD(cumulativeAtTop)}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-warmgray">These brackets apply to Australian residents for tax purposes. Non-residents pay <strong>30%</strong> from the first dollar with no tax-free threshold. The Stage 3 tax cuts, legislated in July 2024, reduced the 19% bracket to <strong>16%</strong> and raised the 37% threshold from $120,000 to <strong>$135,000</strong>. For the complete breakdown, see our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline font-medium">Australian tax brackets guide</Link>.</p>
+              <p className="mt-3 text-warmgray">These brackets apply to Australian residents for tax purposes. Non-residents pay <strong>30%</strong> from the first dollar with no tax-free threshold. The Stage 3 tax cuts, legislated in July 2024, reduced the 19% bracket to <strong>16%</strong> and raised the 37% threshold from $120,000 to <strong>$135,000</strong>.</p>
+            </section>
+
+            {/* Tax on common salaries (with /tax-on/ links) */}
+            <section>
+              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax on Common Salaries (2025-26)</h2>
+              <p className="mb-4 text-warmgray">Quick reference for income tax, Medicare levy, take-home pay, and effective tax rate across the salaries Australians most commonly search for. Click any salary to see the full <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline font-medium">tax on $80,000</Link>-style breakdown with weekly, fortnightly, and monthly figures.</p>
+              <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+                <table className="w-full text-sm">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-semibold text-navy">Salary</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Income Tax</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Medicare Levy</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Take-Home</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Effective Rate</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {[30000, 50000, 75000, 90000, 100000, 120000, 150000, 200000].map((s) => {
+                      const raw = calculateIncomeTax(s);
+                      const lito = calculateLITO(s);
+                      const net = Math.max(0, Math.round(raw - lito));
+                      const med = calculateMedicareLevy(s);
+                      const total = net + med;
+                      const take = s - total;
+                      return (
+                        <tr key={s} className="hover:bg-sandstone">
+                          <td className="px-4 py-3 font-medium">
+                            <Link href={`/tax-on/${s}/`} className="text-eucalyptus-dark hover:underline">{formatAUD(s)}</Link>
+                          </td>
+                          <td className="px-4 py-3 text-right text-navy">{formatAUD(net)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatAUD(med)}</td>
+                          <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(take)}</td>
+                          <td className="px-4 py-3 text-right text-warmgray-light">{formatPercent(total / s)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-sm text-warmgray">Figures use FY2025-26 resident rates with LITO applied where eligible. The 2% Medicare levy is included; the <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy Surcharge</Link> and HECS-HELP are excluded. For your bracket-specific result, see the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> or compute a <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">bonus tax</Link> alongside salary.</p>
+            </section>
+
+            {/* FY2024-25 vs FY2025-26 Stage 3 savings */}
+            <section>
+              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Less Tax Are You Paying Since Stage 3?</h2>
+              <p className="mb-4 text-warmgray">The Stage 3 tax cuts that took effect on 1 July 2024 dropped the 19% rate to 16% and lifted the 37% threshold from $120,000 to $135,000. The table below compares income tax under the pre-Stage-3 settings (FY2023-24) against the current FY2025-26 brackets for illustrative purposes — the FY2025-26 brackets are unchanged from FY2024-25, so the saving is the cumulative reduction since the cuts.</p>
+              <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+                <table className="w-full text-sm">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-semibold text-navy">Salary</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Tax (FY2023-24, illustrative)</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Tax (FY2025-26)</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">You Pay LESS</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {/* FY2023-24 (pre-Stage-3) brackets used for the "old tax" column:
+                        0% to $18,200; 19% $18,201–$45,000; 32.5% $45,001–$120,000;
+                        37% $120,001–$180,000; 45% $180,001+ */}
+                    {[60000, 80000, 100000, 120000].map((salary) => {
+                      // Compute FY2023-24 (pre-Stage-3) tax exactly:
+                      const old = (() => {
+                        if (salary <= 18200) return 0;
+                        if (salary <= 45000) return (salary - 18200) * 0.19;
+                        if (salary <= 120000) return 5092 + (salary - 45000) * 0.325;
+                        if (salary <= 180000) return 29467 + (salary - 120000) * 0.37;
+                        return 51667 + (salary - 180000) * 0.45;
+                      })();
+                      const oldRounded = Math.round(old);
+                      const newTax = Math.round(calculateIncomeTax(salary));
+                      const saving = oldRounded - newTax;
+                      return (
+                        <tr key={salary} className="hover:bg-sandstone">
+                          <td className="px-4 py-3 font-medium text-navy">{formatAUD(salary)}</td>
+                          <td className="px-4 py-3 text-right text-warmgray">{formatAUD(oldRounded)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatAUD(newTax)}</td>
+                          <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">−{formatAUD(saving)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-sm text-warmgray-light">Pre-Stage-3 figures are computed using the legislated FY2023-24 resident brackets and are shown for illustration; the LITO and Medicare levy are excluded from this comparison. A worker on $60,000 now pays around $804 less income tax, scaling to ~$2,679 less at $120,000 and up to $4,529 at $190,000+. See our <Link href="/stage-3-tax-cuts/" className="text-eucalyptus-dark hover:underline font-medium">Stage 3 tax cuts guide</Link> for the legislative history.</p>
             </section>
 
             {/* Who Uses This Calculator? */}

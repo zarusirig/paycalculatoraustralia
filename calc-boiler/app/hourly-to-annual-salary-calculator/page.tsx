@@ -9,13 +9,13 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hourly-to-annual-salary-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Hourly to Annual Salary Calculator — Convert Your Pay Instantly",
+  title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
   description:
-    "Convert your hourly rate to an annual salary. See your exact take-home pay after tax and super across weekly, fortnightly & monthly periods.",
+    "Convert any hourly rate to an annual salary in 1 second. See gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — Australian rates FY2025-26.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Hourly to Annual Salary Calculator Australia",
-    description: "Convert your hourly rate to an annual salary and see exactly how much you take home after tax.",
+    title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
+    description: "Convert any hourly rate to an annual salary in 1 second. Gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — FY2025-26.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hourly to Annual Converter",
-    description: "Convert your hourly rate to an annual salary instantly.",
+    title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
+    description: "Convert any hourly rate to an annual salary instantly — gross and take-home after tax, FY2025-26.",
   },
 };
 
@@ -55,6 +55,38 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
+    {
+      "@type": "Question",
+      name: "$40 an hour is how much a year in Australia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "$40/hr full-time (38h/week, 52 weeks) = $79,040 gross per year, approximately $63,547 after tax (FY2025-26).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "$25 an hour is how much per year?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "$25/hr = $49,400 gross per year, approximately $42,815 after tax.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "$50 an hour is how much per year?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "$50/hr = $98,800 gross per year, approximately $75,597 after tax.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How do you convert hourly to annual salary?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Multiply your hourly rate by hours worked per week (typically 38 in Australia), then by 52 weeks.",
+      },
+    },
     {
       "@type": "Question",
       name: "How do you calculate annual salary from an hourly rate?",

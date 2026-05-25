@@ -55,8 +55,10 @@ export default function FortnightlyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Fortnightly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Fortnightly Pay Calculator Australia — Take-Home Pay Per Fortnight</h1>
-          <p className="text-lg text-warmgray">Enter your annual salary to see exactly what you take home every two weeks after tax, super, and Medicare. Updated for FY2025-26.</p>
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Fortnightly Pay Calculator Australia 2025-26</h1>
+          <p className="text-lg text-warmgray">
+            Convert any salary or hourly rate to your fortnightly take-home pay. See exact tax, super, and the net amount paid every 2 weeks using FY2025-26 Australian rates.
+          </p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -160,14 +162,13 @@ export default function FortnightlyPayCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <ComparisonRow salary={45000} />
-                  <ComparisonRow salary={55000} />
-                  <ComparisonRow salary={70000} />
-                  <ComparisonRow salary={85000} />
+                  <ComparisonRow salary={50000} />
+                  <ComparisonRow salary={60000} />
+                  <ComparisonRow salary={75000} />
+                  <ComparisonRow salary={90000} />
                   <ComparisonRow salary={100000} />
                   <ComparisonRow salary={120000} />
                   <ComparisonRow salary={150000} />
-                  <ComparisonRow salary={200000} />
                 </tbody>
               </table>
             </div>

@@ -31,6 +31,81 @@ export default function Footer() {
       <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full bg-eucalyptus/5 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        {/* SEO sitemap-style internal links */}
+        <section
+          aria-label="Site directory"
+          className="mb-12 rounded-xl border border-white/5 bg-white/3 p-6"
+        >
+          <p className="mb-5 text-center text-xs font-semibold uppercase tracking-widest text-sandstone-dark/60">
+            Pay Calculator Australia — Site Directory
+          </p>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div>
+              <h3
+                className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Core Calculators
+              </h3>
+              <ul role="list" className="space-y-2 text-sm">
+                <li><Link href="/income-tax-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Income Tax Calculator</Link></li>
+                <li><Link href="/take-home-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Take-Home Pay Calculator</Link></li>
+                <li><Link href="/superannuation-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Superannuation Calculator</Link></li>
+                <li><Link href="/bonus-tax-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Bonus Tax Calculator</Link></li>
+                <li><Link href="/hecs-help-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">HECS/HELP Calculator</Link></li>
+                <li><Link href="/salary-sacrifice-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Salary Sacrifice Calculator</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Pay Frequency
+              </h3>
+              <ul role="list" className="space-y-2 text-sm">
+                <li><Link href="/weekly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Weekly Pay Calculator</Link></li>
+                <li><Link href="/fortnightly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Fortnightly Pay Calculator</Link></li>
+                <li><Link href="/monthly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Monthly Pay Calculator</Link></li>
+                <li><Link href="/annual-salary-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Annual Salary Calculator</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                States
+              </h3>
+              <ul role="list" className="grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
+                <li><Link href="/pay-calculator-nsw/" className="text-sandstone-dark/45 hover:text-eucalyptus">NSW</Link></li>
+                <li><Link href="/pay-calculator-vic/" className="text-sandstone-dark/45 hover:text-eucalyptus">VIC</Link></li>
+                <li><Link href="/pay-calculator-qld/" className="text-sandstone-dark/45 hover:text-eucalyptus">QLD</Link></li>
+                <li><Link href="/pay-calculator-wa/" className="text-sandstone-dark/45 hover:text-eucalyptus">WA</Link></li>
+                <li><Link href="/pay-calculator-sa/" className="text-sandstone-dark/45 hover:text-eucalyptus">SA</Link></li>
+                <li><Link href="/pay-calculator-tas/" className="text-sandstone-dark/45 hover:text-eucalyptus">TAS</Link></li>
+                <li><Link href="/pay-calculator-act/" className="text-sandstone-dark/45 hover:text-eucalyptus">ACT</Link></li>
+                <li><Link href="/pay-calculator-nt/" className="text-sandstone-dark/45 hover:text-eucalyptus">NT</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3
+                className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Guides
+              </h3>
+              <ul role="list" className="space-y-2 text-sm">
+                <li><Link href="/tax-brackets/" className="text-sandstone-dark/45 hover:text-eucalyptus">Tax Brackets 2025-26</Link></li>
+                <li><Link href="/medicare-levy/" className="text-sandstone-dark/45 hover:text-eucalyptus">Medicare Levy</Link></li>
+                <li><Link href="/low-income-tax-offset/" className="text-sandstone-dark/45 hover:text-eucalyptus">LITO Guide</Link></li>
+                <li><Link href="/payg-withholding-guide/" className="text-sandstone-dark/45 hover:text-eucalyptus">PAYG Withholding</Link></li>
+                <li><Link href="/award-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">Award Rates</Link></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* Popular salaries ticker */}
         <div className="mb-12 rounded-xl border border-white/5 bg-white/3 p-4">
           <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest text-sandstone-dark/60">

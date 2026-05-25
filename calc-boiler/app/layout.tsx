@@ -14,10 +14,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: {
     template: "%s | Pay Calculator Australia",
-    default: "Pay Calculator Australia 2025-26 — Free Take-Home Pay Calculator",
+    default: "Pay Calculator Australia 2025-26 — Free Tax & Take-Home Pay Calculator",
   },
   description:
-    "Calculate your take-home pay instantly. Free Australian pay calculator with income tax, super, Medicare levy & HECS. Updated for FY2025-26. Enter your salary now.",
+    "Free Australian pay & income tax calculator. Calculate your take-home pay instantly with current tax brackets, super, Medicare levy & HECS — updated for FY2025-26.",
   metadataBase: new URL("https://pay-calculator-australia.com"),
   applicationName: "Pay Calculator Australia",
   authors: [{ name: "Pay Calculator Australia" }],

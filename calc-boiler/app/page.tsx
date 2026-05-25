@@ -45,11 +45,14 @@ const websiteSchema: WithContext<WebSite> = {
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.baseUrl,
   description:
-    "Free Australian pay calculator. Calculate take-home pay, income tax, super, Medicare & HECS for FY2025-26.",
+    "Free Australian pay & income tax calculator. Calculate take-home pay, income tax, super, Medicare & HECS for FY2025-26.",
   potentialAction: {
     "@type": "SearchAction",
-    target: `${SITE_CONFIG.baseUrl}/?salary={salary}`,
-    "query-input": "required name=salary",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_CONFIG.baseUrl}/?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
   } as unknown as WebSite["potentialAction"],
 };
 
