@@ -82,6 +82,14 @@ export default function RootLayout({
         <Footer />
         <FirebaseAnalytics />
 
+        {/* Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6191764023643150"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         {/* GA4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8WE507LD32"
