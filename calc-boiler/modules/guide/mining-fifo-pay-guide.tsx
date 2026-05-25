@@ -12,8 +12,8 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Mining industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
-  { title: "Mining industry awards", url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000011-mining-industry-award", publisher: SOURCES.fwo.name },
-  { title: "Zone tax offset", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-and-overseas-forces-tax-offsets", publisher: SOURCES.ato.name },
+  { title: "Mining industry awards", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
+  { title: "Zone tax offset", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-or-overseas-forces-tax-offsets", publisher: SOURCES.ato.name },
 ];
 
 export default function MiningFIFOPayGuidePage() {

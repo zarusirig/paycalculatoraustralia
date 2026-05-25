@@ -12,8 +12,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Super guarantee percentage", url: "https://www.ato.gov.au/tax-rates-and-codes/super-guarantee-percentage", publisher: SOURCES.ato.name },
-  { title: "Superannuation Guarantee history", url: "https://treasury.gov.au/superannuation", publisher: "Australian Treasury" },
+  { title: "Super guarantee percentage", url: "https://www.ato.gov.au/tax-rates-and-codes", publisher: SOURCES.ato.name },
+  { title: "Superannuation Guarantee history", url: "https://treasury.gov.au/policy-topics/superannuation", publisher: "Australian Treasury" },
   { title: "Superannuation Guarantee (Administration) Act 1992", url: "https://www.legislation.gov.au/Details/C2024C00240", publisher: "Federal Register of Legislation" },
 ];
 

@@ -18,7 +18,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 // We embed a simple React state calculator here to fulfill the dual purpose.
 const SOURCES_LIST: SourceLink[] = [
   { title: "Super for employers", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers", publisher: SOURCES.ato.name },
-  { title: "Payroll tax", url: "https://business.gov.au/finance/taxation/payroll-tax", publisher: "Business.gov.au" },
+  { title: "Payroll tax", url: "https://business.gov.au/finance/tax/payroll-tax", publisher: "Business.gov.au" },
 ];
 
 export default function EmployerCostCalculatorPage() {

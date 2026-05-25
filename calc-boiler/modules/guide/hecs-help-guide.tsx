@@ -13,7 +13,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Study and training loan repayment thresholds and rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: SOURCES.ato.name },
-  { title: "Changes to student loans (Indexation)", url: "https://www.education.gov.au/higher-education-loan-program/20-reduction-student-loan-debt", publisher: "Department of Education" },
+  { title: "Changes to student loans (Indexation)", url: "https://www.education.gov.au/20-reduction-student-loan-debt", publisher: "Department of Education" },
   { title: "HELP information for 2025-26", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans", publisher: SOURCES.ato.name },
   { title: "Universities Accord Final Report", url: "https://www.education.gov.au/australian-universities-accord", publisher: "Department of Education" },
 ];

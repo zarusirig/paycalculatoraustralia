@@ -13,7 +13,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Redundancy Pay & Entitlements", url: "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements", publisher: SOURCES.fwo.name },
-  { title: "Tax on Redundancy Payments", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/redundancy-payments", publisher: SOURCES.ato.name },
+  { title: "Tax on Redundancy Payments", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/genuine-redundancy-payments", publisher: SOURCES.ato.name },
   { title: "Employment Termination Payments", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/engaging-a-worker/when-a-worker-leaves-your-business/taxation-of-termination-payments", publisher: SOURCES.ato.name },
   { title: "Long Service Leave", url: "https://www.fairwork.gov.au/leave/long-service-leave", publisher: SOURCES.fwo.name },
 ];

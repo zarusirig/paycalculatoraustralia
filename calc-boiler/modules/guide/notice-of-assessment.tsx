@@ -12,9 +12,9 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Notice of assessment", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return/notice-of-assessment", publisher: SOURCES.ato.name },
-  { title: "Objecting to a decision", url: "https://www.ato.gov.au/about-ato/dealing-with-us/in-detail/objecting-to-a-decision", publisher: SOURCES.ato.name },
-  { title: "Amending your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return/amending-your-tax-return", publisher: SOURCES.ato.name },
+  { title: "Notice of assessment", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return", publisher: SOURCES.ato.name },
+  { title: "Objecting to a decision", url: "https://www.ato.gov.au/about-ato/dealing-with-us", publisher: SOURCES.ato.name },
+  { title: "Amending your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return", publisher: SOURCES.ato.name },
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
 

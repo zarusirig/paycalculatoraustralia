@@ -12,10 +12,10 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Business structures", url: "https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business/starting-a-business/business-structures", publisher: SOURCES.ato.name },
+  { title: "Business structures", url: "https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business", publisher: SOURCES.ato.name },
   { title: "Company tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rates", publisher: SOURCES.ato.name },
   { title: "GST registration", url: "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst", publisher: SOURCES.ato.name },
-  { title: "Contractor vs employee", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-contractor", publisher: SOURCES.ato.name },
+  { title: "Contractor vs employee", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-independent-contractor", publisher: SOURCES.ato.name },
 ];
 
 function SidebarLink({ href, label }: { href: string; label: string }) {

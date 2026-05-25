@@ -15,7 +15,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Medicare levy surcharge", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge", publisher: SOURCES.ato.name },
   { title: "Private health insurance rebate", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/private-health-insurance-rebate", publisher: SOURCES.ato.name },
   { title: "Medicare levy", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy", publisher: SOURCES.ato.name },
-  { title: "Lifetime Health Cover", url: "https://www.health.gov.au/topics/private-health-insurance/lifetime-health-cover", publisher: "Department of Health" },
+  { title: "Lifetime Health Cover", url: "https://www.health.gov.au/topics/private-health-insurance", publisher: "Department of Health" },
 ];
 
 export default function PrivateHealthInsuranceMedicarePage() {

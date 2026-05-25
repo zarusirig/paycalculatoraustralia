@@ -12,7 +12,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "ICT industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
-  { title: "Seek salary data", url: "https://www.seek.com.au/career-advice/role/software-developer/salary", publisher: "Seek" },
+  { title: "Seek salary data", url: "https://au.seek.com/career-advice/role/software-developer/salary", publisher: "Seek" },
   { title: "Hays salary guide", url: "https://www.hays.com.au/salary-guide", publisher: "Hays" },
 ];
 

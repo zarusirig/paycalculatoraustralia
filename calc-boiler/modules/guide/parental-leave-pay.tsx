@@ -11,7 +11,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Parental Leave Pay", url: "https://www.servicesaustralia.gov.au/parental-leave-pay", publisher: SOURCES.servicesAustralia.name },
-  { title: "Paid Parental Leave scheme", url: "https://www.fairwork.gov.au/leave/maternity-and-parental-leave/paid-parental-leave", publisher: SOURCES.fwo.name },
+  { title: "Paid Parental Leave scheme", url: "https://www.fairwork.gov.au/leave/parental-leave", publisher: SOURCES.fwo.name },
   { title: "Tax treatment of government payments", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare/government-payments-and-allowances", publisher: SOURCES.ato.name },
 ];
 

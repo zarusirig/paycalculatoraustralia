@@ -32,7 +32,7 @@ function getNoticeWeeks(years: number): number {
 const SOURCES_LIST: SourceLink[] = [
   { title: "Final pay when employment ends", url: "https://www.fairwork.gov.au/ending-employment/final-pay", publisher: SOURCES.fwo.name },
   { title: "Leave entitlements on termination", url: "https://www.fairwork.gov.au/leave/annual-leave#ending-employment", publisher: SOURCES.fwo.name },
-  { title: "Tax on unused leave payments", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/unused-leave-payments-on-termination", publisher: SOURCES.ato.name },
+  { title: "Tax on unused leave payments", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job", publisher: SOURCES.ato.name },
 ];
 
 export default function FinalPayCalculatorPage() {

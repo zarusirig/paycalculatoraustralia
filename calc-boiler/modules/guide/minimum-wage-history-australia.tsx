@@ -12,8 +12,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Annual Wage Reviews", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions/annual-wage-reviews", publisher: SOURCES.fwo.name },
-  { title: "National minimum wage orders", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions/national-minimum-wage-orders", publisher: "Fair Work Commission" },
+  { title: "Annual Wage Reviews", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: SOURCES.fwo.name },
+  { title: "National minimum wage orders", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: "Fair Work Commission" },
   { title: "Consumer Price Index, Australia", url: "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia", publisher: "Australian Bureau of Statistics" },
 ];
 

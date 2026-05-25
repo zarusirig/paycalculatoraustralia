@@ -14,7 +14,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates for Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "Stage 3 Personal Income Tax Plan", url: "https://treasury.gov.au/tax-cuts", publisher: "Australian Treasury" },
-  { title: "Low and Middle Income Tax Offset (LMITO)", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-and-middle-income-earners", publisher: SOURCES.ato.name },
+  { title: "Low and Middle Income Tax Offset (LMITO)", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets", publisher: SOURCES.ato.name },
 ];
 
 const PRE_STAGE3 = [

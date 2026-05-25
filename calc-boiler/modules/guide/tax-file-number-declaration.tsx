@@ -12,8 +12,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Tax file number declaration (NAT 3092)", url: "https://www.ato.gov.au/forms-and-instructions/tax-file-number-declaration", publisher: SOURCES.ato.name },
-  { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/in-detail/payg-withholding", publisher: SOURCES.ato.name },
+  { title: "Tax file number declaration (NAT 3092)", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number", publisher: SOURCES.ato.name },
+  { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/payg-withholding", publisher: SOURCES.ato.name },
   { title: "Tax-free threshold", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency/australian-resident-for-tax-purposes", publisher: SOURCES.ato.name },
   { title: "Study and training loan obligations", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans", publisher: SOURCES.ato.name },
 ];

@@ -11,9 +11,9 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "NSW Teachers Award", url: "https://www.nsw.gov.au/education-and-training/information-for-teachers/salary-and-conditions", publisher: "NSW Government" },
-  { title: "Victorian Government Schools Agreement", url: "https://www.education.vic.gov.au/hrweb/Documents/Wages-Sal-Teacher.pdf", publisher: "Victorian Government" },
-  { title: "Educational Services Award", url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000076-educational-services-teachers-award", publisher: SOURCES.fwo.name },
+  { title: "NSW Teachers Award", url: "https://www.nsw.gov.au/education-and-training/teaching-and-learning", publisher: "NSW Government" },
+  { title: "Victorian Government Schools Agreement", url: "https://www.vic.gov.au/teachers", publisher: "Victorian Government" },
+  { title: "Educational Services Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
 ];
 
 export default function TeacherPayAustraliaPage() {

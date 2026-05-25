@@ -11,8 +11,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "General Retail Industry Award", url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000004-general-retail-industry-award", publisher: SOURCES.fwo.name },
-  { title: "Hospitality Industry Award", url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-hospitality-industry-general-award", publisher: SOURCES.fwo.name },
+  { title: "General Retail Industry Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
+  { title: "Hospitality Industry Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
 ];
 
 export default function RetailHospitalityPayGuidePage() {

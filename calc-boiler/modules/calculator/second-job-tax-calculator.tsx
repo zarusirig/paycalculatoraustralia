@@ -23,8 +23,8 @@ function clamp(n: number, min: number, max: number) {
 }
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "PAYG withholding — no tax-free threshold", url: "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule/schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld", publisher: SOURCES.ato.name },
-  { title: "Tax-free threshold eligibility", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number/claim-the-tax-free-threshold", publisher: SOURCES.ato.name },
+  { title: "PAYG withholding — no tax-free threshold", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
+  { title: "Tax-free threshold eligibility", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number", publisher: SOURCES.ato.name },
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
 

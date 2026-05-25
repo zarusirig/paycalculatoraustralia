@@ -14,8 +14,8 @@ import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Salary packaging", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
   { title: "Fringe benefits tax — exempt benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name },
-  { title: "Not-for-profit FBT exemptions", url: "https://www.ato.gov.au/businesses-and-organisations/not-for-profit-organisations/fringe-benefits-tax-and-not-for-profits", publisher: SOURCES.ato.name },
-  { title: "Reportable fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/reporting-fringe-benefits/reportable-fringe-benefits", publisher: SOURCES.ato.name },
+  { title: "Not-for-profit FBT exemptions", url: "https://www.ato.gov.au/non-profit/your-organisation/fringe-benefits-tax", publisher: SOURCES.ato.name },
+  { title: "Reportable fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name },
 ];
 
 function SidebarLink({ href, label }: { href: string; label: string }) {

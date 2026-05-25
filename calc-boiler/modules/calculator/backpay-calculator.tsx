@@ -25,8 +25,8 @@ function clamp(n: number, min: number, max: number) {
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Back payment of wages", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages", publisher: SOURCES.fwo.name },
-  { title: "Schedule 5 — back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments", publisher: SOURCES.ato.name },
-  { title: "Unpaid wages and underpayments", url: "https://www.fairwork.gov.au/pay-and-wages/unpaid-wages-and-underpayments", publisher: SOURCES.fwo.name },
+  { title: "Schedule 5 — back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
+  { title: "Unpaid wages and underpayments", url: "https://www.fairwork.gov.au/pay-and-wages", publisher: SOURCES.fwo.name },
 ];
 
 export default function BackpayCalculatorPage() {
@@ -251,7 +251,7 @@ export default function BackpayCalculatorPage() {
                 <li>Tax estimated at the effective rate derived from the correct annual salary using ATO progressive brackets.</li>
                 <li>Super goes directly to the super fund, not to the employee as cash.</li>
               </ol>
-              <p className="mt-2">Based on <a className="text-eucalyptus-dark hover:underline" href="https://www.fairwork.gov.au/pay-and-wages/unpaid-wages-and-underpayments" target="_blank" rel="noreferrer noopener">Fair Work Ombudsman</a> guidelines, last verified {SITE_CONFIG.lastVerified}.</p>
+              <p className="mt-2">Based on <a className="text-eucalyptus-dark hover:underline" href="https://www.fairwork.gov.au/pay-and-wages" target="_blank" rel="noreferrer noopener">Fair Work Ombudsman</a> guidelines, last verified {SITE_CONFIG.lastVerified}.</p>
             </MethodologyDisclosure>
 
             {/* FAQ */}

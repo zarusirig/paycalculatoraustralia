@@ -12,8 +12,8 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Apply for a TFN", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn", publisher: SOURCES.ato.name },
-  { title: "Super for employees", url: "https://www.ato.gov.au/individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/super-for-employees", publisher: SOURCES.ato.name },
-  { title: "Starting a new job", url: "https://www.fairwork.gov.au/starting-employment/starting-a-new-job", publisher: SOURCES.fwo.name },
+  { title: "Super for employees", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super", publisher: SOURCES.ato.name },
+  { title: "Starting a new job", url: "https://www.fairwork.gov.au/starting-employment", publisher: SOURCES.fwo.name },
   { title: "Income tax rates for individuals", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
 

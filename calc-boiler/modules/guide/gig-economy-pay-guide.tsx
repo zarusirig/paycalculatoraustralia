@@ -11,10 +11,10 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Gig economy and tax", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare/gig-economy-and-tax", publisher: SOURCES.ato.name },
-  { title: "Apply for an ABN", url: "https://www.abr.gov.au/business-super-funds-702charities/applying-abn", publisher: SOURCES.ato.name },
+  { title: "Gig economy and tax", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare", publisher: SOURCES.ato.name },
+  { title: "Apply for an ABN", url: "https://www.abr.gov.au/business-super-funds-charities/applying-abn", publisher: SOURCES.ato.name },
   { title: "Business Activity Statements", url: "https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas", publisher: SOURCES.ato.name },
-  { title: "Employee or contractor", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-contractor", publisher: SOURCES.ato.name },
+  { title: "Employee or contractor", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-independent-contractor", publisher: SOURCES.ato.name },
 ];
 
 export default function GigEconomyPayGuidePage() {

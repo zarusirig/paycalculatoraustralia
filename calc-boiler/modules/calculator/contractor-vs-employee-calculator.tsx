@@ -21,7 +21,7 @@ function clamp(n: number, min: number, max: number) {
 }
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Employee or contractor", url: "https://www.ato.gov.au/business/employee-or-contractor/", publisher: SOURCES.ato.name },
+  { title: "Employee or contractor", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-independent-contractor", publisher: SOURCES.ato.name },
   { title: "Super for contractors", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/personal-super-contributions", publisher: SOURCES.ato.name },
   { title: "Registering for GST", url: "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst", publisher: SOURCES.ato.name },
 ];

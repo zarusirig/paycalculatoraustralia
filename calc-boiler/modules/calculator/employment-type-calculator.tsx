@@ -25,8 +25,8 @@ function clamp(n: number, min: number, max: number) {
 }
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Employment types", url: "https://www.fairwork.gov.au/starting-employment/employee-types", publisher: SOURCES.fwo.name },
-  { title: "Casual loading and entitlements", url: "https://www.fairwork.gov.au/starting-employment/employee-types/casual-employees", publisher: SOURCES.fwo.name },
+  { title: "Employment types", url: "https://www.fairwork.gov.au/employment-conditions/types-of-employees", publisher: SOURCES.fwo.name },
+  { title: "Casual loading and entitlements", url: "https://www.fairwork.gov.au/employment-conditions/types-of-employees/casual-employees", publisher: SOURCES.fwo.name },
   { title: "National minimum wage", url: "https://www.fairwork.gov.au/pay-and-wages/minimum-wages", publisher: SOURCES.fwo.name },
 ];
 
@@ -276,7 +276,7 @@ export default function EmploymentTypeCalculatorPage() {
                 <li>Super = 12% of annual earnings for all employment types.</li>
                 <li>Tax calculated using ATO FY{SITE_CONFIG.financialYear} progressive brackets with LITO and Medicare levy.</li>
               </ol>
-              <p className="mt-2">Entitlements from <a className="text-eucalyptus-dark hover:underline" href="https://www.fairwork.gov.au/starting-employment/employee-types" target="_blank" rel="noreferrer noopener">Fair Work Ombudsman</a>, last verified {SITE_CONFIG.lastVerified}.</p>
+              <p className="mt-2">Entitlements from <a className="text-eucalyptus-dark hover:underline" href="https://www.fairwork.gov.au/employment-conditions/types-of-employees" target="_blank" rel="noreferrer noopener">Fair Work Ombudsman</a>, last verified {SITE_CONFIG.lastVerified}.</p>
             </MethodologyDisclosure>
 
             {/* FAQ */}

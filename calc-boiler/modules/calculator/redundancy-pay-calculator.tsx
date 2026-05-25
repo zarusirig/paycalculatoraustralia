@@ -35,7 +35,7 @@ function getRedundancyWeeks(years: number) {
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Redundancy pay and entitlements", url: "https://www.fairwork.gov.au/ending-employment/redundancy", publisher: SOURCES.fwc.name },
-  { title: "Taxation of genuine redundancy", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/redundancy-payments", publisher: SOURCES.ato.name },
+  { title: "Taxation of genuine redundancy", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/genuine-redundancy-payments", publisher: SOURCES.ato.name },
 ];
 
 export default function RedundancyPayCalculatorPage() {

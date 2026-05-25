@@ -11,8 +11,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Nurses Award", url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000034-nurses-award", publisher: SOURCES.fwo.name },
-  { title: "Salary packaging", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/how-fringe-benefits-tax-works/types-of-fringe-benefits", publisher: SOURCES.ato.name },
+  { title: "Nurses Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
+  { title: "Salary packaging", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name },
   { title: "Healthcare earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
 ];
 

@@ -14,7 +14,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Study and training loan indexation rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: SOURCES.ato.name },
   { title: "APRA Annual Fund-level Superannuation Statistics", url: "https://www.apra.gov.au/annual-fund-level-superannuation-statistics", publisher: "APRA" },
-  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
+  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super/caps-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
   { title: "Voluntary repayments of study and training loans", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/voluntary-repayments", publisher: SOURCES.ato.name },
 ];
 

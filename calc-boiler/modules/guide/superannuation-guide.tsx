@@ -525,7 +525,7 @@ export default function SuperannuationGuidePage() {
               </p>
               <h3>Comparing Funds</h3>
               <p>
-                When choosing a fund, compare investment fees (target under 1% p.a.), insurance premiums, investment performance over 5&ndash;10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/yoursuper" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> ranks funds by fees and net returns over 7 years.
+                When choosing a fund, compare investment fees (target under 1% p.a.), insurance premiums, investment performance over 5&ndash;10 year periods, and available tools such as salary sacrifice tracking and retirement projections. The ATO&apos;s YourSuper comparison tool at <a href="https://www.ato.gov.au/calculators-and-tools/super-yoursuper-comparison-tool" target="_blank" rel="noreferrer noopener" className="text-eucalyptus-dark hover:underline">ato.gov.au/yoursuper</a> ranks funds by fees and net returns over 7 years.
               </p>
             </section>
 
