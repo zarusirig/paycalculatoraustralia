@@ -4,6 +4,7 @@ import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
 import FirebaseAnalytics from "@/components/firebase-analytics";
+import AdsterraBanner from "@/components/common/adsterra-banner";
 
 export const viewport: Viewport = {
   themeColor: "#1a2744",
@@ -84,9 +85,48 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Navbar />
+
+        {/* Sticky vertical sidebar ads — follow scroll, shown on wide screens only */}
+        <aside
+          aria-hidden="true"
+          className="hidden xl:block fixed left-2 top-1/2 -translate-y-1/2 z-40"
+        >
+          <AdsterraBanner slot="sidebar" />
+        </aside>
+        <aside
+          aria-hidden="true"
+          className="hidden xl:block fixed right-2 top-1/2 -translate-y-1/2 z-40"
+        >
+          <AdsterraBanner slot="sidebar" />
+        </aside>
+
+        {/* Top display ad — every page (leaderboard on desktop, mobile banner on phones) */}
+        <div className="hidden sm:block">
+          <AdsterraBanner slot="leaderboard" />
+        </div>
+        <div className="block sm:hidden">
+          <AdsterraBanner slot="mobile" />
+        </div>
+
         <main id="main-content">{children}</main>
+
+        {/* Bottom display ad — every page */}
+        <div className="hidden sm:block">
+          <AdsterraBanner slot="rectangle" />
+        </div>
+        <div className="block sm:hidden">
+          <AdsterraBanner slot="mobile" />
+        </div>
+
         <Footer />
         <FirebaseAnalytics />
+
+        {/* Adsterra social bar / popunder (loaded once, site-wide) */}
+        <Script
+          id="adsterra-social"
+          src="https://pl29540036.effectivecpmnetwork.com/d6/b7/79/d6b779f19c693c0f80a1c6a82ba34550.js"
+          strategy="afterInteractive"
+        />
 
         {/* GA4 */}
         <Script
