@@ -347,6 +347,14 @@ export default function TaxBracketsGuidePage() {
               <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
               <span><Link href="/non-resident-tax/" className="text-eucalyptus-dark hover:underline font-medium">Non-Resident Tax Guide</Link> — compare resident and non-resident brackets and understand working holiday maker taxation</span>
             </li>
+            <li className="flex items-start gap-2">
+              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
+              <span><Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Weekly Tax Table</Link> — look up the exact PAYG amount your employer withholds from each weekly pay</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
+              <span><Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Fortnightly Tax Table</Link> — see how these brackets translate into fortnightly PAYG withholding amounts</span>
+            </li>
           </ul>
         </section>
 

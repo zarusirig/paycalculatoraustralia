@@ -156,7 +156,7 @@ export default function BonusTaxCalculatorPage() {
               Bonus tax in Australia is calculated by applying your <strong>marginal tax rate</strong> to the bonus amount, because the ATO treats the bonus as income earned on top of your regular salary.
             </p>
             <p className="mb-4 text-warmgray">
-              The Australian Tax Office uses a specific method under &quot;Schedule 5&quot; to determine the correct withholding. Your employer calculates two figures: the annual tax on your base salary alone, and the annual tax on your base salary plus the bonus. The difference between those two figures is the tax withheld from your bonus.
+              The Australian Tax Office uses a specific method under the <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline">Schedule 5 tax table</Link> to determine the correct withholding. Your employer calculates two figures: the annual tax on your base salary alone, and the annual tax on your base salary plus the bonus. The difference between those two figures is the tax withheld from your bonus.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Step-by-Step Worked Example</h3>

@@ -114,7 +114,7 @@ export default function MonthlyPayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Monthly Pay Calculated in Australia?</h2>
             <p className="text-warmgray mb-4">
-              Monthly take-home pay equals your gross annual salary divided by 12, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld for that month. The Australian Taxation Office publishes a dedicated <strong>PAYG withholding monthly tax table</strong> that employers use to determine the exact amount withheld from each pay cycle in the 2025-26 financial year.
+              Monthly take-home pay equals your gross annual salary divided by 12, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld for that month. The Australian Taxation Office publishes a dedicated <Link href="/monthly-tax-table/" className="text-eucalyptus-dark hover:underline"><strong>monthly tax table</strong></Link> that employers use to determine the exact amount withheld from each pay cycle.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Step-by-Step Monthly Pay Calculation</h3>

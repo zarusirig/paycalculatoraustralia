@@ -124,7 +124,7 @@ export default function FortnightlyPayCalculatorPage() {
               Fortnightly pay is calculated by dividing your gross annual salary by <strong>26</strong>, then subtracting PAYG tax, the Medicare levy, and any HECS-HELP repayments from each fortnightly amount.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian Taxation Office publishes a dedicated PAYG withholding fortnightly tax table that employers use to determine the exact tax withheld from each pay. This table accounts for the {TAX_BRACKETS_2025_26.length} income tax brackets for FY2025-26, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and the &quot;Low Income Tax Offset&quot; (LITO). Your employer divides your estimated annual taxation liability across 26 fortnights so the correct amount reaches the ATO throughout the year.
+              The Australian Taxation Office publishes a dedicated PAYG withholding <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> that employers use to determine the exact tax withheld from each pay. This table accounts for the {TAX_BRACKETS_2025_26.length} income tax brackets for FY2025-26, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and the &quot;Low Income Tax Offset&quot; (LITO). Your employer divides your estimated annual taxation liability across 26 fortnights so the correct amount reaches the ATO throughout the year.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Worked Example: $85,000 Salary</h3>

@@ -55,6 +55,8 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
+      { href: "/payslip-generator/", label: "Payslip Generator", description: "Create a compliant payslip free" },
+      { href: "/ytd-income-calculator/", label: "YTD Income Calculator", description: "Year-to-date pay and annualised income" },
     ],
   },
   {
@@ -76,6 +78,8 @@ export const GUIDE_CATEGORIES = [
       { href: "/medicare-levy/", label: "Medicare Levy Guide", description: "Rate, surcharge and exemptions" },
       { href: "/low-income-tax-offset/", label: "Low Income Tax Offset (LITO)", description: "Up to $700 tax reduction" },
       { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables", description: "Weekly, fortnightly and monthly tables" },
+      { href: "/weekly-tax-table/", label: "Weekly Tax Table", description: "ATO weekly withholding amounts" },
+      { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table", description: "ATO fortnightly withholding amounts" },
       { href: "/bonus-tax-guide/", label: "Bonus Tax Guide", description: "How bonuses are taxed in Australia" },
       { href: "/tax-refund-guide/", label: "Tax Refund Guide", description: "Maximise your tax return" },
       { href: "/tax-calendar/", label: "Tax Calendar", description: "Key ATO dates and deadlines" },
@@ -258,6 +262,8 @@ export const FOOTER_CALCULATORS = [
   { href: "/final-pay-calculator/", label: "Final Pay Calculator" },
   { href: "/employment-type-calculator/", label: "Employment Type Calculator" },
   { href: "/backpay-calculator/", label: "Backpay Calculator" },
+  { href: "/payslip-generator/", label: "Payslip Generator" },
+  { href: "/ytd-income-calculator/", label: "YTD Income Calculator" },
 ] as const;
 
 // Footer guides — split into logical groups for multi-column layout
@@ -266,6 +272,10 @@ export const FOOTER_GUIDES_TAX = [
   { href: "/medicare-levy/", label: "Medicare Levy" },
   { href: "/low-income-tax-offset/", label: "Low Income Tax Offset" },
   { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables" },
+  { href: "/weekly-tax-table/", label: "Weekly Tax Table" },
+  { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table" },
+  { href: "/monthly-tax-table/", label: "Monthly Tax Table" },
+  { href: "/schedule-5-tax-table/", label: "Schedule 5 Tax Table" },
   { href: "/tax-deductions-guide/", label: "Tax Deductions Guide" },
   { href: "/work-from-home-deductions/", label: "WFH Deductions" },
   { href: "/tax-refund-guide/", label: "Tax Refund Guide" },
@@ -292,6 +302,7 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/salary-sacrifice-vs-mortgage/", label: "Sacrifice vs Mortgage" },
   { href: "/extra-super-vs-hecs-repayment/", label: "Super vs HECS" },
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
+  { href: "/stsl-on-payslip/", label: "STSL on Your Payslip" },
   { href: "/award-rates/", label: "Award Rates 2025" },
   { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },

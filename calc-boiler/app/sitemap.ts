@@ -55,6 +55,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",
+    "payslip-generator",
+    "ytd-income-calculator",
   ];
   for (const slug of coreCalculators) {
     allPages.push({ slug, changeFrequency: "monthly", priority: 0.9 });
@@ -92,10 +94,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "superannuation-guide",
     "medicare-levy",
     "payg-withholding-tables",
+    "weekly-tax-table",
+    "fortnightly-tax-table",
+    "monthly-tax-table",
+    "schedule-5-tax-table",
     "hecs-help-guide",
     "salary-sacrifice-guide",
     "low-income-tax-offset",
     "understanding-your-payslip",
+    "stsl-on-payslip",
     "award-rates",
     "contractor-vs-employee",
     "redundancy-pay-guide",

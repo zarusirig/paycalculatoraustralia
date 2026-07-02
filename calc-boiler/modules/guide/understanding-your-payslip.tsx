@@ -133,7 +133,7 @@ export default function UnderstandingYourPayslipPage() {
               </div>
 
               <p>
-                Employers must deliver the payslip within <strong>1 working day</strong> of paying the employee. The payslip delivery deadline applies regardless of whether the employee is paid weekly, fortnightly, or monthly. Check our <Link href="/award-rates/">Award Rates</Link> guide to confirm your hourly rate matches the correct Modern Award classification on your payslip.
+                Employers must deliver the payslip within <strong>1 working day</strong> of paying the employee. The payslip delivery deadline applies regardless of whether the employee is paid weekly, fortnightly, or monthly. Check our <Link href="/award-rates/">Award Rates</Link> guide to confirm your hourly rate matches the correct Modern Award classification on your payslip. If you need to create a compliant payslip containing all 14 mandatory items, our free <Link href="/payslip-generator/">payslip generator</Link> builds one in your browser.
               </p>
             </section>
 
@@ -192,7 +192,7 @@ export default function UnderstandingYourPayslipPage() {
             <section id="common-deductions">
               <h2>What Are the Common Payslip Deductions?</h2>
               <p>
-                Payslip deductions fall into 2 categories: <strong>mandatory deductions</strong> (required by law) and <strong>voluntary deductions</strong> (authorised by the employee). Mandatory deductions include PAYG withholding and, where applicable, HECS-HELP repayments and child support.
+                Payslip deductions fall into 2 categories: <strong>mandatory deductions</strong> (required by law) and <strong>voluntary deductions</strong> (authorised by the employee). Mandatory deductions include PAYG withholding and, where applicable, HECS-HELP repayments and child support. If your payslip shows a deduction code called STSL, that is the extra tax withheld for your study loan &mdash; see our guide to <Link href="/stsl-on-payslip/">STSL on your payslip</Link> for how the amount is worked out.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -272,7 +272,7 @@ export default function UnderstandingYourPayslipPage() {
                 YTD stands for &ldquo;Year-to-Date&rdquo; and shows your cumulative totals for gross pay, tax withheld, and super contributions since <strong>1 July</strong> (the start of the Australian financial year).
               </p>
               <p>
-                YTD figures serve 3 critical purposes: verifying your income statement at tax time, detecting payroll errors mid-year, and confirming your employer has actually transferred superannuation to your fund.
+                YTD figures serve 3 critical purposes: verifying your income statement at tax time, detecting payroll errors mid-year, and confirming your employer has actually transferred superannuation to your fund. To check the YTD figure on your payslip or project it into an annual income, use our <Link href="/ytd-income-calculator/">YTD income calculator</Link>.
               </p>
               <ul>
                 <li><strong>YTD Gross:</strong> Total gross earnings since 1 July. At 30 June, this figure must match the gross income on your &ldquo;Income Statement&rdquo; (formerly called the PAYG Payment Summary) in myGov.</li>
@@ -371,6 +371,9 @@ export default function UnderstandingYourPayslipPage() {
                 <li><Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> &mdash; Convert between gross and net salary amounts for any pay frequency.</li>
                 <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> &mdash; Estimate your refund by comparing YTD tax withheld against your actual tax liability.</li>
                 <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> &mdash; Learn how pre-tax deductions on your payslip reduce taxable income and boost super.</li>
+                <li><Link href="/payslip-generator/">Payslip Generator</Link> &mdash; Create a free, Fair Work-compliant payslip with PAYG, super, and YTD totals.</li>
+                <li><Link href="/ytd-income-calculator/">YTD Income Calculator</Link> &mdash; Calculate year-to-date pay or annualise the YTD figure from your payslip.</li>
+                <li><Link href="/stsl-on-payslip/">STSL on Your Payslip</Link> &mdash; What the STSL deduction code means and how the amount is calculated.</li>
               </ul>
             </section>
 

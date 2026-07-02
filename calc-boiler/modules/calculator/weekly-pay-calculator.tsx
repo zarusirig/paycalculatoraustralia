@@ -113,7 +113,7 @@ export default function WeeklyPayCalculatorPage() {
               Weekly take-home pay equals your gross annual salary divided by 52, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld each week.
             </p>
             <p className="text-warmgray mb-4">
-              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published weekly tax table for the 2025-26 financial year, which accounts for the tax-free threshold of <strong>$18,200</strong>, the "Low Income Tax Offset" (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
+              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the "Low Income Tax Offset" (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
             </p>
             <p className="text-warmgray mb-4">
               The calculation follows 4 steps:

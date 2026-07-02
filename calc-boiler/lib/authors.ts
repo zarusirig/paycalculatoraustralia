@@ -159,7 +159,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
   "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
   "low-income-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
-  "payg-withholding-tables": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-07" },
+  "payg-withholding-tables": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
+  "weekly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
+  "fortnightly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
+  "monthly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
+  "schedule-5-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "bonus-tax-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-09" },
   "tax-refund-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-06" },
   "tax-calendar": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
@@ -216,6 +220,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "retail-hospitality-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "tech-salary-guide-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "construction-trades-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
+
+  // Wave 13 Expansion — Payslip Tools (tax-table slugs registered above)
+  "stsl-on-payslip": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
+  "payslip-generator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
+  "ytd-income-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
 };
 
 /** Helper: get full author + reviewer for a guide slug */
