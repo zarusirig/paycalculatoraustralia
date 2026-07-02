@@ -3,12 +3,12 @@ import PAYGTablesGuidePage from "@/modules/guide/payg-withholding-tables";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payg-withholding-tables/`;
-const TITLE = "PAYG Withholding Tax Tables 2025-26 — Australia";
-const DESCRIPTION = "View the official ATO PAYG withholding tax tables for weekly, fortnightly, and monthly pay cycles. Understand how your employer calculates your tax deductions before paying you.";
+const TITLE = "PAYG Withholding Tax Tables 2026-27 — Australia";
+const DESCRIPTION = "ATO PAYG withholding tax tables for 2026-27: weekly, fortnightly, and monthly pay cycles plus Schedule 5 for bonuses. Updated 1 July 2026 with the 15% rate cut on $18,201–$45,000.";
 
 export const metadata: Metadata = {
   title: TITLE,

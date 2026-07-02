@@ -7,15 +7,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import { buildWithholdingRows, PAYG_TABLES_UPDATED } from "@/lib/constants/payg-withholding";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "ATO Tax tables", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
-  { title: "Weekly tax table", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-table-weekly", publisher: SOURCES.ato.name },
-  { title: "Fortnightly tax table", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
+  { title: "Weekly tax table (NAT 1005)", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-table-weekly", publisher: SOURCES.ato.name },
+  { title: "Fortnightly tax table (NAT 1006)", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly", publisher: SOURCES.ato.name },
 ];
+
+const WEEKLY_HUB_ROWS = buildWithholdingRows("weekly", [350, 500, 1_000, 1_500, 2_000, 3_000]);
+const FORTNIGHTLY_HUB_ROWS = buildWithholdingRows("fortnightly", [1_000, 2_000, 3_000, 4_000, 6_000]);
+const MONTHLY_HUB_ROWS = buildWithholdingRows("monthly", [4_000, 6_000, 8_000, 10_000, 15_000]);
 
 export default function PAYGTablesGuidePage() {
   return (
@@ -34,11 +39,12 @@ export default function PAYGTablesGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            PAYG Withholding Tax Tables 2025-26
+            PAYG Withholding Tax Tables 2026-27
           </h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">
+          <p className="text-xl text-warmgray leading-relaxed mb-3">
             Understand how much tax your employer must legally deduct from your weekly, fortnightly, or monthly pay before it reaches your bank account.
           </p>
+          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED} — all tables reflect the FY2026-27 rate cut (15% on $18,201&ndash;$45,000)</p>
           <TrustBar className="!max-w-none" />
         </header>
 
@@ -50,10 +56,10 @@ export default function PAYGTablesGuidePage() {
             <section id="what-are-payg-withholding-tables">
               <h2>What Are PAYG Withholding Tables?</h2>
               <p>
-                PAYG withholding tables are ATO-published lookup schedules that tell employers the <strong>exact dollar amount of income tax to deduct</strong> from each employee payment. The Australian Taxation Office updates these tables at the start of every financial year to reflect changes in income tax brackets, the Medicare levy, and any legislated offsets such as the "Low Income Tax Offset" (LITO) or the "Low and Middle Income Tax Offset" (LMITO, now expired).
+                PAYG withholding tables are ATO-published lookup schedules that tell employers the <strong>exact dollar amount of income tax to deduct</strong> from each employee payment. The Australian Taxation Office updates these tables at the start of every financial year to reflect changes in income tax brackets, the Medicare levy, and any legislated offsets such as the &quot;Low Income Tax Offset&quot; (LITO) or the &quot;Low and Middle Income Tax Offset&quot; (LMITO, now expired).
               </p>
               <p>
-                Every Australian employer, payroll software provider, and business accountant relies on these PAYG withholding tax tables to calculate the correct deduction for wages, salary, commissions, bonuses, and director fees. The tables cover weekly, fortnightly, and monthly pay cycles, and separate schedules exist for residents, non-residents, working holiday makers, and payments subject to study and training loan repayments. For FY2025-26, the tables incorporate the Stage 3 tax cuts that reduced the 32.5% marginal rate to <strong>30%</strong> and raised the $120,000 threshold to <strong>$135,000</strong>.
+                Every Australian employer, payroll software provider, and business accountant relies on these PAYG withholding tax tables to calculate the correct deduction for wages, salary, commissions, bonuses, and director fees. The tables cover weekly, fortnightly, and monthly pay cycles, and separate schedules exist for residents, non-residents, working holiday makers, and payments subject to study and training loan repayments. For FY2026-27, every table was reissued to incorporate the legislated cost-of-living tax cut that reduced the rate on $18,201&ndash;$45,000 from 16% to <strong>15%</strong> on 1 July 2026.
               </p>
               <p>
                 Employees do not need to manually consult the tables themselves. Payroll systems apply the correct withholding automatically based on the employee&apos;s TFN declaration answers. However, understanding how the tables work helps you verify your payslip, estimate your take-home pay before accepting a job offer, and anticipate your annual tax refund or tax debt. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to check your withholding against the ATO tables instantly.
@@ -70,6 +76,33 @@ export default function PAYGTablesGuidePage() {
                     </Link>
                   </div>
                 </div>
+              </div>
+            </section>
+
+            <section id="tables-by-pay-cycle">
+              <h2>Official Tax Tables by Pay Cycle</h2>
+              <p>
+                Each pay cycle has its own dedicated ATO table. Open the one that matches how you are paid
+                for the full 2026-27 withholding amounts, an instant lookup tool, and the STSL and
+                no-threshold columns:
+              </p>
+              <div className="not-prose my-6 grid sm:grid-cols-2 gap-4">
+                <Link href="/weekly-tax-table/" className="group p-5 rounded-xl border border-sandstone-dark/20 bg-white hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <span className="block text-base font-bold text-navy group-hover:text-eucalyptus-dark mb-1">Weekly tax table</span>
+                  <span className="block text-sm text-warmgray">52 pays a year — NAT 1005</span>
+                </Link>
+                <Link href="/fortnightly-tax-table/" className="group p-5 rounded-xl border border-sandstone-dark/20 bg-white hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <span className="block text-base font-bold text-navy group-hover:text-eucalyptus-dark mb-1">Fortnightly tax table</span>
+                  <span className="block text-sm text-warmgray">26 pays a year — NAT 1006</span>
+                </Link>
+                <Link href="/monthly-tax-table/" className="group p-5 rounded-xl border border-sandstone-dark/20 bg-white hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <span className="block text-base font-bold text-navy group-hover:text-eucalyptus-dark mb-1">Monthly tax table</span>
+                  <span className="block text-sm text-warmgray">12 pays a year — NAT 1007</span>
+                </Link>
+                <Link href="/schedule-5-tax-table/" className="group p-5 rounded-xl border border-sandstone-dark/20 bg-white hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <span className="block text-base font-bold text-navy group-hover:text-eucalyptus-dark mb-1">Schedule 5 tax table</span>
+                  <span className="block text-sm text-warmgray">Bonuses, commissions &amp; back pay — NAT 3348</span>
+                </Link>
               </div>
             </section>
 
@@ -98,7 +131,7 @@ export default function PAYGTablesGuidePage() {
             <section id="weekly-table">
               <h2>Weekly Tax Table Reference</h2>
               <p>
-                The following shows approximate weekly PAYG withholding amounts for the 2025-26 year. <em>Assumes Australian resident claiming the tax-free threshold with no HECS debt.</em>
+                The following shows approximate weekly PAYG withholding amounts for the 2026-27 year. <em>Assumes Australian resident claiming the tax-free threshold with no HECS debt.</em>
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -111,17 +144,18 @@ export default function PAYGTablesGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4">$350.00</td><td className="px-6 py-4">$0.00</td><td className="px-6 py-4">$350.00</td></tr>
-                      <tr><td className="px-6 py-4">$500.00</td><td className="px-6 py-4">$38.00</td><td className="px-6 py-4">$462.00</td></tr>
-                      <tr><td className="px-6 py-4">$1,000.00</td><td className="px-6 py-4">$148.00</td><td className="px-6 py-4">$852.00</td></tr>
-                      <tr><td className="px-6 py-4">$1,500.00</td><td className="px-6 py-4">$298.00</td><td className="px-6 py-4">$1,202.00</td></tr>
-                      <tr><td className="px-6 py-4">$2,000.00</td><td className="px-6 py-4">$458.00</td><td className="px-6 py-4">$1,542.00</td></tr>
-                      <tr><td className="px-6 py-4">$3,000.00</td><td className="px-6 py-4">$866.00</td><td className="px-6 py-4">$2,134.00</td></tr>
+                      {WEEKLY_HUB_ROWS.map((row) => (
+                        <tr key={row.gross}>
+                          <td className="px-6 py-4">{formatAUD(row.gross, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.withTFT, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.netWithTFT, 2)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
-              <p className="text-sm text-warmgray-light mb-8 items-center">*The ATO tables round calculating factors so manual formula results may vary by a few cents. <Link href="/weekly-pay-calculator/">Calculate exact weekly pay here.</Link></p>
+              <p className="text-sm text-warmgray-light mb-8 items-center">*See the full <Link href="/weekly-tax-table/">weekly tax table</Link> for every earnings band, STSL, and no-threshold columns, or <Link href="/weekly-pay-calculator/">calculate exact weekly pay here</Link>.</p>
             </section>
 
             <section id="fortnightly-table">
@@ -140,16 +174,18 @@ export default function PAYGTablesGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4">$1,000.00</td><td className="px-6 py-4">$76.00</td><td className="px-6 py-4">$924.00</td></tr>
-                      <tr><td className="px-6 py-4">$2,000.00</td><td className="px-6 py-4">$296.00</td><td className="px-6 py-4">$1,704.00</td></tr>
-                      <tr><td className="px-6 py-4">$3,000.00</td><td className="px-6 py-4">$596.00</td><td className="px-6 py-4">$2,404.00</td></tr>
-                      <tr><td className="px-6 py-4">$4,000.00</td><td className="px-6 py-4">$916.00</td><td className="px-6 py-4">$3,084.00</td></tr>
-                      <tr><td className="px-6 py-4">$6,000.00</td><td className="px-6 py-4">$1,732.00</td><td className="px-6 py-4">$4,268.00</td></tr>
+                      {FORTNIGHTLY_HUB_ROWS.map((row) => (
+                        <tr key={row.gross}>
+                          <td className="px-6 py-4">{formatAUD(row.gross, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.withTFT, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.netWithTFT, 2)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
-              <p className="text-sm text-warmgray-light mb-8">*<Link href="/fortnightly-pay-calculator/">Calculate exact fortnightly pay here.</Link></p>
+              <p className="text-sm text-warmgray-light mb-8">*See the full <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> for every earnings band, or <Link href="/fortnightly-pay-calculator/">calculate exact fortnightly pay here</Link>.</p>
             </section>
 
             <section id="monthly-table">
@@ -168,16 +204,18 @@ export default function PAYGTablesGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4">$4,000.00</td><td className="px-6 py-4">$530.00</td><td className="px-6 py-4">$3,470.00</td></tr>
-                      <tr><td className="px-6 py-4">$6,000.00</td><td className="px-6 py-4">$1,100.00</td><td className="px-6 py-4">$4,900.00</td></tr>
-                      <tr><td className="px-6 py-4">$8,000.00</td><td className="px-6 py-4">$1,720.00</td><td className="px-6 py-4">$6,280.00</td></tr>
-                      <tr><td className="px-6 py-4">$10,000.00</td><td className="px-6 py-4">$2,440.00</td><td className="px-6 py-4">$7,560.00</td></tr>
-                      <tr><td className="px-6 py-4">$15,000.00</td><td className="px-6 py-4">$4,575.00</td><td className="px-6 py-4">$10,425.00</td></tr>
+                      {MONTHLY_HUB_ROWS.map((row) => (
+                        <tr key={row.gross}>
+                          <td className="px-6 py-4">{formatAUD(row.gross, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.withTFT, 2)}</td>
+                          <td className="px-6 py-4">{formatAUD(row.netWithTFT, 2)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
-              <p className="text-sm text-warmgray-light mb-8">*<Link href="/monthly-pay-calculator/">Calculate exact monthly pay here.</Link></p>
+              <p className="text-sm text-warmgray-light mb-8">*See the full <Link href="/monthly-tax-table/">monthly tax table</Link> for every earnings band, or <Link href="/monthly-pay-calculator/">calculate exact monthly pay here</Link>.</p>
             </section>
 
             <section id="what-schedules-exist">
@@ -217,9 +255,9 @@ export default function PAYGTablesGuidePage() {
                         <td className="px-6 py-4">Separate coefficient formula for irregular income streams</td>
                       </tr>
                       <tr>
-                        <td className="px-6 py-4 font-semibold">Schedule 5</td>
-                        <td className="px-6 py-4">Lump-sum termination payments (ETP)</td>
-                        <td className="px-6 py-4">Concessional cap amounts and separate withholding rates for over/under preservation age</td>
+                        <td className="px-6 py-4 font-semibold"><Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:text-navy hover:underline">Schedule 5</Link></td>
+                        <td className="px-6 py-4">Back payments, commissions, bonuses and similar payments</td>
+                        <td className="px-6 py-4">Method A / Method B apportion the lump sum across the year&apos;s pay periods</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">Schedule 15</td>
@@ -254,7 +292,7 @@ export default function PAYGTablesGuidePage() {
                 Weekly withholding = (a &times; weekly earnings) &minus; b
               </p>
               <p>
-                For an employee earning <strong>$1,500 per week</strong> and claiming the tax-free threshold, the applicable coefficients for the $1,282&ndash;$2,307 bracket in FY2025-26 produce a withholding of approximately <strong>$298</strong>. The resulting weekly take-home pay is <strong>$1,202</strong>. These coefficients already incorporate the 2% Medicare levy and the LITO reduction, so employers do not need to calculate those components separately.
+                For an employee earning <strong>$1,500 per week</strong> and claiming the tax-free threshold, the FY2026-27 formulas produce a withholding of approximately <strong>$298</strong>. The resulting weekly take-home pay is <strong>$1,202</strong>. These coefficients already incorporate the 2% Medicare levy and the LITO reduction, so employers do not need to calculate those components separately. Look up any amount in the full <Link href="/weekly-tax-table/">weekly tax table</Link>.
               </p>
             </section>
 
@@ -315,7 +353,7 @@ export default function PAYGTablesGuidePage() {
               </p>
               <ul>
                 <li><strong>Tax-Free Threshold:</strong> Claiming this threshold (usually on your primary job) instructs your employer to use the standard table where the first <strong>$18,200</strong> of your annual income is untaxed. This reduces your weekly withholding by approximately <strong>$67</strong> compared to not claiming it.</li>
-                <li><strong>No Tax-Free Threshold:</strong> For a second or third job, you do not claim the threshold. Your employer uses a higher withholding table, taxing you from the very first dollar at the <strong>16% marginal rate</strong> (plus 2% Medicare levy).</li>
+                <li><strong>No Tax-Free Threshold:</strong> For a second or third job, you do not claim the threshold. Your employer uses a higher withholding table, taxing you from the very first dollar at the <strong>15% marginal rate</strong> (plus 2% Medicare levy).</li>
                 <li><strong>Study/Training Loans:</strong> Ticking &quot;Yes&quot; to having a HECS-HELP, VET Student Loan, or SSL debt triggers a combined table that deducts both PAYG tax and loan repayments simultaneously. Repayment rates range from <strong>1% to 10%</strong> depending on your assessable income bracket.</li>
                 <li><strong>No TFN provided:</strong> Failing to supply a valid TFN within 28 days triggers the top marginal rate of <strong>47%</strong> from dollar one, with no tax-free threshold or offsets applied.</li>
               </ul>
@@ -329,10 +367,13 @@ export default function PAYGTablesGuidePage() {
               </p>
             </section>
 
-            <section id="what-changed-fy2025-26">
-              <h2>What Changed in the PAYG Withholding Tables for FY2025-26?</h2>
+            <section id="what-changed-fy2026-27">
+              <h2>What Changed in the PAYG Withholding Tables for FY2026-27?</h2>
               <p>
-                The FY2025-26 PAYG withholding tables reflect the <strong>Stage 3 tax cuts</strong> that took effect on 1 July 2024 and continue into 2025-26, along with an increase in the superannuation guarantee rate from 11.5% to <strong>12%</strong>.
+                The FY2026-27 PAYG withholding tables reflect the legislated <strong>cost-of-living tax cut</strong> that
+                took effect on 1 July 2026: the marginal rate on income between $18,201 and $45,000 fell from
+                16% to <strong>15%</strong>, worth up to $268 a year. A further cut to <strong>14%</strong> follows on 1 July 2027.
+                The tables also continue the Stage 3 bracket structure and the 12% superannuation guarantee rate.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -340,35 +381,30 @@ export default function PAYGTablesGuidePage() {
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th className="px-6 py-4">Change</th>
-                        <th className="px-6 py-4">Previous (FY2023-24)</th>
-                        <th className="px-6 py-4">Current (FY2025-26)</th>
+                        <th className="px-6 py-4">Previous (FY2025-26)</th>
+                        <th className="px-6 py-4">Current (FY2026-27)</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
-                        <td className="px-6 py-4 font-semibold">19% bracket ceiling</td>
-                        <td className="px-6 py-4">$45,000</td>
-                        <td className="px-6 py-4"><strong>$45,000</strong> (unchanged)</td>
+                        <td className="px-6 py-4 font-semibold">Second bracket rate ($18,201&ndash;$45,000)</td>
+                        <td className="px-6 py-4">16%</td>
+                        <td className="px-6 py-4"><strong>15%</strong></td>
                       </tr>
                       <tr>
-                        <td className="px-6 py-4 font-semibold">Middle rate</td>
-                        <td className="px-6 py-4">32.5%</td>
-                        <td className="px-6 py-4"><strong>30%</strong></td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-semibold">30% bracket ceiling</td>
-                        <td className="px-6 py-4">$120,000 (at 32.5%)</td>
-                        <td className="px-6 py-4"><strong>$135,000</strong></td>
+                        <td className="px-6 py-4 font-semibold">Middle rate ($45,001&ndash;$135,000)</td>
+                        <td className="px-6 py-4">30%</td>
+                        <td className="px-6 py-4"><strong>30%</strong> (unchanged)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">37% bracket ceiling</td>
-                        <td className="px-6 py-4">$180,000</td>
-                        <td className="px-6 py-4"><strong>$190,000</strong></td>
+                        <td className="px-6 py-4">$190,000</td>
+                        <td className="px-6 py-4"><strong>$190,000</strong> (unchanged)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">Top marginal rate</td>
-                        <td className="px-6 py-4">45% above $180,000</td>
-                        <td className="px-6 py-4"><strong>45% above $190,000</strong></td>
+                        <td className="px-6 py-4">45% above $190,000</td>
+                        <td className="px-6 py-4"><strong>45% above $190,000</strong> (unchanged)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">Medicare levy</td>
@@ -377,15 +413,20 @@ export default function PAYGTablesGuidePage() {
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold">SG rate</td>
-                        <td className="px-6 py-4">11%</td>
-                        <td className="px-6 py-4"><strong>12%</strong></td>
+                        <td className="px-6 py-4">12%</td>
+                        <td className="px-6 py-4"><strong>12%</strong> (unchanged)</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The practical impact for a worker earning <strong>$90,000 per year</strong> is a reduction in annual tax of approximately <strong>$1,929</strong> compared to the pre-Stage 3 rates, translating to roughly <strong>$37 more per week</strong> in take-home pay. The updated income tax brackets apply to all residents, and the withholding coefficients in the ATO&apos;s published tables have been recalculated accordingly. Check the full breakdown of each marginal rate in our <Link href="/tax-brackets/">Tax Brackets Guide</Link>.
+                The practical impact for anyone earning <strong>$45,000 or more</strong> is a reduction in annual tax of
+                {" "}<strong>$268</strong> compared with FY2025-26 &mdash; roughly <strong>$5 more per week</strong> in take-home pay,
+                delivered automatically through lower withholding from the first pay after 1 July 2026. The withholding
+                coefficients in every ATO schedule have been recalculated accordingly. Check the full breakdown of each
+                marginal rate in our <Link href="/tax-brackets/">Tax Brackets Guide</Link> and the year-by-year timeline in
+                the <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
               <p>
                 The superannuation guarantee increase to 12% does not directly change the withholding tables, but it affects the total employer cost per employee. Your employer now contributes <strong>$10,800</strong> in super on a $90,000 salary. Our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> shows the exact SG contribution based on your salary.
@@ -411,8 +452,9 @@ export default function PAYGTablesGuidePage() {
               </p>
               <ul>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Enter your gross salary and instantly see your PAYG withholding, Medicare levy, superannuation, and net pay for any pay cycle.</li>
-                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; Full breakdown of the FY2025-26 marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
+                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; Full breakdown of the current marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
                 <li><Link href="/hecs-help-guide/">HECS-HELP Repayment Guide</Link> &mdash; How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
+                <li><Link href="/schedule-5-tax-table/">Schedule 5 Tax Table</Link> &mdash; The withholding method for bonuses, commissions, and back payments, with a Method B(ii) calculator.</li>
                 <li><Link href="/bonus-tax-guide/">Bonus Tax Guide</Link> &mdash; How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Method B (Plan B).</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; The SG rate, contribution caps, employer obligations, and how super interacts with your gross-to-net calculation.</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; Line-by-line explanation of every item on an Australian payslip, including the PAYG withholding line.</li>
@@ -443,13 +485,13 @@ export default function PAYGTablesGuidePage() {
                 <AccordionItem value="second-job" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do I claim the tax-free threshold on a second job?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. You claim the tax-free threshold on <strong>one job only</strong> &mdash; typically the job where you earn the most income. On your second (or third) job, you tick &quot;No&quot; to the tax-free threshold question on the TFN declaration. Your second employer then withholds tax from the first dollar at the 16% marginal rate plus 2% Medicare levy. Claiming the threshold on multiple jobs simultaneously results in under-withholding and a tax debt at end of year.
+                    No. You claim the tax-free threshold on <strong>one job only</strong> &mdash; typically the job where you earn the most income. On your second (or third) job, you tick &quot;No&quot; to the tax-free threshold question on the TFN declaration. Your second employer then withholds tax from the first dollar at the 15% marginal rate plus 2% Medicare levy. Claiming the threshold on multiple jobs simultaneously results in under-withholding and a tax debt at end of year.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="bonus-withholding" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How are bonuses taxed under the PAYG withholding system?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Bonuses, commissions, and back-payments are classified as &quot;additional payments&quot; under Schedule 5 (Tax table for back payments, commissions, bonuses). The ATO prescribes two methods: Method A adds the bonus to the regular pay and withholds on the combined amount; Method B (more common) annualises the bonus separately and applies a marginal rate. Method B typically results in a <strong>lower withholding amount</strong> and is the default in most payroll software.
+                    Bonuses, commissions, and back-payments are classified as &quot;additional payments&quot; under the <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark underline hover:text-navy">Schedule 5 tax table</Link>. The ATO prescribes two methods: Method A adds the bonus to the regular pay and withholds on the combined amount; Method B (more common) apportions the bonus across the year&apos;s pay periods and applies your marginal rate. Method B typically results in a <strong>lower withholding amount</strong> and is the default in most payroll software.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="medicare-included" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -461,7 +503,7 @@ export default function PAYGTablesGuidePage() {
                 <AccordionItem value="hecs-withholding" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How does HECS-HELP affect my PAYG withholding?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Employees with a HECS-HELP, VET Student Loan, or other study/training debt must indicate this on their TFN declaration. The employer then uses a combined withholding table that deducts both income tax and a compulsory loan repayment. Repayment rates for FY2025-26 start at <strong>1%</strong> for incomes above the minimum threshold of <strong>$54,435</strong> and increase progressively to <strong>10%</strong> for incomes above <strong>$151,201</strong>. The additional withholding means a lower take-home pay each period, but it reduces the remaining loan balance throughout the year.
+                    Employees with a HECS-HELP, VET Student Loan, or other study/training debt must indicate this on their TFN declaration. The employer then uses a combined withholding table that deducts both income tax and a compulsory loan repayment. Under the marginal repayment system, you repay <strong>15c per dollar</strong> of repayment income above the minimum threshold of <strong>$67,000</strong>, stepping up above $125,000. The additional withholding means a lower take-home pay each period, but it reduces the remaining loan balance throughout the year. See the STSL columns in the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark underline hover:text-navy">weekly tax table</Link>.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="foreign-resident" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -499,7 +541,7 @@ export default function PAYGTablesGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Calculations and table estimates are based on the latest ATO PAYG withholding tax tables for the 2025-26 financial year incorporating Stage 3 tax cuts.</p>
+                <p>Calculations and table estimates are derived from the annualised ATO withholding formulas for the 2026-27 financial year, incorporating the 15% rate on $18,201&ndash;$45,000 that applies from 1 July 2026, the Low Income Tax Offset, and the Medicare levy with low-income shading. Printed ATO tables may differ by small rounding amounts.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("payg-withholding-tables"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
