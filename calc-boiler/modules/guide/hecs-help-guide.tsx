@@ -35,7 +35,7 @@ export default function HecsHelpGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            HECS-HELP Repayment Guide 2025-26 — New System Explained
+            HECS-HELP Repayment Guide 2026-27 — Marginal System Explained
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Australia&apos;s student loan system is undergoing massive changes. Understand the new marginal rate system, the lowered indexation caps, and how it radically impacts your take-home pay.
@@ -66,7 +66,7 @@ export default function HecsHelpGuidePage() {
                 Approximately <strong>3 million Australians</strong> hold an active HECS-HELP debt as of FY2025-26, with the average outstanding balance sitting at roughly <strong>$26,500</strong>. The loan carries no commercial interest rate. Instead, the balance is indexed annually to maintain its real value against inflation, using the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI).
               </p>
               <p>
-                Repayments are compulsory once your &ldquo;Repayment Income&rdquo; (RI) exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> in FY2025-26. Repayment Income includes your taxable income, total net investment losses, reportable fringe benefits, and reportable superannuation contributions. This broader definition prevents high earners from sheltering income through salary sacrifice or negative gearing to avoid HECS obligations.
+                Repayments are compulsory once your &ldquo;Repayment Income&rdquo; (RI) exceeds <strong>$69,528</strong> in FY2026-27. Repayment Income includes your taxable income, total net investment losses, reportable fringe benefits, and reportable superannuation contributions. This broader definition prevents high earners from sheltering income through salary sacrifice or negative gearing to avoid HECS obligations.
               </p>
               <p>
                 The scheme operates through the Australian tax system. Your employer withholds HECS repayments from each pay cycle via PAYG withholding, and the ATO reconciles the total when you lodge your annual tax return. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how HECS fits alongside your income tax brackets and Medicare levy.
@@ -77,7 +77,7 @@ export default function HecsHelpGuidePage() {
             <section id="how-repayments-work">
               <h2>How Do HECS Repayments Work?</h2>
               <p>
-                HECS repayments are deducted automatically from your salary through the PAYG withholding system, calculated as a percentage of income above the <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> minimum threshold.
+                HECS repayments are deducted automatically from your salary through the PAYG withholding system, calculated as a percentage of income above the <strong>$69,528</strong> minimum threshold (FY2026-27).
               </p>
               <p>
                 The repayment process follows 5 steps:
@@ -90,15 +90,15 @@ export default function HecsHelpGuidePage() {
                 <li><strong>Balance reduces</strong> &mdash; Confirmed repayments are applied to your HECS-HELP balance. You can track your remaining debt through your myGov account linked to the ATO.</li>
               </ol>
               <p>
-                The PAYG withholding tables your employer uses are updated each financial year. See our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> guide for the complete FY2025-26 schedule. If you earn income from multiple employers, each withholds independently, so you may end up under- or over-paying during the year.
+                The PAYG withholding tables your employer uses are updated each financial year. See our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> guide for the current schedule. On your payslip, this extra withholding usually appears under the code STSL &mdash; our guide to <Link href="/stsl-on-payslip/">STSL on your payslip</Link> explains how the amount is worked out. If you earn income from multiple employers, each withholds independently, so you may end up under- or over-paying during the year.
               </p>
             </section>
 
             {/* SECTION 3: Repayment Thresholds */}
             <section id="thresholds">
-              <h2>What Are the HECS-HELP Repayment Thresholds for FY2025-26?</h2>
+              <h2>What Are the HECS-HELP Repayment Thresholds for FY2026-27?</h2>
               <p>
-                The minimum repayment threshold for FY2025-26 is <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, a significant increase from the previous threshold of {formatAUD(HECS_HELP.previousThreshold)} under the old flat-rate system.
+                The minimum repayment threshold for FY2026-27 is <strong>$69,528</strong>, indexed up from the {formatAUD(HECS_HELP.minimumThreshold)} threshold that launched the marginal system in FY2025-26 &mdash; itself a significant increase from the {formatAUD(HECS_HELP.previousThreshold)} threshold under the old flat-rate system. Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your exact repayment at current-year rates.
               </p>
               <p>
                 Under the new marginal system introduced from 1 July 2025, repayment rates apply only to income within each band &mdash; not to your entire salary. This structure mirrors how Australian income tax brackets work, eliminating the harsh &ldquo;cliff&rdquo; effects of the old system.
@@ -114,16 +114,16 @@ export default function HecsHelpGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4">Below $67,000</td><td className="px-6 py-4 font-semibold">Nil (0%)</td><td className="px-6 py-4">$0</td></tr>
-                      <tr><td className="px-6 py-4">$67,001 &ndash; $125,000</td><td className="px-6 py-4">15% on the amount above $67,000</td><td className="px-6 py-4">$8,700</td></tr>
-                      <tr><td className="px-6 py-4">$125,001 &ndash; $179,285</td><td className="px-6 py-4">$8,700 + 17% on amount above $125,000</td><td className="px-6 py-4">$17,928</td></tr>
-                      <tr><td className="px-6 py-4">$179,286 and above</td><td className="px-6 py-4">10% of total repayment income</td><td className="px-6 py-4">Varies</td></tr>
+                      <tr><td className="px-6 py-4">Below $69,528</td><td className="px-6 py-4 font-semibold">Nil (0%)</td><td className="px-6 py-4">$0</td></tr>
+                      <tr><td className="px-6 py-4">$69,529 &ndash; $129,717</td><td className="px-6 py-4">15% on the amount above $69,528</td><td className="px-6 py-4">$9,028</td></tr>
+                      <tr><td className="px-6 py-4">$129,718 &ndash; $186,050</td><td className="px-6 py-4">$9,028 + 17% on amount above $129,717</td><td className="px-6 py-4">$18,605</td></tr>
+                      <tr><td className="px-6 py-4">$186,051 and above</td><td className="px-6 py-4">10% of total repayment income</td><td className="px-6 py-4">Varies</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The $67,000 threshold represents approximately <strong>75%</strong> of average graduate earnings, ensuring that lower-income graduates retain more take-home pay during the early years of their careers. Graduates earning below this threshold &mdash; including many teachers, nurses, and social workers in their first few years &mdash; make <strong>zero</strong> compulsory HECS repayments.
+                The repayment threshold represents approximately <strong>75%</strong> of average graduate earnings, ensuring that lower-income graduates retain more take-home pay during the early years of their careers. Graduates earning below this threshold &mdash; including many teachers, nurses, and social workers in their first few years &mdash; make <strong>zero</strong> compulsory HECS repayments.
               </p>
 
               <h3>How Does the Marginal System Differ from the Old Flat-Rate System?</h3>
@@ -156,33 +156,33 @@ export default function HecsHelpGuidePage() {
             <section id="how-calculated">
               <h2>How Are HECS Repayments Calculated?</h2>
               <p>
-                HECS repayments are calculated by applying the marginal rate to each dollar of repayment income above the <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> threshold, following the same band-based logic as Australian income tax.
+                HECS repayments are calculated by applying the marginal rate to each dollar of repayment income above the <strong>$69,528</strong> threshold (FY2026-27), following the same band-based logic as Australian income tax.
               </p>
 
               <div className="bg-sandstone border border-sandstone-dark/20 p-6 rounded-xl not-prose my-6">
-                <h3 className="font-bold text-navy mb-3 block text-lg">Example A: Salary of $80,000</h3>
+                <h3 className="font-bold text-navy mb-3 block text-lg">Example A: Salary of $80,000 (FY2026-27)</h3>
                 <ol className="list-decimal list-inside space-y-2 text-navy text-sm">
-                  <li>The first $67,000 is completely exempt from HECS repayments.</li>
-                  <li>Calculate the amount over the threshold: $80,000 - $67,000 = $13,000.</li>
-                  <li>Calculate 15% of that remaining chunk: 15% of $13,000 = $1,950 total yearly repayment.</li>
+                  <li>The first $69,528 is completely exempt from HECS repayments.</li>
+                  <li>Calculate the amount over the threshold: $80,000 - $69,528 = $10,472.</li>
+                  <li>Calculate 15% of that remaining chunk: 15% of $10,472 = $1,571 total yearly repayment.</li>
                 </ol>
-                <p className="mt-3 text-sm text-eucalyptus-dark font-semibold">Under the old flat-rate system, an $80k earner would have paid roughly $3,600/yr. The new system saves them ~$1,650 annually in take-home pay.</p>
+                <p className="mt-3 text-sm text-eucalyptus-dark font-semibold">Under the old flat-rate system, an $80k earner would have paid roughly $3,600/yr. The new system saves them ~$2,000 annually in take-home pay.</p>
               </div>
 
               <div className="bg-sandstone border border-sandstone-dark/20 p-6 rounded-xl not-prose my-6">
-                <h3 className="font-bold text-navy mb-3 block text-lg">Example B: Salary of $130,000</h3>
+                <h3 className="font-bold text-navy mb-3 block text-lg">Example B: Salary of $130,000 (FY2026-27)</h3>
                 <ol className="list-decimal list-inside space-y-2 text-navy text-sm">
-                  <li>The first $67,000 is completely exempt.</li>
-                  <li>The band from $67,000 up to $124,999 is highly utilized. Size of band: $57,999. Apply 15% here = $8,700.</li>
-                  <li>The amount stretching over $125k is $5,000. Apply 17% to this = $850.</li>
-                  <li>Total repayment = $8,700 + $850 = $9,550 total yearly repayment.</li>
+                  <li>The first $69,528 is completely exempt.</li>
+                  <li>The band from $69,528 up to $129,717 is fully utilised. Size of band: $60,189. Apply 15% here = $9,028.</li>
+                  <li>The amount stretching over $129,717 is $283. Apply 17% to this = $48.</li>
+                  <li>Total repayment = $9,028 + $48 = $9,076 total yearly repayment.</li>
                 </ol>
               </div>
 
               <div className="bg-sandstone border border-sandstone-dark/20 p-6 rounded-xl not-prose my-6">
-                <h3 className="font-bold text-navy mb-3 block text-lg">Example C: Salary of $60,000</h3>
+                <h3 className="font-bold text-navy mb-3 block text-lg">Example C: Salary of $60,000 (FY2026-27)</h3>
                 <ol className="list-decimal list-inside space-y-2 text-navy text-sm">
-                  <li>The entire $60,000 falls below the $67,000 threshold.</li>
+                  <li>The entire $60,000 falls below the $69,528 threshold.</li>
                   <li>Compulsory HECS repayment = <strong>$0</strong>.</li>
                   <li>The full salary flows through to income tax, Medicare levy, and superannuation calculations only.</li>
                 </ol>
@@ -194,7 +194,7 @@ export default function HecsHelpGuidePage() {
                   <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
                   <div>
                     <h3 className="text-base font-bold text-navy mb-1">Interactive HECS Calculator</h3>
-                    <p className="text-navy text-sm mb-3">Tired of doing the math? We have built an interactive calculator precisely tuned for the new $67k structural change.</p>
+                    <p className="text-navy text-sm mb-3">Tired of doing the math? We have built an interactive calculator precisely tuned to the marginal repayment system, updated with FY2026-27 thresholds.</p>
                     <Link href="/hecs-help-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
                       Use our HECS-HELP Calculator <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
@@ -241,7 +241,7 @@ export default function HecsHelpGuidePage() {
                 </div>
               </div>
               <p>
-                Notice how there&apos;s no sudden jump in repayments under the new marginal system. Moving from $67,000 to $70,000 only triggers <strong>{formatAUD(calculateHECS(70000))}</strong> in annual HECS &mdash; just <strong>{formatAUD(annualToWeekly(calculateHECS(70000)), 2)}</strong> per week. Under the old flat-rate system, that same earner would have faced a much larger cliff. Use our <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link> to model your exact scenario.
+                Notice how there&apos;s no sudden jump in repayments under the new marginal system. Under the FY2025-26 launch-year thresholds, moving from $67,000 to $70,000 only triggered <strong>{formatAUD(calculateHECS(70000))}</strong> in annual HECS &mdash; just <strong>{formatAUD(annualToWeekly(calculateHECS(70000)), 2)}</strong> per week. Under the old flat-rate system, that same earner would have faced a much larger cliff. Use our <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link> to model your exact scenario.
               </p>
               <p>
                 For a full breakdown of how income tax, superannuation, and Medicare levy combine with HECS to determine your disposable salary, try our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>. It handles all deductions in a single view and shows your net pay after tax on a weekly, fortnightly, monthly, and annual basis.
@@ -280,6 +280,7 @@ export default function HecsHelpGuidePage() {
                       <tr><td className="px-6 py-4">2023 (original)</td><td className="px-6 py-4">7.1%</td><td className="px-6 py-4">3.2%</td><td className="px-6 py-4 font-semibold">3.2% (backdated)</td></tr>
                       <tr><td className="px-6 py-4">2024</td><td className="px-6 py-4">4.7%</td><td className="px-6 py-4">4.1%</td><td className="px-6 py-4 font-semibold">4.1%</td></tr>
                       <tr><td className="px-6 py-4">2025</td><td className="px-6 py-4">~2.4%</td><td className="px-6 py-4">~3.4%</td><td className="px-6 py-4 font-semibold">~2.4% (lower of two)</td></tr>
+                      <tr><td className="px-6 py-4">2026</td><td className="px-6 py-4">2.8%</td><td className="px-6 py-4">~3.3%</td><td className="px-6 py-4 font-semibold">2.8% (lower of two)</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -293,10 +294,10 @@ export default function HecsHelpGuidePage() {
             <section id="voluntary-repayments">
               <h2>Is It Worth Paying Off HECS Early?</h2>
               <p>
-                Voluntary HECS repayment is financially advantageous only when indexation exceeds the after-tax return you could earn by investing that money elsewhere &mdash; for most graduates in FY2025-26, this means early repayment is <strong>not the optimal strategy</strong>.
+                Voluntary HECS repayment is financially advantageous only when indexation exceeds the after-tax return you could earn by investing that money elsewhere &mdash; for most graduates in FY2026-27, this means early repayment is <strong>not the optimal strategy</strong>.
               </p>
               <p>
-                HECS carries no commercial interest. The debt grows only by the indexation rate, which is capped at the lower of CPI or WPI &mdash; currently around <strong>2.4%</strong>. A standard high-interest savings account offers <strong>4.5&ndash;5.0%</strong> returns before tax. Even after the 16&ndash;39% marginal tax on interest income, the net return exceeds HECS indexation in most scenarios.
+                HECS carries no commercial interest. The debt grows only by the indexation rate, which is capped at the lower of CPI or WPI &mdash; <strong>2.8%</strong> applied on 1 June 2026. A standard high-interest savings account offers <strong>4.5&ndash;5.0%</strong> returns before tax. Even after the 16&ndash;39% marginal tax on interest income, the net return exceeds HECS indexation in most scenarios.
               </p>
 
               <h3>When Voluntary Repayment Makes Sense</h3>
@@ -518,13 +519,13 @@ export default function HecsHelpGuidePage() {
                 <AccordionItem value="what-is-hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is HECS-HELP?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    HECS-HELP is the Australian Government&apos;s income-contingent loan scheme for Commonwealth-supported university students. It covers tuition fees with no upfront cost. Repayments are compulsory once your Repayment Income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> in FY2025-26. The debt carries no commercial interest &mdash; only annual indexation at the lower of CPI or WPI.
+                    HECS-HELP is the Australian Government&apos;s income-contingent loan scheme for Commonwealth-supported university students. It covers tuition fees with no upfront cost. Repayments are compulsory once your Repayment Income exceeds <strong>$69,528</strong> in FY2026-27. The debt carries no commercial interest &mdash; only annual indexation at the lower of CPI or WPI.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="new-system" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the new HECS marginal repayment system?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Starting from 1 July 2025, HECS-HELP repayments transition from a &ldquo;flat rate&rdquo; cliff system to a &ldquo;marginal rate&rdquo; system. You only apply the 15% repayment on the portion of your income that falls <em>above</em> the $67,000 threshold, keeping more money in your standard pay packet compared to the old rules.
+                    Starting from 1 July 2025, HECS-HELP repayments transition from a &ldquo;flat rate&rdquo; cliff system to a &ldquo;marginal rate&rdquo; system. You only apply the 15% repayment on the portion of your income that falls <em>above</em> the repayment threshold ($69,528 in FY2026-27), keeping more money in your standard pay packet compared to the old rules.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="index" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -542,7 +543,7 @@ export default function HecsHelpGuidePage() {
                 <AccordionItem value="write-off" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is my HECS debt ever written off?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. Your HECS-HELP debt is written off if you pass away or become permanently incapacitated. It&apos;s also discharged through bankruptcy in some cases. However, HECS debts are <strong>not</strong> written off when you reach a certain age &mdash; the obligation remains for life unless one of the discharge conditions is met. If your income stays below the {formatAUD(HECS_HELP.minimumThreshold)} threshold, you simply don&apos;t make any compulsory repayments.
+                    Yes. Your HECS-HELP debt is written off if you pass away or become permanently incapacitated. It&apos;s also discharged through bankruptcy in some cases. However, HECS debts are <strong>not</strong> written off when you reach a certain age &mdash; the obligation remains for life unless one of the discharge conditions is met. If your income stays below the $69,528 threshold (FY2026-27), you simply don&apos;t make any compulsory repayments.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="repayment-income" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -554,13 +555,13 @@ export default function HecsHelpGuidePage() {
                 <AccordionItem value="multiple-jobs" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How does HECS work if I have multiple jobs?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Each employer withholds HECS independently based on the income they pay you. At tax time, the ATO combines your total Repayment Income from all sources and calculates the actual repayment owed. If combined income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> but individual jobs fall below, you may face an unexpected HECS bill. Ticking the HELP debt box on all TFN declarations helps minimise end-of-year surprises.
+                    Each employer withholds HECS independently based on the income they pay you. At tax time, the ATO combines your total Repayment Income from all sources and calculates the actual repayment owed. If combined income exceeds <strong>$69,528</strong> but individual jobs fall below, you may face an unexpected HECS bill. Ticking the HELP debt box on all TFN declarations helps minimise end-of-year surprises.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="overseas" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do I still pay HECS if I move overseas?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. Australian residents living and working overseas with a HELP debt must report their worldwide income to the ATO if it exceeds the minimum repayment threshold of <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>. The ATO requires overseas debtors to lodge an &ldquo;overseas levy return&rdquo; annually. Failing to lodge can result in penalties and interest on unpaid amounts. Your debt continues to be indexed on 1 June regardless of your location.
+                    Yes. Australian residents living and working overseas with a HELP debt must report their worldwide income to the ATO if it exceeds the minimum repayment threshold of <strong>$69,528</strong> (FY2026-27). The ATO requires overseas debtors to lodge an &ldquo;overseas levy return&rdquo; annually. Failing to lodge can result in penalties and interest on unpaid amounts. Your debt continues to be indexed on 1 June regardless of your location.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="salary-sacrifice" className="border rounded-lg px-4 bg-sandstone bg-white">

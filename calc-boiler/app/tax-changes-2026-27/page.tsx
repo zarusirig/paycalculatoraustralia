@@ -50,8 +50,8 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "What are the main tax changes for FY2026-27?", acceptedAnswer: { "@type": "Answer", text: "Key confirmed changes include super guarantee remaining at 12%, updated HECS-HELP repayment thresholds, and revised Medicare levy low-income thresholds. Further changes may be announced in the May 2026 federal budget." } },
-    { "@type": "Question", name: "Will tax brackets change in 2026-27?", acceptedAnswer: { "@type": "Answer", text: "No bracket changes have been legislated for FY2026-27. The Stage 3 tax cut brackets from 1 July 2024 remain in effect. Any future bracket indexation would require new legislation." } },
+    { "@type": "Question", name: "What are the main tax changes for FY2026-27?", acceptedAnswer: { "@type": "Answer", text: "The headline change is the legislated cost-of-living tax cut: the rate on income between $18,201 and $45,000 drops from 16% to 15% on 1 July 2026, worth up to $268 a year. The super guarantee stays at 12%, the HECS-HELP repayment threshold rises to $69,528, and Medicare levy low-income thresholds are indexed." } },
+    { "@type": "Question", name: "Will tax brackets change in 2026-27?", acceptedAnswer: { "@type": "Answer", text: "Yes. From 1 July 2026 the marginal rate on income between $18,201 and $45,000 falls from 16% to 15% under the legislated cost-of-living tax cuts, with a further cut to 14% from 1 July 2027. Bracket thresholds themselves are unchanged." } },
     { "@type": "Question", name: "What is the super guarantee rate for 2026-27?", acceptedAnswer: { "@type": "Answer", text: "The super guarantee rate remains at 12% for FY2026-27. The rate reached its legislated ceiling of 12% on 1 July 2025 and no further increases are currently scheduled." } },
   ]
 };

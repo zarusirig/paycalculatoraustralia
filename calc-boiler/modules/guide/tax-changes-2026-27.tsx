@@ -52,7 +52,7 @@ export default function TaxChanges202627Page() {
               <p className="text-navy text-sm font-medium">
                 <strong>Living Document</strong>
                 <br />
-                This page will be updated as changes are confirmed in the May 2026 federal budget. Last updated: March 2026.
+                This page will be updated as further changes are confirmed. Last updated: 2 July 2026.
               </p>
             </div>
 
@@ -63,13 +63,18 @@ export default function TaxChanges202627Page() {
                 The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. While the May 2026 federal budget may introduce additional measures, several changes are already confirmed or highly expected based on existing legislation and indexation formulas.
               </p>
               <p>
-                The Stage 3 tax cuts that took effect on 1 July 2024 remain the current bracket structure. No further bracket changes have been legislated, so FY2026-27 uses the same rates and thresholds as FY2025-26 unless new legislation is passed.
+                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>16% to 15%</strong> on 1 July 2026 (and to 14% from 1 July 2027). For anyone earning $45,000 or more, that is a tax cut of <strong>$268 per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26.
               </p>
             </section>
 
             {/* SECTION 2: Confirmed Changes */}
             <section id="confirmed-changes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Confirmed Changes for FY2026-27</h2>
+
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Tax Rate Drops from 16% to 15%</h3>
+              <p>
+                Under the cost-of-living tax cuts legislated in 2025, the marginal rate on income between <strong>$18,201 and $45,000</strong> falls from 16% to <strong>15%</strong> on 1 July 2026. This delivers up to <strong>$268</strong> in annual tax savings, with the full amount going to anyone earning $45,000 or more. A further cut to <strong>14%</strong> is legislated for 1 July 2027. PAYG withholding schedules have been updated accordingly &mdash; see our <Link href="/payg-withholding-tables/">PAYG withholding tables</Link> for the new weekly, fortnightly and monthly amounts.
+              </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Guarantee Stays at 12%</h3>
               <p>
@@ -81,7 +86,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Threshold Update</h3>
               <p>
-                The minimum HECS-HELP repayment threshold is indexed annually. For FY2025-26, the threshold is <strong>$67,000</strong> under the new marginal repayment system. The FY2026-27 threshold will be adjusted based on average weekly earnings data, with the updated figure expected to be announced in early 2026.
+                The minimum HECS-HELP repayment threshold is indexed annually. For FY2026-27, the threshold is <strong>$69,528</strong> under the marginal repayment system, up from $67,000 in FY2025-26.
               </p>
               <p>
                 The marginal repayment system introduced in FY2025-26 will continue. You only pay the repayment percentage on income <em>above</em> the threshold, not on your entire income. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full breakdown.
@@ -102,10 +107,10 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Bracket Indexation</h3>
               <p>
-                Australia does not automatically index income tax brackets to inflation. Any bracket changes require legislation. No bracket indexation bill has been introduced for FY2026-27, so the <Link href="/tax-brackets/">current tax brackets</Link> are expected to remain unchanged.
+                Australia does not automatically index income tax bracket thresholds to inflation &mdash; threshold changes require legislation. The bracket <em>thresholds</em> are unchanged for FY2026-27; the only legislated change is the rate cut on the first taxable bracket described above. See the <Link href="/tax-brackets/">current tax brackets</Link> for full detail.
               </p>
               <p>
-                The current brackets are:
+                The FY2026-27 brackets are:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -118,7 +123,7 @@ export default function TaxChanges202627Page() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-6 py-4">$0 &ndash; $18,200</td><td className="px-6 py-4">0%</td></tr>
-                      <tr><td className="px-6 py-4">$18,201 &ndash; $45,000</td><td className="px-6 py-4">16%</td></tr>
+                      <tr><td className="px-6 py-4">$18,201 &ndash; $45,000</td><td className="px-6 py-4">15% <span className="text-warmgray">(was 16%)</span></td></tr>
                       <tr><td className="px-6 py-4">$45,001 &ndash; $135,000</td><td className="px-6 py-4">30%</td></tr>
                       <tr><td className="px-6 py-4">$135,001 &ndash; $190,000</td><td className="px-6 py-4">37%</td></tr>
                       <tr><td className="px-6 py-4">$190,001+</td><td className="px-6 py-4">45%</td></tr>
@@ -142,7 +147,7 @@ export default function TaxChanges202627Page() {
             <section id="impact-take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Impact on Take-Home Pay</h2>
               <p>
-                Without bracket changes, take-home pay in FY2026-27 will be largely similar to FY2025-26 for employees at the same nominal salary. The main variables are the indexed HECS threshold, Medicare low-income threshold, and any minimum wage increase.
+                The legislated rate cut lifts take-home pay by up to <strong>$268 a year</strong> (about $5.15 a week) for employees at the same nominal salary, with the full benefit reaching anyone earning $45,000 or more. On top of that, the indexed HECS threshold, Medicare low-income threshold, and the FWC minimum wage decision shape the final numbers.
               </p>
               <p>
                 The table below shows estimated annual take-home pay at key salary levels, assuming no HECS debt, no MLS, and resident status. These figures will be updated once FY2026-27 thresholds are confirmed.
@@ -159,16 +164,16 @@ export default function TaxChanges202627Page() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-medium">$60,000</td><td className="px-6 py-4">$50,483</td><td className="px-6 py-4">~$50,483</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$80,000</td><td className="px-6 py-4">$64,283</td><td className="px-6 py-4">~$64,283</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$100,000</td><td className="px-6 py-4">$78,083</td><td className="px-6 py-4">~$78,083</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$120,000</td><td className="px-6 py-4">$91,883</td><td className="px-6 py-4">~$91,883</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$150,000</td><td className="px-6 py-4">$109,433</td><td className="px-6 py-4">~$109,433</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$200,000</td><td className="px-6 py-4">$137,583</td><td className="px-6 py-4">~$137,583</td><td className="px-6 py-4 text-warmgray">$0*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$60,000</td><td className="px-6 py-4">$50,483</td><td className="px-6 py-4">$50,751</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$80,000</td><td className="px-6 py-4">$64,283</td><td className="px-6 py-4">$64,551</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$100,000</td><td className="px-6 py-4">$78,083</td><td className="px-6 py-4">$78,351</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$120,000</td><td className="px-6 py-4">$91,883</td><td className="px-6 py-4">$92,151</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$150,000</td><td className="px-6 py-4">$109,433</td><td className="px-6 py-4">$109,701</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">$200,000</td><td className="px-6 py-4">$137,583</td><td className="px-6 py-4">$137,851</td><td className="px-6 py-4 text-eucalyptus-dark font-medium">+$268*</td></tr>
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">*Estimated. Assumes no bracket changes in FY2026-27. Actual figures will depend on any budget announcements. Excludes HECS, MLS, and salary sacrifice.</p>
+                <p className="text-xs text-warmgray mt-2">*Reflects the legislated 16% &rarr; 15% rate cut on income between $18,201 and $45,000 from 1 July 2026. Excludes HECS, MLS, and salary sacrifice.</p>
               </div>
             </section>
 
@@ -211,7 +216,7 @@ export default function TaxChanges202627Page() {
               <Accordion type="multiple" className="not-prose mt-6 space-y-3">
                 <AccordionItem value="bracket-change" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Will tax brackets change in 2026-27?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No bracket changes have been legislated for FY2026-27. The Stage 3 tax cut brackets from 1 July 2024 remain in effect. Any changes would need to be announced in the May 2026 budget and passed by Parliament before 1 July 2026. See our <Link href="/stage-3-tax-cuts/" className="text-eucalyptus-dark underline">Stage 3 Tax Cuts guide</Link> for the current bracket structure.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. The legislated cost-of-living tax cuts reduce the rate on income between $18,201 and $45,000 from 16% to 15% on 1 July 2026 &mdash; worth up to $268 a year &mdash; with a further cut to 14% on 1 July 2027. Bracket thresholds are unchanged. See our <Link href="/stage-3-tax-cuts/" className="text-eucalyptus-dark underline">Stage 3 Tax Cuts guide</Link> for how the current bracket structure evolved.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="sg-rate" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is the super guarantee going up again?</AccordionTrigger>
