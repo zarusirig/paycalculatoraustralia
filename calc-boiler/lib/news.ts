@@ -378,7 +378,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "When was the 2026-27 Federal Budget handed down?", answer: "Treasurer Jim Chalmers handed down the 2026-27 Budget on Tuesday 12 May 2026. It confirmed the previously legislated 1 July 2026 tax cut and the $1,000 instant deduction, and added a new $250 Working Australians Tax Offset starting from the 2027-28 income year." },
       { question: "Did the Budget cut tax rates again?", answer: "No new rate cut was announced in this Budget. The 16% to 15% cut on income between $18,201 and $45,000 was already legislated in the 2025 Budget and simply took effect on 1 July 2026 as planned. This Budget's new measure was the $250 Working Australians Tax Offset from 2027-28." },
-      { question: "How much extra will an average earner get from this Budget?", answer: "Treasury estimates a worker on average earnings of $81,245 will be up to $2,816 a year better off once every measure — the 2024, 2026 and 2027 tax cuts, the $250 offset and the $1,000 instant deduction — is fully phased in, compared with 2023-24 settings." },
+      { question: "How much extra will an average earner get from this Budget?", answer: "Treasury estimates a worker on average earnings of $81,245 will be up to $2,816 a year better off from 2027-28 with the maximum $1,000 instant deduction benefit — or about $2,701 with the average $205 benefit — once every tax cut and the $250 offset are fully phased in, versus 2023-24 settings." },
     ],
   },
   {
@@ -387,7 +387,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     title: "Medicare Levy Thresholds Lifted: Who Pays Less in 2025-26",
     description: "Medicare levy low-income thresholds rose 2.9% for 2025-26 — singles now pay no levy below $28,011, up from $27,222, sparing over a million low earners.",
     category: "Tax",
-    datePublished: "2026-05-13",
+    datePublished: "2026-05-12",
     dateModified: "2026-07-02",
     authorId: "james-harrington",
     relatedCalculators: [

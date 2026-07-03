@@ -77,7 +77,9 @@ export default function July12026MoneyChanges() {
         recipients of JobSeeker, pensions and family payments in line with the standard indexation
         cycle. See{" "}
         <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from July 2026</Link>{" "}
-        for the updated payment rates and thresholds.
+        for the updated payment rates and thresholds, and use the{" "}
+        <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to check how
+        your earnings affect your payment.
       </p>
 
       <h2>Putting it all together</h2>

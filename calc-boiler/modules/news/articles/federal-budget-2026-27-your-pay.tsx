@@ -17,7 +17,7 @@ export default function FederalBudget202627YourPay() {
           { label: "New measure: Working Australians Tax Offset", after: "Up to $250/year from 2027-28" },
           { label: "Already-legislated 1 July 2026 tax cut", after: "16% → 15% ($18,201–$45,000)" },
           { label: "$1,000 instant deduction", after: "Confirmed, applies from 2026-27 income year" },
-          { label: "Combined benefit, average earner ($81,245)", after: "Up to $2,816/year" },
+          { label: "Combined benefit, average earner ($81,245)", after: "Up to $2,816/year (max deduction benefit)" },
         ]}
       />
 
@@ -41,9 +41,11 @@ export default function FederalBudget202627YourPay() {
       <p>
         Treasury&apos;s modelling puts the combined value of every measure — the 2024, 2026 and
         2027 rate cuts, the new $250 offset and the $1,000 deduction — at up to $2,816 a year for
-        a worker on average earnings of $81,245, once everything is fully phased in from 2027-28.
-        For most people the actual saving this year is smaller: the immediate 1 July 2026 benefit
-        is capped at $268, with the rest arriving in later years.
+        a worker on average earnings of $81,245 from 2027-28, if they receive the maximum benefit
+        from the instant deduction. A worker receiving the average $205 deduction benefit instead
+        would be about $2,701 better off. For most people the actual saving this year is smaller:
+        the immediate 1 July 2026 benefit is capped at $268, with the rest arriving in later
+        years.
       </p>
       <p>
         The Working Australians Tax Offset works differently to a rate cut. Instead of changing a

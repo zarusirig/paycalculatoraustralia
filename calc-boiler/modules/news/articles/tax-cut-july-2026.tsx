@@ -61,9 +61,9 @@ export default function TaxCutJuly2026() {
       </p>
       <p>
         Combined with the $1,000 instant work-related deduction that also applies from the
-        2026-27 income year, Treasury estimates a worker on average earnings could be roughly
-        $2,701 better off by the 2027-28 income year compared with 2023-24 settings, once the
-        rate cuts, offset and deduction are all layered together. See our{" "}
+        2026-27 income year, Treasury estimates a worker on average earnings receiving the
+        average $205 deduction benefit would be about $2,701 better off in 2027-28 compared with
+        2023-24 settings — or up to $2,816 with the maximum deduction benefit. See our{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">
           $1,000 instant deduction explainer
         </Link>{" "}
