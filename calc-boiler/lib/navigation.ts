@@ -19,6 +19,7 @@ export const navigationItems: NavigationItem[] = [
   { href: "/income-tax-calculator/", label: "Tax Calculator" },
   { href: "/superannuation-calculator/", label: "Super Calculator" },
   { href: "/take-home-pay-calculator/", label: "Take-Home Pay" },
+  { href: "/news/", label: "News" },
   { href: "#", label: "Tax on Salary", hasMegaMenu: true },
   { href: "#", label: "Guides", hasMegaMenu: true },
   { href: "#", label: "By State", hasMegaMenu: true },
@@ -365,4 +366,18 @@ export const FOOTER_TAX_ON_SALARY = [
   { href: "/tax-on/120000/", label: "Tax on $120K" },
   { href: "/tax-on/150000/", label: "Tax on $150K" },
   { href: "/tax-on/200000/", label: "Tax on $200K" },
+] as const;
+
+// Footer news links — links to hub + 8 planned articles (Tasks 6–10).
+// Some hrefs 404 until those tasks land; acceptable since everything ships in one deploy.
+export const FOOTER_NEWS = [
+  { href: "/news/", label: "Pay & Tax News" },
+  { href: "/news/july-1-2026-money-changes/", label: "July 1 Money Changes" },
+  { href: "/news/minimum-wage-increase-july-2026/", label: "Minimum Wage Increase 2026" },
+  { href: "/news/payday-super-starts-july-2026/", label: "Payday Super" },
+  { href: "/news/tax-cut-july-2026/", label: "July 2026 Tax Cut" },
+  { href: "/news/hecs-indexation-2026/", label: "HECS Indexation 2026" },
+  { href: "/news/super-contribution-caps-2026-27/", label: "Super Caps 2026-27" },
+  { href: "/news/age-pension-increase-march-2026/", label: "Age Pension Increase" },
+  { href: "/news/centrelink-changes-july-2026/", label: "Centrelink Changes July 2026" },
 ] as const;

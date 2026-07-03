@@ -7,6 +7,7 @@ import {
   FOOTER_GUIDES_EMPLOYMENT,
   FOOTER_STATES_AND_LEGAL,
   FOOTER_TAX_ON_SALARY,
+  FOOTER_NEWS,
 } from "@/lib/navigation";
 import { SOURCES, SITE_CONFIG } from "@/lib/constants";
 
@@ -176,15 +177,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns — 4 across on xl */}
+          {/* Link columns — 5 across on xl */}
           <div className="xl:col-span-4">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
               <FooterColumn heading="Calculators" items={FOOTER_CALCULATORS} />
               <FooterColumn heading="Tax & Deductions" items={FOOTER_GUIDES_TAX} />
               <FooterColumn heading="Super & Pay" items={FOOTER_GUIDES_SUPER_PAY} />
               <div className="space-y-8">
                 <FooterColumn heading="Employment & Industry" items={FOOTER_GUIDES_EMPLOYMENT} />
               </div>
+              <FooterColumn heading="News" items={FOOTER_NEWS} />
             </div>
           </div>
         </div>

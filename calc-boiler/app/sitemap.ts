@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
+import { NEWS_ARTICLES } from "@/lib/news";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -192,10 +193,29 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // lastModified reflects build time so each deploy signals freshness to Google.
   const buildDate = new Date();
 
-  return allPages.map((page, index) => ({
-    url: page.slug ? `${baseUrl}/${page.slug}/` : `${baseUrl}/`,
-    lastModified: page.priority >= 0.7 ? buildDate : staggeredDate(index, total),
-    changeFrequency: page.changeFrequency,
-    priority: page.priority,
-  }));
+  // 10. News — hub weekly/0.7, articles monthly/0.6, real dates
+  const newsEntries: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/news/`,
+      lastModified: buildDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...NEWS_ARTICLES.map((a) => ({
+      url: `${baseUrl}/news/${a.slug}/`,
+      lastModified: new Date(`${a.dateModified}T09:00:00+10:00`),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+  ];
+
+  return [
+    ...allPages.map((page, index) => ({
+      url: page.slug ? `${baseUrl}/${page.slug}/` : `${baseUrl}/`,
+      lastModified: page.priority >= 0.7 ? buildDate : staggeredDate(index, total),
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })),
+    ...newsEntries,
+  ];
 }
