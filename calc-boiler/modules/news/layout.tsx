@@ -71,6 +71,22 @@ export default function NewsArticleLayout({ meta, children }: { meta: NewsArticl
             {children}
           </article>
 
+          {meta.faq && meta.faq.length > 0 && (
+            <section className="not-prose my-10">
+              <h2 className="mb-4 text-xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                Frequently asked questions
+              </h2>
+              <div className="space-y-5">
+                {meta.faq.map((item) => (
+                  <div key={item.question}>
+                    <h3 className="mb-1 font-semibold text-navy">{item.question}</h3>
+                    <p className="text-warmgray">{item.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
           <aside className="not-prose my-10 rounded-xl border border-navy/10 bg-navy/3 p-6">
             <h2 className="mb-3 text-lg font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
               Run your own numbers
