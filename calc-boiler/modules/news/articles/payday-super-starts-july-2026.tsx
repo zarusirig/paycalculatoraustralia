@@ -28,7 +28,12 @@ export default function PaydaySuperStartsJuly2026() {
         them. Payday super closes that gap. From 1 July 2026, super guarantee on qualifying earnings
         must be calculated and paid alongside each pay run, and must reach your super fund within 7
         business days of payday, with a longer window for some new employees while their fund
-        details are confirmed.
+        details are confirmed. Employers must also work out and pay super on qualifying earnings
+        paid from 1 July 2026 even where the underlying work was performed before that date, so the
+        cut-over applies to when you're paid rather than when the shift or task happened. Payroll
+        systems now need to calculate ordinary time earnings, apply the 12% super guarantee rate,
+        and initiate the payment on the same day wages are processed, which is a substantial change
+        from batching contributions once every three months.
       </p>
 
       <h2>Why the Small Business Superannuation Clearing House closed</h2>
@@ -37,7 +42,12 @@ export default function PaydaySuperStartsJuly2026() {
         couldn&apos;t process contributions fast enough to meet the new 7-business-day deadline.
         Employers who relied on it needed to move to a commercial clearing house or their payroll
         software&apos;s default fund service before payday super began, so their existing employees&apos;
-        contributions weren&apos;t disrupted.
+        contributions weren&apos;t disrupted. The NSW Small Business Commissioner and other advisory
+        bodies urged small employers to download their SBSCH payment records well before the closure
+        date, since access to historical data disappeared along with the service on 1 July 2026.
+        Most major payroll platforms rolled out a built-in clearing house or a direct integration
+        with commercial providers in the lead-up to the change, so the switch for most businesses
+        was a configuration update rather than a full system replacement.
       </p>
 
       <h2>What happens if super is paid late</h2>
@@ -46,7 +56,10 @@ export default function PaydaySuperStartsJuly2026() {
         no longer tax-deductible and includes the shortfall amount, interest, and administrative
         penalties. The ATO can now see contribution timing far sooner through Single Touch Payroll
         and fund reporting, so late payments are expected to be identified and chased up faster than
-        under the old quarterly system.
+        under the old quarterly system. Because the charge is no longer deductible, a late payment
+        under payday super can end up more expensive for an employer than simply paying the super
+        guarantee correctly and on time in the first place, which is part of the compliance incentive
+        behind the redesign.
       </p>
 
       <h2>How employees can check it's working</h2>

@@ -27,7 +27,10 @@ export default function PaydaySuperEmployeesPayslip() {
         7 business days, rather than bundling several pay periods together and paying once a
         quarter. If you&apos;re unsure what each line on your payslip means, our{" "}
         <Link href="/understanding-your-payslip/">understanding your payslip guide</Link> breaks
-        down every standard field.
+        down every standard field. Some payroll systems also add a short note or reference number
+        confirming when the contribution was sent to your fund, though this isn&apos;t mandatory —
+        the safest way to confirm payment is still checking directly with your super fund rather than
+        relying solely on the payslip wording.
       </p>
 
       <h2>Why quarterly super statements are disappearing</h2>
@@ -36,7 +39,10 @@ export default function PaydaySuperEmployeesPayslip() {
         run. Because contributions now move with every payday, that quarterly summary is being
         replaced by payday-level reporting — you should be able to see contributions reflected in
         your fund&apos;s app or member portal within days of each pay, rather than waiting until the
-        next quarter to confirm the money arrived.
+        next quarter to confirm the money arrived. This is a meaningful shift for employees who
+        change jobs or work multiple casual roles, since each employer&apos;s contributions now show
+        up close to when they were earned, making it far easier to spot a gap while it&apos;s still
+        recent rather than discovering a shortfall months later.
       </p>
 
       <h2>What to do if a contribution looks wrong or missing</h2>
@@ -45,7 +51,9 @@ export default function PaydaySuperEmployeesPayslip() {
         contribution hasn&apos;t appeared, first confirm the amount and date on your payslip, then
         raise it with your payroll or HR contact — employers now have a firm 7-business-day
         deadline, so a missed payment is easier to identify and escalate than under the old
-        quarterly cycle.
+        quarterly cycle. See our{" "}
+        <Link href="/news/payday-super-starts-july-2026/">guide to how payday super works for employers</Link>{" "}
+        for the deadline and penalty rules behind that obligation.
       </p>
 
       <h2>What this means for your pay</h2>
@@ -55,7 +63,10 @@ export default function PaydaySuperEmployeesPayslip() {
         sooner, which compounds meaningfully over a career. Use our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to model how
         regular, on-time contributions affect your balance at retirement, and keep an eye on your
-        payslip each pay cycle to confirm the new system is working as it should.
+        payslip each pay cycle to confirm the new system is working as it should. If you switch
+        jobs, remember to check that your new employer has your correct fund details from your first
+        payday, since a delay there can flow through to the 7-business-day deadline for your first
+        contribution.
       </p>
     </>
   );

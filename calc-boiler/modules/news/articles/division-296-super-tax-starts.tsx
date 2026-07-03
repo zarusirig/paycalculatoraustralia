@@ -29,7 +29,10 @@ export default function Division296SuperTaxStarts() {
         earnings for the year attributable to the balance above that threshold and taxes it at an
         extra 15%, on top of the 15% funds already pay. If your TSB exceeds $10 million, a further
         10% applies to earnings attributable to the portion above that higher threshold — a combined
-        extra 25% on that top slice.
+        extra 25% on that top slice. The tax is levied on the individual, so it&apos;s calculated
+        across all of a person&apos;s super interests combined, not fund by fund — if you hold
+        balances across several funds, the ATO aggregates your total super balance to work out
+        whether you&apos;re over either threshold before apportioning the earnings.
       </p>
 
       <h2>Why unrealised gains are part of the calculation</h2>
@@ -38,7 +41,11 @@ export default function Division296SuperTaxStarts() {
         financial year, adjusted for contributions and withdrawals — which can include unrealised
         capital gains on assets such as property or unlisted shares that haven&apos;t been sold.
         This design, taxing paper gains rather than only realised income, has been the most debated
-        feature of the measure since it was first proposed.
+        feature of the measure since it was first proposed. Critics, including some self-managed
+        super fund trustees and industry bodies, have argued it could force asset sales to fund a tax
+        bill on gains that haven&apos;t actually been received in cash, particularly for funds
+        holding illiquid assets like direct property. The government has maintained the design keeps
+        the measure simple to administer compared with tracking realised gains fund by fund.
       </p>
 
       <h2>Who is actually affected</h2>
@@ -48,7 +55,10 @@ export default function Division296SuperTaxStarts() {
         with large property or business holdings. If your balance is well under $3 million, Division
         296 has no direct effect on you, though you may want to keep an eye on your growth if
         you&apos;re a high income earner already paying{" "}
-        <Link href="/division-293-tax/">Division 293 tax</Link> on contributions.
+        <Link href="/division-293-tax/">Division 293 tax</Link> on contributions. It&apos;s worth
+        noting Division 296 and Division 293 are separate measures: Division 293 is an extra 15% tax
+        on concessional contributions for high income earners, while Division 296 taxes a share of
+        investment earnings once your total balance passes $3 million, regardless of your income.
       </p>
 
       <h2>How the thresholds change over time</h2>
