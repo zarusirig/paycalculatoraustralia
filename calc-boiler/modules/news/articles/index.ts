@@ -9,6 +9,10 @@ import Division296SuperTaxStarts from "./division-296-super-tax-starts";
 import SuperContributionCaps202627 from "./super-contribution-caps-2026-27";
 import TransferBalanceCapIncrease2026 from "./transfer-balance-cap-increase-2026";
 import SuperTaxChangesExplained from "./super-tax-changes-explained";
+import HecsIndexation2026 from "./hecs-indexation-2026";
+import Hecs20PercentCutStatus from "./hecs-20-percent-cut-status";
+import HecsRepaymentThreshold202627 from "./hecs-repayment-threshold-2026-27";
+import HecsMarginalRepaymentFirstTaxTime from "./hecs-marginal-repayment-first-tax-time";
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -22,4 +26,8 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "super-contribution-caps-2026-27": SuperContributionCaps202627,
   "transfer-balance-cap-increase-2026": TransferBalanceCapIncrease2026,
   "super-tax-changes-explained": SuperTaxChangesExplained,
+  "hecs-indexation-2026": HecsIndexation2026,
+  "hecs-20-percent-cut-status": Hecs20PercentCutStatus,
+  "hecs-repayment-threshold-2026-27": HecsRepaymentThreshold202627,
+  "hecs-marginal-repayment-first-tax-time": HecsMarginalRepaymentFirstTaxTime,
 };
