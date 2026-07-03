@@ -368,8 +368,8 @@ export const FOOTER_TAX_ON_SALARY = [
   { href: "/tax-on/200000/", label: "Tax on $200K" },
 ] as const;
 
-// Footer news links — links to hub + 8 planned articles (Tasks 6–10).
-// Some hrefs 404 until those tasks land; acceptable since everything ships in one deploy.
+// Footer news links — hub + 8 curated articles. All hrefs verified against
+// NEWS_ARTICLES in lib/news.ts (24 articles, Tasks 6–10 complete).
 export const FOOTER_NEWS = [
   { href: "/news/", label: "Pay & Tax News" },
   { href: "/news/july-1-2026-money-changes/", label: "July 1 Money Changes" },

@@ -19,6 +19,10 @@ import TaxCutJuly2026 from "./tax-cut-july-2026";
 import ThousandDollarInstantTaxDeduction from "./1000-dollar-instant-tax-deduction";
 import TaxTime2026WhatsNew from "./tax-time-2026-whats-new";
 import July12026MoneyChanges from "./july-1-2026-money-changes";
+import CentrelinkPaymentIncreaseJanuary2026 from "./centrelink-payment-increase-january-2026";
+import AgePensionIncreaseMarch2026 from "./age-pension-increase-march-2026";
+import DeemingRatesChange2026 from "./deeming-rates-change-2026";
+import CentrelinkChangesJuly2026 from "./centrelink-changes-july-2026";
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -42,4 +46,8 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "1000-dollar-instant-tax-deduction": ThousandDollarInstantTaxDeduction,
   "tax-time-2026-whats-new": TaxTime2026WhatsNew,
   "july-1-2026-money-changes": July12026MoneyChanges,
+  "centrelink-payment-increase-january-2026": CentrelinkPaymentIncreaseJanuary2026,
+  "age-pension-increase-march-2026": AgePensionIncreaseMarch2026,
+  "deeming-rates-change-2026": DeemingRatesChange2026,
+  "centrelink-changes-july-2026": CentrelinkChangesJuly2026,
 };

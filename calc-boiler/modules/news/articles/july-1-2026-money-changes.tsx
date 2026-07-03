@@ -71,13 +71,16 @@ export default function July12026MoneyChanges() {
         <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link>.
       </p>
 
-      <h2>Centrelink: payment rates indexed</h2>
+      <h2>Centrelink: family payments indexed</h2>
       <p>
-        Several Centrelink payments were indexed from 1 July 2026, lifting fortnightly rates for
-        recipients of JobSeeker, pensions and family payments in line with the standard indexation
-        cycle. See{" "}
+        Family Tax Benefit rose from 1 July 2026 under the family assistance indexation cycle,
+        which runs on the financial year rather than the calendar dates used for pensions. Part A
+        rose to $235.48 a fortnight per child under 13, and the Part B primary earner income limit
+        lifted to $124,327. Pension-type payments like Age Pension, JobSeeker and Carer Payment
+        instead index every 20 March and 20 September — the Age Pension's last rise was 20 March
+        2026. See{" "}
         <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from July 2026</Link>{" "}
-        for the updated payment rates and thresholds, and use the{" "}
+        for the updated family payment rates and thresholds, and use the{" "}
         <Link href="/centrelink-income-test/">Centrelink income test guide</Link> to check how
         your earnings affect your payment.
       </p>
