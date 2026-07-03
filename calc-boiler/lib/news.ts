@@ -26,9 +26,9 @@ export const NEWS_CATEGORIES: NewsCategory[] = ["Wages", "Super", "Tax", "HECS",
 export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "minimum-wage-increase-july-2026",
-    headline: "Minimum Wage Rises 4.75% to $26.44 an Hour From 1 July 2026",
-    title: "Minimum Wage Increase July 2026: FWC Awards 4.75% — New Rates",
-    description: "The Fair Work Commission's 2026 Annual Wage Review lifts the national minimum wage from $24.95 to $26.44 an hour ($1,004.90 a week) from 1 July 2026. See who gets the 4.75% increase and what it means for your take-home pay.",
+    headline: "Minimum Wage Rises 6% to $26.44 an Hour From 1 July 2026",
+    title: "Minimum Wage Increase July 2026: FWC Lifts NMW 6% — New Rates",
+    description: "The Fair Work Commission's 2026 Annual Wage Review lifts the national minimum wage 6% — from $24.95 to $26.44 an hour ($1,004.90 a week) — and modern award rates 4.75%, from 1 July 2026. See who gets the increase and what it means for your take-home pay.",
     category: "Wages",
     datePublished: "2026-06-02",
     dateModified: "2026-07-02",
@@ -43,7 +43,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Minimum wages increase from 1 July 2026", url: "https://www.fairwork.gov.au/about-us/workplace-laws/annual-wage-review/annual-wage-review-2026", publisher: "Fair Work Ombudsman" },
     ],
     faq: [
-      { question: "What is the new minimum wage in Australia from 1 July 2026?", answer: "The national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week, following the Fair Work Commission's 4.75% increase effective from the first full pay period on or after 1 July 2026." },
+      { question: "What is the new minimum wage in Australia from 1 July 2026?", answer: "The national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week, a 6% rise from the Fair Work Commission's Annual Wage Review, effective from the first full pay period on or after 1 July 2026. Modern award minimum rates rose by a separate 4.75%." },
       { question: "Who gets the 4.75% wage increase?", answer: "Around 2.8 million award-reliant employees — about 21% of the Australian workforce — plus anyone on the national minimum wage. Workers on enterprise agreements or over-award salaries are only affected if their pay is tied to award movements." },
       { question: "When does the 2026 minimum wage increase start?", answer: "From the first full pay period starting on or after 1 July 2026. If your pay week begins on a Wednesday, the new rate applies from the first Wednesday in July." },
     ],
