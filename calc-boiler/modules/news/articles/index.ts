@@ -13,6 +13,12 @@ import HecsIndexation2026 from "./hecs-indexation-2026";
 import Hecs20PercentCutStatus from "./hecs-20-percent-cut-status";
 import HecsRepaymentThreshold202627 from "./hecs-repayment-threshold-2026-27";
 import HecsMarginalRepaymentFirstTaxTime from "./hecs-marginal-repayment-first-tax-time";
+import FederalBudget202627YourPay from "./federal-budget-2026-27-your-pay";
+import MedicareLevyThresholds2026 from "./medicare-levy-thresholds-2026";
+import TaxCutJuly2026 from "./tax-cut-july-2026";
+import ThousandDollarInstantTaxDeduction from "./1000-dollar-instant-tax-deduction";
+import TaxTime2026WhatsNew from "./tax-time-2026-whats-new";
+import July12026MoneyChanges from "./july-1-2026-money-changes";
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -30,4 +36,10 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "hecs-20-percent-cut-status": Hecs20PercentCutStatus,
   "hecs-repayment-threshold-2026-27": HecsRepaymentThreshold202627,
   "hecs-marginal-repayment-first-tax-time": HecsMarginalRepaymentFirstTaxTime,
+  "federal-budget-2026-27-your-pay": FederalBudget202627YourPay,
+  "medicare-levy-thresholds-2026": MedicareLevyThresholds2026,
+  "tax-cut-july-2026": TaxCutJuly2026,
+  "1000-dollar-instant-tax-deduction": ThousandDollarInstantTaxDeduction,
+  "tax-time-2026-whats-new": TaxTime2026WhatsNew,
+  "july-1-2026-money-changes": July12026MoneyChanges,
 };
