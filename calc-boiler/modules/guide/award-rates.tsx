@@ -314,7 +314,7 @@ export default function AwardRatesGuidePage() {
                       <tr><td className="px-5 py-3">FY2022-23</td><td className="px-5 py-3">5.2%</td><td className="px-5 py-3">$21.38</td><td className="px-5 py-3">$812.60</td></tr>
                       <tr><td className="px-5 py-3">FY2023-24</td><td className="px-5 py-3">5.75%</td><td className="px-5 py-3">$23.23</td><td className="px-5 py-3">$882.80</td></tr>
                       <tr><td className="px-5 py-3">FY2024-25</td><td className="px-5 py-3">3.75%</td><td className="px-5 py-3">$24.10</td><td className="px-5 py-3">$915.91</td></tr>
-                      <tr><td className="px-5 py-3">FY2025-26</td><td className="px-5 py-3">3.5%</td><td className="px-5 py-3">$24.95</td><td className="px-5 py-3">$948.10</td></tr>
+                      <tr><td className="px-5 py-3">FY2025-26</td><td className="px-5 py-3">3.5%</td><td className="px-5 py-3">$24.95</td><td className="px-5 py-3">$948.00</td></tr>
                       <tr className="bg-eucalyptus/5 font-medium"><td className="px-5 py-3">FY2026-27</td><td className="px-5 py-3">6%</td><td className="px-5 py-3">$26.44</td><td className="px-5 py-3">$1,004.90</td></tr>
                     </tbody>
                   </table>
