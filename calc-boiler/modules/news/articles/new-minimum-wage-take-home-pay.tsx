@@ -104,8 +104,8 @@ export default function NewMinimumWageTakeHomePay() {
 
       <h2>What happens if you have a HECS-HELP debt</h2>
       <p>
-        A full-time minimum-wage income of $52,254.80 a year sits below the $67,000 compulsory
-        repayment threshold for HECS-HELP and other study and training support loans, so nobody on
+        A full-time minimum-wage income of $52,254.80 a year sits below the $69,528 compulsory
+        repayment threshold for 2026-27 for HECS-HELP and other study and training support loans, so nobody on
         the minimum wage alone has a compulsory repayment withheld — the take-home figures above
         apply whether or not you carry a HECS-HELP debt. Repayments only kick in once your total
         repayment income, including any second job or other earnings, pushes you over that

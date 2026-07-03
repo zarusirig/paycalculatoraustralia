@@ -139,7 +139,7 @@ export default function MinimumWageHistoryPage() {
             <section id="take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage Take-Home Pay</h2>
               <p>
-                At the current minimum wage of <strong>$24.10/hour</strong> (38 hours per week), the gross annual salary is approximately <strong>$47,628</strong>. After income tax, Medicare Levy, and the Low Income Tax Offset, the approximate take-home pay for a resident with no HECS debt is around <strong>$40,300 per year</strong> or <strong>$775 per week</strong>.
+                At the current minimum wage of <strong>$26.44/hour</strong> (38 hours per week), the gross annual salary is approximately <strong>$52,254.80</strong>. After income tax, Medicare Levy, and the Low Income Tax Offset, the approximate take-home pay for a resident with no HECS debt is around <strong>$45,230 per year</strong> or <strong>$870 per week</strong>.
               </p>
               <p>
                 Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to get the exact figure for your circumstances, including any HECS-HELP debt, private health insurance, or salary sacrifice arrangements.
@@ -156,7 +156,7 @@ export default function MinimumWageHistoryPage() {
                 <AccordionItem value="current-rate" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the current minimum wage in Australia?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    As of 1 July 2024, the national minimum wage is <strong>$24.10 per hour</strong> or <strong>$915.90 per 38-hour week</strong> (before tax). The FY2025-26 rate will be announced by the Fair Work Commission in its Annual Wage Review, expected in June 2025.
+                    As of 1 July 2026, the national minimum wage is <strong>$26.44 per hour</strong> or <strong>$1,004.90 per 38-hour week</strong> (before tax), up from $24.95 per hour in FY2025-26, following the Fair Work Commission&apos;s Annual Wage Review decision on 2 June 2026.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="how-often" className="border rounded-lg px-4 bg-sandstone bg-white">

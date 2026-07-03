@@ -383,7 +383,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   },
   {
     slug: "medicare-levy-thresholds-2026",
-    headline: "Medicare Levy Thresholds Lifted: Who Pays Less From 2026",
+    headline: "Medicare Levy Thresholds Lifted: Who Pays Less From 2025-26",
     title: "Medicare Levy Thresholds Lifted: Who Pays Less in 2025-26",
     description: "Medicare levy low-income thresholds rose 2.9% for 2025-26 — singles now pay no levy below $28,011, up from $27,222, sparing over a million low earners.",
     category: "Tax",

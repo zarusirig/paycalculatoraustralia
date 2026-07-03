@@ -81,7 +81,7 @@ export default function TaxChanges202627Page() {
                 The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>12%</strong> on 1 July 2025 after a decade-long incremental increase from 9.5%. No further increases are legislated for FY2026-27 or beyond. Employers must continue paying SG on ordinary time earnings up to the maximum super contribution base.
               </p>
               <p>
-                The concessional contributions cap is expected to remain at <strong>$30,000</strong> per year, while the non-concessional cap stays at <strong>$120,000</strong>. These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.
+                The concessional contributions cap rises to <strong>$32,500</strong> per year for FY2026-27, while the non-concessional cap rises to <strong>$130,000</strong> (announced February 2026). These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Threshold Update</h3>
@@ -139,7 +139,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage &mdash; FWC Annual Review</h3>
               <p>
-                The Fair Work Commission conducts its Annual Wage Review each financial year, typically announcing the new national minimum wage in June for effect from 1 July. The FY2025-26 minimum wage is <strong>$24.10 per hour</strong> ($915.90 per week). The FY2026-27 rate will be determined by the FWC&apos;s mid-2026 decision.
+                The Fair Work Commission conducts its Annual Wage Review each financial year, typically announcing the new national minimum wage in June for effect from 1 July. The FWC&apos;s 2 June 2026 decision lifted the national minimum wage from $24.95 to <strong>$26.44 per hour</strong> ($1,004.90 per week), effective 1 July 2026, alongside a 4.75% award wage increase.
               </p>
             </section>
 
@@ -224,11 +224,11 @@ export default function TaxChanges202627Page() {
                 </AccordionItem>
                 <AccordionItem value="hecs-threshold" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What will the HECS threshold be in 2026-27?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The exact FY2026-27 HECS-HELP threshold has not yet been announced. It will be indexed based on average weekly earnings data. The FY2025-26 threshold is <strong>$67,000</strong>. Historically, annual indexation adds approximately $1,000&ndash;$2,000 to the threshold. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark underline">HECS-HELP Guide</Link> for the current repayment rates.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The FY2026-27 HECS-HELP threshold is <strong>$69,528</strong>, up from $67,000 in FY2025-26. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark underline">HECS-HELP Guide</Link> for the current repayment rates.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="budget" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When is the 2026 federal budget?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The federal budget is typically delivered in May. The 2026-27 budget is expected in <strong>May 2026</strong>. Any tax changes announced in the budget would need to pass both houses of Parliament to take effect from 1 July 2026. We will update this page as soon as budget details are confirmed.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The 2026-27 federal budget was delivered on <strong>12 May 2026</strong>. Tax changes announced in the budget need to pass both houses of Parliament to take effect from 1 July 2026.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="lito" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Will LITO change in 2026-27?</AccordionTrigger>
@@ -236,7 +236,7 @@ export default function TaxChanges202627Page() {
                 </AccordionItem>
                 <AccordionItem value="minimum-wage" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When will the new minimum wage be announced?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The Fair Work Commission typically announces the new minimum wage in <strong>June</strong> each year, effective from the first full pay period on or after 1 July. The current minimum wage is $24.10 per hour ($915.90 per week for a 38-hour week). The FY2026-27 rate will be determined by the FWC&apos;s Annual Wage Review.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The Fair Work Commission typically announces the new minimum wage in <strong>June</strong> each year, effective from the first full pay period on or after 1 July. The FWC&apos;s 2 June 2026 Annual Wage Review decision set the current minimum wage at $26.44 per hour ($1,004.90 per week for a 38-hour week), effective 1 July 2026.</AccordionContent>
                 </AccordionItem>
               </Accordion>
             </section>
