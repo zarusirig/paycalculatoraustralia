@@ -298,6 +298,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "20% reduction of HELP debts", url: "https://www.studyassist.gov.au/news/20-reduction-help-debts", publisher: "Study Assist, Australian Government" },
       { title: "FAQs — 20% reduction off all outstanding HELP loan debt", url: "https://www.education.gov.au/higher-education-loan-program/20-reduction-student-loan-debt/faqs-20-reduction-all-outstanding-help-loan-debt", publisher: "Department of Education, Australian Government" },
+      { title: "More than 3.2 million Australians' student debt now cut by 20 per cent", url: "https://ministers.education.gov.au/clare/more-32-million-australians-student-debt-now-cut-20-cent", publisher: "Ministers' Media Centre, Department of Education" },
     ],
     faq: [
       { question: "Has the 20% HECS debt cut been applied yet?", answer: "Yes. The ATO has completed processing the one-off 20% reduction for every HELP and other student loan balance that existed on 1 June 2025. Most people received the cut before the end of 2025, with a small number of more complex accounts finalised in early 2026." },
