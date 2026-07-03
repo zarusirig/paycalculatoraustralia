@@ -378,7 +378,7 @@ export default function HecsHelpGuidePage() {
                 FY2025-26 introduced <strong>3 structural reforms</strong> to Australian study loans: the marginal repayment system, a raised minimum threshold, and permanently capped indexation.
               </p>
               <p>
-                These changes stem from the <em>Universities Accord (Student Support and Other Measures) Bill 2024</em>, which passed Parliament following the Australian Universities Accord Final Report. The reforms represent the most significant overhaul of the student loan system since HECS was introduced in 1989.
+                These changes stem from the <em>Universities Accord (Student Support and Other Measures) Bill 2024</em>, which passed Parliament following the Australian Universities Accord Final Report. The reforms represent the most significant overhaul of the student loan system since HECS was introduced in 1989. They followed the separately legislated <Link href="/news/hecs-20-percent-cut-status/">20% HECS debt cut</Link>, a one-off reduction applied to outstanding HELP balances.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">

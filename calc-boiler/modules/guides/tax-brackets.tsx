@@ -315,7 +315,7 @@ export default function TaxBracketsGuidePage() {
             <li>The <strong>maximum super contribution base</strong> changed to $62,500 per quarter, capping employer SG obligations for very high earners</li>
             <li>The <strong>concessional contributions cap</strong> remains at $30,000 per year</li>
           </ul>
-          <p className="text-warmgray">The next bracket change is legislated for {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% takes effect on 1 July 2027. Both changes save $268 per year for anyone earning above $45,000. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to model your tax under the current brackets.</p>
+          <p className="text-warmgray">The next bracket change is legislated for {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% takes effect on 1 July 2027. Both changes save $268 per year for anyone earning above $45,000. Read our full coverage of the <Link href="/news/tax-cut-july-2026/" className="text-eucalyptus-dark hover:underline">July 2026 tax cut</Link> for what it means for your pay. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to model your tax under the current brackets.</p>
         </section>
 
         {/* Related Resources */}

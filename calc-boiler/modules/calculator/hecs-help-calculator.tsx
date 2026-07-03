@@ -200,7 +200,7 @@ export default function HECSHelpCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Repayment Rates 2026-27</h2>
             <p className="mb-4 text-warmgray">
-              The HECS repayment threshold for FY2026-27 is <strong>{formatAUD(HECS_2026_27.minimumThreshold)}</strong>, up from {formatAUD(HECS_2026_27.previousThreshold)} in FY2025-26. Repayment thresholds are indexed at the start of each financial year.
+              The HECS repayment threshold for FY2026-27 is <strong>{formatAUD(HECS_2026_27.minimumThreshold)}</strong>, up from {formatAUD(HECS_2026_27.previousThreshold)} in FY2025-26. Repayment thresholds are indexed at the start of each financial year. See our news coverage of the <Link href="/news/hecs-repayment-threshold-2026-27/" className="text-eucalyptus-dark hover:underline font-medium">2026-27 HECS repayment threshold</Link> for how it was set and what it means for borrowers.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -347,7 +347,7 @@ export default function HECSHelpCalculatorPage() {
 
             <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does the New Indexation Cap Work?</h3>
             <p className="mb-3 text-warmgray">
-              HECS debts are indexed on <strong>1 June each year</strong> at the lower of CPI or the Wage Price Index (WPI). The government introduced this cap after CPI-based indexation hit <strong>7.1%</strong> in June 2023, adding thousands of dollars to outstanding balances overnight. The cap was backdated to June 2023, reducing that year&apos;s indexation to <strong>3.2%</strong>. On {HECS_2026_27.indexationDate}, HELP debts were indexed at <strong>2.8%</strong>.
+              HECS debts are indexed on <strong>1 June each year</strong> at the lower of CPI or the Wage Price Index (WPI). The government introduced this cap after CPI-based indexation hit <strong>7.1%</strong> in June 2023, adding thousands of dollars to outstanding balances overnight. The cap was backdated to June 2023, reducing that year&apos;s indexation to <strong>3.2%</strong>. On {HECS_2026_27.indexationDate}, HELP debts were indexed at <strong>2.8%</strong> &mdash; read more on <Link href="/news/hecs-indexation-2026/" className="text-eucalyptus-dark hover:underline font-medium">HECS indexation 2026</Link>.
             </p>
             <p className="text-sm text-warmgray">
               Voluntary repayments made before 1 June reduce the balance before indexation is applied. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> to compare whether extra super contributions or HECS repayments offer better long-term value.

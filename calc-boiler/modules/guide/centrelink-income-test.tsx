@@ -154,7 +154,7 @@ export default function CentrelinkIncomeTestPage() {
               <tr><td className="px-5 py-3">JobSeeker maximum rate (single)</td><td className="px-5 py-3">Indexed to approximately <strong>$762.70 per fortnight</strong></td></tr>
               <tr><td className="px-5 py-3">Assets test free area (homeowner, single)</td><td className="px-5 py-3">Increased to <strong>$314,000</strong></td></tr>
             </tbody></table></div></div>
-            <p>The taper rates themselves &mdash; 50 cents, 60 cents, and 40 cents depending on payment type &mdash; did not change. The Stage 3 income tax cuts that took effect on 1 July 2024 continue to lower income tax obligations for most Australians, meaning higher after-tax income from employment alongside Centrelink payments. Review the updated <Link href="/tax-brackets/">Tax Brackets Guide</Link> to see how these cuts affect each income tax bracket.</p>
+            <p>The taper rates themselves &mdash; 50 cents, 60 cents, and 40 cents depending on payment type &mdash; did not change. The Stage 3 income tax cuts that took effect on 1 July 2024 continue to lower income tax obligations for most Australians, meaning higher after-tax income from employment alongside Centrelink payments. Review the updated <Link href="/tax-brackets/">Tax Brackets Guide</Link> to see how these cuts affect each income tax bracket. See our news coverage of the broader <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from 1 July 2026</Link> for the full list of payment and threshold updates.</p>
           </section>
 
           {/* ── CONTEXT BORDER ── */}
@@ -206,7 +206,7 @@ export default function CentrelinkIncomeTestPage() {
 
               <AccordionItem value="deeming" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">What is the deeming rate and how does it affect my payment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Deeming is a method Centrelink uses to assess income from financial assets (bank accounts, shares, managed funds, superannuation in pension phase). Rather than counting actual returns, Centrelink applies a fixed &ldquo;deemed&rdquo; rate. For singles, the first <strong>$60,400</strong> is deemed at <strong>0.25%</strong> and any balance above that is deemed at <strong>2.25%</strong>. For couples, the lower rate applies on the first <strong>$100,200</strong> combined. The deemed income is added to your other assessable income for the income test.</AccordionContent>
+                <AccordionContent className="text-warmgray">Deeming is a method Centrelink uses to assess income from financial assets (bank accounts, shares, managed funds, superannuation in pension phase). Rather than counting actual returns, Centrelink applies a fixed &ldquo;deemed&rdquo; rate. For singles, the first <strong>$60,400</strong> is deemed at <strong>0.25%</strong> and any balance above that is deemed at <strong>2.25%</strong>. For couples, the lower rate applies on the first <strong>$100,200</strong> combined. The deemed income is added to your other assessable income for the income test. See our news coverage of the latest <Link href="/news/deeming-rates-change-2026/">deeming rate changes</Link> for the current settings.</AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="super-counted" className="border rounded-lg px-4 bg-white">

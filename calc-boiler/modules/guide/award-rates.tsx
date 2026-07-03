@@ -322,6 +322,7 @@ export default function AwardRatesGuidePage() {
 
               <h3>Key Changes Beyond the Rate Increase</h3>
               <ul>
+                <li><strong>FY2026-27 update:</strong> Rates have since risen again — see our news coverage of the <Link href="/news/minimum-wage-increase-july-2026/">minimum wage increase from 1 July 2026</Link> and the <Link href="/news/award-wage-increase-2026-industries/">4.75% award wage increase</Link> applied to modern awards this financial year.</li>
                 <li><strong>Superannuation Guarantee:</strong> The SG rate rose from 11.5% to <strong>12%</strong> on 1 July 2025, increasing the total cost of employing award-covered workers. See our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> for exact figures.</li>
                 <li><strong>Casual Conversion:</strong> The right for casuals to request conversion to permanent employment after 12 months continues to apply across all Modern Awards.</li>
                 <li><strong>Right to Disconnect:</strong> Employees covered by Modern Awards gained the right to refuse contact outside working hours from 26 August 2024, with small business exemptions ending 26 August 2025.</li>

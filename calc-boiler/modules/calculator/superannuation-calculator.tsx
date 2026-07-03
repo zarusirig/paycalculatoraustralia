@@ -243,7 +243,7 @@ export default function SuperannuationCalculatorPage() {
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-sm text-warmgray-light"><Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline font-medium">Full superannuation guide</Link></p>
+            <p className="mt-3 text-sm text-warmgray-light"><Link href="/superannuation-guide/" className="text-eucalyptus-dark hover:underline font-medium">Full superannuation guide</Link> &mdash; see our news coverage of the <Link href="/news/super-contribution-caps-2026-27/" className="text-eucalyptus-dark hover:underline font-medium">super contribution caps for 2026-27</Link> for the latest indexed figures.</p>
           </section>
 
           {/* --- What Changed in FY2025-26? --- */}

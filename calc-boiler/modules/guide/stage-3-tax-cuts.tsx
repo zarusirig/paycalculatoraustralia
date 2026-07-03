@@ -202,7 +202,7 @@ export default function Stage3TaxCutsPage() {
 
                 <AccordionItem value="more-changes" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Are there more tax changes coming?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The current Stage 3 brackets are legislated with no sunset clause — they apply indefinitely. However, the government may announce further adjustments in future budgets. Check our <Link href="/tax-changes-2026-27/">Tax Changes 2026-27 Guide</Link> for the latest announced changes and our <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the current rates.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. A further legislated cut lowers the 16% rate to 15% from 1 July 2026 — read our news coverage of the <Link href="/news/tax-cut-july-2026/">next tax cut from 1 July 2026</Link> for what it means for your pay. Check our <Link href="/tax-changes-2026-27/">Tax Changes 2026-27 Guide</Link> for the latest announced changes and our <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the current rates.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="affect-super" className="border rounded-lg px-4 bg-white">

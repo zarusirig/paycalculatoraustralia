@@ -97,7 +97,7 @@ export default function MinimumWageHistoryPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Weekly rate based on 38 ordinary hours. Source: Fair Work Commission National Minimum Wage Orders. FY2025-26 rate will be announced in the FWC Annual Wage Review (expected June 2025).</p>
+                <p className="text-xs text-warmgray mt-2">Weekly rate based on 38 ordinary hours. Source: Fair Work Commission National Minimum Wage Orders. See our coverage of the <Link href="/news/minimum-wage-increase-july-2026/">2026 minimum wage decision</Link> for the latest rate that took effect on 1 July 2026.</p>
               </div>
             </section>
 

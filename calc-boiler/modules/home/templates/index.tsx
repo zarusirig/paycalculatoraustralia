@@ -919,7 +919,7 @@ export default function HomePageTemplate() {
             The Stage 3 tax cuts took effect on <strong>1 July 2024</strong> and continue into FY{SITE_CONFIG.financialYear}. The 19% bracket rate dropped to <strong>16%</strong>, and the 30% bracket ceiling expanded from $120,000 to <strong>$135,000</strong>. A worker earning $100,000 saves <strong>$2,179</strong> per year compared to the pre-Stage-3 rates. A worker earning $60,000 saves <strong>$1,179</strong>. A worker earning $150,000 saves <strong>$3,729</strong>.
           </p>
           <p className="leading-relaxed text-warmgray">
-            From <strong>1 July 2026</strong> (FY2026-27), the 16% bracket rate reduces further to <strong>15%</strong>, delivering an additional saving of up to $268 per year for workers in that bracket. Read the full <Link href="/tax-brackets/" className="font-medium text-eucalyptus-dark hover:underline">Australian tax brackets guide</Link> for stage 3 cut history and forward-looking changes.
+            From <strong>1 July 2026</strong> (FY2026-27), the 16% bracket rate reduces further to <strong>15%</strong>, delivering an additional saving of up to $268 per year for workers in that bracket. Read the full <Link href="/tax-brackets/" className="font-medium text-eucalyptus-dark hover:underline">Australian tax brackets guide</Link> for stage 3 cut history and forward-looking changes, or see <Link href="/news/july-1-2026-money-changes/" className="font-medium text-eucalyptus-dark hover:underline">everything that changed on 1 July 2026</Link> across tax, super and wages.
           </p>
         </motion.section>
 

@@ -572,7 +572,7 @@ export default function SuperannuationGuidePage() {
               </div>
 
               <p>
-                Other critical super dates for FY2025-26 include: <strong>30 June 2026</strong> as the deadline to make personal deductible contributions for the financial year, <strong>30 June 2026</strong> for the carry-forward concessional cap calculation date, and <strong>31 October 2026</strong> (or the lodgement due date if using a tax agent) to lodge your tax return and claim deductions for personal super contributions. The ATO&apos;s <Link href="/tax-calendar/">Australian Tax Calendar</Link> lists all key dates across the financial year.
+                Other critical super dates for FY2025-26 include: <strong>30 June 2026</strong> as the deadline to make personal deductible contributions for the financial year, <strong>30 June 2026</strong> for the carry-forward concessional cap calculation date, and <strong>31 October 2026</strong> (or the lodgement due date if using a tax agent) to lodge your tax return and claim deductions for personal super contributions. The ATO&apos;s <Link href="/tax-calendar/">Australian Tax Calendar</Link> lists all key dates across the financial year. The quarterly payment schedule above will also change once the <Link href="/news/payday-super-starts-july-2026/">payday super rules from 1 July 2026</Link> require employers to pay SG on the same day as wages.
               </p>
             </section>
 
