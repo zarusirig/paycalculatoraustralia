@@ -34,11 +34,11 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         but starts from a different base.
       </p>
       <p>
-        Postgraduate ABSTUDY recipients, including those studying a Masters or PhD, saw one of the
-        larger dollar increases in this round, reflecting the higher base rate those payments sit
-        on. If you&apos;re not sure which category applies to you, your Centrelink online account
-        shows your specific payment rate and the date it was last reviewed, rather than the
-        general headline figures reported in the media.
+        The Youth Disability Support Pension — the rate of Disability Support Pension paid to
+        recipients under 21 — rose by up to $17.20 a fortnight, taking the rate for those living
+        independently to $839.80. If you&apos;re not sure which category applies to you, your
+        Centrelink online account shows your specific payment rate and the date it was last
+        reviewed, rather than the general headline figures reported in the media.
       </p>
 
       <h2>Carer Allowance and student income tests</h2>
@@ -49,14 +49,14 @@ export default function CentrelinkPaymentIncreaseJanuary2026() {
         Centrelink payment, and it isn&apos;t means-tested against the recipient&apos;s own income
         the way most other payments are — instead it&apos;s tied to the care needs of the person
         being cared for. Alongside the rate rises, the student and apprentice income-free area
-        increased to $539 a fortnight, the upper income threshold to $646, and the point at which
-        payment cuts out entirely to $1,261.50 a fortnight.
+        increased to $539 a fortnight, and the upper income threshold — the point where the
+        taper steps up from 50 cents to 60 cents in the dollar — rose to $646.
       </p>
       <p>
         These income test changes matter as much as the base rate rise for students working
         part-time. A higher income-free area means you can earn more before your payment starts
-        reducing, and a higher cut-out point means more students juggling study and casual work
-        stay eligible for at least a partial payment.
+        reducing at all, and the higher taper thresholds mean more students juggling study and
+        casual work stay eligible for at least a partial payment.
       </p>
 
       <h2>Why January is different from March and September</h2>

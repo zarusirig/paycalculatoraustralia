@@ -604,6 +604,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "Family Tax Benefit Part A payment rates", url: "https://www.servicesaustralia.gov.au/family-tax-benefit-part-payment-rates?context=22151", publisher: "Services Australia" },
       { title: "Family Tax Benefit Part B payment rates", url: "https://www.servicesaustralia.gov.au/family-tax-benefit-part-b-payment-rates?context=22151", publisher: "Services Australia" },
+      { title: "Income test for Family Tax Benefit Part B", url: "https://www.servicesaustralia.gov.au/income-test-for-family-tax-benefit-part-b?context=22151", publisher: "Services Australia" },
     ],
     faq: [
       { question: "What Family Tax Benefit rates changed on 1 July 2026?", answer: "Family Tax Benefit Part A's maximum rate rose to $235.48 a fortnight for each child under 13 and $306.46 for each child aged 13 to 15. Family Tax Benefit Part B's maximum rate rose to $200.34 a fortnight where the youngest child is under 5, and $139.86 where the youngest is 5 or older." },
