@@ -30,7 +30,7 @@ export default function PaydaySuperStartsJuly2026() {
         business days of payday, with a longer window for some new employees while their fund
         details are confirmed. Employers must also work out and pay super on qualifying earnings
         paid from 1 July 2026 even where the underlying work was performed before that date, so the
-        cut-over applies to when you're paid rather than when the shift or task happened. Payroll
+        cut-over applies to when you&apos;re paid rather than when the shift or task happened. Payroll
         systems now need to calculate ordinary time earnings, apply the 12% super guarantee rate,
         and initiate the payment on the same day wages are processed, which is a substantial change
         from batching contributions once every three months.
@@ -62,7 +62,7 @@ export default function PaydaySuperStartsJuly2026() {
         behind the redesign.
       </p>
 
-      <h2>How employees can check it's working</h2>
+      <h2>How employees can check it&apos;s working</h2>
       <p>
         You can track whether contributions are landing on time through your super fund&apos;s app,
         member portal, or the ATO online services section of myGov. If you notice super guarantee is

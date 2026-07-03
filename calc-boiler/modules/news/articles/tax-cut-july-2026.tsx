@@ -24,13 +24,13 @@ export default function TaxCutJuly2026() {
       <h2>What actually changed</h2>
       <p>
         The second marginal tax rate — the rate applied to every dollar earned between $18,201
-        and $45,000 — fell by one percentage point, from 16% to 15%, from 1 July 2026. It's the
+        and $45,000 — fell by one percentage point, from 16% to 15%, from 1 July 2026. It&apos;s the
         second instalment of the Stage 3+ tax cuts first announced in the 2025 Federal Budget,
         following the initial cuts that took effect from 1 July 2024.
       </p>
       <p>
         Because the change only affects that middle bracket, the dollar saving is capped: once
-        your income exceeds $45,000, you've captured the full $26,799 of income taxed at the
+        your income exceeds $45,000, you&apos;ve captured the full $26,799 of income taxed at the
         lower rate, and the saving stops growing.
       </p>
 
@@ -52,7 +52,7 @@ export default function TaxCutJuly2026() {
 
       <h2>Where the tax cuts go next</h2>
       <p>
-        This isn't the end of the schedule. The same legislation cuts the rate again, from 15% to
+        This isn&apos;t the end of the schedule. The same legislation cuts the rate again, from 15% to
         14%, from 1 July 2027 — on the same $18,201 to $45,000 bracket — taking the maximum
         annual saving to $536 a year compared with 2024-25 settings. The May 2026 Budget layered
         a further $250 Working Australians Tax Offset on top from 2027-28; see our{" "}
@@ -72,7 +72,7 @@ export default function TaxCutJuly2026() {
 
       <h2>What this means for your pay</h2>
       <p>
-        You don't need to apply for the tax cut — it's built into the PAYG withholding schedule
+        You don&apos;t need to apply for the tax cut — it&apos;s built into the PAYG withholding schedule
         your payroll software already uses, so it should simply appear as slightly higher
         take-home pay from your first pay run after 1 July 2026. Check the exact effect on your
         salary with our <Link href="/income-tax-calculator/">income tax calculator</Link>, or see

@@ -8,7 +8,7 @@ export default function July12026MoneyChanges() {
         1 July 2026 brought the biggest single-day reshuffle of Australian pay, tax and benefits
         in years: the minimum wage jumped <strong>6%</strong>, payday super began, the tax rate
         dropped to <strong>15%</strong>, HECS thresholds rose, and Centrelink payments were
-        indexed. Here's every change in one place.
+        indexed. Here&apos;s every change in one place.
       </p>
 
       <NewsKeyFacts
@@ -50,7 +50,7 @@ export default function July12026MoneyChanges() {
         a year, applied automatically through PAYG withholding. Full detail in{" "}
         <Link href="/news/tax-cut-july-2026/">tax cut from 1 July 2026</Link>; check your exact
         saving with the <Link href="/income-tax-calculator/">income tax calculator</Link>. The
-        $1,000 instant work-related deduction also starts applying from this date, though it's
+        $1,000 instant work-related deduction also starts applying from this date, though it&apos;s
         first claimed on the return lodged from July 2027 — see the{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">
           $1,000 instant deduction explainer
@@ -77,7 +77,7 @@ export default function July12026MoneyChanges() {
         which runs on the financial year rather than the calendar dates used for pensions. Part A
         rose to $235.48 a fortnight per child under 13, and the Part B primary earner income limit
         lifted to $124,327. Pension-type payments like Age Pension, JobSeeker and Carer Payment
-        instead index every 20 March and 20 September — the Age Pension's last rise was 20 March
+        instead index every 20 March and 20 September — the Age Pension&apos;s last rise was 20 March
         2026. See{" "}
         <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from July 2026</Link>{" "}
         for the updated family payment rates and thresholds, and use the{" "}
@@ -88,7 +88,7 @@ export default function July12026MoneyChanges() {
       <h2>Putting it all together</h2>
       <p>
         No single change on 1 July 2026 is dramatic on its own, but stacked together they touch
-        almost every working Australian: a pay rise if you're on the minimum wage or an award, a
+        almost every working Australian: a pay rise if you&apos;re on the minimum wage or an award, a
         small tax cut whatever you earn, faster super contributions, a higher HECS threshold if
         you have a study loan, and adjusted Centrelink rates if you receive a payment. Most flow
         through automatically via payroll, your super fund or Services Australia — the main thing
@@ -98,7 +98,7 @@ export default function July12026MoneyChanges() {
       <h2>What this means for your pay</h2>
       <p>
         Most of these changes apply automatically — through payroll, your super fund, or Centrelink
-        — so there's usually nothing to apply for. The exception is checking your own numbers: run
+        — so there&apos;s usually nothing to apply for. The exception is checking your own numbers: run
         your salary through the{" "}
         <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your new
         after-tax pay, or the{" "}

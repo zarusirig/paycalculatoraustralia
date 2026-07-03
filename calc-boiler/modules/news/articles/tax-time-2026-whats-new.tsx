@@ -21,13 +21,13 @@ export default function TaxTime2026WhatsNew() {
         ]}
       />
 
-      <h2>Deadlines haven't moved</h2>
+      <h2>Deadlines haven&apos;t moved</h2>
       <p>
-        If you lodge your own 2025-26 return, it's due by 31 October 2026. Engage a registered
+        If you lodge your own 2025-26 return, it&apos;s due by 31 October 2026. Engage a registered
         tax agent before that date and your deadline can extend out to 15 May 2027, provided
-        you're on their client list by 31 October. Missing the self-lodge deadline without an
-        agent can trigger a failure-to-lodge penalty, so it's worth registering with an agent
-        early if you think you'll run late.
+        you&apos;re on their client list by 31 October. Missing the self-lodge deadline without an
+        agent can trigger a failure-to-lodge penalty, so it&apos;s worth registering with an agent
+        early if you think you&apos;ll run late.
       </p>
       <p>
         Most people can prefill a large chunk of their return through myGov, since employer,
@@ -42,7 +42,7 @@ export default function TaxTime2026WhatsNew() {
         singles threshold lifted from $27,222 to $28,011, and the family threshold from $45,907 to
         $47,238 — see our{" "}
         <Link href="/news/medicare-levy-thresholds-2026/">Medicare levy thresholds explainer</Link>{" "}
-        for the full table. The ATO applies this automatically; there's nothing extra to claim.
+        for the full table. The ATO applies this automatically; there&apos;s nothing extra to claim.
       </p>
 
       <h2>Work-from-home claims stay the same</h2>
@@ -54,11 +54,11 @@ export default function TaxTime2026WhatsNew() {
         home across the year.
       </p>
       <p>
-        If you'd rather itemise, you can still use the actual cost method instead of the fixed
+        If you&apos;d rather itemise, you can still use the actual cost method instead of the fixed
         rate, claiming the work-related portion of your actual electricity, internet, phone and
         depreciation costs with supporting records. Most people find the fixed rate simpler unless
         their actual running costs are unusually high — compare both before you decide which to
-        use on this year's return.
+        use on this year&apos;s return.
       </p>
 
       <h2>Smaller changes worth knowing</h2>
@@ -80,7 +80,7 @@ export default function TaxTime2026WhatsNew() {
 
       <h2>What this means for your pay</h2>
       <p>
-        None of this year's changes affect your fortnightly pay packet — they show up in your
+        None of this year&apos;s changes affect your fortnightly pay packet — they show up in your
         refund or tax bill once you lodge. Note that the $1,000 instant deduction does{" "}
         <em>not</em> apply to this year&apos;s return; see our{" "}
         <Link href="/news/1000-dollar-instant-tax-deduction/">

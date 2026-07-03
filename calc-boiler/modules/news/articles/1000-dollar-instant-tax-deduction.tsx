@@ -30,29 +30,29 @@ export default function ThousandDollarInstantTaxDeduction() {
         Parliament and received royal assent on 26 June 2026.
       </p>
 
-      <h2>When you can claim it — and when you can't</h2>
+      <h2>When you can claim it — and when you can&apos;t</h2>
       <p>
         This is the detail that trips people up: the $1,000 deduction applies to the 2026-27
         income year, which started on 1 July 2026. You claim it on the tax return you lodge from
         1 July 2027 — it does not apply to the 2025-26 return most people are lodging right now,
         between July and October 2026. That return still uses the normal substantiation rules;
         see our <Link href="/news/tax-time-2026-whats-new/">tax time 2026 roundup</Link> for
-        what's actually new this year.
+        what&apos;s actually new this year.
       </p>
 
       <h2>Choosing between the flat rate and itemising</h2>
       <p>
-        The $1,000 deduction isn't compulsory. If your genuine work-related expenses for 2026-27
+        The $1,000 deduction isn&apos;t compulsory. If your genuine work-related expenses for 2026-27
         add up to more than $1,000, you can still substantiate and claim the higher, itemised
         amount the usual way with receipts and records. You choose whichever option gives the
-        better outcome when you prepare that return — you can't do both for the same expenses.
+        better outcome when you prepare that return — you can&apos;t do both for the same expenses.
       </p>
       <p>
         For most workers, the flat $1,000 deduction will be the simpler and better option. Treasury
         estimates it will benefit 6.2 million workers with an average tax saving of $205, and cut
         overall compliance costs by around $380 million a year by removing the need to keep
         receipts for smaller work-related purchases like uniforms, small tools, phone and internet
-        use, or professional subscriptions. If you're a tradesperson, frequent traveller for work,
+        use, or professional subscriptions. If you&apos;re a tradesperson, frequent traveller for work,
         or someone with genuinely large annual work expenses, itemising is still likely to leave
         you better off — run both numbers before you lodge.
       </p>
@@ -75,7 +75,7 @@ export default function ThousandDollarInstantTaxDeduction() {
 
       <h2>What this means for your pay</h2>
       <p>
-        The deduction won't change your pay packet or PAYG withholding during 2026-27 — its
+        The deduction won&apos;t change your pay packet or PAYG withholding during 2026-27 — its
         benefit shows up as a smaller tax bill or bigger refund when you lodge in 2027. For now,
         estimate your 2026-27 position with our{" "}
         <Link href="/income-tax-calculator/">income tax calculator</Link>, and use the{" "}

@@ -63,21 +63,21 @@ export default function MedicareLevyThresholds2026() {
       <h2>Do you need to do anything?</h2>
       <p>
         No. The ATO applies the updated thresholds automatically when it processes your 2025-26
-        tax return — there's no separate claim or form. If you had Medicare levy withheld through
+        tax return — there&apos;s no separate claim or form. If you had Medicare levy withheld through
         the year based on the old thresholds, the difference is reconciled as part of your notice
         of assessment.
       </p>
       <p>
         Because the increase is backdated to 1 July 2025, it applies to the entire income year
         even though it was only confirmed around Budget time in May 2026. If your employer
-        withheld PAYG based on the old, lower thresholds throughout the year, you'll typically see
+        withheld PAYG based on the old, lower thresholds throughout the year, you&apos;ll typically see
         the correction as a slightly larger refund once your 2025-26 return is assessed, rather
         than as any change to your take-home pay during the year itself.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        If your income sits near the old thresholds, it's worth checking whether you now fall
+        If your income sits near the old thresholds, it&apos;s worth checking whether you now fall
         into the reduced-rate band or below it entirely. Run your numbers through our{" "}
         <Link href="/medicare-levy/">Medicare levy guide</Link> to see exactly what you owe under
         the new thresholds, or use the{" "}

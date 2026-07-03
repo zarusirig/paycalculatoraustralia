@@ -37,7 +37,7 @@ export default function FederalBudget202627YourPay() {
         flow through to the 2025-26 return most people are lodging this tax time.
       </p>
 
-      <h2>What it's worth, combined</h2>
+      <h2>What it&apos;s worth, combined</h2>
       <p>
         Treasury&apos;s modelling puts the combined value of every measure — the 2024, 2026 and
         2027 rate cuts, the new $250 offset and the $1,000 deduction — at up to $2,816 a year for
@@ -49,16 +49,16 @@ export default function FederalBudget202627YourPay() {
       </p>
       <p>
         The Working Australians Tax Offset works differently to a rate cut. Instead of changing a
-        bracket, it's applied as a direct reduction to the tax you'd otherwise owe, up to $250,
-        once you've calculated your liability under the ordinary rates and thresholds. Treasury
+        bracket, it&apos;s applied as a direct reduction to the tax you&apos;d otherwise owe, up to $250,
+        once you&apos;ve calculated your liability under the ordinary rates and thresholds. Treasury
         says it effectively lifts the point at which a typical worker starts paying net tax to
         almost $19,985, or up to $24,985 for workers who also qualify for the low income tax
-        offset. Because it doesn't start until the 2027-28 income year, it won't appear on a
+        offset. Because it doesn&apos;t start until the 2027-28 income year, it won&apos;t appear on a
         2026-27 notice of assessment — the first year it shows up is the return lodged from July
         2028.
       </p>
 
-      <h2>What the Budget didn't change</h2>
+      <h2>What the Budget didn&apos;t change</h2>
       <p>
         There was no new personal tax bracket restructure, no change to the Medicare levy rate
         itself, and no fresh HECS or superannuation announcement in this Budget beyond measures
@@ -70,14 +70,14 @@ export default function FederalBudget202627YourPay() {
         Superannuation guarantee, Division 296 tax and the HECS repayment thresholds were all
         confirmed at the settings already legislated earlier in the year — none of them were
         revisited or expanded in this Budget. Similarly, the Medicare levy rate stayed at 2%; only
-        the low-income thresholds that determine who's exempt or shaded-in moved, and that
+        the low-income thresholds that determine who&apos;s exempt or shaded-in moved, and that
         increase had already been flagged before Budget night. In other words, this was a Budget
         of confirmation and one new offset, rather than a fresh round of rate cuts.
       </p>
 
       <h2>What this means for your pay</h2>
       <p>
-        If you're on an average salary, the practical change in your pay packet this year is the
+        If you&apos;re on an average salary, the practical change in your pay packet this year is the
         1 July 2026 tax cut already built into your employer&apos;s withholding — check the exact
         figure with our <Link href="/income-tax-calculator/">income tax calculator</Link>. The
         $250 offset and further savings don&apos;t land until the 2027-28 income year, so budget
