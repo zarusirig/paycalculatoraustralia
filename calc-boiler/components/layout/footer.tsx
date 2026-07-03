@@ -68,7 +68,7 @@ export default function Footer() {
                 <li><Link href="/weekly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Weekly Pay Calculator</Link></li>
                 <li><Link href="/fortnightly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Fortnightly Pay Calculator</Link></li>
                 <li><Link href="/monthly-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Monthly Pay Calculator</Link></li>
-                <li><Link href="/annual-salary-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Annual Salary Calculator</Link></li>
+                <li><Link href="/annual-pay-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Annual Pay Calculator</Link></li>
               </ul>
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function Footer() {
                 <li><Link href="/tax-brackets/" className="text-sandstone-dark/45 hover:text-eucalyptus">Tax Brackets 2025-26</Link></li>
                 <li><Link href="/medicare-levy/" className="text-sandstone-dark/45 hover:text-eucalyptus">Medicare Levy</Link></li>
                 <li><Link href="/low-income-tax-offset/" className="text-sandstone-dark/45 hover:text-eucalyptus">LITO Guide</Link></li>
-                <li><Link href="/payg-withholding-guide/" className="text-sandstone-dark/45 hover:text-eucalyptus">PAYG Withholding</Link></li>
+                <li><Link href="/payg-withholding-tables/" className="text-sandstone-dark/45 hover:text-eucalyptus">PAYG Withholding</Link></li>
                 <li><Link href="/award-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">Award Rates</Link></li>
               </ul>
             </div>
