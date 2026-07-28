@@ -324,6 +324,11 @@ So **copying wagecalculator's page types does not close the traffic gap** — th
 
 Sequenced by recoverable clicks per unit of effort. Steps 1–2 assume the correctness work in the companion doc lands first — do not push Google to index or re-crawl pages whose figures are wrong.
 
+**Status, 28 July 2026** — branch `seo/fy2026-27-recovery`, not pushed:
+items **1 and 3 are done**, item **2 is partial** (footer route taken; the
+navbar still emits no crawlable links). Everything from item 4 down is open.
+Verification and exclusions are recorded in §13 of the companion design doc.
+
 | # | Work | Effort | Why here |
 |---|---|---|---|
 | 1 | **Title & description sweep** — drop the ` \| Pay Calculator Australia` suffix, bump every FY to 2026-27, lead with the answer. All ~212 pages; `/tax-on/` and `/take-home-pay-on/` templated | Low | **+600–850 clicks/28d.** Also unblocks ~25,500 of year-stamped volume (`tax brackets 2026`, `tax calculator 2026`, `tax rates 2026`) where staleness is the plausible sole cause |

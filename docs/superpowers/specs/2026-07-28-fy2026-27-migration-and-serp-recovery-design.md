@@ -1,7 +1,7 @@
 # FY2026-27 Migration & SERP Recovery — Design
 
 **Date:** 28 July 2026
-**Status:** Awaiting review
+**Status:** Steps 1–5 implemented on branch `seo/fy2026-27-recovery` (not pushed). See §13.
 **Site:** pay-calculator-australia.com (`calc-boiler/`, Next.js App Router, `output: "export"` → Firebase Hosting)
 
 ---
@@ -370,3 +370,54 @@ The pattern every winner uses, measured across 12 stable top-10 performers: **on
 - Verification of super caps and minimum wage (§3, "Still unresolved").
 - Production `curl` check on trailing-slash variants (§7).
 - `/leave-calculator/` lost 62 clicks with a real position drop (6.4 → 7.3). Not yet diagnosed — worth a look after the steps above.
+
+---
+
+## 13. Implementation status (28 July 2026)
+
+Branch `seo/fy2026-27-recovery`, 6 commits, **not pushed**.
+
+| Step | State | Commit |
+|---|---|---|
+| Titles: brand suffix, length, stale years | **Done** | `be94347`, `4943616` |
+| NAT 1006 Schedule 1 coefficients + tests | **Done** | `53259e9` |
+| One engine sitewide (FY2026-27) | **Done** | `53259e9` |
+| Labels: trust bar, footer, nav, OG, 404 | **Done** | `e7b0b76` |
+| Indexation: footer Zone 1 + `/tax-on/` chain | **Partial** | `e7b0b76` |
+| `/bonus-tax-calculator/` figures | **Done** | `8863d52` |
+| Stale HECS / NMW / bracket literals | **Done** | `8863d52`, `4943616` |
+
+**Verified against the built HTML (212 pages), all zero:** brand suffix in
+titles · tautological threshold sentences · "Updated FY2025-26" · "Rates
+verified 14 March 2026" · stale NMW $24.10 · "16c for each $1 over $18,200" ·
+meta descriptions saying FY2025-26 · odd-dollar fortnightly withholding.
+Title width 842px → 536px average, over-cap 92/95 → 4 (news only).
+`npm test` 11/11. Zero new eslint errors (20 → 20 in touched files).
+
+### Two further defects found during implementation
+
+- **`calculateHECS` ignored its own band data**, hardcoding `$125,000` as a
+  boundary. At $137,064 it returned $11,079 against the ATO's published
+  $10,276.99. Now driven entirely by `HECS_HELP.bands`.
+- **`calculateMedicareLevy` applied a flat 2% from the first dollar** with a
+  `// Simplified` comment, overstating the levy for every low-income earner.
+  Now shades in from $28,011.
+
+### Deliberately not done
+
+- **Navbar server-rendering.** The mega menu still emits no crawlable links.
+  Unpicking framer-motion animation state is a larger change with real UI
+  risk; the footer route solves the crawl problem for the seven affected
+  pages. The 40+ guide links and all state links remain nav-only.
+- **Super contribution caps and maximum contribution base** — still the
+  unverified values from §3. `concessionalCap` is `30_000`; the repo's own
+  news article says `32_500` from 1 July 2026. **Needs an ATO check.**
+- **`/fringe-benefits-tax/`** — FBT runs 1 April–31 March, so its FY2025-26
+  labelling is a different cycle. No verified figures for the year ending
+  31 March 2027.
+- **Titles bumped to 2026-27.** Stale years were *removed*, not bumped —
+  matching the majority winner pattern (gap analysis §8). Revisit if the
+  tax-table evidence argues for explicit FY labelling on those pages.
+- **Figures in `/tax-on/` titles** (e.g. "$5,270 Tax, $43,730 Take-Home").
+  Unblocked by the engine fix, but not applied.
+- **Production trailing-slash check** (§7) — still outstanding.
