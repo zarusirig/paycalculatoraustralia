@@ -60,7 +60,7 @@ export default function OGImage() {
               maxWidth: "700px",
             }}
           >
-            Income Tax, Super, Medicare Levy & HECS — Updated FY2025-26
+            Income Tax, Super, Medicare Levy & HECS — Official ATO Rates
           </div>
           <div
             style={{

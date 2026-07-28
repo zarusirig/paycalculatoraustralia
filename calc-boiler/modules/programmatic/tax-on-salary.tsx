@@ -263,6 +263,40 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <p className="mt-4 text-sm text-warmgray">
           Earning an additional $10,000 above {formattedSalary} increases take-home pay by <strong>{formatAUD(comparisons[3].diffToCurrent)}</strong> per year. The remaining portion goes to income tax and Medicare levy at the marginal rate. Use our <a href="/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Pay Calculator Australia</a> to calculate any salary with all deductions included.
         </p>
+
+        {/*
+          Crawlable neighbour chain. Only 10 of the 35 /tax-on/ pages are listed
+          in the footer, and the mega menu that lists all of them is client-only
+          and emits no links — so 25 of these pages had a single inbound link
+          sitewide. Linking each page to its neighbours makes the whole family
+          reachable by following the chain from any entry point.
+        */}
+        <nav aria-label="Nearby salaries" className="mt-6">
+          <p className="mb-3 text-sm font-semibold text-navy">Tax on nearby salaries</p>
+          <ul className="flex flex-wrap gap-2">
+            {[-15000, -10000, -5000, 5000, 10000, 15000]
+              .map((offset) => salary + offset)
+              .filter((s) => s >= 30000 && s <= 200000)
+              .map((s) => (
+                <li key={s}>
+                  <a
+                    href={`/tax-on/${s}/`}
+                    className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
+                  >
+                    Tax on {formatAUD(s)}
+                  </a>
+                </li>
+              ))}
+            <li>
+              <a
+                href={`/take-home-pay-on/${salary}/`}
+                className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
+              >
+                Take-home pay on {formattedSalary}
+              </a>
+            </li>
+          </ul>
+        </nav>
       </section>
 
       {/* H2: What Deductions Apply at This Income Level? */}
