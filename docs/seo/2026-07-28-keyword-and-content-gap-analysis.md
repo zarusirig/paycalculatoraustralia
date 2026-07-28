@@ -342,9 +342,8 @@ The audit found the page's headline offset figure ($1,511) was wrong, and that
 deployed, covering `sapto`, `sapto calculator`, `sapto eligibility` and
 `sapto threshold` on one page, with the ATO's nine worked examples as tests.
 
-**Open — all genuine new-build work needing its own scoping:** 12 (per-award
-rate pages), 13 (Payday Super + SGC), 10 (`/hourly-to-salary/[rate]/`),
-14 (work hours calculator), 15 (CGT), plus the holidays cluster and the
+**Open — all genuine new-build work needing its own scoping:** 13 (Payday Super
++ SGC), 14 (work hours calculator), 15 (CGT), plus the holidays cluster and the
 occupational clusters.
 
 **Also done, 28 July:** 10 (`/hourly-to-salary/[rate]/`) — 12 Tier 1 rate
@@ -352,12 +351,27 @@ pages covering ~7,090/mo, cross-linked both ways with `/salary-to-hourly/`
 and carrying FAQPage markup this programmatic family previously lacked
 entirely. Site 215 → 227 pages.
 
-**Next up, and a note on sequencing.** Per-award rate pages (`schads award pay
-rates` 2,900 at KD 1, `hospitality award rates` 1,400 at KD 0) are next in the
-brief's order, but they are a *data-verification* project against Fair Work of
-roughly the same shape and size as the ATO zone list — award classifications,
-junior and casual loadings, and penalty rates, all YMYL, all changing 1 July.
-Scope it as its own piece of work.
+**Also done, 28 July:** 12 (per-award rate pages) — four new pages shipped and
+deployed: `/schads-award-pay-rates/`, `/hospitality-award-rates/`,
+`/retail-award-rates/` and `/junior-pay-rates/`, plus `/overtime-penalty-rates-guide/`
+retargeted at `penalty rates` in place rather than as a fifth competing URL.
+`/award-rates/` rebuilt as the cluster parent and `/retail-hospitality-pay-guide/`
+trimmed to a summary + links so one page owns each term. Site 245 → 249 pages.
+
+The care was warranted. Re-verifying against raw award text before publishing
+confirmed every rate and all five encoded traps, but caught **six wrong claims**,
+four of them already drafted onto pages: SCHADS Level 1 is not ERO-inclusive (the
+ERO tables start at Level 2); `$1,119.10` is both the Level 1 pp3 operative rate
+and the pre-ERO figure for Level 2 pp1; hospitality casual overtime equals
+full-time overtime *except* on public holidays; retail overtime is banded Monday
+to Saturday, not weekday; retail junior levels 1–3 is an award rule, not a
+publishing gap; and **FWCFB 75 is a four-year phase-in, not the adult rate on
+1 December 2026** — an eligible 19-year-old moves 80% → 85% that day.
+
+The three pages that already overlapped were each publishing figures the award
+text contradicts — hospitality late-night work as a 1.15x multiplier when it is
+flat cash, a FY history table listing FY2024-25 at this year's figures, and a
+corrupted hospitality table with Level 1 above Level 2.
 
 The zone-list precedent is the argument for that care: 13 of the 23 towns the
 old page named were in the wrong zone. An award-rate page that is wrong is a
