@@ -342,9 +342,31 @@ The audit found the page's headline offset figure ($1,511) was wrong, and that
 deployed, covering `sapto`, `sapto calculator`, `sapto eligibility` and
 `sapto threshold` on one page, with the ATO's nine worked examples as tests.
 
-**Open — all genuine new-build work needing its own scoping:** 13 (Payday Super
-+ SGC), 14 (work hours calculator), 15 (CGT), plus the holidays cluster and the
-occupational clusters.
+**Also done, 28 July:** 13 (Payday Super + SGC) — `/super-guarantee-charge/`
+shipped. The sitewide fix mattered more than the page: **nine modules still
+described super as payable "quarterly, within 28 days of each quarter's end"**
+with 10% interest and a $20 admin fee, 27 days after Payday Super commenced.
+
+Verification caught three more claims that would have published wrong: the late
+payment penalty is not an SGC component (the charge has exactly four); the
+administrative uplift is two stacking reductions rather than one all-or-nothing
+test; and the $1,200 choice-loading cap is per *notice period*. Also: qualifying
+earnings added exactly ONE payment type over OTE — commissions for work done
+entirely outside ordinary hours. **Overtime is still excluded**, though the
+ATO's own overview page invites the opposite reading, so competitors will get
+this wrong.
+
+Two watch items are now encoded as constants with tests: the GIC rate feeding
+notional earnings **resets quarterly** (11.43% Jul–Sep 2026; next expected
+mid-September), and concessional-cap relief for the changeover is **announced
+but not law** — the ATO's own wording, as at 27 July 2026, is "This is not yet
+law."
+
+**Open:** the holidays cluster (item 16, needs a strategic call) and the
+occupational clusters (item 17). Item 11 — rebuilding `/` and
+`/income-tax-calculator/` on the aussalarycalculator pattern, the ~1,160,000
+head-term cluster — remains the largest single unclaimed prize and has not been
+scoped.
 
 **Also done, 28 July:** 10 (`/hourly-to-salary/[rate]/`) — 12 Tier 1 rate
 pages covering ~7,090/mo, cross-linked both ways with `/salary-to-hourly/`
