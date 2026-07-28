@@ -115,6 +115,7 @@ export const GUIDE_CATEGORIES = [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test", description: "Payment thresholds and taper rates" },
       { href: "/parental-leave-pay/", label: "Parental Leave Pay", description: "Government-funded parental leave" },
       { href: "/zone-tax-offset/", label: "Zone Tax Offset", description: "Remote area tax concessions" },
+      { href: "/sapto-calculator/", label: "SAPTO Calculator", description: "Seniors and pensioners tax offset" },
     ],
   },
   {
@@ -324,6 +325,7 @@ export const FOOTER_GUIDES_EMPLOYMENT = [
   { href: "/centrelink-income-test/", label: "Centrelink Income Test" },
   { href: "/parental-leave-pay/", label: "Parental Leave Pay" },
   { href: "/zone-tax-offset/", label: "Zone Tax Offset" },
+  { href: "/sapto-calculator/", label: "SAPTO Calculator" },
   { href: "/average-salary-australia/", label: "Average Salary Australia" },
   { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO Pay" },
   { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },

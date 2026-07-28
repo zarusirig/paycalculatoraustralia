@@ -170,7 +170,8 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "fringe-benefits-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-04" },
   "working-holiday-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-03" },
   "non-resident-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-02" },
-  "zone-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-02-28" },
+  "zone-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  "sapto-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
 
   // Super & salary guides — James Harrington
   "superannuation-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },

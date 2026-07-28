@@ -119,6 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "fringe-benefits-tax",
     "parental-leave-pay",
     "zone-tax-offset",
+    "sapto-calculator",
     "tax-calendar",
     "tax-deductions-guide",
     "work-from-home-deductions",
