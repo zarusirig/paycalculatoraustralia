@@ -25,7 +25,7 @@ const HOURS_PER_YEAR = HOURS_PER_WEEK * WEEKS_PER_YEAR; // 1,982.84
 const HOURS_PER_DAY = 7.6;
 const WORKING_DAYS_PER_YEAR = 260;
 
-const MINIMUM_WAGE_HOURLY = EMPLOYMENT.minimumWageHourly; // $24.10
+const MINIMUM_WAGE_HOURLY = EMPLOYMENT.minimumWageHourly; // $26.44
 const AVERAGE_WAGE_ANNUAL = 98_218; // ABS Average Weekly Earnings × 52
 
 export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
@@ -274,7 +274,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/take-home-pay-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Take-Home Pay Calculator</p>
-            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY2025-26.</p>
+            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY{SITE_CONFIG.financialYear}.</p>
           </a>
           <a href="/award-rates/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Award Rates</p>
@@ -332,7 +332,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
           <li><strong>Working Hours:</strong> Standard 38-hour week as defined by the Fair Work Act, with 52.18 weeks per year (365.25 / 7), yielding 1,982.84 working hours annually.</li>
-          <li><strong>Income Tax:</strong> Calculated using ATO progressive marginal tax rates for resident individuals for FY2025-26.</li>
+          <li><strong>Income Tax:</strong> Calculated using ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Standard 2% rate. Does not account for low-income reductions or Medicare Levy Surcharge.</li>
         </ol>
       </MethodologyDisclosure>

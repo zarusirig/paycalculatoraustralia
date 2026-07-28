@@ -86,7 +86,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Threshold Update</h3>
               <p>
-                The minimum HECS-HELP repayment threshold is indexed annually. For FY2026-27, the threshold is <strong>$69,528</strong> under the marginal repayment system, up from $67,000 in FY2025-26.
+                The minimum HECS-HELP repayment threshold is indexed annually. For FY2026-27, the threshold is <strong>$69,528</strong> under the marginal repayment system, up from $69,528 in FY2025-26.
               </p>
               <p>
                 The marginal repayment system introduced in FY2025-26 will continue. You only pay the repayment percentage on income <em>above</em> the threshold, not on your entire income. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full breakdown.
@@ -224,7 +224,7 @@ export default function TaxChanges202627Page() {
                 </AccordionItem>
                 <AccordionItem value="hecs-threshold" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What will the HECS threshold be in 2026-27?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The FY2026-27 HECS-HELP threshold is <strong>$69,528</strong>, up from $67,000 in FY2025-26. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark underline">HECS-HELP Guide</Link> for the current repayment rates.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The FY2026-27 HECS-HELP threshold is <strong>$69,528</strong>, up from $69,528 in FY2025-26. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark underline">HECS-HELP Guide</Link> for the current repayment rates.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="budget" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When is the 2026 federal budget?</AccordionTrigger>

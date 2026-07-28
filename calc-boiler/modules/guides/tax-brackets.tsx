@@ -44,11 +44,11 @@ export default function TaxBracketsGuidePage() {
           <p className="mt-3 text-sm text-warmgray-light bg-white/60 rounded-lg p-3 inline-block">All rates sourced from the ATO. Applies 1 July 2025 to 30 June 2026.</p>
         </section>
 
-        {/* What Are the Australian Tax Brackets for FY2025-26? */}
+        {/* What Are the Australian Tax Brackets for FY{SITE_CONFIG.financialYear}? */}
         <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Are the Australian Tax Brackets for FY2025-26?</h2>
-          <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for FY2025-26, with a tax-free threshold of $18,200 and a top marginal rate of 45% on income above $190,000.</p>
-          <p className="mb-4 text-warmgray">These rates apply to Australian residents for tax purposes. They do not include the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link>, which is calculated separately on your taxable income. The Australian Taxation Office publishes these income tax brackets each financial year, and the FY2025-26 rates remain unchanged from FY2024-25 following the Stage 3 tax cuts.</p>
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Are the Australian Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
+          <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for FY{SITE_CONFIG.financialYear}, with a tax-free threshold of $18,200 and a top marginal rate of 45% on income above $190,000.</p>
+          <p className="mb-4 text-warmgray">These rates apply to Australian residents for tax purposes. They do not include the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link>, which is calculated separately on your taxable income. The Australian Taxation Office publishes these income tax brackets each financial year, and the FY{SITE_CONFIG.financialYear} rates remain unchanged from FY2024-25 following the Stage 3 tax cuts.</p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
               <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th><th className="px-4 py-3 text-left font-semibold text-navy">Tax On This Income</th></tr></thead>
@@ -87,7 +87,7 @@ export default function TaxBracketsGuidePage() {
         {/* Tax Brackets Worked Example at $90,000 */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Do You Pay on $90,000? — Worked Example</h2>
-          <p className="mb-4 text-warmgray">On a salary of $90,000 in FY2025-26, total income tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))))}</strong> before the Medicare levy, giving an effective tax rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) / 90000)}</strong>.</p>
+          <p className="mb-4 text-warmgray">On a salary of $90,000 in FY{SITE_CONFIG.financialYear}, total income tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))))}</strong> before the Medicare levy, giving an effective tax rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) / 90000)}</strong>.</p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
               <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Tax Bracket</th><th className="px-4 py-3 text-right">Income in Bracket</th><th className="px-4 py-3 text-right">Rate</th><th className="px-4 py-3 text-right">Tax</th></tr></thead>
@@ -128,7 +128,7 @@ export default function TaxBracketsGuidePage() {
           <p className="mb-3 text-warmgray">The annual tax reduction under Stage 3 varies by income. Low and middle-income earners received proportionally larger percentage savings:</p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Salary</th><th className="px-4 py-3 text-right">Tax Before (FY2023-24)</th><th className="px-4 py-3 text-right">Tax After (FY2025-26)</th><th className="px-4 py-3 text-right">Annual Saving</th></tr></thead>
+              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Salary</th><th className="px-4 py-3 text-right">Tax Before (FY2023-24)</th><th className="px-4 py-3 text-right">Tax After (FY{SITE_CONFIG.financialYear})</th><th className="px-4 py-3 text-right">Annual Saving</th></tr></thead>
               <tbody className="divide-y divide-sandstone-dark/10">
                 {[
                   { salary: 40000, taxBefore: 4142 },
@@ -161,7 +161,7 @@ export default function TaxBracketsGuidePage() {
         {/* Tax Brackets Historical Comparison */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Have Tax Brackets Changed Over Three Years?</h2>
-          <p className="mb-4 text-warmgray">The tax bracket rates decreased in FY2024-25 with the Stage 3 cuts and remain identical in FY2025-26, with no further changes until the 16% rate drops to <strong>15%</strong> in FY2026-27.</p>
+          <p className="mb-4 text-warmgray">The tax bracket rates decreased in FY2024-25 with the Stage 3 cuts and remain identical in FY{SITE_CONFIG.financialYear}, with no further changes until the 16% rate drops to <strong>15%</strong> in FY2026-27.</p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
               <thead className="bg-sandstone">
@@ -169,7 +169,7 @@ export default function TaxBracketsGuidePage() {
                   <th className="px-4 py-3 text-left font-semibold text-navy">Bracket</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">FY2023-24</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">FY2024-25</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">FY2025-26</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">FY{SITE_CONFIG.financialYear}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
@@ -183,7 +183,7 @@ export default function TaxBracketsGuidePage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-warmgray">The FY2025-26 brackets are identical to FY2024-25. The next legislated change takes effect on {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to 15%. A further reduction to 14% is scheduled for 1 July 2027. These changes save <strong>$268 per year</strong> for every taxpayer earning above $45,000.</p>
+          <p className="mt-3 text-warmgray">The FY{SITE_CONFIG.financialYear} brackets are identical to FY2024-25. The next legislated change takes effect on {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to 15%. A further reduction to 14% is scheduled for 1 July 2027. These changes save <strong>$268 per year</strong> for every taxpayer earning above $45,000.</p>
         </section>
 
         {/* Effective Tax Rate vs Marginal Rate */}
@@ -304,14 +304,14 @@ export default function TaxBracketsGuidePage() {
           <p className="text-warmgray">The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> of 2% applies on top of income tax and is not reduced by LITO or SAPTO. Taxpayers earning above $93,000 (singles) without private hospital cover also pay the &quot;Medicare Levy Surcharge&quot; at rates of 1%, 1.25%, or 1.5% depending on income tier. This surcharge is separate from the standard 2% levy.</p>
         </section>
 
-        {/* What Changed in FY2025-26? */}
+        {/* What Changed in FY{SITE_CONFIG.financialYear}? */}
         <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed in FY2025-26?</h2>
-          <p className="mb-4 text-warmgray">The income tax brackets for FY2025-26 are <strong>unchanged</strong> from FY2024-25 — the same rates, thresholds, and LITO structure apply for the second consecutive year under the Stage 3 framework.</p>
-          <p className="mb-3 text-warmgray">While the tax brackets themselves did not change, several related settings were updated for FY2025-26:</p>
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed in FY{SITE_CONFIG.financialYear}?</h2>
+          <p className="mb-4 text-warmgray">The income tax brackets for FY{SITE_CONFIG.financialYear} are <strong>unchanged</strong> from FY2024-25 — the same rates, thresholds, and LITO structure apply for the second consecutive year under the Stage 3 framework.</p>
+          <p className="mb-3 text-warmgray">While the tax brackets themselves did not change, several related settings were updated for FY{SITE_CONFIG.financialYear}:</p>
           <ul className="list-disc list-inside space-y-2 text-warmgray mb-4">
             <li>The <strong>superannuation guarantee rate</strong> increased from 11.5% to <strong>12%</strong>, raising employer super contributions but not affecting take-home pay directly</li>
-            <li>The <strong>HECS-HELP repayment system</strong> switched from percentage-of-income tiers to a marginal model, with a new threshold of <strong>$67,000</strong></li>
+            <li>The <strong>HECS-HELP repayment system</strong> switched from percentage-of-income tiers to a marginal model, with a new threshold of <strong>$69,528</strong></li>
             <li>The <strong>maximum super contribution base</strong> changed to $62,500 per quarter, capping employer SG obligations for very high earners</li>
             <li>The <strong>concessional contributions cap</strong> remains at $30,000 per year</li>
           </ul>
@@ -337,7 +337,7 @@ export default function TaxBracketsGuidePage() {
             </li>
             <li className="flex items-start gap-2">
               <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> — model your student loan repayments under the new FY2025-26 marginal repayment system</span>
+              <span><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> — model your student loan repayments under the new FY{SITE_CONFIG.financialYear} marginal repayment system</span>
             </li>
             <li className="flex items-start gap-2">
               <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
@@ -372,7 +372,7 @@ export default function TaxBracketsGuidePage() {
             </AccordionItem>
             <AccordionItem value="new-rates" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>When do the new tax rates start?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">Current FY2025-26 rates have been in effect since 1 July 2025. The next change takes effect on <strong>1 July 2026</strong>, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% is legislated for 1 July 2027.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">Current FY{SITE_CONFIG.financialYear} rates have been in effect since 1 July 2025. The next change takes effect on <strong>1 July 2026</strong>, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% is legislated for 1 July 2027.</p></AccordionContent>
             </AccordionItem>
             <AccordionItem value="taxable" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>How is taxable income calculated?</AccordionTrigger>
@@ -384,7 +384,7 @@ export default function TaxBracketsGuidePage() {
             </AccordionItem>
             <AccordionItem value="30-percent" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>Do I pay 30% tax on my whole salary?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Australia&apos;s tax system is progressive. If your salary is $80,000, the 30% rate only applies to the portion between $45,001 and $80,000 ($35,000). The first $18,200 is tax-free and the next $26,800 is taxed at 16%. Your total tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))))}</strong> — an effective rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))) / 80000)}</strong>, not 30%. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see your bracket-by-bracket breakdown.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">No. Australia&apos;s tax system is progressive. If your salary is $80,000, the 30% rate only applies to the portion between $45,001 and $80,000 ($35,000). The first $18,200 is tax-free and the next $26,800 is taxed at 15%. Your total tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))))}</strong> — an effective rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))) / 80000)}</strong>, not 30%. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see your bracket-by-bracket breakdown.</p></AccordionContent>
             </AccordionItem>
             <AccordionItem value="200k-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>How much tax on $200,000 in Australia?</AccordionTrigger>
@@ -408,7 +408,7 @@ export default function TaxBracketsGuidePage() {
             </AccordionItem>
             <AccordionItem value="super-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>Is superannuation taxed at my income tax bracket rate?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Employer super contributions (the SG rate of <strong>12%</strong> in FY2025-26) are taxed at a flat <strong>15%</strong> inside the super fund, not at your marginal income tax rate. High-income earners with combined income and concessional contributions above $250,000 pay an additional 15% (Division 293 tax), bringing the effective super tax rate to 30%. Super contributions do not count toward your income tax bracket calculation.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">No. Employer super contributions (the SG rate of <strong>12%</strong> in FY{SITE_CONFIG.financialYear}) are taxed at a flat <strong>15%</strong> inside the super fund, not at your marginal income tax rate. High-income earners with combined income and concessional contributions above $250,000 pay an additional 15% (Division 293 tax), bringing the effective super tax rate to 30%. Super contributions do not count toward your income tax bracket calculation.</p></AccordionContent>
             </AccordionItem>
           </Accordion>
         </section>

@@ -201,7 +201,7 @@ export default function FirstJobPayGuidePage() {
 
                 <AccordionItem value="minimum-wage" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum wage for my first job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The national minimum wage for adults (21+) is <strong>$24.10 per hour</strong> or $915.90 per week (as of 1 July 2024). Casual employees receive an additional <strong>25% casual loading</strong>, making the casual minimum $30.13/hr. Many industries have <strong>award rates</strong> that are higher than the minimum wage — check our <Link href="/award-rates/">Award Rates Guide</Link>.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The national minimum wage for adults (21+) is <strong>$26.44 per hour</strong> or $1,004.90 per week (as of 1 July 2024). Casual employees receive an additional <strong>25% casual loading</strong>, making the casual minimum $30.13/hr. Many industries have <strong>award rates</strong> that are higher than the minimum wage — check our <Link href="/award-rates/">Award Rates Guide</Link>.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="lodge-return" className="border rounded-lg px-4 bg-white">

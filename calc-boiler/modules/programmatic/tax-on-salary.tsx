@@ -67,11 +67,11 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       {/* Introduction */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          On a <strong>{formattedSalary}</strong> salary in Australia, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax for FY2025-26.
+          On a <strong>{formattedSalary}</strong> salary in Australia, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax for FY{SITE_CONFIG.financialYear}.
           Your effective tax rate is <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong>, and your marginal tax rate is <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong>.
         </p>
         <p className="text-navy leading-relaxed">
-          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the 2025-26 financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation at the 12% SG rate, bringing your total remuneration package to {formatAUD(breakdown.totalPackage)}.
+          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the {SITE_CONFIG.financialYear} financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation at the 12% SG rate, bringing your total remuneration package to {formatAUD(breakdown.totalPackage)}.
         </p>
       </section>
 
@@ -84,7 +84,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Total tax on {formattedSalary} is <strong>{formatAUD(breakdown.netIncomeTax + breakdown.medicareLevy)}</strong>, comprising {formatAUD(breakdown.netIncomeTax)} in income tax and {formatAUD(breakdown.medicareLevy)} in Medicare levy.
         </p>
         <p className="text-navy leading-relaxed">
-          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. The first $18,200 is tax-free. Income between $18,201 and $45,000 is taxed at 16%. Income between $45,001 and $135,000 is taxed at 30%. Income between $135,001 and $190,000 is taxed at 37%. Income above $190,000 is taxed at 45%.
+          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. The first $18,200 is tax-free. Income between $18,201 and $45,000 is taxed at 15%. Income between $45,001 and $135,000 is taxed at 30%. Income between $135,001 and $190,000 is taxed at 37%. Income above $190,000 is taxed at 45%.
           {breakdown.litoOffset > 0 && ` The "Low Income Tax Offset" (LITO) reduces your tax bill by ${formatAUD(breakdown.litoOffset)}, lowering your net income tax to ${formatAUD(breakdown.netIncomeTax)}.`}
         </p>
         <p className="text-navy leading-relaxed">
@@ -320,11 +320,11 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">HECS-HELP Repayment</h3>
         {salary >= HECS_HELP.minimumThreshold ? (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, the compulsory HECS-HELP repayment is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year. The FY2025-26 repayment threshold is $67,000 under the new marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
+            At {formattedSalary}, the compulsory HECS-HELP repayment is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year. The FY2025-26 repayment threshold is $69,528 under the new marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
           </p>
         ) : (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY2025-26 minimum repayment threshold is <strong>$67,000</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
+            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY2025-26 minimum repayment threshold is <strong>$69,528</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
           </p>
         )}
 

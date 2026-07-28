@@ -266,7 +266,7 @@ export default function FortnightlyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
             <p className="text-warmgray mb-4">
-              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY2025-26 system uses marginal rates: <strong>15%</strong> on income between $67,001 and $125,000, <strong>17%</strong> on income between $125,001 and $179,285, and <strong>10%</strong> of total income above $179,285. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
+              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY2025-26 system uses marginal rates: <strong>15%</strong> on income between $69,529 and $125,000, <strong>17%</strong> on income between $125,001 and $179,285, and <strong>10%</strong> of total income above $179,285. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
             </p>
 
             <p className="text-warmgray mb-4">
@@ -349,7 +349,7 @@ export default function FortnightlyPayCalculatorPage() {
                 The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect fortnightly take-home pay?">
-                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY2025-26 marginal repayment rate starts at 15% on income above $67,000, increasing to 17% above $125,000 and 10% of total income above $179,285. The repayment is divided across 26 fortnights by the employer.
+                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY2025-26 marginal repayment rate starts at 15% on income above $69,528, increasing to 17% above $125,000 and 10% of total income above $179,285. The repayment is divided across 26 fortnights by the employer.
               </FAQItem>
               <FAQItem value="gross-net" question="What is the difference between gross fortnightly pay and net fortnightly pay?">
                 Gross fortnightly pay is your annual salary divided by 26 before any deductions. Net fortnightly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS repayments are withheld. On an $85,000 salary, gross fortnightly pay is {formatAUD(85_000 / 26, 2)} and net fortnightly pay is <strong>{formatAUD(workedExample.fortnightly, 2)}</strong>.

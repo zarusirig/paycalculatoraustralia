@@ -316,7 +316,7 @@ export default function TaxReturnCalculatorPage() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">4</span>
-                <span><strong>HECS-HELP debtors</strong> calculating whether their compulsory repayment reduces their refund &mdash; repayments start at incomes above <strong>$54,435</strong> for FY2025-26</span>
+                <span><strong>HECS-HELP debtors</strong> calculating whether their compulsory repayment reduces their refund &mdash; repayments start at incomes above <strong>$69,528</strong> for FY2025-26</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">5</span>
@@ -535,7 +535,7 @@ export default function TaxReturnCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="hecs-refund" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does HECS-HELP reduce my tax refund?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Compulsory HECS-HELP repayments are calculated as part of your tax assessment and reduce your refund dollar-for-dollar. For FY2025-26, repayments start at <strong>1%</strong> of repayment income for earners above <strong>$54,435</strong> and increase to <strong>10%</strong> for incomes above <strong>$151,201</strong>. An employee earning <strong>$85,000</strong> with a HELP debt pays approximately <strong>$3,400</strong> in compulsory repayments.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. Compulsory HECS-HELP repayments are calculated as part of your tax assessment and reduce your refund dollar-for-dollar. For FY2025-26, repayments start at <strong>1%</strong> of repayment income for earners above <strong>$69,528</strong> and increase to <strong>10%</strong> for incomes above <strong>$151,201</strong>. An employee earning <strong>$85,000</strong> with a HELP debt pays approximately <strong>$3,400</strong> in compulsory repayments.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="private-health" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>How does private health insurance affect my tax return?</AccordionTrigger>

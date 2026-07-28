@@ -846,7 +846,7 @@ export default function HomePageTemplate() {
           </MethodologyDisclosure>
         </motion.section>
 
-        {/* ===== 2. WHAT ARE THE AUSTRALIAN TAX BRACKETS FOR FY2025-26? ===== */}
+        {/* ===== 2. WHAT ARE THE AUSTRALIAN TAX BRACKETS FOR FY{SITE_CONFIG.financialYear}? ===== */}
         <motion.section
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1117,25 +1117,25 @@ export default function HomePageTemplate() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">Below $67,000</td><td className="px-4 py-2.5 font-semibold text-navy">0%</td><td className="px-4 py-2.5 text-warmgray-light">No repayment required</td></tr>
-                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$67,001 – $125,000</td><td className="px-4 py-2.5 font-semibold text-navy">15%</td><td className="px-4 py-2.5 text-warmgray-light">15c per $1 over $67,000</td></tr>
+                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">Below $69,528</td><td className="px-4 py-2.5 font-semibold text-navy">0%</td><td className="px-4 py-2.5 text-warmgray-light">No repayment required</td></tr>
+                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$69,529 – $125,000</td><td className="px-4 py-2.5 font-semibold text-navy">15%</td><td className="px-4 py-2.5 text-warmgray-light">15c per $1 over $69,528</td></tr>
                 <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$125,001 – $179,285</td><td className="px-4 py-2.5 font-semibold text-navy">17%</td><td className="px-4 py-2.5 text-warmgray-light">$8,700 + 17c per $1 over $125,000</td></tr>
                 <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$179,286+</td><td className="px-4 py-2.5 font-semibold text-navy">10%</td><td className="px-4 py-2.5 text-warmgray-light">10% of total repayment income</td></tr>
               </tbody>
             </table>
           </div>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>At $65,000:</strong> Your income is below the $67,000 threshold, so your HECS repayment is <strong>$0</strong>. Your take-home pay is unaffected by your student debt.
+            <strong>At $65,000:</strong> Your income is below the $69,528 threshold, so your HECS repayment is <strong>$0</strong>. Your take-home pay is unaffected by your student debt.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>At $90,000:</strong> You pay 15% on the $23,000 above $67,000, equalling a HECS repayment of <strong>$3,450</strong> per year ($132.69 per fortnight). Your annual take-home pay drops from $70,412 to <strong>$66,962</strong>.
+            <strong>At $90,000:</strong> You pay 15% on the $23,000 above $69,528, equalling a HECS repayment of <strong>$3,450</strong> per year ($132.69 per fortnight). Your annual take-home pay drops from $70,412 to <strong>$66,962</strong>.
           </p>
           <p className="leading-relaxed text-warmgray">
             The new marginal system eliminates the cliff effect from the old model, where crossing a threshold by a single dollar triggered repayments on your entire income. Use our <Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> for your exact repayment figure, or read the <Link href="/hecs-help-guide/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link> for the full threshold table.
           </p>
         </motion.section>
 
-        {/* ===== 7. WHAT CHANGED IN AUSTRALIAN TAX FOR FY2025-26? ===== */}
+        {/* ===== 7. WHAT CHANGED IN AUSTRALIAN TAX FOR FY{SITE_CONFIG.financialYear}? ===== */}
         <motion.section
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1159,7 +1159,7 @@ export default function HomePageTemplate() {
               <strong>SG rate increases to 12%:</strong> The employer superannuation guarantee rate rose from 11.5% to <strong>12%</strong> on 1 July 2025. On an $80,000 salary, this adds an extra <strong>$400 per year</strong> to your super balance compared to the previous rate.
             </li>
             <li>
-              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold increased from $54,435 to <strong>$67,000</strong>. Graduates earning between $54,435 and $67,000 now make <strong>zero compulsory repayments</strong>.
+              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold increased from $69,528 to <strong>$69,528</strong>. Graduates earning between $69,528 and $69,528 now make <strong>zero compulsory repayments</strong>.
             </li>
             <li>
               <strong>Medicare levy low-income threshold:</strong> The individual threshold remains at <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> for FY{SITE_CONFIG.financialYear}. Earners below this amount receive a reduced Medicare levy or full exemption.

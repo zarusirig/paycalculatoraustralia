@@ -305,7 +305,7 @@ export default function HourlyToAnnualCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              Casual workers, contractors, shift workers, and part-time employees use this hourly to annual salary calculator to compare job offers, plan budgets, and understand their taxable income for the 2025-26 financial year.
+              Casual workers, contractors, shift workers, and part-time employees use this hourly to annual salary calculator to compare job offers, plan budgets, and understand their taxable income for the {SITE_CONFIG.financialYear} financial year.
             </p>
             <ul className="space-y-3 text-warmgray mb-4">
               <li className="flex gap-3">
@@ -335,10 +335,10 @@ export default function HourlyToAnnualCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Minimum Wage Annually?</h2>
             <p className="mb-4 text-warmgray">
-              The national minimum wage is <strong>$24.10 per hour</strong>, which equals <strong>$47,605.60 per year</strong> for a full-time 38-hour week as of 1 July 2024.
+              The national minimum wage is <strong>$26.44 per hour</strong>, which equals <strong>$47,605.60 per year</strong> for a full-time 38-hour week as of 1 July 2024.
             </p>
             <p className="mb-4 text-warmgray">
-              The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July. At $24.10/hr, a full-time worker earns $916.30 per week before tax. After income tax and the 2% Medicare levy, the take-home pay on the minimum wage is approximately <strong>$40,934 per year</strong>, or <strong>$787 per week</strong>.
+              The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July. At $26.44/hr, a full-time worker earns $916.30 per week before tax. After income tax and the 2% Medicare levy, the take-home pay on the minimum wage is approximately <strong>$40,934 per year</strong>, or <strong>$787 per week</strong>.
             </p>
             <p className="mb-4 text-warmgray">
               Casual employees on the minimum wage receive an additional 25% casual loading, bringing their minimum hourly rate to <strong>$30.13/hr</strong>. This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. Use the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Annual Pay Calculator</Link> to calculate take-home pay at any annual salary, including the minimum wage equivalent.
@@ -357,7 +357,7 @@ export default function HourlyToAnnualCalculatorPage() {
                 <tbody className="divide-y divide-sandstone-dark/10">
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-2.5 font-medium text-gray-700">Hourly rate</td>
-                    <td className="px-4 py-2.5 text-right text-warmgray">$24.10</td>
+                    <td className="px-4 py-2.5 text-right text-warmgray">$26.44</td>
                     <td className="px-4 py-2.5 text-right text-warmgray">$30.13</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
@@ -501,7 +501,7 @@ export default function HourlyToAnnualCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does my HECS-HELP debt affect this conversion?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of <strong>$54,435</strong> for FY{SITE_CONFIG.financialYear}. At $30/hr (38 hours), your annual salary of <strong>$59,280</strong> triggers a repayment rate of <strong>2%</strong>, equal to $1,185.60 per year. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark underline hover:text-navy">HECS-HELP Calculator</Link> to see the exact repayment amount.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of <strong>$69,528</strong> for FY{SITE_CONFIG.financialYear}. At $30/hr (38 hours) your annual salary of <strong>$59,280</strong> is below the threshold, so no repayment applies. At $40/hr it reaches $79,040 and the marginal rate of <strong>15c per dollar</strong> above the threshold applies to the excess. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark underline hover:text-navy">HECS-HELP Calculator</Link> to see the exact repayment amount.</p></AccordionContent>
               </AccordionItem>
             </Accordion>
           </section>

@@ -245,7 +245,7 @@ export default function WeeklyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
             <p className="text-warmgray mb-4">
-              HECS-HELP repayments are withheld weekly when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY2025-26 system uses marginal repayment rates: <strong>15 cents</strong> per dollar between $67,001 and $125,000, and <strong>17 cents</strong> per dollar between $125,001 and $179,285. Above $179,285, the repayment rate is <strong>10%</strong> of total repayment income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to see your exact weekly repayment.
+              HECS-HELP repayments are withheld weekly when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY2025-26 system uses marginal repayment rates: <strong>15 cents</strong> per dollar between $69,529 and $125,000, and <strong>17 cents</strong> per dollar between $125,001 and $179,285. Above $179,285, the repayment rate is <strong>10%</strong> of total repayment income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to see your exact weekly repayment.
             </p>
           </section>
 

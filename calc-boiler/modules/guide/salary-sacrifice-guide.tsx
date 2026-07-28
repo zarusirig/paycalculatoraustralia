@@ -588,7 +588,7 @@ export default function SalarySacrificeGuidePage() {
                 <AccordionItem value="min-wage" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice reduce my pay below minimum wage?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$24.10 per hour</strong> ($915.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
+                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$26.44 per hour</strong> ($1,004.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
                   </AccordionContent>
                 </AccordionItem>
 

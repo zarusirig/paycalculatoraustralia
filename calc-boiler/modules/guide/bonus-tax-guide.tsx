@@ -361,7 +361,7 @@ export default function BonusTaxGuidePage() {
                 </AccordionItem>
                 <AccordionItem value="hecs-help" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does my bonus affect HECS-HELP repayments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">Yes. Your bonus increases your &quot;repayment income&quot; for HECS-HELP purposes. If the bonus pushes your total income above a repayment threshold, your compulsory repayment rate increases. For FY2025-26, repayments start at <strong>1%</strong> once income exceeds $54,435. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link> for the full threshold table.</AccordionContent>
+                  <AccordionContent className="text-navy">Yes. Your bonus increases your &quot;repayment income&quot; for HECS-HELP purposes. If the bonus pushes your total income above a repayment threshold, your compulsory repayment rate increases. For FY2026-27, repayments start at 15c per dollar once income exceeds $69,528. See our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link> for the full threshold table.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="over-withholding" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Why was so much tax taken from my bonus?</AccordionTrigger>

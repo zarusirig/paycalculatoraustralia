@@ -172,7 +172,7 @@ export default function TaxCalendarPage() {
               <li><strong>Concessional super contributions cap</strong> — indexed to <strong>$30,000</strong> (up from $27,500 in FY2023-24)</li>
               <li><strong>Non-concessional contributions cap</strong> — <strong>$120,000</strong> per year</li>
               <li><strong>Maximum super contribution base</strong> — <strong>$65,070</strong> per quarter</li>
-              <li><strong>HELP/HECS repayment thresholds</strong> — minimum repayment threshold indexed upward to approximately <strong>$54,435</strong></li>
+              <li><strong>HELP/HECS repayment thresholds</strong> — minimum repayment threshold indexed upward to <strong>$69,528</strong></li>
               <li><strong>Medicare Levy Surcharge thresholds</strong> — <strong>$93,000</strong> for singles, <strong>$186,000</strong> for families</li>
               <li><strong>Penalty unit value</strong> — <strong>$330</strong> per unit</li>
             </ul>

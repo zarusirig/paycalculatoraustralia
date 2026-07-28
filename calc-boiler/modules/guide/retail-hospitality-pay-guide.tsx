@@ -122,7 +122,7 @@ export default function RetailHospitalityPayGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Level 1</td><td className="px-5 py-3">Kitchen hand, food runner</td><td className="px-5 py-3 text-right">$24.10</td><td className="px-5 py-3 text-right">$47,622</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Level 1</td><td className="px-5 py-3">Kitchen hand, food runner</td><td className="px-5 py-3 text-right">$26.44</td><td className="px-5 py-3 text-right">$47,622</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Level 2</td><td className="px-5 py-3">Waiter, bar attendant</td><td className="px-5 py-3 text-right">$25.09</td><td className="px-5 py-3 text-right">$49,578</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Level 3</td><td className="px-5 py-3">Cook (qualified), senior waiter</td><td className="px-5 py-3 text-right">$25.99</td><td className="px-5 py-3 text-right">$51,356</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Level 4</td><td className="px-5 py-3">Cook (trade qualified)</td><td className="px-5 py-3 text-right">$27.27</td><td className="px-5 py-3 text-right">$53,885</td></tr>

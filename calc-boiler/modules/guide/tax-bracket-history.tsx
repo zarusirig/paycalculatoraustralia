@@ -98,7 +98,7 @@ export default function TaxBracketHistoryPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2024-25 &amp; FY2025-26 (Revised Stage 3)</h3>
               <p>
-                The revised Stage 3 tax cuts lowered the 19% rate to <strong>16%</strong>, replaced the 32.5% rate with <strong>30%</strong>, extended the middle bracket to $135,000, and raised the top threshold to $190,001. These brackets apply for both FY2024-25 and FY2025-26.
+                The revised Stage 3 tax cuts lowered the 19% rate to <strong>16%</strong>, replaced the 32.5% rate with <strong>30%</strong>, extended the middle bracket to $135,000, and raised the top threshold to $190,001. These brackets applied for FY2024-25 and FY2025-26; from 1 July 2026 the 16% rate fell again to 15%.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">

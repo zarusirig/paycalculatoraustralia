@@ -13,6 +13,8 @@ import {
   formatAUD,
   formatPercent,
   TAX_BRACKETS,
+  HECS_HELP,
+  SUPER_GUARANTEE,
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
@@ -68,7 +70,7 @@ export default function BonusTaxCalculatorPage() {
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Bonus Tax Calculator Australia 2025-26
+            Bonus Tax Calculator Australia
           </h1>
           <p className="text-lg text-warmgray">
             Find out exactly how much tax you pay on a bonus or commission payment.
@@ -375,7 +377,7 @@ export default function BonusTaxCalculatorPage() {
               <li><strong>Confusing marginal rate with effective rate:</strong> Employees see 32% withheld from a bonus and believe their entire salary is taxed at 32%. The effective rate on a $90,000 salary is approximately 21.8%. The bonus is taxed at the marginal rate because it sits on top of existing income.</li>
               <li><strong>Forgetting the Medicare levy:</strong> The 2% Medicare levy applies to bonuses on top of the income tax rate. A 30% marginal bracket results in <strong>32% total</strong> tax on the bonus, not 30%.</li>
               <li><strong>Ignoring bracket crossover:</strong> A $5,000 bonus on a $133,000 salary pushes total income from the 30% bracket into the 37% bracket. The first $2,000 of the bonus is taxed at 32% and the remaining $3,000 at 39%.</li>
-              <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt have an additional repayment amount withheld. A bonus that pushes total income above the $67,000 HECS threshold triggers a repayment obligation. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
+              <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt have an additional repayment amount withheld. A bonus that pushes total income above the {formatAUD(HECS_HELP.minimumThreshold)} HECS threshold triggers a repayment obligation. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
               <li><strong>Assuming super is always paid on bonuses:</strong> The 12% superannuation guarantee applies only when the bonus qualifies as Ordinary Time Earnings. Sign-on bonuses, retention payments, and discretionary ex-gratia payments are generally excluded from OTE.</li>
             </ol>
           </section>
@@ -442,11 +444,11 @@ export default function BonusTaxCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="reduce-bonus-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>How can I reduce tax on my bonus?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Salary sacrifice part of your bonus into superannuation as a concessional contribution, taxed at only <strong>15%</strong> inside super instead of your marginal rate of up to 47%. The concessional contributions cap is <strong>$30,000</strong> per year for FY2025-26 (including employer SG). Alternatively, claim all eligible work-related deductions to reduce your total taxable income and potentially lower the marginal rate applied to the bonus.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Salary sacrifice part of your bonus into superannuation as a concessional contribution, taxed at only <strong>15%</strong> inside super instead of your marginal rate of up to 47%. The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year (including employer SG). Alternatively, claim all eligible work-related deductions to reduce your total taxable income and potentially lower the marginal rate applied to the bonus.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="hecs-bonus" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does a bonus affect my HECS-HELP repayment?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. HECS-HELP repayments are based on your total &quot;Repayment Income,&quot; which includes your salary plus any bonuses, commissions, and fringe benefits. A bonus that pushes your repayment income above the <strong>$67,000</strong> minimum threshold triggers a compulsory repayment. The marginal repayment rate starts at <strong>15%</strong> on income above $67,000 under the FY2025-26 system.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. HECS-HELP repayments are based on your total &quot;Repayment Income,&quot; which includes your salary plus any bonuses, commissions, and fringe benefits. A bonus that pushes your repayment income above the <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> minimum threshold triggers a compulsory repayment. The marginal repayment rate starts at <strong>15%</strong> on income above {formatAUD(HECS_HELP.minimumThreshold)} under the FY{SITE_CONFIG.financialYear} marginal system.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="timing" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does it matter when my bonus is paid during the financial year?</AccordionTrigger>

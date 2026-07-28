@@ -205,7 +205,7 @@ export default function BackpayCalculatorPage() {
               <p className="mb-4 text-warmgray font-medium">(Correct hourly rate - Actual hourly rate) x Total hours worked = Wage shortfall</p>
               <p className="mb-4 text-warmgray">In addition to the wage shortfall, your employer also owes:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
-                <li><strong>Unpaid superannuation:</strong> The 12% SG applies to the underpaid amount. If you were paid $24.10/hr instead of $30/hr, your employer owes an additional <strong>$0.71/hr</strong> in super on the $5.90 difference.</li>
+                <li><strong>Unpaid superannuation:</strong> The 12% SG applies to the underpaid amount. If you were paid $26.44/hr instead of $30/hr, your employer owes an additional <strong>$0.71/hr</strong> in super on the $5.90 difference.</li>
                 <li><strong>Unpaid leave accrual:</strong> Annual leave accrues on ordinary hours. Underpayment means your leave balance was also underpaid when you took or cashed out leave.</li>
                 <li><strong>Interest:</strong> In some cases, the Fair Work Ombudsman or courts may award interest on unpaid wages, particularly for prolonged underpayments.</li>
               </ul>

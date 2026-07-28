@@ -53,7 +53,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       {/* Introduction */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          On a <strong>{formattedSalary}</strong> salary in Australia, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after tax for FY2025-26.
+          On a <strong>{formattedSalary}</strong> salary in Australia, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after tax for FY{SITE_CONFIG.financialYear}.
           That works out to <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month in your pocket.
         </p>
         <p className="text-navy leading-relaxed">
@@ -195,7 +195,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-4">How Is Tax Calculated on {formattedSalary}?</h2>
         <p className="text-navy leading-relaxed mb-4">
-          Australia uses progressive marginal tax rates. Your {formattedSalary} salary is split across multiple brackets, with each portion taxed at its corresponding rate. The table below shows the exact tax calculated in each bracket for FY2025-26.
+          Australia uses progressive marginal tax rates. Your {formattedSalary} salary is split across multiple brackets, with each portion taxed at its corresponding rate. The table below shows the exact tax calculated in each bracket for FY{SITE_CONFIG.financialYear}.
         </p>
         <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
           <div className="overflow-x-auto">
@@ -298,7 +298,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/take-home-pay-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Take-Home Pay Calculator</p>
-            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY2025-26.</p>
+            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY{SITE_CONFIG.financialYear}.</p>
           </a>
           <a href="/income-tax-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Income Tax Calculator</p>
@@ -324,7 +324,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               What is the take-home pay on {formattedSalary} in Australia?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              On a {formattedSalary} salary, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after income tax of {formatAUD(breakdown.netIncomeTax)} and Medicare levy of {formatAUD(breakdown.medicareLevy)}. That equals <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month. This uses ATO tax rates for FY2025-26.
+              On a {formattedSalary} salary, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after income tax of {formatAUD(breakdown.netIncomeTax)} and Medicare levy of {formatAUD(breakdown.medicareLevy)}. That equals <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month. This uses ATO tax rates for FY{SITE_CONFIG.financialYear}.
             </AccordionContent>
           </AccordionItem>
 
@@ -360,10 +360,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       <MethodologyDisclosure>
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following general rules and assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
-          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY2025-26.</li>
+          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge.</li>
           <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
-          <li><strong>HECS-HELP:</strong> Included where salary exceeds the $67,000 minimum repayment threshold using the new marginal system.</li>
+          <li><strong>HECS-HELP:</strong> Included where salary exceeds the $69,528 minimum repayment threshold using the new marginal system.</li>
         </ol>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

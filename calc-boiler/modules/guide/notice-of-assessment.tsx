@@ -142,7 +142,7 @@ export default function NoticeOfAssessmentPage() {
 
               <p><strong>Medicare Levy Surcharge</strong> applies if you earn over $93,000 (singles) or $186,000 (families) and do not hold eligible private hospital cover. The surcharge is 1%&ndash;1.5% depending on your income tier. See our <Link href="/private-health-insurance-medicare/">Private Health Insurance &amp; Medicare guide</Link>.</p>
 
-              <p><strong>HECS-HELP Repayment</strong> is your compulsory student loan repayment, calculated on your Repayment Income. Under the new marginal system, you only pay on income above the $67,000 threshold. The amount shown on your NOA is the total compulsory repayment for the year.</p>
+              <p><strong>HECS-HELP Repayment</strong> is your compulsory student loan repayment, calculated on your Repayment Income. Under the new marginal system, you only pay on income above the $69,528 threshold. The amount shown on your NOA is the total compulsory repayment for the year.</p>
 
               <p><strong>PAYG Credits</strong> represent the tax your employer(s) withheld from your pay during the year. If your employer withheld more than your total tax liability, you receive a refund. If they withheld less, you owe the difference.</p>
             </section>

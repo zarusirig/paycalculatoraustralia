@@ -207,7 +207,7 @@ export default function UnderstandingYourPayslipPage() {
                   </thead>
                   <tbody className="text-navy divide-y divide-gray-100">
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">PAYG Withholding</td><td className="px-4 py-2">Mandatory</td><td className="px-4 py-2">Income tax + Medicare Levy withheld each pay cycle</td><td className="px-4 py-2">16%&ndash;45% marginal + 2% ML</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">HECS-HELP Repayment</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Withheld when income exceeds repayment threshold</td><td className="px-4 py-2">Threshold: <strong>$67,000</strong></td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">HECS-HELP Repayment</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Withheld when income exceeds repayment threshold</td><td className="px-4 py-2">Threshold: <strong>$69,528</strong></td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Child Support</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Employer deducts per Services Australia notice</td><td className="px-4 py-2">Varies by assessment</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Salary Sacrifice (Super)</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Pre-tax contribution to super fund</td><td className="px-4 py-2">Concessional cap: <strong>$30,000</strong>/yr</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Salary Sacrifice (Other)</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Novated lease, laptop, additional insurance</td><td className="px-4 py-2">Subject to FBT rules</td></tr>
@@ -341,7 +341,7 @@ export default function UnderstandingYourPayslipPage() {
               <ul>
                 <li><strong>SG rate increased to {formatPercent(SUPER_GUARANTEE.rate, 0)}:</strong> The super line on your payslip rises from 11.5% to 12% of ordinary time earnings from 1 July 2025. On an $85,000 salary, this adds <strong>$425 per year</strong> to your super.</li>
                 <li><strong>Stage 3 tax cuts (ongoing):</strong> The 19% bracket reduced to <strong>16%</strong> and the 32.5% bracket reduced to <strong>30%</strong>, with the threshold extended from $120,000 to <strong>$135,000</strong>. PAYG withholding amounts on your payslip reflect these lower rates.</li>
-                <li><strong>HECS-HELP marginal system:</strong> The repayment threshold increased to <strong>$67,000</strong> (from $54,435). Repayments now use a marginal model at <strong>15 cents per dollar</strong> over $67,000 instead of the previous percentage-of-total-income system. Employees with HECS debt see lower withholding amounts near the threshold.</li>
+                <li><strong>HECS-HELP marginal system:</strong> The repayment threshold increased to <strong>$69,528</strong> (from $69,528). Repayments now use a marginal model at <strong>15 cents per dollar</strong> over $69,528 instead of the previous percentage-of-total-income system. Employees with HECS debt see lower withholding amounts near the threshold.</li>
                 <li><strong>Income Statement deadline:</strong> Employers must finalise STP data and mark Income Statements as &ldquo;Tax Ready&rdquo; by <strong>14 July 2026</strong> for the FY2025-26 year.</li>
               </ul>
               <p>
@@ -395,7 +395,7 @@ export default function UnderstandingYourPayslipPage() {
                 <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does my HECS-HELP repayment show separately on my payslip?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY2025-26 repayment threshold is <strong>$67,000</strong>. Below this income level, no repayment is withheld.
+                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY2025-26 repayment threshold is <strong>$69,528</strong>. Below this income level, no repayment is withheld.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="super-check" className="border rounded-lg px-4 bg-sandstone bg-white">

@@ -65,7 +65,7 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Complete the TFN Declaration form</strong> (NAT 3092). Your employer will provide this or you can download it from the ATO website.</li>
                 <li>{"✅"} <strong>Tax-free threshold:</strong> Claim the $18,200 tax-free threshold only if this is your <strong>highest-paying job</strong> (or only job). If you have another job where you already claim it, select &quot;No&quot;.</li>
-                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot; — your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ($54,435 in FY2025-26).</li>
+                <li>{"✅"} <strong>HECS-HELP debt:</strong> If you have a student loan, tick &quot;Yes&quot; — your employer will withhold additional amounts for HELP repayments once your income exceeds the threshold ($69,528 in FY2026-27).</li>
                 <li>{"✅"} <strong>Submit within 28 days</strong> of starting. Without this form, your employer withholds tax at the highest rate (47%).</li>
               </ul>
               <p>
@@ -179,7 +179,7 @@ export default function NewJobChecklistPage() {
 
                 <AccordionItem value="hecs-new-job" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do I need to tell my new employer about HECS-HELP debt?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. On your TFN Declaration, tick &quot;Yes&quot; if you have a HELP, VSL, SFSS, or TSL debt. Your employer withholds additional amounts once your income exceeds the compulsory repayment threshold (<strong>$54,435</strong> for FY2025-26). If you do not declare your debt, you may face a lump sum repayment when you lodge your tax return.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. On your TFN Declaration, tick &quot;Yes&quot; if you have a HELP, VSL, SFSS, or TSL debt. Your employer withholds additional amounts once your income exceeds the compulsory repayment threshold (<strong>$69,528</strong> for FY2026-27). If you do not declare your debt, you may face a lump sum repayment when you lodge your tax return.</AccordionContent>
                 </AccordionItem>
 
               </Accordion>

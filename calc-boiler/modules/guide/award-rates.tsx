@@ -82,7 +82,7 @@ export default function AwardRatesGuidePage() {
             <section id="national-minimum-wage">
               <h2>What Is the National Minimum Wage for FY2025-26?</h2>
               <p>
-                The national minimum wage for FY2025-26 is <strong>$24.10 per hour</strong>, or <strong>$915.91 per week</strong> for a standard 38-hour week. This rate applies only to employees who are not covered by any Modern Award or enterprise agreement — typically senior managers, highly specialised professionals, or niche roles outside standard industry classifications.
+                The national minimum wage for FY2025-26 is <strong>$26.44 per hour</strong>, or <strong>$1,004.90 per week</strong> for a standard 38-hour week. This rate applies only to employees who are not covered by any Modern Award or enterprise agreement — typically senior managers, highly specialised professionals, or niche roles outside standard industry classifications.
               </p>
               <p>
                 The national minimum wage translates to an annual salary of approximately <strong>$47,627</strong> before tax. After income tax, the Medicare levy, and superannuation at the employer SG rate of <strong>12%</strong>, a worker on the national minimum wage takes home roughly <strong>$41,100 per year</strong> (about <strong>$790 per week</strong>). Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model the exact take-home pay at any salary level for FY2025-26.
@@ -100,10 +100,10 @@ export default function AwardRatesGuidePage() {
 
               <h3>National Minimum Wage vs Award Rates</h3>
               <p>
-                The national minimum wage is the absolute floor — no adult employee in Australia earns less than <strong>$24.10/hr</strong>. Award wages for specific industries sit above this floor because they recognise industry-specific skills, qualifications, and working conditions. A Level 1 retail worker under the General Retail Industry Award earns <strong>$25.44/hr</strong>, while a qualified chef under the Hospitality Industry Award earns <strong>$27.72/hr</strong> — both higher than the national minimum.
+                The national minimum wage is the absolute floor — no adult employee in Australia earns less than <strong>$26.44/hr</strong>. Award wages for specific industries sit above this floor because they recognise industry-specific skills, qualifications, and working conditions. A Level 1 retail worker under the General Retail Industry Award earns <strong>$25.44/hr</strong>, while a qualified chef under the Hospitality Industry Award earns <strong>$27.72/hr</strong> — both higher than the national minimum.
               </p>
               <p>
-                Casual employees receive an additional <strong>25% casual loading</strong> on top of the applicable base rate (award or NMW). This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. A casual worker on the national minimum wage earns <strong>$30.13/hr</strong> ($24.10 x 1.25). Check how casual loading affects your overall pay using our <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>.
+                Casual employees receive an additional <strong>25% casual loading</strong> on top of the applicable base rate (award or NMW). This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. A casual worker on the national minimum wage earns <strong>$30.13/hr</strong> ($26.44 x 1.25). Check how casual loading affects your overall pay using our <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>.
               </p>
             </section>
 
@@ -313,7 +313,7 @@ export default function AwardRatesGuidePage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3">FY2022-23</td><td className="px-5 py-3">5.2%</td><td className="px-5 py-3">$21.38</td><td className="px-5 py-3">$812.60</td></tr>
                       <tr><td className="px-5 py-3">FY2023-24</td><td className="px-5 py-3">5.75%</td><td className="px-5 py-3">$23.23</td><td className="px-5 py-3">$882.80</td></tr>
-                      <tr><td className="px-5 py-3">FY2024-25</td><td className="px-5 py-3">3.75%</td><td className="px-5 py-3">$24.10</td><td className="px-5 py-3">$915.91</td></tr>
+                      <tr><td className="px-5 py-3">FY2024-25</td><td className="px-5 py-3">3.75%</td><td className="px-5 py-3">$26.44</td><td className="px-5 py-3">$1,004.90</td></tr>
                       <tr><td className="px-5 py-3">FY2025-26</td><td className="px-5 py-3">3.5%</td><td className="px-5 py-3">$24.95</td><td className="px-5 py-3">$948.00</td></tr>
                       <tr className="bg-eucalyptus/5 font-medium"><td className="px-5 py-3">FY2026-27</td><td className="px-5 py-3">6%</td><td className="px-5 py-3">$26.44</td><td className="px-5 py-3">$1,004.90</td></tr>
                     </tbody>
@@ -389,7 +389,7 @@ export default function AwardRatesGuidePage() {
                 <AccordionItem value="nmw" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Are Award rates higher than the National Minimum Wage?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. The national minimum wage of <strong>$24.10/hr</strong> is the absolute floor for award-free employees. Award classification rates for specific industries are almost always higher because they recognise qualifications, experience levels, and industry-specific skills. Entry-level rates under most major awards start at <strong>$25.44/hr</strong> or above, and higher classification levels reach <strong>$30+/hr</strong>.
+                    Yes. The national minimum wage of <strong>$26.44/hr</strong> is the absolute floor for award-free employees. Award classification rates for specific industries are almost always higher because they recognise qualifications, experience levels, and industry-specific skills. Entry-level rates under most major awards start at <strong>$25.44/hr</strong> or above, and higher classification levels reach <strong>$30+/hr</strong>.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="casual" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -443,7 +443,7 @@ export default function AwardRatesGuidePage() {
                 <AccordionItem value="award-free" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What if no Award covers my job?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Approximately <strong>21% of Australian employees</strong> are &quot;award-free&quot; — not covered by any Modern Award or enterprise agreement. These workers are still protected by the <strong>National Employment Standards</strong> (10 minimum entitlements) and cannot be paid below the national minimum wage of <strong>$24.10/hr</strong>. Common award-free roles include senior managers, specialised professionals, and some agricultural workers.
+                    Approximately <strong>21% of Australian employees</strong> are &quot;award-free&quot; — not covered by any Modern Award or enterprise agreement. These workers are still protected by the <strong>National Employment Standards</strong> (10 minimum entitlements) and cannot be paid below the national minimum wage of <strong>$26.44/hr</strong>. Common award-free roles include senior managers, specialised professionals, and some agricultural workers.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="tax-on-award" className="border rounded-lg px-4 bg-sandstone bg-white">

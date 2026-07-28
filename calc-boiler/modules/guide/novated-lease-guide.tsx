@@ -697,7 +697,7 @@ export default function NovatedLeaseGuidePage() {
 
               <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">Does a novated lease reduce my HECS-HELP repayment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray"><strong>No</strong>. HECS-HELP repayment thresholds are based on &quot;Repayment Income&quot; (RI), which includes taxable income plus reportable fringe benefits and net investment losses. A novated lease reduces taxable income but adds a reportable fringe benefit amount, so your Repayment Income remains similar. The repayment threshold for FY2025-26 starts at <strong>$54,435</strong>. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full repayment rate table.</AccordionContent>
+                <AccordionContent className="text-warmgray"><strong>No</strong>. HECS-HELP repayment thresholds are based on &quot;Repayment Income&quot; (RI), which includes taxable income plus reportable fringe benefits and net investment losses. A novated lease reduces taxable income but adds a reportable fringe benefit amount, so your Repayment Income remains similar. The repayment threshold for FY2025-26 starts at <strong>$69,528</strong>. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full repayment rate table.</AccordionContent>
               </AccordionItem>
 
             </Accordion>
