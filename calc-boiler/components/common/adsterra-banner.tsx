@@ -37,9 +37,21 @@ export const ADSTERRA_BANNERS = {
   rectangle: { key: "584e01bc77cf4247805a893681c51494", width: 300, height: 250 },
   // 468x60 banner
   banner: { key: "3b8513e72e09c5bf3657de628894a5ca", width: 468, height: 60 },
-  // 160x600 wide skyscraper
-  skyscraper: { key: "f64f3ae47c2d39e35a680024ba01e11b", width: 160, height: 600 },
-  // 160x600 vertical sidebar (sticky)
+  // 160x300 vertical — INFERRED, verify in the dashboard before trusting it.
+  //
+  // The account has one 160x300_1 (id 29439540) and one 160x600_1 (id 29439541)
+  // placement, but this file previously declared BOTH vertical keys as 160x600,
+  // so one of them was wrong. The evidence points at this one:
+  //   - `sidebar` was the only rail key ever rendered (it was used twice), and
+  //     160x600_1 DOES appear in stats — requested, 0 fill.
+  //   - `skyscraper` was never rendered, and 160x300_1 does not appear in stats
+  //     at all, i.e. nothing ever requested it.
+  // Requesting a 160x300 unit at height 600 guarantees a no-fill, so if this is
+  // still at zero impressions after a fortnight, the rails are dead weight and
+  // should be deleted outright rather than resized again.
+  skyscraper: { key: "f64f3ae47c2d39e35a680024ba01e11b", width: 160, height: 300 },
+  // 160x600 vertical sidebar (sticky). Zero fill across 90 days despite running
+  // on every >=1280px pageview — the size has little demand for AU traffic.
   sidebar: { key: "9bb1158f01cfa66d4c444734a7ce0f13", width: 160, height: 600 },
   // 728x90 leaderboard
   leaderboard: { key: "96593e6130e3235baa70eb08ddca5c1e", width: 728, height: 90 },
