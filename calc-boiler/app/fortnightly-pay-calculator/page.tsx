@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Fortnightly Pay Calculator Australia — Take-Home Pay Every 2 Weeks (2025-26)",
+  title: "Fortnightly Pay Calculator Australia — Take-Home Every 2 Weeks",
   description:
     "Convert any salary or hourly rate to your fortnightly take-home pay. See exact tax, super and net amount paid every 2 weeks — Australian rates FY2025-26.",
   alternates: { canonical: URL },

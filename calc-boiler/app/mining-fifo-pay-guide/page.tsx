@@ -5,7 +5,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/mining-fifo-pay-guide/`;
-const TITLE = "Mining & FIFO Pay Guide Australia — Salary, Tax, Rosters & Allowances";
+const TITLE = "Mining & FIFO Pay Guide — Salary, Rosters & Allowances";
 const DESCRIPTION = "Mining and FIFO pay explained: average salaries ($100K–$200K+), roster structures, FIFO allowances, zone tax offset, overtime rates, and take-home pay calculation.";
 export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } };
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Mining & FIFO Pay Guide", item: URL }] };

@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-bracket-history/`;
-const TITLE = "Australian Tax Bracket History 2020\u20132026 \u2014 How Tax Rates Have Changed";
+const TITLE = "Australian Tax Bracket History — Every Rate From 2020 to 2026";
 const DESCRIPTION = "Australian tax brackets from FY2020-21 to FY2025-26. See how rates and thresholds changed year by year, including the Stage 3 tax cuts. Historical tax rate comparison.";
 
 export const metadata: Metadata = {

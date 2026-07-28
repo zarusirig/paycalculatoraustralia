@@ -14,11 +14,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Pay Calculator Australia",
-    default: "Pay Calculator Australia 2025-26 — Free Tax & Take-Home Pay Calculator",
+    // No "%s | Brand" template: the suffix cost a flat 233px of Google's
+    // ~600px title budget and was truncated on every page. Google appends
+    // the site name itself when it wants to.
+    template: "%s",
+    default: "Pay Calculator Australia — Free Tax & Take-Home Pay Calculator",
   },
   description:
-    "Free Australian pay & income tax calculator. Calculate your take-home pay instantly with current tax brackets, super, Medicare levy & HECS — updated for FY2025-26.",
+    "Free Australian pay & income tax calculator. Calculate your take-home pay instantly with current tax brackets, super, Medicare levy & HECS — official ATO rates.",
   metadataBase: new URL("https://pay-calculator-australia.com"),
   applicationName: "Pay Calculator Australia",
   authors: [{ name: "Pay Calculator Australia" }],

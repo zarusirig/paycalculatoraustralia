@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/bonus-tax-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Bonus Tax Calculator Australia — How Much Tax on Your Bonus (2025-26)",
+  title: "Bonus Tax Calculator Australia — Tax on Your Bonus",
   description:
     "Calculate how much tax you pay on a bonus or commission. See your actual take-home from any lump sum using marginal tax rates for FY2025-26.",
   alternates: { canonical: URL },

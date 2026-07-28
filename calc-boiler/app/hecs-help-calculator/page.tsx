@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hecs-help-calculator/`;
 
 export const metadata: Metadata = {
-  title: "HECS Repayment Calculator Australia 2026-27 — HELP Debt Rates",
+  title: "HECS Repayment Calculator 2026-27 — HELP Debt Rates",
   description:
     "Calculate your HECS-HELP repayment for 2026-27. Repayments start at $69,528 under the marginal rate system — see exactly how your student debt affects your take-home pay.",
   alternates: { canonical: URL },

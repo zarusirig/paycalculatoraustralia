@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/low-income-tax-offset/`;
-const TITLE = "LITO 2025-26: How Much Is Your Low Income Tax Offset? (Calculator)";
+const TITLE = "LITO — Work Out Your Low Income Tax Offset ($700 Max)";
 const DESCRIPTION = "Calculate your exact LITO amount for FY2025-26. See the $700 max offset, the $37,500–$66,667 phase-out, and how much tax you actually save — with examples by income.";
 
 export const metadata: Metadata = {

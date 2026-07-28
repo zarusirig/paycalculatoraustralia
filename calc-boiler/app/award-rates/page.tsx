@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/award-rates/`;
-const TITLE = "Award Rates Australia 2025-26 — Minimum Pay by Industry & Classification";
+const TITLE = "Award Rates Australia — Minimum Pay by Industry & Level";
 const DESCRIPTION = "Find current minimum award pay rates in Australia for FY2025-26. Hospitality, retail, building & construction, nurses, teachers — covered by industry, with overtime, penalty rate & allowance calculations.";
 
 export const metadata: Metadata = {

@@ -9,7 +9,7 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/final-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Final Pay Calculator Australia — End of Employment Payout (2025-26)",
+  title: "Final Pay Calculator Australia — End of Employment Payout",
   description:
     "Calculate your final pay when leaving a job. See unused annual leave payout, notice period pay, long service leave, and tax on your final payment. Free Australian calculator.",
   alternates: { canonical: PAGE_URL },

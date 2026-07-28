@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-vs-mortgage/`;
-const TITLE = "Salary Sacrifice Into Super vs Extra Mortgage Payments \u2014 Which Wins?";
+const TITLE = "Salary Sacrifice to Super vs Extra Mortgage Payments";
 const DESCRIPTION = "Should you salary sacrifice into super or make extra mortgage payments? Compare tax savings, investment returns, and accessibility. Real scenarios at different income and debt levels.";
 
 export const metadata: Metadata = {

@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Salary Sacrifice Calculator — How Much Will You Save? (2025-26)",
+  title: "Salary Sacrifice Calculator — How Much Will You Save?",
   description:
     "Compare take-home pay before and after salary sacrifice. See your tax savings, super boost & actual benefit. Free Australian calculator updated for FY2025-26.",
   alternates: { canonical: URL },

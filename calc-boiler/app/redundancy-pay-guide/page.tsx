@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/redundancy-pay-guide/`;
-const TITLE = "Redundancy Pay & Rights Australia — Calculating Your Entitlements";
+const TITLE = "Redundancy Pay & Rights Australia — Your Entitlements";
 const DESCRIPTION = "Understand your legal redundancy rights in Australia. Learn about the NES, genuine vs non-genuine redundancy, ETP tax codes, and the tax-free component limits.";
 
 export const metadata: Metadata = {

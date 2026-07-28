@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-brackets/`;
 
 export const metadata: Metadata = {
-  title: "Australian Tax Brackets 2025-26 — Income Tax Rates & Thresholds",
+  title: "Australian Tax Rates & Income Tax Brackets",
   description: "Complete guide to Australian income tax brackets for FY2025-26. Rates, thresholds, worked examples, LITO, Stage 3 tax cuts, and what changed. Official ATO data.",
   alternates: { canonical: URL },
   openGraph: { title: "Australian Tax Brackets 2025-26", description: "Complete guide with rates, thresholds, worked examples. All ATO data.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },

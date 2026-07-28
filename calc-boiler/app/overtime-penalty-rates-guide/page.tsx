@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
 
 export const metadata: Metadata = {
-  title: "Overtime & Penalty Rates Guide — NES Provisions & Award Rates",
+  title: "Overtime & Penalty Rates — NES Provisions & Award Rates",
   description: "Overtime and penalty rates: NES provisions, common award multipliers, casual vs permanent rates. Tables for weekend, public holiday and overtime pay.",
   alternates: { canonical: URL },
   openGraph: { title: "Overtime & Penalty Rates Guide", description: "Complete guide to overtime pay and penalty rates in Australia.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

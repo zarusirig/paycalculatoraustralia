@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employer-cost-calculator/`;
-const TITLE = "Employer Cost Calculator — The True Cost of an Employee";
+const TITLE = "True Cost of an Employee Calculator Australia";
 const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia. Learn about superannuation, payroll tax, workers compensation, and leave provisions loaded onto a base salary.";
 
 export const metadata: Metadata = {

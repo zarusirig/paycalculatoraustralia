@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/private-health-insurance-medicare/`;
-const TITLE = "Private Health Insurance & Medicare Levy Surcharge — Do You Need PHI?";
+const TITLE = "Private Health Insurance & Medicare Levy Surcharge";
 const DESCRIPTION = "Should you get private health insurance to avoid the Medicare Levy Surcharge? Income thresholds, surcharge rates, PHI rebate tiers, and when PHI saves you money vs costs more.";
 
 export const metadata: Metadata = {

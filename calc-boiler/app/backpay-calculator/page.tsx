@@ -9,7 +9,7 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
+  title: "Backpay Calculator Australia — Underpayment & Wage Theft",
   description:
     "Calculate how much you're owed in backpay. Enter your actual rate vs correct rate, hours worked, and period. See total underpayment including super and leave. Free calculator.",
   alternates: { canonical: PAGE_URL },

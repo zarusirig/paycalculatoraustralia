@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/medicare-levy/`;
 
 export const metadata: Metadata = {
-  title: "Medicare Levy Calculator 2025-26 — 2% Rate, Surcharge & Who Pays",
+  title: "Medicare Levy Calculator — 2% Rate, Surcharge & Who Pays",
   description:
     "Work out your Medicare Levy in seconds. 2% standard rate, low-income exemption thresholds, MLS surcharge by income — calculate yours for FY2025-26.",
   alternates: { canonical: URL },

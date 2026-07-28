@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/division-293-tax/`;
-const TITLE = "Division 293 Tax Explained — Extra 15% Super Tax for High Earners (2025-26)";
+const TITLE = "Division 293 Tax — The Extra 15% Super Tax for High Earners";
 const DESCRIPTION = "Division 293 tax: the extra 15% tax on super contributions for income over $250K. Who pays it, how it's calculated, how to pay, and strategies to manage it.";
 
 export const metadata: Metadata = {

@@ -7,7 +7,7 @@ import NewsIndexPage from "@/modules/news/index-page";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
-const TITLE = "Australian Pay & Tax News — Wage, Super & Tax Changes Explained";
+const TITLE = "Australian Pay & Tax News — Wage, Super & Tax Changes";
 const DESCRIPTION = "The latest Australian pay news: minimum wage decisions, tax changes, superannuation rules, HECS updates and Centrelink payment increases — with what each change means for your take-home pay.";
 
 export const metadata: Metadata = {

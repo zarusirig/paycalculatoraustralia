@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
-const TITLE = "Schedule 5 Tax Table — PAYG on Bonuses, Commissions & Back Pay";
+const TITLE = "Schedule 5 Tax Table — PAYG on Bonuses & Back Pay";
 const DESCRIPTION = "How PAYG Schedule 5 (NAT 3348) works for back payments, commissions and bonuses: Method A vs Method B explained with a 2026-27 calculator showing the tax withheld from your bonus.";
 
 export const metadata: Metadata = {

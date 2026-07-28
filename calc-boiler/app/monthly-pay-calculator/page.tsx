@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Monthly Pay Calculator Australia — Net Salary Per Month (2025-26)",
+  title: "Monthly Pay Calculator Australia — Net Salary Per Month",
   description: "Calculate your monthly take-home pay after all deductions. See tax, super & Medicare broken down per month. Free Australian calculator.",
   alternates: { canonical: URL },
   openGraph: { title: "Monthly Pay Calculator Australia", description: "Calculate your monthly take-home pay and tax deductions.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

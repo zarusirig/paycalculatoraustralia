@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Annual Leave Calculator Australia — How Much Your Leave Payout Actually Is (2025-26)",
+  title: "Annual Leave Calculator Australia — What Your Payout Is Worth",
   description:
     "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading & lump-sum payouts — FY2025-26 Australian rates.",
   alternates: { canonical: URL },

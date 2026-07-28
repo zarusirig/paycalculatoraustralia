@@ -9,7 +9,7 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2025-26)",
+  title: "Second Job Tax Calculator Australia — Tax on Two Jobs",
   description:
     "Calculate how much tax you pay on a second job in Australia. See why your second job is taxed higher, PAYG withholding without the tax-free threshold, and your combined take-home pay.",
   alternates: { canonical: PAGE_URL },

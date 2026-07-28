@@ -5,7 +5,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/tech-salary-guide-australia/`;
-const TITLE = "IT & Tech Salary Guide Australia 2025 — Developer, Engineer & PM Pay";
+const TITLE = "Tech Salary Guide Australia — Developer & Engineer Pay";
 const DESCRIPTION = "IT and tech salaries in Australia: software developer, data engineer, project manager, cybersecurity pay. Contractor vs permanent rates, and salary packaging for tech workers.";
 export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } };
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "IT & Tech Salary Guide", item: URL }] };

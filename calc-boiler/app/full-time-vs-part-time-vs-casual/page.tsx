@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/full-time-vs-part-time-vs-casual/`;
-const TITLE = "Full-Time vs Part-Time vs Casual \u2014 Complete Comparison Guide Australia";
+const TITLE = "Full-Time vs Part-Time vs Casual — Complete Comparison";
 const DESCRIPTION = "Compare full-time, part-time, and casual employment: leave entitlements, notice periods, casual loading (25%), casual conversion, and which type is best for your situation.";
 
 export const metadata: Metadata = {

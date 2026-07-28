@@ -5,7 +5,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/construction-trades-pay/`;
-const TITLE = "Construction & Trades Pay Guide — Apprentice, Tradie & Labourer Pay Rates";
+const TITLE = "Construction & Trades Pay Guide — Tradie & Apprentice Rates";
 const DESCRIPTION = "Construction and trades pay rates: apprentice wages, qualified trade rates, labourer pay, overtime, site allowances, and take-home pay for tradies in Australia.";
 export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } };
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Construction & Trades Pay Guide", item: URL }] };

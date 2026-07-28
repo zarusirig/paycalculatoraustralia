@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/weekly-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Weekly Pay Calculator Australia — Take-Home Pay Per Week (2025-26)",
+  title: "Weekly Pay Calculator Australia — Your Net Pay Per Week",
   description: "Calculate your weekly take-home pay after tax, super & Medicare. Enter your annual salary and see your weekly net pay breakdown.",
   alternates: { canonical: URL },
   openGraph: { title: "Weekly Pay Calculator Australia", description: "Calculate your weekly take-home pay after tax, super & Medicare.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

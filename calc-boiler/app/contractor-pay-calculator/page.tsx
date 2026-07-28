@@ -11,7 +11,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contractor Pay Calculator Australia — What You Take Home as a Contractor (2025-26)",
+  title: "Contractor Pay Calculator Australia — Your Real Take-Home",
   description:
     "Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution & deductions — ABN vs PAYG comparison for FY2025-26.",
   alternates: {

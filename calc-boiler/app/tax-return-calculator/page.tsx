@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Tax Return Estimator Australia — Estimate Your Tax Refund (2025-26)",
+  title: "Tax Return Estimator Australia — Estimate Your Refund",
   description:
     "Estimate your tax refund or bill for FY2025-26. Enter salary, deductions and see how much you get back. Free Australian tax return estimator.",
   alternates: { canonical: URL },

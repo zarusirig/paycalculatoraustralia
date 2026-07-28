@@ -9,7 +9,7 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/income-tax-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Income Tax Calculator Australia 2025-26 — How Much Tax Do You Pay?",
+  title: "Income Tax Calculator Australia — How Much Tax Do You Pay?",
   description:
     "Calculate your Australian income tax instantly using ATO brackets for FY2025-26. See how much tax you pay on any salary from $30,000 to $200,000 — with bracket-by-bracket breakdown.",
   alternates: { canonical: PAGE_URL },

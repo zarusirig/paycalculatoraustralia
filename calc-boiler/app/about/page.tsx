@@ -7,7 +7,7 @@ import { ShieldCheck, Database, RefreshCw, ExternalLink } from "lucide-react";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/about/`;
-const TITLE = "About Pay Calculator Australia — Our Methodology & Data Sources";
+const TITLE = "About Pay Calculator Australia — Methodology & Sources";
 const DESCRIPTION =
   "Learn how Pay Calculator Australia ensures accuracy. Our methodology, data sources (ATO, Fair Work), and commitment to free, up-to-date Australian pay calculators.";
 

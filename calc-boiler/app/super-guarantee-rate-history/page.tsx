@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-rate-history/`;
-const TITLE = "Super Guarantee Rate History \u2014 SG Rate 1992 to 2025 & Beyond";
+const TITLE = "Super Guarantee Rate History — Every SG Rate 1992 to 2026";
 const DESCRIPTION = "History of the super guarantee rate from 3% in 1992 to 12% in 2025-26. See every rate change, the path to 12%, and what it means for your retirement savings.";
 
 export const metadata: Metadata = {

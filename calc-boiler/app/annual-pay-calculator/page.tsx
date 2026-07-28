@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/annual-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Annual Salary Calculator Australia — Yearly Take-Home Pay (2025-26)",
+  title: "Annual Salary Calculator Australia — Yearly Take-Home Pay",
   description: "Free annual salary calculator for Australia FY2025-26. Convert any yearly gross salary (e.g. $80,000, $100,000) into annual take-home pay after income tax, Medicare levy & HECS.",
   alternates: { canonical: URL },
   openGraph: { title: "Annual Salary Calculator Australia — Yearly Take-Home Pay (2025-26)", description: "Convert any gross annual salary into your yearly take-home figure after tax, Medicare & HECS.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-file-number-declaration/`;
-const TITLE = "Tax File Number Declaration Guide — How to Fill It In (2025-26)";
+const TITLE = "Tax File Number Declaration — How to Fill It In";
 const DESCRIPTION = "How to complete a TFN declaration for a new job. Tax-free threshold claim, HECS debt notification, and what happens if you don't provide your TFN. Step-by-step guide.";
 
 export const metadata: Metadata = {

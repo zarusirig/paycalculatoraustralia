@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-qld/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator QLD 2025-26 — Queensland Take-Home Pay",
+  title: "Pay Calculator QLD — Queensland Take-Home Pay",
   description: "Calculate your take-home pay in Queensland. Learn about federal income tax, QLD payroll tax thresholds, WorkCover, and average salaries in Brisbane & QLD.",
   alternates: { canonical: URL },
   openGraph: { title: "Pay Calculator QLD — Take-Home Pay in Queensland", description: "Calculate your net pay in QLD. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
