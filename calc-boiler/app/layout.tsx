@@ -5,6 +5,9 @@ import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
 import FirebaseAnalytics from "@/components/firebase-analytics";
 import AdsterraBanner from "@/components/common/adsterra-banner";
+import { WhatsNext } from "@/components/common/content-slots";
+import DeferredSocialBar from "@/components/common/deferred-social-bar";
+import EngagementTracking from "@/components/common/engagement-tracking";
 
 export const viewport: Viewport = {
   themeColor: "#1a2744",
@@ -64,13 +67,15 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6191764023643150"
-          crossOrigin="anonymous"
-        />
-        <meta name="google-adsense-account" content="ca-pub-6191764023643150" />
+        {/* AdSense script removed: no `<ins class="adsbygoogle">` units exist on
+            the site and no application is pending, so it was a blocking
+            third-party request on every pageview for zero revenue. Re-add this
+            script and the `google-adsense-account` meta tag together if AdSense
+            is ever applied for. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
+        {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
+        <link rel="preconnect" href="https://www.highperformanceformat.com" />
+        <link rel="dns-prefetch" href="https://www.highperformanceformat.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
@@ -89,47 +94,69 @@ export default function RootLayout({
         </a>
         <Navbar />
 
-        {/* Sticky vertical sidebar ads — follow scroll, shown on wide screens only */}
+        {/* Sticky vertical rails — wide desktop only.
+            Gated at 1700px rather than `xl` (1280px). The content column is
+            max-w-7xl = 1280px centred, and each 160px rail plus its offset needs
+            roughly 185px of clear space per side, so the rails only clear the
+            article above ~1650px. Between 1280px and 1650px they rendered ON TOP
+            of the content — which covers 1366x768, 1440x900 and 1536x864, three
+            of the most common desktop resolutions in use. */}
         <aside
           aria-hidden="true"
-          className="hidden xl:block fixed left-2 top-1/2 -translate-y-1/2 z-40"
+          className="hidden min-[1700px]:block fixed left-2 top-1/2 -translate-y-1/2 z-40"
         >
           <AdsterraBanner slot="sidebar" />
         </aside>
         <aside
           aria-hidden="true"
-          className="hidden xl:block fixed right-2 top-1/2 -translate-y-1/2 z-40"
+          className="hidden min-[1700px]:block fixed right-2 top-1/2 -translate-y-1/2 z-40"
         >
-          <AdsterraBanner slot="sidebar" />
+          {/* Distinct key from the left rail. Adsterra serves one placement per
+              key per pageview, so the previous duplicate `sidebar` either
+              no-filled or collapsed in reporting. `skyscraper` is the same
+              160x600 size, was already provisioned, and was never rendered. */}
+          <AdsterraBanner slot="skyscraper" />
         </aside>
 
-        {/* Top display ad — every page (leaderboard on desktop, mobile banner on phones) */}
+        {/* Top display ad.
+            Kept above the fold on BOTH breakpoints on purpose. It is the only
+            unit guaranteed to be seen by a visitor who bounces, and Adsterra
+            pays per impression — dropping it would have cost an impression on
+            every short mobile session, which is most of them. The mobile unit
+            uses `compact` spacing so it costs ~60px of fold instead of ~98px. */}
         <div className="hidden sm:block">
           <AdsterraBanner slot="leaderboard" />
         </div>
         <div className="block sm:hidden">
-          <AdsterraBanner slot="mobile" />
+          <AdsterraBanner slot="mobile" compact />
         </div>
 
         <main id="main-content">{children}</main>
 
-        {/* Bottom display ad — every page */}
+        {/* 300x250 directly after the article, immediately before the
+            related-links block. The reader has finished the content and is
+            looking for what comes next, so this position is genuinely viewed
+            rather than scrolled past. Shown on every breakpoint — on mobile it
+            replaces the old second 320x50, which was the lowest-CPM unit in the
+            account. */}
+        <AdsterraBanner slot="rectangle" />
+
+        <WhatsNext />
+
+        {/* Bottom banner — desktop only. Mobile already has two units above and
+            a third would push ad density past the point of diminishing returns. */}
         <div className="hidden sm:block">
-          <AdsterraBanner slot="rectangle" />
-        </div>
-        <div className="block sm:hidden">
-          <AdsterraBanner slot="mobile" />
+          <AdsterraBanner slot="banner" />
         </div>
 
         <Footer />
         <FirebaseAnalytics />
+        <EngagementTracking />
 
-        {/* Adsterra social bar / popunder (loaded once, site-wide) */}
-        <Script
-          id="adsterra-social"
-          src="https://pl29540036.effectivecpmnetwork.com/d6/b7/79/d6b779f19c693c0f80a1c6a82ba34550.js"
-          strategy="afterInteractive"
-        />
+        {/* Adsterra social bar / popunder, deferred until the visitor has stayed
+            45s or used a calculator. This is the one change here that costs
+            impressions — see the component for the dial. */}
+        <DeferredSocialBar />
 
         {/* GA4 */}
         <Script
