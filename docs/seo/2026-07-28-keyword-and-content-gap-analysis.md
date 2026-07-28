@@ -362,6 +362,37 @@ mid-September), and concessional-cap relief for the changeover is **announced
 but not law** — the ATO's own wording, as at 27 July 2026, is "This is not yet
 law."
 
+**Also done, 28 July:** items 3, 7, 8, 14 and 15, run as five parallel
+workstreams and deployed together.
+
+- **15 — CGT** `/capital-gains-tax-calculator/` (11,000/mo, the largest
+  untapped keyword found). Also established that the **50% CGT discount is
+  replaced from 1 July 2027** by cost base indexation plus a 30% minimum tax,
+  and that this is **already law** (Act No. 49 of 2026, assent 26 June 2026) —
+  the ATO's own CGT pages still describe it as "announced in the 2026-27
+  Federal Budget" on a page updated *after* assent. FY2026-27 is unaffected.
+- **14 — work hours** `/work-hours-calculator/` (`hours calculator` 15,000/mo).
+- **3 — dormant pages** `/medicare-levy/` now carries the calculator the query
+  wants (6,300/mo at KD 4). Found that `MEDICARE_LEVY` was headed "FY2026-27"
+  while its low-income thresholds are the 2025-26 figures — the ATO has not
+  published 2026-27 ones. Two income years in one object, now labelled apart.
+- **7 — tax tables** all four thickened to ~3,200 words and 30 rows, with the
+  **NAT numbers** in titles and descriptions, ATO PDF/XLSX links (previously
+  zero) and `Dataset` schema. The ATO's XLSX coefficients match our engine
+  digit for digit.
+- **8 — HECS** consolidated. New narrow `/hecs-repayment-threshold/` (463
+  words) for threshold intent; the calculator absorbed all six loan schemes for
+  calculator intent; the 2,907-word omnibus cut to 1,854 and stripped of the
+  rate table. Six schemes share the thresholds, not seven — TSL is now AASL.
+
+**The most consequential find was an engine defect**, not a content gap.
+`calculateSchedule5MethodB` capped withholding at 100% of an additional
+payment where the ATO caps it at **47%** (QC107123). On $8,000/fortnight plus
+a $1,000 bonus with STSL it withheld 57.2%. That engine feeds
+`/bonus-tax-calculator/` — the site's single highest-traffic page at 1,057
+clicks/28d. Fixed, with five regression tests; no existing anchored test moved,
+so ordinary bonuses are unchanged.
+
 **Open:** the holidays cluster (item 16, needs a strategic call) and the
 occupational clusters (item 17). Item 11 — rebuilding `/` and
 `/income-tax-calculator/` on the aussalarycalculator pattern, the ~1,160,000
