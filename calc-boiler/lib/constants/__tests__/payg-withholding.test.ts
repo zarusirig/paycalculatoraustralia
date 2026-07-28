@@ -19,6 +19,7 @@ import assert from "node:assert/strict";
 import {
   calculatePAYGWithholding,
   withholdingForPeriod,
+  stslForPeriod,
   FORTNIGHTLY_TABLE_AMOUNTS,
   WEEKLY_TABLE_AMOUNTS,
 } from "../payg-withholding";
@@ -130,4 +131,91 @@ test("ATO HECS worked example: $137,064 repayment income", () => {
 test("no HECS repayment below the FY2026-27 threshold", () => {
   assert.equal(calculateHECS(69_528), 0);
   assert.ok(calculateHECS(69_529) >= 0);
+});
+
+// -----------------------------------------------------------------------------
+// Anchor: ATO Schedule 8 (NAT 3539) — study and training support loans.
+//
+// Published 17 June 2026, applies from 1 July 2026. y = ax − b on the WEEKLY
+// equivalent, then converted back to the pay period.
+//
+// These guard the second annualise-and-divide defect, found 28 July 2026 while
+// verifying the deployed fortnightly table. The STSL component was computed as
+// round(annualHECS / periods), which is neither the ATO's formula nor its
+// rounding, and produced odd-dollar fortnightly figures the ATO never publishes.
+// -----------------------------------------------------------------------------
+
+test("Schedule 8 example 1: weekly $2,608.36 with threshold claimed → $193", () => {
+  // x = 2,608.99; y = (0.1700 × 2,608.99) − 250.4527 = 193.0756 → $193
+  assert.equal(stslForPeriod(2_608.36, "weekly", "tft"), 193);
+});
+
+test("Schedule 8 example 2: fortnightly $4,409.75 with threshold claimed → $260", () => {
+  // weekly equivalent 2,204.99; y = (0.1500 × 2,204.99) − 200.5615 = 130.187
+  // → $130, doubled to $260
+  assert.equal(stslForPeriod(4_409.75, "fortnightly", "tft"), 260);
+});
+
+test("Schedule 8 example 3: monthly $10,627.88 without threshold → $979", () => {
+  // weekly equivalent 2,452.99; y = (0.1700 × 2,452.99) − 190.9527 = 226.0556
+  // → $226, × 13 ÷ 3 = 979.33 → $979
+  assert.equal(stslForPeriod(10_627.88, "monthly", "noTft"), 979);
+});
+
+test("Schedule 8: no component below the ATO's stated thresholds", () => {
+  // The ATO thresholds ($1,337 weekly with the threshold claimed, $987 without)
+  // are where you START applying the formula, not where the result turns
+  // positive — at the very bottom of the band y rounds to zero. At $1,337
+  // exactly, y = (0.15 × 1,337.99) − 200.5615 = $0.14, which rounds to $0.
+  assert.equal(stslForPeriod(1_336, "weekly", "tft"), 0, "below threshold");
+  assert.equal(stslForPeriod(2_672, "fortnightly", "tft"), 0, "below threshold");
+  assert.equal(stslForPeriod(1_337, "weekly", "tft"), 0, "at threshold, rounds to nil");
+  assert.ok(stslForPeriod(1_400, "weekly", "tft") > 0, "positive above the band floor");
+
+  assert.equal(stslForPeriod(986, "weekly", "noTft"), 0, "below threshold");
+  assert.ok(stslForPeriod(1_100, "weekly", "noTft") > 0, "positive above the band floor");
+});
+
+test("Schedule 8: foreign residents use the threshold-claimed STSL table", () => {
+  assert.equal(
+    stslForPeriod(4_409.75, "fortnightly", "foreignResident"),
+    stslForPeriod(4_409.75, "fortnightly", "tft"),
+  );
+});
+
+test("every fortnightly STSL component is an even dollar amount", () => {
+  // The ATO derives a rounded WEEKLY component and doubles it, so a fortnightly
+  // figure can never be odd. This is the assertion that would have caught the
+  // annualise-and-divide defect.
+  for (const scale of ["tft", "noTft", "foreignResident"] as const) {
+    for (let gross = 0; gross <= 12_000; gross += 20) {
+      const stsl = stslForPeriod(gross, "fortnightly", scale);
+      assert.equal(stsl % 2, 0, `${scale} at $${gross} gave an odd $${stsl}`);
+    }
+  }
+});
+
+test("every fortnightly TOTAL withheld is an even dollar amount, with STSL on", () => {
+  for (const gross of FORTNIGHTLY_TABLE_AMOUNTS) {
+    for (const claimsTaxFreeThreshold of [true, false]) {
+      const r = calculatePAYGWithholding(gross, "fortnightly", {
+        claimsTaxFreeThreshold,
+        hasSTSL: true,
+      });
+      assert.equal(
+        r.totalWithheld % 2,
+        0,
+        `$${gross} tft=${claimsTaxFreeThreshold} gave an odd total $${r.totalWithheld}`,
+      );
+    }
+  }
+});
+
+test("STSL rises monotonically with earnings", () => {
+  let previous = 0;
+  for (let gross = 0; gross <= 15_000; gross += 50) {
+    const stsl = stslForPeriod(gross, "fortnightly", "tft");
+    assert.ok(stsl >= previous, `STSL fell from $${previous} to $${stsl} at $${gross}`);
+    previous = stsl;
+  }
 });

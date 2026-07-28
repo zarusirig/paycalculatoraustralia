@@ -26,12 +26,11 @@
 // TAX_HISTORY.upcomingFY2026_27 in australian-tax.ts.
 // =============================================================================
 
-import {
-  LITO,
-  MEDICARE_LEVY,
-  calculateHECS,
-  type TaxBracket,
-} from "./australian-tax";
+// calculateHECS is deliberately NOT imported here. The STSL withholding
+// component comes from Schedule 8's own coefficients, not from the annual
+// repayment schedule — mixing the two is what produced the defect fixed on
+// 28 July 2026.
+import { LITO, MEDICARE_LEVY } from "./australian-tax";
 
 export const PAYG_FINANCIAL_YEAR = "2026-27";
 export const PAYG_TABLES_UPDATED = "1 July 2026";
@@ -164,6 +163,61 @@ const SCALES: Record<WithholdingScale, readonly CoefficientBand[]> = {
   foreignResident: SCALE_3_FOREIGN,
 };
 
+// ---------- Schedule 8 (NAT 3539): study and training support loans ----------
+//
+// Published 17 June 2026, applies to payments made from 1 July 2026.
+//
+// From FY2025-26 student loan repayments moved to a MARGINAL system, so the
+// component is y = ax − b on the weekly equivalent — not a flat percentage of
+// income, and not the annual repayment schedule divided back to the period.
+//
+// This engine previously annualised earnings, ran the annual HECS bands and
+// divided the result by the number of pay periods. That is the same
+// annualise-and-divide shape as the NAT 1006 defect fixed in July 2026, and it
+// produced fortnightly figures the ATO never publishes — the ATO always derives
+// a rounded WEEKLY component and doubles it, so a fortnightly STSL amount is
+// necessarily even.
+
+/** Schedule 8 — tax-free threshold claimed, or foreign resident. */
+export const STSL_TFT: readonly CoefficientBand[] = [
+  { lessThan: 1_337, a: null, b: 0 },
+  { lessThan: 2_494, a: 0.1500, b: 200.5615 },
+  { lessThan: 3_577, a: 0.1700, b: 250.4527 },
+  { lessThan: Infinity, a: 0.1000, b: 0 },
+] as const;
+
+/** Schedule 8 — tax-free threshold NOT claimed. */
+export const STSL_NO_TFT: readonly CoefficientBand[] = [
+  { lessThan: 987, a: null, b: 0 },
+  { lessThan: 2_144, a: 0.1500, b: 148.0615 },
+  { lessThan: 2_727, a: 0.1700, b: 190.9527 },
+  { lessThan: Infinity, a: 0.1000, b: 0 },
+] as const;
+
+const STSL_SCALES: Record<WithholdingScale, readonly CoefficientBand[]> = {
+  // The ATO groups "tax-free threshold claimed" and "foreign resident" into one
+  // STSL table; only the no-threshold case differs.
+  tft: STSL_TFT,
+  foreignResident: STSL_TFT,
+  noTft: STSL_NO_TFT,
+};
+
+/**
+ * Study and training support loans component for one pay period, per ATO
+ * Schedule 8. Uses the same weekly-equivalent machinery as Schedule 1, so a
+ * fortnightly component is always an even number of dollars.
+ */
+export function stslForPeriod(
+  grossPerPeriod: number,
+  frequency: PayFrequency,
+  scale: WithholdingScale = "tft"
+): number {
+  if (grossPerPeriod <= 0) return 0;
+  const x = toWeeklyEquivalent(grossPerPeriod, frequency);
+  const weekly = applyScale(x, STSL_SCALES[scale]);
+  return fromWeeklyWithholding(weekly, frequency);
+}
+
 /**
  * Withholding for one pay period under a given Schedule 1 scale.
  * This is the ATO's published method and reproduces NAT 1005/1006/1007.
@@ -236,10 +290,11 @@ export function calculatePAYGWithholding(
 
   const paygWithheld = withholdingForPeriod(gross, frequency, scale);
 
-  // STSL (Schedule 8, NAT 3539) is derived from the annual repayment schedule
-  // divided back to the pay period. Foreign residents and payees not claiming
-  // the threshold still repay, so this is independent of the scale above.
-  const stslWithheld = hasSTSL ? Math.max(0, Math.round(calculateHECS(annual) / periods)) : 0;
+  // STSL (Schedule 8, NAT 3539) uses its own coefficient table on the weekly
+  // equivalent — NOT the annual repayment schedule divided back to the period.
+  // Which STSL table applies depends on the same threshold/residency choice as
+  // the PAYG scale above.
+  const stslWithheld = hasSTSL ? stslForPeriod(gross, frequency, scale) : 0;
   const totalWithheld = paygWithheld + stslWithheld;
 
   return {
