@@ -7,7 +7,15 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, EMPLOYMENT, formatAUD } from "@/lib/constants";
+import {
+  AWR_2026_FLOORS,
+  HOSPITALITY_AWARD,
+  HOSPITALITY_RATES,
+  RETAIL_AWARD,
+  RETAIL_RATES,
+} from "@/lib/constants/hospitality-award";
+import { SCHADS_AWARD, SCHADS_SACS } from "@/lib/constants/schads-award";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -17,6 +25,34 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Annual Wage Review 2024-25", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: "Fair Work Commission" },
   { title: "National Minimum Wage Order 2025", url: "https://www.fwc.gov.au/work-conditions/minimum-wages-and-conditions/national-minimum-wage/national-minimum-wage-orders", publisher: "Fair Work Commission" },
 ];
+
+// The awards we have verified line by line and publish full tables for. Entry
+// rate is the lowest adult classification in each. Anything not listed here
+// links out to Fair Work rather than carrying an unverified figure.
+const SCHADS_TOP = SCHADS_SACS[SCHADS_SACS.length - 1];
+const VERIFIED_AWARDS = [
+  {
+    name: "Social, Community, Home Care and Disability Services",
+    code: SCHADS_AWARD.code,
+    entryHourly: SCHADS_SACS[0].hourly,
+    href: "/schads-award-pay-rates/",
+    label: "SCHADS rates",
+  },
+  {
+    name: "Hospitality Industry (General)",
+    code: HOSPITALITY_AWARD.code,
+    entryHourly: HOSPITALITY_RATES[0].hourly,
+    href: "/hospitality-award-rates/",
+    label: "Hospitality rates",
+  },
+  {
+    name: "General Retail Industry",
+    code: RETAIL_AWARD.code,
+    entryHourly: RETAIL_RATES[0].hourly,
+    href: "/retail-award-rates/",
+    label: "Retail rates",
+  },
+] as const;
 
 export default function AwardRatesGuidePage() {
   return (
@@ -35,10 +71,10 @@ export default function AwardRatesGuidePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Award Rates Australia 2025-26 — Minimum Pay by Industry &amp; Classification
+            Award Rates Australia {SITE_CONFIG.financialYear} — Minimum Pay by Industry &amp; Classification
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-5">
-            Find current minimum award pay rates in Australia for FY2025-26. Hospitality, retail, building &amp; construction, nurses, teachers — covered by industry, with overtime, penalty rate &amp; allowance calculations.
+            Find current minimum award pay rates in Australia for FY{SITE_CONFIG.financialYear}. Full verified rate tables for the SCHADS, hospitality and retail awards, plus junior rates by age, penalty rates and how to work out which award covers you.
           </p>
           <div className="rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5 mb-6">
             <p className="text-base text-navy leading-relaxed">
@@ -62,7 +98,7 @@ export default function AwardRatesGuidePage() {
                 A Modern Award specifies the minimum hourly rate, overtime loadings, penalty rates, allowances, and leave entitlements for each classification level within a covered industry. Retail workers, hospitality staff, nurses, construction labourers, and clerical employees all fall under different awards with different base rates. An employer who pays below the applicable award rate commits wage theft — a criminal offence in Victoria, Queensland, and South Australia carrying fines of up to <strong>$1.1 million for corporations</strong> and <strong>$220,000 for individuals</strong>.
               </p>
               <p>
-                Award rates function as the middle tier of Australia&apos;s 3-layer safety net. The National Minimum Wage sits at the bottom, Modern Awards sit in the middle, and Enterprise Agreements sit at the top. If no award or agreement applies, the "National Employment Standards" (NES) and the national minimum wage protect the worker. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to convert your award rate into an after-tax hourly figure for FY2025-26.
+                Award rates function as the middle tier of Australia&apos;s 3-layer safety net. The National Minimum Wage sits at the bottom, Modern Awards sit in the middle, and Enterprise Agreements sit at the top. If no award or agreement applies, the "National Employment Standards" (NES) and the national minimum wage protect the worker. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to convert your award rate into an after-tax hourly figure.
               </p>
             </section>
 
@@ -72,20 +108,20 @@ export default function AwardRatesGuidePage() {
                 The Fair Work Commission (FWC) determines all award rates through the "Annual Wage Review" — a formal process completed every June, with new rates taking effect from the first full pay period on or after <strong>1 July</strong> each year. The FWC is an independent statutory body, separate from the government, that assesses economic data, employer submissions, and union proposals before issuing its decision.
               </p>
               <p>
-                The Annual Wage Review considers 5 key factors: the performance of the national economy, the consumer price index (CPI), labour productivity growth, the needs of low-paid workers, and the competitiveness of Australian businesses. In its 2024-25 review, the FWC considered submissions from the Australian Council of Trade Unions (ACTU), the Australian Industry Group (Ai Group), and the Australian Chamber of Commerce and Industry (ACCI) before announcing a <strong>3.75% increase</strong> to all modern award minimum wages.
+                The Annual Wage Review considers 5 key factors: the performance of the national economy, the consumer price index (CPI), labour productivity growth, the needs of low-paid workers, and the competitiveness of Australian businesses. In its 2026 review the FWC considered submissions from the Australian Council of Trade Unions (ACTU), the Australian Industry Group (Ai Group) and the Australian Chamber of Commerce and Industry (ACCI) before announcing a <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}% increase</strong> to modern award minimum wages.
               </p>
               <p>
-                This percentage increase applies uniformly to every classification level within every award. A Level 1 retail worker and a Level 5 hospitality supervisor both receive the same 3.75% uplift on their respective base rates. The FWC publishes updated pay guides for each of the 120+ awards within 2 weeks of its decision. Employers must implement the new rates from 1 July or face back-pay obligations and potential penalties from the Fair Work Ombudsman.
+                That percentage does <strong>not</strong> apply uniformly. The increase is subject to two floors &mdash; {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} a week for ongoing employment and {formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} for an entry-level rate in the first six months &mdash; and the lowest classifications in some awards were lifted <em>to</em> the floor rather than escalated. Hospitality Introductory and Level 1 are exactly on those two floors. Working out this year&rsquo;s rate by adding {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% to last year&rsquo;s gives the wrong answer for them. The FWC publishes updated pay guides for each of the 120+ awards within 2 weeks of its decision. Employers must implement the new rates from 1 July or face back-pay obligations and potential penalties from the Fair Work Ombudsman.
               </p>
             </section>
 
             <section id="national-minimum-wage">
-              <h2>What Is the National Minimum Wage for FY2025-26?</h2>
+              <h2>What Is the National Minimum Wage for FY{SITE_CONFIG.financialYear}?</h2>
               <p>
-                The national minimum wage for FY2025-26 is <strong>$26.44 per hour</strong>, or <strong>$1,004.90 per week</strong> for a standard 38-hour week. This rate applies only to employees who are not covered by any Modern Award or enterprise agreement — typically senior managers, highly specialised professionals, or niche roles outside standard industry classifications.
+                The national minimum wage for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong>, or <strong>{formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week</strong> for a standard {EMPLOYMENT.standardWeeklyHours}-hour week. This rate applies only to employees who are not covered by any Modern Award or enterprise agreement — typically senior managers, highly specialised professionals, or niche roles outside standard industry classifications.
               </p>
               <p>
-                The national minimum wage translates to an annual salary of approximately <strong>$47,627</strong> before tax. After income tax, the Medicare levy, and superannuation at the employer SG rate of <strong>12%</strong>, a worker on the national minimum wage takes home roughly <strong>$41,100 per year</strong> (about <strong>$790 per week</strong>). Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model the exact take-home pay at any salary level for FY2025-26.
+                The national minimum wage translates to an annual salary of approximately <strong>$47,627</strong> before tax. After income tax, the Medicare levy, and superannuation at the employer SG rate of <strong>12%</strong>, a worker on the national minimum wage takes home roughly <strong>$41,100 per year</strong> (about <strong>$790 per week</strong>). Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model the exact take-home pay at any salary level.
               </p>
 
               <div className="bg-sandstone border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -100,7 +136,7 @@ export default function AwardRatesGuidePage() {
 
               <h3>National Minimum Wage vs Award Rates</h3>
               <p>
-                The national minimum wage is the absolute floor — no adult employee in Australia earns less than <strong>$26.44/hr</strong>. Award wages for specific industries sit above this floor because they recognise industry-specific skills, qualifications, and working conditions. A Level 1 retail worker under the General Retail Industry Award earns <strong>$25.44/hr</strong>, while a qualified chef under the Hospitality Industry Award earns <strong>$27.72/hr</strong> — both higher than the national minimum.
+                The national minimum wage is the absolute floor — no adult employee in Australia earns less than <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr</strong>. Award wages for specific industries sit above this floor because they recognise industry-specific skills, qualifications and working conditions. A level 1 retail worker under the General Retail Industry Award earns <strong>{formatAUD(RETAIL_RATES[0].hourly, 2)}/hr</strong>, and a trade-qualified cook at hospitality Level 4 earns <strong>{formatAUD(HOSPITALITY_RATES[4].hourly, 2)}/hr</strong> — both above the national minimum.
               </p>
               <p>
                 Casual employees receive an additional <strong>25% casual loading</strong> on top of the applicable base rate (award or NMW). This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. A casual worker on the national minimum wage earns <strong>$30.13/hr</strong> ($26.44 x 1.25). Check how casual loading affects your overall pay using our <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link>.
@@ -141,34 +177,38 @@ export default function AwardRatesGuidePage() {
               </div>
 
               <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[34rem] text-sm text-left text-navy">
+                    <caption className="sr-only">Verified entry-level award rates from {HOSPITALITY_AWARD.operativeFrom}</caption>
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-5 py-4">Modern Award</th>
-                        <th className="px-5 py-4">Level 1 Base Rate</th>
-                        <th className="px-5 py-4">Casual Rate (incl. 25%)</th>
-                        <th className="px-5 py-4">Workers Covered</th>
+                        <th scope="col" className="px-5 py-4">Modern Award</th>
+                        <th scope="col" className="px-5 py-4">Entry rate</th>
+                        <th scope="col" className="px-5 py-4">Casual (incl. 25%)</th>
+                        <th scope="col" className="px-5 py-4">Full rate table</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">General Retail Industry Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~520,000</td></tr>
-                      <tr><td className="px-5 py-3">Hospitality Industry (General) Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~390,000</td></tr>
-                      <tr><td className="px-5 py-3">Fast Food Industry Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~280,000</td></tr>
-                      <tr><td className="px-5 py-3">Clerks &mdash; Private Sector Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~260,000</td></tr>
-                      <tr><td className="px-5 py-3">Social, Community, Home Care and Disability Services Award (SCHADS)</td><td className="px-5 py-3 font-medium">$26.68/hr</td><td className="px-5 py-3">$33.35/hr</td><td className="px-5 py-3">~240,000</td></tr>
-                      <tr><td className="px-5 py-3">Building and Construction General On-site Award</td><td className="px-5 py-3 font-medium">$26.15/hr</td><td className="px-5 py-3">$32.69/hr</td><td className="px-5 py-3">~200,000</td></tr>
-                      <tr><td className="px-5 py-3">Health Professionals and Support Services Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~190,000</td></tr>
-                      <tr><td className="px-5 py-3">Cleaning Services Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~170,000</td></tr>
-                      <tr><td className="px-5 py-3">Children&apos;s Services Award</td><td className="px-5 py-3 font-medium">$25.86/hr</td><td className="px-5 py-3">$32.33/hr</td><td className="px-5 py-3">~150,000</td></tr>
-                      <tr><td className="px-5 py-3">Manufacturing and Associated Industries Award</td><td className="px-5 py-3 font-medium">$25.44/hr</td><td className="px-5 py-3">$31.80/hr</td><td className="px-5 py-3">~140,000</td></tr>
+                      {VERIFIED_AWARDS.map((a) => (
+                        <tr key={a.href}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{a.name}<span className="ml-2 font-mono text-xs text-warmgray">{a.code}</span></th>
+                          <td className="px-5 py-3 font-medium">{formatAUD(a.entryHourly, 2)}/hr</td>
+                          <td className="px-5 py-3">{formatAUD(Math.round(a.entryHourly * 1.25 * 100) / 100, 2)}/hr</td>
+                          <td className="px-5 py-3"><Link href={a.href} className="text-eucalyptus-dark hover:underline">{a.label} &rarr;</Link></td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray-light mt-2">Rates reflect the FY2025-26 Annual Wage Review increase. Higher classification levels within each award attract higher rates. Verify your exact classification at fairwork.gov.au.</p>
+                <p className="text-xs text-warmgray-light mt-2">
+                  Entry rate is the lowest adult classification in each award, from {HOSPITALITY_AWARD.operativeFrom}. Every figure derives from constants verified against the Fair Work pay guides and consolidated award texts.
+                </p>
               </div>
               <p>
-                Many of the Level 1 entry rates align at <strong>$25.44/hr</strong> because the FWC applies the Annual Wage Review percentage uniformly. Higher classification levels — reflecting qualifications, supervisory duties, or years of experience — attract progressively higher rates. A Level 4 retail worker, for example, earns approximately <strong>$28.18/hr</strong>, while a Level 6 hospitality employee earns approximately <strong>$29.54/hr</strong>.
+                Entry rates are close together because the Annual Wage Review floor lifts the lowest classifications to a common minimum. They diverge sharply higher up: the SCHADS social and community services stream reaches {formatAUD(SCHADS_TOP.hourly, 2)} an hour at its top classification, well above retail or hospitality, because of the Equal Remuneration Order that applies to that stream.
+              </p>
+              <p>
+                We publish full classification tables only for awards we have verified line by line. For any other award, use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer">Find My Award</a> tool and open its pay guide &mdash; we would rather send you to the source than print a number we cannot stand behind.
               </p>
             </section>
 
@@ -184,7 +224,7 @@ export default function AwardRatesGuidePage() {
                 <li><strong>Classifications:</strong> Structured tiers (Level 1 through Level 6 or higher) that set minimum rates based on experience, qualifications, and supervisory responsibility.</li>
                 <li><strong>Hours of Work:</strong> Maximum ordinary hours per week (38 hours), spread of hours provisions, and roster change notice periods.</li>
                 <li><strong>Leave Entitlements:</strong> Annual leave (4 weeks), personal/carer&apos;s leave (10 days), compassionate leave (2 days), and long service leave (as per state legislation).</li>
-                <li><strong>Superannuation:</strong> Confirmation that the employer SG rate of <strong>12%</strong> for FY2025-26 applies on top of ordinary time earnings.</li>
+                <li><strong>Superannuation:</strong> Confirmation that the employer SG rate of <strong>12%</strong> applies on top of ordinary time earnings.</li>
                 <li><strong>Termination and Redundancy:</strong> Notice periods of 1 to 5 weeks based on tenure, plus redundancy pay of 4 to 16 weeks for eligible employees.</li>
               </ul>
             </section>
@@ -202,11 +242,11 @@ export default function AwardRatesGuidePage() {
                         <th className="px-5 py-4">When You Work</th>
                         <th className="px-5 py-4">Full-Time / Part-Time</th>
                         <th className="px-5 py-4">Casual</th>
-                        <th className="px-5 py-4">Example on $25.44/hr</th>
+                        <th scope="col" className="px-5 py-4">Example on {formatAUD(RETAIL_RATES[0].hourly, 2)}/hr</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Monday &ndash; Friday (standard)</td><td className="px-5 py-3 font-medium">1.0x</td><td className="px-5 py-3 font-medium">1.25x</td><td className="px-5 py-3">$25.44 / $31.80</td></tr>
+                      <tr><td className="px-5 py-3">Monday &ndash; Friday (standard)</td><td className="px-5 py-3 font-medium">1.0x</td><td className="px-5 py-3 font-medium">1.25x</td><td className="px-5 py-3">{formatAUD(RETAIL_RATES[0].hourly, 2)} / {formatAUD(RETAIL_RATES[0].hourly * 1.25, 2)}</td></tr>
                       <tr><td className="px-5 py-3">Saturday</td><td className="px-5 py-3 font-medium">1.25x</td><td className="px-5 py-3 font-medium">1.5x</td><td className="px-5 py-3">$31.80 / $38.16</td></tr>
                       <tr><td className="px-5 py-3">Sunday</td><td className="px-5 py-3 font-medium">1.5x</td><td className="px-5 py-3 font-medium">1.75x</td><td className="px-5 py-3">$38.16 / $44.52</td></tr>
                       <tr><td className="px-5 py-3">Public Holiday</td><td className="px-5 py-3 font-medium">2.25x</td><td className="px-5 py-3 font-medium">2.5x</td><td className="px-5 py-3">$57.24 / $63.60</td></tr>
@@ -224,7 +264,7 @@ export default function AwardRatesGuidePage() {
 
               <h3>How Are Penalty Rates Calculated?</h3>
               <p>
-                The calculation is straightforward: multiply your base hourly rate by the applicable penalty multiplier. A Level 1 retail worker earning <strong>$25.44/hr</strong> who works an 8-hour shift on a public holiday earns $25.44 x 2.25 = <strong>$57.24/hr</strong>, totalling <strong>$457.92</strong> for the shift. Casual employees on the same shift earn $25.44 x 2.5 = <strong>$63.60/hr</strong>, totalling <strong>$508.80</strong> for 8 hours.
+                The calculation is straightforward: multiply your base hourly rate by the applicable penalty multiplier. A level 1 retail worker on <strong>{formatAUD(RETAIL_RATES[0].hourly, 2)}/hr</strong> who works an 8-hour public holiday shift earns {formatAUD(RETAIL_RATES[0].hourly, 2)} × 2.25 = <strong>{formatAUD(RETAIL_RATES[0].hourly * 2.25, 2)}/hr</strong>, totalling <strong>{formatAUD(RETAIL_RATES[0].hourly * 2.25 * 8, 2)}</strong> for the shift. A casual on the same shift is on 2.5x — {formatAUD(RETAIL_RATES[0].hourly * 2.5, 2)}/hr, or <strong>{formatAUD(RETAIL_RATES[0].hourly * 2.5 * 8, 2)}</strong>.
               </p>
             </section>
 
@@ -297,7 +337,7 @@ export default function AwardRatesGuidePage() {
             <section id="what-changed-fy2025-26">
               <h2>What Changed in FY2025-26?</h2>
               <p>
-                The FY2025-26 Annual Wage Review delivered a <strong>3.75% increase</strong> to all Modern Award minimum wages and the national minimum wage, effective from the first full pay period on or after 1 July 2025. This is the third consecutive year of above-inflation award increases following the 5.75% increase in 2023-24 and the 3.75% increase in 2024-25.
+                The {SITE_CONFIG.financialYear} Annual Wage Review delivered a <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}% increase</strong> to modern award minimum wages and the national minimum wage, effective from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Unlike earlier years it was subject to a floor, so the lowest classifications in some awards were lifted to that floor rather than escalated by the headline percentage.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -311,20 +351,27 @@ export default function AwardRatesGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">FY2022-23</td><td className="px-5 py-3">5.2%</td><td className="px-5 py-3">$21.38</td><td className="px-5 py-3">$812.60</td></tr>
-                      <tr><td className="px-5 py-3">FY2023-24</td><td className="px-5 py-3">5.75%</td><td className="px-5 py-3">$23.23</td><td className="px-5 py-3">$882.80</td></tr>
-                      <tr><td className="px-5 py-3">FY2024-25</td><td className="px-5 py-3">3.75%</td><td className="px-5 py-3">$26.44</td><td className="px-5 py-3">$1,004.90</td></tr>
-                      <tr><td className="px-5 py-3">FY2025-26</td><td className="px-5 py-3">3.5%</td><td className="px-5 py-3">$24.95</td><td className="px-5 py-3">$948.00</td></tr>
-                      <tr className="bg-eucalyptus/5 font-medium"><td className="px-5 py-3">FY2026-27</td><td className="px-5 py-3">6%</td><td className="px-5 py-3">$26.44</td><td className="px-5 py-3">$1,004.90</td></tr>
+                      {/*
+                        Trimmed to the two years carried in verified constants.
+                        The previous version listed FY2024-25 at $26.44/$1,004.90
+                        — this year's figures — and FY2026-27 at a 6% increase.
+                        Full history lives on /minimum-wage-history-australia/,
+                        which owns that topic.
+                      */}
+                      <tr><td className="px-5 py-3">FY{SITE_CONFIG.previousFinancialYear}</td><td className="px-5 py-3">3.5%</td><td className="px-5 py-3">{formatAUD(EMPLOYMENT.minimumWageHourlyPrevious, 2)}</td><td className="px-5 py-3">{formatAUD(EMPLOYMENT.minimumWageWeeklyPrevious, 2)}</td></tr>
+                      <tr className="bg-eucalyptus/5 font-medium"><td className="px-5 py-3">FY{SITE_CONFIG.financialYear}</td><td className="px-5 py-3">{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</td><td className="px-5 py-3">{formatAUD(EMPLOYMENT.minimumWageHourly, 2)}</td><td className="px-5 py-3">{formatAUD(EMPLOYMENT.minimumWageWeekly, 2)}</td></tr>
                     </tbody>
                   </table>
                 </div>
+                <p className="text-xs text-warmgray-light mt-2">
+                  For increases before FY{SITE_CONFIG.previousFinancialYear}, see <Link href="/minimum-wage-history-australia/" className="text-eucalyptus-dark hover:underline">minimum wage history</Link>.
+                </p>
               </div>
 
               <h3>Key Changes Beyond the Rate Increase</h3>
               <ul>
-                <li><strong>FY2026-27 update:</strong> Rates have since risen again — see our news coverage of the <Link href="/news/minimum-wage-increase-july-2026/">minimum wage increase from 1 July 2026</Link> and the <Link href="/news/award-wage-increase-2026-industries/">4.75% award wage increase</Link> applied to modern awards this financial year.</li>
-                <li><strong>Superannuation Guarantee:</strong> The SG rate rose from 11.5% to <strong>12%</strong> on 1 July 2025, increasing the total cost of employing award-covered workers. See our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> for exact figures.</li>
+                <li><strong>Not a uniform increase:</strong> the {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% rise was subject to a floor of {formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} a week, so some entry classifications were lifted to the floor instead. See our coverage of the <Link href="/news/minimum-wage-increase-july-2026/">minimum wage increase</Link> and the <Link href="/news/award-wage-increase-2026-industries/">award wage increase by industry</Link>.</li>
+                <li><strong>Payday Super:</strong> from 1 July 2026 the <strong>12%</strong> superannuation guarantee must be paid on each payday rather than quarterly, changing the cash-flow cost of employing award-covered workers. See our <Link href="/superannuation-calculator/">Superannuation Calculator</Link>.</li>
                 <li><strong>Casual Conversion:</strong> The right for casuals to request conversion to permanent employment after 12 months continues to apply across all Modern Awards.</li>
                 <li><strong>Right to Disconnect:</strong> Employees covered by Modern Awards gained the right to refuse contact outside working hours from 26 August 2024, with small business exemptions ending 26 August 2025.</li>
                 <li><strong>Wage Theft Criminalisation:</strong> Federal wage theft laws commenced 1 January 2025, making intentional underpayment of award rates a criminal offence carrying penalties of up to <strong>10 years imprisonment</strong>.</li>
@@ -334,7 +381,7 @@ export default function AwardRatesGuidePage() {
             <section id="worked-example">
               <h2>How Is Award Pay Calculated? (Worked Example)</h2>
               <p>
-                Award pay is calculated by multiplying the base classification rate by hours worked, then adding applicable penalty rates, overtime, and allowances. Below is a worked example for a Level 1 casual retail worker earning <strong>$31.80/hr</strong> (base $25.44 + 25% casual loading) who works a mixed weekly roster.
+                Award pay is the base classification rate multiplied by hours worked, plus applicable penalty rates, overtime and allowances. Below is a worked example for a level 1 casual retail worker on <strong>{formatAUD(Math.round(RETAIL_RATES[0].hourly * 1.25 * 100) / 100, 2)}/hr</strong> (base {formatAUD(RETAIL_RATES[0].hourly, 2)} plus the 25% casual loading) working a mixed roster.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -365,9 +412,13 @@ export default function AwardRatesGuidePage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <p>
-                Explore these Australian tax calculators and payroll guides to understand how your award rate translates into take-home pay, superannuation, and tax obligations for the 2025-26 financial year.
+                Explore these guides to find your exact award rate and understand how it translates into take-home pay, superannuation and tax.
               </p>
               <ul>
+                <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> — every classification in the social, community, home care and disability award, with the Equal Remuneration Order applied.</li>
+                <li><Link href="/hospitality-award-rates/">Hospitality Award Rates</Link> — cafes, restaurants, pubs and hotels, including the flat-cash evening and night loadings.</li>
+                <li><Link href="/retail-award-rates/">Retail Award Rates</Link> — levels 1 to 8, penalty rates and the casual overtime rule that differs from hospitality.</li>
+                <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link> — minimum wage by age, per-award junior scales, and minimum working age by state.</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> — Convert your gross award rate into net pay after income tax, Medicare levy, and HECS-HELP deductions.</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — Understand how the 12% SG rate applies on top of your award earnings and how to maximise your super.</li>
                 <li><Link href="/overtime-penalty-rates-guide/">Overtime and Penalty Rates Guide</Link> — Detailed breakdown of overtime calculations, shift loadings, and penalty rate entitlements by award.</li>
@@ -389,19 +440,19 @@ export default function AwardRatesGuidePage() {
                 <AccordionItem value="nmw" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Are Award rates higher than the National Minimum Wage?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. The national minimum wage of <strong>$26.44/hr</strong> is the absolute floor for award-free employees. Award classification rates for specific industries are almost always higher because they recognise qualifications, experience levels, and industry-specific skills. Entry-level rates under most major awards start at <strong>$25.44/hr</strong> or above, and higher classification levels reach <strong>$30+/hr</strong>.
+                    Usually, but not always at the entry level. The national minimum wage of <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr</strong> is the floor for award-free employees, and the Annual Wage Review floor means several awards now open at almost exactly that figure — hospitality Level 1 is {formatAUD(HOSPITALITY_RATES[1].hourly, 2)}. The gap appears higher up the scale, where classification rates recognise qualifications and responsibility, reaching {formatAUD(SCHADS_TOP.hourly, 2)}/hr at the top of the SCHADS social and community services stream.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="casual" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is casual loading and how much is it?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Casual loading is an additional <strong>25%</strong> applied on top of the base award rate for casual employees. This loading compensates for not receiving paid annual leave, personal leave, notice of termination, or redundancy pay. A casual worker on a base rate of $25.44/hr receives <strong>$31.80/hr</strong> inclusive of the casual loading. The 25% rate is standardised across all Modern Awards.
+                    Casual loading is an additional <strong>25%</strong> on top of the base award rate, compensating for not receiving paid annual leave, personal leave, notice of termination or redundancy pay. A casual on the retail level 1 base of {formatAUD(RETAIL_RATES[0].hourly, 2)}/hr receives <strong>{formatAUD(Math.round(RETAIL_RATES[0].hourly * 1.25 * 100) / 100, 2)}/hr</strong>. Note that casual weekend penalties are <em>additive</em> rather than compounded — casual Sunday in retail is 175%, not 150% × 1.25.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="annual-review" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When do Award rates increase each year?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Award rates increase annually following the Fair Work Commission&apos;s Annual Wage Review. The FWC announces its decision in June, and new rates take effect from the first full pay period on or after <strong>1 July</strong>. The FY2025-26 increase was <strong>3.75%</strong>. Employers must update their payroll systems to reflect new rates immediately upon commencement.
+                    Award rates increase annually following the Fair Work Commission&apos;s Annual Wage Review. The FWC announces its decision in June, and new rates take effect from the first full pay period on or after <strong>1 July</strong>. The FY{SITE_CONFIG.financialYear} increase was <strong>{(AWR_2026_FLOORS.increase * 100).toFixed(2)}%</strong>, subject to a floor that lifted the lowest classifications in some awards rather than escalating them.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="how-find" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -431,13 +482,13 @@ export default function AwardRatesGuidePage() {
                 <AccordionItem value="super-on-award" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is superannuation included in Award rates?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. The superannuation guarantee of <strong>12%</strong> for FY2025-26 is paid by the employer on top of award wages — it is not deducted from the employee&apos;s gross pay. The SG applies to &quot;ordinary time earnings,&quot; which includes the base rate and any shift loadings but typically excludes overtime payments. Employers pay super quarterly, within 28 days of each quarter&apos;s end.
+                    No. The superannuation guarantee of <strong>12%</strong> is paid by the employer on top of award wages — it is not deducted from the employee&apos;s gross pay. The SG applies to &quot;ordinary time earnings,&quot; which includes the base rate and any shift loadings but typically excludes overtime payments. From 1 July 2026 super must be paid on each payday rather than quarterly.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="junior-rates" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do junior employees receive lower Award rates?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. Most Modern Awards specify junior rates as a percentage of the adult base rate. Employees under 21 receive reduced rates: typically <strong>50% at age 16</strong>, <strong>60% at age 17</strong>, <strong>70% at age 18</strong>, <strong>80% at age 19</strong>, and <strong>90% at age 20</strong>. Full adult rates apply from age 21. Some awards, particularly in hospitality and retail, do not differentiate by age for all classification levels.
+                    Many do, but there is no single national junior scale and the differences are real. The retail and fast food awards pay differently at under-16 (45% against 40%); hospitality pays 85% at 19 where retail pays 80%, and reaches the full adult rate at 20; hair and beauty reaches it at 18. Some awards have <strong>no junior rates at all</strong> &mdash; SCHADS is one, so an 18-year-old disability support worker is owed the full adult rate. See our <Link href="/junior-pay-rates/">junior pay rates guide</Link> for every scale side by side.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="award-free" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -449,7 +500,7 @@ export default function AwardRatesGuidePage() {
                 <AccordionItem value="tax-on-award" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How much tax do I pay on Award wages?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Income tax on award wages follows the same marginal tax brackets as all other employment income. A full-time worker on the Level 1 retail award rate of $25.44/hr earns approximately <strong>$50,271 annually</strong>, placing them in the <strong>30% marginal tax bracket</strong> for FY2025-26. After income tax and the 2% Medicare levy, the take-home pay is approximately <strong>$42,200 per year</strong>. Use the Australian tax calculator on this site to model your exact after-tax position.
+                    Income tax on award wages follows the same marginal brackets as all other employment income. A full-time worker on the retail level 1 rate of {formatAUD(RETAIL_RATES[0].hourly, 2)}/hr earns about {formatAUD(RETAIL_RATES[0].weekly * 52, 0)} a year, which falls in the <strong>30% marginal bracket</strong>. Use our <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> to model your exact after-tax position.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -457,7 +508,7 @@ export default function AwardRatesGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Award rate information on this page is sourced from Fair Work Commission data and reflects the most recent Annual Wage Review. Modern Award minimum rates are updated annually, typically effective from the first full pay period on or after 1 July each year. All rates, penalty multipliers, and entitlements shown are for FY2025-26 and apply to national system employees. State public sector employees may be covered by separate state industrial instruments.</p>
+                <p>Award rate information on this page is sourced from Fair Work Commission data and reflects the most recent Annual Wage Review. The per-award rate tables linked below derive from constants verified against the Fair Work pay guides and consolidated award texts, and are regression-tested. Modern Award minimum rates are updated annually, typically effective from the first full pay period on or after 1 July each year. All rates, penalty multipliers and entitlements shown are for FY{SITE_CONFIG.financialYear} and apply to national system employees. State public sector employees may be covered by separate state industrial instruments.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("award-rates"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -470,10 +521,16 @@ export default function AwardRatesGuidePage() {
             <div className="sticky top-8 space-y-6">
               <Card className="bg-sandstone border-sandstone-dark/20">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-navy mb-3 block">Calculator Suite</h3>
+                  <h3 className="font-bold text-navy mb-3 block">Award Rate Tables</h3>
                   <div className="space-y-3">
-                    <Link href="/hourly-to-annual-salary-calculator/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Hourly to Salary Calc</span>
+                    {VERIFIED_AWARDS.map((a) => (
+                      <Link key={a.href} href={a.href} className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                        <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{a.label}</span>
+                        <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
+                      </Link>
+                    ))}
+                    <Link href="/junior-pay-rates/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Junior Pay Rates</span>
                       <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
                     </Link>
                     <Link href="/understanding-your-payslip/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">

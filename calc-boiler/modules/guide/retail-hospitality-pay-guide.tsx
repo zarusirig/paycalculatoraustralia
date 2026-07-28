@@ -6,7 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { HOSPITALITY_AWARD, HOSPITALITY_RATES, RETAIL_AWARD, RETAIL_RATES } from "@/lib/constants/hospitality-award";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -45,95 +46,54 @@ export default function RetailHospitalityPayGuidePage() {
           {/* MAIN ARTICLE CONTENT */}
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            {/* ── Section 1: General Retail Industry Award ── */}
-            <section id="retail-award">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>General Retail Industry Award (MA000004)</h2>
+            {/*
+              The full rate tables that used to sit here have moved to
+              /retail-award-rates/ and /hospitality-award-rates/, which own
+              those terms. The tables here had drifted badly — the hospitality
+              one listed Level 1 above Level 2 and disagreed with the Fair Work
+              pay guide at every level. This page now covers what it is
+              actually good at: what the job is like and what your rights are.
+            */}
+            <section id="award-rates">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Retail and Hospitality Workers Are Paid</h2>
               <p>
-                The General Retail Industry Award covers employees working in retail stores, including supermarkets, clothing stores, electronics retailers, and specialty shops. It sets minimum pay rates based on classification level, employment type, and age. The award applies to approximately <strong>1.2 million workers</strong> across Australia.
+                Almost everyone in these two industries is covered by one of two modern awards: the <strong>General Retail Industry Award ({RETAIL_AWARD.code})</strong> for shops and supermarkets, and the <strong>Hospitality Industry (General) Award ({HOSPITALITY_AWARD.code})</strong> for cafes, restaurants, pubs and hotels. Each sets a minimum rate for every classification level, and each has its own penalty rates, overtime rules and junior scales.
               </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full-Time &amp; Part-Time Base Rates</h3>
               <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[32rem] text-sm text-left text-navy">
+                    <caption className="sr-only">Entry and top adult rates for the retail and hospitality awards</caption>
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-5 py-3">Level</th>
-                        <th className="px-5 py-3">Description</th>
-                        <th className="px-5 py-3 text-right">Hourly Rate</th>
-                        <th className="px-5 py-3 text-right">Annual (38 hrs)</th>
+                        <th scope="col" className="px-5 py-3">Award</th>
+                        <th scope="col" className="px-5 py-3">Entry rate</th>
+                        <th scope="col" className="px-5 py-3">Top classification</th>
+                        <th scope="col" className="px-5 py-3">Full table</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Level 1</td><td className="px-5 py-3">Retail worker (general duties)</td><td className="px-5 py-3 text-right">$25.44</td><td className="px-5 py-3 text-right">$50,271</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 2</td><td className="px-5 py-3">Experienced retail worker</td><td className="px-5 py-3 text-right">$26.01</td><td className="px-5 py-3 text-right">$51,396</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 3</td><td className="px-5 py-3">Supervisor / team leader</td><td className="px-5 py-3 text-right">$26.84</td><td className="px-5 py-3 text-right">$53,035</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Rates (+25% Loading)</h3>
-              <p>
-                Casual employees receive a <strong>25% loading</strong> on top of the base hourly rate to compensate for the absence of paid leave and job security. A Level 1 casual retail worker earns <strong>$31.80 per hour</strong> ($25.44 + 25%). See our <Link href="/employment-type-calculator/">Employment Type Calculator</Link> to compare casual vs full-time total remuneration.
-              </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Junior Rates by Age</h3>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
-                    <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-5 py-3">Age</th>
-                        <th className="px-5 py-3 text-right">% of Adult Rate</th>
-                        <th className="px-5 py-3 text-right">Hourly Rate (Level 1)</th>
+                        <th scope="row" className="px-5 py-3 text-left font-medium">Retail <span className="font-mono text-xs text-warmgray">{RETAIL_AWARD.code}</span></th>
+                        <td className="px-5 py-3 font-medium">{formatAUD(RETAIL_RATES[0].hourly, 2)}/hr</td>
+                        <td className="px-5 py-3">{formatAUD(RETAIL_RATES[RETAIL_RATES.length - 1].hourly, 2)}/hr</td>
+                        <td className="px-5 py-3"><Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline">Retail award rates &rarr;</Link></td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Under 16</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right">$11.45</td></tr>
-                      <tr><td className="px-5 py-3">16 years</td><td className="px-5 py-3 text-right">50%</td><td className="px-5 py-3 text-right">$12.72</td></tr>
-                      <tr><td className="px-5 py-3">17 years</td><td className="px-5 py-3 text-right">60%</td><td className="px-5 py-3 text-right">$15.26</td></tr>
-                      <tr><td className="px-5 py-3">18 years</td><td className="px-5 py-3 text-right">70%</td><td className="px-5 py-3 text-right">$17.81</td></tr>
-                      <tr><td className="px-5 py-3">19 years</td><td className="px-5 py-3 text-right">80%</td><td className="px-5 py-3 text-right">$20.35</td></tr>
-                      <tr><td className="px-5 py-3">20 years</td><td className="px-5 py-3 text-right">90%</td><td className="px-5 py-3 text-right">$22.90</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </section>
-
-            {/* ── Section 2: Hospitality Industry Award ── */}
-            <section id="hospitality-award">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Industry Award (MA000009)</h2>
-              <p>
-                The Hospitality Industry (General) Award covers employees in restaurants, cafes, hotels, motels, catering operations, and bars. It has 6 classification levels ranging from introductory (kitchen hand, food runner) to advanced (head chef, restaurant manager).
-              </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full-Time &amp; Part-Time Base Rates</h3>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-warmgray">
-                    <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-5 py-3">Level</th>
-                        <th className="px-5 py-3">Example Roles</th>
-                        <th className="px-5 py-3 text-right">Hourly Rate</th>
-                        <th className="px-5 py-3 text-right">Annual (38 hrs)</th>
+                        <th scope="row" className="px-5 py-3 text-left font-medium">Hospitality <span className="font-mono text-xs text-warmgray">{HOSPITALITY_AWARD.code}</span></th>
+                        <td className="px-5 py-3 font-medium">{formatAUD(HOSPITALITY_RATES[0].hourly, 2)}/hr</td>
+                        <td className="px-5 py-3">{formatAUD(HOSPITALITY_RATES[6].hourly, 2)}/hr</td>
+                        <td className="px-5 py-3"><Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline">Hospitality award rates &rarr;</Link></td>
                       </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Level 1</td><td className="px-5 py-3">Kitchen hand, food runner</td><td className="px-5 py-3 text-right">$26.44</td><td className="px-5 py-3 text-right">$47,622</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 2</td><td className="px-5 py-3">Waiter, bar attendant</td><td className="px-5 py-3 text-right">$25.09</td><td className="px-5 py-3 text-right">$49,578</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 3</td><td className="px-5 py-3">Cook (qualified), senior waiter</td><td className="px-5 py-3 text-right">$25.99</td><td className="px-5 py-3 text-right">$51,356</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 4</td><td className="px-5 py-3">Cook (trade qualified)</td><td className="px-5 py-3 text-right">$27.27</td><td className="px-5 py-3 text-right">$53,885</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 5</td><td className="px-5 py-3">Chef, sous chef</td><td className="px-5 py-3 text-right">$28.46</td><td className="px-5 py-3 text-right">$56,237</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Level 6</td><td className="px-5 py-3">Head chef, restaurant manager</td><td className="px-5 py-3 text-right">$29.32</td><td className="px-5 py-3 text-right">$57,937</td></tr>
                     </tbody>
                   </table>
                 </div>
+                <p className="text-xs text-warmgray-light mt-2">Adult rates from {HOSPITALITY_AWARD.operativeFrom}. Casual employees add a {(HOSPITALITY_AWARD.casualLoading * 100).toFixed(0)}% loading.</p>
               </div>
               <p>
-                Casual hospitality employees receive the same <strong>25% loading</strong> on top of these base rates. A Level 2 casual waiter earns <strong>$31.36 per hour</strong>. Apprentice and junior rates apply at reduced percentages similar to the retail award structure. Check the <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> to convert your hourly rate.
+                <strong>The two awards are not interchangeable</strong>, and if you work across both — a bistro attached to a bottle shop, say — the differences matter. Hospitality pays evening and night work as a flat cash amount per hour; retail uses a percentage. Retail casuals receive the casual loading on overtime; hospitality casuals do not. And juniors aged 19 get 85% in hospitality against 80% in retail.
+              </p>
+              <p>
+                Full classification tables, penalty rates, overtime and junior scales for each are on the dedicated pages: <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link>. For junior rates across all awards, see <Link href="/junior-pay-rates/">junior pay rates</Link>.
               </p>
             </section>
 
