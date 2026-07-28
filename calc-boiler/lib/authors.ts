@@ -222,6 +222,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tech-salary-guide-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "construction-trades-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
 
+  // Per-award rate pages — Penny Ward (employment & pay)
+  "schads-award-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  "hospitality-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  "retail-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  "junior-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+
   // Wave 13 Expansion — Payslip Tools (tax-table slugs registered above)
   "stsl-on-payslip": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "payslip-generator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },

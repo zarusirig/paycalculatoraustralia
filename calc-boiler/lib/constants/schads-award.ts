@@ -16,10 +16,19 @@
 // the award's own NOTE 2 says the ERO rates "form employees' ordinary rates of
 // pay for all purposes." The operative Level 4 pp1 rate is $1,774.74.
 //
-// Publishing the clause 15 figure alone understates SACS pay by up to 45%.
-// Every SACS rate below is ERO-inclusive, matching the FWO Pay Guide.
-// Level 1 receives no ERO uplift, which is why there is a real jump from
-// Level 1 pp3 ($1,119.10) to Level 2 pp1 ($1,376.49).
+// Publishing the clause 15 figure alone understates SACS pay substantially.
+//
+// ⚠️ THE ERO TABLES START AT LEVEL 2, NOT LEVEL 1. Re-verified 28 July 2026
+// against the consolidated award and against PR799380 item 9 — both ERO tables
+// open with "Social and community services employee level 2 | 15.2". Level 1
+// has NO ERO row and receives NO uplift. The Level 1 rates below are the plain
+// clause 15.1 minimum wages, which are also the operative rates. Describing
+// them as "ERO-inclusive" is wrong.
+//
+// ⚠️ $1,119.10 IS TWO DIFFERENT THINGS. It is the operative Level 1 pay point 3
+// rate, AND it is the pre-ERO clause 15 figure for Level 2 pay point 1, which
+// becomes $1,376.49 once the ERO applies. Same number, ~$257/week apart in
+// meaning. This is the likeliest way a SCHADS rate table goes wrong.
 //
 // TWO NEGATIVE FINDINGS, both deliberate:
 //   - SCHADS contains NO junior rates. The word "junior" appears twice in the
@@ -46,10 +55,27 @@ export const SCHADS_AWARD = {
   decision: "[2026] FWCFB 3500",
   /** SCHADS has no junior rates clause. Asserted in tests. */
   hasJuniorRates: false,
+  /**
+   * The ERO tables in clause 15 begin at Level 2. Level 1 gets no uplift.
+   * Verified against the consolidated award and PR799380 item 9.
+   */
+  eroLowestLevel: 2,
+  /**
+   * Clause 34.2(a) says "double time and a half", not "250%". The percentage
+   * is arithmetic, not the award's wording — quote the phrase when citing it.
+   */
+  publicHolidayAwardWording: "double time and a half",
+  /**
+   * Trainee rates are not in this award: clause 19.2 incorporates Schedule E
+   * of the Miscellaneous Award 2020 by reference. Relevant when asserting the
+   * no-junior-rates negative, since that is the only age-linked route in.
+   */
+  traineeRatesSource: "Schedule E of the Miscellaneous Award 2020, incorporated by cl 19.2",
 } as const;
 
 /**
- * Social and Community Services stream (Schedule B), ERO-inclusive.
+ * Social and Community Services stream (Schedule B) — operative rates.
+ * Levels 2–8 are ERO-inclusive; Level 1 carries no ERO uplift (see header).
  * Format: classification|weekly|hourly
  * Hourly is weekly ÷ 38 as published by Fair Work.
  */

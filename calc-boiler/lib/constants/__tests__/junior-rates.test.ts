@@ -26,6 +26,9 @@ import {
   PENDING_JUNIOR_CHANGE,
   juniorHourlyRate,
   juniorCasualHourlyRate,
+  JUNIOR_BANDS_SOURCE,
+  FWO_PUBLISHED_JUNIOR_RATES,
+  MINIMUM_WORKING_AGE,
 } from "../junior-rates";
 
 /** Fair Work's published figures. Do not "fix" these to match our arithmetic. */
@@ -144,4 +147,77 @@ test("award junior scales differ from the NMW scale and from each other", () => 
 
 test("the pending junior-rates change is not presented as in force", () => {
   assert.equal(PENDING_JUNIOR_CHANGE.inForce, false);
+});
+
+// =============================================================================
+// Corrections from the 28 July 2026 primary-source re-verification.
+// =============================================================================
+
+test("FWO's published junior dollars are reproduced exactly by our derivation", () => {
+  // FWO_PUBLISHED_JUNIOR_RATES is transcribed from Fair Work; JUNIOR_RATES is
+  // computed. They must agree, and Fair Work publishes hourly only.
+  assert.equal(FWO_PUBLISHED_JUNIOR_RATES.length, 6, "FWO publishes six junior bands");
+  for (const published of FWO_PUBLISHED_JUNIOR_RATES) {
+    const derived = JUNIOR_RATES.find((r) => r.age === published.age);
+    assert.ok(derived, `no derived row for ${published.age}`);
+    assert.equal(derived.hourly, published.hourly, `hourly mismatch at ${published.age}`);
+    assert.equal(derived.casualHourly, published.casualHourly, `casual mismatch at ${published.age}`);
+  }
+  // Fair Work publishes no weekly column. Guard against one being added here
+  // and later cited as though Fair Work had published it.
+  for (const row of FWO_PUBLISHED_JUNIOR_RATES) {
+    assert.ok(!("weekly" in row), "FWO publishes no weekly junior figure");
+  }
+});
+
+test("the cl 8.2 table stops at 20 — the 21+ row comes from cl 4.1", () => {
+  // The order's cl 8.2 has six rows. Attributing a "21 and over = 100%" row to
+  // cl 8.2 misstates the source, even though the outcome is right.
+  assert.match(JUNIOR_BANDS_SOURCE.juniorClause, /stops at age 20/);
+  assert.match(JUNIOR_BANDS_SOURCE.adultClause, /cl 4\.1/);
+  const juniorOnly = JUNIOR_BANDS.filter((b) => b.percentage < 1);
+  assert.equal(juniorOnly.length, 6, "six genuine junior bands, ending at 20");
+  assert.equal(Math.max(...juniorOnly.map((b) => b.years)), 20);
+});
+
+test("FWCFB 75 is a phase-in, not the adult rate — and is not in force", () => {
+  assert.equal(PENDING_JUNIOR_CHANGE.inForce, false);
+  assert.equal(PENDING_JUNIOR_CHANGE.isProvisionalView, true);
+
+  // The dangerous misreading: that 1 December 2026 delivers the adult rate.
+  const dec26 = PENDING_JUNIOR_CHANGE.phaseIn.find((p) => p.effective === "1 December 2026")!;
+  assert.equal(dec26.age18, 75);
+  assert.equal(dec26.age19, 85);
+  assert.equal(dec26.age20, 95);
+  for (const age of [dec26.age18, dec26.age19, dec26.age20]) {
+    assert.notEqual(age, 100, "no age reaches the adult rate on 1 December 2026");
+  }
+
+  // Adult rate arrives by age in 2027, 2028 and 2029 respectively.
+  const first100 = (key: "age18" | "age19" | "age20") =>
+    PENDING_JUNIOR_CHANGE.phaseIn.find((p) => p.effective !== "Present" && p[key] === 100)!.effective;
+  assert.equal(first100("age20"), "1 July 2027");
+  assert.equal(first100("age19"), "1 July 2028");
+  assert.equal(first100("age18"), "1 July 2029");
+
+  // Percentages never go backwards.
+  for (let i = 1; i < PENDING_JUNIOR_CHANGE.phaseIn.length; i++) {
+    for (const k of ["age18", "age19", "age20"] as const) {
+      assert.ok(PENDING_JUNIOR_CHANGE.phaseIn[i][k] >= PENDING_JUNIOR_CHANGE.phaseIn[i - 1][k]);
+    }
+  }
+});
+
+test("minimum working age is per-jurisdiction and never claims a national 15", () => {
+  assert.equal(MINIMUM_WORKING_AGE.length, 8, "six states plus two territories");
+  // "The minimum age in Australia is 15" appears only in secondary sources.
+  // WA and NT restrict under-15 work rather than setting a floor at 15.
+  for (const j of MINIMUM_WORKING_AGE) {
+    assert.ok(j.url.length > 0, `${j.jurisdiction} needs a government source URL`);
+    assert.notEqual(j.summary, "15", `${j.jurisdiction} must not assert a flat 15`);
+  }
+  const wa = MINIMUM_WORKING_AGE.find((j) => j.jurisdiction === "WA")!;
+  assert.match(wa.detail, /13–14 may work in a shop/);
+  const noMinimum = MINIMUM_WORKING_AGE.filter((j) => j.summary === "No minimum age");
+  assert.ok(noMinimum.length >= 3, "NSW, SA and TAS state no minimum age");
 });

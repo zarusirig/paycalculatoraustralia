@@ -21,6 +21,16 @@
 // The casual rate is then the ROUNDED junior hourly x 1.25, rounded half up.
 // Deriving it from the unrounded figure loses a cent at 19 (27.27 vs 27.28).
 // Both behaviours are asserted in tests against Fair Work's published dollars.
+//
+// ⚠️ FAIR WORK PUBLISHES NO WEEKLY JUNIOR FIGURES. Re-verified 28 July 2026:
+// the FWO junior table has exactly two columns, "Full time and part-time"
+// (hourly) and "Casual". Any weekly junior amount is OUR derivation and must
+// be labelled as such on the page. The hourly and casual columns below do
+// reproduce FWO's published dollars exactly — see FWO_PUBLISHED_JUNIOR_RATES.
+//
+// ⚠️ FAIR WORK DOES NOT STATE ITS METHOD. The weekly-then-divide order is
+// inferred because it is the only one that reproduces every published figure.
+// Attribute the FIGURES to Fair Work; do not attribute the METHODOLOGY.
 // =============================================================================
 
 import { EMPLOYMENT } from "./australian-tax";
@@ -50,7 +60,18 @@ export interface JuniorBand {
   percentage: number;
 }
 
-/** NMW Order 2026 cl 8.2 — Special National Minimum Wage 3. */
+/**
+ * Special National Minimum Wage 3.
+ *
+ * ⚠️ SOURCING, corrected 28 July 2026. The cl 8.2 table has SIX rows and stops
+ * at 20. There is NO "21 and over = 100%" row in cl 8.2. The final row below
+ * is included because it is what a reader needs, but its authority is cl 4.1
+ * — at 21 an employee simply falls out of Special NMW 3 and onto the full
+ * National Minimum Wage. Do not attribute that row to cl 8.2.
+ *
+ * The order's own labels read "Under 16 years of age", "At 16 years of age"
+ * and so on; the shorter labels below match the FWO table, not the order.
+ */
 export const JUNIOR_BANDS: readonly JuniorBand[] = [
   { age: "Under 16", years: 15, percentage: 0.368 },
   { age: "16", years: 16, percentage: 0.473 },
@@ -59,6 +80,31 @@ export const JUNIOR_BANDS: readonly JuniorBand[] = [
   { age: "19", years: 19, percentage: 0.825 },
   { age: "20", years: 20, percentage: 0.977 },
   { age: "21 and over", years: 21, percentage: 1 },
+] as const;
+
+/** The clause each part of the table actually comes from. */
+export const JUNIOR_BANDS_SOURCE = {
+  juniorClause: "cl 8.2 (Special National Minimum Wage 3), which stops at age 20",
+  adultClause: "cl 4.1 (the National Minimum Wage), which applies from age 21",
+} as const;
+
+/**
+ * Fair Work Ombudsman's OWN published junior dollars from 1 July 2026,
+ * transcribed verbatim 28 July 2026. These exist so the derivation above can
+ * be regression-tested against the published figures rather than trusted.
+ * FWO publishes hourly only — there is deliberately no weekly column here.
+ */
+export const FWO_PUBLISHED_JUNIOR_RATES: readonly {
+  age: string;
+  hourly: number;
+  casualHourly: number;
+}[] = [
+  { age: "Under 16", hourly: 9.73, casualHourly: 12.16 },
+  { age: "16", hourly: 12.51, casualHourly: 15.64 },
+  { age: "17", hourly: 15.29, casualHourly: 19.11 },
+  { age: "18", hourly: 18.06, casualHourly: 22.58 },
+  { age: "19", hourly: 21.82, casualHourly: 27.28 },
+  { age: "20", hourly: 25.84, casualHourly: 32.30 },
 ] as const;
 
 /** Round half up to the cent, matching Fair Work's published figures. */
@@ -153,16 +199,127 @@ export const AWARD_JUNIOR_SCALES = [
 ] as const;
 
 /**
- * A scheduled review point, not current law. FWC decision [2026] FWCFB 75
- * (Junior rates application AM2024/24) would give 18–20 year olds under the
- * Retail, Fast Food and Pharmacy awards the adult rate after 6 months'
- * employment. Fair Work says it "could" start 1 December 2026, with further
- * hearings on timing. Under-18 rates are unchanged. Do not present as in force.
+ * A provisional view, not current law, and NOT a jump to the adult rate.
+ *
+ * ⚠️ CORRECTED 28 July 2026 after reading the decision itself. The earlier
+ * summary here — "would give 18–20 year olds the adult rate, could start
+ * 1 December 2026" — conflated the START OF A PHASE-IN with the ARRIVAL of the
+ * adult rate. They are years apart.
+ *
+ * FWC decision [2026] FWCFB 75 (Butler DP, Lee C, Harper-Greenwell C,
+ * 31 March 2026, ref PR798175) on application AM2024/24 by the SDA decides at
+ * [1082] to phase increases in "over a period of up to four years… in
+ * increments of five percentage points, in intervals of around six months".
+ * On 1 December 2026 an eligible 19-year-old would move from 80% to 85% — not
+ * to 100%. The full adult rate arrives 1 Jul 2027 (age 20), 1 Jul 2028 (19)
+ * and 1 Jul 2029 (18).
+ *
+ * Nothing has been varied. At [1077] the Commission says it will hear the
+ * parties on timing "before any such determination is made", and at [1081]
+ * that the schedule below is a "provisional view". Eligibility is more than
+ * 6 months with the CURRENT employer only ([1083]). Under-18 rates are
+ * unchanged ([1076]). Do not present any of this as in force.
  */
 export const PENDING_JUNIOR_CHANGE = {
   decision: "[2026] FWCFB 75",
+  documentReference: "PR798175",
+  decidedOn: "31 March 2026",
   application: "AM2024/24",
+  applicant: "Shop, Distributive and Allied Employees Association",
   earliestStart: "1 December 2026",
   awards: ["General Retail Industry Award", "Fast Food Industry Award", "Pharmacy Industry Award"],
   inForce: false,
+  isProvisionalView: true,
+  serviceQualifier: "more than 6 months with the current employer",
+  underEighteenUnchanged: true,
+  /** Fair Work Ombudsman's own wording on timing — quote this, not a paraphrase. */
+  fwoWording:
+    "The Commission has indicated that these changes will be introduced gradually, with further hearings to be held about how and when this will happen. However, the Commission has said that the changes could start from 1 December 2026.",
+  /** Provisional percentages from [1082]. Percentage of the adult rate. */
+  phaseIn: [
+    { effective: "Present", age18: 70, age19: 80, age20: 90 },
+    { effective: "1 December 2026", age18: 75, age19: 85, age20: 95 },
+    { effective: "1 July 2027", age18: 80, age19: 90, age20: 100 },
+    { effective: "1 December 2027", age18: 85, age19: 95, age20: 100 },
+    { effective: "1 July 2028", age18: 90, age19: 100, age20: 100 },
+    { effective: "1 December 2028", age18: 95, age19: 100, age20: 100 },
+    { effective: "1 July 2029", age18: 100, age19: 100, age20: 100 },
+  ],
 } as const;
+
+/**
+ * Minimum working age. There is NO national minimum — the Fair Work Ombudsman
+ * says so directly: "The minimum age for working depends on the state or
+ * territory you're working in."
+ *
+ * ⚠️ The widely repeated line that "the standard minimum age in Australia is
+ * 15" appears only in media and secondary sources. No government page states
+ * it. Do not publish it.
+ *
+ * Transcribed from each jurisdiction's own government page, 28 July 2026.
+ * Every jurisdiction separately bars work during school hours under education
+ * law, regardless of the employment-law position.
+ */
+export const MINIMUM_WORKING_AGE: readonly {
+  jurisdiction: string;
+  summary: string;
+  detail: string;
+  url: string;
+}[] = [
+  {
+    jurisdiction: "NSW",
+    summary: "No minimum age",
+    detail:
+      "NSW Industrial Relations states there is no minimum legal age to start work. Separate rules apply to under-16s in still photography, modelling, promotional work, performance and public speaking, but not to retail or hospitality.",
+    url: "https://www.nsw.gov.au/employment/rights-responsibilities/starting-work",
+  },
+  {
+    jurisdiction: "VIC",
+    summary: "13, or 11 for deliveries",
+    detail:
+      "11 to deliver newspapers and advertising material; 13 for other work including retail and hospitality. No age limit in entertainment. An employer usually needs a licence to employ someone under 15. Work is generally limited to 6am–9pm, 3 hours a day and 12 hours a week during term.",
+    url: "https://www.vic.gov.au/child-employment-licence",
+  },
+  {
+    jurisdiction: "QLD",
+    summary: "13, or 11 for supervised deliveries",
+    detail:
+      "13 generally, lowered to 11 for supervised delivery work between 6am and 6pm. No work between 10pm and 6am, and a maximum of 4 hours on a school day.",
+    url: "https://www.business.qld.gov.au/running-business/employing/hiring-recruitment/employing-children/restrictions",
+  },
+  {
+    jurisdiction: "WA",
+    summary: "No flat minimum — restricted by job type under 15",
+    detail:
+      "Any age in a family business, professional performance or for a charity. 10–12 may deliver newspapers or advertising material. 13–14 may work in a shop, fast food outlet, cafe or restaurant, or collect trolleys, with written parental permission, outside school hours and between 6am and 10pm.",
+    url: "https://www.wa.gov.au/organisation/private-sector-labour-relations/when-children-can-work-western-australia",
+  },
+  {
+    jurisdiction: "SA",
+    summary: "No minimum age",
+    detail:
+      "SafeWork SA states there is no minimum working age in South Australia, so a child of any age may undertake paid employment. Children of compulsory school age cannot be employed during school hours.",
+    url: "https://safework.sa.gov.au/workers/wages-and-conditions/minimum-working-age",
+  },
+  {
+    jurisdiction: "TAS",
+    summary: "No minimum age",
+    detail:
+      "Generally no minimum age for casual or part-time work, though age restrictions apply to certain types of work. Work during school hours requires an approved exemption.",
+    url: "https://www.decyp.tas.gov.au/learning/primary-school-to-year-12/employment-while-studying/",
+  },
+  {
+    jurisdiction: "ACT",
+    summary: "No minimum age stated; hours capped by age",
+    detail:
+      "ACT government pages set hour limits without stating a floor — no more than 10 hours a week under 15, and daily caps rising from 3 hours under age 3 to 6 hours at ages 12–15.",
+    url: "https://www.act.gov.au/community/youth/employing-young-people",
+  },
+  {
+    jurisdiction: "NT",
+    summary: "No flat minimum — restricted roles under 15",
+    detail:
+      "Under 15s are limited to roles such as babysitting, helping in a family business or delivering newspapers. From 15 a wider range of work is allowed. No work during school hours, and none between 10pm and 6am under 15.",
+    url: "https://nt.gov.au/learning/student-wellbeing-and-inclusion/school-attendance/school-age-children-in-jobs",
+  },
+] as const;

@@ -102,6 +102,14 @@ export default function Footer() {
                 <li><Link href="/low-income-tax-offset/" className="text-sandstone-dark/45 hover:text-eucalyptus">LITO Guide</Link></li>
                 <li><Link href="/payg-withholding-tables/" className="text-sandstone-dark/45 hover:text-eucalyptus">PAYG Withholding</Link></li>
                 <li><Link href="/award-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">Award Rates</Link></li>
+                {/*
+                  Same reasoning as the tax-table block below: the per-award
+                  rate pages otherwise get one sitewide link from the mega
+                  footer alone. Listing the two highest-volume targets here
+                  doubles their internal link count from launch.
+                */}
+                <li><Link href="/schads-award-pay-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">SCHADS Award Rates</Link></li>
+                <li><Link href="/junior-pay-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">Junior Pay Rates</Link></li>
               </ul>
             </div>
             {/*

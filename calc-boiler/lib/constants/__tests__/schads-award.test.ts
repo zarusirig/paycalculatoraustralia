@@ -100,3 +100,42 @@ test("home care aged care has six levels and no pay points", () => {
     assert.ok(!r.classification.includes("pay point"));
   }
 });
+
+// =============================================================================
+// Corrections from the 28 July 2026 primary-source re-verification.
+// =============================================================================
+
+test("the ERO tables start at Level 2 — Level 1 gets no uplift", () => {
+  // Both ERO tables in cl 15 open with "Social and community services employee
+  // level 2". Calling the Level 1 rates ERO-inclusive misstates why they are
+  // what they are, even though the figures themselves are the operative ones.
+  assert.equal(SCHADS_AWARD.eroLowestLevel, 2);
+
+  const l1 = SCHADS_SACS.filter((r) => r.classification.startsWith("Level 1"));
+  assert.equal(l1.length, 3, "Level 1 has three pay points");
+  // The plain cl 15.1 minimum wages, unchanged by any ERO.
+  assert.deepEqual(l1.map((r) => r.weekly), [1_046.9, 1_080.6, 1_119.1]);
+});
+
+test("$1,119.10 means two different things and must not be conflated", () => {
+  // It is the operative Level 1 pp3 rate, AND the pre-ERO cl 15 figure for
+  // Level 2 pp1 which becomes $1,376.49. ~$257/week apart in meaning.
+  const l1pp3 = SCHADS_SACS.find((r) => r.classification === "Level 1 pay point 3")!;
+  const l2pp1 = SCHADS_SACS.find((r) => r.classification === "Level 2 pay point 1")!;
+  assert.equal(l1pp3.weekly, 1_119.1);
+  assert.equal(l2pp1.weekly, 1_376.49);
+  assert.ok(l2pp1.weekly - l1pp3.weekly > 250);
+});
+
+test("public holiday pay is quoted as the award words it", () => {
+  // cl 34.2(a) says "double time and a half". "250%" is our arithmetic.
+  assert.equal(SCHADS_AWARD.publicHolidayAwardWording, "double time and a half");
+  assert.equal(SCHADS_PENALTIES.publicHoliday, 2.5);
+});
+
+test("trainee rates are sourced outside this award", () => {
+  // cl 19.2 incorporates Schedule E of the Miscellaneous Award 2020, which is
+  // the only age-linked route into SCHADS pay. Needed to state the
+  // no-junior-rates negative accurately.
+  assert.match(SCHADS_AWARD.traineeRatesSource, /Miscellaneous Award 2020/);
+});

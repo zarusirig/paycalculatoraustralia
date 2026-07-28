@@ -26,6 +26,17 @@
 // "ordinary hourly rate", which by clause 2 excludes the loading, so casual
 // and full-time overtime dollars are identical. In retail the loading IS
 // included (175% vs 150%). One shared code path cannot serve both.
+//
+// ⚠️ BUT "IDENTICAL" IS NOT UNIVERSAL. Re-verified 28 July 2026 against
+// Schedule B: B.2.2 (full-time) and B.2.4 (casual) give the same dollars for
+// Mon–Fri, weekend and rostered-day-off overtime — Level 1 is 39.66/52.88/52.88
+// in both. PUBLIC HOLIDAYS DIVERGE: full-time 225%, casual 250%. Scope the
+// claim to Mon–Fri, weekend and RDO overtime only.
+//
+// ⚠️ RETAIL OVERTIME IS BANDED "MONDAY TO SATURDAY", NOT "WEEKDAY". Table 11
+// reads "Monday to Saturday—first 3 hours". Labelling those rows "weekday"
+// leaves Saturday overtime undefined. The field names below are historical;
+// the display labels are what matter.
 // =============================================================================
 
 export const HOSPITALITY_AWARD = {
@@ -114,6 +125,15 @@ export const HOSPITALITY_CLASSIFICATIONS: readonly { title: string; level: strin
   { title: "Kitchen attendant grade 3", level: "Level 3" },
 ] as const;
 
+/**
+ * Public holiday overtime, where the "casual overtime equals full-time
+ * overtime" rule does NOT hold. Schedule B.2.2 vs B.2.4.
+ */
+export const HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME = {
+  fullTime: 2.25,
+  casual: 2.5,
+} as const;
+
 /** Hospitality penalties, award Table 14 (cl 29.2(b)). Casual is additive. */
 export const HOSPITALITY_PENALTIES = {
   saturday: 1.25,
@@ -125,8 +145,13 @@ export const HOSPITALITY_PENALTIES = {
   /** Flat cash per hour, NOT multipliers. */
   eveningPerHour: 2.95,
   nightPerHour: 4.42,
-  /** cl 29.3: where more than one penalty applies, only the highest is paid. */
+  /**
+   * cl 29.3(b): where more than one penalty applies, only the highest is paid.
+   * cl 29.3(c) carves out the clause 16 Breaks penalty, which IS payable in
+   * addition. Verified 28 July 2026.
+   */
   cumulative: false,
+  highestOnlyException: "The clause 16 Breaks penalty is payable in addition to the highest applicable penalty rate (cl 29.3(c)).",
 } as const;
 
 /** Hospitality overtime, award Table 13 (cl 28.4). Same dollars for casuals. */
@@ -162,8 +187,16 @@ export const HOSPITALITY_JUNIOR_OFFICE_SCALE: readonly { age: string; percentage
   { age: "20 and over", percentage: 1 },
 ] as const;
 
+/**
+ * Sourcing note, verified 28 July 2026: the AWARD states only the liquor limb
+ * (cl 13.5, "Junior employees working as liquor service employees must be paid
+ * as an adult"). The trade-qualification limb appears in the FWO Pay Guide,
+ * not in those terms in the award. Attribute accordingly.
+ */
 export const HOSPITALITY_JUNIOR_ADULT_RATE_EXCEPTIONS =
   "Junior employees with a trade qualification, or who are liquor service employees, must be paid the adult rate.";
+export const HOSPITALITY_JUNIOR_ADULT_RATE_SOURCE =
+  "The liquor service rule is award clause 13.5; the trade-qualification rule is stated in the Fair Work Ombudsman pay guide.";
 
 /** General Retail adult rates, levels 1–8. */
 export const RETAIL_RATES = parse(`
@@ -222,5 +255,32 @@ export const AWARD_UNVERIFIED = [
   "Retail shiftworker rates and baking production early-morning/night rates",
   "Casino stream penalty detail",
   "Loaded rate arrangements (hospitality cl 24) — produce different results from the standard tables",
-  "Retail junior rates for levels 4-8 (FWO publishes levels 1-3 only)",
 ] as const;
+
+/**
+ * NOT a gap — a substantive award rule, corrected 28 July 2026. Retail junior
+ * percentages are confined to levels 1–3 by the award itself (cl 17.2: "a
+ * junior employee, who is classified as a retail employee level 1, 2 or 3"),
+ * not by a Fair Work publishing choice. A junior classified at level 4 or
+ * above is paid the full rate for that classification.
+ */
+export const RETAIL_JUNIOR_LEVEL_RESTRICTION =
+  "Junior rates apply only to retail employee levels 1, 2 and 3 (cl 17.2). A junior classified at level 4 or above receives the full adult rate for that classification.";
+
+/**
+ * The managerial (hotels) weekly and hourly figures come from the FWO pay
+ * guide. The award itself sets a minimum ANNUAL salary of $63,617 (cl 18.2)
+ * and publishes only hourly loadings in Schedule B.5.1 — it never states
+ * $1,223.39. Cite the pay guide, not the award, for that weekly rate.
+ */
+export const HOSPITALITY_MANAGERIAL_SOURCE = {
+  weeklyIsPayGuideOnly: true,
+  awardAnnualSalary: 63_617,
+  awardClause: "cl 18.2",
+} as const;
+
+/** Determinations giving effect to the 2026 review, by award. */
+export const AWARD_DETERMINATIONS = {
+  hospitality: "PR799290",
+  retail: "PR799285",
+} as const;

@@ -21,6 +21,11 @@ import {
   RETAIL_PENALTIES,
   RETAIL_OVERTIME,
   RETAIL_JUNIOR_SCALE,
+  HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME,
+  RETAIL_JUNIOR_LEVEL_RESTRICTION,
+  HOSPITALITY_MANAGERIAL_SOURCE,
+  AWARD_DETERMINATIONS,
+  AWARD_UNVERIFIED,
 } from "../hospitality-award";
 
 test("hourly is weekly / 38 for every published rate", () => {
@@ -122,4 +127,54 @@ test("junior scales are monotonic and top out at the adult rate", () => {
       assert.ok(scale[i].percentage >= scale[i - 1].percentage);
     }
   }
+});
+
+// =============================================================================
+// Corrections from the 28 July 2026 primary-source re-verification.
+// =============================================================================
+
+test("casual overtime equals full-time overtime EXCEPT on public holidays", () => {
+  // Schedule B.2.2 vs B.2.4 give identical dollars for Mon-Fri, weekend and
+  // RDO overtime, but diverge on public holidays: 225% against 250%. Stating
+  // the rule without that carve-out understates casual public holiday pay.
+  assert.equal(HOSPITALITY_AWARD.casualLoadingOnOvertime, false);
+  assert.equal(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime, 2.25);
+  assert.equal(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual, 2.5);
+  assert.notEqual(
+    HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime,
+    HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual,
+    "public holidays are the exception to the identical-overtime rule",
+  );
+});
+
+test("the highest-penalty-only rule has a breaks carve-out", () => {
+  // cl 29.3(b) pays only the highest penalty; cl 29.3(c) makes the clause 16
+  // Breaks penalty payable in addition.
+  assert.equal(HOSPITALITY_PENALTIES.cumulative, false);
+  assert.match(HOSPITALITY_PENALTIES.highestOnlyException, /in addition/);
+});
+
+test("retail junior rates are confined to levels 1-3 by the award itself", () => {
+  // This is cl 17.2, not a Fair Work publishing choice — it was previously
+  // recorded as the latter, which would have made it look like a data gap.
+  assert.match(RETAIL_JUNIOR_LEVEL_RESTRICTION, /levels 1, 2 and 3/);
+  assert.match(RETAIL_JUNIOR_LEVEL_RESTRICTION, /full adult rate/);
+  for (const gap of AWARD_UNVERIFIED) {
+    assert.ok(!gap.startsWith("Retail junior rates"), "no longer a gap; it is a rule");
+  }
+});
+
+test("the managerial weekly rate is attributed to the pay guide, not the award", () => {
+  // The award sets a minimum ANNUAL salary of $63,617 (cl 18.2) and never
+  // states $1,223.39. Only the FWO pay guide does.
+  assert.equal(HOSPITALITY_MANAGERIAL_SOURCE.weeklyIsPayGuideOnly, true);
+  assert.equal(HOSPITALITY_MANAGERIAL_SOURCE.awardAnnualSalary, 63_617);
+  const managerial = HOSPITALITY_RATES.find((r) => r.level.startsWith("Managerial"))!;
+  assert.equal(managerial.weekly, 1_223.39);
+});
+
+test("determinations are recorded for both awards", () => {
+  assert.equal(AWARD_DETERMINATIONS.hospitality, "PR799290");
+  assert.equal(AWARD_DETERMINATIONS.retail, "PR799285");
+  assert.equal(HOSPITALITY_AWARD.determination, AWARD_DETERMINATIONS.hospitality);
 });

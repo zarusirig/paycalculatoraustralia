@@ -103,8 +103,23 @@ export const GUIDE_CATEGORIES = [
       { href: "/award-rates/", label: "Award Rates", description: "Minimum wage and penalty rates" },
       { href: "/contractor-vs-employee/", label: "Contractor vs Employee Guide", description: "Key differences, tax and super" },
       { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide", description: "NES entitlements and tax" },
-      { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates", description: "Weekend, evening and public holiday rates" },
+      { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates", description: "Weekend, evening and public holiday rates" },
       { href: "/annual-leave-guide/", label: "Annual Leave Guide", description: "Entitlements and loading" },
+    ],
+  },
+  {
+    // Per-award rate pages. The /award-rates/ hub is the parent; each child
+    // owns one award's classification table so no two pages compete for the
+    // same term. Rates derive from lib/constants/schads-award.ts,
+    // hospitality-award.ts and junior-rates.ts — never hardcoded here.
+    title: "Award Pay Rates",
+    guides: [
+      { href: "/award-rates/", label: "Award Rates Hub", description: "How modern awards set minimum pay" },
+      { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates", description: "Social, community, home care & disability" },
+      { href: "/hospitality-award-rates/", label: "Hospitality Award Rates", description: "Cafes, restaurants, pubs & hotels" },
+      { href: "/retail-award-rates/", label: "Retail Award Rates", description: "General Retail Industry Award levels 1–8" },
+      { href: "/junior-pay-rates/", label: "Junior Pay Rates", description: "Minimum wage by age, 16 to 20" },
+      { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates by Award", description: "Weekend, evening and public holiday loadings" },
     ],
   },
   {
@@ -306,7 +321,11 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
   { href: "/stsl-on-payslip/", label: "STSL on Your Payslip" },
   { href: "/award-rates/", label: "Award Rates" },
-  { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates" },
+  { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
+  { href: "/hospitality-award-rates/", label: "Hospitality Award Rates" },
+  { href: "/retail-award-rates/", label: "Retail Award Rates" },
+  { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
+  { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },
   { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide" },
   { href: "/minimum-wage-history-australia/", label: "Minimum Wage History" },
