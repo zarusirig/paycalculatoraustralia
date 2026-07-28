@@ -13,6 +13,15 @@ import {
   calculateZoneTaxOffset,
   type ZoneArea,
 } from "@/lib/constants/zone-tax-offset";
+import {
+  findZoneLocations,
+  COVERED_STATES,
+  STATE_NAMES,
+  ZONE_CODE_LABELS,
+  ZONE_CODE_TO_AREA,
+  ZONE_LIST_LAST_UPDATED,
+  ZONE_LOCATIONS,
+} from "@/lib/data/zones";
 
 const AREA_ORDER: ZoneArea[] = ["zoneA", "zoneB", "specialArea", "overseasForces"];
 
@@ -57,6 +66,11 @@ export default function ZoneTaxOffsetCalculator() {
   const [soleParentDays, setSoleParentDays] = useState(0);
   const [invalidCarerOffset, setInvalidCarerOffset] = useState(0);
   const [remoteAreaAllowance, setRemoteAreaAllowance] = useState(0);
+  const [locationQuery, setLocationQuery] = useState("");
+  const [pickedLocation, setPickedLocation] = useState<string | null>(null);
+
+  const matches = useMemo(() => findZoneLocations(locationQuery), [locationQuery]);
+  const searching = locationQuery.trim().length >= 2 && pickedLocation === null;
 
   const result = useMemo(
     () =>
@@ -108,6 +122,77 @@ export default function ZoneTaxOffsetCalculator() {
         <div className="grid md:grid-cols-[1fr_1fr] gap-8">
           {/* ---------------- Inputs ---------------- */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+            <div>
+              <label htmlFor="zone-lookup" className="block text-sm font-medium text-navy mb-1">
+                Look up your town
+              </label>
+              <input
+                type="search"
+                id="zone-lookup"
+                autoComplete="off"
+                placeholder="e.g. Darwin, Tennant Creek, Queenstown"
+                value={locationQuery}
+                onChange={(e) => {
+                  setLocationQuery(e.target.value);
+                  setPickedLocation(null);
+                }}
+                className={inputClass}
+              />
+              {searching && matches.length > 0 && (
+                <ul className="mt-2 max-h-56 overflow-y-auto rounded-md border border-sandstone-dark/25 bg-white divide-y divide-sandstone-dark/10">
+                  {matches.map((m) => {
+                    const target = ZONE_CODE_TO_AREA[m.zone];
+                    return (
+                      <li key={`${m.state}-${m.name}`}>
+                        <button
+                          type="button"
+                          disabled={target === null}
+                          onClick={() => {
+                            if (target === null) return;
+                            setArea(target);
+                            setPickedLocation(`${m.name}, ${m.state}`);
+                            setLocationQuery(m.name);
+                          }}
+                          className="flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm hover:bg-sandstone/60 disabled:opacity-60"
+                        >
+                          <span className="text-navy">
+                            {m.name}{" "}
+                            <span className="text-warmgray-light">({m.state})</span>
+                          </span>
+                          <span className="shrink-0 text-xs font-medium text-eucalyptus-dark">
+                            {ZONE_CODE_LABELS[m.zone]}
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+              {searching && matches.length === 0 && (
+                <p className="mt-2 text-xs text-warmgray">
+                  Not in the {ZONE_LOCATIONS.length.toLocaleString()} locations we hold for{" "}
+                  {COVERED_STATES.map((s) => STATE_NAMES[s]).join(" and ")}. The ATO&rsquo;s list is
+                  not exhaustive either — some places qualify as a special area without appearing on
+                  it. Check the{" "}
+                  <a
+                    href="https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-eucalyptus-dark hover:underline"
+                  >
+                    ATO zone list
+                  </a>{" "}
+                  and pick your zone below.
+                </p>
+              )}
+              {pickedLocation && (
+                <p className="mt-2 text-xs text-eucalyptus-dark">
+                  {pickedLocation} → {ZONE_AREA_RATES[area].label}. ATO list updated{" "}
+                  {ZONE_LIST_LAST_UPDATED}.
+                </p>
+              )}
+            </div>
+
             <div>
               <label htmlFor="zone-area" className="block text-sm font-medium text-navy mb-1">
                 Where was your usual place of residence?
