@@ -385,13 +385,24 @@ workstreams and deployed together.
   calculator intent; the 2,907-word omnibus cut to 1,854 and stripped of the
   rate table. Six schemes share the thresholds, not seven — TSL is now AASL.
 
-**The most consequential find was an engine defect**, not a content gap.
-`calculateSchedule5MethodB` capped withholding at 100% of an additional
-payment where the ATO caps it at **47%** (QC107123). On $8,000/fortnight plus
-a $1,000 bonus with STSL it withheld 57.2%. That engine feeds
-`/bonus-tax-calculator/` — the site's single highest-traffic page at 1,057
-clicks/28d. Fixed, with five regression tests; no existing anchored test moved,
-so ordinary bonuses are unchanged.
+**An engine defect was found and fixed.** `calculateSchedule5MethodB` capped
+withholding at 100% of an additional payment where the ATO caps it at **47%**
+(QC107123). On $8,000/fortnight plus a $1,000 bonus with STSL it withheld
+57.2%. Fixed, with five regression tests; no existing anchored test moved.
+
+**Correction to the commit message on `5125863`:** that commit says the engine
+feeds `/bonus-tax-calculator/`. It does not. Only `/schedule-5-tax-table/`
+imports `calculateSchedule5MethodB`. The bonus calculator computes with
+`calculatePayBreakdown` — the annual tax engine — taking the difference in
+annual liability with and without the bonus. The blast radius of the defect
+was `/schedule-5-tax-table/`, not the site's top page.
+
+Worth a look later, but not acted on without evidence: `/bonus-tax-calculator/`
+answers *"what tax will I pay on this bonus"* (annual liability) while some of
+its prose describes *"what your employer will withhold"* (Schedule 5). Those
+are different numbers. For ordinary salaries and bonuses they are close, and
+liability is the more useful answer to the question the page is ranking for —
+so this is a copy-precision issue rather than a computation defect.
 
 **Open:** the holidays cluster (item 16, needs a strategic call) and the
 occupational clusters (item 17). Item 11 — rebuilding `/` and
