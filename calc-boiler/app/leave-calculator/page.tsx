@@ -11,11 +11,11 @@ const URL = `${BASE}/leave-calculator/`;
 export const metadata: Metadata = {
   title: "Annual Leave Calculator Australia — What Your Payout Is Worth",
   description:
-    "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading & lump-sum payouts — FY2025-26 Australian rates.",
+    "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading & lump-sum payouts — FY2026-27 Australian rates.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Annual Leave Calculator Australia — How Much Your Leave Payout Actually Is",
-    description: "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading and lump-sum payouts for FY2025-26.",
+    description: "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading and lump-sum payouts for FY2026-27.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Annual Leave Calculator Australia",
-    description: "How much your annual leave payout is actually worth — FY2025-26 rates.",
+    description: "How much your annual leave payout is actually worth — FY2026-27 rates.",
   },
 };
 

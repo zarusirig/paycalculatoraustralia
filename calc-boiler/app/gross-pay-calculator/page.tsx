@@ -76,7 +76,7 @@ const faq: WithContext<FAQPage> = {
       name: "Does gross pay include superannuation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Generally, no. When negotiating a salary in Australia, \"Gross Pay\" or \"Base Salary\" excludes the compulsory employer superannuation guarantee (currently 12% for FY2025-26). A \"Total Remuneration Package\" (TRP) includes super.",
+        text: "Generally, no. When negotiating a salary in Australia, \"Gross Pay\" or \"Base Salary\" excludes the compulsory employer superannuation guarantee (currently 12% for FY2026-27). A \"Total Remuneration Package\" (TRP) includes super.",
       },
     },
   ],

@@ -52,7 +52,7 @@ const faq: WithContext<FAQPage> = {
   "@type": "FAQPage",
   mainEntity: [
     { "@type": "Question", name: "What is the new HECS marginal repayment system?", acceptedAnswer: { "@type": "Answer", text: "Starting dynamically from 1 July 2025, HECS-HELP repayments transition from a 'flat rate' system (where a single percentage applies to your entire income) to a 'marginal rate' system. This means you only apply the repayment percentage to the portion of your income that falls above the minimum repayment threshold, keeping more money in your pocket." } },
-    { "@type": "Question", name: "What is the minimum HECS repayment threshold for 2026-27?", acceptedAnswer: { "@type": "Answer", text: "For the 2026-27 financial year, you only start making mandatory HECS-HELP repayments once your repayment income exceeds $69,528. The threshold was $69,528 when the marginal system launched in 2025-26 and is indexed each year." } },
+    { "@type": "Question", name: "What is the minimum HECS repayment threshold for 2026-27?", acceptedAnswer: { "@type": "Answer", text: "For the 2026-27 financial year, you only start making mandatory HECS-HELP repayments once your repayment income exceeds $69,528. The threshold was $67,000 when the marginal system launched in 2025-26 and is indexed each year." } },
     { "@type": "Question", name: "How is HECS-HELP indexation changing?", acceptedAnswer: { "@type": "Answer", text: "The government has capped the indexation rate for student loans to the lower of either the Consumer Price Index (CPI) or the Wage Price Index (WPI). This ensures your debt will never grow faster than average wages." } },
   ]
 };

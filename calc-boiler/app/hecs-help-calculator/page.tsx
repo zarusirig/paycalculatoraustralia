@@ -40,7 +40,7 @@ const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", 
 
 const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
   { "@type": "Question", name: "At what income do HECS repayments start in 2026-27?",
-    acceptedAnswer: { "@type": "Answer", text: "Compulsory HECS repayments start once your repayment income exceeds $69,528 in FY2026-27 (up from $69,528 in FY2025-26). At or below $69,528, you make no compulsory repayment." } },
+    acceptedAnswer: { "@type": "Answer", text: "Compulsory HECS repayments start once your repayment income exceeds $69,528 in FY2026-27 (up from $67,000 in FY2026-27). At or below $69,528, you make no compulsory repayment." } },
   { "@type": "Question", name: "How much is my HECS repayment on $80,000?",
     acceptedAnswer: { "@type": "Answer", text: "On $80,000, your HECS repayment is $1,571 per year (about $30.21/week) in FY2026-27. Calculated at 15c per dollar on the $10,472 above the $69,528 threshold." } },
   { "@type": "Question", name: "What are the HECS repayment rates for 2026-27?",

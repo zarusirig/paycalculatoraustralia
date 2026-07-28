@@ -11,17 +11,17 @@ const URL = `${BASE}/medicare-levy/`;
 export const metadata: Metadata = {
   title: "Medicare Levy Calculator — 2% Rate, Surcharge & Who Pays",
   description:
-    "Work out your Medicare Levy in seconds. 2% standard rate, low-income exemption thresholds, MLS surcharge by income — calculate yours for FY2025-26.",
+    "Work out your Medicare Levy in seconds. 2% standard rate, low-income exemption thresholds, MLS surcharge by income — calculate yours for FY2026-27.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Medicare Levy Calculator 2025-26 — 2% Rate, Surcharge & Who Pays",
-    description: "Work out your Medicare Levy in seconds. 2% standard rate, low-income thresholds, MLS surcharge by income — FY2025-26.",
+    title: "Medicare Levy Calculator 2026-27 — 2% Rate, Surcharge & Who Pays",
+    description: "Work out your Medicare Levy in seconds. 2% standard rate, low-income thresholds, MLS surcharge by income — FY2026-27.",
     url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Medicare Levy Calculator 2025-26 — 2% Rate, Surcharge & Who Pays",
-    description: "Work out your Medicare Levy in seconds — 2% rate, MLS surcharge, low-income thresholds for FY2025-26.",
+    title: "Medicare Levy Calculator 2026-27 — 2% Rate, Surcharge & Who Pays",
+    description: "Work out your Medicare Levy in seconds — 2% rate, MLS surcharge, low-income thresholds for FY2026-27.",
   },
 };
 
@@ -31,7 +31,7 @@ const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.or
 ]};
 
 const article: WithContext<Article> = { "@context": "https://schema.org", "@type": "Article",
-  headline: "Medicare Levy 2025-26 — Rate, Surcharge, Thresholds & Exemptions",
+  headline: "Medicare Levy 2026-27 — Rate, Surcharge, Thresholds & Exemptions",
   url: URL, datePublished: "2025-07-01", dateModified: GUIDE_AUTHORSHIP["medicare-levy"].lastReviewed,
   author: AUTHORS["james-harrington"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/logo.png` } },
@@ -40,10 +40,10 @@ const article: WithContext<Article> = { "@context": "https://schema.org", "@type
 };
 
 const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-  { "@type": "Question", name: "What is the Medicare Levy rate in 2025-26?",
+  { "@type": "Question", name: "What is the Medicare Levy rate in 2026-27?",
     acceptedAnswer: { "@type": "Answer", text: "2% of your taxable income." } },
   { "@type": "Question", name: "What income do you start paying the Medicare Levy at?",
-    acceptedAnswer: { "@type": "Answer", text: "Above $26,000 for singles in FY2025-26." } },
+    acceptedAnswer: { "@type": "Answer", text: "Above $26,000 for singles in FY2026-27." } },
   { "@type": "Question", name: "What is the Medicare Levy Surcharge (MLS)?",
     acceptedAnswer: { "@type": "Answer", text: "An additional 1–1.5% paid by high-income earners without private hospital cover." } },
   { "@type": "Question", name: "How do I avoid the Medicare Levy Surcharge?",

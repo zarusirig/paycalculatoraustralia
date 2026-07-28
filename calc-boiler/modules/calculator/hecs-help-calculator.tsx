@@ -13,6 +13,7 @@ import {
   formatAUD,
   annualToWeekly,
   HECS_HELP,
+  HECS_HELP_2025_26,
   SOURCES,
 } from "@/lib/constants";
 
@@ -28,7 +29,7 @@ function clamp(n: number, min: number, max: number) {
 const HECS_2026_27 = {
   financialYear: "2026-27",
   minimumThreshold: 69_528,
-  previousThreshold: HECS_HELP.minimumThreshold, // $69,528 (FY2025-26)
+  previousThreshold: HECS_HELP_2025_26.minimumThreshold, // $67,000 (FY2025-26)
   indexationDate: "1 June 2026",
   indexationRate: 0.028,
   bands: [

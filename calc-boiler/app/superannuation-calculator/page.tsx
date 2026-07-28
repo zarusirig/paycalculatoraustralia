@@ -10,10 +10,10 @@ const URL = `${BASE}/superannuation-calculator/`;
 
 export const metadata: Metadata = {
   title: "Super Guarantee Calculator — 12% SG on Your Salary",
-  description: "Calculate your superannuation contribution at the 12% SG rate for FY2025-26. See employer super, total package, and contribution cap space.",
+  description: "Calculate your superannuation contribution at the 12% SG rate for FY2026-27. See employer super, total package, and contribution cap space.",
   alternates: { canonical: URL },
-  openGraph: { title: "Superannuation Calculator Australia", description: "Calculate employer super at 12% SG rate. Free, updated for FY2025-26.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Super Calculator Australia", description: "Employer SG at 12% for FY2025-26." },
+  openGraph: { title: "Superannuation Calculator Australia", description: "Calculate employer super at 12% SG rate. Free, updated for FY2026-27.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: "Super Calculator Australia", description: "Employer SG at 12% for FY2026-27." },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [

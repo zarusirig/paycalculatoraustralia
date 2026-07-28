@@ -11,11 +11,11 @@ const URL = `${BASE}/tax-return-calculator/`;
 export const metadata: Metadata = {
   title: "Tax Return Estimator Australia — Estimate Your Refund",
   description:
-    "Estimate your tax refund or bill for FY2025-26. Enter salary, deductions and see how much you get back. Free Australian tax return estimator.",
+    "Estimate your tax refund or bill for FY2026-27. Enter salary, deductions and see how much you get back. Free Australian tax return estimator.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Tax Return Estimator Australia",
-    description: "Estimate your tax refund or amount owing for FY2025-26.",
+    description: "Estimate your tax refund or amount owing for FY2026-27.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",

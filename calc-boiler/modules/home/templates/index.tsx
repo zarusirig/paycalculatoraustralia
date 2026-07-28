@@ -1159,7 +1159,7 @@ export default function HomePageTemplate() {
               <strong>SG rate increases to 12%:</strong> The employer superannuation guarantee rate rose from 11.5% to <strong>12%</strong> on 1 July 2025. On an $80,000 salary, this adds an extra <strong>$400 per year</strong> to your super balance compared to the previous rate.
             </li>
             <li>
-              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold increased from $69,528 to <strong>$69,528</strong>. Graduates earning between $69,528 and $69,528 now make <strong>zero compulsory repayments</strong>.
+              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold rose from $54,435 under the old system to <strong>$69,528</strong> for FY2026-27. Graduates earning between $54,435 and $69,528 now make <strong>zero compulsory repayments</strong>.
             </li>
             <li>
               <strong>Medicare levy low-income threshold:</strong> The individual threshold remains at <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> for FY{SITE_CONFIG.financialYear}. Earners below this amount receive a reduced Medicare levy or full exemption.

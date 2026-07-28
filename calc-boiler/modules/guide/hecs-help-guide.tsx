@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, HECS_HELP, calculateHECS, calculatePayBreakdown, formatAUD, annualToWeekly } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, HECS_HELP_2025_26, calculateHECS, calculatePayBreakdown, formatAUD, annualToWeekly } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -98,7 +98,7 @@ export default function HecsHelpGuidePage() {
             <section id="thresholds">
               <h2>What Are the HECS-HELP Repayment Thresholds for FY2026-27?</h2>
               <p>
-                The minimum repayment threshold for FY2026-27 is <strong>$69,528</strong>, indexed up from the {formatAUD(HECS_HELP.minimumThreshold)} threshold that launched the marginal system in FY2025-26 &mdash; itself a significant increase from the {formatAUD(HECS_HELP.previousThreshold)} threshold under the old flat-rate system. Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your exact repayment at current-year rates.
+                The minimum repayment threshold for FY2026-27 is <strong>$69,528</strong>, indexed up from the {formatAUD(HECS_HELP_2025_26.minimumThreshold)} threshold that launched the marginal system in FY2025-26 &mdash; itself a significant increase from the $54,435 threshold under the old flat-rate system. Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your exact repayment at current-year rates.
               </p>
               <p>
                 Under the new marginal system introduced from 1 July 2025, repayment rates apply only to income within each band &mdash; not to your entire salary. This structure mirrors how Australian income tax brackets work, eliminating the harsh &ldquo;cliff&rdquo; effects of the old system.
@@ -141,7 +141,7 @@ export default function HecsHelpGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-medium">Minimum threshold</td><td className="px-6 py-4">{formatAUD(HECS_HELP.previousThreshold)}</td><td className="px-6 py-4 font-semibold">{formatAUD(HECS_HELP.minimumThreshold)}</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">Minimum threshold</td><td className="px-6 py-4">{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</td><td className="px-6 py-4 font-semibold">{formatAUD(HECS_HELP.minimumThreshold)}</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Rate application</td><td className="px-6 py-4">Percentage of entire income</td><td className="px-6 py-4">Percentage of income within each band only</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Cliff effect</td><td className="px-6 py-4">Yes &mdash; severe</td><td className="px-6 py-4 font-semibold">No &mdash; eliminated</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Repayment on $70,000</td><td className="px-6 py-4">~$3,150 (4.5% of $70k)</td><td className="px-6 py-4 font-semibold">{formatAUD(calculateHECS(70000))} (15% of $3k)</td></tr>
