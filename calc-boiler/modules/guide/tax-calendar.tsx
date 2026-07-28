@@ -74,7 +74,7 @@ export default function TaxCalendarPage() {
 
           {/* ===== SECTION 4: Employer/Business Tax Deadlines ===== */}
           <section><h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Employer and Business Tax Deadlines?</h2>
-            <p>Employers and businesses face <strong>quarterly BAS lodgments, STP finalisation by 14 July, and super guarantee payments within 28 days of each quarter end</strong>. Businesses with GST turnover above $20 million lodge BAS monthly rather than quarterly.</p>
+            <p>Employers and businesses face <strong>quarterly BAS lodgments, STP finalisation by 14 July, and &mdash; since Payday Super commenced on 1 July 2026 &mdash; super guarantee contributions received by the fund within 7 business days of every payday</strong>. Businesses with GST turnover above $20 million lodge BAS monthly rather than quarterly.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Business Activity Statement (BAS) Deadlines</h3>
             <p>Quarterly BAS covers GST, PAYG withholding, and PAYG instalments. The ATO pre-fills BAS data from STP reports, reducing manual entry for employers who report payroll through compliant software.</p>

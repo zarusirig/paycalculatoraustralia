@@ -148,7 +148,7 @@ export default function SuperannuationCalculatorPage() {
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-sm text-warmgray-light">The 12% rate is now permanent — no further legislated increases are scheduled. Employers who fail to pay the full 12% face the "Super Guarantee Charge" (SGC), which includes the shortfall, a nominal interest component, and a $20 administration fee per employee per quarter.</p>
+            <p className="mt-3 text-sm text-warmgray-light">The 12% rate is now permanent — no further legislated increases are scheduled. Employers who fail to pay in full face the &ldquo;Super Guarantee Charge&rdquo; (SGC): since Payday Super commenced on 1 July 2026 that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%.</p>
           </section>
 
           {/* --- Super on Common Salaries --- */}
@@ -270,7 +270,7 @@ export default function SuperannuationCalculatorPage() {
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Superannuation Mistakes?</h2>
             <p className="mb-4 text-warmgray">Australian employees lose an estimated <strong>$5.9 billion</strong> in unpaid and underpaid super each year. These 5 mistakes account for the majority of lost retirement savings.</p>
             <ol className="list-decimal pl-6 space-y-4 text-warmgray">
-              <li><strong>Not checking payslips against the 12% rate.</strong> Employers must pay SG quarterly, within 28 days of each quarter&apos;s end. Verify every payslip shows exactly 12% of your OTE going to super. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong> in lost contributions.</li>
+              <li><strong>Not checking payslips against the 12% rate.</strong> Since Payday Super commenced on 1 July 2026 employers must pay SG every payday, with the money received by your fund within 7 business days &mdash; so a missing contribution is now visible within a fortnight rather than a quarter. Underpayment by even 0.5% on a $90,000 salary costs you <strong>$450 per year</strong>.</li>
               <li><strong>Confusing &quot;plus super&quot; with &quot;including super&quot; in job offers.</strong> A $100,000 &quot;plus super&quot; role provides $100,000 salary and $12,000 super ($112,000 total). A $100,000 &quot;including super&quot; role provides $89,286 salary and $10,714 super. The difference in base pay is <strong>$10,714</strong>.</li>
               <li><strong>Exceeding the concessional cap.</strong> Employer SG plus salary sacrifice contributions that exceed the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap are taxed at your marginal rate instead of 15%. On a $150,000 salary, the employer already contributes $18,000 in SG, leaving only $12,000 in cap space for salary sacrifice.</li>
               <li><strong>Holding multiple super accounts.</strong> The average Australian has <strong>1.4 super accounts</strong>. Duplicate accounts mean duplicate insurance premiums and administration fees that erode retirement balances. Consolidate via myGov or contact your fund directly.</li>
@@ -336,7 +336,7 @@ export default function SuperannuationCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="less" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Can my employer pay super less than 12%?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. 12% SG is the legal minimum for FY2025-26. Employers who don&apos;t pay on time face the &quot;Super Guarantee Charge&quot; (SGC), which includes the unpaid amount, interest at 10% per annum, and a $20 administration fee per employee per quarter.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">No. 12% SG is the legal minimum. Employers who don&apos;t pay on time face the &quot;Super Guarantee Charge&quot; (SGC). Since Payday Super commenced on 1 July 2026 that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% &mdash; and unlike the old quarterly charge it is now tax-deductible.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="age30" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>How much super should I have at 30?</AccordionTrigger>

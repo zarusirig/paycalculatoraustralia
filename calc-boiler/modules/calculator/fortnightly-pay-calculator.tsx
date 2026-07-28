@@ -337,7 +337,7 @@ export default function FortnightlyPayCalculatorPage() {
                 Fortnightly pay is calculated by dividing your gross annual salary by 26 (the number of fortnights in a year). The employer then deducts PAYG income tax, the 2% Medicare levy, and any HECS-HELP repayments using the ATO&apos;s fortnightly tax table. The remaining amount is your fortnightly take-home pay.
               </FAQItem>
               <FAQItem value="super" question="Is superannuation deducted from my fortnightly pay?">
-                No. Your employer pays superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your gross salary. It is not deducted from your fortnightly take-home pay. The SG contribution is paid directly into your nominated super fund, typically quarterly within 28 days of each quarter&apos;s end.
+                No. Your employer pays superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your gross salary. It is not deducted from your fortnightly take-home pay. The SG contribution is paid directly into your nominated super fund, and since Payday Super commenced on 1 July 2026 it must be received there within 7 business days of each payday.
               </FAQItem>
               <FAQItem value="periods" question="Are there 26 or 27 fortnightly pays in a year?">
                 A standard year has 26 fortnightly pay periods (26 x 14 = 364 days). Because a calendar year has 365 or 366 days, every 11 to 12 years a financial year contains 27 fortnightly pay days. When this occurs, employers adjust PAYG withholding to avoid an end-of-year tax shortfall.

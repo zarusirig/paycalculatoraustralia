@@ -140,7 +140,7 @@ export default function WorkingHolidayTaxPage() {
                 <li><strong>Register as a WHM employer</strong> through the ATO Business Portal or by phoning 13 28 66 &mdash; registration is free and takes effect immediately</li>
                 <li><strong>Withhold tax at 15%</strong> on the first $45,000 of income using the WHM PAYG withholding tax tables, not the standard employee tables</li>
                 <li><strong>Verify visa status</strong> through the Visa Entitlement Verification Online (VEVO) system before the employee starts work</li>
-                <li><strong>Pay superannuation</strong> at 12% on ordinary time earnings, with payments due quarterly within 28 days of each quarter end</li>
+                <li><strong>Pay superannuation</strong> at 12%, with the contribution received by the fund within 7 business days of each payday since Payday Super commenced on 1 July 2026</li>
               </ul>
               <div className="not-prose bg-red-50 border-l-4 border-red-500 p-4 my-6 text-sm text-warmgray"><strong>Warning:</strong> If the employer is NOT registered as a WHM employer, they must withhold at the <strong>non-resident rate of 30%</strong> from dollar one instead of 15%. This doubles the worker&apos;s tax withholding and reduces their take-home pay by approximately $6,750 on a $45,000 income. The worker can recover the overpaid tax by lodging a tax return, but this creates cash flow issues during the working period.</div>
 

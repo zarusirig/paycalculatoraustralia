@@ -76,7 +76,7 @@ export default function SuperannuationGuidePage() {
             <section id="sg-rate">
               <h2>How Much Super Does Your Employer Pay?</h2>
               <p>
-                The Superannuation Guarantee (SG) rate is <strong>12%</strong> for the 2025-26 financial year, paid on top of your ordinary time earnings. Employers must deposit this amount into your nominated super fund quarterly, within 28 days of the end of each quarter (28 October, 28 January, 28 April, and 28 July).
+                The Superannuation Guarantee (SG) rate is <strong>12%</strong>, paid on top of your earnings. Since <strong>Payday Super commenced on 1 July 2026</strong>, employers must pay it <strong>every payday</strong> rather than quarterly, and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong> of each payday (20 business days for a new employee or a first contribution to a new fund).
               </p>
               <p>
                 The SG rate increased by 0.5 percentage points each year from 2021 to reach the legislated ceiling of 12% on 1 July 2025. No further increases are currently legislated. On a salary of $85,000, the 12% SG adds <strong>$10,200 per year</strong> to your super balance. The previous rate of {formatPercent(SUPER_GUARANTEE.previousRate, 1)} applied during FY2024-25.
@@ -532,7 +532,7 @@ export default function SuperannuationGuidePage() {
             <section id="key-dates">
               <h2>What Are the Key Super Dates and Deadlines?</h2>
               <p>
-                Employers must pay SG contributions <strong>quarterly</strong>, within 28 days of the end of each calendar quarter. Missing a deadline triggers the Superannuation Guarantee Charge (SGC), which includes the unpaid super, interest of 10% per annum, and a $20 per-employee administration fee.
+                Employers must pay SG contributions <strong>every payday</strong>, with the money received by the fund within <strong>7 business days</strong>. Missing that deadline triggers the Superannuation Guarantee Charge (SGC): the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on voluntary disclosure within 30 days. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>.
               </p>
 
               <div className="not-prose my-8">

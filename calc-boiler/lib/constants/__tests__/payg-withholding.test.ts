@@ -31,6 +31,14 @@ import {
   MEDICARE_LEVY,
   calculateHECS,
 } from "../australian-tax";
+import {
+  SUPER_GUARANTEE,
+  SUPER_GUARANTEE_CHARGE,
+  QUALIFYING_EARNINGS,
+  GENERAL_INTEREST_CHARGE,
+  PAYDAY_SUPER_CAP_RELIEF,
+} from "../australian-tax";
+
 
 // -----------------------------------------------------------------------------
 // Anchor: ATO "Fortnightly tax table" (NAT 1006) worked example.
@@ -218,4 +226,90 @@ test("STSL rises monotonically with earnings", () => {
     assert.ok(stsl >= previous, `STSL fell from $${previous} to $${stsl} at $${gross}`);
     previous = stsl;
   }
+});
+
+// =============================================================================
+// Payday Super / SGC — guards on the three facts most often published wrong.
+// Verified at ato.gov.au 28 July 2026 (QC105848, QC105843, QC16145).
+// =============================================================================
+
+test("the SGC has four components and the late payment penalty is not one", () => {
+  const c = SUPER_GUARANTEE_CHARGE.current;
+  assert.equal(c.components.length, 4);
+  for (const comp of c.components) {
+    assert.ok(!/late payment/i.test(comp), "late payment penalty is a separate penalty");
+  }
+  // It exists, but nested separately, and only after a Notice to Pay.
+  assert.equal(c.latePayment.penalty, 0.25);
+  assert.equal(c.latePayment.penaltyRepeatWithin24Months, 0.5);
+  // Never write "no way out" — there is a 0% pathway.
+  assert.equal(c.latePayment.exceptionalCircumstances, true);
+});
+
+test("the administrative uplift is two stacking reductions, not one test", () => {
+  const s = SUPER_GUARANTEE_CHARGE.current.upliftSchedule;
+  assert.equal(s.length, 5);
+  // Disclosing within 30 days with a clean record reaches nil.
+  const fast = s.find((r) => r.disclosure === "Within 30 days")!;
+  assert.equal(fast.noPriorAssessment, 0);
+  // A prior assessment costs exactly 20 points at every disclosure speed.
+  for (const row of s) {
+    assert.equal(row.priorAssessment - row.noPriorAssessment, 20, row.disclosure);
+  }
+  // The uplift only ever worsens as disclosure is delayed.
+  for (let i = 1; i < s.length; i++) {
+    assert.ok(s[i].noPriorAssessment >= s[i - 1].noPriorAssessment);
+  }
+  // Doing neither leaves you at the headline 60%.
+  assert.equal(s[s.length - 1].priorAssessment, SUPER_GUARANTEE_CHARGE.current.administrativeUpliftMax * 100);
+});
+
+test("the choice loading cap is per notice period, on contributions", () => {
+  const c = SUPER_GUARANTEE_CHARGE.current;
+  assert.equal(c.choiceLoadingCap, 1_200);
+  assert.equal(c.choiceLoadingCapBasis, "notice period");
+  assert.equal(c.choiceLoadingBasis, "value of contributions");
+});
+
+test("qualifying earnings added exactly one payment type — overtime is still out", () => {
+  assert.match(QUALIFYING_EARNINGS.onlyChangeFromOTE, /commissions/);
+  assert.match(QUALIFYING_EARNINGS.onlyChangeFromOTE, /outside ordinary hours/);
+  const overtime = QUALIFYING_EARNINGS.stillExcluded.find((x) => x.startsWith("overtime"));
+  assert.ok(overtime, "overtime must remain listed as excluded");
+  for (const inc of QUALIFYING_EARNINGS.stillIncluded) {
+    assert.ok(!/^overtime/.test(inc), "overtime must never appear in the included list");
+  }
+});
+
+test("the SGC is deductible, but three attached amounts are not", () => {
+  const c = SUPER_GUARANTEE_CHARGE.current;
+  assert.equal(c.taxDeductible, true);
+  assert.equal(SUPER_GUARANTEE_CHARGE.legacy.taxDeductible, false);
+  assert.equal(c.deductibleComponents.length, 4);
+  assert.equal(c.nonDeductible.length, 3);
+  assert.ok(c.nonDeductible.some((x) => /late payment penalty/.test(x)));
+});
+
+test("the GIC rate carries the quarter it belongs to, so staleness is visible", () => {
+  // This resets quarterly and is the fastest-staling figure on the site.
+  assert.ok(GENERAL_INTEREST_CHARGE.quarter.length > 0);
+  assert.equal(GENERAL_INTEREST_CHARGE.resetsQuarterly, true);
+  assert.equal(GENERAL_INTEREST_CHARGE.annualRate, 0.1143);
+  // The ATO publishes the daily rate; deriving it lands on a different digit.
+  assert.equal(GENERAL_INTEREST_CHARGE.dailyRatePercent, 0.03131507);
+  assert.ok(GENERAL_INTEREST_CHARGE.annualRate > GENERAL_INTEREST_CHARGE.previousQuarter.annualRate);
+});
+
+test("Payday Super concessional cap relief is not presented as law", () => {
+  assert.equal(PAYDAY_SUPER_CAP_RELIEF.announced, true);
+  assert.equal(PAYDAY_SUPER_CAP_RELIEF.isLaw, false);
+  assert.match(PAYDAY_SUPER_CAP_RELIEF.atoWording, /not yet law/i);
+});
+
+test("the maximum contribution base is annual and derives from the concessional cap", () => {
+  // $32,500 x 100 / 12, rounded down to the nearest $10.
+  const derived = Math.floor((SUPER_GUARANTEE.concessionalCap * 100) / 12 / 10) * 10;
+  assert.equal(derived, SUPER_GUARANTEE.maxContributionBaseAnnual);
+  assert.equal(SUPER_GUARANTEE.maxContributionBaseAnnual, 270_830);
+  assert.equal(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026, 62_500);
 });

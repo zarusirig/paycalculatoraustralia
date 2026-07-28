@@ -94,6 +94,7 @@ export const GUIDE_CATEGORIES = [
       { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide", description: "Tax savings and FBT" },
       { href: "/hecs-help-guide/", label: "HECS-HELP Guide", description: "New marginal repayment system explained" },
       { href: "/novated-lease-guide/", label: "Novated Lease Guide", description: "Salary packaging a car" },
+      { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
     ],
   },
   {
@@ -316,6 +317,7 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/division-293-tax/", label: "Division 293 Tax" },
   { href: "/super-co-contribution/", label: "Super Co-Contribution" },
   { href: "/super-guarantee-rate-history/", label: "SG Rate History" },
+  { href: "/super-guarantee-charge/", label: "Super Guarantee Charge" },
   { href: "/salary-sacrifice-vs-mortgage/", label: "Sacrifice vs Mortgage" },
   { href: "/extra-super-vs-hecs-repayment/", label: "Super vs HECS" },
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },

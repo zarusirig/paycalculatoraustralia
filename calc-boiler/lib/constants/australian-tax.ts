@@ -132,22 +132,77 @@ export const SUPER_GUARANTEE_CHARGE = {
   current: {
     /** Contributions must be RECEIVED by the fund within this many business days of payday. */
     businessDaysToPay: 7,
-    /** Extended deadline for a new employee, or a first contribution to a new fund. */
+    /**
+     * Extended deadline. Covers TWO cases, not one: a new employee, AND a
+     * first contribution to a new complying fund for an existing employee
+     * after you stopped contributing to another fund.
+     */
     businessDaysNewEmployee: 20,
     /** Interest accrues at the general interest charge rate, compounded daily. */
     interestBasis: "general interest charge, compounded daily",
-    /** Administrative uplift, before any voluntary-disclosure reduction. */
+    /**
+     * The SGC has exactly FOUR components per QE day. The late payment
+     * penalty is NOT one of them — see latePayment below.
+     */
+    components: [
+      "individual final super guarantee shortfall",
+      "notional earnings",
+      "administrative uplift",
+      "choice loading",
+    ],
+    /** Administrative uplift, before reductions. */
     administrativeUpliftMax: 0.6,
-    /** Reduced to nil by voluntary disclosure within 30 days, with no assessment in 2 years. */
     administrativeUpliftMin: 0,
-    /** Loading where choice-of-fund rules were not followed. */
+    /**
+     * Two INDEPENDENT reductions that stack — not one all-or-nothing test.
+     * No ATO-initiated assessment in the 2 years to the QE day: −20 points.
+     * Voluntary disclosure before assessment: up to −40 points, by speed.
+     * Percentages below are the resulting uplift.
+     */
+    upliftSchedule: [
+      { disclosure: "Within 30 days", noPriorAssessment: 0, priorAssessment: 20 },
+      { disclosure: "31–60 days", noPriorAssessment: 5, priorAssessment: 25 },
+      { disclosure: "61–120 days", noPriorAssessment: 10, priorAssessment: 30 },
+      { disclosure: "More than 120 days", noPriorAssessment: 25, priorAssessment: 45 },
+      { disclosure: "Not lodged", noPriorAssessment: 40, priorAssessment: 60 },
+    ],
+    /**
+     * Loading where choice-of-fund rules were not followed. NOTE: 25% of the
+     * VALUE OF CONTRIBUTIONS, not of the shortfall, and the cap is per NOTICE
+     * PERIOD — not per QE day, per year or per employee.
+     */
     choiceLoading: 0.25,
     choiceLoadingCap: 1_200,
-    /** Late payment penalty, and the repeat rate within 24 months. Cannot be remitted. */
-    latePaymentPenalty: 0.25,
-    latePaymentPenaltyRepeat: 0.5,
+    choiceLoadingBasis: "value of contributions",
+    choiceLoadingCapBasis: "notice period",
+    /**
+     * NOT an SGC component. A separate penalty that arises only after the SGC
+     * is assessed, goes unpaid 28 days, a Notice to Pay issues, and it is
+     * still unpaid a further 28 days.
+     */
+    latePayment: {
+      penalty: 0.25,
+      penaltyRepeatWithin24Months: 0.5,
+      /** The ATO's literal wording — but see exceptionalCircumstances. */
+      cannotBeRemitted: true,
+      /** A 0% pathway does exist, so never write "no way out". */
+      exceptionalCircumstances: true,
+    },
     /** The charge became deductible for QE days from 1 July 2026. */
     taxDeductible: true,
+    /** Deductible components. */
+    deductibleComponents: [
+      "individual final super guarantee shortfall",
+      "notional earnings",
+      "administrative uplift",
+      "choice loading",
+    ],
+    /** Still NOT deductible even under the new regime. */
+    nonDeductible: [
+      "general interest charge accruing on a late SGC payment",
+      "the late payment penalty",
+      "SGC relating to quarterly periods before 1 July 2026",
+    ],
     /** Employers no longer lodge a statement; the ATO assesses. */
     requiresStatement: false,
   },
@@ -161,7 +216,93 @@ export const SUPER_GUARANTEE_CHARGE = {
     /** Final quarterly SG due date, and the statement deadline that follows it. */
     finalQuarterSGDue: "28 July 2026",
     finalQuarterStatementDue: "28 August 2026",
+    /** Nominal interest here cannot be reduced or waived, by law. */
+    nominalInterestCanBeRemitted: false,
+    /** The late payment offset is NOT available for the final June quarter. */
+    latePaymentOffsetAvailableFinalQuarter: false,
+    /** Contributions received on or after this date cannot be applied to the June quarter. */
+    tooLateForJuneQuarter: "29 July 2026",
   },
+} as const;
+
+/**
+ * Qualifying earnings — what Payday Super calculates SG on from 1 July 2026.
+ *
+ * ⚠️ THE POPULAR SUMMARY OF THIS IS WRONG, and the ATO's own overview page
+ * invites the error by describing QE as "ordinary time earnings, all
+ * commissions, salary sacrifice contributions and other amounts…". Competitors
+ * paraphrase that into "super now applies to overtime and bonuses". It does not.
+ *
+ * Verified 28 July 2026 at QC105843, which states plainly: "The only additional
+ * payment type is commissions for work done entirely outside ordinary hours."
+ * Everything included in SG up to 30 June 2026 continues to be included, and
+ * the ATO confirms "There are no changes to what payments are considered
+ * ordinary time earnings under Payday Super."
+ */
+export const QUALIFYING_EARNINGS = {
+  onlyChangeFromOTE: "commissions for work done entirely outside ordinary hours",
+  /** Still excluded, despite widespread claims to the contrary. */
+  stillExcluded: [
+    "overtime, where ordinary hours are clearly identified in an award or agreement",
+    "bonuses solely for work performed entirely outside ordinary hours",
+    "annual leave loading linked to a lost opportunity to work overtime",
+    "expense allowances expected to be fully expended",
+  ],
+  stillIncluded: [
+    "ordinary time earnings",
+    "ordinary commissions",
+    "performance, Christmas, sign-on and referral bonuses",
+    "annual leave loading other than the lost-overtime kind",
+    "task allowances for skill, adverse conditions or retention",
+    "salary sacrificed amounts that would otherwise be qualifying earnings",
+  ],
+  sourceUrl:
+    "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-on-payday/what-payments-are-qualifying-earnings",
+} as const;
+
+/**
+ * Concessional cap relief for the Payday Super changeover.
+ *
+ * ⚠️ ANNOUNCED BUT NOT LAW. The ATO's changeover page, last updated 27 July
+ * 2026, says in terms: "This is not yet law." Treasury's February 2026 media
+ * release is in the future tense ("We will introduce technical amendments").
+ * No bill located as at 28 July 2026.
+ *
+ * Do not write "relief is available". Do not write "relief was abandoned".
+ * The defensible line is: announced, not legislated, no bill located.
+ */
+export const PAYDAY_SUPER_CAP_RELIEF = {
+  announced: true,
+  isLaw: false,
+  announcedBy: "Treasury, 24 February 2026",
+  atoWording: "This is not yet law.",
+  purpose:
+    "to avoid employees exceeding their concessional contributions cap in 2026-27 because Payday Super shifted the timing of contributions",
+} as const;
+
+/**
+ * General interest charge — the rate that drives SGC notional earnings under
+ * Payday Super, compounded daily.
+ *
+ * ⚠️ THIS RESETS EVERY QUARTER. It is the fastest-staling figure on the site.
+ * The quarter label is rendered next to the rate wherever it appears so a
+ * stale value is visible to a reader rather than silently wrong, and a test
+ * asserts the label is non-empty. Re-check at the start of each quarter at
+ * ato.gov.au (General interest charge rates).
+ */
+export const GENERAL_INTEREST_CHARGE = {
+  annualRate: 0.1143,
+  /**
+   * The ATO publishes the daily rate explicitly. QUOTE IT — do not derive it
+   * by dividing the annual rate, which lands on a different last digit.
+   */
+  dailyRatePercent: 0.03131507,
+  quarter: "July–September 2026",
+  previousQuarter: { label: "April–June 2026", annualRate: 0.1096 },
+  resetsQuarterly: true,
+  /** Next quarter's rate is generally announced ~2 weeks before it starts. */
+  nextRateDue: "mid-September 2026",
+  sourceUrl: "https://www.ato.gov.au/tax-rates-and-codes/general-interest-charge-rates",
 } as const;
 
 // ---------- HECS-HELP Repayment (FY2025-26 — New Marginal System) ----------

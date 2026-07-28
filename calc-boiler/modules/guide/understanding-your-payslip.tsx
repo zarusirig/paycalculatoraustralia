@@ -298,7 +298,7 @@ export default function UnderstandingYourPayslipPage() {
               </p>
               <h3>When Must Employers Pay Super?</h3>
               <p>
-                Employers must pay SG contributions to your super fund within <strong>28 days</strong> after the end of each quarter. The 4 quarterly deadlines are <strong>28 October, 28 January, 28 April, and 28 July</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC), which includes the unpaid super, an interest component of <strong>10% per annum</strong>, and a $20 per-employee administration fee.
+                Since Payday Super commenced on 1 July 2026, employers must pay SG <strong>on every payday</strong> and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong>. Late payment triggers the &ldquo;Superannuation Guarantee Charge&rdquo; (SGC) &mdash; the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%. This means super should now appear on your payslip and reach your fund in step with your pay, not months later.
               </p>
             </section>
 

@@ -141,6 +141,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "salary-vs-hourly",
     "employee-vs-sole-trader-vs-company",
     "super-co-contribution",
+    "super-guarantee-charge",
     "mining-fifo-pay-guide",
     "healthcare-worker-pay",
     "teacher-pay-australia",

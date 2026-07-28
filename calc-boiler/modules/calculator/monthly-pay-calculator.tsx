@@ -321,7 +321,7 @@ export default function MonthlyPayCalculatorPage() {
                 Monthly pay is calculated by dividing your gross annual salary by <strong>12</strong>, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. The ATO publishes specific monthly withholding tables that employers apply during the FY2025-26 financial year.
               </FAQItem>
               <FAQItem value="super" question="Is super deducted from my monthly pay?">
-                No. Your employer pays superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on top of your gross salary. The SG contribution does not reduce your monthly take-home pay. Employers remit super quarterly, within 28 days of each quarter&apos;s end.
+                No. Your employer pays superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on top of your gross salary. The SG contribution does not reduce your monthly take-home pay. Since Payday Super commenced on 1 July 2026, employers remit super every payday and the contribution must reach your fund within 7 business days.
               </FAQItem>
               <FAQItem value="days" question="Why is my monthly pay the same every month?">
                 Salaried employees receive <strong>1/12 of their annual salary</strong> each month, regardless of whether the month has 28, 30, or 31 days. The calculation divides by 12 calendar months, not by the number of working days.
