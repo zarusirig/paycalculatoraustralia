@@ -338,15 +338,26 @@ hourly basis.
 The audit found the page's headline offset figure ($1,511) was wrong, and that
 13 of the 23 towns it named were in the wrong zone.
 
-**Open — all genuine new-build work needing its own scoping:** 8 (per-award
-rate pages), 9 (Payday Super + SGC), 10 (`/hourly-to-salary/[rate]/`),
-11 (work hours calculator), 12 (CGT), plus SAPTO, the holidays cluster and the
+**Also done, 28 July:** 9 (SAPTO cluster) — `/sapto-calculator/` shipped and
+deployed, covering `sapto`, `sapto calculator`, `sapto eligibility` and
+`sapto threshold` on one page, with the ATO's nine worked examples as tests.
+
+**Open — all genuine new-build work needing its own scoping:** 12 (per-award
+rate pages), 13 (Payday Super + SGC), 10 (`/hourly-to-salary/[rate]/`),
+14 (work hours calculator), 15 (CGT), plus the holidays cluster and the
 occupational clusters.
 
-The highest-value next item is now the **SAPTO cluster** — `sapto calculator`
-at 500 volume, KD 0, **CPC $17.00** and no AI Overview, with ~4,800 combined
-volume at KD 0–3 across the cluster. We have no SAPTO page at all, only a
-passing mention on `/low-income-tax-offset/`.
+**Next up, and a note on sequencing.** The brief's order puts per-award rate
+pages next (`schads award pay rates` 2,900 at KD 1, `hospitality award rates`
+1,400 at KD 0). That is a *data-verification* project against Fair Work of
+roughly the same shape and size as the ATO zone list — award classifications,
+junior and casual loadings, and penalty rates, all YMYL, all changing 1 July.
+It should be scoped as its own piece of work rather than tacked on.
+
+`/hourly-to-salary/[rate]/` (item 10, ~7,090/mo across 12 Tier 1 pages) is the
+cheaper next build: it mirrors the existing `/salary-to-hourly/` family, the
+conversion maths already exists in `EMPLOYMENT.hoursPerYear`, and it needs no
+new external data. If the aim is clicks per unit of risk, do 10 before 12.
 
 | # | Work | Effort | Why here |
 |---|---|---|---|
