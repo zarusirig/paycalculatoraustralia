@@ -195,7 +195,41 @@ const SPOT_CHECKS: { name: string; zone: ZoneCode }[] = [
   { name: "Australian Antarctic Territory", zone: "AS" },
   { name: "Macquarie Island", zone: "AS" },
   { name: "Heard Island", zone: "AS" },
+  // Queensland. Longreach and Winton are Zone B and Birdsville is a special
+  // area — the site published all three as plain Zone A.
+  { name: "Longreach", zone: "B" },
+  { name: "Winton", zone: "B" },
+  { name: "Birdsville", zone: "AS" },
+  { name: "Mount Isa", zone: "A" },
+  { name: "Cloncurry", zone: "A" },
+  { name: "Cooktown", zone: "A" },
+  { name: "Cairns", zone: "B" },
+  { name: "Townsville", zone: "B" },
+  { name: "Mackay", zone: "B" },
+  { name: "Atherton", zone: "B" },
+  { name: "Charters Towers", zone: "B" },
+  { name: "Normanton", zone: "AS" },
+  { name: "Thursday Island", zone: "AS" },
+  { name: "Weipa", zone: "AS" },
+  { name: "One Tree Island", zone: "N" },
 ];
+
+test("Rockhampton and Gladstone are absent — neither is on the ATO zone list", () => {
+  // The site published both as Zone B. Neither appears on the ATO's QLD page,
+  // so claiming a zone offset for either would be an unsupported claim.
+  for (const name of ["Rockhampton", "Gladstone"]) {
+    const hit = ZONE_LOCATIONS.find(
+      (e) => e.state === "QLD" && normaliseLocation(e.name) === normaliseLocation(name),
+    );
+    assert.equal(hit, undefined, `${name} should not be listed in QLD`);
+  }
+});
+
+test("all six state lists plus external territories are registered", () => {
+  for (const s of ["NSW", "NT", "QLD", "SA", "TAS", "WA", "EXT"]) {
+    assert.ok(COVERED_STATES.includes(s as never), `${s} not registered`);
+  }
+});
 
 test("Geraldton is absent — it is not on the ATO zone list at all", () => {
   // The site listed Geraldton as Zone B. The ATO's WA page does not contain
