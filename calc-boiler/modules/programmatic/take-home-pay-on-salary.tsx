@@ -40,7 +40,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
 
   // Pay frequency data
-  const hoursPerYear = 1982.84; // 38 hrs × 52.18 weeks
+  const hoursPerYear = 1976; // 38 hrs × 52 weeks — matches every other AU site
   const hourlyGross = salary / hoursPerYear;
   const hourlyNet = breakdown.takeHomePay / hoursPerYear;
 
@@ -342,7 +342,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               What is the effective hourly rate on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Based on a standard 38-hour week (1,982.84 hours/year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
+              Based on a standard 38-hour week (1,976 hours/year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
             </AccordionContent>
           </AccordionItem>
 

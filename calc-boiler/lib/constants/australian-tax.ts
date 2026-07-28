@@ -162,6 +162,13 @@ export const EMPLOYMENT = {
   minimumWageHourlyPrevious: 24.95,
   minimumWageWeeklyPrevious: 948.00,
   standardWeeklyHours: 38,
+  // 52, not 52.18. Every other Australian pay site — wagecalculator, payly,
+  // salaryadviser, fairworkmate — and the AI Overview divide by 52. On $80,000
+  // the 52.18 basis gave $40.35 against their $40.49; being the only site with
+  // a different number reads as an error rather than precision.
+  weeksPerYear: 52,
+  /** 38 × 52 = 1,976. Single source of truth for salary↔hourly conversion. */
+  hoursPerYear: 1_976,
   casualLoading: 0.25,
   annualLeaveWeeks: 4,
   personalLeaveDays: 10,
