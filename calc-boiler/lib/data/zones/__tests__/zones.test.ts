@@ -150,6 +150,27 @@ const SPOT_CHECKS: { name: string; zone: ZoneCode }[] = [
   { name: "Uluru", zone: "AS" },
   { name: "Yulara", zone: "AS" },
   { name: "Maningrida", zone: "AS" },
+  // New South Wales. Broken Hill is Zone B and Tibooburra and White Cliffs are
+  // Zone B special areas — the site published all three as Zone A.
+  { name: "Broken Hill", zone: "B" },
+  { name: "Tibooburra", zone: "BS" },
+  { name: "White Cliffs", zone: "BS" },
+  { name: "Bourke", zone: "B" },
+  { name: "Wilcannia", zone: "B" },
+  { name: "Lightning Ridge", zone: "B" },
+  { name: "Lord Howe Island", zone: "AS" },
+  { name: "Norfolk Island", zone: "AS" },
+  { name: "Tritton Copper Mine Site", zone: "N" },
+  // South Australia. Coober Pedy, Roxby Downs and Leigh Creek are Zone B
+  // special areas and Woomera is plain Zone B — all four were published as A.
+  { name: "Coober Pedy", zone: "BS" },
+  { name: "Roxby Downs", zone: "BS" },
+  { name: "Leigh Creek", zone: "BS" },
+  { name: "Woomera", zone: "B" },
+  { name: "Oodnadatta", zone: "BS" },
+  { name: "Marree", zone: "BS" },
+  { name: "Innamincka", zone: "BS" },
+  { name: "Ilbunga", zone: "AS" },
 ];
 
 for (const { name, zone } of SPOT_CHECKS) {
