@@ -18,8 +18,26 @@ const STANDARD_HOURS: number = EMPLOYMENT.standardWeeklyHours;
 /** Hours-per-week variants shown on every page. 38 is the standard full-time week. */
 const HOURS_VARIANTS = [20, 25, 30, 35, 38, 40, 45, 50];
 
-/** Neighbouring rates for the sibling link mesh. */
+/**
+ * Rates with measurable AU search volume, $25–$100 (gap analysis §D1: 30 values,
+ * ~9,100/mo combined).
+ *
+ * Tier 1 is the 12 highest — ~7,090/mo, 78% of the volume. Tier 2 is the
+ * remaining 18, ~2,000/mo. They are separated only so the split stays legible;
+ * every rate below is generated and cross-linked identically.
+ *
+ * $25 and $26 sit BELOW the national minimum wage of $26.44. That is deliberate
+ * — people search those rates precisely because they suspect they are being
+ * underpaid, and the page tells them so.
+ */
 export const TIER_1_RATES = [30, 32, 33, 35, 36, 37, 38, 40, 45, 50, 55, 60];
+
+export const TIER_2_RATES = [
+  25, 26, 27, 28, 29, 31, 34, 39, 42, 44, 46, 48, 52, 65, 70, 75, 80, 100,
+];
+
+/** Every generated rate, ascending. */
+export const ALL_RATES = [...TIER_1_RATES, ...TIER_2_RATES].sort((a, b) => a - b);
 
 export function annualFromHourly(hourly: number, hoursPerWeek = STANDARD_HOURS): number {
   return hourly * hoursPerWeek * WEEKS;
@@ -40,7 +58,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   const casual = rate * (1 + EMPLOYMENT.casualLoading);
   const aboveMinimum = rate - EMPLOYMENT.minimumWageHourly;
 
-  const neighbours = TIER_1_RATES.filter((r) => r !== rate)
+  const neighbours = ALL_RATES.filter((r) => r !== rate)
     .sort((a, b) => Math.abs(a - rate) - Math.abs(b - rate))
     .slice(0, 6)
     .sort((a, b) => a - b);

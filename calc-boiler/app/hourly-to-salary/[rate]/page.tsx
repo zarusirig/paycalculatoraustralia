@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HourlyToSalary, TIER_1_RATES, annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
+import { HourlyToSalary, ALL_RATES, annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return TIER_1_RATES.map((rate) => ({ rate: rate.toString() }));
+  return ALL_RATES.map((rate) => ({ rate: rate.toString() }));
 }
 
 function figuresFor(rate: number) {

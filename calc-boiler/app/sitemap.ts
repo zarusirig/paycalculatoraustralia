@@ -184,7 +184,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 8b. Programmatic /hourly-to-salary/ pages — the reverse direction, which
   // carries more AU volume than salary→hourly (gap analysis §D1). Priority 0.5.
-  const hourlyToSalaryRates = [30, 32, 33, 35, 36, 37, 38, 40, 45, 50, 55, 60];
+  const hourlyToSalaryRates = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 42, 44, 45, 46, 48, 50, 52, 55, 60, 65, 70, 75, 80, 100];
   for (const rate of hourlyToSalaryRates) {
     allPages.push({
       slug: `hourly-to-salary/${rate}`,
