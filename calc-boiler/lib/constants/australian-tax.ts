@@ -63,10 +63,26 @@ export const LITO = {
     TAX_FREE_THRESHOLD + Math.round(700 / SECOND_BRACKET_RATE),
 } as const;
 
-// ---------- Medicare Levy (FY2026-27) ----------
-// Thresholds per ATO Schedule 1 Medicare levy parameters, published
-// 17 June 2026. Surcharge tiers per ATO "Medicare levy surcharge income,
-// thresholds and rates", last updated 22 June 2026.
+// ---------- Medicare Levy ----------
+//
+// ⚠️ TWO DIFFERENT INCOME YEARS LIVE IN THIS OBJECT. Corrected 28 July 2026
+// after re-verification; the block was previously headed "FY2026-27", which
+// was wrong for half of it.
+//
+//  - The low-income THRESHOLDS below are the 2025-26 figures. The ATO has not
+//    published 2026-27 levy thresholds: QC27031, last updated 30 June 2026,
+//    still reads "In 2025-26, you don't have to pay the Medicare levy if...".
+//    They are correct, and they are correctly labelled 2025-26 on the page.
+//  - The SURCHARGE tiers are genuinely 2026-27, per ATO "Medicare levy
+//    surcharge income, thresholds and rates", last updated 22 June 2026.
+//
+// Label them separately wherever they are rendered. This mirrors how
+// sapto.ts and zone-tax-offset.ts handle the same lag — the ATO publishes
+// offset and levy thresholds well after the income year starts, and asserting
+// the current year for them would be inventing data.
+//
+// Seniors and pensioners levy thresholds are NOT here — they live in
+// lib/constants/medicare-levy-extra.ts alongside the family/seniors engine.
 export const MEDICARE_LEVY = {
   rate: 0.02,
   lowIncomeThreshold: 28_011,

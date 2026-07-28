@@ -2,9 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
+import { ChevronRight, ArrowRight, Calculator, AlertTriangle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -13,14 +12,31 @@ import { getGuideAuthorship } from "@/lib/authors";
 import { SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
 import {
   calculateSchedule5MethodB,
+  NO_TFN_RATES,
   PAYG_TABLES_UPDATED,
   type PayFrequency,
 } from "@/lib/constants/payg-withholding";
+import Schedule5Table from "./schedule-5-table";
+import AtoDownloads from "./ato-downloads";
+import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
+import { SCHEDULE_5_FAQS } from "./schedule-5-tax-table-faqs";
+import {
+  ATO_SCHEDULE_1,
+  ATO_SCHEDULE_5,
+  ATO_SCHEDULE_8,
+  SCHEDULE_5_BONUS_ROWS,
+  SCHEDULE_5_WITHHOLDING_LIMIT,
+} from "./ato-schedules";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Schedule 5 — Tax table for back payments, commissions, bonuses and similar payments (NAT 3348)", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-table-back-payments-commissions-bonuses-and-similar-payments", publisher: SOURCES.ato.name },
-  { title: "Tax tables overview", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
+  { title: `${ATO_SCHEDULE_5.title} (${ATO_SCHEDULE_5.nat})`, url: ATO_SCHEDULE_5.pageUrl, publisher: SOURCES.ato.name },
+  {
+    title: "Schedule 5 — Working out the withholding amount",
+    url: `${ATO_SCHEDULE_5.pageUrl}/working-out-the-withholding-amount`,
+    publisher: SOURCES.ato.name,
+  },
+  { title: `${ATO_SCHEDULE_1.title} (${ATO_SCHEDULE_1.nat})`, url: ATO_SCHEDULE_1.pageUrl, publisher: SOURCES.ato.name },
 ];
 
 function clamp(n: number, min: number, max: number) {
@@ -29,6 +45,11 @@ function clamp(n: number, min: number, max: number) {
 
 // Worked example used in the prose, computed from the shared engine.
 const workedExample = calculateSchedule5MethodB(2_000, 5_000, "fortnightly");
+
+/** The ATO caps withholding on an additional payment at 47% of that payment. */
+function withholdingLimitFor(additionalPayment: number): number {
+  return Math.floor(additionalPayment * SCHEDULE_5_WITHHOLDING_LIMIT);
+}
 
 function Schedule5Widget() {
   const [regular, setRegular] = useState(2_000);
@@ -40,6 +61,9 @@ function Schedule5Widget() {
     () => calculateSchedule5MethodB(regular, bonus, frequency, { hasSTSL }),
     [regular, bonus, frequency, hasSTSL]
   );
+
+  const limit = withholdingLimitFor(bonus);
+  const exceedsLimit = result.withheldFromAdditionalPayment > limit;
 
   return (
     <Card className="shadow-md not-prose my-8">
@@ -89,7 +113,8 @@ function Schedule5Widget() {
               <span className="text-navy">HECS-HELP / study loan (STSL)</span>
             </label>
             <p className="text-xs text-warmgray">
-              Uses ATO Schedule 5 Method B(ii) with FY2026-27 rates. Assumes the tax-free threshold is claimed.
+              Uses the ATO Schedule 5 apportionment arithmetic with FY2026-27 rates. Assumes the tax-free
+              threshold is claimed and that pay is even across the year.
             </p>
           </form>
 
@@ -103,18 +128,32 @@ function Schedule5Widget() {
                 </div>
                 <div className="border-t border-sandstone-dark/20" />
                 <div className="flex justify-between">
-                  <span className="text-warmgray">Tax withheld (Method B(ii))</span>
+                  <span className="text-warmgray">Tax withheld (apportionment)</span>
                   <span className="text-navy">-{formatAUD(result.withheldFromAdditionalPayment, 2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-warmgray">Effective rate on bonus</span>
                   <span className="text-navy">{formatPercent(result.effectiveRate)}</span>
                 </div>
+                <div className="flex justify-between">
+                  <span className="text-warmgray">ATO withholding limit ({SCHEDULE_5_WITHHOLDING_LIMIT * 100}%)</span>
+                  <span className="text-navy">{formatAUD(limit, 2)}</span>
+                </div>
                 <div className="border-t border-sandstone-dark/20" />
                 <div className="flex justify-between text-base">
                   <span className="font-bold text-navy">Bonus in your pocket</span>
                   <span className="font-bold text-eucalyptus-dark">{formatAUD(result.netAdditionalPayment, 2)}</span>
                 </div>
+                {exceedsLimit && (
+                  <div className="mt-3 flex items-start gap-2 rounded-lg border border-amber-300 bg-amber-50 p-3">
+                    <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" aria-hidden="true" />
+                    <p className="text-xs text-navy">
+                      The apportionment result is above the ATO&apos;s {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% withholding
+                      limit. Your employer must reduce the amount withheld from the additional payment to{" "}
+                      <strong>{formatAUD(limit, 2)}</strong>, leaving <strong>{formatAUD(bonus - limit, 2)}</strong> in hand.
+                    </p>
+                  </div>
+                )}
                 <p className="text-xs text-warmgray pt-2">
                   Want the full breakdown including super?{" "}
                   <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark underline hover:text-navy">
@@ -149,14 +188,16 @@ export default function Schedule5TaxTablePage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Schedule 5 Tax Table — PAYG on Back Payments, Bonuses &amp; Commissions
+            Schedule 5 Tax Table 2026-27 (ATO NAT 3348) — PAYG on Bonuses, Commissions &amp; Back Payments
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-3">
-            Schedule 5 is the ATO tax table employers use to withhold PAYG from bonuses, commissions,
-            and back payments. Instead of taxing the lump sum like a normal pay, it spreads the payment
-            across the year&apos;s pay periods so withholding matches your real marginal rate.
+            Schedule 5 &mdash; published by the ATO as <strong>{ATO_SCHEDULE_5.nat}</strong> &mdash; is the tax table employers use
+            to withhold PAYG from bonuses, commissions and back payments. Instead of taxing the lump sum like a normal pay, it
+            spreads the payment across the year&apos;s pay periods so withholding matches your real marginal rate.
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">Updated: {PAYG_TABLES_UPDATED} — FY2026-27 rates (NAT 3348)</p>
+          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">
+            {ATO_SCHEDULE_5.nat} published {ATO_SCHEDULE_5.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; FY2026-27 rates
+          </p>
           <TrustBar className="!max-w-none" />
         </header>
 
@@ -167,8 +208,8 @@ export default function Schedule5TaxTablePage() {
             <section id="calculator">
               <h2>Schedule 5 Calculator — Tax Withheld From Your Bonus</h2>
               <p>
-                Enter your regular pay and the additional payment to see the Method B(ii) withholding your
-                payroll should apply under the 2026-27 rates.
+                Enter your regular pay and the additional payment to see the withholding your payroll should apply under the
+                2026-27 rates, along with the ATO&apos;s {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% cap on the amount.
               </p>
               <Schedule5Widget />
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -188,51 +229,126 @@ export default function Schedule5TaxTablePage() {
               </div>
             </section>
 
+            <section id="schedule-5-table-2026-27">
+              <h2>Schedule 5 Ready Reckoner 2026-27</h2>
+              <p>
+                The table below applies the Schedule 5 apportionment to a worker earning {formatAUD(2_000)} a fortnight
+                ({formatAUD(52_000)} a year) who claims the tax-free threshold and has no study loan. Read it as a guide to
+                the shape of the result: the effective rate stays close to the employee&apos;s marginal rate rather than
+                spiking, which is the whole purpose of the schedule.
+              </p>
+              <Schedule5Table
+                regularGross={2_000}
+                frequency="fortnightly"
+                amounts={SCHEDULE_5_BONUS_ROWS}
+                caption="ATO Schedule 5 (NAT 3348) withholding on additional payments, 2026-27, for an employee earning $2,000 a fortnight"
+              />
+              <p className="text-sm text-warmgray-light">
+                Every figure is computed at page load from the ATO Schedule 1 coefficients and the Schedule 5 apportionment
+                steps. Change the regular pay, frequency or study loan setting in the calculator above for your own numbers.
+              </p>
+            </section>
+
             <section id="what-is-schedule-5">
               <h2>What Is PAYG Schedule 5?</h2>
               <p>
-                Schedule 5 (NAT 3348) is the ATO withholding schedule for <strong>&quot;back payments, commissions,
-                bonuses and similar payments&quot;</strong> &mdash; any lump sum paid on top of ordinary wages. Employers
-                cannot simply add a $5,000 bonus to one fortnight&apos;s pay and use the{" "}
-                <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>: doing so would annualise the
-                bonus as if you earned it every fortnight and withhold far too much. Schedule 5 exists to
-                withhold at a rate that reflects the payment&apos;s effect on your <em>annual</em> income.
+                Schedule 5 ({ATO_SCHEDULE_5.nat}) is the ATO withholding schedule for <strong>&quot;back payments, commissions,
+                bonuses and similar payments&quot;</strong> &mdash; lump sums paid on top of ordinary wages. Employers cannot simply
+                add a {formatAUD(5_000)} bonus to one fortnight&apos;s pay and use the{" "}
+                <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>: doing so would annualise the bonus as if you
+                earned it every fortnight and withhold far too much. Schedule 5 exists to withhold at a rate that reflects the
+                payment&apos;s effect on your <em>annual</em> income.
               </p>
               <p>
-                The schedule offers employers two calculation methods. Both arrive at broadly similar outcomes,
-                but Method B(ii) is the default in most payroll software because it works for any additional
-                payment, including back pay covering prior financial years.
+                Unlike the weekly, fortnightly and monthly tables, Schedule 5 is not a look-up grid &mdash; it is a set of
+                calculation methods that sit on top of whichever regular tax table applies to the payee. That is why the ATO
+                publishes it as web content rather than a printable PDF.
+              </p>
+              <p>
+                One boundary matters before you start: Schedule 5 applies only where the payment relates to <strong>more than
+                one pay period</strong>, or to an undefined period. If a commission or bonus relates to a single pay period, it is
+                simply added to that period&apos;s earnings and withheld from the ordinary tax table instead.
               </p>
             </section>
 
             <section id="method-a-vs-method-b">
               <h2>Method A vs Method B — How Employers Calculate the Withholding</h2>
-              <h3>Method A — apportion across the current year&apos;s remaining pays</h3>
               <p>
-                Method A divides the additional payment by the number of pay periods in the financial year,
-                adds that slice to the current pay&apos;s earnings, finds the withholding difference, and multiplies
-                it by the number of pay periods. It is designed for payments that relate to the <strong>current</strong>{" "}
-                pay period or year, such as a quarterly commission.
+                The ATO gives employers two methods, and either is acceptable. Method B is more complex but produces a
+                withholding amount more likely to approximate the payee&apos;s actual tax payable. If either method produces a
+                negative result, treat it as nil.
               </p>
-              <h3>Method B(ii) — apportion across all pays in the year</h3>
+
+              <h3>Method A — apportion across the pay periods in the year</h3>
               <p>
-                Method B(ii) spreads the payment evenly across <strong>all</strong> pay periods in the year
-                (52 weekly, 26 fortnightly, or 12 monthly). The steps:
+                Method A can be used for <strong>any</strong> additional payment, regardless of which financial year it relates to.
+                It apportions the payment over the number of pay periods in a financial year and applies that average to the
+                gross earnings in the <em>current</em> pay period:
               </p>
               <ol>
-                <li>Divide the additional payment by the number of pay periods and disregard the cents.</li>
-                <li>Add that amount to the gross earnings for the current period.</li>
-                <li>Work out the withholding on the combined amount, and on the normal earnings alone, using the regular tax table.</li>
-                <li>The difference, multiplied by the number of pay periods, is withheld from the additional payment.</li>
+                <li>Work out the payee&apos;s gross earnings for the current period, excluding additional payments. Ignore cents.</li>
+                <li>Find the withholding on that amount in the relevant tax table.</li>
+                <li>Add together all additional payments in this period and divide by the number of pay periods in the year (52, 26 or 12). Ignore cents.</li>
+                <li>Add the step 3 amount to the step 1 earnings.</li>
+                <li>Find the withholding on the step 4 amount.</li>
+                <li>Subtract step 2 from step 5.</li>
+                <li>Multiply the step 6 difference by the number of pay periods used at step 3.</li>
+                <li>Multiply the additional payment by {SCHEDULE_5_WITHHOLDING_LIMIT * 100}%.</li>
+                <li>Withhold the <strong>lesser</strong> of step 7 and step 8, ignoring cents.</li>
               </ol>
               <p>
+                A useful variation: if a commission or bonus covers a defined period of less than 12 months, the employer may
+                divide by the number of pay periods the payment actually relates to at step 3, rather than the full year. A
+                commission covering four weeks for a weekly-paid employee can be divided by four instead of 52.
+              </p>
+
+              <h3>Method B(i) — back pay for specific periods in the current financial year</h3>
+              <p>
+                Method B(i) is for back payments that map onto identifiable earlier pay periods <strong>in the current financial
+                year</strong>. Rather than averaging, it reconstructs each affected period: work out how much of the back payment
+                belongs to each period, add it to what was actually paid then, look up the withholding on that corrected total,
+                and subtract what was already withheld. Repeat for every affected period and total the differences.
+              </p>
+
+              <h3>Method B(ii) — payments spread across the whole financial year</h3>
+              <p>
+                Method B(ii) is for back payments relating to a <strong>prior</strong> financial year, and for any additional payment
+                that does not belong to a single pay period. It averages the additional payments across the pay periods in the year
+                and applies that to your <em>average total earnings for the year to date</em> &mdash; not to the current period&apos;s
+                earnings, which is the key difference from Method A. It also subtracts any amounts already withheld from earlier
+                Method B(ii) payments in the same year, and is subject to the same {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% cap.
+              </p>
+              <p>
+                If a back payment spans both the current and a previous financial year, the employer apportions it between the two
+                and applies the relevant method to each part.
+              </p>
+              <p>
                 <strong>Worked example (2026-27):</strong> an employee earns {formatAUD(2_000)} a fortnight and receives a{" "}
-                {formatAUD(5_000)} annual bonus. The apportioned slice is {formatAUD(workedExample.apportionedAmount)} per
-                fortnight, the withholding difference is {formatAUD(workedExample.perPeriodDifference)} per pay, and total
-                withholding on the bonus is <strong>{formatAUD(workedExample.withheldFromAdditionalPayment)}</strong> &mdash; an
-                effective rate of about {formatPercent(workedExample.effectiveRate)}, close to the employee&apos;s marginal
-                rate rather than the top rate. Verify your own numbers with our{" "}
+                {formatAUD(5_000)} annual bonus. The apportioned slice is {formatAUD(workedExample.apportionedAmount)} per fortnight,
+                the withholding difference is {formatAUD(workedExample.perPeriodDifference)} per pay, and total withholding on the
+                bonus is <strong>{formatAUD(workedExample.withheldFromAdditionalPayment)}</strong> &mdash; an effective rate of{" "}
+                {formatPercent(workedExample.effectiveRate)}, close to the employee&apos;s marginal rate rather than the top rate, and
+                comfortably under the {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% cap. Verify your own numbers with our{" "}
                 <Link href="/bonus-tax-calculator/">bonus tax calculator</Link>.
+              </p>
+            </section>
+
+            <section id="withholding-limit">
+              <h2>The 47% Withholding Limit</h2>
+              <p>
+                Under both Method A and Method B(ii), the ATO caps withholding from an additional payment at{" "}
+                <strong>{SCHEDULE_5_WITHHOLDING_LIMIT * 100}% of that payment</strong>. If the calculated amount comes out higher,
+                the employer reduces it to exactly {SCHEDULE_5_WITHHOLDING_LIMIT * 100}%. Two details matter:
+              </p>
+              <ul>
+                <li>The cap applies to the <strong>additional payment only</strong>, not to the normal earnings in that pay period. The ordinary withholding on the regular wage is unaffected.</li>
+                <li>Where the study loan component is calculated separately, the cap is tested against the <strong>combined</strong> total of the tax and loan components, not against each one on its own.</li>
+              </ul>
+              <p>
+                The cap can leave some payees under-withheld &mdash; for example, where the bonus pushes annual income past a study
+                loan repayment threshold or into a higher bracket. In that case the ATO&apos;s remedy is an upwards variation: the
+                payee enters an agreement with the employer to increase the rate or amount withheld. The calculator above shows the
+                cap next to the calculated figure so you can see when it binds.
               </p>
             </section>
 
@@ -242,82 +358,97 @@ export default function Schedule5TaxTablePage() {
                 <li><strong>Bonuses and incentive payments</strong> &mdash; annual performance bonuses, sign-on bonuses, KPI payments. See the <Link href="/bonus-tax-guide/">bonus tax guide</Link> for how these interact with super.</li>
                 <li><strong>Commissions</strong> &mdash; sales commissions paid as lump sums rather than in every pay.</li>
                 <li><strong>Back payments and arrears</strong> &mdash; underpaid wages, backdated pay rises, and award reclassifications. Use the <Link href="/backpay-calculator/">back pay calculator</Link> to estimate the tax on arrears.</li>
-                <li><strong>Repeated lump sums</strong> &mdash; quarterly or irregular allowances not part of ordinary pay.</li>
+                <li><strong>Lump-sum leave loading</strong> &mdash; leave loading paid as a lump sum uses Schedule 5; paid pro-rata it is added to that period&apos;s earnings instead.</li>
+                <li><strong>Back payments of super income streams</strong> &mdash; including lump sum payments in arrears from pensions and annuities.</li>
               </ul>
               <p>
-                Payments that do <strong>not</strong> use Schedule 5 include unused leave on termination (Schedule 7)
-                and employment termination payments such as redundancy (Schedule 11) &mdash; our{" "}
-                <Link href="/final-pay-calculator/">final pay calculator</Link> and{" "}
-                <Link href="/redundancy-pay-calculator/">redundancy pay calculator</Link> cover those cases.
+                Payments that do <strong>not</strong> use Schedule 5 include anything relating to a single pay period, unused leave
+                paid out on termination (Schedule 7, NAT 3351) and employment termination payments such as redundancy (Schedule 11,
+                NAT 70980) &mdash; our <Link href="/final-pay-calculator/">final pay calculator</Link> and{" "}
+                <Link href="/redundancy-pay-calculator/">redundancy pay calculator</Link> cover those cases. Where a payee has not
+                quoted a TFN, the no-TFN rates override everything: {NO_TFN_RATES.resident * 100}% for a resident and{" "}
+                {NO_TFN_RATES.foreignResident * 100}% for a foreign resident, with no offsets and no loan component.
+              </p>
+            </section>
+
+            <section id="stsl">
+              <h2>Study Loans on Bonuses and Back Payments</h2>
+              <p>
+                If the payee has a HELP, VET Student Loan, Financial Supplement, Student Start-up Loan or Australian Apprenticeship
+                Support Loan debt, the employer must also withhold a study loan component from the additional payment &mdash; using
+                the <strong>same method</strong> chosen for the income tax component. Calculate the bonus withholding under Method A,
+                and the loan component must also come from Method A.
+              </p>
+              <p>
+                Employers who prefer to combine the two in one calculation rather than running the steps twice can use{" "}
+                <a href={ATO_SCHEDULE_8.pageUrl} target="_blank" rel="noopener noreferrer">{ATO_SCHEDULE_8.nat} (Schedule 8)</a>.
+                The ATO notes the combined result may differ slightly from the sum of the separate table amounts because of
+                component rounding, and accepts either. See the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> for
+                how a bonus changes your annual repayment.
               </p>
             </section>
 
             <section id="why-bonus-taxed-high">
               <h2>Why Does Your Bonus Look So Heavily Taxed?</h2>
               <p>
-                A bonus is not taxed at a special punitive rate &mdash; it is <strong>withheld</strong> at your marginal
-                rate, which is higher than the average rate applied to your normal pay. Because the tax-free
-                threshold and lower brackets are already consumed by your salary, every bonus dollar sits in
-                your top bracket (30%, 37%, or 45% plus Medicare levy). If payroll skipped Schedule 5 and taxed
-                the lump sum through the regular table, withholding would be even higher, and the excess would
-                only come back at <Link href="/tax-return-calculator/">tax return time</Link>.
+                A bonus is not taxed at a special punitive rate &mdash; it is <strong>withheld</strong> at your marginal rate, which is
+                higher than the average rate applied to your normal pay. Because the tax-free threshold and lower brackets are already
+                consumed by your salary, every bonus dollar sits in your top bracket (30%, 37% or 45%) plus the Medicare levy and any
+                study loan repayment. If payroll skipped Schedule 5 and ran the lump sum through the regular table, withholding would be
+                higher still, and the excess would only come back at{" "}
+                <Link href="/tax-return-calculator/">tax return time</Link>.
               </p>
+              <p>
+                Withholding is also not your final tax. Schedule 5 only decides how much is held back when the payment is made; your
+                actual liability is settled when you lodge, and any over- or under-withholding washes out then.
+              </p>
+            </section>
+
+            <section id="ato-downloads">
+              <h2>Official ATO Schedule 5 Publication</h2>
+              <p>
+                The ATO publishes {ATO_SCHEDULE_5.nat} as web content covering the calculation methods, TFN declarations, back
+                payment reporting and worked examples. Because it is a method rather than a look-up grid, there is no printable PDF
+                look-up table for 2026-27 &mdash; unlike the weekly, fortnightly and monthly tables.
+              </p>
+              <AtoDownloads doc={ATO_SCHEDULE_5} also={[ATO_SCHEDULE_1, ATO_SCHEDULE_8]} />
             </section>
 
             <section id="related-resources">
               <h2>Related Tax Tables and Calculators</h2>
               <ul>
                 <li><Link href="/payg-withholding-tables/">PAYG withholding tables hub</Link> &mdash; how all the ATO schedules fit together.</li>
-                <li><Link href="/weekly-tax-table/">Weekly tax table</Link>, <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> and <Link href="/monthly-tax-table/">monthly tax table</Link> &mdash; the regular-pay tables Schedule 5 builds on.</li>
+                <li><Link href="/weekly-tax-table/">Weekly tax table (NAT 1005)</Link>, <Link href="/fortnightly-tax-table/">fortnightly tax table (NAT 1006)</Link> and <Link href="/monthly-tax-table/">monthly tax table (NAT 1007)</Link> &mdash; the regular-pay tables Schedule 5 builds on.</li>
                 <li><Link href="/bonus-tax-calculator/">Bonus tax calculator</Link> &mdash; your bonus after tax in full detail.</li>
                 <li><Link href="/backpay-calculator/">Back pay calculator</Link> &mdash; tax on arrears and underpayments.</li>
                 <li><Link href="/second-job-tax-calculator/">Second job tax calculator</Link> &mdash; withholding without the tax-free threshold.</li>
               </ul>
             </section>
 
-            <section id="faq">
-              <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="flat-rate" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is there a flat tax rate on bonuses in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Bonuses are ordinary assessable income taxed at your marginal rate. Schedule 5 only controls how much is withheld when the bonus is paid — your final tax is settled in your annual return, where any over- or under-withholding washes out.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="which-method" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Which method will my employer use — A or B?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Most payroll software defaults to Method B(ii) because it handles any additional payment, including back pay for earlier years. Method A is common for commissions relating to the current period. Both are ATO-approved; the difference in withholding is usually small and reconciles at tax time.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="backpay-prior-year" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How is back pay for a previous financial year withheld?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Back payments that accrued more than 12 months ago are withheld under Method B(i), which applies the marginal rate to the average additional amount. You may also be entitled to a lump sum in arrears tax offset in your return, so you are not penalised for receiving old income in one hit.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-on-bonus" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is super paid on bonuses withheld under Schedule 5?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Usually yes. Performance bonuses are generally ordinary time earnings, so the 12% superannuation guarantee applies on top of the gross bonus. Overtime-related bonuses can be excluded. Schedule 5 itself only deals with the PAYG withholding, not super.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="stsl" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does HECS-HELP (STSL) apply to Schedule 5 payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. If you have a study or training support loan, the STSL component is calculated on the combined earnings in the same Method A/B steps, so a bonus increases the loan repayment withheld for that pay as well.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </section>
+            <TaxTableFaqSection
+              heading="Schedule 5 Tax Table — Frequently Asked Questions"
+              mirrorHeading="Schedule 5 (NAT 3348) questions and answers"
+              faqs={SCHEDULE_5_FAQS}
+            />
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
                 <p>
-                  Schedule 5 calculations on this page implement ATO Method B(ii) using FY2026-27 resident rates
-                  (15% on $18,201&ndash;$45,000 from 1 July 2026), assuming the tax-free threshold is claimed and pay
-                  is uniform across the year. Printed ATO tables round coefficients slightly differently, so payroll
-                  figures may vary by small amounts. Always verify payroll-critical amounts against NAT 3348.
+                  The calculations on this page implement the ATO Schedule 5 apportionment arithmetic &mdash; divide the additional
+                  payment by the number of pay periods, add the slice to the base earnings, take the withholding difference and
+                  multiply it back &mdash; on top of the{" "}
+                  <a href={ATO_SCHEDULE_1.pageUrl} target="_blank" rel="noopener noreferrer">Schedule 1 ({ATO_SCHEDULE_1.nat})</a>{" "}
+                  coefficient tables at FY2026-27 rates. They assume the tax-free threshold is claimed and that pay is even across the
+                  year, in which case Method A and Method B(ii) coincide; where your earnings have varied, Method B(ii) uses your
+                  average total earnings to date and will differ.
+                </p>
+                <p>
+                  Two limits to be aware of. First, the figures here are the <em>uncapped</em> apportionment result; the ATO&apos;s{" "}
+                  {SCHEDULE_5_WITHHOLDING_LIMIT * 100}% withholding limit is shown alongside it in the calculator and your employer must
+                  apply it where it binds &mdash; most often on a small bonus paid to a high earner with a study loan. Second, Method B(i)
+                  for current-year back pay recalculates each affected pay period individually and is not modelled here; use the{" "}
+                  <Link href="/backpay-calculator/">back pay calculator</Link> or your payroll system for that case. Always verify
+                  payroll-critical amounts against {ATO_SCHEDULE_5.nat}.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -330,8 +461,8 @@ export default function Schedule5TaxTablePage() {
             links={[
               { href: "/bonus-tax-calculator/", label: "Bonus Tax Calculator" },
               { href: "/backpay-calculator/", label: "Back Pay Calculator" },
-              { href: "/weekly-tax-table/", label: "Weekly Tax Table" },
-              { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table" },
+              { href: "/weekly-tax-table/", label: "Weekly Tax Table (NAT 1005)" },
+              { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table (NAT 1006)" },
               { href: "/payg-withholding-tables/", label: "PAYG Tables Hub" },
             ]}
             ctaHref="/bonus-tax-calculator/"

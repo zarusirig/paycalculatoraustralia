@@ -317,6 +317,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     dateModified: "2026-07-02",
     authorId: "james-harrington",
     relatedCalculators: [
+      // The evergreen page owns this term; this article is the dated
+      // announcement. Linking it first passes the signal to the reference page
+      // rather than leaving two URLs competing on "hecs repayment threshold".
+      { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold" },
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
       { href: "/stsl-on-payslip/", label: "STSL on Your Payslip" },
     ],

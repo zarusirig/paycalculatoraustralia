@@ -36,6 +36,7 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/superannuation-calculator/", label: "Superannuation Calculator", description: "Calculate employer SG contributions at 12%" },
       { href: "/salary-sacrifice-calculator/", label: "Salary Sacrifice Calculator", description: "Compare pay before and after sacrifice" },
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator", description: "Marginal repayment system, FY2026-27 thresholds" },
+      { href: "/capital-gains-tax-calculator/", label: "Capital Gains Tax Calculator", description: "CGT with the 12-month 50% discount" },
     ],
   },
   {
@@ -58,6 +59,7 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
       { href: "/payslip-generator/", label: "Payslip Generator", description: "Create a compliant payslip free" },
       { href: "/ytd-income-calculator/", label: "YTD Income Calculator", description: "Year-to-date pay and annualised income" },
+      { href: "/work-hours-calculator/", label: "Work Hours Calculator", description: "Timesheet, breaks, overnight shifts and overtime" },
     ],
   },
   {
@@ -92,7 +94,8 @@ export const GUIDE_CATEGORIES = [
     guides: [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
       { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide", description: "Tax savings and FBT" },
-      { href: "/hecs-help-guide/", label: "HECS-HELP Guide", description: "New marginal repayment system explained" },
+      { href: "/hecs-help-guide/", label: "HECS-HELP Guide", description: "How the loan works, indexation and voluntary repayments" },
+      { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold", description: "Current thresholds and rates" },
       { href: "/novated-lease-guide/", label: "Novated Lease Guide", description: "Salary packaging a car" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
     ],
@@ -282,6 +285,8 @@ export const FOOTER_CALCULATORS = [
   { href: "/backpay-calculator/", label: "Backpay Calculator" },
   { href: "/payslip-generator/", label: "Payslip Generator" },
   { href: "/ytd-income-calculator/", label: "YTD Income Calculator" },
+  { href: "/capital-gains-tax-calculator/", label: "Capital Gains Tax Calculator" },
+  { href: "/work-hours-calculator/", label: "Work Hours Calculator" },
 ] as const;
 
 // Footer guides — split into logical groups for multi-column layout
@@ -312,6 +317,7 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/superannuation-guide/", label: "Superannuation Guide" },
   { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide" },
   { href: "/hecs-help-guide/", label: "HECS-HELP Guide" },
+  { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold" },
   { href: "/novated-lease-guide/", label: "Novated Lease Guide" },
   { href: "/salary-packaging-guide/", label: "Salary Packaging" },
   { href: "/division-293-tax/", label: "Division 293 Tax" },

@@ -58,6 +58,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "backpay-calculator",
     "payslip-generator",
     "ytd-income-calculator",
+    "capital-gains-tax-calculator",
+    "work-hours-calculator",
   ];
   for (const slug of coreCalculators) {
     allPages.push({ slug, changeFrequency: "monthly", priority: 0.9 });
@@ -100,6 +102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "monthly-tax-table",
     "schedule-5-tax-table",
     "hecs-help-guide",
+    "hecs-repayment-threshold",
     "salary-sacrifice-guide",
     "low-income-tax-offset",
     "understanding-your-payslip",

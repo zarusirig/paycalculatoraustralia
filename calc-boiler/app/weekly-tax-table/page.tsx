@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
 import WeeklyTaxTablePage from "@/modules/tax-tables/weekly-tax-table";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { WEEKLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/weekly-tax-table-faqs";
+import {
+  ATO_SCHEDULE_1,
+  ATO_TAX_TABLES_INDEX,
+  ATO_WEEKLY,
+  WEEKLY_TABLE_ROWS,
+} from "@/modules/tax-tables/ato-schedules";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/weekly-tax-table/`;
-const TITLE = "Weekly Tax Table 2026-27 — ATO PAYG Withholding Amounts";
-const DESCRIPTION = "Weekly tax table for 2026-27: look up the exact PAYG withholding on your weekly pay, with and without the tax-free threshold and HECS-HELP (STSL). Updated 1 July 2026 with the 15% rate cut.";
+const TITLE = "Weekly Tax Table 2026-27 (NAT 1005) — ATO PAYG Amounts";
+const DESCRIPTION =
+  "ATO weekly tax table (NAT 1005) for 2026-27: PAYG withholding at 30 earnings levels, with and without the tax-free threshold, plus HECS-HELP (STSL), foreign resident and 53-pay-year amounts. Direct ATO PDF and XLSX links.";
+const MODIFIED = "2026-07-28";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -45,25 +54,67 @@ const article: WithContext<Article> = {
   author: AUTHORS["james-harrington"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
-  dateModified: "2026-07-01",
-  isBasedOn: { "@type": "CreativeWork", name: "ATO Weekly tax table (NAT 1005)", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-table-weekly" },
+  dateModified: MODIFIED,
+  isBasedOn: { "@type": "CreativeWork", name: `ATO ${ATO_WEEKLY.title} (${ATO_WEEKLY.nat})`, url: ATO_WEEKLY.pageUrl },
+};
+
+// These pages are published data tables, so they carry Dataset alongside Article.
+const dataset: WithContext<Dataset> = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: `Weekly PAYG withholding amounts 2026-27 (ATO ${ATO_WEEKLY.nat})`,
+  description:
+    `PAYG withholding amounts for weekly pay periods in the Australian 2026-27 financial year, computed from the ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient method across ${WEEKLY_TABLE_ROWS.length} gross earnings levels. Covers the tax-free threshold claimed and not claimed, study and training support loan (STSL) components, and foreign resident (Scale 3) amounts.`,
+  url: URL,
+  identifier: ATO_WEEKLY.nat,
+  keywords: [
+    "weekly tax table",
+    ATO_WEEKLY.nat,
+    "PAYG withholding",
+    "2026-27 tax tables",
+    "Australia",
+  ],
+  temporalCoverage: "2026-07-01/2027-06-30",
+  spatialCoverage: { "@type": "Country", name: "Australia" },
+  measurementTechnique: `ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) statement of formulas — weekly coefficient method`,
+  variableMeasured: [
+    "Gross weekly earnings",
+    "Amount to be withheld with the tax-free threshold",
+    "Amount to be withheld without the tax-free threshold",
+    "Study and training support loan (STSL) component",
+    "Foreign resident amount to be withheld",
+    "Net weekly pay",
+  ],
+  creator: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },
+  isBasedOn: { "@type": "CreativeWork", name: `ATO ${ATO_WEEKLY.title} (${ATO_WEEKLY.nat})`, url: ATO_WEEKLY.pageUrl },
+  includedInDataCatalog: { "@type": "DataCatalog", name: "ATO tax tables", url: ATO_TAX_TABLES_INDEX },
+  distribution: [
+    { "@type": "DataDownload", name: ATO_WEEKLY.pdfLabel, encodingFormat: "application/pdf", contentUrl: ATO_WEEKLY.pdfUrl },
+    {
+      "@type": "DataDownload",
+      name: ATO_WEEKLY.xlsxLabel,
+      encodingFormat: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      contentUrl: ATO_WEEKLY.xlsxUrl,
+    },
+  ],
+  license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+  dateModified: MODIFIED,
 };
 
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "Which column of the weekly tax table applies to me?", acceptedAnswer: { "@type": "Answer", text: "Use the tax-free threshold column for your main job, the no tax-free threshold column for a second job, and the STSL column if you told your employer you have a HECS-HELP or other study loan. Your TFN declaration answers decide the column." } },
-    { "@type": "Question", name: "Does the weekly tax table include the Medicare levy?", acceptedAnswer: { "@type": "Answer", text: "Yes. The standard weekly tax table builds the 2% Medicare levy into every withholding amount. It does not include the Medicare Levy Surcharge, which is assessed on your tax return." } },
-    { "@type": "Question", name: "What changed in the weekly tax table for 2026-27?", acceptedAnswer: { "@type": "Answer", text: "From 1 July 2026 the marginal rate on income between $18,201 and $45,000 fell from 16% to 15% under the legislated cost-of-living tax cuts, reducing weekly withholding by up to about $5 a week for anyone earning $45,000 or more." } },
-    { "@type": "Question", name: "Is overtime taxed using the weekly tax table?", acceptedAnswer: { "@type": "Answer", text: "Yes. Overtime paid in a normal pay run is added to that week's gross earnings and withheld using the same table. Lump-sum bonuses and back payments use the separate Schedule 5 method instead." } },
-  ]
+  mainEntity: WEEKLY_TAX_TABLE_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 export default function Page() {
   return (
     <>
-      <JsonLd code={[breadcrumb, webPage, article, faq]} />
+      <JsonLd code={[breadcrumb, webPage, article, dataset, faq]} />
       <WeeklyTaxTablePage />
     </>
   );

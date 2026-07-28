@@ -22,6 +22,8 @@ import {
   stslForPeriod,
   FORTNIGHTLY_TABLE_AMOUNTS,
   WEEKLY_TABLE_AMOUNTS,
+  SCHEDULE_5_WITHHOLDING_LIMIT,
+  calculateSchedule5MethodB,
 } from "../payg-withholding";
 
 import {
@@ -62,6 +64,124 @@ test("ATO NAT 1006 worked example: $989.80 fortnightly", () => {
 test("NAT 1006 lookup: $1,000 fortnightly withholds $42, not $18", () => {
   // $18 was the old annualise-and-subtract-full-LITO answer.
   assert.equal(calculatePAYGWithholding(1_000, "fortnightly").paygWithheld, 42);
+});
+
+// -----------------------------------------------------------------------------
+// Anchor: ATO "Weekly tax table" (NAT 1005) worked example, read from
+// ato.gov.au/tax-rates-and-codes/tax-table-weekly on 28 July 2026.
+// "A payee has weekly earnings of $563.60. ... claiming the tax-free threshold,
+//  use column 2 ($33). ... not claiming the tax-free threshold, use column 3
+//  ($108)."
+// -----------------------------------------------------------------------------
+test("ATO NAT 1005 worked example: $563.60 weekly", () => {
+  assert.equal(
+    calculatePAYGWithholding(563.60, "weekly").paygWithheld,
+    33,
+    "claiming the tax-free threshold (ATO column 2)"
+  );
+  assert.equal(
+    calculatePAYGWithholding(563.60, "weekly", { claimsTaxFreeThreshold: false }).paygWithheld,
+    108,
+    "not claiming the tax-free threshold (ATO column 3)"
+  );
+});
+
+// -----------------------------------------------------------------------------
+// Anchor: ATO "Monthly tax table" (NAT 1007) worked example, read from
+// ato.gov.au/tax-rates-and-codes/tax-table-monthly on 28 July 2026.
+// "A payee has monthly earnings of $4,311.68. ... claiming the tax-free
+//  threshold, use column 2 ($589). ... not claiming the tax-free threshold, use
+//  column 3 ($1,070)."
+//
+// This one exercises the monthly x3/13 conversion and the 13/3 conversion back,
+// which no other anchor covers.
+// -----------------------------------------------------------------------------
+test("ATO NAT 1007 worked example: $4,311.68 monthly", () => {
+  assert.equal(
+    calculatePAYGWithholding(4_311.68, "monthly").paygWithheld,
+    589,
+    "claiming the tax-free threshold (ATO column 2)"
+  );
+  assert.equal(
+    calculatePAYGWithholding(4_311.68, "monthly", { claimsTaxFreeThreshold: false }).paygWithheld,
+    1_070,
+    "not claiming the tax-free threshold (ATO column 3)"
+  );
+});
+
+// -----------------------------------------------------------------------------
+// Anchor: ATO foreign resident (Scale 3) rate bands, printed on each tax-table
+// page and read on 28 July 2026.
+//   Weekly:  0–2,595 = 30c/$; 2,596–3,652 = $779 + 37c over $2,595;
+//            3,653 & over = $1,170 + 45c over $3,652.
+// The published band descriptions round to the dollar, so the engine is checked
+// to within $1 of them rather than for exact equality.
+// -----------------------------------------------------------------------------
+test("Scale 3 reproduces the ATO's published foreign resident weekly bands", () => {
+  const cases: [number, number][] = [
+    [1_000, 300],                                  // flat 30c band
+    [2_595, 779],                                  // top of the 30c band
+    [3_000, 779 + (3_000 - 2_595) * 0.37],         // 37c band
+    [4_000, 1_170 + (4_000 - 3_652) * 0.45],       // 45c band
+  ];
+  for (const [gross, expected] of cases) {
+    const actual = withholdingForPeriod(gross, "weekly", "foreignResident");
+    assert.ok(
+      Math.abs(actual - expected) <= 1,
+      `foreign resident at $${gross}/week: expected about $${expected.toFixed(2)}, got $${actual}`
+    );
+  }
+});
+
+test("foreign residents are withheld more than residents on the same pay", () => {
+  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+    for (const gross of [500, 1_000, 2_000, 5_000]) {
+      const resident = withholdingForPeriod(gross, frequency, "tft");
+      const foreign = withholdingForPeriod(gross, frequency, "foreignResident");
+      assert.ok(
+        foreign > resident,
+        `${frequency} $${gross}: foreign $${foreign} should exceed resident $${resident}`
+      );
+    }
+  }
+});
+
+test("every fortnightly foreign resident amount is an even dollar figure", () => {
+  // Same weekly-then-double derivation as the resident scales.
+  for (let gross = 0; gross <= 20_000; gross += 100) {
+    const amount = withholdingForPeriod(gross, "fortnightly", "foreignResident");
+    assert.equal(amount % 2, 0, `$${gross} foreign resident withheld $${amount}, which is odd`);
+  }
+});
+
+// -----------------------------------------------------------------------------
+// The tax-table pages render 30 rows each from their own earnings arrays in
+// modules/tax-tables/ato-schedules.ts. Those arrays are inputs only, but the
+// even-dollar property must hold across the whole rendered fortnightly range,
+// in every column the page shows.
+// -----------------------------------------------------------------------------
+test("fortnightly page rows are even in every rendered column", () => {
+  const renderedRows = [
+    600, 800, 1_000, 1_200, 1_400, 1_600, 1_800, 2_000, 2_200, 2_400,
+    2_600, 2_800, 3_000, 3_200, 3_400, 3_600, 3_800, 4_000, 4_200, 4_400,
+    4_800, 5_200, 5_600, 6_000, 6_500, 7_000, 7_500, 8_000, 9_000, 10_000,
+  ];
+  assert.ok(renderedRows.length >= 26, "the page must render at least 26 rows");
+
+  const columns = [
+    { label: "tft", options: { claimsTaxFreeThreshold: true } },
+    { label: "tft+stsl", options: { claimsTaxFreeThreshold: true, hasSTSL: true } },
+    { label: "no tft", options: { claimsTaxFreeThreshold: false } },
+    { label: "foreign", options: { foreignResident: true } },
+    { label: "foreign+stsl", options: { foreignResident: true, hasSTSL: true } },
+  ];
+
+  for (const gross of renderedRows) {
+    for (const column of columns) {
+      const total = calculatePAYGWithholding(gross, "fortnightly", column.options).totalWithheld;
+      assert.equal(total % 2, 0, `$${gross} column "${column.label}" gave an odd $${total}`);
+    }
+  }
 });
 
 // -----------------------------------------------------------------------------
@@ -312,4 +432,84 @@ test("the maximum contribution base is annual and derives from the concessional 
   assert.equal(derived, SUPER_GUARANTEE.maxContributionBaseAnnual);
   assert.equal(SUPER_GUARANTEE.maxContributionBaseAnnual, 270_830);
   assert.equal(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026, 62_500);
+});
+
+// =============================================================================
+// Schedule 5 withholding limit — the 47% cap.
+//
+// Found 28 July 2026 by a tax-table audit and confirmed verbatim at ato.gov.au
+// QC107123: "If the withholding amount calculated (including a study and
+// training support loan component) using Method A or Method B(ii) exceeds 47%
+// of the additional payment being made, then the amount is reduced to be equal
+// to 47% of that payment."
+//
+// The engine previously capped at 100% of the payment, so a high regular wage
+// plus STSL could withhold ~57% of a bonus. This feeds /bonus-tax-calculator/,
+// the site's highest-traffic page.
+// =============================================================================
+
+test("Schedule 5 withholding never exceeds 47% of the additional payment", () => {
+  const cases: { gross: number; bonus: number; freq: "weekly" | "fortnightly" | "monthly"; stsl: boolean }[] = [
+    { gross: 8_000, bonus: 1_000, freq: "fortnightly", stsl: true },
+    { gross: 8_000, bonus: 1_000, freq: "fortnightly", stsl: false },
+    { gross: 12_000, bonus: 500, freq: "monthly", stsl: true },
+    { gross: 4_000, bonus: 250, freq: "weekly", stsl: true },
+    { gross: 2_000, bonus: 20_000, freq: "fortnightly", stsl: true },
+    { gross: 500, bonus: 100, freq: "weekly", stsl: false },
+  ];
+  for (const c of cases) {
+    const r = calculateSchedule5MethodB(c.gross, c.bonus, c.freq, {
+      claimsTaxFreeThreshold: true,
+      hasSTSL: c.stsl,
+    });
+    assert.ok(
+      r.effectiveRate <= SCHEDULE_5_WITHHOLDING_LIMIT + 1e-9,
+      `${c.freq} ${c.gross}+${c.bonus} stsl=${c.stsl} withheld ${(r.effectiveRate * 100).toFixed(1)}%`,
+    );
+    assert.ok(r.withheldFromAdditionalPayment <= r.withholdingLimit);
+  }
+});
+
+test("the 47% limit binds on the case that exposed the defect", () => {
+  // $8,000/fortnight + $1,000 bonus + STSL reached 57.2% before the fix.
+  const r = calculateSchedule5MethodB(8_000, 1_000, "fortnightly", {
+    claimsTaxFreeThreshold: true,
+    hasSTSL: true,
+  });
+  assert.equal(r.withholdingLimitApplied, true, "the limit should bind here");
+  assert.equal(r.withholdingLimit, 470);
+  assert.equal(r.withheldFromAdditionalPayment, 470);
+  assert.ok(r.uncappedWithholding > 470, "uncapped figure should exceed the cap");
+});
+
+test("the limit does not bind on ordinary bonuses, and is reported honestly", () => {
+  // A modest bonus on a modest wage sits well under the ceiling; the cap must
+  // not silently inflate withholding up to 47%.
+  const r = calculateSchedule5MethodB(2_000, 1_000, "fortnightly", {
+    claimsTaxFreeThreshold: true,
+  });
+  assert.equal(r.withholdingLimitApplied, false);
+  assert.ok(r.withheldFromAdditionalPayment < r.withholdingLimit);
+  assert.equal(r.withheldFromAdditionalPayment, r.uncappedWithholding);
+});
+
+test("the limit applies to the additional payment only, not to normal earnings", () => {
+  // Regular withholding must be untouched by the cap.
+  const r = calculateSchedule5MethodB(8_000, 1_000, "fortnightly", {
+    claimsTaxFreeThreshold: true,
+    hasSTSL: true,
+  });
+  const regular = calculatePAYGWithholding(8_000, "fortnightly", {
+    claimsTaxFreeThreshold: true,
+    hasSTSL: true,
+  });
+  assert.equal(r.regularWithholding, regular.totalWithheld);
+});
+
+test("Schedule 5 withholding is a whole number of dollars", () => {
+  // The ATO says "ignore any cents" at the limit step.
+  for (const bonus of [333, 1_000, 7_777, 12_345]) {
+    const r = calculateSchedule5MethodB(3_000, bonus, "fortnightly", { claimsTaxFreeThreshold: true });
+    assert.equal(r.withheldFromAdditionalPayment % 1, 0, `bonus ${bonus}`);
+  }
 });

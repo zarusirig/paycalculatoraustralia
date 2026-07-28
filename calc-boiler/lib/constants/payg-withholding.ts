@@ -323,7 +323,29 @@ export interface Schedule5Result {
   netAdditionalPayment: number;
   /** Effective withholding rate on the additional payment. */
   effectiveRate: number;
+  /** The 47% ceiling for this payment (Schedule 5, "Withholding limit"). */
+  withholdingLimit: number;
+  /** True where the uncapped calculation exceeded the limit and was reduced. */
+  withholdingLimitApplied: boolean;
+  /** What the calculation produced before the limit was applied. */
+  uncappedWithholding: number;
 }
+
+/**
+ * Schedule 5 withholding limit. Verified verbatim at ato.gov.au (QC107123,
+ * "Working out the withholding amount", published 17 June 2026):
+ *
+ *   "If you use Method A or Method B(ii), the amount of tax to be withheld
+ *    from an additional payment is limited to a maximum of 47% of the
+ *    additional payment."
+ *
+ * Two details that matter and are easy to miss:
+ *  - the cap applies to the COMBINED total "including a study and training
+ *    support loan component", not to the PAYG component alone; and
+ *  - it applies to the additional payment only, never to normal earnings for
+ *    the current pay period.
+ */
+export const SCHEDULE_5_WITHHOLDING_LIMIT = 0.47;
 
 /**
  * ATO Schedule 5, Method B(ii): apportion the additional payment across the
@@ -343,7 +365,17 @@ export function calculateSchedule5MethodB(
   const base = calculatePAYGWithholding(regularGrossPerPeriod, frequency, options);
   const combined = calculatePAYGWithholding(regularGrossPerPeriod + apportioned, frequency, options);
   const perPeriodDifference = Math.max(0, combined.totalWithheld - base.totalWithheld);
-  const withheld = Math.min(additional, perPeriodDifference * periods);
+
+  // Step 7: multiply the per-period difference back out.
+  const uncapped = perPeriodDifference * periods;
+
+  // Steps 9-10: the withholding limit. This previously capped at `additional`
+  // — i.e. 100% of the payment — which let the result run past the ATO's
+  // ceiling. On $8,000/fortnight regular plus a $1,000 bonus with STSL it
+  // reached 57.2%. The limit binds on the combined PAYG + STSL figure, which
+  // is what `totalWithheld` already is. "Ignore any cents" → floor to dollars.
+  const limit = Math.floor(additional * SCHEDULE_5_WITHHOLDING_LIMIT);
+  const withheld = Math.min(Math.floor(uncapped), limit);
 
   return {
     regularWithholding: base.totalWithheld,
@@ -353,6 +385,9 @@ export function calculateSchedule5MethodB(
     withheldFromAdditionalPayment: withheld,
     netAdditionalPayment: Math.round((additional - withheld) * 100) / 100,
     effectiveRate: additional > 0 ? withheld / additional : 0,
+    withholdingLimit: limit,
+    withholdingLimitApplied: Math.floor(uncapped) > limit,
+    uncappedWithholding: Math.floor(uncapped),
   };
 }
 
