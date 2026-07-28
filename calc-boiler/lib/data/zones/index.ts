@@ -8,9 +8,11 @@
 // =============================================================================
 
 import { parseZoneBlock, type StateCode, type ZoneEntry } from "./types";
+import { NT_RAW } from "./nt";
 import { TAS_RAW } from "./tas";
 
 const RAW_BY_STATE: Partial<Record<StateCode, string>> = {
+  NT: NT_RAW,
   TAS: TAS_RAW,
 };
 

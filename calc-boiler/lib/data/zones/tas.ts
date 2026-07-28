@@ -1,6 +1,6 @@
 // Tasmania — ATO Australian zone list, last updated 1 July 2026.
 // https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones/tasmania
-// Transcribed 28 July 2026. 79 locations.
+// Transcribed 28 July 2026. 80 locations.
 
 export const TAS_RAW = `
 Adamsfield|B

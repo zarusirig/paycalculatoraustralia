@@ -129,12 +129,27 @@ test("search returns nothing for an unlisted location", () => {
 // ---------------------------------------------------------------------------
 
 const SPOT_CHECKS: { name: string; zone: ZoneCode }[] = [
+  // Tasmania
   { name: "Queenstown", zone: "B" },
   { name: "Strahan", zone: "B" },
   { name: "King Island", zone: "BS" },
   { name: "Flinders Island", zone: "BS" },
   { name: "Cape Barren Island", zone: "BS" },
   { name: "Zeehan", zone: "B" },
+  // Northern Territory. Darwin, Palmerston and Humpty Doo are Zone A — the
+  // site previously published them as Zone B, which is the defect this
+  // dataset exists to make impossible to repeat.
+  { name: "Darwin", zone: "A" },
+  { name: "Palmerston", zone: "A" },
+  { name: "Humpty Doo", zone: "A" },
+  { name: "Alice Springs", zone: "A" },
+  { name: "Katherine", zone: "A" },
+  { name: "Jabiru", zone: "A" },
+  { name: "Tennant Creek", zone: "AS" },
+  { name: "Nhulunbuy (Gove)", zone: "AS" },
+  { name: "Uluru", zone: "AS" },
+  { name: "Yulara", zone: "AS" },
+  { name: "Maningrida", zone: "AS" },
 ];
 
 for (const { name, zone } of SPOT_CHECKS) {
