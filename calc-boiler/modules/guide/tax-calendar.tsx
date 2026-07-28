@@ -101,7 +101,7 @@ export default function TaxCalendarPage() {
               <tr><td className="px-5 py-3">85 – 112 days</td><td className="px-5 py-3">4</td><td className="px-5 py-3 text-right font-medium">$1,320</td><td className="px-5 py-3 text-right font-medium">$6,600</td></tr>
               <tr><td className="px-5 py-3">113+ days</td><td className="px-5 py-3">5 (max)</td><td className="px-5 py-3 text-right font-medium">$1,650</td><td className="px-5 py-3 text-right font-medium">$8,250</td></tr>
             </tbody></table></div></div>
-            <p>Late BAS lodgment carries the same FTL penalty structure. Late super guarantee payments attract the "Super Guarantee Charge" (SGC), which includes the original super amount, an interest charge of <strong>10% per annum</strong>, and an administration fee of <strong>$20 per employee per quarter</strong>. The SGC is not tax-deductible, unlike on-time SG payments. Learn more about superannuation obligations in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.</p>
+            <p>Late BAS lodgment carries the same FTL penalty structure. Late super attracts the <strong>Super Guarantee Charge</strong> (SGC). From 1 July 2026, when Payday Super commenced, the SGC is made up of the shortfall, notional earnings charged at the general interest charge rate and <strong>compounded daily</strong>, and an <strong>administrative uplift of up to 60%</strong> that falls to nil if you make a voluntary disclosure within 30 days. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>. For earnings paid up to 30 June 2026 the previous rules still apply — 10% nominal interest, a $20 per employee per quarter administration fee, and no deduction. Learn more in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.</p>
           </section>
 
           {/* ===== SECTION 6: How to Lodge ===== */}
@@ -147,7 +147,7 @@ export default function TaxCalendarPage() {
               <tr><td className="px-5 py-3">Q3</td><td className="px-5 py-3">1 Jan – 31 Mar</td><td className="px-5 py-3 font-medium">28 Apr 2026</td><td className="px-5 py-3 text-right">28 May 2026</td></tr>
               <tr><td className="px-5 py-3">Q4</td><td className="px-5 py-3">1 Apr – 30 Jun</td><td className="px-5 py-3 font-medium">28 Jul 2026</td><td className="px-5 py-3 text-right">28 Aug 2026</td></tr>
             </tbody></table></div></div>
-            <p>Late SG payments result in the &quot;Super Guarantee Charge&quot; (SGC), which adds a <strong>10% nominal interest component</strong> and a <strong>$20 administration fee per employee per quarter</strong>. The SGC is calculated on salary and wages (not ordinary time earnings), increasing the base amount. Critically, the SGC is <strong>not tax-deductible</strong>. Employers must self-report late payments using the SGC statement form.</p>
+            <p>Late super payments result in the <strong>Super Guarantee Charge</strong> (SGC). From 1 July 2026, when Payday Super commenced, the SGC is made up of the shortfall, notional earnings charged at the general interest charge rate and <strong>compounded daily</strong>, and an <strong>administrative uplift of up to 60%</strong> that falls to nil if you make a voluntary disclosure within 30 days. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>. For earnings paid up to 30 June 2026 the previous rules still apply — 10% nominal interest, a $20 per employee per quarter administration fee, and no deduction. Under Payday Super you <strong>no longer lodge an SGC statement</strong> — the ATO assesses the charge and issues a notice. A voluntary disclosure is optional, but it is what reduces the administrative uplift.</p>
           </section>
 
           {/* ===== SECTION 9: EOFY Checklist ===== */}
@@ -219,7 +219,7 @@ export default function TaxCalendarPage() {
               </div>
               <div>
                 <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What happens if my employer pays super late?</h3>
-                <p>Late super payments trigger the &quot;Super Guarantee Charge&quot; (SGC), which includes the original super amount calculated on total salary and wages (not just ordinary time earnings), a <strong>10% nominal interest charge</strong>, and a <strong>$20 per employee per quarter</strong> administration fee. The SGC is not tax-deductible.</p>
+                <p>Late super payments trigger the <strong>Super Guarantee Charge</strong> (SGC). From 1 July 2026, when Payday Super commenced, the SGC is made up of the shortfall, notional earnings charged at the general interest charge rate and <strong>compounded daily</strong>, and an <strong>administrative uplift of up to 60%</strong> that falls to nil if you make a voluntary disclosure within 30 days. Unlike the old quarterly charge, the SGC is now <strong>tax-deductible</strong>. For earnings paid up to 30 June 2026 the previous rules still apply — 10% nominal interest, a $20 per employee per quarter administration fee, and no deduction.</p>
               </div>
               <div>
                 <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How long does the ATO take to process a tax refund?</h3>

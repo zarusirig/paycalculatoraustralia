@@ -322,7 +322,7 @@ export default function EmployerCostCalculatorPage() {
 
                 <h3>Quarterly Payment Deadlines</h3>
                 <p>
-                  The SG must be paid <strong>within 28 days of the end of each quarter</strong>. Missing a deadline triggers the Superannuation Guarantee Charge (SGC), which adds a non-tax-deductible penalty of the shortfall amount plus an interest charge of 10% per annum and an administration fee of $20 per employee per quarter. The four quarterly deadlines for FY2025-26 are:
+                  Since <strong>1 July 2026</strong>, super must reach the employee&rsquo;s fund within <strong>7 business days of each payday</strong> — quarterly payment has ended. Missing that deadline triggers the Superannuation Guarantee Charge, now made up of the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60% that falls to nil on a voluntary disclosure within 30 days. The charge is now tax-deductible. The final quarterly deadlines, which applied to earnings paid up to 30 June 2026, were:
                 </p>
                 <div className="not-prose overflow-x-auto my-6">
                   <table className="w-full text-sm border-collapse border border-sandstone-dark/20 rounded-lg">
@@ -716,7 +716,7 @@ export default function EmployerCostCalculatorPage() {
                   <AccordionItem value="contractor-risk" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
                     <AccordionTrigger className="text-left font-semibold text-navy">What happens if I misclassify an employee as a contractor?</AccordionTrigger>
                     <AccordionContent className="text-warmgray">
-                      The ATO can reclassify the worker as an employee and issue back-payment orders for all unpaid superannuation (plus the SGC penalty), PAYG withholding, payroll tax, and workers compensation premiums for the entire engagement period. Penalties include the SGC administrative charge of <strong>$20 per employee per quarter</strong>, interest at 10% per annum, and potential prosecution for tax avoidance. Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> to assess classification risk.
+                      The ATO can reclassify the worker as an employee and issue back-payment orders for all unpaid superannuation (plus the SGC penalty), PAYG withholding, payroll tax, and workers compensation premiums for the entire engagement period. Penalties include the SGC administrative uplift of <strong>up to 60%</strong> of the shortfall and notional earnings, interest at the general interest charge rate compounded daily, a late payment penalty of <strong>25%</strong> that <strong>cannot be remitted</strong>, and potential prosecution for tax avoidance. Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> to assess classification risk.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="reduce-cost" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">

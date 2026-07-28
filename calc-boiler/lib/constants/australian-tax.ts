@@ -115,6 +115,55 @@ export const SUPER_GUARANTEE = {
   paydaySuperStart: "1 July 2026",
 } as const;
 
+// ---------- Super Guarantee Charge (SGC) ----------
+//
+// Verified at ato.gov.au 28 July 2026. Sources: QC105848 (what happens if you
+// don't pay super correctly), QC107591 (penalties), QC33743 (the legacy
+// quarterly SGC), QC105846 (payment deadlines).
+//
+// TWO REGIMES RUN IN PARALLEL and conflating them is the accuracy risk here.
+// Payday Super commenced 1 July 2026 (Treasury Laws Amendment (Payday
+// Superannuation) Act 2025, Act No. 57 of 2025, assent 6 November 2025), and
+// rebuilt the SGC completely. The old quarterly charge still governs earnings
+// paid up to 30 June 2026, so both sets of figures remain live — the last
+// quarterly statement is due 28 August 2026.
+export const SUPER_GUARANTEE_CHARGE = {
+  /** Regime for qualifying earnings paid from 1 July 2026. */
+  current: {
+    /** Contributions must be RECEIVED by the fund within this many business days of payday. */
+    businessDaysToPay: 7,
+    /** Extended deadline for a new employee, or a first contribution to a new fund. */
+    businessDaysNewEmployee: 20,
+    /** Interest accrues at the general interest charge rate, compounded daily. */
+    interestBasis: "general interest charge, compounded daily",
+    /** Administrative uplift, before any voluntary-disclosure reduction. */
+    administrativeUpliftMax: 0.6,
+    /** Reduced to nil by voluntary disclosure within 30 days, with no assessment in 2 years. */
+    administrativeUpliftMin: 0,
+    /** Loading where choice-of-fund rules were not followed. */
+    choiceLoading: 0.25,
+    choiceLoadingCap: 1_200,
+    /** Late payment penalty, and the repeat rate within 24 months. Cannot be remitted. */
+    latePaymentPenalty: 0.25,
+    latePaymentPenaltyRepeat: 0.5,
+    /** The charge became deductible for QE days from 1 July 2026. */
+    taxDeductible: true,
+    /** Employers no longer lodge a statement; the ATO assesses. */
+    requiresStatement: false,
+  },
+  /** Regime for earnings paid up to 30 June 2026. Still live for the June quarter. */
+  legacy: {
+    nominalInterestRate: 0.1,
+    adminFeePerEmployeePerQuarter: 20,
+    choiceLiabilityCap: 500,
+    taxDeductible: false,
+    requiresStatement: true,
+    /** Final quarterly SG due date, and the statement deadline that follows it. */
+    finalQuarterSGDue: "28 July 2026",
+    finalQuarterStatementDue: "28 August 2026",
+  },
+} as const;
+
 // ---------- HECS-HELP Repayment (FY2025-26 — New Marginal System) ----------
 export interface HECSBand {
   min: number;
