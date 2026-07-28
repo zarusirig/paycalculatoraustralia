@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hecs-help-guide/`;
-const TITLE = "HECS-HELP Repayment Guide 2026-27 — Marginal System Explained";
+const TITLE = "HECS Repayment 2026-27 — Thresholds, Rates & What You Pay";
 const DESCRIPTION = "Understand the HECS-HELP marginal repayment system, the 2026-27 repayment thresholds, indexation limits, and how it all impacts your take-home pay in Australia.";
 
 export const metadata: Metadata = {

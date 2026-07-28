@@ -17,7 +17,7 @@ import {
   SOURCES,
   SITE_CONFIG,
   MEDICARE_LEVY,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
@@ -237,7 +237,7 @@ export default function MonthlyPayCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  {TAX_BRACKETS_2025_26.map((bracket, i) => (
+                  {TAX_BRACKETS.map((bracket, i) => (
                     <tr key={i}>
                       <td className="px-4 py-3 text-navy font-medium">
                         {bracket.max === Infinity

@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, HECS_HELP, calculateHECS, calculatePayBreakdown, formatAUD, annualToWeekly } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, HECS_HELP_2025_26, calculateHECS, calculatePayBreakdown, formatAUD, annualToWeekly } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -52,7 +52,7 @@ export default function HecsHelpGuidePage() {
               <p className="text-navy text-sm font-medium">
                 <strong>Attention: Major Legislation Changes</strong>
                 <br />
-                The Treasury has introduced the <em>Universities Accord (Student Support and Other Measures) Bill 2024</em>. The information below reflects the new Marginal Repayment system and the heightened $67,000 threshold intended to take effect from 1 July 2025.
+                The Treasury has introduced the <em>Universities Accord (Student Support and Other Measures) Bill 2024</em>. The information below reflects the new Marginal Repayment system and the marginal repayment system, with the FY2026-27 minimum threshold at $69,528.
               </p>
             </div>
 
@@ -98,7 +98,7 @@ export default function HecsHelpGuidePage() {
             <section id="thresholds">
               <h2>What Are the HECS-HELP Repayment Thresholds for FY2026-27?</h2>
               <p>
-                The minimum repayment threshold for FY2026-27 is <strong>$69,528</strong>, indexed up from the {formatAUD(HECS_HELP.minimumThreshold)} threshold that launched the marginal system in FY2025-26 &mdash; itself a significant increase from the {formatAUD(HECS_HELP.previousThreshold)} threshold under the old flat-rate system. Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your exact repayment at current-year rates.
+                The minimum repayment threshold for FY2026-27 is <strong>$69,528</strong>, indexed up from the {formatAUD(HECS_HELP_2025_26.minimumThreshold)} threshold that launched the marginal system in FY2025-26 &mdash; itself a significant increase from the $54,435 threshold under the old flat-rate system. Use our <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> to see your exact repayment at current-year rates.
               </p>
               <p>
                 Under the new marginal system introduced from 1 July 2025, repayment rates apply only to income within each band &mdash; not to your entire salary. This structure mirrors how Australian income tax brackets work, eliminating the harsh &ldquo;cliff&rdquo; effects of the old system.
@@ -141,7 +141,7 @@ export default function HecsHelpGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-medium">Minimum threshold</td><td className="px-6 py-4">{formatAUD(HECS_HELP.previousThreshold)}</td><td className="px-6 py-4 font-semibold">{formatAUD(HECS_HELP.minimumThreshold)}</td></tr>
+                      <tr><td className="px-6 py-4 font-medium">Minimum threshold</td><td className="px-6 py-4">{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</td><td className="px-6 py-4 font-semibold">{formatAUD(HECS_HELP.minimumThreshold)}</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Rate application</td><td className="px-6 py-4">Percentage of entire income</td><td className="px-6 py-4">Percentage of income within each band only</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Cliff effect</td><td className="px-6 py-4">Yes &mdash; severe</td><td className="px-6 py-4 font-semibold">No &mdash; eliminated</td></tr>
                       <tr><td className="px-6 py-4 font-medium">Repayment on $70,000</td><td className="px-6 py-4">~$3,150 (4.5% of $70k)</td><td className="px-6 py-4 font-semibold">{formatAUD(calculateHECS(70000))} (15% of $3k)</td></tr>
@@ -186,7 +186,7 @@ export default function HecsHelpGuidePage() {
                   <li>Compulsory HECS repayment = <strong>$0</strong>.</li>
                   <li>The full salary flows through to income tax, Medicare levy, and superannuation calculations only.</li>
                 </ol>
-                <p className="mt-3 text-sm text-eucalyptus-dark font-semibold">Under the old system with a ~$54,435 threshold, this earner would have owed roughly $1,200/yr. The raised threshold saves them the entire amount.</p>
+                <p className="mt-3 text-sm text-eucalyptus-dark font-semibold">Under the old system with a ~$69,528 threshold, this earner would have owed roughly $1,200/yr. The raised threshold saves them the entire amount.</p>
               </div>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -241,7 +241,7 @@ export default function HecsHelpGuidePage() {
                 </div>
               </div>
               <p>
-                Notice how there&apos;s no sudden jump in repayments under the new marginal system. Under the FY2025-26 launch-year thresholds, moving from $67,000 to $70,000 only triggered <strong>{formatAUD(calculateHECS(70000))}</strong> in annual HECS &mdash; just <strong>{formatAUD(annualToWeekly(calculateHECS(70000)), 2)}</strong> per week. Under the old flat-rate system, that same earner would have faced a much larger cliff. Use our <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link> to model your exact scenario.
+                Notice how there&apos;s no sudden jump in repayments under the new marginal system. Under the FY2026-27 thresholds, moving from $69,528 to $70,000 only triggered <strong>{formatAUD(calculateHECS(70000))}</strong> in annual HECS &mdash; just <strong>{formatAUD(annualToWeekly(calculateHECS(70000)), 2)}</strong> per week. Under the old flat-rate system, that same earner would have faced a much larger cliff. Use our <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link> to model your exact scenario.
               </p>
               <p>
                 For a full breakdown of how income tax, superannuation, and Medicare levy combine with HECS to determine your disposable salary, try our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>. It handles all deductions in a single view and shows your net pay after tax on a weekly, fortnightly, monthly, and annual basis.

@@ -14,7 +14,7 @@ import {
   calculateMedicareLevy,
   formatAUD,
   formatPercent,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   LITO,
   SOURCES,
   SITE_CONFIG,
@@ -43,7 +43,7 @@ export default function IncomeTaxCalculatorPage() {
     const effectiveRate = salary > 0 ? totalTax / salary : 0;
 
     // Bracket breakdown
-    const bracketBreakdown = TAX_BRACKETS_2025_26.map((bracket, i) => {
+    const bracketBreakdown = TAX_BRACKETS.map((bracket, i) => {
       const lower = bracket.min === 0 ? 0 : bracket.min;
       const upper = bracket.max === Infinity ? salary : Math.min(bracket.max, salary);
       if (salary < lower) return { ...bracket, inBracket: 0, taxOnBracket: 0 };
@@ -54,7 +54,7 @@ export default function IncomeTaxCalculatorPage() {
 
     // Marginal rate
     let marginalRate = 0;
-    for (const bracket of TAX_BRACKETS_2025_26) {
+    for (const bracket of TAX_BRACKETS) {
       if (salary >= bracket.min) marginalRate = bracket.rate;
     }
 
@@ -86,7 +86,7 @@ export default function IncomeTaxCalculatorPage() {
               </p>
               <div className="mt-6 bg-white/70 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
                 <p className="text-base leading-relaxed">
-                  <strong className="text-navy">Australian income tax for FY2025-26 uses 5 brackets:</strong> 0% up to $18,200, 16% to $45,000, 30% to $135,000, 37% to $190,000, and 45% above. Most workers also pay 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Use the calculator below for your exact figure.
+                  <strong className="text-navy">Australian income tax for FY{SITE_CONFIG.financialYear} uses 5 brackets:</strong> 0% up to $18,200, 15% to $45,000, 30% to $135,000, 37% to $190,000, and 45% above. Most workers also pay 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Use the calculator below for your exact figure.
                 </p>
               </div>
               <TrustBar className="mt-4" />
@@ -204,7 +204,7 @@ export default function IncomeTaxCalculatorPage() {
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Income Tax Calculated in Australia?</h2>
               <p className="mb-4 text-warmgray">Income tax in Australia is calculated using a progressive marginal rate system where each portion of your assessable income is taxed at the rate for that bracket, not at a single flat rate.</p>
-              <p className="mb-4 text-warmgray">The Australian Tax Office applies 4 steps to arrive at your final tax liability. Here is the exact calculation for a gross salary of <strong>$80,000</strong> in FY2025-26:</p>
+              <p className="mb-4 text-warmgray">The Australian Tax Office applies 4 steps to arrive at your final tax liability. Here is the exact calculation for a gross salary of <strong>$80,000</strong> in FY{SITE_CONFIG.financialYear}:</p>
               <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
                 <li><strong>Apply the tax-free threshold.</strong> The first $18,200 is taxed at <strong>0%</strong> — tax on this portion is <strong>$0</strong>.</li>
                 <li><strong>Calculate tax on each bracket.</strong> $18,201–$45,000 at 16% = <strong>$4,288</strong>. $45,001–$80,000 at 30% = <strong>$10,500</strong>. Gross income tax totals <strong>$14,788</strong>.</li>
@@ -216,8 +216,8 @@ export default function IncomeTaxCalculatorPage() {
 
             {/* Tax brackets table */}
             <section>
-              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Income Tax Brackets for FY2025-26?</h2>
-              <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for resident taxpayers in FY2025-26, ranging from 0% on the first $18,200 to 45% on income above $190,000. The table below shows the full <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline font-medium">ATO tax brackets for 2025-26</Link> with cumulative tax at the top of each bracket.</p>
+              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Income Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
+              <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for resident taxpayers in FY{SITE_CONFIG.financialYear}, ranging from 0% on the first $18,200 to 45% on income above $190,000. The table below shows the full <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline font-medium">ATO tax brackets</Link> with cumulative tax at the top of each bracket.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
@@ -229,7 +229,7 @@ export default function IncomeTaxCalculatorPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {TAX_BRACKETS_2025_26.map((bracket, i) => {
+                    {TAX_BRACKETS.map((bracket, i) => {
                       const rangeWidth = bracket.max === Infinity ? null : bracket.max - (bracket.min === 0 ? 0 : bracket.min - 1);
                       const taxOnRange = rangeWidth == null ? null : Math.round(rangeWidth * bracket.rate);
                       const cumulativeAtTop = bracket.max === Infinity ? null : Math.round(calculateIncomeTax(bracket.max));
@@ -286,20 +286,20 @@ export default function IncomeTaxCalculatorPage() {
                   </tbody>
                 </table>
               </div>
-              <p className="mt-3 text-sm text-warmgray">Figures use FY2025-26 resident rates with LITO applied where eligible. The 2% Medicare levy is included; the <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy Surcharge</Link> and HECS-HELP are excluded. For your bracket-specific result, see the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> or compute a <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">bonus tax</Link> alongside salary.</p>
+              <p className="mt-3 text-sm text-warmgray">Figures use FY{SITE_CONFIG.financialYear} resident rates with LITO applied where eligible. The 2% Medicare levy is included; the <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy Surcharge</Link> and HECS-HELP are excluded. For your bracket-specific result, see the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> or compute a <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">bonus tax</Link> alongside salary.</p>
             </section>
 
-            {/* FY2024-25 vs FY2025-26 Stage 3 savings */}
+            {/* FY2024-25 vs FY{SITE_CONFIG.financialYear} Stage 3 savings */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Less Tax Are You Paying Since Stage 3?</h2>
-              <p className="mb-4 text-warmgray">The Stage 3 tax cuts that took effect on 1 July 2024 dropped the 19% rate to 16% and lifted the 37% threshold from $120,000 to $135,000. The table below compares income tax under the pre-Stage-3 settings (FY2023-24) against the current FY2025-26 brackets for illustrative purposes — the FY2025-26 brackets are unchanged from FY2024-25, so the saving is the cumulative reduction since the cuts.</p>
+              <p className="mb-4 text-warmgray">The Stage 3 tax cuts that took effect on 1 July 2024 dropped the 19% rate to 16% and lifted the 37% threshold from $120,000 to $135,000. The table below compares income tax under the pre-Stage-3 settings (FY2023-24) against the current FY{SITE_CONFIG.financialYear} brackets for illustrative purposes — the FY{SITE_CONFIG.financialYear} brackets are unchanged from FY2024-25, so the saving is the cumulative reduction since the cuts.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
                     <tr>
                       <th className="px-4 py-3 text-left font-semibold text-navy">Salary</th>
                       <th className="px-4 py-3 text-right font-semibold text-navy">Tax (FY2023-24, illustrative)</th>
-                      <th className="px-4 py-3 text-right font-semibold text-navy">Tax (FY2025-26)</th>
+                      <th className="px-4 py-3 text-right font-semibold text-navy">Tax (FY{SITE_CONFIG.financialYear})</th>
                       <th className="px-4 py-3 text-right font-semibold text-navy">You Pay LESS</th>
                     </tr>
                   </thead>
@@ -342,7 +342,7 @@ export default function IncomeTaxCalculatorPage() {
                 <li><strong>Employees negotiating a pay rise</strong> — compare take-home pay at different gross salaries to understand the real value of a raise after taxation. A $10,000 raise from $80,000 to $90,000 adds <strong>$6,800</strong> to take-home pay, not $10,000.</li>
                 <li><strong>Job seekers comparing offers</strong> — calculate the after-tax income on competing salary packages. An offer of $95,000 in one role versus $90,000 plus $5,000 in superannuation sacrifice in another produces different net pay outcomes.</li>
                 <li><strong>Sole traders and freelancers</strong> — estimate quarterly PAYG instalment amounts based on projected annual income. Use the result alongside our <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Contractor Pay Calculator</Link> for GST-inclusive calculations.</li>
-                <li><strong>Graduates entering the workforce</strong> — understand how income tax brackets interact with <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP repayments</Link> that commence at $67,000 under the new marginal repayment system.</li>
+                <li><strong>Graduates entering the workforce</strong> — understand how income tax brackets interact with <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP repayments</Link> that commence at $69,528 under the new marginal repayment system.</li>
                 <li><strong>Financial planners and accountants</strong> — quickly model client scenarios across multiple salary levels without manual bracket calculations.</li>
               </ul>
             </section>
@@ -350,7 +350,7 @@ export default function IncomeTaxCalculatorPage() {
             {/* Income Tax vs Take-Home Pay */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Income Tax Compare to Take-Home Pay at Different Salaries?</h2>
-              <p className="mb-4 text-warmgray">Take-home pay increases at a diminishing rate as salary grows because each additional dollar is taxed at a higher marginal rate. The table below compares total taxation and net pay after tax across 9 common salary levels for FY2025-26.</p>
+              <p className="mb-4 text-warmgray">Take-home pay increases at a diminishing rate as salary grows because each additional dollar is taxed at a higher marginal rate. The table below compares total taxation and net pay after tax across 9 common salary levels for FY{SITE_CONFIG.financialYear}.</p>
               <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone">
@@ -387,10 +387,10 @@ export default function IncomeTaxCalculatorPage() {
               <p className="mt-3 text-sm text-warmgray">A worker earning $50,000 keeps <strong>87.3%</strong> of gross salary. At $200,000, the retention rate drops to <strong>67.7%</strong>. Superannuation at 12% is paid on top of these figures by your employer. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> to see the exact super contribution on your salary.</p>
             </section>
 
-            {/* What Changed in FY2025-26? */}
+            {/* What Changed in FY{SITE_CONFIG.financialYear}? */}
             <section>
-              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed in FY2025-26 for Income Tax?</h2>
-              <p className="mb-4 text-warmgray">FY2025-26 is the second year of the revised Stage 3 tax cuts. The bracket structure remains the same as FY2024-25, but other payroll settings have changed.</p>
+              <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed in FY{SITE_CONFIG.financialYear} for Income Tax?</h2>
+              <p className="mb-4 text-warmgray">FY{SITE_CONFIG.financialYear} is the second year of the revised Stage 3 tax cuts. The bracket structure remains the same as FY2024-25, but other payroll settings have changed.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2">Stage 3 Tax Cut Brackets (Ongoing)</h3>
               <p className="mb-3 text-warmgray">The 19% rate dropped to <strong>16%</strong> from 1 July 2024. The 32.5% bracket was replaced with a <strong>30%</strong> rate. The 37% threshold lifted from $120,000 to <strong>$135,000</strong>. These changes delivered a tax cut of <strong>$804</strong> to every taxpayer earning between $18,201 and $45,000, scaling up to <strong>$4,529</strong> for incomes above $190,000.</p>
@@ -399,7 +399,7 @@ export default function IncomeTaxCalculatorPage() {
               <p className="mb-3 text-warmgray">The SG rate increased from 11.5% to <strong>12%</strong> on 1 July 2025. Employers now contribute an additional 0.5% of ordinary time earnings to superannuation. On an $80,000 salary, the employer super contribution rises from $9,200 to <strong>$9,600</strong> per year.</p>
 
               <h3 className="text-lg font-semibold text-navy mb-2">HECS-HELP Repayment Overhaul</h3>
-              <p className="mb-3 text-warmgray">The HECS repayment system moved from a tiered percentage model to a <strong>marginal rate system</strong> starting at $67,000. Repayments now apply at <strong>15 cents per dollar</strong> earned above $67,000, reducing the cliff-edge effect that previously caused large jumps in repayment obligations. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> to model your repayment under the new system.</p>
+              <p className="mb-3 text-warmgray">The HECS repayment system moved from a tiered percentage model to a <strong>marginal rate system</strong> starting at $69,528. Repayments now apply at <strong>15 cents per dollar</strong> earned above $69,528, reducing the cliff-edge effect that previously caused large jumps in repayment obligations. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> to model your repayment under the new system.</p>
             </section>
 
             {/* Common Income Tax Mistakes */}
@@ -473,7 +473,7 @@ export default function IncomeTaxCalculatorPage() {
               <p className="mb-3 text-warmgray">Income tax is one of 3 mandatory deductions from your pay. The Medicare levy and HECS-HELP repayments also reduce your after-tax income:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
                 <li><Link href="/medicare-levy/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy</Link> — <strong>2%</strong> of taxable income. An additional "Medicare Levy Surcharge" of 1–1.5% applies if you earn above $93,000 and do not hold private hospital cover.</li>
-                <li><Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Repayment</Link> — begins at $67,000 under the new marginal system at <strong>15 cents per dollar</strong> above the threshold.</li>
+                <li><Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Repayment</Link> — begins at $69,528 under the new marginal system at <strong>15 cents per dollar</strong> above the threshold.</li>
                 <li><Link href="/salary-sacrifice-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Salary Sacrifice</Link> — voluntarily redirecting pre-tax income to superannuation reduces taxable income and the associated income tax.</li>
               </ul>
               <p className="mt-3 text-sm text-warmgray-light">
@@ -542,7 +542,7 @@ export default function IncomeTaxCalculatorPage() {
                 </Link>
                 <Link href="/hecs-help-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                   <h3 className="font-medium text-navy mb-1">HECS-HELP Calculator</h3>
-                  <p className="text-sm text-warmgray">Calculate your HECS repayment under the new marginal rate system from $67,000</p>
+                  <p className="text-sm text-warmgray">Calculate your HECS repayment under the new marginal rate system from $69,528</p>
                 </Link>
                 <Link href="/superannuation-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                   <h3 className="font-medium text-navy mb-1">Superannuation Calculator</h3>

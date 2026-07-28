@@ -35,7 +35,7 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator", description: "See your net pay after all deductions" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator", description: "Calculate employer SG contributions at 12%" },
       { href: "/salary-sacrifice-calculator/", label: "Salary Sacrifice Calculator", description: "Compare pay before and after sacrifice" },
-      { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator", description: "New marginal repayment system for 2025-26" },
+      { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator", description: "Marginal repayment system, FY2026-27 thresholds" },
     ],
   },
   {
@@ -75,7 +75,7 @@ export const GUIDE_CATEGORIES = [
   {
     title: "Tax & Deductions",
     guides: [
-      { href: "/tax-brackets/", label: "Tax Brackets 2025-26", description: "Income tax rates and thresholds" },
+      { href: "/tax-brackets/", label: "Tax Brackets", description: "Income tax rates and thresholds" },
       { href: "/medicare-levy/", label: "Medicare Levy Guide", description: "Rate, surcharge and exemptions" },
       { href: "/low-income-tax-offset/", label: "Low Income Tax Offset (LITO)", description: "Up to $700 tax reduction" },
       { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables", description: "Weekly, fortnightly and monthly tables" },
@@ -100,7 +100,7 @@ export const GUIDE_CATEGORIES = [
     title: "Employment & Pay",
     guides: [
       { href: "/understanding-your-payslip/", label: "Understanding Your Payslip", description: "What every deduction means" },
-      { href: "/award-rates/", label: "Award Rates 2025", description: "Minimum wage and penalty rates" },
+      { href: "/award-rates/", label: "Award Rates", description: "Minimum wage and penalty rates" },
       { href: "/contractor-vs-employee/", label: "Contractor vs Employee Guide", description: "Key differences, tax and super" },
       { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide", description: "NES entitlements and tax" },
       { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates", description: "Weekend, evening and public holiday rates" },
@@ -269,7 +269,7 @@ export const FOOTER_CALCULATORS = [
 
 // Footer guides — split into logical groups for multi-column layout
 export const FOOTER_GUIDES_TAX = [
-  { href: "/tax-brackets/", label: "Tax Brackets 2025-26" },
+  { href: "/tax-brackets/", label: "Tax Brackets" },
   { href: "/medicare-levy/", label: "Medicare Levy" },
   { href: "/low-income-tax-offset/", label: "Low Income Tax Offset" },
   { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables" },
@@ -304,7 +304,7 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/extra-super-vs-hecs-repayment/", label: "Super vs HECS" },
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
   { href: "/stsl-on-payslip/", label: "STSL on Your Payslip" },
-  { href: "/award-rates/", label: "Award Rates 2025" },
+  { href: "/award-rates/", label: "Award Rates" },
   { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },
   { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide" },

@@ -310,7 +310,7 @@ export default function PayCalculatorQLDPage() {
                 The superannuation guarantee rate is <strong>12%</strong> for FY2025-26, regardless of state. Your employer pays this on top of your gross salary. The maximum super contribution base is <strong>$65,070 per quarter</strong>, capping employer obligations for very high earners.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect my QLD take-home pay?">
-                HECS-HELP repayments are a federal obligation applied identically in all states. Repayments start at <strong>1%</strong> of your income once you earn above <strong>$54,435</strong> and increase progressively. At $88,000 gross, the repayment rate is <strong>4.5%</strong>, reducing take-home pay by $3,960 per year.
+                HECS-HELP repayments are a federal obligation applied identically in all states. Repayments start at <strong>1%</strong> of your income once you earn above <strong>$69,528</strong> and increase progressively. At $88,000 gross, the repayment rate is <strong>4.5%</strong>, reducing take-home pay by $3,960 per year.
               </FAQItem>
               <FAQItem value="fhog" question="What is Queensland's First Home Owner Grant?">
                 Queensland offers a <strong>$30,000</strong> First Home Owner Grant for purchasing or building a brand-new home valued at under $750,000. The grant applies to Australian citizens and permanent residents buying their first home. It is not taxable and does not affect your income tax calculation.

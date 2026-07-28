@@ -18,14 +18,15 @@ interface SalaryToHourlyProps {
   salary: number;
 }
 
-// Standard Australian working hours
-const HOURS_PER_WEEK = 38;
-const WEEKS_PER_YEAR = 52.18;
-const HOURS_PER_YEAR = HOURS_PER_WEEK * WEEKS_PER_YEAR; // 1,982.84
+// Standard Australian working hours — single source of truth in EMPLOYMENT
+// so the route and the module cannot drift (they previously did).
+const HOURS_PER_WEEK = EMPLOYMENT.standardWeeklyHours;
+const WEEKS_PER_YEAR = EMPLOYMENT.weeksPerYear;
+const HOURS_PER_YEAR = EMPLOYMENT.hoursPerYear; // 1,976
 const HOURS_PER_DAY = 7.6;
 const WORKING_DAYS_PER_YEAR = 260;
 
-const MINIMUM_WAGE_HOURLY = EMPLOYMENT.minimumWageHourly; // $24.10
+const MINIMUM_WAGE_HOURLY = EMPLOYMENT.minimumWageHourly; // $26.44
 const AVERAGE_WAGE_ANNUAL = 98_218; // ABS Average Weekly Earnings × 52
 
 export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
@@ -71,11 +72,11 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
       {/* Introduction */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          A <strong>{formattedSalary}</strong> annual salary in Australia equals <strong>{formatAUD(grossHourly, 2)}/hour</strong> before tax, based on a standard 38-hour work week (1,982.84 working hours per year).
+          A <strong>{formattedSalary}</strong> annual salary in Australia equals <strong>{formatAUD(grossHourly, 2)}/hour</strong> before tax, based on a standard 38-hour work week (1,976 working hours per year).
           After income tax and Medicare levy, your effective hourly rate drops to <strong>{formatAUD(netHourly, 2)}/hour</strong>.
         </p>
         <p className="text-navy leading-relaxed">
-          This calculation uses 52.18 weeks per year (365.25 days / 7) and a standard 38-hour week as defined by the Fair Work Act.
+          This calculation uses 52 weeks per year and a standard 38-hour week as defined by the Fair Work Act.
           Use our <a href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Hourly to Annual Salary Calculator</a> to convert in the other direction.
         </p>
       </section>
@@ -134,7 +135,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
           </div>
         </Card>
         <p className="mt-4 text-sm text-warmgray">
-          Calculation: {formattedSalary} / (38 hours x 52.18 weeks) = {formatAUD(grossHourly, 2)}/hour. After-tax hourly rate accounts for {formatAUD(breakdown.netIncomeTax)} income tax and {formatAUD(breakdown.medicareLevy)} Medicare levy.
+          Calculation: {formattedSalary} / (38 hours x 52 weeks) = {formatAUD(grossHourly, 2)}/hour. After-tax hourly rate accounts for {formatAUD(breakdown.netIncomeTax)} income tax and {formatAUD(breakdown.medicareLevy)} Medicare levy.
         </p>
       </section>
 
@@ -274,7 +275,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/take-home-pay-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Take-Home Pay Calculator</p>
-            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY2025-26.</p>
+            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY{SITE_CONFIG.financialYear}.</p>
           </a>
           <a href="/award-rates/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Award Rates</p>
@@ -292,7 +293,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
               How much is {formattedSalary} per hour in Australia?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              A {formattedSalary} annual salary equals <strong>{formatAUD(grossHourly, 2)} per hour</strong> before tax, based on a standard 38-hour work week and 52.18 weeks per year (1,982.84 working hours). After income tax and Medicare levy, the effective hourly rate is <strong>{formatAUD(netHourly, 2)}</strong>.
+              A {formattedSalary} annual salary equals <strong>{formatAUD(grossHourly, 2)} per hour</strong> before tax, based on a standard 38-hour work week and 52 weeks per year (1,976 working hours). After income tax and Medicare levy, the effective hourly rate is <strong>{formatAUD(netHourly, 2)}</strong>.
             </AccordionContent>
           </AccordionItem>
 
@@ -301,7 +302,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
               How do you convert {formattedSalary} salary to hourly rate?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Divide the annual salary by the total working hours per year. With a 38-hour week: {formattedSalary} / (38 hours x 52.18 weeks) = {formattedSalary} / 1,982.84 hours = <strong>{formatAUD(grossHourly, 2)}/hour</strong>. The 52.18 weeks accounts for the fact that a year has 365.25 days on average.
+              Divide the annual salary by the total working hours per year. With a 38-hour week: {formattedSalary} / (38 hours x 52 weeks) = {formattedSalary} / 1,976 hours = <strong>{formatAUD(grossHourly, 2)}/hour</strong>.
             </AccordionContent>
           </AccordionItem>
 
@@ -331,8 +332,8 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
       <MethodologyDisclosure>
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
-          <li><strong>Working Hours:</strong> Standard 38-hour week as defined by the Fair Work Act, with 52.18 weeks per year (365.25 / 7), yielding 1,982.84 working hours annually.</li>
-          <li><strong>Income Tax:</strong> Calculated using ATO progressive marginal tax rates for resident individuals for FY2025-26.</li>
+          <li><strong>Working Hours:</strong> Standard 38-hour week as defined by the Fair Work Act, with 52 weeks per year, yielding 1,976 working hours annually.</li>
+          <li><strong>Income Tax:</strong> Calculated using ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Standard 2% rate. Does not account for low-income reductions or Medicare Levy Surcharge.</li>
         </ol>
       </MethodologyDisclosure>

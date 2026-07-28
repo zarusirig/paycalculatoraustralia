@@ -134,7 +134,7 @@ export default function PayCalculatorVICPage() {
                 <li>Enter your gross annual salary (before tax)</li>
                 <li>Federal income tax is calculated using ATO marginal rates for FY2025-26</li>
                 <li>The Medicare levy of <strong>2%</strong> is deducted from assessable income</li>
-                <li>HECS-HELP repayments are applied if selected (threshold starts at <strong>$54,435</strong>)</li>
+                <li>HECS-HELP repayments are applied if selected (threshold starts at <strong>$69,528</strong>)</li>
                 <li>Superannuation at <strong>12%</strong> is calculated on top of your gross salary</li>
               </ol>
             </div>
@@ -349,7 +349,7 @@ export default function PayCalculatorVICPage() {
                 No. Regional Victorian workers pay exactly the same federal income tax as Melbourne workers. Regional employers benefit from a reduced payroll tax rate of 1.2125% (compared to 4.85% in metro areas), but this employer saving does not affect employee tax deductions or net pay.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect my VIC take-home pay?">
-                HECS-HELP repayments are a federal obligation applied identically across all states. Repayments commence when your income exceeds $54,435 per year. At the VIC average salary of $93,250, the HECS repayment rate is 7.0%, which means $6,528 per year is withheld in addition to income tax and Medicare levy.
+                HECS-HELP repayments are a federal obligation applied identically across all states. Repayments commence when your income exceeds $69,528 per year. At the VIC average salary of $93,250, the HECS repayment rate is 7.0%, which means $6,528 per year is withheld in addition to income tax and Medicare levy.
               </FAQItem>
             </Accordion>
           </section>

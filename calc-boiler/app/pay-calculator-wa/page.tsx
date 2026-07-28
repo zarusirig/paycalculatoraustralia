@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-wa/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator WA 2025-26 — Western Australia Take-Home Pay",
+  title: "Pay Calculator WA — Western Australia Take-Home Pay",
   description: "Calculate your take-home pay in Western Australia. Learn about federal income tax, WA payroll tax, WorkCover, and the high average salaries driven by the resources sector.",
   alternates: { canonical: URL },
   openGraph: { title: "Pay Calculator WA — Take-Home Pay in Western Australia", description: "Calculate your net pay in WA. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

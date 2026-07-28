@@ -13,7 +13,7 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatPercent,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   SUPER_GUARANTEE,
   LITO,
   HECS_HELP,
@@ -828,7 +828,7 @@ export default function HomePageTemplate() {
             This Australian tax calculator converts your gross salary into exact take-home pay by applying the official ATO tax tables for FY{SITE_CONFIG.financialYear}. Every dollar of your salary is split into 5 components: income tax (progressive marginal rates from <strong>0% to 45%</strong>), the <strong>2%</strong> Medicare levy, any HECS-HELP repayments, the &quot;Low Income Tax Offset&quot; (LITO), and your employer&apos;s superannuation guarantee contribution.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Your income tax is calculated in stages — not all at one rate. The first {formatAUD(TAX_BRACKETS_2025_26[0].max)} is tax-free, then each portion above that threshold is taxed at progressively higher marginal rates: <strong>16%</strong> up to $45,000, <strong>30%</strong> up to $135,000, <strong>37%</strong> up to $190,000, and <strong>45%</strong> on every dollar above $190,000. This means a person earning $80,000 pays an effective tax rate of just <strong>20.5%</strong>, not the 30% marginal rate that applies to their top bracket.
+            Your income tax is calculated in stages — not all at one rate. The first {formatAUD(TAX_BRACKETS[0].max)} is tax-free, then each portion above that threshold is taxed at progressively higher marginal rates: <strong>15%</strong> up to $45,000, <strong>30%</strong> up to $135,000, <strong>37%</strong> up to $190,000, and <strong>45%</strong> on every dollar above $190,000. This means a person earning $80,000 pays an effective tax rate of just <strong>20.5%</strong>, not the 30% marginal rate that applies to their top bracket.
           </p>
           <p className="leading-relaxed text-warmgray">
             Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a detailed bracket-by-bracket breakdown, our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model your employer&apos;s SG contribution over time, or our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to compare net pay across different salary levels.
@@ -846,7 +846,7 @@ export default function HomePageTemplate() {
           </MethodologyDisclosure>
         </motion.section>
 
-        {/* ===== 2. WHAT ARE THE AUSTRALIAN TAX BRACKETS FOR FY2025-26? ===== */}
+        {/* ===== 2. WHAT ARE THE AUSTRALIAN TAX BRACKETS FOR FY{SITE_CONFIG.financialYear}? ===== */}
         <motion.section
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -872,7 +872,7 @@ export default function HomePageTemplate() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((bracket, i) => (
+                {TAX_BRACKETS.map((bracket, i) => (
                   <tr key={i} className="transition-colors hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-warmgray">
                       {formatAUD(bracket.min)} – {bracket.max === Infinity ? "+" : formatAUD(bracket.max)}
@@ -1084,7 +1084,7 @@ export default function HomePageTemplate() {
             On a salary of $80,000, your employer contributes <strong>$9,600 per year</strong> ($800 per month) into your super fund. On $100,000, the employer contributes <strong>$12,000</strong>. On $60,000, the contribution is <strong>$7,200</strong>. These amounts are paid on top of your gross salary and do not reduce your take-home pay.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Employers pay super <strong>quarterly</strong>, within 28 days of each quarter&apos;s end (28 October, 28 January, 28 April, 28 July). Late payments trigger the Superannuation Guarantee Charge (SGC), which includes interest and an administration fee. The &quot;Maximum Super Contribution Base&quot; for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}</strong> per quarter ($250,000 annualised) — employers are not required to pay SG on earnings above this cap.
+            From 1 July 2026, Payday Super requires employers to pay super <strong>on every payday</strong> rather than quarterly, calculated on qualifying earnings. Late payments trigger the Superannuation Guarantee Charge (SGC), which includes interest and an administration fee. The &quot;Maximum Super Contribution Base&quot; for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> per year — employers are not required to pay SG on earnings above this cap.
           </p>
           <p className="leading-relaxed text-warmgray">
             The &quot;concessional contributions&quot; cap (including employer SG, salary sacrifice, and personal deductible contributions) is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year. Exceeding this cap triggers additional tax at your marginal rate. Use our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model your exact employer contributions, or read the <Link href="/superannuation-guide/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Guide</Link> for a complete overview of contribution caps, investment options, and withdrawal rules.
@@ -1117,25 +1117,25 @@ export default function HomePageTemplate() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">Below $67,000</td><td className="px-4 py-2.5 font-semibold text-navy">0%</td><td className="px-4 py-2.5 text-warmgray-light">No repayment required</td></tr>
-                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$67,001 – $125,000</td><td className="px-4 py-2.5 font-semibold text-navy">15%</td><td className="px-4 py-2.5 text-warmgray-light">15c per $1 over $67,000</td></tr>
+                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">Below $69,528</td><td className="px-4 py-2.5 font-semibold text-navy">0%</td><td className="px-4 py-2.5 text-warmgray-light">No repayment required</td></tr>
+                <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$69,529 – $125,000</td><td className="px-4 py-2.5 font-semibold text-navy">15%</td><td className="px-4 py-2.5 text-warmgray-light">15c per $1 over $69,528</td></tr>
                 <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$125,001 – $179,285</td><td className="px-4 py-2.5 font-semibold text-navy">17%</td><td className="px-4 py-2.5 text-warmgray-light">$8,700 + 17c per $1 over $125,000</td></tr>
                 <tr className="hover:bg-sandstone/50"><td className="px-4 py-2.5 text-warmgray">$179,286+</td><td className="px-4 py-2.5 font-semibold text-navy">10%</td><td className="px-4 py-2.5 text-warmgray-light">10% of total repayment income</td></tr>
               </tbody>
             </table>
           </div>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>At $65,000:</strong> Your income is below the $67,000 threshold, so your HECS repayment is <strong>$0</strong>. Your take-home pay is unaffected by your student debt.
+            <strong>At $65,000:</strong> Your income is below the $69,528 threshold, so your HECS repayment is <strong>$0</strong>. Your take-home pay is unaffected by your student debt.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            <strong>At $90,000:</strong> You pay 15% on the $23,000 above $67,000, equalling a HECS repayment of <strong>$3,450</strong> per year ($132.69 per fortnight). Your annual take-home pay drops from $70,412 to <strong>$66,962</strong>.
+            <strong>At $90,000:</strong> You pay 15% on the $23,000 above $69,528, equalling a HECS repayment of <strong>$3,450</strong> per year ($132.69 per fortnight). Your annual take-home pay drops from $70,412 to <strong>$66,962</strong>.
           </p>
           <p className="leading-relaxed text-warmgray">
             The new marginal system eliminates the cliff effect from the old model, where crossing a threshold by a single dollar triggered repayments on your entire income. Use our <Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> for your exact repayment figure, or read the <Link href="/hecs-help-guide/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link> for the full threshold table.
           </p>
         </motion.section>
 
-        {/* ===== 7. WHAT CHANGED IN AUSTRALIAN TAX FOR FY2025-26? ===== */}
+        {/* ===== 7. WHAT CHANGED IN AUSTRALIAN TAX FOR FY{SITE_CONFIG.financialYear}? ===== */}
         <motion.section
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1159,7 +1159,7 @@ export default function HomePageTemplate() {
               <strong>SG rate increases to 12%:</strong> The employer superannuation guarantee rate rose from 11.5% to <strong>12%</strong> on 1 July 2025. On an $80,000 salary, this adds an extra <strong>$400 per year</strong> to your super balance compared to the previous rate.
             </li>
             <li>
-              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold increased from $54,435 to <strong>$67,000</strong>. Graduates earning between $54,435 and $67,000 now make <strong>zero compulsory repayments</strong>.
+              <strong>HECS-HELP reform (marginal system):</strong> The old flat-percentage repayment model is replaced by a new marginal system. The minimum repayment threshold rose from $54,435 under the old system to <strong>$69,528</strong> for FY2026-27. Graduates earning between $54,435 and $69,528 now make <strong>zero compulsory repayments</strong>.
             </li>
             <li>
               <strong>Medicare levy low-income threshold:</strong> The individual threshold remains at <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> for FY{SITE_CONFIG.financialYear}. Earners below this amount receive a reduced Medicare levy or full exemption.

@@ -11,11 +11,11 @@ const URL = `${BASE}/hourly-to-annual-salary-calculator/`;
 export const metadata: Metadata = {
   title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
   description:
-    "Convert any hourly rate to an annual salary in 1 second. See gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — Australian rates FY2025-26.",
+    "Convert any hourly rate to an annual salary in 1 second. See gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — Australian rates FY2026-27.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
-    description: "Convert any hourly rate to an annual salary in 1 second. Gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — FY2025-26.",
+    description: "Convert any hourly rate to an annual salary in 1 second. Gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — FY2026-27.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
-    description: "Convert any hourly rate to an annual salary instantly — gross and take-home after tax, FY2025-26.",
+    description: "Convert any hourly rate to an annual salary instantly — gross and take-home after tax, FY2026-27.",
   },
 };
 
@@ -60,7 +60,7 @@ const faq: WithContext<FAQPage> = {
       name: "$40 an hour is how much a year in Australia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "$40/hr full-time (38h/week, 52 weeks) = $79,040 gross per year, approximately $63,547 after tax (FY2025-26).",
+        text: "$40/hr full-time (38h/week, 52 weeks) = $79,040 gross per year, approximately $63,547 after tax (FY2026-27).",
       },
     },
     {

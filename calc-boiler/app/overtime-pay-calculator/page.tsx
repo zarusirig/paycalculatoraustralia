@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Overtime & Penalty Rate Calculator — Time-and-a-Half, Double-Time (2025-26)",
+  title: "Overtime Pay Calculator — Time-and-a-Half & Double Time",
   description:
     "Calculate your overtime and penalty rate pay. Enter your base rate, select the multiplier — see your overtime pay after tax. Free penalty rate calculator.",
   alternates: { canonical: URL },

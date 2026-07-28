@@ -369,7 +369,7 @@ export default function TaxRefundGuidePage() {
 
                 <AccordionItem value="hecs-impact" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does HECS-HELP affect my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">HECS-HELP compulsory repayments reduce your tax refund. Repayments are calculated on your &quot;HELP Repayment Income&quot; (HRI) — essentially your taxable income plus certain other amounts. The minimum repayment threshold is <strong>$54,435</strong> for FY2025-26. Repayments start at <strong>1%</strong> of HRI and increase in increments up to <strong>10%</strong> at higher income levels. Your employer may already withhold HELP repayments from each pay, in which case the impact on your refund is already accounted for.</AccordionContent>
+                  <AccordionContent className="text-warmgray">HECS-HELP compulsory repayments reduce your tax refund. Repayments are calculated on your &quot;HELP Repayment Income&quot; (HRI) — essentially your taxable income plus certain other amounts. The minimum repayment threshold is <strong>$69,528</strong> for FY2025-26. Repayments start at <strong>1%</strong> of HRI and increase in increments up to <strong>10%</strong> at higher income levels. Your employer may already withhold HELP repayments from each pay, in which case the impact on your refund is already accounted for.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="private-health" className="border rounded-lg px-4 bg-white">

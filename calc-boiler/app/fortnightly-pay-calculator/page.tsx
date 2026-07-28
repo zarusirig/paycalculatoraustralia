@@ -9,19 +9,19 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-pay-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Fortnightly Pay Calculator Australia — Take-Home Pay Every 2 Weeks (2025-26)",
+  title: "Fortnightly Pay Calculator Australia — Take-Home Every 2 Weeks",
   description:
-    "Convert any salary or hourly rate to your fortnightly take-home pay. See exact tax, super and net amount paid every 2 weeks — Australian rates FY2025-26.",
+    "Convert any salary or hourly rate to your fortnightly take-home pay. See exact tax, super and net amount paid every 2 weeks — Australian rates FY2026-27.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Fortnightly Pay Calculator Australia — Take-Home Pay Every 2 Weeks",
-    description: "See exact tax, super and net pay every 2 weeks for FY2025-26.",
+    description: "See exact tax, super and net pay every 2 weeks for FY2026-27.",
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
   },
-  twitter: { card: "summary_large_image", title: "Fortnightly Pay Calculator Australia", description: "Take-home pay every 2 weeks — FY2025-26 rates." },
+  twitter: { card: "summary_large_image", title: "Fortnightly Pay Calculator Australia", description: "Take-home pay every 2 weeks — FY2026-27 rates." },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = {
@@ -51,7 +51,7 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "How much is an $85,000 salary fortnightly after tax?", acceptedAnswer: { "@type": "Answer", text: "An $85,000 annual salary equals approximately $3,269.23 gross per fortnight before tax. After PAYG income tax and the 2% Medicare levy for FY2025-26, the net fortnightly take-home is approximately $2,576 (for a resident claiming the tax-free threshold, no HECS-HELP, with private hospital cover)." } },
+    { "@type": "Question", name: "How much is an $85,000 salary fortnightly after tax?", acceptedAnswer: { "@type": "Answer", text: "An $85,000 annual salary equals approximately $3,269.23 gross per fortnight before tax. After PAYG income tax and the 2% Medicare levy for FY2026-27, the net fortnightly take-home is approximately $2,576 (for a resident claiming the tax-free threshold, no HECS-HELP, with private hospital cover)." } },
     { "@type": "Question", name: "How is fortnightly tax calculated in Australia?", acceptedAnswer: { "@type": "Answer", text: "Fortnightly tax in Australia is calculated by dividing your gross annual salary by 26 (the number of fortnights in a year), then applying the ATO PAYG fortnightly tax table. The table accounts for the 5 income tax brackets, the 2% Medicare levy, and the Low Income Tax Offset (LITO) so the correct amount reaches the ATO across the financial year." } },
     { "@type": "Question", name: "Why is my fortnightly pay different from monthly divided by 2?", acceptedAnswer: { "@type": "Answer", text: "Because a year has 26 fortnights but 12 months. Fortnightly pay = annual salary ÷ 26 ($3,269.23 on $85,000). Monthly pay = annual salary ÷ 12 ($7,083.33 on $85,000). Dividing monthly by 2 gives $3,541.67 — which is $272.44 higher than the real fortnightly amount. Two months each year contain 3 fortnightly pays instead of 2." } },
     { "@type": "Question", name: "Is super deducted from my fortnightly pay?", acceptedAnswer: { "@type": "Answer", text: "No. Your employer pays the 12% Superannuation Guarantee on top of your gross salary. It is not deducted from your fortnightly take-home pay unless your contract specifies a 'total package inclusive of super'." } },

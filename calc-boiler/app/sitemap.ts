@@ -182,7 +182,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
-  const compliancePages = ["about", "contact", "privacy", "terms"];
+  const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
   for (const slug of compliancePages) {
     allPages.push({ slug, changeFrequency: "yearly", priority: 0.3 });
   }

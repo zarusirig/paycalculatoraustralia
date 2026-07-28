@@ -105,7 +105,7 @@ export default function ConstructionTradesPayPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Adult Apprentice Rates</h3>
               <p>
-                Adult apprentices (aged 21 and over) receive higher minimum rates than school-leaver apprentices. Under most awards and enterprise agreements, adult apprentices earn at least the <strong>national minimum wage</strong> ($24.10/hr) from Year 1, rather than the reduced junior apprentice rate. This recognises that adult apprentices have higher living costs and may have family responsibilities.
+                Adult apprentices (aged 21 and over) receive higher minimum rates than school-leaver apprentices. Under most awards and enterprise agreements, adult apprentices earn at least the <strong>national minimum wage</strong> ($26.44/hr) from Year 1, rather than the reduced junior apprentice rate. This recognises that adult apprentices have higher living costs and may have family responsibilities.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Government Incentives</h3>

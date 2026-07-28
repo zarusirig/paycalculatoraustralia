@@ -9,14 +9,14 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/income-tax-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Income Tax Calculator Australia 2025-26 — How Much Tax Do You Pay?",
+  title: "Income Tax Calculator Australia — How Much Tax Do You Pay?",
   description:
-    "Calculate your Australian income tax instantly using ATO brackets for FY2025-26. See how much tax you pay on any salary from $30,000 to $200,000 — with bracket-by-bracket breakdown.",
+    "Calculate your Australian income tax instantly using ATO brackets for FY2026-27. See how much tax you pay on any salary from $30,000 to $200,000 — with bracket-by-bracket breakdown.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Income Tax Calculator Australia 2025-26",
+    title: "Income Tax Calculator Australia 2026-27",
     description:
-      "Calculate your income tax with a bracket-by-bracket breakdown. Free, accurate, updated for FY2025-26.",
+      "Calculate your income tax with a bracket-by-bracket breakdown. Free, accurate, updated for FY2026-27.",
     url: PAGE_URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Income Tax Calculator Australia 2025-26",
-    description: "Free income tax calculator with bracket breakdown. ATO rates for FY2025-26.",
+    title: "Income Tax Calculator Australia 2026-27",
+    description: "Free income tax calculator with bracket breakdown. ATO rates for FY2026-27.",
   },
 };
 
@@ -41,7 +41,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Income Tax Calculator Australia 2025-26",
+  name: "Income Tax Calculator Australia 2026-27",
   url: PAGE_URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -59,12 +59,12 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "How much income tax do I pay in Australia?",
-      acceptedAnswer: { "@type": "Answer", text: "Australian residents pay income tax on a progressive scale for FY2025-26: 0% up to $18,200, 16% from $18,201 to $45,000, 30% from $45,001 to $135,000, 37% from $135,001 to $190,000, and 45% above $190,000. On an $80,000 salary you pay $14,788 in income tax plus $1,600 Medicare levy — total $16,388, leaving a take-home of $63,612." },
+      acceptedAnswer: { "@type": "Answer", text: "Australian residents pay income tax on a progressive scale for FY2026-27: 0% up to $18,200, 16% from $18,201 to $45,000, 30% from $45,001 to $135,000, 37% from $135,001 to $190,000, and 45% above $190,000. On an $80,000 salary you pay $14,788 in income tax plus $1,600 Medicare levy — total $16,388, leaving a take-home of $63,612." },
     },
     {
       "@type": "Question",
       name: "What are the 2025-26 tax brackets?",
-      acceptedAnswer: { "@type": "Answer", text: "The FY2025-26 ATO resident tax brackets are: $0–$18,200 at 0% (tax-free threshold), $18,201–$45,000 at 16%, $45,001–$135,000 at 30%, $135,001–$190,000 at 37%, and $190,001+ at 45%. These are the same brackets as FY2024-25 after the Stage 3 tax cuts took effect on 1 July 2024." },
+      acceptedAnswer: { "@type": "Answer", text: "The FY2026-27 ATO resident tax brackets are: $0–$18,200 at 0% (tax-free threshold), $18,201–$45,000 at 16%, $45,001–$135,000 at 30%, $135,001–$190,000 at 37%, and $190,001+ at 45%. These are the same brackets as FY2024-25 after the Stage 3 tax cuts took effect on 1 July 2024." },
     },
     {
       "@type": "Question",
@@ -84,7 +84,7 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "How much tax do I pay on $80,000?",
-      acceptedAnswer: { "@type": "Answer", text: "On $80,000, you pay $14,788 in income tax for FY2025-26. After the 2% Medicare levy ($1,600), your total tax deductions are $16,388. Your take-home pay is $63,612 per year — $1,223.31 per week." },
+      acceptedAnswer: { "@type": "Answer", text: "On $80,000, you pay $14,788 in income tax for FY2026-27. After the 2% Medicare levy ($1,600), your total tax deductions are $16,388. Your take-home pay is $63,612 per year — $1,223.31 per week." },
     },
   ],
 };

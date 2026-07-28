@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/extra-super-vs-hecs-repayment/`;
-const TITLE = "Extra Super Contributions vs Voluntary HECS Repayment \u2014 What\u2019s Smarter?";
+const TITLE = "Extra Super vs Voluntary HECS Repayment — Which Is Smarter?";
 const DESCRIPTION = "Should you put extra money into super or pay off your HECS debt faster? Compare tax benefits, HECS indexation, and long-term outcomes. Decision framework for Australian workers.";
 
 export const metadata: Metadata = {

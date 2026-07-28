@@ -7,7 +7,7 @@ export default function NotFound() {
     { href: "/income-tax-calculator/", label: "Income Tax Calculator", description: "Tax by bracket" },
     { href: "/superannuation-calculator/", label: "Super Calculator", description: "Employer SG at 12%" },
     { href: "/take-home-pay-calculator/", label: "Take-Home Pay", description: "Net pay after all deductions" },
-    { href: "/tax-brackets/", label: "Tax Brackets 2025-26", description: "Current rates and thresholds" },
+    { href: "/tax-brackets/", label: "Tax Brackets", description: "Current rates and thresholds" },
   ];
 
   return (

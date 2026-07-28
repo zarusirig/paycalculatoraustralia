@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-nsw/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator NSW 2025-26 — New South Wales Take-Home Pay",
+  title: "Pay Calculator NSW — New South Wales Take-Home Pay",
   description: "Calculate your take-home pay in NSW. Learn about federal income tax, NSW payroll tax thresholds, and average salaries in Sydney and New South Wales.",
   alternates: { canonical: URL },
   openGraph: { title: "Pay Calculator NSW — Take-Home Pay in New South Wales", description: "Calculate your net pay in NSW. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

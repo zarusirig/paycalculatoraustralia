@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-guide/`;
-const TITLE = "Salary Sacrifice Guide — How It Works in Australia (2025)";
+const TITLE = "Salary Sacrifice Guide — How It Works in Australia";
 const DESCRIPTION = "Learn how salary sacrificing into super or a novated lease can legally reduce your taxable income. Discover the pros, cons, and FBT implications in Australia.";
 
 export const metadata: Metadata = {

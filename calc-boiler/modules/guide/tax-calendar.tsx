@@ -155,7 +155,7 @@ export default function TaxCalendarPage() {
             <p>The end-of-financial-year deadline of <strong>30 June 2026</strong> is the last day to take actions that reduce your taxable income for FY2025-26, including making concessional super contributions, prepaying deductible expenses, and realising capital losses.</p>
             <ul>
               <li>Review your deductions and receipts — the ATO requires written evidence for all work-related claims</li>
-              <li>Make concessional super contributions up to the <strong>$30,000 annual cap</strong> before 30 June (employer SG counts toward this cap)</li>
+              <li>Make concessional super contributions up to the <strong>$32,500 annual cap</strong> before 30 June (employer SG counts toward this cap)</li>
               <li>Prepay deductible expenses for up to 12 months in advance: insurance premiums, professional subscriptions, income protection</li>
               <li>Check your private health insurance status for &quot;Medicare Levy Surcharge&quot; purposes — singles earning above <strong>$93,000</strong> and families above <strong>$186,000</strong> without hospital cover pay a surcharge of <strong>1% to 1.5%</strong></li>
               <li>Bring forward capital losses by selling underperforming investments before 30 June to offset capital gains</li>
@@ -169,10 +169,10 @@ export default function TaxCalendarPage() {
             <p>FY2025-26 carries forward the Stage 3 tax cuts implemented on 1 July 2024, with <strong>no new income tax rate changes</strong> legislated for this year. The SG rate holds at <strong>12%</strong>, and the Medicare levy remains at <strong>2%</strong> of taxable income.</p>
             <p>Key indexation changes for FY2025-26 include:</p>
             <ul>
-              <li><strong>Concessional super contributions cap</strong> — indexed to <strong>$30,000</strong> (up from $27,500 in FY2023-24)</li>
-              <li><strong>Non-concessional contributions cap</strong> — <strong>$120,000</strong> per year</li>
+              <li><strong>Concessional super contributions cap</strong> — indexed to <strong>$32,500</strong> from 1 July 2026 (up from $30,000)</li>
+              <li><strong>Non-concessional contributions cap</strong> — <strong>$130,000</strong> per year</li>
               <li><strong>Maximum super contribution base</strong> — <strong>$65,070</strong> per quarter</li>
-              <li><strong>HELP/HECS repayment thresholds</strong> — minimum repayment threshold indexed upward to approximately <strong>$54,435</strong></li>
+              <li><strong>HELP/HECS repayment thresholds</strong> — minimum repayment threshold indexed upward to <strong>$69,528</strong></li>
               <li><strong>Medicare Levy Surcharge thresholds</strong> — <strong>$93,000</strong> for singles, <strong>$186,000</strong> for families</li>
               <li><strong>Penalty unit value</strong> — <strong>$330</strong> per unit</li>
             </ul>
@@ -243,7 +243,7 @@ export default function TaxCalendarPage() {
               </div>
               <div>
                 <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What is the concessional super contributions cap for FY2025-26?</h3>
-                <p>The concessional (before-tax) super contributions cap is <strong>$30,000 per year</strong> for FY2025-26. This cap includes employer SG contributions, salary sacrifice amounts, and personal deductible contributions. Exceeding the cap results in the excess being taxed at your marginal tax rate plus an interest charge.</p>
+                <p>The concessional (before-tax) super contributions cap is <strong>$32,500 per year</strong> for FY2026-27. This cap includes employer SG contributions, salary sacrifice amounts, and personal deductible contributions. Exceeding the cap results in the excess being taxed at your marginal tax rate plus an interest charge.</p>
               </div>
             </div>
           </section>

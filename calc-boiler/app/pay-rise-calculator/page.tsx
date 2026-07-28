@@ -11,7 +11,7 @@ const URL = `${BASE}/pay-rise-calculator/`;
 export const metadata: Metadata = {
   title: "Pay Rise Calculator — How Much Extra Will You Take Home?",
   description:
-    "Enter your current & new salary to see exactly how much extra you take home after tax. See the marginal rate impact on your pay rise for FY2025-26.",
+    "Enter your current & new salary to see exactly how much extra you take home after tax. See the marginal rate impact on your pay rise for FY2026-27.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Pay Rise Calculator — How Much Extra Will You Take Home?",

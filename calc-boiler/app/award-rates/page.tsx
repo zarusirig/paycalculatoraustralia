@@ -7,8 +7,8 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/award-rates/`;
-const TITLE = "Award Rates Australia 2025-26 — Minimum Pay by Industry & Classification";
-const DESCRIPTION = "Find current minimum award pay rates in Australia for FY2025-26. Hospitality, retail, building & construction, nurses, teachers — covered by industry, with overtime, penalty rate & allowance calculations.";
+const TITLE = "Award Rates Australia — Minimum Pay by Industry & Level";
+const DESCRIPTION = "Find current minimum award pay rates in Australia for FY2026-27. Hospitality, retail, building & construction, nurses, teachers — covered by industry, with overtime, penalty rate & allowance calculations.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -52,10 +52,10 @@ const faq: WithContext<FAQPage> = {
   "@type": "FAQPage",
   mainEntity: [
     { "@type": "Question", name: "What is an award in Australia?", acceptedAnswer: { "@type": "Answer", text: "A modern award is a legally binding document issued by the Fair Work Commission that sets the minimum pay rates, penalty rates, allowances, overtime, and leave entitlements for employees in a specific industry or occupation. More than 120 modern awards cover approximately 2.9 million Australian workers." } },
-    { "@type": "Question", name: "How often do award rates change?", acceptedAnswer: { "@type": "Answer", text: "Award rates change annually following the Fair Work Commission's Annual Wage Review. The decision is announced each June, and new minimum rates take effect from the first full pay period on or after 1 July. The FY2025-26 increase was 3.75%." } },
-    { "@type": "Question", name: "What is the current minimum wage in Australia?", acceptedAnswer: { "@type": "Answer", text: "The national minimum wage for FY2025-26 is $24.10 per hour, or $915.91 per week for a standard 38-hour week. Most employees are covered by a modern award with a higher minimum rate (typically $25.44/hr or above for entry-level classifications)." } },
+    { "@type": "Question", name: "How often do award rates change?", acceptedAnswer: { "@type": "Answer", text: "Award rates change annually following the Fair Work Commission's Annual Wage Review. The decision is announced each June, and new minimum rates take effect from the first full pay period on or after 1 July. The FY2026-27 increase was 3.75%." } },
+    { "@type": "Question", name: "What is the current minimum wage in Australia?", acceptedAnswer: { "@type": "Answer", text: "The national minimum wage for FY2026-27 is $26.44 per hour, or $1,004.90 per week for a standard 38-hour week. Most employees are covered by a modern award with a higher minimum rate (typically $25.44/hr or above for entry-level classifications)." } },
     { "@type": "Question", name: "Do award rates differ by state?", acceptedAnswer: { "@type": "Answer", text: "No. Modern award rates are set federally by the Fair Work Commission and apply uniformly across NSW, VIC, QLD, WA, SA, TAS, ACT and NT for national-system employees. Only state public-sector employees (covered by separate state industrial instruments) see differences." } },
-    { "@type": "Question", name: "Are award rates higher than the national minimum wage?", acceptedAnswer: { "@type": "Answer", text: "Yes, in almost every case. The national minimum wage of $24.10/hr is the floor for award-free employees. Award classification rates for specific industries are higher because they recognise qualifications and experience — entry rates start at $25.44/hr or above, and higher classifications reach $30+/hr." } },
+    { "@type": "Question", name: "Are award rates higher than the national minimum wage?", acceptedAnswer: { "@type": "Answer", text: "Yes, in almost every case. The national minimum wage of $26.44/hr is the floor for award-free employees. Award classification rates for specific industries are higher because they recognise qualifications and experience — entry rates start at $25.44/hr or above, and higher classifications reach $30+/hr." } },
     { "@type": "Question", name: "How do I find out which award applies to me?", acceptedAnswer: { "@type": "Answer", text: "Use the Fair Work Ombudsman 'Find My Award' tool at calculate.fairwork.gov.au/FindYourAward. Enter your industry, occupation, and employer type, and the tool identifies your applicable modern award and classification level within 2 minutes." } },
   ]
 };

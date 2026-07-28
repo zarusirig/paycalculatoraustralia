@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/bonus-tax-guide/`;
 
 export const metadata: Metadata = {
-  title: "How Bonus Tax Works in Australia — Lump Sum, Commission & Back Pay",
+  title: "How Bonus Tax Works in Australia — Lump Sum & Commission",
   description: "How bonuses are taxed: Schedule 5 withholding, marginal rates, lump sum B, back-pay tax. Worked examples at $80K and $120K salary.",
   alternates: { canonical: URL },
   openGraph: { title: "How Bonus Tax Works in Australia", description: "Learn how bonuses, commissions and lump sums are taxed under ATO Schedule 5.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

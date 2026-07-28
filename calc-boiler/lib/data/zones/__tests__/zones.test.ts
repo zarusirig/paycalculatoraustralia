@@ -1,0 +1,257 @@
+// =============================================================================
+// ATO zone list — data integrity tests.
+//
+// These guard a transcription job of roughly 5,000 YMYL rows that cannot be
+// scripted (ato.gov.au returns 403 to non-proxied clients). A silent typo here
+// would tell someone they live in the wrong zone and misstate their offset by
+// up to $1,116.
+//
+// Spot-check assertions use locations independently verified against the ATO
+// list on 28 July 2026 during research.
+// =============================================================================
+
+import { test } from "node:test";
+import assert from "node:assert/strict";
+
+import {
+  ZONE_LOCATIONS,
+  COVERED_STATES,
+  findZoneLocations,
+  normaliseLocation,
+  parseZoneBlock,
+  ZONE_CODES,
+  ZONE_CODE_TO_AREA,
+  type ZoneCode,
+} from "../index";
+
+// ---------------------------------------------------------------------------
+// Parser strictness — a bad transcription must fail loudly
+// ---------------------------------------------------------------------------
+
+test("parser rejects an unknown zone code", () => {
+  assert.throws(() => parseZoneBlock("TAS", "Somewhere|Z"), /unknown zone code/);
+});
+
+test("parser rejects a row with no separator", () => {
+  assert.throws(() => parseZoneBlock("TAS", "Somewhere B"), /missing "\|" separator/);
+});
+
+test("parser rejects an empty location name", () => {
+  assert.throws(() => parseZoneBlock("TAS", "|B"), /empty location name/);
+});
+
+test("parser keeps names containing a pipe-free bracket or slash", () => {
+  const e = parseZoneBlock("NT", "Hooker Creek / Lajamanu|AS\nBerry Springs (Darwin)|A");
+  assert.equal(e.length, 2);
+  assert.equal(e[0].name, "Hooker Creek / Lajamanu");
+  assert.equal(e[0].zone, "AS");
+  assert.equal(e[1].name, "Berry Springs (Darwin)");
+});
+
+test("parser ignores blank lines", () => {
+  assert.equal(parseZoneBlock("TAS", "\n\nQueenstown|B\n\n").length, 1);
+});
+
+// ---------------------------------------------------------------------------
+// Dataset integrity
+// ---------------------------------------------------------------------------
+
+test("every entry has a valid zone code", () => {
+  for (const e of ZONE_LOCATIONS) {
+    assert.ok(
+      (ZONE_CODES as readonly string[]).includes(e.zone),
+      `${e.name} (${e.state}) has invalid zone ${e.zone}`,
+    );
+  }
+});
+
+test("every entry has a non-empty trimmed name", () => {
+  for (const e of ZONE_LOCATIONS) {
+    assert.equal(e.name, e.name.trim(), `${e.name} has untrimmed whitespace`);
+    assert.ok(e.name.length > 0);
+  }
+});
+
+test("no duplicate location name within a state", () => {
+  const seen = new Map<string, string>();
+  const dupes: string[] = [];
+  for (const e of ZONE_LOCATIONS) {
+    const key = `${e.state}:${normaliseLocation(e.name)}`;
+    const prev = seen.get(key);
+    if (prev !== undefined && prev !== e.zone) {
+      dupes.push(`${e.state} ${e.name}: ${prev} vs ${e.zone}`);
+    }
+    seen.set(key, e.zone);
+  }
+  assert.deepEqual(dupes, [], `conflicting duplicates found:\n${dupes.join("\n")}`);
+});
+
+test("every zone code maps to a claimable area or explicit null", () => {
+  for (const code of ZONE_CODES) {
+    assert.ok(code in ZONE_CODE_TO_AREA, `${code} has no area mapping`);
+  }
+  assert.equal(ZONE_CODE_TO_AREA.N, null);
+  assert.equal(ZONE_CODE_TO_AREA.AS, "specialArea");
+  assert.equal(ZONE_CODE_TO_AREA.BS, "specialArea");
+});
+
+test("at least one state is registered", () => {
+  assert.ok(COVERED_STATES.length > 0);
+  assert.ok(ZONE_LOCATIONS.length > 0);
+});
+
+// ---------------------------------------------------------------------------
+// Search behaviour
+// ---------------------------------------------------------------------------
+
+test("search finds an exact match first", () => {
+  const r = findZoneLocations("Queenstown");
+  assert.ok(r.length > 0);
+  assert.equal(r[0].name, "Queenstown");
+  assert.equal(r[0].zone, "B");
+});
+
+test("search is case and punctuation insensitive", () => {
+  assert.equal(findZoneLocations("king island")[0]?.name, "King Island");
+  assert.equal(findZoneLocations("KING ISLAND")[0]?.name, "King Island");
+});
+
+test("search returns nothing for a query under two characters", () => {
+  assert.deepEqual(findZoneLocations("Q"), []);
+});
+
+test("search returns nothing for an unlisted location", () => {
+  assert.deepEqual(findZoneLocations("Sydney Opera House"), []);
+});
+
+// ---------------------------------------------------------------------------
+// Spot checks against locations verified directly at ato.gov.au
+// ---------------------------------------------------------------------------
+
+const SPOT_CHECKS: { name: string; zone: ZoneCode }[] = [
+  // Tasmania
+  { name: "Queenstown", zone: "B" },
+  { name: "Strahan", zone: "B" },
+  { name: "King Island", zone: "BS" },
+  { name: "Flinders Island", zone: "BS" },
+  { name: "Cape Barren Island", zone: "BS" },
+  { name: "Zeehan", zone: "B" },
+  // Northern Territory. Darwin, Palmerston and Humpty Doo are Zone A — the
+  // site previously published them as Zone B, which is the defect this
+  // dataset exists to make impossible to repeat.
+  { name: "Darwin", zone: "A" },
+  { name: "Palmerston", zone: "A" },
+  { name: "Humpty Doo", zone: "A" },
+  { name: "Alice Springs", zone: "A" },
+  { name: "Katherine", zone: "A" },
+  { name: "Jabiru", zone: "A" },
+  { name: "Tennant Creek", zone: "AS" },
+  { name: "Nhulunbuy (Gove)", zone: "AS" },
+  { name: "Uluru", zone: "AS" },
+  { name: "Yulara", zone: "AS" },
+  { name: "Maningrida", zone: "AS" },
+  // New South Wales. Broken Hill is Zone B and Tibooburra and White Cliffs are
+  // Zone B special areas — the site published all three as Zone A.
+  { name: "Broken Hill", zone: "B" },
+  { name: "Tibooburra", zone: "BS" },
+  { name: "White Cliffs", zone: "BS" },
+  { name: "Bourke", zone: "B" },
+  { name: "Wilcannia", zone: "B" },
+  { name: "Lightning Ridge", zone: "B" },
+  { name: "Lord Howe Island", zone: "AS" },
+  { name: "Norfolk Island", zone: "AS" },
+  { name: "Tritton Copper Mine Site", zone: "N" },
+  // South Australia. Coober Pedy, Roxby Downs and Leigh Creek are Zone B
+  // special areas and Woomera is plain Zone B — all four were published as A.
+  { name: "Coober Pedy", zone: "BS" },
+  { name: "Roxby Downs", zone: "BS" },
+  { name: "Leigh Creek", zone: "BS" },
+  { name: "Woomera", zone: "B" },
+  { name: "Oodnadatta", zone: "BS" },
+  { name: "Marree", zone: "BS" },
+  { name: "Innamincka", zone: "BS" },
+  { name: "Ilbunga", zone: "AS" },
+  // Western Australia. Broome and Carnarvon are Zone A — the site published
+  // both as Zone B. Exmouth is a special area, not plain Zone A.
+  { name: "Broome", zone: "A" },
+  { name: "Carnarvon", zone: "A" },
+  { name: "Exmouth", zone: "AS" },
+  { name: "Karratha", zone: "A" },
+  { name: "Port Hedland", zone: "A" },
+  { name: "Newman", zone: "A" },
+  { name: "Tom Price", zone: "A" },
+  { name: "Derby", zone: "A" },
+  { name: "Kununurra", zone: "AS" },
+  { name: "Halls Creek", zone: "AS" },
+  { name: "Fitzroy Crossing", zone: "AS" },
+  { name: "Wyndham", zone: "AS" },
+  { name: "Kalgoorlie", zone: "B" },
+  { name: "Esperance", zone: "B" },
+  { name: "Meekatharra", zone: "BS" },
+  { name: "Cue", zone: "BS" },
+  { name: "Christmas Island", zone: "AS" },
+  { name: "Cocos (Keeling) Islands", zone: "AS" },
+  // External territories
+  { name: "Australian Antarctic Territory", zone: "AS" },
+  { name: "Macquarie Island", zone: "AS" },
+  { name: "Heard Island", zone: "AS" },
+  // Queensland. Longreach and Winton are Zone B and Birdsville is a special
+  // area — the site published all three as plain Zone A.
+  { name: "Longreach", zone: "B" },
+  { name: "Winton", zone: "B" },
+  { name: "Birdsville", zone: "AS" },
+  { name: "Mount Isa", zone: "A" },
+  { name: "Cloncurry", zone: "A" },
+  { name: "Cooktown", zone: "A" },
+  { name: "Cairns", zone: "B" },
+  { name: "Townsville", zone: "B" },
+  { name: "Mackay", zone: "B" },
+  { name: "Atherton", zone: "B" },
+  { name: "Charters Towers", zone: "B" },
+  { name: "Normanton", zone: "AS" },
+  { name: "Thursday Island", zone: "AS" },
+  { name: "Weipa", zone: "AS" },
+  { name: "One Tree Island", zone: "N" },
+];
+
+test("Rockhampton and Gladstone are absent — neither is on the ATO zone list", () => {
+  // The site published both as Zone B. Neither appears on the ATO's QLD page,
+  // so claiming a zone offset for either would be an unsupported claim.
+  for (const name of ["Rockhampton", "Gladstone"]) {
+    const hit = ZONE_LOCATIONS.find(
+      (e) => e.state === "QLD" && normaliseLocation(e.name) === normaliseLocation(name),
+    );
+    assert.equal(hit, undefined, `${name} should not be listed in QLD`);
+  }
+});
+
+test("all six state lists plus external territories are registered", () => {
+  for (const s of ["NSW", "NT", "QLD", "SA", "TAS", "WA", "EXT"]) {
+    assert.ok(COVERED_STATES.includes(s as never), `${s} not registered`);
+  }
+});
+
+test("Geraldton is absent — it is not on the ATO zone list at all", () => {
+  // The site listed Geraldton as Zone B. The ATO's WA page does not contain
+  // it; "Geraldine" (Zone B) is a different, far smaller locality.
+  const hit = ZONE_LOCATIONS.find((e) => normaliseLocation(e.name) === "geraldton");
+  assert.equal(hit, undefined);
+  assert.ok(ZONE_LOCATIONS.some((e) => e.name === "Geraldine"));
+});
+
+test("the ATO's repeated WA rows are deduped", () => {
+  for (const name of ["Mouroubra", "Mowanjum", "Mowanjum Mission", "Moyagee"]) {
+    const hits = ZONE_LOCATIONS.filter(
+      (e) => e.state === "WA" && normaliseLocation(e.name) === normaliseLocation(name),
+    );
+    assert.equal(hits.length, 1, `${name} appears ${hits.length} times`);
+  }
+});
+
+for (const { name, zone } of SPOT_CHECKS) {
+  test(`spot check: ${name} is ${zone}`, () => {
+    const hit = ZONE_LOCATIONS.find((e) => normaliseLocation(e.name) === normaliseLocation(name));
+    assert.ok(hit, `${name} missing from the dataset`);
+    assert.equal(hit.zone, zone);
+  });
+}

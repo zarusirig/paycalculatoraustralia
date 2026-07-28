@@ -131,7 +131,7 @@ const faqSchema: WithContext<FAQPage> = {
       name: "How do HECS-HELP repayments work in 2025-26?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "From FY2025-26, HECS-HELP uses a new marginal repayment system. Compulsory repayments start when your income reaches $67,000, and you only pay on the amount above the threshold — not on your total income.",
+        text: "From FY2025-26, HECS-HELP uses a new marginal repayment system. Compulsory repayments start when your income reaches $69,528, and you only pay on the amount above the threshold — not on your total income.",
       },
     },
     {

@@ -9,12 +9,12 @@ const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2025-26)",
+  title: "Second Job Tax Calculator Australia — Tax on Two Jobs",
   description:
     "Calculate how much tax you pay on a second job in Australia. See why your second job is taxed higher, PAYG withholding without the tax-free threshold, and your combined take-home pay.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2025-26)",
+    title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2026-27)",
     description:
       "Calculate how much tax you pay on a second job in Australia. See PAYG withholding without the tax-free threshold and your combined take-home pay.",
     url: PAGE_URL,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2025-26)",
+    title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2026-27)",
     description: "Calculate tax on a second job including PAYG withholding and combined take-home pay.",
   },
 };
@@ -41,7 +41,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Second Job Tax Calculator Australia 2025-26",
+  name: "Second Job Tax Calculator Australia 2026-27",
   url: PAGE_URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contractor-vs-employee/`;
-const TITLE = "Contractor vs Employee — Key Differences, Tax & Super (2025)";
+const TITLE = "Contractor vs Employee — Key Differences, Tax & Super";
 const DESCRIPTION = "Understand the legal definitions between a contractor and an employee in Australia. Learn about the ATO multi-factor test, tax implications, and superannuation obligations.";
 
 export const metadata: Metadata = {

@@ -50,7 +50,7 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "What is the current minimum wage in Australia?", acceptedAnswer: { "@type": "Answer", text: "As of 1 July 2024, the national minimum wage is $24.10 per hour or $915.90 per 38-hour week. The Fair Work Commission determines the rate annually." } },
+    { "@type": "Question", name: "What is the current minimum wage in Australia?", acceptedAnswer: { "@type": "Answer", text: "As of 1 July 2024, the national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week. The Fair Work Commission determines the rate annually." } },
     { "@type": "Question", name: "How often does the minimum wage increase?", acceptedAnswer: { "@type": "Answer", text: "The Fair Work Commission conducts an Annual Wage Review each year, typically announcing the new rate in June with the increase taking effect from 1 July." } },
     { "@type": "Question", name: "What was the largest minimum wage increase?", acceptedAnswer: { "@type": "Answer", text: "The largest recent increase was 8.65% in 2023, raising the hourly rate from $21.38 to $23.23. This was driven by high inflation and cost-of-living pressures." } },
     { "@type": "Question", name: "Does the minimum wage keep up with inflation?", acceptedAnswer: { "@type": "Answer", text: "In most years, minimum wage increases have matched or slightly exceeded CPI inflation. However, during periods of high inflation like 2022-2023, real wage growth temporarily fell behind before the FWC responded with larger increases." } },

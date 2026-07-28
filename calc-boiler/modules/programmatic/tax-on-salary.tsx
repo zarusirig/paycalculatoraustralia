@@ -5,7 +5,7 @@ import { Calculator } from "lucide-react";
 import {
   calculatePayBreakdown,
   formatAUD,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   calculateIncomeTax,
   HECS_HELP,
   SITE_CONFIG
@@ -54,7 +54,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
   });
 
   // Determine which bracket the salary falls into
-  const currentBracket = TAX_BRACKETS_2025_26.filter(b => salary >= b.min).pop();
+  const currentBracket = TAX_BRACKETS.filter(b => salary >= b.min).pop();
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
   const bracketLabel = currentBracket?.label ?? "Tax-free threshold";
 
@@ -67,11 +67,11 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       {/* Introduction */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          On a <strong>{formattedSalary}</strong> salary in Australia, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax for FY2025-26.
+          On a <strong>{formattedSalary}</strong> salary in Australia, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax for FY{SITE_CONFIG.financialYear}.
           Your effective tax rate is <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong>, and your marginal tax rate is <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong>.
         </p>
         <p className="text-navy leading-relaxed">
-          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the 2025-26 financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation at the 12% SG rate, bringing your total remuneration package to {formatAUD(breakdown.totalPackage)}.
+          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the {SITE_CONFIG.financialYear} financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation at the 12% SG rate, bringing your total remuneration package to {formatAUD(breakdown.totalPackage)}.
         </p>
       </section>
 
@@ -84,7 +84,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Total tax on {formattedSalary} is <strong>{formatAUD(breakdown.netIncomeTax + breakdown.medicareLevy)}</strong>, comprising {formatAUD(breakdown.netIncomeTax)} in income tax and {formatAUD(breakdown.medicareLevy)} in Medicare levy.
         </p>
         <p className="text-navy leading-relaxed">
-          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. The first $18,200 is tax-free. Income between $18,201 and $45,000 is taxed at 16%. Income between $45,001 and $135,000 is taxed at 30%. Income between $135,001 and $190,000 is taxed at 37%. Income above $190,000 is taxed at 45%.
+          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. The first $18,200 is tax-free. Income between $18,201 and $45,000 is taxed at 15%. Income between $45,001 and $135,000 is taxed at 30%. Income between $135,001 and $190,000 is taxed at 37%. Income above $190,000 is taxed at 45%.
           {breakdown.litoOffset > 0 && ` The "Low Income Tax Offset" (LITO) reduces your tax bill by ${formatAUD(breakdown.litoOffset)}, lowering your net income tax to ${formatAUD(breakdown.netIncomeTax)}.`}
         </p>
         <p className="text-navy leading-relaxed">
@@ -178,7 +178,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((bracket, index) => {
+                {TAX_BRACKETS.map((bracket, index) => {
                   if (salary <= bracket.min) return null;
 
                   const incomeInBracket = Math.min(salary, bracket.max) - bracket.min + (bracket.min === 0 ? 0 : 1);
@@ -188,7 +188,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                     <tr key={index} className="hover:bg-sandstone/30 transition-colors">
                       <td className="px-6 py-4 text-warmgray">
                         {index === 0 ? "$0 – $18,200" :
-                         index === TAX_BRACKETS_2025_26.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
+                         index === TAX_BRACKETS.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
                          `${formatAUD(bracket.min - 1)} – ${formatAUD(bracket.max)}`}
                       </td>
                       <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket)}</td>
@@ -263,6 +263,40 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <p className="mt-4 text-sm text-warmgray">
           Earning an additional $10,000 above {formattedSalary} increases take-home pay by <strong>{formatAUD(comparisons[3].diffToCurrent)}</strong> per year. The remaining portion goes to income tax and Medicare levy at the marginal rate. Use our <a href="/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Pay Calculator Australia</a> to calculate any salary with all deductions included.
         </p>
+
+        {/*
+          Crawlable neighbour chain. Only 10 of the 35 /tax-on/ pages are listed
+          in the footer, and the mega menu that lists all of them is client-only
+          and emits no links — so 25 of these pages had a single inbound link
+          sitewide. Linking each page to its neighbours makes the whole family
+          reachable by following the chain from any entry point.
+        */}
+        <nav aria-label="Nearby salaries" className="mt-6">
+          <p className="mb-3 text-sm font-semibold text-navy">Tax on nearby salaries</p>
+          <ul className="flex flex-wrap gap-2">
+            {[-15000, -10000, -5000, 5000, 10000, 15000]
+              .map((offset) => salary + offset)
+              .filter((s) => s >= 30000 && s <= 200000)
+              .map((s) => (
+                <li key={s}>
+                  <a
+                    href={`/tax-on/${s}/`}
+                    className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
+                  >
+                    Tax on {formatAUD(s)}
+                  </a>
+                </li>
+              ))}
+            <li>
+              <a
+                href={`/take-home-pay-on/${salary}/`}
+                className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
+              >
+                Take-home pay on {formattedSalary}
+              </a>
+            </li>
+          </ul>
+        </nav>
       </section>
 
       {/* H2: What Deductions Apply at This Income Level? */}
@@ -286,11 +320,11 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">HECS-HELP Repayment</h3>
         {salary >= HECS_HELP.minimumThreshold ? (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, the compulsory HECS-HELP repayment is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year. The FY2025-26 repayment threshold is $67,000 under the new marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
+            At {formattedSalary}, the compulsory HECS-HELP repayment is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year. The FY2025-26 repayment threshold is $69,528 under the new marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
           </p>
         ) : (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY2025-26 minimum repayment threshold is <strong>$67,000</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
+            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY2025-26 minimum repayment threshold is <strong>$69,528</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
           </p>
         )}
 

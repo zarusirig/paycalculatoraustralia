@@ -32,7 +32,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
 
   return {
-    title: `Tax on ${formattedSalary} in Australia — Income Tax & Take-Home Pay (${SITE_CONFIG.financialYear})`,
+    // Leads with the answer, not the tool. Against an AI Overview that has
+    // already stated a number, only a listing showing the number competes.
+    // Deliberately drops "Take-Home Pay" — that phrase belongs to
+    // /take-home-pay-on/, and carrying it here made the two families compete.
+    title: `Tax on ${formattedSalary} in Australia — ${formatAUD(breakdown.netIncomeTax)} Income Tax (${effectiveRate}%)`,
     description: `On a ${formattedSalary} salary, you pay ${formatAUD(breakdown.netIncomeTax)} in income tax (${effectiveRate}% effective rate). Your take-home pay is ${formatAUD(breakdown.takeHomePay)}/year or ${formatAUD(breakdown.weekly)}/week. Full ${SITE_CONFIG.financialYear} breakdown.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`,

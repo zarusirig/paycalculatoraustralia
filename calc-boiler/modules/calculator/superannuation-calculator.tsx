@@ -107,7 +107,7 @@ export default function SuperannuationCalculatorPage() {
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Identify your OTE</strong> — base salary, commissions, shift loadings, and paid leave. Overtime payments, expense reimbursements, and workers&apos; compensation are excluded.</li>
               <li><strong>Apply the SG rate</strong> — multiply your OTE by <strong>0.12</strong> (12%).</li>
-              <li><strong>Check the maximum super contribution base</strong> — employers are not required to pay SG on quarterly earnings above <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}</strong>.</li>
+              <li><strong>Check the maximum super contribution base</strong> — employers are not required to pay SG on annual earnings above <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</li>
             </ol>
 
             <h3 className="text-lg font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Superannuation on an $85,000 Salary</h3>
@@ -225,9 +225,9 @@ export default function SuperannuationCalculatorPage() {
 
           {/* --- Maximum Super Contribution Base --- */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Maximum Super Contribution Base ({formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}/Quarter)</h2>
-            <p className="mb-3 text-warmgray">There&apos;s an earnings limit above which your employer isn&apos;t legally required to pay super. For FY{SITE_CONFIG.financialYear}, this is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)} per quarter</strong>.</p>
-            <p className="mb-3 text-warmgray">This means the maximum SG your employer must pay is <strong>{formatAUD(SUPER_GUARANTEE.maxSGPerQuarter)} per quarter</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} x {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}). On an annual basis, that&apos;s {formatAUD(SUPER_GUARANTEE.maxSGPerQuarter * 4)} per year on total earnings of {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter * 4)}.</p>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Maximum Super Contribution Base ({formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}/Year)</h2>
+            <p className="mb-3 text-warmgray">There&apos;s an earnings limit above which your employer isn&apos;t legally required to pay super. With Payday Super, for FY{SITE_CONFIG.financialYear} this is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</p>
+            <p className="mb-3 text-warmgray">This means the maximum SG your employer must pay is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)} per year</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} x {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}).</p>
             <p className="text-sm text-warmgray-light">If you earn above this threshold, check your employment agreement — some employers voluntarily pay super on your full salary as part of a total remuneration package. <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer cost calculator</Link></p>
           </section>
 
@@ -258,7 +258,7 @@ export default function SuperannuationCalculatorPage() {
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">SG on $80,000 salary</td><td className="px-4 py-3 text-warmgray">$9,200</td><td className="px-4 py-3 font-bold text-navy">$9,600</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">SG on $100,000 salary</td><td className="px-4 py-3 text-warmgray">$11,500</td><td className="px-4 py-3 font-bold text-navy">$12,000</td></tr>
                   <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Concessional cap</td><td className="px-4 py-3 text-warmgray">$30,000</td><td className="px-4 py-3 font-bold text-navy">$30,000</td></tr>
-                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Max contribution base (quarterly)</td><td className="px-4 py-3 text-warmgray">$62,270</td><td className="px-4 py-3 font-bold text-navy">{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}</td></tr>
+                  <tr className="hover:bg-sandstone"><td className="px-4 py-3 text-navy font-medium">Max contribution base</td><td className="px-4 py-3 text-warmgray">{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)}/qtr</td><td className="px-4 py-3 font-bold text-navy">{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}/yr</td></tr>
                 </tbody>
               </table>
             </div>
@@ -318,7 +318,7 @@ export default function SuperannuationCalculatorPage() {
             <ol className="list-decimal space-y-1 pl-4">
               <li>Super = Gross salary x {formatPercent(SUPER_GUARANTEE.rate, 0)}</li>
               <li>Total package = Gross salary + Super</li>
-              <li>Maximum quarterly base: {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}</li>
+              <li>Maximum contribution base: {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} per year</li>
             </ol>
           </MethodologyDisclosure>
 
@@ -348,7 +348,7 @@ export default function SuperannuationCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="max-base" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>What is the maximum super contribution base?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">For FY{SITE_CONFIG.financialYear}, the maximum super contribution base is {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)} per quarter ({formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter * 4)} per year). Your employer only has to pay the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate on earnings up to this threshold. The maximum SG per quarter is therefore <strong>{formatAUD(SUPER_GUARANTEE.maxSGPerQuarter)}</strong>.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">For FY{SITE_CONFIG.financialYear}, the maximum super contribution base is {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} per year. Payday Super replaced the old quarterly base ({formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter) with this annual figure from 1 July 2026. Your employer only has to pay the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate on earnings up to this threshold, so the maximum SG for the year is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong>.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="when-paid" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>When does my employer have to pay super?</AccordionTrigger>

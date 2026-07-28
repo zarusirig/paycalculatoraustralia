@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contractor-vs-employee-calculator/`;
 
 export const metadata: Metadata = {
-  title: "Contractor vs Employee Calculator — Compare Your Take-Home Pay",
+  title: "Contractor vs Employee Calculator — Compare Take-Home",
   description:
     "Compare take-home pay as a contractor (ABN) vs employee. See the real difference after tax, super, GST & insurance. Side-by-side comparison.",
   alternates: { canonical: URL },

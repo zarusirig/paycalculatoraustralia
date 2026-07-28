@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SalaryToHourly } from '@/modules/programmatic/salary-to-hourly';
-import { calculatePayBreakdown, formatAUD, HECS_HELP, SITE_CONFIG } from '@/lib/constants/australian-tax';
+import { calculatePayBreakdown, formatAUD, HECS_HELP, SITE_CONFIG, EMPLOYMENT } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
@@ -17,7 +17,9 @@ export async function generateStaticParams() {
   return SALARY_LIST.map(amount => ({ amount: amount.toString() }));
 }
 
-const HOURS_PER_YEAR = 1982.84; // 38 hrs × 52.18 weeks
+// From EMPLOYMENT, not redeclared: this was duplicated here as 1982.84 and
+// drifted from the module, which is how $40.35 survived a 52-week change.
+const HOURS_PER_YEAR = EMPLOYMENT.hoursPerYear;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;

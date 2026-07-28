@@ -174,12 +174,12 @@ export default function SalarySacrificeGuidePage() {
             <section id="contribution-caps">
               <h2>What Are the Contribution Caps?</h2>
               <p>
-                The concessional contributions cap for FY2025-26 is <strong>$30,000 per person per financial year</strong>. This single cap includes employer SG contributions, salary sacrifice contributions, and any personal deductible contributions combined.
+                The concessional contributions cap for FY2026-27 is <strong>$32,500 per person per financial year</strong>. This single cap includes employer SG contributions, salary sacrifice contributions, and any personal deductible contributions combined.
               </p>
 
-              <h3>How the $30,000 Cap Works in Practice</h3>
+              <h3>How the $32,500 Cap Works in Practice</h3>
               <p>
-                An employee earning $120,000 receives <strong>$14,400</strong> in employer SG contributions (12% of $120,000). The remaining cap space available for salary sacrifice is <strong>$15,600</strong> ($30,000 minus $14,400). Contributions exceeding the $30,000 cap are taxed at the individual&apos;s marginal rate instead of 15%, eliminating the tax advantage entirely.
+                An employee earning $120,000 receives <strong>$14,400</strong> in employer SG contributions (12% of $120,000). The remaining cap space available for salary sacrifice is <strong>$18,100</strong> ($32,500 minus $14,400). Contributions exceeding the $32,500 cap are taxed at the individual&apos;s marginal rate instead of 15%, eliminating the tax advantage entirely.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -588,7 +588,7 @@ export default function SalarySacrificeGuidePage() {
                 <AccordionItem value="min-wage" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice reduce my pay below minimum wage?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$24.10 per hour</strong> ($915.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
+                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$26.44 per hour</strong> ($1,004.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
                   </AccordionContent>
                 </AccordionItem>
 

@@ -16,7 +16,7 @@ import {
   HECS_HELP,
   SOURCES,
   SITE_CONFIG,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   MEDICARE_LEVY,
 } from "@/lib/constants";
 
@@ -124,7 +124,7 @@ export default function FortnightlyPayCalculatorPage() {
               Fortnightly pay is calculated by dividing your gross annual salary by <strong>26</strong>, then subtracting PAYG tax, the Medicare levy, and any HECS-HELP repayments from each fortnightly amount.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian Taxation Office publishes a dedicated PAYG withholding <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> that employers use to determine the exact tax withheld from each pay. This table accounts for the {TAX_BRACKETS_2025_26.length} income tax brackets for FY2025-26, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and the &quot;Low Income Tax Offset&quot; (LITO). Your employer divides your estimated annual taxation liability across 26 fortnights so the correct amount reaches the ATO throughout the year.
+              The Australian Taxation Office publishes a dedicated PAYG withholding <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> that employers use to determine the exact tax withheld from each pay. This table accounts for the {TAX_BRACKETS.length} income tax brackets for FY2026-27, the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, and the &quot;Low Income Tax Offset&quot; (LITO). Your employer divides your estimated annual taxation liability across 26 fortnights so the correct amount reaches the ATO throughout the year.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Worked Example: $85,000 Salary</h3>
@@ -266,11 +266,11 @@ export default function FortnightlyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
             <p className="text-warmgray mb-4">
-              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY2025-26 system uses marginal rates: <strong>15%</strong> on income between $67,001 and $125,000, <strong>17%</strong> on income between $125,001 and $179,285, and <strong>10%</strong> of total income above $179,285. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
+              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY2025-26 system uses marginal rates: <strong>15%</strong> on income between $69,529 and $125,000, <strong>17%</strong> on income between $125,001 and $179,285, and <strong>10%</strong> of total income above $179,285. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
             </p>
 
             <p className="text-warmgray mb-4">
-              Superannuation is not deducted from fortnightly pay. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on top of your gross salary, adding {formatAUD(SUPER_GUARANTEE.maxSGPerQuarter)} per quarter for employees at or above the maximum super contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)} per quarter.
+              Superannuation is not deducted from fortnightly pay. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on top of your gross salary, up to {formatAUD(SUPER_GUARANTEE.maxSGAnnual)} a year for employees at or above the maximum super contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}.
             </p>
           </section>
 
@@ -349,7 +349,7 @@ export default function FortnightlyPayCalculatorPage() {
                 The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect fortnightly take-home pay?">
-                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY2025-26 marginal repayment rate starts at 15% on income above $67,000, increasing to 17% above $125,000 and 10% of total income above $179,285. The repayment is divided across 26 fortnights by the employer.
+                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY2025-26 marginal repayment rate starts at 15% on income above $69,528, increasing to 17% above $125,000 and 10% of total income above $179,285. The repayment is divided across 26 fortnights by the employer.
               </FAQItem>
               <FAQItem value="gross-net" question="What is the difference between gross fortnightly pay and net fortnightly pay?">
                 Gross fortnightly pay is your annual salary divided by 26 before any deductions. Net fortnightly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS repayments are withheld. On an $85,000 salary, gross fortnightly pay is {formatAUD(85_000 / 26, 2)} and net fortnightly pay is <strong>{formatAUD(workedExample.fortnightly, 2)}</strong>.

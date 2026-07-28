@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/average-salary-australia/`;
-const TITLE = "Average Salary Australia 2025 — By Industry, State & Experience Level";
+const TITLE = "Average Salary in Australia — By Industry, State & Age";
 const DESCRIPTION = "Average salaries in Australia by industry, state, and experience level. From mining ($120K+) to hospitality ($55K). See where your salary sits and calculate your take-home pay.";
 
 export const metadata: Metadata = {

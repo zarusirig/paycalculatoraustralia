@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-vic/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator VIC 2025-26 — Victoria Take-Home Pay",
+  title: "Pay Calculator VIC — Victoria Take-Home Pay",
   description: "Calculate your take-home pay in Victoria. Learn about federal income tax, VIC payroll tax, WorkSafe premiums, and the mental health and wellbeing surcharge.",
   alternates: { canonical: URL },
   openGraph: { title: "Pay Calculator VIC — Take-Home Pay in Victoria", description: "Calculate your net pay in VIC. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },

@@ -3,13 +3,23 @@
 // Single source of truth for the weekly / fortnightly / monthly tax-table
 // pages and the Schedule 5 (back payments, bonuses, commissions) page.
 //
-// Methodology: per-period withholding is derived by annualising the pay
-// period earnings (× 52 / 26 / 12) and applying the FY2026-27 resident tax
-// scale, LITO, and Medicare levy (with the low-income shading), then dividing
-// back to the pay period and rounding to the whole dollar — the same
-// architecture as the ATO Statement of Formulas (NAT 1004). Printed ATO
-// lookup tables round coefficients slightly differently, so amounts can vary
-// from the published NAT 1005/1006/1007 tables by a few dollars.
+// Methodology: the published ATO Schedule 1 (NAT 1004) coefficient method.
+// Earnings are converted to a weekly equivalent, the scale's `a` and `b`
+// coefficients are applied as y = a·x − b, the result is rounded to the
+// nearest dollar, and that weekly amount is converted back to the pay period.
+// This reproduces the printed NAT 1005/1006/1007 tables exactly.
+//
+// It replaces an earlier annualise-and-divide approach which subtracted the
+// FULL Low Income Tax Offset and so materially under-withheld: at $1,000 a
+// fortnight it produced $18 against the ATO's $40. The ATO scales deliberately
+// do not deliver the whole LITO through withholding.
+//
+// Verified against the ATO's own worked example (fortnightly $989.80):
+//   Scale 2 → floor(989.80/2)+0.99 = 494.99; 0.1500×494.99 − 54.3462 = 19.90
+//             → $20 × 2 = $40   (ATO column 2: $40)
+//   Scale 1 → 0.1790×494.99 − 0.1066 = 88.50 → $88 × 2 = $176
+//             (ATO column 3: $176)
+// See lib/constants/__tests__/payg-withholding.test.ts.
 //
 // FY2026-27 change: from 1 July 2026 the 16% rate on $18,201–$45,000 falls
 // to 15% (Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2025) — see
@@ -19,7 +29,6 @@
 import {
   LITO,
   MEDICARE_LEVY,
-  calculateLITO,
   calculateHECS,
   type TaxBracket,
 } from "./australian-tax";
@@ -27,24 +36,68 @@ import {
 export const PAYG_FINANCIAL_YEAR = "2026-27";
 export const PAYG_TABLES_UPDATED = "1 July 2026";
 
-// ---------- Income Tax Brackets (FY2026-27, Residents, claiming TFT) ----------
-export const TAX_BRACKETS_2026_27: readonly TaxBracket[] = [
-  { min: 0, max: 18_200, rate: 0, base: 0, label: "Tax-free threshold" },
-  { min: 18_201, max: 45_000, rate: 0.15, base: 0, label: "15c for each $1 over $18,200" },
-  { min: 45_001, max: 135_000, rate: 0.30, base: 4_020, label: "30c for each $1 over $45,000" },
-  { min: 135_001, max: 190_000, rate: 0.37, base: 31_020, label: "37c for each $1 over $135,000" },
-  { min: 190_001, max: Infinity, rate: 0.45, base: 51_370, label: "45c for each $1 over $190,000" },
+// The FY2026-27 scale now lives in australian-tax.ts as the sitewide single
+// source of truth. Re-exported here so existing tax-table page imports keep
+// working.
+export { TAX_BRACKETS_2026_27 } from "./australian-tax";
+
+// ---------- ATO Schedule 1 coefficients (NAT 1004, from 1 July 2026) ----------
+// Source: ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-
+// of-formulas-for-calculating-amounts-to-be-withheld/coefficients-to-use-in-
+// formulas-for-withholding-from-weekly-payments (published 17 June 2026).
+//
+// Each band applies where the weekly equivalent x is LESS THAN `lessThan`.
+// `a: null` marks a nil-withholding band.
+export interface CoefficientBand {
+  readonly lessThan: number;
+  readonly a: number | null;
+  readonly b: number;
+}
+
+/** Scale 2 — payee claimed the tax-free threshold. The common case. */
+export const SCALE_2_TFT: readonly CoefficientBand[] = [
+  { lessThan: 362, a: null, b: 0 },
+  { lessThan: 538, a: 0.1500, b: 54.3462 },
+  { lessThan: 673, a: 0.2500, b: 108.2135 },
+  { lessThan: 721, a: 0.1700, b: 54.3473 },
+  { lessThan: 865, a: 0.1790, b: 60.8377 },
+  { lessThan: 1_282, a: 0.3227, b: 185.1935 },
+  { lessThan: 2_596, a: 0.3200, b: 181.7319 },
+  { lessThan: 3_653, a: 0.3900, b: 363.4627 },
+  { lessThan: Infinity, a: 0.4700, b: 655.7704 },
 ] as const;
 
-// No tax-free threshold claimed (second job / no TFT declaration selection):
-// the same marginal scale applied from the first dollar, i.e. every boundary
-// shifted down by the $18,200 threshold. LITO does not apply.
-const NO_TFT_BRACKETS_2026_27: readonly TaxBracket[] = [
-  { min: 0, max: 26_800, rate: 0.15, base: 0, label: "15c for each $1" },
-  { min: 26_801, max: 116_800, rate: 0.30, base: 4_020, label: "30c for each $1 over $26,800" },
-  { min: 116_801, max: 171_800, rate: 0.37, base: 31_020, label: "37c for each $1 over $116,800" },
-  { min: 171_801, max: Infinity, rate: 0.45, base: 51_370, label: "45c for each $1 over $171,800" },
+/** Scale 1 — payee did NOT claim the tax-free threshold (typical second job). */
+export const SCALE_1_NO_TFT: readonly CoefficientBand[] = [
+  { lessThan: 188, a: 0.1500, b: 0.1500 },
+  { lessThan: 371, a: 0.2084, b: 11.0185 },
+  { lessThan: 515, a: 0.1790, b: 0.1066 },
+  { lessThan: 932, a: 0.3227, b: 74.1674 },
+  { lessThan: 2_246, a: 0.3200, b: 71.6508 },
+  { lessThan: 3_303, a: 0.3900, b: 228.8816 },
+  { lessThan: Infinity, a: 0.4700, b: 493.1893 },
 ] as const;
+
+/** Scale 3 — foreign residents. No tax-free threshold, no Medicare levy. */
+export const SCALE_3_FOREIGN: readonly CoefficientBand[] = [
+  { lessThan: 2_596, a: 0.3000, b: 0.3000 },
+  { lessThan: 3_653, a: 0.3700, b: 181.7308 },
+  { lessThan: Infinity, a: 0.4500, b: 474.0385 },
+] as const;
+
+/** Scale 4 — no TFN provided. Flat rate on earnings, cents ignored. */
+export const NO_TFN_RATES = { resident: 0.47, foreignResident: 0.45 } as const;
+
+/** Medicare levy parameters embedded in Scale 2 (FY2026-27). */
+export const SCALE_2_MEDICARE = {
+  weeklyThreshold: 538,
+  weeklyShadeInThreshold: 673,
+  annualThreshold: 28_011,
+  annualShadeInThreshold: 35_013,
+  familyThreshold: 47_238,
+  additionalChild: 4_338,
+  rate: 0.02,
+} as const;
 
 // ---------- Pay frequencies ----------
 export type PayFrequency = "weekly" | "fortnightly" | "monthly";
@@ -62,15 +115,68 @@ export const FREQUENCY_LABELS: Record<PayFrequency, string> = {
 };
 
 // ---------- Internal helpers ----------
-function progressiveTax(income: number, brackets: readonly TaxBracket[]): number {
-  if (income <= 0) return 0;
-  for (let i = brackets.length - 1; i >= 0; i--) {
-    const bracket = brackets[i];
-    if (income >= bracket.min) {
-      return bracket.base + (income - (bracket.min - 1)) * bracket.rate;
+
+/** ATO rounding: to the nearest dollar, with exact .50 going up. */
+function roundATO(amount: number): number {
+  return Math.floor(amount + 0.5);
+}
+
+/**
+ * Convert pay-period earnings to the weekly equivalent `x` used by the
+ * Schedule 1 formulas.
+ *
+ * Weekly:      ignore cents, add 99c.
+ * Fortnightly: halve, ignore cents, add 99c.
+ * Monthly:     if the amount ends in exactly 33c add 1c, then × 3 ÷ 13,
+ *              ignore cents, add 99c.
+ */
+function toWeeklyEquivalent(gross: number, frequency: PayFrequency): number {
+  if (frequency === "weekly") return Math.floor(gross) + 0.99;
+  if (frequency === "fortnightly") return Math.floor(gross / 2) + 0.99;
+  const cents = Math.round((gross % 1) * 100);
+  const adjusted = cents === 33 ? gross + 0.01 : gross;
+  return Math.floor((adjusted * 3) / 13) + 0.99;
+}
+
+/** Convert a weekly withholding amount back to the pay period. */
+function fromWeeklyWithholding(weekly: number, frequency: PayFrequency): number {
+  if (frequency === "weekly") return weekly;
+  if (frequency === "fortnightly") return weekly * 2;
+  return roundATO((weekly * 13) / 3);
+}
+
+/** Apply a coefficient scale: y = a·x − b, rounded to the nearest dollar. */
+function applyScale(x: number, scale: readonly CoefficientBand[]): number {
+  for (const band of scale) {
+    if (x < band.lessThan) {
+      if (band.a === null) return 0;
+      return Math.max(0, roundATO(band.a * x - band.b));
     }
   }
   return 0;
+}
+
+export type WithholdingScale = "tft" | "noTft" | "foreignResident";
+
+const SCALES: Record<WithholdingScale, readonly CoefficientBand[]> = {
+  tft: SCALE_2_TFT,
+  noTft: SCALE_1_NO_TFT,
+  foreignResident: SCALE_3_FOREIGN,
+};
+
+/**
+ * Withholding for one pay period under a given Schedule 1 scale.
+ * This is the ATO's published method and reproduces NAT 1005/1006/1007.
+ */
+export function withholdingForPeriod(
+  grossPerPeriod: number,
+  frequency: PayFrequency,
+  scale: WithholdingScale = "tft"
+): number {
+  if (grossPerPeriod <= 0) return 0;
+  const x = toWeeklyEquivalent(grossPerPeriod, frequency);
+  const weekly = applyScale(x, SCALES[scale]);
+  return fromWeeklyWithholding(weekly, frequency);
 }
 
 /**
@@ -90,6 +196,8 @@ export interface WithholdingOptions {
   claimsTaxFreeThreshold?: boolean;
   /** Employee has a HECS-HELP / STSL study or training loan (default false). */
   hasSTSL?: boolean;
+  /** Use the foreign-resident scale (Scale 3) — no threshold, no Medicare levy. */
+  foreignResident?: boolean;
 }
 
 export interface WithholdingResult {
@@ -115,20 +223,22 @@ export function calculatePAYGWithholding(
   frequency: PayFrequency,
   options: WithholdingOptions = {}
 ): WithholdingResult {
-  const { claimsTaxFreeThreshold = true, hasSTSL = false } = options;
+  const { claimsTaxFreeThreshold = true, hasSTSL = false, foreignResident = false } = options;
   const periods = PAY_PERIODS[frequency];
   const gross = Math.max(0, grossPerPeriod);
   const annual = gross * periods;
 
-  let annualTax: number;
-  if (claimsTaxFreeThreshold) {
-    const baseTax = progressiveTax(annual, TAX_BRACKETS_2026_27);
-    annualTax = Math.max(0, baseTax - calculateLITO(annual)) + medicareLevyShaded(annual);
-  } else {
-    annualTax = progressiveTax(annual, NO_TFT_BRACKETS_2026_27) + medicareLevyShaded(annual);
-  }
+  const scale: WithholdingScale = foreignResident
+    ? "foreignResident"
+    : claimsTaxFreeThreshold
+      ? "tft"
+      : "noTft";
 
-  const paygWithheld = Math.max(0, Math.round(annualTax / periods));
+  const paygWithheld = withholdingForPeriod(gross, frequency, scale);
+
+  // STSL (Schedule 8, NAT 3539) is derived from the annual repayment schedule
+  // divided back to the pay period. Foreign residents and payees not claiming
+  // the threshold still repay, so this is independent of the scale above.
   const stslWithheld = hasSTSL ? Math.max(0, Math.round(calculateHECS(annual) / periods)) : 0;
   const totalWithheld = paygWithheld + stslWithheld;
 

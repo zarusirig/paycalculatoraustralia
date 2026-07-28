@@ -335,7 +335,7 @@ export default function OvertimePayCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  {[24.10, 28, 32, 36, 40, 45, 50, 60].map((rate) => (
+                  {[26.44, 28, 32, 36, 40, 45, 50, 60].map((rate) => (
                     <tr key={rate} className="hover:bg-sandstone">
                       <td className="px-4 py-3 text-navy font-medium">{formatAUD(rate, 2)}/hr</td>
                       <td className="px-4 py-3 text-center">{formatAUD(rate * 1.5 * 8)}</td>

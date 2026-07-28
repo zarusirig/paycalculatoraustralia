@@ -7,7 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
-const TITLE = "Tax Changes 2026-27 Australia — What's Coming From 1 July 2026";
+const TITLE = "Tax Changes 2026-27 — What Changed From 1 July 2026";
 const DESCRIPTION = "Preview of Australian tax changes for FY2026-27. Upcoming rate changes, super guarantee at 12%, HECS threshold updates, and what it means for your take-home pay from July 2026.";
 
 export const metadata: Metadata = {

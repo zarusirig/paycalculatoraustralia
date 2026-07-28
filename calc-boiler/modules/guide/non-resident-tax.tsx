@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS_2025_26, calculateIncomeTax, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -51,7 +51,7 @@ export default function NonResidentTaxPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Resident Tax Rate Table (for Comparison)</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable Income</th><th className="px-5 py-3">Tax Rate</th><th className="px-5 py-3 text-right">Tax Payable</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                {TAX_BRACKETS_2025_26.map((b, i) => (<tr key={i}><td className="px-5 py-3">{formatAUD(b.min)} – {b.max === Infinity ? "∞" : formatAUD(b.max)}</td><td className="px-5 py-3 font-medium">{(b.rate * 100).toFixed(0)}%</td><td className="px-5 py-3 text-right">{b.base > 0 ? `${formatAUD(b.base)} + ` : ""}{b.rate === 0 ? "Nil" : `${(b.rate * 100).toFixed(0)}c per $1${b.min > 0 ? ` over ${formatAUD(b.min)}` : ""}`}</td></tr>))}
+                {TAX_BRACKETS.map((b, i) => (<tr key={i}><td className="px-5 py-3">{formatAUD(b.min)} – {b.max === Infinity ? "∞" : formatAUD(b.max)}</td><td className="px-5 py-3 font-medium">{(b.rate * 100).toFixed(0)}%</td><td className="px-5 py-3 text-right">{b.base > 0 ? `${formatAUD(b.base)} + ` : ""}{b.rate === 0 ? "Nil" : `${(b.rate * 100).toFixed(0)}c per $1${b.min > 0 ? ` over ${formatAUD(b.min)}` : ""}`}</td></tr>))}
               </tbody></table></div></div>
               <p>Non-resident brackets and resident <Link href="/tax-brackets/">income tax brackets</Link> converge at the $135,001 threshold. Above $135,000, both groups pay the same marginal rates of <strong>37%</strong> and <strong>45%</strong>, though cumulative tax payable remains higher for non-residents due to the flat 30% applied to the first $135,000.</p>
             </section>
@@ -212,7 +212,7 @@ export default function NonResidentTaxPage() {
 
                 <AccordionItem value="cgt" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents get the 50% CGT discount?</AccordionTrigger><AccordionContent className="text-warmgray">No. Non-residents do not receive the 50% capital gains tax discount on any Australian asset, including shares and property. A non-resident selling an Australian investment property held for 3 years pays CGT on the full capital gain at their marginal non-resident rate, with no discount applied.</AccordionContent></AccordionItem>
 
-                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents have to repay HECS-HELP debts?</AccordionTrigger><AccordionContent className="text-warmgray">Yes. Since 1 July 2017, Australian citizens living overseas with a HECS-HELP debt must lodge an overseas return with the ATO and make compulsory repayments based on their worldwide income. The minimum repayment threshold is $67,000 for FY2025-26. Non-citizens do not incur HECS-HELP debts as they pay full tuition fees upfront.</AccordionContent></AccordionItem>
+                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents have to repay HECS-HELP debts?</AccordionTrigger><AccordionContent className="text-warmgray">Yes. Since 1 July 2017, Australian citizens living overseas with a HECS-HELP debt must lodge an overseas return with the ATO and make compulsory repayments based on their worldwide income. The minimum repayment threshold is $69,528 for FY2025-26. Non-citizens do not incur HECS-HELP debts as they pay full tuition fees upfront.</AccordionContent></AccordionItem>
 
                 <AccordionItem value="private-ruling" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">How do I confirm my residency status with the ATO?</AccordionTrigger><AccordionContent className="text-warmgray">Request a private ruling from the ATO at no cost. A private ruling provides a binding determination of your residency status for the relevant financial year. You can apply online through the ATO website by providing details of your living arrangements, family ties, economic connections, and intention to remain in or return to Australia.</AccordionContent></AccordionItem>
 

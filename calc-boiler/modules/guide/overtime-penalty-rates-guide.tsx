@@ -189,7 +189,7 @@ export default function OvertimePenaltyRatesGuidePage() {
               </div>
 
               <p>Australia has <strong>8 national public holidays</strong> per year: New Year&apos;s Day, Australia Day, Good Friday, Easter Saturday, Easter Monday, Anzac Day, Queen&apos;s Birthday (King&apos;s Birthday from 2023), and Christmas Day plus Boxing Day. Each state and territory adds <strong>1-3 additional public holidays</strong>, bringing the total to 10-13 days depending on location.</p>
-              <p>Weekend penalty rates are the most significant driver of higher pay for shift workers. A full-time hospitality worker earning $24.10 per hour base rate who works every Sunday receives <strong>$36.15 per hour</strong> (1.5x) for those shifts. Over a full year of Sunday work (52 Sundays x 8 hours), that produces an additional <strong>$5,017.60</strong> in penalty-loaded pay compared to weekday rates.</p>
+              <p>Weekend penalty rates are the most significant driver of higher pay for shift workers. A full-time hospitality worker earning $26.44 per hour base rate who works every Sunday receives <strong>$36.15 per hour</strong> (1.5x) for those shifts. Over a full year of Sunday work (52 Sundays x 8 hours), that produces an additional <strong>$5,017.60</strong> in penalty-loaded pay compared to weekday rates.</p>
             </section>
 
             {/* ───────── SECTION 5: How Are Penalty Rates Taxed ───────── */}
@@ -280,7 +280,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             {/* ───────── SECTION 9: What Changed in FY2025-26 ───────── */}
             <section id="fy2025-26-changes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Penalty Rates in FY2025-26?</h2>
-              <p>The Fair Work Commission&apos;s Annual Wage Review 2025 increased all modern award minimum wages by <strong>3.75%</strong> from 1 July 2025, raising the national minimum wage to <strong>$24.10 per hour</strong> ($915.90 per week). All penalty rate calculations that reference the base award rate automatically reflect this increase.</p>
+              <p>The Fair Work Commission&apos;s Annual Wage Review 2025 increased all modern award minimum wages by <strong>3.75%</strong> from 1 July 2025, raising the national minimum wage to <strong>$26.44 per hour</strong> ($1,004.90 per week). All penalty rate calculations that reference the base award rate automatically reflect this increase.</p>
               <p>Key changes affecting penalty rates and overtime in the 2025-26 financial year include:</p>
               <ul>
                 <li>The superannuation guarantee (SG) rate increased to <strong>12%</strong> from 1 July 2025, though overtime hours generally do not attract superannuation (see FAQ below)</li>
@@ -349,7 +349,7 @@ export default function OvertimePenaltyRatesGuidePage() {
                 </AccordionItem>
                 <AccordionItem value="hecs-impact" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do penalty rates affect my HECS-HELP repayment?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Penalty rate income increases your &quot;Repayment Income&quot; for HECS-HELP purposes, which includes taxable income, reportable fringe benefits, and net investment losses. Repayments start at <strong>1%</strong> when repayment income exceeds <strong>$54,435</strong> for FY2025-26. Higher penalty rate earnings can push you into a higher repayment bracket. See our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Repayment Calculator</Link> for details.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. Penalty rate income increases your &quot;Repayment Income&quot; for HECS-HELP purposes, which includes taxable income, reportable fringe benefits, and net investment losses. Repayments start at <strong>1%</strong> when repayment income exceeds <strong>$69,528</strong> for FY2025-26. Higher penalty rate earnings can push you into a higher repayment bracket. See our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Repayment Calculator</Link> for details.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="right-to-disconnect" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does the Right to Disconnect affect overtime and penalties?</AccordionTrigger>

@@ -118,7 +118,7 @@ export default function FringeBenefitsTaxPage() {
             <p>FBT and income tax are two separate Australian tax regimes. <strong>The employer pays FBT</strong> on the grossed-up taxable value of non-cash benefits at the 47% rate. The <strong>employee pays income tax</strong> only on cash wages and salary at their <Link href="/income-tax-calculator/">marginal income tax rate</Link>, with the 2% <Link href="/medicare-levy/">Medicare levy</Link> on top.</p>
             <p>However, the employee may still see fringe benefits reported on their PAYG income statement as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong>. The RFBA is the grossed-up taxable value, and while it is not taxed again, it is added to your adjusted taxable income for the purpose of:</p>
             <ul>
-              <li><strong>HECS-HELP repayments</strong> — RFBA counts toward the $67,000 marginal-system threshold; model the impact with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</li>
+              <li><strong>HECS-HELP repayments</strong> — RFBA counts toward the $69,528 marginal-system threshold; model the impact with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</li>
               <li><strong>Medicare Levy Surcharge (MLS)</strong> — RFBA can push your income above the $93,000 singles threshold, triggering 1%–1.5% MLS unless you hold appropriate <Link href="/private-health-insurance-medicare/">private hospital cover</Link>.</li>
               <li><strong>Super co-contribution</strong> — RFBA reduces eligibility for the government super co-contribution on after-tax personal contributions.</li>
               <li><strong>Family Tax Benefit and Centrelink income tests</strong> — RFBA counts toward income-tested family assistance entitlements.</li>
@@ -208,7 +208,7 @@ export default function FringeBenefitsTaxPage() {
             <p>When fringe benefits exceed the <strong>$2,000 grossed-up threshold</strong>, the employer must report the grossed-up taxable value as RFBA on your income statement (formerly payment summary). The ATO uses your &quot;adjusted taxable income&quot; &mdash; which includes taxable income plus RFBA, reportable super contributions, and certain other items &mdash; to determine:</p>
             <ul>
               <li><strong>Medicare Levy Surcharge (MLS)</strong> liability &mdash; RFBA pushes your adjusted taxable income above the <strong>$93,000</strong> singles threshold, triggering a 1%, 1.25%, or 1.5% surcharge if you lack private hospital cover</li>
-              <li><strong>HECS-HELP repayment</strong> obligations &mdash; RFBA counts toward the <strong>$54,435</strong> compulsory repayment threshold for FY2025-26</li>
+              <li><strong>HECS-HELP repayment</strong> obligations &mdash; RFBA counts toward the <strong>$69,528</strong> compulsory repayment threshold for FY2026-27</li>
               <li><strong>Centrelink income test</strong> &mdash; RFBA is included in the income test for Family Tax Benefit, child care subsidy, and other income-tested payments</li>
               <li><strong>Division 293 tax</strong> &mdash; high-income earners with combined income and low-tax super contributions above <strong>$250,000</strong> pay an additional 15% tax on concessional super contributions</li>
             </ul>

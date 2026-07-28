@@ -175,9 +175,9 @@ export default function TakeHomePayCalculatorPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">HECS-HELP Repayment</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal: 15% on income above $67,000</td>
+                    <td className="px-4 py-3 text-warmgray">Marginal: 15% on income above $69,528</td>
                     <td className="px-4 py-3 text-right font-medium text-navy">$1,950 (if debt exists)</td>
-                    <td className="px-4 py-3 text-warmgray">Graduates with study loan above $67,000</td>
+                    <td className="px-4 py-3 text-warmgray">Graduates with study loan above $69,528</td>
                   </tr>
                   <tr className="bg-sandstone/50">
                     <td className="px-4 py-3 font-medium text-navy">Superannuation (SG)</td>
@@ -245,7 +245,7 @@ export default function TakeHomePayCalculatorPage() {
             <ul className="space-y-3 text-warmgray">
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">1.</span><span><strong>Job seekers comparing offers</strong> &mdash; A $90,000 offer at one company and a $95,000 package at another produce different take-home amounts depending on whether super is included. Enter both figures to compare net pay directly.</span></li>
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">2.</span><span><strong>Employees budgeting monthly expenses</strong> &mdash; Rent, groceries, and loan repayments require a precise monthly income figure. The calculator converts your annual take-home into weekly, fortnightly, and monthly amounts.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong> &mdash; Compulsory repayments begin at $67,000 under the new marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong> &mdash; Compulsory repayments begin at $69,528 under the new marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">4.</span><span><strong>Workers considering a pay rise</strong> &mdash; A $10,000 raise does not equal $10,000 more take-home. On $80,000, an extra $10,000 adds only <strong>$6,800</strong> after the 30% marginal rate and 2% Medicare levy. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for side-by-side comparisons.</span></li>
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">5.</span><span><strong>Employers explaining total remuneration</strong> &mdash; HR teams use net pay breakdowns to show candidates the full value of a salary package, including the employer&apos;s 12% super contribution and any salary sacrifice arrangements.</span></li>
             </ul>
@@ -324,8 +324,8 @@ export default function TakeHomePayCalculatorPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">HECS-HELP System</td>
-                    <td className="px-4 py-3 text-warmgray">Tiered % of total income (threshold $54,435)</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal system (threshold $67,000, 15% marginal rate)</td>
+                    <td className="px-4 py-3 text-warmgray">Tiered % of total income (threshold $69,528)</td>
+                    <td className="px-4 py-3 text-warmgray">Marginal system (threshold $69,528, 15% marginal rate)</td>
                     <td className="px-4 py-3 text-warmgray">Graduates near old thresholds keep <strong>$1,000&ndash;$3,000</strong> more</td>
                   </tr>
                   <tr>
@@ -337,7 +337,7 @@ export default function TakeHomePayCalculatorPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray">The HECS reform is the most significant change for graduates. Under the old system, crossing the $54,435 threshold triggered a repayment on total income. The new marginal system taxes only the portion above $67,000 at 15%, eliminating sudden &quot;cliff&quot; repayment jumps. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to compare your repayment under both systems.</p>
+            <p className="text-warmgray">The HECS reform is the most significant change for graduates. Under the old system, crossing the $69,528 threshold triggered a repayment on total income. The new marginal system taxes only the portion above $69,528 at 15%, eliminating sudden &quot;cliff&quot; repayment jumps. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to compare your repayment under both systems.</p>
           </section>
 
           {/* ---- COMMON TAKE-HOME PAY MISTAKES ---- */}
@@ -348,7 +348,7 @@ export default function TakeHomePayCalculatorPage() {
               <li><strong>Confusing marginal rate with effective rate.</strong> An employee on $80,000 pays a 30% marginal rate on the top portion of income, but the effective rate across their entire salary is only <strong>20.5%</strong>. Assuming 30% of the full $80,000 goes to tax overestimates the deduction by <strong>$7,612</strong>.</li>
               <li><strong>Treating super as a take-home deduction.</strong> The 12% superannuation guarantee is paid by the employer on top of your gross salary. It does not reduce your take-home pay unless your contract specifies a &quot;total package inclusive of super&quot; arrangement.</li>
               <li><strong>Ignoring the LITO offset.</strong> Incomes below $66,667 receive a &quot;Low Income Tax Offset&quot; of up to $700 that directly reduces tax payable. Omitting LITO from manual calculations overstates tax at $60,000 by <strong>$325</strong>.</li>
-              <li><strong>Using old HECS-HELP thresholds.</strong> The repayment threshold increased from $54,435 to $67,000 in FY2025-26, and the system shifted from tiered percentages to marginal rates. Using old thresholds overstates repayments for graduates earning between $54,435 and $67,000.</li>
+              <li><strong>Using old HECS-HELP thresholds.</strong> The repayment threshold rose from $54,435 to $67,000 when the marginal system launched in FY2025-26, and again to $69,528 for FY2026-27. Using old thresholds overstates repayments for graduates earning between $54,435 and $69,528.</li>
               <li><strong>Forgetting the Medicare Levy Surcharge.</strong> Singles earning above $93,001 without private health insurance pay an additional 1%&ndash;1.5% surcharge. On $150,000 without cover, the &quot;Medicare Levy Surcharge&quot; adds <strong>$2,250</strong> in deductions beyond the standard 2% levy.</li>
             </ol>
           </section>
@@ -449,7 +449,7 @@ export default function TakeHomePayCalculatorPage() {
                 If you have not submitted a Tax File Number (TFN) declaration to your employer, PAYG withholding applies at the highest marginal rate of 45% plus the 2% Medicare levy. Submit your TFN declaration immediately to ensure the correct tax rate applies from your next pay cycle.
               </FAQItem>
               <FAQItem value="hecs-impact" question="How much does HECS-HELP reduce my take-home pay?">
-                HECS-HELP repayments begin at $67,000 under the FY2025-26 marginal system. On $80,000, the compulsory repayment is <strong>$1,950</strong> per year ($37.50 per week), reducing take-home from $63,612 to <strong>$61,662</strong>. The marginal rate of 15% applies only to income above $67,000, not your entire salary.
+                HECS-HELP repayments begin at $69,528 under the FY2025-26 marginal system. On $80,000, the compulsory repayment is <strong>$1,950</strong> per year ($37.50 per week), reducing take-home from $63,612 to <strong>$61,662</strong>. The marginal rate of 15% applies only to income above $69,528, not your entire salary.
               </FAQItem>
               <FAQItem value="salary-sacrifice-tax" question="Does salary sacrifice increase take-home pay?">
                 Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing $10,000 saves approximately <strong>$1,500</strong> in tax. The trade-off is that super funds are locked until preservation age (60 for most Australians).

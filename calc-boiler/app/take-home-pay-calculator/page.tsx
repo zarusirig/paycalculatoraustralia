@@ -10,9 +10,9 @@ const URL = `${BASE}/take-home-pay-calculator/`;
 
 export const metadata: Metadata = {
   title: "Take-Home Pay Calculator Australia — Net Pay After Tax & Super",
-  description: "Free Australian take-home pay calculator. See your net pay after income tax, Medicare levy, HECS & super. Updated FY2025-26 using official ATO rates.",
+  description: "Free Australian take-home pay calculator. See your net pay after income tax, Medicare levy, HECS & super. Updated FY2026-27 using official ATO rates.",
   alternates: { canonical: URL },
-  openGraph: { title: "Take-Home Pay Calculator Australia", description: "Calculate your net pay after all deductions. Free, updated for FY2025-26.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: "Take-Home Pay Calculator Australia", description: "Calculate your net pay after all deductions. Free, updated for FY2026-27.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: "Take-Home Pay Calculator Australia", description: "Net pay after tax, Medicare, HECS & super." },
 };
 

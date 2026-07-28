@@ -9,19 +9,19 @@ import {
   FOOTER_TAX_ON_SALARY,
   FOOTER_NEWS,
 } from "@/lib/navigation";
-import { SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { SOURCES, SITE_CONFIG, calculatePayBreakdown } from "@/lib/constants";
 
 type NavItem = { label: string; href: string };
 
-const POPULAR_SALARIES = [
-  { salary: "$50K", weekly: "$846/wk" },
-  { salary: "$60K", weekly: "$985/wk" },
-  { salary: "$75K", weekly: "$1,121/wk" },
-  { salary: "$90K", weekly: "$1,291/wk" },
-  { salary: "$100K", weekly: "$1,386/wk" },
-  { salary: "$120K", weekly: "$1,565/wk" },
-  { salary: "$150K", weekly: "$1,790/wk" },
-];
+// Derived from the tax engine, never hardcoded: these render on all 212 pages,
+// and the previous literals were computed on the FY2025-26 16% scale. A stale
+// figure here is invisible to any year-string search.
+const POPULAR_SALARIES = [50_000, 60_000, 75_000, 90_000, 100_000, 120_000, 150_000].map(
+  (salary) => ({
+    salary: `$${salary / 1_000}K`,
+    weekly: `$${Math.round(calculatePayBreakdown({ grossSalary: salary }).weekly).toLocaleString("en-AU")}/wk`,
+  })
+);
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -40,7 +40,7 @@ export default function Footer() {
           <p className="mb-5 text-center text-xs font-semibold uppercase tracking-widest text-sandstone-dark/60">
             Pay Calculator Australia — Site Directory
           </p>
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
             <div>
               <h3
                 className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
@@ -97,11 +97,36 @@ export default function Footer() {
                 Guides
               </h3>
               <ul role="list" className="space-y-2 text-sm">
-                <li><Link href="/tax-brackets/" className="text-sandstone-dark/45 hover:text-eucalyptus">Tax Brackets 2025-26</Link></li>
+                <li><Link href="/tax-brackets/" className="text-sandstone-dark/45 hover:text-eucalyptus">Tax Brackets</Link></li>
                 <li><Link href="/medicare-levy/" className="text-sandstone-dark/45 hover:text-eucalyptus">Medicare Levy</Link></li>
                 <li><Link href="/low-income-tax-offset/" className="text-sandstone-dark/45 hover:text-eucalyptus">LITO Guide</Link></li>
                 <li><Link href="/payg-withholding-tables/" className="text-sandstone-dark/45 hover:text-eucalyptus">PAYG Withholding</Link></li>
                 <li><Link href="/award-rates/" className="text-sandstone-dark/45 hover:text-eucalyptus">Award Rates</Link></li>
+              </ul>
+            </div>
+            {/*
+              Tax tables and payslip tools were reachable only from the
+              array-driven mega footer below (one sitewide link each) while
+              their nearest competitors appeared in both zones (two each). All
+              seven were still unindexed three weeks after launch. Listing them
+              here doubles their internal link count.
+            */}
+            <div>
+              <h3
+                className="mb-3 text-xs font-bold uppercase tracking-widest text-eucalyptus/80"
+                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+              >
+                Tax Tables &amp; Tools
+              </h3>
+              <ul role="list" className="space-y-2 text-sm">
+                <li><Link href="/weekly-tax-table/" className="text-sandstone-dark/45 hover:text-eucalyptus">Weekly Tax Table</Link></li>
+                <li><Link href="/fortnightly-tax-table/" className="text-sandstone-dark/45 hover:text-eucalyptus">Fortnightly Tax Table</Link></li>
+                <li><Link href="/monthly-tax-table/" className="text-sandstone-dark/45 hover:text-eucalyptus">Monthly Tax Table</Link></li>
+                <li><Link href="/schedule-5-tax-table/" className="text-sandstone-dark/45 hover:text-eucalyptus">Schedule 5 Tax Table</Link></li>
+                <li><Link href="/payslip-generator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Payslip Generator</Link></li>
+                <li><Link href="/ytd-income-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">YTD Income Calculator</Link></li>
+                <li><Link href="/stsl-on-payslip/" className="text-sandstone-dark/45 hover:text-eucalyptus">STSL on Your Payslip</Link></li>
+                <li><Link href="/site-directory/" className="text-sandstone-dark/45 hover:text-eucalyptus font-medium">All Pages &rarr;</Link></li>
               </ul>
             </div>
           </div>

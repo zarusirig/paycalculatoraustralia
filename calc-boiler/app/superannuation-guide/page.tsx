@@ -7,7 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-guide/`;
-const TITLE = "Superannuation Guide — How Super Works in Australia (2025-26)";
+const TITLE = "Superannuation Guide — How Super Works in Australia";
 const DESCRIPTION = "Everything you need to know about Australian Superannuation. Learn about the 12% SG rate, employer obligations, contribution caps, and salary sacrificing into super.";
 
 export const metadata: Metadata = {

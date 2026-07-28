@@ -4,7 +4,7 @@ import React from "react";
 import {
   calculatePayBreakdown,
   formatAUD,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   HECS_HELP,
   SITE_CONFIG,
   EMPLOYMENT,
@@ -36,11 +36,11 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const marginalRate = (breakdown.marginalTaxRate * 100).toFixed(1);
 
   // Determine which bracket the salary falls into
-  const currentBracket = TAX_BRACKETS_2025_26.filter(b => salary >= b.min).pop();
+  const currentBracket = TAX_BRACKETS.filter(b => salary >= b.min).pop();
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
 
   // Pay frequency data
-  const hoursPerYear = 1982.84; // 38 hrs × 52.18 weeks
+  const hoursPerYear = 1976; // 38 hrs × 52 weeks — matches every other AU site
   const hourlyGross = salary / hoursPerYear;
   const hourlyNet = breakdown.takeHomePay / hoursPerYear;
 
@@ -53,7 +53,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       {/* Introduction */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          On a <strong>{formattedSalary}</strong> salary in Australia, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after tax for FY2025-26.
+          On a <strong>{formattedSalary}</strong> salary in Australia, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after tax for FY{SITE_CONFIG.financialYear}.
           That works out to <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month in your pocket.
         </p>
         <p className="text-navy leading-relaxed">
@@ -195,7 +195,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-4">How Is Tax Calculated on {formattedSalary}?</h2>
         <p className="text-navy leading-relaxed mb-4">
-          Australia uses progressive marginal tax rates. Your {formattedSalary} salary is split across multiple brackets, with each portion taxed at its corresponding rate. The table below shows the exact tax calculated in each bracket for FY2025-26.
+          Australia uses progressive marginal tax rates. Your {formattedSalary} salary is split across multiple brackets, with each portion taxed at its corresponding rate. The table below shows the exact tax calculated in each bracket for FY{SITE_CONFIG.financialYear}.
         </p>
         <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
           <div className="overflow-x-auto">
@@ -209,7 +209,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((bracket, index) => {
+                {TAX_BRACKETS.map((bracket, index) => {
                   if (salary <= bracket.min) return null;
 
                   const incomeInBracket = Math.min(salary, bracket.max) - bracket.min + (bracket.min === 0 ? 0 : 1);
@@ -219,7 +219,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                     <tr key={index} className="hover:bg-sandstone/30 transition-colors">
                       <td className="px-6 py-4 text-warmgray">
                         {index === 0 ? "$0 – $18,200" :
-                         index === TAX_BRACKETS_2025_26.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
+                         index === TAX_BRACKETS.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
                          `${formatAUD(bracket.min - 1)} – ${formatAUD(bracket.max)}`}
                       </td>
                       <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket)}</td>
@@ -298,7 +298,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/take-home-pay-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Take-Home Pay Calculator</p>
-            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY2025-26.</p>
+            <p className="text-sm text-warmgray">Calculate net pay on any salary with all deductions for FY{SITE_CONFIG.financialYear}.</p>
           </a>
           <a href="/income-tax-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Income Tax Calculator</p>
@@ -324,7 +324,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               What is the take-home pay on {formattedSalary} in Australia?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              On a {formattedSalary} salary, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after income tax of {formatAUD(breakdown.netIncomeTax)} and Medicare levy of {formatAUD(breakdown.medicareLevy)}. That equals <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month. This uses ATO tax rates for FY2025-26.
+              On a {formattedSalary} salary, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after income tax of {formatAUD(breakdown.netIncomeTax)} and Medicare levy of {formatAUD(breakdown.medicareLevy)}. That equals <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month. This uses ATO tax rates for FY{SITE_CONFIG.financialYear}.
             </AccordionContent>
           </AccordionItem>
 
@@ -342,7 +342,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               What is the effective hourly rate on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Based on a standard 38-hour week (1,982.84 hours/year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
+              Based on a standard 38-hour week (1,976 hours/year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
             </AccordionContent>
           </AccordionItem>
 
@@ -360,10 +360,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       <MethodologyDisclosure>
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following general rules and assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
-          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY2025-26.</li>
+          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge.</li>
           <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
-          <li><strong>HECS-HELP:</strong> Included where salary exceeds the $67,000 minimum repayment threshold using the new marginal system.</li>
+          <li><strong>HECS-HELP:</strong> Included where salary exceeds the $69,528 minimum repayment threshold using the new marginal system.</li>
         </ol>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

@@ -63,7 +63,7 @@ export default function ContractorVsEmployeeGuidePage() {
                 Three consequences flow from the classification. First, taxation: employers withhold PAYG income tax for employees but pay contractors in full via invoice. Second, superannuation: the employer pays the <strong>12% Super Guarantee</strong> for employees in FY2025-26, whereas genuine contractors manage their own super. Third, entitlements: employees receive <strong>4 weeks</strong> paid annual leave, <strong>10 days</strong> personal/carer&apos;s leave, and workers&apos; compensation coverage &mdash; contractors receive none. Use our <Link href="/">Australian tax calculator</Link> to model the take-home pay difference for a specific salary.
               </p>
               <p>
-                The classification also determines minimum wage coverage. Employees fall under the National Employment Standards and relevant Modern Awards, guaranteeing at least <strong>$24.10 per hour</strong> (the national minimum wage from 1 July 2024). Contractors negotiate their own rates with no statutory floor, which is why commercial contracting rates sit <strong>25% to 50%</strong> above equivalent employee salaries.
+                The classification also determines minimum wage coverage. Employees fall under the National Employment Standards and relevant Modern Awards, guaranteeing at least <strong>$26.44 per hour</strong> (the national minimum wage from 1 July 2024). Contractors negotiate their own rates with no statutory floor, which is why commercial contracting rates sit <strong>25% to 50%</strong> above equivalent employee salaries.
               </p>
             </section>
 
@@ -397,7 +397,7 @@ export default function ContractorVsEmployeeGuidePage() {
               <ul>
                 <li><strong>Super Guarantee rate:</strong> Increased from 11.5% to <strong>12%</strong>, adding $500 per year in employer costs for every $100,000 of employee salary. This widens the gap between contracting and employment, as contractors who self-fund super now contribute more.</li>
                 <li><strong>Income tax brackets:</strong> The Stage 3 tax cuts (effective 1 July 2024) remain in place. The 30% bracket now applies from $45,001 to $135,000, benefiting both contractors and employees earning in this range. The 37% bracket starts at $135,001, and the top 45% rate begins at $190,001.</li>
-                <li><strong>HECS-HELP threshold:</strong> The minimum repayment threshold rose to <strong>$67,000</strong> (up from $54,435 in FY2023-24), and the system shifted to a marginal repayment model at <strong>15 cents per dollar</strong> over the threshold. Contractors with HELP debts must factor this into their quarterly tax planning.</li>
+                <li><strong>HECS-HELP threshold:</strong> The minimum repayment threshold rose to <strong>$69,528</strong> (up from $69,528 in FY2023-24), and the system shifted to a marginal repayment model at <strong>15 cents per dollar</strong> over the threshold. Contractors with HELP debts must factor this into their quarterly tax planning.</li>
                 <li><strong>Concessional super cap:</strong> Remains at <strong>$30,000</strong> for FY2025-26. Contractors using super as a tax-minimisation strategy benefit from the full deduction on personal contributions up to this cap.</li>
                 <li><strong>Maximum super contribution base:</strong> Set at <strong>$62,500 per quarter</strong> for FY2025-26. Employers are not required to pay SG on earnings above this threshold, which equates to an annual salary of $250,000.</li>
               </ul>
@@ -515,7 +515,7 @@ export default function ContractorVsEmployeeGuidePage() {
                 <AccordionItem value="fy-changes" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What changed for contractors in FY2025-26?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    The Super Guarantee rate increased to <strong>12%</strong> (from 11.5%), the concessional super cap remains at <strong>$30,000</strong>, and the maximum super contribution base is <strong>$62,500 per quarter</strong>. The Stage 3 income tax cuts remain in effect, with the 30% bracket applying from $45,001 to $135,000. The HECS-HELP minimum repayment threshold rose to <strong>$67,000</strong> under the new marginal system.
+                    The Super Guarantee rate increased to <strong>12%</strong> (from 11.5%), the concessional super cap remains at <strong>$30,000</strong>, and the maximum super contribution base is <strong>$62,500 per quarter</strong>. The Stage 3 income tax cuts remain in effect, with the 30% bracket applying from $45,001 to $135,000. The HECS-HELP minimum repayment threshold rose to <strong>$69,528</strong> under the new marginal system.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="insurance-types" className="border rounded-lg px-4 bg-sandstone bg-white">

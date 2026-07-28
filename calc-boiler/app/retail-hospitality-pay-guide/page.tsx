@@ -5,7 +5,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/retail-hospitality-pay-guide/`;
-const TITLE = "Retail & Hospitality Pay Guide — Award Rates, Penalties & Casual Loading";
+const TITLE = "Retail & Hospitality Pay — Award Rates, Penalties & Loading";
 const DESCRIPTION = "Retail and hospitality pay rates: General Retail Industry Award, Hospitality Industry Award, casual loading (25%), weekend penalties, and public holiday rates explained.";
 export const metadata: Metadata = { title: TITLE, description: DESCRIPTION, alternates: { canonical: URL }, openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" }, twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION } };
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Retail & Hospitality Pay Guide", item: URL }] };

@@ -32,7 +32,7 @@ const WAGE_HISTORY = [
   { year: "2021-22", hourly: "$20.33", weekly: "$772.60", increase: "2.5%", fwcDate: "1 Jul 2021" },
   { year: "2022-23", hourly: "$21.38", weekly: "$812.60", increase: "5.2%", fwcDate: "1 Jul 2022" },
   { year: "2023-24", hourly: "$23.23", weekly: "$882.80", increase: "8.65%", fwcDate: "1 Jul 2023" },
-  { year: "2024-25", hourly: "$24.10", weekly: "$915.90", increase: "3.75%", fwcDate: "1 Jul 2024" },
+  { year: "2024-25", hourly: "$26.44", weekly: "$1,004.90", increase: "3.75%", fwcDate: "1 Jul 2024" },
   { year: "2025-26", hourly: "TBD", weekly: "TBD", increase: "TBD", fwcDate: "Jun 2025 (expected)" },
 ];
 
@@ -114,7 +114,7 @@ export default function MinimumWageHistoryPage() {
                 <li><strong>FY2024-25 (3.75% increase):</strong> A return to more moderate increases as inflation eased to approximately 3.6%. The real wage gain was modest at roughly 0.1&ndash;0.2 percentage points.</li>
               </ul>
               <p>
-                Over the full 15-year period from 2010 to 2024, the minimum wage rose from <strong>$15.00 to $24.10 per hour</strong> &mdash; an increase of <strong>60.7%</strong>. Over the same period, cumulative CPI inflation was approximately <strong>40&ndash;45%</strong>, meaning minimum wage workers have maintained and slightly improved their real purchasing power.
+                Over the full 15-year period from 2010 to 2024, the minimum wage rose from <strong>$15.00 to $26.44 per hour</strong> &mdash; an increase of <strong>60.7%</strong>. Over the same period, cumulative CPI inflation was approximately <strong>40&ndash;45%</strong>, meaning minimum wage workers have maintained and slightly improved their real purchasing power.
               </p>
             </section>
 

@@ -9,11 +9,11 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-brackets/`;
 
 export const metadata: Metadata = {
-  title: "Australian Tax Brackets 2025-26 — Income Tax Rates & Thresholds",
-  description: "Complete guide to Australian income tax brackets for FY2025-26. Rates, thresholds, worked examples, LITO, Stage 3 tax cuts, and what changed. Official ATO data.",
+  title: "Australian Tax Rates & Income Tax Brackets",
+  description: "Complete guide to Australian income tax brackets for FY2026-27. Rates, thresholds, worked examples, LITO, Stage 3 tax cuts, and what changed. Official ATO data.",
   alternates: { canonical: URL },
   openGraph: { title: "Australian Tax Brackets 2025-26", description: "Complete guide with rates, thresholds, worked examples. All ATO data.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Australian Tax Brackets 2025-26", description: "Rates, thresholds, and worked examples for FY2025-26." },
+  twitter: { card: "summary_large_image", title: "Australian Tax Brackets 2025-26", description: "Rates, thresholds, and worked examples for FY2026-27." },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
@@ -31,8 +31,8 @@ const article: WithContext<Article> = { "@context": "https://schema.org", "@type
 };
 
 const tableSchema: WithContext<Table> = { "@context": "https://schema.org", "@type": "Table",
-  about: "Australian income tax brackets for FY2025-26",
-  name: "FY2025-26 Tax Brackets", description: "Progressive income tax rates for Australian residents",
+  about: "Australian income tax brackets for FY2026-27",
+  name: "FY2026-27 Tax Brackets", description: "Progressive income tax rates for Australian residents",
 };
 
 const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
