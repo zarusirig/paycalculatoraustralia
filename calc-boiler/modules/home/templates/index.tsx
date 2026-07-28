@@ -13,7 +13,7 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatPercent,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   SUPER_GUARANTEE,
   LITO,
   HECS_HELP,
@@ -828,7 +828,7 @@ export default function HomePageTemplate() {
             This Australian tax calculator converts your gross salary into exact take-home pay by applying the official ATO tax tables for FY{SITE_CONFIG.financialYear}. Every dollar of your salary is split into 5 components: income tax (progressive marginal rates from <strong>0% to 45%</strong>), the <strong>2%</strong> Medicare levy, any HECS-HELP repayments, the &quot;Low Income Tax Offset&quot; (LITO), and your employer&apos;s superannuation guarantee contribution.
           </p>
           <p className="mb-3 leading-relaxed text-warmgray">
-            Your income tax is calculated in stages — not all at one rate. The first {formatAUD(TAX_BRACKETS_2025_26[0].max)} is tax-free, then each portion above that threshold is taxed at progressively higher marginal rates: <strong>16%</strong> up to $45,000, <strong>30%</strong> up to $135,000, <strong>37%</strong> up to $190,000, and <strong>45%</strong> on every dollar above $190,000. This means a person earning $80,000 pays an effective tax rate of just <strong>20.5%</strong>, not the 30% marginal rate that applies to their top bracket.
+            Your income tax is calculated in stages — not all at one rate. The first {formatAUD(TAX_BRACKETS[0].max)} is tax-free, then each portion above that threshold is taxed at progressively higher marginal rates: <strong>15%</strong> up to $45,000, <strong>30%</strong> up to $135,000, <strong>37%</strong> up to $190,000, and <strong>45%</strong> on every dollar above $190,000. This means a person earning $80,000 pays an effective tax rate of just <strong>20.5%</strong>, not the 30% marginal rate that applies to their top bracket.
           </p>
           <p className="leading-relaxed text-warmgray">
             Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a detailed bracket-by-bracket breakdown, our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model your employer&apos;s SG contribution over time, or our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to compare net pay across different salary levels.
@@ -872,7 +872,7 @@ export default function HomePageTemplate() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((bracket, i) => (
+                {TAX_BRACKETS.map((bracket, i) => (
                   <tr key={i} className="transition-colors hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-warmgray">
                       {formatAUD(bracket.min)} – {bracket.max === Infinity ? "+" : formatAUD(bracket.max)}

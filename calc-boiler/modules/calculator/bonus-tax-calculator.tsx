@@ -12,7 +12,7 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatPercent,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
@@ -48,7 +48,7 @@ export default function BonusTaxCalculatorPage() {
   // Find marginal bracket for the combined income
   const combinedIncome = baseSalary + bonusAmount;
   let marginalRate = 0;
-  for (const bracket of TAX_BRACKETS_2025_26) {
+  for (const bracket of TAX_BRACKETS) {
     if (combinedIncome >= bracket.min) {
       marginalRate = bracket.rate;
     }
@@ -332,7 +332,7 @@ export default function BonusTaxCalculatorPage() {
                     const with_ = calculatePayBreakdown({ grossSalary: salary, bonus });
                     const tax = with_.totalDeductions - without.totalDeductions;
                     let mr = 0;
-                    for (const b of TAX_BRACKETS_2025_26) { if (salary + bonus >= b.min) mr = b.rate; }
+                    for (const b of TAX_BRACKETS) { if (salary + bonus >= b.min) mr = b.rate; }
                     return (
                       <tr key={salary} className="hover:bg-sandstone">
                         <td className="px-4 py-3 text-navy">{formatAUD(salary)}</td>

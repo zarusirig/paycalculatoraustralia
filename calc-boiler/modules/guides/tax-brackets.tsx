@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   NON_RESIDENT_TAX_BRACKETS,
   LITO,
   TAX_HISTORY,
@@ -53,7 +53,7 @@ export default function TaxBracketsGuidePage() {
             <table className="w-full text-sm">
               <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th><th className="px-4 py-3 text-left font-semibold text-navy">Tax On This Income</th></tr></thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((b, i) => (
+                {TAX_BRACKETS.map((b, i) => (
                   <tr key={i} className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy">{formatAUD(b.min)} – {b.max === Infinity ? "and over" : formatAUD(b.max)}</td>
                     <td className="px-4 py-3 text-warmgray">{i === 0 ? "Nil" : (i === 1 ? b.label : `${formatAUD(b.base)} plus ${b.label.split("plus ")[1] || b.label}`)}</td>
@@ -202,7 +202,7 @@ export default function TaxBracketsGuidePage() {
                   const lito = calculateLITO(s);
                   const net = Math.max(0, Math.round(raw - lito));
                   let marginal = 0;
-                  for (const b of TAX_BRACKETS_2025_26) { if (s >= b.min) marginal = b.rate; }
+                  for (const b of TAX_BRACKETS) { if (s >= b.min) marginal = b.rate; }
                   return (
                     <tr key={s} className="hover:bg-sandstone">
                       <td className="px-4 py-3 font-medium text-navy">{formatAUD(s)}</td>

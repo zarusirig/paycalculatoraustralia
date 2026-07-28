@@ -4,7 +4,7 @@ import React from "react";
 import {
   calculatePayBreakdown,
   formatAUD,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   HECS_HELP,
   SITE_CONFIG,
   EMPLOYMENT,
@@ -36,7 +36,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const marginalRate = (breakdown.marginalTaxRate * 100).toFixed(1);
 
   // Determine which bracket the salary falls into
-  const currentBracket = TAX_BRACKETS_2025_26.filter(b => salary >= b.min).pop();
+  const currentBracket = TAX_BRACKETS.filter(b => salary >= b.min).pop();
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
 
   // Pay frequency data
@@ -209,7 +209,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS_2025_26.map((bracket, index) => {
+                {TAX_BRACKETS.map((bracket, index) => {
                   if (salary <= bracket.min) return null;
 
                   const incomeInBracket = Math.min(salary, bracket.max) - bracket.min + (bracket.min === 0 ? 0 : 1);
@@ -219,7 +219,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                     <tr key={index} className="hover:bg-sandstone/30 transition-colors">
                       <td className="px-6 py-4 text-warmgray">
                         {index === 0 ? "$0 – $18,200" :
-                         index === TAX_BRACKETS_2025_26.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
+                         index === TAX_BRACKETS.length - 1 ? `Over ${formatAUD(bracket.min - 1)}` :
                          `${formatAUD(bracket.min - 1)} – ${formatAUD(bracket.max)}`}
                       </td>
                       <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket)}</td>

@@ -14,7 +14,7 @@ import {
   calculateMedicareLevy,
   formatAUD,
   formatPercent,
-  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS,
   LITO,
   SOURCES,
   SITE_CONFIG,
@@ -43,7 +43,7 @@ export default function IncomeTaxCalculatorPage() {
     const effectiveRate = salary > 0 ? totalTax / salary : 0;
 
     // Bracket breakdown
-    const bracketBreakdown = TAX_BRACKETS_2025_26.map((bracket, i) => {
+    const bracketBreakdown = TAX_BRACKETS.map((bracket, i) => {
       const lower = bracket.min === 0 ? 0 : bracket.min;
       const upper = bracket.max === Infinity ? salary : Math.min(bracket.max, salary);
       if (salary < lower) return { ...bracket, inBracket: 0, taxOnBracket: 0 };
@@ -54,7 +54,7 @@ export default function IncomeTaxCalculatorPage() {
 
     // Marginal rate
     let marginalRate = 0;
-    for (const bracket of TAX_BRACKETS_2025_26) {
+    for (const bracket of TAX_BRACKETS) {
       if (salary >= bracket.min) marginalRate = bracket.rate;
     }
 
@@ -229,7 +229,7 @@ export default function IncomeTaxCalculatorPage() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {TAX_BRACKETS_2025_26.map((bracket, i) => {
+                    {TAX_BRACKETS.map((bracket, i) => {
                       const rangeWidth = bracket.max === Infinity ? null : bracket.max - (bracket.min === 0 ? 0 : bracket.min - 1);
                       const taxOnRange = rangeWidth == null ? null : Math.round(rangeWidth * bracket.rate);
                       const cumulativeAtTop = bracket.max === Infinity ? null : Math.round(calculateIncomeTax(bracket.max));

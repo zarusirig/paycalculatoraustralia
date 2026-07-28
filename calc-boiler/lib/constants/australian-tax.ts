@@ -1,9 +1,13 @@
 // =============================================================================
-// Australian Tax Constants & Calculator Functions — FY2025-26
-// Single Source of Truth — all values from ontology-and-eav-knowledge-base.md
+// Australian Tax Constants & Calculator Functions — FY2026-27
+// Single source of truth for the whole site.
+//
+// From 1 July 2026 the second marginal rate fell from 16% to 15% (Treasury
+// Laws Amendment (Cost of Living Tax Cuts) Act 2025). TAX_BRACKETS is the
+// current year; TAX_BRACKETS_2025_26 is retained for /tax-bracket-history/
+// and year-over-year comparisons ONLY — do not compute current figures with it.
 // =============================================================================
 
-// ---------- Income Tax Brackets (FY2025-26, Residents) ----------
 export interface TaxBracket {
   min: number;
   max: number;
@@ -12,6 +16,22 @@ export interface TaxBracket {
   label: string;
 }
 
+// ---------- Income Tax Brackets (FY2026-27, Residents) — CURRENT ----------
+export const TAX_BRACKETS_2026_27: readonly TaxBracket[] = [
+  { min: 0, max: 18_200, rate: 0, base: 0, label: "Tax-free threshold" },
+  { min: 18_201, max: 45_000, rate: 0.15, base: 0, label: "15c for each $1 over $18,200" },
+  { min: 45_001, max: 135_000, rate: 0.30, base: 4_020, label: "30c for each $1 over $45,000" },
+  { min: 135_001, max: 190_000, rate: 0.37, base: 31_020, label: "37c for each $1 over $135,000" },
+  { min: 190_001, max: Infinity, rate: 0.45, base: 51_370, label: "45c for each $1 over $190,000" },
+] as const;
+
+/** Alias for the current financial year's scale. Prefer this in new code. */
+export const TAX_BRACKETS = TAX_BRACKETS_2026_27;
+
+/** The second-bracket marginal rate, used to derive LITO's effective threshold. */
+export const SECOND_BRACKET_RATE = 0.15;
+
+// ---------- Income Tax Brackets (FY2025-26) — HISTORICAL ONLY ----------
 export const TAX_BRACKETS_2025_26: readonly TaxBracket[] = [
   { min: 0, max: 18_200, rate: 0, base: 0, label: "Tax-free threshold" },
   { min: 18_201, max: 45_000, rate: 0.16, base: 0, label: "16c for each $1 over $18,200" },
@@ -36,17 +56,31 @@ export const LITO = {
   phaseOut1: { start: 37_501, end: 45_000, rate: 0.05 },
   phaseOut2: { start: 45_001, end: 66_667, rate: 0.015 },
   nilOffsetIncome: 66_667,
-  effectiveTaxFreeThreshold: 22_575,
+  // Derived, never hardcoded: the income at which LITO exactly cancels the tax
+  // on the second bracket. It moves whenever that rate moves — at 16% it was
+  // $22,575, at 15% (FY2026-27) it is $22,867.
+  effectiveTaxFreeThreshold:
+    TAX_FREE_THRESHOLD + Math.round(700 / SECOND_BRACKET_RATE),
 } as const;
 
-// ---------- Medicare Levy ----------
+// ---------- Medicare Levy (FY2026-27) ----------
+// Thresholds per ATO Schedule 1 Medicare levy parameters, published
+// 17 June 2026. Surcharge tiers per ATO "Medicare levy surcharge income,
+// thresholds and rates", last updated 22 June 2026.
 export const MEDICARE_LEVY = {
   rate: 0.02,
-  lowIncomeThreshold: 27_222,
+  lowIncomeThreshold: 28_011,
+  shadeInThreshold: 35_013,
+  shadeInRate: 0.10,
+  familyThreshold: 47_238,
+  additionalChild: 4_338,
   surcharge: {
-    tier1: { min: 93_001, max: 108_000, rate: 0.01 },
-    tier2: { min: 108_001, max: 144_000, rate: 0.0125 },
-    tier3: { min: 144_001, max: Infinity, rate: 0.015 },
+    tier1: { min: 105_001, max: 123_000, rate: 0.01 },
+    tier2: { min: 123_001, max: 164_000, rate: 0.0125 },
+    tier3: { min: 164_001, max: Infinity, rate: 0.015 },
+    familyTier1: { min: 210_001, max: 246_000, rate: 0.01 },
+    familyTier2: { min: 246_001, max: 328_000, rate: 0.0125 },
+    familyTier3: { min: 328_001, max: Infinity, rate: 0.015 },
   },
 } as const;
 
@@ -70,10 +104,27 @@ export interface HECSBand {
   label: string;
 }
 
+// FY2026-27 thresholds per ATO "Study and training loan repayment thresholds
+// and rates", last updated 30 June 2026. Indexation applied 1 June 2026: 2.8%.
+// The $9,028 base is the ATO's published figure — its own worked example
+// reconciles to it ($137,064 → $9,028 + $1,248.99 = $10,276.99).
 export const HECS_HELP = {
-  minimumThreshold: 67_000,
+  minimumThreshold: 69_528,
   repaymentSystem: "Marginal" as const,
-  previousThreshold: 54_435,
+  previousThreshold: 67_000,
+  indexationDate: "1 June 2026",
+  indexationRate: 0.028,
+  bands: [
+    { min: 0, max: 69_528, marginalRate: 0, base: 0, label: "Below threshold" },
+    { min: 69_529, max: 129_717, marginalRate: 0.15, base: 0, label: "15c per $1 over $69,528" },
+    { min: 129_718, max: 186_050, marginalRate: 0.17, base: 9_028, label: "$9,028 + 17c per $1 over $129,717" },
+    { min: 186_051, max: Infinity, marginalRate: 0.10, base: 0, label: "10% of total repayment income" },
+  ] as readonly HECSBand[],
+} as const;
+
+/** FY2025-26 bands, retained for year-over-year comparison only. */
+export const HECS_HELP_2025_26 = {
+  minimumThreshold: 67_000,
   bands: [
     { min: 0, max: 67_000, marginalRate: 0, base: 0, label: "Below threshold" },
     { min: 67_001, max: 125_000, marginalRate: 0.15, base: 0, label: "15c per $1 over $67,000" },
@@ -83,9 +134,13 @@ export const HECS_HELP = {
 } as const;
 
 // ---------- Employment ----------
+// National Minimum Wage from 1 July 2026 (Fair Work Commission Annual Wage
+// Review 2026; award minimums rose 4.75%). FY2025-26 was $24.95 / $948.00.
 export const EMPLOYMENT = {
-  minimumWageHourly: 24.10,
-  minimumWageWeekly: 915.90,
+  minimumWageHourly: 26.44,
+  minimumWageWeekly: 1_004.90,
+  minimumWageHourlyPrevious: 24.95,
+  minimumWageWeeklyPrevious: 948.00,
   standardWeeklyHours: 38,
   casualLoading: 0.25,
   annualLeaveWeeks: 4,
@@ -165,10 +220,11 @@ export const SOURCES = {
 
 // ---------- Site Config ----------
 export const SITE_CONFIG = {
-  financialYear: "2025-26",
-  financialYearStart: "1 July 2025",
-  financialYearEnd: "30 June 2026",
-  lastVerified: "14 March 2026",
+  financialYear: "2026-27",
+  financialYearStart: "1 July 2026",
+  financialYearEnd: "30 June 2027",
+  previousFinancialYear: "2025-26",
+  lastVerified: "28 July 2026",
   domain: "pay-calculator-australia.com",
   baseUrl: "https://pay-calculator-australia.com",
   email: "hello@pay-calculator-australia.com",
@@ -186,7 +242,7 @@ export const SITE_CONFIG = {
  */
 export function calculateIncomeTax(income: number, resident = true): number {
   if (income <= 0) return 0;
-  const brackets = resident ? TAX_BRACKETS_2025_26 : NON_RESIDENT_TAX_BRACKETS;
+  const brackets = resident ? TAX_BRACKETS : NON_RESIDENT_TAX_BRACKETS;
 
   for (let i = brackets.length - 1; i >= 0; i--) {
     const bracket = brackets[i];
@@ -219,8 +275,12 @@ export function calculateLITO(income: number): number {
  */
 export function calculateMedicareLevy(income: number): number {
   if (income <= 0) return 0;
-  // Simplified — low-income reduction not fully modelled
-  return Math.round(income * MEDICARE_LEVY.rate);
+  // Low-income shading: nil below the threshold, then phasing in at 10c per $1
+  // over it until the full 2% applies. Previously this returned a flat 2% from
+  // the first dollar, which overstated the levy for every low-income earner.
+  if (income <= MEDICARE_LEVY.lowIncomeThreshold) return 0;
+  const shaded = (income - MEDICARE_LEVY.lowIncomeThreshold) * MEDICARE_LEVY.shadeInRate;
+  return Math.round(Math.min(income * MEDICARE_LEVY.rate, shaded));
 }
 
 /**
@@ -239,21 +299,24 @@ export function calculateMedicareSurcharge(income: number, hasPrivateHealth: boo
 export function calculateHECS(income: number): number {
   if (income <= HECS_HELP.minimumThreshold) return 0;
 
+  // Driven entirely by HECS_HELP.bands. Previously the band boundaries were
+  // hardcoded here ($125,000) and silently disagreed with the band data once
+  // the thresholds were indexed, producing $11,079 where the ATO's own worked
+  // example gives $10,276.99.
   const bands = HECS_HELP.bands;
 
-  // Band 3: 10% of total income
-  if (income >= bands[3].min) {
-    return Math.round(income * bands[3].marginalRate);
+  // Top band: a flat percentage of total repayment income, not a marginal rate.
+  const top = bands[bands.length - 1];
+  if (income >= top.min) {
+    return Math.round(income * top.marginalRate);
   }
 
-  // Band 2: $8,700 + 17c per $1 over $125,000
-  if (income >= bands[2].min) {
-    return Math.round(bands[2].base + (income - 125_000) * bands[2].marginalRate);
-  }
-
-  // Band 1: 15c per $1 over $67,000
-  if (income >= bands[1].min) {
-    return Math.round((income - HECS_HELP.minimumThreshold) * bands[1].marginalRate);
+  // Marginal bands: base plus the rate applied to income above the band floor.
+  for (let i = bands.length - 2; i >= 1; i--) {
+    const band = bands[i];
+    if (income >= band.min) {
+      return Math.round(band.base + (income - (band.min - 1)) * band.marginalRate);
+    }
   }
 
   return 0;
@@ -380,7 +443,7 @@ export function calculatePayBreakdown(inputs: CalculatorInputs): PayBreakdown {
 
   // Find marginal rate
   let marginalTaxRate = 0;
-  for (const bracket of TAX_BRACKETS_2025_26) {
+  for (const bracket of TAX_BRACKETS) {
     if (taxableIncome >= bracket.min) {
       marginalTaxRate = bracket.rate + MEDICARE_LEVY.rate;
     }

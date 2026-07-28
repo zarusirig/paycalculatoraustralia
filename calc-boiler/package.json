@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "rm -rf .tmp-test && tsc lib/constants/australian-tax.ts lib/constants/payg-withholding.ts lib/constants/__tests__/payg-withholding.test.ts --outDir .tmp-test --module commonjs --target es2022 --moduleResolution node --esModuleInterop --skipLibCheck && node --test '.tmp-test/__tests__/payg-withholding.test.js'; code=$?; rm -rf .tmp-test; exit $code"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
