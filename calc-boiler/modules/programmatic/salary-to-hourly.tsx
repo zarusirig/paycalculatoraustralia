@@ -281,6 +281,10 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
             <p className="font-semibold text-navy mb-1">Award Rates</p>
             <p className="text-sm text-warmgray">Find the minimum hourly rate for your industry and classification level.</p>
           </a>
+          <a href={`/hourly-to-salary/${nearestHourlyRate(grossHourly)}/`} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
+            <p className="font-semibold text-navy mb-1">{formatAUD(nearestHourlyRate(grossHourly), 2)} an Hour Is How Much a Year?</p>
+            <p className="text-sm text-warmgray">The same conversion in reverse, with part-time and casual hours.</p>
+          </a>
         </div>
       </section>
 
@@ -339,5 +343,13 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
     </div>
+  );
+}
+
+/** Nearest hourly rate that has a /hourly-to-salary/ page, for the reverse link. */
+const HOURLY_STEPS = [30, 32, 33, 35, 36, 37, 38, 40, 45, 50, 55, 60];
+function nearestHourlyRate(hourly: number): number {
+  return HOURLY_STEPS.reduce((best, r) =>
+    Math.abs(r - hourly) < Math.abs(best - hourly) ? r : best,
   );
 }

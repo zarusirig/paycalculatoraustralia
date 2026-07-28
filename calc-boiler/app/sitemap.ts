@@ -182,6 +182,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
+  // 8b. Programmatic /hourly-to-salary/ pages — the reverse direction, which
+  // carries more AU volume than salary→hourly (gap analysis §D1). Priority 0.5.
+  const hourlyToSalaryRates = [30, 32, 33, 35, 36, 37, 38, 40, 45, 50, 55, 60];
+  for (const rate of hourlyToSalaryRates) {
+    allPages.push({
+      slug: `hourly-to-salary/${rate}`,
+      changeFrequency: "yearly" as const,
+      priority: 0.5,
+    });
+  }
+
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
   for (const slug of compliancePages) {

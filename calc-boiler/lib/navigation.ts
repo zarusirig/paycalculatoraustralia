@@ -326,6 +326,8 @@ export const FOOTER_GUIDES_EMPLOYMENT = [
   { href: "/parental-leave-pay/", label: "Parental Leave Pay" },
   { href: "/zone-tax-offset/", label: "Zone Tax Offset" },
   { href: "/sapto-calculator/", label: "SAPTO Calculator" },
+  { href: "/hourly-to-salary/40/", label: "$40 an Hour Is How Much a Year" },
+  { href: "/hourly-to-salary/35/", label: "$35 an Hour Is How Much a Year" },
   { href: "/average-salary-australia/", label: "Average Salary Australia" },
   { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO Pay" },
   { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
