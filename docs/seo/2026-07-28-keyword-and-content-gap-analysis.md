@@ -332,14 +332,21 @@ links) · 3 (dormant-page titles retargeted) · 4 (FAQ/JSON-LD figures) ·
 the verified super caps, figures in programmatic titles, and the 52-week
 hourly basis.
 
-**Open — all genuine new-build work needing its own scoping:** 6 (zone tax
-offset calculator), 8 (per-award rate pages), 9 (Payday Super + SGC),
-10 (`/hourly-to-salary/[rate]/`), 11 (work hours calculator), 12 (CGT),
-plus SAPTO, the holidays cluster and the occupational clusters.
+**Also done, 28 July:** 6 (zone tax offset calculator) — shipped with a full
+4,536-location ATO zone lookup and 15 corrected defects on the page. See
+`docs/superpowers/specs/2026-07-28-zone-tax-offset-calculator-design.md` §8.
+The audit found the page's headline offset figure ($1,511) was wrong, and that
+13 of the 23 towns it named were in the wrong zone.
 
-The highest-value next item is **6, the zone tax offset calculator** — KD 0,
-zero SERP features, DR-1 and DR-2 pages in the top 10, and we already rank
-7.3 on 440 impressions with a guide and no calculator.
+**Open — all genuine new-build work needing its own scoping:** 8 (per-award
+rate pages), 9 (Payday Super + SGC), 10 (`/hourly-to-salary/[rate]/`),
+11 (work hours calculator), 12 (CGT), plus SAPTO, the holidays cluster and the
+occupational clusters.
+
+The highest-value next item is now the **SAPTO cluster** — `sapto calculator`
+at 500 volume, KD 0, **CPC $17.00** and no AI Overview, with ~4,800 combined
+volume at KD 0–3 across the cluster. We have no SAPTO page at all, only a
+passing mention on `/low-income-tax-offset/`.
 
 | # | Work | Effort | Why here |
 |---|---|---|---|

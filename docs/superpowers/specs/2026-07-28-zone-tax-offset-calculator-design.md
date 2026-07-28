@@ -1,7 +1,7 @@
 # Zone Tax Offset Calculator — Design
 
 **Date:** 28 July 2026
-**Status:** Approved, not yet implemented
+**Status:** Implemented in full. See §8.
 **Branch:** `seo/fy2026-27-recovery`
 **Site:** pay-calculator-australia.com (`calc-boiler/`, Next.js App Router, `output: "export"`)
 **Companion docs:**
@@ -296,3 +296,66 @@ says so itself) and links to the relevant state page and the special-area criter
 **Measurement.** Baseline for `/zone-tax-offset/`: 440 impressions, 1 click, position
 7.3 (GSC 28d to ~25 Jul 2026). Re-export the same comparison after deploy. Do not judge
 by Ahrefs — it understates this site ~8×.
+
+---
+
+## 8. Implementation status (28 July 2026)
+
+Six commits on `seo/fy2026-27-recovery`, `1b302da` → `ef85b7b`.
+
+| Work | State | Commit |
+|---|---|---|
+| Offset engine, ATO worksheets 4–7 | **Done** | `1b302da` |
+| Calculator UI + 15 guide defects fixed | **Done** | `c5c98bf` |
+| Zone-list pipeline + Tasmania | **Done** | `252186e` |
+| Northern Territory (522) | **Done** | `2dff0b3` |
+| Town lookup wired into calculator | **Done** | `720a0d6` |
+| NSW (206) + SA (444) | **Done** | `43d7557` |
+| WA (1,515) + external territories (5) | **Done** | `c90e051` |
+| Queensland (1,764) | **Done** | `ef85b7b` |
+
+**Zone list complete: 4,536 locations across all seven ATO lists.**
+By code: B 1,988 · AS 938 · BS 845 · A 763 · N 2.
+
+`npm test` 11 → **123 passing**. Build clean, tsc clean, eslint clean.
+Adds 38 KB gzipped to this route's chunk only.
+
+### What the town-list audit found
+
+The old page named 23 towns. **13 were wrong and 3 were not on the ATO list at all.**
+
+| Town | Published | Actual | Effect on offset |
+|---|---|---|---|
+| Darwin, Palmerston, Humpty Doo | Zone B | **Zone A** | $57 → $338 |
+| Broome, Carnarvon | Zone B | **Zone A** | $57 → $338 |
+| Exmouth | Zone A | **A special area** | $338 → $1,173 |
+| Birdsville | Zone A | **A special area** | $338 → $1,173 |
+| Broken Hill | Zone A | **Zone B** | $338 → $57 |
+| Longreach, Winton | Zone A | **Zone B** | $338 → $57 |
+| Tibooburra, White Cliffs | Zone A | **B special area** | $338 → $1,173 |
+| Coober Pedy, Roxby Downs, Leigh Creek | Zone A | **B special area** | $338 → $1,173 |
+| Woomera | Zone A | **Zone B** | $338 → $57 |
+| Tennant Creek | Zone A | **A special area** | $338 → $1,173 |
+| Geraldton, Rockhampton, Gladstone | Zone B | **not on the ATO list** | no entitlement |
+
+Errors ran in both directions, so this was not a systematic offset — it was a
+list that had drifted from its source with no mechanism to detect it. Tests now
+assert every corrected value, and absence assertions cover the three towns that
+carry no entitlement so none can be reintroduced.
+
+### Deliberately not done
+
+- **Computing the invalid/invalid carer offset.** Taken as an input, exactly as
+  ATO worksheet 4 row f does. Computing it means nine further worksheets for a
+  small minority of claimants.
+- **Postcode lookup.** The ATO publishes no postcode mapping; deriving one would
+  mean inventing data on a YMYL page.
+- **FY2026-27 amounts.** Not published by the ATO. The page is labelled 2025-26
+  and says so explicitly.
+
+### Known constraint for the next maintainer
+
+`curl` against ato.gov.au returns **HTTP 403**, so this dataset cannot be
+refreshed by script — it needs a proxied fetch (firecrawl) and re-transcription.
+The ATO updates the lists annually around 1 July. `ZONE_LIST_LAST_UPDATED` in
+`lib/data/zones/types.ts` is surfaced in the UI so staleness is visible.
