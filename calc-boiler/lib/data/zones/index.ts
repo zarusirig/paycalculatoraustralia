@@ -8,22 +8,44 @@
 // =============================================================================
 
 import { parseZoneBlock, type StateCode, type ZoneEntry } from "./types";
+import { EXT_RAW } from "./ext";
 import { NSW_RAW } from "./nsw";
 import { NT_RAW } from "./nt";
 import { SA_RAW } from "./sa";
 import { TAS_RAW } from "./tas";
+import { WA_RAW } from "./wa";
 
 const RAW_BY_STATE: Partial<Record<StateCode, string>> = {
   NSW: NSW_RAW,
   NT: NT_RAW,
   SA: SA_RAW,
   TAS: TAS_RAW,
+  WA: WA_RAW,
+  EXT: EXT_RAW,
 };
 
-/** Every transcribed location, across every registered state. */
-export const ZONE_LOCATIONS: ZoneEntry[] = Object.entries(RAW_BY_STATE)
-  .flatMap(([state, raw]) => parseZoneBlock(state as StateCode, raw as string))
-  .sort((a, b) => a.name.localeCompare(b.name) || a.state.localeCompare(b.state));
+/**
+ * Every transcribed location, across every registered state.
+ *
+ * Deduped on (state, name, zone): the ATO's own pages repeat some rows — its
+ * WA page lists Mouroubra, Mowanjum, Mowanjum Mission, Mowla Bluff and Moyagee
+ * twice. Identical repeats are collapsed silently; a repeat with a CONFLICTING
+ * zone is left in place so the duplicate test fails loudly rather than picking
+ * a winner at random.
+ */
+export const ZONE_LOCATIONS: ZoneEntry[] = (() => {
+  const seen = new Set<string>();
+  const out: ZoneEntry[] = [];
+  for (const [state, raw] of Object.entries(RAW_BY_STATE)) {
+    for (const entry of parseZoneBlock(state as StateCode, raw as string)) {
+      const key = `${entry.state}|${normaliseLocation(entry.name)}|${entry.zone}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(entry);
+    }
+  }
+  return out.sort((a, b) => a.name.localeCompare(b.name) || a.state.localeCompare(b.state));
+})();
 
 /** States transcribed so far. Used by the UI to say what is and isn't covered. */
 export const COVERED_STATES: StateCode[] = Object.keys(RAW_BY_STATE) as StateCode[];

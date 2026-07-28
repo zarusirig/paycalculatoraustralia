@@ -171,7 +171,48 @@ const SPOT_CHECKS: { name: string; zone: ZoneCode }[] = [
   { name: "Marree", zone: "BS" },
   { name: "Innamincka", zone: "BS" },
   { name: "Ilbunga", zone: "AS" },
+  // Western Australia. Broome and Carnarvon are Zone A — the site published
+  // both as Zone B. Exmouth is a special area, not plain Zone A.
+  { name: "Broome", zone: "A" },
+  { name: "Carnarvon", zone: "A" },
+  { name: "Exmouth", zone: "AS" },
+  { name: "Karratha", zone: "A" },
+  { name: "Port Hedland", zone: "A" },
+  { name: "Newman", zone: "A" },
+  { name: "Tom Price", zone: "A" },
+  { name: "Derby", zone: "A" },
+  { name: "Kununurra", zone: "AS" },
+  { name: "Halls Creek", zone: "AS" },
+  { name: "Fitzroy Crossing", zone: "AS" },
+  { name: "Wyndham", zone: "AS" },
+  { name: "Kalgoorlie", zone: "B" },
+  { name: "Esperance", zone: "B" },
+  { name: "Meekatharra", zone: "BS" },
+  { name: "Cue", zone: "BS" },
+  { name: "Christmas Island", zone: "AS" },
+  { name: "Cocos (Keeling) Islands", zone: "AS" },
+  // External territories
+  { name: "Australian Antarctic Territory", zone: "AS" },
+  { name: "Macquarie Island", zone: "AS" },
+  { name: "Heard Island", zone: "AS" },
 ];
+
+test("Geraldton is absent — it is not on the ATO zone list at all", () => {
+  // The site listed Geraldton as Zone B. The ATO's WA page does not contain
+  // it; "Geraldine" (Zone B) is a different, far smaller locality.
+  const hit = ZONE_LOCATIONS.find((e) => normaliseLocation(e.name) === "geraldton");
+  assert.equal(hit, undefined);
+  assert.ok(ZONE_LOCATIONS.some((e) => e.name === "Geraldine"));
+});
+
+test("the ATO's repeated WA rows are deduped", () => {
+  for (const name of ["Mouroubra", "Mowanjum", "Mowanjum Mission", "Moyagee"]) {
+    const hits = ZONE_LOCATIONS.filter(
+      (e) => e.state === "WA" && normaliseLocation(e.name) === normaliseLocation(name),
+    );
+    assert.equal(hits.length, 1, `${name} appears ${hits.length} times`);
+  }
+});
 
 for (const { name, zone } of SPOT_CHECKS) {
   test(`spot check: ${name} is ${zone}`, () => {
