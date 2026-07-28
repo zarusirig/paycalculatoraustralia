@@ -347,17 +347,25 @@ rate pages), 13 (Payday Super + SGC), 10 (`/hourly-to-salary/[rate]/`),
 14 (work hours calculator), 15 (CGT), plus the holidays cluster and the
 occupational clusters.
 
-**Next up, and a note on sequencing.** The brief's order puts per-award rate
-pages next (`schads award pay rates` 2,900 at KD 1, `hospitality award rates`
-1,400 at KD 0). That is a *data-verification* project against Fair Work of
+**Also done, 28 July:** 10 (`/hourly-to-salary/[rate]/`) — 12 Tier 1 rate
+pages covering ~7,090/mo, cross-linked both ways with `/salary-to-hourly/`
+and carrying FAQPage markup this programmatic family previously lacked
+entirely. Site 215 → 227 pages.
+
+**Next up, and a note on sequencing.** Per-award rate pages (`schads award pay
+rates` 2,900 at KD 1, `hospitality award rates` 1,400 at KD 0) are next in the
+brief's order, but they are a *data-verification* project against Fair Work of
 roughly the same shape and size as the ATO zone list — award classifications,
 junior and casual loadings, and penalty rates, all YMYL, all changing 1 July.
-It should be scoped as its own piece of work rather than tacked on.
+Scope it as its own piece of work.
 
-`/hourly-to-salary/[rate]/` (item 10, ~7,090/mo across 12 Tier 1 pages) is the
-cheaper next build: it mirrors the existing `/salary-to-hourly/` family, the
-conversion maths already exists in `EMPLOYMENT.hoursPerYear`, and it needs no
-new external data. If the aim is clicks per unit of risk, do 10 before 12.
+The zone-list precedent is the argument for that care: 13 of the 23 towns the
+old page named were in the wrong zone. An award-rate page that is wrong is a
+worse failure, because a reader may act on it in a pay dispute.
+
+Tier 2 of `/hourly-to-salary/` (the remaining ~18 rates, ~2,000/mo) is the
+cheapest remaining item — the template now exists, so it is a one-line change
+to `TIER_1_RATES` plus the sitemap list.
 
 | # | Work | Effort | Why here |
 |---|---|---|---|
