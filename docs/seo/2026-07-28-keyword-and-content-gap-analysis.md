@@ -324,10 +324,22 @@ So **copying wagecalculator's page types does not close the traffic gap** — th
 
 Sequenced by recoverable clicks per unit of effort. Steps 1–2 assume the correctness work in the companion doc lands first — do not push Google to index or re-crawl pages whose figures are wrong.
 
-**Status, 28 July 2026** — branch `seo/fy2026-27-recovery`, not pushed:
-items **1 and 3 are done**, item **2 is partial** (footer route taken; the
-navbar still emits no crawlable links). Everything from item 4 down is open.
-Verification and exclusions are recorded in §13 of the companion design doc.
+**Status, 28 July 2026** — branch `seo/fy2026-27-recovery`, 9 commits, not pushed.
+
+**Done:** 1 (titles) · 2 (indexation — via `/site-directory/`, 158 crawlable
+links) · 3 (dormant-page titles retargeted) · 4 (FAQ/JSON-LD figures) ·
+5 (minimum wage) · plus the whole correctness programme in the companion doc,
+the verified super caps, figures in programmatic titles, and the 52-week
+hourly basis.
+
+**Open — all genuine new-build work needing its own scoping:** 6 (zone tax
+offset calculator), 8 (per-award rate pages), 9 (Payday Super + SGC),
+10 (`/hourly-to-salary/[rate]/`), 11 (work hours calculator), 12 (CGT),
+plus SAPTO, the holidays cluster and the occupational clusters.
+
+The highest-value next item is **6, the zone tax offset calculator** — KD 0,
+zero SERP features, DR-1 and DR-2 pages in the top 10, and we already rank
+7.3 on 440 impressions with a guide and no calculator.
 
 | # | Work | Effort | Why here |
 |---|---|---|---|

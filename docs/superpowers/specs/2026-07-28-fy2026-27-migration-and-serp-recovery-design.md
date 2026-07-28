@@ -403,15 +403,29 @@ Title width 842px → 536px average, over-cap 92/95 → 4 (news only).
   `// Simplified` comment, overstating the levy for every low-income earner.
   Now shades in from $28,011.
 
-### Deliberately not done
+### Resolved in a second pass
 
-- **Navbar server-rendering.** The mega menu still emits no crawlable links.
-  Unpicking framer-motion animation state is a larger change with real UI
-  risk; the footer route solves the crawl problem for the seven affected
-  pages. The 40+ guide links and all state links remain nav-only.
-- **Super contribution caps and maximum contribution base** — still the
-  unverified values from §3. `concessionalCap` is `30_000`; the repo's own
-  news article says `32_500` from 1 July 2026. **Needs an ATO check.**
+- **Crawlable links.** Rather than server-rendering the navbar (real UI risk),
+  added **`/site-directory/`** — one server-rendered hub built from the same
+  navigation data, rendering **158 unique internal links**. Verified that
+  previously nav-only URLs (`/zone-tax-offset/`, `/division-293-tax/`,
+  `/super-co-contribution/`, `/tax-on/115000/`) are now reachable. Linked once
+  from the footer and in the XML sitemap. The navbar itself is unchanged.
+- **Super constants verified at the ATO — all three had changed.**
+  concessional cap `30,000 → 32,500`; non-concessional `120,000 → 130,000`;
+  maximum contribution base `62,500/quarter → 270,830/YEAR`. The base changed
+  *structure*: Payday Super commenced 1 July 2026, so SG is owed each payday
+  on qualifying earnings. Six modules described the quarterly base as current.
+- **Figures in `/tax-on/` and `/take-home-pay-on/` titles**, e.g.
+  `Tax on $50,000 in Australia — $5,270 Income Tax (12.5%)` (523px). Also
+  completes the differentiation decision — neither family's title now carries
+  the other's head phrase, which is what made the 35 pairs compete.
+- **Hourly basis 52.18 → 52 weeks.** We were the only AU site with a
+  different answer ($40.35 vs $40.49 on $80,000). The constant was duplicated
+  between route and module and had drifted; both now read
+  `EMPLOYMENT.hoursPerYear`.
+
+### Deliberately not done
 - **`/fringe-benefits-tax/`** — FBT runs 1 April–31 March, so its FY2025-26
   labelling is a different cycle. No verified figures for the year ending
   31 March 2027.
