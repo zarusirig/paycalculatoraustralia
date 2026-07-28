@@ -270,7 +270,7 @@ export default function FortnightlyPayCalculatorPage() {
             </p>
 
             <p className="text-warmgray mb-4">
-              Superannuation is not deducted from fortnightly pay. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on top of your gross salary, adding {formatAUD(SUPER_GUARANTEE.maxSGPerQuarter)} per quarter for employees at or above the maximum super contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)} per quarter.
+              Superannuation is not deducted from fortnightly pay. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on top of your gross salary, up to {formatAUD(SUPER_GUARANTEE.maxSGAnnual)} a year for employees at or above the maximum super contribution base of {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}.
             </p>
           </section>
 

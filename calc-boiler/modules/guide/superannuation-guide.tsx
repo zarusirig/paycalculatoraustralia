@@ -283,10 +283,10 @@ export default function SuperannuationGuidePage() {
             <section id="max-contribution-base">
               <h2>Is There a Maximum Super Contribution Base?</h2>
               <p>
-                The maximum super contribution base for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)} per quarter</strong>, equivalent to {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter * 4)} per year. Employers are not legally required to pay the 12% SG on earnings above this threshold.
+                With Payday Super from 1 July 2026, the maximum super contribution base is an annual figure: <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} for FY{SITE_CONFIG.financialYear}</strong> (previously {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)} per quarter). Employers are not legally required to pay the 12% SG on earnings above this threshold.
               </p>
               <p>
-                The maximum SG your employer must pay per quarter is <strong>{formatAUD(SUPER_GUARANTEE.maxSGPerQuarter)}</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} &times; {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}). This cap affects employees earning above approximately {formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter * 4)} per year. Some employers voluntarily pay super on total salary including amounts above the maximum contribution base as part of an executive remuneration package.
+                The maximum SG your employer must pay for the year is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)}</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} &times; {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}). This cap affects employees earning above {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} per year. Some employers voluntarily pay super on total salary including amounts above the maximum contribution base as part of an executive remuneration package.
               </p>
               <p>
                 The maximum contribution base is indexed annually in line with Average Weekly Ordinary Time Earnings (AWOTE). For the previous year (FY2024-25), the quarterly maximum was $62,270. Use our <Link href="/superannuation-calculator/">Superannuation Calculator</Link> to determine whether the cap applies to your salary.
@@ -431,7 +431,7 @@ export default function SuperannuationGuidePage() {
                       <tr>
                         <td className="px-6 py-4 font-medium">Maximum contribution base (quarterly)</td>
                         <td className="px-6 py-4">$62,270</td>
-                        <td className="px-6 py-4 font-bold text-eucalyptus-dark">{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarter)}</td>
+                        <td className="px-6 py-4 font-bold text-eucalyptus-dark">{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Concessional cap</td>

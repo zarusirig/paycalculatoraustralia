@@ -126,6 +126,7 @@ export default function Footer() {
                 <li><Link href="/payslip-generator/" className="text-sandstone-dark/45 hover:text-eucalyptus">Payslip Generator</Link></li>
                 <li><Link href="/ytd-income-calculator/" className="text-sandstone-dark/45 hover:text-eucalyptus">YTD Income Calculator</Link></li>
                 <li><Link href="/stsl-on-payslip/" className="text-sandstone-dark/45 hover:text-eucalyptus">STSL on Your Payslip</Link></li>
+                <li><Link href="/site-directory/" className="text-sandstone-dark/45 hover:text-eucalyptus font-medium">All Pages &rarr;</Link></li>
               </ul>
             </div>
           </div>

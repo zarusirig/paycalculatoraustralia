@@ -84,15 +84,35 @@ export const MEDICARE_LEVY = {
   },
 } as const;
 
-// ---------- Superannuation Guarantee ----------
+// ---------- Superannuation Guarantee (FY2026-27) ----------
+// Source: ATO "Super guarantee" key rates and thresholds, last updated
+// 17 April 2026, and ATO "Contributions caps".
+//
+// 12% is the legislated ceiling — there are no further general step-ups. The
+// only remaining escalation is Norfolk Island's transitional rate (11% for
+// FY2026-27, reaching 12% on 1 July 2027).
+//
+// Payday Super commenced 1 July 2026: SG is owed each payday, calculated on
+// QUALIFYING EARNINGS rather than ordinary time earnings, and the maximum
+// contribution base became an ANNUAL figure instead of a quarterly one.
 export const SUPER_GUARANTEE = {
   rate: 0.12,
   effectiveDate: "1 July 2025",
   previousRate: 0.115,
-  maxContributionBasePerQuarter: 62_500,
-  maxSGPerQuarter: 7_500,
-  concessionalCap: 30_000,
-  nonConcessionalCap: 120_000,
+  norfolkIslandRate: 0.11,
+  /** Annual from 1 July 2026 (Payday Super). Formula: cap × 100 ÷ 12. */
+  maxContributionBaseAnnual: 270_830,
+  maxSGAnnual: 32_499.60,
+  /** Quarterly base applied only to quarters ending on or before 30 June 2026. */
+  maxContributionBasePerQuarterUntil2026: 62_500,
+  maxSGPerQuarterUntil2026: 7_500,
+  concessionalCap: 32_500,
+  concessionalCapPrevious: 30_000,
+  nonConcessionalCap: 130_000,
+  nonConcessionalCapPrevious: 120_000,
+  bringForwardCap: 390_000,
+  transferBalanceCap: 2_100_000,
+  paydaySuperStart: "1 July 2026",
 } as const;
 
 // ---------- HECS-HELP Repayment (FY2025-26 — New Marginal System) ----------

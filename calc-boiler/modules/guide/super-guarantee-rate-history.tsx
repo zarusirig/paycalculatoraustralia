@@ -192,7 +192,7 @@ export default function SuperGuaranteeRateHistoryPage() {
                 Opponents, including some economists and employer groups, argue that further increases would suppress wages and disproportionately affect younger workers who face housing affordability challenges. The current political consensus is that 12% represents the final rate for the foreseeable future.
               </p>
               <p>
-                Workers seeking to build super beyond the 12% SG can make <strong>voluntary concessional contributions</strong> up to the $30,000 annual cap (including employer SG) or after-tax non-concessional contributions up to $120,000 per year. Read more in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+                Workers seeking to build super beyond the 12% SG can make <strong>voluntary concessional contributions</strong> up to the $32,500 annual cap (including employer SG) or after-tax non-concessional contributions up to $130,000 per year. Read more in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
               </p>
             </section>
 

@@ -30,7 +30,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 
   return {
-    title: `Take-Home Pay on ${formattedSalary} — Net Pay After Tax & Super`,
+    // Leads with the net figure. Owns net-pay intent; /tax-on/ owns tax-owed
+    // intent, so neither title carries the other's head phrase.
+    title: `Take-Home Pay on ${formattedSalary} — ${formatAUD(breakdown.takeHomePay)}/yr, ${formatAUD(breakdown.weekly)}/wk`,
     description: `On a ${formattedSalary} salary in Australia, your take-home pay is ${formatAUD(breakdown.takeHomePay)}/year or ${formatAUD(breakdown.weekly)}/week after ${formatAUD(breakdown.netIncomeTax)} income tax and ${formatAUD(breakdown.medicareLevy)} Medicare levy. Full ${SITE_CONFIG.financialYear} breakdown.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`,
