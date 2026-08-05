@@ -16,11 +16,15 @@ import {
   HECS_HELP,
   SOURCES,
   SITE_CONFIG,
+  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -216,8 +220,8 @@ export default function PayCalculatorNSWPage() {
           {/* H2: What Is NSW Payroll Tax? */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is NSW Payroll Tax?</h2>
-            <p className="text-warmgray mb-4">NSW payroll tax is a state tax that employers pay at a rate of <strong>5.45%</strong> on total annual wages exceeding the <strong>$1,200,000</strong> threshold, administered by Revenue NSW.</p>
-            <p className="text-warmgray mb-4">Payroll tax is strictly an employer cost. It does not reduce employee take-home pay or appear on payslips. Employers with wage bills below the $1,200,000 annual threshold pay no payroll tax at all, which exempts most small businesses. The tax applies to wages, superannuation contributions, fringe benefits, and contractor payments in many cases.</p>
+            <p className="text-warmgray mb-4">NSW payroll tax is a state tax that employers pay at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)}</strong> on total annual wages exceeding the <strong>{formatAUD(STATE_PAYROLL_TAX.NSW.threshold)}</strong> threshold, administered by Revenue NSW.</p>
+            <p className="text-warmgray mb-4">Payroll tax is strictly an employer cost. It does not reduce employee take-home pay or appear on payslips. Employers with wage bills below the {formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} annual threshold pay no payroll tax at all, which exempts most small businesses. The tax applies to wages, superannuation contributions, fringe benefits, and contractor payments in many cases.</p>
 
             {/* H3: NSW vs Other States Comparison */}
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">How Does NSW Payroll Tax Compare to Other States?</h3>
@@ -232,18 +236,26 @@ export default function PayCalculatorNSWPage() {
                   </tr>
                 </thead>
                 <tbody className="text-warmgray">
-                  <tr className="border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"><td className="px-4 py-2.5 text-navy">New South Wales</td><td className="text-right px-4 py-2.5">5.45%</td><td className="text-right px-4 py-2.5">$1,200,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2.5">Victoria</td><td className="text-right px-4 py-2.5">4.85%</td><td className="text-right px-4 py-2.5">$900,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2.5">Queensland</td><td className="text-right px-4 py-2.5">4.75%</td><td className="text-right px-4 py-2.5">$1,300,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2.5">Western Australia</td><td className="text-right px-4 py-2.5">5.50%</td><td className="text-right px-4 py-2.5">$1,000,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2.5">South Australia</td><td className="text-right px-4 py-2.5">4.95%</td><td className="text-right px-4 py-2.5">$1,500,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2.5">Tasmania</td><td className="text-right px-4 py-2.5">4.00%</td><td className="text-right px-4 py-2.5">$1,250,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2.5">ACT</td><td className="text-right px-4 py-2.5">6.85%</td><td className="text-right px-4 py-2.5">$2,000,000</td></tr>
-                  <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2.5">Northern Territory</td><td className="text-right px-4 py-2.5">5.50%</td><td className="text-right px-4 py-2.5">$1,500,000</td></tr>
+                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                    const s = STATE_PAYROLL_TAX[code];
+                    const isHome = code === "NSW";
+                    const rowClass = isHome
+                      ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
+                      : i % 2 === 0
+                      ? "border-t border-sandstone-dark/10 bg-sandstone/30"
+                      : "border-t border-sandstone-dark/10";
+                    return (
+                      <tr key={code} className={rowClass}>
+                        <td className={`px-4 py-2.5 ${isHome ? "text-navy" : ""}`}>{s.name}</td>
+                        <td className="text-right px-4 py-2.5">{formatPercent(s.rate, 2)}</td>
+                        <td className="text-right px-4 py-2.5">{formatAUD(s.threshold)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray">Employers expanding into NSW from Victoria face a higher threshold ($1,200,000 vs $900,000) but a higher rate (5.45% vs 4.85%). Use the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to model total employment costs including payroll tax, superannuation, and workers compensation premiums.</p>
+            <p className="text-warmgray">Employers expanding into NSW from Victoria face a higher threshold ({formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} vs {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)}) but a higher rate ({formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)} vs {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}). Use the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to model total employment costs including payroll tax, superannuation, and workers compensation premiums.</p>
           </section>
 
           {/* --- CONTEXT BORDER --- */}
@@ -324,7 +336,7 @@ export default function PayCalculatorNSWPage() {
                 No. Income tax in Australia is levied by the federal government through the ATO. The tax brackets, Medicare levy, and HECS-HELP repayment rates are exactly the same in NSW as they are in Victoria, Queensland, Western Australia, or any other state and territory. There is no state-level income tax anywhere in Australia.
               </FAQItem>
               <FAQItem value="payroll" question="What is the payroll tax threshold in NSW for FY2025-26?">
-                The NSW payroll tax threshold is <strong>$1,200,000</strong> per year. Employers pay payroll tax at <strong>5.45%</strong> only on total wages exceeding this threshold. A business with an annual wage bill of $1,500,000 pays 5.45% on the $300,000 above the threshold, equalling <strong>$16,350</strong> in payroll tax. Small businesses with wage bills below $1,200,000 pay no payroll tax.
+                The NSW payroll tax threshold is <strong>{formatAUD(STATE_PAYROLL_TAX.NSW.threshold)}</strong> per year. Employers pay payroll tax at <strong>{formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)}</strong> only on total wages exceeding this threshold. A business with an annual wage bill of $1,500,000 pays {formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)} on the {formatAUD(1_500_000 - STATE_PAYROLL_TAX.NSW.threshold)} above the threshold, equalling <strong>{formatAUD((1_500_000 - STATE_PAYROLL_TAX.NSW.threshold) * STATE_PAYROLL_TAX.NSW.rate)}</strong> in payroll tax. Small businesses with wage bills below {formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} pay no payroll tax.
               </FAQItem>
               <FAQItem value="employee" question="Do employees pay payroll tax or workers compensation premiums?">
                 No. Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These costs do not appear on your payslip and do not reduce your gross salary or take-home pay. Employers factor these on-costs into total hiring budgets, which indirectly influences salary offers.

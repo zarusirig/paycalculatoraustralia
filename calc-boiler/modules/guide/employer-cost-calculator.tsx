@@ -10,7 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, formatAUD, formatPercent } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -20,6 +20,22 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Super for employers", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers", publisher: SOURCES.ato.name },
   { title: "Payroll tax", url: "https://business.gov.au/finance/tax/payroll-tax", publisher: "Business.gov.au" },
 ];
+
+// Display order for the state-by-state payroll tax table (matches the previous hand-written order).
+const PAYROLL_TABLE_ORDER = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
+// Structural notes not modelled in STATE_PAYROLL_TAX (surcharges/discounts, not the core rate or threshold).
+const PAYROLL_TABLE_NOTE: Partial<Record<string, string>> = {
+  NSW: "Phases out above threshold",
+  VIC: "Mental health surcharge adds 0.5% above $10M",
+  QLD: "Discount for regional employers",
+  WA: "Tiered: 6.5% above $100M",
+};
+// Computed min/max across all 8 states/territories so superlative claims below can never go stale.
+const PAYROLL_RATE_ENTRIES = Object.entries(STATE_PAYROLL_TAX);
+const MIN_RATE_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].rate < a[1].rate ? b : a));
+const MAX_RATE_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].rate > a[1].rate ? b : a));
+const MIN_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold < a[1].threshold ? b : a));
+const MAX_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold > a[1].threshold ? b : a));
 
 export default function EmployerCostCalculatorPage() {
   const [baseSalary, setBaseSalary] = useState<number>(100000);
@@ -31,6 +47,17 @@ export default function EmployerCostCalculatorPage() {
   const leaveProvision = baseSalary * (4 / 52); // ~7.69% for 4 weeks annual leave
   const payrollTaxAmt = (baseSalary + superAmt) * (payrollTaxRate / 100);
   const workcoverAmt = baseSalary * (workcoverRate / 100);
+
+  // Worked example in the "Total Cost of Employment" section below — a $95,000 Victorian marketing
+  // manager. Payroll tax is sourced from STATE_PAYROLL_TAX so it can never drift from the verified rate.
+  const WORKED_SALARY = 95_000;
+  const WORKED_SUPER = WORKED_SALARY * 0.12;
+  const WORKED_ANNUAL_LEAVE = Math.round(WORKED_SALARY * (4 / 52));
+  const WORKED_PERSONAL_LEAVE = Math.round(WORKED_SALARY * (10 / 260));
+  const WORKED_PAYROLL_TAX = Math.round((WORKED_SALARY + WORKED_SUPER) * STATE_PAYROLL_TAX.VIC.rate);
+  const WORKED_WORKCOVER = Math.round(WORKED_SALARY * 0.005);
+  const WORKED_TOTAL = WORKED_SALARY + WORKED_SUPER + WORKED_ANNUAL_LEAVE + WORKED_PERSONAL_LEAVE + WORKED_PAYROLL_TAX + WORKED_WORKCOVER;
+  const WORKED_MULTIPLIER = WORKED_TOTAL / WORKED_SALARY;
 
   const trueCost = baseSalary + superAmt + leaveProvision + payrollTaxAmt + workcoverAmt;
   const costMultiplier = trueCost / baseSalary;
@@ -211,7 +238,7 @@ export default function EmployerCostCalculatorPage() {
                 <ul>
                   <li><strong>Superannuation Guarantee (SG):</strong> 12% of Ordinary Time Earnings, paid quarterly to the employee&apos;s nominated super fund</li>
                   <li><strong>Workers compensation insurance:</strong> 0.3% to 10%+ of wages depending on industry risk classification, covering workplace injury and illness</li>
-                  <li><strong>Payroll tax:</strong> 3.75% to 6.85% of total wages (including super) for employers exceeding the state-specific threshold</li>
+                  <li><strong>Payroll tax:</strong> {formatPercent(MIN_RATE_STATE[1].rate, 2)} to {formatPercent(MAX_RATE_STATE[1].rate, 2)} of total wages (including super) for employers exceeding the state-specific threshold</li>
                   <li><strong>Leave loading:</strong> Annual leave at 7.69% of base salary, personal leave at 3.85%, long service leave accrual at 1.67% per year of service</li>
                 </ul>
                 <p>
@@ -384,59 +411,43 @@ export default function EmployerCostCalculatorPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-sandstone-dark/20">
-                        <td className="px-4 py-2.5 font-medium text-navy">NSW</td>
-                        <td className="px-4 py-2.5 text-right">$1,200,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">5.45%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Phases out above threshold</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
-                        <td className="px-4 py-2.5 font-medium text-navy">VIC</td>
-                        <td className="px-4 py-2.5 text-right">$900,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">4.85%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Mental health surcharge adds 0.5% above $10M</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20">
-                        <td className="px-4 py-2.5 font-medium text-navy">QLD</td>
-                        <td className="px-4 py-2.5 text-right">$1,300,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">4.75%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Discount for regional employers</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
-                        <td className="px-4 py-2.5 font-medium text-navy">WA</td>
-                        <td className="px-4 py-2.5 text-right">$1,000,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">5.50%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Tiered: 6.50% above $100M</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20">
-                        <td className="px-4 py-2.5 font-medium text-navy">SA</td>
-                        <td className="px-4 py-2.5 text-right">$1,500,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">4.95%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Highest threshold in Australia</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
-                        <td className="px-4 py-2.5 font-medium text-navy">TAS</td>
-                        <td className="px-4 py-2.5 text-right">$1,250,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">4.00%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Lowest rate in Australia</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20">
-                        <td className="px-4 py-2.5 font-medium text-navy">ACT</td>
-                        <td className="px-4 py-2.5 text-right">$2,000,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">6.85%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Highest rate in Australia</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/20 bg-sandstone/30">
-                        <td className="px-4 py-2.5 font-medium text-navy">NT</td>
-                        <td className="px-4 py-2.5 text-right">$1,500,000</td>
-                        <td className="px-4 py-2.5 text-right font-semibold">5.50%</td>
-                        <td className="px-4 py-2.5 text-warmgray">Matches WA base rate</td>
-                      </tr>
+                      {PAYROLL_TABLE_ORDER.map((code, i) => {
+                        const s = STATE_PAYROLL_TAX[code];
+                        // Static notes are kept verbatim where still accurate; any note asserting a
+                        // "highest/lowest" superlative is instead computed from the verified constant
+                        // so it cannot go stale if thresholds/rates change again in future.
+                        const isMaxThreshold = code === MAX_THRESHOLD_STATE[0];
+                        const isMinThreshold = code === MIN_THRESHOLD_STATE[0];
+                        const isMaxRate = code === MAX_RATE_STATE[0];
+                        const isMinRate = code === MIN_RATE_STATE[0];
+                        let note = PAYROLL_TABLE_NOTE[code] ?? s.note ?? "";
+                        if (code === "SA") {
+                          // Previously hardcoded as "Highest threshold in Australia" — no longer true
+                          // now that NT's corrected $2.5m threshold exceeds SA's $1.5m.
+                          note = isMaxThreshold ? "Highest threshold in Australia" : "Third-highest threshold in Australia";
+                        } else if (code === "TAS") {
+                          note = isMinRate ? "Lowest rate in Australia" : note;
+                        } else if (code === "ACT") {
+                          note = isMaxRate ? "Highest rate in Australia" : note;
+                        } else if (code === "NT") {
+                          note = isMaxThreshold ? "Highest threshold in Australia" : "Matches WA base rate";
+                        } else if (isMinThreshold) {
+                          note = `${note} (lowest threshold in Australia)`;
+                        }
+                        return (
+                          <tr key={code} className={`border-b border-sandstone-dark/20 ${i % 2 === 1 ? "bg-sandstone/30" : ""}`}>
+                            <td className="px-4 py-2.5 font-medium text-navy">{code}</td>
+                            <td className="px-4 py-2.5 text-right">{formatAUD(s.threshold)}</td>
+                            <td className="px-4 py-2.5 text-right font-semibold">{formatPercent(s.rate, 2)}</td>
+                            <td className="px-4 py-2.5 text-warmgray">{note}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
                 <p>
-                  A business with 20 employees averaging $90,000 each has a total wage bill of $1,800,000. In Victoria, this exceeds the $900,000 threshold by $900,000, generating a payroll tax liability of <strong>$43,650</strong> (900,000 x 4.85%). The same business operating in South Australia sits above the $1,500,000 threshold by only $300,000, producing a liability of just <strong>$14,850</strong> (300,000 x 4.95%).
+                  A business with 20 employees averaging $90,000 each has a total wage bill of $1,800,000. In Victoria, this exceeds the {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold by {formatAUD(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold)}, generating a payroll tax liability of <strong>{formatAUD((1_800_000 - STATE_PAYROLL_TAX.VIC.threshold) * STATE_PAYROLL_TAX.VIC.rate)}</strong> ({(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold).toLocaleString("en-AU")} x {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}). The same business operating in South Australia sits above the {formatAUD(STATE_PAYROLL_TAX.SA.threshold)} threshold by only {formatAUD(1_800_000 - STATE_PAYROLL_TAX.SA.threshold)}, producing a liability of just <strong>{formatAUD((1_800_000 - STATE_PAYROLL_TAX.SA.threshold) * STATE_PAYROLL_TAX.SA.rate)}</strong> ({(1_800_000 - STATE_PAYROLL_TAX.SA.threshold).toLocaleString("en-AU")} x {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}).
                 </p>
               </section>
 
@@ -496,21 +507,21 @@ export default function EmployerCostCalculatorPage() {
               <section id="total-cost-worked-example">
                 <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Total Cost of Employment: Worked Example</h2>
                 <p>
-                  A Melbourne-based marketing agency hiring a full-time marketing manager at $95,000 per year faces a total employment cost of approximately <strong>$122,726</strong> in FY2025-26.
+                  A Melbourne-based marketing agency hiring a full-time marketing manager at {formatAUD(WORKED_SALARY)} per year faces a total employment cost of approximately <strong>{formatAUD(WORKED_TOTAL)}</strong> in FY2025-26.
                 </p>
                 <p>
                   The following step-by-step calculation uses real Victorian rates:
                 </p>
                 <ol>
-                  <li><strong>Base salary:</strong> $95,000</li>
-                  <li><strong>Superannuation (12% of OTE):</strong> $95,000 x 0.12 = <strong>$11,400</strong></li>
-                  <li><strong>Annual leave provision (4 weeks / 52 weeks):</strong> $95,000 x 0.0769 = <strong>$7,308</strong></li>
-                  <li><strong>Personal leave provision (10 days / 260 days):</strong> $95,000 x 0.0385 = <strong>$3,654</strong></li>
-                  <li><strong>Payroll tax (VIC: 4.85% on wages + super above $900k threshold):</strong> Assuming the business exceeds the threshold, ($95,000 + $11,400) x 0.0485 = <strong>$5,160</strong></li>
-                  <li><strong>Workers compensation (professional services at 0.5%):</strong> $95,000 x 0.005 = <strong>$475</strong></li>
+                  <li><strong>Base salary:</strong> {formatAUD(WORKED_SALARY)}</li>
+                  <li><strong>Superannuation (12% of OTE):</strong> {formatAUD(WORKED_SALARY)} x 0.12 = <strong>{formatAUD(WORKED_SUPER)}</strong></li>
+                  <li><strong>Annual leave provision (4 weeks / 52 weeks):</strong> {formatAUD(WORKED_SALARY)} x 0.0769 = <strong>{formatAUD(WORKED_ANNUAL_LEAVE)}</strong></li>
+                  <li><strong>Personal leave provision (10 days / 260 days):</strong> {formatAUD(WORKED_SALARY)} x 0.0385 = <strong>{formatAUD(WORKED_PERSONAL_LEAVE)}</strong></li>
+                  <li><strong>Payroll tax (VIC: {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)} on wages + super above {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold):</strong> Assuming the business exceeds the threshold, ({formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)}) x {STATE_PAYROLL_TAX.VIC.rate} = <strong>{formatAUD(WORKED_PAYROLL_TAX)}</strong></li>
+                  <li><strong>Workers compensation (professional services at 0.5%):</strong> {formatAUD(WORKED_SALARY)} x 0.005 = <strong>{formatAUD(WORKED_WORKCOVER)}</strong></li>
                 </ol>
                 <p>
-                  Adding these components: $95,000 + $11,400 + $7,308 + $3,654 + $5,160 + $475 = <strong>$122,997</strong>. The cost multiplier for this role is <strong>1.29x</strong>. This excludes recruitment costs, training, equipment, and office space. Factoring those in brings the realistic total closer to <strong>$135,000 to $140,000</strong>, or a multiplier of approximately 1.42x to 1.47x.
+                  Adding these components: {formatAUD(WORKED_SALARY)} + {formatAUD(WORKED_SUPER)} + {formatAUD(WORKED_ANNUAL_LEAVE)} + {formatAUD(WORKED_PERSONAL_LEAVE)} + {formatAUD(WORKED_PAYROLL_TAX)} + {formatAUD(WORKED_WORKCOVER)} = <strong>{formatAUD(WORKED_TOTAL)}</strong>. The cost multiplier for this role is <strong>{WORKED_MULTIPLIER.toFixed(2)}x</strong>. This excludes recruitment costs, training, equipment, and office space. Factoring those in brings the realistic total closer to <strong>$135,000 to $140,000</strong>, or a multiplier of approximately 1.42x to 1.47x.
                 </p>
                 <p>
                   Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see that the employee on this $95,000 salary takes home approximately <strong>$73,500</strong> after income tax brackets, Medicare levy, and HECS-HELP repayments. The gap between the employer&apos;s total cost of $123,000 and the employee&apos;s take-home pay of $73,500 is <strong>$49,500</strong> &mdash; consumed entirely by taxation, superannuation contributions, and insurance.
@@ -656,13 +667,13 @@ export default function EmployerCostCalculatorPage() {
                   <AccordionItem value="multiplier" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
                     <AccordionTrigger className="text-left font-semibold text-navy">How much does an employee actually cost an employer?</AccordionTrigger>
                     <AccordionContent className="text-warmgray">
-                      The true cost is typically <strong>1.3x to 1.45x</strong> the base salary. For a $100,000 salary, the business spends between $130,000 and $145,000 once superannuation (12%), annual leave provisions (7.69%), workers compensation (0.3%&ndash;10%), and payroll tax (3.75%&ndash;6.85%) are included. Adding recruitment, training, and equipment costs pushes the multiplier toward 1.5x.
+                      The true cost is typically <strong>1.3x to 1.45x</strong> the base salary. For a $100,000 salary, the business spends between $130,000 and $145,000 once superannuation (12%), annual leave provisions (7.69%), workers compensation (0.3%&ndash;10%), and payroll tax ({formatPercent(MIN_RATE_STATE[1].rate, 2)}&ndash;{formatPercent(MAX_RATE_STATE[1].rate, 2)}) are included. Adding recruitment, training, and equipment costs pushes the multiplier toward 1.5x.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="prt-explain" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
                     <AccordionTrigger className="text-left font-semibold text-navy">What is payroll tax and who pays it?</AccordionTrigger>
                     <AccordionContent className="text-warmgray">
-                      Payroll tax is a state government tax levied on employers when their total wage bill exceeds a state-specific annual threshold. Rates range from <strong>4.00% in Tasmania to 6.85% in the ACT</strong>. It is paid by the employer, not deducted from the employee&apos;s pay. Sole traders and small businesses below the threshold pay zero payroll tax.
+                      Payroll tax is a state government tax levied on employers when their total wage bill exceeds a state-specific annual threshold. Rates range from <strong>{formatPercent(MIN_RATE_STATE[1].rate, 2)} in {MIN_RATE_STATE[1].name} to {formatPercent(MAX_RATE_STATE[1].rate, 2)} in the {MAX_RATE_STATE[0]}</strong>. It is paid by the employer, not deducted from the employee&apos;s pay. Sole traders and small businesses below the threshold pay zero payroll tax.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="super-rate" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
@@ -692,7 +703,7 @@ export default function EmployerCostCalculatorPage() {
                   <AccordionItem value="small-biz-threshold" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
                     <AccordionTrigger className="text-left font-semibold text-navy">Do small businesses pay payroll tax?</AccordionTrigger>
                     <AccordionContent className="text-warmgray">
-                      Most small businesses do not. Payroll tax only applies when the total wage bill exceeds the state threshold. The lowest threshold is <strong>$900,000 in Victoria</strong>, and the highest is <strong>$2,000,000 in the ACT</strong>. A business with 8 employees averaging $100,000 each ($800,000 total wages) pays zero payroll tax in every state and territory.
+                      Most small businesses do not. Payroll tax only applies when the total wage bill exceeds the state threshold. The lowest threshold is <strong>{formatAUD(MIN_THRESHOLD_STATE[1].threshold)} in {MIN_THRESHOLD_STATE[1].name}</strong>, and the highest is <strong>{formatAUD(MAX_THRESHOLD_STATE[1].threshold)} in the {MAX_THRESHOLD_STATE[0]}</strong>. A business with 8 employees averaging $100,000 each ($800,000 total wages) pays zero payroll tax in every state and territory.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="workcover-mandatory" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">

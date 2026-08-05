@@ -16,11 +16,15 @@ import {
   HECS_HELP,
   SOURCES,
   SITE_CONFIG,
+  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["VIC", "NSW", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -227,7 +231,7 @@ export default function PayCalculatorVICPage() {
           {/* H2: What Is VIC Payroll Tax? */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is VIC Payroll Tax?</h2>
-            <p className="text-warmgray mb-4">VIC payroll tax is a state tax paid by employers at a rate of <strong>4.85%</strong> on wages exceeding a <strong>$900,000</strong> annual threshold, administered by the State Revenue Office Victoria.</p>
+            <p className="text-warmgray mb-4">VIC payroll tax is a state tax paid by employers at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}</strong> on wages exceeding a <strong>{formatAUD(STATE_PAYROLL_TAX.VIC.threshold)}</strong> annual threshold, administered by the State Revenue Office Victoria.</p>
             <p className="text-warmgray mb-4">Payroll tax does not reduce your personal take-home pay. Employers pay it directly to the state government based on their total Australian wage bill. Regional Victorian employers benefit from a reduced rate of <strong>1.2125%</strong>, encouraging businesses to operate outside Melbourne. The threshold increases to <strong>$1,000,000</strong> from 1 July 2025. Victoria also applies the &quot;Mental Health and Wellbeing Surcharge&quot; on employers with national payrolls exceeding $10 million.</p>
 
             {/* H3: VIC vs Other States Payroll Tax */}
@@ -243,14 +247,18 @@ export default function PayCalculatorVICPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="bg-eucalyptus-light/20 font-semibold"><td className="px-4 py-2.5 text-navy">Victoria</td><td className="px-4 py-2.5 text-right text-navy">4.85%</td><td className="px-4 py-2.5 text-right text-navy">$900,000</td></tr>
-                  <tr className="bg-white"><td className="px-4 py-2.5 text-navy">New South Wales</td><td className="px-4 py-2.5 text-right text-warmgray">5.45%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,200,000</td></tr>
-                  <tr className="bg-sandstone/50"><td className="px-4 py-2.5 text-navy">Queensland</td><td className="px-4 py-2.5 text-right text-warmgray">4.75%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,300,000</td></tr>
-                  <tr className="bg-white"><td className="px-4 py-2.5 text-navy">Western Australia</td><td className="px-4 py-2.5 text-right text-warmgray">5.50%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,000,000</td></tr>
-                  <tr className="bg-sandstone/50"><td className="px-4 py-2.5 text-navy">South Australia</td><td className="px-4 py-2.5 text-right text-warmgray">4.95%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,500,000</td></tr>
-                  <tr className="bg-white"><td className="px-4 py-2.5 text-navy">Tasmania</td><td className="px-4 py-2.5 text-right text-warmgray">4.00%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,250,000</td></tr>
-                  <tr className="bg-sandstone/50"><td className="px-4 py-2.5 text-navy">ACT</td><td className="px-4 py-2.5 text-right text-warmgray">6.85%</td><td className="px-4 py-2.5 text-right text-warmgray">$2,000,000</td></tr>
-                  <tr className="bg-white"><td className="px-4 py-2.5 text-navy">Northern Territory</td><td className="px-4 py-2.5 text-right text-warmgray">5.50%</td><td className="px-4 py-2.5 text-right text-warmgray">$1,500,000</td></tr>
+                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                    const s = STATE_PAYROLL_TAX[code];
+                    const isHome = code === "VIC";
+                    const rowClass = isHome ? "bg-eucalyptus-light/20 font-semibold" : i % 2 === 0 ? "bg-sandstone/50" : "bg-white";
+                    return (
+                      <tr key={code} className={rowClass}>
+                        <td className="px-4 py-2.5 text-navy">{s.name}</td>
+                        <td className={`px-4 py-2.5 text-right ${isHome ? "text-navy" : "text-warmgray"}`}>{formatPercent(s.rate, 2)}</td>
+                        <td className={`px-4 py-2.5 text-right ${isHome ? "text-navy" : "text-warmgray"}`}>{formatAUD(s.threshold)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -346,7 +354,7 @@ export default function PayCalculatorVICPage() {
                 A $100,000 salary produces the same take-home pay of approximately $75,988 in both cities because federal income tax is identical nationwide. Melbourne offers 8-12% lower living costs, particularly in rent and transport, resulting in greater disposable income than the same salary in Sydney.
               </FAQItem>
               <FAQItem value="regional" question="Do regional Victorian workers pay less tax?">
-                No. Regional Victorian workers pay exactly the same federal income tax as Melbourne workers. Regional employers benefit from a reduced payroll tax rate of 1.2125% (compared to 4.85% in metro areas), but this employer saving does not affect employee tax deductions or net pay.
+                No. Regional Victorian workers pay exactly the same federal income tax as Melbourne workers. Regional employers benefit from a reduced payroll tax rate of 1.2125% (compared to {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)} in metro areas), but this employer saving does not affect employee tax deductions or net pay.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect my VIC take-home pay?">
                 HECS-HELP repayments are a federal obligation applied identically across all states. Repayments commence when your income exceeds $69,528 per year. At the VIC average salary of $93,250, the HECS repayment rate is 7.0%, which means $6,528 per year is withheld in addition to income tax and Medicare levy.

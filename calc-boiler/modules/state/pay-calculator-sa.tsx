@@ -7,9 +7,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG, STATE_PAYROLL_TAX } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) { return Math.min(max, Math.max(min, n)); }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["SA", "NSW", "VIC", "QLD", "WA", "TAS", "ACT", "NT"] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -125,7 +128,7 @@ export default function PayCalculatorSAPage() {
           {/* ── H2: What Is SA Payroll Tax? ── */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is SA Payroll Tax?</h2>
-            <p className="mb-4 text-warmgray">SA payroll tax is a state levy charged to employers at a rate of <strong>4.95%</strong> on total Australian wages exceeding <strong>$1,500,000</strong> per year. Employees do not pay payroll tax. It does not appear on your payslip and has zero impact on your take-home pay. RevenueSA administers the tax and offers a monthly threshold deduction so only wages above the $1.5 million annual threshold attract the 4.95% rate.</p>
+            <p className="mb-4 text-warmgray">SA payroll tax is a state levy charged to employers at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}</strong> on total Australian wages exceeding <strong>{formatAUD(STATE_PAYROLL_TAX.SA.threshold)}</strong> per year. Employees do not pay payroll tax. It does not appear on your payslip and has zero impact on your take-home pay. RevenueSA administers the tax and offers a monthly threshold deduction so only wages above the $1.5 million annual threshold attract the {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)} rate.</p>
             <p className="mb-4 text-warmgray">SA&apos;s $1.5 million threshold is the second-highest in Australia after Queensland&apos;s $1.3 million (which uses a lower rate). This high threshold means fewer SA businesses pay payroll tax compared to NSW or Victoria, where lower thresholds capture more employers. For a full breakdown of employer on-costs including superannuation and workers compensation, see the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.</p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does SA Payroll Tax Compare to Other States?</h3>
@@ -139,14 +142,18 @@ export default function PayCalculatorSAPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="bg-eucalyptus-light/20"><td className="px-4 py-3 font-semibold text-navy">South Australia</td><td className="px-4 py-3 text-right font-bold text-navy">4.95%</td><td className="px-4 py-3 text-right font-bold text-navy">$1,500,000</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">New South Wales</td><td className="px-4 py-3 text-right font-medium text-navy">5.45%</td><td className="px-4 py-3 text-right font-medium text-navy">$1,200,000</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">Victoria</td><td className="px-4 py-3 text-right font-medium text-navy">4.85%</td><td className="px-4 py-3 text-right font-medium text-navy">$900,000</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Queensland</td><td className="px-4 py-3 text-right font-medium text-navy">4.75%</td><td className="px-4 py-3 text-right font-medium text-navy">$1,300,000</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">Western Australia</td><td className="px-4 py-3 text-right font-medium text-navy">5.50%</td><td className="px-4 py-3 text-right font-medium text-navy">$1,000,000</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Tasmania</td><td className="px-4 py-3 text-right font-medium text-navy">4.00%</td><td className="px-4 py-3 text-right font-medium text-navy">$1,250,000</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">ACT</td><td className="px-4 py-3 text-right font-medium text-navy">6.85%</td><td className="px-4 py-3 text-right font-medium text-navy">$2,000,000</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Northern Territory</td><td className="px-4 py-3 text-right font-medium text-navy">5.50%</td><td className="px-4 py-3 text-right font-medium text-navy">$1,500,000</td></tr>
+                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                    const s = STATE_PAYROLL_TAX[code];
+                    const isHome = code === "SA";
+                    const rowClass = isHome ? "bg-eucalyptus-light/20" : i % 2 === 0 ? "bg-sandstone/30" : "";
+                    return (
+                      <tr key={code} className={rowClass}>
+                        <td className={`px-4 py-3 ${isHome ? "font-semibold text-navy" : "text-warmgray"}`}>{s.name}</td>
+                        <td className={`px-4 py-3 text-right text-navy ${isHome ? "font-bold" : "font-medium"}`}>{formatPercent(s.rate, 2)}</td>
+                        <td className={`px-4 py-3 text-right text-navy ${isHome ? "font-bold" : "font-medium"}`}>{formatAUD(s.threshold)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -235,7 +242,7 @@ export default function PayCalculatorSAPage() {
               </AccordionItem>
               <AccordionItem value="payroll" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Do SA employees pay payroll tax?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation. In SA, employers pay <strong>4.95%</strong> on wages above <strong>$1,500,000</strong> annually. This tax does not reduce your gross or net pay and does not appear on your payslip.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation. In SA, employers pay <strong>{formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}</strong> on wages above <strong>{formatAUD(STATE_PAYROLL_TAX.SA.threshold)}</strong> annually. This tax does not reduce your gross or net pay and does not appear on your payslip.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="cost" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Is Adelaide cheaper to live in than Sydney?</AccordionTrigger>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SuperannuationCalculatorPage from "@/modules/calculator/superannuation-calculator";
+import { SUPERANNUATION_FAQS } from "@/modules/calculator/superannuation-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -25,12 +26,15 @@ const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", 
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
 
-const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-  { "@type": "Question", name: "Is super included in my salary?", acceptedAnswer: { "@type": "Answer", text: "Typically, no. Most contracts quote base salary with super paid on top. Check if your contract says 'plus super' or 'including super'." } },
-  { "@type": "Question", name: "Do casual workers get super?", acceptedAnswer: { "@type": "Answer", text: "Yes. Since 1 July 2024, all employees including casuals are entitled to SG regardless of how much they earn." } },
-  { "@type": "Question", name: "Can my employer pay super less than 12%?", acceptedAnswer: { "@type": "Answer", text: "No. 12% SG is the legal minimum. Employers who don't pay face the Super Guarantee Charge." } },
-  { "@type": "Question", name: "How much super should I have at 30?", acceptedAnswer: { "@type": "Answer", text: "A common benchmark is 1× your annual salary by age 30. Salary sacrifice and voluntary contributions can help if you're behind." } },
-]};
+// Built from the same array the on-page accordion renders, so the structured
+// data cannot drift from the visible answers.
+const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage",
+  mainEntity: SUPERANNUATION_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
+};
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Superannuation Calculator",

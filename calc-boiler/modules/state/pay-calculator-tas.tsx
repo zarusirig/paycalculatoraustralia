@@ -7,8 +7,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG, STATE_PAYROLL_TAX } from "@/lib/constants";
 function clamp(n: number, min: number, max: number) { return Math.min(max, Math.max(min, n)); }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["TAS", "NSW", "VIC", "QLD", "SA", "WA", "ACT", "NT"] as const;
 const SOURCES_LIST: SourceLink[] = [{ title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name }, { title: "TAS Payroll Tax", url: "https://www.sro.tas.gov.au/payroll-tax", publisher: "State Revenue Office Tasmania" }];
 
 export default function PayCalculatorTASPage() {
@@ -95,26 +98,34 @@ export default function PayCalculatorTASPage() {
         {/* --- H2: What Is TAS Payroll Tax? --- */}
         <section>
           <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is TAS Payroll Tax?</h2>
-          <p className="mb-4 text-warmgray">Tasmania&apos;s payroll tax rate is <strong>4%</strong> on taxable wages above a <strong>$1,250,000</strong> annual threshold, increasing to <strong>6.1%</strong> for employers with Australian wages exceeding $2,000,000.</p>
-          <p className="mb-4 text-warmgray">Payroll tax is an employer obligation and does not reduce an employee&apos;s gross or net pay. The State Revenue Office Tasmania administers the tax. Businesses with total Australian wages below the $1,250,000 threshold pay no payroll tax at all, which exempts most small businesses across Hobart, Launceston, and Devonport. Tasmania&apos;s threshold is among the lowest in Australia, meaning more employers cross it, but the base rate of 4% is the lowest of any state.</p>
+          <p className="mb-4 text-warmgray">Tasmania&apos;s payroll tax rate is <strong>{formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}</strong> annual threshold, increasing to <strong>6.1%</strong> for employers with Australian wages exceeding $2,000,000.</p>
+          <p className="mb-4 text-warmgray">Payroll tax is an employer obligation and does not reduce an employee&apos;s gross or net pay. The State Revenue Office Tasmania administers the tax. Businesses with total Australian wages below the {formatAUD(STATE_PAYROLL_TAX.TAS.threshold)} threshold pay no payroll tax at all, which exempts most small businesses across Hobart, Launceston, and Devonport. Tasmania&apos;s threshold is among the lowest in Australia, meaning more employers cross it, but the base rate of {formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)} is the lowest of any state.</p>
 
           <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does TAS Payroll Tax Compare to Other States?</h3>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm border border-sandstone-dark/20 rounded-lg overflow-hidden">
               <thead><tr className="bg-sandstone text-navy"><th className="px-4 py-3 text-left font-semibold">State / Territory</th><th className="px-4 py-3 text-right font-semibold">Base Rate</th><th className="px-4 py-3 text-right font-semibold">Annual Threshold</th></tr></thead>
               <tbody className="text-warmgray">
-                <tr className="border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"><td className="px-4 py-2">Tasmania</td><td className="px-4 py-2 text-right text-navy">4.00%</td><td className="px-4 py-2 text-right text-navy">$1,250,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">New South Wales</td><td className="px-4 py-2 text-right">5.45%</td><td className="px-4 py-2 text-right">$1,200,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">Victoria</td><td className="px-4 py-2 text-right">4.85%</td><td className="px-4 py-2 text-right">$900,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">Queensland</td><td className="px-4 py-2 text-right">4.75%</td><td className="px-4 py-2 text-right">$1,300,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">South Australia</td><td className="px-4 py-2 text-right">4.95%</td><td className="px-4 py-2 text-right">$1,500,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">Western Australia</td><td className="px-4 py-2 text-right">5.50%</td><td className="px-4 py-2 text-right">$1,000,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">ACT</td><td className="px-4 py-2 text-right">6.85%</td><td className="px-4 py-2 text-right">$2,000,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">Northern Territory</td><td className="px-4 py-2 text-right">5.50%</td><td className="px-4 py-2 text-right">$1,500,000</td></tr>
+                {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                  const s = STATE_PAYROLL_TAX[code];
+                  const isHome = code === "TAS";
+                  const rowClass = isHome
+                    ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
+                    : i % 2 === 0
+                    ? "border-t border-sandstone-dark/10 bg-sandstone/30"
+                    : "border-t border-sandstone-dark/10";
+                  return (
+                    <tr key={code} className={rowClass}>
+                      <td className="px-4 py-2">{s.name}</td>
+                      <td className={`px-4 py-2 text-right ${isHome ? "text-navy" : ""}`}>{formatPercent(s.rate, 2)}</td>
+                      <td className={`px-4 py-2 text-right ${isHome ? "text-navy" : ""}`}>{formatAUD(s.threshold)}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-          <p className="text-warmgray">Tasmania&apos;s <strong>4%</strong> base rate is the lowest in Australia, though its tiered structure increases the rate to <strong>6.1%</strong> for payrolls above $2,000,000. Employers comparing operating costs across states can use our <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator NSW</Link> or <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator Victoria</Link> pages for state-specific context.</p>
+          <p className="text-warmgray">Tasmania&apos;s <strong>{formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)}</strong> base rate is the lowest in Australia, though its tiered structure increases the rate to <strong>6.1%</strong> for payrolls above $2,000,000. Employers comparing operating costs across states can use our <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator NSW</Link> or <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator Victoria</Link> pages for state-specific context.</p>
         </section>
 
         {/* --- CONTEXT BORDER --- */}
@@ -192,7 +203,7 @@ export default function PayCalculatorTASPage() {
             </AccordionItem>
             <AccordionItem value="payroll" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>Do TAS employees pay payroll tax?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation. Tasmania&apos;s rate is <strong>4%</strong> on wages above <strong>$1,250,000</strong>. It does not appear on your payslip and does not reduce your gross or net pay.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation. Tasmania&apos;s rate is <strong>{formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)}</strong> on wages above <strong>{formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}</strong>. It does not appear on your payslip and does not reduce your gross or net pay.</p></AccordionContent>
             </AccordionItem>
             <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>How much superannuation does my employer pay in TAS?</AccordionTrigger>

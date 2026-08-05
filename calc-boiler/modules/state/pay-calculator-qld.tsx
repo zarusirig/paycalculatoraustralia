@@ -16,11 +16,15 @@ import {
   HECS_HELP,
   SOURCES,
   SITE_CONFIG,
+  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["QLD", "NSW", "VIC", "WA", "SA", "TAS", "ACT", "NT"] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -189,8 +193,8 @@ export default function PayCalculatorQLDPage() {
           {/* H2: What Is QLD Payroll Tax? */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is QLD Payroll Tax?</h2>
-            <p className="text-warmgray mb-4">Queensland payroll tax is a state tax paid by employers on total Australian taxable wages exceeding <strong>$1,300,000 per year</strong>, at a base rate of <strong>4.75%</strong>.</p>
-            <p className="text-warmgray mb-4">The Queensland Revenue Office (QRO) administers payroll tax. Employers with an annual wage bill above $1.3 million pay <strong>4.75%</strong> on the amount exceeding the threshold. A higher rate of <strong>4.95%</strong> applies where total wages exceed <strong>$6.5 million</strong>. A mental health levy of <strong>0.25%</strong> applies to employers with wages above $10 million, increasing to <strong>0.5%</strong> above $100 million. Employees do not pay payroll tax. It does not reduce your gross salary or affect your take-home pay calculation.</p>
+            <p className="text-warmgray mb-4">Queensland payroll tax is a state tax paid by employers on total Australian taxable wages exceeding <strong>{formatAUD(STATE_PAYROLL_TAX.QLD.threshold)} per year</strong>, at a base rate of <strong>{formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)}</strong>.</p>
+            <p className="text-warmgray mb-4">The Queensland Revenue Office (QRO) administers payroll tax. Employers with an annual wage bill above $1.3 million pay <strong>{formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)}</strong> on the amount exceeding the threshold. A higher rate of <strong>4.95%</strong> applies where total wages exceed <strong>$6.5 million</strong>. A mental health levy of <strong>0.25%</strong> applies to employers with wages above $10 million, increasing to <strong>0.5%</strong> above $100 million. Employees do not pay payroll tax. It does not reduce your gross salary or affect your take-home pay calculation.</p>
 
             {/* H3: QLD vs Other States Payroll Tax */}
             <h3 className="text-xl font-semibold text-navy mt-8 mb-4">How Does QLD Payroll Tax Compare to Other States?</h3>
@@ -204,18 +208,22 @@ export default function PayCalculatorQLDPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="bg-eucalyptus/5"><td className="px-4 py-3 text-navy font-medium">Queensland</td><td className="px-4 py-3 text-navy text-right">$1,300,000</td><td className="px-4 py-3 text-navy text-right">4.75%</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">New South Wales</td><td className="px-4 py-3 text-navy text-right">$1,200,000</td><td className="px-4 py-3 text-navy text-right">5.45%</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">Victoria</td><td className="px-4 py-3 text-navy text-right">$900,000</td><td className="px-4 py-3 text-navy text-right">4.85%</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Western Australia</td><td className="px-4 py-3 text-navy text-right">$1,000,000</td><td className="px-4 py-3 text-navy text-right">5.50%</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">South Australia</td><td className="px-4 py-3 text-navy text-right">$1,500,000</td><td className="px-4 py-3 text-navy text-right">4.95%</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Tasmania</td><td className="px-4 py-3 text-navy text-right">$1,250,000</td><td className="px-4 py-3 text-navy text-right">4.00%</td></tr>
-                  <tr className="bg-sandstone/30"><td className="px-4 py-3 text-warmgray">ACT</td><td className="px-4 py-3 text-navy text-right">$2,000,000</td><td className="px-4 py-3 text-navy text-right">6.85%</td></tr>
-                  <tr><td className="px-4 py-3 text-warmgray">Northern Territory</td><td className="px-4 py-3 text-navy text-right">$1,500,000</td><td className="px-4 py-3 text-navy text-right">5.50%</td></tr>
+                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                    const s = STATE_PAYROLL_TAX[code];
+                    const isHome = code === "QLD";
+                    const rowClass = isHome ? "bg-eucalyptus/5" : i % 2 === 0 ? "bg-sandstone/30" : "";
+                    return (
+                      <tr key={code} className={rowClass}>
+                        <td className={`px-4 py-3 ${isHome ? "text-navy font-medium" : "text-warmgray"}`}>{s.name}</td>
+                        <td className="px-4 py-3 text-navy text-right">{formatAUD(s.threshold)}</td>
+                        <td className="px-4 py-3 text-navy text-right">{formatPercent(s.rate, 2)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray text-sm mt-3">Queensland&apos;s $1.3 million threshold and 4.75% base rate position it as a competitive state for employers. Compared to <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark hover:underline">Pay Calculator NSW</Link> (5.45%) and <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">Pay Calculator VIC</Link> (4.85%), Queensland offers a lower base rate, which benefits small-to-medium enterprises with wage bills just above the threshold.</p>
+            <p className="text-warmgray text-sm mt-3">Queensland&apos;s {formatAUD(STATE_PAYROLL_TAX.QLD.threshold)} threshold and {formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)} base rate position it as a competitive state for employers. Compared to <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark hover:underline">Pay Calculator NSW</Link> ({formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)}) and <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">Pay Calculator VIC</Link> ({formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}), Queensland offers a lower base rate, which benefits small-to-medium enterprises with wage bills just above the threshold.</p>
           </section>
 
           {/* --- CONTEXT BORDER --- */}
@@ -295,7 +303,7 @@ export default function PayCalculatorQLDPage() {
                 No. Income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy, and HECS-HELP repayment rates are identical in Queensland, New South Wales, Victoria, and every other state and territory for FY2025-26.
               </FAQItem>
               <FAQItem value="payroll" question="What is the payroll tax threshold in QLD?">
-                The Queensland payroll tax threshold is <strong>$1,300,000</strong> per year. Employers pay 4.75% on taxable wages above this threshold, rising to 4.95% when total wages exceed $6.5 million. Small businesses with wage bills below $1.3 million pay no payroll tax.
+                The Queensland payroll tax threshold is <strong>{formatAUD(STATE_PAYROLL_TAX.QLD.threshold)}</strong> per year. Employers pay {formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)} on taxable wages above this threshold, rising to 4.95% when total wages exceed $6.5 million. Small businesses with wage bills below $1.3 million pay no payroll tax.
               </FAQItem>
               <FAQItem value="employee" question="Do employees pay for WorkCover in QLD?">
                 No. WorkCover Queensland insurance premiums are an employer-only expense. They do not reduce your gross salary and do not affect your take-home pay or net pay after tax.

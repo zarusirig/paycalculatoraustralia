@@ -31,7 +31,7 @@ const SG_RATES = [
   { period: "2022-23", rate: "10.5%" },
   { period: "2023-24", rate: "11%" },
   { period: "2024-25", rate: "11.5%" },
-  { period: "2025-26", rate: "12%" },
+  { period: `2025-26 to ${SITE_CONFIG.financialYear} (current)`, rate: "12%" },
 ];
 
 export default function SuperGuaranteeRateHistoryPage() {
@@ -54,7 +54,7 @@ export default function SuperGuaranteeRateHistoryPage() {
             Super Guarantee Rate History &mdash; From 3% to 12%
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The Super Guarantee has grown from just 3% in 1992 to the legislated ceiling of 12% in FY2025-26. This page documents every rate change, the political freeze that delayed the path to 12%, and what it means for your retirement savings.
+            The Super Guarantee has grown from just 3% in 1992 to the legislated ceiling of 12%, reached on 1 July 2025 and unchanged in the current FY{SITE_CONFIG.financialYear} year. This page documents every rate change, the political freeze that delayed the path to 12%, and what it means for your retirement savings.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -166,7 +166,7 @@ export default function SuperGuaranteeRateHistoryPage() {
                         <td className="px-6 py-4 border-l text-right">$11,500</td>
                       </tr>
                       <tr className="bg-eucalyptus/5">
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2025-26</td>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2025-26 onwards</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">12%</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$12,000</td>
                       </tr>
@@ -201,9 +201,9 @@ export default function SuperGuaranteeRateHistoryPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
               <Accordion type="multiple" className="not-prose mt-6 space-y-3">
                 <AccordionItem value="current-rate" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the super guarantee rate for 2025-26?</AccordionTrigger>
+                  <AccordionTrigger className="text-left font-semibold text-navy">What is the super guarantee rate for {SITE_CONFIG.financialYear}?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    The super guarantee rate for FY2025-26 is <strong>12%</strong> of ordinary time earnings. This is the legislated ceiling and represents the final increase in the gradual path from 9.5% that resumed in July 2021.
+                    The super guarantee rate for FY{SITE_CONFIG.financialYear} is <strong>12%</strong> of ordinary time earnings. The rate reached this legislated ceiling on 1 July 2025 — the final increase in the gradual path from 9.5% that resumed in July 2021 — and has not changed since.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="why-frozen" className="border rounded-lg px-4 bg-sandstone bg-white">

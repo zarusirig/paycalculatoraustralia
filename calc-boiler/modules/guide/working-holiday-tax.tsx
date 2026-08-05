@@ -6,9 +6,26 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+
+// Resident-side comparison figures, derived from the current-year engine so
+// they can never lag a bracket change (the 16%→15% cut moved all of these).
+const RES_TAX_45K = Math.round(calculateIncomeTax(45_000)); // income tax before offsets
+const RES_LITO_45K = Math.round(calculateLITO(45_000));
+const RES_MEDICARE_45K = calculateMedicareLevy(45_000);
+const WHM_TAKE_HOME_45K = 45_000 - 6_750; // flat 15% WHM schedule
+const RES_TAKE_HOME_45K = 45_000 - (RES_TAX_45K - RES_LITO_45K) - RES_MEDICARE_45K;
+
+// WHM schedule: 15% to $45,000, then non-resident marginal rates.
+const WHM_TAX: Record<number, number> = {
+  20_000: 3_000,
+  40_000: 6_000,
+  45_000: 6_750,
+  60_000: 11_250,
+  80_000: 17_250,
+};
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Working holiday makers", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/coming-to-australia/working-holiday-makers", publisher: SOURCES.ato.name },
@@ -23,7 +40,7 @@ export default function WorkingHolidayTaxPage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Working Holiday Tax</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working Holiday Maker Tax Rate 2025-26</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working Holiday Maker Tax Rate {SITE_CONFIG.financialYear}</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Complete guide to tax rates for 417 and 462 visa holders working in Australia. Understand the 15% flat rate, employer obligations, and how to lodge your departure tax return.</p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -33,14 +50,14 @@ export default function WorkingHolidayTaxPage() {
             {/* ───────── SECTION 1: What Is the Working Holiday Maker Tax Rate? ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Working Holiday Maker Tax Rate?</h2>
-              <p>Working holiday makers pay a <strong>flat 15% tax rate</strong> on the first $45,000 of assessable income earned in Australia during FY2025-26.</p>
+              <p>Working holiday makers pay a <strong>flat 15% tax rate</strong> on the first $45,000 of assessable income earned in Australia during FY{SITE_CONFIG.financialYear}.</p>
               <p>This special rate applies to holders of subclass 417 (Working Holiday) and subclass 462 (Work and Holiday) visas. Unlike Australian residents, working holiday makers do not receive the <strong>$18,200 tax-free threshold</strong>, the &quot;Low Income Tax Offset&quot; (LITO), or the &quot;Low and Middle Income Tax Offset&quot; (LAMITO). Every dollar earned from $1 is taxable at 15%. Above $45,000, standard non-resident marginal rates apply at 30%, 37%, and 45% depending on the income tax bracket.</p>
-              <p>The 15% flat rate was introduced in January 2017 after the &quot;backpacker tax&quot; debate. The rate was a compromise between the original proposal of 32.5% and the 0% tax-free threshold that residents enjoy. The rate has remained at <strong>15%</strong> since the 2017-18 financial year through to FY2025-26. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your exact take-home pay under the WHM tax schedule.</p>
+              <p>The 15% flat rate was introduced in January 2017 after the &quot;backpacker tax&quot; debate. The rate was a compromise between the original proposal of 32.5% and the 0% tax-free threshold that residents enjoy. The rate has remained at <strong>15%</strong> since the 2017-18 financial year through to FY{SITE_CONFIG.financialYear}. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your exact take-home pay under the WHM tax schedule.</p>
             </section>
 
             {/* ───────── SECTION 2: Working Holiday Tax Brackets Table ───────── */}
             <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Working Holiday Tax Brackets for FY2025-26?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Working Holiday Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
               <p>Working holiday maker income tax brackets use a <strong>4-tier structure</strong> starting at 15% on the first $45,000 and escalating to 45% above $190,000.</p>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable Income</th><th className="px-5 py-3">Tax Rate</th><th className="px-5 py-3">Tax Payable</th><th className="px-5 py-3 text-right">Cumulative Tax</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr className="bg-orange-50"><td className="px-5 py-3 font-medium">$0 &ndash; $45,000</td><td className="px-5 py-3 font-bold text-orange-700">15%</td><td className="px-5 py-3">15c per $1</td><td className="px-5 py-3 text-right">$6,750</td></tr>
@@ -77,13 +94,13 @@ export default function WorkingHolidayTaxPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do Working Holiday Makers Pay Medicare Levy?</h2>
               <p>Working holiday makers are <strong>exempt from the 2% Medicare levy</strong> because they are classified as non-residents for Medicare purposes.</p>
               <p>WHM visa holders are not eligible for Medicare benefits under the reciprocal health care agreements (with the exception of those from the United Kingdom, Ireland, Belgium, Finland, Italy, Malta, the Netherlands, New Zealand, Norway, Slovenia, and Sweden). Even backpackers from these 11 reciprocal countries do not pay the Medicare levy &mdash; the exemption applies to all WHMs regardless of country of origin. The &quot;Medicare Levy Surcharge&quot; (MLS) also does not apply to WHMs.</p>
-              <p>This exemption means the effective tax rate on a $45,000 income is exactly <strong>15%</strong> ($6,750), with no additional Medicare levy on top. By comparison, an Australian resident earning $45,000 pays $4,288 in income tax plus $900 in Medicare levy (before LITO), totalling $5,188. For more detail on how the levy affects residents, see our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
+              <p>This exemption means the effective tax rate on a $45,000 income is exactly <strong>15%</strong> ($6,750), with no additional Medicare levy on top. By comparison, an Australian resident earning $45,000 pays {formatAUD(RES_TAX_45K)} in income tax plus {formatAUD(RES_MEDICARE_45K)} in Medicare levy (before LITO), totalling {formatAUD(RES_TAX_45K + RES_MEDICARE_45K)}. For more detail on how the levy affects residents, see our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</p>
             </section>
 
             {/* ───────── SECTION 5: Worked Example at $45,000 ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Tax Does a Working Holiday Maker Pay on $45,000?</h2>
-              <p>A working holiday maker earning <strong>$45,000</strong> in FY2025-26 pays <strong>$6,750 in tax</strong>, resulting in take-home pay of <strong>$38,250</strong> ($736 per week).</p>
+              <p>A working holiday maker earning <strong>$45,000</strong> in FY{SITE_CONFIG.financialYear} pays <strong>$6,750 in tax</strong>, resulting in take-home pay of <strong>$38,250</strong> ($736 per week).</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Step-by-Step Calculation</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Component</th><th className="px-5 py-3 text-right">Amount</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -96,23 +113,21 @@ export default function WorkingHolidayTaxPage() {
                 <tr><td className="px-5 py-3">Weekly take-home</td><td className="px-5 py-3 text-right font-medium">$736</td></tr>
                 <tr><td className="px-5 py-3">Effective tax rate</td><td className="px-5 py-3 text-right font-medium">15.00%</td></tr>
               </tbody></table></div></div>
-              <p>The employer also pays <strong>$5,400 in superannuation</strong> (12% of $45,000) on top of gross salary. This super is claimable via DASP after departure. For comparison, an Australian resident earning $45,000 takes home approximately <strong>$40,512</strong> after income tax and Medicare levy (with LITO applied) &mdash; <strong>$2,262 more</strong> than a WHM at the same salary.</p>
+              <p>The employer also pays <strong>$5,400 in superannuation</strong> (12% of $45,000) on top of gross salary. This super is claimable via DASP after departure. For comparison, an Australian resident earning $45,000 takes home approximately <strong>{formatAUD(RES_TAKE_HOME_45K)}</strong> after income tax and Medicare levy (with LITO applied) &mdash; <strong>{formatAUD(RES_TAKE_HOME_45K - WHM_TAKE_HOME_45K)} more</strong> than a WHM at the same salary.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>WHM vs Resident vs Non-Resident Tax Comparison</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">WHM Tax</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                <tr><td className="px-5 py-3">$20,000</td><td className="px-5 py-3 text-right font-medium">$3,000</td><td className="px-5 py-3 text-right">$288</td><td className="px-5 py-3 text-right">$6,000</td></tr>
-                <tr><td className="px-5 py-3">$40,000</td><td className="px-5 py-3 text-right font-medium">$6,000</td><td className="px-5 py-3 text-right">$3,488</td><td className="px-5 py-3 text-right">$12,000</td></tr>
-                <tr><td className="px-5 py-3">$45,000</td><td className="px-5 py-3 text-right font-medium">$6,750</td><td className="px-5 py-3 text-right">$4,288</td><td className="px-5 py-3 text-right">$13,500</td></tr>
-                <tr><td className="px-5 py-3">$60,000</td><td className="px-5 py-3 text-right font-medium">$11,250</td><td className="px-5 py-3 text-right">$8,788</td><td className="px-5 py-3 text-right">$18,000</td></tr>
-                <tr><td className="px-5 py-3">$80,000</td><td className="px-5 py-3 text-right font-medium">$17,250</td><td className="px-5 py-3 text-right">$14,788</td><td className="px-5 py-3 text-right">$24,000</td></tr>
+                {[20_000, 40_000, 45_000, 60_000, 80_000].map((income) => (
+                  <tr key={income}><td className="px-5 py-3">{formatAUD(income)}</td><td className="px-5 py-3 text-right font-medium">{formatAUD(WHM_TAX[income])}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, true)))}</td><td className="px-5 py-3 text-right">{formatAUD(Math.round(calculateIncomeTax(income, false)))}</td></tr>
+                ))}
               </tbody></table></div><p className="text-xs text-warmgray-light mt-2">Income tax only. Excludes Medicare levy and tax offsets.</p></div>
-              <p>At incomes below $18,200, WHMs pay more tax than residents (who pay $0 due to the tax-free threshold). Between $18,200 and approximately $37,000, the WHM rate is still higher than resident rates. Above approximately $37,000, WHMs pay less than non-residents but more than residents. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare scenarios at your specific salary.</p>
+              <p>WHMs pay more income tax than residents at every income level: with the resident second-bracket rate now matching the WHM 15% rate, the gap is the 15% applied to the $18,200 tax-free threshold that WHMs miss out on &mdash; a constant {formatAUD(Math.round(18_200 * 0.15))} once income passes $18,200. Against standard non-residents (30% from the first dollar), WHMs always pay less. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare scenarios at your specific salary.</p>
             </section>
 
             {/* ───────── SECTION 6: Super for Working Holiday Makers (DASP) ───────── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Superannuation Work for Working Holiday Makers?</h2>
-              <p>Working holiday makers receive superannuation at the standard <strong>12% SG rate</strong> in FY2025-26, and can claim their balance back via a &quot;Departing Australia Superannuation Payment&quot; (DASP) after leaving the country.</p>
+              <p>Working holiday makers receive superannuation at the standard <strong>12% SG rate</strong> in FY{SITE_CONFIG.financialYear}, and can claim their balance back via a &quot;Departing Australia Superannuation Payment&quot; (DASP) after leaving the country.</p>
               <p>Employers pay the superannuation guarantee on top of a WHM&apos;s ordinary time earnings, identical to any other employee. There is no minimum earnings threshold &mdash; the $450-per-month threshold was removed on 1 July 2022. A backpacker earning $45,000 accumulates <strong>$5,400 in super</strong> over the year across one or more super funds.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the DASP Tax Rate?</h3>
@@ -167,19 +182,19 @@ export default function WorkingHolidayTaxPage() {
               <div className="not-prose bg-blue-50 border-l-4 border-blue-500 p-4 my-6 text-sm text-warmgray"><strong>Tip:</strong> Lodge your tax return <em>before</em> applying for DASP. If your employer over-withheld tax (e.g., at 30% because they were not registered), you receive a refund on the income tax first, then claim your super separately through the DASP process.</div>
             </section>
 
-            {/* ───────── SECTION 9: What Changed in FY2025-26? ───────── */}
+            {/* ───────── SECTION 9: What Changed This Financial Year? ───────── */}
             <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Working Holiday Makers in FY2025-26?</h2>
-              <p>The WHM 15% flat rate on the first $45,000 is <strong>unchanged</strong> in FY2025-26, but the superannuation guarantee rate increased from 11.5% to <strong>12%</strong> from 1 July 2025.</p>
-              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Item</th><th className="px-5 py-3">FY2024-25</th><th className="px-5 py-3">FY2025-26</th><th className="px-5 py-3">Change</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Working Holiday Makers in FY{SITE_CONFIG.financialYear}?</h2>
+              <p>The WHM 15% flat rate on the first $45,000 is <strong>unchanged</strong> in FY{SITE_CONFIG.financialYear}, and the superannuation guarantee rate stays at its legislated <strong>12%</strong> ceiling. The year&apos;s main change is on the resident side: the resident second-bracket rate fell from 16% to <strong>15%</strong> on 1 July 2026.</p>
+              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Item</th><th className="px-5 py-3">FY{SITE_CONFIG.previousFinancialYear}</th><th className="px-5 py-3">FY{SITE_CONFIG.financialYear}</th><th className="px-5 py-3">Change</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr><td className="px-5 py-3">WHM tax rate (first $45,000)</td><td className="px-5 py-3">15%</td><td className="px-5 py-3 font-bold">15%</td><td className="px-5 py-3 text-warmgray-light">No change</td></tr>
                 <tr><td className="px-5 py-3">WHM $45,000 threshold</td><td className="px-5 py-3">$45,000</td><td className="px-5 py-3 font-bold">$45,000</td><td className="px-5 py-3 text-warmgray-light">No change</td></tr>
-                <tr><td className="px-5 py-3">Superannuation guarantee rate</td><td className="px-5 py-3">11.5%</td><td className="px-5 py-3 font-bold">12%</td><td className="px-5 py-3 text-green-600">+0.5%</td></tr>
+                <tr><td className="px-5 py-3">Superannuation guarantee rate</td><td className="px-5 py-3">12%</td><td className="px-5 py-3 font-bold">12%</td><td className="px-5 py-3 text-warmgray-light">No change (ceiling reached 1 July 2025)</td></tr>
                 <tr><td className="px-5 py-3">DASP tax rate (WHM)</td><td className="px-5 py-3">65%</td><td className="px-5 py-3 font-bold">65%</td><td className="px-5 py-3 text-warmgray-light">No change</td></tr>
                 <tr><td className="px-5 py-3">Resident tax-free threshold</td><td className="px-5 py-3">$18,200</td><td className="px-5 py-3 font-bold">$18,200</td><td className="px-5 py-3 text-warmgray-light">No change (WHMs ineligible)</td></tr>
-                <tr><td className="px-5 py-3">Resident 2nd bracket rate</td><td className="px-5 py-3">16%</td><td className="px-5 py-3 font-bold">16%</td><td className="px-5 py-3 text-warmgray-light">No change</td></tr>
+                <tr><td className="px-5 py-3">Resident 2nd bracket rate</td><td className="px-5 py-3">16%</td><td className="px-5 py-3 font-bold">15%</td><td className="px-5 py-3 text-green-600">-1%</td></tr>
               </tbody></table></div></div>
-              <p>The SG increase means a backpacker earning $45,000 receives <strong>$5,400</strong> in super contributions in FY2025-26, compared to $5,175 in FY2024-25 &mdash; an extra <strong>$225</strong>. However, with the DASP tax rate at 65%, the net DASP payout increases by only $79 (from $1,811 to $1,890). The Stage 3 tax cuts that took effect on 1 July 2024 for residents did not change WHM rates, as the 15% flat rate operates independently of the standard income tax bracket structure.</p>
+              <p>A backpacker earning $45,000 still accumulates <strong>$5,400</strong> in super contributions &mdash; the SG rate reached its legislated 12% ceiling on 1 July 2025 and no further increases are scheduled. The resident second-bracket cut from 16% to 15% does not change WHM rates, but it narrows the resident comparison: resident income tax on $45,000 fell from $4,288 in FY{SITE_CONFIG.previousFinancialYear} to {formatAUD(RES_TAX_45K)} in FY{SITE_CONFIG.financialYear}, while a WHM still pays $6,750. The 15% flat rate operates independently of the standard income tax bracket structure.</p>
             </section>
 
             {/* ───────── SECTION 10: Common Mistakes ───────── */}
@@ -204,7 +219,7 @@ export default function WorkingHolidayTaxPage() {
               <ul>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; model your take-home pay under WHM, resident, or non-resident tax schedules</li>
                 <li><Link href="/non-resident-tax/">Non-Resident Tax Rates</Link> &mdash; understand the rates that apply above $45,000 for WHMs and for other temporary visa holders</li>
-                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; complete FY2025-26 income tax bracket tables for all residency types</li>
+                <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; complete FY{SITE_CONFIG.financialYear} income tax bracket tables for all residency types</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; how the 12% SG rate works, contribution caps, and employer obligations</li>
                 <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> &mdash; step-by-step instructions for lodging your Australian tax return and claiming deductions</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; calculate your net pay after tax, super, and deductions at any salary level</li>
@@ -243,7 +258,7 @@ export default function WorkingHolidayTaxPage() {
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax rate information is sourced from the ATO&apos;s working holiday maker tax tables for FY2025-26. Comparison calculations use standard ATO tax brackets for residents and non-residents. Superannuation guarantee rates reflect the legislated 12% rate effective 1 July 2025. DASP tax rates are current as of FY2025-26. All calculations exclude employer-specific arrangements, salary sacrifice, and voluntary super contributions.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax rate information is sourced from the ATO&apos;s working holiday maker tax tables for FY{SITE_CONFIG.financialYear}. Comparison calculations use standard ATO tax brackets for residents and non-residents. Superannuation guarantee rates reflect the legislated 12% rate effective 1 July 2025. DASP tax rates are current as of FY{SITE_CONFIG.financialYear}. All calculations exclude employer-specific arrangements, salary sacrifice, and voluntary super contributions.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("working-holiday-tax"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

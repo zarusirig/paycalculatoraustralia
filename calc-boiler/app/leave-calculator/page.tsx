@@ -4,18 +4,23 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { LEAVE_FAQS } from "@/modules/calculator/leave-calculator-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
 
+// Derived once so the title, description, JSON-LD and rendered page can never
+// disagree. Leads with the leave-loading intent without dropping the payout one.
+const TITLE = `Annual Leave & Leave Loading Calculator (17.5%) ${SITE_CONFIG.financialYear}`;
+const DESCRIPTION = `Work out your annual leave payout and 17.5% leave loading. Who gets loading, the 4-week formula, and tax on lump-sum payouts — FY${SITE_CONFIG.financialYear} rates.`;
+
 export const metadata: Metadata = {
-  title: "Annual Leave Calculator Australia — What Your Payout Is Worth",
-  description:
-    "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading & lump-sum payouts — FY2026-27 Australian rates.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
-    title: "Annual Leave Calculator Australia — How Much Your Leave Payout Actually Is",
-    description: "Calculate the value of your annual leave payout. Pro-rata accrual, tax on leave loading and lump-sum payouts for FY2026-27.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,8 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Annual Leave Calculator Australia",
-    description: "How much your annual leave payout is actually worth — FY2026-27 rates.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
 };
 
@@ -40,7 +45,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Leave Entitlements Calculator Australia",
+  name: `Annual Leave & Leave Loading Calculator Australia`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -51,65 +56,22 @@ const webApp: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
+// Built from the same shared array the visible accordion renders, so the
+// structured data cannot drift from the page (see leave-calculator-faqs.ts).
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How is annual leave payout calculated?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Annual leave payout is calculated by multiplying the employee's weekly base pay rate by the number of accrued unused weeks of leave, plus 17.5% leave loading if the Award or contract provides for it. On an $80,000 salary with 4 weeks accrued leave, the gross payout is $6,154 base ($80,000 ÷ 52 × 4) plus $1,077 leave loading where applicable, totalling around $7,231 before tax.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is leave loading taxed differently?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. Leave loading of 17.5% paid out on termination is taxed at the employee's marginal income tax rate, the same as ordinary salary income. The historical concessional tax treatment for leave loading was removed by the ATO years ago. The payout is added to taxable income for the financial year it is received.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I get tax back on unused annual leave?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Possibly. Annual leave payouts are taxed as lump-sum income at your marginal rate, which can over-withhold tax if the payout temporarily pushes you into a higher bracket for that pay period. When you lodge your annual tax return, any over-withheld tax is refunded based on actual annual income.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much annual leave do I get in Australia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Full-time employees get 4 weeks (20 days or 152 hours) of paid annual leave per year under the National Employment Standards. Part-time employees accrue on a pro-rata basis proportional to their ordinary hours. Shift workers on rotating rosters may be entitled to 5 weeks (190 hours).",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is leave loading?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Leave loading is an extra 17.5% on top of your base pay during annual leave. It depends on your Award or enterprise agreement — Award-free professional employees typically do not receive it. Common Awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is annual leave paid out when I leave my job?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. When your employment ends, your employer must pay out all accrued but untaken annual leave. This is a legal requirement under the National Employment Standards and applies whether you resign, are made redundant, or are dismissed.",
-      },
-    },
-  ],
+  mainEntity: LEAVE_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 const howToSchema = calculatorHowTo({
-  name: "How to Use the Leave Entitlements Calculator",
+  name: "How to Use the Annual Leave & Leave Loading Calculator",
   url: URL,
-  description: "Calculate your annual leave balance and payout value in under a minute.",
+  description: "Calculate your annual leave balance, 17.5% leave loading, and payout value in under a minute.",
   steps: PAY_CALCULATOR_STEPS,
 });
 

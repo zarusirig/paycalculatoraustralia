@@ -14,17 +14,17 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { LEAVE_FAQS, LEAVE_LOADING_RATE } from "./leave-calculator-faqs";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-const LEAVE_LOADING_RATE = 0.175; // 17.5%
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Annual leave", url: "https://www.fairwork.gov.au/leave/annual-leave", publisher: SOURCES.fwo.name },
   { title: "Long service leave", url: "https://www.fairwork.gov.au/leave/long-service-leave", publisher: SOURCES.fwo.name },
   { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwo.name },
+  { title: "Long Service Leave Act 2018 FAQs (Victoria)", url: "https://business.vic.gov.au/business-information/staff-and-hr/long-service-leave-victoria/long-service-leave-act-2018-faqs", publisher: "Business Victoria" },
 ];
 
 export default function LeaveCalculatorPage() {
@@ -50,11 +50,6 @@ export default function LeaveCalculatorPage() {
   const loadingPayout = leaveLoadingPerWeek * totalLeaveWeeks;
   const totalPayout = grossPayout + loadingPayout;
 
-  // Accrued leave for current year (pro-rata)
-  const accruedThisYear = (weeksPerYear / 12) * 12; // full year = 4 weeks
-  const accruedWeeksPartial = weeksPerYear; // always shows 1 year accrual
-  const accruedHoursPartial = accruedWeeksPartial * EMPLOYMENT.standardWeeklyHours; // 152 hours
-
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
@@ -68,10 +63,10 @@ export default function LeaveCalculatorPage() {
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Annual Leave Calculator Australia 2025-26
+            Annual Leave &amp; Leave Loading Calculator (17.5%) — {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
-            Find out how much your annual leave payout is actually worth. Calculate pro-rata accrual, 17.5% leave loading, and the tax on lump-sum payouts using FY2025-26 Australian rates.
+            Work out your 17.5% annual leave loading and what your leave payout is actually worth. Calculate pro-rata accrual, leave loading, and the tax on lump-sum payouts using FY{SITE_CONFIG.financialYear} Australian rates.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -166,6 +161,40 @@ export default function LeaveCalculatorPage() {
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {/* H2: How Is 17.5% Annual Leave Loading Calculated? */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is 17.5% Annual Leave Loading Calculated?</h2>
+            <p className="mb-4 text-warmgray">
+              Annual leave loading is an extra <strong>17.5% of your base weekly pay</strong>, paid on top of the ordinary rate for each week of annual leave taken or paid out. This annual leave loading calculator applies the same formula an employer uses: <strong>{EMPLOYMENT.annualLeaveWeeks} weeks × weekly pay × 17.5%</strong> for a full year of accrued leave.
+            </p>
+            <p className="mb-4 text-warmgray">
+              The 17.5% rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during holidays than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
+            </p>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Worked Example: Leave Loading at $80,000 Salary</h3>
+            <p className="mb-4 text-warmgray">
+              An employee earning <strong>$80,000 per year</strong> has a weekly base pay of <strong>{formatAUD(80000 / 52)}</strong>. The leave loading calculation follows 3 steps:
+            </p>
+            <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
+              <li>Weekly pay: $80,000 / 52 = <strong>{formatAUD(80000 / 52)}</strong></li>
+              <li>Leave loading per week: {formatAUD(80000 / 52)} x 17.5% = <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE)}</strong></li>
+              <li>Total loading for {EMPLOYMENT.annualLeaveWeeks} weeks of leave: {formatAUD((80000 / 52) * LEAVE_LOADING_RATE)} x {EMPLOYMENT.annualLeaveWeeks} = <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong></li>
+            </ol>
+            <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-sm text-navy mb-4">
+              <strong>Award comparison clause:</strong> Some Awards require employers to pay the <em>higher of</em> 17.5% leave loading or the penalty rates/shift allowances the employee would have earned. The employer compares both amounts and pays whichever is greater.
+            </div>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Who Gets Leave Loading?</h3>
+            <p className="mb-4 text-warmgray">
+              Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Employees on Award-free contracts, common in professional services, banking, and technology, typically do not receive leave loading unless their contract specifies it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
+            </p>
+
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Is Leave Loading Taxed?</h3>
+            <p className="mb-4 text-warmgray">
+              Yes. Leave loading is <strong>ordinary income</strong> — your employer applies PAYG withholding to it the same way as salary, and it is taxed at your marginal rate. There is no concessional tax treatment for leave loading, whether it is paid while you take leave or paid out on termination. Estimate the tax with the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
+            </p>
+          </section>
+
           {/* H2: How Is Leave Calculated in Australia? */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Leave Calculated in Australia?</h2>
@@ -179,7 +208,7 @@ export default function LeaveCalculatorPage() {
               Part-time employees accrue leave on a pro-rata basis. An employee working 20 ordinary hours per week accrues <strong>80 hours (2.1 weeks)</strong> of annual leave per year instead of the full 152 hours. Casual employees do not accrue annual leave and instead receive a <strong>25% casual loading</strong> on their base hourly rate.
             </p>
             <p className="text-warmgray">
-              Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to convert your gross salary to after-tax income, then return here to calculate the value of your accrued leave entitlements for FY2025-26.
+              Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to convert your gross salary to after-tax income, then return here to calculate the value of your accrued leave entitlements for FY{SITE_CONFIG.financialYear}.
             </p>
           </section>
 
@@ -255,7 +284,7 @@ export default function LeaveCalculatorPage() {
 
           {/* H2: 4-week annual leave value at common salaries */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">4-Week Annual Leave Value at Common Salaries (FY2025-26)</h2>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">4-Week Annual Leave Value at Common Salaries (FY{SITE_CONFIG.financialYear})</h2>
             <p className="mb-4 text-warmgray">
               The gross value of <strong>4 weeks of accrued annual leave</strong> ranges from approximately <strong>{formatAUD((50000 / 52) * 4)}</strong> at a $50,000 salary to <strong>{formatAUD((120000 / 52) * 4)}</strong> at a $120,000 salary, before leave loading or tax. The table below shows the base payout, the 17.5% leave loading where applicable, and the total gross payout (pre-tax) at 6 common salary levels.
             </p>
@@ -305,37 +334,8 @@ export default function LeaveCalculatorPage() {
               <li><strong>HR managers and payroll officers</strong> — verifying leave payout calculations for terminating employees to ensure NES compliance</li>
               <li><strong>Workers planning extended leave</strong> — understanding how many weeks of paid annual leave have accrued and the dollar value of that balance</li>
               <li><strong>Employees facing redundancy</strong> — combining leave payouts with severance entitlements using this calculator alongside the <Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link></li>
-              <li><strong>Accountants preparing EOFY estimates</strong> — projecting leave liabilities on company balance sheets for the 2025-26 financial year</li>
+              <li><strong>Accountants preparing EOFY estimates</strong> — projecting leave liabilities on company balance sheets for the {SITE_CONFIG.financialYear} financial year</li>
             </ul>
-          </section>
-
-          {/* H2: How Is Leave Loading Calculated? */}
-          <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Leave Loading Calculated?</h2>
-            <p className="mb-4 text-warmgray">
-              Leave loading is calculated as <strong>17.5% of the employee&apos;s base weekly pay rate</strong>, paid on top of the ordinary rate for each week of annual leave taken or paid out.
-            </p>
-            <p className="mb-4 text-warmgray">
-              The 17.5% rate originated in the 1970s to compensate workers who regularly earned overtime, penalty rates, or shift allowances. Without leave loading, these workers would receive less take-home pay during holidays than during normal working weeks. Today, leave loading applies only where an Award, enterprise agreement, or employment contract explicitly provides for it.
-            </p>
-
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Worked Example: Leave Loading at $80,000 Salary</h3>
-            <p className="mb-4 text-warmgray">
-              An employee earning <strong>$80,000 per year</strong> has a weekly base pay of <strong>{formatAUD(80000 / 52)}</strong>. The leave loading calculation follows 3 steps:
-            </p>
-            <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
-              <li>Weekly pay: $80,000 / 52 = <strong>{formatAUD(80000 / 52)}</strong></li>
-              <li>Leave loading per week: {formatAUD(80000 / 52)} x 17.5% = <strong>{formatAUD(80000 / 52 * 0.175)}</strong></li>
-              <li>Total loading for 4 weeks of leave: {formatAUD(80000 / 52 * 0.175)} x 4 = <strong>{formatAUD(80000 / 52 * 0.175 * 4)}</strong></li>
-            </ol>
-            <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-sm text-navy mb-4">
-              <strong>Award comparison clause:</strong> Some Awards require employers to pay the <em>higher of</em> 17.5% leave loading or the penalty rates/shift allowances the employee would have earned. The employer compares both amounts and pays whichever is greater.
-            </div>
-
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Who Gets Leave Loading?</h3>
-            <p className="mb-4 text-warmgray">
-              Leave loading is not a universal NES entitlement. It applies to employees covered by Awards including the Clerks Award, Manufacturing Award, and Building Award. Employees on Award-free contracts, common in professional services, banking, and technology, typically do not receive leave loading unless their contract specifies it. Check your specific Award on the Fair Work Commission website to confirm your entitlement.
-            </p>
           </section>
 
           {/* H2: How Is Unused Leave Paid Out on Termination? */}
@@ -350,7 +350,7 @@ export default function LeaveCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Tax Treatment of Leave Payouts</h3>
             <p className="mb-4 text-warmgray">
-              Annual leave payouts are taxed as <strong>ordinary income at the employee&apos;s marginal tax rate</strong>. The ATO does not apply any concessional treatment to annual leave payouts. Long service leave payouts receive different treatment: the pre-16 August 1978 component is taxed at <strong>5%</strong>, and the post-1978 component is taxed at the marginal rate. Use the <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page to find the applicable rate for your income level in FY2025-26.
+              Annual leave payouts are taxed as <strong>ordinary income at the employee&apos;s marginal tax rate</strong>. The ATO does not apply any concessional treatment to annual leave payouts. Long service leave payouts receive different treatment: the pre-16 August 1978 component is taxed at <strong>5%</strong>, and the post-1978 component is taxed at the marginal rate. Use the <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page to find the applicable rate for your income level in FY{SITE_CONFIG.financialYear}.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Long Service Leave Payout by State</h3>
@@ -373,9 +373,9 @@ export default function LeaveCalculatorPage() {
                     <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">5 years</td>
                   </tr>
                   <tr className="bg-sandstone/30">
-                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">VIC</td>
-                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>8.67 weeks</strong> after 10 years</td>
-                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">7 years</td>
+                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">VIC*</td>
+                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray"><strong>8.67 weeks</strong> (accrues continuously, weeks ÷ 60)</td>
+                    <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">7 years (full entitlement, not just pro-rata)</td>
                   </tr>
                   <tr>
                     <td className="border border-sandstone-dark/20 px-4 py-2 text-warmgray">QLD</td>
@@ -410,6 +410,9 @@ export default function LeaveCalculatorPage() {
                 </tbody>
               </table>
             </div>
+            <p className="text-sm text-warmgray-light">
+              *Victoria is the outlier: under the Long Service Leave Act 2018 (Vic), leave accrues continuously from day one (weeks of service ÷ 60), and the entitlement to take it — or be paid out on termination — arises at 7 years, not 10. The other states above vest the full 8.67-week (or equivalent) entitlement specifically at their stated milestone.
+            </p>
           </section>
 
           {/* H2: What Are Common Leave Calculation Mistakes? */}
@@ -420,7 +423,7 @@ export default function LeaveCalculatorPage() {
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
               <li><strong>Confusing calendar days with working days</strong> — 4 weeks of annual leave equals <strong>20 working days</strong>, not 28 calendar days. Leave accrues based on ordinary working hours (38 hours per week for full-time), not 7-day weeks.</li>
-              <li><strong>Including leave loading when the Award does not provide for it</strong> — Award-free employees on individual contracts rarely receive the 17.5% leave loading. Adding it incorrectly inflates the expected payout by <strong>$1,077</strong> per year at an $80,000 salary.</li>
+              <li><strong>Including leave loading when the Award does not provide for it</strong> — Award-free employees on individual contracts rarely receive the 17.5% leave loading. Adding it incorrectly inflates the expected payout by <strong>{formatAUD((80000 / 52) * LEAVE_LOADING_RATE * EMPLOYMENT.annualLeaveWeeks)}</strong> per year at an $80,000 salary.</li>
               <li><strong>Forgetting to pro-rate for part-time hours</strong> — A part-time employee working 25 hours per week accrues <strong>2.63 weeks</strong> of leave per year (25/38 x 4 weeks), not the full 4 weeks.</li>
               <li><strong>Expecting sick leave to be paid out</strong> — Personal/carer&apos;s leave (10 days per year) carries over indefinitely but has <strong>zero cash value</strong> on termination. Only annual leave and long service leave are paid out.</li>
               <li><strong>Applying the wrong tax rate to leave payouts</strong> — Leave payouts are added to assessable income for the financial year and taxed at marginal rates, not at a flat rate. A large payout can push the employee into a higher <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax bracket</Link>.</li>
@@ -435,10 +438,10 @@ export default function LeaveCalculatorPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><Link href="/redundancy-pay-calculator/" className="text-eucalyptus-dark hover:underline">Redundancy Pay Calculator</Link> — calculate severance pay based on years of service and combine it with your leave payout total</li>
-              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — convert your gross annual salary to after-tax take-home pay for FY2025-26</li>
+              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — convert your gross annual salary to after-tax take-home pay for FY{SITE_CONFIG.financialYear}</li>
               <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — calculate the employer SG rate of 12% on your ordinary time earnings and check the Medicare levy surcharge threshold</li>
               <li><Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link> — determine penalty rates for overtime, weekend, and public holiday work under your Award</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — estimate how much tax you pay on salary and leave payouts combined in the 2025-26 financial year</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — estimate how much tax you pay on salary and leave payouts combined in the {SITE_CONFIG.financialYear} financial year</li>
             </ul>
           </section>
 
@@ -457,39 +460,22 @@ export default function LeaveCalculatorPage() {
           {/* FAQs */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
+            {/*
+              The Radix accordion unmounts closed content, so answers never
+              reach the rendered HTML. This mirror makes them crawlable and
+              AI-Overview eligible — same pattern as the award guide pages.
+            */}
+            <div className="sr-only">
+              <h3>Annual leave and leave loading questions and answers</h3>
+              {LEAVE_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+            </div>
             <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="how-much" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much annual leave do I get in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Full-time employees get <strong>4 weeks (20 days or 152 hours)</strong> of paid annual leave per year under the NES. Part-time employees accrue leave on a pro-rata basis proportional to their ordinary hours. Shift workers who work a rotating roster including weekends and nights receive <strong>5 weeks (25 days or 190 hours)</strong> under their Award.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="pro-rata" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How is annual leave calculated pro-rata?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Leave accrues progressively throughout the year based on ordinary hours worked. A part-time employee working 20 hours per week accrues <strong>80 hours (2.1 weeks)</strong> of leave per year, calculated as 20/38 x 152 hours. The accrual rate is <strong>1.538 hours per week</strong> for that employee, compared to 2.923 hours per week for a full-time worker.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="loading-who" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Who gets leave loading?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Leave loading applies to employees covered by an Award or enterprise agreement that includes a 17.5% leave loading clause. Common Awards with leave loading include the Clerks Award, Manufacturing Award, and Building Award. Award-free employees on individual contracts typically do not receive leave loading. Check your payslip or employment contract to confirm your entitlement.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="sick-leave" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I cash out sick leave?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray"><strong>No.</strong> Personal/carer&apos;s leave (sick leave) cannot be cashed out and has no payout value on termination. Employees accrue <strong>10 days (76 hours)</strong> per year, and unused days carry over indefinitely, but the balance has zero cash value. Only annual leave and long service leave are paid out when employment ends.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="long-service" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>When do I qualify for long service leave?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Long service leave qualification depends on state legislation. In NSW, VIC, QLD, WA, and TAS, the full entitlement of <strong>8.67 weeks</strong> vests after 10 years of continuous service. SA and NT provide <strong>13 weeks</strong> after 10 years. The ACT provides <strong>6.07 weeks</strong> after 7 years. Pro-rata payouts on termination apply after 5 years in NSW and ACT, and after 7 years in all other states.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="tax-on-payout" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How is leave payout taxed?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Annual leave payouts are taxed as <strong>ordinary income at your marginal tax rate</strong>. The ATO treats the payout as assessable income in the financial year it is received. A large leave payout can push total income into a higher tax bracket — for example, a $12,000 payout on top of an $80,000 salary moves assessable income to $92,000, increasing the marginal rate from <strong>32.5% to 37%</strong> on income above $90,000 in FY2025-26.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super-on-leave" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is superannuation payable on leave payouts?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray"><strong>No.</strong> The employer SG rate of <strong>12%</strong> is not payable on annual leave payouts made on termination. Superannuation is payable on annual leave taken during employment (as it forms part of ordinary time earnings), but termination payouts for unused leave are excluded from the superannuation guarantee calculation.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="casual-leave" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do casual employees get annual leave?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray"><strong>No.</strong> Casual employees do not accrue annual leave, personal leave, or long service leave under the NES. Instead, casuals receive a <strong>25% casual loading</strong> on top of their base hourly rate to compensate for the absence of paid leave, notice of termination, and redundancy pay entitlements.</p></AccordionContent>
-              </AccordionItem>
+              {LEAVE_FAQS.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
+                  <AccordionTrigger>{f.q}</AccordionTrigger>
+                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 

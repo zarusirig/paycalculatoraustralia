@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BonusTaxCalculatorPage from "@/modules/calculator/bonus-tax-calculator";
+import { BONUS_TAX_FAQS } from "@/modules/calculator/bonus-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -51,35 +52,16 @@ const webApp: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
+// Built from the same array the on-page accordion renders, so the structured
+// data cannot drift from the visible answers.
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How is a bonus taxed in Australia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Bonuses are taxed at your marginal tax rate. Because the bonus sits on top of your regular salary, it is taxed at whatever bracket your total income falls into. Your employer uses ATO Schedule 5 to calculate the correct withholding amount.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Why is my bonus smaller than expected?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Because tax is withheld at your marginal rate (not your effective rate). For example, if your salary puts you in the 30% bracket, 32% (30% + 2% Medicare) is taken from every dollar of your bonus.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I get superannuation on my bonus?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Generally yes. Bonuses paid for work performed are considered Ordinary Time Earnings (OTE) and attract the 12% Superannuation Guarantee. However, retention bonuses or discretionary payments may be excluded from OTE.",
-      },
-    },
-  ],
+  mainEntity: BONUS_TAX_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 const howToSchema = calculatorHowTo({

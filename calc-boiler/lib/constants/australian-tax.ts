@@ -42,7 +42,9 @@ export const TAX_BRACKETS_2025_26: readonly TaxBracket[] = [
 
 export const TAX_FREE_THRESHOLD = 18_200;
 
-// ---------- Non-Resident Tax Brackets (FY2025-26) ----------
+// ---------- Non-Resident Tax Brackets (FY2026-27) ----------
+// Unchanged from FY2025-26 — the 1 July 2026 cut applied to the resident
+// second bracket only; non-residents have no 15% band.
 export const NON_RESIDENT_TAX_BRACKETS: readonly TaxBracket[] = [
   { min: 0, max: 135_000, rate: 0.30, base: 0, label: "30c for each $1" },
   { min: 135_001, max: 190_000, rate: 0.37, base: 40_500, label: "37c for each $1 over $135,000" },
@@ -321,7 +323,7 @@ export const GENERAL_INTEREST_CHARGE = {
   sourceUrl: "https://www.ato.gov.au/tax-rates-and-codes/general-interest-charge-rates",
 } as const;
 
-// ---------- HECS-HELP Repayment (FY2025-26 — New Marginal System) ----------
+// ---------- HECS-HELP Repayment (FY2026-27 — New Marginal System) ----------
 export interface HECSBand {
   min: number;
   max: number;
@@ -411,12 +413,63 @@ export const NOTICE_PERIODS: readonly { years: string; weeks: number }[] = [
 ] as const;
 
 // ---------- State Payroll Tax ----------
-export const STATE_PAYROLL_TAX = {
+//
+// `rate` is the headline rate for a typical employer just over the threshold;
+// `threshold` is the annual tax-free/exemption threshold. Where one number
+// cannot tell the story (variable, dual or tiered rates), `note` carries the
+// structure — render it wherever the rate is shown.
+//
+// SA/TAS/ACT/NT verified against the revenue office pages on 5 August 2026:
+//  - SA: revenuesa.sa.gov.au/payrolltax/rates-and-thresholds (updated 8 Jul
+//    2026) — threshold "$1,500,000 per annum"; rate "variable from 0% to
+//    4.95%" ($1.5m–$1.7m), 4.95% above $1.7m.
+//  - TAS: sro.tas.gov.au/payroll-tax/rates-thresholds — "2026-27 financial
+//    year": $0–$1.25m nil, $1,250,001–$2m 4%, $2,000,001+ 6.1%.
+//  - ACT: revenue.act.gov.au/business-taxes-and-levies/payroll-tax/
+//    about-payroll-tax (updated 1 Jul 2026) — "From 1 July 2026 the monthly
+//    payroll tax threshold in the ACT is $145,833.33, or $1.75 million a
+//    year"; 2026-27 general rate 6.75% (>$1.75m–$20m), tiered to 8.75%
+//    above $150m. (Was 6.85% / $2m before 1 July 2026.)
+//  - NT: treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax/
+//    payroll-tax-rates-and-thresholds — "July 2026 to June 2027: $2,500,000 /
+//    $208,333 / 6.5%/5.5%"; 6.5% only for $100m+ Australia-wide wages.
+export interface StatePayrollTax {
+  rate: number;
+  threshold: number;
+  name: string;
+  note?: string;
+}
+
+export const STATE_PAYROLL_TAX: Readonly<Record<string, StatePayrollTax>> = {
   NSW: { rate: 0.0545, threshold: 1_200_000, name: "New South Wales" },
   VIC: { rate: 0.0485, threshold: 900_000, name: "Victoria" },
   QLD: { rate: 0.0475, threshold: 1_300_000, name: "Queensland" },
   WA: { rate: 0.055, threshold: 1_000_000, name: "Western Australia" },
-} as const;
+  SA: {
+    rate: 0.0495,
+    threshold: 1_500_000,
+    name: "South Australia",
+    note: "Variable from 0% to 4.95% on payrolls between $1.5m and $1.7m; 4.95% above $1.7m",
+  },
+  TAS: {
+    rate: 0.04,
+    threshold: 1_250_000,
+    name: "Tasmania",
+    note: "4% on wages from $1.25m to $2m; 6.1% above $2m",
+  },
+  ACT: {
+    rate: 0.0675,
+    threshold: 1_750_000,
+    name: "Australian Capital Territory",
+    note: "6.75% up to $20m Australia-wide wages, tiered to 8.75% above $150m (threshold cut from $2m on 1 July 2026)",
+  },
+  NT: {
+    rate: 0.055,
+    threshold: 2_500_000,
+    name: "Northern Territory",
+    note: "5.5%; a 6.5% rate applies from 1 July 2026 to employers with $100m+ Australia-wide wages",
+  },
+};
 
 // ---------- Tax Year History (for Stage 3 context) ----------
 export const TAX_HISTORY = {
@@ -434,12 +487,16 @@ export const TAX_HISTORY = {
 } as const;
 
 // ---------- SG Rate History ----------
+// Includes the current year. The last row's year always equals
+// `FY${SITE_CONFIG.financialYear}` — consumers derive "current" from that
+// match rather than appending their own row (which rendered 12% twice).
 export const SG_RATE_HISTORY: readonly { year: string; rate: number }[] = [
   { year: "FY2021-22", rate: 0.10 },
   { year: "FY2022-23", rate: 0.105 },
   { year: "FY2023-24", rate: 0.11 },
   { year: "FY2024-25", rate: 0.115 },
   { year: "FY2025-26", rate: 0.12 },
+  { year: "FY2026-27", rate: 0.12 },
 ] as const;
 
 // ---------- Institutional References ----------
@@ -470,7 +527,7 @@ export const SITE_CONFIG = {
 // =============================================================================
 
 /**
- * Calculate income tax for a given taxable income (FY2025-26, resident).
+ * Calculate income tax for a given taxable income (FY2026-27, resident).
  * Uses progressive marginal rates per EAV Knowledge Base.
  */
 export function calculateIncomeTax(income: number, resident = true): number {
@@ -527,7 +584,7 @@ export function calculateMedicareSurcharge(income: number, hasPrivateHealth: boo
 }
 
 /**
- * Calculate HECS-HELP repayment under the NEW marginal system (FY2025-26).
+ * Calculate HECS-HELP repayment under the NEW marginal system (FY2026-27).
  */
 export function calculateHECS(income: number): number {
   if (income <= HECS_HELP.minimumThreshold) return 0;

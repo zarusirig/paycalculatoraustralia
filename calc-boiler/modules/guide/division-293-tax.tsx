@@ -14,8 +14,8 @@ import { getGuideAuthorship } from "@/lib/authors";
 const DIV293_THRESHOLD = 250_000;
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Division 293 tax", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super/caps-on-super-contributions/division-293-tax", publisher: SOURCES.ato.name },
-  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super/caps-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
+  { title: "Division 293 tax", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/division-293-tax-on-concessional-contributions-by-high-income-earners", publisher: SOURCES.ato.name },
+  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
   { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers", publisher: SOURCES.ato.name },
 ];
 

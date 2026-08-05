@@ -7,8 +7,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG, STATE_PAYROLL_TAX } from "@/lib/constants";
 function clamp(n: number, min: number, max: number) { return Math.min(max, Math.max(min, n)); }
+
+/** Display order for the cross-state payroll tax comparison table (home territory first). */
+const PAYROLL_COMPARE_ORDER = ["NT", "NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT"] as const;
 const SOURCES_LIST: SourceLink[] = [{ title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name }, { title: "NT Payroll Tax", url: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax", publisher: "NT Treasury" }];
 
 export default function PayCalculatorNTPage() {
@@ -106,26 +109,34 @@ export default function PayCalculatorNTPage() {
         {/* ── H2: What Is NT Payroll Tax? ── */}
         <section>
           <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is NT Payroll Tax?</h2>
-          <p className="mb-4 text-warmgray">NT payroll tax is <strong>5.5%</strong> on taxable wages above a <strong>$1,500,000 annual threshold</strong>, payable by the employer only and not deducted from employee take-home pay.</p>
-          <p className="mb-4 text-warmgray">The Northern Territory offers one of Australia&apos;s highest payroll tax thresholds, meaning small-to-medium businesses with total annual wages below $1.5 million pay no payroll tax at all. Employers with interstate operations must register and apportion wages across jurisdictions. Exempt categories include wages paid to apprentices during the first 2 years of a training contract, Commonwealth Government wages, and certain Indigenous community organisations.</p>
+          <p className="mb-4 text-warmgray">NT payroll tax is <strong>{formatPercent(STATE_PAYROLL_TAX.NT.rate, 1)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.NT.threshold)} annual threshold</strong>, payable by the employer only and not deducted from employee take-home pay.</p>
+          <p className="mb-4 text-warmgray">The Northern Territory offers one of Australia&apos;s highest payroll tax thresholds, meaning small-to-medium businesses with total annual wages below {formatAUD(STATE_PAYROLL_TAX.NT.threshold)} pay no payroll tax at all. Employers with interstate operations must register and apportion wages across jurisdictions. Exempt categories include wages paid to apprentices during the first 2 years of a training contract, Commonwealth Government wages, and certain Indigenous community organisations.</p>
 
           <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does NT Payroll Tax Compare to Other States?</h3>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm border border-sandstone-dark/20 rounded-lg overflow-hidden">
               <thead><tr className="bg-sandstone text-navy"><th className="text-left px-4 py-3 font-semibold">State / Territory</th><th className="text-right px-4 py-3 font-semibold">Rate</th><th className="text-right px-4 py-3 font-semibold">Annual Threshold</th></tr></thead>
               <tbody className="text-warmgray">
-                <tr className="border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"><td className="px-4 py-2">Northern Territory</td><td className="text-right px-4 py-2">5.50%</td><td className="text-right px-4 py-2">$1,500,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">New South Wales</td><td className="text-right px-4 py-2">5.45%</td><td className="text-right px-4 py-2">$1,200,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">Victoria</td><td className="text-right px-4 py-2">4.85%</td><td className="text-right px-4 py-2">$900,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">Queensland</td><td className="text-right px-4 py-2">4.75%</td><td className="text-right px-4 py-2">$1,300,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">South Australia</td><td className="text-right px-4 py-2">4.95%</td><td className="text-right px-4 py-2">$1,500,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">Western Australia</td><td className="text-right px-4 py-2">5.50%</td><td className="text-right px-4 py-2">$1,000,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10 bg-sandstone/30"><td className="px-4 py-2">Tasmania</td><td className="text-right px-4 py-2">4.00%</td><td className="text-right px-4 py-2">$1,250,000</td></tr>
-                <tr className="border-t border-sandstone-dark/10"><td className="px-4 py-2">ACT</td><td className="text-right px-4 py-2">6.85%</td><td className="text-right px-4 py-2">$2,000,000</td></tr>
+                {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                  const s = STATE_PAYROLL_TAX[code];
+                  const isHome = code === "NT";
+                  const rowClass = isHome
+                    ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
+                    : i % 2 === 0
+                    ? "border-t border-sandstone-dark/10 bg-sandstone/30"
+                    : "border-t border-sandstone-dark/10";
+                  return (
+                    <tr key={code} className={rowClass}>
+                      <td className="px-4 py-2">{s.name}</td>
+                      <td className="text-right px-4 py-2">{formatPercent(s.rate, 2)}</td>
+                      <td className="text-right px-4 py-2">{formatAUD(s.threshold)}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-          <p className="text-warmgray">The NT&apos;s <strong>$1,500,000</strong> threshold matches South Australia as the joint-highest outside the ACT. Use our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to see the total cost of employing staff including payroll tax, superannuation, and workers&apos; compensation.</p>
+          <p className="text-warmgray">The NT&apos;s <strong>{formatAUD(STATE_PAYROLL_TAX.NT.threshold)}</strong> threshold is the highest outside the ACT. Use our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to see the total cost of employing staff including payroll tax, superannuation, and workers&apos; compensation.</p>
         </section>
 
         {/* ── CONTEXT BORDER ── */}
@@ -200,7 +211,7 @@ export default function PayCalculatorNTPage() {
             <AccordionItem value="remote" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>What are remote area allowances in the NT?</AccordionTrigger><AccordionContent><p className="text-warmgray">Many NT employers offer district allowances of <strong>$3,000&ndash;$15,000</strong> per year for remote or isolated postings. These allowances cover higher living costs and typically include housing subsidies, airfare allowances, and attraction/retention bonuses. District allowances are assessable income and must be declared on your tax return.</p></AccordionContent></AccordionItem>
             <AccordionItem value="zone" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>How do I claim the Zone Tax Offset?</AccordionTrigger><AccordionContent><p className="text-warmgray">Claim the Zone Tax Offset at Question T3 in your individual tax return. You must have lived or worked in a designated zone for <strong>183 days or more</strong> during the financial year. The offset is not applied through PAYG withholding, so it is received as a lump-sum reduction when you lodge your return.</p></AccordionContent></AccordionItem>
             <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>How much superannuation does my NT employer pay?</AccordionTrigger><AccordionContent><p className="text-warmgray">Every Australian employer pays the superannuation guarantee at <strong>12%</strong> of ordinary time earnings for FY2025-26. This rate applies nationally. NT Government employees receive <strong>12%</strong> under the standard scheme. Superannuation is paid on top of your gross salary and does not reduce your take-home pay.</p></AccordionContent></AccordionItem>
-            <AccordionItem value="payroll" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>Do NT employees pay payroll tax?</AccordionTrigger><AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation calculated on total taxable wages above <strong>$1,500,000</strong>. It does not appear on your payslip and has no impact on your gross or net pay. The NT payroll tax rate is <strong>5.5%</strong>.</p></AccordionContent></AccordionItem>
+            <AccordionItem value="payroll" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>Do NT employees pay payroll tax?</AccordionTrigger><AccordionContent><p className="text-warmgray">No. Payroll tax is an employer obligation calculated on total taxable wages above <strong>{formatAUD(STATE_PAYROLL_TAX.NT.threshold)}</strong>. It does not appear on your payslip and has no impact on your gross or net pay. The NT payroll tax rate is <strong>{formatPercent(STATE_PAYROLL_TAX.NT.rate, 1)}</strong>.</p></AccordionContent></AccordionItem>
             <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>Does HECS-HELP affect my NT take-home pay?</AccordionTrigger><AccordionContent><p className="text-warmgray">Yes. HECS-HELP repayments are compulsory once your repayment income exceeds <strong>$69,528</strong> for FY2025-26. The repayment rate ranges from <strong>1% to 10%</strong> of your total repayment income. Tick the HECS-HELP checkbox in the calculator above to see the impact on your after-tax income.</p></AccordionContent></AccordionItem>
             <AccordionItem value="medicare" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>Is the Medicare levy different in the NT?</AccordionTrigger><AccordionContent><p className="text-warmgray">No. The Medicare levy is a federal charge of <strong>2%</strong> of taxable income, applied uniformly across Australia. NT residents without private hospital insurance and earning above <strong>$93,000</strong> (singles) also pay the &quot;Medicare Levy Surcharge&quot; of <strong>1&ndash;1.5%</strong>. Read our <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare Levy</Link> guide for full thresholds.</p></AccordionContent></AccordionItem>
             <AccordionItem value="compare" className="rounded-xl border border-sandstone-dark/20 px-5"><AccordionTrigger>How does NT take-home pay compare to other states?</AccordionTrigger><AccordionContent><p className="text-warmgray">Take-home pay on the same gross salary is identical across all states because income tax is federal. The difference is purchasing power: Darwin&apos;s lower housing costs mean a $90,000 salary stretches further than in Sydney or Melbourne, despite higher grocery and utility expenses. NT workers in remote zones also benefit from the Zone Tax Offset, which provides an additional <strong>$57&ndash;$1,173</strong> in annual tax savings that workers in major metro areas do not receive.</p></AccordionContent></AccordionItem>

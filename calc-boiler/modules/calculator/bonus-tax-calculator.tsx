@@ -13,12 +13,15 @@ import {
   formatAUD,
   formatPercent,
   TAX_BRACKETS,
+  TAX_BRACKETS_2025_26,
+  TAX_FREE_THRESHOLD,
   HECS_HELP,
   SUPER_GUARANTEE,
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { BONUS_TAX_FAQS } from "./bonus-tax-faqs";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -28,6 +31,20 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Schedule 5 – Tax table for back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments", publisher: SOURCES.ato.name },
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
+
+// Static worked-example figures ($90,000 base + $10,000 bonus), computed by
+// the same engine as the calculator above them so the prose can never drift
+// from what the tool outputs.
+const EX_BASE = calculatePayBreakdown({ grossSalary: 90_000 });
+const EX_COMBINED = calculatePayBreakdown({ grossSalary: 100_000 });
+const EX_TAX_ON_BONUS = EX_COMBINED.totalDeductions - EX_BASE.totalDeductions;
+const EX_NET_BONUS = 10_000 - EX_TAX_ON_BONUS;
+
+// Year-over-year saving from the FY2026-27 rate cut (16% → 15% on the second
+// bracket) for anyone earning at least the top of that bracket.
+const RATE_CUT_SAVING = Math.round(
+  (TAX_BRACKETS[1].max - TAX_FREE_THRESHOLD) * (TAX_BRACKETS_2025_26[1].rate - TAX_BRACKETS[1].rate)
+);
 
 export default function BonusTaxCalculatorPage() {
   const [baseSalary, setBaseSalary] = useState(90_000);
@@ -73,7 +90,7 @@ export default function BonusTaxCalculatorPage() {
             Bonus Tax Calculator Australia
           </h1>
           <p className="text-lg text-warmgray">
-            Find out exactly how much tax you pay on a bonus or commission payment.
+            Work out the extra tax you&apos;ll actually owe on a bonus or commission payment for the year.
             See the marginal tax rate applied to your lump sum and your actual take-home bonus.
           </p>
           <TrustBar className="mt-4" />
@@ -158,7 +175,7 @@ export default function BonusTaxCalculatorPage() {
               Bonus tax in Australia is calculated by applying your <strong>marginal tax rate</strong> to the bonus amount, because the ATO treats the bonus as income earned on top of your regular salary.
             </p>
             <p className="mb-4 text-warmgray">
-              The Australian Tax Office uses a specific method under the <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline">Schedule 5 tax table</Link> to determine the correct withholding. Your employer calculates two figures: the annual tax on your base salary alone, and the annual tax on your base salary plus the bonus. The difference between those two figures is the tax withheld from your bonus.
+              This calculator works out <strong>the extra tax you&apos;ll actually owe on your bonus for the year</strong>. It compares two figures: the annual tax on your base salary alone, and the annual tax on your base salary plus the bonus. The difference between those two figures is the tax the bonus adds to your annual bill &mdash; the part of the bonus you don&apos;t keep.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Step-by-Step Worked Example</h3>
@@ -166,13 +183,27 @@ export default function BonusTaxCalculatorPage() {
               An employee earns a base salary of <strong>$90,000</strong> and receives a <strong>$10,000</strong> performance bonus. The bonus tax calculation follows 4 steps:
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>Calculate tax on base salary ($90,000):</strong> Income tax is <strong>$17,788</strong> (using FY2025-26 brackets). Add the 2% Medicare levy of <strong>$1,800</strong>. Subtract the LITO offset. Total deductions on base salary: approximately <strong>$19,588</strong>.</li>
-              <li><strong>Calculate tax on combined income ($100,000):</strong> Income tax is <strong>$20,788</strong>. Medicare levy is <strong>$2,000</strong>. Total deductions on combined income: approximately <strong>$22,788</strong>.</li>
-              <li><strong>Find the difference:</strong> $22,788 &minus; $19,588 = <strong>$3,200</strong> in tax attributable to the bonus.</li>
-              <li><strong>Calculate take-home bonus:</strong> $10,000 &minus; $3,200 = <strong>$6,800</strong> net bonus. The effective tax rate on the bonus is <strong>32%</strong> (30% marginal rate + 2% Medicare levy).</li>
+              <li><strong>Calculate tax on base salary ($90,000):</strong> Income tax is <strong>{formatAUD(EX_BASE.netIncomeTax)}</strong> (using FY{SITE_CONFIG.financialYear} brackets). Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy of <strong>{formatAUD(EX_BASE.medicareLevy)}</strong>. LITO is nil at this income. Total deductions on base salary: <strong>{formatAUD(EX_BASE.totalDeductions)}</strong>.</li>
+              <li><strong>Calculate tax on combined income ($100,000):</strong> Income tax is <strong>{formatAUD(EX_COMBINED.netIncomeTax)}</strong>. Medicare levy is <strong>{formatAUD(EX_COMBINED.medicareLevy)}</strong>. Total deductions on combined income: <strong>{formatAUD(EX_COMBINED.totalDeductions)}</strong>.</li>
+              <li><strong>Find the difference:</strong> {formatAUD(EX_COMBINED.totalDeductions)} &minus; {formatAUD(EX_BASE.totalDeductions)} = <strong>{formatAUD(EX_TAX_ON_BONUS)}</strong> in tax attributable to the bonus.</li>
+              <li><strong>Calculate take-home bonus:</strong> $10,000 &minus; {formatAUD(EX_TAX_ON_BONUS)} = <strong>{formatAUD(EX_NET_BONUS)}</strong> net bonus. The effective tax rate on the bonus is <strong>{formatPercent(EX_TAX_ON_BONUS / 10_000, 0)}</strong> ({formatPercent(TAX_BRACKETS[2].rate, 0)} marginal rate + {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy).</li>
             </ol>
             <p className="text-warmgray">
-              This method mirrors how Australian tax calculators and payroll systems determine bonus withholding. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to verify your base salary tax figures independently.
+              This is the same annualised logic the tax system settles on when you lodge your return. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to verify your base salary tax figures independently.
+            </p>
+          </section>
+
+          {/* --- H2: Bonus Tax vs Employer Withholding --- */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Bonus Tax vs Employer Withholding &mdash; What&apos;s the Difference?</h2>
+            <p className="mb-4 text-warmgray">
+              There are two different numbers people call &quot;tax on my bonus,&quot; and they rarely match to the dollar. This page calculates the first one: <strong>the extra tax you&apos;ll actually owe on your bonus for the year</strong> &mdash; the amount the bonus adds to your annual tax liability.
+            </p>
+            <p className="mb-4 text-warmgray">
+              The second number is what your employer takes out of the bonus paycheque itself. That is <strong>PAYG withholding</strong>, calculated under the ATO&apos;s Schedule 5 tax table for back payments, commissions and bonuses. Schedule 5 works from your regular pay-period withholding amounts rather than your finished annual return, so the amount withheld from the paycheque can be somewhat more or less than the tax the bonus ultimately adds to your year.
+            </p>
+            <p className="text-warmgray">
+              Any gap settles itself when you lodge: if your employer withheld more than the bonus&apos;s real tax cost, the difference comes back as part of your refund; if less, it reduces your refund or adds to a bill. For the withholding side &mdash; what will actually be taken out of the paycheque &mdash; see our <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline">Schedule 5 tax table guide</Link>.
             </p>
           </section>
 
@@ -180,54 +211,32 @@ export default function BonusTaxCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Tax Rate Applies to Bonuses in Australia?</h2>
             <p className="mb-4 text-warmgray">
-              Bonuses are taxed at your <strong>marginal tax rate plus the 2% Medicare levy</strong>, not a flat &quot;bonus tax rate.&quot; The marginal rate depends on which income tax bracket your combined salary and bonus falls into for FY2025-26.
+              Bonuses are taxed at your <strong>marginal tax rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy</strong>, not a flat &quot;bonus tax rate.&quot; The marginal rate depends on which income tax bracket your combined salary and bonus falls into for FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              Australia does not have a separate bonus tax rate. The ATO&apos;s Schedule 5 withholding method applies the standard individual income tax brackets to calculate the tax on supplementary payments including bonuses, commissions, and back payments.
+              Australia does not have a separate bonus tax rate. A bonus is simply added to your taxable income for the year and taxed under the standard individual income tax brackets &mdash; so the extra tax you owe depends on the bracket your combined salary and bonus reaches.
             </p>
 
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">FY2025-26 Tax Brackets Applied to Bonuses</h3>
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">FY{SITE_CONFIG.financialYear} Tax Brackets Applied to Bonuses</h3>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th>
                     <th className="px-4 py-3 text-right font-semibold text-navy">Marginal Rate</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">+ Medicare (2%)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">+ Medicare ({formatPercent(MEDICARE_LEVY.rate, 0)})</th>
                     <th className="px-4 py-3 text-right font-semibold text-navy">Total on Bonus</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$0 &ndash; $18,200</td>
-                    <td className="px-4 py-3 text-right text-warmgray">0%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">2%</td>
-                    <td className="px-4 py-3 text-right font-semibold text-navy"><strong>2%</strong></td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$18,201 &ndash; $45,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">16%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">2%</td>
-                    <td className="px-4 py-3 text-right font-semibold text-navy"><strong>18%</strong></td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$45,001 &ndash; $135,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">30%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">2%</td>
-                    <td className="px-4 py-3 text-right font-semibold text-navy"><strong>32%</strong></td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$135,001 &ndash; $190,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">37%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">2%</td>
-                    <td className="px-4 py-3 text-right font-semibold text-navy"><strong>39%</strong></td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$190,001+</td>
-                    <td className="px-4 py-3 text-right text-warmgray">45%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">2%</td>
-                    <td className="px-4 py-3 text-right font-semibold text-navy"><strong>47%</strong></td>
-                  </tr>
+                  {TAX_BRACKETS.map((b) => (
+                    <tr key={b.min} className="hover:bg-sandstone">
+                      <td className="px-4 py-3 text-navy">{b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)} – ${formatAUD(b.max)}`}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatPercent(b.rate, 0)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatPercent(MEDICARE_LEVY.rate, 0)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-navy"><strong>{formatPercent(b.rate + MEDICARE_LEVY.rate, 0)}</strong></td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -245,7 +254,7 @@ export default function BonusTaxCalculatorPage() {
             <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
               <li><strong>Full-time and part-time employees</strong> receiving annual performance bonuses, Christmas bonuses, or retention payments who want to know their take-home pay after tax</li>
               <li><strong>Sales professionals</strong> earning regular commissions who need to forecast their net income across the financial year</li>
-              <li><strong>Small business owners and payroll officers</strong> calculating correct PAYG withholding on supplementary payments under ATO Schedule 5</li>
+              <li><strong>Small business owners and payroll officers</strong> cross-checking that the PAYG amount withheld under ATO Schedule 5 lines up with the tax a bonus actually adds to an employee&apos;s year</li>
               <li><strong>Contractors transitioning to employment</strong> comparing the tax treatment of lump-sum payments versus regular salary &mdash; our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> provides a full side-by-side comparison</li>
               <li><strong>Job seekers</strong> evaluating compensation packages that include sign-on bonuses or guaranteed incentive payments</li>
             </ul>
@@ -274,8 +283,8 @@ export default function BonusTaxCalculatorPage() {
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy font-medium">Effective rate at $90K salary</td>
-                    <td className="px-4 py-3 text-warmgray"><strong>21.8%</strong> (including Medicare)</td>
-                    <td className="px-4 py-3 text-warmgray"><strong>32%</strong> (30% + 2% Medicare)</td>
+                    <td className="px-4 py-3 text-warmgray"><strong>{formatPercent(EX_BASE.effectiveTaxRate)}</strong> (including Medicare)</td>
+                    <td className="px-4 py-3 text-warmgray"><strong>{formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)}</strong> ({formatPercent(TAX_BRACKETS[2].rate, 0)} + {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare)</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy font-medium">Tax-free threshold benefit</td>
@@ -288,20 +297,20 @@ export default function BonusTaxCalculatorPage() {
                     <td className="px-4 py-3 text-warmgray">Usually nil for incomes above $66,667</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy font-medium">Withholding method</td>
+                    <td className="px-4 py-3 text-navy font-medium">Employer withholding method</td>
                     <td className="px-4 py-3 text-warmgray">ATO Schedule 1 (regular pay cycles)</td>
                     <td className="px-4 py-3 text-warmgray">ATO Schedule 5 (supplementary payments)</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy font-medium">Super guarantee (12%)</td>
-                    <td className="px-4 py-3 text-warmgray">Applies to OTE salary</td>
-                    <td className="px-4 py-3 text-warmgray">Applies if bonus is OTE</td>
+                    <td className="px-4 py-3 text-navy font-medium">Super guarantee ({formatPercent(SUPER_GUARANTEE.rate, 0)})</td>
+                    <td className="px-4 py-3 text-warmgray">Applies to ordinary earnings</td>
+                    <td className="px-4 py-3 text-warmgray">Applies if bonus is qualifying earnings</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-warmgray">
-              The effective tax rate on a $10,000 bonus for an employee on $90,000 base salary is <strong>32%</strong>, compared to an overall effective rate of approximately <strong>21.8%</strong> on their regular salary. The difference arises because the $18,200 tax-free threshold and lower brackets are already used by the base salary. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to explore whether pre-tax contributions reduce your bonus tax impact.
+              The effective tax rate on a $10,000 bonus for an employee on $90,000 base salary is <strong>{formatPercent(EX_TAX_ON_BONUS / 10_000, 0)}</strong>, compared to an overall effective rate of approximately <strong>{formatPercent(EX_BASE.effectiveTaxRate)}</strong> on their regular salary. The difference arises because the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold and lower brackets are already used by the base salary. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to explore whether pre-tax contributions reduce your bonus tax impact.
             </p>
           </section>
 
@@ -309,7 +318,7 @@ export default function BonusTaxCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Do You Pay on Common Bonus Amounts?</h2>
             <p className="mb-4 text-warmgray">
-              The tax on a bonus ranges from <strong>18% to 47%</strong> depending on your combined salary and bonus total. The table below shows worked examples across 5 salary levels for FY2025-26.
+              The tax on a bonus ranges from <strong>{formatPercent(TAX_BRACKETS[1].rate + MEDICARE_LEVY.rate, 0)} to {formatPercent(TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate, 0)}</strong> depending on your combined salary and bonus total. The table below shows worked examples across 5 salary levels for FY{SITE_CONFIG.financialYear}.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -350,20 +359,20 @@ export default function BonusTaxCalculatorPage() {
             </div>
           </section>
 
-          {/* --- H2: What Changed in FY2025-26? --- */}
+          {/* --- H2: What Changed in FY2026-27? --- */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed for Bonus Tax in FY2025-26?</h2>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed for Bonus Tax in FY{SITE_CONFIG.financialYear}?</h2>
             <p className="mb-4 text-warmgray">
-              The Stage 3 tax cuts that took effect on 1 July 2024 reduced the marginal rate for the $45,001&ndash;$135,000 bracket from <strong>32.5% to 30%</strong>, directly lowering the tax withheld from bonuses for most Australian workers.
+              From 1 July 2026, the marginal rate for the {formatAUD(TAX_BRACKETS[1].min)}&ndash;{formatAUD(TAX_BRACKETS[1].max)} bracket fell from <strong>{formatPercent(TAX_BRACKETS_2025_26[1].rate, 0)} to {formatPercent(TAX_BRACKETS[1].rate, 0)}</strong> &mdash; the first bracket change since the Stage 3 cuts of July 2024, which had already lowered the middle bracket from 32.5% to 30%.
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
-              <li>The 16% bracket now applies from <strong>$18,201 to $45,000</strong> (previously 19% from $18,201 to $45,000)</li>
-              <li>The 30% bracket extends from <strong>$45,001 to $135,000</strong> (previously 32.5% from $45,001 to $120,000)</li>
-              <li>The 37% bracket starts at <strong>$135,001</strong> (previously $120,001), giving higher earners more room in the lower bracket</li>
-              <li>The superannuation guarantee rate increased to <strong>12%</strong> from 11.5%, increasing the SG contribution your employer pays on bonus amounts classified as Ordinary Time Earnings</li>
+              <li>The <strong>{formatPercent(TAX_BRACKETS[1].rate, 0)}</strong> rate now applies from <strong>{formatAUD(TAX_BRACKETS[1].min)} to {formatAUD(TAX_BRACKETS[1].max)}</strong> ({formatPercent(TAX_BRACKETS_2025_26[1].rate, 0)} in FY2025-26), so a bonus landing in that bracket is taxed at <strong>{formatPercent(TAX_BRACKETS[1].rate + MEDICARE_LEVY.rate, 0)}</strong> including Medicare, down from {formatPercent(TAX_BRACKETS_2025_26[1].rate + MEDICARE_LEVY.rate, 0)}</li>
+              <li>The brackets above {formatAUD(TAX_BRACKETS[1].max)} are unchanged &mdash; {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, then {formatPercent(TAX_BRACKETS[4].rate, 0)} &mdash; so most bonus recipients see the same marginal rate on the bonus itself</li>
+              <li>Everyone earning {formatAUD(TAX_BRACKETS[1].max)} or more still pays <strong>{formatAUD(RATE_CUT_SAVING)}</strong> less tax across the year from the rate cut</li>
+              <li>Payday Super commenced on {SUPER_GUARANTEE.paydaySuperStart}: if your bonus attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee, the contribution now reaches your fund within days of the payment instead of up to a quarter later</li>
             </ul>
             <p className="text-warmgray">
-              An employee on $90,000 receiving a $10,000 bonus now pays <strong>$3,200</strong> in tax on the bonus (32%), compared to <strong>$3,450</strong> (34.5%) under the previous rates &mdash; a saving of <strong>$250</strong>. Check the full impact on your salary using our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
+              An employee on $90,000 receiving a $10,000 bonus pays <strong>{formatAUD(EX_TAX_ON_BONUS)}</strong> in tax on the bonus ({formatPercent(EX_TAX_ON_BONUS / 10_000, 0)}) &mdash; the same as FY2025-26, because both figures sit in the unchanged {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket. Their saving shows up in the annual tax bill instead. Check the full impact on your salary using our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
           </section>
 
@@ -374,11 +383,11 @@ export default function BonusTaxCalculatorPage() {
               The most common mistake is assuming bonuses are taxed at a flat &quot;bonus rate&quot; &mdash; they are taxed at your <strong>marginal rate</strong>, which depends on your total assessable income.
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>Confusing marginal rate with effective rate:</strong> Employees see 32% withheld from a bonus and believe their entire salary is taxed at 32%. The effective rate on a $90,000 salary is approximately 21.8%. The bonus is taxed at the marginal rate because it sits on top of existing income.</li>
-              <li><strong>Forgetting the Medicare levy:</strong> The 2% Medicare levy applies to bonuses on top of the income tax rate. A 30% marginal bracket results in <strong>32% total</strong> tax on the bonus, not 30%.</li>
-              <li><strong>Ignoring bracket crossover:</strong> A $5,000 bonus on a $133,000 salary pushes total income from the 30% bracket into the 37% bracket. The first $2,000 of the bonus is taxed at 32% and the remaining $3,000 at 39%.</li>
-              <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt have an additional repayment amount withheld. A bonus that pushes total income above the {formatAUD(HECS_HELP.minimumThreshold)} HECS threshold triggers a repayment obligation. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
-              <li><strong>Assuming super is always paid on bonuses:</strong> The 12% superannuation guarantee applies only when the bonus qualifies as Ordinary Time Earnings. Sign-on bonuses, retention payments, and discretionary ex-gratia payments are generally excluded from OTE.</li>
+              <li><strong>Confusing marginal rate with effective rate:</strong> Employees see a bonus taxed at {formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)} and believe their entire salary is taxed at that rate. The effective rate on a $90,000 salary is approximately {formatPercent(EX_BASE.effectiveTaxRate)}. The bonus is taxed at the marginal rate because it sits on top of existing income.</li>
+              <li><strong>Forgetting the Medicare levy:</strong> The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy applies to bonuses on top of the income tax rate. A {formatPercent(TAX_BRACKETS[2].rate, 0)} marginal bracket results in <strong>{formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)} total</strong> tax on the bonus, not {formatPercent(TAX_BRACKETS[2].rate, 0)}.</li>
+              <li><strong>Ignoring bracket crossover:</strong> A $5,000 bonus on a $133,000 salary pushes total income from the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket into the {formatPercent(TAX_BRACKETS[3].rate, 0)} bracket. The first $2,000 of the bonus is taxed at {formatPercent(TAX_BRACKETS[2].rate + MEDICARE_LEVY.rate, 0)} and the remaining $3,000 at {formatPercent(TAX_BRACKETS[3].rate + MEDICARE_LEVY.rate, 0)}.</li>
+              <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt owe a larger compulsory repayment when a bonus lifts their repayment income. A bonus that pushes total income above the {formatAUD(HECS_HELP.minimumThreshold)} HECS threshold triggers a repayment obligation at your return. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
+              <li><strong>Assuming super is never paid on bonuses:</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee applies to bonuses that count as qualifying earnings &mdash; which includes performance, Christmas, sign-on and referral bonuses. Only a bonus paid solely for work performed entirely outside your ordinary hours is excluded.</li>
             </ol>
           </section>
 
@@ -386,7 +395,7 @@ export default function BonusTaxCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Is There a Difference Between Commission Tax and Bonus Tax?</h2>
             <p className="mb-4 text-warmgray">
-              From a tax perspective, <strong>no</strong>. The ATO treats bonuses, commissions, and similar one-off payments identically. They are all supplementary payments taxed under Schedule 5. Whether your payment is called a &quot;performance bonus,&quot; &quot;sales commission,&quot; or &quot;incentive payment,&quot; the withholding method and tax calculation are the same.
+              From a tax perspective, <strong>no</strong>. The ATO treats bonuses, commissions, and similar one-off payments identically: both are added to your annual income and taxed at your marginal rate, and on the withholding side both are supplementary payments under Schedule 5. Whether your payment is called a &quot;performance bonus,&quot; &quot;sales commission,&quot; or &quot;incentive payment,&quot; the tax calculation is the same.
             </p>
             <p className="text-warmgray">
               The only practical difference is frequency: commissions are often paid monthly or quarterly, while bonuses tend to be annual or one-off. Frequent commission payments can trigger PAYG instalment obligations if your total income exceeds ATO thresholds. Track your annual earnings using the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link>.
@@ -397,11 +406,11 @@ export default function BonusTaxCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Which Related Calculators Help with Bonus Planning?</h2>
             <p className="mb-4 text-warmgray">
-              Bonus tax is one component of your total tax position for the 2025-26 financial year. These Australian tax calculators address the broader picture:
+              Bonus tax is one component of your total tax position for the {SITE_CONFIG.financialYear} financial year. These Australian tax calculators address the broader picture:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> &mdash; calculates your net pay after income tax, Medicare levy, HECS, and superannuation on your full salary including bonuses</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; shows the exact income tax brackets and amounts applied to your total taxable income for FY2025-26</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; shows the exact income tax brackets and amounts applied to your total taxable income for FY{SITE_CONFIG.financialYear}</li>
               <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> &mdash; models whether sacrificing part of your bonus into superannuation reduces your overall tax liability</li>
               <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; determines the 12% SG contribution your employer pays on your bonus and base salary</li>
               <li><Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline">Tax Return Calculator</Link> &mdash; estimates whether you will receive a tax refund or owe a balance when you lodge your return after receiving bonus income</li>
@@ -412,7 +421,7 @@ export default function BonusTaxCalculatorPage() {
             <p className="mb-2 text-sm">This calculator estimates tax on bonuses using the following method:</p>
             <ul className="list-disc pl-4 space-y-1">
               <li>Calculates full-year tax liability with and without the bonus</li>
-              <li>The difference represents the tax attributable to the bonus (mirrors ATO Schedule 5)</li>
+              <li>The difference represents the tax the bonus adds to your annual liability — the same annualised approach that underpins the ATO&apos;s Schedule 5 withholding method, but it is not a prediction of the exact amount withheld from the paycheque</li>
               <li>Includes income tax, LITO offset, and Medicare levy</li>
               <li>Does not include Medicare surcharge, HECS repayments, or salary sacrifice — use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">main pay calculator</Link> for the complete picture</li>
             </ul>
@@ -421,39 +430,23 @@ export default function BonusTaxCalculatorPage() {
           {/* --- FAQs --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
+            {/*
+              The Radix accordion unmounts closed content, so answers never
+              reach the rendered HTML. This mirror makes them crawlable and
+              AI-Overview eligible. The same array feeds the FAQPage JSON-LD in
+              app/bonus-tax-calculator/page.tsx.
+            */}
+            <div className="sr-only">
+              <h3>Bonus tax questions and answers</h3>
+              {BONUS_TAX_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+            </div>
             <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="how-taxed" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How is a bonus taxed in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Bonuses are taxed at your marginal tax rate. Because the bonus sits on top of your regular salary, it is taxed at whatever bracket your total income falls into. Your employer uses ATO Schedule 5 to calculate the correct withholding amount. The marginal rate ranges from <strong>16%</strong> (for incomes between $18,201 and $45,000) to <strong>45%</strong> (for incomes above $190,000), plus the 2% Medicare levy.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="less-than-expected" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Why is my bonus smaller than expected?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Because tax is withheld at your marginal rate (not your effective rate). For example, if your salary puts you in the 30% bracket, <strong>32%</strong> (30% + 2% Medicare) is taken from every dollar of your bonus &mdash; even though your overall effective tax rate on salary is lower at approximately 21.8%. The tax-free threshold and lower brackets are already consumed by your regular income.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do I get superannuation on my bonus?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Generally yes. Bonuses paid for work performed are considered Ordinary Time Earnings (OTE) and attract the <strong>12%</strong> Superannuation Guarantee. Retention bonuses, sign-on bonuses, and discretionary payments are generally excluded from OTE. Check your employment contract or ask your payroll department to confirm whether your specific bonus attracts super.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="refund" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Will I get the tax on my bonus back at tax time?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Potentially some of it. If your employer over-withheld (i.e., withheld more than your actual tax liability for the year), you receive a refund when you lodge your tax return. The Schedule 5 method generally minimises over-withholding, so the refund attributable to bonus over-withholding is typically small &mdash; usually under <strong>$200</strong> for a $10,000 bonus.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="flat-rate" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is there a flat tax rate on bonuses in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Australia does not have a flat bonus tax rate. Unlike some countries (e.g., the US uses a 22% flat supplemental rate), Australia taxes bonuses at your <strong>marginal tax rate</strong> using the Schedule 5 calculation method. The rate depends entirely on your total assessable income for the financial year.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="reduce-bonus-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How can I reduce tax on my bonus?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Salary sacrifice part of your bonus into superannuation as a concessional contribution, taxed at only <strong>15%</strong> inside super instead of your marginal rate of up to 47%. The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year (including employer SG). Alternatively, claim all eligible work-related deductions to reduce your total taxable income and potentially lower the marginal rate applied to the bonus.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs-bonus" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does a bonus affect my HECS-HELP repayment?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. HECS-HELP repayments are based on your total &quot;Repayment Income,&quot; which includes your salary plus any bonuses, commissions, and fringe benefits. A bonus that pushes your repayment income above the <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> minimum threshold triggers a compulsory repayment. The marginal repayment rate starts at <strong>15%</strong> on income above {formatAUD(HECS_HELP.minimumThreshold)} under the FY{SITE_CONFIG.financialYear} marginal system.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="timing" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does it matter when my bonus is paid during the financial year?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The timing within a financial year does not change your total tax liability &mdash; your annual tax is calculated on total income regardless of when it is received. However, if your employer can defer a bonus payment to the next financial year (e.g., from June to July), it shifts the income into a different tax year and could result in a lower marginal rate if your income is lower in that year.</p></AccordionContent>
-              </AccordionItem>
+              {BONUS_TAX_FAQS.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
+                  <AccordionTrigger>{f.q}</AccordionTrigger>
+                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 

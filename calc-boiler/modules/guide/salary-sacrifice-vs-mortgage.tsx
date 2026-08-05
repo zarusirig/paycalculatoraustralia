@@ -14,7 +14,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Salary sacrificing for employees", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
   { title: "Cash Rate Target", url: "https://www.rba.gov.au/statistics/cash-rate/", publisher: "Reserve Bank of Australia" },
-  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super/caps-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
+  { title: "Concessional contributions cap", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/concessional-contributions-cap", publisher: SOURCES.ato.name },
 ];
 
 export default function SalarySacrificeVsMortgagePage() {

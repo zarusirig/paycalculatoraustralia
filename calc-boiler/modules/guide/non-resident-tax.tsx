@@ -6,9 +6,25 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, HECS_HELP, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+
+// Resident-vs-non-resident comparison figures, derived from the current-year
+// engine so a bracket change (like the 16%→15% cut) can never strand them.
+const RES_TAX_80K = Math.round(calculateIncomeTax(80_000));
+const NR_TAX_80K = Math.round(calculateIncomeTax(80_000, false));
+const RES_TAX_100K = Math.round(calculateIncomeTax(100_000));
+const NR_TAX_100K = Math.round(calculateIncomeTax(100_000, false));
+const RES_TOTAL_100K = RES_TAX_100K - Math.round(calculateLITO(100_000)) + calculateMedicareLevy(100_000);
+// Worked example at $90,000
+const RES_TAX_90K = Math.round(calculateIncomeTax(90_000));
+const LITO_90K = Math.round(calculateLITO(90_000));
+const MEDICARE_90K = calculateMedicareLevy(90_000);
+const RES_TOTAL_90K = RES_TAX_90K - LITO_90K + MEDICARE_90K;
+const NR_TAX_90K = Math.round(calculateIncomeTax(90_000, false));
+const RES_TAKE_HOME_90K = 90_000 - RES_TOTAL_90K;
+const NR_TAKE_HOME_90K = 90_000 - NR_TAX_90K;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Foreign resident tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents", publisher: SOURCES.ato.name },
@@ -23,7 +39,7 @@ export default function NonResidentTaxPage() {
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Non-Resident Tax</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Non-Resident Tax Rates Australia 2025-26</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Non-Resident Tax Rates Australia {SITE_CONFIG.financialYear}</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Tax rates for foreign residents working in Australia: no tax-free threshold, no LITO, and different brackets. See a side-by-side comparison with resident rates.</p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -34,15 +50,15 @@ export default function NonResidentTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Non-Resident Tax in Australia?</h2>
               <p>Non-resident tax is a separate set of Australian income tax rates that apply to individuals classified as <strong>foreign residents for tax purposes</strong> by the ATO.</p>
-              <p>Foreign residents pay tax from their very first dollar of Australian-sourced income. The tax-free threshold of <strong>$18,200</strong> does not apply, and non-residents cannot claim the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>$700</strong>. The lowest marginal rate for non-residents is <strong>30%</strong>, compared to <strong>0%</strong> for residents earning below $18,200 and <strong>16%</strong> for residents earning between $18,201 and $45,000. Non-residents also cannot access the &quot;Senior Australians and Pensioners Tax Offset&quot; (SAPTO), the &quot;Zone Tax Offset&quot;, or the Medicare levy exemption benefit that residents receive.</p>
+              <p>Foreign residents pay tax from their very first dollar of Australian-sourced income. The tax-free threshold of <strong>$18,200</strong> does not apply, and non-residents cannot claim the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>$700</strong>. The lowest marginal rate for non-residents is <strong>30%</strong>, compared to <strong>0%</strong> for residents earning below $18,200 and <strong>{formatPercent(SECOND_BRACKET_RATE, 0)}</strong> for residents earning between $18,201 and $45,000. Non-residents also cannot access the &quot;Senior Australians and Pensioners Tax Offset&quot; (SAPTO), the &quot;Zone Tax Offset&quot;, or the Medicare levy exemption benefit that residents receive.</p>
               <p>Non-resident taxation applies only to Australian-sourced income, including salary and wages earned in Australia, rental income from Australian property, and dividends from Australian companies. Foreign-sourced income (for example, rental income from a property in the United Kingdom, interest earned in a Singapore bank account, or salary paid by an overseas employer for work performed outside Australia) is not assessable in Australia for non-residents. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> with the non-resident toggle to calculate your exact after-tax income.</p>
             </section>
 
             {/* ── Section 2: Non-Resident Tax Brackets Table ── */}
             <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Non-Resident Tax Brackets for FY2025-26?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Non-Resident Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
               <p>Non-residents pay <strong>30% on every dollar</strong> up to $135,000, with no tax-free threshold and no lower-rate bands.</p>
-              <p>The table below shows the 3 non-resident income tax brackets for the 2025-26 financial year. Resident brackets are included for comparison. Non-residents face significantly higher taxation at all income levels below $135,000 because residents benefit from the $0 tax-free threshold and the 16% marginal rate on income between $18,201 and $45,000.</p>
+              <p>The table below shows the 3 non-resident income tax brackets for the {SITE_CONFIG.financialYear} financial year. Resident brackets are included for comparison. Non-residents face significantly higher taxation at all income levels below $135,000 because residents benefit from the $0 tax-free threshold and the {formatPercent(SECOND_BRACKET_RATE, 0)} marginal rate on income between $18,201 and $45,000.</p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Non-Resident Tax Rate Table</h3>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Taxable Income</th><th className="px-5 py-3">Tax Rate</th><th className="px-5 py-3 text-right">Tax Payable</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -76,15 +92,15 @@ export default function NonResidentTaxPage() {
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do Non-Residents Pay the Medicare Levy?</h2>
               <p>Non-residents are <strong>fully exempt</strong> from the 2% Medicare levy and the &quot;Medicare Levy Surcharge&quot; (MLS) of up to 1.5%.</p>
-              <p>The Medicare levy funds Australia&apos;s public health system, and non-residents cannot access Medicare services. This exemption saves a non-resident earning $100,000 a total of <strong>$2,000</strong> per year compared to a resident without private health insurance. However, the exemption does not offset the higher income tax rates: a non-resident earning $100,000 pays <strong>$30,000</strong> in income tax versus approximately <strong>$24,067</strong> for a resident (including Medicare levy), a net disadvantage of <strong>$5,933</strong>.</p>
+              <p>The Medicare levy funds Australia&apos;s public health system, and non-residents cannot access Medicare services. This exemption saves a non-resident earning $100,000 a total of <strong>$2,000</strong> per year compared to a resident without private health insurance. However, the exemption does not offset the higher income tax rates: a non-resident earning $100,000 pays <strong>{formatAUD(NR_TAX_100K)}</strong> in income tax versus approximately <strong>{formatAUD(RES_TOTAL_100K)}</strong> for a resident (including Medicare levy), a net disadvantage of <strong>{formatAUD(NR_TAX_100K - RES_TOTAL_100K)}</strong>.</p>
               <p>Non-residents working in Australia need private health insurance or must pay for medical services out of pocket. Australia has &quot;Reciprocal Health Care Agreements&quot; (RHCAs) with 11 countries including the United Kingdom, Ireland, New Zealand, Sweden, the Netherlands, Finland, Belgium, Norway, Slovenia, Italy, and Malta. Citizens of these countries receive limited Medicare access for essential treatment during temporary stays.</p>
             </section>
 
             {/* ── Section 5: Resident vs Non-Resident Tax Comparison ── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Non-Resident Tax Compare to Resident Tax?</h2>
-              <p>A non-resident earning $80,000 pays approximately <strong>$12,467 more</strong> in income tax than an Australian resident at the same salary.</p>
-              <p>The comparison table below calculates exact tax payable at 5 common salary levels for the 2025-26 financial year. Resident tax includes the LITO offset but excludes the Medicare levy to isolate the income tax difference. The &quot;Extra Cost&quot; column shows how much additional taxation a non-resident faces compared to a resident at each income level.</p>
+              <p>A non-resident earning $80,000 pays approximately <strong>{formatAUD(NR_TAX_80K - RES_TAX_80K)} more</strong> in income tax than an Australian resident at the same salary.</p>
+              <p>The comparison table below calculates exact tax payable at 5 common salary levels for the {SITE_CONFIG.financialYear} financial year. Resident tax is income tax only &mdash; it excludes the LITO offset and the Medicare levy &mdash; to isolate the bracket difference. The &quot;Extra Cost&quot; column shows how much additional taxation a non-resident faces compared to a resident at each income level.</p>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income</th><th className="px-5 py-3 text-right">Resident Tax</th><th className="px-5 py-3 text-right">Non-Resident Tax</th><th className="px-5 py-3 text-right">Extra Cost</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 {[30000, 50000, 80000, 100000, 150000].map(income => {
                   const resTax = Math.round(calculateIncomeTax(income, true));
@@ -97,13 +113,13 @@ export default function NonResidentTaxPage() {
               <p>Consider an IT contractor earning <strong>$90,000</strong> per year in Melbourne. The tax calculation differs significantly based on residency status:</p>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Component</th><th className="px-5 py-3 text-right">Resident</th><th className="px-5 py-3 text-right">Non-Resident</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr><td className="px-5 py-3">Gross Income</td><td className="px-5 py-3 text-right">$90,000</td><td className="px-5 py-3 text-right">$90,000</td></tr>
-                <tr><td className="px-5 py-3">Income Tax</td><td className="px-5 py-3 text-right">$17,788</td><td className="px-5 py-3 text-right text-red-600">$27,000</td></tr>
-                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">-$325</td><td className="px-5 py-3 text-right">$0</td></tr>
-                <tr><td className="px-5 py-3">Medicare Levy (2%)</td><td className="px-5 py-3 text-right">$1,800</td><td className="px-5 py-3 text-right">$0</td></tr>
-                <tr className="font-bold"><td className="px-5 py-3">Total Tax</td><td className="px-5 py-3 text-right">$19,263</td><td className="px-5 py-3 text-right text-red-600">$27,000</td></tr>
-                <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Take-Home Pay</td><td className="px-5 py-3 text-right text-eucalyptus-dark">$70,737</td><td className="px-5 py-3 text-right text-red-600">$63,000</td></tr>
+                <tr><td className="px-5 py-3">Income Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TAX_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
+                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">{LITO_90K > 0 ? `-${formatAUD(LITO_90K)}` : "$0 (fully phased out)"}</td><td className="px-5 py-3 text-right">$0</td></tr>
+                <tr><td className="px-5 py-3">Medicare Levy (2%)</td><td className="px-5 py-3 text-right">{formatAUD(MEDICARE_90K)}</td><td className="px-5 py-3 text-right">$0</td></tr>
+                <tr className="font-bold"><td className="px-5 py-3">Total Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TOTAL_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
+                <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Take-Home Pay</td><td className="px-5 py-3 text-right text-eucalyptus-dark">{formatAUD(RES_TAKE_HOME_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAKE_HOME_90K)}</td></tr>
               </tbody></table></div></div>
-              <p>The non-resident in this example takes home <strong>$7,737 less</strong> per year, or <strong>$644 less per month</strong>, than the resident. Both employees receive superannuation at <strong>12%</strong> ($10,800) on top of their gross salary. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to run your own comparison at any salary level.</p>
+              <p>The non-resident in this example takes home <strong>{formatAUD(RES_TAKE_HOME_90K - NR_TAKE_HOME_90K)} less</strong> per year, or <strong>{formatAUD(Math.round((RES_TAKE_HOME_90K - NR_TAKE_HOME_90K) / 12))} less per month</strong>, than the resident. Both employees receive superannuation at <strong>12%</strong> ($10,800) on top of their gross salary. Use the <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to run your own comparison at any salary level.</p>
             </section>
 
             {/* ── Section 6: What You DON'T Get as a Non-Resident ── */}
@@ -111,14 +127,14 @@ export default function NonResidentTaxPage() {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Tax Benefits Do Non-Residents Lose?</h2>
               <p>Non-residents lose access to <strong>6 major tax concessions</strong> that reduce the tax burden for Australian residents.</p>
               <ul>
-                <li><strong>No tax-free threshold ($18,200)</strong> &mdash; tax applies from the first dollar of income, costing up to <strong>$2,912</strong> in additional tax at the 16% marginal rate</li>
+                <li><strong>No tax-free threshold ($18,200)</strong> &mdash; tax applies from the first dollar of income, costing up to <strong>{formatAUD(Math.round(TAX_FREE_THRESHOLD * SECOND_BRACKET_RATE))}</strong> in additional tax at the {formatPercent(SECOND_BRACKET_RATE, 0)} marginal rate</li>
                 <li><strong>No Low Income Tax Offset</strong> &mdash; residents earning below $66,667 receive up to <strong>$700</strong> in LITO, reducing their effective tax rate. See the <Link href="/low-income-tax-offset/">Low Income Tax Offset guide</Link> for full phase-out details</li>
                 <li><strong>No Senior Australians and Pensioners Tax Offset</strong> &mdash; SAPTO provides up to <strong>$2,230</strong> for eligible seniors, creating an effective tax-free threshold of <strong>$33,532</strong> for single pensioners</li>
                 <li><strong>No Zone Tax Offset</strong> &mdash; residents living in remote or isolated areas (Zone A, Zone B, or special areas) receive offsets ranging from <strong>$338</strong> to <strong>$1,173</strong> per year. See the <Link href="/zone-tax-offset/">Zone Tax Offset guide</Link> for eligible locations</li>
                 <li><strong>No Medicare levy exemption</strong> &mdash; while non-residents do not pay the 2% levy, they also cannot access bulk-billed GP visits, public hospital treatment, or subsidised prescriptions under the PBS</li>
                 <li><strong>No CGT main residence exemption</strong> &mdash; non-residents pay capital gains tax on the sale of Australian property with no 50% CGT discount and no main residence exemption, even if the property was their home while they were a resident</li>
               </ul>
-              <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-guide/">salary sacrifice</Link> into superannuation (subject to concessional contribution caps of <strong>$30,000</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>
+              <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-guide/">salary sacrifice</Link> into superannuation (subject to the concessional contribution cap of <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>
             </section>
 
             {/* ── Section 7: Working Holiday Makers ── */}
@@ -128,12 +144,12 @@ export default function NonResidentTaxPage() {
               <p>Subclass 417 (Working Holiday) and subclass 462 (Work and Holiday) visa holders are classified as &quot;working holiday makers&quot; (WHMs) under a separate taxation schedule. WHMs are not subject to standard non-resident rates, provided their employer registers as an employer of working holiday makers with the ATO. Unregistered employers must withhold at the non-resident rate of <strong>30%</strong> from the first dollar.</p>
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income Range</th><th className="px-5 py-3 text-right">WHM Rate</th><th className="px-5 py-3 text-right">Non-Resident Rate</th><th className="px-5 py-3 text-right">Resident Rate</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr><td className="px-5 py-3">$0 &ndash; $18,200</td><td className="px-5 py-3 text-right font-medium">15%</td><td className="px-5 py-3 text-right">30%</td><td className="px-5 py-3 text-right">0%</td></tr>
-                <tr><td className="px-5 py-3">$18,201 &ndash; $45,000</td><td className="px-5 py-3 text-right font-medium">15%</td><td className="px-5 py-3 text-right">30%</td><td className="px-5 py-3 text-right">16%</td></tr>
+                <tr><td className="px-5 py-3">$18,201 &ndash; $45,000</td><td className="px-5 py-3 text-right font-medium">15%</td><td className="px-5 py-3 text-right">30%</td><td className="px-5 py-3 text-right">{formatPercent(SECOND_BRACKET_RATE, 0)}</td></tr>
                 <tr><td className="px-5 py-3">$45,001 &ndash; $135,000</td><td className="px-5 py-3 text-right">30%</td><td className="px-5 py-3 text-right">30%</td><td className="px-5 py-3 text-right">30%</td></tr>
                 <tr><td className="px-5 py-3">$135,001 &ndash; $190,000</td><td className="px-5 py-3 text-right">37%</td><td className="px-5 py-3 text-right">37%</td><td className="px-5 py-3 text-right">37%</td></tr>
                 <tr><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right">45%</td></tr>
               </tbody></table></div></div>
-              <p>WHMs who earn <strong>$40,000</strong> pay <strong>$6,000</strong> in tax under the WHM schedule, compared to <strong>$12,000</strong> under non-resident rates and <strong>$3,488</strong> under resident rates. Read the full <Link href="/working-holiday-tax/">Working Holiday Maker Tax Rate guide</Link> for details on employer registration, DASP claims, and departure tax returns.</p>
+              <p>WHMs who earn <strong>$40,000</strong> pay <strong>$6,000</strong> in tax under the WHM schedule, compared to <strong>{formatAUD(Math.round(calculateIncomeTax(40_000, false)))}</strong> under non-resident rates and <strong>{formatAUD(Math.round(calculateIncomeTax(40_000, true)))}</strong> under resident rates. Read the full <Link href="/working-holiday-tax/">Working Holiday Maker Tax Rate guide</Link> for details on employer registration, DASP claims, and departure tax returns.</p>
             </section>
 
             {/* ── Section 8: Double Tax Agreements ── */}
@@ -161,29 +177,29 @@ export default function NonResidentTaxPage() {
               <p>Non-residents who have left Australia permanently should lodge a &quot;departure tax return&quot; covering the period from 1 July to their departure date. This return uses the non-resident rates for the non-resident portion and can be lodged from overseas through myTax. Using a registered tax agent extends the lodgement deadline to <strong>15 May</strong> of the following year for most taxpayers.</p>
             </section>
 
-            {/* ── Section 10: What Changed in FY2025-26? ── */}
+            {/* ── Section 10: What Changed This Financial Year? ── */}
             <section>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Non-Residents in FY2025-26?</h2>
-              <p>The FY2025-26 non-resident tax brackets reflect the Stage 3 tax cuts that restructured resident brackets, while the non-resident rate structure remained at <strong>30% flat</strong> up to $135,000.</p>
-              <p>The Stage 3 tax cuts (effective 1 July 2024) changed resident brackets significantly: the 19% bracket was replaced with a 16% rate, and the 32.5% bracket dropped to 30%. Non-resident rates were adjusted in parallel &mdash; the previous 32.5% rate on income from $0 to $120,000 became <strong>30%</strong> on income from $0 to $135,000. The net effect is that non-residents earning up to $135,000 received a small tax reduction, but residents received a proportionally larger benefit.</p>
-              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Bracket</th><th className="px-5 py-3 text-right">FY2023-24 Rate</th><th className="px-5 py-3 text-right">FY2025-26 Rate</th><th className="px-5 py-3 text-right">Change</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Non-Residents in FY{SITE_CONFIG.financialYear}?</h2>
+              <p>Non-resident brackets are <strong>unchanged</strong> in FY{SITE_CONFIG.financialYear} &mdash; still a flat <strong>30%</strong> up to $135,000. The 1 July 2026 tax cut applied to the resident second bracket only, lowering its rate from 16% to <strong>{formatPercent(SECOND_BRACKET_RATE, 0)}</strong>; non-residents have no equivalent band, so their tax payable did not move.</p>
+              <p>The current non-resident structure dates from the Stage 3 tax cuts (effective 1 July 2024), which changed resident brackets significantly: the 19% bracket was replaced with a 16% rate (cut again to 15% from 1 July 2026), and the 32.5% bracket dropped to 30%. Non-resident rates were adjusted in parallel &mdash; the previous 32.5% rate on income from $0 to $120,000 became <strong>30%</strong> on income from $0 to $135,000. The net effect is that non-residents earning up to $135,000 received a small tax reduction, but residents received a proportionally larger benefit.</p>
+              <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Bracket</th><th className="px-5 py-3 text-right">FY2023-24 Rate</th><th className="px-5 py-3 text-right">FY{SITE_CONFIG.financialYear} Rate</th><th className="px-5 py-3 text-right">Change</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr><td className="px-5 py-3">$0 &ndash; $120,000</td><td className="px-5 py-3 text-right">32.5%</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">30%*</td><td className="px-5 py-3 text-right text-eucalyptus-dark">-2.5%</td></tr>
                 <tr><td className="px-5 py-3">$120,001 &ndash; $135,000</td><td className="px-5 py-3 text-right">37%</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">30%*</td><td className="px-5 py-3 text-right text-eucalyptus-dark">-7%</td></tr>
                 <tr><td className="px-5 py-3">$135,001 &ndash; $180,000</td><td className="px-5 py-3 text-right">37%</td><td className="px-5 py-3 text-right">37%*</td><td className="px-5 py-3 text-right">0%</td></tr>
                 <tr><td className="px-5 py-3">$180,001 &ndash; $190,000</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">37%*</td><td className="px-5 py-3 text-right text-eucalyptus-dark">-8%</td></tr>
                 <tr><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right">45%</td><td className="px-5 py-3 text-right">0%</td></tr>
               </tbody></table></div><p className="text-xs text-warmgray-light mt-2">*Bracket boundaries also changed. Current brackets use $135,000 and $190,000 thresholds.</p></div>
-              <p>The superannuation guarantee rate also increased to <strong>12%</strong> (from 11.5% in FY2024-25), applying equally to residents and non-residents. Employers must pay the SG rate on top of gross salary for all employees, regardless of tax residency status. Check the <Link href="/superannuation-calculator/">Superannuation Calculator</Link> to see how this affects your total remuneration package.</p>
+              <p>The superannuation guarantee rate remains at <strong>12%</strong> &mdash; its legislated ceiling, reached on 1 July 2025 &mdash; applying equally to residents and non-residents. Employers must pay the SG rate on top of gross salary for all employees, regardless of tax residency status. Check the <Link href="/superannuation-calculator/">Superannuation Calculator</Link> to see how this affects your total remuneration package.</p>
             </section>
 
             {/* ── Section 11: Related Resources ── */}
             <section>
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
-              <p>These Australian tax calculators and guides cover topics closely related to non-resident taxation for the 2025-26 financial year.</p>
+              <p>These Australian tax calculators and guides cover topics closely related to non-resident taxation for the {SITE_CONFIG.financialYear} financial year.</p>
               <ul>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; calculate your take-home pay as a resident or non-resident with the residency toggle</li>
                 <li><Link href="/working-holiday-tax/">Working Holiday Maker Tax Rate guide</Link> &mdash; 15% flat rate details for subclass 417 and 462 visa holders</li>
-                <li><Link href="/tax-brackets/">Tax Brackets guide</Link> &mdash; complete FY2025-26 income tax bracket tables for residents</li>
+                <li><Link href="/tax-brackets/">Tax Brackets guide</Link> &mdash; complete FY{SITE_CONFIG.financialYear} income tax bracket tables for residents</li>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; calculate employer SG contributions at the 12% rate</li>
                 <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice guide</Link> &mdash; pre-tax contribution strategies available to both residents and non-residents</li>
                 <li><Link href="/low-income-tax-offset/">Low Income Tax Offset guide</Link> &mdash; LITO details (residents only, up to $700)</li>
@@ -212,7 +228,7 @@ export default function NonResidentTaxPage() {
 
                 <AccordionItem value="cgt" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents get the 50% CGT discount?</AccordionTrigger><AccordionContent className="text-warmgray">No. Non-residents do not receive the 50% capital gains tax discount on any Australian asset, including shares and property. A non-resident selling an Australian investment property held for 3 years pays CGT on the full capital gain at their marginal non-resident rate, with no discount applied.</AccordionContent></AccordionItem>
 
-                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents have to repay HECS-HELP debts?</AccordionTrigger><AccordionContent className="text-warmgray">Yes. Since 1 July 2017, Australian citizens living overseas with a HECS-HELP debt must lodge an overseas return with the ATO and make compulsory repayments based on their worldwide income. The minimum repayment threshold is $69,528 for FY2025-26. Non-citizens do not incur HECS-HELP debts as they pay full tuition fees upfront.</AccordionContent></AccordionItem>
+                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">Do non-residents have to repay HECS-HELP debts?</AccordionTrigger><AccordionContent className="text-warmgray">Yes. Since 1 July 2017, Australian citizens living overseas with a HECS-HELP debt must lodge an overseas return with the ATO and make compulsory repayments based on their worldwide income. The minimum repayment threshold is {formatAUD(HECS_HELP.minimumThreshold)} for FY{SITE_CONFIG.financialYear}. Non-citizens do not incur HECS-HELP debts as they pay full tuition fees upfront.</AccordionContent></AccordionItem>
 
                 <AccordionItem value="private-ruling" className="border rounded-lg px-4 bg-white"><AccordionTrigger className="text-left font-semibold text-navy">How do I confirm my residency status with the ATO?</AccordionTrigger><AccordionContent className="text-warmgray">Request a private ruling from the ATO at no cost. A private ruling provides a binding determination of your residency status for the relevant financial year. You can apply online through the ATO website by providing details of your living arrangements, family ties, economic connections, and intention to remain in or return to Australia.</AccordionContent></AccordionItem>
 
@@ -222,7 +238,7 @@ export default function NonResidentTaxPage() {
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Non-resident tax rates and comparison calculations use ATO-published tax tables for FY2025-26. Resident tax calculations include LITO but not other offsets. The worked example at $90,000 uses standard non-resident brackets (30% flat rate on income up to $135,000) and resident brackets including the $18,200 tax-free threshold, 16% rate from $18,201 to $45,000, and 30% rate from $45,001 to $135,000.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Non-resident tax rates and comparison calculations use ATO-published tax tables for FY{SITE_CONFIG.financialYear}. The worked example at $90,000 includes LITO and the Medicare levy for the resident; the salary-level comparison table is income tax only. It uses standard non-resident brackets (30% flat rate on income up to $135,000) and resident brackets including the $18,200 tax-free threshold, {formatPercent(SECOND_BRACKET_RATE, 0)} rate from $18,201 to $45,000, and 30% rate from $45,001 to $135,000.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("non-resident-tax"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

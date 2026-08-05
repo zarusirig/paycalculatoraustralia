@@ -138,8 +138,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     relatedArticles: ["payday-super-employees-payslip", "super-contribution-caps-2026-27", "july-1-2026-money-changes"],
     sources: [
-      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/about-payday-super", publisher: "Australian Taxation Office" },
-      { title: "Payment deadlines for payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/paying-super-on-payday/payment-deadlines-for-payday-super", publisher: "Australian Taxation Office" },
+      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/about-payday-super", publisher: "Australian Taxation Office" },
+      { title: "Payment deadlines for payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-on-payday/payment-deadlines-for-payday-super", publisher: "Australian Taxation Office" },
     ],
     faq: [
       { question: "What is payday super and when does it start?", answer: "Payday super is a law requiring employers to pay super guarantee contributions into an employee's fund within 7 business days of each payday, rather than quarterly. It started on 1 July 2026 and applies to qualifying earnings paid from that date, even if the work was done earlier." },
@@ -163,8 +163,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     relatedArticles: ["payday-super-starts-july-2026", "july-1-2026-money-changes"],
     sources: [
-      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/about-payday-super", publisher: "Australian Taxation Office" },
-      { title: "Payday super: how to manage super during the changeover", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/payday-super-how-to-manage-super-during-the-changeover", publisher: "Australian Taxation Office" },
+      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/about-payday-super", publisher: "Australian Taxation Office" },
+      { title: "Payday super: how to manage super during the changeover", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super-how-to-manage-super-during-the-changeover", publisher: "Australian Taxation Office" },
     ],
   },
   {
@@ -182,7 +182,6 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     relatedArticles: ["super-tax-changes-explained", "transfer-balance-cap-increase-2026"],
     sources: [
-      { title: "Better Targeted Super Concessions is law", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/self-managed-super-funds-smsf/smsf-newsroom/better-targeted-super-concessions-is-law", publisher: "Australian Taxation Office" },
       { title: "Better targeted superannuation concessions", url: "https://www.ato.gov.au/about-ato/new-legislation/in-detail/superannuation/better-targeted-superannuation-concessions", publisher: "Australian Taxation Office" },
       { title: "Division 296 super tax explained", url: "https://www.superguide.com.au/super-booster/super-tax-accounts-3-million", publisher: "SuperGuide" },
     ],
@@ -246,7 +245,6 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     relatedArticles: ["division-296-super-tax-starts", "super-contribution-caps-2026-27"],
     sources: [
-      { title: "Better Targeted Super Concessions is law", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/self-managed-super-funds-smsf/smsf-newsroom/better-targeted-super-concessions-is-law", publisher: "Australian Taxation Office" },
       { title: "Better targeted superannuation concessions", url: "https://www.ato.gov.au/about-ato/new-legislation/in-detail/superannuation/better-targeted-superannuation-concessions", publisher: "Australian Taxation Office" },
       { title: "Division 296 super tax explained", url: "https://www.superguide.com.au/super-booster/super-tax-accounts-3-million", publisher: "SuperGuide" },
     ],
@@ -507,7 +505,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "Minimum wages increase from 1 July 2026", url: "https://www.fairwork.gov.au/about-us/workplace-laws/annual-wage-review/annual-wage-review-2026", publisher: "Fair Work Ombudsman" },
       { title: "Personal income tax – new tax cuts for every Australian taxpayer", url: "https://www.ato.gov.au/about-ato/new-legislation/in-detail/individuals/personal-income-tax-new-tax-cuts-for-every-australian-taxpayer", publisher: "Australian Taxation Office" },
-      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super/about-payday-super", publisher: "Australian Taxation Office" },
+      { title: "About payday super", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/about-payday-super", publisher: "Australian Taxation Office" },
     ],
     faq: [
       { question: "What changed on 1 July 2026?", answer: "The minimum wage rose 6% to $26.44 an hour, payday super began requiring employers to pay super within 7 business days of payday, the 16% tax rate dropped to 15%, the HECS repayment threshold rose to $69,528, and several Centrelink payment rates were indexed upward." },

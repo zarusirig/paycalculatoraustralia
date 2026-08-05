@@ -12,7 +12,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "TFN declaration", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration", publisher: SOURCES.ato.name },
-  { title: "Choosing a super fund", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/choosing-a-super-fund", publisher: SOURCES.ato.name },
+  { title: "Choosing a super fund", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/choosing-a-super-fund", publisher: SOURCES.ato.name },
   { title: "Starting a new job", url: "https://www.fairwork.gov.au/starting-employment", publisher: SOURCES.fwo.name },
   { title: "Pay slips", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips", publisher: SOURCES.fwo.name },
 ];

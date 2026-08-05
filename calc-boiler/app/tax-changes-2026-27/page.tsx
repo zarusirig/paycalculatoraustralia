@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import TaxChanges202627Page from "@/modules/guide/tax-changes-2026-27";
+import { TAX_CHANGES_2026_27_FAQS } from "@/modules/guide/tax-changes-2026-27-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, HECS_HELP, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
 const TITLE = "Tax Changes 2026-27 — What Changed From 1 July 2026";
-const DESCRIPTION = "Preview of Australian tax changes for FY2026-27. Upcoming rate changes, super guarantee at 12%, HECS threshold updates, and what it means for your take-home pay from July 2026.";
+const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, super guarantee at 12%, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and what it means for your take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -49,11 +50,11 @@ const article: WithContext<Article> = {
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What are the main tax changes for FY2026-27?", acceptedAnswer: { "@type": "Answer", text: "The headline change is the legislated cost-of-living tax cut: the rate on income between $18,201 and $45,000 drops from 16% to 15% on 1 July 2026, worth up to $268 a year. The super guarantee stays at 12%, the HECS-HELP repayment threshold rises to $69,528, and Medicare levy low-income thresholds are indexed." } },
-    { "@type": "Question", name: "Will tax brackets change in 2026-27?", acceptedAnswer: { "@type": "Answer", text: "Yes. From 1 July 2026 the marginal rate on income between $18,201 and $45,000 falls from 16% to 15% under the legislated cost-of-living tax cuts, with a further cut to 14% from 1 July 2027. Bracket thresholds themselves are unchanged." } },
-    { "@type": "Question", name: "What is the super guarantee rate for 2026-27?", acceptedAnswer: { "@type": "Answer", text: "The super guarantee rate remains at 12% for FY2026-27. The rate reached its legislated ceiling of 12% on 1 July 2025 and no further increases are currently scheduled." } },
-  ]
+  mainEntity: TAX_CHANGES_2026_27_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 export default function Page() {

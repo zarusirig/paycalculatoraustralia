@@ -16,11 +16,15 @@ import {
   HECS_HELP,
   SOURCES,
   SITE_CONFIG,
+  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+/** Display order for the cross-state payroll tax comparison table (home state first). */
+const PAYROLL_COMPARE_ORDER = ["WA", "NSW", "VIC", "QLD", "SA", "TAS", "NT", "ACT"] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -263,12 +267,12 @@ export default function PayCalculatorWAPage() {
           {/* H2: What Is WA Payroll Tax? */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is WA Payroll Tax?</h2>
-            <p className="text-warmgray mb-4">WA payroll tax is a <strong>5.5% state tax</strong> levied on employers whose total Australian taxable wages exceed <strong>$1,000,000 per year</strong>.</p>
+            <p className="text-warmgray mb-4">WA payroll tax is a <strong>{formatPercent(STATE_PAYROLL_TAX.WA.rate, 2)} state tax</strong> levied on employers whose total Australian taxable wages exceed <strong>{formatAUD(STATE_PAYROLL_TAX.WA.threshold)} per year</strong>.</p>
             <p className="text-warmgray mb-4">Payroll tax is an employer cost managed by the Department of Finance WA. Employees do not pay payroll tax, and it does not reduce your gross salary or take-home pay. The tax applies to the employer&apos;s total wage bill, not individual salaries. A tiered scale applies to larger employers with wages exceeding $100 million, where the rate increases to 6.5%.</p>
 
             {/* H3: WA vs Other States Payroll Tax Comparison */}
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">How Does WA Payroll Tax Compare to Other States?</h3>
-            <p className="text-warmgray mb-4">WA&apos;s payroll tax threshold of $1,000,000 sits in the middle range nationally. The comparison table below shows rates and thresholds across all 8 Australian states and territories.</p>
+            <p className="text-warmgray mb-4">WA&apos;s payroll tax threshold of {formatAUD(STATE_PAYROLL_TAX.WA.threshold)} sits in the middle range nationally. The comparison table below shows rates and thresholds across all 8 Australian states and territories.</p>
             <div className="overflow-x-auto mb-4">
               <table className="w-full text-sm border-collapse">
                 <thead>
@@ -279,50 +283,22 @@ export default function PayCalculatorWAPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-ochre/10">
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray font-semibold">Western Australia</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right font-bold text-navy">5.5%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right font-bold text-navy">$1,000,000</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">New South Wales</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">5.45%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$1,200,000</td>
-                  </tr>
-                  <tr className="bg-sandstone/50">
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">Victoria</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">4.85%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$900,000</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">Queensland</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">4.75%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$1,300,000</td>
-                  </tr>
-                  <tr className="bg-sandstone/50">
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">South Australia</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">4.95%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$1,500,000</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">Tasmania</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">4.0%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$1,250,000</td>
-                  </tr>
-                  <tr className="bg-sandstone/50">
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">Northern Territory</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">5.5%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$1,500,000</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 border border-sandstone-dark/20 text-warmgray">ACT</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-navy">6.85%</td>
-                    <td className="p-3 border border-sandstone-dark/20 text-right text-warmgray">$2,000,000</td>
-                  </tr>
+                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
+                    const s = STATE_PAYROLL_TAX[code];
+                    const isHome = code === "WA";
+                    const rowClass = isHome ? "bg-ochre/10" : i % 2 === 0 ? "bg-sandstone/50" : "";
+                    return (
+                      <tr key={code} className={rowClass}>
+                        <td className={`p-3 border border-sandstone-dark/20 text-warmgray ${isHome ? "font-semibold" : ""}`}>{s.name}</td>
+                        <td className={`p-3 border border-sandstone-dark/20 text-right text-navy ${isHome ? "font-bold" : ""}`}>{formatPercent(s.rate, 2)}</td>
+                        <td className={`p-3 border border-sandstone-dark/20 text-right ${isHome ? "font-bold text-navy" : "text-warmgray"}`}>{formatAUD(s.threshold)}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray text-sm">WA&apos;s payroll tax rate matches the Northern Territory at <strong>5.5%</strong> but carries a lower threshold than Queensland, SA, and the NT. For employers calculating total hiring costs including payroll tax, WorkCover, and superannuation, see our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.</p>
+            <p className="text-warmgray text-sm">WA&apos;s payroll tax rate matches the Northern Territory at <strong>{formatPercent(STATE_PAYROLL_TAX.WA.rate, 2)}</strong> but carries a lower threshold than Queensland, SA, and the NT. For employers calculating total hiring costs including payroll tax, WorkCover, and superannuation, see our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.</p>
           </section>
 
           {/* --- CONTEXT BORDER --- */}
@@ -456,7 +432,7 @@ export default function PayCalculatorWAPage() {
                 No. Personal income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy, and HECS-HELP repayment thresholds are identical in Western Australia, New South Wales, Victoria, Queensland, and every other state and territory. Use our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">income tax brackets</Link> page to see the full FY2025-26 rate schedule.
               </FAQItem>
               <FAQItem value="payroll" question="What is the payroll tax threshold in WA?">
-                The WA payroll tax threshold is <strong>$1,000,000</strong> per year. Employers with total Australian taxable wages below this amount pay no payroll tax. The standard rate is <strong>5.5%</strong> on wages exceeding the threshold, with a higher rate of 6.5% applying to employers with wages above $100 million.
+                The WA payroll tax threshold is <strong>{formatAUD(STATE_PAYROLL_TAX.WA.threshold)}</strong> per year. Employers with total Australian taxable wages below this amount pay no payroll tax. The standard rate is <strong>{formatPercent(STATE_PAYROLL_TAX.WA.rate, 2)}</strong> on wages exceeding the threshold, with a higher rate of 6.5% applying to employers with wages above $100 million.
               </FAQItem>
               <FAQItem value="employee" question="Do WA employees pay for WorkCover?">
                 No. WorkCover WA insurance premiums are entirely an employer expense. Premiums vary by industry risk classification, ranging from 0.5% of wages in low-risk office roles to over 7% in underground mining. These costs do not reduce your gross salary or take-home pay.

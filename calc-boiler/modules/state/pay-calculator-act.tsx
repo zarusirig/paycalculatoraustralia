@@ -7,8 +7,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatPercent, SOURCES, SITE_CONFIG, STATE_PAYROLL_TAX } from "@/lib/constants";
 function clamp(n: number, min: number, max: number) { return Math.min(max, Math.max(min, n)); }
+
+/** Display order for the cross-state payroll tax comparison table (home territory first). */
+const PAYROLL_COMPARE_ORDER = ["ACT", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"] as const;
 const SOURCES_LIST: SourceLink[] = [{ title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name }, { title: "ACT Payroll Tax", url: "https://www.revenue.act.gov.au/payroll-tax", publisher: "ACT Revenue Office" }];
 
 export default function PayCalculatorACTPage() {
@@ -104,8 +107,8 @@ export default function PayCalculatorACTPage() {
         {/* H2: What Is ACT Payroll Tax? */}
         <section>
           <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is ACT Payroll Tax?</h2>
-          <p className="mb-4 text-warmgray">ACT payroll tax is <strong>6.85%</strong> on taxable wages above a <strong>$2,000,000 annual threshold</strong>, paid exclusively by employers and administered by the ACT Revenue Office.</p>
-          <p className="mb-4 text-warmgray">The ACT threshold is the highest in Australia, exempting the majority of small and medium businesses. Payroll tax does not reduce your take-home pay &mdash; it is an employer-only obligation. However, larger employers factor payroll tax into total employment costs, which indirectly influences salary budgets and hiring capacity.</p>
+          <p className="mb-4 text-warmgray">ACT payroll tax is <strong>{formatPercent(STATE_PAYROLL_TAX.ACT.rate, 2)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.ACT.threshold)} annual threshold</strong>, paid exclusively by employers and administered by the ACT Revenue Office.</p>
+          <p className="mb-4 text-warmgray">The ACT threshold is among the highest in Australia, exempting the majority of small and medium businesses. Payroll tax does not reduce your take-home pay &mdash; it is an employer-only obligation. However, larger employers factor payroll tax into total employment costs, which indirectly influences salary budgets and hiring capacity.</p>
 
           {/* H3: ACT vs Other States Payroll Tax */}
           <h3 className="text-xl font-semibold text-navy mt-8 mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does ACT Payroll Tax Compare to Other States?</h3>
@@ -115,18 +118,29 @@ export default function PayCalculatorACTPage() {
                 <tr><th className="px-4 py-3">State / Territory</th><th className="px-4 py-3 text-right">Rate</th><th className="px-4 py-3 text-right">Annual Threshold</th></tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10 text-warmgray">
-                <tr className="bg-eucalyptus-light/20"><td className="px-4 py-3 font-medium text-navy">ACT</td><td className="px-4 py-3 text-right font-semibold">6.85%</td><td className="px-4 py-3 text-right font-semibold">$2,000,000</td></tr>
-                <tr><td className="px-4 py-3"><Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark hover:underline">NSW</Link></td><td className="px-4 py-3 text-right">5.45%</td><td className="px-4 py-3 text-right">$1,200,000</td></tr>
-                <tr><td className="px-4 py-3"><Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">VIC</Link></td><td className="px-4 py-3 text-right">4.85%</td><td className="px-4 py-3 text-right">$900,000</td></tr>
-                <tr><td className="px-4 py-3"><Link href="/pay-calculator-qld/" className="text-eucalyptus-dark hover:underline">QLD</Link></td><td className="px-4 py-3 text-right">4.75%</td><td className="px-4 py-3 text-right">$1,300,000</td></tr>
-                <tr><td className="px-4 py-3">WA</td><td className="px-4 py-3 text-right">5.50%</td><td className="px-4 py-3 text-right">$1,000,000</td></tr>
-                <tr><td className="px-4 py-3">SA</td><td className="px-4 py-3 text-right">4.95%</td><td className="px-4 py-3 text-right">$1,500,000</td></tr>
-                <tr><td className="px-4 py-3">TAS</td><td className="px-4 py-3 text-right">4.00%</td><td className="px-4 py-3 text-right">$1,250,000</td></tr>
-                <tr><td className="px-4 py-3">NT</td><td className="px-4 py-3 text-right">5.50%</td><td className="px-4 py-3 text-right">$1,500,000</td></tr>
+                {PAYROLL_COMPARE_ORDER.map((code) => {
+                  const s = STATE_PAYROLL_TAX[code];
+                  const isHome = code === "ACT";
+                  const linkHref: Record<string, string> = {
+                    NSW: "/pay-calculator-nsw/",
+                    VIC: "/pay-calculator-vic/",
+                    QLD: "/pay-calculator-qld/",
+                  };
+                  const label = linkHref[code] ? (
+                    <Link href={linkHref[code]} className="text-eucalyptus-dark hover:underline">{code}</Link>
+                  ) : isHome ? "ACT" : code;
+                  return (
+                    <tr key={code} className={isHome ? "bg-eucalyptus-light/20" : ""}>
+                      <td className={`px-4 py-3 ${isHome ? "font-medium text-navy" : ""}`}>{label}</td>
+                      <td className={`px-4 py-3 text-right ${isHome ? "font-semibold" : ""}`}>{formatPercent(s.rate, 2)}</td>
+                      <td className={`px-4 py-3 text-right ${isHome ? "font-semibold" : ""}`}>{formatAUD(s.threshold)}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-warmgray">The ACT&apos;s <strong>$2 million</strong> threshold means a business with a total annual wage bill under that amount pays zero payroll tax. In contrast, a Victorian employer exceeding $900,000 in wages already triggers liability at 4.85%.</p>
+          <p className="mt-3 text-warmgray">The ACT&apos;s <strong>{formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}</strong> threshold means a business with a total annual wage bill under that amount pays zero payroll tax. In contrast, a Victorian employer exceeding {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} in wages already triggers liability at {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}.</p>
         </section>
 
         {/* --- CONTEXT BORDER --- */}
@@ -205,7 +219,7 @@ export default function PayCalculatorACTPage() {
             </AccordionItem>
             <AccordionItem value="payrolltax" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger className="text-left text-base font-medium text-navy">Does ACT payroll tax affect my take-home pay?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer-only obligation. The ACT rate of <strong>6.85%</strong> applies to businesses with total annual wages exceeding $2,000,000. It does not appear on your payslip and does not reduce your net pay after tax.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">No. Payroll tax is an employer-only obligation. The ACT rate of <strong>{formatPercent(STATE_PAYROLL_TAX.ACT.rate, 2)}</strong> applies to businesses with total annual wages exceeding {formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}. It does not appear on your payslip and does not reduce your net pay after tax.</p></AccordionContent>
             </AccordionItem>
             <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger className="text-left text-base font-medium text-navy">Do APS employees get higher superannuation?</AccordionTrigger>
