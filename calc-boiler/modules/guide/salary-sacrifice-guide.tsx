@@ -419,7 +419,7 @@ export default function SalarySacrificeGuidePage() {
               <ol>
                 <li><strong>Reduced cash flow</strong> — Every dollar sacrificed is a dollar removed from your take-home pay. Budget accordingly using a fortnightly or monthly breakdown from our <Link href="/">Pay Calculator</Link></li>
                 <li><strong>Super preservation</strong> — Salary sacrificed into super is locked until a condition of release is met, typically reaching age 60 and retiring. Early access is restricted to severe financial hardship, terminal illness, or compassionate grounds</li>
-                <li><strong>HECS-HELP is unaffected</strong> — The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full repayment structure</li>
+                <li><strong>HECS-HELP is unaffected</strong> — The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full repayment structure</li>
                 <li><strong>Exceeding the concessional cap</strong> — Contributions beyond $30,000 (including employer SG) are taxed at the employee&apos;s marginal rate plus an excess concessional contributions charge</li>
                 <li><strong>Impact on government benefits</strong> — Centrelink assessments may use adjusted taxable income, which includes reportable super contributions, potentially reducing eligibility for Family Tax Benefit, childcare subsidies, or other income-tested payments</li>
                 <li><strong>Employer insolvency risk</strong> — If your employer becomes insolvent before remitting salary sacrifice contributions to your super fund, those contributions may be treated as unpaid wages</li>
@@ -527,7 +527,7 @@ export default function SalarySacrificeGuidePage() {
                 <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> — Model the exact take-home pay impact of different sacrifice amounts at your salary level</li>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> — Project your retirement balance with employer SG and additional salary sacrifice contributions</li>
                 <li><Link href="/tax-brackets/">Income Tax Brackets FY2025-26</Link> — View all marginal rates, base amounts, and the tax-free threshold for the current financial year</li>
-                <li><Link href="/hecs-help-guide/">HECS-HELP Repayment Guide</Link> — Understand why salary sacrifice does not reduce your student loan repayments</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link> — Understand why salary sacrifice does not reduce your student loan repayments</li>
                 <li><Link href="/novated-lease-guide/">Novated Lease Guide</Link> — Compare EV and ICE novated lease structures with FBT implications</li>
                 <li><Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link> — Full breakdown of FBT rates, exemptions, and reportable fringe benefits</li>
               </ul>

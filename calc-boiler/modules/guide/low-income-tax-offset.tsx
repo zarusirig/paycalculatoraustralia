@@ -387,7 +387,7 @@ export default function LowIncomeTaxOffsetPage() {
                     </div>
                     <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
                   </Link>
-                  <Link href="/hecs-help-guide/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <Link href="/hecs-help-calculator/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
                     <div>
                       <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">HECS-HELP Repayment Guide</span>
                       <span className="text-xs text-warmgray">How study debt interacts with LITO</span>

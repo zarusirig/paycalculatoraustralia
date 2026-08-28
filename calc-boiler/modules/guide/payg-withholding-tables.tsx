@@ -269,7 +269,7 @@ export default function PAYGTablesGuidePage() {
                 </div>
               </div>
               <p>
-                Schedule 1 applies to the vast majority of Australian employees. It contains sub-tables for claiming and not claiming the tax-free threshold, and additional coefficients for employees with HECS-HELP, VSL, SFSS, or TSL study and training debts. For more on study loan repayments and their withholding effect, see our <Link href="/hecs-help-guide/">HECS-HELP Repayment Guide</Link>. Working holiday makers operate under a completely different tax regime &mdash; our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link> explains the rates and thresholds in detail.
+                Schedule 1 applies to the vast majority of Australian employees. It contains sub-tables for claiming and not claiming the tax-free threshold, and additional coefficients for employees with HECS-HELP, VSL, SFSS, or TSL study and training debts. For more on study loan repayments and their withholding effect, see our <Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link>. Working holiday makers operate under a completely different tax regime &mdash; our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link> explains the rates and thresholds in detail.
               </p>
             </section>
 
@@ -453,7 +453,7 @@ export default function PAYGTablesGuidePage() {
               <ul>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Enter your gross salary and instantly see your PAYG withholding, Medicare levy, superannuation, and net pay for any pay cycle.</li>
                 <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; Full breakdown of the current marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
-                <li><Link href="/hecs-help-guide/">HECS-HELP Repayment Guide</Link> &mdash; How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link> &mdash; How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
                 <li><Link href="/schedule-5-tax-table/">Schedule 5 Tax Table</Link> &mdash; The withholding method for bonuses, commissions, and back payments, with a Method B(ii) calculator.</li>
                 <li><Link href="/bonus-tax-guide/">Bonus Tax Guide</Link> &mdash; How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Method B (Plan B).</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; The SG rate, contribution caps, employer obligations, and how super interacts with your gross-to-net calculation.</li>

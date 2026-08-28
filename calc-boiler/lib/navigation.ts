@@ -94,8 +94,6 @@ export const GUIDE_CATEGORIES = [
     guides: [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
       { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide", description: "Tax savings and FBT" },
-      { href: "/hecs-help-guide/", label: "HECS-HELP Guide", description: "How the loan works, indexation and voluntary repayments" },
-      { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold", description: "Current thresholds and rates" },
       { href: "/novated-lease-guide/", label: "Novated Lease Guide", description: "Salary packaging a car" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
     ],
@@ -316,8 +314,6 @@ export const FOOTER_GUIDES_TAX = [
 export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/superannuation-guide/", label: "Superannuation Guide" },
   { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide" },
-  { href: "/hecs-help-guide/", label: "HECS-HELP Guide" },
-  { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold" },
   { href: "/novated-lease-guide/", label: "Novated Lease Guide" },
   { href: "/salary-packaging-guide/", label: "Salary Packaging" },
   { href: "/division-293-tax/", label: "Division 293 Tax" },

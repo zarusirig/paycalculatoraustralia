@@ -139,7 +139,7 @@ export default function STSLOnPayslipPage() {
                 <li><strong>Timing quirk:</strong> because credits are applied at assessment, your HELP balance is still indexed on 1 June on its full outstanding amount &mdash; the year&apos;s withholding does not reduce it beforehand.</li>
               </ul>
               <p>
-                A second job is the most common cause of an STSL shortfall. If you work two jobs, check our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see your combined position, and read the <Link href="/hecs-help-guide/">HECS-HELP guide</Link> for repayment strategies.
+                A second job is the most common cause of an STSL shortfall. If you work two jobs, check our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see your combined position, and read the <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> for repayment strategies.
               </p>
             </section>
 
@@ -217,7 +217,7 @@ export default function STSLOnPayslipPage() {
                       <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">PAYG Withholding Tables</span>
                       <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
                     </Link>
-                    <Link href="/hecs-help-guide/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                    <Link href="/hecs-help-calculator/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
                       <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">HECS-HELP Guide</span>
                       <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
                     </Link>

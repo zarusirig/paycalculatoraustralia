@@ -110,7 +110,7 @@ export default function TaxFileNumberDeclarationPage() {
                 <li>Trade Support Loan (TSL)</li>
               </ul>
               <p>
-                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory HECS repayment. If you do not declare your HECS debt here, you will likely owe a lump sum when you lodge your tax return. See our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for repayment thresholds and rates.
+                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory HECS repayment. If you do not declare your HECS debt here, you will likely owe a lump sum when you lodge your tax return. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for repayment thresholds and rates.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 8: Financial Supplement Debt</h3>
@@ -249,7 +249,7 @@ export default function TaxFileNumberDeclarationPage() {
                   <h3 className="font-bold text-navy mb-3">Related Guides &amp; Tools</h3>
                   <div className="space-y-3">
                     <SidebarLink href="/second-job-tax-calculator/" label="Second Job Tax Calculator" />
-                    <SidebarLink href="/hecs-help-guide/" label="HECS-HELP Guide" />
+                    <SidebarLink href="/hecs-help-calculator/" label="HECS-HELP Guide" />
                     <SidebarLink href="/first-job-pay-guide/" label="First Job Pay Guide" />
                     <SidebarLink href="/new-job-checklist/" label="New Job Checklist" />
                     <SidebarLink href="/payg-withholding-tables/" label="PAYG Withholding Tables" />

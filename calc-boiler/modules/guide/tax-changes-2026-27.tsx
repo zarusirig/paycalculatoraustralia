@@ -139,7 +139,7 @@ export default function TaxChanges202627Page() {
                 The ATO has published the 2026-27 HELP/STSL repayment thresholds &mdash; see <a href={HECS_SOURCE_URL}>Study and training support loans rates and repayment thresholds</a>. You repay nothing on repayment income up to <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> (up from {formatAUD(HECS_HELP.previousThreshold)} in FY2025-26). Above that, repayments are <strong>{(HECS_HELP.bands[1].marginalRate * 100).toFixed(0)}c for each $1 over {formatAUD(HECS_HELP.minimumThreshold)}</strong> up to {formatAUD(HECS_HELP.bands[1].max)}, then <strong>{formatAUD(HECS_HELP.bands[2].base)} plus {(HECS_HELP.bands[2].marginalRate * 100).toFixed(0)}c for each $1 over {formatAUD(HECS_HELP.bands[1].max)}</strong> up to {formatAUD(HECS_HELP.bands[2].max)}, and <strong>{(HECS_HELP.bands[3].marginalRate * 100).toFixed(0)}% of total repayment income</strong> from {formatAUD(HECS_HELP.bands[3].min)}.
               </p>
               <p>
-                Under this marginal system, introduced in FY2025-26, you only pay the repayment percentage on income <em>above</em> each threshold, not on your entire income. Work out your exact repayment with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>, or see our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> for the full breakdown.
+                Under this marginal system, introduced in FY2025-26, you only pay the repayment percentage on income <em>above</em> each threshold, not on your entire income. Work out your exact repayment with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>, or see our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full breakdown.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Thresholds</h3>
@@ -312,7 +312,7 @@ export default function TaxChanges202627Page() {
                   <div className="space-y-3">
                     <SidebarLink href="/tax-brackets/" label="Tax Brackets 2026-27" />
                     <SidebarLink href="/stage-3-tax-cuts/" label="Stage 3 Tax Cuts Explained" />
-                    <SidebarLink href="/hecs-help-guide/" label="HECS-HELP Guide" />
+                    <SidebarLink href="/hecs-help-calculator/" label="HECS-HELP Guide" />
                     <SidebarLink href="/tax-bracket-history/" label="Tax Bracket History" />
                     <SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" />
                   </div>

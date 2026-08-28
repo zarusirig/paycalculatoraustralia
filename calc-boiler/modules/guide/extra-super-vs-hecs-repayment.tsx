@@ -192,7 +192,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                 <AccordionItem value="indexation" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How is HECS-HELP debt indexed?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    HECS-HELP debt is indexed annually on 1 June to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was introduced in 2023 to prevent debt growing faster than wages. Under normal conditions, indexation runs between 3% and 4% per year. Read the full breakdown in our <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link>.
+                    HECS-HELP debt is indexed annually on 1 June to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was introduced in 2023 to prevent debt growing faster than wages. Under normal conditions, indexation runs between 3% and 4% per year. Read the full breakdown in our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link>.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="compulsory-reduce" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -234,7 +234,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                   <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
                   <div className="space-y-3">
                     <SidebarLink href="/hecs-help-calculator/" label="HECS-HELP Calculator" />
-                    <SidebarLink href="/hecs-help-guide/" label="HECS-HELP Guide" />
+                    <SidebarLink href="/hecs-help-calculator/" label="HECS-HELP Guide" />
                     <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" />
                     <SidebarLink href="/superannuation-guide/" label="Superannuation Guide" />
                   </div>

@@ -48,7 +48,7 @@ export default function HecsMarginalRepaymentFirstTaxTime() {
         simply moves the credit onto the loan. Remember that repayment income is broader than
         salary: reportable fringe benefits, reportable super contributions and net investment
         losses are all added back, which is a common reason assessments come in higher than the
-        payslip maths suggests. Our <Link href="/hecs-help-guide/">HECS-HELP guide</Link> walks
+        payslip maths suggests. Our <Link href="/hecs-help-calculator/">HECS-HELP guide</Link> walks
         through the full definition.
       </p>
 

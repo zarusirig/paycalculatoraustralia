@@ -290,7 +290,6 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
-      { href: "/hecs-help-guide/", label: "HECS-HELP Guide" },
     ],
     relatedArticles: ["hecs-indexation-2026", "hecs-marginal-repayment-first-tax-time"],
     sources: [
@@ -315,11 +314,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     dateModified: "2026-07-02",
     authorId: "james-harrington",
     relatedCalculators: [
-      // The evergreen page owns this term; this article is the dated
-      // announcement. Linking it first passes the signal to the reference page
-      // rather than leaving two URLs competing on "hecs repayment threshold".
-      { href: "/hecs-repayment-threshold/", label: "HECS Repayment Threshold" },
-      { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
+      // The calculator owns "hecs repayment threshold" (the separate threshold
+      // page was merged into it, Aug 2026); this article is the dated
+      // announcement. Linking it first passes the signal to the evergreen page.
+      { href: "/hecs-help-calculator/#threshold", label: "HECS Repayment Threshold & Calculator" },
       { href: "/stsl-on-payslip/", label: "STSL on Your Payslip" },
     ],
     relatedArticles: ["hecs-marginal-repayment-first-tax-time", "hecs-indexation-2026"],

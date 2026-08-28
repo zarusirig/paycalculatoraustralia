@@ -310,7 +310,7 @@ export default function TaxRefundGuidePage() {
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — compute income tax, Medicare levy, and take-home pay at any salary level for FY2025-26.</li>
                 <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> — view all Australian income tax brackets with marginal rates, base amounts, and worked examples.</li>
                 <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> — learn how salary packaging into superannuation or novated leases reduces taxable income and increases your refund.</li>
-                <li><Link href="/hecs-help-guide/">HECS-HELP Guide</Link> — understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> — understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — review employer SG rate obligations, contribution caps, and the impact of super on your overall tax position.</li>
                 <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — check whether LITO applies to your income and how it reduces your assessed tax liability.</li>
                 <li><Link href="/medicare-levy/">Medicare Levy Guide</Link> — learn about the 2% Medicare levy, the surcharge thresholds, and exemptions for low-income earners.</li>

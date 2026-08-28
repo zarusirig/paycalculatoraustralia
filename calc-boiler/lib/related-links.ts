@@ -90,7 +90,6 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
     match: (p) => p.includes("hecs") || p === "/stsl-on-payslip/",
     links: [
       HECS_CALC,
-      { href: "/hecs-repayment-threshold/", title: "HECS Repayment Thresholds", blurb: "The income bands that set your repayment rate." },
       { href: "/extra-super-vs-hecs-repayment/", title: "Extra Super vs HECS", blurb: "Which is the better use of a spare dollar?" },
       TAKE_HOME,
     ],

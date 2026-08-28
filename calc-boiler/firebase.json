@@ -107,6 +107,26 @@
         "source": "/tax-brackets-2025-26/",
         "destination": "/tax-brackets/",
         "type": 301
+      },
+      {
+        "source": "/hecs-help-guide",
+        "destination": "/hecs-help-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/hecs-help-guide/",
+        "destination": "/hecs-help-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/hecs-repayment-threshold",
+        "destination": "/hecs-help-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/hecs-repayment-threshold/",
+        "destination": "/hecs-help-calculator/",
+        "type": 301
       }
     ],
     "headers": [

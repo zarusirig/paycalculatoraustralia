@@ -587,7 +587,7 @@ export default function SuperannuationGuidePage() {
                 <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> &mdash; Full explanation of salary sacrifice mechanics, FBT implications, and concessional cap interactions.</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Calculate your after-tax income including super, Medicare Levy, HECS-HELP, and all deductions.</li>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; See exactly how the FY2025-26 tax brackets apply to your assessable income.</li>
-                <li><Link href="/hecs-help-guide/">HECS-HELP Guide</Link> &mdash; Understand the new marginal repayment system and how HECS interacts with super salary sacrifice strategies.</li>
+                <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> &mdash; Understand the new marginal repayment system and how HECS interacts with super salary sacrifice strategies.</li>
               </ul>
             </section>
 

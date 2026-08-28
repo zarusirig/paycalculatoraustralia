@@ -102,8 +102,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "fortnightly-tax-table",
     "monthly-tax-table",
     "schedule-5-tax-table",
-    "hecs-help-guide",
-    "hecs-repayment-threshold",
     "salary-sacrifice-guide",
     "low-income-tax-offset",
     "understanding-your-payslip",

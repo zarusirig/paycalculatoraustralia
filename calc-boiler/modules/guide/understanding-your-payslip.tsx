@@ -345,7 +345,7 @@ export default function UnderstandingYourPayslipPage() {
                 <li><strong>Income Statement deadline:</strong> Employers must finalise STP data and mark Income Statements as &ldquo;Tax Ready&rdquo; by <strong>14 July 2026</strong> for the FY2025-26 year.</li>
               </ul>
               <p>
-                Compare your payslip before and after 1 July 2025 to confirm these changes are reflected. Use our <Link href="/hecs-help-guide/">HECS-HELP Guide</Link> to calculate your exact repayment amount under the new marginal system.
+                Compare your payslip before and after 1 July 2025 to confirm these changes are reflected. Use our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> to calculate your exact repayment amount under the new marginal system.
               </p>
             </section>
 
@@ -395,7 +395,7 @@ export default function UnderstandingYourPayslipPage() {
                 <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does my HECS-HELP repayment show separately on my payslip?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-guide/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY2025-26 repayment threshold is <strong>$69,528</strong>. Below this income level, no repayment is withheld.
+                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY2025-26 repayment threshold is <strong>$69,528</strong>. Below this income level, no repayment is withheld.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="super-check" className="border rounded-lg px-4 bg-sandstone bg-white">

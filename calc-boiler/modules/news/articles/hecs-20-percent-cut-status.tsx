@@ -60,7 +60,7 @@ export default function Hecs20PercentCutStatus() {
         as a HECS-HELP debt and a SA-HELP debt, the 20% applied across your combined study loan
         balances, so check each account listed. For a full breakdown of how your loan balance,
         indexation and repayments fit together, see our{" "}
-        <Link href="/hecs-help-guide/">HECS-HELP guide</Link>.
+        <Link href="/hecs-help-calculator/">HECS-HELP guide</Link>.
       </p>
       <p>
         If the balance looks wrong — the reduction is missing entirely, or the amount doesn&apos;t

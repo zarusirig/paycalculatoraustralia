@@ -189,7 +189,7 @@ export default function TaxCalendarPage() {
               <li><Link href="/tax-brackets/">Income Tax Brackets 2025-26</Link> — full breakdown of marginal tax rates, thresholds, and worked examples at common salary levels</li>
               <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — employer SG obligations, concessional contribution caps, and Division 293 tax explained</li>
               <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> — how refunds are calculated, processing times, and common reasons for ATO adjustments</li>
-              <li><Link href="/hecs-help-guide/">HECS-HELP Repayment Guide</Link> — repayment thresholds, rates, and how HELP debt affects your take-home pay</li>
+              <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link> — repayment thresholds, rates, and how HELP debt affects your take-home pay</li>
               <li><Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> — weekly, fortnightly, and monthly withholding amounts for employers and payroll processing</li>
             </ul>
           </section>

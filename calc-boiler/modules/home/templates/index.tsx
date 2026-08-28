@@ -1224,7 +1224,7 @@ export default function HomePageTemplate() {
             <strong>At $90,000:</strong> You pay {formatPercent(HECS_HELP.bands[1].marginalRate, 0)} on the {formatAUD(90_000 - HECS_HELP.minimumThreshold)} above {formatAUD(HECS_HELP.minimumThreshold)}, a repayment of <strong>{formatAUD(BD90_HECS.hecsRepayment)}</strong> per year ({formatAUD(BD90_HECS.hecsRepayment / 26, 2)} per fortnight). Your annual take-home pay drops from {formatAUD(BD90.takeHomePay)} to <strong>{formatAUD(BD90_HECS.takeHomePay)}</strong>.
           </p>
           <p className="leading-relaxed text-warmgray">
-            The marginal system eliminates the cliff effect of the old model, where crossing a threshold by a single dollar triggered repayments on your entire income. Use our <Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> for your exact repayment, check the <Link href="/hecs-repayment-threshold/" className="font-medium text-eucalyptus-dark hover:underline">current repayment thresholds</Link>, or read the <Link href="/hecs-help-guide/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link>.
+            The marginal system eliminates the cliff effect of the old model, where crossing a threshold by a single dollar triggered repayments on your entire income. Use our <Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> for your exact repayment, check the <Link href="/hecs-help-calculator/#threshold" className="font-medium text-eucalyptus-dark hover:underline">current repayment thresholds</Link>, or read the <Link href="/hecs-help-calculator/" className="font-medium text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link>.
           </p>
         </motion.section>
 
@@ -1456,7 +1456,7 @@ export default function HomePageTemplate() {
             <CalcLink href="/medicare-levy/" title="Medicare Levy Guide" desc="2% levy, low-income exemption, surcharge thresholds, and family rates" />
             <CalcLink href="/superannuation-guide/" title="Superannuation Guide" desc="SG rates, contribution caps, employer obligations, and withdrawal rules" />
             <CalcLink href="/salary-sacrifice-guide/" title="Salary Sacrifice Guide" desc="How pre-tax super contributions reduce your tax bill" />
-            <CalcLink href="/hecs-help-guide/" title="HECS-HELP Guide" desc="Marginal repayment system, thresholds, and indexation rules" />
+            <CalcLink href="/hecs-help-calculator/" title="HECS-HELP Guide" desc="Marginal repayment system, thresholds, and indexation rules" />
             <CalcLink href="/award-rates/" title="Award Rates Guide" desc="Minimum pay rates, penalty rates, and overtime rules by award" />
             <CalcLink href="/understanding-your-payslip/" title="Understanding Your Payslip" desc="Line-by-line explanation of every item on an Australian payslip" />
             <CalcLink href="/tax-calendar/" title="Tax Calendar" desc="Key dates for BAS, PAYG, super payments, and tax return lodgement" />
