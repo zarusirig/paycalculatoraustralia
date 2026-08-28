@@ -9,11 +9,23 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-nsw/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator NSW — New South Wales Take-Home Pay",
-  description: "Calculate your take-home pay in NSW. Learn about federal income tax, NSW payroll tax thresholds, and average salaries in Sydney and New South Wales.",
+  title: "Pay Calculator NSW — Your Take-Home Pay in New South Wales",
+  description:
+    "Work out your take-home pay in NSW. A free salary and wage calculator on current ATO rates, plus NSW public holidays, penalty rates and long service leave.",
   alternates: { canonical: URL },
-  openGraph: { title: "Pay Calculator NSW — Take-Home Pay in New South Wales", description: "Calculate your net pay in NSW. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Pay Calculator NSW", description: "Calculate your take-home pay in New South Wales." },
+  openGraph: {
+    title: "Pay Calculator NSW — Your Take-Home Pay in New South Wales",
+    description: "See what you actually take home in NSW after income tax, the Medicare levy and HECS-HELP.",
+    url: URL,
+    siteName: SITE_CONFIG.name,
+    type: "website",
+    locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pay Calculator NSW",
+    description: "Your take-home pay in New South Wales, plus NSW holidays and long service leave.",
+  },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = {
@@ -22,7 +34,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Pay Calculator NSW", item: URL },
-  ]
+  ],
 };
 
 const webAppSchema: WithContext<WebApplication> = {
@@ -30,7 +42,7 @@ const webAppSchema: WithContext<WebApplication> = {
   "@type": "WebApplication",
   name: "Pay Calculator NSW",
   url: URL,
-  description: "Take-home pay calculation and tax specifics for New South Wales, Australia.",
+  description: "Take-home pay calculator for employees in New South Wales, Australia.",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
@@ -44,16 +56,45 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Is income tax different in NSW compared to other states?", acceptedAnswer: { "@type": "Answer", text: "No, income tax in Australia is levied by the federal government (the ATO). The tax brackets and rates are exactly the same in NSW as they are in all other states and territories." } },
-    { "@type": "Question", name: "What is the payroll tax threshold in NSW?", acceptedAnswer: { "@type": "Answer", text: "For the 2024-25 financial year, the payroll tax threshold in NSW is $1,200,000. Employers only pay payroll tax on total wages that exceed this threshold." } },
-    { "@type": "Question", name: "Do employees pay payroll tax or workers compensation?", acceptedAnswer: { "@type": "Answer", text: "No. Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These costs do not come out of your gross salary or take-home pay." } },
-  ]
+    {
+      "@type": "Question",
+      name: "Is income tax different in NSW compared to other states?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Income tax in Australia is levied by the federal government through the ATO. The tax brackets, Medicare levy and HECS-HELP repayment rates are exactly the same in NSW as in every other state and territory. There is no state-level income tax anywhere in Australia.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How many public holidays does NSW have?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Thirteen state-wide public holidays in 2026, the fewest of any state or territory. NSW adds a day when Anzac Day and Boxing Day fall on a weekend but has no equivalent of Melbourne Cup Day, Canberra Day or the Royal Queensland Show. Regional show days are declared locally.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "When do I get long service leave in NSW?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "After 10 years of continuous service with the same employer you are entitled to 8.67 weeks — two months — of paid long service leave under the Long Service Leave Act 1955, then 4.33 weeks for each further 5 years. Between 5 and 10 years a pro-rata payment is only owed in defined circumstances.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do employees pay payroll tax or workers compensation premiums?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These costs do not appear on your payslip and do not reduce your gross salary or take-home pay.",
+      },
+    },
+  ],
 };
 
 const howToSchema = calculatorHowTo({
-  name: "How to Calculate Take-Home Pay in NSW",
+  name: "How to Calculate Take-Home Pay in New South Wales",
   url: URL,
-  description: "Calculate your take-home pay in New South Wales in under a minute.",
+  description: "Calculate your take-home pay in NSW in under a minute.",
   steps: PAY_CALCULATOR_STEPS,
 });
 

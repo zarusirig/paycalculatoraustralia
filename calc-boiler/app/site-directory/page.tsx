@@ -11,6 +11,10 @@ import {
 } from "@/lib/navigation";
 import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-salary";
 import { getAllNews } from "@/lib/news";
+import { JURISDICTION_CODES } from "@/lib/constants/long-service-leave";
+import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
+import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
+import { JURISDICTIONS as PUBLIC_SERVICE_JURISDICTIONS } from "@/lib/data/public-service-pay";
 import { formatAUD } from "@/lib/constants";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -65,6 +69,44 @@ const TAKE_HOME_SALARIES = Array.from({ length: 35 }, (_, i) => 30000 + i * 5000
 const SALARY_TO_HOURLY = [
   30000, 40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000,
   90000, 95000, 100000, 110000, 120000, 130000, 140000, 150000, 200000,
+];
+
+// Pay-scale and entitlement spokes. Each list is the same constant the route's
+// generateStaticParams uses, so a spoke cannot be built without appearing here.
+const up = (c: string) => c.toUpperCase();
+
+const payScaleGroups: Group[] = [
+  {
+    title: "Long Service Leave by State",
+    items: JURISDICTION_CODES.map((c) => ({
+      href: `/long-service-leave-calculator/${c}/`,
+      label: `Long Service Leave ${up(c)}`,
+    })),
+  },
+  {
+    title: "Teacher Salary by State",
+    items: TEACHER_STATE_SLUGS.map((c) => ({
+      href: `/teacher-pay-australia/${c}/`,
+      label: `${up(c)} Teacher Salary`,
+    })),
+  },
+  {
+    title: "Public Service Pay Scales",
+    items: [
+      { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
+      ...PUBLIC_SERVICE_JURISDICTIONS.map((j) => ({
+        href: `/public-service-pay-scales/${j.slug}/`,
+        label: j.label,
+      })),
+    ],
+  },
+  {
+    title: "Nurse Pay by State",
+    items: NURSING_PAY_STATES.map((c) => ({
+      href: `/healthcare-worker-pay/${c}/`,
+      label: `Nurse Pay Rates ${up(c)}`,
+    })),
+  },
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */
@@ -128,6 +170,10 @@ const SECTIONS: { heading: string; groups: readonly Group[] }[] = [
   {
     heading: "Hourly Rate to Salary",
     groups: hourlyToSalaryGroups,
+  },
+  {
+    heading: "Pay Scales & Entitlements by State",
+    groups: payScaleGroups,
   },
   {
     heading: "By State",

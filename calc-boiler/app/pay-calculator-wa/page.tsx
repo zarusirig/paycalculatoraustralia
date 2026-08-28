@@ -9,11 +9,23 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-wa/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator WA — Western Australia Take-Home Pay",
-  description: "Calculate your take-home pay in Western Australia. Learn about federal income tax, WA payroll tax, WorkCover, and the high average salaries driven by the resources sector.",
+  title: "Pay Calculator WA — Your Take-Home Pay in Western Australia",
+  description:
+    "Work out your take-home pay in WA. A free salary and wage calculator on current ATO rates, plus WA public holidays, the state award system and long service leave.",
   alternates: { canonical: URL },
-  openGraph: { title: "Pay Calculator WA — Take-Home Pay in Western Australia", description: "Calculate your net pay in WA. See the exact tax deductions based on federal rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Pay Calculator WA", description: "Calculate your take-home pay in Western Australia." },
+  openGraph: {
+    title: "Pay Calculator WA — Your Take-Home Pay in Western Australia",
+    description: "See what you actually take home in WA after income tax, the Medicare levy and HECS-HELP.",
+    url: URL,
+    siteName: SITE_CONFIG.name,
+    type: "website",
+    locale: "en_AU",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pay Calculator WA",
+    description: "Your take-home pay in Western Australia, plus WA holidays and long service leave.",
+  },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = {
@@ -22,7 +34,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Pay Calculator WA", item: URL },
-  ]
+  ],
 };
 
 const webAppSchema: WithContext<WebApplication> = {
@@ -30,7 +42,7 @@ const webAppSchema: WithContext<WebApplication> = {
   "@type": "WebApplication",
   name: "Pay Calculator WA",
   url: URL,
-  description: "Take-home pay calculation and tax specifics for Western Australia.",
+  description: "Take-home pay calculator for employees in Western Australia.",
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
@@ -44,16 +56,53 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "Is income tax different in WA compared to other states?", acceptedAnswer: { "@type": "Answer", text: "No, income tax in Australia is levied by the federal government (the ATO). The tax brackets and rates are exactly the same in Western Australia as they are in all other states and territories." } },
-    { "@type": "Question", name: "What is the payroll tax threshold in WA?", acceptedAnswer: { "@type": "Answer", text: "In Western Australia, the payroll tax threshold is currently $1,000,000. Employers pay this, not employees." } },
-    { "@type": "Question", name: "Do employees pay for WorkCover WA?", acceptedAnswer: { "@type": "Answer", text: "No. WorkCover WA insurance premiums are an employer expense. They do not come out of your gross salary or reduce your take-home pay." } },
-  ]
+    {
+      "@type": "Question",
+      name: "Is income tax different in WA compared to other states?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Personal income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy and HECS-HELP repayment thresholds are identical in Western Australia and every other state and territory.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Am I covered by WA state awards or federal awards?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "It depends on your employer's legal structure, not on where you live. Employees of incorporated companies are in the national system and covered by federal modern awards. Employees of sole traders, unincorporated partnerships and other non-constitutional employers in WA are covered by the WA state system, with its own awards and its own state minimum wage.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Why is the King's Birthday in September in WA?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Western Australia sets its own public holiday dates. It observes the King's Birthday in late September rather than the June date used in NSW, Victoria, SA, Tasmania and the NT, and holds Labour Day in early March. Some regional areas in WA hold the King's Birthday on a different date again.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "When do I get long service leave in WA?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued under the Long Service Leave Act 1958, then a further 4.333 weeks every 5 years. Separately, after 7 years of continuous employment a payment may be owed when employment ends by resignation, dismissal, redundancy or death.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do WA employees pay for WorkCover?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. WorkCover WA insurance premiums are entirely an employer expense. Premiums vary by industry risk classification, ranging from 0.5% of wages in low-risk office roles to over 7% in underground mining. These costs do not reduce your gross salary or take-home pay.",
+      },
+    },
+  ],
 };
 
 const howToSchema = calculatorHowTo({
   name: "How to Calculate Take-Home Pay in Western Australia",
   url: URL,
-  description: "Calculate your take-home pay in Western Australia in under a minute.",
+  description: "Calculate your take-home pay in WA in under a minute.",
   steps: PAY_CALCULATOR_STEPS,
 });
 

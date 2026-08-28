@@ -182,7 +182,8 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "superannuation-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
   "salary-sacrifice-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
   "hecs-help-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
-  "novated-lease-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-01" },
+  "novated-lease-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "novated-lease-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "employer-cost-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-07" },
 
   // Employment & pay guides — Penny Ward
@@ -221,8 +222,9 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "full-time-vs-part-time-vs-casual": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
   "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
   "mining-fifo-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
-  "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
-  "teacher-pay-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
+  "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "teacher-pay-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "long-service-leave-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "retail-hospitality-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "tech-salary-guide-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "construction-trades-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },

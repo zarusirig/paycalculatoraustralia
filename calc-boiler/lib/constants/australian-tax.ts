@@ -442,7 +442,10 @@ export interface StatePayrollTax {
 
 export const STATE_PAYROLL_TAX: Readonly<Record<string, StatePayrollTax>> = {
   NSW: { rate: 0.0545, threshold: 1_200_000, name: "New South Wales" },
-  VIC: { rate: 0.0485, threshold: 900_000, name: "Victoria" },
+  // Threshold raised to $1,000,000 from 1 July 2025 ($83,333/month). Verified
+  // 28 Aug 2026 at the State Revenue Office Victoria:
+  // https://www.sro.vic.gov.au/about-us/rates-and-statistics/current-rates/payroll-tax-current-rates
+  VIC: { rate: 0.0485, threshold: 1_000_000, name: "Victoria" },
   QLD: { rate: 0.0475, threshold: 1_300_000, name: "Queensland" },
   WA: { rate: 0.055, threshold: 1_000_000, name: "Western Australia" },
   SA: {
