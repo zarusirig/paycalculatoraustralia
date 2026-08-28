@@ -9,6 +9,8 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import { TEACHER_PAY_STATES, graduateSalary, topOfClassroomScale } from "@/lib/data/teacher-pay";
+import { formatAUD } from "@/lib/constants";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "NSW Teachers Award", url: "https://www.nsw.gov.au/education-and-training/teaching-and-learning", publisher: "NSW Government" },
@@ -77,7 +79,43 @@ export default function TeacherPayAustraliaPage() {
                 </div>
               </div>
               <p>
-                The ACT consistently offers the highest teacher salaries in Australia, followed by WA and NSW. Tasmania and South Australia sit at the lower end of the scale. These figures apply to government school teachers — Catholic and independent school salaries may differ based on their own enterprise agreements or individual contracts. Use the <Link href="/pay-calculator-nsw/">NSW Pay Calculator</Link> or <Link href="/pay-calculator-vic/">VIC Pay Calculator</Link> to calculate after-tax pay in your state.
+                The ACT consistently offers the highest teacher salaries in Australia, followed by WA and NSW. Tasmania and South Australia sit at the lower end of the scale. These figures apply to government school teachers — Catholic and independent school salaries may differ based on their own enterprise agreements or individual contracts. Use the <Link href="/pay-calculator-nsw/">NSW Pay Calculator</Link> or <Link href="/pay-calculator-vic/">VIC Pay Calculator</Link> to calculate after-tax pay in your state. <strong>These summary figures are rounded and indicative only.</strong> For the exact published salary at every step &mdash; read from each state&rsquo;s enterprise agreement, with the date it took effect &mdash; use the per-state pages below.
+              </p>
+            </section>
+
+            {/* ── Section 1b: Verified state pay scales (spoke selector) ── */}
+            <section id="state-pay-scales">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full Pay Scale for Your State</h2>
+              <p>
+                The table above is a summary. Each state below has its own page carrying the <strong>complete</strong> published scale — every classification and step, the enterprise agreement it comes from, the date the rates took effect, and the rules for moving up a step. Every salary links to its take-home figure.
+              </p>
+              <div className="not-prose my-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {TEACHER_PAY_STATES.map((s) => {
+                  const grad = graduateSalary(s);
+                  const top = topOfClassroomScale(s);
+                  return (
+                    <Link
+                      key={s.slug}
+                      href={`/teacher-pay-australia/${s.slug}/`}
+                      className="group flex items-center justify-between gap-3 rounded-lg border border-sandstone-dark/20 bg-white p-4 transition-all hover:border-eucalyptus/40 hover:shadow-sm"
+                    >
+                      <span>
+                        <span className="block text-sm font-semibold text-navy group-hover:text-eucalyptus-dark">
+                          {s.code} teacher salary
+                        </span>
+                        <span className="block text-xs text-warmgray">
+                          {grad !== null && top !== null
+                            ? `${formatAUD(grad)} to ${formatAUD(top)} · verified ${s.verifiedOn}`
+                            : "Scale not yet verified — see the page"}
+                        </span>
+                      </span>
+                      <ChevronRight className="h-4 w-4 shrink-0 text-warmgray-light group-hover:text-eucalyptus" />
+                    </Link>
+                  );
+                })}
+              </div>
+              <p>
+                Those figures are the graduate step and the top of the classroom teacher scale, read from each state&rsquo;s own enterprise agreement or department salary schedule. Nothing on those pages is estimated.
               </p>
             </section>
 

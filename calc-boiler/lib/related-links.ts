@@ -55,6 +55,58 @@ const TOP_UP_POOL: RelatedLink[] = [
  * above broad ones.
  */
 const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
+  // --- Long service leave (hub + 8 jurisdiction spokes) ---
+  // Listed first: the spokes must not fall through to the broader leave cluster.
+  {
+    match: (p) => p.startsWith("/long-service-leave-calculator/"),
+    links: [
+      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "Weeks accrued and what a payout is worth, in every state." },
+      { href: "/leave-calculator/", title: "Annual Leave Calculator", blurb: "A different entitlement — annual leave balance and loading." },
+      { href: "/final-pay-calculator/", title: "Final Pay Calculator", blurb: "Everything owed when you leave a job." },
+      TAKE_HOME,
+    ],
+  },
+  // --- Teacher pay state spokes ---
+  {
+    match: (p) => p.startsWith("/teacher-pay-australia/") && p !== "/teacher-pay-australia/",
+    links: [
+      { href: "/teacher-pay-australia/", title: "Teacher Pay Australia", blurb: "Every state's classroom teacher scale, side by side." },
+      TAKE_HOME,
+      { href: "/salary-packaging-guide/", title: "Salary Packaging Guide", blurb: "What teachers can package and what it saves." },
+      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "What your accrued leave is worth." },
+    ],
+  },
+  // --- Nurse and midwife pay state spokes ---
+  {
+    match: (p) => p.startsWith("/healthcare-worker-pay/") && p !== "/healthcare-worker-pay/",
+    links: [
+      { href: "/healthcare-worker-pay/", title: "Healthcare Worker Pay", blurb: "Nurse pay by state and the Nurses Award 2020." },
+      OVERTIME,
+      { href: "/salary-packaging-guide/", title: "Salary Packaging Guide", blurb: "Public health packaging and what it is worth." },
+      TAKE_HOME,
+    ],
+  },
+  // --- Public service pay scales (hub + jurisdictions) ---
+  {
+    match: (p) => p.startsWith("/public-service-pay-scales/"),
+    links: [
+      { href: "/public-service-pay-scales/", title: "Public Service Pay Scales", blurb: "APS, VPS and Queensland classifications side by side." },
+      TAKE_HOME,
+      { href: "/salary-package-calculator/", title: "Salary Package Calculator", blurb: "Turn a package including super into base salary and take-home." },
+      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "What your accrued leave is worth." },
+    ],
+  },
+  // --- Novated lease: calculator and explainer point at each other ---
+  {
+    match: (p) => p === "/novated-lease-calculator/" || p === "/novated-lease-guide/",
+    links: [
+      { href: "/novated-lease-calculator/", title: "Novated Lease Calculator", blurb: "FBT, the EV exemption and your take-home pay before and after." },
+      { href: "/novated-lease-guide/", title: "How a Novated Lease Works", blurb: "The three-way agreement and the running-cost budget, explained." },
+      { href: "/salary-sacrifice-calculator/", title: "Salary Sacrifice Calculator", blurb: "Compare pay before and after sacrificing." },
+      { href: "/salary-packaging-guide/", title: "Salary Packaging Guide", blurb: "What else you can package, and the caps." },
+    ],
+  },
+
   // --- Junior / first job / award rates ---
   {
     match: (p) => ["/junior-pay-rates/", "/first-job-pay-guide/", "/new-job-checklist/"].includes(p),
@@ -137,6 +189,7 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
     match: (p) => ["/annual-leave-guide/", "/leave-calculator/", "/redundancy-pay-calculator/", "/final-pay-calculator/", "/parental-leave-pay/"].includes(p),
     links: [
       { href: "/leave-calculator/", title: "Leave Calculator", blurb: "Annual and personal leave balances." },
+      { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "The other leave entitlement — 7 or 10 years, by state." },
       { href: "/final-pay-calculator/", title: "Final Pay Calculator", blurb: "What you're owed when employment ends." },
       { href: "/redundancy-pay-calculator/", title: "Redundancy Pay Calculator", blurb: "Severance entitlements by years of service." },
       TAKE_HOME,

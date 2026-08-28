@@ -65,6 +65,8 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/payslip-generator/", label: "Payslip Generator", description: "Create a compliant payslip free" },
       { href: "/ytd-income-calculator/", label: "YTD Income Calculator", description: "Year-to-date pay and annualised income" },
       { href: "/work-hours-calculator/", label: "Work Hours Calculator", description: "Timesheet, breaks, overnight shifts and overtime" },
+      { href: "/long-service-leave-calculator/", label: "Long Service Leave Calculator", description: "Weeks accrued and payout value, all 8 states" },
+      { href: "/novated-lease-calculator/", label: "Novated Lease Calculator", description: "Car packaging, FBT, the EV exemption and take-home" },
     ],
   },
   {
@@ -97,7 +99,7 @@ export const GUIDE_CATEGORIES = [
     title: "Super & Salary",
     guides: [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
-      { href: "/novated-lease-guide/", label: "Novated Lease Guide", description: "Salary packaging a car" },
+      { href: "/novated-lease-guide/", label: "How a Novated Lease Works", description: "The agreement and running-cost budget, explained" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
     ],
   },
@@ -258,6 +260,9 @@ export const TAX_ON_SALARY_CATEGORIES = [
 
 // Footer links — organised in 3 columns
 export const FOOTER_CALCULATORS = [
+  { href: "/long-service-leave-calculator/", label: "Long Service Leave Calculator" },
+  { href: "/novated-lease-calculator/", label: "Novated Lease Calculator" },
+  { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
   { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
   { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
   { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -318,7 +323,7 @@ export const FOOTER_GUIDES_TAX = [
 
 export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/superannuation-guide/", label: "Superannuation Guide" },
-  { href: "/novated-lease-guide/", label: "Novated Lease Guide" },
+  { href: "/novated-lease-guide/", label: "How a Novated Lease Works" },
   { href: "/salary-packaging-guide/", label: "Salary Packaging" },
   { href: "/division-293-tax/", label: "Division 293 Tax" },
   { href: "/super-co-contribution/", label: "Super Co-Contribution" },

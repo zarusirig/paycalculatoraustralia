@@ -3,6 +3,10 @@ export const dynamic = "force-static";
 import type { MetadataRoute } from "next";
 import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-salary";
 import { NEWS_ARTICLES } from "@/lib/news";
+import { JURISDICTION_CODES } from "@/lib/constants/long-service-leave";
+import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
+import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
+import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -66,6 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "ytd-income-calculator",
     "capital-gains-tax-calculator",
     "work-hours-calculator",
+    "novated-lease-calculator",
   ];
   for (const slug of coreCalculators) {
     allPages.push({ slug, changeFrequency: "monthly", priority: 0.9 });
@@ -197,6 +202,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       slug: `hourly-to-salary/${hourlyRateSlug(rate)}`,
       changeFrequency: "yearly" as const,
       priority: 0.5,
+    });
+  }
+
+  // 8c. Pay-scale and entitlement spokes (competitor gap analysis, 28 Aug 2026).
+  // Each list is imported from the same data module the pages render from, so a
+  // state added there appears here automatically and the two cannot drift.
+
+  // Long service leave: hub is a core calculator, spokes carry per-Act rules.
+  allPages.push({ slug: "long-service-leave-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  for (const state of JURISDICTION_CODES) {
+    allPages.push({
+      slug: `long-service-leave-calculator/${state}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    });
+  }
+
+  // Teacher pay by state — rates change on each agreement's scheduled date.
+  for (const state of TEACHER_STATE_SLUGS) {
+    allPages.push({
+      slug: `teacher-pay-australia/${state}`,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    });
+  }
+
+  // Nurse and midwife pay by state.
+  for (const state of NURSING_PAY_STATES) {
+    allPages.push({
+      slug: `healthcare-worker-pay/${state}`,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    });
+  }
+
+  // Public service classification pay scales: hub + built jurisdictions.
+  allPages.push({ slug: "public-service-pay-scales", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const j of PUBLIC_SERVICE_SLUGS) {
+    allPages.push({
+      slug: `public-service-pay-scales/${j}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
     });
   }
 
