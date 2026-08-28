@@ -479,6 +479,9 @@ export default function LeaveCalculatorPage() {
             </Accordion>
           </section>
 
+          {/* Sponsored mention (KMN id 11) */}
+          <p className="kmn-mention text-sm text-warmgray" data-kmn-id="11">For small businesses managing leave entitlements, solutions like <a href="https://www.ptodesk.com" rel="sponsored" className="kmn-link text-eucalyptus-dark hover:underline">PTODesk</a> can simplify tracking employee time off and ensure compliance with leave policies.</p>
+
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
         </div>
       </div>
