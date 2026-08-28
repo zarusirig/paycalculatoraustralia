@@ -47,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "redundancy-pay-calculator",
     "contractor-vs-employee-calculator",
     "gross-pay-calculator",
+    "salary-package-calculator",
     "hourly-to-annual-salary-calculator",
     "contractor-pay-calculator",
     "bonus-tax-calculator",

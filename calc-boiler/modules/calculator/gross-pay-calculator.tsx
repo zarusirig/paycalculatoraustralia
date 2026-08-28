@@ -401,6 +401,7 @@ export default function GrossPayCalculatorPage() {
               The gross pay calculator answers one specific question: what gross salary produces a given net pay. These related Australian tax calculators address adjacent scenarios:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray">
+              <li><Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">Salary package calculator</Link> &mdash; base salary and take-home from a package including super.</li>
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — enter a gross salary and see the net pay after income tax, Medicare levy, and HECS-HELP deductions</li>
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — view a full breakdown of income tax brackets, LITO, and marginal rates for FY2025-26</li>
               <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — calculate your employer&apos;s 12% SG contribution and project your super balance at retirement</li>

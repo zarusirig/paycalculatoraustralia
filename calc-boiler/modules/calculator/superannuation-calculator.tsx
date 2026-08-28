@@ -241,7 +241,10 @@ export default function SuperannuationCalculatorPage() {
             <p className="mb-3 text-warmgray">There&apos;s an earnings limit above which your employer isn&apos;t legally required to pay super. With Payday Super, for FY{SITE_CONFIG.financialYear} this is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>.</p>
             <p className="mb-3 text-warmgray">This means the maximum SG your employer must pay is <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual)} per year</strong> ({formatPercent(SUPER_GUARANTEE.rate, 0)} x {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}).</p>
             <p className="text-sm text-warmgray-light">If you earn above this threshold, check your employment agreement — some employers voluntarily pay super on your full salary as part of a total remuneration package. <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Employer cost calculator</Link></p>
-          </section>
+            <p className="text-warmgray mt-4">
+                Offered a &ldquo;package&rdquo; or a salary &ldquo;including super&rdquo;? The <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary package calculator</Link> splits it into base salary, super and take-home pay, and applies this cap for large packages.
+              </p>
+            </section>
 
           {/* --- Contribution Caps --- */}
           <section>

@@ -77,8 +77,9 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
   },
   // --- Superannuation ---
   {
-    match: (p) => p.includes("super") || p === "/division-293-tax/",
+    match: (p) => p.includes("super") || p === "/division-293-tax/" || p === "/salary-package-calculator/",
     links: [
+      { href: "/salary-package-calculator/", title: "Salary Package Calculator", blurb: "Base salary and take-home from a package including super." },
       SUPER_CALC,
       { href: "/salary-sacrifice-calculator/", title: "Salary Sacrifice Calculator", blurb: "See if sacrificing into super leaves you better off." },
       { href: "/super-guarantee-rate-history/", title: "Super Guarantee Rate History", blurb: "Every SG rate change, year by year." },
