@@ -85,6 +85,17 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
       TAKE_HOME,
     ],
   },
+  // --- Bonuses, commissions and other additional payments (Schedule 5) ---
+  {
+    match: (p) => p.includes("bonus") || p.includes("commission") || p === "/schedule-5-tax-table/" || p === "/backpay-calculator/",
+    links: [
+      { href: "/bonus-tax-calculator/", title: "Bonus Tax Calculator", blurb: "Tax on a bonus at your marginal rate." },
+      { href: "/commission-tax-calculator/", title: "Commission Tax Calculator", blurb: "Annual tax on commission and what is withheld from the pay." },
+      { href: "/schedule-5-tax-table/", title: "Schedule 5 Tax Table", blurb: "ATO withholding on bonuses, commissions and back pay." },
+      { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a permanent increase is worth after tax." },
+      TAKE_HOME,
+    ],
+  },
   // --- HECS / student debt ---
   {
     match: (p) => p.includes("hecs") || p === "/stsl-on-payslip/",

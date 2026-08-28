@@ -157,6 +157,7 @@ export type GuideAuthorship = {
 export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // Tax & deductions guides — James Harrington
   "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
+  "commission-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
   "low-income-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
   "payg-withholding-tables": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },

@@ -50,6 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "hourly-to-annual-salary-calculator",
     "contractor-pay-calculator",
     "bonus-tax-calculator",
+    "commission-tax-calculator",
     "overtime-pay-calculator",
     "leave-calculator",
     "tax-return-calculator",

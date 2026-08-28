@@ -400,7 +400,10 @@ export default function BonusTaxCalculatorPage() {
             <p className="text-warmgray">
               The only practical difference is frequency: commissions are often paid monthly or quarterly, while bonuses tend to be annual or one-off. Frequent commission payments can trigger PAYG instalment obligations if your total income exceeds ATO thresholds. Track your annual earnings using the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link>.
             </p>
-          </section>
+            <p className="text-warmgray">
+                Paid commission rather than a bonus? The <Link href="/commission-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">commission tax calculator</Link> shows the same two figures — the tax it adds to your year and the Schedule 5 withholding on the pay — for retainer-plus-commission, quarterly and commission-only structures.
+              </p>
+            </section>
 
 {/* Merged from /bonus-tax-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
                       <section id="tax-back-on-bonus">
