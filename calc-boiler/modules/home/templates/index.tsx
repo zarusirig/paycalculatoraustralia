@@ -1455,7 +1455,7 @@ export default function HomePageTemplate() {
             <CalcLink href="/tax-brackets/" title={`Tax Brackets ${FY}`} desc="Complete bracket table with worked examples at every income level" />
             <CalcLink href="/medicare-levy/" title="Medicare Levy Guide" desc="2% levy, low-income exemption, surcharge thresholds, and family rates" />
             <CalcLink href="/superannuation-guide/" title="Superannuation Guide" desc="SG rates, contribution caps, employer obligations, and withdrawal rules" />
-            <CalcLink href="/salary-sacrifice-guide/" title="Salary Sacrifice Guide" desc="How pre-tax super contributions reduce your tax bill" />
+            <CalcLink href="/salary-sacrifice-calculator/" title="Salary Sacrifice Guide" desc="How pre-tax super contributions reduce your tax bill" />
             <CalcLink href="/hecs-help-calculator/" title="HECS-HELP Guide" desc="Marginal repayment system, thresholds, and indexation rules" />
             <CalcLink href="/award-rates/" title="Award Rates Guide" desc="Minimum pay rates, penalty rates, and overtime rules by award" />
             <CalcLink href="/understanding-your-payslip/" title="Understanding Your Payslip" desc="Line-by-line explanation of every item on an Australian payslip" />

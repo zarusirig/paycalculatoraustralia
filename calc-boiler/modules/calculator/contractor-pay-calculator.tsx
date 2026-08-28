@@ -562,7 +562,7 @@ export default function ContractorPayCalculator() {
               Compare Contractor vs Employee →
             </Link>
             <Link
-              href="/contractor-vs-employee/"
+              href="/contractor-vs-employee-calculator/"
               className="inline-flex items-center gap-2 rounded-lg border border-eucalyptus/40 px-5 py-2.5 text-sm font-medium text-eucalyptus-dark transition-all hover:bg-eucalyptus-light/40"
             >
               Read the Guide
@@ -600,7 +600,7 @@ export default function ContractorPayCalculator() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Frequently Asked Questions</h2>
           <Accordion type="multiple" className="space-y-3">
             <FAQItem value="what-contractor" question="What is a contractor for tax purposes?">
-              A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor — see our <Link href="/contractor-vs-employee/" className="font-medium text-eucalyptus-dark hover:underline">contractor vs employee guide</Link>.
+              A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor — see our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">contractor vs employee guide</Link>.
             </FAQItem>
             <FAQItem value="gst" question="Do I need to charge GST as a contractor?">
               If your ABN business income exceeds <strong>$75,000 per year</strong>, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO quarterly — it&apos;s not your income. If you&apos;re under $75,000, GST registration is optional.

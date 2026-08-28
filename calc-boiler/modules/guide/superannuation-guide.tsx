@@ -377,7 +377,7 @@ export default function SuperannuationGuidePage() {
                 </div>
               </div>
               <p>
-                If this employee salary sacrifices $5,000 into super, taxable income drops to $80,000, reducing income tax by approximately <strong>$1,500</strong> (the $5,000 at the 30% marginal rate). The $5,000 is taxed at 15% inside super ($750), producing a net tax saving of <strong>$750</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link>.
+                If this employee salary sacrifices $5,000 into super, taxable income drops to $80,000, reducing income tax by approximately <strong>$1,500</strong> (the $5,000 at the 30% marginal rate). The $5,000 is taxed at 15% inside super ($750), producing a net tax saving of <strong>$750</strong>. Read the full mechanics in our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link>.
               </p>
             </section>
 
@@ -584,7 +584,7 @@ export default function SuperannuationGuidePage() {
               <ul>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; Calculate the exact SG amount your employer must pay based on your salary, including the maximum contribution base cap.</li>
                 <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> &mdash; Model the tax savings of redirecting pre-tax salary into super, with side-by-side before/after comparison.</li>
-                <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> &mdash; Full explanation of salary sacrifice mechanics, FBT implications, and concessional cap interactions.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> &mdash; Full explanation of salary sacrifice mechanics, FBT implications, and concessional cap interactions.</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; Calculate your after-tax income including super, Medicare Levy, HECS-HELP, and all deductions.</li>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; See exactly how the FY2025-26 tax brackets apply to your assessable income.</li>
                 <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> &mdash; Understand the new marginal repayment system and how HECS interacts with super salary sacrifice strategies.</li>

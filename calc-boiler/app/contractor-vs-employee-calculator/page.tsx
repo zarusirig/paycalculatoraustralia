@@ -79,6 +79,9 @@ const faq: WithContext<FAQPage> = {
         text: "You must register for GST if your annual turnover is $75,000 or more. If below $75,000, registration is optional. When registered, you charge clients an additional 10% GST and remit it to the ATO quarterly via your BAS.",
       },
     },
+    { "@type": "Question", name: "What is the main difference between an employee and a contractor?", acceptedAnswer: { "@type": "Answer", text: "An employee works in and is part of the employer's business, taking direction and control from them. A contractor is running their own independent business, providing services to another business for a set result." } },
+    { "@type": "Question", name: "Do independent contractors pay their own tax?", acceptedAnswer: { "@type": "Answer", text: "Yes, independent contractors are responsible for managing their own tax affairs through their ABN. They do not have PAYG tax automatically withheld from their invoices like employees do from their payslips, unless a specific voluntary agreement is in place." } },
+    { "@type": "Question", name: "Are contractors entitled to superannuation?", acceptedAnswer: { "@type": "Answer", text: "Generally no, but there is a major exception. If a contractor is hired wholly or principally for their personal 'labour and skills', the employer may be legally required to pay the 12% Superannuation Guarantee on their behalf, even if they quote an ABN." } },
   ],
 };
 

@@ -160,7 +160,7 @@ export default function TaxCalendarPage() {
               <li>Check your private health insurance status for &quot;Medicare Levy Surcharge&quot; purposes — singles earning above <strong>$93,000</strong> and families above <strong>$186,000</strong> without hospital cover pay a surcharge of <strong>1% to 1.5%</strong></li>
               <li>Bring forward capital losses by selling underperforming investments before 30 June to offset capital gains</li>
               <li>Make charitable donations — tax-deductible if the recipient has DGR (Deductible Gift Recipient) status</li>
-              <li>Consider salary sacrifice arrangements starting from 1 July — see our <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> for details</li>
+              <li>Consider salary sacrifice arrangements starting from 1 July — see our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for details</li>
             </ul>
           </section>
 

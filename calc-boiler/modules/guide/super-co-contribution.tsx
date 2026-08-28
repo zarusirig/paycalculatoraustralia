@@ -347,7 +347,7 @@ export default function SuperCoContributionPage() {
                   <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
                   <div className="space-y-3">
                     <SidebarLink href="/superannuation-guide/" label="Superannuation Guide" />
-                    <SidebarLink href="/salary-sacrifice-guide/" label="Salary Sacrifice Guide" />
+                    <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Guide" />
                     <SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset" />
                   </div>
                 </CardContent>

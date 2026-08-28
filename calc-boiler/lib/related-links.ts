@@ -111,7 +111,7 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
   },
   // --- Leave, redundancy, final pay ---
   {
-    match: (p) => ["/annual-leave-guide/", "/leave-calculator/", "/redundancy-pay-guide/", "/redundancy-pay-calculator/", "/final-pay-calculator/", "/parental-leave-pay/"].includes(p),
+    match: (p) => ["/annual-leave-guide/", "/leave-calculator/", "/redundancy-pay-calculator/", "/final-pay-calculator/", "/parental-leave-pay/"].includes(p),
     links: [
       { href: "/leave-calculator/", title: "Leave Calculator", blurb: "Annual and personal leave balances." },
       { href: "/final-pay-calculator/", title: "Final Pay Calculator", blurb: "What you're owed when employment ends." },

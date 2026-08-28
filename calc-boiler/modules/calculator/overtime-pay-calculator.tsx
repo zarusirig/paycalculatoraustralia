@@ -449,6 +449,7 @@ export default function OvertimePayCalculatorPage() {
               Overtime pay interacts with income tax, superannuation, and total salary packaging. These calculators help you model the complete picture:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray">
+              <li><Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">Overtime and penalty rates guide</Link> &mdash; the award rules that set time-and-a-half, double time and weekend loadings.</li>
               <li><Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link> — Convert your base salary plus overtime into a weekly after-tax amount</li>
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — Calculate your total income tax liability including overtime in your assessable income for FY2025-26</li>
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — See your net pay after tax, Medicare levy, and HECS-HELP on a salary that includes regular overtime</li>

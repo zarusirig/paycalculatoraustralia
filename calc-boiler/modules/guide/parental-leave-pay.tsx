@@ -75,7 +75,7 @@ export default function ParentalLeavePayPage() {
                 </tbody>
               </table>
             </div>
-            <p>If you are a contractor rather than an employee, the work test still applies to you based on your hours of self-employment. Read our <Link href="/contractor-vs-employee/">Contractor vs Employee Guide</Link> for detail on how employment status affects government entitlements.</p>
+            <p>If you are a contractor rather than an employee, the work test still applies to you based on your hours of self-employment. Read our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> for detail on how employment status affects government entitlements.</p>
           </section>
 
           {/* ── SECTION 4: How to Apply for Parental Leave Pay ── */}
@@ -177,7 +177,7 @@ export default function ParentalLeavePayPage() {
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; calculate total tax payable on a part-year salary plus PLP income</li>
               <li><Link href="/leave-calculator/">Leave Calculator</Link> &mdash; work out annual leave, personal leave, and long service leave accruals during employment</li>
               <li><Link href="/annual-leave-guide/">Annual Leave Guide</Link> &mdash; understand how annual leave accrues during paid and unpaid parental leave</li>
-              <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> &mdash; learn how salary sacrifice arrangements interact with parental leave and super</li>
+              <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> &mdash; learn how salary sacrifice arrangements interact with parental leave and super</li>
             </ul>
           </section>
 

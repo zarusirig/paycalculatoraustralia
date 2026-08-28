@@ -269,7 +269,7 @@ export default function SuperGuaranteeChargePage() {
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; employer SG at {pct(SUPER_GUARANTEE.rate)} on any salary</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; checking super is actually being paid</li>
                 <li><Link href="/employer-cost-calculator/">Employer Cost Calculator</Link> &mdash; the true cost of employing someone</li>
-                <li><Link href="/contractor-vs-employee/">Contractor vs Employee</Link> &mdash; misclassification is a common source of SGC exposure</li>
+                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee</Link> &mdash; misclassification is a common source of SGC exposure</li>
                 <li><Link href="/tax-calendar/">Tax Calendar</Link> &mdash; key ATO dates and deadlines</li>
               </ul>
             </section>

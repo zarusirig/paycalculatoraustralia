@@ -380,7 +380,7 @@ export default function LowIncomeTaxOffsetPage() {
                     </div>
                     <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
                   </Link>
-                  <Link href="/salary-sacrifice-guide/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
+                  <Link href="/salary-sacrifice-calculator/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
                     <div>
                       <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Salary Sacrifice Guide</span>
                       <span className="text-xs text-warmgray">Reduce taxable income to maximise LITO</span>

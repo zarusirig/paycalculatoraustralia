@@ -79,6 +79,8 @@ const faq: WithContext<FAQPage> = {
         text: "A redundancy is genuine if your employer no longer needs your job to be done by anyone, and they followed any consultation requirements in your award. If you were dismissed for performance or if they hire someone else to do your exact job, it is not a genuine redundancy.",
       },
     },
+    { "@type": "Question", name: "What is a genuine redundancy in Australia?", acceptedAnswer: { "@type": "Answer", text: "A genuine redundancy happens when your employer's business no longer requires anyone to do your job because of changes in operational requirements, AND they have actively consulted you and tried to redeploy you elsewhere within the business first." } },
+    { "@type": "Question", name: "Is my redundancy payout tax-free?", acceptedAnswer: { "@type": "Answer", text: "It is partially tax-free. If it is a genuine redundancy, the ATO provides a 'tax-free base limit' of $12,524, plus an extra $6,263 for every complete year of service you have with the company. Any amount paid above this threshold is taxed heavily as an ETP." } },
   ],
 };
 

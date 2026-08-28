@@ -342,7 +342,7 @@ export default function PAYGTablesGuidePage() {
                 </div>
               </div>
               <p>
-                Contractors and sole traders who do not have tax withheld from their invoices enter the PAYG instalments system instead. Our <Link href="/contractor-vs-employee/">Contractor vs Employee Guide</Link> explains the tax, super, and withholding differences between these two work arrangements. If you operate as a contractor, use our <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> to estimate your quarterly instalment obligations.
+                Contractors and sole traders who do not have tax withheld from their invoices enter the PAYG instalments system instead. Our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> explains the tax, super, and withholding differences between these two work arrangements. If you operate as a contractor, use our <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> to estimate your quarterly instalment obligations.
               </p>
             </section>
 
@@ -363,7 +363,7 @@ export default function PAYGTablesGuidePage() {
                 A &quot;Withholding Variation&quot; (also called a Section 15-15 variation) is a formal ATO approval that allows your employer to withhold a <strong>different amount</strong> than the standard tax tables prescribe. Common reasons for applying include large work-related deductions (such as $5,000+ in tools or uniforms), significant rental property losses creating negative gearing, or salary sacrifice arrangements that reduce assessable income. The employee applies directly to the ATO, which issues a letter specifying the varied withholding rate. The employer then applies that rate instead of the standard tables until the variation expires at the end of the financial year.
               </p>
               <p>
-                Salary sacrifice arrangements for superannuation, novated leases, and other pre-tax benefits also modify the withholding calculation. See our <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> for the impact on your take-home pay and taxable income.
+                Salary sacrifice arrangements for superannuation, novated leases, and other pre-tax benefits also modify the withholding calculation. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for the impact on your take-home pay and taxable income.
               </p>
             </section>
 
@@ -455,7 +455,7 @@ export default function PAYGTablesGuidePage() {
                 <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; Full breakdown of the current marginal tax rates, thresholds, and worked examples at 10 different salary levels.</li>
                 <li><Link href="/hecs-help-calculator/">HECS-HELP Repayment Guide</Link> &mdash; How study and training loan debts interact with PAYG withholding, including the compulsory repayment thresholds and rates.</li>
                 <li><Link href="/schedule-5-tax-table/">Schedule 5 Tax Table</Link> &mdash; The withholding method for bonuses, commissions, and back payments, with a Method B(ii) calculator.</li>
-                <li><Link href="/bonus-tax-guide/">Bonus Tax Guide</Link> &mdash; How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Method B (Plan B).</li>
+                <li><Link href="/bonus-tax-calculator/">Bonus Tax Guide</Link> &mdash; How bonuses, commissions, and back-payments are withheld differently from regular salary under ATO Method B (Plan B).</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; The SG rate, contribution caps, employer obligations, and how super interacts with your gross-to-net calculation.</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; Line-by-line explanation of every item on an Australian payslip, including the PAYG withholding line.</li>
               </ul>

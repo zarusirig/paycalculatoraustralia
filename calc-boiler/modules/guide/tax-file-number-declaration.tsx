@@ -226,7 +226,7 @@ export default function TaxFileNumberDeclarationPage() {
                 </AccordionItem>
                 <AccordionItem value="contractor" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do contractors need to complete a TFN declaration?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Independent contractors operating under their own ABN do <strong>not</strong> complete a TFN declaration. Instead, they quote their ABN on invoices. Contractors without an ABN may have the top rate withheld by the payer. Employees (including casuals) must always provide a TFN declaration. See our <Link href="/contractor-vs-employee/" className="text-eucalyptus-dark underline">Contractor vs Employee Guide</Link> for help determining your status.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Independent contractors operating under their own ABN do <strong>not</strong> complete a TFN declaration. Instead, they quote their ABN on invoices. Contractors without an ABN may have the top rate withheld by the payer. Employees (including casuals) must always provide a TFN declaration. See our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark underline">Contractor vs Employee Guide</Link> for help determining your status.</AccordionContent>
                 </AccordionItem>
               </Accordion>
             </section>

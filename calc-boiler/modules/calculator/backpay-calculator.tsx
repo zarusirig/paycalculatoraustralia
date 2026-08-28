@@ -216,7 +216,7 @@ export default function BackpayCalculatorPage() {
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Backpay Taxed?</h2>
               <p className="mb-4 text-warmgray">Backpay received as a lump sum is taxed under the ATO&apos;s <Link href="/schedule-5-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Schedule 5 tax table for back payments</Link>, commissions, bonuses, and similar payments. Your employer withholds tax at a rate that considers your regular earnings plus the lump sum.</p>
               <p className="mb-4 text-warmgray">If the backpay covers <strong>multiple financial years</strong>, you can request the ATO to spread the amount across the relevant years when assessing your tax return. This can reduce your overall tax liability by avoiding a single-year spike in income.</p>
-              <p className="text-warmgray">Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see how the lump sum affects your tax bracket, or the <Link href="/bonus-tax-guide/" className="text-eucalyptus-dark hover:underline font-medium">Bonus Tax Guide</Link> for details on lump sum taxation.</p>
+              <p className="text-warmgray">Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see how the lump sum affects your tax bracket, or the <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Bonus Tax Guide</Link> for details on lump sum taxation.</p>
             </section>
 
             <section>
@@ -301,7 +301,7 @@ export default function BackpayCalculatorPage() {
                   <h3 className="font-medium text-navy mb-1">Superannuation Calculator</h3>
                   <p className="text-sm text-warmgray">Verify your employer is paying the correct 12% SG rate</p>
                 </Link>
-                <Link href="/bonus-tax-guide/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
+                <Link href="/bonus-tax-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                   <h3 className="font-medium text-navy mb-1">Bonus Tax Guide</h3>
                   <p className="text-sm text-warmgray">Understand how lump sum payments like backpay are taxed</p>
                 </Link>

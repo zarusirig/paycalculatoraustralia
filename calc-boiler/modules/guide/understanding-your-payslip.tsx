@@ -218,7 +218,7 @@ export default function UnderstandingYourPayslipPage() {
               </div>
 
               <p>
-                Voluntary deductions require your written authorisation. An employer cannot deduct union fees, charity donations, or salary sacrifice amounts without a signed agreement. Review the <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> to understand how pre-tax deductions reduce your taxable income while boosting your retirement savings.
+                Voluntary deductions require your written authorisation. An employer cannot deduct union fees, charity donations, or salary sacrifice amounts without a signed agreement. Review the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> to understand how pre-tax deductions reduce your taxable income while boosting your retirement savings.
               </p>
             </section>
 
@@ -370,7 +370,7 @@ export default function UnderstandingYourPayslipPage() {
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> &mdash; Understand SG rates, contribution caps, and how to verify your employer is paying super.</li>
                 <li><Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> &mdash; Convert between gross and net salary amounts for any pay frequency.</li>
                 <li><Link href="/tax-refund-guide/">Tax Refund Guide</Link> &mdash; Estimate your refund by comparing YTD tax withheld against your actual tax liability.</li>
-                <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> &mdash; Learn how pre-tax deductions on your payslip reduce taxable income and boost super.</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> &mdash; Learn how pre-tax deductions on your payslip reduce taxable income and boost super.</li>
                 <li><Link href="/payslip-generator/">Payslip Generator</Link> &mdash; Create a free, Fair Work-compliant payslip with PAYG, super, and YTD totals.</li>
                 <li><Link href="/ytd-income-calculator/">YTD Income Calculator</Link> &mdash; Calculate year-to-date pay or annualise the YTD figure from your payslip.</li>
                 <li><Link href="/stsl-on-payslip/">STSL on Your Payslip</Link> &mdash; What the STSL deduction code means and how the amount is calculated.</li>

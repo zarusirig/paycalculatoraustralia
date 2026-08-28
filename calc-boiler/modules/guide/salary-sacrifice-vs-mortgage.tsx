@@ -225,7 +225,7 @@ export default function SalarySacrificeVsMortgagePage() {
                   <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
                   <div className="space-y-3">
                     <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" />
-                    <SidebarLink href="/salary-sacrifice-guide/" label="Salary Sacrifice Guide" />
+                    <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Guide" />
                     <SidebarLink href="/superannuation-guide/" label="Superannuation Guide" />
                     <SidebarLink href="/tax-brackets/" label="Current Tax Brackets" />
                   </div>

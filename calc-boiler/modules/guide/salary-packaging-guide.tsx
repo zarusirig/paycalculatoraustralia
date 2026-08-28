@@ -232,7 +232,7 @@ export default function SalaryPackagingGuidePage() {
               <h2>Related Resources</h2>
               <ul>
                 <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> — Model the tax impact of sacrificing into super</li>
-                <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> — Deep dive into salary sacrifice into superannuation</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> — Deep dive into salary sacrifice into superannuation</li>
                 <li><Link href="/novated-lease-guide/">Novated Lease Guide</Link> — Compare EV and ICE novated lease structures</li>
                 <li><Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link> — Full FBT rates, exemptions, and employer obligations</li>
                 <li><Link href="/centrelink-income-test/">Centrelink Income Test</Link> — How adjusted taxable income affects government payments</li>
@@ -321,7 +321,7 @@ export default function SalaryPackagingGuidePage() {
                 <CardContent className="p-6">
                   <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
                   <div className="space-y-3">
-                    <SidebarLink href="/salary-sacrifice-guide/" label="Salary Sacrifice Guide" />
+                    <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Guide" />
                     <SidebarLink href="/novated-lease-guide/" label="Novated Lease Guide" />
                     <SidebarLink href="/centrelink-income-test/" label="Centrelink Income Test" />
                   </div>

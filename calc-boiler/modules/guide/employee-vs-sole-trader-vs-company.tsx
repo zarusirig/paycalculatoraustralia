@@ -355,7 +355,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="related-resources">
               <h2>Related Resources</h2>
               <ul>
-                <li><Link href="/contractor-vs-employee/">Contractor vs Employee Guide</Link> — Understand the legal distinction and ATO tests</li>
+                <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> — Understand the legal distinction and ATO tests</li>
                 <li><Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> — Compare take-home pay for both arrangements</li>
                 <li><Link href="/gig-economy-pay-guide/">Gig Economy Pay Guide</Link> — Tax and super for platform-based workers</li>
                 <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — Calculate individual tax at any income level</li>
@@ -438,7 +438,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 <CardContent className="p-6">
                   <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
                   <div className="space-y-3">
-                    <SidebarLink href="/contractor-vs-employee/" label="Contractor vs Employee Guide" />
+                    <SidebarLink href="/contractor-vs-employee-calculator/" label="Contractor vs Employee Guide" />
                     <SidebarLink href="/gig-economy-pay-guide/" label="Gig Economy Pay Guide" />
                     <SidebarLink href="/superannuation-guide/" label="Superannuation Guide" />
                   </div>

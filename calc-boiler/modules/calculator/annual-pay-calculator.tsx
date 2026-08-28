@@ -48,7 +48,7 @@ export default function AnnualPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Annual Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary Calculator Australia — Yearly Take-Home Pay (2025-26)</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary Calculator Australia — Yearly Take-Home Pay ({SITE_CONFIG.financialYear})</h1>
           <p className="text-lg text-warmgray">Enter any gross annual salary to see exactly what it means as a single yearly take-home figure — after income tax, the Medicare levy, HECS-HELP and super for FY2025-26.</p>
           <div className="mt-5 rounded-xl border-l-4 border-eucalyptus-dark bg-white/80 p-4 shadow-sm">
             <p className="text-sm text-navy"><strong>Quick answer:</strong> a gross annual salary of <strong>$80,000</strong> in Australia for FY2025-26 delivers approximately <strong>$63,933 in annual take-home pay</strong> ($14,367 income tax + $1,600 Medicare levy). At <strong>$100,000</strong> the figure is roughly <strong>$76,633</strong>; at <strong>$120,000</strong> it is approximately <strong>$89,533</strong>. Use the calculator below to enter your exact yearly salary.</p>

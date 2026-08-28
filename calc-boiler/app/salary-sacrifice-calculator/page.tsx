@@ -87,6 +87,9 @@ const faq: WithContext<FAQPage> = {
         text: "If your mortgage rate is higher than your expected super return (after tax advantage), prioritise the mortgage. At current rates, salary sacrifice into super typically offers a better after-tax return.",
       },
     },
+    { "@type": "Question", name: "What is salary sacrificing?", acceptedAnswer: { "@type": "Answer", text: "Salary sacrificing (or salary packaging) is an arrangement where you agree to forego part of your future pre-tax salary in return for your employer providing benefits of a similar value. This legally reduces your taxable income, meaning you pay less income tax." } },
+    { "@type": "Question", name: "Do I pay tax on salary sacrificed super?", acceptedAnswer: { "@type": "Answer", text: "Yes, but the tax rate is usually significantly lower. When you salary sacrifice into superannuation, that money is taxed at a flat rate of 15% when it enters the fund, rather than your higher marginal income tax rate (which could be up to 45%)." } },
+    { "@type": "Question", name: "Is salary sacrificing suitable for everyone?", acceptedAnswer: { "@type": "Answer", text: "No. Salary sacrificing is generally most beneficial for middle-to-high income earners. If you earn less than $45,000, your marginal tax rate is already quite low, so the 15% tax concession on super offers minimal benefit and locks your money away until retirement." } },
   ],
 };
 

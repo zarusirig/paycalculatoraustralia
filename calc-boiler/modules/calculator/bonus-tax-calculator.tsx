@@ -402,7 +402,79 @@ export default function BonusTaxCalculatorPage() {
             </p>
           </section>
 
-          {/* --- H2: Related Calculators --- */}
+{/* Merged from /bonus-tax-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
+                      <section id="tax-back-on-bonus">
+              <h2>Do You Get Tax Back on Bonuses?</h2>
+              <p>
+                You receive a tax refund on your bonus only if your employer withheld more tax than your actual liability — the Schedule 5 method minimises this gap, so most refunds on bonus withholding are <strong>small or zero</strong>.
+              </p>
+              <p>
+                Over-withholding happens in 3 common scenarios:
+              </p>
+              <ul>
+                <li><strong>Bonus paid early in the financial year</strong> — the employer projects a full year of income, but you change jobs or reduce hours mid-year, lowering your actual taxable income</li>
+                <li><strong>Employer uses flat-rate annualisation</strong> instead of Schedule 5 — some payroll systems annualise the pay period containing the bonus, producing a higher withholding rate</li>
+                <li><strong>Significant tax deductions</strong> — work-related expenses, salary sacrifice contributions, or the &quot;Low Income Tax Offset&quot; reduce your assessable income below the projected amount</li>
+              </ul>
+              <p>
+                When you lodge your tax return, the ATO calculates your actual tax liability on total income (salary plus bonus) and compares it to total PAYG withholding throughout the year. The difference is your refund or balance owing. See our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for a full explanation of how refunds are calculated.
+              </p>
+            </section>
+            <section id="reduce-bonus-tax">
+              <h2>How to Reduce Tax on Your Bonus</h2>
+              <p>
+                The most effective way to reduce tax on a bonus is to salary sacrifice it into superannuation, converting a marginal rate of up to <strong>47%</strong> into a flat <strong>15%</strong> contributions tax.
+              </p>
+              <h3>Strategy 1: Salary Sacrifice Into Super</h3>
+              <p>
+                Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The contribution is taxed at only <strong>15%</strong> inside the super fund, compared to marginal rates of 30%–47% outside super. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>$1,700</strong> in tax ($3,200 at the marginal rate minus $1,500 in super contributions tax).
+              </p>
+              <p>
+                The concessional contribution cap for FY2025-26 is <strong>$30,000</strong> per year, including employer SG contributions of 12%. A worker earning $120,000 receives $14,400 in SG, leaving <strong>$15,600</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their super balance was below $500,000 on 30 June) can carry forward up to 5 years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for a detailed walkthrough.
+              </p>
+
+              <h3>Strategy 2: Time the Bonus Payment</h3>
+              <p>
+                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year — due to parental leave, career break, or part-time work — ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the 30% bracket costs <strong>$3,200</strong> in tax. The same bonus taxed at the 16% bracket (if income drops below $45,000) costs only <strong>$1,800</strong> — a saving of <strong>$1,400</strong>.
+              </p>
+
+              <h3>Strategy 3: Maximise Deductions</h3>
+              <p>
+                Work-related deductions reduce your taxable income, potentially pulling bonus income down into a lower tax bracket. Common deductions that offset bonus taxation include self-education expenses, home office costs, professional memberships, and income protection insurance premiums. Every $1,000 in deductions at the 37% marginal rate reduces tax by <strong>$370</strong>.
+              </p>
+            </section>
+            <section id="super-on-bonus">
+              <h2>Is Superannuation Paid on Bonuses?</h2>
+              <p>
+                Bonuses for work performed are generally classified as &quot;Ordinary Time Earnings&quot; (OTE) and attract the <strong>12% Superannuation Guarantee</strong> for FY2025-26.
+              </p>
+              <p>
+                Your employer pays the SG rate of 12% on top of your bonus, depositing it into your super fund. A $10,000 performance bonus generates <strong>$1,200</strong> in additional super contributions. However, some bonus types are excluded from OTE:
+              </p>
+              <ul>
+                <li><strong>Retention bonuses</strong> — excluded from OTE if the payment is conditional on staying for a set period rather than performing work</li>
+                <li><strong>Sign-on bonuses</strong> — generally excluded because they relate to entering employment, not performing work</li>
+                <li><strong>Referral bonuses</strong> — excluded when paid for recommending a candidate rather than productive work</li>
+                <li><strong>Performance bonuses linked to work</strong> — classified as OTE and attract the full 12% SG</li>
+              </ul>
+              <p>
+                The maximum super contribution base for FY2025-26 is <strong>$65,070 per quarter</strong>. Employers are not required to pay SG on earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+              </p>
+            </section>
+            <section id="lump-sum-b">
+              <h2>What Is Lump Sum B (Back Pay)?</h2>
+              <p>
+                &quot;Lump Sum B&quot; is a back payment relating to previous financial years, and the ATO spreads it across the relevant years to prevent an unfair tax bracket increase in the current year.
+              </p>
+              <p>
+                Back payments relating to previous financial years are handled under Lump Sum B on your payment summary. The tax on these is calculated differently — the ATO spreads the payment across the relevant years to avoid unfairly pushing you into a higher bracket for the current year. Your employer reports the amount and the number of years it relates to. The ATO then calculates the correct tax at lodgment time.
+              </p>
+              <p>
+                Common examples of Lump Sum B payments include retrospective pay rises under enterprise agreements, back-paid award rate increases, and settlement payments for underpayment claims. A $6,000 back payment covering 3 financial years is split as <strong>$2,000 per year</strong>, and the ATO calculates the marginal rate for each year independently.
+              </p>
+            </section>
+
+                    {/* --- H2: Related Calculators --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Which Related Calculators Help with Bonus Planning?</h2>
             <p className="mb-4 text-warmgray">

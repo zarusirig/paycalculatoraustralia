@@ -629,7 +629,7 @@ export default function EmployerCostCalculatorPage() {
                     </div>
                     <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus flex-shrink-0" />
                   </Link>
-                  <Link href="/salary-sacrifice-guide/" className="group flex items-center justify-between p-4 rounded-xl bg-sandstone/50 border border-sandstone-dark/10 hover:border-eucalyptus/40 hover:bg-white hover:shadow-sm transition-all">
+                  <Link href="/salary-sacrifice-calculator/" className="group flex items-center justify-between p-4 rounded-xl bg-sandstone/50 border border-sandstone-dark/10 hover:border-eucalyptus/40 hover:bg-white hover:shadow-sm transition-all">
                     <div>
                       <span className="text-sm font-semibold text-navy group-hover:text-eucalyptus-dark block">Salary Sacrifice Guide</span>
                       <span className="text-xs text-warmgray">How salary packaging reduces fringe benefits tax and employer costs</span>
@@ -685,7 +685,7 @@ export default function EmployerCostCalculatorPage() {
                   <AccordionItem value="fringe" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
                     <AccordionTrigger className="text-left font-semibold text-navy">Do fringe benefits increase my employment cost?</AccordionTrigger>
                     <AccordionContent className="text-warmgray">
-                      Yes. If you provide benefits like a company car, parking, or meal allowances, Fringe Benefits Tax (FBT) applies at 47%. The FBT is paid by the employer, not the employee, which can significantly increase the true cost. A $15,000 car benefit attracts roughly $7,050 in FBT, making the total cost of that perk over $22,000 to the business. See our <Link href="/salary-sacrifice-guide/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Guide</Link> for FBT-exempt alternatives.
+                      Yes. If you provide benefits like a company car, parking, or meal allowances, Fringe Benefits Tax (FBT) applies at 47%. The FBT is paid by the employer, not the employee, which can significantly increase the true cost. A $15,000 car benefit attracts roughly $7,050 in FBT, making the total cost of that perk over $22,000 to the business. See our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Guide</Link> for FBT-exempt alternatives.
                     </AccordionContent>
                   </AccordionItem>
                   <AccordionItem value="casual-cost" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">

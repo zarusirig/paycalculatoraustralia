@@ -91,7 +91,7 @@ export default function CentrelinkIncomeTestPage() {
               <li>Rent Assistance</li>
               <li>Energy Supplement payments</li>
             </ul>
-            <p>Salary sacrifice arrangements require special attention. Any pre-tax salary sacrifice to superannuation reduces your gross employment income reported to Centrelink, potentially keeping your payment higher. Our <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> explains how concessional contributions interact with both employer SG rate obligations and Centrelink reporting.</p>
+            <p>Salary sacrifice arrangements require special attention. Any pre-tax salary sacrifice to superannuation reduces your gross employment income reported to Centrelink, potentially keeping your payment higher. Our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> explains how concessional contributions interact with both employer SG rate obligations and Centrelink reporting.</p>
           </section>
 
           {/* ── H2 5: How Does the Assets Test Interact? ── */}

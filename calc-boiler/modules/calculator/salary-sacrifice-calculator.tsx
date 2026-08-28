@@ -448,7 +448,217 @@ export default function SalarySacrificeCalculatorPage() {
             </ol>
           </MethodologyDisclosure>
 
-          {/* --- H2: Related Calculators --- */}
+{/* Merged from /salary-sacrifice-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
+                      <section id="available-items">
+              <h2>What Items Are Available for Salary Sacrifice?</h2>
+              <p>
+                Salary sacrifice benefits fall into 3 categories: superannuation contributions, FBT-exempt items, and FBT-liable items. The tax outcome differs significantly between categories.
+              </p>
+
+              <div className="overflow-x-auto not-prose my-6">
+                <table className="min-w-full text-sm border border-sandstone-dark/20 rounded-lg">
+                  <thead>
+                    <tr className="bg-sandstone">
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Benefit</th>
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">FBT Status</th>
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Tax Outcome</th>
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Cap / Limit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy font-medium">Super contributions</td>
+                      <td className="p-3 text-navy">Exempt</td>
+                      <td className="p-3 text-navy">Taxed at 15% in fund</td>
+                      <td className="p-3 text-navy">$30,000/year concessional cap</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                      <td className="p-3 text-navy font-medium">Electric vehicle (novated lease)</td>
+                      <td className="p-3 text-navy">Exempt (below LCT threshold)</td>
+                      <td className="p-3 text-navy">No FBT, no income tax on sacrificed amount</td>
+                      <td className="p-3 text-navy">Vehicle price below $91,387 (FY2025-26 LCT threshold for fuel-efficient vehicles)</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy font-medium">Laptop / tablet (work use)</td>
+                      <td className="p-3 text-navy">Exempt (if primarily for work)</td>
+                      <td className="p-3 text-navy">No FBT, reduces taxable income</td>
+                      <td className="p-3 text-navy">1 item per FBT year</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                      <td className="p-3 text-navy font-medium">Mobile phone (work use)</td>
+                      <td className="p-3 text-navy">Exempt (if primarily for work)</td>
+                      <td className="p-3 text-navy">No FBT, reduces taxable income</td>
+                      <td className="p-3 text-navy">1 item per FBT year</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy font-medium">NFP meal entertainment</td>
+                      <td className="p-3 text-navy">Exempt (NFP employers only)</td>
+                      <td className="p-3 text-navy">Reduces taxable income</td>
+                      <td className="p-3 text-navy">$2,650 grossed-up cap</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                      <td className="p-3 text-navy font-medium">NFP living expenses</td>
+                      <td className="p-3 text-navy">Exempt (NFP employers only)</td>
+                      <td className="p-3 text-navy">Reduces taxable income</td>
+                      <td className="p-3 text-navy">$15,900 or $30,000 depending on employer type</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy font-medium">ICE vehicle (novated lease)</td>
+                      <td className="p-3 text-navy">Liable</td>
+                      <td className="p-3 text-navy">FBT at 47% — benefit reduced or eliminated</td>
+                      <td className="p-3 text-navy">No cap, but FBT erodes savings</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                The &quot;Electric Car Discount&quot; (introduced 1 July 2022) makes battery electric vehicles, hydrogen fuel cell vehicles, and plug-in hybrids first held and used before 1 April 2025 FBT-exempt under a novated lease. This exemption turns EV salary sacrifice into one of the most tax-effective packaging arrangements available in Australia. Learn more about vehicle packaging in our <Link href="/novated-lease-guide/">Novated Lease Guide</Link>.
+              </p>
+            </section>
+            <section id="who-benefits">
+              <h2>Who Benefits Most from Salary Sacrifice?</h2>
+              <p>
+                Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 16% bracket saves only <strong>$0.01 per dollar</strong>.
+              </p>
+
+              <div className="overflow-x-auto not-prose my-6">
+                <table className="min-w-full text-sm border border-sandstone-dark/20 rounded-lg">
+                  <thead>
+                    <tr className="bg-sandstone">
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Income Range</th>
+                      <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Marginal Rate</th>
+                      <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Tax Saving per $1 Sacrificed</th>
+                      <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Verdict</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy">$0–$18,200</td>
+                      <td className="p-3 text-right text-navy">0%</td>
+                      <td className="p-3 text-right text-navy">−$0.15 (worse off)</td>
+                      <td className="p-3 text-ochre font-medium">Not recommended</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                      <td className="p-3 text-navy">$18,201–$45,000</td>
+                      <td className="p-3 text-right text-navy">16%</td>
+                      <td className="p-3 text-right text-navy">$0.01</td>
+                      <td className="p-3 text-ochre font-medium">Minimal benefit</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10">
+                      <td className="p-3 text-navy">$45,001–$135,000</td>
+                      <td className="p-3 text-right text-navy">30%</td>
+                      <td className="p-3 text-right text-navy">$0.15</td>
+                      <td className="p-3 text-eucalyptus-dark font-medium">Worthwhile</td>
+                    </tr>
+                    <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
+                      <td className="p-3 text-navy">$135,001–$190,000</td>
+                      <td className="p-3 text-right text-navy">37%</td>
+                      <td className="p-3 text-right text-navy">$0.22</td>
+                      <td className="p-3 text-eucalyptus-dark font-medium">Highly beneficial</td>
+                    </tr>
+                    <tr>
+                      <td className="p-3 text-navy">$190,001+</td>
+                      <td className="p-3 text-right text-navy">45%</td>
+                      <td className="p-3 text-right text-navy">$0.30</td>
+                      <td className="p-3 text-eucalyptus-dark font-medium">Maximum benefit</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                Three groups benefit the most from salary sacrifice arrangements:
+              </p>
+              <ul>
+                <li><strong>High-income earners ($135,000+)</strong> — The 37% and 45% marginal rates create the largest gap above the 15% super tax rate, producing savings of $2,200 to $3,000 per $10,000 sacrificed</li>
+                <li><strong>Employees approaching retirement (age 50–67)</strong> — Carry-forward rules allow lump-sum catch-up contributions to build super balances before retirement</li>
+                <li><strong>Not-for-profit sector workers</strong> — Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) up to $15,900 or $30,000 per year produces savings even at lower income levels</li>
+              </ul>
+              <p>
+                Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. Employees in the 16% bracket ($18,201–$45,000) receive only marginal benefit and are better served by claiming the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> instead.
+              </p>
+            </section>
+            <section id="risks-downsides">
+              <h2>What Are the Risks and Downsides?</h2>
+              <p>
+                Salary sacrifice reduces take-home pay immediately. The tax savings are real, but the trade-off is lower disposable income each pay cycle. Employees must assess whether the reduced cash flow is sustainable before committing.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-4 not-prose mb-6 mt-4">
+                <Card className="bg-eucalyptus-light/30 border-sandstone-dark/20">
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold text-eucalyptus-dark mb-2">The Pros</h4>
+                    <ul className="list-disc list-inside text-sm text-eucalyptus-dark space-y-1">
+                      <li>Legally reduces your taxable income.</li>
+                      <li>Turbocharges your retirement savings.</li>
+                      <li>Can make expensive EVs surprisingly affordable.</li>
+                      <li>Reduces your PAYG withholding immediately.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+                <Card className="bg-sandstone border-sandstone-dark/20">
+                  <CardContent className="p-4">
+                    <h4 className="font-semibold text-ochre mb-2">The Cons</h4>
+                    <ul className="list-disc list-inside text-sm text-ochre space-y-1">
+                      <li>Reduces your immediately available cash flow.</li>
+                      <li>Super contributions are locked away until age 60.</li>
+                      <li>Does not reduce calculations for HECS repayments.</li>
+                      <li>Subject to strict $30k concessional caps.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <p>
+                Seven specific risks require consideration before entering a salary sacrifice arrangement:
+              </p>
+              <ol>
+                <li><strong>Reduced cash flow</strong> — Every dollar sacrificed is a dollar removed from your take-home pay. Budget accordingly using a fortnightly or monthly breakdown from our <Link href="/">Pay Calculator</Link></li>
+                <li><strong>Super preservation</strong> — Salary sacrificed into super is locked until a condition of release is met, typically reaching age 60 and retiring. Early access is restricted to severe financial hardship, terminal illness, or compassionate grounds</li>
+                <li><strong>HECS-HELP is unaffected</strong> — The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full repayment structure</li>
+                <li><strong>Exceeding the concessional cap</strong> — Contributions beyond $30,000 (including employer SG) are taxed at the employee&apos;s marginal rate plus an excess concessional contributions charge</li>
+                <li><strong>Impact on government benefits</strong> — Centrelink assessments may use adjusted taxable income, which includes reportable super contributions, potentially reducing eligibility for Family Tax Benefit, childcare subsidies, or other income-tested payments</li>
+                <li><strong>Employer insolvency risk</strong> — If your employer becomes insolvent before remitting salary sacrifice contributions to your super fund, those contributions may be treated as unpaid wages</li>
+                <li><strong>No retrospective changes</strong> — Once a pay period passes, the sacrifice cannot be reversed. Only future pay periods can be adjusted</li>
+              </ol>
+            </section>
+            <section id="how-to-set-up">
+              <h2>Step-by-Step: How to Set Up Salary Sacrifice</h2>
+              <p>
+                Setting up a salary sacrifice arrangement requires a written agreement with your employer before the relevant pay period. The process takes <strong>1 to 4 weeks</strong> depending on your employer&apos;s payroll cycle and approval process.
+              </p>
+              <ol>
+                <li><strong>Calculate your cap space</strong> — Check your current employer SG contributions (12% of your gross salary for FY2025-26) and subtract from the $30,000 concessional cap. The result is your maximum sacrifice amount for super</li>
+                <li><strong>Determine the right amount</strong> — Model the impact on your take-home pay using the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>. Ensure the reduced fortnightly pay covers rent, mortgage repayments, groceries, and other essential expenses</li>
+                <li><strong>Request the arrangement in writing</strong> — Submit a written request to your employer or HR department specifying the dollar amount per pay period, the benefit type (super, novated lease, device), and the desired start date</li>
+                <li><strong>Employer approves and adjusts payroll</strong> — Your employer confirms the arrangement and updates the payroll system. The first adjusted pay slip reflects the lower gross salary and reduced PAYG withholding</li>
+                <li><strong>Verify your pay slip</strong> — Check that the sacrificed amount, adjusted gross income, reduced PAYG, and super contribution match the agreed figures. Report discrepancies to payroll immediately</li>
+                <li><strong>Review annually</strong> — Reassess the arrangement at the start of each financial year. Changes in salary, tax brackets, or the concessional cap (indexed to AWOTE in $2,500 increments) may require adjustment</li>
+              </ol>
+            </section>
+            <section id="fbt-implications">
+              <h2>How Does Fringe Benefits Tax Affect Salary Sacrifice?</h2>
+              <p>
+                Fringe Benefits Tax is a <strong>47%</strong> tax imposed on employers who provide non-cash benefits to employees. FBT applies to most salary sacrifice items except superannuation, certain portable electronic devices used primarily for work, and eligible electric vehicles.
+              </p>
+              <p>
+                When an item attracts FBT, the employer bears the tax liability. In practice, most employers pass the FBT cost directly to the employee through payroll adjustments, eliminating any net tax benefit. An employee salary sacrificing a $40,000 internal combustion engine (ICE) vehicle through a novated lease faces approximately <strong>$18,800 in FBT</strong> annually, wiping out the income tax saving entirely.
+              </p>
+              <p>
+                FBT-exempt items deliver the full tax benefit because no additional tax applies. The 3 most common FBT-exempt salary sacrifice categories are:
+              </p>
+              <ul>
+                <li><strong>Superannuation contributions</strong> — Exempt from FBT, taxed at 15% inside the fund</li>
+                <li><strong>Eligible electric vehicles</strong> — FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of $91,387</li>
+                <li><strong>Portable electronic devices</strong> — Laptops, tablets, and mobile phones used primarily for employment duties (limited to 1 device per FBT year per category)</li>
+              </ul>
+              <p>
+                Read the full breakdown of FBT categories, rates, and exemptions on our <Link href="/fringe-benefits-tax/">Fringe Benefits Tax Guide</Link>.
+              </p>
+            </section>
+
+                    {/* --- H2: Related Calculators --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Australian Tax Calculators</h2>
             <p className="mb-4 text-warmgray">
@@ -499,6 +709,54 @@ export default function SalarySacrificeCalculatorPage() {
                 <AccordionTrigger>Should I salary sacrifice or pay off my mortgage faster?</AccordionTrigger>
                 <AccordionContent><p className="text-warmgray">The answer depends on your mortgage interest rate versus expected after-tax super return. At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the 15% concessional tax rate is significantly lower than the 30%+ marginal rate on the same income used for extra mortgage repayments. Run the numbers at your specific salary using the calculator above.</p></AccordionContent>
               </AccordionItem>
+                          <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">What is salary sacrificing?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value — such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee&apos;s assessable income, resulting in lower income tax and PAYG withholding.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrificing lower my HECS-HELP repayments?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    No. The ATO calculates HECS-HELP repayments against your <strong>Repayment Income (RI)</strong>, which includes taxable income plus reportable employer super contributions plus reportable fringe benefits. Salary sacrifice reduces taxable income but the sacrificed amounts are added back as reportable items. The net effect on HECS repayments is zero.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="super-tax" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Do I pay tax on salary sacrificed super?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Yes. The super fund deducts <strong>15%</strong> contributions tax on all concessional contributions, including salary sacrifice amounts. Because 15% is lower than the standard marginal income tax brackets of 30%, 37%, and 45%, the employee pays less total tax than receiving the same amount as cash salary.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="ev-lease" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Can I salary sacrifice a car?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Yes, through a <strong>novated lease</strong>. Your employer deducts lease payments and running costs (fuel, insurance, registration, servicing) from your pre-tax salary. Electric vehicles and plug-in hybrids below the luxury car tax threshold are FBT-exempt under the Electric Car Discount. For a $50,000 EV, salary packaging through a novated lease saves approximately <strong>$5,000–$8,000 per year</strong> compared to purchasing outright with after-tax income.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="min-wage" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice reduce my pay below minimum wage?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$26.44 per hour</strong> ($1,004.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrifice affect Centrelink payments?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    It depends on the specific payment. Services Australia calculates eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments using <strong>adjusted taxable income (ATI)</strong>, which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice reduces taxable income but increases reportable items, so ATI remains similar. The net impact on Centrelink eligibility is typically minimal.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="nfp" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Do not-for-profit employees get extra salary sacrifice benefits?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Yes. Employees of public benevolent institutions (PBIs) — including charities and public hospitals — can salary package everyday living expenses such as rent, mortgage repayments, and groceries up to <strong>$15,900</strong> per FBT year without incurring FBT. Public hospital employees and certain ambulance services have a higher cap of <strong>$30,000</strong>. An additional meal entertainment exemption of <strong>$2,650</strong> (grossed-up) applies on top of these caps.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="laptop" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Can I salary sacrifice a laptop or phone?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Yes. Portable electronic devices used <strong>primarily for employment duties</strong> are FBT-exempt. Eligible items include laptops, tablets, mobile phones, and GPS devices. The exemption applies to 1 device per category per FBT year (1 April to 31 March). The employer purchases the device from your pre-tax salary, reducing your taxable income by the device cost. A $2,500 laptop at a 30% marginal rate saves <strong>$750</strong> in income tax.
+                  </AccordionContent>
+                </AccordionItem>
             </Accordion>
           </section>
 

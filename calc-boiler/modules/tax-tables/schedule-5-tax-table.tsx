@@ -355,7 +355,7 @@ export default function Schedule5TaxTablePage() {
             <section id="payments-covered">
               <h2>Which Payments Use the Schedule 5 Tax Table?</h2>
               <ul>
-                <li><strong>Bonuses and incentive payments</strong> &mdash; annual performance bonuses, sign-on bonuses, KPI payments. See the <Link href="/bonus-tax-guide/">bonus tax guide</Link> for how these interact with super.</li>
+                <li><strong>Bonuses and incentive payments</strong> &mdash; annual performance bonuses, sign-on bonuses, KPI payments. See the <Link href="/bonus-tax-calculator/">bonus tax guide</Link> for how these interact with super.</li>
                 <li><strong>Commissions</strong> &mdash; sales commissions paid as lump sums rather than in every pay.</li>
                 <li><strong>Back payments and arrears</strong> &mdash; underpaid wages, backdated pay rises, and award reclassifications. Use the <Link href="/backpay-calculator/">back pay calculator</Link> to estimate the tax on arrears.</li>
                 <li><strong>Lump-sum leave loading</strong> &mdash; leave loading paid as a lump sum uses Schedule 5; paid pro-rata it is added to that period&apos;s earnings instead.</li>

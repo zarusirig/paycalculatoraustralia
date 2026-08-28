@@ -83,7 +83,6 @@ export const GUIDE_CATEGORIES = [
       { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables", description: "Weekly, fortnightly and monthly tables" },
       { href: "/weekly-tax-table/", label: "Weekly Tax Table", description: "ATO weekly withholding amounts" },
       { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table", description: "ATO fortnightly withholding amounts" },
-      { href: "/bonus-tax-guide/", label: "Bonus Tax Guide", description: "How bonuses are taxed in Australia" },
       { href: "/tax-refund-guide/", label: "Tax Refund Guide", description: "Maximise your tax return" },
       { href: "/tax-calendar/", label: "Tax Calendar", description: "Key ATO dates and deadlines" },
       { href: "/fringe-benefits-tax/", label: "Fringe Benefits Tax (FBT)", description: "Employer-provided benefits tax" },
@@ -93,7 +92,6 @@ export const GUIDE_CATEGORIES = [
     title: "Super & Salary",
     guides: [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
-      { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide", description: "Tax savings and FBT" },
       { href: "/novated-lease-guide/", label: "Novated Lease Guide", description: "Salary packaging a car" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
     ],
@@ -103,8 +101,6 @@ export const GUIDE_CATEGORIES = [
     guides: [
       { href: "/understanding-your-payslip/", label: "Understanding Your Payslip", description: "What every deduction means" },
       { href: "/award-rates/", label: "Award Rates", description: "Minimum wage and penalty rates" },
-      { href: "/contractor-vs-employee/", label: "Contractor vs Employee Guide", description: "Key differences, tax and super" },
-      { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide", description: "NES entitlements and tax" },
       { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates", description: "Weekend, evening and public holiday rates" },
       { href: "/annual-leave-guide/", label: "Annual Leave Guide", description: "Entitlements and loading" },
     ],
@@ -300,7 +296,6 @@ export const FOOTER_GUIDES_TAX = [
   { href: "/tax-deductions-guide/", label: "Tax Deductions Guide" },
   { href: "/work-from-home-deductions/", label: "WFH Deductions" },
   { href: "/tax-refund-guide/", label: "Tax Refund Guide" },
-  { href: "/bonus-tax-guide/", label: "Bonus Tax Guide" },
   { href: "/stage-3-tax-cuts/", label: "Stage 3 Tax Cuts" },
   { href: "/tax-changes-2026-27/", label: "FY2026-27 Tax Changes" },
   { href: "/tax-bracket-history/", label: "Tax Bracket History" },
@@ -313,7 +308,6 @@ export const FOOTER_GUIDES_TAX = [
 
 export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/superannuation-guide/", label: "Superannuation Guide" },
-  { href: "/salary-sacrifice-guide/", label: "Salary Sacrifice Guide" },
   { href: "/novated-lease-guide/", label: "Novated Lease Guide" },
   { href: "/salary-packaging-guide/", label: "Salary Packaging" },
   { href: "/division-293-tax/", label: "Division 293 Tax" },
@@ -331,7 +325,6 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
   { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },
-  { href: "/redundancy-pay-guide/", label: "Redundancy Pay Guide" },
   { href: "/minimum-wage-history-australia/", label: "Minimum Wage History" },
 ] as const;
 
@@ -339,7 +332,6 @@ export const FOOTER_GUIDES_EMPLOYMENT = [
   { href: "/first-job-pay-guide/", label: "First Job Guide" },
   { href: "/new-job-checklist/", label: "New Job Checklist" },
   { href: "/gig-economy-pay-guide/", label: "Gig Economy Guide" },
-  { href: "/contractor-vs-employee/", label: "Contractor vs Employee" },
   { href: "/employee-vs-sole-trader-vs-company/", label: "Business Structure" },
   { href: "/salary-vs-hourly/", label: "Salary vs Hourly" },
   { href: "/full-time-vs-part-time-vs-casual/", label: "FT vs PT vs Casual" },

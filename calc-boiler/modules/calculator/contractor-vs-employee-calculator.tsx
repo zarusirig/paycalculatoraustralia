@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
@@ -466,7 +466,214 @@ export default function ContractorVsEmployeeCalculatorPage() {
             </ol>
           </section>
 
-          {/* H2: Related Calculators */}
+{/* Merged from /contractor-vs-employee-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
+                      {/* ============================================================ */}
+            <section id="ato-multi-factor">
+              <h2>How Does the ATO Determine Your Status?</h2>
+              <p>
+                The ATO applies a &ldquo;Multi-Factor Test&rdquo; rooted in Australian common law &mdash; no single factor is decisive, and the test examines the totality of the working relationship across <strong>6 primary indicators</strong>.
+              </p>
+              <p>
+                Following the High Court&apos;s 2022 decisions in <em>Construction, Forestry, Maritime, Mining and Energy Union v Personnel Contracting Pty Ltd</em> and <em>ZG Operations Australia Pty Ltd v Jamsek</em>, courts now prioritise the terms of the written contract &mdash; provided those terms reflect a genuine arrangement and are not a sham. The 6 indicators the ATO evaluates are:
+              </p>
+              <ol>
+                <li><strong>Ability to sub-contract or delegate:</strong> A contractor has the right to hire others to do the work. An employee performs the work personally.</li>
+                <li><strong>Basis of payment:</strong> Contractors invoice for a result (fixed quote, per-project fee). Employees receive a regular wage or salary per hour, week, or month.</li>
+                <li><strong>Equipment, tools, and other assets:</strong> Contractors supply their own tools, vehicles, and software. Employees use the employer&apos;s equipment.</li>
+                <li><strong>Commercial risk:</strong> Contractors bear financial risk &mdash; they fix defects at their own cost and carry their own professional indemnity, public liability, and income protection insurance. Employees bear no such risk.</li>
+                <li><strong>Control over the work:</strong> Contractors decide how, when, and where they perform the work. Employees follow the employer&apos;s directions on method, location, and hours.</li>
+                <li><strong>Independence / integration:</strong> Contractors operate visibly as a separate business (own ABN, own branding, multiple clients). Employees are integrated into the employer&apos;s operations (wearing uniforms, using company email addresses, attending staff meetings).</li>
+              </ol>
+              <p>
+                A worker who satisfies 4 or more of these indicators as a contractor is more likely to be genuinely independent. A worker who fails most indicators &mdash; for example, using the employer&apos;s tools, working fixed rosters, having no right to delegate, and receiving hourly pay &mdash; is almost certainly an employee regardless of what the contract states. The ATO publishes a free &ldquo;Employee/Contractor Decision Tool&rdquo; on ato.gov.au that walks through each factor interactively.
+              </p>
+              <div className="bg-sandstone border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6 text-sm">
+                <div className="flex items-start gap-4">
+                  <ShieldAlert className="h-6 w-6 text-ochre mt-0.5 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-base font-bold text-ochre mb-1">Beware of &lsquo;Sham Contracting&rsquo;</h3>
+                    <p className="text-ochre">Intentionally classifying an employee as an independent contractor to avoid paying them super, leave, or minimum wage is illegal. Directors face massive fines, and the courts will force the company to backpay years of stolen superannuation and annual leave.</p>
+                  </div>
+                </div>
+              </div>
+              <p>
+                A classic sign of sham contracting is forcing a worker to go and get an ABN before you will give them shifts, while continuing to dictate their hours and uniform just like regular employees.
+              </p>
+            </section>
+            {/* ============================================================ */}
+            <section id="comparison-table">
+              <h2>Contractor vs Employee Comparison Table</h2>
+              <p>
+                Employees and contractors differ across <strong>12 key attributes</strong> covering tax, entitlements, risk, and work arrangements &mdash; the table below summarises every major distinction in one place.
+              </p>
+              <div className="not-prose my-8">
+                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full text-sm text-left text-navy">
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th className="px-6 py-4 w-1/3">Factor</th>
+                        <th className="px-6 py-4 w-1/3 border-l">Employee</th>
+                        <th className="px-6 py-4 w-1/3 border-l">Independent Contractor</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Control over work</td>
+                        <td className="px-6 py-4 border-l">Employer dictates the hours, location, and exactly <em>how</em> the work is done.</td>
+                        <td className="px-6 py-4 border-l">Controls their own schedule and decides how to best achieve the requested result.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tools &amp; Equipment</td>
+                        <td className="px-6 py-4 border-l">Employer provides base tools, laptops, vehicles, or gives an allowance.</td>
+                        <td className="px-6 py-4 border-l">Provides all of their own commercial tools, software, and gear.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Commercial Risk</td>
+                        <td className="px-6 py-4 border-l">Takes no financial risk. Employer is legally responsible for mistakes.</td>
+                        <td className="px-6 py-4 border-l">Bears commercial risk. Must fix defects at their own expense and carry their own insurance.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Integration</td>
+                        <td className="px-6 py-4 border-l">Seen as a representative or face of the employer&apos;s business (e.g. wearing a logo).</td>
+                        <td className="px-6 py-4 border-l">Operates visibly as their own distinct business (quoting their own ABN).</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Income tax</td>
+                        <td className="px-6 py-4 border-l">Employer withholds PAYG tax each pay cycle. Employee lodges annual return.</td>
+                        <td className="px-6 py-4 border-l">Receives full invoice amount. Must set aside ~30% and pay ATO directly via quarterly BAS or annual return.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">GST</td>
+                        <td className="px-6 py-4 border-l">Not applicable. Employees do not charge GST.</td>
+                        <td className="px-6 py-4 border-l">Must register and charge 10% GST if annual turnover exceeds $75,000.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Superannuation</td>
+                        <td className="px-6 py-4 border-l">Employer pays 12% SG on top of gross salary (FY2025-26).</td>
+                        <td className="px-6 py-4 border-l">Manages own super. Exception: employer pays SG if contractor is hired principally for labour.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Annual leave</td>
+                        <td className="px-6 py-4 border-l">Entitled to 4 weeks (20 days) paid annual leave per year under the NES.</td>
+                        <td className="px-6 py-4 border-l">No entitlement. Must factor unpaid time off into their hourly rate.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Sick / personal leave</td>
+                        <td className="px-6 py-4 border-l">10 days paid personal/carer&apos;s leave per year.</td>
+                        <td className="px-6 py-4 border-l">No entitlement. No pay when sick or caring for family.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Workers&apos; compensation</td>
+                        <td className="px-6 py-4 border-l">Covered by employer&apos;s WorkCover policy.</td>
+                        <td className="px-6 py-4 border-l">Must purchase own income protection and public liability insurance.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Delegation / sub-contracting</td>
+                        <td className="px-6 py-4 border-l">Must perform work personally.</td>
+                        <td className="px-6 py-4 border-l">Has the right to delegate work to others or sub-contract.</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Termination</td>
+                        <td className="px-6 py-4 border-l">Protected by unfair dismissal laws after minimum employment period (6 or 12 months).</td>
+                        <td className="px-6 py-4 border-l">Contract ends per agreed terms. No unfair dismissal protection.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            {/* ============================================================ */}
+            <section id="gst-obligations">
+              <h2>What Are the GST Obligations for Contractors?</h2>
+              <p>
+                Contractors earning above <strong>$75,000 in annual turnover</strong> must register for GST, charge 10% on every invoice, and remit the collected GST to the ATO via quarterly or monthly BAS lodgements.
+              </p>
+              <p>
+                This means if you quote $100/hour to a client, the invoice actually becomes $110 (plus GST). The client pays $110, you keep $100, and $10 goes to the ATO. Many first-time contractors underestimate this cash-flow requirement and end up with a sizeable BAS bill at the end of each quarter.
+              </p>
+              <p>
+                If you earn under $75,000, GST registration is optional. However, registering allows you to claim GST credits on business expenses (equipment, software, insurance), which can offset your liability. Contractors who purchase significant assets &mdash; vehicles, computer equipment, or specialised tools &mdash; in their first year of business often benefit from voluntary registration even below the $75,000 threshold.
+              </p>
+              <p>
+                Employees never interact with GST. Their salary is not subject to GST, and they do not lodge BAS returns. This administrative burden is one of the hidden costs of contracting that workers overlook when comparing contractor vs employee arrangements.
+              </p>
+            </section>
+            {/* ============================================================ */}
+            <section id="super-obligations">
+              <h2>Super Entitlements for Contractors</h2>
+              <p>
+                Genuine independent contractors pay their own superannuation voluntarily, but the Superannuation Guarantee (Administration) Act 1992 creates a critical exception: employers must pay the <strong>12% Super Guarantee</strong> for any contractor hired &ldquo;wholly or principally for their personal labour and skills.&rdquo;
+              </p>
+              <p className="text-lg font-medium text-navy border-l-4 border-eucalyptus pl-4 py-1">
+                If a contractor is hired wholly or principally for their personal labour and skills, the employer must still pay the 12% Super Guarantee on top of their invoice.
+              </p>
+              <p>
+                This exception targets sole traders who function economically like employees &mdash; a freelance web developer billing hourly, a sole-trader electrician on a long-term engagement, or a contract bookkeeper working 3 days per week for a single client. The test asks: is the hiring business paying for the contractor&apos;s personal effort, or for a deliverable that the contractor&apos;s business produces using any combination of staff and resources?
+              </p>
+              <p>
+                If you hire a solo graphic designer on an hourly rate to do design work just because they are good at it, the ATO classifies them as an employee <strong>for superannuation purposes only</strong>. You must pay their super. If you hire a massive plumbing <em>company</em> to fix a roof, and they send an anonymous plumber out, that is a true B2B contract and no super is owed.
+              </p>
+              <p>
+                Contractors who do not receive employer super contributions can still make personal concessional (before-tax) contributions up to the <strong>$30,000 annual cap</strong> and claim a full tax deduction. Non-concessional (after-tax) contributions are capped at <strong>$120,000 per year</strong>. Read the full breakdown in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+              </p>
+            </section>
+            {/* ============================================================ */}
+            <section id="sham-contracting">
+              <h2>What Are the Risks of Sham Contracting?</h2>
+              <p>
+                &ldquo;Sham contracting&rdquo; occurs when an employer deliberately disguises an employment relationship as a contracting arrangement to avoid paying entitlements &mdash; the Fair Work Ombudsman penalises offenders with fines of up to <strong>$469,500 per contravention</strong> for companies and <strong>$93,900 per contravention</strong> for individuals.
+              </p>
+              <p>
+                Beyond the civil penalties, sham contracting triggers 3 additional financial consequences:
+              </p>
+              <ol>
+                <li><strong>Backpayment of superannuation:</strong> The employer must pay all unpaid Super Guarantee amounts at 12% (or the rate applicable at the time), plus the Superannuation Guarantee Charge (SGC). From 1 July 2026 that is the shortfall, notional earnings at the general interest charge rate compounded daily, and an administrative uplift of up to 60%; the charge is now tax-deductible. For earnings paid up to 30 June 2026 the old rules apply — 10% nominal interest, $20 per employee per quarter, and no deduction.</li>
+                <li><strong>Backpayment of leave entitlements:</strong> The employer owes all accumulated annual leave, personal leave, and any applicable redundancy pay &mdash; potentially spanning multiple years. Long-service leave liabilities accrue after <strong>7 to 10 years</strong> depending on the state.</li>
+                <li><strong>Backpayment of Award underpayments:</strong> If the worker was covered by a Modern Award, the employer must make up the difference between what was paid and the Award minimum, including overtime, penalty rates, and allowances. Review common Award structures on our <Link href="/award-rates/">Award Rates</Link> page.</li>
+              </ol>
+              <p>
+                Industries with the highest rates of sham contracting enforcement include construction, cleaning, hospitality, transport and logistics, and IT consulting. The Fair Work Ombudsman conducts targeted audits in these sectors annually. In FY2023-24, the FWO recovered over <strong>$473 million</strong> in underpayments across all enforcement activities.
+              </p>
+              <p>
+                There is no &ldquo;innocent mistake&rdquo; defence if the employer &ldquo;reasonably should have known&rdquo; the worker was an employee. The onus falls on the employer to prove the arrangement is genuine.
+              </p>
+            </section>
+            {/* ============================================================ */}
+            <section id="switching">
+              <h2>How to Switch from Contractor to Employee</h2>
+              <p>
+                Switching from contractor to employee requires a formal transition covering <strong>5 administrative steps</strong> &mdash; the employer must restructure the legal arrangement, payroll registration, and insurance coverage.
+              </p>
+              <ol>
+                <li><strong>Sign a new employment contract:</strong> The contractor agreement terminates and a written employment contract replaces it, specifying the role, salary, hours, and applicable Modern Award or Enterprise Agreement.</li>
+                <li><strong>Register in the employer&apos;s PAYG system:</strong> The employee completes a Tax File Number (TFN) declaration. The employer begins withholding income tax each pay cycle using ATO withholding schedules. Learn more about the deduction process in our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> guide.</li>
+                <li><strong>Commence Super Guarantee payments:</strong> The employer pays 12% super on top of the agreed salary from the first day of employment. Payments are due quarterly &mdash; within <strong>28 days</strong> of the end of each quarter (28 October, 28 January, 28 April, 28 July).</li>
+                <li><strong>Enrol in workers&apos; compensation insurance:</strong> State-based WorkCover schemes cover the new employee immediately. The employer absorbs this cost, which ranges from <strong>0.3% to 8%</strong> of payroll depending on the industry and state.</li>
+                <li><strong>Adjust the pay rate:</strong> The gross salary is typically lower than the contractor&apos;s invoice rate because the employer now bears on-costs including super, leave accrual, and WorkCover. A contractor earning $78/hour commonly transitions to an employee salary of <strong>$100,000 to $105,000</strong> per year.</li>
+              </ol>
+              <p>
+                Leave entitlements (annual leave, personal leave, long-service leave) begin accruing from day one of the employment relationship. The transition does not carry over any prior service as a contractor for leave-accrual purposes, unless the employer agrees otherwise in writing.
+              </p>
+            </section>
+            {/* ============================================================ */}
+            <section id="insurance-and-leave">
+              <h2>What Insurance and Leave Do Contractors Miss Out On?</h2>
+              <p>
+                Contractors receive <strong>zero paid leave</strong> and must purchase all workplace insurance at their own expense &mdash; these two costs represent the largest hidden gap between contracting and employment income.
+              </p>
+              <ul>
+                <li><strong>Annual leave:</strong> Employees receive 4 weeks (20 days) paid leave per year under the National Employment Standards. Contractors who take 4 weeks off sacrifice approximately <strong>7.7%</strong> of their annual billable revenue.</li>
+                <li><strong>Personal / carer&apos;s leave:</strong> Employees receive 10 days paid personal leave per year. Contractors receive nothing &mdash; illness or caring responsibilities translate directly into lost income.</li>
+                <li><strong>Long-service leave:</strong> Employees accrue long-service leave after 7 to 10 years (varies by state). Contractors have no equivalent entitlement.</li>
+                <li><strong>Public holidays:</strong> Employees receive <strong>8 national public holidays</strong> paid (plus state-specific additions, totalling 10 to 13 days depending on the jurisdiction). Contractors forfeit this income or must work the day.</li>
+                <li><strong>Workers&apos; compensation:</strong> Employers take out WorkCover insurance for their employees. True independent contractors must pay for their own income protection insurance (typically <strong>$800 to $2,500 per year</strong>) and public liability insurance (typically <strong>$400 to $1,500 per year</strong>).</li>
+              </ul>
+              <p>
+                Combined, lost leave and insurance costs add <strong>$15,000 to $25,000 per year</strong> in hidden expenses for a contractor earning the equivalent of a $100,000 employee salary. This is why commercial contracting rates are set <strong>25% to 50%</strong> higher than internal employee salaries.
+              </p>
+            </section>
+
+                    {/* H2: Related Calculators */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Australian Tax Calculators</h2>
             <p className="mb-4 text-warmgray">
@@ -540,6 +747,66 @@ export default function ContractorVsEmployeeCalculatorPage() {
                 <AccordionTrigger>Do contractors pay PAYG instalments?</AccordionTrigger>
                 <AccordionContent><p className="text-warmgray">Yes. The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs a <strong>general interest charge (GIC)</strong> currently set at approximately <strong>11.36%</strong> per annum.</p></AccordionContent>
               </AccordionItem>
+                          <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">What is the main difference between an employee and a contractor?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    An employee works inside the employer&apos;s business under the employer&apos;s direction and control. A contractor operates their own independent business and is engaged to deliver a specific result. The distinction determines tax obligations, super entitlements, leave rights, and insurance coverage.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="abn" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Does having an ABN automatically make me a contractor?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The actual working arrangement &mdash; including control, tools, risk, and integration &mdash; determines the true classification.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="super" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Are contractors entitled to superannuation?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Genuine independent contractors manage their own super. However, if a contractor is hired &ldquo;wholly or principally for their personal labour and skills&rdquo; &mdash; for example, a sole-trader IT consultant billing hourly &mdash; the hiring business must pay the <strong>12% Super Guarantee</strong> on top of the contractor&apos;s invoices under the Superannuation Guarantee (Administration) Act 1992.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="penalties" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">What are the penalties for sham contracting?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    The Fair Work Ombudsman imposes fines of up to <strong>$93,900 per contravention</strong> for individuals and <strong>$469,500 per contravention</strong> for companies. The employer must also backpay all lost entitlements including super (plus the non-deductible Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments &mdash; often spanning several years of accumulated liability.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="convert" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Can I convert from contractor to employee?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Yes, but it requires a formal transition. Your employer must issue a new employment contract, register you in their PAYG system, start paying super, and enrol you in workers&apos; compensation insurance. Your hourly rate will typically decrease because the employer now bears additional on-costs (super, leave, WorkCover). Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> to model the exact financial impact.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="gst-threshold" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors have to charge GST?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    GST registration is mandatory once a contractor&apos;s annual turnover exceeds <strong>$75,000</strong>. Below that threshold, registration is optional. Registered contractors charge 10% GST on every invoice and can claim GST credits on business purchases. Employees never interact with GST.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors pay more tax than employees?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Contractors and employees earning the same taxable income pay the same income tax &mdash; the FY2025-26 tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="single-client" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Is it legal to work for only one client as a contractor?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Working for a single client does not automatically make you an employee, but it is one of the strongest indicators the ATO examines. A genuine contractor working for one client must demonstrate independence in other areas &mdash; owning their tools, controlling their schedule, bearing commercial risk, and having the contractual right to take on other clients. Exclusive long-term arrangements with fixed hours attract heavy ATO scrutiny.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors receive payslips?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    No. Contractors issue tax invoices to their clients and receive payment against those invoices. Only employees receive payslips, which employers must provide within <strong>1 business day</strong> of each pay. Read our <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link> guide for a full breakdown of payslip components.
+                  </AccordionContent>
+                </AccordionItem>
+              <AccordionItem value="insurance-types" className="border rounded-lg px-4 bg-sandstone bg-white">
+                  <AccordionTrigger className="text-left font-semibold text-navy">What insurance does a contractor need?</AccordionTrigger>
+                  <AccordionContent className="text-navy">
+                    Contractors typically require 3 types of insurance: <strong>public liability insurance</strong> ($400 to $1,500 per year) covering third-party injury or property damage, <strong>professional indemnity insurance</strong> ($500 to $2,000 per year) covering errors in professional advice or work, and <strong>income protection insurance</strong> ($800 to $2,500 per year) replacing income during illness or injury. Premiums are tax-deductible as business expenses.
+                  </AccordionContent>
+                </AccordionItem>
             </Accordion>
           </section>
 

@@ -462,7 +462,7 @@ export default function NovatedLeaseGuidePage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Is Not Eligible for a Novated Lease?</h3>
             <p>A novated lease is less beneficial for employees earning under <strong>$45,000</strong>, those within 2 years of retirement (insufficient time to realise savings), and casual employees without a guaranteed salary. Self-employed workers and sole traders are ineligible because the arrangement requires an employer-employee relationship. Contractors on ABN-only arrangements cannot access novated leasing. Employees on fixed-term contracts shorter than the proposed lease term face additional risk, though most leasing providers offer portability and payout options to mitigate this.</p>
-            <p>Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare your current after-tax pay with and without salary packaging. The <Link href="/contractor-vs-employee/">Contractor vs Employee Guide</Link> explains the employment classification requirements for accessing salary packaging benefits including novated leases.</p>
+            <p>Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to compare your current after-tax pay with and without salary packaging. The <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> explains the employment classification requirements for accessing salary packaging benefits including novated leases.</p>
           </section>
 
           {/* ============================================================ */}
@@ -573,7 +573,7 @@ export default function NovatedLeaseGuidePage() {
                 </tbody>
               </table>
             </div>
-            <p>The FBT exemption makes EV novated leases the most tax-efficient way to acquire a new car in Australia. Popular FBT-exempt models include the Tesla Model 3, BYD Atto 3, MG ZS EV, Hyundai Ioniq 5, and Kia EV6. For employees considering salary packaging alongside a novated lease, our <Link href="/salary-sacrifice-guide/">Salary Sacrifice Guide</Link> explains how pre-tax arrangements interact with superannuation and other benefit types.</p>
+            <p>The FBT exemption makes EV novated leases the most tax-efficient way to acquire a new car in Australia. Popular FBT-exempt models include the Tesla Model 3, BYD Atto 3, MG ZS EV, Hyundai Ioniq 5, and Kia EV6. For employees considering salary packaging alongside a novated lease, our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> explains how pre-tax arrangements interact with superannuation and other benefit types.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Long Will the EV FBT Exemption Last?</h3>
             <p>The Electric Car Discount has no legislated sunset date as of the 2025-26 financial year. The Treasury confirmed the exemption continues indefinitely for BEVs and FCEVs first held and used from 1 July 2022. The PHEV restriction (effective 1 April 2025) narrows eligibility but does not affect existing PHEV leases entered before that date. Employees entering a new EV novated lease in FY2025-26 lock in the FBT exemption for the full lease term &mdash; typically 3 to 5 years &mdash; even if legislation changes during the lease period. The exemption applies per vehicle, not per employee, so an employee can novate multiple FBT-exempt EVs sequentially.</p>
@@ -626,7 +626,7 @@ export default function NovatedLeaseGuidePage() {
                 <h3 className="font-semibold text-navy group-hover:text-eucalyptus-dark text-sm">Income Tax Calculator</h3>
                 <p className="text-xs text-warmgray mt-1">See your income tax brackets and calculate tax payable on your assessable income.</p>
               </Link>
-              <Link href="/salary-sacrifice-guide/" className="group p-4 rounded-lg border border-sandstone-dark/20 hover:border-eucalyptus hover:shadow-sm transition-all">
+              <Link href="/salary-sacrifice-calculator/" className="group p-4 rounded-lg border border-sandstone-dark/20 hover:border-eucalyptus hover:shadow-sm transition-all">
                 <h3 className="font-semibold text-navy group-hover:text-eucalyptus-dark text-sm">Salary Sacrifice Guide</h3>
                 <p className="text-xs text-warmgray mt-1">Learn how salary packaging works for super, cars, laptops, and other fringe benefits.</p>
               </Link>
@@ -706,7 +706,7 @@ export default function NovatedLeaseGuidePage() {
           <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Information sourced from ATO novated leasing and FBT guidance. Tax savings examples use FY2025-26 marginal rates. The income tax brackets for FY2025-26 are: 0% up to $18,200, 16% from $18,201 to $45,000, 30% from $45,001 to $135,000, 37% from $135,001 to $190,000, and 45% above $190,000. Medicare levy is 2% of taxable income. Superannuation guarantee rate is 12%. All figures are estimates &mdash; actual savings depend on the vehicle, lease term, interest rate, and individual tax circumstances.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("novated-lease-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/salary-sacrifice-guide/" label="Salary Sacrifice Guide" /><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/fringe-benefits-tax/" label="FBT Guide" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Guide" /><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/fringe-benefits-tax/" label="FBT Guide" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

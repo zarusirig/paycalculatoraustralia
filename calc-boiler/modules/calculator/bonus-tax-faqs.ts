@@ -63,4 +63,36 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
     q: "Does it matter when my bonus is paid during the financial year?",
     a: `The timing within a financial year does not change your total tax liability — your annual tax is calculated on total income regardless of when it is received. However, if your employer can defer a bonus payment to the next financial year (e.g., from June to July), it shifts the income into a different tax year and could result in a lower marginal rate if your income is lower in that year.`,
   },
+  {
+    q: "Can I salary sacrifice my bonus into super?",
+    a: "Yes, if your employer allows it. Directing your bonus into super as a concessional contribution means it is taxed at only 15% (instead of your marginal rate). However, the contribution counts towards your $30,000 concessional cap. See our salary sacrifice guide for details.",
+  },
+  {
+    q: "Does my employer pay super on my bonus?",
+    a: "Yes, for performance-related bonuses. Bonuses classified as \"Ordinary Time Earnings\" attract the 12% Superannuation Guarantee. A $10,000 performance bonus generates $1,200 in additional super. Sign-on bonuses, retention bonuses, and referral bonuses are generally excluded from OTE and do not attract SG.",
+  },
+  {
+    q: "Why was so much tax taken from my bonus?",
+    a: "Your bonus sits on top of your regular salary, so every dollar is taxed at your highest marginal rate. A worker earning $90,000 pays an average tax rate of about 23% on total income but the bonus is taxed at 32% (30% plus 2% Medicare levy) because it falls entirely in the top bracket. Some payroll systems also annualise the pay period containing the bonus, which can produce even higher withholding that is corrected when you lodge your return.",
+  },
+  {
+    q: "Are commissions taxed the same as bonuses?",
+    a: "Yes. The ATO treats commissions, bonuses, incentive payments, and profit-share distributions identically for PAYG withholding purposes. All are supplementary payments subject to Schedule 5 withholding at your marginal tax rate.",
+  },
+  {
+    q: "What if I receive two bonuses in the same financial year?",
+    a: "Each bonus is taxed using Schedule 5 based on your year-to-date earnings at the time of payment. The second bonus sits on top of your salary plus the first bonus, so it is taxed at a potentially higher marginal rate. A worker on $120,000 who receives two $10,000 bonuses pays 32% on the first and 32% on the second (both within the $45K\u2013$135K bracket). If the second bonus pushes total income above $135,000, the portion above $135,000 is taxed at 39%.",
+  },
+  {
+    q: "How are bonuses taxed for part-time or casual workers?",
+    a: "The same way as full-time workers. The ATO does not differentiate between employment types for bonus taxation. A part-time worker earning $30,000 per year who receives a $5,000 bonus has the bonus taxed at the 16% marginal rate (plus 2% Medicare levy) because total income of $35,000 falls in the $18,201\u2013$45,000 bracket. The lower income base means part-time workers typically face a lower marginal rate on bonuses than full-time workers.",
+  },
+  {
+    q: "How are bonuses taxed for non-residents?",
+    a: "Non-residents do not receive the $18,200 tax-free threshold and pay tax from the first dollar. The non-resident marginal rate on bonuses starts at 30% for income up to $135,000, then 37% up to $190,000, and 45% above $190,000. Non-residents do not pay the Medicare levy. See our Non-Resident Tax Guide for full rates.",
+  },
+  {
+    q: "Does Division 293 apply if my bonus pushes income above $250,000?",
+    a: "Yes. \"Division 293\" imposes an additional 15% tax on concessional super contributions when income (including super contributions) exceeds $250,000. If a bonus pushes your combined income and super above this threshold, any concessional contributions \u2014 including salary-sacrificed bonus amounts \u2014 are taxed at 30% instead of 15% inside super.",
+  },
 ];

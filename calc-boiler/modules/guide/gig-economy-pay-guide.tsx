@@ -44,7 +44,7 @@ export default function GigEconomyPayGuidePage() {
                 <li><strong>You need an ABN</strong> — an Australian Business Number is required to operate as a sole trader.</li>
               </ul>
               <p>
-                The ATO uses a multi-factor test to determine your classification. If you are unsure, see our detailed <Link href="/contractor-vs-employee/">Contractor vs Employee Guide</Link> or use our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> to compare the financial impact.
+                The ATO uses a multi-factor test to determine your classification. If you are unsure, see our detailed <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Guide</Link> or use our <Link href="/contractor-vs-employee-calculator/">Contractor vs Employee Calculator</Link> to compare the financial impact.
               </p>
             </section>
 
@@ -263,7 +263,7 @@ export default function GigEconomyPayGuidePage() {
               {(() => { const a = getGuideAuthorship("gig-economy-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">
-            <Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related Tools</h3><div className="space-y-3"><SidebarLink href="/contractor-vs-employee/" label="Contractor vs Employee Guide" /><SidebarLink href="/contractor-vs-employee-calculator/" label="Contractor vs Employee Calculator" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/superannuation-guide/" label="Superannuation Guide" /><SidebarLink href="/employee-vs-sole-trader-vs-company/" label="Employee vs Sole Trader vs Company" /><SidebarLink href="/tax-deductions-guide/" label="Tax Deductions Guide" /></div></CardContent></Card>
+            <Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related Tools</h3><div className="space-y-3"><SidebarLink href="/contractor-vs-employee-calculator/" label="Contractor vs Employee Guide" /><SidebarLink href="/contractor-vs-employee-calculator/" label="Contractor vs Employee Calculator" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/superannuation-guide/" label="Superannuation Guide" /><SidebarLink href="/employee-vs-sole-trader-vs-company/" label="Employee vs Sole Trader vs Company" /><SidebarLink href="/tax-deductions-guide/" label="Tax Deductions Guide" /></div></CardContent></Card>
             <Card className="bg-sky-600 border-none text-white shadow-md"><CardContent className="p-6"><h3 className="text-lg font-bold mb-2">What&apos;s your gig tax bill?</h3><p className="text-sky-100 text-sm mb-4">Enter your expected gig income to calculate tax, Medicare, and how much to set aside.</p><Link href="/income-tax-calculator/" className="block w-full py-2.5 px-4 bg-white text-sky-700 font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">Income Tax Calculator →</Link></CardContent></Card>
           </div></aside>
         </div>

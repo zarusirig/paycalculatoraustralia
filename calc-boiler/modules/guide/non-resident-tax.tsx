@@ -134,7 +134,7 @@ export default function NonResidentTaxPage() {
                 <li><strong>No Medicare levy exemption</strong> &mdash; while non-residents do not pay the 2% levy, they also cannot access bulk-billed GP visits, public hospital treatment, or subsidised prescriptions under the PBS</li>
                 <li><strong>No CGT main residence exemption</strong> &mdash; non-residents pay capital gains tax on the sale of Australian property with no 50% CGT discount and no main residence exemption, even if the property was their home while they were a resident</li>
               </ul>
-              <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-guide/">salary sacrifice</Link> into superannuation (subject to the concessional contribution cap of <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>
+              <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> into superannuation (subject to the concessional contribution cap of <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>
             </section>
 
             {/* ── Section 7: Working Holiday Makers ── */}
@@ -201,7 +201,7 @@ export default function NonResidentTaxPage() {
                 <li><Link href="/working-holiday-tax/">Working Holiday Maker Tax Rate guide</Link> &mdash; 15% flat rate details for subclass 417 and 462 visa holders</li>
                 <li><Link href="/tax-brackets/">Tax Brackets guide</Link> &mdash; complete FY{SITE_CONFIG.financialYear} income tax bracket tables for residents</li>
                 <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; calculate employer SG contributions at the 12% rate</li>
-                <li><Link href="/salary-sacrifice-guide/">Salary Sacrifice guide</Link> &mdash; pre-tax contribution strategies available to both residents and non-residents</li>
+                <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice guide</Link> &mdash; pre-tax contribution strategies available to both residents and non-residents</li>
                 <li><Link href="/low-income-tax-offset/">Low Income Tax Offset guide</Link> &mdash; LITO details (residents only, up to $700)</li>
               </ul>
             </section>

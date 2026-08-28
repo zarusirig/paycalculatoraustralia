@@ -127,6 +127,46 @@
         "source": "/hecs-repayment-threshold/",
         "destination": "/hecs-help-calculator/",
         "type": 301
+      },
+      {
+        "source": "/bonus-tax-guide",
+        "destination": "/bonus-tax-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/bonus-tax-guide/",
+        "destination": "/bonus-tax-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/salary-sacrifice-guide",
+        "destination": "/salary-sacrifice-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/salary-sacrifice-guide/",
+        "destination": "/salary-sacrifice-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/redundancy-pay-guide",
+        "destination": "/redundancy-pay-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/redundancy-pay-guide/",
+        "destination": "/redundancy-pay-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/contractor-vs-employee",
+        "destination": "/contractor-vs-employee-calculator/",
+        "type": 301
+      },
+      {
+        "source": "/contractor-vs-employee/",
+        "destination": "/contractor-vs-employee-calculator/",
+        "type": 301
       }
     ],
     "headers": [
