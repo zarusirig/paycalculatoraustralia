@@ -3,7 +3,7 @@
 **Date:** 2026-08-28
 **Source:** Google Search Console export, 2026-03-15 → 2026-08-27 (`Pay AU Calc Data-20260828T080119Z-1-001.zip`)
 **Method:** Koray query-network analysis (cluster → representative query → node coverage → cannibalisation → temporal / seasonal), run against the live route list in `calc-boiler/app/` and the built HTML in `calc-boiler/out/` (build of 21 Aug 2026).
-**Status (28 Aug 2026):** P1 (`1b194de`), P2 (`cd047ab`) and P8 — bonus, salary-sacrifice, redundancy and contractor guide merges, annual-pay H1, overtime link — are committed on `main`, not yet pushed or deployed. Remaining: P3–P7, P9–P12.
+**Status (28 Aug 2026):** Option A — P1 (`1b194de`), P2 (`cd047ab`), P8 (`38988ea`) — and Option B — P6 `/commission-tax-calculator/` (`d572612`), P3 `/salary-package-calculator/` (`57e8e6d`), P5 three Centrelink calculators + hub refresh (see git log) — are committed on `main`, not yet pushed or deployed. Centrelink figures verified at Services Australia on 28 Aug 2026 (`lib/constants/centrelink-income-test.ts`, 9 tests). Remaining: P4, P7, P9–P12. Known gaps: the merged bonus sections still carry FY2025-26 super-cap labels; the Centrelink hub's assets-test and deeming figures were not re-verified.
 
 **Companion docs:** `docs/seo/2026-07-28-keyword-and-content-gap-analysis.md` (§8 do-not-build list still stands), `raw-topical-map.md`, `source-context.md`.
 

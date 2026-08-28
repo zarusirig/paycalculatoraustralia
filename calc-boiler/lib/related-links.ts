@@ -97,6 +97,17 @@ const CLUSTERS: { match: (p: string) => boolean; links: RelatedLink[] }[] = [
       TAKE_HOME,
     ],
   },
+  // --- Centrelink income tests ---
+  {
+    match: (p) => p.includes("centrelink") || p.includes("jobseeker") || p.includes("austudy") || p.includes("age-pension") || p === "/parental-leave-pay/" || p === "/sapto-calculator/",
+    links: [
+      { href: "/jobseeker-payment-calculator/", title: "JobSeeker Payment Calculator", blurb: "What you keep of JobSeeker when you work part-time." },
+      { href: "/austudy-youth-allowance-calculator/", title: "Austudy & Youth Allowance Calculator", blurb: "The student income test with current rates." },
+      { href: "/age-pension-income-test-calculator/", title: "Age Pension Income Test Calculator", blurb: "Single and couple tests with the Work Bonus." },
+      { href: "/centrelink-income-test/", title: "Centrelink Income Test Guide", blurb: "How free areas, tapers and cut-offs work." },
+      TAKE_HOME,
+    ],
+  },
   // --- HECS / student debt ---
   {
     match: (p) => p.includes("hecs") || p === "/stsl-on-payslip/",

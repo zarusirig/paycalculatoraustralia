@@ -389,7 +389,10 @@ export default function BonusTaxCalculatorPage() {
               <li><strong>Not accounting for HECS-HELP:</strong> Employees with a HELP debt owe a larger compulsory repayment when a bonus lifts their repayment income. A bonus that pushes total income above the {formatAUD(HECS_HELP.minimumThreshold)} HECS threshold triggers a repayment obligation at your return. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your repayment liability.</li>
               <li><strong>Assuming super is never paid on bonuses:</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee applies to bonuses that count as qualifying earnings &mdash; which includes performance, Christmas, sign-on and referral bonuses. Only a bonus paid solely for work performed entirely outside your ordinary hours is excluded.</li>
             </ol>
-          </section>
+            <p className="text-warmgray">
+                Looking for the Age Pension <strong>Work Bonus</strong>? That is not a bonus payment but an income-test offset for working pensioners &mdash; see the <Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Age Pension income test calculator</Link>.
+              </p>
+            </section>
 
           {/* --- H2: Commission vs Bonus (original, kept) --- */}
           <section>

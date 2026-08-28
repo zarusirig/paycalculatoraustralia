@@ -6,7 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { AGE_PENSION, AUSTUDY, CENTRELINK_SOURCES, JOBSEEKER, STUDENT_INCOME_TEST, WORK_BONUS, YOUTH_ALLOWANCE_STUDENT, jobseekerFortnightly, jobseekerReduction } from "@/lib/constants/centrelink-income-test";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [
@@ -32,38 +33,46 @@ export default function CentrelinkIncomeTestPage() {
             <p>The Australian tax calculator treats Centrelink payments as assessable income for tax purposes. Your payment amount directly affects your <Link href="/take-home-pay-calculator/">take-home pay</Link>, so knowing the income test thresholds helps you plan part-time work alongside your benefit.</p>
           </section>
 
+{/* ── Calculators (added 2026-08-28: spokes for the payment types this hub was catching) ── */}
+          <section>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{fontFamily: "'Bricolage Grotesque', sans-serif"}}>Work Out Your Own Payment</h2>
+            <p className="text-warmgray mb-4">One page cannot hold every payment&apos;s rules, so each has its own calculator built on the figures Services Australia published for {CENTRELINK_SOURCES.verifiedOn}:</p>
+            <ul className="list-disc pl-6 space-y-2 text-warmgray">
+              <li><Link href="/jobseeker-payment-calculator/" className="text-eucalyptus-dark hover:underline font-medium">JobSeeker payment calculator</Link> &mdash; what you keep when you work, with partner income and the {formatAUD(JOBSEEKER.incomeTest.freeArea)} / 50c / 60c test.</li>
+              <li><Link href="/austudy-youth-allowance-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Austudy and Youth Allowance calculator</Link> &mdash; the student income test: {formatAUD(STUDENT_INCOME_TEST.freeArea)} free area, 50c to {formatAUD(STUDENT_INCOME_TEST.band1End)}, then {formatAUD(STUDENT_INCOME_TEST.band1Reduction, 2)} plus 60c.</li>
+              <li><Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Age Pension income test calculator</Link> &mdash; single and couple tests with the {formatAUD(WORK_BONUS.fortnightlyCredit)}-a-fortnight Work Bonus applied.</li>
+            </ul>
+          </section>
+
           {/* ── H2 2: How Does the Income Test Work? ── */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does the Income Test Work?</h2>
             <p>The Centrelink income test reduces your payment by a fixed number of cents for every dollar you earn above the free area &mdash; this reduction rate is the <strong>taper rate</strong>. Below the free area, your payment remains at the full maximum rate with no reduction.</p>
-            <p>Most working-age payments use a <strong>two-stage taper</strong>. JobSeeker Payment, for example, applies a <strong>50-cent</strong> taper for each dollar earned between <strong>$150</strong> and <strong>$256</strong> per fortnight, then increases to a <strong>60-cent</strong> taper for every dollar above <strong>$256</strong>. The Age Pension uses a single <strong>50-cent</strong> taper above its free area of <strong>$204</strong> per fortnight for singles.</p>
-            <p>Your payment reaches <strong>$0</strong> (the &ldquo;cut-off point&rdquo;) once your income exceeds the level where the taper fully absorbs the maximum payment. For a single JobSeeker recipient on the maximum rate of approximately <strong>$762.70</strong> per fortnight, the income cut-off sits at roughly <strong>$1,337</strong> per fortnight. Earning above that amount means your fortnightly JobSeeker drops to nil.</p>
+            <p>Most working-age payments use a <strong>two-stage taper</strong>. JobSeeker Payment, for example, applies a <strong>50-cent</strong> taper for each dollar earned between <strong>$150</strong> and <strong>$256</strong> per fortnight, then increases to a <strong>60-cent</strong> taper for every dollar above <strong>$256</strong>. The Age Pension uses a single <strong>50-cent</strong> taper above its free area of <strong>$226</strong> per fortnight for singles.</p>
+            <p>Your payment reaches <strong>$0</strong> (the &ldquo;cut-off point&rdquo;) once your income exceeds the level where the taper fully absorbs the maximum payment. For a single JobSeeker recipient with no children on the {formatAUD(JOBSEEKER.maxFortnightly.single, 2)} maximum, the published cut-off is {formatAUD(JOBSEEKER.publishedCutOff.single, 2)} a fortnight. Earning above that amount means your fortnightly JobSeeker drops to nil.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Income Free Area?</h3>
-            <p>The &ldquo;Income Free Area&rdquo; is the amount you earn each fortnight before any reduction applies. For JobSeeker and Youth Allowance (job seeker), the free area is <strong>$150 per fortnight</strong>. For Age Pension (single), it is <strong>$204 per fortnight</strong>. For Parenting Payment Single, it is <strong>$202.60 per fortnight</strong>. Earning at or below the free area means your Centrelink payment stays at the full rate.</p>
+            <p>The &ldquo;Income Free Area&rdquo; is the amount you earn each fortnight before any reduction applies. For JobSeeker and Youth Allowance (job seeker), the free area is <strong>$150 per fortnight</strong>. For Age Pension (single), it is <strong>$226 per fortnight</strong>. For Parenting Payment Single, it is <strong>$202.60 per fortnight</strong>. Earning at or below the free area means your Centrelink payment stays at the full rate.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Taper Rate?</h3>
             <p>The taper rate determines how quickly your payment reduces per dollar of income above the free area. A <strong>50-cent taper</strong> means you lose 50 cents of payment for every $1 earned. A <strong>60-cent taper</strong> means you lose 60 cents. Parenting Payment Single uses a gentler <strong>40-cent taper</strong>, reflecting the policy goal of encouraging single parents to re-enter the workforce. You can use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to estimate the combined effect of income tax and taper-rate reductions on your take-home pay.</p>
           </section>
 
-          {/* ── H2 3: Income Test Thresholds Table ── */}
+{/* ── H2 3: Income Test Thresholds Table — every figure from lib/constants/centrelink-income-test.ts ── */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Income Test Thresholds for FY2025-26?</h2>
-            <p>Centrelink income test thresholds vary by payment type, relationship status, and number of dependants. The table below lists the current free areas, taper rates, and approximate fortnightly cut-off points for the major payments in the 2025-26 financial year.</p>
-            <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Payment</th><th className="px-5 py-3 text-right">Free Area (per fortnight)</th><th className="px-5 py-3 text-right">Taper Rate</th><th className="px-5 py-3 text-right">Approx. Cut-Off (single, f/n)</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-              <tr><td className="px-5 py-3">JobSeeker Payment (single, no children)</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c up to $256, then 60c</td><td className="px-5 py-3 text-right">~$1,337</td></tr>
-              <tr><td className="px-5 py-3">JobSeeker Payment (single, with children)</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c up to $256, then 60c</td><td className="px-5 py-3 text-right">~$1,442</td></tr>
-              <tr><td className="px-5 py-3">Youth Allowance (job seeker)</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c up to $256, then 60c</td><td className="px-5 py-3 text-right">~$1,127</td></tr>
-              <tr><td className="px-5 py-3">Youth Allowance (student / apprentice)</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c per $1</td><td className="px-5 py-3 text-right">~$1,075</td></tr>
-              <tr><td className="px-5 py-3">Austudy</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c per $1</td><td className="px-5 py-3 text-right">~$1,075</td></tr>
-              <tr><td className="px-5 py-3">Age Pension (single)</td><td className="px-5 py-3 text-right">$204</td><td className="px-5 py-3 text-right">50c per $1</td><td className="px-5 py-3 text-right">~$2,444</td></tr>
-              <tr><td className="px-5 py-3">Age Pension (couple combined)</td><td className="px-5 py-3 text-right">$360</td><td className="px-5 py-3 text-right">25c per $1 each</td><td className="px-5 py-3 text-right">~$3,737 combined</td></tr>
-              <tr><td className="px-5 py-3">Parenting Payment (single)</td><td className="px-5 py-3 text-right">$202.60</td><td className="px-5 py-3 text-right">40c per $1</td><td className="px-5 py-3 text-right">~$2,524</td></tr>
-              <tr><td className="px-5 py-3">Parenting Payment (partnered)</td><td className="px-5 py-3 text-right">$150</td><td className="px-5 py-3 text-right">50c up to $256, then 60c</td><td className="px-5 py-3 text-right">~$1,192</td></tr>
-              <tr><td className="px-5 py-3">Disability Support Pension (single, &lt;21)</td><td className="px-5 py-3 text-right">$204</td><td className="px-5 py-3 text-right">50c per $1</td><td className="px-5 py-3 text-right">~$2,318</td></tr>
-              <tr><td className="px-5 py-3">Carer Payment (single)</td><td className="px-5 py-3 text-right">$204</td><td className="px-5 py-3 text-right">50c per $1</td><td className="px-5 py-3 text-right">~$2,444</td></tr>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{fontFamily: "'Bricolage Grotesque', sans-serif"}}>Current Income Test Thresholds and Rates</h2>
+            <p className="text-warmgray mb-4">Free areas, tapers, maximum fortnightly rates and the published cut-off (the income at which the payment reaches $0) for the main payments. Verified at Services Australia on {CENTRELINK_SOURCES.verifiedOn}; JobSeeker and Age Pension are indexed on {JOBSEEKER.indexedOn}, the student payments on {AUSTUDY.indexedOn}.</p>
+            <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Payment</th><th className="px-5 py-3">Free area (per fortnight)</th><th className="px-5 py-3">Taper</th><th className="px-5 py-3">Maximum rate (from)</th><th className="px-5 py-3">Published cut-off</th></tr></thead><tbody>
+              <tr><td className="px-5 py-3">JobSeeker Payment (single, no children)</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.incomeTest.freeArea)}</td><td className="px-5 py-3">50c to {formatAUD(JOBSEEKER.incomeTest.band1End)}, then 60c</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.maxFortnightly.single, 2)} ({JOBSEEKER.ratesFrom})</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.publishedCutOff.single, 2)}</td></tr>
+              <tr><td className="px-5 py-3">JobSeeker Payment (single principal carer)</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.incomeTest.freeArea)}</td><td className="px-5 py-3">40c per $1</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.maxFortnightly.singleWithChildren, 2)} ({JOBSEEKER.ratesFrom})</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.publishedCutOff.principalCarer, 2)}</td></tr>
+              <tr><td className="px-5 py-3">JobSeeker Payment (partnered)</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.incomeTest.freeArea)}</td><td className="px-5 py-3">50c to {formatAUD(JOBSEEKER.incomeTest.band1End)}, then 60c; partner income 60c over {formatAUD(JOBSEEKER.partnerIncomeLimit.partner22ToPensionAge)}</td><td className="px-5 py-3">{formatAUD(JOBSEEKER.maxFortnightly.partnered, 2)} ({JOBSEEKER.ratesFrom})</td><td className="px-5 py-3">depends on partner income</td></tr>
+              <tr><td className="px-5 py-3">Austudy (single, no children)</td><td className="px-5 py-3">{formatAUD(STUDENT_INCOME_TEST.freeArea)}</td><td className="px-5 py-3">50c to {formatAUD(STUDENT_INCOME_TEST.band1End)}, then 60c</td><td className="px-5 py-3">{formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)} ({AUSTUDY.ratesFrom})</td><td className="px-5 py-3">{formatAUD(AUSTUDY.publishedCutOff.singleOrCoupleNoChildren, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Youth Allowance, student (single, away from home)</td><td className="px-5 py-3">{formatAUD(STUDENT_INCOME_TEST.freeArea)}</td><td className="px-5 py-3">50c to {formatAUD(STUDENT_INCOME_TEST.band1End)}, then 60c</td><td className="px-5 py-3">{formatAUD(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.awayFromHome, 2)} ({YOUTH_ALLOWANCE_STUDENT.ratesFrom})</td><td className="px-5 py-3">{formatAUD(YOUTH_ALLOWANCE_STUDENT.publishedCutOff.awayFromHome, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Youth Allowance, student (single, 18+, at home)</td><td className="px-5 py-3">{formatAUD(STUDENT_INCOME_TEST.freeArea)}</td><td className="px-5 py-3">50c to {formatAUD(STUDENT_INCOME_TEST.band1End)}, then 60c</td><td className="px-5 py-3">{formatAUD(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.over18AtHome, 2)} ({YOUTH_ALLOWANCE_STUDENT.ratesFrom})</td><td className="px-5 py-3">{formatAUD(YOUTH_ALLOWANCE_STUDENT.publishedCutOff.over18AtHome, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Age Pension (single)</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.incomeTest.single.freeArea)}</td><td className="px-5 py-3">50c per $1</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.maxFortnightly.single.total, 2)} ({AGE_PENSION.ratesFrom})</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.publishedCutOff.single, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Age Pension (couple, combined)</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.incomeTest.couple.freeArea)}</td><td className="px-5 py-3">25c per $1 off each pension</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.maxFortnightly.coupleCombined.total, 2)} combined ({AGE_PENSION.ratesFrom})</td><td className="px-5 py-3">{formatAUD(AGE_PENSION.publishedCutOff.coupleCombined, 2)} combined</td></tr>
             </tbody></table></div></div>
-            <p>Thresholds are indexed on <strong>20 March</strong> and <strong>20 September</strong> each year in line with CPI movements. The figures above reflect the rates effective from 20 March 2026. Couple thresholds represent combined income unless otherwise noted.</p>
+            <p className="text-warmgray mb-4 mt-3 text-xs">Cut-offs for JobSeeker and the student payments include the Energy Supplement, which not every recipient gets, so the payment in our calculators reaches $0 slightly below them. Age Pension totals already include the Pension and Energy Supplements. Parenting Payment, Carer Payment and Disability Support Pension are not covered here &mdash; check their Services Australia pages.</p>
           </section>
 
           {/* ── H2 4: What Counts as Assessable Income? ── */}
@@ -106,22 +115,18 @@ export default function CentrelinkIncomeTestPage() {
             <p>For working-age payments such as JobSeeker and Youth Allowance, separate lower asset limits apply. A single homeowner on JobSeeker faces an asset limit of approximately <strong>$314,000</strong>, while a non-homeowner&apos;s limit is roughly <strong>$566,000</strong>. Understanding how both tests interact helps you decide whether to draw down savings, adjust your superannuation balance through <Link href="/superannuation-calculator/">Superannuation Calculator</Link> modelling, or restructure investments before claiming.</p>
           </section>
 
-          {/* ── H2 6: Worked Example ── */}
+{/* ── H2: JobSeeker worked example — computed by jobseekerFortnightly, cannot drift ── */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much JobSeeker Do You Keep with Part-Time Work?</h2>
-            <p>A single person on JobSeeker Payment with no children who earns <strong>$600 per fortnight</strong> from part-time work retains approximately <strong>$556.70</strong> of their JobSeeker payment, giving a combined fortnightly income of <strong>$1,156.70</strong>.</p>
-            <p>Here is the step-by-step calculation:</p>
-            <ol>
-              <li><strong>Maximum JobSeeker rate (single, no children):</strong> $762.70 per fortnight</li>
-              <li><strong>Gross fortnightly employment income:</strong> $600</li>
-              <li><strong>First $150 (free area):</strong> no reduction &mdash; $0 reduction</li>
-              <li><strong>$150 to $256 ($106 at 50c taper):</strong> $106 x 0.50 = <strong>$53.00</strong> reduction</li>
-              <li><strong>$256 to $600 ($344 at 60c taper):</strong> $344 x 0.60 = <strong>$206.40</strong> reduction</li>
-              <li><strong>Total reduction:</strong> $53.00 + $206.40 = <strong>$259.40</strong></li>
-              <li><strong>Adjusted JobSeeker:</strong> $762.70 &minus; $259.40 = <strong>$503.30</strong></li>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{fontFamily: "'Bricolage Grotesque', sans-serif"}}>How Much JobSeeker Do You Keep with Part-Time Work?</h2>
+            <p className="text-warmgray mb-4">A single person on JobSeeker with no children who earns <strong>{formatAUD(600)} a fortnight</strong> keeps <strong>{formatAUD(jobseekerFortnightly(JOBSEEKER.maxFortnightly.single, 600), 2)}</strong> of the {formatAUD(JOBSEEKER.maxFortnightly.single, 2)} maximum, for {formatAUD(600 + jobseekerFortnightly(JOBSEEKER.maxFortnightly.single, 600), 2)} in total before tax:</p>
+            <ol className="list-decimal pl-6 space-y-1 text-warmgray">
+              <li>Maximum rate from {JOBSEEKER.ratesFrom}: <strong>{formatAUD(JOBSEEKER.maxFortnightly.single, 2)}</strong></li>
+              <li>First {formatAUD(JOBSEEKER.incomeTest.freeArea)} &mdash; free area, no reduction</li>
+              <li>{formatAUD(JOBSEEKER.incomeTest.freeArea)} to {formatAUD(JOBSEEKER.incomeTest.band1End)} at 50c: <strong>{formatAUD((JOBSEEKER.incomeTest.band1End - JOBSEEKER.incomeTest.freeArea) * 0.5, 2)}</strong></li>
+              <li>{formatAUD(JOBSEEKER.incomeTest.band1End)} to {formatAUD(600)} at 60c: <strong>{formatAUD((600 - JOBSEEKER.incomeTest.band1End) * 0.6, 2)}</strong></li>
+              <li>Total reduction <strong>{formatAUD(jobseekerReduction(600), 2)}</strong>; payment <strong>{formatAUD(jobseekerFortnightly(JOBSEEKER.maxFortnightly.single, 600), 2)}</strong></li>
             </ol>
-            <p>If the recipient has accumulated <strong>Working Credits</strong>, up to <strong>48 credits per fortnight</strong> can offset employment income, effectively increasing the free area. In this example, using 48 credits would reduce assessable income from $600 to $552, lowering the total reduction and increasing the retained JobSeeker amount.</p>
-            <p>To estimate the income tax payable on your combined JobSeeker and employment income, use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>. Centrelink payments are included in your assessable income for ATO purposes and affect your income tax brackets for FY2025-26.</p>
+            <p className="text-warmgray mb-4 mt-3">Working credits built up in low-income fortnights are used before this test applies, so the first higher fortnight after a quiet stretch often keeps more. Try your own figures in the <Link href="/jobseeker-payment-calculator/" className="text-eucalyptus-dark hover:underline font-medium">JobSeeker payment calculator</Link>, then put wages and payment together through the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay calculator</Link> &mdash; JobSeeker is taxable.</p>
           </section>
 
           {/* ── H2 7: How to Report Income ── */}
@@ -142,32 +147,26 @@ export default function CentrelinkIncomeTestPage() {
             <p>Employers now report payroll data to the ATO through &ldquo;Single Touch Payroll&rdquo; (STP), and Centrelink cross-references this data against your self-reported figures. Discrepancies trigger automated reviews. Our <Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> guide explains which payslip figure to use when reporting to Centrelink.</p>
           </section>
 
-          {/* ── H2 8: What Changed in FY2025-26? ── */}
+{/* ── H2: Current rates and indexation dates — from constants, replaces the FY2025-26 "what changed" table ── */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed in the Centrelink Income Test for FY2025-26?</h2>
-            <p>The 2025-26 financial year brought CPI-indexed increases to free-area thresholds and maximum payment rates, effective from <strong>20 September 2025</strong> and <strong>20 March 2026</strong>.</p>
-            <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Change</th><th className="px-5 py-3">Detail</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
-              <tr><td className="px-5 py-3">Age Pension free area (single)</td><td className="px-5 py-3">Increased from $190 to <strong>$204 per fortnight</strong></td></tr>
-              <tr><td className="px-5 py-3">Age Pension free area (couple)</td><td className="px-5 py-3">Increased from $336 to <strong>$360 per fortnight</strong> (combined)</td></tr>
-              <tr><td className="px-5 py-3">Deeming rate thresholds</td><td className="px-5 py-3">From 20 March 2026, the lower deeming rate rose to <strong>1.25%</strong> on the first <strong>$64,200</strong> (single) or <strong>$106,200</strong> (couple); upper rate <strong>3.25%</strong> above that (previously 0.25%/2.25% on $60,400/$100,200)</td></tr>
-              <tr><td className="px-5 py-3">Working Credit accrual</td><td className="px-5 py-3">Maximum balance remains at <strong>1,000 credits</strong>; no change in FY2025-26</td></tr>
-              <tr><td className="px-5 py-3">JobSeeker maximum rate (single)</td><td className="px-5 py-3">Indexed to approximately <strong>$762.70 per fortnight</strong></td></tr>
-              <tr><td className="px-5 py-3">Assets test free area (homeowner, single)</td><td className="px-5 py-3">Increased to <strong>$314,000</strong></td></tr>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{fontFamily: "'Bricolage Grotesque', sans-serif"}}>Current Maximum Rates and Indexation Dates</h2>
+            <p className="text-warmgray mb-4">JobSeeker and pension rates move on 20 March and 20 September; student payments on 1 January. The figures below are the ones in force when this page was last verified ({CENTRELINK_SOURCES.verifiedOn}).</p>
+            <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Payment</th><th className="px-5 py-3">Rates from</th><th className="px-5 py-3">Maximum per fortnight</th></tr></thead><tbody>
+              <tr><td className="px-5 py-3">JobSeeker Payment</td><td className="px-5 py-3">{JOBSEEKER.ratesFrom}</td><td className="px-5 py-3">Single {formatAUD(JOBSEEKER.maxFortnightly.single, 2)}; single with a child, 55+ after 9 months, or partial capacity {formatAUD(JOBSEEKER.maxFortnightly.singleWithChildren, 2)}; partnered {formatAUD(JOBSEEKER.maxFortnightly.partnered, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Austudy</td><td className="px-5 py-3">{AUSTUDY.ratesFrom}</td><td className="px-5 py-3">Single or partnered, no children {formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)}; single with children {formatAUD(AUSTUDY.maxFortnightly.singleWithChildren, 2)}; partnered with children {formatAUD(AUSTUDY.maxFortnightly.coupleWithChildren, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Youth Allowance (students / apprentices)</td><td className="px-5 py-3">{YOUTH_ALLOWANCE_STUDENT.ratesFrom}</td><td className="px-5 py-3">From {formatAUD(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.under18AtHome, 2)} (under 18, at home) to {formatAUD(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.awayFromHome, 2)} (away from home); {formatAUD(YOUTH_ALLOWANCE_STUDENT.maxFortnightly.singleWithChildren, 2)} single with children</td></tr>
+              <tr><td className="px-5 py-3">Age Pension</td><td className="px-5 py-3">{AGE_PENSION.ratesFrom}</td><td className="px-5 py-3">Single {formatAUD(AGE_PENSION.maxFortnightly.single.total, 2)}; couple {formatAUD(AGE_PENSION.maxFortnightly.coupleEach.total, 2)} each ({formatAUD(AGE_PENSION.maxFortnightly.coupleCombined.total, 2)} combined), including supplements</td></tr>
+              <tr><td className="px-5 py-3">Work Bonus (pensioners)</td><td className="px-5 py-3">ongoing</td><td className="px-5 py-3">{formatAUD(WORK_BONUS.fortnightlyCredit)} credit a fortnight; balance up to {formatAUD(WORK_BONUS.maxBalance)}</td></tr>
             </tbody></table></div></div>
-            <p>The taper rates themselves &mdash; 50 cents, 60 cents, and 40 cents depending on payment type &mdash; did not change. The Stage 3 income tax cuts that took effect on 1 July 2024 continue to lower income tax obligations for most Australians, meaning higher after-tax income from employment alongside Centrelink payments. Review the updated <Link href="/tax-brackets/">Tax Brackets Guide</Link> to see how these cuts affect each income tax bracket. See our news coverage of the broader <Link href="/news/centrelink-changes-july-2026/">Centrelink changes from 1 July 2026</Link> for the full list of payment and threshold updates.</p>
+            <p className="text-warmgray mb-4 mt-3">The taper rates &mdash; 50 and 60 cents for allowances, 40 cents for single principal carers, 50 cents (single) and 25 cents each (couple) for pensions &mdash; are unchanged; it is the free areas, rates and cut-offs that index.</p>
           </section>
 
           {/* ── CONTEXT BORDER ── */}
 
-          {/* ── H2 9: Working Credit Explained ── */}
+{/* ── H2: Working Credit — kept to what Services Australia states ── */}
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Working Credit Help You Keep More of Your Payment?</h2>
-            <p>Working Credit is a Centrelink mechanism that lets you accumulate credits during low-income fortnights and use them to reduce assessable employment income during higher-income fortnights, effectively raising your income free area temporarily.</p>
-            <p>You earn <strong>1 Working Credit</strong> for every dollar your employment income falls below the income free area in a given fortnight. The maximum balance is <strong>1,000 credits</strong>. When you earn above the free area, Centrelink automatically deducts credits from your balance at up to <strong>48 credits per fortnight</strong>, reducing your assessable income dollar-for-dollar.</p>
-
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working Credit Example</h3>
-            <p>A Youth Allowance recipient who earns $0 for 10 fortnights accumulates <strong>1,000 credits</strong> (capped). In fortnight 11, they earn $400. Without Working Credits, the income test reduces their payment by $125 (the standard taper calculation). With 48 credits applied, the assessable income drops to $352, reducing the payment cut by <strong>$24</strong> and delivering a higher combined income for that fortnight.</p>
-            <p>Working Credit applies only to <strong>employment income</strong> &mdash; it does not offset investment income, self-employment income, or deemed income from financial assets. Students receiving Youth Allowance who also earn from casual work benefit significantly from this system, particularly during semester breaks when hours increase.</p>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{fontFamily: "'Bricolage Grotesque', sans-serif"}}>How Does Working Credit Help You Keep More of Your Payment?</h2>
+            <p className="text-warmgray mb-4">Working credits build in fortnights when your employment income is under {formatAUD(JOBSEEKER.incomeTest.workingCreditThreshold)}. When a later fortnight is higher, Services Australia applies those credits to your income first, so you can still get some payment even above the published cut-off. Students on Austudy or Youth Allowance have the equivalent Income Bank, which builds while income is under {formatAUD(STUDENT_INCOME_TEST.freeArea)}; pensioners have the <Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Work Bonus</Link>. Your balance is shown in your Centrelink online account &mdash; none of our calculators assume one.</p>
           </section>
 
           {/* ── H2 10: Related Resources ── */}
@@ -175,6 +174,9 @@ export default function CentrelinkIncomeTestPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Resources</h2>
             <p>These tools and guides help you model the combined impact of Centrelink income testing, Australian income tax, and employer obligations on your take-home pay and salary planning.</p>
             <ul>
+              <li><Link href="/jobseeker-payment-calculator/" className="text-eucalyptus-dark hover:underline font-medium">JobSeeker Payment Calculator</Link> &mdash; what you keep of JobSeeker when you work part-time</li>
+              <li><Link href="/austudy-youth-allowance-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Austudy &amp; Youth Allowance Calculator</Link> &mdash; the student income test with current rates</li>
+              <li><Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Age Pension Income Test Calculator</Link> &mdash; single and couple tests with the Work Bonus</li>
               <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; estimate your after-tax income including Centrelink payments in your total assessable income</li>
               <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; view the FY2025-26 marginal tax rates that apply to your combined employment and Centrelink income</li>
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; calculate PAYG withholding on your employment income, including the Medicare levy and surcharge thresholds</li>
@@ -191,12 +193,12 @@ export default function CentrelinkIncomeTestPage() {
 
               <AccordionItem value="working-credit" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">What is Working Credit?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Working Credit lets you build up credits during fortnights when your income is low, then use them to offset income in higher-earning fortnights. You can accumulate up to <strong>1,000 credits</strong> for employment income. Each credit reduces your assessable employment income by $1, which means you keep more of your Centrelink payment when you work extra hours. Credits accrue at 1 per dollar below your income free area and can be used at up to <strong>48 per fortnight</strong>.</AccordionContent>
+                <AccordionContent className="text-warmgray">Working Credit lets you build up credits during fortnights when your income is low, then use them to offset income in higher-earning fortnights. Credits build in fortnights when your employment income is under $48, and Services Australia applies them before the income test in later, higher fortnights. Each credit reduces your assessable employment income by $1, which means you keep more of your Centrelink payment when you work extra hours. Credits accrue at 1 per dollar below your income free area and can be used at up to <strong>48 per fortnight</strong>.</AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="partner" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">Does my partner&apos;s income affect my payment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. For partnered recipients, the income test considers <strong>combined household income</strong>. The free areas and taper rates differ for couples compared to singles. For Age Pension couples, the combined free area is <strong>$360 per fortnight</strong> with a 25-cent taper applied to each partner&apos;s share. For JobSeeker partnered recipients, your partner&apos;s income above their own free area reduces your payment at the standard taper rates.</AccordionContent>
+                <AccordionContent className="text-warmgray">Yes. For partnered recipients, the income test considers <strong>combined household income</strong>. The free areas and taper rates differ for couples compared to singles. For Age Pension couples, the combined free area is <strong>$396 per fortnight</strong> with a 25-cent taper applied to each partner&apos;s share. For JobSeeker partnered recipients, your partner&apos;s income above their own free area reduces your payment at the standard taper rates.</AccordionContent>
               </AccordionItem>
 
               <AccordionItem value="gross-or-net" className="border rounded-lg px-4 bg-white">
@@ -255,7 +257,7 @@ export default function CentrelinkIncomeTestPage() {
           <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Income thresholds and taper rates sourced from Services Australia. Rates are indexed twice yearly (20 March and 20 September). Payment rates reflect the most recent indexation. The Australian tax calculator and income test thresholds are updated each financial year to align with ATO and Services Australia data.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("centrelink-income-test"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/tax-brackets/" label="Tax Brackets Guide" /><SidebarLink href="/parental-leave-pay/" label="Parental Leave Pay Guide" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset Guide" /><SidebarLink href="/superannuation-calculator/" label="Superannuation Calculator" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/jobseeker-payment-calculator/" label="JobSeeker Payment Calculator" /><SidebarLink href="/austudy-youth-allowance-calculator/" label="Austudy &amp; Youth Allowance Calculator" /><SidebarLink href="/age-pension-income-test-calculator/" label="Age Pension Income Test Calculator" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/tax-brackets/" label="Tax Brackets Guide" /><SidebarLink href="/parental-leave-pay/" label="Parental Leave Pay Guide" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset Guide" /><SidebarLink href="/superannuation-calculator/" label="Superannuation Calculator" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );
