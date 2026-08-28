@@ -1,6 +1,7 @@
 export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
+import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-salary";
 import { NEWS_ARTICLES } from "@/lib/news";
 
 /**
@@ -192,10 +193,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 8b. Programmatic /hourly-to-salary/ pages — the reverse direction, which
   // carries more AU volume than salary→hourly (gap analysis §D1). Priority 0.5.
-  const hourlyToSalaryRates = [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 42, 44, 45, 46, 48, 50, 52, 55, 60, 65, 70, 75, 80, 100];
-  for (const rate of hourlyToSalaryRates) {
+  for (const rate of ALL_RATES) {
     allPages.push({
-      slug: `hourly-to-salary/${rate}`,
+      slug: `hourly-to-salary/${hourlyRateSlug(rate)}`,
       changeFrequency: "yearly" as const,
       priority: 0.5,
     });

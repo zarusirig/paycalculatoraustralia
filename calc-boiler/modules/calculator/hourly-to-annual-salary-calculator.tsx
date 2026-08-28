@@ -2,6 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { FEATURED_HOURLY_RATES, HOURLY_RATE_PAGES, hourlyRateSlug } from "@/lib/constants/hourly-rates";
+import { annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -207,7 +209,7 @@ export default function HourlyToAnnualCalculatorPage() {
               An hourly rate of <strong>$30 produces $59,280</strong> per year, while <strong>$60 per hour equals $118,560</strong>, both based on a standard 38-hour week across 52 weeks in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              The table below converts hourly wages from $20 to $80 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of 12%.
+              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of 12%. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications that pay it.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
               <table className="w-full text-sm">
@@ -220,13 +222,17 @@ export default function HourlyToAnnualCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  {[20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80].map((rate) => {
+                  {FEATURED_HOURLY_RATES.map((rate) => {
                     const weekly = rate * 38;
                     const annual = weekly * 52;
                     const superAmt = annual * 0.12;
                     return (
                       <tr key={rate} className="hover:bg-sandstone/50">
-                        <td className="px-4 py-2.5 font-medium text-gray-700">${rate}/hr</td>
+                        <td className="px-4 py-2.5 font-medium text-gray-700">
+                          <Link href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`} className="text-eucalyptus-dark hover:underline">
+                            ${rate} an hour is how much a year
+                          </Link>
+                        </td>
                         <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(weekly)}</td>
                         <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(annual)}</td>
                         <td className="px-4 py-2.5 text-right text-eucalyptus-dark">{formatAUD(superAmt)}</td>
@@ -239,6 +245,25 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mt-3 text-sm text-warmgray-light">
               All figures assume 38 ordinary hours per week, 52 weeks per year. Overtime, penalty rates, and casual loading are excluded. The superannuation guarantee rate of 12% applies from 1 July 2025.
             </p>
+
+            <h3 className="text-xl font-semibold text-navy mb-3 mt-8" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Hourly Rate From $20 to $100 as an Annual Salary</h3>
+            <p className="mb-4 text-warmgray">
+              Each rate below has its own page: gross and after-tax pay per week, fortnight, month and year, the same rate at 20 to 50 hours a week, and — for rates like $26.44 (the national minimum wage) or $29.45 (Hospitality and Retail Level 4) — which award classification pays it.
+            </p>
+            <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-sm">
+              {HOURLY_RATE_PAGES.map((rate) => (
+                <li key={rate}>
+                  <Link
+                    href={`/hourly-to-salary/${hourlyRateSlug(rate)}/`}
+                    className="block rounded-lg border border-sandstone-dark/20 bg-white px-3 py-2 hover:border-eucalyptus hover:shadow-sm transition-all"
+                    title={`${formatAUD(rate, 2)} an hour is how much a year`}
+                  >
+                    <span className="font-medium text-navy">{formatAUD(rate, 2)} an hour</span>
+                    <span className="block text-xs text-warmgray">{formatAUD(annualFromHourly(rate))} a year</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
 
           {/* H2: Standard Working Hours */}

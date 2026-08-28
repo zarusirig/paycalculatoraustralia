@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HOURLY_RATE_PAGES, hourlyRateFromSlug, hourlyRateSlug, notesForRate } from "@/lib/constants/hourly-rates";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -19,25 +20,13 @@ const STANDARD_HOURS: number = EMPLOYMENT.standardWeeklyHours;
 const HOURS_VARIANTS = [20, 25, 30, 35, 38, 40, 45, 50];
 
 /**
- * Rates with measurable AU search volume, $25–$100 (gap analysis §D1: 30 values,
- * ~9,100/mo combined).
- *
- * Tier 1 is the 12 highest — ~7,090/mo, 78% of the volume. Tier 2 is the
- * remaining 18, ~2,000/mo. They are separated only so the split stays legible;
- * every rate below is generated and cross-linked identically.
- *
- * $25 and $26 sit BELOW the national minimum wage of $26.44. That is deliberate
- * — people search those rates precisely because they suspect they are being
- * underpaid, and the page tells them so.
+ * The rate inventory lives in lib/constants/hourly-rates.ts (whole dollars
+ * $20–$100, half-dollars across the award band, plus every NMW and verified
+ * award hourly rate). It is re-exported here under the name the routes,
+ * sitemap and site directory already import.
  */
-export const TIER_1_RATES = [30, 32, 33, 35, 36, 37, 38, 40, 45, 50, 55, 60];
-
-export const TIER_2_RATES = [
-  25, 26, 27, 28, 29, 31, 34, 39, 42, 44, 46, 48, 52, 65, 70, 75, 80, 100,
-];
-
-/** Every generated rate, ascending. */
-export const ALL_RATES = [...TIER_1_RATES, ...TIER_2_RATES].sort((a, b) => a - b);
+export const ALL_RATES: readonly number[] = HOURLY_RATE_PAGES;
+export { hourlyRateSlug, hourlyRateFromSlug };
 
 export function annualFromHourly(hourly: number, hoursPerWeek = STANDARD_HOURS): number {
   return hourly * hoursPerWeek * WEEKS;
@@ -57,6 +46,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   const netHourly = net / HOURS_PER_YEAR;
   const casual = rate * (1 + EMPLOYMENT.casualLoading);
   const aboveMinimum = rate - EMPLOYMENT.minimumWageHourly;
+  const awardNotes = notesForRate(rate);
 
   const neighbours = ALL_RATES.filter((r) => r !== rate)
     .sort((a, b) => Math.abs(a - rate) - Math.abs(b - rate))
@@ -244,6 +234,35 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
         </p>
       </section>
 
+
+      {/* ── Who is paid exactly this rate ── */}
+      {awardNotes.length > 0 && (
+        <section>
+          <h2
+            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            className="text-2xl font-bold text-navy mb-4"
+          >
+            Who Is Paid {formatAUD(rate, 2)} an Hour?
+          </h2>
+          <p className="text-warmgray mb-3">
+            {formatAUD(rate, 2)} is not a round number by accident — it is a published minimum
+            rate. On a {STANDARD_HOURS}-hour week it is {formatAUD(rate * STANDARD_HOURS, 2)} a
+            week, which is the figure the Fair Work Commission sets; the hourly rate is that
+            weekly amount divided by {STANDARD_HOURS}.
+          </p>
+          <ul className="space-y-2 text-warmgray">
+            {awardNotes.map((n) => (
+              <li key={`${n.code}-${n.classification}`}>
+                <Link href={n.href} className="text-eucalyptus-dark hover:underline">
+                  {n.award}
+                </Link>
+                {n.code !== "NMW" ? ` (${n.code})` : ""} — {n.classification}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
       {/* ── Sibling mesh ── */}
       <section>
         <h2
@@ -256,7 +275,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
           {neighbours.map((r) => (
             <Link
               key={r}
-              href={`/hourly-to-salary/${r}/`}
+              href={`/hourly-to-salary/${hourlyRateSlug(r)}/`}
               className="rounded-lg border border-sandstone-dark/20 bg-white p-4 hover:border-eucalyptus hover:shadow-sm transition-all"
             >
               <div className="font-semibold text-navy">{formatAUD(r, 2)} an hour</div>
@@ -288,6 +307,12 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
               {formatAUD(roundToSalaryStep(gross))} salary to hourly rate
             </Link>{" "}
             — the same conversion in reverse
+          </li>
+          <li>
+            <Link href={`/take-home-pay-on/${roundToTakeHomeStep(gross)}/`} className="text-eucalyptus-dark hover:underline">
+              Take-home pay on {formatAUD(roundToTakeHomeStep(gross))}
+            </Link>{" "}
+            — the nearest annual salary, broken down per week and fortnight
           </li>
           <li>
             <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">
@@ -323,4 +348,13 @@ export function roundToSalaryStep(salary: number): number {
   return SALARY_STEPS.reduce((best, s) =>
     Math.abs(s - salary) < Math.abs(best - salary) ? s : best,
   );
+}
+
+/**
+ * Nearest salary that has a /take-home-pay-on/ page ($30,000–$200,000 in
+ * $5,000 steps — the same range app/take-home-pay-on/[salary]/page.tsx generates).
+ */
+export function roundToTakeHomeStep(salary: number): number {
+  const stepped = Math.round(salary / 5_000) * 5_000;
+  return Math.min(200_000, Math.max(30_000, stepped));
 }

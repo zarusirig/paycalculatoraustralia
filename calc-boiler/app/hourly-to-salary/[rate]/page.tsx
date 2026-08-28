@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HourlyToSalary, ALL_RATES, annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
+import { HourlyToSalary, ALL_RATES, annualFromHourly, hourlyRateSlug, hourlyRateFromSlug } from "@/modules/programmatic/hourly-to-salary";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -17,7 +17,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return ALL_RATES.map((rate) => ({ rate: rate.toString() }));
+  return ALL_RATES.map((rate) => ({ rate: hourlyRateSlug(rate) }));
 }
 
 function figuresFor(rate: number) {
@@ -31,7 +31,7 @@ function figuresFor(rate: number) {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { rate: raw } = await params;
-  const rate = Number(raw);
+  const rate = hourlyRateFromSlug(raw);
   const { gross, net } = figuresFor(rate);
 
   return {
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function HourlyToSalaryPage({ params }: PageProps) {
   const { rate: raw } = await params;
-  const rate = Number(raw);
+  const rate = hourlyRateFromSlug(raw);
   const { gross, net } = figuresFor(rate);
 
   const BASE = SITE_CONFIG.baseUrl;

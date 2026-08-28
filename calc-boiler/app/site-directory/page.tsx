@@ -9,7 +9,7 @@ import {
   STATE_CATEGORIES,
   TAX_ON_SALARY_CATEGORIES,
 } from "@/lib/navigation";
-import { ALL_RATES } from "@/modules/programmatic/hourly-to-salary";
+import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-salary";
 import { getAllNews } from "@/lib/news";
 import { formatAUD } from "@/lib/constants";
 
@@ -94,8 +94,8 @@ const salaryToHourlyGroups: Group[] = chunk(SALARY_TO_HOURLY, 2).map((col, i) =>
 const hourlyToSalaryGroups: Group[] = chunk(ALL_RATES, 3).map((col, i) => ({
   title: `Hourly to salary ${i + 1}`,
   items: col.map((r) => ({
-    href: `/hourly-to-salary/${r}/`,
-    label: `$${r} an hour as a salary`,
+    href: `/hourly-to-salary/${hourlyRateSlug(r)}/`,
+    label: `${formatAUD(r, 2)} an hour as a salary`,
   })),
 }));
 
