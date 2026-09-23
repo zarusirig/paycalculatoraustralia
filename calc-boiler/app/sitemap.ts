@@ -84,6 +84,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "carer-allowance",
     "centrelink-advance-payment",
     // end W3
+    // H3 Centrelink wave 3 (added 2026-09-24)
+    "age-pension-assets-test-calculator",
+    "deeming-rates",
+    "disability-support-pension-calculator",
+    "child-care-subsidy-calculator",
+    "commonwealth-seniors-health-card",
+    // end H3
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",

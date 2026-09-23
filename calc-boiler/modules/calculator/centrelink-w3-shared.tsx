@@ -81,7 +81,9 @@ export function W3Footer({ sources, lastVerified, authorKey }: { sources: Source
   );
 }
 
-export type W3PageKey = "carer-payment" | "carer-allowance" | "advance" | "crisis" | "debt" | "col" | "ppl";
+export type W3PageKey = "carer-payment" | "carer-allowance" | "advance" | "crisis" | "debt" | "col" | "ppl"
+  // H3 Centrelink wave 3
+  | "assets" | "deeming" | "dsp" | "ccs" | "cshc";
 
 export function W3Related({ current }: { current: W3PageKey }) {
   const items: { key: string; href: string; label: string; blurb: string }[] = [
@@ -94,7 +96,14 @@ export function W3Related({ current }: { current: W3PageKey }) {
     { key: "col", href: "/cost-of-living-payment-2026/", label: "Cost of living payment 2026", blurb: "what actually exists this year" },
     { key: "ppl", href: "/parental-leave-pay/", label: "Paid Parental Leave calculator", blurb: "26 weeks from 1 July 2026, days, split and super" },
     { key: "jobseeker", href: "/jobseeker-payment-calculator/", label: "JobSeeker payment calculator", blurb: "what you keep when you work part-time" },
-    { key: "pension", href: "/age-pension-income-test-calculator/", label: "Age Pension income test calculator", blurb: "with the Work Bonus applied" },
+    { key: "pension", href: "/age-pension-income-test-calculator/", label: "Age Pension calculator", blurb: "rates from 20 September 2026 and the income test, with the Work Bonus" },
+    // H3 Centrelink wave 3 (added 2026-09-24)
+    { key: "assets", href: "/age-pension-assets-test-calculator/", label: "Age Pension assets test calculator", blurb: "limits, the $3-per-$1,000 taper and which test applies" },
+    { key: "deeming", href: "/deeming-rates/", label: "Deeming rates and calculator", blurb: "1.75% and 3.75% from 20 September 2026" },
+    { key: "dsp", href: "/disability-support-pension-calculator/", label: "Disability Support Pension calculator", blurb: "rates, the income test and the 29-hour work rule" },
+    { key: "cshc", href: "/commonwealth-seniors-health-card/", label: "Commonwealth Seniors Health Card", blurb: "the income limit, deeming and a quick eligibility check" },
+    { key: "ccs", href: "/child-care-subsidy-calculator/", label: "Child Care Subsidy calculator", blurb: "your CCS % on family income and the gap fee" },
+    // end H3
     { key: "parenting", href: "/parenting-payment-calculator/", label: "Parenting Payment calculator", blurb: "single and partnered" },
     { key: "fn", href: "/fortnightly-pay-calculator/", label: "Fortnightly pay calculator", blurb: "the gross fortnightly figure Centrelink asks for" },
   ];

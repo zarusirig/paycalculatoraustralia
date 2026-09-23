@@ -206,7 +206,14 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/salary-sacrifice-calculator/": [L("/salary-sacrifice-vs-mortgage/", "Salary Sacrifice vs Mortgage", "Extra super or extra home loan repayments?"), L("/salary-packaging-guide/", "Salary Packaging Guide", "What else you can package, and the caps."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC],
   "/average-salary-australia/": [JOBS_HUB, L("/australian-pay-report-2026/", "Australian Pay Report 2026", "Minimum, median and average pay side by side, with the data."), L("/tech-salary-guide-australia/", "Tech Salary Guide", "Software, data and IT salaries in Australia."), TAKE_HOME_HUB, PAY_RISE],
   "/pension-age-australia/": [L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors and pensioners tax offset."), INCOME_TEST_HUB, SUPER_CALC],
-  "/age-pension-income-test-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When you qualify for the Age Pension."), INCOME_TEST_HUB, L("/news/deeming-rates-change-2026/", "Deeming Rates 2026", "How Centrelink counts savings from this year."), WORKING_CREDIT],
+  "/age-pension-income-test-calculator/": [L("/age-pension-assets-test-calculator/", "Age Pension Assets Test Calculator", "Both tests together, with your savings deemed."), L("/deeming-rates/", "Deeming Rates", "1.75% and 3.75% from 20 September 2026."), L("/pension-age-australia/", "Pension Age Australia", "When you qualify for the Age Pension."), INCOME_TEST_HUB],
+  // H3 Centrelink wave 3 (added 2026-09-24)
+  "/age-pension-assets-test-calculator/": [L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Rates from 20 September and the income test with the Work Bonus."), L("/deeming-rates/", "Deeming Rates", "How your savings count as income."), L("/commonwealth-seniors-health-card/", "Commonwealth Seniors Health Card", "If your assets rule out a pension."), FORTNIGHTLY_PAY],
+  "/deeming-rates/": [L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Deemed income and wages in the income test."), L("/age-pension-assets-test-calculator/", "Age Pension Assets Test Calculator", "The same savings, counted as assets."), JOBSEEKER, INCOME_TEST_HUB],
+  "/disability-support-pension-calculator/": [WORKING_CREDIT, FORTNIGHTLY_PAY, L("/carer-payment-calculator/", "Carer Payment Calculator", "The other pension-rate payment, with a 100-hour work rule."), INCOME_TEST_HUB],
+  "/child-care-subsidy-calculator/": [L("/family-tax-benefit-calculator/", "Family Tax Benefit Calculator", "The other payment on your family income estimate."), L("/parental-leave-pay/", "Paid Parental Leave Calculator", "26 weeks from 1 July 2026."), PAY_RISE, TAKE_HOME],
+  "/commonwealth-seniors-health-card/": [L("/age-pension-assets-test-calculator/", "Age Pension Assets Test Calculator", "Whether you would get a part pension instead."), L("/deeming-rates/", "Deeming Rates", "How your account-based pension is deemed."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors tax offset on your wages."), INCOME_TAX],
+  // end H3
   "/division-293-tax/": [L("/news/super-tax-changes-explained/", "Super Tax Changes Explained", "Who the new Division 296 tax affects."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC, TAX_BRACKETS],
   "/tax-file-number-declaration/": [L("/new-job-checklist/", "New Job Checklist", "Everything to sort out in your first week."), TAX_FREE_THRESHOLD, TAX_WITHHELD, L("/second-job-tax-calculator/", "Second Job Tax Calculator", "Why only one employer should apply the threshold.")],
   "/sapto-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When the Age Pension, and SAPTO, can start."), L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), LITO, TAX_BRACKETS],
@@ -326,7 +333,9 @@ const CLUSTERS: Cluster[] = [
   {
     match: (p) =>
       p.startsWith("/centrelink-") ||
-      ["/jobseeker-payment-calculator/", "/austudy-youth-allowance-calculator/", "/parenting-payment-calculator/", "/carer-payment-calculator/", "/carer-allowance/", "/family-tax-benefit-calculator/", "/rent-assistance-calculator/", "/cost-of-living-payment-2026/"].includes(p),
+      ["/jobseeker-payment-calculator/", "/austudy-youth-allowance-calculator/", "/parenting-payment-calculator/", "/carer-payment-calculator/", "/carer-allowance/", "/family-tax-benefit-calculator/", "/rent-assistance-calculator/", "/cost-of-living-payment-2026/",
+        // H3 Centrelink wave 3
+        "/deeming-rates/", "/disability-support-pension-calculator/", "/child-care-subsidy-calculator/", "/commonwealth-seniors-health-card/"].includes(p),
     links: [
       INCOME_TEST_HUB,
       JOBSEEKER,

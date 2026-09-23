@@ -6,6 +6,7 @@
 import { formatAUD } from "@/lib/constants";
 import { AGE_PENSION_INCOME_TEST, JOBSEEKER_INCOME_TEST } from "@/lib/constants/centrelink-income-test";
 import { WORKING_CREDIT } from "@/lib/constants/working-credit";
+import { DEEMING } from "@/lib/constants/centrelink-means-test"; // H3
 import type { FaqItem } from "@/lib/faq";
 
 const JS = JOBSEEKER_INCOME_TEST;
@@ -31,8 +32,9 @@ export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the deeming rate and how does it affect my payment?",
-    a: "Deeming is a method Centrelink uses to assess income from financial assets (bank accounts, shares, managed funds, superannuation in pension phase). Rather than counting actual returns, Centrelink applies a fixed \"deemed\" rate. From 20 March 2026, for singles, the first $64,200 is deemed at 1.25% and any balance above that is deemed at 3.25%. For couples, the lower rate applies on the first $106,200 combined. These rates replaced the previous 0.25% and 2.25% rates. The deemed income is added to your other assessable income for the income test. See our news coverage of the latest deeming rate changes for the current settings.",
-    links: { "deeming rate changes": "/news/deeming-rates-change-2026/" },
+    // H3: moved to the 20 September 2026 settings (was the 20 March 2026 ones).
+    a: `Deeming is a method Centrelink uses to assess income from financial assets (bank accounts, shares, managed funds, superannuation in pension phase). Rather than counting actual returns, Centrelink applies a fixed "deemed" rate. From ${DEEMING.ratesFrom}, for singles, the first ${formatAUD(DEEMING.thresholds.single)} is deemed at ${(DEEMING.lowerRate * 100).toFixed(2)}% and any balance above that at ${(DEEMING.upperRate * 100).toFixed(2)}%. For a couple where at least one gets a pension, the lower rate applies on the first ${formatAUD(DEEMING.thresholds.pensionerCouple)} combined. The rates were 1.25% and 3.25% from 20 March to 19 September 2026. The deemed income is added to your other assessable income for the income test. See deeming rates and calculator for the full history and your own figures.`,
+    links: { "deeming rates and calculator": "/deeming-rates/" },
   },
   {
     q: "Is my superannuation balance counted for the income test?",
