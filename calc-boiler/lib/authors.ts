@@ -281,6 +281,14 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "adf-pay-scales": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end C2/C5 ---
 
+  // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+  "paramedic-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "police-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "firefighter-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "air-traffic-controller-salary": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "pilot-salary": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end F5 ---
+
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
   "minimum-wage-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "minimum-wage-by-age": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },

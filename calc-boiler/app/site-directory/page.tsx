@@ -22,6 +22,9 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
 import { ADF_SERVICE_LIST } from "@/lib/data/adf-pay";
+// --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
+// --- end F5 ---
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 // --- end T2 ---
@@ -153,6 +156,28 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end C2/C5 ---
+  // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+  ...SERVICE_OCCUPATIONS.map((occupation) => {
+    const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
+    return {
+      title: `${cfg.singular} Pay by State`,
+      items: [
+        { href: cfg.hubPath, label: cfg.hubLabel },
+        ...verifiedJurisdictions(occupation).map((j) => ({
+          href: `${cfg.hubPath}${j.slug}/`,
+          label: `${j.code} ${cfg.salaryNoun}`,
+        })),
+      ],
+    };
+  }),
+  {
+    title: "Aviation Pay",
+    items: [
+      { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary" },
+      { href: "/pilot-salary/", label: "Pilot Salary" },
+    ],
+  },
+  // --- end F5 ---
   // --- T2 payroll tax cluster (23 Sep 2026) ---
   {
     title: "Payroll Tax by State",
