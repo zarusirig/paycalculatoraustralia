@@ -104,7 +104,7 @@ function RefundEstimator2026() {
                 {[
                   ["Taxable income", r.taxableIncome],
                   ["Income tax (before offsets)", r.incomeTax],
-                  ["Low income tax offset", -r.lito],
+                  ...(r.lito ? [["Low income tax offset", -r.lito] as [string, number]] : []),
                   ["Medicare levy", r.medicareLevy],
                   ...(r.mls ? [["Medicare levy surcharge", r.mls] as [string, number]] : []),
                   ...(loan ? [["Study loan repayment", r.helpRepayment] as [string, number]] : []),
