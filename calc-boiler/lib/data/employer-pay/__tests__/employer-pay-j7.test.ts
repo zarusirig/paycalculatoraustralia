@@ -163,6 +163,25 @@ test("Fast Food Award employers (Starbucks, GYG, Zambrero): same figures as Subw
   assert.equal(halfUp(27.81 * 2.25), 62.57);
 });
 
+test("Event Cinemas: same cinema award figures as Hoyts, Level 1 dollars quoted", () => {
+  const ev = get("event-cinemas");
+  const hoyts = get("hoyts");
+  assert.equal(ev.instrument.reference, "MA000091");
+  assert.deepEqual(
+    ev.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    hoyts.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+  );
+  assert.deepEqual(ev.publishedJuniorRates, hoyts.publishedJuniorRates);
+  assert.deepEqual(ev.penalties, hoyts.penalties);
+  assert.equal(ev.juniorBaseLabel, "Cinema Worker Level 4");
+  const L1 = ev.rates[0];
+  assert.deepEqual([L1.hourly, L1.casualHourly], [28.56, 35.7]);
+  const text = pageText(ev);
+  for (const v of [money(L1.hourly), money(L1.casualHourly), money(L1.hourly * 2), "$29.25", "$36.56", "$14.31", "$17.50", "$27.04"]) {
+    assert.ok(text.includes(v), v);
+  }
+});
+
 test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed exactly", () => {
   const r = get("rebel");
   assert.equal(r.instrument.reference, "AG2024/952, AE524487");
