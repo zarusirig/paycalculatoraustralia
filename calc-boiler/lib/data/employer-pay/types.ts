@@ -39,6 +39,7 @@ export const EMPLOYER_SLUGS = [
   "kfc",
   "dominos",
   "red-rooster",
+  "david-jones",
   // --- end H1 ---
 ] as const;
 

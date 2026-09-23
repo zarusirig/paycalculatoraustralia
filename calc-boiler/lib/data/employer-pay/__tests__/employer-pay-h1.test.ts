@@ -384,6 +384,32 @@ test("Domino's and Red Rooster pay the Fast Food Award: same figures as McDonald
   }
 });
 
+test("David Jones: cl 8.2(c) Retail Award level + cents from 1 July 2026", () => {
+  const dj = getEmployerPay("david-jones");
+  assert.ok(dj);
+  // [GRIA 2026 hourly, cents] for DJ Levels 1–4 (GRIA Levels 1, 3, 4, 5).
+  const formula: [number, number][] = [[27.81, 0.17], [28.89, 0.17], [29.45, 0.2], [30.66, 0.2]];
+  dj.rates.forEach((r, i) => {
+    const [gria, cents] = formula[i];
+    assert.equal(r.hourly, halfUp(gria + cents), r.level);
+    assert.equal(r.casualHourly, halfUp((gria + cents) * 1.25), r.level);
+  });
+  const juniors = Object.fromEntries(juniorRates(dj).map((j) => [j.age, j.hourly]));
+  assert.equal(juniors["Under 17"], 13.99);
+  assert.equal(juniors["17"], 16.79);
+  assert.equal(juniors["18"], 19.59);
+  assert.equal(juniors["19"], 22.38);
+  // From 1 Dec 2026 the award (75%/85% of $1,056.80 / 38) overtakes 18 and 19.
+  assert.ok(halfUp((1056.8 * 0.75) / 38) > juniors["18"]);
+  assert.ok(halfUp((1056.8 * 0.85) / 38) > juniors["19"]);
+  const text = [...dj.penaltyNotes, ...dj.faqs.map((f) => f.a), ...dj.notices].join(" ");
+  for (const v of ["$34.98", "$41.97", "$62.96", "$19.59", "$22.38", "$20.86", "$23.64", "$13.99", "$16.79"]) {
+    assert.ok(text.includes(v), v);
+  }
+  assert.equal(halfUp(27.98 * 1.5), 41.97);
+  assert.equal(halfUp(27.98 * 2.25), 62.96);
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);
