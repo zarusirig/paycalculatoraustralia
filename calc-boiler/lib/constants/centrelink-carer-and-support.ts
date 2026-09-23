@@ -25,7 +25,7 @@
 // percentages (entered by the user).
 // =============================================================================
 
-import { AGE_PENSION_RATES, SEPTEMBER_2026, type AgePensionRateSet } from "./centrelink-income-test";
+import { AGE_PENSION_RATES, SEPTEMBER_2026, jobseekerFortnightly, type AgePensionRateSet } from "./centrelink-income-test";
 
 export const CARER_SUPPORT_SOURCES = {
   verifiedOn: "23 September 2026",
@@ -251,6 +251,16 @@ export function resolutionSchemePayment(debtValue: number): number {
   if (v < 2_000) return 200;
   if (v < 5_000) return 400;
   return 600;
+}
+
+/**
+ * Illustration of how an income report creates an overpayment: the JobSeeker
+ * paid on the income you REPORTED, minus what was due on the income you
+ * actually EARNED that fortnight. Positive = overpaid (a debt). Uses the
+ * JobSeeker income test ($150 free area, 50c to $256, 60c above).
+ */
+export function jobseekerOverpayment(maxRate: number, reportedIncome: number, actualIncome: number): number {
+  return Math.round((jobseekerFortnightly(maxRate, reportedIncome) - jobseekerFortnightly(maxRate, actualIncome)) * 100) / 100;
 }
 
 // -----------------------------------------------------------------------------

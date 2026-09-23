@@ -19,6 +19,7 @@ import {
   carerPaymentWithinHoursLimit,
   clampAdvance,
   crisisPaymentAmount,
+  jobseekerOverpayment,
   paymentWhileRepaying,
   resolutionSchemePayment,
 } from "../centrelink-carer-and-support";
@@ -131,6 +132,17 @@ test("Income Apportionment Resolution Scheme payment bands", () => {
   assert.equal(resolutionSchemePayment(4_999.99), 400);
   assert.equal(resolutionSchemePayment(5_000), 600);
   assert.equal(resolutionSchemePayment(80_000), 600);
+});
+
+test("under-reporting income creates an overpayment equal to the missed income-test reduction", () => {
+  const max = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single;
+  // $600 reported, $800 earned: extra $200 all in the 60c band = $120.
+  assert.equal(jobseekerOverpayment(max, 600, 800), 120);
+  // Reporting net ($520) instead of gross ($650): 60c × $130 = $78.
+  assert.equal(jobseekerOverpayment(max, 520, 650), 78);
+  assert.equal(jobseekerOverpayment(max, 800, 800), 0);
+  // Payment can't go below $0, so the overpayment caps at the payment made.
+  assert.equal(jobseekerOverpayment(max, 0, 5_000), max);
 });
 
 // --- Paid Parental Leave ------------------------------------------------------------
