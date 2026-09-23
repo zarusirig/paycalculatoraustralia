@@ -19,6 +19,7 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
+import { HEAD_TERM_PRIMARY, HeadTermLinks } from "@/modules/calculator/head-term-ui";
 import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
 
 // Worked examples, computed from the engine so the copy rolls over with the
@@ -68,7 +69,8 @@ export default function GrossPayCalculatorPage() {
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -85,7 +87,8 @@ export default function GrossPayCalculatorPage() {
             {SG_PCT} super.
           </p>
           <p className="text-warmgray mt-2">
-            Enter your own target take-home pay to find the annual gross salary you need to negotiate.
+            Enter your own target take-home pay to find the annual gross salary you need to negotiate. Going the other way, from salary to take-home? Use the{" "}
+            <Link href={HEAD_TERM_PRIMARY.netPayCalculator.href} className="text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.netPayCalculator.anchor}</Link>.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -191,6 +194,8 @@ export default function GrossPayCalculatorPage() {
             </CardContent>
           </Card>
         </section>
+
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["netPayCalculator", "salaryCalculator", "incomeTaxCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">

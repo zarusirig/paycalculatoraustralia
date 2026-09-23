@@ -17,8 +17,15 @@ const at85k = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: false, h
 // GSC/DataForSEO: "fortnightly" 12.1k (we're #6), "fortnightly tax calculator"
 // 5.4k, "fortnights in a year" 2.4k. Title carries the FY so it reads current
 // and rolls over with SITE_CONFIG; description leads with a real figure.
-const TITLE = `Fortnightly Pay Calculator Australia ${FY}: Take-Home Pay`;
-const DESCRIPTION = `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). See your fortnightly tax, super and take-home pay. 26 fortnights a year, sometimes ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`;
+// Head-term intent map (docs/seo/2026-09-23-head-term-intent-map.md): the ONE
+// primary for "fortnightly tax calculator" (5.4k, we're #34 with this URL).
+// "& Tax" joins the title (every existing token kept — this is our top page
+// by impressions, 53.5k/28d at pos 5.4) and the calculator now takes
+// fortnightly pay as well as salary. /fortnightly-tax-table/ keeps the
+// "fortnightly tax table" terms.
+// Previous: "Fortnightly Pay Calculator Australia ${FY}: Take-Home Pay".
+const TITLE = `Fortnightly Pay & Tax Calculator Australia ${FY}: Take-Home Pay`;
+const DESCRIPTION = `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, sometimes ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -47,7 +54,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Fortnightly Pay Calculator Australia",
+  name: `Fortnightly Pay & Tax Calculator Australia ${FY}`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

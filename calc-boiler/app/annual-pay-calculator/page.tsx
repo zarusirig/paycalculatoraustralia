@@ -2,18 +2,33 @@ import type { Metadata } from "next";
 import AnnualPayCalculatorPage from "@/modules/calculator/annual-pay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/annual-pay-calculator/`;
 
+const FY = SITE_CONFIG.financialYear;
+// Answer-first figure from the tax engine at build time, never hardcoded.
+const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+
+// Head-term intent map (docs/seo/2026-09-23-head-term-intent-map.md): this URL
+// is the ONE primary for "salary after tax calculator" (6.6k, /monthly-pay-
+// calculator/ was #71) and "salary after tax" (2.9k, this URL #44). "Annual
+// salary calculator"/"yearly salary calculator" currently rank via
+// /hourly-to-annual-salary-calculator/ (#20-24) and are left there. The generic
+// "salary calculator" head term belongs to the homepage — this page links to it.
+// Previous: "Annual Salary Calculator Australia — Yearly Take-Home Pay" (no FY,
+// description hardcoded FY2026-27).
+const TITLE = `Annual Salary After Tax Calculator Australia ${FY}`;
+const DESCRIPTION = `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.`;
+
 export const metadata: Metadata = {
-  title: "Annual Salary Calculator Australia — Yearly Take-Home Pay",
-  description: "Free annual salary calculator for Australia FY2026-27. Convert any yearly gross salary (e.g. $80,000, $100,000) into annual take-home pay after income tax, Medicare levy & HECS.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: "Annual Salary Calculator Australia — Yearly Take-Home Pay (2026-27)", description: "Convert any gross annual salary into your yearly take-home figure after tax, Medicare & HECS.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Annual Salary Calculator Australia", description: "Yearly take-home pay calculated instantly for FY2026-27." },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: TITLE, description: `Yearly take-home pay after tax for FY${FY}.` },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = {
@@ -28,7 +43,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Annual Pay Calculator Australia",
+  name: `Annual Salary After Tax Calculator Australia ${FY}`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
