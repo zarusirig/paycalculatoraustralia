@@ -181,6 +181,10 @@ export const GUIDE_CATEGORIES = [
       { href: "/teacher-pay-australia/", label: "Teacher Pay", description: "Salary by state & classification" },
       // C1 employer pay rates (2026-09-23)
       { href: "/pay-rates/", label: "Pay Rates by Employer", description: "Coles, Woolworths, Bunnings & more" },
+      // --- C2 occupation pay rates + C5 ADF pay scales (2026-09-23) ---
+      { href: "/job-pay-rates/", label: "Pay Rates by Job", description: "Pharmacist, electrician, truck driver & more" },
+      { href: "/adf-pay-scales/", label: "ADF Pay Scales", description: "Army, Navy & Air Force salary by rank" },
+      // --- end C2/C5 ---
       { href: "/retail-hospitality-pay-guide/", label: "Retail & Hospitality", description: "Award rates & penalties" },
       { href: "/tech-salary-guide-australia/", label: "IT & Tech Salaries", description: "Developer, engineer & PM pay" },
       { href: "/construction-trades-pay/", label: "Construction & Trades", description: "Apprentice & tradie rates" },

@@ -115,6 +115,7 @@ export const ACCOUNTANT: Occupation = {
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
     { href: "/clerks-award-rates/", label: "Clerks Award Pay Rates" },
+    { href: "/minimum-wage-australia/", label: "Minimum Wage Australia" },
     { href: "/average-salary-australia/", label: "Average Salary Australia" },
     { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
   ],

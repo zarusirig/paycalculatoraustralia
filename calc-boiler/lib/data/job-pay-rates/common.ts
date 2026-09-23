@@ -1,6 +1,7 @@
 // Shared constants for the occupation pay-rate pages.
 
-import type { MedianEarnings, OccupationSource } from "./types";
+import { findAwardRate, roundCents, type ModernAwardData } from "../../constants/modern-awards";
+import type { MedianEarnings, OccupationSource, RateRow } from "./types";
 
 /** Date every figure in this directory was read from its primary source. */
 export const JOB_PAY_VERIFIED_ON = "23 September 2026";
@@ -52,3 +53,25 @@ export function jsaUrl(codeAndSlug: string): string {
  */
 export const MEDIAN_DEFINITION =
   "Median weekly pay of full-time, non-managerial adult employees before tax and salary sacrifice, from the ABS Survey of Employee Earnings and Hours (May 2025) as published by Jobs and Skills Australia. It reflects what employers actually pay, including people on enterprise agreements or above-award salaries, so it is a market figure, not a legal minimum.";
+
+/**
+ * A rate row read from the shared award constants in
+ * lib/constants/modern-awards.ts (the same data the per-award pages render),
+ * so an occupation page and its award page cannot disagree. Casual is the
+ * hourly rate plus 25%, rounded half-up to the cent as Fair Work publishes it.
+ */
+export function rowFromModernAward(
+  award: ModernAwardData,
+  level: string,
+  label: string = level,
+  note?: string,
+): RateRow {
+  const r = findAwardRate(award, level);
+  return {
+    label,
+    weekly: r.weekly,
+    hourly: r.hourly,
+    casualHourly: roundCents(r.hourly * (1 + award.meta.casualLoading)),
+    ...(note ? { note } : {}),
+  };
+}

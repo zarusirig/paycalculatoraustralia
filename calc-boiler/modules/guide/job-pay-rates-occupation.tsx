@@ -30,7 +30,7 @@ export function occupationHeading(occ: Occupation): string {
 }
 
 function money(n: number): string {
-  return formatAUD(n, Number.isInteger(n) ? 0 : 2);
+  return formatAUD(n, 2);
 }
 
 function TakeHomeLink({ annual }: { annual: number }) {

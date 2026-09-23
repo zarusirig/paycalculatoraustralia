@@ -3,12 +3,15 @@
 // Source: FWC consolidated award text, awards.fairwork.gov.au/MA000016.html,
 // "incorporates all amendments up to and including 1 July 2026 (PR799297 and
 // PR799454)". Read 23 September 2026.
-//   - Weekly and hourly: cl 15.1, Table 4 (varied by PR799297 ppc 01Jul26).
-//   - Casual: Schedule B.3 "Day" column (125%). The award's own worked example
-//     confirms Level 1 casual = $35.53 ($28.42 + 25%).
+//   - Weekly and hourly: cl 15.1, Table 4 (varied by PR799297 ppc 01Jul26),
+//     READ FROM lib/constants/modern-awards.ts (SECURITY_AWARD), shared with
+//     /security-award-rates/. Independently re-read 23 September 2026.
+//   - Casual: hourly + 25%, which matches Schedule B.3's "Day" column; the
+//     award's own worked example confirms Level 1 casual = $35.53.
 //   - Penalties: cl 20.2, Table 7. Overtime: cl 19.3, Table 5.
 //   - Classifications: Schedule A (A.1–A.5).
 
+import { SECURITY_AWARD } from "../../constants/modern-awards";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
@@ -18,6 +21,7 @@ import {
   awardTextUrl,
   jsaSource,
   jsaUrl,
+  rowFromModernAward,
 } from "./common";
 import type { MedianEarnings, Occupation } from "./types";
 
@@ -57,11 +61,11 @@ export const SECURITY_GUARD: Occupation = {
       title: "Security guard pay rates by level, 2026–27",
       intro: "Clause 15.1, Table 4 of the award. Casual day rates are from the award's Schedule B.3.",
       rows: [
-        { label: "Security Officer Level 1", weekly: 1080.1, hourly: 28.42, casualHourly: 35.53, note: "Guarding, basic crowd control, access control" },
-        { label: "Security Officer Level 2", weekly: 1111.0, hourly: 29.24, casualHourly: 36.55, note: "Mobile patrol, screening, alarm monitoring, dog handling" },
-        { label: "Security Officer Level 3", weekly: 1129.8, hourly: 29.73, casualHourly: 37.16 },
-        { label: "Security Officer Level 4", weekly: 1148.7, hourly: 30.23, casualHourly: 37.79 },
-        { label: "Security Officer Level 5", weekly: 1185.7, hourly: 31.2, casualHourly: 39.0 },
+        rowFromModernAward(SECURITY_AWARD, "Security Officer Level 1", undefined, "Guarding, basic crowd control, access control"),
+        rowFromModernAward(SECURITY_AWARD, "Security Officer Level 2", undefined, "Mobile patrol, screening, alarm monitoring, dog handling"),
+        rowFromModernAward(SECURITY_AWARD, "Security Officer Level 3"),
+        rowFromModernAward(SECURITY_AWARD, "Security Officer Level 4"),
+        rowFromModernAward(SECURITY_AWARD, "Security Officer Level 5"),
       ],
     },
   ],

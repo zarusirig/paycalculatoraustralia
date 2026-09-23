@@ -3,9 +3,13 @@
 // Source: FWC consolidated award text, awards.fairwork.gov.au/MA000012.html,
 // "incorporates all amendments up to and including 1 July 2026 (PR810422,
 // PR799280, PR799293 and PR799450)". Read 23 September 2026.
-//   - Weekly and hourly: cl 16.1 Table 3 (varied by PR799293 ppc 01Jul26).
-//   - Casual ordinary hourly: Schedule B.2.1, "Ordinary hours Monday to Friday
-//     between 8.00 am and 7.00 pm" column (125%).
+//   - Weekly and hourly: cl 16.1 Table 3 (varied by PR799293 ppc 01Jul26),
+//     READ FROM lib/constants/modern-awards.ts (PHARMACY_AWARD) so this page
+//     and /pharmacy-award-rates/ share one copy. Independently re-read on
+//     23 September 2026 and identical.
+//   - Casual ordinary hourly: hourly + 25%, which matches Schedule B.2.1's
+//     "Ordinary hours Monday to Friday between 8.00 am and 7.00 pm" column to
+//     the cent (asserted in tests: Pharmacist $52.18).
 //   - Penalties: cl 22.3 Table 6. Overtime: cl 21.4 Table 5.
 //   - HMR/RMMR allowance: cl 19 ($106.40 per week).
 //
@@ -16,6 +20,7 @@
 // (cl 16.2) and are changing from 1 December 2026 (PR813656). They do not apply
 // to pharmacists and are covered on the pharmacy award page, not here.
 
+import { PHARMACY_AWARD } from "../../constants/modern-awards";
 import {
   ANNUAL_WAGE_REVIEW_2026,
   CONSOLIDATED_TO,
@@ -25,6 +30,7 @@ import {
   jsaSource,
   jsaUrl,
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
+  rowFromModernAward,
 } from "./common";
 import type { MedianEarnings, Occupation } from "./types";
 
@@ -65,10 +71,10 @@ export const PHARMACIST: Occupation = {
       intro:
         "Clause 16.1, Table 3 of the award. Casual rates are the award's own Schedule B figures for ordinary hours between 8 am and 7 pm, Monday to Friday.",
       rows: [
-        { label: "Pharmacist", weekly: 1586.3, hourly: 41.74, casualHourly: 52.18, note: "Registered pharmacist" },
-        { label: "Experienced pharmacist", weekly: 1737.4, hourly: 45.72, casualHourly: 57.15, note: "4+ years' community pharmacy experience" },
-        { label: "Pharmacist in charge", weekly: 1778.4, hourly: 46.8, casualHourly: 58.5, note: "Runs the pharmacy day to day" },
-        { label: "Pharmacist manager", weekly: 1981.6, hourly: 52.15, casualHourly: 65.19, note: "Responsible to the owner for the whole business" },
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacist", "Pharmacist", "Registered pharmacist"),
+        rowFromModernAward(PHARMACY_AWARD, "Experienced pharmacist", "Experienced pharmacist", "4+ years' community pharmacy experience"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacist in charge", "Pharmacist in charge", "Runs the pharmacy day to day"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacist manager", "Pharmacist manager", "Responsible to the owner for the whole business"),
       ],
     },
     {
@@ -76,12 +82,12 @@ export const PHARMACIST: Occupation = {
       title: "Pharmacy student and intern rates",
       intro: "The same Table 3 rates for pharmacy students and for interns completing their supervised practice.",
       rows: [
-        { label: "Pharmacy student—1st year of course", weekly: 1056.8, hourly: 27.81, casualHourly: 34.76 },
-        { label: "Pharmacy student—2nd year of course", weekly: 1081.0, hourly: 28.45, casualHourly: 35.56 },
-        { label: "Pharmacy student—3rd year of course", weekly: 1119.1, hourly: 29.45, casualHourly: 36.81 },
-        { label: "Pharmacy student—4th year of course", weekly: 1165.1, hourly: 30.66, casualHourly: 38.33 },
-        { label: "Pharmacy intern—1st half of training", weekly: 1291.5, hourly: 33.99, casualHourly: 42.49 },
-        { label: "Pharmacy intern—2nd half of training", weekly: 1335.5, hourly: 35.14, casualHourly: 43.93 },
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 1st year of course"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 2nd year of course"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 3rd year of course"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy student — 4th year of course"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy intern — 1st half of training"),
+        rowFromModernAward(PHARMACY_AWARD, "Pharmacy intern — 2nd half of training"),
       ],
     },
   ],

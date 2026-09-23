@@ -118,6 +118,24 @@ test("spot checks: headline award figures", () => {
   assert.equal(row("real-estate-agent", "Level 2 (Representative)").casualHourly, 36.81);
 });
 
+test("casual rates derived from shared award constants match the award's published schedules", () => {
+  // Pharmacy Schedule B.2.1 (Mon–Fri 8am–7pm) and Security Schedule B.3 (Day), 1 July 2026.
+  const published: [string, string, number][] = [
+    ["pharmacist", "Pharmacist", 52.18],
+    ["pharmacist", "Experienced pharmacist", 57.15],
+    ["pharmacist", "Pharmacist in charge", 58.5],
+    ["pharmacist", "Pharmacist manager", 65.19],
+    ["pharmacist", "Pharmacy student — 1st year of course", 34.76],
+    ["pharmacist", "Pharmacy intern — 2nd half of training", 43.93],
+    ["security-guard", "Security Officer Level 1", 35.53],
+    ["security-guard", "Security Officer Level 2", 36.55],
+    ["security-guard", "Security Officer Level 3", 37.16],
+    ["security-guard", "Security Officer Level 4", 37.79],
+    ["security-guard", "Security Officer Level 5", 39.0],
+  ];
+  for (const [slug, label, casual] of published) assert.equal(row(slug, label).casualHourly, casual, `${slug} ${label}`);
+});
+
 test("electrician weekly = cl 16.2 minimum + industry allowance (+ tool allowance from grade 5)", () => {
   const base = [1004.9, 1013.1, 1046.9, 1080.6, 1119.1, 1154.3, 1221.1, 1283.1, 1309.5, 1415.0];
   const rows = getOccupation("electrician")!.tables[0].rows;

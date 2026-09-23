@@ -19,6 +19,9 @@ import { formatAUD } from "@/lib/constants";
 // C1 employer pay rates (2026-09-23)
 import { EMPLOYERS } from "@/lib/data/employer-pay";
 import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
+// C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
+import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
+import { ADF_SERVICE_LIST } from "@/lib/data/adf-pay";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
@@ -131,6 +134,22 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end minimum wage cluster ---
+  // --- C2 occupation pay rates + C5 ADF pay scales (23 Sep 2026) ---
+  {
+    title: "Pay Rates by Job",
+    items: [
+      { href: "/job-pay-rates/", label: "Job Pay Rates (all jobs)" },
+      ...OCCUPATIONS.map((o) => ({ href: `/job-pay-rates/${o.slug}/`, label: `${o.name} Pay Rates` })),
+    ],
+  },
+  {
+    title: "ADF Pay Scales",
+    items: [
+      { href: "/adf-pay-scales/", label: "ADF Pay Scales" },
+      ...ADF_SERVICE_LIST.map((s) => ({ href: `/adf-pay-scales/${s.slug}/`, label: `${s.name} Pay Scales` })),
+    ],
+  },
+  // --- end C2/C5 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

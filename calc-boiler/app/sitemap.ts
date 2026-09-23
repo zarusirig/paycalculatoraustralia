@@ -10,6 +10,9 @@ import { EMPLOYER_SLUGS } from "@/lib/data/employer-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
 import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
+// C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
+import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
+import { ADF_SERVICE_SLUGS } from "@/lib/data/adf-pay/types";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -278,6 +281,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "pro-rata-salary-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "casual-loading-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end minimum wage cluster ---
+  // --- C2 occupation pay rates + C5 ADF pay scales (23 Sep 2026) ---
+  allPages.push({ slug: "job-pay-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const occupation of OCCUPATION_SLUGS) {
+    allPages.push({ slug: `job-pay-rates/${occupation}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  allPages.push({ slug: "adf-pay-scales", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const service of ADF_SERVICE_SLUGS) {
+    allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  // --- end C2/C5 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
