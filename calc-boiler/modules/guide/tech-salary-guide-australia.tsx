@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -16,6 +15,8 @@ const EX110_SACRIFICE = calculatePayBreakdown({ grossSalary: 110_000, salarySacr
 const SACRIFICE_SAVING = (EX110.totalDeductions - EX110_SACRIFICE.totalDeductions) - 10_000 * 0.15;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TECH_SALARY_FAQS } from "./tech-salary-guide-australia-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "ICT industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
@@ -192,32 +193,7 @@ export default function TechSalaryGuideAustraliaPage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="dev-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do software developers earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Junior developers earn $65K–$80K, mid-level developers $90K–$120K, senior developers $130K–$170K, and lead/principal engineers $160K–$200K. These are base salaries — total compensation at larger companies includes equity (RSUs), bonuses, and benefits that can add $10K–$80K+ per year.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="contractor-rate" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What day rate equals a $150K permanent salary?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">To match a $150K permanent salary (including 4 weeks leave, 10 sick days, super, and other benefits), you need a contractor day rate of approximately $900–$1,000 per day. This accounts for the ~230 billable days per year, self-funded super, insurance, and no paid leave. Use the Contractor vs Employee Calculator for an exact comparison.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="rsus" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How are RSUs taxed in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">RSUs are taxed as ordinary income at your marginal tax rate when they vest. The taxable amount is the market value of the shares at the vesting date. If you sell immediately, there is no further capital gains tax. If you hold the shares after vesting and they increase in value, you pay CGT on the gain when you sell, with the 50% CGT discount available if held for more than 12 months.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="abn-vs-pty" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I contract through ABN or Pty Ltd?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">For contractors earning under $120K–$130K, an ABN (sole trader) is usually simpler and cheaper. Above that level, a Pty Ltd company allows you to retain profits at the 25% company tax rate and distribute income more strategically. However, Pty Ltd involves $2,000–$5,000/year in accounting costs. The break-even point depends on your specific circumstances — use the entity structure comparison tool on this site.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="cyber-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do cybersecurity professionals earn?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Cybersecurity analysts earn $100K–$150K, security engineers $120K–$170K, and CISOs/security directors $180K–$280K. The sector has acute talent shortages, driving salaries higher than equivalent seniority levels in general software development. Government and defence sector cybersecurity roles may also include security clearance bonuses.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="remote-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do remote tech workers earn less?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Increasingly no. Many Australian tech companies now pay location-agnostic salaries, meaning a developer in Brisbane or regional Australia earns the same as one in Sydney. Some companies still apply city-based pay bands, but the trend is towards parity. International remote roles may offer different rates depending on the company&apos;s compensation philosophy.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={TECH_SALARY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

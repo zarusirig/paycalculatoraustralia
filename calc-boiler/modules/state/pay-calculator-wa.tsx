@@ -11,6 +11,8 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { WA_FAQS } from "./pay-calculator-wa-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -179,27 +181,9 @@ export default function PayCalculatorWAPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in WA compared to other states?">
-              No. Personal income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy, and HECS-HELP repayment thresholds are identical in Western Australia, New South Wales, Victoria, Queensland, and every other state and territory. Use our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">tax brackets guide</Link> to see the current rates.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average WA salary?">
-              Full-time adults in WA earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year — the highest of any state (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above shows what is left after tax.
-            </FAQItem>
-            <FAQItem value="statesystem" question="Am I covered by WA state awards or federal awards?">
-              It depends on your employer&apos;s legal structure, not on where you live. Employees of incorporated companies are in the national system and covered by federal modern awards. Employees of sole traders, unincorporated partnerships and other non-constitutional employers in WA are covered by the WA state system, with its own awards and its own state minimum wage.
-            </FAQItem>
-            <FAQItem value="holidays" question="Why is the King's Birthday in September in WA?">
-              Western Australia sets its own public holiday dates. It observes the King&apos;s Birthday in late September rather than the June date used in NSW, Victoria, SA, Tasmania and the NT, and it holds Labour Day in early March. Some regional areas in WA hold the King&apos;s Birthday on a different date again.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in WA?">
-              Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, then a further 4.333 weeks every 5 years. Separately, after 7 years of continuous employment a payment may be owed when employment ends by resignation, dismissal, redundancy or death.
-            </FAQItem>
-            <FAQItem value="employee" question="Do WA employees pay for WorkCover?">
-              No. WorkCover WA insurance premiums are entirely an employer expense. Premiums vary by industry risk classification, ranging from 0.5% of wages in low-risk office roles to over 7% in underground mining. These costs do not reduce your gross salary or take-home pay.
-            </FAQItem>
-            <FAQItem value="zone" question="Does the zone tax offset show in my WA pay calculation?">
-              Not in the calculator above. The zone tax offset depends on the specific locality you live in for more than half the income year, so it is claimed in your tax return rather than through withholding. See the <Link href="/zone-tax-offset/" className="text-eucalyptus-dark hover:underline">zone tax offset guide</Link> for the qualifying WA areas.
-            </FAQItem>
+            {WA_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

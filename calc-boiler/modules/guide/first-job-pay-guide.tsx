@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { FIRST_JOB_FAQS } from "./first-job-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, LITO, EMPLOYMENT, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, LITO, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
 
 // Weekly payslip example: 20 hrs @ $25, withholding from the ATO Schedule 1
@@ -183,44 +184,7 @@ export default function FirstJobPayGuidePage() {
             {/* ───── SECTION 5: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="tfn-time" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long does it take to get a TFN?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Online applications take <strong>10-28 business days</strong>. You can start work before receiving your TFN — you have 28 days to provide it to your employer. In the meantime, your employer withholds tax at the higher no-TFN rate, but this is corrected once you provide your TFN.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="tax-free-threshold" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the tax-free threshold?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The tax-free threshold is <strong>$18,200</strong>. If your total annual income is $18,200 or less, you pay no income tax. You claim the tax-free threshold on your TFN Declaration form, which tells your employer to withhold less tax from each pay. Only claim it at <strong>one</strong> employer if you have multiple jobs.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="when-paid-super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When does my employer pay super?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Since Payday Super started on 1 July 2026, employers must pay super <strong>with every pay</strong>, and it must reach your fund within <strong>7 business days</strong> of payday (the old quarterly deadlines ended with the June 2026 quarter). Super appears on your payslip but is paid to your fund, not to you. Check your super fund account online to confirm contributions are being received.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="second-job" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I get a second job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Claim the tax-free threshold at <strong>only one employer</strong> — usually the one paying you the most. At your second employer, select &quot;no&quot; for the tax-free threshold on your TFN Declaration. Your second employer withholds tax at a higher rate. Use our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> to see the impact.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="payslip-wrong" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What if my payslip looks wrong?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">First, check your hours against your roster or timesheet. Verify your pay rate matches your employment contract or the relevant award rate. If something is wrong, raise it with your employer&apos;s payroll team immediately. If your employer does not fix the error, contact the <strong>Fair Work Ombudsman</strong> on 13 13 94 for free advice.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="minimum-wage" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum wage for my first job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The national minimum wage for adults (21+) is <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> or {formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week (from 1 July 2026). Casual employees receive an additional <strong>25% casual loading</strong>, making the casual minimum {formatAUD(EMPLOYMENT.minimumWageHourly * (1 + EMPLOYMENT.casualLoading), 2)}/hr. Many industries have <strong>award rates</strong> that are higher than the minimum wage — check our <Link href="/award-rates/">Award Rates Guide</Link>.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="lodge-return" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I have to lodge a tax return?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If you earned above the tax-free threshold ($18,200), you <strong>must</strong> lodge a tax return. Even if you earned less, you should lodge if tax was withheld from your pay — you will receive a refund of all tax paid. Lodge for free through myTax at my.gov.au after 1 July each year.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={FIRST_JOB_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>First job information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets. Super rates are based on the current Superannuation Guarantee of 12%. Award rates and minimum wages are subject to annual review by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

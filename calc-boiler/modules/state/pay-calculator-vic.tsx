@@ -5,14 +5,14 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { VIC_FAQS } from "./pay-calculator-vic-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -160,30 +160,9 @@ export default function PayCalculatorVICPage() {
 
           {/* FAQ */}
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in Victoria compared to other states?">
-              No. Personal income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy, and HECS-HELP repayment thresholds are identical in Victoria, New South Wales, Queensland, and every other state and territory.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average Victorian salary?">
-              A full-time adult in Victoria earns {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, or about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above shows exactly what is left after income tax and the Medicare levy, per week, fortnight and month.
-            </FAQItem>
-            <FAQItem value="holidays" question="Which public holidays are unique to Victoria?">
-              Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November — none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. Working one of these attracts public holiday penalty rates under most awards.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in Victoria?">
-              After 7 years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past 7 years the accrued balance is paid out however the employment ends, including resignation.
-            </FAQItem>
-            <FAQItem value="payroll" question="Do employees pay VIC payroll tax?">
-              No. Payroll tax is charged to the employer once its Australian wage bill passes {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)}. It is never deducted from an employee&apos;s salary and never appears on a payslip.
-            </FAQItem>
-            <FAQItem value="employee" question="Do employees pay the Mental Health and Wellbeing Surcharge?">
-              No. The Mental Health and Wellbeing Surcharge is paid exclusively by employers whose national payroll exceeds $10 million. It does not reduce your personal salary or affect your take-home pay calculation.
-            </FAQItem>
-            <FAQItem value="regional" question="Do regional Victorian workers pay less tax?">
-              No. Regional Victorian workers pay exactly the same federal income tax as Melbourne workers. Regional employers benefit from a reduced payroll tax rate of 1.2125% (compared to {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)} in metro areas), but this employer saving does not affect employee tax deductions or net pay.
-            </FAQItem>
-            <FAQItem value="hecs" question="How does HECS-HELP affect my VIC take-home pay?">
-              HECS-HELP repayments are a federal obligation applied identically across all states. Tick the HECS-HELP box in the calculator above and it will show the repayment withheld at your salary and the reduced take-home figure, per pay cycle.
-            </FAQItem>
+            {VIC_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

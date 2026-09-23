@@ -321,6 +321,11 @@ export const GENERAL_INTEREST_CHARGE = {
   /** Next quarter's rate is generally announced ~2 weeks before it starts. */
   nextRateDue: "mid-September 2026",
   sourceUrl: "https://www.ato.gov.au/tax-rates-and-codes/general-interest-charge-rates",
+  // --- G6: next quarter's rate, published by the ATO (page last updated
+  // 4 September 2026, read 24 September 2026). Roll it into annualRate /
+  // dailyRatePercent / quarter on 1 October 2026. ---
+  nextQuarter: { label: "October–December 2026", annualRate: 0.1151, dailyRatePercent: 0.03153425, startsOn: "1 October 2026" },
+  // --- end G6 ---
 } as const;
 
 // ---------- HECS-HELP Repayment (FY2026-27 — New Marginal System) ----------

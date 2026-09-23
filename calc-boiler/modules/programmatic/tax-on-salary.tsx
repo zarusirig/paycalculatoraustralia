@@ -18,6 +18,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { salaryFacts } from "@/lib/data/salary-pages";
 import { DIVISION_293 } from "@/lib/constants/super-contributions";
 import { NextThousandTaxTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
+import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
 
 interface TaxOnSalaryProps {
   salary: number;
@@ -80,9 +81,6 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
   // cannot drift from TAX_BRACKETS (it read "16%" after the 15% rate began).
   const firstTaxedBracket = TAX_BRACKETS[1];
   const firstBracketRatePercent = Math.round(firstTaxedBracket.rate * 100);
-  const firstBracketSavingVs2023_24 = Math.round(
-    (firstTaxedBracket.max - (firstTaxedBracket.min - 1)) * (0.19 - firstTaxedBracket.rate),
-  );
 
 
   return (
@@ -387,82 +385,12 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-6">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="w-full space-y-4">
-          <AccordionItem value="item-1" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How much tax do I pay on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              On {formattedSalary}, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax ({(breakdown.effectiveTaxRate * 100).toFixed(1)}% effective rate) plus
-              {" "}{formatAUD(breakdown.medicareLevy)} in Medicare levy. Your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year or <strong>{formatAUD(breakdown.weekly)}</strong> per week. This calculation uses the ATO progressive marginal tax rates for FY{SITE_CONFIG.financialYear}.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is my marginal tax rate on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Your marginal tax rate on {formattedSalary} is <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong> (including the 2% Medicare levy). This means each additional
-              dollar you earn above {formattedSalary} is taxed at {(breakdown.marginalTaxRate * 100).toFixed(1)}c. Your effective rate is lower at {(breakdown.effectiveTaxRate * 100).toFixed(1)}% because the first $18,200 is tax-free.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How much superannuation does my employer pay on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Your employer contributes <strong>{formatAUD(breakdown.superContribution)}</strong> per year to your super fund at the 12% super guarantee rate for FY{SITE_CONFIG.financialYear}. This is paid on top of your {formattedSalary} gross salary, not deducted from it. Your total remuneration package including super is <strong>{formatAUD(breakdown.totalPackage)}</strong>.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-4" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is {formattedSalary} per week after tax?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              A {formattedSalary} annual salary equals <strong>{formatAUD(breakdown.weekly)}</strong> per week after tax, <strong>{formatAUD(breakdown.fortnightly)}</strong> per fortnight, and <strong>{formatAUD(breakdown.monthly)}</strong> per month. These figures include income tax and Medicare levy deductions but exclude voluntary salary sacrifice or HECS-HELP repayments.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-5" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              Do I pay the Medicare Levy Surcharge on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              {facts.mls.tier > 0
-                ? `Yes, if you are single and have no private hospital cover. A ${formattedSalary} salary falls in MLS tier ${facts.mls.tier} for ${SITE_CONFIG.financialYear}, so the "Medicare Levy Surcharge" is ${(facts.mls.rate * 100).toFixed(2).replace(/0$/, "")}% of income for MLS purposes: ${formatAUD(facts.mls.amount)} a year. Holding private hospital insurance exempts you from the MLS.`
-                : `No. For ${SITE_CONFIG.financialYear} the "Medicare Levy Surcharge" applies to singles from ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min)} of income for MLS purposes without private hospital cover. At ${formattedSalary}, you are below this threshold and are not liable for the surcharge.`
-              }
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-6" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How did the Stage 3 tax cuts affect {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              The Stage 3 tax cuts effective 1 July 2024 reduced the second bracket rate from 19% to 16% and expanded the 30% bracket ceiling from $120,000 to $135,000, and a further cut took that rate to {firstBracketRatePercent}% from 1 July 2026. On {formattedSalary}, these changes reduced income tax compared to the FY2023-24 rates. The {firstBracketRatePercent}% rate applies to income between {formatAUD(firstTaxedBracket.min)} and {formatAUD(firstTaxedBracket.max)}, saving up to {formatAUD(firstBracketSavingVs2023_24)} a year in that bracket alone against the old 19% rate.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-7" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              Is income tax calculated differently in different states?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              No. Income tax is a federal tax in Australia and is calculated identically across all states and territories including NSW, Victoria, Queensland, Western Australia, South Australia, Tasmania, ACT, and the Northern Territory. The same ATO tax brackets apply regardless of your state of residence. State-level payroll tax is paid by employers, not employees.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-8" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is the difference between marginal and effective tax rate?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              The marginal tax rate of <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong> is the rate applied to each additional dollar earned. The effective tax rate of <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong> is the total percentage of your {formattedSalary} salary paid in all deductions. The effective rate is always lower because the first $18,200 is tax-free and lower brackets are taxed at {firstBracketRatePercent}% and 30% before reaching the marginal rate.
-            </AccordionContent>
-          </AccordionItem>
+          {taxOnSalaryFaqs(salary).map((f, i) => (
+            <AccordionItem key={f.q} value={`item-${i + 1}`} className="bg-white border rounded-lg px-4 shadow-sm">
+              <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-warmgray pb-4 leading-relaxed">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </section>
 

@@ -1,4 +1,40 @@
 import { AUTHORS } from "@/lib/authors";
+// --- G6: constants the G6 news entries quote (figures are never re-keyed here) ---
+import {
+  AGE_PENSION_RATES,
+  DEEMING_SEPTEMBER_2026,
+  JOBSEEKER_RATES,
+  MARCH_2026,
+  SEPTEMBER_2026,
+} from "@/lib/constants/centrelink-income-test";
+import {
+  SCHADS_HOME_CARE_DISABILITY,
+  SCHADS_HOME_CARE_DISABILITY_DEC_2026,
+  SCHADS_SCHEDULE_E_INCREASE,
+} from "@/lib/constants/schads-award";
+import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
+import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
+import { QLD_STATE_WAGE_CASE_2026 } from "@/lib/constants/minimum-wage";
+import { GENERAL_INTEREST_CHARGE } from "@/lib/constants/australian-tax";
+import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
+import {
+  FTL_MAX_INDIVIDUAL,
+  PENALTY_UNIT,
+  RETURN_DATES_2026,
+  TAX_CALENDAR_SOURCES,
+  formatIso,
+  weekdayOf,
+} from "@/lib/constants/tax-calendar-2026-27";
+import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import {
+  AWARD_TRANSPORT_CHANGE_DATE,
+  CENTS_PER_KM_SOURCES,
+  CPK_KM_CAP,
+  CURRENT_CPK_RATE,
+  CURRENT_CPK_YEAR,
+} from "@/lib/constants/cents-per-km";
+// --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -647,7 +683,289 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
   },
   // --- end W5 ---
+  // --- G6: news articles, 24 Sep 2026 ---
+  ...G6_ARTICLES(),
+  // --- end G6 ---
 ];
+
+// --- G6: news article metadata (functions of the constants they quote) ---
+function G6_ARTICLES(): NewsArticleMeta[] {
+  const m = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const w = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+  const p = (r: number) => `${(r * 100).toFixed(2).replace(/0$/, "")}%`;
+  const apMar = AGE_PENSION_RATES[MARCH_2026].maxFortnightly;
+  const apSep = AGE_PENSION_RATES[SEPTEMBER_2026].maxFortnightly;
+  const jsMar = JOBSEEKER_RATES[MARCH_2026].maxFortnightly;
+  const jsSep = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly;
+  const D = DEEMING_SEPTEMBER_2026;
+  const apRise = m(apSep.single.total - apMar.single.total);
+  const apCoupleRise = m(apSep.coupleCombined.total - apMar.coupleCombined.total);
+
+  const SE = SCHADS_SCHEDULE_E_INCREASE;
+  const sePct = `${Math.round(SE.interimIncrease * 100)}%`;
+  const seL3Now = SCHADS_HOME_CARE_DISABILITY.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+  const seL3Dec = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+
+
+  const HP = HPSS_OCT_2026;
+  const hpGradNew = HPSS_OCT_2026_LEVEL_1[7][0].weekly;
+  const hpGradOld = HPSS_TABLES.flatMap((t) => t.rows).find((r) => r.label === "Level 1 pay point 2")?.weekly ?? NaN;
+
+
+  const JP = PENDING_JUNIOR_CHANGE;
+  const jFF = JUNIOR_TRANSITION_SCHEDULES.fastFood;
+  const jRetail = JUNIOR_TRANSITION_SCHEDULES.retail;
+  const jPh = JUNIOR_TRANSITION_SCHEDULES.pharmacy;
+
+
+  const QS = QLD_STATE_WAGE_CASE_2026;
+  const qPct = `${(QS.increase * 100).toFixed(2)}%`;
+
+
+  const gicNext = `${(GENERAL_INTEREST_CHARGE.nextQuarter.annualRate * 100).toFixed(2)}%`;
+
+
+  const atcPct = `${(ATC_24_MONTH_COLUMN.increase * 100).toFixed(1)}%`;
+  const atcL1 = ATC_24_MONTH_COLUMN.salaries["Level 1"];
+  const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
+  const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
+
+
+  const atExtra = `$${withholdingForPeriod(1_300 + 22, "weekly") - withholdingForPeriod(1_300, "weekly")}`;
+
+  return [
+    {
+      slug: "age-pension-increase-september-2026",
+      headline: `Age Pension Rises ${apRise} a Fortnight From 20 September 2026 — but Deeming Rates Rise Too`,
+      title: `Age Pension Increase September 2026: +${apRise} to ${m(apSep.single.total)}`,
+      description: `The full Age Pension rose ${apRise} to ${m(apSep.single.total)} a fortnight on 20 September 2026 (couples ${m(apSep.coupleCombined.total)}). JobSeeker ${m(jsSep.single)}; deeming now ${p(D.lowerRate)}/${p(D.upperRate)}.`,
+      category: "Centrelink & Payments",
+      datePublished: "2026-09-20",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator" },
+        { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator" },
+        { href: "/centrelink-payment-dates/", label: "Centrelink Payment Dates" },
+      ],
+      relatedArticles: ["age-pension-increase-march-2026", "deeming-rates-change-2026", "centrelink-changes-july-2026"],
+      sources: [
+        { title: "Some payment rates are increasing on 20 September 2026 (8 September 2026)", url: "https://www.servicesaustralia.gov.au/some-payment-rates-are-increasing-20-september-2026", publisher: "Services Australia" },
+        { title: "Deeming rates have increased (20 September 2026)", url: D.sources.news, publisher: "Services Australia" },
+        { title: "Deeming", url: D.sources.deeming, publisher: "Services Australia" },
+        { title: "Social Security Payment Parameters — 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },
+        { title: "September pensions and deeming rates update", url: D.sources.dva, publisher: "Department of Veterans' Affairs" },
+      ],
+      faq: [
+        { question: "How much did the Age Pension go up in September 2026?", answer: `From 20 September 2026 the maximum Age Pension rose by ${apRise} a fortnight for singles, to ${m(apSep.single.total)}, and by ${apCoupleRise} a fortnight for couples combined, to ${m(apSep.coupleCombined.total)} (${m(apSep.coupleEach.total)} each). The totals include the Pension Supplement and Energy Supplement. Carer Payment and the Disability Support Pension rose by the same amounts.` },
+        { question: "What are the new deeming rates from 20 September 2026?", answer: `Deeming rates rose from ${p(D.previousLowerRate)} to ${p(D.lowerRate)} on the first ${w(D.thresholds.single)} of a single person's financial assets (${w(D.thresholds.couple)} combined for a couple), and from ${p(D.previousUpperRate)} to ${p(D.upperRate)} on anything above that.` },
+        { question: "What is the JobSeeker rate from 20 September 2026?", answer: `A single person with no children can get up to ${m(jsSep.single)} a fortnight, up from ${m(jsMar.single)}. The partnered rate is ${m(jsSep.partnered)} each, and the rate for a single parent or someone aged 55 or over after nine months on payment is ${m(jsSep.singleWithChildren)}.` },
+        { question: "Do I need to do anything to get the pension increase?", answer: "No. Services Australia applies the new rates and deeming rates automatically. Your next payment amount shows in your Centrelink online account or the Express Plus Centrelink app." },
+      ],
+    },
+    {
+      slug: "schads-home-care-disability-pay-rise-december-2026",
+      headline: `Home Care Disability Workers Get a ${sePct} Pay Rise From ${SE.operativeFrom} Under the SCHADS Award`,
+      title: `SCHADS ${sePct} Pay Rise: Home Care Disability Rates From 1 Dec 2026`,
+      description: `SCHADS home care disability (Schedule E) rates rise ${sePct} from ${SE.operativeFrom}, deferred from October. Level 3 goes from ${m(seL3Now)} to ${m(seL3Dec)} a week.`,
+      category: "Wages",
+      datePublished: "2026-09-11",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/weekly-pay-calculator/", label: "Weekly Pay Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Gender-based undervaluation — priority awards review, SCHADS Award: Decision ${SE.decision} (${SE.decidedOn})`, url: SE.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Determination ${SE.determination} — Schedule E interim increase`, url: SE.determinationUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: SE.reviewUrl, publisher: "Fair Work Commission" },
+        { title: "Changes to the Social, Community, Home Care and Disability Services Award (21 September 2026)", url: SE.fwoUrl, publisher: "Fair Work Ombudsman" },
+        { title: "Vehicle allowance determination PR813674", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813674.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: `When does the SCHADS ${sePct} pay rise start?`, answer: `From the first full pay period starting on or after ${SE.operativeFrom}. The Fair Work Commission had proposed ${SE.deferredFrom}, but deferred it in ${SE.decision} because the Commonwealth had not committed to funding the increase.` },
+        { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award — home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
+        { question: `Is the increase exactly ${sePct} for everyone?`, answer: `Almost. Every Schedule E rate rises ${sePct} except Level 4 pay point 2 (${(SE.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}%) and Level 5 pay point 2 (${(SE.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%), whose full remaining increase is smaller than ${sePct}.` },
+        { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase — ${SE.remainderRange} — applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
+      ],
+    },
+    {
+      slug: "health-professionals-award-changes-october-2026",
+      headline: `Health Professionals Award Changes From ${HP.operativeFrom}: New AQF Pay Structure Lifts an AQF 7 Graduate to ${m(hpGradNew)} a Week`,
+      title: `Health Professionals Award Changes 1 October 2026: New Rates`,
+      description: `Allied health moves to an AQF-based pay structure from ${HP.operativeFrom}. An AQF 7 graduate goes from ${m(hpGradOld)} to ${m(hpGradNew)} a week. New rates and later stages.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist Pay Rates" },
+        { href: "/job-pay-rates/psychologist/", label: "Psychologist Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["schads-home-care-disability-pay-rise-december-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Determination ${HP.determination} — Health Professionals and Support Services Award 2020`, url: HP.determinationUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.decision} (${HP.decidedOn})`, url: HP.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.structureDecision} (${HP.structureDecidedOn})`, url: HP.structureDecisionUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: HP.reviewUrl, publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "What changes in the Health Professionals Award on 1 October 2026?", answer: `Health professional employees move to a new classification structure. Level 1 pay depends on the AQF level of the profession's standard minimum qualification (AQF 5 to 9) and years of experience (1st, 2nd–3rd, 4th–6th, 7th year+); Levels 2.1, 2.2, 3 and 4 cover senior, advanced and manager roles. It applies from the first full pay period starting on or after ${HP.operativeFrom} under determination ${HP.determination}.` },
+        { question: "Will my pay go down under the new structure?", answer: "No. Clause J.4.3 of the award keeps an employee who was classified on 30 September 2026 on their old minimum rate if it is higher than the rate for their new classification." },
+        { question: "Are there more increases after October 2026?", answer: `Yes. October 2026 is the first of five stages. Further increases apply from ${HP.laterStages.slice(0, -1).join(", ")} and ${HP.laterStages[HP.laterStages.length - 1]}, as set in ${HP.structureDecision}.` },
+        { question: "What is the new graduate rate for an AQF Level 7 health professional?", answer: `AQF Level 7 in the 1st year is ${m(hpGradNew)} a week full-time (${m(HPSS_OCT_2026_LEVEL_1[7][0].hourly)} an hour), rising to ${m(HPSS_OCT_2026_LEVEL_1[7][3].weekly)} from the 7th year.` },
+      ],
+    },
+    {
+      slug: "junior-pay-rates-december-2026",
+      headline: `Junior Pay Rates Rise From ${JP.earliestStart}: 18 to 20-Year-Olds in Retail, Fast Food and Pharmacy Move Toward the Adult Rate`,
+      title: `Junior Pay Rates 1 December 2026: New % for 18–20-Year-Olds`,
+      description: `18 to 20-year-olds with 6+ months' service in retail, fast food and pharmacy move toward the adult rate from ${JP.earliestStart}. Full timetable to ${jFF.rows[jFF.rows.length - 1].effective}.`,
+      category: "Wages",
+      datePublished: "2026-08-26",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/junior-pay-rates/", label: "Junior Pay Rates Guide" },
+        { href: "/fast-food-award-rates/", label: "Fast Food Award Rates" },
+        { href: "/casual-loading-calculator/", label: "Casual Loading Calculator" },
+      ],
+      relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Implementation decision ${JP.implementationDecision} (${JP.implementationDecidedOn}), AM2024/24`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb222.pdf", publisher: "Fair Work Commission" },
+        { title: `Determination ${jRetail.determination} — ${jRetail.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jRetail.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jFF.determination} — ${jFF.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jFF.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jPh.determination} — ${jPh.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jPh.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Principal decision ${JP.decision} (${JP.decidedOn})`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb75.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "When do junior pay rates change in 2026?", answer: `From the first full pay period starting on or after ${JP.earliestStart}, for employees aged 18 to 20 under the General Retail, Fast Food and Pharmacy Industry Awards who have ${JP.serviceQualifier}. Further steps follow until ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Do 18-year-olds get the full adult wage from December 2026?", answer: `No. It is a phase-in. Under the Fast Food Award an 18-year-old with more than 6 months' service goes from ${jFF.present.age18}% to ${jFF.rows[0].age18}% of the adult rate on ${jFF.rows[0].effective}, then rises five percentage points each July and December until reaching 100% on ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Who does not get the junior pay increase?", answer: "Employees under 18, employees aged 18 to 20 with 6 months' service or less with their employer, and workers under awards other than the General Retail, Fast Food and Pharmacy Industry Awards. In retail, only employee levels 1 to 3 have junior rates, and 20-year-olds with more than 6 months' service already get the adult rate." },
+        { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild — a five-point first step, then steps of up to ten points each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
+      ],
+    },
+    {
+      slug: "queensland-state-wage-case-2026",
+      headline: `Queensland State Wage Case 2026: State Award Wages Rise ${qPct} From ${QS.operativeFrom}`,
+      title: `QLD State Wage Case 2026: ${qPct} Rise, ${m(QS.qmwWeekly)} Minimum Wage`,
+      description: `The QIRC's ${QS.citation} lifts Queensland state award wages ${qPct} from ${QS.operativeFrom} and sets the state minimum wage at ${m(QS.qmwWeekly)} a week. Who it covers.`,
+      category: "Wages",
+      datePublished: "2026-09-04",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/public-service-pay-scales/qld/", label: "Queensland Public Service Pay Scales" },
+        { href: "/pay-calculator-qld/", label: "Queensland Pay Calculator" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Declaration of General Ruling (State Wage Case 2026) ${QS.citation}`, url: QS.url, publisher: "Queensland Industrial Relations Commission" },
+        { title: "Queensland Public Service Officers and Other Employees Award – State 2015 (reprint as at 1 September 2026)", url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/qld_public_service_010926.pdf", publisher: "Queensland Industrial Relations Commission" },
+        { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews/annual-wage-review-2026", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "How much did Queensland state award wages increase in 2026?", answer: `By ${qPct}, operative on and from ${QS.operativeFrom}, under the QIRC's State Wage Case decision ${QS.citation} delivered on ${QS.deliveredOn}. Work-related monetary allowances and service increments rose by the same percentage.` },
+        { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees — the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
+        { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards — chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
+        { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly — their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
+      ],
+    },
+    {
+      slug: "tax-return-deadline-october-2026",
+      headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
+      title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
+      description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNext}.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
+        { href: "/tax-return-2026/", label: "2026 Tax Return Guide" },
+        { href: "/tax-calendar/", label: "Tax Calendar 2026-27" },
+      ],
+      relatedArticles: ["tax-time-2026-whats-new", "hecs-marginal-repayment-first-tax-time", "1000-dollar-instant-tax-deduction"],
+      sources: [
+        { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: "Australian Taxation Office" },
+        { title: "Lodge your tax return with a registered tax agent", url: RETURN_2026_SOURCES.taxAgent, publisher: "Australian Taxation Office" },
+        { title: "Due dates for tax returns: individuals and trusts (registered agent lodgment program)", url: RETURN_2026_SOURCES.agentProgram, publisher: "Australian Taxation Office" },
+        { title: "Lodgment and payment dates on weekends or public holidays", url: TAX_CALENDAR_SOURCES.weekends, publisher: "Australian Taxation Office" },
+        { title: "Failure to lodge on time penalty", url: TAX_CALENDAR_SOURCES.failureToLodge, publisher: "Australian Taxation Office" },
+        { title: "Penalty units", url: TAX_CALENDAR_SOURCES.penaltyUnits, publisher: "Australian Taxation Office" },
+        { title: "General interest charge (GIC) rates (updated 4 September 2026)", url: GENERAL_INTEREST_CHARGE.sourceUrl, publisher: "Australian Taxation Office" },
+        { title: "General interest charge", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/interest-we-charge/general-interest-charge", publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day — ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
+        { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
+        { question: "What is the ATO general interest charge rate for October to December 2026?", answer: `${gicNext} a year (a daily rate of ${GENERAL_INTEREST_CHARGE.nextQuarter.dailyRatePercent}%), up from ${(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}% for ${GENERAL_INTEREST_CHARGE.quarter}. GIC compounds daily on overdue tax, and GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
+        { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
+      ],
+    },
+    {
+      slug: "air-traffic-controller-pay-rise-october-2026",
+      headline: `Air Traffic Controllers Get ${atcPct} Pay Rise on ${ATC_24_MONTH_COLUMN.dueOn}: Level 1 Rises to ${w(atcL1)}, Level 10 to ${w(atcL10)}`,
+      title: `Air Traffic Controller Pay Rise October 2026: ${atcPct}, New Salaries`,
+      description: `Airservices controllers get the final ${atcPct} rise under their 2024-2027 agreement on ${ATC_24_MONTH_COLUMN.dueOn}: Level 1 to ${w(atcL1)}, Level 10 to ${w(atcL10)}.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
+      ],
+      relatedArticles: ["victorian-teachers-pay-rise-2026", "tax-cut-july-2026"],
+      sources: [
+        { title: "Air Traffic Control Classification Base Salary 2024-2027 (Attachment 1)", url: ATC_24_MONTH_COLUMN.sourceUrl, publisher: "Airservices Australia" },
+        { title: ATC_PAY.instrument.name, url: ATC_PAY.instrument.url, publisher: "Airservices Australia" },
+        { title: "Airservices to boost ATC overtime pay during school holidays (context)", url: "https://australianaviation.com.au/2026/09/airservices-to-boost-atc-overtime-pay-during-school-holidays/", publisher: "Australian Aviation" },
+        { title: "Airservices offers triple pay to stop flight delays (context)", url: "https://www.theaustralian.com.au/business/aviation/airservices-trials-300-per-cent-overtime-pay-for-controllers-to-stop-flight-chaos/news-story/f7077fe3c2761aa78dc40751af07f83a", publisher: "The Australian" },
+      ],
+      faq: [
+        { question: "When do air traffic controllers get their next pay rise?", answer: `The Airservices agreement's "24 months" salary column, a ${atcPct} rise, falls due on ${ATC_24_MONTH_COLUMN.dueOn} — 24 months after the agreement commenced on 7 October 2024. The salary table does not name the pay period it is first paid in.` },
+        { question: "How much does a Level 1 air traffic controller earn from October 2026?", answer: `${w(atcL1)} a year base salary, up from ${w(atcL1Now)}. Controllers then progress one level a year to Level 10, which pays ${w(atcL10)} from ${ATC_24_MONTH_COLUMN.dueOn}. Penalty rates, overtime and allowances are paid on top.` },
+        { question: "What do trainee air traffic controllers earn?", answer: `An ab initio trainee is paid ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])} and a field trainee ${w(ATC_24_MONTH_COLUMN.salaries["Field Trainee"])} under the agreement's "24 months" column from ${ATC_24_MONTH_COLUMN.dueOn}.` },
+        { question: "Is this the last pay rise under the current agreement?", answer: "Yes. It is the third and final salary column. The agreement reaches its nominal expiry date on 7 October 2027, and salaries after that depend on a replacement agreement." },
+      ],
+    },
+    {
+      slug: "award-transport-payments-withholding-october-2026",
+      headline: `Tax Now Withheld From Award Transport Payments From ${AWARD_TRANSPORT_CHANGE_DATE}: What It Does to Your Pay`,
+      title: `Award Transport Payments: Withholding Starts ${AWARD_TRANSPORT_CHANGE_DATE}`,
+      description: `From ${AWARD_TRANSPORT_CHANGE_DATE} employers must withhold tax from award transport payments. On a $22 weekly allowance, a $1,300-a-week worker has about ${atExtra} more withheld.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
+        { href: "/cents-per-km/", label: "Cents per km Guide" },
+        { href: "/travel-allowance/", label: "Travel Allowance Guide" },
+      ],
+      relatedArticles: ["tax-cut-july-2026", "payday-super-employees-payslip"],
+      sources: [
+        { title: "Changes to award transport payments (published 26 August 2026, QC66099)", url: CENTS_PER_KM_SOURCES.atoAwardTransportChanges, publisher: "Australian Taxation Office" },
+        { title: "Withholding for allowances (QC51680)", url: CENTS_PER_KM_SOURCES.atoWithholdingForAllowances, publisher: "Australian Taxation Office" },
+        { title: "Cents per kilometre method", url: CENTS_PER_KM_SOURCES.atoMethod, publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "What changes for award transport payments on 1 October 2026?", answer: `For amounts previously treated as award transport payments and paid on or after ${AWARD_TRANSPORT_CHANGE_DATE}, employers must withhold PAYG and no longer identify them separately in Single Touch Payroll. The Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026, repealed the provisions that set withholding on these payments to nil.` },
+        { question: "Will my take-home pay go down?", answer: `Slightly, if you receive an award transport payment. The allowance is now included in the pay your employer withholds from. On the FY2026-27 weekly tax table, a $22 weekly allowance for someone earning $1,300 a week adds about ${atExtra} of withholding a week. Withholding is a prepayment; your final tax is worked out in your return.` },
+        { question: "Does this affect cents per kilometre car allowances?", answer: `No. A cents-per-km car allowance paid at or below the ATO rate (${Math.round(CURRENT_CPK_RATE * 100)}c for ${CURRENT_CPK_YEAR}) for up to ${CPK_KM_CAP.toLocaleString("en-AU")} business kilometres still has no withholding, under the ATO's withholding for allowances rules.` },
+        { question: "How do employers change their STP reporting?", answer: "The ATO allows a cutover method (report new amounts under the allowance's normal category from the first payment on or after 1 October 2026) or a zeroing-out method (an STP update event moving the year-to-date amount, available until 31 December 2026). Award transport payments (allowance type AD) cannot be reported for payments made on or after 1 July 2027." },
+      ],
+    },
+  ];
+}
+// --- end G6 ---
 
 /** All articles, newest first. */
 export function getAllNews(): NewsArticleMeta[] {

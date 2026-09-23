@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SOLE_TRADER_COMPANY_FAQS } from "@/modules/guide/employee-vs-sole-trader-vs-company-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -297,49 +298,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="when-switch" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When should I switch from sole trader to a company?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Consider switching when your taxable income consistently exceeds $120,000-$135,000, when you need asset protection from business liabilities, or when you want to retain profits at the 25% company tax rate. The additional compliance costs ($3,000-$5,000/year for accounting and ASIC fees) mean the switch is not worthwhile at lower income levels.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="same-tax" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do sole traders pay the same tax as employees?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Sole traders pay individual income tax at the same marginal rates as employees (0% to 45% plus Medicare levy). The difference is that sole traders can deduct business expenses before tax, must self-manage PAYG instalments and BAS lodgment, and are responsible for their own superannuation contributions.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="company-rate" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the company tax rate in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The base rate entity company tax rate is <strong>25%</strong> for companies with aggregated turnover under $50 million and no more than 80% passive income. This flat rate applies to all taxable company income. When profits are distributed as franked dividends, the shareholder receives a franking credit for the 25% tax already paid, avoiding double taxation.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="gst" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When do I need to register for GST?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    GST registration is mandatory when your annual turnover reaches <strong>$75,000</strong> (or $150,000 for non-profit organisations). Below the threshold, registration is optional but can be beneficial if your business purchases include significant GST that you could claim back as input tax credits. Once registered, you must lodge BAS and charge 10% GST on taxable supplies.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="super-sole" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do sole traders have to pay super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No, super contributions are optional for sole traders — but strongly recommended. You can contribute up to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year in concessional (tax-deductible) contributions in FY{SITE_CONFIG.financialYear} and claim the full amount as a deduction on your tax return. This reduces your taxable income while building retirement savings. Without employer SG, sole traders must proactively fund their own retirement.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="abn" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much does it cost to set up each structure?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    <strong>Sole trader:</strong> Free — ABN registration is instant and no-cost through the Australian Business Register. <strong>Company:</strong> ASIC charges a registration fee and an annual review fee, both indexed each 1 July (check asic.gov.au for the current amounts), plus initial accounting setup, compared to $0 for a sole trader.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SOLE_TRADER_COMPANY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

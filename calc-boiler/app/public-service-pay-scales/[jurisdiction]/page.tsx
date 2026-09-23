@@ -11,8 +11,7 @@ interface PageProps {
   params: Promise<{ jurisdiction: string }>;
 }
 
-// Exactly the jurisdictions with verified data. NSW, WA, SA, TAS, ACT and NT
-// are listed on the hub as not yet covered rather than generated empty.
+// Exactly the jurisdictions with verified data — all nine since H2 (24 Sep 2026).
 export async function generateStaticParams() {
   return JURISDICTION_SLUGS.map((jurisdiction) => ({ jurisdiction }));
 }

@@ -61,7 +61,7 @@ export function publicHolidayHubMetadata(): Metadata {
     title: PH_HUB_TITLE,
     description,
     alternates: { canonical: HUB_URL },
-    openGraph: { title: PH_HUB_TITLE, description, url: HUB_URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    openGraph: { title: PH_HUB_TITLE, description, url: HUB_URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title: PH_HUB_TITLE, description },
   };
 }
@@ -122,7 +122,7 @@ export function publicHolidayStateMetadata(slug: string): Metadata {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }

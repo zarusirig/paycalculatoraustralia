@@ -1,23 +1,14 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { APPRENTICE_ELECTRICIAN, CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { INDUSTRY_ALLOWANCE, CARPENTER_TOOL_ALLOWANCE, MULTISTOREY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
 
-// Apprentice electrician minimums, Electrical, Electronic and Communications
-// Contracting Award [MA000025] Schedule B.4.5 (completed Year 12, started on
-// or after 1 Jan 2014), as transcribed in lib/data/job-pay-rates/apprentice-electrician.ts.
-// The old table claimed 55/65/80/95% and $44k-$86k, which no award supports.
-const APPRENTICE_ELECTRICIAN = [
-  { year: "Year 1", pct: 0.55, hourly: 17.97 },
-  { year: "Year 2", pct: 0.65, hourly: 21.13 },
-  { year: "Year 3", pct: 0.7, hourly: 22.71 },
-  { year: "Year 4", pct: 0.82, hourly: 26.5 },
-] as const;
 const TRADE_TAKE_HOME = [
   { role: "Painter", gross: 75_000 },
   { role: "Carpenter", gross: 85_000 },
@@ -217,32 +208,7 @@ export default function ConstructionTradesPayPage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="tradie-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do tradies earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K–$110K) and boilermakers ($85K–$120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K–$250K+ but have higher business costs.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="apprentice-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do apprentices get paid?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Apprentice wages are a percentage of the qualified trade rate that rises each year, and each award sets its own scale. Under the Electrical award, an apprentice electrician who completed Year 12 gets 55%, 65%, 70% and 82% of the qualified rate: about {formatAUD(APPRENTICE_ELECTRICIAN[0].hourly * 1976)} a year in Year 1, rising to {formatAUD(APPRENTICE_ELECTRICIAN[3].hourly * 1976)} in Year 4 at the award minimum. Adult apprentices receive higher minimum rates.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What are the overtime rates in construction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under the Building and Construction General On-site Award, overtime is time-and-a-half for the first 2 hours and double time thereafter on weekdays. Saturday is time-and-a-half for the first 2 hours then double time. Sunday is double time for all hours. Public holidays are double time and a half (2.5x).</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="site-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a site allowance?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A site allowance is a daily payment made to construction workers to compensate for the conditions of working on a construction site, including noise, dust, and lack of permanent amenities. Under the Building and Construction General On-site Award the industry allowance is {formatAUD(INDUSTRY_ALLOWANCE.general, 2)} a week in general building and civil construction ({formatAUD(INDUSTRY_ALLOWANCE.residential, 2)} in residential building), paid for all purposes; enterprise agreement site allowances on major projects are often much higher.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tool-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is the tool allowance taxable?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, the tool allowance is assessable income and included in your gross earnings for tax purposes. However, you can claim a deduction for the cost of tools you purchase for work. If individual tools cost less than $300, you can claim an immediate deduction. Tools costing more than $300 must be depreciated over their effective life.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="highest-paid" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the highest-paid trade in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K–$120K. Electricians working in mining or oil and gas can earn $130K–$170K+. Crane operators, while not a traditional trade, can earn $100K–$150K+ on major construction projects due to their specialised skills and the high demand for certified operators.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={CONSTRUCTION_TRADES_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

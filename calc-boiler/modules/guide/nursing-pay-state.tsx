@@ -509,10 +509,12 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
                   );
                 })}
               </div>
-              <p className="text-sm text-warmgray-light">
-                Not yet published: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read,
-                and we would rather publish nothing than a guess.
-              </p>
+              {NURSING_PAY_STATES_NOT_BUILT.length > 0 && (
+                <p className="text-sm text-warmgray-light">
+                  Not yet published: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read,
+                  and we would rather publish nothing than a guess.
+                </p>
+              )}
             </section>
 
             {/* ── FAQs ── */}

@@ -11,6 +11,8 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { QLD_FAQS } from "./pay-calculator-qld-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -158,27 +160,9 @@ export default function PayCalculatorQLDPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in Queensland compared to other states?">
-              No. Income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy, and HECS-HELP repayment rates are identical in Queensland, New South Wales, Victoria, and every other state and territory.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average Queensland salary?">
-              Full-time adults in Queensland earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). Including overtime the figure rises to {formatAUD(PROFILE.awote.personsFullTimeTotal, 2)} a week. The worked example above shows the net result.
-            </FAQItem>
-            <FAQItem value="ekka" question="Is the Ekka a public holiday for the whole of Queensland?">
-              No. The Royal Queensland Show public holiday on Wednesday 12 August 2026 applies to the Brisbane area only. Other parts of Queensland hold their own local show holidays on different dates, declared regionally.
-            </FAQItem>
-            <FAQItem value="christmaseve" question="Is Christmas Eve a public holiday in Queensland?">
-              Partly. Christmas Eve is a part-day public holiday in Queensland from 6 pm to midnight. Hours worked before 6 pm are ordinary hours; hours after it attract public holiday entitlements. Queensland&apos;s 6 pm start is an hour earlier than South Australia&apos;s and the Northern Territory&apos;s.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in Queensland?">
-              After 10 years of continuous service you can take 8.6667 weeks of paid leave, rising to 13 weeks at 15 years. Between 7 and 10 years a proportionate payment is owed only in defined circumstances; at 10 years the payment on termination becomes automatic.
-            </FAQItem>
-            <FAQItem value="employee" question="Do employees pay for WorkCover in QLD?">
-              No. WorkCover Queensland insurance premiums are an employer-only expense. They do not reduce your gross salary and do not affect your take-home pay or net pay after tax.
-            </FAQItem>
-            <FAQItem value="mentalhealth" question="Does the Queensland mental health levy come out of my wages?">
-              No. The mental health levy is charged to employers with Australian wages above $10 million, on top of payroll tax. It is not deducted from employee pay and does not appear on a payslip.
-            </FAQItem>
+            {QLD_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

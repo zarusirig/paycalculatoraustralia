@@ -1,8 +1,7 @@
 // =============================================================================
 // Public service pay scales — registry.
 //
-// Adding a jurisdiction later (TAS, ACT, NT) is two steps and no
-// refactor: write lib/data/public-service-pay/<slug>.ts exporting a
+// Adding a jurisdiction is two steps and no refactor: write lib/data/public-service-pay/<slug>.ts exporting a
 // `Jurisdiction`, register it in JURISDICTIONS below, and delete its entry from
 // PLANNED_JURISDICTIONS. generateStaticParams, the hub, the spoke, the lookup
 // and the tests all read from these two lists.
@@ -14,6 +13,10 @@ import { QLD } from "./qld";
 import { SA } from "./sa";
 import { VIC } from "./vic";
 import { WA } from "./wa";
+// H2 (24 Sep 2026): Tasmania, ACT and NT built.
+import { TAS } from "./tas";
+import { ACT } from "./act";
+import { NT } from "./nt";
 import {
   normaliseCode,
   type ClassificationBand,
@@ -27,36 +30,17 @@ import {
 export * from "./types";
 
 /** Jurisdictions with verified data. Order is the order they render in. */
-export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD, NSW, WA, SA];
+export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD, NSW, WA, SA, TAS, ACT, NT];
 
 /** The slugs `generateStaticParams` builds. Nothing else resolves. */
 export const JURISDICTION_SLUGS: readonly JurisdictionSlug[] = JURISDICTIONS.map((j) => j.slug);
 
 /**
- * Services this cluster does not cover yet. They are listed on the hub so the
- * page says what it does not know, rather than implying the six are missing
- * because they do not exist. No figures, and no link unless the URL was checked.
+ * Services this cluster does not cover yet, listed on the hub so the page says
+ * what it does not know. Empty since H2 (24 Sep 2026) added TAS, ACT and NT;
+ * kept so the hub and tests need no change if a service is ever withdrawn.
  */
-export const PLANNED_JURISDICTIONS: readonly PlannedJurisdiction[] = [
-  {
-    slug: "tas",
-    name: "Tasmanian State Service",
-    shortName: "TAS",
-    authority: "Tasmanian State Service Commissioner and the Tasmanian State Service Award",
-  },
-  {
-    slug: "act",
-    name: "ACT Public Service",
-    shortName: "ACT",
-    authority: "ACT Chief Minister, Treasury and Economic Development Directorate enterprise agreements",
-  },
-  {
-    slug: "nt",
-    name: "NT Public Sector",
-    shortName: "NT",
-    authority: "NT Office of the Commissioner for Public Employment enterprise agreements",
-  },
-];
+export const PLANNED_JURISDICTIONS: readonly PlannedJurisdiction[] = [];
 
 /** Look up a built jurisdiction. Returns undefined for planned ones. */
 export function getJurisdiction(slug: string): Jurisdiction | undefined {
@@ -241,11 +225,11 @@ export const PUBLIC_SERVICE_PAY_FAQS: readonly PayFaq[] = [
   },
   {
     q: "How often do public service pay rates change?",
-    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides (4.75% from 1 September 2026); NSW Crown Employees rates moved 3% from the first full pay period on or after 1 July 2026; WA rates moved on 13 June 2026; and South Australian salaried rates moved from the first full pay period on or after 1 July 2026. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
+    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides (4.75% from 1 September 2026); NSW Crown Employees rates moved 3% from the first full pay period on or after 1 July 2026; WA rates moved on 13 June 2026; South Australian salaried rates moved from the first full pay period on or after 1 July 2026; Tasmanian State Service rates move from the first full pay period on or after 1 December (2025 and 2026, then 1 September 2027); Northern Territory rates moved 3% on 13 August 2026; and ACT rates last moved on 4 December 2025, with no rise scheduled until a replacement agreement is made. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
   },
   {
     q: "Do public servants get more superannuation?",
-    a: "It depends on the service, and the difference is worth real money. The median employer superannuation contribution in the APS was 15.4% of base salary at every classification in 2025, and the Queensland Government contributes 12.75% for employees under 75. The Victorian Public Service agreement sets no above-guarantee rate, so the Superannuation Guarantee applies.",
+    a: "It depends on the service, and the difference is worth real money. The median employer superannuation contribution in the APS was 15.4% of base salary at every classification in 2025, and the Queensland Government contributes 12.75% for employees under 75. The ACT Public Service pays 12.5% from 1 January 2026, plus 1% more if you contribute 3% yourself. The Victorian Public Service and Northern Territory agreements set no above-guarantee rate, so the Superannuation Guarantee applies.",
   },
   {
     q: "Why does the same classification pay different amounts at different agencies?",

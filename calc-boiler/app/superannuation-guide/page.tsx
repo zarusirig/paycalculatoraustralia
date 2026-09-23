@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import SuperannuationGuidePage from "@/modules/guide/superannuation-guide";
+import { faqPageSchema } from "@/lib/faq";
+import { SUPERANNUATION_GUIDE_FAQS } from "@/modules/guide/superannuation-guide-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, formatAUD } from "@/lib/constants";
+import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
@@ -50,15 +52,7 @@ const article: WithContext<Article> = {
   isBasedOn: { "@type": "Legislation", name: "Superannuation Guarantee (Administration) Act 1992", url: "https://www.legislation.gov.au/Details/C2024C00199" },
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: `What is the Super Guarantee rate for ${SITE_CONFIG.financialYear}?`, acceptedAnswer: { "@type": "Answer", text: `The Superannuation Guarantee (SG) rate is 12%, unchanged since ${SUPER_GUARANTEE.effectiveDate}. Since Payday Super began on ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay it on each employee's qualifying earnings every payday, and the contribution must reach the fund within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days.` } },
-    { "@type": "Question", name: "Does superannuation come out of my salary?", acceptedAnswer: { "@type": "Answer", text: "It depends on how your contract is written. If you are offered a 'Base Salary + Super' package, your employer pays the 12% on top of your base pay. If you have a 'Total Remuneration Package' (TRP), the 12% super is deducted from that total figure to determine your taxable base salary." } },
-    { "@type": "Question", name: "Can I choose my own super fund?", acceptedAnswer: { "@type": "Answer", text: "Yes, most Australian employees have the right to choose their own superannuation fund. If you don't nominate one, your employer will pay into their default fund or check with the ATO for your 'stapled' fund." } },
-  ]
-};
+const faq = faqPageSchema(SUPERANNUATION_GUIDE_FAQS);
 
 export default function Page() {
   return (

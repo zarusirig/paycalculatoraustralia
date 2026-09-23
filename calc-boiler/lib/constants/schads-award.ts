@@ -277,3 +277,53 @@ export const SCHADS_UNVERIFIED = [
   "Queensland non-constitutional corporation transitional arrangements",
   "Crisis Accommodation and Family Day Care streams",
 ] as const;
+
+// --- G6: Schedule E (home care — disability care) interim increase, 1 Dec 2026 ---
+/**
+ * Determination PR814259 (Expert Panel, 11 September 2026, AM2024/21), issued
+ * with decision [2026] FWCFB 232 in the gender-based undervaluation priority
+ * awards review. Read in full on 24 September 2026. It replaces the clause
+ * 17.1(a)–(e) weekly tables for "Home care employee level N—disability care"
+ * and "comes into operation on 1 December 2026" — for each employee from the
+ * first full pay period starting on or after that date (s 166(5)).
+ *
+ * The decision ([9], [3] quoting FWCFB 137 [167]–[169]): an initial 15% rise,
+ * deferred from 1 October 2026 to 1 December 2026 because the Commonwealth had
+ * made no funding commitment; E.4.2 and E.5.2 get 14.96% and 13.31% because
+ * that is their whole remaining increase. The rest of the increase (1.97% to
+ * 6.97%, median 3.7%) comes with the new classification structure from
+ * 1 October 2027. FWO page "Changes to the SCHADS Award" (published
+ * 21 September 2026) says "an initial increase of up to 15%".
+ *
+ * Weekly rates only, as the determination prints them. Classification labels
+ * match SCHADS_HOME_CARE_DISABILITY_RAW so rows pair up by name.
+ */
+export const SCHADS_HOME_CARE_DISABILITY_DEC_2026: readonly { classification: string; weekly: number }[] = [
+  { classification: "Level 1 pay point 1", weekly: 1192.3 },
+  { classification: "Level 2 pay point 1", weekly: 1261.1 },
+  { classification: "Level 2 pay point 2", weekly: 1269.7 },
+  { classification: "Level 3 pay point 1", weekly: 1287.0 },
+  { classification: "Level 3 pay point 2", weekly: 1326.8 },
+  { classification: "Level 4 pay point 1", weekly: 1404.2 },
+  { classification: "Level 4 pay point 2", weekly: 1431.7 },
+  { classification: "Level 5 pay point 1", weekly: 1505.6 },
+  { classification: "Level 5 pay point 2", weekly: 1541.9 },
+];
+
+export const SCHADS_SCHEDULE_E_INCREASE = {
+  determination: "PR814259",
+  decision: "[2026] FWCFB 232",
+  decidedOn: "11 September 2026",
+  operativeFrom: "1 December 2026",
+  deferredFrom: "1 October 2026",
+  interimIncrease: 0.15,
+  exceptions: { "Level 4 pay point 2": 0.1496, "Level 5 pay point 2": 0.1331 },
+  remainderFrom: "1 October 2027",
+  remainderRange: "1.97% to 6.97% (median 3.7%)",
+  determinationUrl: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814259.pdf",
+  decisionUrl: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb232.pdf",
+  fwoUrl:
+    "https://www.fairwork.gov.au/about-us/workplace-laws/award-changes/major-award-changes/gender-undervaluation-priority-awards-review/changes-to-the-social-community-home-care-and-disability-services-award",
+  reviewUrl: "https://www.fwc.gov.au/hearings-decisions/major-cases/gender-based-undervaluation-priority-awards-review",
+} as const;
+// --- end G6 ---

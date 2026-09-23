@@ -22,10 +22,7 @@ interface PageProps {
   params: Promise<{ state: string }>;
 }
 
-/**
- * Six spokes today. ACT and NT are typed but not registered, so adding them is
- * a data file plus one registry line — this function needs no change.
- */
+/** All eight states and territories (ACT and NT added in H2, 24 Sep 2026). */
 export async function generateStaticParams() {
   return NURSING_PAY_STATES.map((state) => ({ state }));
 }

@@ -2,27 +2,13 @@ import ContractorPayCalculator from "@/modules/calculator/contractor-pay-calcula
 import { JsonLd } from "@/modules/seo/json-ld";
 import type {
   BreadcrumbList,
-  FAQPage,
   WebApplication,
   WithContext,
 } from "schema-dts";
-import {
-  calculateIncomeTax,
-  calculateLITO,
-  calculateMedicareLevy,
-  formatAUD,
-  formatPercent,
-  SITE_CONFIG,
-  SUPER_GUARANTEE,
-} from "@/lib/constants";
-import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+import { faqPageSchema } from "@/lib/faq";
+import { CONTRACTOR_PAY_FAQS } from "@/modules/calculator/contractor-pay-calculator-faqs";
+import { SITE_CONFIG } from "@/lib/constants";
 
-// FAQ figures derived so the JSON-LD matches the on-page table and rolls over.
-const DAY_GROSS = 1_000 * 5 * 48;
-const DAY_NET =
-  DAY_GROSS -
-  Math.max(0, Math.round(calculateIncomeTax(DAY_GROSS, true) - calculateLITO(DAY_GROSS))) -
-  calculateMedicareLevy(DAY_GROSS);
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
 import { pageDateModified } from "@/lib/page-dates";
@@ -91,68 +77,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
   ],
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much do I take home as a contractor in Australia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `A contractor charging $1,000 per day grosses ${formatAUD(DAY_GROSS)} over 48 working weeks and takes home roughly ${formatAUD(Math.round(DAY_NET / 1_000) * 1_000)} after income tax and the 2% Medicare levy (FY${SITE_CONFIG.financialYear}). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee for yourself. ABN contractors typically need to charge 30-40% more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is a contractor for tax purposes?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "A contractor (independent contractor or ABN worker) operates their own business and invoices clients for work. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine contractor status.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What's the difference between ABN and PAYG income tax?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `ABN contractors and PAYG employees pay the same marginal income tax brackets (${bracketRateList()}) plus the 2% Medicare levy in FY${SITE_CONFIG.financialYear}. The difference is in how it's collected: PAYG employees have tax withheld every pay cycle by their employer, while ABN contractors invoice gross and pay tax through quarterly PAYG instalments or at year-end. Contractors also handle GST (10%) once turnover exceeds $75,000.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I need to charge GST as a contractor?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "If your ABN business income exceeds $75,000 per year, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO quarterly. Below $75,000, GST registration is optional.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do contractors need to pay super?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "For independent contractors under their own ABN, super is optional but recommended. However, if a business hires you primarily for your labour, they may be required to pay super on your behalf at the current rate of 12%.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How do I calculate my contractor hourly rate?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Your contractor rate should cover lost employee benefits: super (12%), annual leave (4 weeks), sick leave, public holidays, insurance, and admin time. A common rule of thumb: multiply an equivalent employee hourly rate by 1.4-1.6.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can contractors claim business deductions?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Contractors can deduct legitimate business expenses including equipment, home office, vehicle, phone, software, professional development, and insurance. This reduces your taxable income and the tax you owe.",
-      },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(CONTRACTOR_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Contractor Pay Calculator",

@@ -3,7 +3,9 @@ import type { Metadata } from 'next';
 import { TaxOnSalary } from '@/modules/programmatic/tax-on-salary';
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
@@ -54,7 +56,6 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
   const totalRate = ((totalTax / salaryAmount) * 100).toFixed(1);
-  const marginalRate = (breakdown.marginalTaxRate * 100).toFixed(1);
 
   const BASE = SITE_CONFIG.baseUrl;
   const URL = `${BASE}/tax-on/${resolvedParams.salary}/`;
@@ -85,28 +86,7 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
     ]
   };
 
-  const faq: WithContext<FAQPage> = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `How much tax do I pay on ${formattedSalary}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `On ${formattedSalary} in ${SITE_CONFIG.financialYear}, you pay ${formatAUD(breakdown.netIncomeTax)} in income tax plus ${formatAUD(breakdown.medicareLevy)} in Medicare levy, ${formatAUD(totalTax)} in total (${totalRate}% of salary). Your take-home pay is ${formatAUD(breakdown.takeHomePay)} per year or ${formatAUD(breakdown.weekly)} per week.`
-        }
-      },
-      {
-        "@type": "Question",
-        name: `What is my marginal tax rate on ${formattedSalary}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Your marginal tax rate on ${formattedSalary} is ${marginalRate}%. This means each additional dollar you earn is taxed at ${marginalRate}c.`
-        }
-      }
-    ]
-  };
+  const faq = faqPageSchema(taxOnSalaryFaqs(salaryAmount));
 
   return (
     <>

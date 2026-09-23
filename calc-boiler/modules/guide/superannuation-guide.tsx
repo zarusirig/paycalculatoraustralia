@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SUPERANNUATION_GUIDE_FAQS } from "./superannuation-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -660,80 +661,7 @@ export default function SuperannuationGuidePage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="rate" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the Super Guarantee rate for FY{SITE_CONFIG.financialYear}?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The Superannuation Guarantee rate is <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong>, unchanged since {SUPER_GUARANTEE.effectiveDate}. This is the legislated peak rate after annual 0.5% increases since FY2021-22. Since {SUPER_GUARANTEE.paydaySuperStart}, employers must pay {formatPercent(SUPER_GUARANTEE.rate, 0)} of an employee&apos;s qualifying earnings into their fund every payday, received within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="salary-deduction" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does superannuation come out of my salary?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It depends on your contract structure. A &quot;Base Salary + Super&quot; contract means the employer pays 12% <strong>on top</strong> of your base pay, with no reduction to your salary. A &quot;Total Remuneration Package&quot; (TRP) contract includes super within the total figure &mdash; so 12% is deducted from the package to determine your base salary. On a $100,000 TRP, your base salary is approximately <strong>$89,286</strong> and super is <strong>$10,714</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="choice" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I choose my own super fund?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Most Australian employees have the legal right to choose their own superannuation fund by completing a Standard Choice Form. If you do not nominate a fund, your employer checks the ATO for your existing &quot;stapled fund.&quot; If no stapled fund exists, the employer opens an account in their default MySuper fund.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="exceed-cap" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I exceed the concessional cap?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Excess concessional contributions above {formatAUD(SUPER_GUARANTEE.concessionalCap)} are added to your assessable income and taxed at your marginal rate (instead of the 15% super rate). You receive a credit for the 15% tax already paid inside the fund. You can elect to withdraw up to 85% of the excess from your super fund to cover the additional tax bill.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="when-access" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When can I access my super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    You can access your super when you reach your <strong>preservation age</strong> (between 55 and 60, depending on date of birth) and have permanently retired, or when you turn <strong>65</strong> regardless of employment status. Early access is available only for severe financial hardship, terminal medical conditions, permanent incapacity, compassionate grounds, or under the First Home Super Saver Scheme (FHSSS) for up to $50,000.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="div293" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is Division 293 tax on super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Division 293 imposes an additional <strong>{formatPercent(DIVISION_293.rate, 0)} tax</strong> on concessional super contributions for individuals whose income plus concessional contributions exceed <strong>{formatAUD(DIVISION_293.threshold)}</strong>. The total tax on super contributions for affected individuals is 30% (15% standard contributions tax + 15% Division 293). You can choose to pay the Division 293 assessment from your super fund or from personal funds.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="unpaid-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What do I do if my employer is not paying my super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    First, check your payslips and myGov ATO portal to confirm contributions are missing. Raise the issue with your employer directly. If the employer does not resolve the shortfall, lodge an &quot;Unpaid super enquiry&quot; through the ATO website or by calling <strong>13 10 20</strong>. The ATO can audit the employer, impose the Superannuation Guarantee Charge (SGC), and direct payment including interest. You can lodge the complaint anonymously.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lost-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I find lost super accounts?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Log in to <strong>myGov</strong> and link the ATO service. Navigate to the &quot;Super&quot; section, where the ATO displays all known accounts including lost and unclaimed super. You can consolidate multiple accounts into a single fund directly through the myGov portal at no cost.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="contractor-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors get superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Contractors hired wholly or principally for their labour are treated as employees for super purposes and <strong>are entitled to the 12% SG</strong>, even if they invoice with an ABN. Independent contractors who control how, when, and where work is performed and supply their own tools are generally not entitled to employer super. The distinction depends on the substance of the arrangement, not the label on the contract.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-on-bonus" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is super paid on bonuses?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Usually, yes. The ATO lists performance, Christmas, sign-on and referral bonuses as part of qualifying earnings, so they attract SG. The exception is a bonus paid solely for work performed entirely outside ordinary hours (for example, one tied only to overtime), which is <strong>excluded</strong>. The classification depends on what the bonus is paid for, not its label.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-salary-sacrifice-vs-personal" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is salary sacrifice into super better than personal contributions?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Both methods receive the same 15% concessional tax rate inside super, and both count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. Salary sacrifice reduces your assessable income <strong>before PAYG withholding</strong>, giving you the tax benefit in every pay cycle. Personal deductible contributions require you to wait until you lodge your tax return to claim the deduction. Neither lowers your income for the Medicare levy surcharge: salary sacrificed amounts and personal deductible contributions are both reportable super contributions, which are added back when the MLS income test is applied.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="preservation-age" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is my preservation age?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Preservation age depends on your date of birth. Anyone born before 1 July 1960 has a preservation age of <strong>55</strong>. Born between 1 July 1960 and 30 June 1961: <strong>56</strong>. Between 1 July 1961 and 30 June 1962: <strong>57</strong>. Between 1 July 1962 and 30 June 1963: <strong>58</strong>. Between 1 July 1963 and 30 June 1964: <strong>59</strong>. Born on or after 1 July 1964: <strong>60</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SUPERANNUATION_GUIDE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

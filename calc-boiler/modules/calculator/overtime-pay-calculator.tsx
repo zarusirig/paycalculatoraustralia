@@ -4,7 +4,8 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { OVERTIME_PAY_FAQS } from "./overtime-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -460,40 +461,7 @@ export default function OvertimePayCalculatorPage() {
           {/* --- H2: Frequently Asked Questions --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="how-calculated" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How is overtime pay calculated?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Overtime pay is your base hourly rate multiplied by the penalty rate set in your Award or agreement. For example, time-and-a-half on a $30/hr base rate = $45/hr. The first 2-3 overtime hours are typically at 1.5×, and hours beyond that at 2.0×.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="when-overtime" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>When does overtime start?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">For most full-time employees, overtime begins after 38 hours per week (or 7.6 hours per day). Part-time employees may earn overtime after exceeding their agreed hours. The exact threshold depends on your Award or enterprise agreement.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="casual-overtime" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do casual workers get overtime?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Casual employees are entitled to overtime rates when they exceed 38 hours per week. The overtime multiplier applies to the base rate (not the casual-loaded rate). However, weekend and public holiday penalties for casuals are usually higher than for permanent staff to compensate for the lack of leave.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="refuse-overtime" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I refuse to work overtime?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Under the National Employment Standards, an employer can request &quot;reasonable overtime.&quot; You can refuse if it is unreasonable — factors include your personal circumstances, the notice given, your role, and health and safety risks. The Fair Work Ombudsman provides guidance on what constitutes reasonable overtime.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="overtime-super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is superannuation paid on overtime hours?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee does not apply to overtime hours under the ATO&apos;s definition of &quot;Ordinary Time Earnings.&quot; Overtime pay falls outside OTE. Some enterprise agreements override this and include overtime in the super calculation base, so check your employment contract.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="overtime-tax-bracket" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does overtime push me into a higher tax bracket?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from $45,000 to above $45,001), the portion above the threshold is taxed at the higher marginal rate of <strong>{pct(TAX_BRACKETS[2].rate)}</strong> instead of <strong>{pct(TAX_BRACKETS[1].rate)}</strong>. Only the portion above the threshold is taxed at the higher rate — not your entire income.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="toil" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I take time off instead of overtime pay?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">&quot;Time Off In Lieu&quot; (TOIL) allows employees to take paid time off instead of receiving overtime pay, provided the arrangement is agreed in writing. Under most Modern Awards, TOIL must be taken at the overtime rate — 1 hour of overtime at 1.5x entitles you to <strong>1.5 hours</strong> of paid time off. The employee must genuinely agree; an employer cannot unilaterally substitute TOIL for overtime payment.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="max-overtime" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is there a maximum number of overtime hours per week?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The National Employment Standards do not set a hard cap on overtime hours. However, an employer can only request &quot;reasonable&quot; additional hours. The Fair Work Act 2009 considers hours unreasonable if they pose a risk to health and safety, conflict with family responsibilities, or exceed the norms for the industry. An employee working regular overtime beyond 10 additional hours per week typically has grounds to refuse further requests.</p></AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={OVERTIME_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

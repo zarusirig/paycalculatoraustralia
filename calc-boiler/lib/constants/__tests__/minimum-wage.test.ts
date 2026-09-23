@@ -218,3 +218,14 @@ test("using all 10 sick days and leave loading raises the break-even", () => {
   assert.equal(r.casualAnnual, 1_425 * 46);
   assert.ok(r.breakEvenLoading > 0.13 && r.breakEvenLoading < 0.15);
 });
+
+// --- G6: Queensland State Wage Case 2026 ---
+import { QLD_STATE_WAGE_CASE_2026 } from "../minimum-wage";
+import { EMPLOYMENT as EMPLOYMENT_G6 } from "../australian-tax";
+
+test("G6: QIRC 2026 matched the federal outcome — 4.75% and a $1,004.90 minimum", () => {
+  assert.equal(QLD_STATE_WAGE_CASE_2026.qmwWeekly, EMPLOYMENT_G6.minimumWageWeekly);
+  assert.equal(QLD_STATE_WAGE_CASE_2026.increase, 0.0475);
+  assert.ok(QLD_STATE_WAGE_CASE_2026.qldPublicSector < QLD_STATE_WAGE_CASE_2026.qldSystemWorkers);
+});
+// --- end G6 ---

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { MINING_FIFO_FAQS } from "./mining-fifo-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -170,32 +171,7 @@ export default function MiningFIFOPayGuidePage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="fifo-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do FIFO miners earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">FIFO mining salaries typically range from $100,000 to $200,000+ depending on role, experience, and roster type. Entry-level labourers start around $80,000–$110,000, while experienced drillers, electricians, and site managers can earn $160,000–$220,000. The Pilbara in WA and the Bowen Basin in QLD offer the highest pay.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="zone-offset" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can FIFO workers claim the zone tax offset?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Generally no. Since 2015, FIFO workers who maintain their usual place of residence outside the remote zone are not eligible for the zone tax offset. The offset requires the zone to be your &quot;usual place of residence.&quot; Only workers who genuinely relocate to a remote town can claim it.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lafha" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is LAFHA tax-free for FIFO workers?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">LAFHA can be tax-free if specific conditions are met: the worker must maintain a home at a different location, and the allowance must be paid under a structured arrangement. The tax-free component covers the additional food and accommodation costs incurred while living away from home for work. Check with your employer&apos;s payroll team for your specific arrangement.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="best-roster" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the best FIFO roster for earning?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The 2 weeks on / 1 week off (2/1) roster maximises earning potential because you work approximately 243 days per year. However, 8/6 and 4/3 rosters offer better work-life balance. The highest-paying rosters are typically those with longer swings (3/1 or 4/1), though these are less common and can impact wellbeing.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="deductions" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can FIFO workers claim travel to the airport as a deduction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Generally no. The ATO treats travel from home to the airport as ordinary commuting, which is not deductible. However, if you carry bulky tools or equipment that cannot be stored at the workplace, you may be able to claim vehicle expenses for the home-to-airport portion of the journey.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How does overtime work in mining?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Mining overtime depends on your employment agreement. Under the Mining Industry Award, overtime is generally paid at time-and-a-half for the first 2 hours and double time after that. Many mining enterprise agreements offer annualised salaries that include overtime, while others pay hourly rates with overtime loading for hours beyond 7.6 per day or 38 per week.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={MINING_FIFO_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
