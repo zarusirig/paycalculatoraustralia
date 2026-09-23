@@ -253,6 +253,9 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
           { href: "/healthcare-worker-pay/", label: "Nurse & healthcare pay" },
           { href: "/adf-pay-scales/", label: "ADF pay scales" },
+          { href: "/paramedic-pay/", label: "Paramedics" },
+          { href: "/police-pay/", label: "Police" },
+          { href: "/firefighter-pay/", label: "Firefighters" },
         ],
       },
       {
@@ -741,6 +744,11 @@ export const GUIDE_CATEGORIES = [
       // --- C2 occupation pay rates + C5 ADF pay scales (2026-09-23) ---
       { href: "/job-pay-rates/", label: "Pay Rates by Job", description: "Pharmacist, electrician, truck driver & more" },
       { href: "/adf-pay-scales/", label: "ADF Pay Scales", description: "Army, Navy & Air Force salary by rank" },
+      { href: "/paramedic-pay/", label: "Paramedic Pay by State", description: "Ambulance service pay scales" },
+      { href: "/police-pay/", label: "Police Pay by State", description: "Constable to senior sergeant" },
+      { href: "/firefighter-pay/", label: "Firefighter Pay by State", description: "Recruit to station officer" },
+      { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary", description: "Airservices pay levels" },
+      { href: "/pilot-salary/", label: "Pilot Salary", description: "Air Pilots Award rates" },
       // --- end C2/C5 ---
       { href: "/retail-hospitality-pay-guide/", label: "Retail & Hospitality", description: "Award rates & penalties" },
       { href: "/tech-salary-guide-australia/", label: "IT & Tech Salaries", description: "Developer, engineer & PM pay" },
