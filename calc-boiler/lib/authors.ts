@@ -291,6 +291,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tax-return-2026": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "pension-age-australia": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end W1 ---
+
+  // --- T2 payroll tax cluster (23 Sep 2026): "payroll-tax" covers the hub and all 8 state pages ---
+  "payroll-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "payroll-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end T2 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

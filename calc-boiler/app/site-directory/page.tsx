@@ -22,6 +22,9 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
 import { ADF_SERVICE_LIST } from "@/lib/data/adf-pay";
+// --- T2 payroll tax cluster (23 Sep 2026) ---
+import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+// --- end T2 ---
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
@@ -150,6 +153,19 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end C2/C5 ---
+  // --- T2 payroll tax cluster (23 Sep 2026) ---
+  {
+    title: "Payroll Tax by State",
+    items: [
+      { href: "/payroll-tax/", label: "Payroll Tax Rates by State" },
+      { href: "/payroll-tax-calculator/", label: "Payroll Tax Calculator" },
+      ...PAYROLL_TAX_STATE_CODES.map((c) => ({
+        href: `/payroll-tax/${c}/`,
+        label: `${PAYROLL_TAX_STATES[c].abbr} Payroll Tax`,
+      })),
+    ],
+  },
+  // --- end T2 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

@@ -13,6 +13,9 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
 import { ADF_SERVICE_SLUGS } from "@/lib/data/adf-pay/types";
+// --- T2 payroll tax cluster (23 Sep 2026) ---
+import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
+// --- end T2 ---
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -311,6 +314,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T2 payroll tax cluster (23 Sep 2026): calculator, hub, 8 state pages ---
+  allPages.push({ slug: "payroll-tax-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "payroll-tax", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const state of PAYROLL_TAX_STATE_CODES) {
+    allPages.push({ slug: `payroll-tax/${state}`, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end T2 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
