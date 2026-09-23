@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BackpayCalculatorPage from "@/modules/calculator/backpay-calculator";
+import { BACKPAY_FAQS } from "@/modules/calculator/backpay-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -56,28 +57,12 @@ const webAppSchema: WithContext<WebApplication> = {
 const faqSchema: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How far back can I claim backpay in Australia?",
-      acceptedAnswer: { "@type": "Answer", text: "Under the Fair Work Act, you can claim underpayments going back 6 years from the date you make a complaint. This applies to wages, overtime, penalty rates, allowances, and superannuation." },
-    },
-    {
-      "@type": "Question",
-      name: "Is backpay taxed differently to normal wages?",
-      acceptedAnswer: { "@type": "Answer", text: "Backpay received as a lump sum may be taxed at a higher rate under PAYG withholding (Schedule 5 — back payments). However, you can request the ATO to spread the amount over the financial years it relates to, potentially reducing your tax liability." },
-    },
-    {
-      "@type": "Question",
-      name: "Does my employer owe super on backpay?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. The 12% superannuation guarantee applies to all ordinary time earnings, including any underpayment. If you were underpaid wages, your employer also underpaid super contributions on that amount." },
-    },
-    {
-      "@type": "Question",
-      name: "How do I report underpayment to the Fair Work Ombudsman?",
-      acceptedAnswer: { "@type": "Answer", text: "You can lodge a complaint online at fairwork.gov.au or call 13 13 94. The Fair Work Ombudsman can investigate, mediate, and in serious cases take legal action against employers who underpay workers." },
-    },
-  ],
+  // Same array as the on-page accordion, so the two cannot drift.
+  mainEntity: BACKPAY_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 const howToSchema = calculatorHowTo({
