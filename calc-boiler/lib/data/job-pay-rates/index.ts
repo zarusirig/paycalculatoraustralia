@@ -31,6 +31,7 @@ import { RADIOGRAPHER } from "./radiographer";
 import { SONOGRAPHER } from "./sonographer";
 import { SPEECH_PATHOLOGIST } from "./speech-pathologist";
 import { VETERINARIAN } from "./veterinarian";
+import { ARCHITECT } from "./architect";
 import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
@@ -113,6 +114,7 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   podiatrist: PODIATRIST,
   dietitian: DIETITIAN,
   veterinarian: VETERINARIAN,
+  architect: ARCHITECT,
 };
 
 /** Every occupation, in the order the hub lists them. */

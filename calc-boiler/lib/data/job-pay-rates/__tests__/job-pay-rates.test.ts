@@ -596,6 +596,14 @@ test("G3: vet rates follow the cl 15.3 NOTE chain (annual ÷ 52 to 10c, ÷ 38) a
   assert.deepEqual([h.label, h.hourly, h.weekly], ["Level 1A", 34.2, 1299.7]);
 });
 
+test("G3: architect weekly = annual x 6/313 to 10c, as cl 13.1 prints it, and casuals match Schedule B.2", () => {
+  const rows = getOccupation("architect")!.tables[0].rows;
+  for (const r of rows) assert.equal(cents(r.weekly), cents(Math.round(((r.annual! * 6) / 313) * 10) / 10), r.label);
+  assert.deepEqual(rows.map((r) => r.casualHourly), [43.0, 45.28, 47.55, 49.71, 49.71, 51.25, 52.79]);
+  const h = headlineRow(getOccupation("architect")!)!;
+  assert.deepEqual([h.label, h.annual, h.hourly], ["Level 2(b) Registered Architect — Entry", 78_838, 39.77]);
+});
+
 test("G3: podiatrist carries no median (JSA publishes N/A); the others carry JSA medians", () => {
   assert.equal(getOccupation("podiatrist")!.median, null);
   assert.equal(getOccupation("radiographer")!.median!.medianWeekly, 2_360);

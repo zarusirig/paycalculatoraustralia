@@ -70,6 +70,7 @@ export const OCCUPATION_SLUGS = [
   "podiatrist",
   "dietitian",
   "veterinarian",
+  "architect",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
