@@ -160,6 +160,9 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/centrelink-income-test/", label: "Income test explained" },
           { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
           { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
+          // H3 Centrelink wave 3 (added 2026-09-24)
+          { href: "/age-pension-assets-test-calculator/", label: "Age Pension assets test" },
+          // end H3
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
           { href: "/parenting-payment-calculator/", label: "Parenting Payment" },
@@ -603,6 +606,9 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/carer-allowance/", label: "Carer Allowance", description: "Fortnightly rate and the $250,000 income limit" },
       { href: "/centrelink-advance-payment/", label: "Centrelink Advance Payment", description: "Advance amounts and fortnightly repayment" },
       // end W3
+      // H3 Centrelink wave 3 (added 2026-09-24)
+      { href: "/age-pension-assets-test-calculator/", label: "Age Pension Assets Test Calculator", description: "Assets limits, the taper and which test applies" },
+      // end H3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
