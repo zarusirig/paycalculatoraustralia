@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-history-australia/`;
@@ -14,13 +15,13 @@ const URL = `${BASE}/minimum-wage-history-australia/`;
 // /minimum-wage-australia/, so the title leads with "History" and the year
 // range rather than today's dollar figure.
 const TITLE = `Minimum Wage History Australia: Every Increase ${HISTORY_FIRST.fy.slice(0, 4)}–${HISTORY_LAST.fy.slice(0, 4)}`;
-const DESCRIPTION = `Year-by-year history of Australia's National Minimum Wage since ${HISTORY_FIRST.fy.slice(0, 4)}: hourly and weekly rates, every Annual Wage Review increase (largest ${HISTORY_LARGEST.published} in ${HISTORY_LARGEST.operativeFrom.slice(-4)}) and ${(TOTAL_GROWTH * 100).toFixed(0)}% total growth.`;
+const DESCRIPTION = `History of Australia's National Minimum Wage since ${HISTORY_FIRST.fy.slice(0, 4)}: hourly and weekly rates, every Annual Wage Review increase (largest ${HISTORY_LARGEST.published} in ${HISTORY_LARGEST.operativeFrom.slice(-4)}) and ${(TOTAL_GROWTH * 100).toFixed(0)}% total growth.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -46,6 +47,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("minimum-wage-history-australia"),
+  dateModified: pageDateModified("minimum-wage-history-australia"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

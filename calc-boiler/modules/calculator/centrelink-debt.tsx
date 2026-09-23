@@ -71,7 +71,7 @@ export default function CentrelinkDebtPage() {
           </W3Section>
 
           <W3Section title="Income Apportionment Resolution Scheme: How Much You Could Get">
-            <div className="grid md:grid-cols-2 gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
               <div className={TABLE_WRAP}>
                 <table className="w-full text-sm">
                   <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Debt value on {RESOLUTION_SCHEME.valuedAt}</th><th scope="col" className={TH + " text-right"}>Payment</th></tr></thead>
@@ -101,7 +101,7 @@ export default function CentrelinkDebtPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h3 style={FONT} className="text-lg font-semibold text-navy mb-4">JobSeeker Overpayment Illustration</h3>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                     <MoneyInput id="reported" label="Income you reported (fortnight)" value={reported} onChange={setReported} max={5_000} />
                     <MoneyInput id="actual" label="Gross pay you actually received" value={actual} onChange={setActual} max={5_000} />

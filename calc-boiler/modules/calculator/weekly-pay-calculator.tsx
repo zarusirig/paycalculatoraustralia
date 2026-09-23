@@ -2,9 +2,9 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -19,9 +19,9 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
-import { WEEKLY_FAQS, WEEKLY_WITHHOLDING_ROWS } from "@/modules/calculator/weekly-pay-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { WEEKLY_PAY_FAQS, WEEKLY_TAX_ANSWER, WEEKLY_WITHHOLDING_ROWS } from "./weekly-pay-calculator-faqs";
 
 // Worked-example figures, computed from the tax engine so the copy rolls over
 // with the constants (it had frozen at FY2025-26 16%-bracket numbers).
@@ -34,6 +34,10 @@ const MLS = MEDICARE_LEVY.surcharge;
 const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
 const PERIOD_PRESETS = [1_000, 1_500, 2_000, 2_500] as const;
 
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n));
+}
+
 // Google AU "related searches" for "weekly pay calculator" and "weekly pay
 // after tax calculator" (Sept 2026), each pointed at the page that answers it.
 const RELATED_SEARCHES: readonly RelatedSearch[] = [
@@ -44,10 +48,6 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
   { label: "Take home pay calculator", href: "/take-home-pay-calculator/" },
   { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
 ];
-
-function clamp(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n));
-}
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -95,7 +95,7 @@ export default function WeeklyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Weekly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["weekly", "annual"]} value={period} label="I'm entering my gross"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -108,7 +108,7 @@ export default function WeeklyPayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
                     {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
@@ -182,9 +182,7 @@ export default function WeeklyPayCalculatorPage() {
               if I earn $1500 a week?", "$750 a week" */}
           <section id="tax-each-week">
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Is Taken Out of My Weekly Pay?</h2>
-            <p className="text-warmgray mb-4">
-              {WEEKLY_FAQS.find((f) => f.q.startsWith("How much tax will I pay on $1,200"))!.a}
-            </p>
+            <p className="text-warmgray mb-4">{WEEKLY_TAX_ANSWER.a}</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
                 <caption className="sr-only">Tax withheld per week, FY{SITE_CONFIG.financialYear}, tax-free threshold claimed</caption>
@@ -390,17 +388,7 @@ export default function WeeklyPayCalculatorPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                The same array feeds the FAQPage JSON-LD in the route file. */}
-            <div className="sr-only">
-              <h3>Weekly pay questions and answers</h3>
-              {WEEKLY_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-            </div>
-            <Accordion type="multiple" className="space-y-3">
-              {WEEKLY_FAQS.map((f) => (
-                <FAQItem key={f.q} value={f.q} question={f.q}>{f.a}</FAQItem>
-              ))}
-            </Accordion>
+            <FaqAccordion faqs={WEEKLY_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -431,14 +419,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-navy"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

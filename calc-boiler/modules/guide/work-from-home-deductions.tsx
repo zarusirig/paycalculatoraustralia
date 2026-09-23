@@ -1,8 +1,6 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -23,6 +21,8 @@ const WFH_ROWS = [1, 2, 3, 4, 5].map((days) => {
 const SAVING_RATES = TAX_BRACKETS_2025_26.slice(1).map((b) => b.rate);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { WFH_FAQS } from "./work-from-home-deductions-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Working from home expenses", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses", publisher: SOURCES.ato.name },
@@ -180,44 +180,7 @@ export default function WorkFromHomeDeductionsPage() {
             {/* ───── SECTION 7: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="need-dedicated-office" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need a dedicated home office to claim WFH deductions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. You do not need a dedicated room or separate office space. Under the fixed rate method, you need only a workspace where you perform your work duties — this can be a kitchen table, spare room, or any area of your home. A dedicated office is only required if you want to claim occupancy expenses (rent, mortgage interest), which most employees cannot claim.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-track-hours" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I track my WFH hours?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Acceptable records include timesheets, rosters, time-tracking apps (Toggl, Clockify), employer-provided login/logout reports, or a personal diary. The record must cover the <strong>entire income year</strong>, not just a representative period. Digital records are accepted. The ATO recommends starting your record from 1 July.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="fixed-vs-actual" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I use the fixed rate or actual cost method?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The fixed rate method suits most employees — it is simpler and requires less record-keeping. The actual cost method may produce a larger deduction if you have high electricity costs (e.g., running air conditioning), an expensive internet plan with high work-use, or other significant running costs. Calculate both methods and choose the higher deduction.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="employer-provides" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim WFH if my employer provides a laptop?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Even if your employer provides a laptop and other equipment, you can still claim the fixed rate for running expenses (electricity, internet, phone, etc.). You cannot claim a deduction for the employer-provided equipment itself, but the running costs of working from home are still your expense.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="part-day" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim for part of a day worked from home?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. The fixed rate method is based on <strong>hours</strong>, not days. If you work from home for 4 hours in the morning and travel to the office in the afternoon, you claim 4 hours at {WFH_CENTS} cents ({formatAUD(4 * WFH_RATE, 2)}). Only count actual working hours — not lunch breaks, personal errands, or time between tasks.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="shared-household" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can both my partner and I claim WFH deductions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Each person claims separately based on their own hours worked from home. Under the fixed rate method, you each claim {WFH_CENTS} cents per hour for the hours you individually worked from home. Under the actual cost method, you would each apportion expenses based on your individual work use — you cannot both claim 100% of the same bill.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="furniture-claim" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim a new desk and chair?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Office furniture is claimed <strong>separately from the fixed rate</strong> — it is not included in the {WFH_CENTS}c/hr. Items costing $300 or less are an immediate deduction at the work-use percentage. Items over $300 are depreciated. A $500 office chair with 80% work use is depreciated at $40 per year (10-year effective life, 80% work use). Keep the purchase receipt.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={WFH_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Work from home deduction information is sourced from the Australian Taxation Office (ATO). The fixed rate is 70 cents per hour for FY2024-25 and FY2025-26 (67 cents for FY2022-23 and FY2023-24); the ATO has not yet published the FY2026-27 rate. Hours and savings calculations assume a 7.6-hour work day across 48 working weeks. Your individual circumstances, working hours, and marginal tax rate determine your actual savings.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

@@ -49,7 +49,7 @@ export default function TaxWithheldCalculator() {
           Enter your gross pay (before tax) for one pay period. Uses the ATO&rsquo;s withholding formulas for payments from 1 July 2026.
         </p>
 
-        <form onSubmit={(ev) => ev.preventDefault()} className="grid gap-5 sm:grid-cols-2">
+        <form onSubmit={(ev) => ev.preventDefault()} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <label htmlFor="tw-freq" className="block text-sm font-medium text-navy mb-1">How often are you paid?</label>
             <select

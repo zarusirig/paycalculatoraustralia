@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import WeeklyPayCalculatorPage from "@/modules/calculator/weekly-pay-calculator";
-import { WEEKLY_FAQS } from "@/modules/calculator/weekly-pay-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
+import { faqPageSchema } from "@/lib/faq";
+import { WEEKLY_PAY_FAQS } from "@/modules/calculator/weekly-pay-calculator-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/weekly-pay-calculator/`;
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: `Weekly take-home pay after tax — ${FY} rates.` },
 };
 
@@ -51,20 +53,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("weekly-pay-calculator"),
   inLanguage: "en-AU"
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: WEEKLY_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faq = faqPageSchema(WEEKLY_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Weekly Pay Calculator",

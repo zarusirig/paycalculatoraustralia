@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import PayRiseCalculatorPage from "@/modules/calculator/pay-rise-calculator";
-import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
+import { faqPageSchema } from "@/lib/faq";
+import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-calculator-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rise-calculator/`;
@@ -61,20 +63,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("pay-rise-calculator"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: PAY_RISE_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faq = faqPageSchema(PAY_RISE_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Pay Rise Calculator",

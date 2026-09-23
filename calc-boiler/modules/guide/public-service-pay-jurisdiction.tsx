@@ -1,4 +1,3 @@
-"use client";
 import { Fragment } from "react";
 import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";
@@ -482,11 +481,6 @@ export default function PublicServicePayJurisdictionPage({
             {/* FAQ */}
             <section id="faq">
               <h2 style={HEADING_FONT}>{jurisdiction.shortName} pay questions</h2>
-              {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                  jurisdictionFaqs() also feeds the FAQPage JSON-LD in the route. */}
-              <div className="sr-only">
-                {faqs.map((f) => (<div key={f.q}><h3>{f.q}</h3><p>{f.a}</p></div>))}
-              </div>
               <div className="not-prose">
                 <Accordion type="single" collapsible className="w-full">
                   {faqs.map((faq, index) => (

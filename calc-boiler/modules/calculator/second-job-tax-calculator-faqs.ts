@@ -17,11 +17,8 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { NO_TFN_RATES, PAY_PERIODS, SCALE_1_NO_TFT, withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import type { FaqItem } from "@/lib/faq";
 
-export interface SecondJobFaq {
-  q: string;
-  a: string;
-}
 
 const FY = SITE_CONFIG.financialYear;
 const FN = PAY_PERIODS.fortnightly;
@@ -65,7 +62,7 @@ export const BOTH_JOB = 20_000;
 export const BOTH_TFT_WITHHELD = annualWithholding(BOTH_JOB, "tft") * 2;
 export const BOTH_TFT_DEBT = taxOn(BOTH_JOB * 2) - BOTH_TFT_WITHHELD;
 
-export const SECOND_JOB_FAQS: readonly SecondJobFaq[] = [
+export const SECOND_JOB_FAQS: readonly FaqItem[] = [
   {
     q: "Why is my second job taxed more?",
     a: `It isn't taxed at a higher rate; more is withheld. You can claim the ${formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold from only one employer, so your second employer withholds from the first dollar using the 'no tax-free threshold' scale, which starts at ${NO_TFT_START_RATE} in ${FY}. At tax time the ATO works out tax on your combined income: too much withheld comes back as a refund, too little becomes a bill.`,

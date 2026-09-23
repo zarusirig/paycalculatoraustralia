@@ -1,8 +1,8 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { CENTRELINK_INCOME_TEST_FAQS } from "./centrelink-income-test-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -240,69 +240,7 @@ export default function CentrelinkIncomeTestPage() {
           {/* ── H2 11: FAQs ── */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-              <AccordionItem value="working-credit" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is Working Credit?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Working Credit lets you build up credits during fortnights when your income is low, then use them to offset income in higher-earning fortnights. Credits build in fortnights when your employment income is under $48, and Services Australia applies them before the income test in later, higher fortnights. Each credit reduces your assessable employment income by $1, which means you keep more of your Centrelink payment when you work extra hours. Credits accrue at 1 per dollar below your income free area and can be used at up to <strong>48 per fortnight</strong>.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="partner" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Does my partner&apos;s income affect my payment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. For partnered recipients, the income test considers <strong>combined household income</strong>. The free areas and taper rates differ for couples compared to singles. For Age Pension couples, the combined free area is <strong>$396 per fortnight</strong> with a 25-cent taper applied to each partner&apos;s share. For JobSeeker partnered recipients, your partner&apos;s income above their own free area reduces your payment at the standard taper rates.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="gross-or-net" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Do I report gross or net income to Centrelink?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">You report <strong>gross income</strong> &mdash; your total pay before income tax, Medicare levy, HECS-HELP repayments, or salary sacrifice deductions are taken out. This is the higher figure on your payslip, not the amount deposited into your bank account. Reporting net (after-tax) income instead of gross is one of the most common reporting errors and leads to Centrelink debts.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="deeming" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is the deeming rate and how does it affect my payment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Deeming is a method Centrelink uses to assess income from financial assets (bank accounts, shares, managed funds, superannuation in pension phase). Rather than counting actual returns, Centrelink applies a fixed &ldquo;deemed&rdquo; rate. From 20 March 2026, for singles, the first <strong>$64,200</strong> is deemed at <strong>1.25%</strong> and any balance above that is deemed at <strong>3.25%</strong>. For couples, the lower rate applies on the first <strong>$106,200</strong> combined. These rates replaced the previous 0.25%/2.25% rates on $60,400/$100,200. The deemed income is added to your other assessable income for the income test. See our news coverage of the latest <Link href="/news/deeming-rates-change-2026/">deeming rate changes</Link> for the current settings.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="super-counted" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Is my superannuation balance counted for the income test?</AccordionTrigger>
-                <AccordionContent className="text-warmgray"><strong>Before Age Pension age:</strong> your superannuation balance is generally <strong>not counted</strong> under either the income test or the assets test. <strong>After reaching Age Pension age:</strong> your super balance becomes a financial asset and is subject to deeming rules under the income test and counted in full under the assets test. This transition significantly impacts your Centrelink entitlement.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="salary-sacrifice" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrifice reduce my assessable income for Centrelink?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes, in most cases. Pre-tax salary sacrifice to superannuation reduces your gross employment income, which lowers the amount assessed under the Centrelink income test. This can help you retain more of your Centrelink payment. However, Centrelink may &ldquo;look through&rdquo; certain salary sacrifice arrangements if they appear designed solely to increase your entitlement. Sacrificing to a novated lease or meal entertainment card also reduces assessed income.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="one-off-payment" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">How does a one-off lump sum payment affect my Centrelink?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">One-off employment income such as a <strong>bonus</strong> or <strong>back-pay</strong> is assessed in the fortnight you earn it, which can temporarily reduce or eliminate your payment for that period. Lump-sum leave payments on termination (unused annual leave, long service leave) are generally <strong>not assessed</strong> as employment income but may be treated as an asset if deposited into a bank account. Report any lump sum in the fortnight it is paid.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="reporting-late" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What happens if I report my income late?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Late reporting <strong>suspends your Centrelink payment</strong>. You do not lose eligibility permanently, but your payment for that fortnight is delayed until you submit your report. If you fail to report for <strong>2 consecutive fortnights</strong>, your payment may be cancelled and you will need to re-claim. Submit your report before <strong>7:00 pm AEST</strong> on your designated reporting day to avoid disruption.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="centrelink-taxable" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Is my Centrelink payment taxable income?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Most Centrelink income-support payments &mdash; including JobSeeker, Youth Allowance, Austudy, Age Pension, and Parenting Payment &mdash; are <strong>taxable income</strong> and must be included in your annual tax return. Centrelink withholds tax at a rate you choose (or a default rate) and issues a Centrelink Payment Summary at the end of each financial year. Non-taxable payments include Disability Support Pension (if you are under Age Pension age) and Carer Allowance.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="income-nil" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Do I still need to report if I earned no income this fortnight?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. You must submit a report every fortnight even if your employment income is <strong>$0</strong>. A nil report confirms your ongoing eligibility and triggers your payment. Failing to submit a nil report is treated the same as a late report &mdash; your payment is suspended until the report is received.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="payment-cancelled" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Can I get my payment back if it is reduced to $0 by the income test?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. If your income drops back below the cut-off threshold within <strong>6 fortnights</strong>, your payment automatically resumes without needing to re-claim. This is called the <strong>employment income nil rate period</strong>. After 6 consecutive fortnights at nil rate, your payment is cancelled and you must lodge a new claim to restart benefits. During the nil rate period, you retain your concession card and other linked benefits.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="rental-income" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">How is rental income assessed for the Centrelink income test?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Rental income is assessed as <strong>net rental income</strong> &mdash; your gross rent received minus allowable deductions such as property management fees, repairs, insurance, and loan interest. Centrelink calculates this on an annual basis, then converts it to a fortnightly figure. Negative gearing losses on investment properties can reduce your total assessable income for Centrelink, the same way they reduce taxable income for the ATO.</AccordionContent>
-              </AccordionItem>
-
-            </Accordion>
+            <FaqAccordion faqs={CENTRELINK_INCOME_TEST_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
           </section>
 
           <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Income thresholds and taper rates sourced from Services Australia. Rates are indexed twice yearly (20 March and 20 September). Payment rates reflect the most recent indexation. The Australian tax calculator and income test thresholds are updated each financial year to align with ATO and Services Australia data.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

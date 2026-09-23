@@ -1,9 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, FileText, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -11,6 +8,8 @@ import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, SUPER_GUARANTEE, HECS_HELP, TAX_BR
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { PAYSLIP_FAQS } from "./understanding-your-payslip-faqs";
 
 // Worked examples come from the site's FY2026-27 tax engine (resident, no
 // HECS, private cover so no MLS) — never hardcode them: the previous copy
@@ -394,80 +393,7 @@ export default function UnderstandingYourPayslipPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="what-is-diff" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between Gross and Net Pay?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Gross pay is your total earnings before any deductions. Net pay is the amount deposited into your bank account after PAYG withholding (income tax + Medicare Levy), HECS-HELP repayments, salary sacrifice, and any other authorised deductions are subtracted. On an $85,000 gross salary in FY{SITE_CONFIG.financialYear}, net pay is approximately <strong>{formatAUD(EX85.takeHomePay)}</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="timing" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When must my employer give me my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Under the Fair Work Act 2009, your employer must provide a payslip within <strong>1 working day</strong> of paying your wage. The payslip can be delivered electronically (email, payroll portal) or as a printed document. Failure to comply carries penalties of up to <strong>{formatAUD(PAYSLIP_PENALTY_INDIVIDUAL)}</strong> per breach for individuals.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does my HECS-HELP repayment show separately on my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY{SITE_CONFIG.financialYear} repayment threshold is <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>. Below this income level, no repayment is withheld.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-check" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I check if my employer is actually paying my super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Log into your super fund&apos;s online portal (or use the ATO&apos;s myGov link) and check your transaction history. Since Payday Super started on 1 July 2026, your employer must pay SG with each pay, and it must reach your fund within <strong>7 business days</strong>. If contributions are missing, lodge a complaint with the ATO. Under the current {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate, a single missed fortnightly contribution on a $100,000 salary is <strong>{formatAUD((100_000 * SUPER_GUARANTEE.rate) / FN, 2)}</strong> of lost retirement savings.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should overtime appear separately on my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. The Fair Work Act requires employers to itemise each component of pay separately &mdash; including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. This is especially important for verifying <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Award Rates</Link> compliance and correct penalty rate calculations.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="no-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What should I do if my employer does not give me a payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Request your payslip in writing first. If your employer continues to withhold payslips, lodge a complaint with the Fair Work Ombudsman at <strong>fairwork.gov.au</strong> or call <strong>13 13 94</strong>. Failing to provide payslips is a breach of the Fair Work Act carrying penalties of up to <strong>{formatAUD(PAYSLIP_PENALTY_COMPANY)} per breach</strong> for companies. You can also lodge an anonymous tip if you prefer not to be identified.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="electronic-vs-paper" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is an electronic payslip as valid as a paper payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Electronic payslips (PDF, email, payroll portal access) carry the same legal weight as printed payslips under the Fair Work Act. The employer must ensure the electronic payslip is accessible to the employee and contains all 14 mandatory items. Most Australian employers now use electronic payslips through STP-compliant payroll software.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do casual employees receive payslips?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Casual employees are entitled to a payslip within 1 working day of being paid, the same as full-time and part-time employees. A casual payslip must show the hourly rate including the <strong>25% casual loading</strong>, hours worked, PAYG withholding, and super contributions. Super is payable on casual earnings at the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate regardless of hours worked.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="keep-payslips" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long should I keep my payslips?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The ATO recommends keeping payslips for a minimum of <strong>5 years</strong> from the date you lodge the relevant tax return. Employers must retain payroll records for <strong>7 years</strong>. Storing payslips digitally (scanned PDFs or payroll portal exports) satisfies record-keeping requirements and provides evidence in the event of a Fair Work dispute.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="payslip-tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need payslips to lodge my tax return?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Since the introduction of Single Touch Payroll (STP), your employer reports your income and tax data directly to the ATO each pay cycle. The ATO pre-fills your Income Statement in myGov by <strong>14 July</strong> each year. Payslips serve as a backup verification tool rather than a primary lodgement document. Cross-check your final YTD payslip figures against your Income Statement before lodging.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="salary-sacrifice-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How does salary sacrifice appear on a payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrifice amounts appear as a pre-tax deduction between gross pay and taxable income. The payslip shows your gross salary, then subtracts the salary sacrifice amount, resulting in a lower taxable income. PAYG withholding is then calculated on this reduced figure. For example, sacrificing <strong>$500 per fortnight</strong> into super on an $85,000 salary reduces fortnightly taxable income from $3,269 to $2,769, lowering the PAYG withholding accordingly.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="pay-rise-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I compare payslips before and after a pay rise?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Compare the gross pay, PAYG withholding, and net pay lines between your old and new payslips. A pay rise increases gross pay but also pushes you into a higher income tax bracket, so the net increase is smaller than the gross increase. Use the <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> to model the exact before-and-after impact on your take-home pay, super contributions, and effective tax rate.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={PAYSLIP_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

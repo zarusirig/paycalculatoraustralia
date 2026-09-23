@@ -92,7 +92,7 @@ export default function ParentingPaymentCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">How Much Parenting Payment Do You Keep?</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <div>
                     <label htmlFor="status" className={LABEL}>Your situation</label>
@@ -113,7 +113,7 @@ export default function ParentingPaymentCalculatorPage() {
                     <label htmlFor="income" className={LABEL}>Your gross income this fortnight</label>
                     <div className="flex items-center"><span className="text-warmgray-light mr-2">$</span>
                       <input type="number" id="income" min={0} max={6000} step={10} value={income} onChange={(e) => setIncome(clamp(Number(e.target.value || 0), 0, 6000))} className={INPUT} /></div>
-                    <input type="range" min={0} max={3200} step={10} value={clamp(income, 0, 3200)} onChange={(e) => setIncome(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    <input type="range" min={0} max={3200} step={10} value={clamp(income, 0, 3200)} onChange={(e) => setIncome(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     <p className="text-xs text-warmgray-light mt-1">Wages before tax, in the fortnight they are paid. Not sure? Use the <Link href="/fortnightly-pay-calculator/" className={LINK}>fortnightly pay calculator</Link>.</p>
                   </div>
                   {status === "partnered" && (

@@ -232,6 +232,10 @@ export const CO_CONTRIBUTION = {
   lowerThreshold: 49_293,
   higherThreshold: 64_293,
   reductionPerDollar: 0.03333,
+  /** Personal contribution needed for the maximum entitlement. */
+  contributionForMax: 1_000,
+  /** At least this share of total income must be from employment/business. */
+  eligibleIncomeShare: 0.1,
   previous: { incomeYear: "2025-26", lowerThreshold: 47_488, higherThreshold: 62_488 },
 } as const;
 
@@ -241,3 +245,12 @@ export function maxCoContribution(totalIncome: number): number {
   const reduction = Math.max(0, totalIncome - CO_CONTRIBUTION.lowerThreshold) * CO_CONTRIBUTION.reductionPerDollar;
   return Math.max(0, Math.round(CO_CONTRIBUTION.maxEntitlement - reduction));
 }
+
+/** Spouse contribution tax offset (ITAA 1997 s 290-230). Not indexed. */
+export const SPOUSE_OFFSET = {
+  rate: 0.18,
+  maxContribution: 3_000,
+  maxOffset: 540,
+  spouseIncomeLower: 37_000,
+  spouseIncomeCutOff: 40_000,
+} as const;

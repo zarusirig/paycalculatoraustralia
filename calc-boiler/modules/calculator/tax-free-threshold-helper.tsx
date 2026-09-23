@@ -106,7 +106,7 @@ export default function TaxFreeThresholdHelper() {
           Answer for the job whose TFN declaration you&rsquo;re filling in. The rules are the ATO&rsquo;s; the pay figures use the ATO&rsquo;s Schedule 1 withholding formulas.
         </p>
 
-        <form onSubmit={(e) => e.preventDefault()} className="grid gap-5 sm:grid-cols-2">
+        <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="sm:col-span-2">
             <label htmlFor="tft-res" className="block text-sm font-medium text-navy mb-1">Your tax residency this income year</label>
             <select id="tft-res" value={residency} onChange={(e) => setResidency(e.target.value as TftResidency)} className={INPUT}>
@@ -159,7 +159,7 @@ export default function TaxFreeThresholdHelper() {
         {residentLike && (
           <div className="mt-8 border-t border-sandstone-dark/20 pt-6">
             <h3 className="text-base font-semibold text-navy mb-3" style={FONT}>What it changes in this job&rsquo;s pay</h3>
-            <div className="grid gap-4 sm:grid-cols-2 mb-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-4">
               <div>
                 <label htmlFor="tft-pay" className="block text-sm font-medium text-navy mb-1">Gross pay per {period}</label>
                 <input id="tft-pay" type="number" min={0} step={10} value={pay} onChange={(e) => setPay(Math.max(0, Number(e.target.value || 0)))} className={INPUT} />

@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { FORTNIGHTLY_FAQS, FORTNIGHTLY_TAX_ANSWER, FORTNIGHTLY_WITHHOLDING_ROWS } from "./fortnightly-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -21,8 +23,6 @@ import {
 } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
-import { FORTNIGHTLY_FAQS, FORTNIGHTLY_WITHHOLDING_ROWS } from "@/modules/calculator/fortnightly-pay-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
@@ -97,7 +97,7 @@ export default function FortnightlyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Fortnightly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["fortnightly", "annual"]} value={period} label="I'm entering my gross"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -110,7 +110,7 @@ export default function FortnightlyPayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
                     {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
@@ -237,9 +237,7 @@ export default function FortnightlyPayCalculatorPage() {
               fortnightly?" / "How much will I get taxed each fortnight?") --- */}
           <section id="tax-each-fortnight">
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Is Taken Out Each Fortnight?</h2>
-            <p className="text-warmgray mb-4">
-              {FORTNIGHTLY_FAQS[1].a}
-            </p>
+            <p className="text-warmgray mb-4">{FORTNIGHTLY_TAX_ANSWER.a}</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
                 <caption className="sr-only">Tax withheld per fortnight, FY{SITE_CONFIG.financialYear}, tax-free threshold claimed</caption>
@@ -451,26 +449,16 @@ export default function FortnightlyPayCalculatorPage() {
             </div>
           </section>
 
-          <RelatedSearches items={RELATED_SEARCHES} />
-
           <MethodologyDisclosure>
             <p>Calculations are based on 26 fortnights per year. We divide the annual figures by 26 to provide the fortnightly equivalent. This aligns with standard ATO PAYG withholding practices.</p>
           </MethodologyDisclosure>
 
+          <RelatedSearches items={RELATED_SEARCHES} />
+
           {/* --- FAQs --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                The same array feeds the FAQPage JSON-LD in the route file. */}
-            <div className="sr-only">
-              <h3>Fortnightly pay questions and answers</h3>
-              {FORTNIGHTLY_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-            </div>
-            <Accordion type="multiple" className="space-y-3">
-              {FORTNIGHTLY_FAQS.map((f) => (
-                <FAQItem key={f.q} value={f.q} question={f.q}>{f.a}</FAQItem>
-              ))}
-            </Accordion>
+            <FaqAccordion faqs={FORTNIGHTLY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -501,14 +489,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-navy"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

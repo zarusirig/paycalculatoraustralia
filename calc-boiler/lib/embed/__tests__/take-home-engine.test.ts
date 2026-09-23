@@ -59,3 +59,25 @@ test("embed code carries a visible credit link outside the iframe", () => {
   assert.ok(!code.includes("?utm"), "credit link must stay a clean, crawlable URL");
   assert.ok(embedCode({ salary: 90000 }).includes("?salary=90000"));
 });
+
+test("embed engine treats a negative or non-numeric salary as zero (QA 24 Sep 2026)", () => {
+  for (const raw of [-5000, -0.01, Number.NaN, Number.NEGATIVE_INFINITY]) {
+    for (const superIncluded of [false, true]) {
+      const w = engine(data, raw, true, superIncluded);
+      assert.deepEqual(
+        w,
+        { gross: 0, taxable: 0, incomeTax: 0, medicare: 0, hecs: 0, takeHome: 0, superAmount: 0 },
+        `${raw} super=${superIncluded}`,
+      );
+    }
+  }
+});
+
+test("embed ?period= is matched against the options, never built into a CSS selector (QA 24 Sep 2026)", () => {
+  const html = takeHomeWidgetHtml();
+  // A crafted ?period=%22%5D used to throw in querySelector and leave the widget at $0.
+  assert.doesNotMatch(html, /querySelector\('option\[value="'\+/);
+  assert.match(html, /os\[k\]\.value===q\.get\("period"\)/);
+  // A negative ?salary= is ignored rather than shown as a negative gross.
+  assert.match(html, /\+q\.get\("salary"\)>=0/);
+});

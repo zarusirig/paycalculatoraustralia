@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { CALCULATE_PAY_RISE_ANSWER, CPI_ANNUAL, PAY_RISE_FAQS, RAISE_BASE, RAISE_ROWS, WPI_ANNUAL } from "./pay-rise-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -19,8 +21,6 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
-import { CPI_ANNUAL, PAY_RISE_FAQS, RAISE_BASE, RAISE_ROWS, WPI_ANNUAL } from "@/modules/calculator/pay-rise-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
 // Worked figures computed from the tax engine. The copy had frozen at FY2025-26
 // values (16% first bracket, 2023-24 MLS tiers, $30,000 cap) under a FY2026-27
@@ -36,10 +36,16 @@ const EX80 = calculatePayBreakdown({ grossSalary: 80_000 });
 const EX90 = calculatePayBreakdown({ grossSalary: 90_000 });
 const TRP_110K_BASE = Math.round(110_000 / (1 + SUPER_GUARANTEE.rate));
 const B2 = TAX_BRACKETS[2];
-// WPI and CPI now live in pay-rise-faqs.ts so the FAQ answers and this copy
-// share one figure. ABS Average Weekly Earnings, May 2026: full-time adult
-// ordinary time earnings $2,083.70 a week (seasonally adjusted).
+// ABS Wage Price Index, June quarter 2026 (released 19 Aug 2026): 3.2% over
+// the year, seasonally adjusted. ABS Average Weekly Earnings, May 2026:
+// full-time adult ordinary time earnings $2,083.70 a week (seasonally adjusted).
+// WPI_ANNUAL and CPI_ANNUAL now live in pay-rise-calculator-faqs.ts so the
+// FAQ answers and this copy share one figure.
 const AWOTE_ANNUAL = Math.round(2_083.7 * 52);
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n));
+}
 
 // Google AU "related searches" for "pay rise calculator" and "salary increase
 // calculator" (Sept 2026), each pointed at the page that answers it.
@@ -51,10 +57,6 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
   { label: "Average salary in Australia", href: "/average-salary-australia/" },
   { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
 ];
-
-function clamp(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n));
-}
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -110,7 +112,7 @@ export default function PayRiseCalculatorPage() {
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Pay Before and After a Rise</h2>
 
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
@@ -243,7 +245,7 @@ export default function PayRiseCalculatorPage() {
           {/* PAA: "How do I calculate my pay raise?" — formula + compact table */}
           <section id="calculate-pay-rise">
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do I Calculate My Pay Rise?</h2>
-            <p className="mb-4 text-warmgray">{PAY_RISE_FAQS[0].a}</p>
+            <p className="mb-4 text-warmgray">{CALCULATE_PAY_RISE_ANSWER.a}</p>
             <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-lg mx-auto rounded-r-lg mb-4">
               Pay rise % = (New salary &minus; Old salary) &divide; Old salary &times; 100
             </div>
@@ -399,7 +401,7 @@ export default function PayRiseCalculatorPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Negotiate a Pay Rise</h2>
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">1. Build Your Case</h3>
                 <p className="text-sm">Don&apos;t just ask for more money because of inflation. Track your specific achievements over the last 6-12 months. Did you save the company money? Drive new revenue? Take on duties outside your job description?</p>
@@ -461,20 +463,7 @@ export default function PayRiseCalculatorPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                The same array feeds the FAQPage JSON-LD in the route file. */}
-            <div className="sr-only">
-              <h3>Pay rise questions and answers</h3>
-              {PAY_RISE_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-            </div>
-            <Accordion type="multiple" className="space-y-3">
-              {PAY_RISE_FAQS.map((f) => (
-                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>{f.q}</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <FaqAccordion faqs={PAY_RISE_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">

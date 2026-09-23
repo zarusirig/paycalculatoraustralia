@@ -5,17 +5,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG, HECS_HELP, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
 const TITLE = "Tax Changes 2026-27 — What Changed From 1 July 2026";
-const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, super guarantee at 12%, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and what it means for your take-home pay.`;
+const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, 12% super guarantee, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and your take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -40,6 +41,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("tax-changes-2026-27"),
+  dateModified: pageDateModified("tax-changes-2026-27"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

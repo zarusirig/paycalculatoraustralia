@@ -119,7 +119,7 @@ export default function ZoneTaxOffsetCalculator() {
           year, following the ATO&rsquo;s own worksheets. Claim it at question T4 in your tax return.
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">
           {/* ---------------- Inputs ---------------- */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
@@ -234,7 +234,7 @@ export default function ZoneTaxOffsetCalculator() {
                 value={days}
                 onChange={(e) => setDays(Number(e.target.value))}
                 className="mt-2 w-full accent-eucalyptus"
-                aria-hidden="true"
+                aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
                 {ZONE_QUALIFYING_DAYS} days or more claims the full amount. They need not be

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import PayCalculatorTASPage from "@/modules/state/pay-calculator-tas";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
+import { faqPageSchema } from "@/lib/faq";
+import { TAS_FAQS } from "@/modules/state/pay-calculator-tas-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-tas/`;
@@ -49,48 +52,11 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("pay-calculator-tas"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is income tax different in Tasmania?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. Income tax, the Medicare levy and HECS-HELP repayment thresholds are set federally by the ATO and are identical in Tasmania, on the mainland, and in both territories. There is no Tasmanian income tax.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I get Royal Hobart Regatta or Recreation Day?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "One or the other, depending on where in Tasmania you work. The Regatta in February is observed in certain areas including Hobart; the areas that do not observe it get Recreation Day in early November instead. Both are Tasmanian-only public holidays.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is Eight Hours Day?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Eight Hours Day, held on the second Monday in March, is Tasmania's version of Labour Day. It commemorates the campaign for the eight-hour working day and attracts the same public holiday entitlements as any other gazetted holiday.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "When do I get long service leave in Tasmania?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Private sector employees get 8⅔ weeks after 10 years of continuous employment under the Long Service Leave Act 1976, then 4⅓ weeks every further 5 years. A pro-rata payment may be owed on termination once you have completed 7 but fewer than 10 years.",
-      },
-    },
-  ],
-};
+const faq = faqPageSchema(TAS_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Calculate Take-Home Pay in Tasmania",

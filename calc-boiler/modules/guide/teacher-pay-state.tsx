@@ -497,11 +497,6 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             {faqs.length > 0 && (
               <section id="faq">
                 <h2 style={HEADING_FONT}>{state.code} teacher salary questions</h2>
-                {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                    teacherStateFaqs() also feeds the FAQPage JSON-LD in the route. */}
-                <div className="sr-only">
-                  {faqs.map((f) => (<div key={f.q}><h3>{f.q}</h3><p>{f.a}</p></div>))}
-                </div>
                 <Accordion type="multiple" className="not-prose mt-6 space-y-3">
                   {faqs.map((faq, index) => (
                     <AccordionItem

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import EmploymentTypeCalculatorPage from "@/modules/calculator/employment-type-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { EMPLOYMENT_TYPE_FAQS } from "@/modules/calculator/employment-type-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
@@ -11,7 +14,7 @@ const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
 export const metadata: Metadata = {
   title: "Part-Time vs Full-Time vs Casual Pay Calculator",
   description:
-    "Compare take-home pay and entitlements across employment types. See the real difference between full-time, part-time, and casual including leave, super, and casual loading.",
+    "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Part-Time vs Full-Time vs Casual Calculator — Compare Pay & Entitlements",
@@ -49,36 +52,11 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("employment-type-calculator"),
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is casual loading better than annual leave?",
-      acceptedAnswer: { "@type": "Answer", text: "The 25% casual loading compensates for the lack of paid leave. For most workers, the total value of annual leave (4 weeks), personal leave (10 days), and public holidays exceeds the 25% loading, making permanent employment more valuable in total package terms." },
-    },
-    {
-      "@type": "Question",
-      name: "Do casual workers get superannuation?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Casuals receive the 12% superannuation guarantee like other employees (if they are under 18, only in weeks they work more than 30 hours), calculated on ordinary time earnings including the casual loading." },
-    },
-    {
-      "@type": "Question",
-      name: "What is the difference between part-time and casual?",
-      acceptedAnswer: { "@type": "Answer", text: "Part-time employees work regular guaranteed hours (under 38 per week), receive paid leave, and have ongoing employment. Casual employees have no guaranteed hours, receive 25% casual loading instead of leave, and can be terminated without notice." },
-    },
-    {
-      "@type": "Question",
-      name: "Can I convert from casual to permanent?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Since 26 August 2024, a casual employee who has worked for their employer for at least 6 months (12 months if the employer is a small business with fewer than 15 employees) and believes they no longer meet the casual definition can notify their employer that they want to change to full-time or part-time. The employer must respond in writing within 21 days; employers are no longer required to offer conversion." },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(EMPLOYMENT_TYPE_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Employment Type Calculator",

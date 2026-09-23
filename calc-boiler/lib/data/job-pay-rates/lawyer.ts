@@ -147,5 +147,5 @@ export const LAWYER: Occupation = {
     { href: "/job-pay-rates/accountant/", label: "Accountant Pay Rates" },
     { href: "/average-salary-australia/", label: "Average Salary Australia" },
   ],
-  metaTitle: "Lawyer Pay Rates Australia 2026 — Award-Free; Law Graduates $33.99/hr",
+  metaTitle: "Lawyer Pay Rates 2026 — Award-Free; Law Graduates $33.99/hr",
 };

@@ -11,13 +11,13 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/casual-loading-calculator/`;
 
 const TITLE = `Casual Loading Calculator ${SITE_CONFIG.financialYear}: 25% Casual Rate vs Permanent`;
-const DESCRIPTION = `How much is casual loading? Usually 25%: casual rate = base rate × 1.25, so the ${formatAUD(NMW.hourly, 2)} minimum wage is ${formatAUD(NMW.casualHourly, 2)} casual. Compare a year as a casual against permanent pay with paid leave, by award.`;
+const DESCRIPTION = `How much is casual loading? Usually 25%: casual rate = base rate × 1.25, so the ${formatAUD(NMW.hourly, 2)} minimum wage is ${formatAUD(NMW.casualHourly, 2)} casual. Compare casual vs permanent pay by award.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

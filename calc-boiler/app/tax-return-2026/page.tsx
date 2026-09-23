@@ -14,7 +14,7 @@ const R = RETURN_2026;
 // Year-specific on purpose: /tax-refund-guide/ owns the evergreen "how tax
 // returns work" intent and /tax-calendar/ owns the full-year date list.
 const TITLE = "Tax Return 2026: 31 Oct Deadline, Refund Estimator & Rates";
-const DESCRIPTION = `Your 2026 tax return covers ${R.incomeYear}. Lodge yourself by ${R.selfLodgeDueDate}, or by ${R.agentDueDateMostPeople} with a tax agent. Most online refunds arrive within ${R.onlineRefundTypical}. Estimate yours on ${R.incomeYear} rates.`;
+const DESCRIPTION = `Your 2026 tax return covers ${R.incomeYear}. Lodge yourself by ${R.selfLodgeDueDate}, or by ${R.agentDueDateMostPeople} with a tax agent. Most online refunds arrive within ${R.onlineRefundTypical}.`;
 
 export const metadata: Metadata = {
   title: TITLE,

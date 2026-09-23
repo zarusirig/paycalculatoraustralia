@@ -16,13 +16,13 @@ const URL = `${BASE}/parental-leave-pay/`;
 const NOW = PPL_ENTITLEMENT[PPL_ENTITLEMENT.length - 1];
 const RATE = PPL_RATES[PPL_CURRENT_FY];
 const TITLE = "Paid Parental Leave Calculator 2026 — 26 Weeks, Pay & Super";
-const DESCRIPTION = `Paid Parental Leave in Australia: ${NOW.weeks} weeks (${NOW.days} days) for babies born from ${NOW.label}, ${formatAUD(RATE.weekly, 2)} a week (${formatAUD(RATE.daily, 2)} a day) in 2026-27, ${NOW.reservedForPartner} days for partners, 12% super. Calculate your days, pay and the Centrelink income and work tests.`;
+const DESCRIPTION = `Paid Parental Leave in Australia: ${NOW.weeks} weeks (${NOW.days} days) for babies born from ${NOW.label}, ${formatAUD(RATE.weekly, 2)} a week in 2026-27, ${NOW.reservedForPartner} days for partners, 12% super.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

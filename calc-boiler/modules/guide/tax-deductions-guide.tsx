@@ -1,8 +1,6 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -13,6 +11,8 @@ import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TAX_DEDUCTIONS_FAQS } from "./tax-deductions-guide-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Deductions you can claim", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim", publisher: SOURCES.ato.name },
@@ -164,49 +164,7 @@ export default function TaxDeductionsGuidePage() {
             {/* ───── SECTION 5: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="what-is-300" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the $300 no-receipt threshold?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If your total work-related expense claims are <strong>$300 or less</strong>, you do not need to provide written evidence such as receipts or invoices. However, you must still be able to explain to the ATO how you calculated the amount and demonstrate that the expenses were work-related. This threshold applies to the total of all work-related expenses, not $300 per category.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="claim-without-receipts" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim deductions without receipts?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Below the $300 total work-related threshold, written records are not mandatory. Above $300, you need receipts, invoices, or bank/credit card statements. Laundry of eligible work clothing allows claims up to <strong>$150</strong> without written records. The ATO accepts digital records — photos of receipts and accounting apps are valid evidence.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-claim" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I claim deductions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">You claim deductions when you lodge your annual tax return, either through myTax (the ATO&apos;s free online tool) or through a registered tax agent. Deductions are entered in the &quot;Deductions&quot; section of your return. Your employer does not need to approve them — they are assessed by the ATO.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="reduce-tax-or-income" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do deductions reduce my tax or my taxable income?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Deductions reduce your <strong>taxable income</strong>, which then reduces the amount of tax calculated on that income. A $1,000 deduction does not save you $1,000 in tax — it saves you $1,000 multiplied by your marginal tax rate. At the 30% bracket, a $1,000 deduction saves $300 in tax.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="wfh-deduction" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim working from home and car expenses together?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Working from home deductions and car expenses are separate categories. You can claim both in the same tax return. For example, you might claim {RETURN_2026.wfhFixedRateCents} cents per hour for days worked from home and cents-per-kilometre for work-related driving on office days. Each claim must be separately substantiated.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="laptop" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim a laptop purchased for work?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, if you use it for work. If the laptop costs <strong>$300 or less</strong>, claim the full work-use percentage as an immediate deduction. If it costs more than $300, depreciate it over its effective life (typically 2-4 years). If you use the laptop 60% for work and 40% personal, only 60% of the cost or depreciation is deductible.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="union-fees" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are union fees tax deductible?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Membership fees for trade unions and professional associations related to your current employment are fully deductible. This includes unions such as the CFMEU, NSWNMA, AEU, and professional bodies like CPA Australia, the Law Society, and medical registration boards.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="donations" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim charitable donations as a deduction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Gifts to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible, and the old <strong>$2 minimum</strong> no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026). Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={TAX_DEDUCTIONS_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax deduction information is sourced from the Australian Taxation Office (ATO). Savings calculations use FY2025-26 resident tax brackets. Individual deduction eligibility depends on your specific work circumstances. Use our Australian tax calculator tools for personalised estimates based on your income and deduction amounts.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

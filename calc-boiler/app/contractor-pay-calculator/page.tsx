@@ -2,19 +2,21 @@ import ContractorPayCalculator from "@/modules/calculator/contractor-pay-calcula
 import { JsonLd } from "@/modules/seo/json-ld";
 import type {
   BreadcrumbList,
-  FAQPage,
   WebApplication,
   WithContext,
 } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { CONTRACTOR_PAY_FAQS } from "@/modules/calculator/contractor-pay-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
-import { CONTRACTOR_FAQS } from "@/modules/calculator/contractor-pay-faqs";
+
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
+import { pageDateModified } from "@/lib/page-dates";
 
 export const metadata: Metadata = {
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
   description:
-    "Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution & deductions — ABN vs PAYG comparison for FY2026-27.",
+    "Contractor pay calculator for Australia: net pay after GST, income tax, super and deductions, with an ABN vs PAYG comparison for FY2026-27.",
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
   },
@@ -52,7 +54,7 @@ const webAppSchema: WithContext<WebApplication> = {
     "@type": "Organization",
     name: SITE_CONFIG.name,
   },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("contractor-pay-calculator"),
   inLanguage: "en-AU",
 };
 
@@ -75,16 +77,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
   ],
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: CONTRACTOR_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faqSchema = faqPageSchema(CONTRACTOR_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Contractor Pay Calculator",

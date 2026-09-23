@@ -15,11 +15,8 @@
 // 2025). Criminal offence date from fairwork.gov.au/newsroom (1 January 2025).
 
 import { EMPLOYMENT, formatAUD, formatPercent, SUPER_GUARANTEE } from "@/lib/constants";
+import type { FaqItem } from "@/lib/faq";
 
-export interface BackpayFaq {
-  q: string;
-  a: string;
-}
 
 const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
 
@@ -43,7 +40,7 @@ export const EXAMPLE = (() => {
   };
 })();
 
-export const BACKPAY_FAQS: readonly BackpayFaq[] = [
+export const BACKPAY_FAQS: readonly FaqItem[] = [
   {
     q: "What is back pay in Australia?",
     a: "Back pay is money your employer owes you for work you have already done but were paid too little for. It covers wages below your award or agreement rate, missed penalty rates, overtime, allowances and leave loading, and the super that should have been paid on them. It also describes a pay rise that is backdated to an earlier start date.",

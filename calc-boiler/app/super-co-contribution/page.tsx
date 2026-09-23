@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import SuperCoContributionPage from "@/modules/guide/super-co-contribution";
+import { faqPageSchema } from "@/lib/faq";
+import { SUPER_CO_CONTRIBUTION_FAQS } from "@/modules/guide/super-co-contribution-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-co-contribution/`;
 const TITLE = "Super Co-Contribution & Spouse Tax Offset Explained";
-const DESCRIPTION = "Government super co-contribution: up to $500 matched for low-income earners. Plus spouse super contribution tax offset up to $540. Eligibility, thresholds, and how to claim.";
+const DESCRIPTION = "Government super co-contribution: up to $500 matched for low-income earners, plus the spouse contribution tax offset up to $540. Eligibility, thresholds, claiming.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +42,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("super-co-contribution"),
+  dateModified: pageDateModified("super-co-contribution"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
@@ -47,15 +52,7 @@ const article: WithContext<Article> = {
   isBasedOn: { "@type": "Legislation", name: "Superannuation (Government Co-contribution for Low Income Earners) Act 2003", url: "https://www.legislation.gov.au/Details/C2024C00123" },
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "How much is the government super co-contribution?", acceptedAnswer: { "@type": "Answer", text: "The government matches 50 cents for every $1.00 of eligible personal (non-concessional) super contributions you make, up to a maximum of $500 per financial year. To receive the full $500 in 2026-27, you need to contribute $1,000 of after-tax money and have total income of $49,293 or less; it phases out to nil at $64,293." } },
-    { "@type": "Question", name: "Do I need to apply for the super co-contribution?", acceptedAnswer: { "@type": "Answer", text: "No. The ATO automatically determines your eligibility after you lodge your income tax return. If eligible, the co-contribution is paid directly into your super fund, usually within 60 days of your tax return being processed." } },
-    { "@type": "Question", name: "What is the spouse super contribution tax offset?", acceptedAnswer: { "@type": "Answer", text: "If you contribute to your spouse's super fund and their income is below $40,000, you may claim a tax offset of up to $540. The maximum offset applies when you contribute $3,000 or more and your spouse earns $37,000 or less. The offset phases out completely at $40,000 spouse income." } },
-  ]
-};
+const faq = faqPageSchema(SUPER_CO_CONTRIBUTION_FAQS);
 
 export default function Page() {
   return (

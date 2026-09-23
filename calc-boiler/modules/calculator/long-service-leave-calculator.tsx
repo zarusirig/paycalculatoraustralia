@@ -112,7 +112,7 @@ export default function LongServiceLeaveCalculator({
           {heading ?? `Long Service Leave Calculator — ${j.abbr}`}
         </h2>
 
-        <div className="grid md:grid-cols-[1fr_1.4fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             {!jurisdiction && (
               <div>

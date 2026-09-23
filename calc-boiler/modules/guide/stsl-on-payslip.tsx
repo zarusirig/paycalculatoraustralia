@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, GraduationCap } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { STSL_FAQS } from "./stsl-on-payslip-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -170,28 +169,7 @@ export default function STSLOnPayslipPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose space-y-3">
-                <AccordionItem value="same-as-hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Is STSL the same as HECS?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Effectively yes for most people. STSL (Study and Training Support Loans) is the ATO&apos;s umbrella term covering HECS-HELP, FEE-HELP, VET Student Loans, SA-HELP, and apprenticeship loans. If your only loan is HECS, the STSL line on your payslip is your HECS withholding.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="suddenly-appeared" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Why did STSL suddenly appear on my payslip?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Usually because a pay rise, extra hours, or a bonus pushed your per-pay earnings above the repayment threshold (annualised {formatAUD(STSL_THRESHOLD_2026_27)} for FY2026-27), or because you updated your TFN declaration to declare a study loan.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overpaid" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>What happens if too much STSL is withheld?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">The excess is refunded when you lodge your tax return. STSL withholding is a prepayment estimate &mdash; your actual repayment is calculated on full-year repayment income at assessment, and any overpayment comes back as part of your refund.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="reduce-debt" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Does STSL withholding reduce my HELP debt straight away?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">No. Withheld STSL sits as a credit with the ATO until your tax return is assessed. Your loan balance &mdash; including 1 June indexation &mdash; is only reduced at assessment. Voluntary repayments are the only way to reduce the balance mid-year.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="two-jobs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Why is no STSL withheld at my second job?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">STSL schedules apply per employer. If each job individually pays under the threshold, neither withholds STSL &mdash; but your combined repayment income may still trigger a compulsory repayment at tax time. Budget for this or ask one employer to withhold extra.</p></AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={STSL_FAQS} className="not-prose space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             <div className="not-prose mt-10 space-y-6">

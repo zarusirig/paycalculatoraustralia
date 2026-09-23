@@ -43,8 +43,8 @@ export default function GrossVsNetCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Gross to Net / Net to Gross Pay Converter</h2>
         <p className="text-sm text-warmgray mb-6">Uses the ATO&rsquo;s 2026-27 withholding formulas, so the net figure matches what a payslip pays, not the year-end tax result.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField id="gn-mode" label="I know my" value={mode} onChange={setMode} options={[{ value: "gross-to-net", label: "Gross pay (work out net)" }, { value: "net-to-gross", label: "Net pay (work out gross)" }]} />
             <SelectField id="gn-freq" label="Pay frequency" value={frequency} onChange={setFrequency} options={FREQS.map((f) => ({ value: f, label: FREQ_OPTION[f] }))} />
             <NumberField id="gn-amount" label={mode === "gross-to-net" ? `Gross pay per ${per}` : `Net pay per ${per}`} value={amount} onChange={setAmount} step={50} />

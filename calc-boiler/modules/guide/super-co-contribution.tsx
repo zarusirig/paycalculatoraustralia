@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SUPER_CO_CONTRIBUTION_FAQS } from "./super-co-contribution-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -254,56 +253,7 @@ export default function SuperCoContributionPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="how-much" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much is the government super co-contribution?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The government matches <strong>$0.50 for every $1.00</strong> of eligible personal (non-concessional) super contributions, up to a maximum of $500 per financial year. To receive the full $500, you need to contribute $1,000 and have total income of {formatAUD(LOWER)} or less (FY{CO_CONTRIBUTION.incomeYear}). The maximum co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="apply" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need to apply for the super co-contribution?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. The ATO automatically determines your eligibility when you lodge your income tax return. If you qualify, the co-contribution is paid directly into your super fund — usually within 60 days of your tax return being processed. Make sure your super fund details are up to date with the ATO via your myGov account.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="spouse-offset" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the spouse super contribution tax offset?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    If you contribute after-tax money to your spouse&apos;s super fund and their income is below $40,000, you can claim a tax offset of up to <strong>$540</strong>. The maximum offset applies when you contribute $3,000 or more and your spouse earns $37,000 or less. The offset is 18% of the eligible contribution amount and phases out between $37,000 and $40,000 spouse income.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="salary-sacrifice" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrifice count for the co-contribution?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Salary sacrifice contributions are <strong>concessional</strong> (pre-tax) contributions. The co-contribution only matches <strong>non-concessional</strong> (after-tax) personal contributions — money you transfer from your own bank account to your super fund. The two strategies are separate and can be used alongside each other.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="self-employed" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can self-employed people get the co-contribution?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes, provided at least <strong>10% of your total income</strong> comes from employment or business activities (not passive income like investments or rental). Self-employed people who meet the income thresholds and make personal non-concessional contributions are fully eligible. However, if you claim a tax deduction for a personal super contribution, that portion becomes a concessional contribution and does not count towards the co-contribution.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="both" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I receive both the co-contribution and spouse offset?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes, but they apply to different people. The low-income spouse can receive the government co-contribution on their own personal contributions. Simultaneously, the higher-earning partner can contribute to the low-income spouse&apos;s super and claim the spouse offset on their own tax return. The two benefits stack — one rewards personal contributions, the other rewards spousal support.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="deadline" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When do I need to make contributions by?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Personal super contributions must be received by your super fund <strong>on or before 30 June</strong> of the relevant financial year. Allow 3-5 business days for bank transfers to process. Contributions received after 30 June count towards the following financial year. The spouse contribution for the tax offset follows the same deadline.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SUPER_CO_CONTRIBUTION_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

@@ -1,9 +1,11 @@
 "use client";
 
+import FaqAccordion from "@/components/common/faq-accordion";
+import { BILLABLE_WEEKS, CONTRACTOR_PAY_FAQS, CONTRACTOR_RATE_ANSWER, DAY_RATE_GROSS, DAY_RATE_NET, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -11,9 +13,11 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
+  calculateHECS,
   formatAUD,
   formatPercent,
   SUPER_GUARANTEE,
+  MEDICARE_LEVY,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
@@ -21,8 +25,15 @@ import {
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
-import { BILLABLE_WEEKS, CONTRACTOR_FAQS } from "@/modules/calculator/contractor-pay-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+
+// Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
+// 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
+const TAX_ON_100K = annualTaxAndMedicare(100_000);
+const CC_CAP = SUPER_GUARANTEE.concessionalCap;
+// Saving from a full concessional contribution at $100k: marginal 30% + 2%
+// Medicare levy avoided, less 15% contributions tax (taxable income stays in
+// the 30% bracket after the contribution).
+const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
 
 // Google AU "related searches" for "contractor pay calculator" and "contractor
 // rate calculator australia" (Sept 2026), each pointed at the page that answers it.
@@ -34,19 +45,6 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
   { label: "Construction and trades pay", href: "/construction-trades-pay/" },
   { label: "Gig economy pay guide", href: "/gig-economy-pay-guide/" },
 ];
-
-// Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
-// 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
-const annualTaxAndMedicare = (income: number) =>
-  Math.max(0, Math.round(calculateIncomeTax(income, true) - calculateLITO(income))) + calculateMedicareLevy(income);
-const DAY_RATE_GROSS = 1_000 * 5 * 48;
-const DAY_RATE_NET = DAY_RATE_GROSS - annualTaxAndMedicare(DAY_RATE_GROSS);
-const TAX_ON_100K = annualTaxAndMedicare(100_000);
-const CC_CAP = SUPER_GUARANTEE.concessionalCap;
-// Saving from a full concessional contribution at $100k: marginal 30% + 2%
-// Medicare levy avoided, less 15% contributions tax (taxable income stays in
-// the 30% bracket after the contribution).
-const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -300,7 +298,7 @@ export default function ContractorPayCalculator() {
         {/* Key Features */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Pay Calculator Key Features</h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               "Accurate take-home pay for ABN workers, freelancers, consultants and gig-economy roles",
               "Calculate hourly, daily, weekly, fortnightly and monthly contractor income",
@@ -320,7 +318,7 @@ export default function ContractorPayCalculator() {
         {/* Understanding Results */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Understanding Your Contractor Results</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
             <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
             <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income — you remit it to the ATO." />
@@ -511,7 +509,7 @@ export default function ContractorPayCalculator() {
         {/* PAA: "What rate should I charge as a contractor?" */}
         <section id="contractor-rate">
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Rate Should I Charge as a Contractor?</h2>
-          <p className="mb-4 text-warmgray">{CONTRACTOR_FAQS.find((f) => f.q === "What rate should I charge as a contractor?")!.a}</p>
+          <p className="mb-4 text-warmgray">{CONTRACTOR_RATE_ANSWER.a}</p>
           <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-xl mx-auto rounded-r-lg">
             Minimum hourly rate = Target salary &times; (1 + {formatPercent(SUPER_GUARANTEE.rate, 0)} super) &divide; ({EMPLOYMENT.standardWeeklyHours} hours &times; {BILLABLE_WEEKS} weeks)
           </div>
@@ -612,7 +610,7 @@ export default function ContractorPayCalculator() {
           <p className="mb-4 text-warmgray">
             Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 5 calculators cover the most common related scenarios.
           </p>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               { href: "/contractor-vs-employee-calculator/", title: "Contractor vs Employee Calculator", desc: "Compare contractor rates against employee salaries with full entitlement costing" },
               { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: `Calculate income tax at every bracket for FY${SITE_CONFIG.financialYear} including LITO and Medicare levy` },
@@ -636,17 +634,7 @@ export default function ContractorPayCalculator() {
         {/* FAQ */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Frequently Asked Questions</h2>
-          {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-              The same array feeds the FAQPage JSON-LD in the route file. */}
-          <div className="sr-only">
-            <h3>Contractor pay questions and answers</h3>
-            {CONTRACTOR_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-          </div>
-          <Accordion type="multiple" className="space-y-3">
-            {CONTRACTOR_FAQS.map((f) => (
-              <FAQItem key={f.q} value={f.q} question={f.q}>{f.a}</FAQItem>
-            ))}
-          </Accordion>
+          <FaqAccordion faqs={CONTRACTOR_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="leading-relaxed text-warmgray" />
         </section>
 
         <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -714,16 +702,5 @@ function ResultCard({ title, desc }: { title: string; desc: string }) {
       <h3 className="mb-2 font-semibold text-navy">{title}</h3>
       <p className="text-sm leading-relaxed text-warmgray">{desc}</p>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent>
-        <p className="leading-relaxed text-warmgray">{children}</p>
-      </AccordionContent>
-    </AccordionItem>
   );
 }

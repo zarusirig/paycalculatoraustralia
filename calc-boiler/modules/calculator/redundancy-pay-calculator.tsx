@@ -162,7 +162,7 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={FONT}>Calculate Your Redundancy Pay</h2>
-              <div className="grid md:grid-cols-[1fr_1.4fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
                     <label htmlFor="baseSalary" className="block text-sm font-medium text-navy mb-1">Base annual salary (ordinary hours)</label>
@@ -180,7 +180,7 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
                       onChange={(e) => setYearsService(clamp(Math.floor(Number(e.target.value || 0)), 0, 50))}
                       className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     <input type="range" min={0} max={25} step={1} value={clamp(yearsService, 0, 25)}
-                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-3 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-3 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
                   <label className="flex items-start gap-2 text-sm text-navy">
                     <input type="checkbox" checked={genuine} onChange={(e) => setGenuine(e.target.checked)} className="mt-1 accent-eucalyptus" />
@@ -243,7 +243,7 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
               employee in Australia. It is worked out on <strong>completed years of continuous service</strong> —
               4 years and 11 months counts as 4 — and paid at your base rate for ordinary hours.
             </p>
-            <div className="grid md:grid-cols-[1.5fr_1fr] gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-6">
               <div className={TABLE_WRAP}>
                 <table className="w-full text-sm">
                   <caption className="sr-only">NES redundancy pay scale, Fair Work Act 2009 section 119</caption>

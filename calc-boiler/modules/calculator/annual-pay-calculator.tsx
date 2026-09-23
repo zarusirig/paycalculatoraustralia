@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -15,13 +15,12 @@ import {
   SUPER_GUARANTEE,
   HECS_HELP,
   LITO,
-  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
   TAX_BRACKETS,
   TAX_BRACKETS_2025_26,
 } from "@/lib/constants";
-import { hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { ANNUAL_PAY_FAQS } from "@/modules/calculator/annual-pay-calculator-faqs";
 import { AmountPresets, HeadTermLinks } from "@/modules/calculator/head-term-ui";
 
 // Every figure in the copy is derived from lib/constants. The page previously
@@ -39,11 +38,6 @@ const EX = net(85_000);
 const EX_HECS = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: true, hasPrivateHealth: true }).hecsRepayment;
 const EX_BRACKET2_TAX = Math.round((TAX_BRACKETS[1].max - TAX_BRACKETS[0].max) * TAX_BRACKETS[1].rate);
 const EX_BRACKET3_TAX = Math.round((85_000 - TAX_BRACKETS[1].max) * TAX_BRACKETS[2].rate);
-// ABS Average Weekly Earnings, May 2026 (released Aug 2026): full-time adult
-// ordinary time earnings, seasonally adjusted, $2,083.70 a week.
-// https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release
-const AWOTE_WEEKLY = 2_083.7;
-const AWOTE_ANNUAL = Math.round(AWOTE_WEEKLY * 52);
 
 // Hero quick-answer figures from the tax engine (they had frozen at FY2025-26
 // values under a FY2026-27 heading).
@@ -94,7 +88,7 @@ export default function AnnualPayCalculatorPage() {
           <h2 className="text-xl md:text-2xl font-semibold text-navy mb-4 text-center" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Salary After Tax</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <div>
                     <label htmlFor="salary" className="block text-sm font-medium text-warmgray mb-1">Gross Annual Salary</label>
@@ -104,7 +98,7 @@ export default function AnnualPayCalculatorPage() {
                         className="block w-full rounded-md border-gray-300 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     <AmountPresets values={SALARY_PRESETS} current={salary} onPick={setSalary} />
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
@@ -375,32 +369,7 @@ export default function AnnualPayCalculatorPage() {
           {/* --- EXPANDED FAQs --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is annual pay calculated in Australia?">
-                Annual take-home pay equals your gross yearly salary minus income tax, the 2% Medicare levy, and any HECS-HELP repayments for the financial year running 1 July to 30 June. The ATO applies progressive income tax brackets, meaning only the portion of income within each bracket is taxed at that bracket&apos;s marginal rate.
-              </FAQItem>
-              <FAQItem value="super" question="Does my annual pay include superannuation?">
-                No. Your gross annual salary represents your &quot;Ordinary Time Earnings&quot; (OTE). Your employer pays an additional {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee on top of this into your nominated super fund. The total of gross salary plus super equals your total remuneration package.
-              </FAQItem>
-              <FAQItem value="return" question="Why does my annual pay differ from my tax return?">
-                Your tax return includes work-related deductions, investment income, bank interest, rental income, and other assessable income sources. This calculator estimates standard PAYG withholding on salary income only. The ATO reconciles all income and deductions when you lodge your annual return.
-              </FAQItem>
-              <FAQItem value="average" question="What is the average annual salary in Australia?">
-                Average full-time adult ordinary time earnings were <strong>{formatAUD(AWOTE_WEEKLY, 2)}</strong> a week in May 2026 (ABS, seasonally adjusted) &mdash; about <strong>{formatAUD(AWOTE_ANNUAL)}</strong> a year. At that salary, annual take-home pay is approximately <strong>{formatAUD(net(AWOTE_ANNUAL).takeHomePay)}</strong> in FY{FY}. The average is pulled up by high earners, so most full-time workers earn less than it.
-              </FAQItem>
-              <FAQItem value="part-year" question="How is tax calculated if I only worked part of the year?">
-                The PAYG system withholds tax as if you earn that same salary for the full 12 months. Starting or leaving a job mid-year typically results in over-withholding. The ATO recalculates your actual tax based on your total income for the year when you lodge your return and refunds any excess.
-              </FAQItem>
-              <FAQItem value="package" question="What is the difference between base salary and total package?">
-                Base salary is your gross annual pay before deductions. Total package (also called &quot;total remuneration&quot;) includes base salary plus employer superannuation contributions. A $100,000 base salary with {formatPercent(SUPER_GUARANTEE.rate, 0)} super has a total package of <strong>$112,000</strong>. Some packages also include car allowances, bonuses, and fringe benefits.
-              </FAQItem>
-              <FAQItem value="hecs-threshold" question="At what annual salary do HECS-HELP repayments start?">
-                Compulsory HECS-HELP repayments begin when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> for FY{FY}. Repayment income includes taxable income plus any net investment losses, reportable fringe benefits, and reportable super contributions. Under the marginal system the repayment is {hecsBandsSentence()}.
-              </FAQItem>
-              <FAQItem value="medicare-surcharge" question="Do I pay the Medicare Levy Surcharge on top of the Medicare levy?">
-                The &quot;Medicare Levy Surcharge&quot; (MLS) is a separate charge of <strong>1% to 1.5%</strong> applied in FY{FY} to singles with income for MLS purposes over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (or {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} for families) who do not hold an eligible private hospital insurance policy. The standard 2% Medicare levy applies to all Australian residents regardless of private health insurance status.
-              </FAQItem>
-            </Accordion>
+            <FaqAccordion faqs={ANNUAL_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -463,14 +432,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-warmgray"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

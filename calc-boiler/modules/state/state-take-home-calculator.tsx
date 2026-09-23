@@ -127,7 +127,7 @@ export default function StateTakeHomeCalculator({
                 value={clamp(salary, 0, 300000)}
                 onChange={(e) => setSalary(Number(e.target.value))}
                 className="mt-2 w-full accent-eucalyptus"
-                aria-hidden="true"
+                aria-hidden="true" tabIndex={-1}
               />
             </div>
 

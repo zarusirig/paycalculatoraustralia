@@ -11,6 +11,7 @@ import { AFTER_TAX_PART_TIME_HOURS, casualAfterTax, hourlyAfterTax } from "@/lib
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { fitDescription } from "@/lib/seo-title";
 
 interface PageProps {
   params: Promise<{ rate: string }>;
@@ -43,7 +44,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // much a year"). "in Australia" separates us from US pages that answer on
     // a 40-hour week; the after-tax figure moves to the description.
     title: `${rateLabel(rate)} an Hour Is How Much a Year in Australia? ${formatAUD(gross)}`,
-    description: `${rateLabel(rate)} an hour is ${formatAUD(gross)} a year before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours), and ${formatAUD(net)} after tax (${formatAUD(hourlyAfterTax(rate).perWeek, 2)} a week) in ${SITE_CONFIG.financialYear}. Fortnightly, monthly, part-time and casual figures.`,
+    description: fitDescription(
+      `${rateLabel(rate)} an hour is ${formatAUD(gross)} a year before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours), and ${formatAUD(net)} after tax (${formatAUD(hourlyAfterTax(rate).perWeek, 2)} a week) in ${SITE_CONFIG.financialYear}. Fortnightly, monthly, part-time and casual figures.`,
+      `${rateLabel(rate)} an hour is ${formatAUD(gross)} a year before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week and ${formatAUD(net)} after tax (${formatAUD(hourlyAfterTax(rate).perWeek, 2)} a week) in ${SITE_CONFIG.financialYear}. Plus part-time and casual figures.`,
+      `${rateLabel(rate)} an hour is ${formatAUD(gross)} a year before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week and ${formatAUD(net)} after tax (${formatAUD(hourlyAfterTax(rate).perWeek, 2)} a week) in ${SITE_CONFIG.financialYear}.`,
+    ),
     alternates: { canonical: `${SITE_CONFIG.baseUrl}/hourly-to-salary/${raw}/` },
     openGraph: {
       title: `${formatAUD(rate, 2)} an Hour Is ${formatAUD(gross)} a Year`,

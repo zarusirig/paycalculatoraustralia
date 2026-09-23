@@ -363,9 +363,9 @@ export function dollarsCents(value: number): string {
 export const HEADLINE_YEAR = "2026";
 
 export function averageSalaryTitle(): string {
-  return `Average Salary in Australia ${HEADLINE_YEAR}: ${dollars(HEADLINE.averageAnnual)} a Year (Median ${dollars(HEADLINE.medianFullTimeAnnual)})`;
+  return `Average Salary Australia ${HEADLINE_YEAR}: ${dollars(HEADLINE.averageAnnual)} a Year (Median ${dollars(HEADLINE.medianFullTimeAnnual)})`;
 }
 
 export function averageSalaryDescription(): string {
-  return `The average full-time salary in Australia is ${dollars(HEADLINE.averageAnnual)} a year (${dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week, ABS ${AWE_RELEASE.referencePeriod}). The median is ${dollars(HEADLINE.medianFullTimeAnnual)} full-time and ${dollars(HEADLINE.medianAllAnnual)} across all employees. By state, industry, age and gender, with take-home pay.`;
+  return `The average full-time salary in Australia is ${dollars(HEADLINE.averageAnnual)} a year (${dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week, ABS ${AWE_RELEASE.referencePeriod}). Median ${dollars(HEADLINE.medianFullTimeAnnual)} full-time, ${dollars(HEADLINE.medianAllAnnual)} all employees. By state.`;
 }

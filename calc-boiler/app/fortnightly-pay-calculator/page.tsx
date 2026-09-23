@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import FortnightlyPayCalculatorPage from "@/modules/calculator/fortnightly-pay-calculator";
-import { FORTNIGHTLY_FAQS } from "@/modules/calculator/fortnightly-pay-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { FORTNIGHTLY_FAQS } from "@/modules/calculator/fortnightly-pay-calculator-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-pay-calculator/`;
@@ -62,20 +64,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("fortnightly-pay-calculator"),
   inLanguage: "en-AU"
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: FORTNIGHTLY_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faq = faqPageSchema(FORTNIGHTLY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Fortnightly Pay Calculator",

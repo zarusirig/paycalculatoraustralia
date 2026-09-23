@@ -57,8 +57,8 @@ export default function WorkingCreditCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Centrelink Working Credit Calculator</h2>
         <p className="text-sm text-warmgray mb-6">Step 1 builds your balance while you earn under ${WORKING_CREDIT.accrualThreshold} a fortnight. Step 2 shows how the credits keep your JobSeeker Payment going when you start work.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <div className="sm:col-span-2">
               <SelectField id="wc-payment" label="Payment" value={payment} onChange={setPayment} options={[{ value: "jobseeker", label: "JobSeeker Payment (max 1,000 credits)" }, { value: "youth", label: "Youth Allowance as a job seeker (max 3,500)" }]} />
             </div>

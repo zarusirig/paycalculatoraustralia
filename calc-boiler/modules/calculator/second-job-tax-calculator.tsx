@@ -2,9 +2,19 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import {
+  BOTH_JOB,
+  BOTH_TFT_DEBT,
+  EXAMPLE_BALANCE,
+  MAIN_JOB,
+  NO_TFT_START_RATE,
+  SECOND_JOB,
+  SECOND_JOB_FAQS,
+} from "./second-job-tax-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -18,16 +28,6 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { PAYG_FINANCIAL_YEAR, withholdingForPeriod } from "@/lib/constants/payg-withholding";
-import {
-  BOTH_JOB,
-  BOTH_TFT_DEBT,
-  EXAMPLE_BALANCE,
-  MAIN_JOB,
-  NO_TFT_START_RATE,
-  SECOND_JOB,
-  SECOND_JOB_FAQS,
-} from "@/modules/calculator/second-job-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
 /**
  * Annual PAYG withheld on a second job paid fortnightly with the tax-free
@@ -142,7 +142,7 @@ export default function SecondJobTaxCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Tax on Two Jobs</h2>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                     <div>
@@ -153,7 +153,7 @@ export default function SecondJobTaxCalculatorPage() {
                           onChange={(e) => setJob1Salary(clamp(Number(e.target.value || 0), 0, 300000))}
                           className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       </div>
-                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                         value={clamp(job1Salary, 0, 200000)} onChange={(e) => setJob1Salary(Number(e.target.value))} />
                     </div>
                     <div>
@@ -164,7 +164,7 @@ export default function SecondJobTaxCalculatorPage() {
                           onChange={(e) => setJob2Salary(clamp(Number(e.target.value || 0), 0, 300000))}
                           className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       </div>
-                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                         value={clamp(job2Salary, 0, 200000)} onChange={(e) => setJob2Salary(Number(e.target.value))} />
                     </div>
                     <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
@@ -348,26 +348,13 @@ export default function SecondJobTaxCalculatorPage() {
               <p className="mt-2">All rates from the <a className="text-eucalyptus-dark hover:underline" href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" target="_blank" rel="noreferrer noopener">ATO</a>, last verified {SITE_CONFIG.lastVerified}.</p>
             </MethodologyDisclosure>
 
+            <RelatedSearches items={RELATED_SEARCHES} />
+
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                  The same array feeds the FAQPage JSON-LD in the route file. */}
-              <div className="sr-only">
-                <h3>Second job tax questions and answers</h3>
-                {SECOND_JOB_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-              </div>
-              <Accordion type="multiple" className="space-y-3">
-                {SECOND_JOB_FAQS.map((f) => (
-                  <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
-                    <AccordionTrigger>{f.q}</AccordionTrigger>
-                    <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <FaqAccordion faqs={SECOND_JOB_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
-
-            <RelatedSearches items={RELATED_SEARCHES} />
 
             {/* Related calculators */}
             <section>

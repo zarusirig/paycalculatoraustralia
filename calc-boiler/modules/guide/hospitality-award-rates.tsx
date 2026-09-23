@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, AlertTriangle, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -41,6 +39,7 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
   { label: "Fast food award rates", href: "/fast-food-award-rates/" },
   { label: "Award rates by industry", href: "/award-rates/" },
 ];
+import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary", publisher: SOURCES.fwo.name },
@@ -222,7 +221,7 @@ export default function HospitalityAwardRatesPage() {
                         { label: "Public holiday", perm: HOSPITALITY_PENALTIES.publicHoliday, cas: HOSPITALITY_PENALTIES.casualPublicHoliday },
                       ].map((row) => (
                         <tr key={row.label}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}{row.label === "Public holiday" && <PublicHolidayRowLink />}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.perm)}</td>
                           <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.perm), 2)}</td>
                           <td className="px-5 py-3 font-medium">{pct(row.cas)}</td>

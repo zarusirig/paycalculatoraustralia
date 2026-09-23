@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import HourlyToAnnualCalculatorPage from "@/modules/calculator/hourly-to-annual-salary-calculator";
-import { HOURLY_TO_ANNUAL_FAQS } from "@/modules/calculator/hourly-to-annual-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { HOURLY_TO_ANNUAL_FAQS } from "@/modules/calculator/hourly-to-annual-salary-calculator-faqs";
 import { calculatePayBreakdown, EMPLOYMENT, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hourly-to-annual-salary-calculator/`;
@@ -22,7 +24,7 @@ const netAt = (rate: number) => calculatePayBreakdown({ grossSalary: annualAt(ra
 // "hourly to annual salary calculator" (12% CTR). DataForSEO: "how many hours
 // in a year" 12.1k/mo, KD 4 — answered in the description and on the page.
 const TITLE = `Hourly to Annual Salary Calculator Australia: $${HEADLINE_RATE}/hr = ${formatAUD(annualAt(HEADLINE_RATE))}`;
-const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours a year), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
+const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -63,20 +65,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("hourly-to-annual-salary-calculator"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: HOURLY_TO_ANNUAL_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faq = faqPageSchema(HOURLY_TO_ANNUAL_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Hourly to Annual Salary Calculator",

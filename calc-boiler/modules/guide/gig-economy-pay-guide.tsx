@@ -1,8 +1,8 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { GIG_ECONOMY_FAQS } from "./gig-economy-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -227,44 +227,7 @@ export default function GigEconomyPayGuidePage() {
             {/* ───── SECTION 7: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="uber-gst" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do Uber drivers need to register for GST?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. <strong>All rideshare drivers must register for GST regardless of income level.</strong> This is a special rule that applies to taxi and ride-booking services. You must register from your first trip. Delivery-only drivers (Uber Eats, DoorDash) do not need to register until their turnover exceeds $75,000.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="delivery-gst" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do food delivery riders need to register for GST?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Only if your annual turnover from delivery work exceeds <strong>$75,000</strong>. Delivery services are not classified as taxi/ride-booking services, so the special mandatory GST rule does not apply. Most part-time delivery riders do not reach the threshold.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="tax-set-aside" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much should I set aside for tax?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A general rule is <strong>25-30% of gross income</strong>. This covers income tax, Medicare levy, and GST if applicable. The exact amount depends on your total annual income, deductions, and whether you have other income sources. Use a separate bank account specifically for tax savings.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="claim-car" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I use the cents-per-km method for rideshare?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, but it is limited to <strong>5,000 business kilometres</strong> (maximum deduction of {formatAUD((RETURN_2026.carCentsPerKm * RETURN_2026.carMaxKm) / 100)} at {RETURN_2026.carCentsPerKm}c/km on a {RETURN_2026.incomeYear} return; {RETURN_2026.carCentsPerKmNextYear}c/km from 1 July 2026). Most rideshare drivers exceed 5,000 km quickly, making the <strong>logbook method</strong> more beneficial. Keep a 12-week logbook to establish your business-use percentage, then apply it to all actual car expenses for the year.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="need-accountant" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need an accountant for gig work?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">It is not legally required, but it is strongly recommended if you are GST-registered or your gig income exceeds $30,000-$40,000. An accountant ensures your BAS is correct, maximises your deductions, and helps with tax planning. Tax agent fees are themselves <strong>tax deductible</strong>. Simple gig income with few deductions can be managed through myTax.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="platform-fees" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are platform commission fees deductible?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Platform fees (Uber&apos;s service fee, Airtasker&apos;s commission) are generally already deducted before you receive payment. If you report <strong>gross</strong> income (total fares before fees), then the platform fee is deductible. If you report <strong>net</strong> income (what you actually received), the fee is already accounted for. Check your platform&apos;s annual tax summary to see which figure they report to the ATO.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="gig-super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I have to pay my own super as a gig worker?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Super is not compulsory for sole traders, but it is strongly advisable. Without voluntary contributions, you will reach retirement with significantly less savings. Personal concessional contributions (up to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}/year</strong> in FY{SITE_CONFIG.financialYear}) are tax-deductible and taxed at only 15% in the fund. Even small regular contributions compound substantially over time.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={GIG_ECONOMY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Gig economy tax information is sourced from the Australian Taxation Office (ATO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets, with LITO and the Medicare levy low-income shading applied. Deduction ranges are estimates based on typical gig worker claims. GST rules for rideshare services are per ATO Taxation Determination. Individual circumstances vary — consult a registered tax agent for personalised advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

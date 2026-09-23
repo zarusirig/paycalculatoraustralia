@@ -4,6 +4,7 @@ import HECSHelpCalculatorPage, { type CalculatorFaq } from "@/modules/calculator
 import { JsonLd } from "@/modules/seo/json-ld";
 import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hecs-help-calculator/`;
@@ -13,7 +14,7 @@ const B2 = HECS_HELP.bands[2];
 const B3 = HECS_HELP.bands[3];
 
 const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} — Thresholds & Rates Table`;
-const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, repayment at common incomes, indexation history, voluntary repayments and the overseas rules — one page for every study and training loan.`;
+const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, indexation, voluntary repayments and the overseas rules.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -141,7 +142,7 @@ const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", 
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU",
+  dateModified: pageDateModified("hecs-help-calculator"), inLanguage: "en-AU",
 };
 
 const faq: WithContext<FAQPage> = {

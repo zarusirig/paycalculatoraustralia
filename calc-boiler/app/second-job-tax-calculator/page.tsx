@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calculator";
+import { faqPageSchema } from "@/lib/faq";
+import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-tax-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-faqs";
+
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
@@ -12,7 +15,7 @@ const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 export const metadata: Metadata = {
   title: "Second Job Tax Calculator Australia — Tax on Two Jobs",
   description:
-    "Calculate how much tax you pay on a second job in Australia. See why your second job is taxed higher, PAYG withholding without the tax-free threshold, and your combined take-home pay.",
+    "Calculate how much tax you pay on a second job in Australia: why it's taxed higher, PAYG withholding without the tax-free threshold, and combined take-home pay.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2026-27)",
@@ -50,20 +53,11 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("second-job-tax-calculator"),
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: SECOND_JOB_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faqSchema = faqPageSchema(SECOND_JOB_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Second Job Tax Calculator",

@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { BACKPAY_FAQS, EXAMPLE } from "@/modules/calculator/backpay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -18,8 +20,10 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { BACKPAY_FAQS, EXAMPLE } from "@/modules/calculator/backpay-faqs";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, n));
+}
 
 // Google AU "related searches" for "back pay calculator" and "back pay"
 // (Sept 2026), each pointed at the page that answers it.
@@ -31,10 +35,6 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
   { label: "Superannuation guarantee charge", href: "/super-guarantee-charge/" },
   { label: "Bonus and lump sum tax", href: "/bonus-tax-calculator/" },
 ];
-
-function clamp(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n));
-}
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Back payment of wages", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages", publisher: SOURCES.fwo.name },
@@ -118,7 +118,7 @@ export default function BackpayCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Backpay</h2>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                     <div>
@@ -152,7 +152,7 @@ export default function BackpayCalculatorPage() {
                         onChange={(e) => setWeeksUnderpaid(clamp(Number(e.target.value || 1), 1, 312))}
                         className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       <input type="range" min={1} max={156} step={1} value={clamp(weeksUnderpaid, 1, 156)}
-                        onChange={(e) => setWeeksUnderpaid(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setWeeksUnderpaid(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                       <p className="text-xs text-warmgray-light mt-1">You can claim up to 6 years (312 weeks) of underpayment.</p>
                     </div>
                   </form>
@@ -277,20 +277,7 @@ export default function BackpayCalculatorPage() {
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
-                  The same array feeds the FAQPage JSON-LD in the route file. */}
-              <div className="sr-only">
-                <h3>Back pay questions and answers</h3>
-                {BACKPAY_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-              </div>
-              <Accordion type="multiple" className="space-y-3">
-                {BACKPAY_FAQS.map((f) => (
-                  <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
-                    <AccordionTrigger>{f.q}</AccordionTrigger>
-                    <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+              <FaqAccordion faqs={BACKPAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             {/* Related */}

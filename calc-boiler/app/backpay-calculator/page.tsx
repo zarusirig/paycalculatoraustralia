@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import BackpayCalculatorPage from "@/modules/calculator/backpay-calculator";
-import { BACKPAY_FAQS } from "@/modules/calculator/backpay-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { BACKPAY_FAQS } from "@/modules/calculator/backpay-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
@@ -12,7 +14,7 @@ const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
 export const metadata: Metadata = {
   title: "Backpay Calculator Australia — Underpayment & Wage Theft",
   description:
-    "Calculate how much you're owed in backpay. Enter your actual rate vs correct rate, hours worked, and period. See total underpayment including super and leave. Free calculator.",
+    "Calculate how much backpay you're owed: enter your actual and correct rates, hours and period to see the total underpayment, including super and leave.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
@@ -50,20 +52,11 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("backpay-calculator"),
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  // Same array as the on-page accordion, so the two cannot drift.
-  mainEntity: BACKPAY_FAQS.map((f) => ({
-    "@type": "Question" as const,
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
-  })),
-};
+const faqSchema = faqPageSchema(BACKPAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Backpay Calculator",
