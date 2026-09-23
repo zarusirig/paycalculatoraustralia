@@ -14,6 +14,7 @@ import {
 } from "@/lib/constants/schads-award";
 import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
 import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
+import { QLD_STATE_WAGE_CASE_2026 } from "@/lib/constants/minimum-wage";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -697,6 +698,10 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const jRetail = JUNIOR_TRANSITION_SCHEDULES.retail;
   const jPh = JUNIOR_TRANSITION_SCHEDULES.pharmacy;
 
+
+  const QS = QLD_STATE_WAGE_CASE_2026;
+  const qPct = `${(QS.increase * 100).toFixed(2)}%`;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -811,6 +816,33 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "Do 18-year-olds get the full adult wage from December 2026?", answer: `No. It is a phase-in. Under the Fast Food Award an 18-year-old with more than 6 months' service goes from ${jFF.present.age18}% to ${jFF.rows[0].age18}% of the adult rate on ${jFF.rows[0].effective}, then rises five percentage points each July and December until reaching 100% on ${jFF.rows[jFF.rows.length - 1].effective}.` },
         { question: "Who does not get the junior pay increase?", answer: "Employees under 18, employees aged 18 to 20 with 6 months' service or less with their employer, and workers under awards other than the General Retail, Fast Food and Pharmacy Industry Awards. In retail, only employee levels 1 to 3 have junior rates, and 20-year-olds with more than 6 months' service already get the adult rate." },
         { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild — a five-point first step, then steps of up to ten points each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
+      ],
+    },
+    {
+      slug: "queensland-state-wage-case-2026",
+      headline: `Queensland State Wage Case 2026: State Award Wages Rise ${qPct} From ${QS.operativeFrom}`,
+      title: `QLD State Wage Case 2026: ${qPct} Rise, $${QS.qmwWeekly.toFixed(2)} Minimum Wage`,
+      description: `The QIRC's 2026 State Wage Case (${QS.citation}, delivered ${QS.deliveredOn}) lifts all Queensland state award wages and work-related allowances by ${qPct} from ${QS.operativeFrom} and sets the Queensland minimum wage at ${m(QS.qmwWeekly)} a week. Who it covers and what it means for public servants.`,
+      category: "Wages",
+      datePublished: "2026-09-04",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/public-service-pay-scales/qld/", label: "Queensland Public Service Pay Scales" },
+        { href: "/pay-calculator-qld/", label: "Queensland Pay Calculator" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Declaration of General Ruling (State Wage Case 2026) ${QS.citation}`, url: QS.url, publisher: "Queensland Industrial Relations Commission" },
+        { title: "Queensland Public Service Officers and Other Employees Award – State 2015 (reprint as at 1 September 2026)", url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/qld_public_service_010926.pdf", publisher: "Queensland Industrial Relations Commission" },
+        { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews/annual-wage-review-2026", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "How much did Queensland state award wages increase in 2026?", answer: `By ${qPct}, operative on and from ${QS.operativeFrom}, under the QIRC's State Wage Case decision ${QS.citation} delivered on ${QS.deliveredOn}. Work-related monetary allowances and service increments rose by the same percentage.` },
+        { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees — the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
+        { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards — chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
+        { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly — their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
       ],
     },
   ];
