@@ -340,7 +340,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
-  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year"]) {
+  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {
     allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
   }
   // --- end F7 ---

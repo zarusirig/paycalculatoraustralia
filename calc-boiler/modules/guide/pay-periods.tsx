@@ -141,6 +141,7 @@ export default function PayPeriodsPage() {
               <li><Link href="/monthly-pay-calculator/">Monthly Pay Calculator</Link></li>
               <li><Link href="/fortnightly-tax-table/">Fortnightly Tax Table 2026-27</Link></li>
               <li><Link href="/tax-calendar/">Tax Calendar 2026-27</Link>: key dates in the financial year</li>
+              <li><Link href="/centrelink-payment-dates/">Centrelink Payment Dates</Link>: the fortnightly payment cycle and Christmas changes</li>
             </ul>
           </section>
 

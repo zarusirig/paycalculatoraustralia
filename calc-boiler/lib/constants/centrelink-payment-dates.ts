@@ -20,8 +20,8 @@
 //   14 days online.
 //
 // ⚠️ REFRESH: Services Australia usually publishes the Christmas / New Year
-// tables in late October or November (the 2025 tables were on the page by
-// 27 October 2025). When the 2026-27 tables appear, add them as
+// tables in the last quarter of the year (the 2025 tables were on a version of
+// the page dated 27 October 2025). When the 2026-27 tables appear, add them as
 // CHRISTMAS_2026_27 below, set CHRISTMAS_2026_27_PUBLISHED = true, and move the
 // 2025-26 tables to a "last year" label. Re-check in October 2026.
 // =============================================================================
