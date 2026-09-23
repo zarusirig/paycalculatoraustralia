@@ -5,7 +5,15 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+
+// Worked examples from the FY2026-27 engine (resident, no HECS). The old copy
+// quoted $38,717 tax on $150,000, which matched neither 2025-26 nor 2026-27.
+const EX150 = calculatePayBreakdown({ grossSalary: 150_000 });
+const EX110 = calculatePayBreakdown({ grossSalary: 110_000 });
+const EX110_SACRIFICE = calculatePayBreakdown({ grossSalary: 110_000, salarySacrifice: 10_000 });
+// Tax and Medicare saved, less the 15% contributions tax the fund pays.
+const SACRIFICE_SAVING = (EX110.totalDeductions - EX110_SACRIFICE.totalDeductions) - 10_000 * 0.15;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -159,7 +167,7 @@ export default function TechSalaryGuideAustraliaPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Salary Sacrifice for Super</h3>
               <p>
-                Tech workers on high salaries can benefit from salary sacrificing additional super contributions. Pre-tax contributions are taxed at <strong>15%</strong> inside the super fund, compared to marginal rates of <strong>30–37%</strong> for a tech worker earning $130,000–$180,000. The concessional contribution cap is <strong>$30,000 per year</strong> (including employer SG). Use the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings for your salary level.
+                Tech workers on high salaries can benefit from salary sacrificing additional super contributions. Pre-tax contributions are taxed at <strong>15%</strong> inside the super fund, compared to marginal rates of <strong>30–37%</strong> for a tech worker earning $130,000–$180,000. The concessional contribution cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)} per year</strong> in FY{SITE_CONFIG.financialYear} (including employer SG). Use the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link> to model the tax savings for your salary level.
               </p>
             </section>
 
@@ -167,10 +175,10 @@ export default function TechSalaryGuideAustraliaPage() {
             <section id="take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay on a Tech Salary</h2>
               <p>
-                A senior developer earning <strong>$150,000</strong> per year pays approximately <strong>$38,717</strong> in income tax and Medicare levy for FY2025-26, leaving a take-home pay of approximately <strong>$111,283</strong> per year (<strong>$4,280 per fortnight</strong>). Superannuation at 12% adds <strong>$18,000</strong>, bringing the total package to <strong>$168,000</strong>.
+                A senior developer earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX150.totalDeductions)}</strong> in income tax and Medicare levy for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX150.takeHomePay)}</strong> per year (<strong>{formatAUD(EX150.takeHomePay / 26)} per fortnight</strong>). Superannuation at 12% adds <strong>{formatAUD(EX150.superContribution)}</strong>, bringing the total package to <strong>{formatAUD(150_000 + EX150.superContribution)}</strong>.
               </p>
               <p>
-                A mid-level developer earning <strong>$110,000</strong> takes home approximately <strong>$83,283</strong> per year (<strong>$3,203 per fortnight</strong>) after tax and Medicare. At this income level, salary sacrificing <strong>$10,000</strong> into super saves approximately <strong>$2,000</strong> in tax annually.
+                A mid-level developer earning <strong>$110,000</strong> takes home approximately <strong>{formatAUD(EX110.takeHomePay)}</strong> per year (<strong>{formatAUD(EX110.takeHomePay / 26)} per fortnight</strong>) after tax and Medicare. At this income level, salary sacrificing <strong>$10,000</strong> into super saves approximately <strong>{formatAUD(SACRIFICE_SAVING)}</strong> a year after the 15% contributions tax.
               </p>
               <div className="not-prose my-8">
                 <Link href="/take-home-pay-calculator/" className="inline-flex items-center gap-2 px-6 py-3 bg-eucalyptus-dark text-white font-semibold rounded-lg hover:bg-navy transition-colors">
@@ -214,7 +222,7 @@ export default function TechSalaryGuideAustraliaPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Tech salary data is compiled from ABS ICT industry earnings, major job board salary data (Seek, LinkedIn), recruiter salary guides (Hays, Robert Half, Michael Page), and published company compensation data. Salary ranges represent the middle 50% of the market for each role. Contractor day rates assume 230 billable days per year. Tax calculations use ATO marginal rates for FY2025-26.</p>
+                <p>Tech salary data is compiled from ABS ICT industry earnings, major job board salary data (Seek, LinkedIn), recruiter salary guides (Hays, Robert Half, Michael Page), and published company compensation data. Salary ranges represent the middle 50% of the market for each role. Contractor day rates assume 230 billable days per year. Tax calculations use ATO marginal rates for FY{SITE_CONFIG.financialYear}.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tech-salary-guide-australia"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

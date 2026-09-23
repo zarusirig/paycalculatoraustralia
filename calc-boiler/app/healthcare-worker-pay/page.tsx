@@ -20,18 +20,16 @@ const RN_ENTRY_LOW = ENTRIES[0];
 const RN_ENTRY_HIGH = ENTRIES[ENTRIES.length - 1];
 const AWARD_RN1 = NURSES_AWARD_GENERAL.find((s) => s.classification === "Registered nurse — level 1")!;
 
-const TITLE = "Healthcare Worker Pay — Nurse Pay by State, Doctors & Allied Health";
-const DESCRIPTION = `Nurse and midwife pay scales for all six states, read from the actual enterprise agreements: registered nurses from ${formatAUD(
-  RN_ENTRY_LOW,
-)} to ${formatAUD(
+const TITLE = "Healthcare Worker Pay — Nurses by State, Doctors & Allied Health";
+const DESCRIPTION = `Nurse and midwife pay scales for all six states from the enterprise agreements: registered nurses start on ${formatAUD(RN_ENTRY_LOW)} to ${formatAUD(
   RN_ENTRY_HIGH,
-)} at the entry step. Plus what the Nurses Award 2020 really is, shift penalties by state, doctor, allied health and aged care award rates, and salary packaging for public hospital staff.`;
+)}. Plus doctors and allied health.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

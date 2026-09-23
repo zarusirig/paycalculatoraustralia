@@ -100,7 +100,7 @@ export default function TeacherPayAustraliaPage() {
                       <tr key={state.slug}>
                         <th scope="row" className="px-4 py-3 text-left font-medium">
                           <Link href={`/teacher-pay-australia/${state.slug}/`} className="text-eucalyptus-dark hover:text-navy hover:underline">
-                            {state.code} teacher salary
+                            {state.code} teacher salary {year}
                           </Link>
                         </th>
                         <td className="px-4 py-3 text-right"><SalaryLink salary={graduate} /></td>
@@ -239,7 +239,7 @@ export default function TeacherPayAustraliaPage() {
                   <h2 className="font-bold text-navy mb-3">Teacher pay by state</h2>
                   <div className="space-y-2">
                     {TEACHER_PAY_STATES.map((s) => (
-                      <SidebarLink key={s.slug} href={`/teacher-pay-australia/${s.slug}/`} label={`${s.code} teacher salary`} />
+                      <SidebarLink key={s.slug} href={`/teacher-pay-australia/${s.slug}/`} label={`${s.code} teacher salary ${year}`} />
                     ))}
                   </div>
                 </CardContent>

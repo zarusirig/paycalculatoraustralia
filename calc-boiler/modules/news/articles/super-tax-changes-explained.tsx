@@ -35,9 +35,10 @@ export default function SuperTaxChangesExplained() {
       <h2>Division 296 tax: a small group, a big change</h2>
       <p>
         Division 296 tax adds an extra 15% on the share of earnings attributed to super balances
-        above $3 million, and a further 10% above $10 million. It&apos;s controversial because it
-        taxes unrealised gains in growth in your total super balance, not just realised income. But
-        it only applies if your balance exceeds $3 million — a small share of super members,
+        above $3 million, and a further 10% above $10 million. The original proposal was
+        controversial because it would have taxed unrealised gains, but the law as passed uses
+        realised earnings that each super fund calculates and reports to the ATO. It
+        only applies if your balance exceeds $3 million — a small share of super members,
         concentrated in large self-managed super funds. See our full{" "}
         <Link href="/division-293-tax/">Division 293 tax guide</Link> for how it interacts with
         existing high-income super settings. Both the $3 million and $10 million thresholds are

@@ -61,15 +61,15 @@ export default function SuperGuaranteeChargePage() {
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
 
-            {/* TIME-CRITICAL: the last legacy statement is due 28 August 2026 */}
+            {/* The last legacy statement was due 28 August 2026 — now past, so this box is in the past tense. */}
             <section id="final-statement">
               <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <div className="flex items-start gap-4">
                   <Clock className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" aria-hidden="true" />
                   <div>
-                    <h2 className="mb-2 text-base font-bold text-navy">The last-ever quarterly SGC statement is due {L.finalQuarterStatementDue}</h2>
+                    <h2 className="mb-2 text-base font-bold text-navy">The last-ever quarterly SGC statement was due {L.finalQuarterStatementDue}</h2>
                     <p className="text-sm leading-relaxed text-navy">
-                      The June 2026 quarter was the final one under the old rules. Its SG payment was due {L.finalQuarterSGDue}. If you missed that, you must lodge a super guarantee charge statement and pay the charge by <strong>{L.finalQuarterStatementDue}</strong>, under the old regime and at the old rates. Two traps on the way out: the late payment offset is <strong>not available</strong> for this final quarter, and contributions received on or after <strong>{L.tooLateForJuneQuarter}</strong> cannot be applied to it at all.
+                      The June 2026 quarter was the final one under the old rules. Its SG payment was due {L.finalQuarterSGDue}. If you missed that, a super guarantee charge statement and payment were due by <strong>{L.finalQuarterStatementDue}</strong>, under the old regime and at the old rates. If you still have not lodged, do it now: the charge keeps growing and the ATO can add penalties for a late statement. Two traps on the way out: the late payment offset is <strong>not available</strong> for this final quarter, and contributions received on or after <strong>{L.tooLateForJuneQuarter}</strong> cannot be applied to it at all.
                     </p>
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export default function SuperGuaranteeChargePage() {
                 <li><strong>Not tax-deductible</strong>, and a statement had to be lodged</li>
               </ul>
               <p>
-                The final quarterly SG payment was due {L.finalQuarterSGDue}, and the final statement is due <strong>{L.finalQuarterStatementDue}</strong>.
+                The final quarterly SG payment was due {L.finalQuarterSGDue}, and the final statement was due <strong>{L.finalQuarterStatementDue}</strong>.
               </p>
               <div className="not-prose mt-6">
                 <a href="https://www.ato.gov.au/businesses-and-organisations/super-for-employers/missed-or-late-payday-super-payments/what-happens-if-you-dont-pay-super-correctly" target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md border border-transparent bg-eucalyptus-dark px-5 py-3 text-base font-medium text-white shadow-sm hover:bg-navy">

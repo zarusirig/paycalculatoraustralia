@@ -32,6 +32,9 @@ import { ADF_SERVICE_LIST } from "@/lib/data/adf-pay";
 // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
 import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
 // --- end F5 ---
+// --- G4 public holiday pay cluster (24 Sep 2026) ---
+import { STATE_PUBLIC_HOLIDAYS, statePath } from "@/lib/data/public-holidays";
+// --- end G4 ---
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 // --- end T2 ---
@@ -47,7 +50,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -186,6 +189,15 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end F5 ---
+  // --- G4 public holiday pay cluster (24 Sep 2026) ---
+  {
+    title: "Public Holiday Pay",
+    items: [
+      { href: "/public-holiday-pay/", label: "Public Holiday Pay Rates & Calculator" },
+      ...STATE_PUBLIC_HOLIDAYS.map((s) => ({ href: statePath(s.slug), label: `${s.code} Public Holidays 2026 & 2027` })),
+    ],
+  },
+  // --- end G4 ---
   // --- T2 payroll tax cluster (23 Sep 2026) ---
   {
     title: "Payroll Tax by State",

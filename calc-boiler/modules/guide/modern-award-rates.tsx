@@ -34,6 +34,7 @@ import {
   TakeHomeLinks,
 } from "@/modules/guide/award-page-parts";
 import { getAwardPageCopy } from "@/modules/guide/modern-award-content";
+import { PublicHolidayRowLink } from "./public-holiday-shared"; // G4
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -250,6 +251,8 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                             <th scope="row" className="px-5 py-3 text-left font-medium">
                               {p.label}
                               {p.note && <span className="mt-1 block text-xs font-normal text-warmgray">{p.note}</span>}
+                              {/* G4: link from the award's first public holiday row */}
+                              {p === award.penalties.find((x) => /public holiday/i.test(x.label)) && <PublicHolidayRowLink />}
                             </th>
                             <td className="px-5 py-3 font-medium">{permanent ? rowPct(p.fullTime, p) : dash}</td>
                             <td className="px-5 py-3">{permanent ? <>{formatAUD(rowDollar(p, "fullTime"), 2)}{other}</> : dash}</td>

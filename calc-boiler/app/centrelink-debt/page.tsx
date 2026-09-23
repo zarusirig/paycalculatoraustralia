@@ -6,7 +6,7 @@ import { CARER_SUPPORT_SOURCES, RESOLUTION_SCHEME } from "@/lib/constants/centre
 
 const SLUG = "centrelink-debt";
 const TITLE = "Centrelink Debt 2026 — Overpayment Refunds & Apportionment Scheme";
-const DESCRIPTION = `Why Centrelink debts are in the news: refunds for people who overpaid a debt, the Income Apportionment Resolution Scheme (up to $600 per debt, apply by ${RESOLUTION_SCHEME.closes}) and the $475m robodebt settlement. Plus how income reporting creates an overpayment, and your repayment options.`;
+const DESCRIPTION = `Centrelink debt: Income Apportionment Resolution Scheme refunds of up to $600 per debt (apply by ${RESOLUTION_SCHEME.closes}), the $475m robodebt settlement and repayments.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

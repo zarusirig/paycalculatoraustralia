@@ -6,13 +6,14 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { REDUNDANCY_TAX } from "@/lib/constants/redundancy";
 import { REDUNDANCY_FAQS } from "@/modules/calculator/redundancy-pay-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/redundancy-pay-calculator/`;
 
 const Y = REDUNDANCY_TAX.incomeYear;
 const TITLE = `Redundancy Pay Calculator ${Y} — NES Table & Tax-Free Limit`;
-const DESCRIPTION = `Free Australian redundancy calculator: NES redundancy pay table (4 to 16 weeks by years of service), the ${Y} tax-free limit of ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} + ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, ETP tax and a worked example. Same rules in QLD, NSW, VIC and WA.`;
+const DESCRIPTION = `Free Australian redundancy calculator: NES redundancy pay (4 to 16 weeks by years of service), the ${Y} tax-free limit of ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} + ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, and ETP tax.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -53,7 +54,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("redundancy-pay-calculator"),
   inLanguage: "en-AU",
 };
 

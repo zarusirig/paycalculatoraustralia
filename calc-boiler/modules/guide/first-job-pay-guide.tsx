@@ -5,7 +5,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, LITO, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, LITO, EMPLOYMENT, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
+import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+
+// Weekly payslip example: 20 hrs @ $25, withholding from the ATO Schedule 1
+// coefficients for the current year (tax-free threshold claimed). The old
+// hardcoded $32 predated the 16% and 15% rate cuts.
+const EX_GROSS = 500;
+const EX_TAX = withholdingForPeriod(EX_GROSS, "weekly");
+const FIRST_JOB_ROWS = [
+  { income: 10_000, scenario: "~8 hrs/week casual @ $25/hr" },
+  { income: 18_200, scenario: "~14 hrs/week casual @ $25/hr" },
+  { income: 25_000, scenario: "~19 hrs/week @ $25/hr" },
+  { income: 35_000, scenario: "Part-time or full-time entry level" },
+  { income: 45_000, scenario: "Full-time entry level" },
+] as const;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -46,7 +60,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>2. Superannuation Fund</h3>
               <p>
-                Your employer must pay <strong>12% of your ordinary time earnings</strong> into a superannuation fund on your behalf (FY2025-26 rate). This is in addition to your wages — it does not come out of your pay. You can choose your own super fund or be placed in your employer&apos;s default fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
+                Your employer must pay <strong>12% of your qualifying earnings</strong> (for most employees, ordinary time earnings) into a superannuation fund on your behalf (FY{SITE_CONFIG.financialYear} rate). This is in addition to your wages — it does not come out of your pay. You can choose your own super fund or be placed in your employer&apos;s default fund. If you already have a super account (e.g., from a previous casual job), provide those details to avoid having multiple accounts with fees eating into your balance. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for more detail.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>3. TFN Declaration Form</h3>
@@ -83,8 +97,8 @@ export default function FirstJobPayGuidePage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3 font-medium">Gross pay</td><td className="px-5 py-3">Total pay before any deductions — hours worked multiplied by your rate</td><td className="px-5 py-3">$500.00</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">PAYG tax withheld</td><td className="px-5 py-3">Income tax your employer sends to the ATO on your behalf</td><td className="px-5 py-3">$32.00</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Net pay</td><td className="px-5 py-3">The amount deposited into your bank account (gross minus tax)</td><td className="px-5 py-3">$468.00</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">PAYG tax withheld</td><td className="px-5 py-3">Income tax your employer sends to the ATO on your behalf</td><td className="px-5 py-3">{formatAUD(EX_TAX, 2)}</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Net pay</td><td className="px-5 py-3">The amount deposited into your bank account (gross minus tax)</td><td className="px-5 py-3">{formatAUD(EX_GROSS - EX_TAX, 2)}</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Superannuation</td><td className="px-5 py-3">12% paid by your employer into your super fund — not deducted from your pay</td><td className="px-5 py-3">$60.00</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Year-to-date (YTD)</td><td className="px-5 py-3">Running total of gross pay and tax withheld since 1 July</td><td className="px-5 py-3">Varies</td></tr>
                     </tbody>
@@ -111,7 +125,7 @@ export default function FirstJobPayGuidePage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3">$0 – $18,200</td><td className="px-5 py-3">0% (tax-free threshold)</td><td className="px-5 py-3 text-right">$0</td></tr>
-                      <tr><td className="px-5 py-3">$18,201 – $45,000</td><td className="px-5 py-3">16 cents per dollar</td><td className="px-5 py-3 text-right">Up to $4,288</td></tr>
+                      <tr><td className="px-5 py-3">$18,201 – $45,000</td><td className="px-5 py-3">{Math.round(TAX_BRACKETS[1].rate * 100)} cents per dollar</td><td className="px-5 py-3 text-right">Up to {formatAUD(TAX_BRACKETS[2].base)}</td></tr>
                       <tr><td className="px-5 py-3">$45,001 – $135,000</td><td className="px-5 py-3">30 cents per dollar</td><td className="px-5 py-3 text-right">Up to $27,000</td></tr>
                     </tbody>
                   </table>
@@ -129,11 +143,9 @@ export default function FirstJobPayGuidePage() {
                       <tr><th className="px-5 py-3">Annual Earnings</th><th className="px-5 py-3">Scenario</th><th className="px-5 py-3 text-right">Annual Tax</th><th className="px-5 py-3 text-right">Weekly Take-Home</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">$10,000</td><td className="px-5 py-3">~8 hrs/week casual @ $25/hr</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">$192</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$18,200</td><td className="px-5 py-3">~14 hrs/week casual @ $25/hr</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">$350</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$25,000</td><td className="px-5 py-3">~19 hrs/week @ $25/hr</td><td className="px-5 py-3 text-right">$1,088</td><td className="px-5 py-3 text-right">$460</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$35,000</td><td className="px-5 py-3">Part-time or full-time entry level</td><td className="px-5 py-3 text-right">$2,688</td><td className="px-5 py-3 text-right">$621</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">$45,000</td><td className="px-5 py-3">Full-time entry level</td><td className="px-5 py-3 text-right">$4,288</td><td className="px-5 py-3 text-right">$783</td></tr>
+                      {FIRST_JOB_ROWS.map((r) => (
+                        <tr key={r.income}><td className="px-5 py-3 font-medium">{formatAUD(r.income)}</td><td className="px-5 py-3">{r.scenario}</td><td className="px-5 py-3 text-right">{formatAUD(calculateIncomeTax(r.income))}</td><td className="px-5 py-3 text-right">{formatAUD((r.income - calculateIncomeTax(r.income)) / 52)}</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -159,7 +171,7 @@ export default function FirstJobPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Do I Get Super if I Am Casual?</h3>
               <p>
-                Yes. From 1 July 2024, <strong>all employees receive super regardless of how much they earn</strong>. The previous $450/month threshold was removed in July 2022. Whether you are casual, part-time, or full-time, your employer pays 12% super on your ordinary time earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
+                Yes. Since 1 July 2022, <strong>all employees receive super regardless of how much they earn</strong>, when the previous $450/month threshold was removed. Whether you are casual, part-time, or full-time, your employer pays 12% super on your qualifying earnings. If you are under 18, you must work more than <strong>30 hours per week</strong> to qualify for compulsory super payments.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What If I Am Under 18?</h3>
@@ -185,7 +197,7 @@ export default function FirstJobPayGuidePage() {
 
                 <AccordionItem value="when-paid-super" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When does my employer pay super?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Employers must pay super contributions at least <strong>quarterly</strong>, within 28 days of the end of each quarter (September, December, March, June). Some employers pay super each pay cycle. Super appears on your payslip but is paid to your fund, not to you. Check your super fund account online to confirm contributions are being received.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Since Payday Super started on 1 July 2026, employers must pay super <strong>with every pay</strong>, and it must reach your fund within <strong>7 business days</strong> of payday (the old quarterly deadlines ended with the June 2026 quarter). Super appears on your payslip but is paid to your fund, not to you. Check your super fund account online to confirm contributions are being received.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="second-job" className="border rounded-lg px-4 bg-white">
@@ -200,7 +212,7 @@ export default function FirstJobPayGuidePage() {
 
                 <AccordionItem value="minimum-wage" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum wage for my first job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The national minimum wage for adults (21+) is <strong>$26.44 per hour</strong> or $1,004.90 per week (as of 1 July 2024). Casual employees receive an additional <strong>25% casual loading</strong>, making the casual minimum $30.13/hr. Many industries have <strong>award rates</strong> that are higher than the minimum wage — check our <Link href="/award-rates/">Award Rates Guide</Link>.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The national minimum wage for adults (21+) is <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> or {formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week (from 1 July 2026). Casual employees receive an additional <strong>25% casual loading</strong>, making the casual minimum {formatAUD(EMPLOYMENT.minimumWageHourly * (1 + EMPLOYMENT.casualLoading), 2)}/hr. Many industries have <strong>award rates</strong> that are higher than the minimum wage — check our <Link href="/award-rates/">Award Rates Guide</Link>.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="lodge-return" className="border rounded-lg px-4 bg-white">
@@ -211,7 +223,7 @@ export default function FirstJobPayGuidePage() {
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>First job information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Tax calculations use FY2025-26 resident tax brackets. Super rates are based on the current Superannuation Guarantee of 12%. Award rates and minimum wages are subject to annual review by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>First job information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets. Super rates are based on the current Superannuation Guarantee of 12%. Award rates and minimum wages are subject to annual review by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("first-job-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

@@ -98,7 +98,7 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Verify gross pay matches your contract.</strong> For salaried employees, divide your annual salary by the number of pay periods (26 for fortnightly, 12 for monthly). For hourly workers, check hours multiplied by your rate.</li>
                 <li>{"✅"} <strong>Check tax withholding is reasonable.</strong> Use our <Link href="/">Pay Calculator</Link> to compare expected vs actual PAYG withholding. If tax seems too high, confirm your TFN declaration was processed and the tax-free threshold applied.</li>
-                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Check your super fund online portal within <strong>28 days of the end of the quarter</strong> to confirm the contribution arrived.</li>
+                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Since Payday Super started on 1 July 2026, contributions must reach your fund within <strong>7 business days of each payday</strong> (20 business days for a new employee&apos;s first contribution), so check your super fund online portal a few weeks after starting to confirm it arrived.</li>
                 <li>{"✅"} <strong>Check leave balances are accruing.</strong> Full-time employees accrue annual leave from day one. After your first pay period, you should see leave balance appearing on your payslip or in your employer&apos;s HR system.</li>
                 <li>{"✅"} <strong>Review allowances and loadings.</strong> If your contract or award includes shift penalties, overtime rates, or allowances (meal, travel, uniform), verify these are being applied correctly.</li>
               </ul>
@@ -134,15 +134,15 @@ export default function NewJobChecklistPage() {
                       <tr><td className="px-5 py-3 font-medium">Base salary</td><td className="px-5 py-3">$90,000</td><td className="px-5 py-3">Cash salary before tax</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Superannuation (12%)</td><td className="px-5 py-3">$10,800</td><td className="px-5 py-3">Paid by employer into your super fund</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Salary sacrifice (if available)</td><td className="px-5 py-3">$5,000 – $15,000</td><td className="px-5 py-3">Pre-tax contributions reduce taxable income</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Leave entitlements</td><td className="px-5 py-3">~$7,600</td><td className="px-5 py-3">4 weeks annual leave = 7.7% of base</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Leave entitlements</td><td className="px-5 py-3">~$6,923</td><td className="px-5 py-3">4 weeks paid annual leave (4/52 of base) &mdash; already inside the base salary, not extra cash</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Other benefits</td><td className="px-5 py-3">Varies</td><td className="px-5 py-3">Parking, health insurance, bonuses, WFH equipment</td></tr>
-                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">$108,400+</td><td className="px-5 py-3">True value of the position</td></tr>
+                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">$100,800+</td><td className="px-5 py-3">Base salary plus super, before other benefits</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                When negotiating, ask about salary sacrifice options, bonus structures, and professional development budgets. A $5,000 salary sacrifice into super saves approximately <strong>$1,625</strong> in tax for someone in the 37% bracket compared to receiving the same amount as cash salary. Model different scenarios with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
+                When negotiating, ask about salary sacrifice options, bonus structures, and professional development budgets. A $5,000 salary sacrifice into super saves approximately <strong>$1,200</strong> for someone in the 37% bracket compared to receiving the same amount as cash salary ($1,950 of income tax and Medicare levy avoided, less $750 of 15% contributions tax in the fund). Model different scenarios with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
               </p>
             </section>
 
@@ -184,7 +184,7 @@ export default function NewJobChecklistPage() {
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY2025-26 SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY{SITE_CONFIG.financialYear} SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("new-job-checklist"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

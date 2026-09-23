@@ -7,7 +7,7 @@ import { ADVANCE_LIMITS, CARER_SUPPORT_SOURCES } from "@/lib/constants/centrelin
 
 const SLUG = "centrelink-advance-payment";
 const TITLE = "Centrelink Advance Payment 2026 — Amounts & Repayment Calculator";
-const DESCRIPTION = `How much Centrelink advance you can get — ${formatAUD(250)} to ${formatAUD(500)} on JobSeeker, Parenting Payment and Youth Allowance, up to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} on a pension — and what comes off each payment: the advance divided by 13. Rules verified at Services Australia.`;
+const DESCRIPTION = `Centrelink advance payment: ${formatAUD(250)} to ${formatAUD(500)} on JobSeeker, Parenting Payment and Youth Allowance, up to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} on a pension, repaid over 13 fortnights.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

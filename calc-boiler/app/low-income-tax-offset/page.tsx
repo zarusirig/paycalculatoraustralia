@@ -15,13 +15,13 @@ const m = (n: number) => formatAUD(n);
 // variants GSC already shows ("low income tax offset calculator", "lito
 // calculator"). Answer-first: amount, both phase-out bands, cut-out.
 const TITLE = `LITO Calculator ${FY}: Low Income Tax Offset (${m(LITO.maxOffset)} Max)`;
-const DESCRIPTION = `The low income tax offset is ${m(LITO.maxOffset)} up to ${m(LITO.fullOffsetCeiling)}, ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)} and nil at ${m(LITO.nilOffsetIncome)}. Work out your LITO for ${FY}, the tax it saves, and why you pay no tax up to ${m(NIL_NOW)}.`;
+const DESCRIPTION = `The low income tax offset is ${m(LITO.maxOffset)} up to ${m(LITO.fullOffsetCeiling)}, ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)} and nil at ${m(LITO.nilOffsetIncome)}. Work out your LITO for ${FY} and why you pay no tax up to ${m(NIL_NOW)}.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

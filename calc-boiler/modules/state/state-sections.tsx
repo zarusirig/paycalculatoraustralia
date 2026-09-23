@@ -317,6 +317,16 @@ export function PublicHolidayTable({ profile }: { profile: StateEmployeeProfile 
         , read {STATE_EMPLOYEE_SOURCES.verifiedOn}. Regional and part-day variations apply — check
         with {profile.name} for the list that covers your town.
       </p>
+      {/* --- G4 public holiday pay cluster (24 Sep 2026) --- */}
+      <p className="mt-2 text-sm text-warmgray">
+        <Link
+          href={`/public-holiday-pay/${profile.code.toLowerCase()}/`}
+          className="font-medium text-eucalyptus-dark hover:underline"
+        >
+          {profile.shortName} public holidays 2026 &amp; 2027 — every date, regional days and public holiday pay rates →
+        </Link>
+      </p>
+      {/* --- end G4 --- */}
     </>
   );
 }

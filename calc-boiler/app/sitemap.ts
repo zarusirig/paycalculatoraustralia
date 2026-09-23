@@ -22,6 +22,9 @@ import { SALARY_TO_HOURLY_SALARIES, TAKE_HOME_SALARIES, TAX_ON_SALARIES } from "
 import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
 import { AVIATION_PATHS } from "@/lib/data/aviation-pay";
 // --- end F5 ---
+// --- G4 public holiday pay cluster (24 Sep 2026) ---
+import { STATE_PUBLIC_HOLIDAYS } from "@/lib/data/public-holidays";
+// --- end G4 ---
 import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
 
@@ -360,6 +363,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
   }
   // --- end F7 ---
+  // --- G4 public holiday pay cluster (24 Sep 2026): hub + built state pages only ---
+  allPages.push({ slug: "public-holiday-pay", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const s of STATE_PUBLIC_HOLIDAYS) {
+    allPages.push({ slug: `public-holiday-pay/${s.slug}`, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end G4 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

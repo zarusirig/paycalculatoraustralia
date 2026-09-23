@@ -2,19 +2,22 @@ import type { Metadata } from "next";
 import EmployerCostCalculatorPage from "@/modules/guide/employer-cost-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, STATE_PAYROLL_TAX, formatAUD, formatPercent } from "@/lib/constants";
+
+const PAYROLL_RATES = Object.values(STATE_PAYROLL_TAX).map((s) => s.rate);
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employer-cost-calculator/`;
 const TITLE = "True Cost of an Employee Calculator Australia";
-const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia. Learn about superannuation, payroll tax, workers compensation, and leave provisions loaded onto a base salary.";
+const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia: superannuation, payroll tax, workers compensation and leave provisions on top of base salary.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +42,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("employer-cost-calculator"),
+  dateModified: pageDateModified("employer-cost-calculator"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
@@ -51,8 +56,8 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "How much does an employee actually cost an employer?", acceptedAnswer: { "@type": "Answer", text: "As a general rule of thumb in Australia, the true cost of a full-time employee is typically 1.3 to 1.4 times their base salary. For a $100,000 salary, the business actually spends closer to $130,000-$140,000 once super, payroll tax, WorkCover, and leave liabilities are factored in." } },
-    { "@type": "Question", name: "What is Payroll Tax?", acceptedAnswer: { "@type": "Answer", text: "Payroll tax is a state government tax levied on employers when their total wage bill exceeds a certain threshold (e.g. $1.2M in NSW). It is usually calculated at around 4.5% to 5.5% of the total wages paid." } },
+    { "@type": "Question", name: "How much does an employee actually cost an employer?", acceptedAnswer: { "@type": "Answer", text: "On typical assumptions (12% super, 4 weeks leave provision, Victorian payroll tax above the threshold and a 1.5% WorkCover premium), a full-time employee costs about 1.27 times their base salary: roughly $126,600 on a $100,000 salary, before recruitment, training and equipment." } },
+    { "@type": "Question", name: "What is Payroll Tax?", acceptedAnswer: { "@type": "Answer", text: `Payroll tax is a state and territory tax levied on employers when their total wage bill exceeds a threshold (e.g. ${formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} in NSW). Headline rates for FY${SITE_CONFIG.financialYear} range from ${formatPercent(Math.min(...PAYROLL_RATES), 2)} to ${formatPercent(Math.max(...PAYROLL_RATES), 2)} of wages above the threshold.` } },
     { "@type": "Question", name: "What are Leave Provisions?", acceptedAnswer: { "@type": "Answer", text: "Leave provisions are an accounting liability. Even though a worker on a $100k salary receives $100k for working 52 weeks, they only actually work 48 weeks (because of 4 weeks annual leave). The employer is paying for 52 weeks of wages but only extracting 48 weeks of productive labour." } },
   ]
 };

@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
@@ -11,7 +12,7 @@ const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
 export const metadata: Metadata = {
   title: "Part-Time vs Full-Time vs Casual Pay Calculator",
   description:
-    "Compare take-home pay and entitlements across employment types. See the real difference between full-time, part-time, and casual including leave, super, and casual loading.",
+    "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Part-Time vs Full-Time vs Casual Calculator — Compare Pay & Entitlements",
@@ -49,7 +50,7 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("employment-type-calculator"),
   inLanguage: "en-AU",
 };
 
@@ -75,7 +76,7 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "Can I convert from casual to permanent?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Under the Fair Work Act, casual employees who have worked regular hours for 12 months can request conversion to permanent (full-time or part-time) employment. Employers with 15+ employees must offer conversion if the criteria are met." },
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Since 26 August 2024, a casual employee who has worked for their employer for at least 6 months (12 months if the employer is a small business with fewer than 15 employees) and believes they no longer meet the casual definition can notify their employer that they want to change to full-time or part-time. The employer must respond in writing within 21 days; employers are no longer required to offer conversion." },
     },
   ],
 };

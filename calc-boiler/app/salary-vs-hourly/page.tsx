@@ -4,17 +4,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-vs-hourly/`;
 const TITLE = "Salary vs Hourly Pay Australia — Which Is Better For You?";
-const DESCRIPTION = "Salary vs hourly pay: compare the real differences. Overtime access, leave entitlements, stability, and total package value. See which arrangement pays more for your situation.";
+const DESCRIPTION = "Salary vs hourly pay: the real differences in overtime, leave entitlements, stability and total package value. See which arrangement pays more for your situation.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +40,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("salary-vs-hourly"),
+  dateModified: pageDateModified("salary-vs-hourly"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,
@@ -51,7 +54,7 @@ const faq: WithContext<FAQPage> = {
   "@type": "FAQPage",
   mainEntity: [
     { "@type": "Question", name: "Is salary or hourly pay better in Australia?", acceptedAnswer: { "@type": "Answer", text: "Neither is universally better. Salary provides income stability, paid leave, and predictable budgeting. Hourly pay ensures you are compensated for every hour worked, including overtime and penalty rates. The best option depends on your industry, role, and personal financial priorities." } },
-    { "@type": "Question", name: "How do I convert my salary to an hourly rate?", acceptedAnswer: { "@type": "Answer", text: "Divide your annual salary by 52 weeks, then divide by your standard weekly hours (usually 38 for full-time). For example, $75,000 / 52 / 38 = $38.07 per hour. Use our Hourly to Annual Salary Calculator for an instant conversion." } },
+    { "@type": "Question", name: "How do I convert my salary to an hourly rate?", acceptedAnswer: { "@type": "Answer", text: "Divide your annual salary by 52 weeks, then divide by your standard weekly hours (usually 38 for full-time). For example, $75,000 / 52 / 38 = $37.96 per hour. Use our Hourly to Annual Salary Calculator for an instant conversion." } },
     { "@type": "Question", name: "Do salaried employees get overtime in Australia?", acceptedAnswer: { "@type": "Answer", text: "It depends on the award or enterprise agreement. Many salaried employees have 'reasonable additional hours' clauses meaning they do not receive overtime pay. However, some awards and agreements require overtime compensation for salaried workers who exceed standard hours." } },
   ]
 };
