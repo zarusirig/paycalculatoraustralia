@@ -1,9 +1,11 @@
+import Link from "next/link";
 import type { Metadata } from 'next';
 import { SalaryToHourly } from '@/modules/programmatic/salary-to-hourly';
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG, EMPLOYMENT } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 
 interface PageProps {
   params: Promise<{
@@ -11,10 +13,10 @@ interface PageProps {
   }>;
 }
 
-const SALARY_LIST = [30000, 40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000, 90000, 95000, 100000, 110000, 120000, 130000, 140000, 150000, 200000];
-
+// Grid from lib/data/salary-pages (T6): the take-home grid from $40k up plus
+// the original $30,000 page. Shared with the sitemap and the hub.
 export async function generateStaticParams() {
-  return SALARY_LIST.map(amount => ({ amount: amount.toString() }));
+  return SALARY_TO_HOURLY_SALARIES.map(amount => ({ amount: amount.toString() }));
 }
 
 // From EMPLOYMENT, not redeclared: this was duplicated here as 1982.84 and
@@ -35,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // "80k a year is how much an hour"). Hourly figures from the tax engine
     // and EMPLOYMENT.hoursPerYear, never hardcoded.
     title: `${formattedSalary} a Year Is How Much an Hour? ${formatAUD(grossHourly, 2)} in Australia`,
-    description: `$${salaryAmount / 1000}k a year is ${formatAUD(grossHourly, 2)} an hour before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${HOURS_PER_YEAR.toLocaleString("en-AU")} hours a year), or ${formatAUD(netHourly, 2)} an hour after tax in ${SITE_CONFIG.financialYear}. Weekly, fortnightly and monthly pay too.`,
+    description: `$${(salaryAmount / 1000).toLocaleString("en-AU")}k a year is ${formatAUD(grossHourly, 2)} an hour before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${HOURS_PER_YEAR.toLocaleString("en-AU")} hours a year), or ${formatAUD(netHourly, 2)} an hour after tax in ${SITE_CONFIG.financialYear}. Weekly, fortnightly and monthly pay too.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/salary-to-hourly/${resolvedParams.amount}/`,
     },
@@ -76,7 +78,7 @@ export default async function SalaryToHourlyPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: "Hourly to Annual Calculator", item: `${BASE}/hourly-to-annual-salary-calculator/` },
+      { "@type": "ListItem", position: 2, name: "Salary to Hourly", item: `${BASE}/salary-to-hourly/` },
       { "@type": "ListItem", position: 3, name: `${formattedSalary} to Hourly`, item: URL }
     ]
   };
@@ -90,9 +92,9 @@ export default async function SalaryToHourlyPage({ params }: PageProps) {
           {/* Breadcrumb navigation */}
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol className="flex items-center justify-center gap-2 text-sm text-warmgray">
-              <li><a href="/" className="hover:text-eucalyptus transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-eucalyptus transition-colors">Home</Link></li>
               <li className="text-warmgray/50">/</li>
-              <li><a href="/hourly-to-annual-salary-calculator/" className="hover:text-eucalyptus transition-colors">Hourly to Annual Calculator</a></li>
+              <li><Link href="/salary-to-hourly/" className="hover:text-eucalyptus transition-colors">Salary to Hourly</Link></li>
               <li className="text-warmgray/50">/</li>
               <li className="text-navy font-medium">{formattedSalary} to Hourly</li>
             </ol>

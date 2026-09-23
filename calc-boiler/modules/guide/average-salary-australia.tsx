@@ -9,7 +9,9 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { SITE_CONFIG } from "@/lib/constants/australian-tax";
-import { nearestTakeHomeAmount, takeHomeHref } from "@/lib/data/teacher-pay";
+// T6: the take-home grid now has $1k steps from $40k-$150k, so link the exact
+// nearest page from the shared grid rather than the old $5k step.
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import {
   AVERAGE_SALARY_VERIFIED_ISO,
   AVERAGE_SALARY_VERIFIED_ON,
@@ -47,10 +49,10 @@ const SOURCES_LIST: SourceLink[] = [
 
 /** An annual figure linked to its nearest /take-home-pay-on/N/ page, labelled honestly when not exact. */
 function TakeHomeCell({ annual }: { annual: number }) {
-  const nearest = nearestTakeHomeAmount(annual);
+  const nearest = nearestSalary("take-home", annual);
   const label = nearest === annual ? `Take-home pay on ${dollars(annual)}` : `Take-home pay on ${dollars(nearest)}, the nearest step to ${dollars(annual)}`;
   return (
-    <Link href={takeHomeHref(annual)} title={label} aria-label={label} className="underline decoration-eucalyptus/40 decoration-dotted underline-offset-4 hover:text-eucalyptus-dark">
+    <Link href={salaryHref("take-home", nearest)} title={label} aria-label={label} className="underline decoration-eucalyptus/40 decoration-dotted underline-offset-4 hover:text-eucalyptus-dark">
       {dollars(takeHome(annual))}
     </Link>
   );
@@ -205,7 +207,9 @@ export default function AverageSalaryAustraliaPage() {
               <p className="text-sm">
                 Take-home assumes an Australian resident for the full year, no HECS/HELP debt and no Medicare levy surcharge, after income
                 tax, the low income tax offset and the 2% Medicare levy. Super is paid on top. Use the{" "}
-                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your own situation.
+                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your own situation, or browse{" "}
+                <Link href="/take-home-pay-on/">take-home pay on every salary</Link> and{" "}
+                <Link href="/salary-to-hourly/">every salary as an hourly rate</Link>.
               </p>
             </section>
 

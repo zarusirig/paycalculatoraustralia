@@ -8,6 +8,7 @@ import {
   SITE_CONFIG,
   SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
+import { nearestSalary } from "@/lib/data/salary-pages";
 
 const HOURS_PER_YEAR: number = EMPLOYMENT.hoursPerYear;
 const WEEKS: number = EMPLOYMENT.weeksPerYear;
@@ -336,23 +337,15 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   );
 }
 
-/** Nearest salary that has a /salary-to-hourly/ page, for the reverse link. */
-const SALARY_STEPS = [
-  30_000, 40_000, 45_000, 50_000, 55_000, 60_000, 65_000, 70_000, 75_000, 80_000, 85_000, 90_000,
-  95_000, 100_000, 110_000, 120_000, 130_000, 140_000, 150_000, 200_000,
-];
-
+/**
+ * Nearest salary that has a /salary-to-hourly/ page, for the reverse link.
+ * Reads the shared grid in lib/data/salary-pages ($1k steps from $40k).
+ */
 export function roundToSalaryStep(salary: number): number {
-  return SALARY_STEPS.reduce((best, s) =>
-    Math.abs(s - salary) < Math.abs(best - salary) ? s : best,
-  );
+  return nearestSalary("salary-to-hourly", salary);
 }
 
-/**
- * Nearest salary that has a /take-home-pay-on/ page ($30,000–$200,000 in
- * $5,000 steps — the same range app/take-home-pay-on/[salary]/page.tsx generates).
- */
+/** Nearest salary that has a /take-home-pay-on/ page (shared grid, lib/data/salary-pages). */
 export function roundToTakeHomeStep(salary: number): number {
-  const stepped = Math.round(salary / 5_000) * 5_000;
-  return Math.min(200_000, Math.max(30_000, stepped));
+  return nearestSalary("take-home", salary);
 }
