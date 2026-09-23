@@ -18,6 +18,8 @@ import {
   PENDING_JUNIOR_CHANGE,
 } from "@/lib/constants/junior-rates";
 import { EMPLOYMENT } from "@/lib/constants";
+import { getEmployerPay, juniorRates } from "@/lib/data/employer-pay";
+import type { EmployerPay } from "@/lib/data/employer-pay/types";
 
 const byAge = (age: string) => JUNIOR_RATES.find((r) => r.age === age)!;
 const U16 = byAge("Under 16");
@@ -32,12 +34,49 @@ const noMinimum = MINIMUM_WORKING_AGE.filter((j) => j.summary === "No minimum ag
   .map((j) => j.jurisdiction)
   .join(", ");
 
+// ---------------------------------------------------------------------------
+// Big-employer junior rates (PAA on "junior pay rates" / "minimum wage for 16
+// year olds australia": Kmart, McDonald's, Woolworths, Coles). Read from the
+// employer registry (each file transcribes its enterprise agreement or award
+// pay guide), so this table and /pay-rates/<employer>/ cannot disagree.
+// ---------------------------------------------------------------------------
+
+/** Junior band that covers `age` in an employer's scale ("Under 16", "16 and under", "17", "20 and over"...). */
+function bandForAge(employer: EmployerPay, age: number) {
+  return juniorRates(employer).find((row) => {
+    const label = row.age.toLowerCase();
+    const n = Number.parseInt(label.replace(/[^0-9]/g, ""), 10);
+    if (label.startsWith("under")) return age < n;
+    if (label.includes("and under")) return age <= n;
+    if (label.includes("and over")) return age >= n;
+    return age === n;
+  })!;
+}
+
+export const JUNIOR_EMPLOYER_SLUGS = ["mcdonalds", "kmart", "woolworths", "coles"] as const;
+export const JUNIOR_EMPLOYER_AGES = [15, 16, 17] as const;
+export const JUNIOR_EMPLOYER_ROWS = JUNIOR_EMPLOYER_SLUGS.map((slug) => {
+  const employer = getEmployerPay(slug)!;
+  return {
+    slug,
+    name: employer.name,
+    instrument: employer.instrument.title,
+    href: `/pay-rates/${slug}/`,
+    casual: JUNIOR_EMPLOYER_AGES.map((age) => bandForAge(employer, age).casualHourly),
+  };
+});
+const EMP = (slug: (typeof JUNIOR_EMPLOYER_SLUGS)[number]) => JUNIOR_EMPLOYER_ROWS.find((r) => r.slug === slug)!;
+
 export interface JuniorFaq {
   q: string;
   a: string;
 }
 
 export const JUNIOR_FAQS: readonly JuniorFaq[] = [
+  {
+    q: "What is the junior pay rate in Australia?",
+    a: `A junior pay rate is a set percentage of the adult minimum wage paid to workers under ${ADULT_AGE}. With no award, it runs from ${pctOf(U16.percentage)} (${formatAUD(U16.hourly, 2)} an hour) under 16 to ${pctOf(A20.percentage)} (${formatAUD(A20.hourly, 2)}) at 20. Most young workers are covered by an award, which sets its own percentages against the award rate instead.`,
+  },
   {
     q: "What is the minimum wage for a 16 year old in Australia?",
     a: `For an employee covered by no award or agreement, a 16-year-old receives ${pctOf(A16.percentage)} of the National Minimum Wage — ${formatAUD(A16.hourly, 2)} an hour, or ${formatAUD(A16.casualHourly, 2)} an hour as a casual. Most 16-year-olds, though, work in retail or fast food and are covered by an award, which sets its own junior percentage against the award classification rate rather than against the National Minimum Wage. Under the General Retail Industry Award a 16-year-old gets 50% of the adult rate; under the Fast Food Industry Award, also 50%. Check which award covers you before using the national figure.`,
@@ -81,6 +120,10 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   {
     q: "Can an employer pay a junior less than these rates?",
     a: `No. These are legal minimums, not guidelines, and paying below them is underpayment regardless of whether the employee agreed to it. Since 1 January 2025 intentional underpayment has been a federal criminal offence. Junior rates are also the wrong place to be casual about classification: an employee wrongly placed a level down, or given a junior rate under an award that has none, can be owed thousands over a year. Underpayments can generally be recovered for up to six years.`,
+  },
+  {
+    q: "How much do McDonald's, Kmart, Woolworths and Coles pay juniors?",
+    a: `As a casual on a weekday, a 16-year-old gets ${formatAUD(EMP("mcdonalds").casual[1], 2)} an hour at McDonald's, ${formatAUD(EMP("kmart").casual[1], 2)} at Kmart, ${formatAUD(EMP("woolworths").casual[1], 2)} at Woolworths and ${formatAUD(EMP("coles").casual[1], 2)} at Coles. A 15-year-old gets ${formatAUD(EMP("mcdonalds").casual[0], 2)}, ${formatAUD(EMP("kmart").casual[0], 2)}, ${formatAUD(EMP("woolworths").casual[0], 2)} and ${formatAUD(EMP("coles").casual[0], 2)}. McDonald's pays under the Fast Food Award; the other three under their own enterprise agreements.`,
   },
 ];
 
