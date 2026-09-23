@@ -50,10 +50,10 @@ export default function VictorianTeachersPayRise2026() {
       <NewsKeyFacts
         title="Key figures (proposed VGSA 2026)"
         rows={[
-          { label: "Graduate teacher (1-1), from Oct 2026", before: formatAUD(gradNow), after: formatAUD(gradOct) },
-          { label: "Top classroom teacher (2-6), from Oct 2026", before: formatAUD(topNow), after: formatAUD(topOct) },
-          { label: "Leading teacher / learning specialist (3-2), from Oct 2026", before: formatAUD(ltNow), after: formatAUD(ltOct) },
-          { label: "Top classroom teacher (2-6), from Nov 2029", before: formatAUD(topNow), after: formatAUD(topEnd) },
+          { label: "Graduate teacher (1-1), from Oct 2026", after: `${formatAUD(gradNow)} → ${formatAUD(gradOct)}` },
+          { label: "Top classroom teacher (2-6), from Oct 2026", after: `${formatAUD(topNow)} → ${formatAUD(topOct)}` },
+          { label: "Leading teacher / learning specialist (3-2), from Oct 2026", after: `${formatAUD(ltNow)} → ${formatAUD(ltOct)}` },
+          { label: "Top classroom teacher (2-6), from Nov 2029", after: `${formatAUD(topNow)} → ${formatAUD(topEnd)}` },
           { label: "Lump sum on commencement (full-time)", after: formatAUD(VIC_2026_AGREEMENT.lumpSum) },
           { label: "Staff ballot", after: `${VIC_2026_AGREEMENT.ballotYesPct}% yes, ${VIC_2026_AGREEMENT.ballotParticipationPct}% turnout` },
         ]}
