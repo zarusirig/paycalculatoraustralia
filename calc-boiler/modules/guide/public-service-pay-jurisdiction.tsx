@@ -1,4 +1,3 @@
-"use client";
 import { Fragment } from "react";
 import Link from "next/link";
 import { ChevronRight, ExternalLink } from "lucide-react";

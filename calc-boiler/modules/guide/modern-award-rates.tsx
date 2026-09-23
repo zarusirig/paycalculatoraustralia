@@ -1,5 +1,3 @@
-"use client";
-
 // One template for the data-driven award pages. The page is the award's
 // constants rendered in the order a worker checking their pay needs them:
 // rate by level → the pay-guide matrix for their employment type → penalties

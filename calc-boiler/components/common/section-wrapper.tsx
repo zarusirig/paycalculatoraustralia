@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 type SectionVariant = "white" | "muted" | "warm" | "primary-soft" | "dark";
@@ -11,6 +8,12 @@ interface SectionWrapperProps {
   className?: string;
   id?: string;
   ariaLabelledBy?: string;
+  /**
+   * Adds the CSS fade-up entrance (globals.css `.animate-fade-in-up`). It used
+   * to be a framer-motion `whileInView` that shipped the section at opacity:0
+   * in the static HTML until hydration; now it is CSS-only, so the section is
+   * visible without JavaScript and this stays a server component.
+   */
   animate?: boolean;
 }
 
@@ -30,24 +33,13 @@ export default function SectionWrapper({
   ariaLabelledBy,
   animate = true,
 }: SectionWrapperProps) {
-  const Wrapper = animate ? motion.section : "section";
-  const animationProps = animate
-    ? {
-        initial: { opacity: 0, y: 24 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, margin: "-60px" },
-        transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
-      }
-    : {};
-
   return (
-    <Wrapper
+    <section
       id={id}
       aria-labelledby={ariaLabelledBy}
-      className={`${variantClasses[variant]} px-4 py-20 sm:px-6 lg:px-8 ${className}`}
-      {...animationProps}
+      className={`${variantClasses[variant]} px-4 py-20 sm:px-6 lg:px-8 ${animate ? "animate-fade-in-up" : ""} ${className}`}
     >
       <div className="mx-auto max-w-6xl">{children}</div>
-    </Wrapper>
+    </section>
   );
 }

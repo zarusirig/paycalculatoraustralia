@@ -31,6 +31,18 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   poweredByHeader: false,
+  // `ANALYZE_MAPS=1 npx next build --webpack` emits browser source maps so the
+  // chunks in out/_next/static/chunks can be attributed to modules (see
+  // docs/seo/2026-09-24-performance-pass.md). Off by default: the maps would
+  // otherwise be deployed with the site.
+  productionBrowserSourceMaps: process.env.ANALYZE_MAPS === "1",
+
+  experimental: {
+    // Per-module imports for icon/primitive barrels. lucide-react is already
+    // on Next's built-in list; it is named here so the intent is explicit.
+    // radix-ui is the umbrella package components/ui/* import from.
+    optimizePackageImports: ["lucide-react", "radix-ui"],
+  },
 
   images: {
     formats: ["image/avif", "image/webp"],

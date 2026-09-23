@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
 import {
