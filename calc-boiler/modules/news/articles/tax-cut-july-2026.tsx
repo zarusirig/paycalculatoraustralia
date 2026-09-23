@@ -6,7 +6,7 @@ export default function TaxCutJuly2026() {
     <>
       <p className="lead">
         From 1 July 2026, the tax rate on income between $18,201 and $45,000 dropped from{" "}
-        <strong>16% to 15%</strong> — the second stage of tax cuts legislated in the 2025 Budget.
+        <strong>16% to 15%</strong> — the first of two further cuts legislated after the March 2025 Budget.
         Every taxpayer earning above $45,000 saves the full <strong>$268 a year</strong>, applied
         automatically through lower PAYG withholding.
       </p>
@@ -17,7 +17,7 @@ export default function TaxCutJuly2026() {
           { label: "Rate", before: "16%", after: "15%" },
           { label: "Maximum annual saving", after: "$268" },
           { label: "Next scheduled cut", after: "15% → 14% from 1 July 2027" },
-          { label: "Legislation", after: "Treasury Laws Amendment (More Cost of Living Relief) Act 2025" },
+          { label: "Legislation", after: "Passed March 2025, after the 2025-26 Budget" },
         ]}
       />
 
@@ -25,19 +25,19 @@ export default function TaxCutJuly2026() {
       <p>
         The second marginal tax rate — the rate applied to every dollar earned between $18,201
         and $45,000 — fell by one percentage point, from 16% to 15%, from 1 July 2026. It&apos;s the
-        second instalment of the Stage 3+ tax cuts first announced in the 2025 Federal Budget,
-        following the initial cuts that took effect from 1 July 2024.
+        first of two further cuts announced in the March 2025 Federal Budget, building on the
+        revised Stage 3 cuts that took effect from 1 July 2024.
       </p>
       <p>
         Because the change only affects that middle bracket, the dollar saving is capped: once
-        your income exceeds $45,000, you&apos;ve captured the full $26,799 of income taxed at the
+        your income exceeds $45,000, you&apos;ve captured the full $26,800 of income taxed at the
         lower rate, and the saving stops growing.
       </p>
 
       <h2>How much you actually save</h2>
       <p>
         Someone earning $45,000 or more saves the maximum $268 a year — about $5.15 a week.
-        Someone earning $30,000 has only $11,799 of their income in the affected bracket, so
+        Someone earning $30,000 has only $11,800 of their income in the affected bracket, so
         their saving is proportionally smaller, at roughly $118 a year. Anyone earning under
         $18,201 sees no change, since that income already sits below the tax-free threshold.
       </p>
@@ -45,7 +45,7 @@ export default function TaxCutJuly2026() {
         The saving scales linearly between $18,201 and $45,000: every extra dollar of taxable
         income in that band now costs one cent less in tax than it did in 2025-26. On a $60,000
         salary, the full $268 saving applies because all of the affected bracket is captured. On
-        a $22,000 part-time wage, only $3,799 of income sits in the bracket, so the saving is
+        a $22,000 part-time wage, only $3,800 of income sits in the bracket, so the saving is
         closer to $38 a year — small, but automatic and stacked on top of any award or minimum
         wage increase you also received on 1 July.
       </p>
