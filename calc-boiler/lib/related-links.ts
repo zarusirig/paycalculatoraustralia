@@ -176,6 +176,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   // --- G3 wave 4 opportunities (24 Sep 2026) ---
   "/sick-leave-calculator/": [L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out."), LEAVE_LOADING, L("/final-pay-calculator/", "Final Pay Calculator", "What is (and isn't) paid out when you leave."), PAYSLIP],
   "/compassionate-leave/": [L("/sick-leave-calculator/", "Sick Leave Calculator", "Personal/carer's leave: how much you have and how it accrues."), L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out."), L("/parental-leave-pay/", "Paid Parental Leave", "Government Parental Leave Pay, worked out."), PAYSLIP],
+  "/disability-support-pension-calculator/": [INCOME_TEST_HUB, WORKING_CREDIT, L("/carer-payment-calculator/", "Carer Payment Calculator", "The other pension-rate payment, with a 100-hour work rule."), FORTNIGHTLY_PAY],
   // --- end G3 ---
 
   // Tax core ↔ salary tables

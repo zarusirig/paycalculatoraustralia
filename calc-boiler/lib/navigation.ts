@@ -162,6 +162,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/centrelink-income-test/", label: "Income test explained" },
           { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
           { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
+          { href: "/disability-support-pension-calculator/", label: "Disability Support Pension" }, // G3
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
           { href: "/parenting-payment-calculator/", label: "Parenting Payment" },
@@ -805,6 +806,12 @@ export const GUIDE_CATEGORIES = [
     guides: [
       { href: "/sick-leave-calculator/", label: "Sick Leave Calculator", description: "Personal/carer's leave: 10 days, 1/26 of hours" },
       { href: "/compassionate-leave/", label: "Compassionate Leave", description: "2 days paid bereavement leave per occasion" },
+    ],
+  },
+  {
+    title: "Centrelink Payments",
+    guides: [
+      { href: "/disability-support-pension-calculator/", label: "Disability Support Pension", description: "DSP rates, income test and the 29-hour rule" },
     ],
   },
   // --- end G3 ---

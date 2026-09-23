@@ -81,12 +81,13 @@ export function W3Footer({ sources, lastVerified, authorKey }: { sources: Source
   );
 }
 
-export type W3PageKey = "carer-payment" | "carer-allowance" | "advance" | "crisis" | "debt" | "col" | "ppl";
+export type W3PageKey = "carer-payment" | "carer-allowance" | "advance" | "crisis" | "debt" | "col" | "ppl" | "dsp"; // "dsp": G3
 
 export function W3Related({ current }: { current: W3PageKey }) {
   const items: { key: string; href: string; label: string; blurb: string }[] = [
     { key: "hub", href: "/centrelink-income-test/", label: "Centrelink income test guide", blurb: "free areas, tapers and cut-offs for every payment" },
     { key: "carer-payment", href: "/carer-payment-calculator/", label: "Carer Payment calculator", blurb: "the pension-rate payment with the 100-hour work rule" },
+    { key: "dsp", href: "/disability-support-pension-calculator/", label: "Disability Support Pension calculator", blurb: "DSP rates, the 29-hour work rule and the income test" }, // G3
     { key: "carer-allowance", href: "/carer-allowance/", label: "Carer Allowance", blurb: "the fortnightly supplement and its $250,000 income limit" },
     { key: "advance", href: "/centrelink-advance-payment/", label: "Centrelink advance payment calculator", blurb: "how much you can borrow and what comes off each fortnight" },
     { key: "crisis", href: "/centrelink-crisis-payment/", label: "Crisis Payment", blurb: "the one-off payment after an extreme circumstance" },
