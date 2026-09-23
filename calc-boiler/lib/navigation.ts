@@ -64,6 +64,11 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit Calculator", description: "FTB Part A and Part B on your family income" },
       { href: "/rent-assistance-calculator/", label: "Rent Assistance Calculator", description: "Centrelink Rent Assistance for your rent" },
       // end C4
+      // W3 Centrelink wave 2 (added 2026-09-23)
+      { href: "/carer-payment-calculator/", label: "Carer Payment Calculator", description: "Rates, income test and the 100-hour work rule" },
+      { href: "/carer-allowance/", label: "Carer Allowance", description: "Fortnightly rate and the $250,000 income limit" },
+      { href: "/centrelink-advance-payment/", label: "Centrelink Advance Payment", description: "Advance amounts and fortnightly repayment" },
+      // end W3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
@@ -145,7 +150,12 @@ export const GUIDE_CATEGORIES = [
       { href: "/working-holiday-tax/", label: "Working Holiday Tax", description: "Tax rates for 417 & 462 visa holders" },
       { href: "/non-resident-tax/", label: "Non-Resident Tax", description: "Foreign resident tax rates" },
       { href: "/centrelink-income-test/", label: "Centrelink Income Test", description: "Payment thresholds and taper rates" },
-      { href: "/parental-leave-pay/", label: "Parental Leave Pay", description: "Government-funded parental leave" },
+      { href: "/parental-leave-pay/", label: "Paid Parental Leave Calculator", description: "26 weeks, pay, income and work tests" },
+      // W3 Centrelink wave 2 (added 2026-09-23)
+      { href: "/centrelink-crisis-payment/", label: "Centrelink Crisis Payment", description: "Eligibility, amount and the 7-day rule" },
+      { href: "/centrelink-debt/", label: "Centrelink Debt", description: "Overpayments, refunds and the apportionment scheme" },
+      { href: "/cost-of-living-payment-2026/", label: "Cost of Living Payment 2026", description: "Is there one? What exists instead" },
+      // end W3
       { href: "/zone-tax-offset/", label: "Zone Tax Offset", description: "Remote area tax concessions" },
       { href: "/sapto-calculator/", label: "SAPTO Calculator", description: "Seniors and pensioners tax offset" },
     ],
@@ -404,7 +414,7 @@ export const FOOTER_GUIDES_EMPLOYMENT = [
   { href: "/working-holiday-tax/", label: "Working Holiday Tax" },
   { href: "/non-resident-tax/", label: "Non-Resident Tax" },
   { href: "/centrelink-income-test/", label: "Centrelink Income Test" },
-  { href: "/parental-leave-pay/", label: "Parental Leave Pay" },
+  { href: "/parental-leave-pay/", label: "Paid Parental Leave" },
   { href: "/zone-tax-offset/", label: "Zone Tax Offset" },
   { href: "/sapto-calculator/", label: "SAPTO Calculator" },
   { href: "/hourly-to-salary/40/", label: "$40 an Hour Is How Much a Year" },

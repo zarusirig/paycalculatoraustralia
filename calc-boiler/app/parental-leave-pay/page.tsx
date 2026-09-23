@@ -1,8 +1,66 @@
-import type { Metadata } from "next"; import ParentalLeavePayPage from "@/modules/guide/parental-leave-pay"; import { JsonLd } from "@/modules/seo/json-ld"; import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts"; import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
-const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/parental-leave-pay/`;
-export const metadata: Metadata = { title: "Parental Leave Pay Guide — Eligibility, Rates & How to Claim", description: "Government Parental Leave Pay: 22 weeks at minimum wage, eligibility, how to share between parents, stacking with employer leave.", alternates: { canonical: URL }, openGraph: { title: "Parental Leave Pay Guide", description: "Government PLP entitlements, eligibility and payment rates.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" } };
-const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Parental Leave Pay", item: URL }] };
-const webPage: WithContext<WebPage> = { "@context": "https://schema.org", "@type": "WebPage", name: "Parental Leave Pay Guide", url: URL, publisher: { "@type": "Organization", name: SITE_CONFIG.name } };
-const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [{ "@type": "Question", name: "How many weeks of Parental Leave Pay can I get?", acceptedAnswer: { "@type": "Answer", text: "Up to 22 weeks shared between both parents, paid at the national minimum wage." } }] };
-export default function Page() { return (<><JsonLd code={[breadcrumb, webPage, faq]} /><ParentalLeavePayPage /></>); }
+import type { Metadata } from "next";
+import ParentalLeavePayPage from "@/modules/guide/parental-leave-pay";
+import { PPL_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
+import { JsonLd } from "@/modules/seo/json-ld";
+import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { PPL_CURRENT_FY, PPL_ENTITLEMENT, PPL_RATES, PPL_SOURCES } from "@/lib/constants/paid-parental-leave";
+
+// W3 (23 Sep 2026): retargeted from "Parental Leave Pay Guide" to
+// "Paid Parental Leave" (14.8k) / "paid parental leave australia" (6.6k) /
+// "parental leave centrelink" (5.4k). URL unchanged.
+
+const BASE = SITE_CONFIG.baseUrl;
+const URL = `${BASE}/parental-leave-pay/`;
+const NOW = PPL_ENTITLEMENT[PPL_ENTITLEMENT.length - 1];
+const RATE = PPL_RATES[PPL_CURRENT_FY];
+const TITLE = "Paid Parental Leave Calculator 2026 — 26 Weeks, Pay & Super";
+const DESCRIPTION = `Paid Parental Leave in Australia: ${NOW.weeks} weeks (${NOW.days} days) for babies born from ${NOW.label}, ${formatAUD(RATE.weekly, 2)} a week (${formatAUD(RATE.daily, 2)} a day) in 2026-27, ${NOW.reservedForPartner} days for partners, 12% super. Calculate your days, pay and the Centrelink income and work tests.`;
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: URL },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
+};
+
+const breadcrumb: WithContext<BreadcrumbList> = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
+    { "@type": "ListItem", position: 2, name: "Paid Parental Leave Calculator", item: URL },
+  ],
+};
+
+const webApp: WithContext<WebApplication> = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Paid Parental Leave Calculator",
+  url: URL,
+  description: DESCRIPTION,
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  browserRequirements: "Requires JavaScript",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
+  creator: { "@type": "Organization", name: SITE_CONFIG.name },
+  dateModified: PPL_SOURCES.verifiedOnISO,
+  inLanguage: "en-AU",
+};
+
+const faq: WithContext<FAQPage> = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: PPL_FAQS.map((f) => ({ "@type": "Question" as const, name: f.q, acceptedAnswer: { "@type": "Answer" as const, text: f.a } })),
+};
+
+export default function Page() {
+  return (
+    <>
+      <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA as unknown as WithContext<WebApplication>]} />
+      <ParentalLeavePayPage />
+    </>
+  );
+}
