@@ -13,6 +13,7 @@ import {
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +21,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +34,12 @@ import {
 
 const PROFILE = STATE_PROFILES.VIC;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["VIC", "NSW", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13b, Victoria`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Victoria", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 2018)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "VIC Payroll Tax", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax", publisher: "State Revenue Office Victoria" },
+  { title: "VIC payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.vic.ratesUrl, publisher: PAYROLL_TAX_STATES.vic.revenueOffice },
 ];
 
 export default function PayCalculatorVICPage() {
@@ -146,67 +145,20 @@ export default function PayCalculatorVICPage() {
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               The same goes for WorkSafe premiums and the Mental Health and Wellbeing Surcharge:
-              employer costs, not payslip deductions. The detail is in the employer section below.
+              employer costs, not payslip deductions. Employers will find both on the{" "}
+              <Link href="/payroll-tax/vic/" className="text-eucalyptus-dark hover:underline">VIC payroll tax</Link> page.
               What <em>does</em> come out of your pay is set out in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in Victoria</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              Nothing in this section affects an employee&apos;s take-home pay. It is here because it
-              is the cost of employing someone in Victoria, and because employers ask.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/vic/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is VIC payroll tax?</H3>
-            <p className="text-warmgray mb-4">VIC payroll tax is a state tax paid by employers at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}</strong> on wages exceeding a <strong>{formatAUD(STATE_PAYROLL_TAX.VIC.threshold)}</strong> annual threshold, administered by the State Revenue Office Victoria.</p>
-            <p className="text-warmgray mb-4">Payroll tax does not reduce your personal take-home pay. Employers pay it directly to the state government based on their total Australian wage bill. Regional Victorian employers benefit from a reduced rate of <strong>1.2125%</strong>, encouraging businesses to operate outside Melbourne. The threshold increases to <strong>$1,000,000</strong> from 1 July 2025. Victoria also applies the &quot;Mental Health and Wellbeing Surcharge&quot; on employers with national payrolls exceeding $10 million.</p>
-
-            <H3>How does VIC payroll tax compare to other states?</H3>
-            <p className="text-warmgray mb-4">Victorian payroll tax sits in the middle range nationally. Queensland and WA offer higher thresholds, while the ACT charges a higher rate. The following table compares payroll tax across all 8 states and territories for FY2025-26.</p>
-            <div className="overflow-x-auto mb-4">
-              <table className="w-full text-sm border border-sandstone-dark/20 rounded-lg overflow-hidden">
-                <thead>
-                  <tr className="bg-navy text-white">
-                    <th className="text-left px-4 py-3 font-semibold">State/Territory</th>
-                    <th className="text-right px-4 py-3 font-semibold">Rate</th>
-                    <th className="text-right px-4 py-3 font-semibold">Annual Threshold</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "VIC";
-                    const rowClass = isHome ? "bg-eucalyptus-light/20 font-semibold" : i % 2 === 0 ? "bg-sandstone/50" : "bg-white";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className="px-4 py-2.5 text-navy">{s.name}</td>
-                        <td className={`px-4 py-2.5 text-right ${isHome ? "text-navy" : "text-warmgray"}`}>{formatPercent(s.rate, 2)}</td>
-                        <td className={`px-4 py-2.5 text-right ${isHome ? "text-navy" : "text-warmgray"}`}>{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray text-sm">Victoria has the lowest threshold of any state, meaning more employers cross the payroll tax trigger point. Explore how employer costs differ using the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>. Compare VIC to the <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark hover:underline">Pay Calculator NSW</Link> or <Link href="/pay-calculator-qld/" className="text-eucalyptus-dark hover:underline">Pay Calculator QLD</Link> for interstate salary comparisons.</p>
-
-            <H3>WorkSafe Victoria</H3>
-            <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>WorkSafe Coverage:</strong> Employer-funded workplace injury insurance at no cost to the employee</li>
-            </ul>
-            <p className="text-sm text-warmgray">
-              Premiums are set by industry risk classification and are paid by the employer. An
-              employee never contributes to them and never sees them on a payslip.
-            </p>
-          </section>
 
           {/* FAQ */}
           <FAQSection>
