@@ -179,6 +179,9 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/ote-salary/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax withheld on a commission payment."), L("/bonus-tax-calculator/", "Bonus Tax Calculator", "What a bonus is worth after tax."), SUPER_CALC, TAKE_HOME],
   "/jury-duty-pay/": [L("/sick-leave-calculator/", "Sick Leave Calculator", "How much personal/carer's leave you have."), L("/compassionate-leave/", "Compassionate Leave", "2 days paid bereavement leave each time."), PAYSLIP, TAKE_HOME],
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  "/centrelink-payment-rates/": [JOBSEEKER, INCOME_TEST_HUB, L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Rates from 20 September and the income test with the Work Bonus."), L("/family-tax-benefit-calculator/", "Family Tax Benefit Calculator", "FTB Part A and Part B on your family income."), L("/centrelink-payment-dates/", "Centrelink Payment Dates", "When each payment lands, including around public holidays.")],
+  // --- end J6 ---
 
   // Tax core ↔ salary tables
   "/tax-brackets/": [TAX_ON_HUB, TAX_WITHHELD, TAX_FREE_THRESHOLD, L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time.")],

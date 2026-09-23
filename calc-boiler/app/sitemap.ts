@@ -349,6 +349,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "ote-salary", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "jury-duty-pay", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  allPages.push({ slug: "centrelink-payment-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end J6 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---

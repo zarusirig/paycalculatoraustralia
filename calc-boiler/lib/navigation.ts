@@ -161,6 +161,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/centrelink-income-test/",
         links: [
           { href: "/centrelink-income-test/", label: "Income test explained" },
+          { href: "/centrelink-payment-rates/", label: "All payment rates" }, // J6
           { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
           { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
           // H3 Centrelink wave 3 (added 2026-09-24)
@@ -835,6 +836,15 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so no separate entry there.
+  {
+    title: "Centrelink Rates",
+    guides: [
+      { href: "/centrelink-payment-rates/", label: "Centrelink Payment Rates", description: "Every payment's rate from 20 September 2026" },
+    ],
+  },
+  // --- end J6 ---
 ] as const;
 
 export const STATE_CATEGORIES = [

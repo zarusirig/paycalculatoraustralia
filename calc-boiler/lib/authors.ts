@@ -349,6 +349,9 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "ote-salary": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "jury-duty-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  "centrelink-payment-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end J6 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
