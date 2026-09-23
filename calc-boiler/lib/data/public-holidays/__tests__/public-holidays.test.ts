@@ -33,24 +33,29 @@ test("weekdayOf is anchored to known calendar facts", () => {
 });
 
 test("parseSourceDate reads every format the official pages use", () => {
-  assert.deepEqual(parseSourceDate("Monday 27 April"), { days: [{ weekday: "Monday", day: 27 }], month: 4, year: undefined });
-  assert.deepEqual(parseSourceDate("Friday 1 January 2027"), { days: [{ weekday: "Friday", day: 1 }], month: 1, year: 2027 });
-  assert.deepEqual(parseSourceDate("Saturday 25 and Monday 27 April"), {
-    days: [
-      { weekday: "Saturday", day: 25 },
-      { weekday: "Monday", day: 27 },
-    ],
-    month: 4,
-    year: undefined,
-  });
-  assert.deepEqual(parseSourceDate("28 December"), { days: [{ weekday: undefined, day: 28 }], month: 12, year: undefined });
+  assert.deepEqual(parseSourceDate("Monday 27 April"), [{ weekday: "Monday", day: 27, month: 4, year: undefined }]);
+  assert.deepEqual(parseSourceDate("Friday 1 January 2027"), [{ weekday: "Friday", day: 1, month: 1, year: 2027 }]);
+  assert.deepEqual(parseSourceDate("Saturday 25 and Monday 27 April"), [
+    { weekday: "Saturday", day: 25, month: 4, year: undefined },
+    { weekday: "Monday", day: 27, month: 4, year: undefined },
+  ]);
+  assert.deepEqual(parseSourceDate("Saturday 26 December and Monday 28 December"), [
+    { weekday: "Saturday", day: 26, month: 12, year: undefined },
+    { weekday: "Monday", day: 28, month: 12, year: undefined },
+  ]);
+  assert.deepEqual(parseSourceDate("28 December"), [{ weekday: undefined, day: 28, month: 12, year: undefined }]);
+  assert.deepEqual(parseSourceDate("27 March 2026"), [{ weekday: undefined, day: 27, month: 3, year: 2026 }]);
+  assert.throws(() => parseSourceDate("Monday 27"));
+  assert.throws(() => parseSourceDate("sometime in April"));
 });
 
 test("sourceMismatch catches a wrong weekday, day, month or year", () => {
   assert.equal(sourceMismatch("2026-04-27", "Monday 27 April"), null);
+  assert.equal(sourceMismatch("2026-04-27", "Saturday 25 and Monday 27 April"), null);
+  assert.equal(sourceMismatch("2026-12-28", "Saturday 26 December and Monday 28 December"), null);
   assert.match(sourceMismatch("2026-04-27", "Tuesday 27 April") ?? "", /Tuesday/);
-  assert.match(sourceMismatch("2026-04-27", "Monday 28 April") ?? "", /day 27/);
-  assert.match(sourceMismatch("2026-04-27", "Monday 27 May") ?? "", /month/);
+  assert.match(sourceMismatch("2026-04-27", "Monday 28 April") ?? "", /not in/);
+  assert.match(sourceMismatch("2026-04-27", "Monday 27 May") ?? "", /not in/);
   assert.match(sourceMismatch("2026-04-27", "Monday 27 April 2027") ?? "", /year/);
 });
 

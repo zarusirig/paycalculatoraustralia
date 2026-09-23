@@ -70,7 +70,7 @@ export function hubFaqs(): { q: string; a: string }[] {
     },
     {
       q: "How are part-day public holidays paid?",
-      a: "Only the hours inside the part-day window attract public holiday rates. Queensland's Christmas Eve holiday runs from 6pm to midnight, and South Australia's and the Northern Territory's Christmas Eve and New Year's Eve holidays from 7pm to midnight. A 3pm to 9pm shift on Christmas Eve in Adelaide is four ordinary hours and two public holiday hours.",
+      a: "Only the hours inside the part-day window attract public holiday rates. Queensland's Christmas Eve holiday runs from 6pm to midnight, and South Australia's and the Northern Territory's Christmas Eve and New Year's Eve holidays from 7pm to midnight. A 3pm to 9pm shift on Christmas Eve in Adelaide is four hours at the usual weekday rates and two hours at the public holiday rate.",
     },
   ];
 }

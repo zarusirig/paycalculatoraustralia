@@ -48,47 +48,56 @@ export function isValidIsoDate(iso: string): boolean {
   return dt.getUTCFullYear() === Number(m[1]) && dt.getUTCMonth() === Number(m[2]) - 1 && dt.getUTCDate() === Number(m[3]);
 }
 
-export interface ParsedSourceDate {
-  /** Each day number printed, with the weekday printed immediately before it (if any). */
-  days: { weekday?: string; day: number }[];
+export interface ParsedSourceDay {
+  weekday?: string;
+  day: number;
   month: number;
   year?: number;
 }
 
 /**
- * Parse a date as an official page prints it. Handles the forms the eight
- * sources use:
- *   "Monday 27 April"            (VIC, QLD, WA, SA, ACT)
- *   "Monday 27 April 2026"       (NSW, NT)
- *   "Saturday 25 and Monday 27 April"   (ACT's paired days)
- *   "28 December" / "7 January"  (Tasmania prints no weekday)
+ * Parse a date as an official page prints it, into every day it names. Handles
+ * the forms the eight sources use:
+ *   "Monday 27 April"                                (VIC, QLD, WA, SA, ACT)
+ *   "Monday 27 April 2026"                           (NSW, NT)
+ *   "Saturday 25 and Monday 27 April"                (ACT pairs; month shared)
+ *   "Saturday 26 December and Monday 28 December"    (QLD pairs)
+ *   "28 December" / "27 March 2026"                  (Tasmania, QLD show days)
  */
-export function parseSourceDate(source: string): ParsedSourceDate {
-  const monthMatch = new RegExp(`\\b(${MONTHS.join("|")})\\b`).exec(source);
-  if (!monthMatch) throw new Error(`no month in source date: ${source}`);
-  const month = MONTHS.indexOf(monthMatch[1] as (typeof MONTHS)[number]) + 1;
-  const yearMatch = /\b(20\d{2})\b/.exec(source);
-  const head = source.slice(0, monthMatch.index);
-  const days: { weekday?: string; day: number }[] = [];
-  const re = new RegExp(`(?:\\b(${WEEKDAYS.join("|")})\\s+)?\\b(\\d{1,2})\\b`, "g");
-  let m: RegExpExecArray | null;
-  while ((m = re.exec(head)) !== null) days.push({ weekday: m[1], day: Number(m[2]) });
-  if (days.length === 0) throw new Error(`no day in source date: ${source}`);
-  return { days, month, year: yearMatch ? Number(yearMatch[1]) : undefined };
+export function parseSourceDate(source: string): ParsedSourceDay[] {
+  const segments = source.split(/\s+(?:and|&)\s+/);
+  const out: ParsedSourceDay[] = [];
+  let pendingNoMonth: { weekday?: string; day: number }[] = [];
+  const dayRe = new RegExp(`^(?:(${WEEKDAYS.join("|")})\\s+)?(\\d{1,2})(?:\\s+(${MONTHS.join("|")}))?(?:\\s+(20\\d{2}))?$`);
+  for (const seg of segments) {
+    const m = dayRe.exec(seg.trim());
+    if (!m) throw new Error(`unparseable source date segment "${seg}" in "${source}"`);
+    const entry = { weekday: m[1], day: Number(m[2]) };
+    if (!m[3]) {
+      pendingNoMonth.push(entry);
+      continue;
+    }
+    const month = MONTHS.indexOf(m[3] as (typeof MONTHS)[number]) + 1;
+    const year = m[4] ? Number(m[4]) : undefined;
+    for (const p of pendingNoMonth) out.push({ ...p, month, year });
+    pendingNoMonth = [];
+    out.push({ ...entry, month, year });
+  }
+  if (pendingNoMonth.length || out.length === 0) throw new Error(`no month in source date: ${source}`);
+  return out;
 }
 
 /**
- * Does the ISO date agree with the source string? The day (and its weekday,
- * where printed) must appear, the month must match, and the year must match
- * where printed. Returns a reason string on mismatch, or null.
+ * Does the ISO date agree with the source string? One of the days it names
+ * must have the same day and month, the same year where printed, and the same
+ * weekday where printed. Returns a reason string on mismatch, or null.
  */
 export function sourceMismatch(iso: string, source: string): string | null {
   const { y, m, d } = parts(iso);
-  const p = parseSourceDate(source);
-  if (p.month !== m) return `month ${p.month} in "${source}" != ${m}`;
-  if (p.year !== undefined && p.year !== y) return `year ${p.year} in "${source}" != ${y}`;
-  const hit = p.days.find((x) => x.day === d);
-  if (!hit) return `day ${d} not in "${source}"`;
+  const days = parseSourceDate(source);
+  const hit = days.find((x) => x.day === d && x.month === m);
+  if (!hit) return `${d}/${m} not in "${source}"`;
+  if (hit.year !== undefined && hit.year !== y) return `year ${hit.year} in "${source}" != ${y}`;
   if (hit.weekday && hit.weekday !== weekdayOf(iso)) return `"${source}" says ${hit.weekday}, ${iso} is a ${weekdayOf(iso)}`;
   return null;
 }
