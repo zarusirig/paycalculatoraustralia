@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     locale: "en_AU",
     publishedTime: REPORT.publishedIso,
     modifiedTime: REPORT.updatedIso,
+    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
