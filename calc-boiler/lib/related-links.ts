@@ -100,7 +100,7 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/nurses-award-rates/": [job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), job("midwife", "Midwife", "Midwife pay by year of experience."), L("/healthcare-worker-pay/", "Nurse Pay by State", "Public hospital nurse scales in every state."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/road-transport-award-rates/": [job("truck-driver", "Truck Driver", "Truck driver grades 1 to 10, hourly and annual."), job("bus-driver", "Bus Driver", "Bus and coach driver pay rates."), OVERTIME, PENALTY_GUIDE, L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
   "/clerks-award-rates/": [job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), job("bookkeeper", "Bookkeeper", "Bookkeeper pay rates by level."), job("medical-receptionist", "Medical Receptionist", "Practice reception pay rates."), MIN_WAGE, OVERTIME, TOIL],
-  "/manufacturing-award-rates/": [job("mechanic", "Mechanic", "Mechanic and automotive tradesperson pay."), job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("lab-technician", "Lab Technician", "Laboratory technician pay rates."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/manufacturing-award-rates/": [job("mechanic", "Mechanic", "Mechanic and automotive tradesperson pay."), job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("lab-technician", "Lab Technician", "Laboratory technician pay rates."), OVERTIME, PENALTY_GUIDE, L("/news/c13-classification-phase-out/", "C13 Classification Phase-Out", "What removing the lowest manufacturing grade means for pay.")],
   "/security-award-rates/": [job("security-guard", "Security Guard", "Security officer levels and night shift rates."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/schads-award-pay-rates/": [job("disability-support-worker", "Disability Support Worker", "SCHADS levels for disability support work."), job("social-worker", "Social Worker", "Social and community services pay."), job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), OVERTIME, PENALTY_GUIDE, TOIL],
 };
@@ -209,6 +209,10 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/pension-age-australia/": [L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors and pensioners tax offset."), INCOME_TEST_HUB, SUPER_CALC],
   "/age-pension-income-test-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When you qualify for the Age Pension."), INCOME_TEST_HUB, L("/news/deeming-rates-change-2026/", "Deeming Rates 2026", "How Centrelink counts savings from this year."), WORKING_CREDIT],
   "/division-293-tax/": [L("/news/super-tax-changes-explained/", "Super Tax Changes Explained", "Who the new Division 296 tax affects."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC, TAX_BRACKETS],
+  "/tax-file-number-declaration/": [L("/new-job-checklist/", "New Job Checklist", "Everything to sort out in your first week."), TAX_FREE_THRESHOLD, TAX_WITHHELD, L("/second-job-tax-calculator/", "Second Job Tax Calculator", "Why only one employer should apply the threshold.")],
+  "/sapto-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When the Age Pension, and SAPTO, can start."), L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), LITO, TAX_BRACKETS],
+  "/salary-packaging-guide/": [L("/salary-package-calculator/", "Salary Package Calculator", "Base salary and take-home from a total package."), L("/novated-lease-calculator/", "Novated Lease Calculator", "Packaging a car, with the EV exemption."), L("/salary-sacrifice-vs-mortgage/", "Salary Sacrifice or Pay Down the Mortgage?", "Where a spare pre-tax dollar does more."), L("/salary-sacrifice-calculator/", "Salary Sacrifice Calculator", "See if sacrificing into super leaves you better off.")],
+  "/teacher-pay-australia/vic/": [L("/teacher-pay-australia/", "Teacher Pay Australia", "Every state's classroom teacher scale, side by side."), L("/news/victorian-teachers-pay-rise-2026/", "Victorian Teachers' Pay Rise 2026", "The new VIC agreement and when each step lands."), TAKE_HOME, L("/salary-packaging-guide/", "Salary Packaging Guide", "What teachers can package and what it saves.")],
   "/payday-super/": [L("/news/payday-super-employees-payslip/", "Payday Super and Your Payslip", "What employees see from July 2026."), L("/super-guarantee-charge/", "Super Guarantee Charge", "What late or missed super costs an employer."), EMPLOYER_COST, SUPER_CALC],
 };
 
@@ -258,7 +262,7 @@ const CLUSTERS: Cluster[] = [
   },
   {
     match: (p) => p === "/job-pay-rates/",
-    links: [EMPLOYERS_HUB, AWARD_RATES, MIN_WAGE, JUNIOR, L("/average-salary-australia/", "Average Salary Australia", "How your pay compares with the national average."), EA],
+    links: [EMPLOYERS_HUB, AWARD_RATES, MIN_WAGE, JUNIOR, L("/average-salary-australia/", "Average Salary Australia", "How your pay compares with the national average."), L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT salaries, which awards rarely cover.")],
     limit: 6,
   },
   // --- Employer pages: employer → award, job, junior rates, EA explainer ---
@@ -435,7 +439,7 @@ const CLUSTERS: Cluster[] = [
       { href: "/austudy-youth-allowance-calculator/", title: "Austudy & Youth Allowance Calculator", blurb: "The student income test with current rates." },
       { href: "/age-pension-income-test-calculator/", title: "Age Pension Income Test Calculator", blurb: "Single and couple tests with the Work Bonus." },
       { href: "/centrelink-income-test/", title: "Centrelink Income Test Guide", blurb: "How free areas, tapers and cut-offs work." },
-      TAKE_HOME,
+      { href: "/pension-age-australia/", title: "Pension Age Australia", blurb: "The Age Pension qualifying age, 67, and how it got there." },
     ],
   },
   // --- HECS / student debt ---
@@ -462,6 +466,7 @@ const CLUSTERS: Cluster[] = [
     match: (p) => ["/annual-leave-guide/", "/leave-calculator/", "/redundancy-pay-calculator/", "/final-pay-calculator/", "/parental-leave-pay/"].includes(p),
     links: [
       LEAVE_LOADING,
+      { href: "/annual-leave-guide/", title: "Annual Leave Guide", blurb: "Four weeks a year, how it accrues and when it can be cashed out." },
       { href: "/leave-calculator/", title: "Leave Payout Calculator", blurb: "What unused annual leave is worth when you finish up." },
       { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "The other leave entitlement — 7 or 10 years, by state." },
       { href: "/final-pay-calculator/", title: "Final Pay Calculator", blurb: "What you're owed when employment ends." },
