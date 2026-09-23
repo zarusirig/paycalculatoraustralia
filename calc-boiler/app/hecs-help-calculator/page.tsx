@@ -43,6 +43,20 @@ export const metadata: Metadata = {
  * below, so the structured data can never disagree with the rendered page.
  */
 const FAQS: readonly CalculatorFaq[] = [
+  // People Also Ask (Google AU, Sept 2026) for "hecs repayment calculator" and
+  // "hecs repayments": docs/seo/2026-09-24-paa-optimisation.md.
+  {
+    q: "How much HECS do I pay on $70,000?",
+    a: `On repayment income of ${formatAUD(70_000)} the compulsory repayment for ${SITE_CONFIG.financialYear} is ${formatAUD(calculateHECS(70_000))}, about ${formatAUD(annualToWeekly(calculateHECS(70_000)), 2)} a week. Only the ${formatAUD(70_000 - T)} above the ${formatAUD(T)} threshold is charged, at 15c per dollar. Repayment income includes reportable fringe benefits and super contributions, so it can be higher than your salary.`,
+  },
+  {
+    q: "Is the government taking 20% off HECS?",
+    a: "It already has. Every study and training support loan that existed on 1 June 2025 received a one-off 20% reduction, applied before that year's indexation. The ATO has finished processing it, and accounts pushed into credit were refunded. There is no further cut scheduled; check your balance in ATO online services through myGov.",
+  },
+  {
+    q: "Does HECS debt ever get wiped?",
+    a: `Only when you die. There is no interest and no time limit, and you repay nothing in any year your repayment income is at or below ${formatAUD(T)}, so a debt you never repay simply stays and is indexed each 1 June. On death the remaining balance is cancelled; the estate only covers a compulsory repayment already owing on a final tax return.`,
+  },
   {
     q: "How much is my HECS repayment on $80,000?",
     a: `On repayment income of ${formatAUD(80_000)} the compulsory repayment is ${formatAUD(calculateHECS(80_000))} for the year, about ${formatAUD(annualToWeekly(calculateHECS(80_000)), 2)} a week, in ${SITE_CONFIG.financialYear}. It is 15c for each $1 of the ${formatAUD(80_000 - T)} above the ${formatAUD(T)} threshold.`,

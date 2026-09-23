@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -131,6 +132,17 @@ export interface CalculatorFaq {
  * a Server Component importing a non-component export from a "use client"
  * module gets a client reference, not the array.)
  */
+// Google AU "related searches" for "hecs repayment calculator" and "hecs
+// repayments" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "HECS on your payslip (STSL)", href: "/stsl-on-payslip/" },
+  { label: "HECS indexation 2026", href: "/news/hecs-indexation-2026/" },
+  { label: "The 20% HECS cut", href: "/news/hecs-20-percent-cut-status/" },
+  { label: "Pay off HECS or add to super?", href: "/extra-super-vs-hecs-repayment/" },
+  { label: "Tax return calculator", href: "/tax-return-calculator/" },
+  { label: "Take home pay with HECS", href: "/take-home-pay-calculator/" },
+];
+
 export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly CalculatorFaq[] }) {
   const [salary, setSalary] = useState(80_000);
   const authorship = getGuideAuthorship("hecs-help-calculator");
@@ -542,6 +554,8 @@ export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly Calcul
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income tax calculator</Link> &mdash; brackets and your marginal rate.</li>
             </ul>
           </section>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           {/* FAQ */}
           <section>
