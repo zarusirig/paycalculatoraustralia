@@ -156,7 +156,7 @@ export type GuideAuthorship = {
 
 export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // Tax & deductions guides — James Harrington
-  "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
+  "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "age-pension-income-test-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
@@ -175,7 +175,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // end W3
   "salary-package-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "commission-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
-  "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
+  "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "low-income-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
   "payg-withholding-tables": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "weekly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
@@ -183,7 +183,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "monthly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "schedule-5-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "bonus-tax-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-09" },
-  "tax-refund-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-06" },
+  "tax-refund-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "tax-calendar": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "fringe-benefits-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-04" },
   "working-holiday-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-03" },
@@ -192,7 +192,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "sapto-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
 
   // Super & salary guides — James Harrington
-  "superannuation-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
+  "superannuation-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "salary-sacrifice-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
   "hecs-help-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
   "novated-lease-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
@@ -214,14 +214,14 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "work-from-home-deductions": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
   "stage-3-tax-cuts": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
   "tax-changes-2026-27": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
-  "private-health-insurance-medicare": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
+  "private-health-insurance-medicare": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "division-293-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
-  "tax-file-number-declaration": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
+  "tax-file-number-declaration": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "notice-of-assessment": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
-  "salary-packaging-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
+  "salary-packaging-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "super-co-contribution": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
   "tax-bracket-history": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
-  "super-guarantee-rate-history": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
+  "super-guarantee-rate-history": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "salary-sacrifice-vs-mortgage": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
   "extra-super-vs-hecs-repayment": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
 
@@ -235,7 +235,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "full-time-vs-part-time-vs-casual": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
   "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "mining-fifo-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
-  "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "teacher-pay-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   // C1 employer pay rates (hub + every /pay-rates/[employer]/ page)
   "pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },

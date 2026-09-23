@@ -18,6 +18,9 @@ import {
   SCHADS_PENALTIES,
   SCHADS_SACS,
   SCHADS_UNVERIFIED,
+  SCHADS_VEHICLE_ALLOWANCE,
+  schadsVehicleAllowanceWording,
+  schadsVehiclePerKm,
   type SchadsRate,
 } from "@/lib/constants/schads-award";
 import { SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-faqs";
@@ -88,7 +91,12 @@ function RateTable({ rows, caption }: { rows: readonly SchadsRate[]; caption: st
   );
 }
 
-export default function SchadsAwardPayRatesPage() {
+/**
+ * `asOf` is an ISO date fixed by the server component at build time, so the
+ * date-aware vehicle allowance renders identically on the server and client.
+ */
+export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
+  const vehiclePerKm = schadsVehiclePerKm(asOf);
   return (
     <div className="min-h-screen flex-grow bg-white">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -281,7 +289,7 @@ export default function SchadsAwardPayRatesPage() {
             <section id="allowances">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Allowances</h2>
               <p>
-                SCHADS carries more allowances than most awards, and they are where underpayment usually hides. These apply from {SCHADS_AWARD.operativeFrom}.
+                SCHADS carries more allowances than most awards, and they are where underpayment usually hides. These apply from {SCHADS_AWARD.operativeFrom}, except the vehicle allowance, which has a temporary rate (below).
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -305,7 +313,7 @@ export default function SchadsAwardPayRatesPage() {
                         { l: "Meal — when working overtime", v: SCHADS_ALLOWANCES.mealOvertime, b: "per occasion" },
                         { l: "Uniform", v: SCHADS_ALLOWANCES.uniformPerShift, b: `per shift, capped at ${formatAUD(SCHADS_ALLOWANCES.uniformWeeklyMax, 2)}/week` },
                         { l: "Laundry", v: SCHADS_ALLOWANCES.laundryPerShift, b: `per shift, capped at ${formatAUD(SCHADS_ALLOWANCES.laundryWeeklyMax, 2)}/week` },
-                        { l: "Vehicle — own car on duty", v: SCHADS_ALLOWANCES.vehiclePerKm, b: "per kilometre" },
+                        { l: "Vehicle — own car on duty", v: vehiclePerKm, b: `per kilometre: ${schadsVehicleAllowanceWording(asOf)}` },
                       ].map((row) => (
                         <tr key={row.l}>
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.l}</th>
@@ -317,6 +325,9 @@ export default function SchadsAwardPayRatesPage() {
                   </table>
                 </div>
               </div>
+              <p>
+                Clause {SCHADS_VEHICLE_ALLOWANCE.clause} sets a temporary vehicle allowance of {formatAUD(SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm, 2)} per kilometre from {SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel} to {SCHADS_VEHICLE_ALLOWANCE.temporaryToLabel}, inserted by <a href={SCHADS_VEHICLE_ALLOWANCE.sourceUrl} target="_blank" rel="noopener noreferrer">{SCHADS_VEHICLE_ALLOWANCE.determination}</a>. {SCHADS_VEHICLE_ALLOWANCE.payPeriodNote} The ordinary {formatAUD(SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm, 2)} per kilometre rate applies again from {SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}. All other allowances above apply from {SCHADS_AWARD.operativeFrom}.
+              </p>
               <p>
                 The sleepover allowance pays for the sleepover itself. <strong>If you are woken and required to work, those hours are paid separately</strong> at the rate applying at that time &mdash; the allowance does not buy the employer any working time.
               </p>
