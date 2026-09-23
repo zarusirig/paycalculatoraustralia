@@ -859,6 +859,12 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   {
+    title: "Transport Pay",
+    guides: [
+      { href: "/train-driver-salary/", label: "Train Driver Salary", description: "Sydney Trains and Metro Melbourne driver pay" },
+    ],
+  },
+  {
     title: "APS Salary by Level",
     guides: [
       { href: "/public-service-pay-scales/aps/aps-3/", label: "APS 3 Salary", description: "APS 3 pay by agency and after tax" },

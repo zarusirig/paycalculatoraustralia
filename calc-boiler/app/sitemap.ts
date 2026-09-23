@@ -360,6 +360,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const grade of APS_GRADE_SLUGS) {
     allPages.push({ slug: `public-service-pay-scales/aps/${grade}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
+  allPages.push({ slug: "train-driver-salary", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end J6 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });

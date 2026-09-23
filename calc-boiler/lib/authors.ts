@@ -363,6 +363,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "school-support-staff-pay/qld": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/wa": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "school-support-staff-pay/sa": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "train-driver-salary": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end J6 ---
 };
 

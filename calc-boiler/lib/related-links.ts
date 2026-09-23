@@ -181,6 +181,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   // --- end G3 ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   "/centrelink-payment-rates/": [JOBSEEKER, INCOME_TEST_HUB, L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Rates from 20 September and the income test with the Work Bonus."), L("/family-tax-benefit-calculator/", "Family Tax Benefit Calculator", "FTB Part A and Part B on your family income."), L("/centrelink-payment-dates/", "Centrelink Payment Dates", "When each payment lands, including around public holidays.")],
+  "/train-driver-salary/": [JOBS_HUB, EA, L("/overtime-pay-calculator/", "Overtime Pay Calculator", "Extra shifts and overtime, worked out."), TAKE_HOME],
   "/school-support-staff-pay/": [L("/job-pay-rates/teacher-aide/", "Teacher Aide Award Rates", "The minimum for private and Catholic school aides."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), L("/hourly-to-annual-salary-calculator/", "Hourly to Salary Calculator", "Turn an hourly rate into a yearly figure."), TAKE_HOME],
   // --- end J6 ---
 
