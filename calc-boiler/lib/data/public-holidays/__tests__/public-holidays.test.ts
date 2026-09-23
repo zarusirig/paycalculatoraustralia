@@ -146,7 +146,7 @@ test("state FAQs are unique and non-empty (one array feeds the page and the JSON
     assert.ok(faqs.length >= 4, `${s.code} faqs`);
     assert.equal(new Set(faqs.map((f) => f.q)).size, faqs.length, `${s.code} duplicate FAQ`);
     for (const f of faqs) assert.ok(f.a.length > 40, `${s.code}: ${f.q}`);
-    assert.ok(statewideDays(yearOf(s, 2026)!).length >= 10);
+    assert.ok(statewideDays(yearOf(s, 2026)!).length >= 9, `${s.code} whole-day count`); // Tasmania: 9
   }
 });
 
