@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import WeeklyPayCalculatorPage from "@/modules/calculator/weekly-pay-calculator";
+import { WEEKLY_FAQS } from "@/modules/calculator/weekly-pay-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
@@ -57,11 +58,12 @@ const webApp: WithContext<WebApplication> = {
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "How is weekly pay calculated?", acceptedAnswer: { "@type": "Answer", text: "Weekly pay is calculated by dividing your gross annual salary by 52 (the number of weeks in a year). Then, the weekly income tax, Medicare levy, and any HECS repayments are deducted through the PAYG system." } },
-    { "@type": "Question", name: "Is super deducted from my weekly pay?", acceptedAnswer: { "@type": "Answer", text: "No. Your employer pays super (12%) on top of your salary. It is not deducted from your weekly take-home pay." } },
-    { "@type": "Question", name: "Why did my weekly pay change?", acceptedAnswer: { "@type": "Answer", text: "Changes to tax brackets, Medicare levy thresholds, or HECS repayment rates at the start of the financial year (July 1) can affect your weekly net pay. Your employer may also have updated your tax code." } },
-  ]
+  // Same array as the on-page accordion, so the two cannot drift.
+  mainEntity: WEEKLY_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 const howToSchema = calculatorHowTo({

@@ -18,8 +18,9 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { WEEKLY_FAQS, WEEKLY_WITHHOLDING_ROWS } from "@/modules/calculator/weekly-pay-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 // Worked-example figures, computed from the tax engine so the copy rolls over
@@ -32,6 +33,17 @@ const MLS = MEDICARE_LEVY.surcharge;
 
 const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
 const PERIOD_PRESETS = [1_000, 1_500, 2_000, 2_500] as const;
+
+// Google AU "related searches" for "weekly pay calculator" and "weekly pay
+// after tax calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Weekly tax table", href: "/weekly-tax-table/" },
+  { label: "Tax per week calculator ATO", href: "/tax-withheld-calculator/" },
+  { label: "Fortnightly pay calculator", href: "/fortnightly-pay-calculator/" },
+  { label: "Pay calculator hourly rate", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Take home pay calculator", href: "/take-home-pay-calculator/" },
+  { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
+];
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -150,7 +162,7 @@ export default function WeeklyPayCalculatorPage() {
               Weekly take-home pay equals your gross annual salary divided by 52, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld each week.
             </p>
             <p className="text-warmgray mb-4">
-              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the "Low Income Tax Offset" (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
+              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the &quot;Low Income Tax Offset&quot; (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
             </p>
             <p className="text-warmgray mb-4">
               The calculation follows 4 steps:
@@ -163,6 +175,41 @@ export default function WeeklyPayCalculatorPage() {
             </ol>
             <p className="text-warmgray">
               Superannuation of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid by your employer on top of your salary and does not reduce your weekly take-home pay. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see the exact dollar amount your employer contributes each week.
+            </p>
+          </section>
+
+          {/* PAA: "How much is $1200 a week taxed in Australia?", "How much tax do I pay
+              if I earn $1500 a week?", "$750 a week" */}
+          <section id="tax-each-week">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Is Taken Out of My Weekly Pay?</h2>
+            <p className="text-warmgray mb-4">
+              {WEEKLY_FAQS.find((f) => f.q.startsWith("How much tax will I pay on $1,200"))!.a}
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Tax withheld per week, FY{SITE_CONFIG.financialYear}, tax-free threshold claimed</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Gross per week</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax withheld</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Take-home</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Yearly equivalent</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {WEEKLY_WITHHOLDING_ROWS.map((r) => (
+                    <tr key={r.gross}>
+                      <td className="px-4 py-3 text-navy font-medium">{formatAUD(r.gross)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.withheld)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.net)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.annual)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              ATO weekly tax table amounts for a resident claiming the tax-free threshold, no HECS-HELP debt. See every $1 step on the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>.
             </p>
           </section>
 
@@ -272,12 +319,12 @@ export default function WeeklyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax</h3>
             <p className="text-warmgray mb-4">
-              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The "Low Income Tax Offset" reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
+              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
             <p className="text-warmgray mb-4">
-              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The "Medicare Levy Surcharge" (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
+              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &quot;Medicare Levy Surcharge&quot; (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
@@ -339,39 +386,20 @@ export default function WeeklyPayCalculatorPage() {
             <p>Calculations are based on 52 weeks per year. We divide the annual figures by 52 to provide the weekly equivalent. This aligns with standard ATO PAYG withholding practices.</p>
           </MethodologyDisclosure>
 
+          <RelatedSearches items={RELATED_SEARCHES} />
+
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
+            {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
+                The same array feeds the FAQPage JSON-LD in the route file. */}
+            <div className="sr-only">
+              <h3>Weekly pay questions and answers</h3>
+              {WEEKLY_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+            </div>
             <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is weekly pay calculated in Australia?">
-                Weekly pay is calculated by dividing your gross annual salary by 52 weeks, then subtracting PAYG income tax, the Medicare levy (2%), and any HECS-HELP repayments. An employee earning $80,000 per year receives gross weekly pay of <strong>$1,538.46</strong>. After {formatAUD(EX.netIncomeTax / 52, 2)} in income tax and {formatAUD(EX.medicareLevy / 52, 2)} in Medicare levy, the weekly take-home pay is <strong>{formatAUD(EX.weekly, 2)}</strong> in FY{SITE_CONFIG.financialYear}.
-              </FAQItem>
-              <FAQItem value="super" question="Is superannuation deducted from my weekly pay?">
-                No. Your employer pays the super guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your salary. This amount does not reduce your weekly take-home pay. The only exception is voluntary salary sacrifice contributions, where you choose to redirect part of your pre-tax salary into super to reduce your taxable income.
-              </FAQItem>
-              <FAQItem value="change" question="Why did my weekly pay change on 1 July?">
-                Weekly pay changes at the start of each financial year (1 July) because updated PAYG withholding tables take effect. For FY{SITE_CONFIG.financialYear}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds from each weekly payment.
-              </FAQItem>
-              <FAQItem value="gross-vs-net" question="What is the difference between gross weekly pay and net weekly pay?">
-                Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an $80,000 salary, gross weekly pay is <strong>{formatAUD(80_000 / 52)}</strong> and net weekly pay is <strong>{formatAUD(EX.weekly)}</strong> — a difference of <strong>{formatAUD(EX_WEEKLY_GAP)}</strong> per week.
-              </FAQItem>
-              <FAQItem value="52-weeks" question="Why do we divide by 52 and not 48?">
-                Full-time employees in Australia receive 4 weeks of paid annual leave and 10 days of paid personal leave per year. These paid leave entitlements are included in the annual salary, which covers all 52 weeks. Dividing by 48 would overstate weekly pay by approximately 8.3%.
-              </FAQItem>
-              <FAQItem value="53-pays" question="Are there 52 or 53 weekly pays in a year?">
-                Usually {WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a
-                financial year contains <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. Your salary is then spread over one more pay. The ATO&apos;s{" "}
-                <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link> publishes an optional extra amount you can ask your
-                employer to withhold that year so you are not short at tax time. 2026-27 is one of those years if you&apos;re paid on a Wednesday: see <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">pay periods in 2026-27</Link>.
-              </FAQItem>
-              <FAQItem value="casual" question="How do casual workers calculate weekly pay?">
-                Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of <strong>25%</strong> is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.
-              </FAQItem>
-              <FAQItem value="threshold" question="Do I pay tax if my weekly pay is below $350?">
-                Earning <strong>$350</strong> per week is equivalent to <strong>$18,200</strong> per year, which is the tax-free threshold. If your total annual income from all sources stays at or below $18,200, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold — your second job is taxed from the first dollar.
-              </FAQItem>
-              <FAQItem value="budget" question="How should I budget on weekly pay?">
-                Financial advisors typically recommend the 50/30/20 rule: allocate <strong>50%</strong> of your after-tax weekly pay to needs (rent, groceries, transport), <strong>30%</strong> to wants (dining out, entertainment), and <strong>20%</strong> to savings and debt repayment. On a net weekly income of {formatAUD(EX.weekly)} (from an $80,000 salary), that equals {formatAUD(EX.weekly * 0.5)} for needs, {formatAUD(EX.weekly * 0.3)} for wants, and {formatAUD(EX.weekly * 0.2)} for savings.
-              </FAQItem>
+              {WEEKLY_FAQS.map((f) => (
+                <FAQItem key={f.q} value={f.q} question={f.q}>{f.a}</FAQItem>
+              ))}
             </Accordion>
           </section>
 
