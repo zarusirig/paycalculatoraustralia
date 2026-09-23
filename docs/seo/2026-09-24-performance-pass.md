@@ -153,3 +153,92 @@ numbers show. Check CrUX or PageSpeed field data 28 days after deploy.
 - `npx next build --webpack` succeeds.
 - `npm run check:nav`: 292 hrefs checked, all resolve.
 - Anchor counts are unchanged: `/` 498, `/take-home-pay-on/80000/` 435, `/retail-award-rates/` 441.
+
+## Follow-up: related links on the server and 48 more calculator splits (2026-09-24, later)
+
+This follow-up clears remaining items 1 and 2 above. GA4 and every Adsterra unit are unchanged: the same six ad
+slots render in the same order on every page.
+
+| Template | URL | First Load JS, gzip | HTML, gzip | Lighthouse perf | LCP | TBT |
+|---|---|---|---|---|---|---|
+| Home | `/` | 164.1 → **154.3 KB** | 71.8 → 71.8 KB | 89.5 → **91** | 3.61 → **3.45 s** | 17 → 11 ms |
+| Calculator | `/bonus-tax-calculator/` | 172.1 → **148.5 KB** | 47.9 → 60.3 KB | 91 → 91 | 3.45 → 3.45 s | 16 → 17 ms |
+| Award page | `/retail-award-rates/` | 152.0 → **142.6 KB** | 58.8 → 59.1 KB | 91 → **92** | 3.45 → **3.30 s** | 14 → 15 ms |
+| Programmatic | `/take-home-pay-on/80000/` | 151.5 → **142.1 KB** | 42.3 → 43.0 KB | 94 → 94 | 3.08 → **3.00 s** | 9 → 8 ms |
+| Guide | `/superannuation-guide/` | 151.7 → **142.3 KB** | 65.9 → 65.9 KB | 91 → **92** | 3.45 → **3.30 s** | 11 → 19 ms |
+
+Across the 938 pages in both builds, mean First Load JS fell from **150.6 to 140.0 KB** gzip. It fell on 937 pages
+and rose on none. Mean HTML rose from 43.0 to 44.0 KB, so JS and HTML together fell from **193.5 to 184.0 KB** per
+page. CLS stayed at 0.000 on all five templates. Lighthouse script transfer, which includes gtag and Adsterra, fell
+from 442 to 418 KB on the calculator and by 8 KB on the award, programmatic and guide pages. Simulated FCP on the
+calculator rose from 1.21 to 1.36 s. This is the same Lantern trade-off described above: its HTML grew by 12 KB.
+
+Other pages with large drops:
+- `/teacher-pay-australia/<state>/`: 227.0 → 142.5 KB.
+- `/salary-sacrifice-calculator/`: 173.4 → 148.7 KB.
+- `/final-pay-calculator/`: 174.8 → 149.2 KB.
+
+The baseline is the export of `bbe949e` and the "after" is the final build including merges of main. The
+Calculator row now measures bonus-tax, because income-tax was already split in the first pass.
+
+### 1. "What to check next" now renders on the server
+- `components/common/page-end.tsx` (server) holds `WhatsNext({ path })`, `PageEnd` and `withPageEndUsing`.
+  `PageEnd` renders the 300x250 rectangle and then the links. `components/common/content-slots.tsx` exports
+  `withPageEnd(Page, route)`, which binds next/link and AdsterraBanner to them.
+- Every `app/**/page.tsx` (197) and `app/not-found.tsx` ends with `export default withPageEnd(Page, "/route/[param]/")`.
+  The route pattern's dynamic segments are filled from `params`. This was a mechanical codemod.
+  `lib/__tests__/related-links.test.ts` fails if any page is not wrapped, or is wrapped with another folder's route.
+- The rectangle ad moved out of the layout and into `PageEnd`, together with the links. It therefore still sits
+  directly after the article and above the links. The one structural change is that both now sit inside `<main>`.
+  The bottom banner, footer, GA and the social bar stay in the layout.
+- The homepage passes its own client re-exports, `home-link.tsx` and the new `home-adsterra-banner.tsx`. If the root
+  page referenced next/link or AdsterraBanner directly, the 404 would resolve their chunk list from the root page
+  entry and download the homepage calculator chunk (+18 KB, found by the site-wide check). Re-check after changes:
+  `grep -rl 'chunks/app/page-' out --include=index.html` must list only `out/index.html`.
+- No string from `lib/related-links.ts` is in any client chunk. The layout chunk went from 44 KB to 9 KB raw.
+
+### 2. Client card / server content split on 48 more pages
+- **The split pattern.** The interactive part stays client and takes `children`. The article (tables, worked examples,
+  FAQ, sources) is a new server component, `<module>-content.tsx`. Pages that have a state-dependent section in the
+  middle of the article pass the static blocks around it as extra ReactNode props:
+  - monthly: `intro`
+  - super: `intro` and `middle`
+  - novated-lease: `evExemption` and `hecsAndFbtRates`
+  - centrelink-debt: `intro`
+  - employer-cost: `sidebar`
+- **Split this way (43 pages):**
+  - bonus-tax, second-job, backpay, pay-rise, fortnightly, weekly, monthly, annual, hourly-to-annual, gross,
+    take-home, contractor, HECS, redundancy, super, salary-sacrifice
+  - contractor-vs-employee, payslip, leave, employment-type, employer-cost, novated-lease, tax-return, overtime,
+    ytd-income, commission, salary-package, final-pay
+  - Centrelink: age pension income and assets tests, JobSeeker, Austudy/Youth Allowance, FTB, DSP, parenting
+    payment, carer payment, carer allowance, child care subsidy, deeming, CSHC, rent assistance, debt, advance payment
+  - parental-leave-pay
+- **Widget extracted instead (5 templates).** These templates were client only because of one widget. The widget
+  became its own client file and the template is now a server component:
+  - teacher-pay-state (print button)
+  - tax-return-2026
+  - payday-super
+  - pension-age-australia
+  - schedule-5-tax-table
+- **Constants shared by both sides.** Server content files must not import non-component values from a
+  `"use client"` module. Pure constants used on both sides are therefore duplicated with identical values, and the
+  Centrelink content files re-declare the class-name strings and `source()` from `centrelink-shared.tsx`.
+- **Skipped:**
+  - work-hours: its article is already server-rendered.
+  - `payroll-tax-calculator.tsx` and `state-take-home-calculator.tsx`: these are already small widgets inside
+    server templates.
+  - Modules under about 7 KB.
+
+### Verification
+- **Built HTML.** Every stage was diffed against the export before it, across all pages (939, then 953): visible
+  text with ad-slot positions, `<title>`, meta description, JSON-LD, the `<a href>` list and the related-link
+  hrefs. There were 0 differences at every stage.
+- **Checks.** `tsc` is clean. `npm test`: 1271 passed, 0 failed. `eslint .` reports 0 problems.
+  `check:faq`: 0 mismatches. `check:meta`: 0 errors. `check:nav`: all hrefs resolve.
+- **Lighthouse method.** Same as above: Lighthouse 13.5 mobile, 2 interleaved runs per URL, median, both exports
+  served with `serve`.
+
+### Still open
+Items 3 to 6 above: tailwind-merge, the framer-motion uninstall, GA `lazyOnload`, and the two Centrelink templates
+(`centrelink-crisis-payment`, `cost-of-living-payment-2026`).
