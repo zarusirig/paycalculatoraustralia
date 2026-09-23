@@ -13,6 +13,9 @@ import {
   groupBands,
   groupRange,
   isBuiltSlug,
+  levelAnchor,
+  levelSections,
+  shortLevelLabel,
   nearestTakeHomeSalary,
   normaliseCode,
   takeHomeHref,
@@ -234,4 +237,44 @@ test("bands without a group stay separate", () => {
   assert.ok(qld);
   const groups = groupBands(qld.schedules[0].streams[0].bands);
   assert.equal(groups.length, qld.schedules[0].streams[0].bands.length);
+});
+
+// ---------- salary-by-level sections ----------
+
+test("shortLevelLabel and levelAnchor produce the searched form", () => {
+  assert.equal(shortLevelLabel("VPS Grade 4"), "VPS 4");
+  assert.equal(shortLevelLabel("APS 6"), "APS 6");
+  assert.equal(levelAnchor("VPS 4"), "vps-4");
+  assert.equal(levelAnchor("EL 1"), "el-1");
+  assert.equal(levelAnchor("AO5"), "ao5");
+});
+
+test("VPS level sections cover grades 1 to 7 with 2026 headings", () => {
+  const sections = levelSections(getJurisdiction("vic")!);
+  assert.deepEqual(
+    sections.map((s) => s.id),
+    ["vps-1", "vps-2", "vps-3", "vps-4", "vps-5", "vps-6", "vps-7"],
+  );
+  const vps5 = sections.find((s) => s.id === "vps-5")!;
+  assert.equal(vps5.heading, "VPS 5 salary 2026");
+  assert.equal(vps5.bands.length, 2, "VPS 5 has value ranges 5.1 and 5.2");
+  assert.deepEqual(vps5.range, { min: 116_413, max: 140_849 });
+});
+
+test("APS level sections carry the Treasury example where the level exists", () => {
+  const sections = levelSections(getJurisdiction("aps")!);
+  const aps6 = sections.find((s) => s.id === "aps-6")!;
+  assert.equal(aps6.heading, "APS 6 salary 2026");
+  assert.equal(aps6.bands[0].median, 108_092);
+  assert.equal(aps6.compare?.band.min, 105_260);
+  assert.equal(aps6.compare?.band.max, 127_521);
+  const ses = sections.find((s) => s.id === "ses-band-1")!;
+  assert.equal(ses.compare, undefined, "Treasury publishes no SES scale");
+});
+
+test("level section anchors are unique on every page", () => {
+  for (const jurisdiction of JURISDICTIONS) {
+    const ids = levelSections(jurisdiction).map((s) => s.id);
+    assert.equal(new Set(ids).size, ids.length, `${jurisdiction.slug} has duplicate anchors`);
+  }
 });

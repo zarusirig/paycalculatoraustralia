@@ -148,6 +148,83 @@ export function groupRange(bands: readonly ClassificationBand[]): { min: number;
   };
 }
 
+// ---------- salary-by-level sections ----------
+
+export interface LevelSection {
+  /** Anchor id, e.g. "vps-4", "aps-6", "el-1", "ao5". Unique within the page. */
+  id: string;
+  /** Short level name as searched, e.g. "VPS 4", "APS 6", "AO5". */
+  label: string;
+  /** "VPS 4 salary 2026". */
+  heading: string;
+  /** The bands in this level (two for a VPS grade with value ranges 5.1 and 5.2). */
+  bands: ClassificationBand[];
+  /** Lowest min to highest max across `bands`. */
+  range: { min: number; max: number };
+  schedule: PaySchedule;
+  /** The same classification in the comparison schedule, where there is one. */
+  compare?: { schedule: PaySchedule; band: ClassificationBand };
+}
+
+/** "VPS Grade 4" -> "VPS 4"; anything else is returned unchanged. */
+export function shortLevelLabel(groupLabel: string): string {
+  return groupLabel.replace(/\s+Grade\s+/i, " ").trim();
+}
+
+/** "VPS 4" -> "vps-4", "EL 1" -> "el-1", "SES Band 1" -> "ses-band-1", "AO5" -> "ao5". */
+export function levelAnchor(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * One section per classification level for the spoke page, built from the
+ * schedule the jurisdiction's `levelGuide` names. Every figure comes from that
+ * schedule — this only regroups it — so the sections cannot drift from the
+ * full tables further down the page. Returns [] when there is no guide.
+ */
+export function levelSections(jurisdiction: Jurisdiction): LevelSection[] {
+  const guide = jurisdiction.levelGuide;
+  if (!guide) return [];
+  const schedule = jurisdiction.schedules.find((s) => s.id === guide.scheduleId);
+  if (!schedule) return [];
+  const compareSchedule = guide.compareScheduleId
+    ? jurisdiction.schedules.find((s) => s.id === guide.compareScheduleId)
+    : undefined;
+
+  const streams = guide.streamIds
+    ? guide.streamIds
+        .map((id) => schedule.streams.find((s) => s.id === id))
+        .filter((s): s is NonNullable<typeof s> => s !== undefined)
+    : [...schedule.streams];
+
+  const sections: LevelSection[] = [];
+  for (const stream of streams) {
+    for (const group of groupBands(stream.bands)) {
+      const label = shortLevelLabel(group.label);
+      const compareBand =
+        compareSchedule && group.bands.length === 1
+          ? compareSchedule.streams
+              .flatMap((s) => s.bands)
+              .find((b) => normaliseCode(b.code) === normaliseCode(group.bands[0].code))
+          : undefined;
+      sections.push({
+        id: levelAnchor(label),
+        label,
+        heading: `${label} salary ${guide.year}`,
+        bands: group.bands,
+        range: groupRange(group.bands),
+        schedule,
+        compare:
+          compareSchedule && compareBand ? { schedule: compareSchedule, band: compareBand } : undefined,
+      });
+    }
+  }
+  return sections;
+}
+
 /**
  * Hub-level questions, shaped from the queries this cluster targets. Kept in the
  * data layer so the server page and the client component read the same array

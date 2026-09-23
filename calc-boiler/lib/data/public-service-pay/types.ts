@@ -151,6 +151,36 @@ export interface Jurisdiction {
   unverified: readonly string[];
   faqs: readonly PayFaq[];
   verifiedOn: string;
+  /**
+   * Optional "salary by level" sections — one H2 and anchor per classification
+   * ("VPS 4 salary 2026", "APS 6 salary 2026"), built from an existing schedule
+   * so no figure is typed twice. See `levelSections` in ./index.ts.
+   */
+  levelGuide?: LevelGuide;
+}
+
+/**
+ * Which schedule's classifications get their own section on the spoke page.
+ * Pure data (no functions) because the page component is a client component.
+ */
+export interface LevelGuide {
+  /** The schedule whose bands are sectioned. */
+  scheduleId: string;
+  /** Streams of that schedule to include, in order. Omit for every stream. */
+  streamIds?: readonly string[];
+  /**
+   * A second schedule whose band with the same `code` is quoted alongside —
+   * e.g. one named APS agency's agreement beside the APS-wide survey figures.
+   */
+  compareScheduleId?: string;
+  /** How the comparison line is introduced, e.g. "One agency's example — Treasury". */
+  compareLabel?: string;
+  /** The year used in the section headings, e.g. "2026". */
+  year: string;
+  /** Heading of the wrapper section, e.g. "VPS salary by grade". */
+  title: string;
+  /** One paragraph under that heading. */
+  intro: string;
 }
 
 /** A jurisdiction the cluster will cover later. Listed, never faked. */

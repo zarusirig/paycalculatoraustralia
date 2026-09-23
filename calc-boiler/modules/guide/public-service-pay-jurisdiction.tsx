@@ -14,9 +14,11 @@ import {
   formatSalary,
   groupBands,
   groupRange,
+  levelSections,
   takeHomeHref,
   nearestTakeHomeSalary,
   type ClassificationBand,
+  type LevelSection,
   type Jurisdiction,
   type PaySchedule,
 } from "@/lib/data/public-service-pay";
@@ -40,6 +42,143 @@ function AfterTaxLink({ band }: { band: ClassificationBand }) {
     >
       {formatSalary(target)} after tax
     </Link>
+  );
+}
+
+/** A salary that opens the nearest published take-home page. */
+function SalaryCell({ salary }: { salary: number }) {
+  const target = nearestTakeHomeSalary(salary);
+  return (
+    <>
+      <span className="font-semibold text-navy">{formatSalary(salary)}</span>
+      <Link
+        href={takeHomeHref(salary)}
+        className="ml-2 whitespace-nowrap text-xs text-eucalyptus-dark hover:text-navy hover:underline"
+      >
+        take-home on {formatSalary(target)}
+      </Link>
+    </>
+  );
+}
+
+/** Rows for one band: its pay points, or the survey percentiles where no scale exists. */
+function bandRows(band: ClassificationBand): { label: string; salary: number }[] {
+  if (band.payPoints && band.payPoints.length > 0) {
+    return band.payPoints.map((p) => ({ label: p.label, salary: p.annual }));
+  }
+  if (band.median !== undefined) {
+    return [
+      { label: "5th percentile", salary: band.min },
+      { label: "Median", salary: band.median },
+      { label: "95th percentile", salary: band.max },
+    ];
+  }
+  return band.min === band.max
+    ? [{ label: band.code, salary: band.min }]
+    : [
+        { label: "Bottom of band", salary: band.min },
+        { label: "Top of band", salary: band.max },
+      ];
+}
+
+function LevelSectionBlock({ section, compareLabel }: { section: LevelSection; compareLabel?: string }) {
+  const isSurvey = section.schedule.basis === "survey";
+  const only = section.bands.length === 1 ? section.bands[0] : null;
+  const rows = section.bands.flatMap((band) =>
+    bandRows(band).map((row) => ({ ...row, band: band.code })),
+  );
+  const showBandColumn = section.bands.length > 1;
+
+  return (
+    <section id={section.id} className="scroll-mt-24">
+      <h2 style={HEADING_FONT}>{section.heading}</h2>
+      {isSurvey && only ? (
+        <p>
+          Across the whole service at {section.schedule.effectiveFrom}, the median {section.label}{" "}
+          base salary was <strong>{only.median !== undefined ? formatSalary(only.median) : "not reported"}</strong>
+          , and 90% of {section.label} employees were paid between <strong>{formatSalary(only.min)}</strong> and{" "}
+          <strong>{formatSalary(only.max)}</strong>
+          {only.headcount ? ` (${only.headcount.toLocaleString("en-AU")} employees)` : ""}. {only.summary}
+        </p>
+      ) : (
+        <p>
+          From {section.schedule.effectiveFrom}, {section.label} pays{" "}
+          <strong>{formatBandRange(section.range)}</strong> a year
+          {section.bands.length > 1
+            ? `, across ${section.bands.length} value ranges: ${section.bands
+                .map((b) => `${b.code} ${formatBandRange(b)}`)
+                .join("; ")}`
+            : ""}
+          . {only ? only.summary : ""}
+        </p>
+      )}
+      <div className="not-prose my-4 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+        <table className="w-full text-left text-sm text-warmgray">
+          <caption className="sr-only">{section.heading}</caption>
+          <thead className="bg-sandstone font-semibold text-navy">
+            <tr>
+              {showBandColumn && <th scope="col" className="px-4 py-2">Value range</th>}
+              <th scope="col" className="px-4 py-2">{isSurvey ? "Measure" : "Pay point"}</th>
+              <th scope="col" className="px-4 py-2 text-right">Annual salary and after tax</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+            {rows.map((row) => (
+              <tr key={`${row.band}-${row.label}`}>
+                {showBandColumn && <td className="px-4 py-2">{row.band}</td>}
+                <th scope="row" className="px-4 py-2 text-left font-medium text-navy">
+                  {row.label}
+                </th>
+                <td className="px-4 py-2 text-right">
+                  <SalaryCell salary={row.salary} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {section.compare && (
+        <p className="text-base">
+          <strong>{compareLabel ?? section.compare.schedule.title}:</strong> {section.label} pays{" "}
+          {formatBandRange(section.compare.band)} from {section.compare.schedule.effectiveFrom}
+          {section.compare.band.payPoints && section.compare.band.payPoints.length > 0
+            ? ` (${section.compare.band.payPoints
+                .map((p) => `${p.label} ${formatSalary(p.annual)}`)
+                .join(", ")})`
+            : ""}
+          .
+        </p>
+      )}
+    </section>
+  );
+}
+
+function LevelGuideSection({ jurisdiction }: { jurisdiction: Jurisdiction }) {
+  const sections = levelSections(jurisdiction);
+  const guide = jurisdiction.levelGuide;
+  if (!guide || sections.length === 0) return null;
+  return (
+    <div id="salary-by-level">
+      <h2 style={HEADING_FONT}>{guide.title}</h2>
+      <p>{guide.intro}</p>
+      <nav aria-label={`Jump to a ${jurisdiction.shortName} level`} className="not-prose my-4">
+        <ul className="flex flex-wrap gap-2">
+          {sections.map((section) => (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                className="inline-block rounded-full border border-sandstone-dark/30 bg-white px-3 py-1 text-sm font-medium text-navy hover:border-eucalyptus hover:text-eucalyptus-dark"
+              >
+                {section.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      {sections.map((section) => (
+        <LevelSectionBlock key={section.id} section={section} compareLabel={guide.compareLabel} />
+      ))}
+    </div>
   );
 }
 
@@ -228,6 +367,9 @@ export default function PublicServicePayJurisdictionPage({
                 source it is left out and listed further down rather than estimated.
               </p>
             </section>
+
+            {/* One H2 per classification level, built from the schedules below */}
+            <LevelGuideSection jurisdiction={jurisdiction} />
 
             {/* Schedules */}
             <section id="pay-scales">

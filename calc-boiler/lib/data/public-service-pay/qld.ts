@@ -31,6 +31,17 @@ export const QLD: Jurisdiction = {
   label: "Queensland (AO, PO, TO, OO)",
   verifiedOn: "28 August 2026",
 
+  levelGuide: {
+    scheduleId: "award-2025",
+    streamIds: ["ao-award"],
+    compareScheduleId: "doe-2026",
+    compareLabel: "One agency above the award — Department of Education Certified Agreement 2025",
+    year: "2026",
+    title: "Queensland AO salary by level",
+    intro:
+      "The administrative stream is the one most Queensland Government jobs are advertised against, so each AO level has its own section. The main figures are the award rates from 1 September 2025 that job ads quote; the Department of Education Certified Agreement 2025 pay points from 1 September 2026 are shown beside them as one agency's rates above the floor, not as the whole-of-government rate. Every salary links to the nearest take-home pay page.",
+  },
+
   headline:
     "In the Queensland public service an AO3 is paid $77,354 to $85,833 and a PO4 $118,966 to $127,940 under the Queensland Public Service Officers and Other Employees Award – State 2015 from 1 September 2025 — the figures Queensland Government job ads quote. Agency certified agreements pay at or above that floor: the Department of Education Certified Agreement 2025, for example, pays AO3 $80,505 to $89,326 and PO4 $123,829 to $133,171 from 1 September 2026.",
 

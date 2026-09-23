@@ -26,10 +26,20 @@ export const APS: Jurisdiction = {
   label: "APS (federal)",
   verifiedOn: "28 August 2026",
 
+  levelGuide: {
+    scheduleId: "apsc-2025",
+    compareScheduleId: "treasury-2026",
+    compareLabel: "One agency's example, not the APS rate — Treasury Enterprise Agreement 2024",
+    year: "2026",
+    title: "APS salary by level",
+    intro:
+      "One section per APS level. The APS-wide range is the 5th to 95th percentile of base salaries actually paid across every agency at 31 December 2025, before the 3.4% service-wide increase from March 2026; the median is the middle salary. Where a level exists in the Treasury Enterprise Agreement 2024, that agency's pay points from 12 March 2026 are shown as a worked example of a real agency scale — not as the APS rate. Every salary links to the nearest take-home pay page.",
+  },
+
   headline:
     "There is no single APS pay scale. Across the whole service at 31 December 2025 the median APS 6 base salary was $108,092, with 90% of APS 6 staff paid between $97,316 and $115,199. The median was $92,324 at APS 5, $135,701 at EL 1, $168,064 at EL 2, $253,804 at SES Band 1 and $321,888 at SES Band 2. Each agency bargains its own enterprise agreement, so your agency's number sits somewhere inside those ranges.",
 
-  metaTitle: "APS Pay Scales 2026 — APS 1–6, EL1, EL2 and SES Salary Ranges",
+  metaTitle: "APS Pay Scales 2026 — APS 4, APS 5, APS 6, EL1 & EL2 Salary Ranges",
   metaDescription:
     "What each APS level actually pays: APS-wide base salary ranges and medians for APS 1–6, EL 1, EL 2 and SES Bands 1–3 from the APSC's 31 December 2025 remuneration data, plus a real agency pay-point scale and what each band is worth after tax.",
 
