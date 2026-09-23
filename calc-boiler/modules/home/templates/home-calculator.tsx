@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronUp, TrendingUp, Building2, GraduationCap, Heart, DollarSign, Percent, PiggyBank, Receipt } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AmountPresets } from "@/modules/calculator/head-term-ui";
+import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-primary";
 import { calculatePayBreakdown, formatAUD, formatPercent, SUPER_GUARANTEE, EMPLOYMENT } from "@/lib/constants";
 import { SourceBadge } from "./source-badge";
 
@@ -376,6 +377,15 @@ export default function HomeCalculator() {
                 <div className="text-sm font-bold text-navy sm:text-base">{formatAUD(result.weekly)}</div>
               </div>
             </div>
+            {/* Per-period primaries, right under the fortnight/week figures:
+                the homepage was ranking for "fortnightly/weekly pay calculator"
+                in place of the dedicated pages (intent map, Sep 2026). */}
+            <p className="mt-2 text-center text-xs text-warmgray">
+              Paid by the fortnight or week? Use the{" "}
+              <Link href={HEAD_TERM_PRIMARY.fortnightlyPayCalculator.href} className="font-medium text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.fortnightlyPayCalculator.anchor}</Link>
+              {" "}or the{" "}
+              <Link href={HEAD_TERM_PRIMARY.weeklyPayCalculator.href} className="font-medium text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.weeklyPayCalculator.anchor}</Link>.
+            </p>
 
             {/* Hours per week — hourly basis only */}
             {payBasis === "hourly" && (

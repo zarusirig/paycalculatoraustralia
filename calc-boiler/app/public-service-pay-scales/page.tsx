@@ -8,9 +8,12 @@ import { JURISDICTIONS, PUBLIC_SERVICE_PAY_FAQS } from "@/lib/data/public-servic
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/public-service-pay-scales/`;
+// "vps salary": the hub outranked /vic/ (Sep 2026). VPS-specific terms stay
+// out of this title, H1, intro and description; the hub links to /vic/ with
+// the anchor "VPS salary 2026" instead.
 const TITLE = "Public Service Pay Scales 2026 — APS, States & Territories";
 const DESCRIPTION =
-  "What every public service level pays in 2026: APS, VPS, QLD AO, NSW Clerk, WA, SA ASO, TAS Band, ACT ASO and NT AO rates, each with its source and take-home pay.";
+  "What every public service level pays in 2026: APS, Victoria, QLD AO, NSW Clerk, WA, SA ASO, TAS Band, ACT ASO and NT AO rates, each with source and take-home pay.";
 
 export const metadata: Metadata = {
   title: TITLE,
