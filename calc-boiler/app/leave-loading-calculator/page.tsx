@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LeaveLoadingPage from "@/modules/guide/leave-loading";
 import { LEAVE_LOADING_FAQS } from "@/modules/guide/leave-loading-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "leave-loading-calculator";
 const TITLE = "Leave Loading Calculator: 17.5% Annual Leave Loading";
@@ -26,7 +27,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Leave Loading Calculator", description: "Calculates annual leave pay and 17.5% leave loading, applies the award's higher-of-penalties test, and estimates Schedule 5 withholding on a lump-sum loading." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -34,3 +35,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/leave-loading-calculator/");

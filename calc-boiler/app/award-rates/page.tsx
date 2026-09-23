@@ -7,6 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import { AWARD_HUB_FAQS } from "@/modules/guide/award-rates-faqs";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/award-rates/`;
@@ -79,7 +80,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, itemList, faq]} />
@@ -87,3 +88,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/award-rates/");

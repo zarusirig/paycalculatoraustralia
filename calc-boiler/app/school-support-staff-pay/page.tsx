@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { SchoolSupportHubPage } from "@/modules/guide/school-support-pay";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { SCHOOL_SUPPORT_HUB_FAQS } from "@/lib/data/school-support-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // J6 (wave 4, 24 Sep 2026). Targets (DataForSEO AU): teacher aide pay /
 // teacher aide salary / teacher aide pay rate 1.6k each, education support
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       {t3JsonLd({
@@ -40,3 +41,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/school-support-staff-pay/");

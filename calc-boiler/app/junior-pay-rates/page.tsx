@@ -7,6 +7,7 @@ import { SITE_CONFIG, EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { ADULT_AGE, JUNIOR_RATES, NMW_ORDER } from "@/lib/constants/junior-rates";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/junior-pay-rates/`;
@@ -87,7 +88,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -95,3 +96,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/junior-pay-rates/");

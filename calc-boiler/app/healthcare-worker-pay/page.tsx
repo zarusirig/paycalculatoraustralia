@@ -6,6 +6,7 @@ import { faqPageSchema } from "@/lib/faq";
 import { HEALTHCARE_FAQS } from "@/modules/guide/healthcare-worker-pay-faqs";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { NURSING_PAY_BY_STATE, NURSING_PAY_STATES, registeredNurseRange } from "@/lib/data/nursing-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/healthcare-worker-pay/`;
@@ -64,7 +65,7 @@ const stateList: WithContext<ItemList> = {
 
 const faq = faqPageSchema(HEALTHCARE_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, stateList, faq]} />
@@ -72,3 +73,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/healthcare-worker-pay/");

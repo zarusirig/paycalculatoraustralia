@@ -10,6 +10,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { EMBED_DATA } from "@/lib/embed/take-home-engine";
 import { EMBED_DEFAULT_HEIGHT, EMBED_PATH, EMBED_URL, autoResizeSnippet, embedCode } from "@/lib/embed/take-home-widget-html";
 import CopySnippet from "@/modules/guide/copy-snippet";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/embed/`;
@@ -44,7 +45,7 @@ const webPage: WithContext<WebPage> = {
   isPartOf: { "@type": "WebSite", name: SITE_CONFIG.name, url: BASE },
 };
 
-export default function EmbedPage() {
+function EmbedPage() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage]} />
@@ -130,3 +131,5 @@ export default function EmbedPage() {
     </>
   );
 }
+
+export default withPageEnd(EmbedPage, "/embed/");

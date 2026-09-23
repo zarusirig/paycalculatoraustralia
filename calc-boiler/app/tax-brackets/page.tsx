@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { Article, BreadcrumbList, FAQPage, Table, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27, formatAUD, formatPercent } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-brackets/`;
@@ -79,7 +80,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, tableSchema, faq]} />
@@ -87,3 +88,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-brackets/");

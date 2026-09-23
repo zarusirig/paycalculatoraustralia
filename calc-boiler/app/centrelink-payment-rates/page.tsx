@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CentrelinkPaymentRatesPage from "@/modules/guide/centrelink-payment-rates";
 import { CENTRELINK_PAYMENT_RATES_FAQS } from "@/modules/guide/centrelink-payment-rates-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // J6 (wave 4, 24 Sep 2026). Targets: centrelink payment rates 2.9k (KD 14),
 // how much is jobseeker payment 2.9k, centrelink rates 140 (DataForSEO, AU).
@@ -30,7 +31,7 @@ const jsonLd = t3JsonLd({
   published: "2026-09-24",
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -38,3 +39,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/centrelink-payment-rates/");

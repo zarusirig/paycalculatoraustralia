@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTION_SLUGS, getJurisdiction } from "@/lib/data/public-service-pay";
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{ jurisdiction: string }>;
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { jurisdiction: slug } = await params;
   const jurisdiction = getJurisdiction(slug);
   if (!jurisdiction) notFound();
@@ -103,3 +104,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/public-service-pay-scales/[jurisdiction]/");

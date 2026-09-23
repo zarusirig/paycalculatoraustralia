@@ -4,6 +4,7 @@ import type { BreadcrumbList, CollectionPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { formatNewsDate, getAllNews, NEWS_CATEGORIES } from "@/lib/news";
 import NewsIndexPage from "@/modules/news/index-page";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
@@ -45,7 +46,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   ],
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[collection, breadcrumb]} />
@@ -62,3 +63,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/news/");

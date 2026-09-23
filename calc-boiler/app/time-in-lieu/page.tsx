@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TimeInLieuPage from "@/modules/guide/time-in-lieu";
 import { TIME_IN_LIEU_FAQS } from "@/modules/guide/time-in-lieu-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "time-in-lieu";
 const TITLE = "Time in Lieu (TOIL) Australia: Award Rules + Calculator";
@@ -26,7 +27,7 @@ const jsonLd = t3JsonLd({
   app: { name: "TOIL vs Overtime Pay Calculator", description: "Converts overtime hours into time off in lieu under hour-for-hour and overtime-rate award clauses, and compares it with overtime pay." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -34,3 +35,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/time-in-lieu/");

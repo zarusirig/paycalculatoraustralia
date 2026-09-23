@@ -1,4 +1,5 @@
 import ContractorPayCalculator from "@/modules/calculator/contractor-pay-calculator";
+import ContractorPayCalculatorContent from "@/modules/calculator/contractor-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type {
   BreadcrumbList,
@@ -12,6 +13,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 export const metadata: Metadata = {
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
@@ -86,13 +88,17 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function ContractorPayCalculatorPage() {
+function ContractorPayCalculatorPage() {
   return (
     <>
       <JsonLd
         code={[webAppSchema, breadcrumbSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]}
       />
-      <ContractorPayCalculator />
+      <ContractorPayCalculator>
+        <ContractorPayCalculatorContent />
+      </ContractorPayCalculator>
     </>
   );
 }
+
+export default withPageEnd(ContractorPayCalculatorPage, "/contractor-pay-calculator/");

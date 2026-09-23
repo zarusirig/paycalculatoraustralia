@@ -7,6 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { TFN_DECLARATION_FAQS } from "@/modules/guide/tax-file-number-declaration-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-file-number-declaration/`;
@@ -53,7 +54,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(TFN_DECLARATION_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -61,3 +62,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-file-number-declaration/");

@@ -7,6 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 import { getAllNews, getNewsBySlug } from "@/lib/news";
 import { NEWS_COMPONENTS } from "@/modules/news/articles";
 import NewsArticleLayout from "@/modules/news/layout";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -42,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function NewsArticlePage({ params }: PageProps) {
+async function NewsArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const meta = getNewsBySlug(slug);
   const Body = NEWS_COMPONENTS[slug];
@@ -102,3 +103,5 @@ export default async function NewsArticlePage({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(NewsArticlePage, "/news/[slug]/");

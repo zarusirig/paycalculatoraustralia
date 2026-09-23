@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { teacherHubFaqs, teacherHubSummary } from "@/lib/data/teacher-pay/hub";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/teacher-pay-australia/`;
@@ -56,7 +57,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, faq]} />
@@ -64,3 +65,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/teacher-pay-australia/");

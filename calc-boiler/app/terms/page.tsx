@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/terms/`;
@@ -44,7 +45,7 @@ const webPage: WithContext<WebPage> = {
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 
-export default function TermsPage() {
+function TermsPage() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage]} />
@@ -339,3 +340,5 @@ export default function TermsPage() {
     </>
   );
 }
+
+export default withPageEnd(TermsPage, "/terms/");

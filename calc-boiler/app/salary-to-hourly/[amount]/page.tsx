@@ -9,6 +9,7 @@ import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function SalaryToHourlyPage({ params }: PageProps) {
+async function SalaryToHourlyPage({ params }: PageProps) {
   const resolvedParams = await params;
   const salaryAmount = parseInt(resolvedParams.amount, 10);
   const formattedSalary = formatAUD(salaryAmount);
@@ -124,3 +125,5 @@ export default async function SalaryToHourlyPage({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(SalaryToHourlyPage, "/salary-to-hourly/[amount]/");

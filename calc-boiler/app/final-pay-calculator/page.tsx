@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FinalPayCalculatorPage from "@/modules/calculator/final-pay-calculator";
+import FinalPayCalculatorContent from "@/modules/calculator/final-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -7,6 +8,7 @@ import { FINAL_PAY_FAQS } from "@/modules/calculator/final-pay-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/final-pay-calculator/`;
@@ -65,11 +67,13 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <FinalPayCalculatorPage />
+      <FinalPayCalculatorPage><FinalPayCalculatorContent /></FinalPayCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/final-pay-calculator/");

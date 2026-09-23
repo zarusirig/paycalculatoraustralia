@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import CompassionateLeavePage from "@/modules/guide/compassionate-leave";
 import { COMPASSIONATE_LEAVE_FAQS } from "@/modules/guide/compassionate-leave-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // G3 (wave 4, 24 Sep 2026). Targets: compassionate leave 9.9k (KD 0),
 // family and domestic violence leave 720 (DataForSEO, AU).
@@ -30,7 +31,7 @@ const jsonLd = t3JsonLd({
   published: "2026-09-24",
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -38,3 +39,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/compassionate-leave/");

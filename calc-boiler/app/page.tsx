@@ -12,6 +12,9 @@ import type {
 import { HOME_FAQS } from "@/modules/home/home-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEndUsing } from "@/components/common/page-end";
+import HomeLink from "@/modules/home/templates/home-link";
+import HomeAdsterraBanner from "@/modules/home/templates/home-adsterra-banner";
 
 const FY = SITE_CONFIG.financialYear;
 
@@ -131,7 +134,7 @@ const faqSchema: WithContext<FAQPage> = {
   })),
 };
 
-export default function Home() {
+function Home() {
   return (
     <>
       <JsonLd
@@ -147,3 +150,6 @@ export default function Home() {
     </>
   );
 }
+
+// Home-only client re-exports: see components/common/page-end.tsx.
+export default withPageEndUsing(Home, "/", { Link: HomeLink, Banner: HomeAdsterraBanner });

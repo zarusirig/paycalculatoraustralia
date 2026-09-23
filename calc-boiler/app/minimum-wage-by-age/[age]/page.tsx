@@ -9,6 +9,7 @@ import { AUTHORS } from "@/lib/authors";
 import { NMW_ORDER } from "@/lib/constants/junior-rates";
 import { isMinWageAge, type MinWageAge } from "@/lib/constants/minimum-wage";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { age: raw } = await params;
   const age = resolve(raw);
   if (age == null) notFound();
@@ -100,3 +101,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/minimum-wage-by-age/[age]/");

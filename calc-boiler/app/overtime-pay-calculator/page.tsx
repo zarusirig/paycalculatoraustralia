@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import OvertimePayCalculatorPage from "@/modules/calculator/overtime-pay-calculator";
+import OvertimePayCalculatorContent from "@/modules/calculator/overtime-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -7,6 +8,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { OVERTIME_PAY_FAQS } from "@/modules/calculator/overtime-pay-calculator-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-pay-calculator/`;
@@ -64,11 +66,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <OvertimePayCalculatorPage />
+      <OvertimePayCalculatorPage>
+        <OvertimePayCalculatorContent />
+      </OvertimePayCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/overtime-pay-calculator/");

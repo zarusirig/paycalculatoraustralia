@@ -7,6 +7,7 @@ import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-guide/`;
@@ -54,7 +55,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(SUPERANNUATION_GUIDE_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -62,3 +63,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/superannuation-guide/");

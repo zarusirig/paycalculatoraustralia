@@ -112,3 +112,28 @@ test("state pay pages link that state's payroll tax and long service leave pages
   assert.ok(hrefs.includes("/payroll-tax/qld/"));
   assert.ok(hrefs.includes("/long-service-leave-calculator/qld/"));
 });
+
+test("every app page renders PageEnd (rectangle ad + related links) with its own route", () => {
+  // The links are rendered per page on the server (components/common/content-slots.tsx),
+  // so a page that is not wrapped would silently lose both the links and the
+  // 300x250 rectangle, and a wrong route literal would show another page's links.
+  const missing: string[] = [];
+  const check = (file: string, route: string) => {
+    const src = fs.readFileSync(file, "utf8");
+    const m = src.match(/^export default withPageEnd(?:Using)?\(\w+, "([^"]+)"(?:, \{[^}]*\})?\);$/m);
+    if (!m || m[1] !== route) missing.push(route);
+  };
+  const walk = (dir: string, rel: string) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!e.isDirectory()) continue;
+      const r = `${rel}${e.name}/`;
+      const file = path.join(dir, e.name, "page.tsx");
+      if (fs.existsSync(file)) check(file, r);
+      walk(path.join(dir, e.name), r);
+    }
+  };
+  walk(APP, "/");
+  check(path.join(APP, "page.tsx"), "/");
+  check(path.join(APP, "not-found.tsx"), "/_not-found/");
+  assert.deepEqual(missing, []);
+});

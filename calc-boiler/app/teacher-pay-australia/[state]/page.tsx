@@ -15,6 +15,7 @@ import {
   type TeacherPayState,
 } from "@/lib/data/teacher-pay";
 import { fitDescription } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -81,7 +82,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state: slug } = await params;
   const state = getTeacherPayState(slug);
   if (!state) notFound();
@@ -144,3 +145,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/teacher-pay-australia/[state]/");

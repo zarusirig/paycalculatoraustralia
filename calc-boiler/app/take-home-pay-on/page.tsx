@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants/australian-tax";
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // Hub for /take-home-pay-on/[salary]/ (Wave 3 / T6). Every figure is computed
 // from the tax engine at build time.
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
 };
 
-export default function TakeHomePayHubPage() {
+function TakeHomePayHubPage() {
   return (
     <SalaryHub
       copy={{
@@ -47,3 +48,5 @@ export default function TakeHomePayHubPage() {
     />
   );
 }
+
+export default withPageEnd(TakeHomePayHubPage, "/take-home-pay-on/");

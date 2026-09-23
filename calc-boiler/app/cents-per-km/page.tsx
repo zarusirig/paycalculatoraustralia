@@ -4,6 +4,7 @@ import { CENTS_PER_KM_FAQS } from "@/modules/guide/cents-per-km-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { CPK_KM_CAP, CURRENT_CPK_RATE, CURRENT_CPK_YEAR, PREVIOUS_CPK_RATE } from "@/lib/constants/cents-per-km";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "cents-per-km";
 const c = (d: number) => `${Math.round(d * 100)}c`;
@@ -28,7 +29,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Cents per Kilometre Calculator", description: "Car expense deduction at the ATO cents per km rate with the 5,000 km cap, and the withholding split of a per-km car allowance." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -36,3 +37,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/cents-per-km/");

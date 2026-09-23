@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import BonusTaxCalculatorPage from "@/modules/calculator/bonus-tax-calculator";
+import BonusTaxCalculatorContent from "@/modules/calculator/bonus-tax-calculator-content";
 import { BONUS_TAX_FAQS } from "@/modules/calculator/bonus-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/bonus-tax-calculator/`;
@@ -73,11 +75,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <BonusTaxCalculatorPage />
+      <BonusTaxCalculatorPage>
+        <BonusTaxCalculatorContent />
+      </BonusTaxCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/bonus-tax-calculator/");

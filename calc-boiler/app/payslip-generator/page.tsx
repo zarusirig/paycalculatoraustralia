@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PayslipGeneratorPage from "@/modules/calculator/payslip-generator";
+import PayslipGeneratorContent from "@/modules/calculator/payslip-generator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -7,6 +8,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_GENERATOR_FAQS } from "@/modules/calculator/payslip-generator-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
@@ -80,11 +82,15 @@ const howToSchema = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <PayslipGeneratorPage />
+      <PayslipGeneratorPage>
+        <PayslipGeneratorContent />
+      </PayslipGeneratorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/payslip-generator/");

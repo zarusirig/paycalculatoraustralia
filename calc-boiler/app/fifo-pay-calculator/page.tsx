@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import FifoPayCalculatorPage from "@/modules/guide/fifo-pay-calculator";
 import { FIFO_FAQS } from "@/modules/guide/fifo-pay-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // P9 (docs/seo/2026-08-28-gsc-query-network-traffic-opportunities.md).
 // DataForSEO AU, 24 Sep 2026: "fifo pay calculator" 320/mo, "fifo salary
@@ -34,7 +35,7 @@ const jsonLd = t3JsonLd({
   app: { name: "FIFO Pay Calculator", description: "Turns an hourly rate and FIFO roster into gross pay per swing and per year, with overtime, shift loadings and site allowances, and take-home pay after 2026-27 tax." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -42,3 +43,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/fifo-pay-calculator/");

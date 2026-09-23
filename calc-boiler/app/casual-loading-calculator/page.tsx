@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { calculatorHowTo } from "@/lib/schema";
 import { NMW } from "@/lib/constants/minimum-wage";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/casual-loading-calculator/`;
@@ -67,7 +68,7 @@ const howTo = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, howTo]} />
@@ -75,3 +76,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/casual-loading-calculator/");

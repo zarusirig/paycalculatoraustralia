@@ -2,24 +2,16 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
-import { ChevronRight, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
-import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import AuthorBox from "@/components/common/author-box";
-import { getGuideAuthorship } from "@/lib/authors";
 import {
   calculatePayBreakdown,
   calculateHECS,
   formatAUD,
   annualToWeekly,
   HECS_HELP,
-  HECS_HELP_2025_26,
   SITE_CONFIG,
-  SOURCES,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
@@ -33,38 +25,8 @@ function clamp(n: number, min: number, max: number) {
 const T = HECS_HELP.minimumThreshold;
 const [, B1, B2, B3] = HECS_HELP.bands;
 
-/** Repayment at common incomes — the table the old threshold page led with. */
-const EXAMPLE_INCOMES = [75_000, 85_000, 100_000, 130_000, 190_000];
-
-// ATO published indexation rates, QC18714. 2023 and 2024 were recalculated
-// under the CPI-or-WPI cap; the original figures are shown for context.
-const INDEXATION_HISTORY = [
-  { year: "2026", rate: "2.8%", note: "" },
-  { year: "2025", rate: "3.2%", note: "" },
-  { year: "2024", rate: "4%", note: "recalculated from 4.7%" },
-  { year: "2023", rate: "3.2%", note: "recalculated from 7.1%" },
-  { year: "2022", rate: "3.9%", note: "" },
-  { year: "2021", rate: "0.6%", note: "" },
-];
-const ATO_INDEXATION_URL =
-  "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-indexation-rates";
-const ATO_VOLUNTARY_URL =
-  "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/voluntary-repayments";
-
 const ATO_THRESHOLDS_URL =
   "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds";
-const ATO_TYPES_URL =
-  "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/types-of-loans";
-const ATO_OVERSEAS_URL =
-  "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/overseas-repayments";
-
-const SOURCES_LIST: SourceLink[] = [
-  { title: "Study and training loan repayment thresholds and rates (QC16176)", url: ATO_THRESHOLDS_URL, publisher: SOURCES.ato.name },
-  { title: "Types of loans (QC44853)", url: ATO_TYPES_URL, publisher: SOURCES.ato.name },
-  { title: "Overseas obligations when repaying loans (QC47358)", url: ATO_OVERSEAS_URL, publisher: SOURCES.ato.name },
-  { title: "Study and training loan indexation rates (QC18714)", url: ATO_INDEXATION_URL, publisher: SOURCES.ato.name },
-  { title: "Voluntary repayments", url: ATO_VOLUNTARY_URL, publisher: SOURCES.ato.name },
-];
 
 const BAND_ROWS = [
   { range: `${formatAUD(0)} – ${formatAUD(T)}`, rate: "Nil", how: "No compulsory repayment" },
@@ -73,79 +35,19 @@ const BAND_ROWS = [
   { range: `${formatAUD(B3.min)} and over`, rate: `${B3.marginalRate * 100}%`, how: `${B3.marginalRate * 100}% of total repayment income` },
 ];
 
-/**
- * Every study and training support loan the ATO collects through the tax
- * system. All six are covered by the SAME thresholds and rates each year —
- * verified against the ATO's "Study and training loan repayment thresholds and
- * rates" page (QC16176, last updated 30 June 2026), which states: "All study
- * and training loan types are covered by the same set of thresholds and rates
- * applicable for each financial year."
- */
-const LOAN_SCHEMES = [
-  {
-    code: "HELP",
-    name: "Higher Education Loan Program",
-    covers: "University student contributions and tuition fees. Includes HECS-HELP, FEE-HELP, OS-HELP and SA-HELP.",
-    order: 1,
-  },
-  {
-    code: "VSL",
-    name: "VET Student Loan",
-    covers: "Diploma-level and above vocational education and training with an approved provider.",
-    order: 2,
-  },
-  {
-    code: "SFSS",
-    name: "Student Financial Supplement Scheme",
-    covers: "Closed to new loans on 31 December 2003. Existing balances are still collected through the tax system.",
-    order: 3,
-  },
-  {
-    code: "SSL",
-    name: "Student Start-up Loan",
-    covers: "Higher education students receiving Youth Allowance or Austudy.",
-    order: 4,
-  },
-  {
-    code: "ABSTUDY SSL",
-    name: "ABSTUDY Student Start-up Loan",
-    covers: "Students receiving the ABSTUDY Living Allowance.",
-    order: 5,
-  },
-  {
-    code: "AASL",
-    name: "Australian Apprenticeship Support Loan",
-    covers: "Australian apprentices, paid over four years. Previously the Trade Support Loan (TSL). A 20% discount applies to the amount borrowed on successful completion.",
-    order: 6,
-  },
-] as const;
-
 export interface CalculatorFaq {
   q: string;
   a: string;
 }
 
 /**
- * FAQ copy is defined once in app/hecs-help-calculator/page.tsx and passed in,
- * so the rendered accordion, the sr-only mirror and the FAQPage JSON-LD all
- * read the same strings and cannot drift apart. (It cannot live in this file:
- * a Server Component importing a non-component export from a "use client"
- * module gets a client reference, not the array.)
+ * The interactive part of /hecs-help-calculator/: hero and calculator card.
+ * The long-form content below the card is a server component
+ * (hecs-help-calculator-content.tsx) passed in as `children`, so it is not
+ * part of this client bundle.
  */
-// Google AU "related searches" for "hecs repayment calculator" and "hecs
-// repayments" (Sept 2026), each pointed at the page that answers it.
-const RELATED_SEARCHES: readonly RelatedSearch[] = [
-  { label: "HECS on your payslip (STSL)", href: "/stsl-on-payslip/" },
-  { label: "HECS indexation 2026", href: "/news/hecs-indexation-2026/" },
-  { label: "The 20% HECS cut", href: "/news/hecs-20-percent-cut-status/" },
-  { label: "Pay off HECS or add to super?", href: "/extra-super-vs-hecs-repayment/" },
-  { label: "Tax return calculator", href: "/tax-return-calculator/" },
-  { label: "Take home pay with HECS", href: "/take-home-pay-calculator/" },
-];
-
-export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly CalculatorFaq[] }) {
+export default function HECSHelpCalculatorPage({ children }: { children: React.ReactNode }) {
   const [salary, setSalary] = useState(80_000);
-  const authorship = getGuideAuthorship("hecs-help-calculator");
 
   const result = useMemo(() => {
     const hecsRepayment = calculateHECS(salary);
@@ -266,336 +168,7 @@ export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly Calcul
           </Card>
         </section>
 
-        {/* CONTENT */}
-        <div className="max-w-4xl mx-auto space-y-10">
-
-          {/* Rates — also owns "hecs repayment threshold": the separate threshold page was merged here (GSC Aug 2026: 0 clicks on 634 impressions). */}
-          <section id="threshold">
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Repayment Rates {SITE_CONFIG.financialYear}</h2>
-            <p className="mb-4 text-warmgray">
-              The minimum repayment threshold for {SITE_CONFIG.financialYear} is <strong>{formatAUD(T)}</strong>, up from {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}. Since 1 July 2025 the rates apply marginally, so only the income above the threshold is charged.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Repayment income ({SITE_CONFIG.financialYear})</th>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Rate</th>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">How it&apos;s calculated</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {BAND_ROWS.map((band) => (
-                    <tr key={band.range} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 text-navy tabular-nums">{band.range}</td>
-                      <td className="px-4 py-3 font-medium text-navy">{band.rate}</td>
-                      <td className="px-4 py-3 text-warmgray">{band.how}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mb-4 text-warmgray">
-              <strong>Repayment income</strong> is wider than your salary. The ATO adds together:
-            </p>
-            <ul className="list-disc pl-5 space-y-1 mb-4 text-sm text-warmgray">
-              <li>taxable income</li>
-              <li>reportable fringe benefits</li>
-              <li>total net investment loss</li>
-              <li>reportable super contributions</li>
-              <li>exempt foreign employment income</li>
-            </ul>
-            <p className="mb-4 text-warmgray">
-              That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold — the contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
-            </p>
-            <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Repayment at Common Incomes ({SITE_CONFIG.financialYear})</h3>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Repayment income</th><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Compulsory repayment</th><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Per week</th></tr>
-                </thead>
-                <tbody>
-                  {EXAMPLE_INCOMES.map((income, i) => (
-                    <tr key={income} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
-                      <td className="px-4 py-3 text-navy tabular-nums">{formatAUD(income)}</td>
-                      <td className="px-4 py-3 text-navy tabular-nums">{formatAUD(calculateHECS(income))}</td>
-                      <td className="px-4 py-3 text-navy tabular-nums">{formatAUD(annualToWeekly(calculateHECS(income)), 2)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-warmgray-light">
-              ATO, <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Study and training loan repayment thresholds and rates</a>. Enter your own income in the calculator above for the exact figure.
-            </p>
-          </section>
-
-          {/* ALL LOAN SCHEMES — the consolidation section */}
-          <section id="loan-schemes">
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Study and Training Loan This Covers</h2>
-            <p className="mb-4 text-warmgray">
-              There is no separate HECS calculation. The ATO states that <strong>all study and training loan types are covered by the same set of thresholds and rates</strong> for each financial year, so the figure above is your compulsory repayment whichever of the six loans you hold — and it is a single repayment even if you hold several.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Loan</th>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">What it covers</th>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Repaid in order</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {LOAN_SCHEMES.map((loan) => (
-                    <tr key={loan.code} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 align-top">
-                        <span className="font-bold text-navy block">{loan.code}</span>
-                        <span className="text-xs text-warmgray-light">{loan.name}</span>
-                      </td>
-                      <td className="px-4 py-3 text-warmgray align-top">{loan.covers}</td>
-                      <td className="px-4 py-3 text-navy align-top tabular-nums">{loan.order}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-warmgray-light">
-              ATO, <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Study and training loan repayment thresholds and rates</a> and <a href={ATO_TYPES_URL} target="_blank" rel="noopener noreferrer" className="hover:underline">Types of loans</a>. Loan fee and lifetime limit rules differ by scheme and are set by the Department of Education, not the ATO — check <a href="https://www.studyassist.gov.au/" target="_blank" rel="noopener noreferrer" className="hover:underline">Study Assist</a> before relying on a fee figure.
-            </p>
-
-            <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>If You Hold More Than One Loan</h3>
-            <p className="mb-3 text-warmgray">
-              You make one compulsory repayment, worked out on your total repayment income. The ATO then applies it to your loans in the fixed order in the table: HELP first, then VSL, SFSS, SSL, ABSTUDY SSL and AASL last. Holding two loans does not double the repayment; it only changes which balance falls first.
-            </p>
-
-            <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Living Overseas</h3>
-            <p className="mb-3 text-warmgray">
-              The overseas obligation is narrower than the repayment rules. It applies to <strong>HELP, VSL and AASL</strong> debts only. If you reside outside Australia for 183 days or more in any 12-month period you must lodge an <em>overseas travel notification</em> within 7 days of leaving, then report your worldwide income by <strong>31 October</strong> each year. If your worldwide income is at or below 25% of the minimum repayment threshold, you lodge a non-lodgment advice instead. The same thresholds and rates then apply to that worldwide income.
-            </p>
-            <p className="text-sm text-warmgray">
-              Full detail: ATO, <a href={ATO_OVERSEAS_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Overseas obligations when repaying loans</a>.
-            </p>
-          </section>
-
-          {/* How calculated */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Are HECS Repayments Calculated?</h2>
-            <ol className="list-decimal pl-5 text-warmgray space-y-2 mb-4">
-              <li>Work out repayment income: taxable income plus the four add-backs above.</li>
-              <li>Compare it to <strong>{formatAUD(T)}</strong>. At or below that, the compulsory repayment is <strong>$0</strong>.</li>
-              <li>From {formatAUD(B1.min)} to {formatAUD(B1.max)}, repay <strong>15 cents per dollar</strong> above {formatAUD(T)}.</li>
-              <li>From {formatAUD(B2.min)} to {formatAUD(B2.max)}, repay <strong>{formatAUD(B2.base)}</strong> plus <strong>17 cents per dollar</strong> above {formatAUD(B2.min - 1)}.</li>
-              <li>From {formatAUD(B3.min)}, repay <strong>{B3.marginalRate * 100}% of total repayment income</strong> — the one band that is not marginal.</li>
-            </ol>
-            <div className="bg-sandstone rounded-xl p-5 mb-3">
-              <p className="text-sm text-navy font-mono">
-                ({formatAUD(85_000)} &minus; {formatAUD(T)}) &times; 0.15 = <strong>{formatAUD(calculateHECS(85_000))}</strong> per year
-              </p>
-              <p className="text-sm text-warmgray mt-2">
-                Weekly impact: <strong>{formatAUD(annualToWeekly(calculateHECS(85_000)), 2)}</strong> per week
-              </p>
-            </div>
-            <p className="text-sm text-warmgray">
-              Use our <Link href="/" className="text-eucalyptus-dark hover:underline font-medium">Pay Calculator</Link> to see the repayment inside a full after-tax breakdown with income tax, the Medicare levy and superannuation.
-            </p>
-          </section>
-
-          {/* Take-home impact */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does HECS Affect Your Take-Home Pay?</h2>
-            <p className="mb-4 text-warmgray">
-              Between {formatAUD(75_000)} and {formatAUD(120_000)}, the compulsory repayment costs <strong>{formatAUD(annualToWeekly(calculateHECS(75_000)), 2)}</strong> to <strong>{formatAUD(annualToWeekly(calculateHECS(120_000)), 2)}</strong> a week.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Repayment income</th>
-                    <th scope="col" className="px-4 py-3 text-right font-semibold text-navy">Repayment</th>
-                    <th scope="col" className="px-4 py-3 text-right font-semibold text-navy">Per week</th>
-                    <th scope="col" className="px-4 py-3 text-right font-semibold text-navy">Take-home (with)</th>
-                    <th scope="col" className="px-4 py-3 text-right font-semibold text-navy">Take-home (without)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {[65_000, T, 72_000, 75_000, 80_000, 90_000, 100_000, 120_000].map((s) => {
-                    const hecs = calculateHECS(s);
-                    const bpNo = calculatePayBreakdown({ grossSalary: s, includeHECS: false });
-                    return (
-                      <tr key={s} className="hover:bg-sandstone">
-                        <td className="px-4 py-3 font-medium text-navy tabular-nums">{formatAUD(s)}</td>
-                        <td className="px-4 py-3 text-right text-navy tabular-nums">{formatAUD(hecs)}</td>
-                        <td className="px-4 py-3 text-right text-warmgray-light tabular-nums">{formatAUD(annualToWeekly(hecs), 2)}</td>
-                        <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark tabular-nums">{formatAUD(bpNo.takeHomePay - hecs)}</td>
-                        <td className="px-4 py-3 text-right text-warmgray tabular-nums">{formatAUD(bpNo.takeHomePay)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-warmgray-light">
-              Nothing is payable at {formatAUD(65_000)} or at the {formatAUD(T)} threshold itself. Moving to {formatAUD(72_000)} costs {formatAUD(calculateHECS(72_000))} for the year ({formatAUD(annualToWeekly(calculateHECS(72_000)), 2)}/week) — the marginal system removed the old cliff, where a dollar over the line triggered a percentage of your <em>entire</em> income.{" "}
-              <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> gives the full net pay breakdown.
-            </p>
-          </section>
-
-          {/* STSL vs assessment */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Your Payslip Deduction Differs From Your Actual Repayment</h2>
-            <p className="mb-3 text-warmgray">
-              The amount withheld each pay is an <strong>estimate</strong>. Employers withhold an additional PAYG component — shown as <strong>STSL</strong> on most payslips — from ATO withholding schedules, based on that pay period&apos;s earnings alone.
-            </p>
-            <p className="mb-3 text-warmgray">
-              Your actual compulsory repayment is only worked out when you lodge, using full-year repayment income. If your pay varied, or you had investment losses, reportable fringe benefits or reportable super, the two will not match, and the difference is settled through your refund or tax bill.
-            </p>
-            <p className="text-sm text-warmgray">
-              See <Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline font-medium">STSL on your payslip</Link> for a worked payslip example and how to stop the deduction once the loan is cleared.
-            </p>
-          </section>
-
-          {/* Indexation & voluntary repayments */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Indexation and Voluntary Repayments</h2>
-            <p className="mb-3 text-warmgray">
-              Study loans carry no interest. Instead the ATO applies indexation on <strong>1 June</strong> each year to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. On {HECS_HELP.indexationDate} the rate was <strong>{HECS_HELP.indexationRate * 100}%</strong> — read more on <Link href="/news/hecs-indexation-2026/" className="text-eucalyptus-dark hover:underline font-medium">HECS indexation 2026</Link>.
-            </p>
-            <p className="mb-4 text-warmgray">
-              That cap — the lower of CPI or WPI — was introduced after the June 2023 indexation came in at 7.1% under a CPI-only formula. It was backdated, and the ATO recalculated both 2023 and 2024, crediting the difference to affected balances.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Applied 1 June</th><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Indexation rate</th><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Note</th></tr>
-                </thead>
-                <tbody>
-                  {INDEXATION_HISTORY.map((row) => (
-                    <tr key={row.year}>
-                      <td className="px-4 py-3 text-navy tabular-nums">{row.year}</td>
-                      <td className="px-4 py-3 text-navy tabular-nums">{row.rate}</td>
-                      <td className="px-4 py-3 text-navy tabular-nums">{row.note || "—"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-sm text-warmgray-light">
-              ATO, <a href={ATO_INDEXATION_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Study and training loan indexation rates</a>.
-            </p>
-            <p className="mb-4 text-warmgray">
-              One quirk matters for timing. Compulsory repayments made through PAYG during the year are not credited to your loan until your return is assessed — usually after 1 June. So the balance that gets indexed is often larger than the balance you think you have. Separately, every study and training support debt that existed on 1 June 2025 received a one-off <strong>20% reduction</strong>; the ATO has finished processing it, and accounts left in credit were refunded.
-            </p>
-            <p className="mb-3 text-warmgray">
-              A voluntary repayment only reduces the indexed amount if it lands <em>before</em> 1 June. Beyond that timing point the case for paying early is a straight comparison: {HECS_HELP.indexationRate * 100}% indexation against what the money would earn or save elsewhere. Credit cards, car loans and personal loans all cost more, so they come first.
-            </p>
-            <p className="mb-4 text-warmgray">Where a voluntary repayment does stack up:</p>
-            <ul className="flex items-center space-x-1 text-sm text-warmgray">
-              <li><strong>You are applying for a mortgage.</strong> Lenders treat the compulsory repayment as a fixed commitment and it reduces borrowing capacity, so clearing a small balance can buy back more than the indexation you save.</li>
-              <li><strong>The balance is nearly gone.</strong> Finishing it removes the STSL deduction from every pay for the rest of the year.</li>
-              <li><strong>You are leaving Australia.</strong> The obligation follows you, and reporting worldwide income each year from abroad is an ongoing chore.</li>
-            </ul>
-            <p className="mb-4 text-warmgray">
-              <strong>Timing beats amount.</strong> A payment on 31 May reduces what gets indexed; the same payment on 2 June does not. Allow processing time — BPAY to the ATO is not instant. Detail: ATO, <a href={ATO_VOLUNTARY_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Voluntary repayments</a>.
-            </p>
-            <p className="text-sm text-warmgray">
-              Weighing it against super instead? See <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">extra super vs HECS repayment</Link>.
-            </p>
-          </section>
-
-          {/* Dates — from the merged HECS-HELP guide */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Dates That Matter</h2>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Date</th><th scope="col" className="px-4 py-3 text-left font-semibold text-navy">What happens</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td className="px-4 py-3 text-navy tabular-nums">Census date</td><td className="px-4 py-3 text-navy tabular-nums">Set by your university, per teaching period. Withdraw before it and no debt is incurred; withdraw after and the full subject cost is added.</td></tr>
-                  <tr><td className="px-4 py-3 text-navy tabular-nums">Before 1 June</td><td className="px-4 py-3 text-navy tabular-nums">Last useful moment for a voluntary repayment to reduce the balance that gets indexed.</td></tr>
-                  <tr><td className="px-4 py-3 text-navy tabular-nums">1 June</td><td className="px-4 py-3 text-navy tabular-nums">Indexation applied to the part of the balance unpaid for more than 11 months.</td></tr>
-                  <tr><td className="px-4 py-3 text-navy tabular-nums">1 July</td><td className="px-4 py-3 text-navy tabular-nums">New income year. Thresholds and rates are re-indexed for the year ahead.</td></tr>
-                  <tr><td className="px-4 py-3 text-navy tabular-nums">31 October</td><td className="px-4 py-3 text-navy tabular-nums">Self-lodgers&rsquo; return deadline, and the deadline for reporting worldwide income from overseas.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* Common mistakes */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Common HECS Mistakes</h2>
-            <ol className="list-decimal pl-5 text-warmgray space-y-3">
-              <li>
-                <strong>Not telling your employer about the loan.</strong> Without the declaration there is no STSL withholding at all, and the whole repayment — {formatAUD(calculateHECS(80_000))} on {formatAUD(80_000)} — arrives as a lump sum at tax time.
-              </li>
-              <li>
-                <strong>Using salary instead of repayment income.</strong> A wage of {formatAUD(66_000)} with {formatAUD(5_000)} of reportable super is repayment income of {formatAUD(71_000)} — above the {formatAUD(T)} threshold.
-              </li>
-              <li>
-                <strong>Assuming salary sacrifice removes the repayment.</strong> Reportable super contributions are added back, so the benefit is small. Model it with the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrifice calculator</Link>.
-              </li>
-              <li>
-                <strong>Paying voluntarily on 2 June.</strong> Indexation has already been applied to the 1 June balance. A day earlier would have reduced it.
-              </li>
-              <li>
-                <strong>Forgetting the overseas obligation.</strong> A HELP, VSL or AASL debt still has to be reported from abroad, and the travel notification is due within 7 days of leaving.
-              </li>
-            </ol>
-          </section>
-
-          {/* Related */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators and Guides</h2>
-            <ul className="list-disc pl-5 text-warmgray space-y-2">
-              <li><Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax file number declaration</Link> &mdash; where you tell your employer about the loan so STSL is withheld.</li>
-              <li><Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline font-medium">STSL on your payslip</Link> &mdash; how the withholding is worked out each pay.</li>
-              <li><Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">Extra super vs HECS repayment</Link> &mdash; where a spare dollar does more work.</li>
-              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-home pay calculator</Link> &mdash; net pay with or without a study loan.</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income tax calculator</Link> &mdash; brackets and your marginal rate.</li>
-            </ul>
-          </section>
-
-          <RelatedSearches items={RELATED_SEARCHES} />
-
-          {/* FAQ */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            {/* Radix unmounts closed accordion content, so the answers would never
-                reach the rendered HTML. This mirror makes them crawlable. */}
-            <div className="sr-only">
-              <h3>HECS repayment calculator questions and answers</h3>
-              {faqs.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
-            </div>
-            <Accordion type="multiple" className="space-y-3">
-              {faqs.map((f) => (
-                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger className="text-left font-semibold text-navy">{f.q}</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </section>
-
-          {/* CTA */}
-          <section className="bg-sandstone rounded-2xl p-8 text-center">
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See your full pay breakdown</h2>
-            <p className="text-warmgray mb-6 max-w-lg mx-auto">Income tax, Medicare, study loan and super in one calculation.</p>
-            <Link href="/" className="inline-flex items-center bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Pay Calculator <ArrowRight className="ml-2 h-4 w-4" /></Link>
-          </section>
-
-          <MethodologyDisclosure>
-            <ol className="list-decimal space-y-1 pl-4">
-              <li>Repayment income is compared to the {formatAUD(T)} minimum threshold for {SITE_CONFIG.financialYear}.</li>
-              <li>15c per $1 over {formatAUD(T)}, up to {formatAUD(B1.max)}.</li>
-              <li>{formatAUD(B2.base)} plus 17c per $1 over {formatAUD(B2.min - 1)}, up to {formatAUD(B2.max)}.</li>
-              <li>{B3.marginalRate * 100}% of total repayment income from {formatAUD(B3.min)}.</li>
-              <li>Thresholds, rates and the loan list are read from one constants file shared with every page on this site, and reconcile to the ATO&rsquo;s worked example: {formatAUD(137_064)} of repayment income gives {formatAUD(B2.base)} + {formatAUD(1_248.99, 2)} = {formatAUD(10_276.99, 2)}.</li>
-            </ol>
-          </MethodologyDisclosure>
-
-          <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
-          {authorship ? <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} /> : null}
-        </div>
+        {children}
       </div>
     </div>
   );

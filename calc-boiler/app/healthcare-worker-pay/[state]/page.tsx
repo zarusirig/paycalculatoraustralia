@@ -15,6 +15,7 @@ import {
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { fitDescription } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -72,7 +73,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state: slug } = await params;
   const state = getNursingPay(slug);
   if (!state) notFound();
@@ -131,3 +132,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/healthcare-worker-pay/[state]/");

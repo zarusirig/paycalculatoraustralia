@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { calculatorHowTo } from "@/lib/schema";
 import { PAYROLL_TAX_FY } from "@/lib/constants/payroll-tax";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payroll-tax-calculator/`;
@@ -67,7 +68,7 @@ const howTo = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, howTo]} />
@@ -75,3 +76,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/payroll-tax-calculator/");

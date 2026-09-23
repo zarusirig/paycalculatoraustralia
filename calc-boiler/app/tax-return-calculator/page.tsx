@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TaxReturnCalculatorPage from "@/modules/calculator/tax-return-calculator";
+import TaxReturnCalculatorContent from "@/modules/calculator/tax-return-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -8,6 +9,7 @@ import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { RETURN_YEARS } from "@/lib/constants/tax-return-estimator";
 import { TAX_RETURN_CALCULATOR_FAQS } from "@/modules/calculator/tax-return-calculator-faqs";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-calculator/`;
@@ -83,11 +85,15 @@ const howToSchema = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <TaxReturnCalculatorPage />
+      <TaxReturnCalculatorPage>
+        <TaxReturnCalculatorContent />
+      </TaxReturnCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-return-calculator/");

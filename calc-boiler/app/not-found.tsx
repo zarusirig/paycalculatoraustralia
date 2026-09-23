@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Calculator, ArrowRight } from "lucide-react";
+import { withPageEnd } from "@/components/common/content-slots";
 
-export default function NotFound() {
+function NotFound() {
   const topCalculators = [
     { href: "/", label: "Pay Calculator", description: "Full take-home pay breakdown" },
     { href: "/income-tax-calculator/", label: "Income Tax Calculator", description: "Tax by bracket" },
@@ -49,3 +50,5 @@ export default function NotFound() {
     </div>
   );
 }
+
+export default withPageEnd(NotFound, "/_not-found/");

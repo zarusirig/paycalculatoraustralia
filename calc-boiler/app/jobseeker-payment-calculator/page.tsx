@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payment-calculator";
+import JobseekerPaymentCalculatorContent from "@/modules/calculator/jobseeker-payment-calculator-content";
 import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
@@ -64,11 +66,13 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <JobseekerPaymentCalculatorPage />
+      <JobseekerPaymentCalculatorPage><JobseekerPaymentCalculatorContent /></JobseekerPaymentCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/jobseeker-payment-calculator/");

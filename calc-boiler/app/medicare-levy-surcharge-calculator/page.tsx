@@ -6,6 +6,7 @@ import type { Article, BreadcrumbList, FAQPage, WebApplication, WebPage, WithCon
 import { MEDICARE_LEVY, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { MLS_INCOME_YEAR, familyBaseThreshold } from "@/lib/constants/medicare-levy-surcharge";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/medicare-levy-surcharge-calculator/`;
@@ -89,7 +90,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, webApp, article, faq]} />
@@ -97,3 +98,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/medicare-levy-surcharge-calculator/");

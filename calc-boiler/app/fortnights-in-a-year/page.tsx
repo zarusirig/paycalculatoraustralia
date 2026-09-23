@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PayPeriodsPage from "@/modules/guide/pay-periods";
 import { PAY_PERIODS_FAQS } from "@/modules/guide/pay-periods-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // P11 (docs/seo/2026-08-28-gsc-query-network-traffic-opportunities.md).
 // DataForSEO AU, 24 Sep 2026: "how many fortnights in a year" 22,200/mo,
@@ -37,7 +38,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Pay Date Calculator", description: "Lists every weekly, fortnightly or monthly pay day in a financial year from one known pay date, and flags 27-fortnight and 53-week pay years." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -45,3 +46,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/fortnights-in-a-year/");

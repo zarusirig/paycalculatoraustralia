@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmployerCostCalculatorPage from "@/modules/guide/employer-cost-calculator";
+import EmployerCostCalculatorContent, { EmployerCostCalculatorSidebar } from "@/modules/guide/employer-cost-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -7,6 +8,7 @@ import { EMPLOYER_COST_FAQS } from "@/modules/guide/employer-cost-calculator-faq
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employer-cost-calculator/`;
@@ -54,11 +56,15 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(EMPLOYER_COST_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
-      <EmployerCostCalculatorPage />
+      <EmployerCostCalculatorPage sidebar={<EmployerCostCalculatorSidebar />}>
+        <EmployerCostCalculatorContent />
+      </EmployerCostCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/employer-cost-calculator/");

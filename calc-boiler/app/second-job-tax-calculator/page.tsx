@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calculator";
+import SecondJobTaxCalculatorContent from "@/modules/calculator/second-job-tax-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-tax-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -8,6 +9,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
@@ -66,11 +68,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SecondJobTaxCalculatorPage />
+      <SecondJobTaxCalculatorPage>
+        <SecondJobTaxCalculatorContent />
+      </SecondJobTaxCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/second-job-tax-calculator/");

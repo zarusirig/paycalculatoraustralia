@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 import SuperannuationCalculatorPage from "@/modules/calculator/superannuation-calculator";
+import SuperannuationCalculatorContent, {
+  SuperannuationCalculatorIntro,
+  SuperannuationCalculatorMiddle,
+} from "@/modules/calculator/superannuation-calculator-content";
 import { SUPERANNUATION_FAQS } from "@/modules/calculator/superannuation-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { calculateSuper, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-calculator/`;
@@ -56,6 +61,8 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
-  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage /></>);
+function Page() {
+  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage intro={<SuperannuationCalculatorIntro />} middle={<SuperannuationCalculatorMiddle />}><SuperannuationCalculatorContent /></SuperannuationCalculatorPage></>);
 }
+
+export default withPageEnd(Page, "/superannuation-calculator/");

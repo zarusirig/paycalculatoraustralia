@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import LeaveCalculatorPage from "@/modules/calculator/leave-calculator";
+import LeaveCalculatorContent from "@/modules/calculator/leave-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { LEAVE_FAQS } from "@/modules/calculator/leave-calculator-faqs";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
@@ -77,11 +79,13 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <LeaveCalculatorPage />
+      <LeaveCalculatorPage><LeaveCalculatorContent /></LeaveCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/leave-calculator/");

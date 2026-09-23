@@ -9,6 +9,7 @@ import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function TaxOnSalaryPage({ params }: PageProps) {
+async function TaxOnSalaryPage({ params }: PageProps) {
   const resolvedParams = await params;
   const salaryAmount = parseInt(resolvedParams.salary, 10);
   const formattedSalary = formatAUD(salaryAmount);
@@ -118,3 +119,5 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(TaxOnSalaryPage, "/tax-on/[salary]/");

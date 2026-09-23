@@ -7,6 +7,7 @@ import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { TAX_BRACKET_HISTORY_FAQS } from "@/modules/guide/tax-bracket-history-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-bracket-history/`;
@@ -53,7 +54,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(TAX_BRACKET_HISTORY_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -61,3 +62,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-bracket-history/");

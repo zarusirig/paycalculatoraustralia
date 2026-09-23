@@ -12,6 +12,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { fitDescription } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{ rate: string }>;
@@ -62,7 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function HourlyToSalaryPage({ params }: PageProps) {
+async function HourlyToSalaryPage({ params }: PageProps) {
   const { rate: raw } = await params;
   const rate = hourlyRateFromSlug(raw);
   const { gross, net } = figuresFor(rate);
@@ -204,3 +205,5 @@ export default async function HourlyToSalaryPage({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(HourlyToSalaryPage, "/hourly-to-salary/[rate]/");

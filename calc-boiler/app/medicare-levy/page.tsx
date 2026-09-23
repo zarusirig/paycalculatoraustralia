@@ -16,6 +16,7 @@ import {
   MLS_INCOME_YEAR,
 } from "@/lib/constants/medicare-levy-extra";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/medicare-levy/`;
@@ -123,7 +124,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, webApp, article, faq]} />
@@ -131,3 +132,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/medicare-levy/");

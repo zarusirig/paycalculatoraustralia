@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AgePensionIncomeTestCalculatorPage from "@/modules/calculator/age-pension-income-test-calculator";
+import AgePensionIncomeTestCalculatorContent from "@/modules/calculator/age-pension-income-test-calculator-content";
 import { PENSION_FAQS } from "@/modules/calculator/age-pension-income-test-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -7,6 +8,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AGE_PENSION_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/age-pension-income-test-calculator/`;
@@ -65,11 +67,13 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AgePensionIncomeTestCalculatorPage />
+      <AgePensionIncomeTestCalculatorPage><AgePensionIncomeTestCalculatorContent /></AgePensionIncomeTestCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/age-pension-income-test-calculator/");

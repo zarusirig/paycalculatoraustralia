@@ -12,6 +12,7 @@ import {
   SCHEDULE_5_BONUS_ROWS,
 } from "@/modules/tax-tables/ato-schedules";
 import { pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
@@ -105,7 +106,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, dataset, faq]} />
@@ -113,3 +114,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/schedule-5-tax-table/");

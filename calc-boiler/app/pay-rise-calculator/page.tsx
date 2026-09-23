@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PayRiseCalculatorPage from "@/modules/calculator/pay-rise-calculator";
+import PayRiseCalculatorContent from "@/modules/calculator/pay-rise-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
@@ -7,6 +8,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-calculator-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rise-calculator/`;
@@ -76,11 +78,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <PayRiseCalculatorPage />
+      <PayRiseCalculatorPage>
+        <PayRiseCalculatorContent />
+      </PayRiseCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/pay-rise-calculator/");

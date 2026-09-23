@@ -7,6 +7,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { SCHADS_AWARD, SCHADS_SACS } from "@/lib/constants/schads-award";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schads-award-pay-rates/`;
@@ -91,7 +92,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -100,3 +101,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/schads-award-pay-rates/");

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import ParentingPaymentCalculatorPage from "@/modules/calculator/parenting-payment-calculator";
+import ParentingPaymentCalculatorContent from "@/modules/calculator/parenting-payment-calculator-content";
 import { PARENTING_FAQS } from "@/modules/calculator/parenting-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { FAMILY_PAYMENT_SOURCES, PARENTING_PAYMENT, ppsFreeArea } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/parenting-payment-calculator/`;
@@ -62,11 +64,13 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <ParentingPaymentCalculatorPage />
+      <ParentingPaymentCalculatorPage><ParentingPaymentCalculatorContent /></ParentingPaymentCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/parenting-payment-calculator/");

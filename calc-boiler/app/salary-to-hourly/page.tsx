@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EMPLOYMENT, formatAUD, SITE_CONFIG } from "@/lib/constants/australian-tax";
 import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // Hub for /salary-to-hourly/[amount]/ (Wave 3 / T6). Hourly figures use
 // EMPLOYMENT.hoursPerYear, never a typed-in divisor.
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
 };
 
-export default function SalaryToHourlyHubPage() {
+function SalaryToHourlyHubPage() {
   return (
     <SalaryHub
       copy={{
@@ -46,3 +47,5 @@ export default function SalaryToHourlyHubPage() {
     />
   );
 }
+
+export default withPageEnd(SalaryToHourlyHubPage, "/salary-to-hourly/");

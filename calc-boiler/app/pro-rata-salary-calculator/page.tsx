@@ -5,6 +5,7 @@ import { PRO_RATA_EXAMPLE, PRO_RATA_FAQS } from "@/modules/guide/pro-rata-salary
 import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { calculatorHowTo } from "@/lib/schema";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pro-rata-salary-calculator/`;
@@ -66,7 +67,7 @@ const howTo = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, howTo]} />
@@ -74,3 +75,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/pro-rata-salary-calculator/");

@@ -4,6 +4,7 @@ import { GROSS_VS_NET_FAQS } from "@/modules/guide/gross-vs-net-pay-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { payslipFromGross } from "@/lib/constants/gross-vs-net";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "gross-vs-net-pay";
 const EX = payslipFromGross({ gross: 3_000, frequency: "fortnightly" });
@@ -28,7 +29,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Gross to Net / Net to Gross Pay Converter", description: "Converts gross pay to net pay and net to gross per pay period using the ATO 2026-27 Schedule 1 withholding formulas, with salary sacrifice, study loans and after-tax deductions." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -36,3 +37,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/gross-vs-net-pay/");

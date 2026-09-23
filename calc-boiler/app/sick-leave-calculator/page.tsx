@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SickLeavePage from "@/modules/guide/sick-leave";
 import { SICK_LEAVE_FAQS } from "@/modules/guide/sick-leave-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // G3 (wave 4, 24 Sep 2026). Targets: sick leave 8.1k, carer leave 5.4k,
 // personal leave 2.9k, personal/carer's leave 1k, sick leave calculator 720,
@@ -31,7 +32,7 @@ const jsonLd = t3JsonLd({
   published: "2026-09-24",
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -39,3 +40,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/sick-leave-calculator/");

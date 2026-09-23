@@ -8,6 +8,7 @@ import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PHI_MEDICARE_FAQS } from "@/modules/guide/private-health-insurance-medicare-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/private-health-insurance-medicare/`;
@@ -56,7 +57,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(PHI_MEDICARE_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -64,3 +65,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/private-health-insurance-medicare/");

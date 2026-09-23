@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SalarySacrificeCalculatorPage from "@/modules/calculator/salary-sacrifice-calculator";
+import SalarySacrificeCalculatorContent from "@/modules/calculator/salary-sacrifice-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { SALARY_SACRIFICE_FAQS } from "@/modules/calculator/salary-sacrifice-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -7,6 +8,7 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-calculator/`;
@@ -64,11 +66,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SalarySacrificeCalculatorPage />
+      <SalarySacrificeCalculatorPage>
+        <SalarySacrificeCalculatorContent />
+      </SalarySacrificeCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/salary-sacrifice-calculator/");

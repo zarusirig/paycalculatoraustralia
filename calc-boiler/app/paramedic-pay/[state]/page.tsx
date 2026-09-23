@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ServiceStateRoute, serviceStateMetadata, serviceStateParams } from "@/modules/guide/service-pay-routes";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{ state: string }>;
@@ -18,7 +19,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return serviceStateMetadata("paramedic", state);
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state } = await params;
   return <ServiceStateRoute occupation="paramedic" slug={state} />;
 }
+
+export default withPageEnd(Page, "/paramedic-pay/[state]/");

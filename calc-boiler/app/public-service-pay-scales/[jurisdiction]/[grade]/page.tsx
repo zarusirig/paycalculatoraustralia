@@ -11,6 +11,7 @@ import {
   type ApsGradeSlug,
 } from "@/lib/data/public-service-pay/aps-grades";
 import { formatSalary } from "@/lib/data/public-service-pay/types";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // J6 (wave 4, 24 Sep 2026): one page per APS level, nested under the APS
 // jurisdiction page. Only /aps/{grade}/ is built; other jurisdictions have no
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { jurisdiction, grade } = await params;
   const d = resolve(jurisdiction, grade);
   if (!d) notFound();
@@ -83,3 +84,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/public-service-pay-scales/[jurisdiction]/[grade]/");

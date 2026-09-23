@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContractorVsEmployeeCalculatorPage from "@/modules/calculator/contractor-vs-employee-calculator";
+import ContractorVsEmployeeCalculatorContent from "@/modules/calculator/contractor-vs-employee-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -7,6 +8,7 @@ import { CONTRACTOR_VS_EMPLOYEE_FAQS } from "@/modules/calculator/contractor-vs-
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contractor-vs-employee-calculator/`;
@@ -64,11 +66,15 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <ContractorVsEmployeeCalculatorPage />
+      <ContractorVsEmployeeCalculatorPage>
+        <ContractorVsEmployeeCalculatorContent />
+      </ContractorVsEmployeeCalculatorPage>
     </>
   );
 }
+
+export default withPageEnd(Page, "/contractor-vs-employee-calculator/");

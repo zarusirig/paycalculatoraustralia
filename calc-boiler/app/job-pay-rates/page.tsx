@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/job-pay-rates/`;
@@ -63,7 +64,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, itemList, faq, ORGANIZATION_SCHEMA]} />
@@ -71,3 +72,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/job-pay-rates/");
