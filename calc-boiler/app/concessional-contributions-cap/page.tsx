@@ -13,7 +13,7 @@ const FY = SITE_CONFIG.financialYear;
 const CAP = formatAUD(SUPER_GUARANTEE.concessionalCap);
 const LAST = GUIDE_AUTHORSHIP["concessional-contributions-cap"].lastReviewed;
 
-const TITLE = `Concessional Contributions Cap ${FY}: ${CAP} & Salary Sacrifice Calculator`;
+const TITLE = `Concessional Contributions Cap ${FY}: ${CAP} + Calculator`;
 const DESCRIPTION = `The concessional contributions cap is ${CAP} from 1 July 2026. Check your super guarantee and salary sacrifice against it, carry forward unused cap (total super balance under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}), and see the 15% contributions tax and Division 293.`;
 
 export const metadata: Metadata = {
