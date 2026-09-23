@@ -12,6 +12,7 @@ import { WA_PUBLIC_HOLIDAYS } from "./states/wa";
 import { SA_PUBLIC_HOLIDAYS } from "./states/sa";
 import { TAS_PUBLIC_HOLIDAYS } from "./states/tas";
 import { ACT_PUBLIC_HOLIDAYS } from "./states/act";
+import { NT_PUBLIC_HOLIDAYS } from "./states/nt";
 
 export * from "./types";
 export { PUBLIC_HOLIDAY_AWARD_RATES, getAwardPublicHolidayRate, publicHolidayRateRange } from "./award-rates";
@@ -22,7 +23,7 @@ export const PH_HUB_PATH = "/public-holiday-pay/";
 export const PH_VERIFIED_ON = "24 September 2026";
 
 /** Built state pages, in the site's usual state order. */
-export const STATE_PUBLIC_HOLIDAYS: readonly StatePublicHolidays[] = [NSW_PUBLIC_HOLIDAYS, VIC_PUBLIC_HOLIDAYS, QLD_PUBLIC_HOLIDAYS, WA_PUBLIC_HOLIDAYS, SA_PUBLIC_HOLIDAYS, TAS_PUBLIC_HOLIDAYS, ACT_PUBLIC_HOLIDAYS];
+export const STATE_PUBLIC_HOLIDAYS: readonly StatePublicHolidays[] = [NSW_PUBLIC_HOLIDAYS, VIC_PUBLIC_HOLIDAYS, QLD_PUBLIC_HOLIDAYS, WA_PUBLIC_HOLIDAYS, SA_PUBLIC_HOLIDAYS, TAS_PUBLIC_HOLIDAYS, ACT_PUBLIC_HOLIDAYS, NT_PUBLIC_HOLIDAYS];
 
 export function getStatePublicHolidays(slug: string): StatePublicHolidays | undefined {
   return STATE_PUBLIC_HOLIDAYS.find((s) => s.slug === slug);
