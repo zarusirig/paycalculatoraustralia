@@ -4,7 +4,6 @@ import "./globals.css";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
-import FirebaseAnalytics from "@/components/firebase-analytics";
 import AdsterraBanner from "@/components/common/adsterra-banner";
 import { WhatsNext } from "@/components/common/content-slots";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
@@ -155,7 +154,6 @@ export default function RootLayout({
         </div>
 
         <Footer />
-        <FirebaseAnalytics />
         <EngagementTracking />
 
         {/* Adsterra social bar / popunder, deferred until the visitor has stayed
