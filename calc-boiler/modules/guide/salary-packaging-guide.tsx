@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SALARY_PACKAGING_FAQS } from "./salary-packaging-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -272,56 +273,7 @@ export default function SalaryPackagingGuidePage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="difference" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between salary packaging and salary sacrifice?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary packaging is the broad term for any arrangement where your employer provides benefits from your pre-tax salary — including living expenses, meal entertainment, novated leases, and devices. Salary sacrifice specifically refers to redirecting pre-tax salary into superannuation. All salary sacrifice is salary packaging, but not all salary packaging is salary sacrifice.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="eligibility" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Who can package living expenses free of FBT, and how much?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Employees of public benevolent institutions (PBIs) and health promotion charities have a {formatAUD(PBI_CAP)} grossed-up cap per FBT year, about {formatAUD(PBI_FACE)} of rent, mortgage or other GST-free expenses. Employees of public and not-for-profit hospitals and public ambulance services have a {formatAUD(HOSPITAL_CAP)} grossed-up cap, about {formatAUD(HOSPITAL_FACE)}. Both can add a separate {formatAUD(ENT_CAP)} grossed-up cap for salary-packaged meal entertainment. Rebatable employers get a partial FBT rebate rather than an exemption. Private sector employees cannot access these caps — their packaging options are limited to super, novated leases, and portable devices.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="meal-ent" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What counts as meal entertainment?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Meal entertainment includes restaurant and cafe dining, takeaway food and drink, catering for social functions, and food consumed at entertainment venues. It does <strong>not</strong> include regular grocery shopping, meals eaten at your desk, or sustenance food purchased during work travel. The expense must have a social or entertainment element.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary packaging affect my Centrelink payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It can. Services Australia adds your reportable fringe benefits amount (RFBA) to adjusted taxable income for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. For RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service, Centrelink counts only {formatPercent(CENTRELINK_FACTOR, 0)} of it (1 minus the {formatPercent(FBT.rate, 0)} FBT rate). A PBI employee&apos;s RFBA of about {formatAUD(PBI_RFBA)} is therefore counted as about {formatAUD(Math.round(PBI_RFBA * CENTRELINK_FACTOR))} — roughly the amount packaged — so income for these tests ends up close to what it would have been without packaging.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary packaging reduce my HECS-HELP repayments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No — it usually increases them. HECS-HELP repayments are based on repayment income, which is taxable income plus the full grossed-up RFBA plus other reportable items. Packaging {formatAUD(PBI_FACE)} at a PBI lowers taxable income by {formatAUD(PBI_FACE)} but adds an RFBA of about {formatAUD(PBI_RFBA)}, so repayment income rises by about {formatAUD(PBI_RFBA - PBI_FACE)}. At a public hospital the rise is about {formatAUD(HOSPITAL_RFBA - HOSPITAL_FACE)}.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="devices" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can private sector employees salary package a laptop?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Portable electronic devices used primarily for work are FBT-exempt regardless of employer type. You can package one laptop, one tablet, one mobile phone, and one GPS device per FBT year (1 April to 31 March). The device must be used more than 50% for employment duties. A $2,500 laptop at the 30% tax bracket saves $750 in income tax.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="fbt-year" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When does the FBT year run?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The FBT year runs from <strong>{FBT.yearStart} to {FBT.yearEnd}</strong>, which is different from the financial year (1 July to 30 June). The current FBT year is {FBT.yearLabel}. The {formatAUD(PBI_CAP)}, {formatAUD(HOSPITAL_CAP)} and {formatAUD(ENT_CAP)} grossed-up caps reset on 1 April each year. They are not pro-rated: the ATO applies the full cap even if you only work for the employer for part of the FBT year.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SALARY_PACKAGING_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

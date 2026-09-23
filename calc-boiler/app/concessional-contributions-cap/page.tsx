@@ -4,7 +4,6 @@ import { CONCESSIONAL_CAP_FAQS } from "@/modules/guide/concessional-contribution
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { Article, BreadcrumbList, FAQPage, WebApplication, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
-import { CARRY_FORWARD } from "@/lib/constants/super-contributions";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -14,13 +13,13 @@ const CAP = formatAUD(SUPER_GUARANTEE.concessionalCap);
 const LAST = GUIDE_AUTHORSHIP["concessional-contributions-cap"].lastReviewed;
 
 const TITLE = `Concessional Contributions Cap ${FY}: ${CAP} + Calculator`;
-const DESCRIPTION = `The concessional contributions cap is ${CAP} from 1 July 2026. Check your super guarantee and salary sacrifice against it, carry forward unused cap (total super balance under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}), and see the 15% contributions tax and Division 293.`;
+const DESCRIPTION = `The concessional contributions cap is ${CAP} from 1 July 2026. Check your super guarantee and salary sacrifice against it, carry-forward rules and Division 293.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

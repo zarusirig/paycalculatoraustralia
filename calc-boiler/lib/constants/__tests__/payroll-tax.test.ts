@@ -263,8 +263,13 @@ test("legacy STATE_PAYROLL_TAX (home page, employer cost calculator) agrees with
 });
 
 // ---------------------------------------------------------------- employer on-costs
+test("employerOnCosts: SG is capped at the maximum contribution base", () => {
+  const r = employerOnCosts({ baseSalary: 400_000, payrollTaxPct: 0, workcoverPct: 0 });
+  near(r.superAmt, Math.round(270_830 * 0.12));
+});
+
 test("employerOnCosts: $100,000 at 12% super, 4.85% payroll tax, 1.5% WorkCover", () => {
-  const r = employerOnCosts({ baseSalary: 100_000, superRate: 0.12, payrollTaxPct: 4.85, workcoverPct: 1.5 });
+  const r = employerOnCosts({ baseSalary: 100_000, payrollTaxPct: 4.85, workcoverPct: 1.5 });
   near(r.superAmt, 12_000);
   near(r.leaveProvision, 7_692.31);
   near(r.payrollTaxAmt, 5_432);
@@ -275,11 +280,11 @@ test("employerOnCosts: $100,000 at 12% super, 4.85% payroll tax, 1.5% WorkCover"
 
 test("employerOnCosts: empty, zero or negative inputs never give NaN, Infinity or negative costs (QA 24 Sep 2026)", () => {
   for (const baseSalary of [0, -5, Number.NaN]) {
-    const r = employerOnCosts({ baseSalary, superRate: 0.12, payrollTaxPct: 4.85, workcoverPct: 1.5 });
+    const r = employerOnCosts({ baseSalary, payrollTaxPct: 4.85, workcoverPct: 1.5 });
     assert.equal(r.trueCost, 0);
     assert.equal(r.multiplier, null);
   }
-  const neg = employerOnCosts({ baseSalary: 80_000, superRate: 0.12, payrollTaxPct: -5, workcoverPct: Number.NaN });
+  const neg = employerOnCosts({ baseSalary: 80_000, payrollTaxPct: -5, workcoverPct: Number.NaN });
   assert.equal(neg.payrollTaxAmt, 0);
   assert.equal(neg.workcoverAmt, 0);
   assert.ok(neg.trueCost >= 80_000);

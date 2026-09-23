@@ -18,6 +18,8 @@
 // left to the revenue office's own portal.
 // =============================================================================
 
+import { calculateSuper } from "./australian-tax";
+
 export type PayrollTaxStateCode = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
 export const PAYROLL_TAX_STATE_CODES: readonly PayrollTaxStateCode[] = [
@@ -667,8 +669,6 @@ export const EXAMPLE_WAGE_BILLS = [1_500_000, 3_000_000, 5_000_000, 10_000_000] 
 
 export interface EmployerOnCostsInput {
   baseSalary: number;
-  /** Employer super as a fraction, e.g. 0.12. */
-  superRate: number;
   /** Payroll tax as a percentage, e.g. 4.85. */
   payrollTaxPct: number;
   /** Workers compensation premium as a percentage, e.g. 1.5. */
@@ -690,7 +690,8 @@ const clampFinite = (v: number, max: number) => (Number.isFinite(v) ? Math.min(M
 
 export function employerOnCosts(input: EmployerOnCostsInput): EmployerOnCosts {
   const salary = clampFinite(input.baseSalary, 100_000_000);
-  const superAmt = salary * clampFinite(input.superRate, 1);
+  // 12% SG, capped at the annual maximum contribution base (Payday Super).
+  const superAmt = calculateSuper(salary);
   const leaveProvision = salary * (4 / 52); // 4 weeks' annual leave ≈ 7.69%
   const payrollTaxAmt = (salary + superAmt) * (clampFinite(input.payrollTaxPct, 100) / 100);
   const workcoverAmt = salary * (clampFinite(input.workcoverPct, 100) / 100);

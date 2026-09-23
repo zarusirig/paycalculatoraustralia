@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TAKE_HOME_PAY_FAQS } from "./take-home-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -35,7 +36,6 @@ const EX80_HECS = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: true
 const EX90 = calculatePayBreakdown({ grossSalary: 90_000 });
 const EX40 = calculatePayBreakdown({ grossSalary: 40_000 });
 const EX100 = calculatePayBreakdown({ grossSalary: 100_000 });
-const EX150 = calculatePayBreakdown({ grossSalary: 150_000 });
 const CASUAL_GROSS = 30 * 25 * 52; // $30/hr × 25 hrs × 52 weeks
 const EX_CASUAL = calculatePayBreakdown({ grossSalary: CASUAL_GROSS });
 const B1 = TAX_BRACKETS[1];
@@ -45,7 +45,6 @@ const B1_TAX = B1_SPAN * B1.rate;
 const B2_SPAN_80K = 80_000 - B1.max;
 const B2_TAX_80K = B2_SPAN_80K * B2.rate;
 const pct0 = (r: number) => `${Math.round(r * 100)}%`;
-const keep = (b: { takeHomePay: number }, gross: number) => `${((b.takeHomePay / gross) * 100).toFixed(1)}%`;
 const MLS_150K = calculateMedicareSurcharge(150_000, false);
 const MLS_FROM = MEDICARE_LEVY.surcharge.tier1.min;
 const LITO_60K = calculateLITO(60_000);
@@ -510,32 +509,7 @@ export default function TakeHomePayCalculatorPage() {
           {/* ---- FAQS ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is take-home pay calculated in Australia?">
-                Take-home pay equals your gross salary minus income tax, the 2% Medicare levy, and any HECS-HELP repayments. Your employer withholds these amounts each pay cycle through the PAYG system and remits them to the ATO. Superannuation is paid separately by your employer and does not reduce your take-home.
-              </FAQItem>
-              <FAQItem value="percentage" question="What percentage of my salary do I actually take home?">
-                The percentage varies by income level. At $40,000, you retain <strong>{keep(EX40, 40_000)}</strong> ({formatAUD(EX40.takeHomePay)}). At $80,000, you retain <strong>{keep(EX80, 80_000)}</strong> ({formatAUD(EX80.takeHomePay)}). At $150,000, you retain <strong>{keep(EX150, 150_000)}</strong> ({formatAUD(EX150.takeHomePay)}). The percentage decreases as income rises because Australia&apos;s progressive tax brackets apply higher marginal rates to each additional dollar earned.
-              </FAQItem>
-              <FAQItem value="super" question="Is superannuation deducted from my take-home pay?">
-                No. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee on top of your gross salary. It does not reduce the amount deposited into your bank account. If you voluntarily <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> additional amounts into super, those pre-tax contributions reduce your taxable income and take-home pay.
-              </FAQItem>
-              <FAQItem value="100k-take-home" question="How much take-home pay do I get on $100,000?">
-                On a $100,000 salary in FY{SITE_CONFIG.financialYear}, you take home <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).takeHomePay)}</strong> per year (<strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).weekly, 2)}</strong> per week). Total deductions are {formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).totalDeductions)}, comprising {formatAUD(EX100.netIncomeTax)} in income tax and {formatAUD(EX100.medicareLevy)} in Medicare levy. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a bracket-by-bracket view.
-              </FAQItem>
-              <FAQItem value="first-pay" question="Why is my first pay smaller than expected?">
-                If you have not submitted a Tax File Number (TFN) declaration to your employer, PAYG withholding applies at the highest marginal rate of 45% plus the 2% Medicare levy. Submit your TFN declaration immediately to ensure the correct tax rate applies from your next pay cycle.
-              </FAQItem>
-              <FAQItem value="hecs-impact" question="How much does HECS-HELP reduce my take-home pay?">
-                HECS-HELP repayments begin above {formatAUD(HECS_HELP.minimumThreshold)} under the FY{SITE_CONFIG.financialYear} marginal system. On $80,000, the compulsory repayment is <strong>{formatAUD(EX80_HECS.hecsRepayment)}</strong> per year ({formatAUD(EX80_HECS.hecsRepayment / 52, 2)} per week), reducing take-home from {formatAUD(EX80.takeHomePay)} to <strong>{formatAUD(EX80_HECS.takeHomePay)}</strong>. The marginal rate of {pct0(HECS_HELP.bands[1].marginalRate)} applies only to income above {formatAUD(HECS_HELP.minimumThreshold)}, not your entire salary.
-              </FAQItem>
-              <FAQItem value="salary-sacrifice-tax" question="Does salary sacrifice increase take-home pay?">
-                Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing $10,000 saves <strong>{formatAUD(SACRIFICE_SAVING)}</strong> in tax overall. The trade-off is that super funds are locked until preservation age (60 for most Australians).
-              </FAQItem>
-              <FAQItem value="medicare-surcharge" question="Do I pay the Medicare Levy Surcharge?">
-                The &quot;Medicare Levy Surcharge&quot; (MLS) applies to singles earning {formatAUD(MLS_FROM)} or more who do not hold private hospital insurance. In FY{SITE_CONFIG.financialYear} the surcharge is <strong>1%</strong> for incomes between {formatAUD(MEDICARE_LEVY.surcharge.tier1.min)} and {formatAUD(MEDICARE_LEVY.surcharge.tier1.max)}, <strong>1.25%</strong> for {formatAUD(MEDICARE_LEVY.surcharge.tier2.min)} to {formatAUD(MEDICARE_LEVY.surcharge.tier2.max)}, and <strong>1.5%</strong> for incomes above {formatAUD(MEDICARE_LEVY.surcharge.tier3.min - 1)}. Holding private hospital cover eliminates the MLS entirely.
-              </FAQItem>
-            </Accordion>
+            <FaqAccordion faqs={TAKE_HOME_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
@@ -560,11 +534,3 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
   );
 }
 
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
-  );
-}

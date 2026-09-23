@@ -2,12 +2,27 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
-import { HOSPITALITY_AWARD, HOSPITALITY_RATES, RETAIL_AWARD, RETAIL_RATES } from "@/lib/constants/hospitality-award";
+import { SITE_CONFIG, SOURCES, formatAUD, calculatePayBreakdown } from "@/lib/constants";
+import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
+
+// Every rate below comes from the award constants (1 July 2026 pay guides).
+// The old copy used a $25.44 Level 1 rate, public holiday +150%/+175% and
+// +15% late-night/early-morning loadings, none of which match either award.
+const pct = (m: number) => `${Math.round(m * 100)}%`;
+const L1 = RETAIL_RATES[0].hourly;
+const L1_CASUAL = L1 * (1 + RETAIL_AWARD.casualLoading);
+const hosp = (level: string) => HOSPITALITY_RATES.find((r) => r.level === level)?.weekly ?? 0;
+const TAKE_HOME_ROWS = [
+  { label: "Retail Level 1, FT 38 hrs", gross: RETAIL_RATES[0].weekly * 52 },
+  { label: "Retail Level 1, Casual 30 hrs/wk", gross: L1_CASUAL * 30 * 52 },
+  { label: "Hospitality Level 3, FT", gross: hosp("Level 3") * 52 },
+  { label: "Hospitality Level 6, FT", gross: hosp("Level 6") * 52 },
+];
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -36,7 +51,7 @@ export default function RetailHospitalityPayGuidePage() {
             Retail &amp; Hospitality Pay Guide — Award Rates, Penalties &amp; Your Rights
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Retail and hospitality are two of Australia&apos;s largest employers, covering over 2 million workers. Both industries are governed by Modern Awards that set minimum pay rates, casual loading, penalty rates, and working conditions. This guide covers the General Retail Industry Award (MA000004) and the Hospitality Industry Award (MA000009) in detail.
+            Retail and hospitality are two of Australia&apos;s largest employing industries. Both industries are governed by Modern Awards that set minimum pay rates, casual loading, penalty rates, and working conditions. This guide covers the General Retail Industry Award (MA000004) and the Hospitality Industry Award (MA000009) in detail.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -101,7 +116,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates</h2>
               <p>
-                Both retail and hospitality awards include penalty rate provisions for work performed outside standard weekday hours. The following table shows the penalty loadings that apply on top of the base hourly rate for full-time and part-time employees.
+                Both retail and hospitality awards include penalty rate provisions for work performed outside standard weekday hours. The following table shows the rate paid as a percentage of the ordinary (base) hourly rate. Casual percentages already include the 25% casual loading. Hospitality pays weekday evening and night work as a flat amount per hour instead.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -109,22 +124,23 @@ export default function RetailHospitalityPayGuidePage() {
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th className="px-5 py-3">When</th>
-                        <th className="px-5 py-3 text-right">FT/PT Loading</th>
-                        <th className="px-5 py-3 text-right">Casual Loading</th>
+                        <th className="px-5 py-3 text-right">FT/PT rate</th>
+                        <th className="px-5 py-3 text-right">Casual rate</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Saturday</td><td className="px-5 py-3 text-right font-medium">+25%</td><td className="px-5 py-3 text-right">+25% (on casual rate)</td></tr>
-                      <tr><td className="px-5 py-3">Sunday (FT/PT)</td><td className="px-5 py-3 text-right font-medium">+50%</td><td className="px-5 py-3 text-right">+50% (on casual rate)</td></tr>
-                      <tr><td className="px-5 py-3">Public Holiday</td><td className="px-5 py-3 text-right font-medium">+150%</td><td className="px-5 py-3 text-right">+175% (on base rate)</td></tr>
-                      <tr><td className="px-5 py-3">Late Night (after 10pm)</td><td className="px-5 py-3 text-right font-medium">+15%</td><td className="px-5 py-3 text-right">+15% (on casual rate)</td></tr>
-                      <tr><td className="px-5 py-3">Early Morning (before 7am)</td><td className="px-5 py-3 text-right font-medium">+15%</td><td className="px-5 py-3 text-right">+15% (on casual rate)</td></tr>
+                      <tr><td className="px-5 py-3">Saturday (both awards)</td><td className="px-5 py-3 text-right font-medium">{pct(RETAIL_PENALTIES.saturday)}</td><td className="px-5 py-3 text-right">{pct(RETAIL_PENALTIES.casualSaturday)}</td></tr>
+                      <tr><td className="px-5 py-3">Sunday (both awards)</td><td className="px-5 py-3 text-right font-medium">{pct(RETAIL_PENALTIES.sunday)}</td><td className="px-5 py-3 text-right">{pct(RETAIL_PENALTIES.casualSunday)}</td></tr>
+                      <tr><td className="px-5 py-3">Public holiday (both awards)</td><td className="px-5 py-3 text-right font-medium">{pct(RETAIL_PENALTIES.publicHoliday)}</td><td className="px-5 py-3 text-right">{pct(RETAIL_PENALTIES.casualPublicHoliday)}</td></tr>
+                      <tr><td className="px-5 py-3">Retail: weekday evening (after 6pm)</td><td className="px-5 py-3 text-right font-medium">{pct(RETAIL_PENALTIES.eveningAfter6pm)}</td><td className="px-5 py-3 text-right">{pct(RETAIL_PENALTIES.casualEveningAfter6pm)}</td></tr>
+                      <tr><td className="px-5 py-3">Hospitality: weekday evening (7pm&ndash;midnight)</td><td className="px-5 py-3 text-right font-medium">+{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)}/hr</td><td className="px-5 py-3 text-right">+{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)}/hr</td></tr>
+                      <tr><td className="px-5 py-3">Hospitality: weekday night (midnight&ndash;7am)</td><td className="px-5 py-3 text-right font-medium">+{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)}/hr</td><td className="px-5 py-3 text-right">+{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)}/hr</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                Penalty rates make weekend and holiday shifts significantly more valuable. A Level 1 retail worker earning $25.44/hr base receives <strong>$38.16/hr</strong> on a Sunday shift (+50%), and <strong>$63.60/hr</strong> on a public holiday (+150%). Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your penalty rate earnings.
+                Penalty rates make weekend and holiday shifts significantly more valuable. A Level 1 retail worker earning {formatAUD(L1, 2)}/hr base receives <strong>{formatAUD(L1 * RETAIL_PENALTIES.sunday, 2)}/hr</strong> on a Sunday shift ({pct(RETAIL_PENALTIES.sunday)}), and <strong>{formatAUD(L1 * RETAIL_PENALTIES.publicHoliday, 2)}/hr</strong> on a public holiday ({pct(RETAIL_PENALTIES.publicHoliday)}). Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your penalty rate earnings.
               </p>
             </section>
 
@@ -135,10 +151,10 @@ export default function RetailHospitalityPayGuidePage() {
                 Retail and hospitality workers have specific rights under the Fair Work Act and their respective Modern Awards that employers must comply with:
               </p>
               <ul>
-                <li><strong>Minimum engagement:</strong> Casual employees must be engaged for a minimum of <strong>3 hours</strong> per shift under both the retail and hospitality awards. An employer cannot roster a casual for less than 3 hours, even if there is insufficient work.</li>
+                <li><strong>Minimum engagement:</strong> Casual employees must be engaged and paid for at least <strong>3 hours</strong> per shift under the retail award and <strong>2 consecutive hours</strong> under the hospitality award (cl 11.3), even if there is insufficient work.</li>
                 <li><strong>Roster change notice:</strong> Employers must provide at least <strong>7 days&apos; notice</strong> of any roster change under the retail award. The hospitality award also requires 7 days&apos; notice, but allows changes with shorter notice by mutual agreement or in genuine emergencies.</li>
-                <li><strong>Casual conversion:</strong> Casual employees who have been employed for <strong>12 months</strong> and have worked a regular pattern of hours for at least the last 6 months have the right to request conversion to permanent (full-time or part-time) employment. Since March 2021, employers must offer conversion unless there are reasonable business grounds to refuse.</li>
-                <li><strong>Breaks:</strong> Employees working more than 5 hours must receive an unpaid meal break of at least 30 minutes. Employees working more than 4 hours are entitled to a 10-minute paid rest break.</li>
+                <li><strong>Casual conversion:</strong> Since 26 August 2024, a casual employee who has worked for their employer for at least <strong>6 months</strong> (12 months for a small business employer) and believes they no longer fit the casual definition can notify their employer in writing that they want to change to full-time or part-time employment. The employer must respond in writing within 21 days and can refuse only on the grounds set out in the Fair Work Act.</li>
+                <li><strong>Breaks:</strong> Under the retail award, a shift of more than 4 hours earns a 10-minute paid rest break, and more than 5 hours adds an unpaid meal break of at least 30 minutes. The hospitality award uses a different table: an elective unpaid meal break for shifts over 5 hours, a compulsory 30-minute unpaid meal break over 6 hours, and a 20-minute paid rest break over 8 hours.</li>
               </ul>
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
                 <div>
@@ -154,7 +170,7 @@ export default function RetailHospitalityPayGuidePage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Below are take-home pay estimates for common retail and hospitality scenarios in FY2025-26:
+                Below are take-home pay estimates for common retail and hospitality scenarios at the 1 July 2026 award rates, using FY{SITE_CONFIG.financialYear} tax rates (LITO and Medicare levy applied):
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -167,10 +183,9 @@ export default function RetailHospitalityPayGuidePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Retail Level 1, FT 38 hrs</td><td className="px-5 py-3 text-right">$50,271</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$42,613</td></tr>
-                      <tr><td className="px-5 py-3">Retail Level 1, Casual 30 hrs/wk</td><td className="px-5 py-3 text-right">$49,608</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$42,082</td></tr>
-                      <tr><td className="px-5 py-3">Hospitality Level 3, FT</td><td className="px-5 py-3 text-right">$51,356</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$43,481</td></tr>
-                      <tr><td className="px-5 py-3">Hospitality Level 6, FT</td><td className="px-5 py-3 text-right">$57,937</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$48,752</td></tr>
+                      {TAKE_HOME_ROWS.map((r) => (
+                        <tr key={r.label}><td className="px-5 py-3">{r.label}</td><td className="px-5 py-3 text-right">{formatAUD(r.gross)}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(calculatePayBreakdown({ grossSalary: r.gross }).takeHomePay)}</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -187,37 +202,12 @@ export default function RetailHospitalityPayGuidePage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="casual-loading" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the casual loading rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Casual employees in both retail and hospitality receive a 25% loading on top of the base hourly rate. This loading compensates for the lack of paid annual leave, personal leave, notice of termination, and redundancy pay. A Level 1 retail casual earns $31.80/hr compared to $25.44/hr for a full-time employee.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="sunday-penalty" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the Sunday penalty rate in retail?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Full-time and part-time retail workers receive a 50% loading for Sunday work. For example, a Level 1 worker earning $25.44/hr base receives $38.16/hr on Sundays. Casual workers receive Sunday penalties calculated on their casual rate (base + 25% loading), effectively earning around $47.70/hr for Sunday work.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="minimum-shift" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum shift length?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under both the General Retail Industry Award and the Hospitality Industry Award, casual employees must be engaged for a minimum of 3 hours per shift. Part-time employees also have minimum engagement provisions. An employer cannot send you home after 1 or 2 hours without paying for the full 3-hour minimum.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-conversion" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I convert from casual to permanent?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. If you have been employed as a casual for 12 months and have worked a regular pattern of hours for at least the last 6 months, you can request conversion to full-time or part-time employment. Your employer must offer conversion unless they have reasonable business grounds to refuse, such as significant changes to your hours being foreseeable.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="junior-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do workers under 21 get paid less?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Both the retail and hospitality awards specify junior rates as a percentage of the adult base rate. Workers under 16 receive 45% of the adult rate, increasing to 50% at 16, 60% at 17, 70% at 18, 80% at 19, and 90% at 20. Full adult rates apply from age 21.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="public-holiday" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the public holiday pay rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Full-time and part-time employees working on a public holiday receive a 150% loading (2.5 times the base rate). A Level 1 retail worker earning $25.44/hr receives $63.60/hr on a public holiday. Casual employees receive 175% loading on the base rate. Full-time employees who don&apos;t work on the public holiday are entitled to their ordinary pay for the day.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={RETAIL_HOSPITALITY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Award rates are sourced from the Fair Work Commission pay guides for the General Retail Industry Award (MA000004) and the Hospitality Industry (General) Award (MA000009) for FY2025-26. Rates reflect the most recent Annual Wage Review increase. Tax calculations use ATO marginal rates for FY2025-26 including the 2% Medicare levy. Take-home pay examples assume no HECS-HELP debt, no private health insurance, and standard tax offsets.</p>
+                <p>Award rates are sourced from the Fair Work Commission pay guides for the General Retail Industry Award (MA000004) and the Hospitality Industry (General) Award (MA000009) operative from 1 July 2026. Rates reflect the most recent Annual Wage Review increase. Tax calculations use ATO marginal rates for FY{SITE_CONFIG.financialYear} including the 2% Medicare levy. Take-home pay examples assume no HECS-HELP debt, no private health insurance, and standard tax offsets.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("retail-hospitality-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

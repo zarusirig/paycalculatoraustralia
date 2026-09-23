@@ -29,7 +29,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   code: "VIC",
   name: "Victoria",
   nameInSentence: "Victoria",
-  metaTitle: "Teacher Salary Victoria 2026 — VIC Teachers Pay Rise & New Pay Scale",
+  metaTitle: "Teacher Salary Victoria 2026 — VIC Teacher Pay Rise & Pay Scale",
   h1: "Teacher Salary Victoria 2026 — VIC Teachers Pay Scale and the 2026 Pay Rise",
   employer: "Victorian Department of Education",
   agreementName: "Victorian Government Schools Agreement 2022 (VGSA 2022)",
@@ -38,9 +38,9 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "pending Fair Work Commission approval of the VGSA 2026",
     detail:
-      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and now needs Fair Work Commission approval. Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029 — see the 2026 pay rise section.",
+      "1 July 2025 is the final salary column the VGSA 2022 makes. The proposed VGSA 2026 was approved by staff ballot (93.1% yes, announced 17 September 2026) and the department lodged it with the Fair Work Commission for approval on 23 September 2026 (matter AG2026/2746, at initial assessment when checked on 24 September 2026). Its Schedule 1 sets new rates from the first pay period on or after 10 August 2026 and 1 October 2026, then each 1 November from 2027 to 2029 — see the 2026 pay rise section.",
   },
-  verifiedOn: "23 September 2026",
+  verifiedOn: "24 September 2026",
 
   scales: [
     {
@@ -179,7 +179,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
 
   notices: [
     "The VGSA 2022's nominal expiry date was 31 December 2025 and 1 July 2025 is the last salary column it makes. The department has not published a newer schedule, so the rates below are what is published and payable.",
-    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. It still needs Fair Work Commission approval — which the government says can take up to six weeks — and starts operating seven days after approval. The proposed rates are tabled in the 2026 pay rise section; the tables further down stay on the VGSA 2022 until the new agreement operates.",
+    "Staff approved the proposed Victorian Government Schools Agreement 2026 in a ballot announced on 17 September 2026: 80,742 employees voted (77.1% of those eligible) and 93.1% voted yes. It lifts the top classroom teacher step from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 by November 2029, plus a $2,000 lump sum. The department lodged its application for Fair Work Commission approval on 23 September 2026 (AG2026/2746; listed at \"initial assessment\" on 24 September 2026). The government says approval can take up to six weeks, and the agreement starts operating seven days after approval. The proposed rates are tabled in the 2026 pay rise section; the tables further down stay on the VGSA 2022 until the new agreement operates.",
   ],
 
   unverified: [
@@ -194,6 +194,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       title: "Proposed Victorian Government Schools Agreement 2026 (Schedule 1: Salary Rates)",
       publisher: "Victorian Department of Education",
       url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615",
+    },
+    {
+      title: "Agreements in progress — Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026)",
+      publisher: "Fair Work Commission",
+      url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",
     },
     {
       title: "Enterprise Bargaining: Overview (ballot result, updated 17 September 2026)",

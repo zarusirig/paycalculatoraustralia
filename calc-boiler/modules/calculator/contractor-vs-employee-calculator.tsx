@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { CONTRACTOR_VS_EMPLOYEE_FAQS, SHAM_MAX_BUSINESS, SHAM_MAX_INDIVIDUAL, SHAM_MAX_SMALL_BUSINESS } from "@/modules/calculator/contractor-vs-employee-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -14,14 +15,12 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatPercent,
-  GENERAL_INTEREST_CHARGE,
   MEDICARE_LEVY,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
   TAX_BRACKETS,
 } from "@/lib/constants";
-import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 
 // ---------------------------------------------------------------------------
 // Figures below are derived from lib/constants so they roll over each 1 July.
@@ -35,16 +34,7 @@ const NCC_CAP = formatAUD(SUPER_GUARANTEE.nonConcessionalCap);
 const MLS_SINGLE = formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1);
 const MLS_FAMILY = formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1);
 const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
-const GIC_PCT = formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2);
 
-// Sham contracting maximums, Fair Work Act ss 357–359, 539: 60 penalty units
-// (individual), 300 (business with fewer than 15 employees), 1,500 (15 or
-// more). FWO "Sham contracting" (updated 6 July 2026) lists $21,840 / $109,200
-// / $546,000 — i.e. the $364 penalty unit from 1 July 2026.
-// https://www.fairwork.gov.au/find-help-for/independent-contractors/sham-contracting
-const SHAM_MAX_INDIVIDUAL = formatAUD(60 * PENALTY_UNIT.amount);
-const SHAM_MAX_SMALL_BUSINESS = formatAUD(300 * PENALTY_UNIT.amount);
-const SHAM_MAX_BUSINESS = formatAUD(1_500 * PENALTY_UNIT.amount);
 
 // Worked example: $100,000 gross, $3,000 expenses, self-funded SG-rate super.
 const EX_GROSS = 100_000;
@@ -750,100 +740,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
           {/* FAQs */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="which" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Should I be a contractor or employee?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">It depends on the rate differential. If contracting pays 30%+ more than the equivalent employee salary, the financial benefit usually outweighs the loss of entitlements. Below that, employment is typically better value. Use the calculator above to compare your specific scenario.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do contractors have to pay super?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Contractors are not legally required to pay their own super (unlike employers who must pay the SG). However, for retirement planning, setting aside 12% voluntarily is strongly recommended. You can claim a tax deduction for personal super contributions up to the <strong>{CC_CAP}</strong> concessional cap (FY{FY}) in your tax return.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="gst" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do I need to register for GST as a contractor?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">You must register for GST if your annual business turnover is $75,000 or more. If it&apos;s below $75,000, registration is optional. When registered, you charge clients an additional 10% GST on your invoices and remit it to the ATO quarterly via your Business Activity Statement (BAS).</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="ato" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I just decide to be a contractor?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. The ATO uses a strict multi-factor test to determine if you are genuinely a contractor or an employee for tax and super purposes. It depends on the working arrangement (e.g., control over work, providing your own tools, bearing financial risk), not just what your contract says. &quot;Sham contracting&quot; penalties apply to employers who get this wrong.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="rate" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much more should a contractor charge than an employee salary?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A contractor should charge <strong>30&ndash;45% above</strong> the equivalent employee salary to cover the superannuation guarantee (12%), annual leave (7.6%), personal leave (3.8%), insurance ($1,000&ndash;$3,000), and admin costs ($2,000&ndash;$4,000). On a $100,000 employee salary, the equivalent contractor rate is approximately <strong>$135,000&ndash;$145,000</strong> before GST.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="insurance" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do contractors need income protection insurance?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Income protection insurance is strongly recommended for contractors. Unlike employees who are covered by their employer&apos;s workers compensation insurance, contractors must arrange their own coverage. Income protection insurance typically costs <strong>1&ndash;3%</strong> of your annual income and replaces up to 75% of your earnings if you are unable to work due to illness or injury. The premiums are tax-deductible.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="deductions" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What tax deductions can contractors claim?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Contractors can deduct a wide range of business expenses, including: home office costs, equipment and tools, professional insurance premiums, accounting fees, travel between work sites, software subscriptions, and professional development. These deductions reduce your taxable income, which is the key financial advantage of contracting. Keep detailed records and receipts for every claim.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="payg" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do contractors pay PAYG instalments?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs the <strong>general interest charge (GIC)</strong>, which was <strong>{GIC_PCT}</strong> a year for {GENERAL_INTEREST_CHARGE.quarter} and resets every quarter.</p></AccordionContent>
-              </AccordionItem>
-                          <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the main difference between an employee and a contractor?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    An employee works inside the employer&apos;s business under the employer&apos;s direction and control. A contractor operates their own independent business and is engaged to deliver a specific result. The distinction determines tax obligations, super entitlements, leave rights, and insurance coverage.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="abn" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does having an ABN automatically make me a contractor?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. The ATO explicitly states that merely possessing an ABN or issuing invoices does not make a worker an independent contractor. The actual working arrangement &mdash; including control, tools, risk, and integration &mdash; determines the true classification.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are contractors entitled to superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Genuine independent contractors manage their own super. However, if a contractor is hired &ldquo;wholly or principally for their personal labour and skills&rdquo; &mdash; for example, a sole-trader IT consultant billing hourly &mdash; the hiring business must pay the <strong>12% Super Guarantee</strong> on top of the contractor&apos;s invoices under the Superannuation Guarantee (Administration) Act 1992.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="penalties" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What are the penalties for sham contracting?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Courts can impose maximum penalties of <strong>{SHAM_MAX_INDIVIDUAL} per contravention</strong> for individuals, <strong>{SHAM_MAX_SMALL_BUSINESS}</strong> for businesses with fewer than 15 employees and <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments &mdash; often spanning several years of accumulated liability.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="convert" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I convert from contractor to employee?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes, but it requires a formal transition. Your employer must issue a new employment contract, register you in their PAYG system, start paying super, and enrol you in workers&apos; compensation insurance. Your hourly rate will typically decrease because the employer now bears additional on-costs (super, leave, WorkCover). Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> to model the exact financial impact.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="gst-threshold" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors have to charge GST?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    GST registration is mandatory once a contractor&apos;s annual turnover exceeds <strong>$75,000</strong>. Below that threshold, registration is optional. Registered contractors charge 10% GST on every invoice and can claim GST credits on business purchases. Employees never interact with GST.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors pay more tax than employees?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Contractors and employees earning the same taxable income pay the same income tax &mdash; the FY{FY} tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="single-client" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is it legal to work for only one client as a contractor?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Working for a single client does not automatically make you an employee, but it is one of the strongest indicators the ATO examines. A genuine contractor working for one client must demonstrate independence in other areas &mdash; owning their tools, controlling their schedule, bearing commercial risk, and having the contractual right to take on other clients. Exclusive long-term arrangements with fixed hours attract heavy ATO scrutiny.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors receive payslips?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Contractors issue tax invoices to their clients and receive payment against those invoices. Only employees receive payslips, which employers must provide within <strong>1 business day</strong> of each pay. Read our <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link> guide for a full breakdown of payslip components.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="insurance-types" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What insurance does a contractor need?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Contractors typically require 3 types of insurance: <strong>public liability insurance</strong> ($400 to $1,500 per year) covering third-party injury or property damage, <strong>professional indemnity insurance</strong> ($500 to $2,000 per year) covering errors in professional advice or work, and <strong>income protection insurance</strong> ($800 to $2,500 per year) replacing income during illness or injury. Premiums are tax-deductible as business expenses.
-                  </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={CONTRACTOR_VS_EMPLOYEE_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">

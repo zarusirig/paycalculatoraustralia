@@ -11,13 +11,13 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rates/`;
 const TITLE = "Pay Rates by Employer 2026 — Coles, Woolworths, Bunnings & More";
 const DESCRIPTION =
-  "Hourly pay rates at Coles, Woolworths, Bunnings, McDonald's, Subway and other large Australian employers, from each enterprise agreement or award. Rates by level and age, penalty rates and weekly pay.";
+  "Hourly pay rates at Coles, Woolworths, Bunnings, McDonald's, Subway and other big Australian employers, from each enterprise agreement or award, by level and age.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

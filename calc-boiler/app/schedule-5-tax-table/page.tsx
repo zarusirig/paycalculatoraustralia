@@ -11,19 +11,20 @@ import {
   ATO_TAX_TABLES_INDEX,
   SCHEDULE_5_BONUS_ROWS,
 } from "@/modules/tax-tables/ato-schedules";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
 const TITLE = "Schedule 5 Tax Table 2026-27 (NAT 3348) — Bonus PAYG";
 const DESCRIPTION =
-  "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back payments. Method A, B(i) and B(ii) step by step, the 47% withholding limit, and a 30-row ready reckoner.";
+  "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner.";
 const MODIFIED = "2026-07-28";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -49,6 +50,7 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("schedule-5-tax-table"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

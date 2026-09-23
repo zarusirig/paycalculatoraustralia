@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import SalarySacrificeCalculatorPage from "@/modules/calculator/salary-sacrifice-calculator";
+import { faqPageSchema } from "@/lib/faq";
+import { SALARY_SACRIFICE_FAQS } from "@/modules/calculator/salary-sacrifice-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-calculator/`;
@@ -48,51 +51,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("salary-sacrifice-calculator"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How much can I salary sacrifice?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `There's no set limit on the sacrifice itself, but total concessional super contributions (employer SG + salary sacrifice + deductible personal contributions) over the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap for ${SITE_CONFIG.financialYear} are taxed at your marginal rate. On $100,000, your employer contributes $12,000, leaving room for up to ${formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)} in sacrifice.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does salary sacrifice reduce my take-home pay?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes — the amount you sacrifice is redirected before tax. But the tax saving means you lose less than the full amount. Sacrificing $10,000 on $80,000 reduces take-home by only $6,800.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can I salary sacrifice into things other than super?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Salary sacrifice can also be used for novated leases, additional employer super, and some other items. Non-super items may attract FBT. Super sacrifice is the most tax-effective for most people.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Should I salary sacrifice or pay off my mortgage?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "If your mortgage rate is higher than your expected super return (after tax advantage), prioritise the mortgage. At current rates, salary sacrifice into super typically offers a better after-tax return.",
-      },
-    },
-    { "@type": "Question", name: "What is salary sacrificing?", acceptedAnswer: { "@type": "Answer", text: "Salary sacrificing (or salary packaging) is an arrangement where you agree to forego part of your future pre-tax salary in return for your employer providing benefits of a similar value. This legally reduces your taxable income, meaning you pay less income tax." } },
-    { "@type": "Question", name: "Do I pay tax on salary sacrificed super?", acceptedAnswer: { "@type": "Answer", text: "Yes, but the tax rate is usually significantly lower. When you salary sacrifice into superannuation, that money is taxed at a flat rate of 15% when it enters the fund, rather than your higher marginal income tax rate (which could be up to 45%)." } },
-    { "@type": "Question", name: "Is salary sacrificing suitable for everyone?", acceptedAnswer: { "@type": "Answer", text: "No. Salary sacrificing is generally most beneficial for middle-to-high income earners. If you earn less than $45,000, your marginal tax rate is already quite low, so the 15% tax concession on super offers minimal benefit and locks your money away until retirement." } },
-  ],
-};
+const faq = faqPageSchema(SALARY_SACRIFICE_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Salary Sacrifice Calculator",

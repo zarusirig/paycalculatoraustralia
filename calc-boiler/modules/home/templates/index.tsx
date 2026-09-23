@@ -1026,7 +1026,7 @@ export default function HomePageTemplate() {
             <ol className="list-decimal space-y-1 pl-4">
               <li>Calculate income tax using ATO resident tax brackets (progressive marginal rates). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents" /></li>
               <li>Apply the Low Income Tax Offset (up to {formatAUD(LITO.maxOffset)}) for qualifying incomes below {formatAUD(LITO.nilOffsetIncome)}.</li>
-              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the &quot;Medicare Levy Surcharge&quot; (1%–1.5%) for high earners without private health insurance.</li>
+              <li>Add the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on taxable income. Apply the <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> (1%–1.5%) for high earners without private health insurance.</li>
               <li>Calculate HECS-HELP repayment using the marginal system (threshold: {formatAUD(HECS_HELP.minimumThreshold)}). <SourceBadge label="ATO" href="https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds" /></li>
               <li>Calculate employer superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} (paid on top, not deducted from salary).</li>
               <li>Take-home pay = Gross salary &minus; income tax &minus; Medicare levy &minus; HECS repayment.</li>
@@ -1191,7 +1191,7 @@ export default function HomePageTemplate() {
             <li>{formatAUD(MEDICARE_LEVY.surcharge.tier3.min)} and above: surcharge of <strong>{formatPercent(MEDICARE_LEVY.surcharge.tier3.rate, 2)}</strong></li>
           </ul>
           <p className="leading-relaxed text-warmgray">
-            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year — on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, taking the total health-related levy to {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy/" className="font-medium text-eucalyptus-dark hover:underline">Medicare Levy Guide</Link> for the full threshold tables.
+            A worker earning $120,000 without private hospital cover pays an MLS of <strong>{formatAUD(MLS_120K)}</strong> per year — on top of the standard {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, taking the total health-related levy to {formatAUD(MLS_120K + Math.round(120_000 * MEDICARE_LEVY.rate))} instead of {formatAUD(Math.round(120_000 * MEDICARE_LEVY.rate))}. Holding any eligible private hospital cover eliminates the surcharge entirely. See our <Link href="/medicare-levy-surcharge-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link> for the full threshold tables.
           </p>
         </motion.section>
 

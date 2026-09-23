@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { MONTHLY_PAY_FAQS } from "./monthly-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -19,7 +20,7 @@ import {
   MEDICARE_LEVY,
   TAX_BRACKETS,
 } from "@/lib/constants";
-import { FIRST_TAXED_BRACKET, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { FIRST_TAXED_BRACKET } from "@/modules/calculator/fy-rate-copy";
 import { HeadTermLinks } from "@/modules/calculator/head-term-ui";
 
 // Answer-first lead, computed from the tax engine.
@@ -327,32 +328,7 @@ export default function MonthlyPayCalculatorPage() {
           {/* --- H2: FAQs --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is monthly pay calculated in Australia?">
-                Monthly pay is calculated by dividing your gross annual salary by <strong>12</strong>, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. The ATO publishes specific monthly withholding tables that employers apply during the FY{SITE_CONFIG.financialYear} financial year.
-              </FAQItem>
-              <FAQItem value="super" question="Is super deducted from my monthly pay?">
-                No. Your employer pays superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on top of your gross salary. The SG contribution does not reduce your monthly take-home pay. Since Payday Super commenced on 1 July 2026, employers remit super every payday and the contribution must reach your fund within 7 business days.
-              </FAQItem>
-              <FAQItem value="days" question="Why is my monthly pay the same every month?">
-                Salaried employees receive <strong>1/12 of their annual salary</strong> each month, regardless of whether the month has 28, 30, or 31 days. The calculation divides by 12 calendar months, not by the number of working days.
-              </FAQItem>
-              <FAQItem value="4weeks" question="Is monthly pay the same as 4 weeks' pay?">
-                No. Four weeks equals <strong>28 days</strong>, but an average calendar month has <strong>30.44 days</strong>. Monthly gross pay is annual salary divided by 12, which is approximately 8.3% higher than 4 weeks&apos; pay (annual divided by 13).
-              </FAQItem>
-              <FAQItem value="hecs" question="How does HECS-HELP affect my monthly take-home?">
-                HECS-HELP repayments reduce monthly take-home pay for employees earning above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your annual and monthly repayment.
-              </FAQItem>
-              <FAQItem value="mortgage" question="Should I align my mortgage repayments with my monthly pay?">
-                Matching mortgage repayments to your pay cycle simplifies cash flow management. Employees paid monthly benefit from a single monthly mortgage debit. Switching to fortnightly mortgage repayments (even while paid monthly) produces <strong>26 half-payments</strong> — equivalent to 13 full payments per year — which reduces total interest over the life of the loan.
-              </FAQItem>
-              <FAQItem value="packaging" question="How does salary packaging affect my monthly take-home?">
-                Salary packaging reduces your taxable income before PAYG withholding is calculated, resulting in less tax withheld and a higher net monthly deposit. Common packaged items include additional superannuation contributions, novated vehicle leases, and portable electronic devices. Check our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> for a side-by-side comparison.
-              </FAQItem>
-              <FAQItem value="tax-return" question="Will I get a tax refund if I'm paid monthly?">
-                A tax refund depends on the difference between PAYG tax withheld during the year and your actual tax liability at lodgement. Monthly PAYG withholding uses the ATO&apos;s monthly tax table, which assumes a constant income across all 12 months. Overtime, bonuses, or periods of leave without pay create discrepancies that result in either a refund or a balance owing.
-              </FAQItem>
-            </Accordion>
+            <FaqAccordion faqs={MONTHLY_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -383,14 +359,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-navy"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

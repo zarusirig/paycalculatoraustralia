@@ -2,12 +2,14 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { FBT_FAQS } from "./fringe-benefits-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD, MEDICARE_LEVY } from "@/lib/constants";
 import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
+import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [{ title: "Fringe benefits tax", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name }, { title: "FBT rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds", publisher: SOURCES.ato.name }, { title: "Types of fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name }];
@@ -252,7 +254,7 @@ export default function FringeBenefitsTaxPage() {
                 </tbody>
               </table>
             </div>
-            <p>Late lodgement or payment of FBT attracts a failure-to-lodge penalty starting at <strong>$313 per 28-day period</strong> (1 penalty unit), up to a maximum of 5 penalty units. Interest on late payment is calculated at the general interest charge rate published by the ATO. For a full timeline of Australian tax obligations across the financial year, see our <Link href="/tax-calendar/">Tax Calendar</Link>.</p>
+            <p>Late lodgement of an FBT return attracts a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)} per 28-day period</strong> (1 penalty unit from {PENALTY_UNIT.from}), up to a maximum of 5 penalty units, multiplied for medium and large withholders. Interest on late payment is calculated at the general interest charge rate published by the ATO. For a full timeline of Australian tax obligations across the financial year, see our <Link href="/tax-calendar/">Tax Calendar</Link>.</p>
           </section>
 
           {/* ===== SECTION 11 ===== */}
@@ -272,56 +274,7 @@ export default function FringeBenefitsTaxPage() {
           {/* ===== SECTION 12: FAQs ===== */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-              <AccordionItem value="who-pays" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Do employees pay FBT?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">No. FBT is an employer obligation. The employer calculates, lodges, and pays FBT directly to the ATO. However, the reportable fringe benefits amount (RFBA) appears on the employee&apos;s income statement and affects income-tested obligations including HECS-HELP repayments, Medicare levy surcharge, and Centrelink payments.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="year" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">When is the FBT year?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">The FBT year runs from <strong>1 April to 31 March</strong> &mdash; different from the income tax year (1 July to 30 June). Employers lodge FBT returns and pay FBT by <strong>21 May</strong> each year, or by 25 June if lodging through a registered tax agent.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="rate" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is the current FBT rate?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">The FBT rate is <strong>47%</strong> for the FBT year ending 31 March 2026. This equals the top marginal income tax rate of 45% plus the 2% Medicare levy. The rate has remained at 47% since 1 April 2017.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="ev-exempt" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Are electric vehicles exempt from FBT?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Under the Electric Car Discount, eligible battery electric vehicles first held and used on or after 1 July 2022 are FBT-exempt (plug-in hybrids only where the arrangement was entered into before 1 April 2025), provided the car&apos;s value at first retail sale is below the luxury car tax limit for fuel-efficient vehicles (<strong>{formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</strong> for FY{LUXURY_CAR_TAX.financialYear}). This exemption makes novated leasing for EVs significantly more cost-effective.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="grossing-up" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What does &quot;grossing up&quot; mean for FBT?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Grossing up converts the taxable value of a fringe benefit to its pre-tax salary equivalent. This reflects the gross income an employee would need to earn to purchase the same benefit after paying income tax. The Type 1 gross-up rate is <strong>2.0802</strong> (when the employer claims GST credits) and the Type 2 rate is <strong>1.8868</strong> (when no GST credit is claimed).</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="rfba" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Does RFBA increase the amount of tax I pay?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">No. Reportable fringe benefits amounts are <strong>not taxed again</strong> in the employee&apos;s hands. RFBA is used solely to calculate adjusted taxable income for income-tested purposes such as the Medicare levy surcharge, HECS-HELP repayment thresholds, Division 293 tax, and Centrelink payments. It does not increase your assessable income or income tax payable.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="minor-benefit" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What qualifies as a minor benefit exemption?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">A minor benefit is one with a notional taxable value of less than <strong>$300</strong> that is provided infrequently and irregularly, and is not a regular or expected part of the employee&apos;s remuneration. Common examples include Christmas gifts, occasional taxi fares home after overtime, and infrequent team meals. Benefits that are provided regularly or as part of a salary packaging arrangement do not qualify, regardless of the value.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="employee-contribution" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Can employees reduce FBT by making contributions?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Employees can make after-tax (post-tax) contributions toward the cost of a fringe benefit. Each dollar contributed reduces the taxable value by one dollar, which reduces the grossed-up amount and therefore the employer&apos;s FBT liability. This strategy is commonly used with novated leases and salary-packaged cars under the Employee Contribution Method (ECM).</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="nfp-cap" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Do not-for-profit employees get FBT concessions?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Public benevolent institutions (PBIs) and health promotion charities receive a grossed-up FBT exemption cap of <strong>{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)}</strong> per employee per FBT year, about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} of GST-free benefits. Public and not-for-profit hospitals and public ambulance services have a cap of <strong>{formatAUD(FBT_CAPS.hospitalAndAmbulance)}</strong>, about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}. Salary-packaged meal entertainment has its own separate {formatAUD(FBT_CAPS.salaryPackagedEntertainment)} grossed-up cap. Benefits within these caps are FBT-exempt. Benefits exceeding the cap attract FBT at the standard 47% rate.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="car-methods" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between the statutory formula and operating cost method?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">The <strong>statutory formula method</strong> values the car benefit at 20% of the car&apos;s base value, regardless of how many kilometres are driven. The <strong>operating cost method</strong> calculates FBT based on actual running costs (fuel, insurance, registration, servicing, depreciation) multiplied by the private-use percentage determined from a valid 12-week logbook. Employees who drive more than 15,000 business kilometres per year typically pay less FBT under the operating cost method.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="deductible" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Is FBT tax-deductible for the employer?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. The FBT amount paid is a <strong>tax-deductible expense</strong> for the employer. The cost of providing the fringe benefit itself (e.g., car lease payments, gym membership fees) is also deductible. This means the effective after-tax cost of FBT to the employer is the FBT amount multiplied by (1 minus the company tax rate), which is 25% or 30% depending on the entity type.</AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="register" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">When does an employer need to register for FBT?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Employers must register for FBT with the ATO when the total taxable value of fringe benefits provided to all employees exceeds <strong>$2,000</strong> in a single FBT year. Registration is completed through the ATO&apos;s Business Portal or by contacting the ATO directly. Once registered, the employer must lodge an annual FBT return even in years where no FBT is payable.</AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={FBT_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
           </section>
 
           <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>FBT rates, thresholds, and exemption rules sourced from ATO FBT guidance for the FBT year ending 31 March 2026 (aligning with FY2025-26). Gross-up rates, benchmark interest rates, and car parking thresholds reflect the latest ATO-published values. Worked examples use the statutory formula method with Type 1 grossing up.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

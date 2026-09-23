@@ -27,6 +27,7 @@ import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-tab
 import { AllowanceTable, AwardDirectorySidebar, JuniorPhaseInTable, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
 import { RETAIL_FAQS } from "@/modules/guide/retail-award-faqs";
+import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${RETAIL_AWARD.name} (${RETAIL_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000004-summary", publisher: SOURCES.fwo.name },
@@ -160,7 +161,7 @@ export default function RetailAwardRatesPage() {
                         { label: "Public holiday", perm: RETAIL_PENALTIES.publicHoliday, cas: RETAIL_PENALTIES.casualPublicHoliday },
                       ].map((row) => (
                         <tr key={row.label}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}{row.label === "Public holiday" && <PublicHolidayRowLink />}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.perm)}</td>
                           <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.perm), 2)}</td>
                           <td className="px-5 py-3 font-medium">{pct(row.cas)}</td>

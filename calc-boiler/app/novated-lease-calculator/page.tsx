@@ -5,17 +5,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-calculator/`;
 const TITLE = "Novated Lease Calculator — EV, PHEV and FBT";
-const DESCRIPTION = "Salary sacrifice a car and see both payslip lines: the pre-tax deduction, the post-tax employee contribution, FBT or the electric car exemption, and your take-home pay before and after. Includes the reportable fringe benefits amount that changes your HECS-HELP repayment. FBT and luxury car tax figures verified at ato.gov.au.";
+const DESCRIPTION = "Novated lease calculator: salary sacrifice a car and see the pre-tax deduction, post-tax contribution, FBT or the EV exemption, and take-home pay before and after.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -38,7 +39,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("novated-lease-calculator"),
   inLanguage: "en-AU",
 };
 

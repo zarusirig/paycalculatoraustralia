@@ -58,7 +58,7 @@ export const SA: Jurisdiction = {
 
   metaTitle: "SA Public Sector Pay Rates 2026 — ASO & SSO Pay Scales (ASO1–8)",
   metaDescription:
-    "South Australian public sector pay from July 2026: every ASO-1 to ASO-8 increment from the Salaried 2026 agreement, SSO-1 to SSO-6 School Services Officer rates from May 2026, PO and OPS ranges, and each salary after tax.",
+    "South Australian public sector pay from July 2026: every ASO-1 to ASO-8 increment, SSO-1 to SSO-6 School Services Officer rates, PO and OPS ranges and take-home pay.",
 
   instrument:
     "Most South Australian public servants are paid under the South Australian Public Sector Enterprise Agreement: Salaried 2026, approved by the South Australian Employment Tribunal on 4 March 2026. It sets the Administrative Services (ASO), Operational Services (OPS), Professional Officer (PO) and other salaried streams in Appendix 2. School Services Officers in government schools and preschools are covered instead by the South Australian School and Preschool Education Staff Enterprise Agreement 2024.",

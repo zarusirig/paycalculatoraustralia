@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { GROSS_PAY_FAQS } from "./gross-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -16,7 +17,6 @@ import {
   SITE_CONFIG,
   HECS_HELP,
   LITO,
-  TAX_BRACKETS,
 } from "@/lib/constants";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
 import { HEAD_TERM_PRIMARY, HeadTermLinks } from "@/modules/calculator/head-term-ui";
@@ -31,11 +31,9 @@ const TRP_BASE = Math.round(100_000 / (1 + SUPER_GUARANTEE.rate));
 const EX_TRP = calculatePayBreakdown({ grossSalary: TRP_BASE });
 const EX_100K = calculatePayBreakdown({ grossSalary: 100_000 });
 const GROSS_FOR_1200_WK = findGrossForNet(1_200 * 52);
-const GROSS_FOR_1000_WK = findGrossForNet(1_000 * 52);
 const GROSS_FOR_60K_NET = findGrossForNet(60_000);
 const LEAD_GROSS = findGrossForNet(1_500 * 52);
 const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
-const FIRST_RATE = `${Math.round(TAX_BRACKETS[1].rate * 100)}%`;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -431,40 +429,7 @@ export default function GrossPayCalculatorPage() {
           {/* --- FAQs --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="diff" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is the difference between gross and net pay?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Gross pay is the total amount you earn before any taxes or deductions are taken out. This is the big number on your employment contract. Net pay (or take-home pay) is the amount that actually lands in your bank account after income tax, Medicare levy, and other deductions are withheld by your employer.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="calc" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How do you calculate gross from net in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Because Australia has a progressive tax system with different marginal rates (increasing as you earn more), you cannot just multiply your net pay by a single fixed percentage. You have to &quot;reverse engineer&quot; the calculation by figuring out which tax brackets your required gross income falls into and adding the appropriate tax back on top of your net amount. Our calculator automates this complex math.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does gross pay include superannuation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Generally, no. When negotiating a salary in Australia, &quot;Gross Pay&quot; or &quot;Base Salary&quot; usually excludes the compulsory employer superannuation guarantee (currently {SG_PCT} for FY{SITE_CONFIG.financialYear}). If a package includes super, it is normally called a &quot;Total Remuneration Package&quot; (TRP) or salary &quot;inclusive of super&quot;.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How does a HECS debt affect my gross pay target?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">If you have a HECS-HELP loan, your employer withholds additional money on top of income tax to cover your compulsory repayment. This means you need a higher gross salary to achieve the same take-home pay. For example, at $90,000 the FY{SITE_CONFIG.financialYear} compulsory repayment of {formatAUD(EX_90K_HECS.hecsRepayment)} reduces your weekly take-home by {formatAUD(EX_90K_HECS.hecsRepayment / 52)}. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP calculator</Link> to model the exact impact.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="trp" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is a Total Remuneration Package (TRP)?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A TRP includes your base salary <strong>plus</strong> the employer&apos;s {SG_PCT} superannuation guarantee contribution. So a $100,000 base salary equates to a {formatAUD(100_000 * (1 + SUPER_GUARANTEE.rate))} TRP. Some job ads quote TRP instead of base salary, which can be misleading — always clarify which figure is being used during salary negotiations.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="tax-free" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is the tax-free threshold in Australia for FY{SITE_CONFIG.financialYear}?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The statutory tax-free threshold is <strong>$18,200</strong> per year. Australian residents who earn below this amount pay zero income tax. The Low Income Tax Offset (LITO) effectively raises this to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong> for eligible taxpayers, as the {formatAUD(LITO.maxOffset)} offset fully eliminates the {FIRST_RATE} tax on income between $18,201 and {formatAUD(LITO.effectiveTaxFreeThreshold)}. Non-residents do not receive the tax-free threshold and pay 30% from the first dollar earned.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="weekly" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What gross salary do I need to take home $1,000 per week?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">To take home <strong>$1,000 per week</strong> after tax in FY{SITE_CONFIG.financialYear}, you need a gross annual salary of <strong>{formatAUD(Math.round(GROSS_FOR_1000_WK))}</strong>. This assumes you are an Australian resident, have no HECS-HELP debt, and claim the tax-free threshold. Your employer pays income tax and the 2% Medicare levy from this gross amount, leaving $52,000 net annually.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="changes" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Did recent tax changes affect gross pay calculations?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The Stage 3 tax cuts (effective 1 July 2024) lowered the second bracket rate from 19% to 16% and expanded the 30% bracket ceiling from $120,000 to <strong>$135,000</strong>, and from 1 July 2026 that rate fell again to <strong>{FIRST_RATE}</strong>. These changes mean you now need a slightly lower gross salary to achieve the same net take-home pay than in earlier years. The SG rate reached <strong>{SG_PCT}</strong> on {SUPER_GUARANTEE.effectiveDate}, raising total remuneration packages without affecting your take-home calculation directly.</p></AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={GROSS_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

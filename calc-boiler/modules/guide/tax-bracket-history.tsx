@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TAX_BRACKET_HISTORY_FAQS } from "./tax-bracket-history-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates for Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -241,33 +242,38 @@ export default function TaxBracketHistoryPage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2020-21</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">&mdash;</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2021-22</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2022-23</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2023-24</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr className="bg-eucalyptus/5">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2024-25</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,788</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$2,759</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$1,679</td>
                       </tr>
                       <tr className="bg-eucalyptus/5">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2025-26</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,788</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
+                      </tr>
+                      <tr className="bg-eucalyptus/5">
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2026-27</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,520</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$268</td>
                       </tr>
                     </tbody>
                   </table>
@@ -275,45 +281,14 @@ export default function TaxBracketHistoryPage() {
                 <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy and all offsets (LITO, LMITO). LMITO would have reduced the FY2020-21 and FY2021-22 figures by up to $1,080 at lodgement.</p>
               </div>
               <p>
-                The Stage 3 tax cuts delivered a <strong>$2,759 annual saving</strong> at $80,000 income. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
+                The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
               </p>
             </section>
 
             {/* SECTION 5: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="stage3-when" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When did the Stage 3 tax cuts take effect?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The revised Stage 3 tax cuts took effect on 1 July 2024, applying from FY2024-25 onwards. The original plan was significantly amended in January 2024, with the revised version passing Parliament in March 2024.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lmito" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What was the LMITO and when was it removed?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The Low and Middle Income Tax Offset was a temporary offset worth up to $1,500 (in its final year). It applied from FY2018-19 to FY2021-22 and was claimed at lodgement. It was not extended beyond FY2021-22, so from FY2022-23 onwards taxpayers no longer received this reduction.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="80k-saving" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do I save at $80,000 under Stage 3?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    At $80,000 taxable income, your tax bill dropped from $17,547 to $14,788 &mdash; a saving of <strong>$2,759 per year</strong> or approximately <strong>$53 per week</strong>. This comes from the lower 16% rate (previously 19%) on income from $18,201 to $45,000 and the lower 30% rate (previously 32.5%) on income from $45,001 to $80,000.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="same-2526" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Have tax brackets changed for FY2025-26?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. The FY2025-26 tax brackets are identical to FY2024-25. The next scheduled changes are outlined in the <Link href="/tax-changes-2026-27/" className="text-eucalyptus-dark hover:underline">FY2026-27 Tax Changes</Link> guide.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="original-stage3" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What was the original Stage 3 plan?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The original Stage 3 plan would have created a flat 30% rate for all income between $45,001 and $200,000, eliminating the 32.5% and 37% brackets entirely. This would have disproportionately benefited higher earners. The revised version retained progressive brackets while still delivering cuts across all income levels.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={TAX_BRACKET_HISTORY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

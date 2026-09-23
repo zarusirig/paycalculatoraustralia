@@ -7,13 +7,13 @@ import { OVERTIME_MEAL_REASONABLE, PUBLISHED_DAILY_TOTALS, TD_2026_4 } from "@/l
 
 const SLUG = "travel-allowance";
 const TITLE = `Travel Allowance ${TD_2026_4.incomeYear}: ATO Reasonable Amounts + Calculator`;
-const DESCRIPTION = `ATO reasonable travel allowance amounts for ${TD_2026_4.incomeYear} (${TD_2026_4.id}): ${formatAUD(PUBLISHED_DAILY_TOTALS[1].Sydney!, 2)} a day in Sydney, every capital, 117 country centres and overseas cost groups. Overtime meal ${formatAUD(OVERTIME_MEAL_REASONABLE)}. When tax is withheld from per diems.`;
+const DESCRIPTION = `ATO reasonable travel allowance amounts for ${TD_2026_4.incomeYear} (${TD_2026_4.id}): ${formatAUD(PUBLISHED_DAILY_TOTALS[1].Sydney!, 2)} a day in Sydney, every capital, 117 country centres and overseas. Overtime meal ${formatAUD(OVERTIME_MEAL_REASONABLE)}.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

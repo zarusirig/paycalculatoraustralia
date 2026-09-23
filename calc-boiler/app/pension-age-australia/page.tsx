@@ -11,7 +11,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pension-age-australia/`;
 
 const TITLE = `Pension Age Australia: ${AGE_PENSION_AGE}, Plus Retirement Age Calculator`;
-const DESCRIPTION = `Age Pension age in Australia is ${AGE_PENSION_AGE}. There is no compulsory retirement age, and super preservation age is 60. Enter your date of birth to see your pension, claim and super access dates.`;
+const DESCRIPTION = `Age Pension age in Australia is ${AGE_PENSION_AGE}. There is no compulsory retirement age and super preservation age is 60. Enter your birth date to see your pension dates.`;
 
 export const metadata: Metadata = {
   title: TITLE,

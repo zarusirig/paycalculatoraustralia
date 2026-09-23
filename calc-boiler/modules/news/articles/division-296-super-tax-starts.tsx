@@ -35,17 +35,24 @@ export default function Division296SuperTaxStarts() {
         whether you&apos;re over either threshold before apportioning the earnings.
       </p>
 
-      <h2>Why unrealised gains are part of the calculation</h2>
+      {/*
+        Corrected 24 Sep 2026. The enacted law uses a realised earnings approach,
+        not growth in total super balance. Sources: Treasury "Reforms to support
+        low-income workers and build a stronger super system" ("moving to a
+        realised earnings approach that aligns to existing income tax
+        concepts"); ATO "How Division 296 tax is calculated" (updated 29 June
+        2026) — funds calculate and report each member's relevant super earnings.
+      */}
+      <h2>Why unrealised gains are no longer part of the calculation</h2>
       <p>
-        Division 296 earnings are worked out from the growth in your total super balance over the
-        financial year, adjusted for contributions and withdrawals — which can include unrealised
-        capital gains on assets such as property or unlisted shares that haven&apos;t been sold.
-        This design, taxing paper gains rather than only realised income, has been the most debated
-        feature of the measure since it was first proposed. Critics, including some self-managed
-        super fund trustees and industry bodies, have argued it could force asset sales to fund a tax
-        bill on gains that haven&apos;t actually been received in cash, particularly for funds
-        holding illiquid assets like direct property. The government has maintained the design keeps
-        the measure simple to administer compared with tracking realised gains fund by fund.
+        The original 2023 proposal would have worked out earnings from the growth in your total
+        super balance over the year, which would have included unrealised capital gains on assets
+        that haven&apos;t been sold. That was the most debated feature of the measure. On 13 October
+        2025 the government changed the design, and the law that passed (the Treasury Laws Amendment
+        (Building a Stronger and Fairer Super System) Act 2026) uses a <strong>realised earnings</strong>{" "}
+        approach aligned with existing income tax concepts. Your super fund calculates your share of
+        the fund&apos;s earnings and reports it to the ATO, which then taxes the proportion that
+        relates to the part of your balance above each threshold.
       </p>
 
       <h2>Who is actually affected</h2>

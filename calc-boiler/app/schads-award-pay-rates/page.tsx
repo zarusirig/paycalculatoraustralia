@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import type { Article, BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import SchadsAwardPayRatesPage from "@/modules/guide/schads-award-pay-rates";
-import { SCHADS_FAQS, CLAUSE_15_LEVEL_4 } from "@/modules/guide/schads-award-faqs";
+import { SCHADS_FAQS } from "@/modules/guide/schads-award-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { SCHADS_AWARD, SCHADS_SACS } from "@/lib/constants/schads-award";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schads-award-pay-rates/`;
@@ -17,12 +18,12 @@ const L1 = SCHADS_SACS[0];
 const L4 = SCHADS_SACS.find((r) => r.classification === "Level 4 pay point 1")!;
 const L8 = SCHADS_SACS[SCHADS_SACS.length - 1];
 
-const TITLE = `SCHADS Award Pay Rates ${SITE_CONFIG.financialYear} (${SCHADS_AWARD.code}) — 2026 Pay Guide, All Levels & Pay Points`;
+const TITLE = `SCHADS Award Pay Rates ${SITE_CONFIG.financialYear} (${SCHADS_AWARD.code}) — Levels, Pay Points`;
 // The ERO is attributed to Level 4 specifically, not to the whole range —
 // its tables begin at Level 2 and Level 1 receives no uplift. An earlier
 // draft read "Level 1 … to Level 8, with the Equal Remuneration Order
 // applied", which implied otherwise in the format Google trusts most.
-const DESCRIPTION = `Every SCHADS classification rate from ${SCHADS_AWARD.operativeFrom}, Level 1 ${formatAUD(L1.hourly, 2)}/hr to Level 8 ${formatAUD(L8.hourly, 2)}/hr. Level 4 is ${formatAUD(L4.weekly, 2)} a week once the Equal Remuneration Order is applied — not the ${formatAUD(CLAUSE_15_LEVEL_4, 2)} printed in clause 15. Penalty rates, allowances and casual loading included.`;
+const DESCRIPTION = `Every SCHADS classification rate from ${SCHADS_AWARD.operativeFrom}, Level 1 ${formatAUD(L1.hourly, 2)}/hr to Level 8 ${formatAUD(L8.hourly, 2)}/hr. Level 4 is ${formatAUD(L4.weekly, 2)} a week with the Equal Remuneration Order applied.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -62,6 +63,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("schads-award-pay-rates"),
+  dateModified: pageDateModified("schads-award-pay-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

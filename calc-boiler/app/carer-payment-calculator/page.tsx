@@ -7,7 +7,7 @@ import { CARER_PAYMENT, CARER_PAYMENT_RATES, CARER_SUPPORT_SOURCES } from "@/lib
 
 const SLUG = "carer-payment-calculator";
 const TITLE = "Carer Payment Calculator 2026 — Centrelink Rates & Income Test";
-const DESCRIPTION = `Carer Payment is ${formatAUD(CARER_PAYMENT_RATES.maxFortnightly.single.total, 2)} a fortnight single, ${formatAUD(CARER_PAYMENT_RATES.maxFortnightly.coupleEach.total, 2)} each for couples from ${CARER_PAYMENT.ratesFrom}. Calculate what you keep when you work: the pension income test, the ${CARER_PAYMENT.workHoursLimit}-hours-in-4-weeks rule and the assets limits, verified at Services Australia.`;
+const DESCRIPTION = `Carer Payment is ${formatAUD(CARER_PAYMENT_RATES.maxFortnightly.single.total, 2)} a fortnight single, ${formatAUD(CARER_PAYMENT_RATES.maxFortnightly.coupleEach.total, 2)} each for couples from ${CARER_PAYMENT.ratesFrom}. See what you keep when you work: income test and ${CARER_PAYMENT.workHoursLimit}-hours rule.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

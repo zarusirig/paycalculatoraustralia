@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -14,6 +13,8 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { YTD_FAQS } from "./ytd-income-calculator-faqs";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -465,36 +466,7 @@ export default function YTDIncomeCalculatorPage() {
           {/* --- FAQs --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="meaning" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What does YTD mean on a payslip?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">YTD means year to date. It is the running total of your earnings, tax withheld, and superannuation from 1 July (the start of the Australian financial year) up to that payslip. Every YTD column resets to zero with the first pay after 1 July.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="gross-net" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is the difference between YTD gross and YTD net?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">YTD gross is your total before-tax earnings for the financial year so far, including overtime, bonuses, and allowances. YTD net is the total that actually reached your bank account after PAYG tax, study loan withholding, and other deductions. Lenders and the ATO work from the gross figure.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does YTD gross include superannuation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Employer superannuation guarantee contributions (12% in FY{SITE_CONFIG.financialYear}) are paid on top of your gross salary and tracked in a separate YTD super column. YTD gross only covers your own earnings — salary, overtime, bonuses, allowances, and leave payments.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="wrong" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Why doesn&apos;t my YTD match my own calculation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The usual culprits are pays that landed just before or after 1 July, a mid-year pay rise (so not every pay was the same amount), one-off payments like bonuses or leave loading, or unpaid leave reducing a pay cycle. Count the actual payslips issued since 1 July and add each gross amount — the running total should reconcile exactly. If it still doesn&apos;t, ask payroll to check.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="reset" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does YTD reset on 1 July?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Australian payroll systems reset all YTD totals to zero at the start of the financial year on 1 July. Your first July payslip will show YTD figures equal to just that single pay. Your final June payslip holds the full-year totals that flow into your income statement in myGov.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="lenders" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How do banks use YTD income on loan applications?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Lenders annualise the YTD gross on your most recent payslips — dividing by the number of pay cycles elapsed and multiplying out to a full year — and cross-check the result against your stated salary and employment contract. Early in the financial year, many lenders will also ask for last year&apos;s income statement because a small YTD sample is less reliable.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="mid-year" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>I started my job part-way through the year — how do I annualise?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Count pays from your first payslip rather than from 1 July. If you have received 8 fortnightly pays of $2,500 since starting, your annualised income is $2,500 × 26 = $65,000 even though your YTD shows only $20,000. Enter the actual number of pays you have received into the calculator above and it handles this correctly.</p></AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={YTD_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
