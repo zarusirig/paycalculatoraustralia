@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import IncomeTaxCalculatorPage from "@/modules/calculator/income-tax-calculator";
+import IncomeTaxCalculatorContent from "@/modules/calculator/income-tax-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import {
@@ -210,7 +211,9 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <IncomeTaxCalculatorPage faqs={FAQS} />
+      <IncomeTaxCalculatorPage>
+        <IncomeTaxCalculatorContent faqs={FAQS} />
+      </IncomeTaxCalculatorPage>
     </>
   );
 }
