@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
@@ -64,7 +65,7 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "Do casual workers get superannuation?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. All employees including casuals receive the 12% superannuation guarantee from their employer, calculated on ordinary time earnings including the casual loading." },
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Casuals receive the 12% superannuation guarantee like other employees (if they are under 18, only in weeks they work more than 30 hours), calculated on ordinary time earnings including the casual loading." },
     },
     {
       "@type": "Question",

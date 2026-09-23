@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
+import "./fonts.css";
 import "./globals.css";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
-import FirebaseAnalytics from "@/components/firebase-analytics";
 import AdsterraBanner from "@/components/common/adsterra-banner";
 import { WhatsNext } from "@/components/common/content-slots";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
@@ -45,9 +45,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_AU",
     siteName: "Pay Calculator Australia",
+    // Static PNG (public/og-image.png), not the file-based opengraph-image
+    // route: that exported as an extensionless file behind a ?hash URL, which
+    // robots.txt's Disallow: /*?* blocks for social crawlers. Pages that set
+    // their own `openGraph` replace this object, so they list the image too.
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Pay Calculator Australia — Free Australian Pay Calculator" }],
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og-image.png"],
   },
   icons: {
     icon: [
@@ -72,15 +78,13 @@ export default function RootLayout({
             third-party request on every pageview for zero revenue. Re-add this
             script and the `google-adsense-account` meta tag together if AdSense
             is ever applied for. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
         <link rel="preconnect" href="https://www.highperformanceformat.com" />
         <link rel="dns-prefetch" href="https://www.highperformanceformat.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
+        {/* Fonts are self-hosted (app/fonts.css). Preload the two faces every
+            page paints above the fold: body text and the H1 (the LCP element). */}
+        <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body
         className="font-sans antialiased bg-background text-foreground"
@@ -150,7 +154,6 @@ export default function RootLayout({
         </div>
 
         <Footer />
-        <FirebaseAnalytics />
         <EngagementTracking />
 
         {/* Adsterra social bar / popunder, deferred until the visitor has stayed

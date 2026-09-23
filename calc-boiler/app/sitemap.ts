@@ -18,30 +18,27 @@ import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
 // --- end T2 ---
 // T6 programmatic salary grid (2026-09-23)
 import { SALARY_TO_HOURLY_SALARIES, TAKE_HOME_SALARIES, TAX_ON_SALARIES } from "@/lib/data/salary-pages";
+// --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
+import { AVIATION_PATHS } from "@/lib/data/aviation-pay";
+// --- end F5 ---
+import { GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
- * Dates staggered across Feb 15 – Mar 15 2026 for natural crawl cadence.
- * Priorities per technical-seo-specification.md
+ * Priorities per technical-seo-specification.md.
+ *
+ * lastmod is truthful: the latest git commit touching the files that produce
+ * each page (see lib/sitemap-lastmod.ts), or the page's displayed review date
+ * if later. The old Feb–Mar 2026 "staggered" dates were invented and have been
+ * removed — Google ignores lastmod site-wide once it is shown to be unreliable.
  */
-
-/** Deterministic date between start and end based on index / total */
-function staggeredDate(index: number, total: number): Date {
-  const start = new Date("2026-02-15T00:00:00+11:00").getTime();
-  const end = new Date("2026-03-15T23:59:59+11:00").getTime();
-  const range = end - start;
-
-  // Spread evenly, then add a small per-slug offset so times vary
-  const base = start + (range * index) / Math.max(total - 1, 1);
-  // Deterministic jitter: shift hours based on index
-  const jitterMs = ((index * 7) % 24) * 60 * 60 * 1000;
-  return new Date(base + jitterMs);
-}
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://pay-calculator-australia.com";
 
-  // Collect every page in publish order so we can stagger dates
+  // Collect every page with its priority / change frequency
   const allPages: {
     slug: string;
     changeFrequency: "weekly" | "monthly" | "yearly";
@@ -339,6 +336,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---
+  // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+  // Hubs + verified state pages only, read from the same helper the routes'
+  // generateStaticParams use, so an unverified state is never listed.
+  for (const occupation of SERVICE_OCCUPATIONS) {
+    const segment = SERVICE_OCCUPATION_CONFIG[occupation].segment;
+    allPages.push({ slug: segment, changeFrequency: "monthly" as const, priority: 0.8 });
+    for (const j of verifiedJurisdictions(occupation)) {
+      allPages.push({ slug: `${segment}/${j.slug}`, changeFrequency: "monthly" as const, priority: 0.7 });
+    }
+  }
+  for (const path of Object.values(AVIATION_PATHS)) {
+    allPages.push({ slug: path.replace(/^\/|\/$/g, ""), changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F5 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026): data study + embed instructions.
+  // /embed/take-home-pay/ is deliberately absent: it is noindex (widget document).
+  allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "embed", changeFrequency: "yearly" as const, priority: 0.5 });
+  // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F7 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
@@ -346,17 +367,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug, changeFrequency: "yearly", priority: 0.3 });
   }
 
-  // Build sitemap with staggered dates
-  const total = allPages.length;
+  // Safety net: any static route under app/ that no list above names still gets
+  // into the sitemap (at a neutral priority) instead of silently missing; and a
+  // listed slug with no route behind it is dropped instead of shipping a 404.
+  const listed = new Set(allPages.map((p) => p.slug));
+  for (const slug of discoverStaticSlugs()) {
+    if (slug === "news" || slug.startsWith("news/")) continue; // handled below
+    if (!listed.has(slug)) {
+      allPages.push({ slug, changeFrequency: "monthly", priority: 0.7 });
+      listed.add(slug);
+    }
+  }
+  const pages = allPages.filter((p) => {
+    const ok = slugHasRoute(p.slug);
+    if (!ok) console.warn(`[sitemap] dropping /${p.slug}/: no app/ route`);
+    return ok;
+  });
 
-  // lastModified reflects build time so each deploy signals freshness to Google.
   const buildDate = new Date();
 
   // 10. News — hub weekly/0.7, articles monthly/0.6, real dates
+  const newestArticle = Math.max(
+    ...NEWS_ARTICLES.map((a) => new Date(`${a.dateModified}T09:00:00+10:00`).getTime()),
+  );
+  const newsHubDate = lastModifiedForSlug("news", buildDate);
   const newsEntries: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/news/`,
-      lastModified: buildDate,
+      lastModified: new Date(Math.min(Math.max(newsHubDate.getTime(), newestArticle), buildDate.getTime())),
       changeFrequency: "weekly" as const,
       priority: 0.7,
     },
@@ -369,9 +407,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return [
-    ...allPages.map((page, index) => ({
+    ...pages.map((page) => ({
       url: page.slug ? `${baseUrl}/${page.slug}/` : `${baseUrl}/`,
-      lastModified: page.priority >= 0.7 ? buildDate : staggeredDate(index, total),
+      lastModified: lastModifiedForSlug(page.slug, buildDate, GUIDE_AUTHORSHIP[page.slug]?.lastReviewed),
       changeFrequency: page.changeFrequency,
       priority: page.priority,
     })),

@@ -133,24 +133,35 @@ const FAQS: readonly { q: string; a: string }[] = [
   },
 ];
 
-const TITLE = `Income Tax Calculator Australia ${FY} — ATO Tax Brackets`;
-const DESCRIPTION = `See how much income tax you pay in FY${FY}. ATO resident brackets with the new ${RATE_2} rate, LITO and Medicare levy — tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)}, take-home ${formatAUD(S80.takeHome)}.`;
+// Head-term intent map (docs/seo/2026-09-23-head-term-intent-map.md): this URL
+// is the ONE primary for "income tax calculator" (49.5k), "tax calculator
+// australia" (40.5k), "income tax calculator australia" (14.8k) and "simple
+// tax calculator" (14.8k). Those SERPs are won by dedicated tax-calculator
+// pages (moneysmart, ATO simple tax calculator, bank "Income Tax Calculator"
+// pages) — not homepage pay calculators — so the title leads with the exact
+// head term and adds "Simple Tax Calculator"; the description leads with the
+// $80k answer. "Income Tax Calculator Australia" contains "tax calculator
+// australia" verbatim.
+// Previous: "Income Tax Calculator Australia ${FY} — ATO Tax Brackets".
+const TITLE = `Income Tax Calculator Australia ${FY} — Simple Tax Calculator`;
+const DESCRIPTION = `Tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)} plus ${formatAUD(S80.medicare)} Medicare in FY${FY}. Simple tax calculator for Australia: enter annual, monthly, fortnightly or weekly income for tax by ATO bracket, LITO and take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
   openGraph: {
-    title: `Income Tax Calculator Australia ${FY}`,
-    description: `Calculate your income tax with a bracket-by-bracket breakdown. Free, accurate, updated for FY${FY}.`,
+    title: TITLE,
+    description: `Tax calculator Australia: your income tax with a bracket-by-bracket breakdown. Free, updated for FY${FY}.`,
     url: PAGE_URL,
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Income Tax Calculator Australia ${FY}`,
+    title: TITLE,
     description: `Free income tax calculator with bracket breakdown. ATO rates for FY${FY}.`,
   },
 };

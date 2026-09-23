@@ -6,13 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "regex": "/tax-on-([0-9]+)/?",
-        "destination": "/tax-on/:1/index.html"
-      }
-    ],
     "redirects": [
+      {
+        "regex": "^/tax-on-(?P<salary>[0-9]+)/?$",
+        "destination": "/tax-on/:salary/",
+        "type": 301
+      },
       {
         "source": "/tax-on/40,000-salary/",
         "destination": "/tax-on/40000/",
@@ -205,6 +204,21 @@
         "headers": [
           { "key": "Cache-Control", "value": "public, max-age=3600" },
           { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+        ]
+      },
+      {
+        "regex": "^/embed/take-home-pay(/.*)?$",
+        "headers": [
+          { "key": "Content-Security-Policy", "value": "frame-ancestors *" },
+          { "key": "X-Robots-Tag", "value": "noindex" }
+        ]
+      },
+      {
+        "source": "/australian-pay-report-2026/data/**",
+        "headers": [
+          { "key": "Content-Type", "value": "text/csv; charset=utf-8" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+          { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=3600, must-revalidate" }
         ]
       }
     ],

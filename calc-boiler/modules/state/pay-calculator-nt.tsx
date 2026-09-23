@@ -97,9 +97,8 @@ export default function PayCalculatorNTPage() {
               you must have lived there for more than half the income year to claim.
             </p>
             <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>Zone A</strong> (higher offset) &ndash; Alice Springs, Katherine, Tennant Creek, Nhulunbuy, Jabiru, and most communities outside Darwin</li>
-              <li><strong>Zone B</strong> (lower offset) &ndash; Darwin, Palmerston, and surrounding suburbs</li>
-              <li><strong>Special Zone</strong> (highest offset) &ndash; particularly remote locations more than 250 km from a population centre of 2,500 people</li>
+              <li><strong>Zone A</strong> &ndash; Darwin, Palmerston, Alice Springs, Katherine, Jabiru and most other NT localities. On the ATO&apos;s list the whole Territory is Zone A or a Zone A special area.</li>
+              <li><strong>Special area</strong> (highest offset) &ndash; particularly remote locations such as Tennant Creek and Nhulunbuy (Gove), generally more than 250 km from a population centre of 2,500 people</li>
             </ul>
             <p className="text-sm text-warmgray">
               Work out yours with the{" "}

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }
@@ -64,12 +64,13 @@ export default async function Page({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: title,
+    image: `${BASE}/og-image.png`,
     description: spokeDescription(age),
     author: AUTHORS["penny-ward"].jsonLd,
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
-      logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` },
+      logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     isBasedOn: {

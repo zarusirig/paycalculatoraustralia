@@ -52,7 +52,7 @@ const article: WithContext<Article> = {
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
-  publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` } },
+  publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   dateModified: MODIFIED,
   isBasedOn: { "@type": "CreativeWork", name: `ATO ${ATO_MONTHLY.title} (${ATO_MONTHLY.nat})`, url: ATO_MONTHLY.pageUrl },

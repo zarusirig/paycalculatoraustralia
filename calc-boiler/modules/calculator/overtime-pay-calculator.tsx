@@ -15,7 +15,16 @@ import {
   MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  SUPER_GUARANTEE,
+  TAX_BRACKETS,
 } from "@/lib/constants";
+
+// Bracket rates, MLS threshold and year labels come from lib/constants; the
+// page previously hand-typed FY2025-26 values (16% bracket, $93,000 MLS).
+const FY = SITE_CONFIG.financialYear;
+const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
+const bracketRange = (b: (typeof TAX_BRACKETS)[number]) =>
+  b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min === 0 ? 0 : b.min)} – ${formatAUD(b.max)}`;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -63,7 +72,7 @@ export default function OvertimePayCalculatorPage() {
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Overtime &amp; Penalty Rate Calculator 2025-26
+            Overtime &amp; Penalty Rate Calculator {FY}
           </h1>
           <p className="text-lg text-warmgray">
             Calculate your overtime, weekend, and public holiday pay. Enter your base hourly rate,
@@ -115,11 +124,9 @@ export default function OvertimePayCalculatorPage() {
                     <select id="marginalBracket" value={marginalBracket}
                       onChange={(e) => setMarginalBracket(Number(e.target.value))}
                       className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20">
-                      <option value={0}>0% ($0 – $18,200)</option>
-                      <option value={0.16}>16% ($18,201 – $45,000)</option>
-                      <option value={0.30}>30% ($45,001 – $135,000)</option>
-                      <option value={0.37}>37% ($135,001 – $190,000)</option>
-                      <option value={0.45}>45% ($190,001+)</option>
+                      {TAX_BRACKETS.map((b) => (
+                        <option key={b.min} value={b.rate}>{pct(b.rate)} ({bracketRange(b)})</option>
+                      ))}
                     </select>
                   </div>
                 </form>
@@ -246,7 +253,7 @@ export default function OvertimePayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Penalty Rates by Award Type</h3>
             <p className="mb-4 text-warmgray">
-              Different Modern Awards set different penalty structures. The table below compares weekday overtime rates across 5 common awards for the FY2025-26 financial year.
+              Different Modern Awards set different penalty structures. The table below compares weekday overtime rates across 5 common awards for the FY{FY} financial year.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -304,7 +311,7 @@ export default function OvertimePayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Who Uses This Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              This Australian overtime pay calculator serves employees, employers, and payroll professionals who calculate penalty rate earnings for FY2025-26. Common use cases include:
+              This Australian overtime pay calculator serves employees, employers, and payroll professionals who calculate penalty rate earnings for FY{FY}. Common use cases include:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Shift workers</strong> in retail, hospitality, and healthcare verifying their weekend and public holiday pay on each payslip</li>
@@ -347,7 +354,7 @@ export default function OvertimePayCalculatorPage() {
               </table>
             </div>
             <p className="mt-3 text-xs text-warmgray-light">
-              The national minimum wage is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr for FY2025-26. Rates above reflect common award classifications. Use our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> to convert your hourly rate to an annual salary.
+              The national minimum wage is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr for FY{FY}. Rates above reflect common award classifications. Use our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> to convert your hourly rate to an annual salary.
             </p>
           </section>
 
@@ -358,10 +365,10 @@ export default function OvertimePayCalculatorPage() {
               Overtime earnings are taxed at your <strong>marginal tax rate</strong> because they are added on top of your regular assessable income. Every overtime dollar sits in your highest income tax bracket, identical to how <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">bonus payments are taxed</Link>.
             </p>
             <p className="mb-4 text-warmgray">
-              Your employer withholds tax from overtime pay through PAYG withholding. The ATO provides Schedule 5 (tax table for back payments and lump sums) and the standard weekly/fortnightly tax tables to calculate withholding on pay periods that include overtime. The 2% Medicare levy surcharge also applies to overtime earnings, and employees without private health insurance earning above <strong>$93,000</strong> per year pay an additional "Medicare Levy Surcharge" of <strong>1% to 1.5%</strong>.
+              Your employer withholds tax from overtime pay through PAYG withholding. The ATO provides Schedule 5 (tax table for back payments and lump sums) and the standard weekly/fortnightly tax tables to calculate withholding on pay periods that include overtime. The 2% Medicare levy also applies to overtime earnings, and employees without private hospital cover whose income for MLS purposes is above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> (singles, {FY}) pay an additional &quot;Medicare Levy Surcharge&quot; of <strong>1% to 1.5%</strong>.
             </p>
 
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">FY2025-26 Tax Brackets on Overtime Income</h3>
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">FY{FY} Tax Brackets on Overtime Income</h3>
             <p className="mb-4 text-warmgray">
               The income tax brackets below determine the marginal rate applied to your overtime. An employee earning <strong>$75,000</strong> in base salary pays <strong>30%</strong> plus <strong>2% Medicare levy</strong> on every overtime dollar, reducing each $1.00 of gross overtime to <strong>$0.68</strong> in take-home pay.
             </p>
@@ -376,36 +383,18 @@ export default function OvertimePayCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$0 – $18,200</td>
-                    <td className="px-4 py-3 text-center">0%</td>
-                    <td className="px-4 py-3 text-center">2%</td>
-                    <td className="px-4 py-3 text-right font-medium">98c per $1</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$18,201 – $45,000</td>
-                    <td className="px-4 py-3 text-center">16%</td>
-                    <td className="px-4 py-3 text-center">2%</td>
-                    <td className="px-4 py-3 text-right font-medium">82c per $1</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$45,001 – $135,000</td>
-                    <td className="px-4 py-3 text-center">30%</td>
-                    <td className="px-4 py-3 text-center">2%</td>
-                    <td className="px-4 py-3 text-right font-medium">68c per $1</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$135,001 – $190,000</td>
-                    <td className="px-4 py-3 text-center">37%</td>
-                    <td className="px-4 py-3 text-center">2%</td>
-                    <td className="px-4 py-3 text-right font-medium">61c per $1</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">$190,001+</td>
-                    <td className="px-4 py-3 text-center">45%</td>
-                    <td className="px-4 py-3 text-center">2%</td>
-                    <td className="px-4 py-3 text-right font-medium">53c per $1</td>
-                  </tr>
+                  {TAX_BRACKETS.map((b) => {
+                    // No Medicare levy below the low-income threshold (tax-free band).
+                    const levy = b.rate === 0 ? 0 : MEDICARE_LEVY.rate;
+                    return (
+                      <tr key={b.min} className="hover:bg-sandstone">
+                        <td className="px-4 py-3 text-navy">{bracketRange(b)}</td>
+                        <td className="px-4 py-3 text-center">{pct(b.rate)}</td>
+                        <td className="px-4 py-3 text-center">{pct(levy)}</td>
+                        <td className="px-4 py-3 text-right font-medium">{Math.round((1 - b.rate - levy) * 100)}c per $1</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -415,7 +404,7 @@ export default function OvertimePayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Do I Get Super on Overtime?</h2>
             <p className="mb-4 text-warmgray">
-              Overtime is generally <strong>not classified as Ordinary Time Earnings (OTE)</strong> and does not attract the 12% Superannuation Guarantee for FY2025-26. The ATO defines OTE as the earnings an employee receives for ordinary hours of work, and overtime hours fall outside that definition.
+              Overtime is generally <strong>not classified as Ordinary Time Earnings (OTE)</strong> and does not attract the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee for FY{FY}. The ATO defines OTE as the earnings an employee receives for ordinary hours of work, and overtime hours fall outside that definition. Payday Super (from {SUPER_GUARANTEE.paydaySuperStart}) calculates SG on &quot;qualifying earnings&quot;, which still exclude overtime where ordinary hours are clearly identified.
             </p>
             <p className="mb-4 text-warmgray">
               Some enterprise agreements or employment contracts include overtime in the superannuation calculation base. Check your employment agreement or contact your employer&apos;s payroll team to confirm. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to calculate the SG rate on your ordinary earnings separately.
@@ -426,7 +415,7 @@ export default function OvertimePayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Are Common Overtime Pay Mistakes?</h2>
             <p className="mb-4 text-warmgray">
-              Underpayment of overtime is one of the most common payroll compliance issues in Australia, with the Fair Work Ombudsman recovering <strong>over $500 million</strong> in unpaid wages across the 2022-23 and 2023-24 financial years. These 5 mistakes occur most frequently:
+              Underpayment of overtime is one of the most common payroll compliance issues in Australia, with the Fair Work Ombudsman recovering <strong>$453 million</strong> in underpaid wages in FY2025-26 alone. These 5 mistakes occur most frequently:
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Applying the wrong multiplier</strong> — Using 1.5x for all overtime hours instead of escalating to 2.0x after the first 2 or 3 hours as required by most awards</li>
@@ -451,10 +440,10 @@ export default function OvertimePayCalculatorPage() {
             <ul className="list-disc pl-6 space-y-2 text-warmgray">
               <li><Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">Overtime and penalty rates guide</Link> &mdash; the award rules that set time-and-a-half, double time and weekend loadings.</li>
               <li><Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link> — Convert your base salary plus overtime into a weekly after-tax amount</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — Calculate your total income tax liability including overtime in your assessable income for FY2025-26</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> — Calculate your total income tax liability including overtime in your assessable income for FY{FY}</li>
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> — See your net pay after tax, Medicare levy, and HECS-HELP on a salary that includes regular overtime</li>
               <li><Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">Bonus Tax Calculator</Link> — Estimate tax on lump-sum payments, which follow the same marginal rate logic as overtime</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — Calculate the 12% SG contribution on your ordinary time earnings, separate from overtime</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> — Calculate the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG contribution on your ordinary time earnings, separate from overtime</li>
             </ul>
           </section>
 
@@ -490,11 +479,11 @@ export default function OvertimePayCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="overtime-super" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Is superannuation paid on overtime hours?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The 12% Superannuation Guarantee does not apply to overtime hours under the ATO&apos;s definition of &quot;Ordinary Time Earnings.&quot; Overtime pay falls outside OTE. Some enterprise agreements override this and include overtime in the super calculation base, so check your employment contract.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">The {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee does not apply to overtime hours under the ATO&apos;s definition of &quot;Ordinary Time Earnings.&quot; Overtime pay falls outside OTE. Some enterprise agreements override this and include overtime in the super calculation base, so check your employment contract.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="overtime-tax-bracket" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does overtime push me into a higher tax bracket?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from $45,000 to above $45,001), the portion above the threshold is taxed at the higher marginal rate of <strong>30%</strong> instead of <strong>16%</strong>. Only the portion above the threshold is taxed at the higher rate — not your entire income.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Overtime increases your total assessable income for the financial year. If total earnings including overtime cross an income tax bracket threshold (e.g., from $45,000 to above $45,001), the portion above the threshold is taxed at the higher marginal rate of <strong>{pct(TAX_BRACKETS[2].rate)}</strong> instead of <strong>{pct(TAX_BRACKETS[1].rate)}</strong>. Only the portion above the threshold is taxed at the higher rate — not your entire income.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="toil" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Can I take time off instead of overtime pay?</AccordionTrigger>

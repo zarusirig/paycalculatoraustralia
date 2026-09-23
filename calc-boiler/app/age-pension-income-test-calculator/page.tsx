@@ -9,7 +9,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/age-pension-income-test-calculator/`;
 const TITLE = "Age Pension Income Test Calculator — Work Bonus Included";
-const DESCRIPTION = "How income changes your Age Pension: the $226 single and $396 couple free areas, 50c and 25c tapers, the $300-a-fortnight Work Bonus and its balance, and the maximum rates from 20 March 2026. Figures verified at Services Australia.";
+const DESCRIPTION = "How income changes your Age Pension: the $226 single and $396 couple free areas, 50c and 25c tapers, the $300-a-fortnight Work Bonus and its balance, and the maximum rates before and after the 20 September 2026 increase. Figures verified at Services Australia.";
 
 export const metadata: Metadata = {
   title: TITLE,

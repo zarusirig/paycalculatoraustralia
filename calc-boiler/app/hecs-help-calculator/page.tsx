@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: `HECS Repayment Calculator Australia ${SITE_CONFIG.financialYear}`,
     description: `Free calculator on the marginal repayment system. ${SITE_CONFIG.financialYear} threshold ${formatAUD(T)}, covering every study and training support loan.`,
     url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",

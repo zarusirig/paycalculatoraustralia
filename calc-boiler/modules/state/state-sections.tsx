@@ -10,6 +10,7 @@ import {
   SUPER_GUARANTEE,
 } from "@/lib/constants";
 import { WA_STATE_MINIMUM_WAGE } from "@/lib/constants/minimum-wage";
+import { SERVICE_PAY_BUILT } from "@/lib/data/service-pay/built"; // F5, 24 Sep 2026
 import {
   PAYROLL_TAX_FY,
   PAYROLL_TAX_STATES,
@@ -577,6 +578,28 @@ export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
           )}
           .
         </li>
+        {/* --- F5 emergency-service pay (24 Sep 2026) --- */}
+        <li>
+          <strong className="text-navy">Emergency services:</strong>{" "}
+          {(
+            [
+              ["paramedic", "paramedic-pay", "paramedic"],
+              ["police", "police-pay", "police"],
+              ["firefighter", "firefighter-pay", "firefighter"],
+            ] as const
+          )
+            .filter(([occ]) => (SERVICE_PAY_BUILT[occ] as readonly string[]).includes(code))
+            .map(([occ, segment, noun], i, arr) => (
+              <span key={occ}>
+                {i > 0 ? (i === arr.length - 1 ? " and " : ", ") : ""}
+                <Link href={`/${segment}/${code}/`} className={link}>
+                  {profile.shortName} {noun} pay
+                </Link>
+              </span>
+            ))}
+          .
+        </li>
+        {/* --- end F5 --- */}
         <li>
           <strong className="text-navy">Workers compensation:</strong> if you are injured at work, the{" "}
           {profile.shortName} scheme ({pt.workersComp}) covers weekly payments and medical costs. Your

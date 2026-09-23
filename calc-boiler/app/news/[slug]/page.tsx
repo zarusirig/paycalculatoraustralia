@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "en_AU",
       publishedTime: meta.datePublished,
       modifiedTime: meta.dateModified,
+      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
   };
@@ -53,6 +54,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
     headline: meta.headline,
+    image: `${BASE}/og-image.png`,
     description: meta.description,
     datePublished: meta.datePublished,
     dateModified: meta.dateModified,
@@ -62,7 +64,7 @@ export default async function NewsArticlePage({ params }: PageProps) {
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
-      logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` },
+      logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };

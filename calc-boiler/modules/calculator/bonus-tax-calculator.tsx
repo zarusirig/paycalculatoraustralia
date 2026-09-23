@@ -39,6 +39,16 @@ const EX_BASE = calculatePayBreakdown({ grossSalary: 90_000 });
 const EX_COMBINED = calculatePayBreakdown({ grossSalary: 100_000 });
 const EX_TAX_ON_BONUS = EX_COMBINED.totalDeductions - EX_BASE.totalDeductions;
 const EX_NET_BONUS = 10_000 - EX_TAX_ON_BONUS;
+const FY = SITE_CONFIG.financialYear;
+const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
+const allIn = (rate: number) => rate + MEDICARE_LEVY.rate;
+// Salary sacrifice of a $10,000 bonus at $120,000 (stays in the 30% bracket):
+// marginal rate + Medicare levy avoided, less 15% contributions tax.
+const SS_SAVING_120K = Math.round(10_000 * (allIn(TAX_BRACKETS[2].rate) - 0.15));
+const SG_ON_120K = Math.round(120_000 * SUPER_GUARANTEE.rate);
+// Deferral example: the same $10,000 bonus taxed in the 30% vs second bracket.
+const DEFER_HIGH = Math.round(10_000 * allIn(TAX_BRACKETS[2].rate));
+const DEFER_LOW = Math.round(10_000 * allIn(TAX_BRACKETS[1].rate));
 
 // Year-over-year saving from the FY2026-27 rate cut (16% → 15% on the second
 // bracket) for anyone earning at least the top of that bracket.
@@ -433,15 +443,15 @@ export default function BonusTaxCalculatorPage() {
               </p>
               <h3>Strategy 1: Salary Sacrifice Into Super</h3>
               <p>
-                Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The contribution is taxed at only <strong>15%</strong> inside the super fund, compared to marginal rates of 30%–47% outside super. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>$1,700</strong> in tax ($3,200 at the marginal rate minus $1,500 in super contributions tax).
+                Directing part or all of a bonus into superannuation as a concessional (before-tax) contribution reduces taxable income. The contribution is taxed at only <strong>15%</strong> inside the super fund, compared to marginal rates of 30%–47% outside super. A worker on $120,000 who sacrifices a $10,000 bonus saves approximately <strong>{formatAUD(SS_SAVING_120K)}</strong> in tax ({formatAUD(DEFER_HIGH)} at the marginal rate plus Medicare levy, minus $1,500 in super contributions tax).
               </p>
               <p>
-                The concessional contribution cap for FY2025-26 is <strong>$30,000</strong> per year, including employer SG contributions of 12%. A worker earning $120,000 receives $14,400 in SG, leaving <strong>$15,600</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their super balance was below $500,000 on 30 June) can carry forward up to 5 years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for a detailed walkthrough.
+                The concessional contribution cap for FY{FY} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year, including employer SG contributions of {SG_PCT}. A worker earning $120,000 receives {formatAUD(SG_ON_120K)} in SG, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - SG_ON_120K)}</strong> of cap space for salary sacrifice. Workers with unused cap space from previous years (where their super balance was below $500,000 on 30 June) can carry forward up to 5 years of unused amounts. See our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> for a detailed walkthrough.
               </p>
 
               <h3>Strategy 2: Time the Bonus Payment</h3>
               <p>
-                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year — due to parental leave, career break, or part-time work — ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the 30% bracket costs <strong>$3,200</strong> in tax. The same bonus taxed at the 16% bracket (if income drops below $45,000) costs only <strong>$1,800</strong> — a saving of <strong>$1,400</strong>.
+                A bonus is assessable income in the financial year it is <em>paid</em>, not the year it is earned. If you expect lower income next financial year — due to parental leave, career break, or part-time work — ask your employer to defer the bonus payment into the new financial year. A $10,000 bonus taxed at the {formatPercent(TAX_BRACKETS[2].rate, 0)} bracket costs <strong>{formatAUD(DEFER_HIGH)}</strong> in tax and Medicare levy. The same bonus taxed at the {formatPercent(TAX_BRACKETS[1].rate, 0)} bracket (if income drops below $45,000) costs about <strong>{formatAUD(DEFER_LOW)}</strong> &mdash; a saving of roughly <strong>{formatAUD(DEFER_HIGH - DEFER_LOW)}</strong>, before any Low Income Tax Offset effect.
               </p>
 
               <h3>Strategy 3: Maximise Deductions</h3>
@@ -452,19 +462,22 @@ export default function BonusTaxCalculatorPage() {
             <section id="super-on-bonus">
               <h2>Is Superannuation Paid on Bonuses?</h2>
               <p>
-                Bonuses for work performed are generally classified as &quot;Ordinary Time Earnings&quot; (OTE) and attract the <strong>12% Superannuation Guarantee</strong> for FY2025-26.
+                Bonuses for work performed are generally &quot;Ordinary Time Earnings&quot; (OTE) &mdash; and so qualifying earnings under Payday Super &mdash; and attract the <strong>{SG_PCT} Superannuation Guarantee</strong> for FY{FY}.
               </p>
               <p>
-                Your employer pays the SG rate of 12% on top of your bonus, depositing it into your super fund. A $10,000 performance bonus generates <strong>$1,200</strong> in additional super contributions. However, some bonus types are excluded from OTE:
+                Your employer pays the SG rate of {SG_PCT} on top of your bonus, depositing it into your super fund. A $10,000 performance bonus generates <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> in additional super contributions. The ATO&apos;s qualifying earnings table (Table 10) treats bonuses this way:
               </p>
               <ul>
-                <li><strong>Retention bonuses</strong> — excluded from OTE if the payment is conditional on staying for a set period rather than performing work</li>
-                <li><strong>Sign-on bonuses</strong> — generally excluded because they relate to entering employment, not performing work</li>
-                <li><strong>Referral bonuses</strong> — excluded when paid for recommending a candidate rather than productive work</li>
-                <li><strong>Performance bonuses linked to work</strong> — classified as OTE and attract the full 12% SG</li>
+                {/* ATO "What payments are qualifying earnings", Table 10 (verified 24 Sep 2026):
+                    performance, Christmas, sign-on, referral and return-to-work bonuses are included;
+                    only a bonus solely for work entirely outside ordinary hours is excluded. */}
+                <li><strong>Performance and Christmas bonuses</strong> — included, attract the full {SG_PCT} SG</li>
+                <li><strong>Sign-on bonuses for new employees</strong> — included</li>
+                <li><strong>Referral bonuses</strong> — included</li>
+                <li><strong>Bonus solely for work performed entirely outside ordinary hours</strong> — excluded (treated as overtime)</li>
               </ul>
               <p>
-                The maximum super contribution base for FY2025-26 is <strong>$65,070 per quarter</strong>. Employers are not required to pay SG on earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+                Since Payday Super began, the maximum super contribution base is an annual figure &mdash; <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for FY{FY}. Employers are not required to pay SG on qualifying earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
               </p>
             </section>
             <section id="lump-sum-b">
@@ -490,7 +503,7 @@ export default function BonusTaxCalculatorPage() {
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> &mdash; calculates your net pay after income tax, Medicare levy, HECS, and superannuation on your full salary including bonuses</li>
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; shows the exact income tax brackets and amounts applied to your total taxable income for FY{SITE_CONFIG.financialYear}</li>
               <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> &mdash; models whether sacrificing part of your bonus into superannuation reduces your overall tax liability</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; determines the 12% SG contribution your employer pays on your bonus and base salary</li>
+              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; determines the {SG_PCT} SG contribution your employer pays on your bonus and base salary</li>
               <li><Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline">Tax Return Calculator</Link> &mdash; estimates whether you will receive a tax refund or owe a balance when you lodge your return after receiving bonus income</li>
             </ul>
           </section>

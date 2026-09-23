@@ -3,6 +3,11 @@ import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calc
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
+import { SCALE_1_NO_TFT } from "@/lib/constants/payg-withholding";
+
+// First coefficient of the current Schedule 1 "no tax-free threshold" scale
+// (15% from 1 July 2026; the FAQ previously said 16%).
+const NO_TFT_START_RATE = `${Math.round((SCALE_1_NO_TFT[0].a ?? 0) * 100)}%`;
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
@@ -21,6 +26,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
@@ -59,7 +65,7 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "Why is my second job taxed more?",
-      acceptedAnswer: { "@type": "Answer", text: "Your second job is taxed at a higher rate because you can only claim the tax-free threshold ($18,200) on one job. Your second employer withholds tax from the first dollar at the 'no tax-free threshold' rate, which starts at 16%." },
+      acceptedAnswer: { "@type": "Answer", text: `Your second job is taxed at a higher rate because you can only claim the tax-free threshold ($18,200) on one job. Your second employer withholds tax from the first dollar at the 'no tax-free threshold' rate, which starts at ${NO_TFT_START_RATE} in ${SITE_CONFIG.financialYear}.` },
     },
     {
       "@type": "Question",

@@ -6,7 +6,23 @@ import type {
   WebApplication,
   WithContext,
 } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import {
+  calculateIncomeTax,
+  calculateLITO,
+  calculateMedicareLevy,
+  formatAUD,
+  formatPercent,
+  SITE_CONFIG,
+  SUPER_GUARANTEE,
+} from "@/lib/constants";
+import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+
+// FAQ figures derived so the JSON-LD matches the on-page table and rolls over.
+const DAY_GROSS = 1_000 * 5 * 48;
+const DAY_NET =
+  DAY_GROSS -
+  Math.max(0, Math.round(calculateIncomeTax(DAY_GROSS, true) - calculateLITO(DAY_GROSS))) -
+  calculateMedicareLevy(DAY_GROSS);
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
 
@@ -25,6 +41,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
@@ -82,7 +99,7 @@ const faqSchema: WithContext<FAQPage> = {
       name: "How much do I take home as a contractor in Australia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "A contractor charging $1,000 per day grosses approximately $240,000 over 48 working weeks and takes home roughly $162,000 after income tax and the 2% Medicare levy (FY2026-27). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the 12% Super Guarantee for yourself. ABN contractors typically need to charge 30-40% more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.",
+        text: `A contractor charging $1,000 per day grosses ${formatAUD(DAY_GROSS)} over 48 working weeks and takes home roughly ${formatAUD(Math.round(DAY_NET / 1_000) * 1_000)} after income tax and the 2% Medicare levy (FY${SITE_CONFIG.financialYear}). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee for yourself. ABN contractors typically need to charge 30-40% more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.`,
       },
     },
     {
@@ -98,7 +115,7 @@ const faqSchema: WithContext<FAQPage> = {
       name: "What's the difference between ABN and PAYG income tax?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ABN contractors and PAYG employees pay the same marginal income tax brackets (0%, 16%, 30%, 37%, 45%) plus the 2% Medicare levy in FY2026-27. The difference is in how it's collected: PAYG employees have tax withheld every pay cycle by their employer, while ABN contractors invoice gross and pay tax through quarterly PAYG instalments or at year-end. Contractors also handle GST (10%) once turnover exceeds $75,000.",
+        text: `ABN contractors and PAYG employees pay the same marginal income tax brackets (${bracketRateList()}) plus the 2% Medicare levy in FY${SITE_CONFIG.financialYear}. The difference is in how it's collected: PAYG employees have tax withheld every pay cycle by their employer, while ABN contractors invoice gross and pay tax through quarterly PAYG instalments or at year-end. Contractors also handle GST (10%) once turnover exceeds $75,000.`,
       },
     },
     {
