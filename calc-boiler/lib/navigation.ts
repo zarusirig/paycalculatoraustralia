@@ -214,6 +214,18 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end minimum wage cluster ---
+  // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so these three are listed
+  // there automatically — no separate site-directory entry needed.
+  {
+    title: "Tax Time & Retirement 2026",
+    guides: [
+      { href: "/tax-return-2026/", label: "Tax Return 2026", description: "2025-26 deadline, refund estimate & tax rates" },
+      { href: "/payday-super/", label: "Payday Super", description: "Super paid every payday from 1 July 2026" },
+      { href: "/pension-age-australia/", label: "Pension Age Australia", description: "Age Pension and super access age by birth date" },
+    ],
+  },
+  // --- end W1 ---
 ] as const;
 
 export const STATE_CATEGORIES = [
