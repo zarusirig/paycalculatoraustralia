@@ -16,6 +16,7 @@ import {
   SMALL_BUSINESS_HEADCOUNT,
   genuineRedundancyTaxFreeLimit,
   nesRedundancyWeeks,
+  redundancyTax,
 } from "@/lib/constants/redundancy";
 
 export interface RedundancyFaq {
@@ -28,6 +29,12 @@ const Y = REDUNDANCY_TAX.incomeYear;
 const EX_SALARY = 90_000;
 const EX_YEARS = 5;
 const EX_GROSS = (EX_SALARY / 52) * nesRedundancyWeeks(EX_YEARS);
+
+// PAA example (Google AU, Sept 2026): "How much tax will I pay on $50,000 redundancy?"
+const TAX_50K = (years: number) =>
+  redundancyTax({ grossPayment: 50_000, completedYears: years, genuine: true, reachedPreservationAge: false });
+const T50_5 = TAX_50K(5);
+const T50_2 = TAX_50K(2);
 
 export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   {
@@ -77,5 +84,19 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   {
     q: "Why does redundancy pay drop from 16 to 12 weeks at 10 years?",
     a: "The usual explanation is long service leave: by 10 years most employees also qualify for it under their state or territory Act, and it is paid out on top of redundancy pay. The 12 weeks is the NES minimum; many agreements keep paying more after 10 years.",
+  },
+  // People Also Ask (Google AU, Sept 2026) for "redundancy pay calculator" and
+  // "redundancy payment": docs/seo/2026-09-24-paa-optimisation.md.
+  {
+    q: "How much tax will I pay on $50,000 redundancy?",
+    a: `It depends on your years of service. For a genuine redundancy in ${Y} with 5 completed years, ${formatAUD(T50_5.taxFree)} is tax-free and the other ${formatAUD(T50_5.etpTaxable)} is taxed at ${pct(T50_5.rateWithinCap)}, so tax is about ${formatAUD(T50_5.tax)}. With 2 years only ${formatAUD(T50_2.taxFree)} is tax-free and tax is about ${formatAUD(T50_2.tax)}. Rates assume you are under ${PRESERVATION_AGE}.`,
+  },
+  {
+    q: "Do you get more redundancy if you are over 45?",
+    a: `Not under the National Employment Standards. NES redundancy pay depends only on completed years of service, not age, and so does the tax-free limit. Age matters for tax in two other ways: the taxable part is taxed at ${pct(ETP_RATES.atOrOverPreservationAge)} instead of ${pct(ETP_RATES.underPreservationAge)} once you reach ${PRESERVATION_AGE}, and a dismissal at or after ${GENUINE_REDUNDANCY_AGE_LIMIT} cannot be a genuine redundancy. Your agreement may pay more.`,
+  },
+  {
+    q: "Is it better to take redundancy or resign?",
+    a: "If your job really is being made redundant, taking the redundancy is usually worth more. Redundancy brings NES redundancy pay, notice or pay in lieu, and a tax-free amount for a genuine redundancy. If you resign you get your unused annual leave and any long service leave your state's rules pay out, but no redundancy pay. Get the offer in writing before you decide.",
   },
 ];
