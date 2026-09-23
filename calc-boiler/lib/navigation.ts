@@ -806,6 +806,7 @@ export const GUIDE_CATEGORIES = [
     guides: [
       { href: "/sick-leave-calculator/", label: "Sick Leave Calculator", description: "Personal/carer's leave: 10 days, 1/26 of hours" },
       { href: "/compassionate-leave/", label: "Compassionate Leave", description: "2 days paid bereavement leave per occasion" },
+      { href: "/jury-duty-pay/", label: "Jury Duty Pay", description: "10 days employer make-up pay under the NES" },
     ],
   },
   {

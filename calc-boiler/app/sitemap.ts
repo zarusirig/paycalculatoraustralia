@@ -338,6 +338,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "compassionate-leave", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "disability-support-pension-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "ote-salary", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "jury-duty-pay", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end G3 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });

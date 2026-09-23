@@ -178,6 +178,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/compassionate-leave/": [L("/sick-leave-calculator/", "Sick Leave Calculator", "Personal/carer's leave: how much you have and how it accrues."), L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out."), L("/parental-leave-pay/", "Paid Parental Leave", "Government Parental Leave Pay, worked out."), PAYSLIP],
   "/disability-support-pension-calculator/": [INCOME_TEST_HUB, WORKING_CREDIT, L("/carer-payment-calculator/", "Carer Payment Calculator", "The other pension-rate payment, with a 100-hour work rule."), FORTNIGHTLY_PAY],
   "/ote-salary/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax withheld on a commission payment."), L("/bonus-tax-calculator/", "Bonus Tax Calculator", "What a bonus is worth after tax."), SUPER_CALC, TAKE_HOME],
+  "/jury-duty-pay/": [L("/sick-leave-calculator/", "Sick Leave Calculator", "How much personal/carer's leave you have."), L("/compassionate-leave/", "Compassionate Leave", "2 days paid bereavement leave each time."), PAYSLIP, TAKE_HOME],
   // --- end G3 ---
 
   // Tax core ↔ salary tables
