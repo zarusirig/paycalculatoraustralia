@@ -114,3 +114,30 @@ test("Priceline: printed cl 18.1 / Appendix A dollars and the agreement's multip
     assert.ok(text.includes(v), v);
   }
 });
+
+test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed exactly", () => {
+  const r = get("rebel");
+  assert.equal(r.instrument.reference, "AG2024/952, AE524487");
+  // [permanent base, casual base] for Levels 1, 2, 3 at 20 years and above.
+  assert.deepEqual(
+    r.rates.map((x) => [x.hourly, x.casualHourly]),
+    [[28.2, 35.25], [28.83, 36.04], [30.39, 37.98]],
+  );
+  // Above the Retail Award 2026 base rates for the mapped levels (L1, L2, L3).
+  const gria = [27.81, 28.45, 28.89];
+  r.rates.forEach((x, i) => assert.ok(x.hourly > gria[i], x.level));
+  // Printed junior rows = the stated percentage of the adult Level 1 rate.
+  for (const j of juniorRates(r)) {
+    assert.equal(j.published, true);
+    assert.equal(j.hourly, halfUp(28.2 * j.percentage), j.age);
+  }
+  // Dec 2026 award phase-in overtakes the printed 18 and 19 rates.
+  assert.ok(GRIA_DEC_2026_18 > 19.74 && GRIA_DEC_2026_19 > 22.56);
+  // Printed Level 1 penalty and overtime dollars appear on the page.
+  const cells = [...r.penalties, ...r.overtime].flatMap((p) => [p.permanent, p.casual]).join(" ");
+  for (const v of ["$34.40", "$41.45", "$48.50", "$62.60", "$69.65", "$55.55", "$76.69"]) assert.ok(cells.includes(v), v);
+  const text = pageText(r);
+  for (const v of ["$28.20", "$35.25", "$28.83", "$30.39", "$14.10", "$17.62", "$16.92", "$21.15", "$19.74", "$22.56", "$20.86", "$23.64", "$35.18", "$42.39", "$64.01", "$37.07", "$44.67", "$67.46"]) {
+    assert.ok(text.includes(v), v);
+  }
+});

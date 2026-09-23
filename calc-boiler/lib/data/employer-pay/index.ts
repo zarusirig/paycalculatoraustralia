@@ -39,6 +39,7 @@ import { OFFICEWORKS_PAY } from "./officeworks";
 // --- J7 (24 Sep 2026) ---
 import { TARGET_PAY } from "./target";
 import { PRICELINE_PAY } from "./priceline";
+import { REBEL_PAY } from "./rebel";
 // --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -69,6 +70,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   // --- J7 (24 Sep 2026) ---
   target: TARGET_PAY,
   priceline: PRICELINE_PAY,
+  rebel: REBEL_PAY,
   // --- end J7 ---
 };
 
