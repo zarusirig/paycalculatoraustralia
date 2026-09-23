@@ -90,7 +90,6 @@ export default function BonusTaxCalculatorPage() {
       marginalRate = bracket.rate;
     }
   }
-  const marginalPlusMedicare = marginalRate + MEDICARE_LEVY.rate;
 
   return (
     <div className="min-h-screen flex-grow">

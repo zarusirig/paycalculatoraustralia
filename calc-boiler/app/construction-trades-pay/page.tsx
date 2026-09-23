@@ -5,7 +5,6 @@ import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS } from "@/lib/authors";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/construction-trades-pay/`;
 const TITLE = "Construction & Trades Pay Guide — Tradie & Apprentice Rates";
 const DESCRIPTION = "Construction and trades pay rates: apprentice wages, qualified trade rates, labourer pay, overtime, site allowances, and take-home pay for tradies in Australia.";
