@@ -7,7 +7,16 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import { CO_CONTRIBUTION, maxCoContribution } from "@/lib/constants/super-contributions";
+
+const LOWER = CO_CONTRIBUTION.lowerThreshold;
+const HIGHER = CO_CONTRIBUTION.higherThreshold;
+const CO_ROWS = [
+  { label: `${formatAUD(LOWER)} or less`, max: maxCoContribution(LOWER) },
+  ...[52_000, 55_000, 60_000].map((income) => ({ label: formatAUD(income), max: maxCoContribution(income) })),
+  { label: `${formatAUD(HIGHER)} or more`, max: 0 },
+];
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -60,10 +69,10 @@ export default function SuperCoContributionPage() {
             <section id="government-co-contribution">
               <h2>Government Super Co-Contribution</h2>
               <p>
-                The government super co-contribution is a dollar-for-dollar matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund — up to a maximum of <strong>$500 per financial year</strong>.
+                The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund — up to a maximum of <strong>$500 per financial year</strong>.
               </p>
               <p>
-                To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>$43,445 or less</strong> in total income. The co-contribution reduces progressively for incomes between $43,445 and $58,445, reaching zero at the upper threshold.
+                To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold.
               </p>
 
               <h3>How It Works</h3>
@@ -78,12 +87,12 @@ export default function SuperCoContributionPage() {
 
               <h3>Eligibility Requirements</h3>
               <ul>
-                <li>Total income (assessable income + reportable fringe benefits + reportable employer super) of <strong>$58,445 or less</strong></li>
+                <li>Total income (assessable income + reportable fringe benefits + reportable employer super) of less than <strong>{formatAUD(HIGHER)}</strong> in FY{CO_CONTRIBUTION.incomeYear}</li>
                 <li>At least <strong>10% of total income</strong> must come from employment, business, or a combination of both</li>
                 <li>Lodge an income tax return for the relevant financial year</li>
                 <li>Be under <strong>age 71</strong> at the end of the financial year</li>
                 <li>Not hold a temporary visa at any time during the year (unless you are a New Zealand citizen or holder of a prescribed visa)</li>
-                <li>Total super balance must be below <strong>$1.9 million</strong> on 30 June of the previous year</li>
+                <li>Total super balance must be below the general transfer balance cap (<strong>{formatAUD(SUPER_GUARANTEE.transferBalanceCap)}</strong> in FY{SITE_CONFIG.financialYear}) on 30 June of the previous year, and personal contributions must not exceed the non-concessional cap</li>
               </ul>
 
               <h3>Income Thresholds & Reduction</h3>
@@ -98,37 +107,19 @@ export default function SuperCoContributionPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">$43,445 or less</td>
-                        <td className="p-3 text-navy text-right">$500</td>
-                        <td className="p-3 text-navy">$1,000 personal contribution</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">$45,000</td>
-                        <td className="p-3 text-navy text-right">$474</td>
-                        <td className="p-3 text-navy">$948 personal contribution</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">$50,000</td>
-                        <td className="p-3 text-navy text-right">$282</td>
-                        <td className="p-3 text-navy">$564 personal contribution</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">$55,000</td>
-                        <td className="p-3 text-navy text-right">$115</td>
-                        <td className="p-3 text-navy">$230 personal contribution</td>
-                      </tr>
-                      <tr>
-                        <td className="p-3 text-navy font-medium">$58,445 or more</td>
-                        <td className="p-3 text-navy text-right">$0</td>
-                        <td className="p-3 text-navy">Not eligible</td>
-                      </tr>
+                      {CO_ROWS.map((r, i) => (
+                        <tr key={r.label} className={`border-b border-sandstone-dark/10 ${i % 2 === 1 ? "bg-sandstone/30" : ""}`}>
+                          <td className="p-3 text-navy font-medium">{r.label}</td>
+                          <td className="p-3 text-navy text-right">{formatAUD(r.max)}</td>
+                          <td className="p-3 text-navy">{r.max > 0 ? `${formatAUD(r.max / CO_CONTRIBUTION.matchRate)} personal contribution` : "Not eligible"}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The reduction formula is: maximum co-contribution is reduced by <strong>$0.03333</strong> for every $1.00 of income above $43,445. This produces a linear phase-out from $500 to $0 across the $15,000 income range.
+                The reduction formula is: maximum co-contribution is reduced by <strong>$0.03333</strong> for every $1.00 of income above {formatAUD(LOWER)}. This produces a linear phase-out from $500 to $0 across the $15,000 income range.
               </p>
             </section>
 
@@ -208,7 +199,7 @@ export default function SuperCoContributionPage() {
             <section id="combined-example">
               <h2>Both Combined — Worked Example</h2>
               <p>
-                Consider a couple where <strong>Partner A</strong> earns $90,000 and <strong>Partner B</strong> earns $40,000. Partner B is eligible for the government co-contribution, and Partner A can contribute to Partner B&apos;s super for the spouse offset.
+                Consider a couple where <strong>Partner A</strong> earns $90,000 and <strong>Partner B</strong> earns $36,000, mostly from a part-time job. Partner B is eligible for the full government co-contribution, and because Partner B earns $37,000 or less, Partner A can claim the full spouse offset.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -225,7 +216,7 @@ export default function SuperCoContributionPage() {
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Partner B makes $1,000 personal contribution</td>
                         <td className="p-3 text-navy text-right">$1,000</td>
-                        <td className="p-3 text-navy text-right">$1,000 + $334 co-contribution</td>
+                        <td className="p-3 text-navy text-right">$1,000 + {formatAUD(maxCoContribution(36_000))} co-contribution</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Partner A contributes $3,000 to Partner B&apos;s super</td>
@@ -240,17 +231,14 @@ export default function SuperCoContributionPage() {
                       <tr className="bg-eucalyptus-light/30">
                         <td className="p-3 text-navy font-bold">Total outcome</td>
                         <td className="p-3 text-navy text-right font-bold">$4,000 contributed</td>
-                        <td className="p-3 text-navy text-right font-bold">$4,334 in super + $540 tax offset</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(4_000 + maxCoContribution(36_000))} in super + $540 tax offset</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The couple contributes $4,000 from after-tax income and receives <strong>$334 in free government money</strong> into Partner B&apos;s super plus a <strong>$540 tax reduction</strong> for Partner A — a combined benefit of <strong>$874</strong> for a $4,000 outlay. At Partner B&apos;s income of $40,000, the co-contribution is reduced from the maximum $500 because income exceeds $43,445 — wait, Partner B earns $40,000 which is below $43,445, so actually the co-contribution would be $500 if they contributed $1,000. However, the spouse offset phases out at $40,000 spouse income. Let&apos;s adjust: with Partner B at exactly $40,000, the spouse offset is $0 (threshold is $40,000+). To benefit from both:
-              </p>
-              <p>
-                A more practical scenario: <strong>Partner B earns $36,000</strong>. They contribute $1,000 personally and receive the full <strong>$500</strong> co-contribution. Partner A contributes $3,000 to Partner B&apos;s super and claims the full <strong>$540</strong> spouse offset. Total: $4,000 outlay produces $4,500 in super + $540 tax savings = <strong>$1,040 total benefit</strong>.
+                The couple contributes $4,000 from after-tax income and receives <strong>{formatAUD(maxCoContribution(36_000))} of government money</strong> into Partner B&apos;s super plus a <strong>$540 tax reduction</strong> for Partner A &mdash; a combined benefit of <strong>{formatAUD(maxCoContribution(36_000) + 540)}</strong> for a $4,000 outlay. If Partner B earned $40,000 or more, the spouse offset would be nil, although the co-contribution would still be available up to {formatAUD(HIGHER)}.
               </p>
             </section>
 
@@ -270,7 +258,7 @@ export default function SuperCoContributionPage() {
                 <AccordionItem value="how-much" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How much is the government super co-contribution?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    The government matches <strong>$0.50 for every $1.00</strong> of eligible personal (non-concessional) super contributions, up to a maximum of $500 per financial year. To receive the full $500, you need to contribute $1,000 and earn $43,445 or less. The maximum co-contribution reduces progressively for incomes between $43,445 and $58,445.
+                    The government matches <strong>$0.50 for every $1.00</strong> of eligible personal (non-concessional) super contributions, up to a maximum of $500 per financial year. To receive the full $500, you need to contribute $1,000 and have total income of {formatAUD(LOWER)} or less (FY{CO_CONTRIBUTION.incomeYear}). The maximum co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -320,7 +308,7 @@ export default function SuperCoContributionPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Co-contribution thresholds and rates reflect FY2025-26 values as published by the ATO. The spouse contribution tax offset is calculated under section 290-230 of the Income Tax Assessment Act 1997. Income thresholds are indexed annually. All figures assume the contributor meets all eligibility criteria including the 10% employment income test.</p>
+                <p>Co-contribution thresholds and rates reflect FY{CO_CONTRIBUTION.incomeYear} values as published by the ATO (key superannuation rates and thresholds, government contributions). The spouse contribution tax offset is calculated under section 290-230 of the Income Tax Assessment Act 1997. Income thresholds are indexed annually. All figures assume the contributor meets all eligibility criteria including the 10% employment income test.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("super-co-contribution"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

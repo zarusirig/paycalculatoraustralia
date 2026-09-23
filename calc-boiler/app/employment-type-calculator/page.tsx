@@ -75,7 +75,7 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "Can I convert from casual to permanent?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Under the Fair Work Act, casual employees who have worked regular hours for 12 months can request conversion to permanent (full-time or part-time) employment. Employers with 15+ employees must offer conversion if the criteria are met." },
+      acceptedAnswer: { "@type": "Answer", text: "Yes. Since 26 August 2024, a casual employee who has worked for their employer for at least 6 months (12 months if the employer is a small business with fewer than 15 employees) and believes they no longer meet the casual definition can notify their employer that they want to change to full-time or part-time. The employer must respond in writing within 21 days; employers are no longer required to offer conversion." },
     },
   ],
 };

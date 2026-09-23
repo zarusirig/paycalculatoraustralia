@@ -11,6 +11,12 @@ export default function AgePensionIncreaseMarch2026() {
         Payment moved by the same amount.
       </p>
 
+      <p className="text-sm text-warmgray">
+        <strong>Update, 24 September 2026:</strong> these were the rates from 20 March to 19
+        September 2026. Pension rates were indexed again on 20 September 2026, so check your current
+        rate with Services Australia.
+      </p>
+
       <NewsKeyFacts
         rows={[
           { label: "Age Pension — single", before: "$1,178.70", after: "$1,200.90" },

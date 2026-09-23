@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import EmployerCostCalculatorPage from "@/modules/guide/employer-cost-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, STATE_PAYROLL_TAX, formatAUD, formatPercent } from "@/lib/constants";
+
+const PAYROLL_RATES = Object.values(STATE_PAYROLL_TAX).map((s) => s.rate);
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -51,8 +53,8 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "How much does an employee actually cost an employer?", acceptedAnswer: { "@type": "Answer", text: "As a general rule of thumb in Australia, the true cost of a full-time employee is typically 1.3 to 1.4 times their base salary. For a $100,000 salary, the business actually spends closer to $130,000-$140,000 once super, payroll tax, WorkCover, and leave liabilities are factored in." } },
-    { "@type": "Question", name: "What is Payroll Tax?", acceptedAnswer: { "@type": "Answer", text: "Payroll tax is a state government tax levied on employers when their total wage bill exceeds a certain threshold (e.g. $1.2M in NSW). It is usually calculated at around 4.5% to 5.5% of the total wages paid." } },
+    { "@type": "Question", name: "How much does an employee actually cost an employer?", acceptedAnswer: { "@type": "Answer", text: "On typical assumptions (12% super, 4 weeks leave provision, Victorian payroll tax above the threshold and a 1.5% WorkCover premium), a full-time employee costs about 1.27 times their base salary: roughly $126,600 on a $100,000 salary, before recruitment, training and equipment." } },
+    { "@type": "Question", name: "What is Payroll Tax?", acceptedAnswer: { "@type": "Answer", text: `Payroll tax is a state and territory tax levied on employers when their total wage bill exceeds a threshold (e.g. ${formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} in NSW). Headline rates for FY${SITE_CONFIG.financialYear} range from ${formatPercent(Math.min(...PAYROLL_RATES), 2)} to ${formatPercent(Math.max(...PAYROLL_RATES), 2)} of wages above the threshold.` } },
     { "@type": "Question", name: "What are Leave Provisions?", acceptedAnswer: { "@type": "Answer", text: "Leave provisions are an accounting liability. Even though a worker on a $100k salary receives $100k for working 52 weeks, they only actually work 48 weeks (because of 4 weeks annual leave). The employer is paying for 52 weeks of wages but only extracting 48 weeks of productive labour." } },
   ]
 };
