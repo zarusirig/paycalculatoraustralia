@@ -53,6 +53,7 @@ export const EMPLOYER_SLUGS = [
   "guzman-y-gomez",
   "zambrero",
   "event-cinemas",
+  "qantas",
   // --- end J7 ---
 ] as const;
 
@@ -92,6 +93,16 @@ export interface RateRow {
   casualHourly: number;
   /** Full-time weekly rate where the instrument publishes one. */
   weekly?: number;
+  // --- J7 (24 Sep 2026): salaried cabin crew ---
+  /**
+   * True when the instrument has no casual rate for this classification (e.g.
+   * airline agreements pay casuals only at the entry level). The page shows
+   * "—" and `casualHourly` must be 0. Never set on rates[0].
+   */
+  noCasual?: boolean;
+  /** Full-time annual salary where the instrument sets pay as a salary. */
+  annualSalary?: number;
+  // --- end J7 ---
 }
 
 /** A junior percentage band, as the instrument states it. */
@@ -205,4 +216,15 @@ export interface EmployerPay {
    */
   derivedJuniorRates?: PublishedJuniorRate[];
   // --- end H1 ---
+  // --- J7 (24 Sep 2026): salaried cabin crew ---
+  /**
+   * Ordinary hours in a full-time week where the instrument does not use 38
+   * (Virgin cabin crew: 36; Qantas short haul: 1,677 hours a year / 52 =
+   * 32.25). Weekly rates divide back to the hourly rate by this, and the
+   * page's full-time year uses it.
+   */
+  fullTimeWeeklyHours?: number;
+  /** Shown above the adult rate table: how the hourly figure relates to a salary. */
+  payBasisNote?: string;
+  // --- end J7 ---
 }

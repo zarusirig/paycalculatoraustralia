@@ -47,6 +47,7 @@ import { STARBUCKS_PAY } from "./starbucks";
 import { GUZMAN_Y_GOMEZ_PAY } from "./guzman-y-gomez";
 import { ZAMBRERO_PAY } from "./zambrero";
 import { EVENT_CINEMAS_PAY } from "./event-cinemas";
+import { QANTAS_PAY } from "./qantas";
 // --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -85,6 +86,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "guzman-y-gomez": GUZMAN_Y_GOMEZ_PAY,
   zambrero: ZAMBRERO_PAY,
   "event-cinemas": EVENT_CINEMAS_PAY,
+  qantas: QANTAS_PAY,
   // --- end J7 ---
 };
 
@@ -210,6 +212,28 @@ export function weeklyExamples(employer: EmployerPay): WeeklyExample[] {
 export function annualFullTime(hourly: number): number {
   return roundCents(hourly * STANDARD_WEEKLY_HOURS * WEEKS_PER_YEAR);
 }
+
+// --- J7 (24 Sep 2026): salaried cabin crew ---
+/** Full-time weekly hours for an employer (38 unless the instrument says otherwise). */
+export function fullTimeHours(employer: EmployerPay): number {
+  return employer.fullTimeWeeklyHours ?? STANDARD_WEEKLY_HOURS;
+}
+
+/**
+ * Full-time annual gross for a classification: the instrument's own annual
+ * salary where it sets one, otherwise hourly x full-time hours x 52.
+ */
+export function annualFor(employer: EmployerPay, row: RateRow): number {
+  if (row.annualSalary !== undefined) return row.annualSalary;
+  return roundCents(row.hourly * fullTimeHours(employer) * WEEKS_PER_YEAR);
+}
+
+/** Nearest /take-home-pay-on/N/ page for a full-time year at an annual amount. */
+export function takeHomeHrefForAnnual(annual: number): { href: string; amount: number } {
+  const amount = nearestTakeHomeAmount(annual);
+  return { href: `/take-home-pay-on/${amount}/`, amount };
+}
+// --- end J7 ---
 
 /** Nearest /take-home-pay-on/N/ page for a full-time year at this rate. */
 export function takeHomeHrefForHourly(hourly: number): { href: string; amount: number } {

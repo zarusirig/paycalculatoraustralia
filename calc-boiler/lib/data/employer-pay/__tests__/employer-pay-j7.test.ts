@@ -5,11 +5,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { getEmployerPay, juniorRates, type EmployerPay } from "../index";
+import { annualFor, getEmployerPay, juniorRates, type EmployerPay } from "../index";
 
 /** Half-up to the cent as on paper (toFixed(6) strips float noise like 34.82499…). */
 const halfUp = (v: number) => Math.round(Number((v * 100).toFixed(6))) / 100;
 const money = (v: number) => `$${halfUp(v).toFixed(2)}`;
+/** "$1,038.39" — thousands separators, as the page prints salaries. */
+const aud = (v: number) => `$${halfUp(v).toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 /** General Retail Industry Award MA000004, cl 17.1 Table 4, from 1 July 2026. */
 const GRIA_2026_L1 = 27.81;
@@ -178,6 +180,42 @@ test("Event Cinemas: same cinema award figures as Hoyts, Level 1 dollars quoted"
   assert.deepEqual([L1.hourly, L1.casualHourly], [28.56, 35.7]);
   const text = pageText(ev);
   for (const v of [money(L1.hourly), money(L1.casualHourly), money(L1.hourly * 2), "$29.25", "$36.56", "$14.31", "$17.50", "$27.04"]) {
+    assert.ok(text.includes(v), v);
+  }
+});
+
+/** Aircraft Cabin Crew Award MA000047 cl 14.2 from 1 July 2026 (PR799327). */
+const CABIN_CREW_AWARD_2026 = { weekly: 1097.4, hourly: 28.88 };
+
+test("Qantas: Part G weekly salaries from 1 Jan 2026, single-time hourly = annual / 1,677", () => {
+  const q = get("qantas");
+  assert.equal(q.instrument.reference, "AG2023/978, AE519994");
+  const printedWeekly = [1038.39, 1072.28, 1111.89, 1153.58, 1193.19, 1234.51, 1275.6, 1397.45, 1653.66, 1725.43, 1905.18, 1962.33];
+  assert.deepEqual(q.rates.map((r) => r.weekly), printedWeekly);
+  assert.equal(q.fullTimeWeeklyHours, 1677 / 52);
+  for (const r of q.rates) {
+    const w = r.weekly ?? 0;
+    assert.equal(r.annualSalary, halfUp(w * 52), r.level);
+    assert.equal(r.hourly, halfUp((w * 52) / 1677), r.level);
+    assert.ok(r.description.includes(aud(w)) && r.description.includes(aud(w * 52)), r.level);
+  }
+  assert.equal(annualFor(q, q.rates[0]), 53996.28);
+  // Only the entry row has a casual rate: the printed $47.29 (cl 18.2, Part G cl 2.2).
+  assert.equal(q.rates[0].casualHourly, 47.29);
+  assert.ok(!q.rates[0].noCasual);
+  for (const r of q.rates.slice(1)) assert.deepEqual([r.noCasual, r.casualHourly], [true, 0], r.level);
+  assert.ok(q.casualRateNote?.includes("$47.29"));
+  // Award floor: years 1–4 printed weekly salaries are below the award's full-time weekly rate.
+  assert.deepEqual(
+    q.rates.filter((r) => (r.weekly ?? 0) < CABIN_CREW_AWARD_2026.weekly).map((r) => r.weekly),
+    [1038.39, 1072.28],
+  );
+  assert.equal(halfUp(CABIN_CREW_AWARD_2026.weekly / 38), CABIN_CREW_AWARD_2026.hourly);
+  // Bands: points x $3.03 (flight attendant, from 1 Jan 2026).
+  const cells = q.penalties.map((p) => p.permanent).join(" ");
+  for (const pts of [1, 5, 6, 7, 9, 18]) assert.ok(cells.includes(`${pts} point${pts > 1 ? "s" : ""} (${money(pts * 3.03)})`), `${pts}`);
+  const text = pageText(q);
+  for (const v of ["$1,038.39", "$53,996.28", "$1,397.45", "$72,667.40", "$1,653.66", "$1,962.33", "$32.20", "$47.29", "$1,097.40", "$28.88", "$1,072.28"]) {
     assert.ok(text.includes(v), v);
   }
 });

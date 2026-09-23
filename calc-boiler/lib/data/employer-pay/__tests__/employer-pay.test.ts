@@ -97,7 +97,8 @@ for (const e of EMPLOYERS) {
   test(`${e.slug}: weekly rate, where published, divides back to the hourly rate`, () => {
     for (const r of e.rates) {
       if (r.weekly === undefined) continue;
-      const cents = Math.round(roundCents(r.weekly / 38) * 100) - Math.round(r.hourly * 100);
+      // J7: salaried cabin crew divide by their own full-time hours.
+      const cents = Math.round(roundCents(r.weekly / (e.fullTimeWeeklyHours ?? 38)) * 100) - Math.round(r.hourly * 100);
       assert.ok(Math.abs(cents) <= 1, `${r.level}`);
     }
   });
