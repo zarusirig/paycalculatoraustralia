@@ -22,6 +22,9 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   code: "NSW",
   name: "New South Wales",
   nameInSentence: "New South Wales",
+  topClassroomStep: "Step 7",
+  metaTitle: "NSW Teacher Salary 2026 — NSW Teachers Pay Scale & Pay Rates",
+  h1: "NSW Teacher Salary 2026 — NSW Public School Teachers Pay Scale",
   employer: "NSW Department of Education",
   agreementName:
     "Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024",

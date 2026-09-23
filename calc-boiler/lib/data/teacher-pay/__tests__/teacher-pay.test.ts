@@ -15,7 +15,9 @@ import {
   isTeacherStateSlug,
   lowestPublishedSalary,
   nearestTakeHomeAmount,
+  scaleRanges,
   takeHomeHref,
+  teacherRatesYear,
   topOfClassroomScale,
 } from "../index";
 
@@ -200,8 +202,16 @@ test("summary helpers agree with the underlying data", () => {
     }
 
     const first = state.scales[0];
-    assert.equal(grad, first.steps[0].salary);
-    assert.equal(top, first.steps[first.steps.length - 1].salary);
+    const gradRow = state.graduateStep
+      ? first.steps.find((s) => s.label === state.graduateStep)
+      : first.steps[0];
+    const topRow = state.topClassroomStep
+      ? first.steps.find((s) => s.label === state.topClassroomStep)
+      : first.steps[first.steps.length - 1];
+    assert.ok(gradRow, `${state.code}: graduateStep "${state.graduateStep}" is not a row of the first scale`);
+    assert.ok(topRow, `${state.code}: topClassroomStep "${state.topClassroomStep}" is not a row of the first scale`);
+    assert.equal(grad, gradRow!.salary);
+    assert.equal(top, topRow!.salary);
     assert.ok(lowest !== null && highest !== null);
     assert.ok(lowest <= (grad as number), `${state.code}: graduate below the lowest published`);
     assert.ok(highest >= (top as number), `${state.code}: top above the highest published`);
@@ -218,4 +228,33 @@ test("the first scale of each state runs graduate-low to top-high", () => {
       `${state.code}: top of the classroom scale (${top}) is not above the graduate step (${grad})`,
     );
   }
+});
+
+test("graduate and top figures are the qualified-graduate and incremental-top rows", () => {
+  assert.equal(graduateSalary(getTeacherPayState("qld")!), 86_068, "QLD Band 2 Step 1, not the intern band");
+  assert.equal(topOfClassroomScale(getTeacherPayState("qld")!), 113_957, "QLD Band 3 Step 4");
+  assert.equal(graduateSalary(getTeacherPayState("sa")!), 84_971, "SA Step 1, not Special Authority");
+  assert.equal(graduateSalary(getTeacherPayState("tas")!), 85_313, "TAS four-year-trained entry");
+  assert.equal(graduateSalary(getTeacherPayState("nsw")!), 90_177);
+  assert.equal(graduateSalary(getTeacherPayState("vic")!), 79_589);
+});
+
+test("scaleRanges summarises every published scale", () => {
+  for (const state of TEACHER_PAY_STATES) {
+    const rows = scaleRanges(state);
+    assert.equal(rows.length, state.scales.filter((s) => s.steps.length > 0).length);
+    for (const row of rows) {
+      const scale = state.scales.find((s) => s.id === row.id)!;
+      const salaries = scale.steps.map((s) => s.salary);
+      assert.equal(row.low, Math.min(...salaries));
+      assert.equal(row.high, Math.max(...salaries));
+    }
+  }
+});
+
+test("state titles lead with the searched phrase and the year", () => {
+  assert.equal(getTeacherPayState("vic")!.metaTitle?.startsWith("Teacher Salary Victoria 2026"), true);
+  assert.equal(getTeacherPayState("nsw")!.metaTitle?.startsWith("NSW Teacher Salary 2026"), true);
+  assert.equal(getTeacherPayState("qld")!.metaTitle?.startsWith("QLD Teacher Salary 2026"), true);
+  for (const state of TEACHER_PAY_STATES) assert.ok(teacherRatesYear(state).length === 4, state.code);
 });

@@ -41,6 +41,10 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   code: "QLD",
   name: "Queensland",
   nameInSentence: "Queensland",
+  graduateStep: "Band 2, Step 1",
+  topClassroomStep: "Band 3, Step 4",
+  metaTitle: "QLD Teacher Salary 2026 — Education Queensland Pay Scale Table",
+  h1: "QLD Teacher Salary 2026 — Queensland State School Teacher Pay Scale",
   employer: "the Queensland Department of Education",
   agreementName:
     "Department of Education State School Teachers' Certified Agreement 2022 (expired 30 June 2025, now in arbitration)",
@@ -49,11 +53,11 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   ratesEffectiveFrom:
     "1 September 2025 for classroom teachers and 1 July 2024 for promotional and school leader positions",
   nextIncrease: {
-    date: "7 September 2026",
+    date: "7 September 2026 (now in effect; new department schedule not yet published)",
     detail:
-      "The Queensland Industrial Relations Commission has ordered a 3% interim salary increase operative from 7 September 2026 ([2026] QIRC 267). Its base is the higher of the final agreement rate or the relevant award rate as at 30 June 2025 — not the 1 September 2025 rates below — and no resulting schedule has been published, so we do not calculate the new figures here.",
+      "From 7 September 2026 teachers are paid the higher of the 3% interim rate ordered in [2026] QIRC 267 or the applicable award rate, which itself rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). The QTU says some classifications get the 3% and others the 4.75% award increase. The department's own salary schedule had not been updated when this page was checked on 23 September 2026, so the new dollar figures are not tabled or calculated here.",
   },
-  verifiedOn: "28 August 2026",
+  verifiedOn: "23 September 2026",
 
   scales: [
     {
@@ -218,12 +222,12 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
 
   notices: [
     "Queensland's certified agreement expired on 30 June 2025 and the replacement went to arbitration on 31 December 2025. It is still the instrument in force, and the rates below are what the department's own salary schedule publishes as at 28 August 2026.",
-    "A 3% interim increase takes effect on 7 September 2026 under [2026] QIRC 267. Its base is the higher of the final agreement rate or the award rate as at 30 June 2025, which is not the same as the 1 September 2025 column, and no resulting schedule has been published — so the figures below are correct up to 6 September 2026 and should be re-checked after that.",
+    "Pay changed on 7 September 2026. Teachers now receive the higher of a 3% interim increase ([2026] QIRC 267) or the applicable award rate, and award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). The Queensland Teachers' Union published an updated schedule on 16 September 2026 (members only), but the Department of Education's public salary schedule had not been updated when checked on 23 September 2026. The tables below are the department's last published rates, in force up to 6 September 2026 — your pay from 7 September 2026 is higher.",
     "The department's schedule dates its columns differently: classroom teacher rates from 1 September 2025 (a QIRC State Wage Case general ruling, not the agreement), and promotional, deputy principal and principal rates from 1 July 2024 (the agreement's final increase). Each table below says which applies.",
   ],
 
   unverified: [
-    "The dollar amounts that will apply from 7 September 2026 after the ordered 3% interim increase. The order defines the base as the higher of the final agreement rate or the relevant award rate at 30 June 2025, and no department schedule of the resulting amounts has been published, so we will not compute them.",
+    "The dollar amounts in force from 7 September 2026 — the higher of the 3% interim rate or the award rate after the 4.75% State Wage Case increase. The department had not published them when this page was checked on 23 September 2026, and the QTU's schedule is members-only, so we will not compute them.",
     "Rates under the Teaching in State Education Award - State 2016, which clause 5.11.2 defers to for the underlying increment mechanics and which forms one limb of the interim increase base.",
     "Paypoint 1 for Promotional Levels 1 and 2, for deputy principals, and for Principal Levels 1 to 7 — the department publishes those cells as \"--\" with no rate, so they are not shown.",
     "Coach classifications (Pedagogy, Literacy and Numeracy Coaches engaged before 1 July 2019), which the department directs to separate transition arrangements.",
@@ -232,6 +236,16 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   ],
 
   sources: [
+    {
+      title: "Declaration of General Ruling (State Wage Case 2026) [2026] QIRC 280 — 4.75% from 1 September 2026",
+      publisher: "Queensland Industrial Relations Commission",
+      url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf",
+    },
+    {
+      title: "Salaries — Teachers CA 2022: updated salary schedule from 7 September 2026",
+      publisher: "Queensland Teachers' Union",
+      url: "https://www.qtu.asn.au/salaries-CA2022",
+    },
     {
       title: "Department of Education Salary Schedule (updated 1 September 2026) — Teachers sheet",
       publisher: "Queensland Department of Education",
@@ -272,7 +286,7 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "Are Queensland teachers getting a pay rise?",
-      a: "Yes. The Queensland Industrial Relations Commission has ordered a 3% interim salary increase operative from 7 September 2026 while the replacement agreement is arbitrated. The order sets the base as the higher of the final agreement rate or the relevant award rate at 30 June 2025, and no schedule of the resulting amounts has been published yet, so the figures on this page are the ones in force up to 6 September 2026.",
+      a: "Yes. From 7 September 2026 Queensland state school teachers are paid the higher of a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267) or the applicable award rate, which rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The Department of Education had not published the resulting schedule when this page was checked on 23 September 2026, so the figures on this page are the ones in force up to 6 September 2026.",
     },
   ],
 };
