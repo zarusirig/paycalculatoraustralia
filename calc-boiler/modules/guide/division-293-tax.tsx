@@ -165,7 +165,7 @@ export default function Division293TaxPage() {
                 <p className="text-navy text-sm font-medium">
                   <strong>Tip</strong>
                   <br />
-                  If you don&apos;t respond to the release authority within 60 days, the ATO will automatically release the amount from your super fund. Set a reminder when you receive the assessment to make your election before the deadline.
+                  Releasing the amount from super is your choice: you can elect to have it paid from your super fund, or pay it yourself. If you don&apos;t pay by the due date on the notice, general interest charge applies. Set a reminder when you receive the assessment so you decide before the due date.
                 </p>
               </div>
             </section>

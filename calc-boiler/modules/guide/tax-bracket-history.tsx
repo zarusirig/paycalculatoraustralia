@@ -242,33 +242,38 @@ export default function TaxBracketHistoryPage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2020-21</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">&mdash;</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2021-22</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2022-23</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2023-24</td>
-                        <td className="px-6 py-4 border-l text-right">$17,547</td>
+                        <td className="px-6 py-4 border-l text-right">$16,467</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
                       </tr>
                       <tr className="bg-eucalyptus/5">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2024-25</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,788</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$2,759</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$1,679</td>
                       </tr>
                       <tr className="bg-eucalyptus/5">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2025-26</td>
                         <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,788</td>
                         <td className="px-6 py-4 border-l text-right text-warmgray">$0</td>
+                      </tr>
+                      <tr className="bg-eucalyptus/5">
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">FY2026-27</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$14,520</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">&minus;$268</td>
                       </tr>
                     </tbody>
                   </table>
@@ -276,7 +281,7 @@ export default function TaxBracketHistoryPage() {
                 <p className="text-xs text-warmgray mt-2">Excludes Medicare Levy and all offsets (LITO, LMITO). LMITO would have reduced the FY2020-21 and FY2021-22 figures by up to $1,080 at lodgement.</p>
               </div>
               <p>
-                The Stage 3 tax cuts delivered a <strong>$2,759 annual saving</strong> at $80,000 income. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
+                The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
               </p>
             </section>
 
