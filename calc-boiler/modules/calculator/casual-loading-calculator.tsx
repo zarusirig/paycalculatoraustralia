@@ -48,7 +48,7 @@ export default function CasualLoadingCalculator() {
           Enter the permanent hourly rate to get the casual rate, then compare a year as a casual with a year as a permanent employee on the same hours.
         </p>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
               <label htmlFor="cl-base" className="mb-1 block text-sm font-medium text-navy">Permanent (base) hourly rate</label>

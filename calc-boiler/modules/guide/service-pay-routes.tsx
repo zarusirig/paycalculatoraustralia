@@ -23,6 +23,7 @@ import {
 import { serviceHubFaqs } from "@/lib/data/service-pay/hub";
 import ServicePayHub, { serviceHubHeading } from "./service-pay-hub";
 import ServicePayStatePage, { serviceStateHeading } from "./service-pay-state";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -50,21 +51,26 @@ function hubDescription(occupation: ServiceOccupation): string {
     .map((j) => j.code)
     .join(", ");
   if (!s) return `${cfg.singular} pay in every Australian state, from each state's own agreement.`;
-  return `${cfg.singular} salaries by state: entry ${formatAUD(s.lowestEntry.entry)}–${formatAUD(
+  const lead = `${cfg.singular} salaries by state: entry ${formatAUD(s.lowestEntry.entry)}–${formatAUD(
     s.highestEntry.entry,
-  )}, top of scale ${formatAUD(s.lowestTop.top)}–${formatAUD(s.highestTop.top)}. ${codes} pay tables from each agreement, with take-home pay.`;
+  )}, top of scale ${formatAUD(s.lowestTop.top)}–${formatAUD(s.highestTop.top)}.`;
+  return fitDescription(
+    `${lead} ${codes} pay tables from each agreement, with take-home pay.`,
+    `${lead} ${codes} pay tables with take-home pay.`,
+    `${lead} Pay tables for every state, with take-home pay.`,
+  );
 }
 
 export function serviceHubMetadata(occupation: ServiceOccupation): Metadata {
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
-  const title = serviceHubHeading(occupation);
+  const title = fitTitle(serviceHubHeading(occupation));
   const description = hubDescription(occupation);
   const url = `${BASE}${cfg.hubPath}`;
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }
@@ -111,11 +117,18 @@ function stateDescription(j: ServicePayJurisdiction): string {
   const cfg = SERVICE_OCCUPATION_CONFIG[j.occupation];
   const entry = entrySalary(j);
   const top = topSalary(j);
-  return `${j.employer} ${cfg.singular.toLowerCase()} pay: ${formatAUD(entry ?? 0)} at entry to ${formatAUD(
-    top ?? 0,
-  )} at the top of the scale, plus every classification, from the ${j.agreementName} (rates from ${
-    j.ratesEffectiveFrom
-  }). Each salary links to its take-home figure.`;
+  const noun = cfg.singular.toLowerCase();
+  const span = `${formatAUD(entry ?? 0)} at entry to ${formatAUD(top ?? 0)} at the top of the scale`;
+  // Agreement names run long (up to ~110 characters): name it only if it fits.
+  return fitDescription(
+    `${j.employer} ${noun} pay: ${span}, plus every classification, from the ${j.agreementName} (rates from ${j.ratesEffectiveFrom}). Each salary links to its take-home figure.`,
+    `${j.employer} ${noun} pay: ${span}, from the ${j.agreementName} (rates from ${j.ratesEffectiveFrom}).`,
+    `${j.employer} ${noun} pay: ${span}, rates from ${j.ratesEffectiveFrom}. Every classification, with take-home pay.`,
+    `${j.code} ${noun} pay: ${span}, rates from ${j.ratesEffectiveFrom}. Every classification, with take-home pay.`,
+    // ratesEffectiveFrom can carry a long caveat in brackets; don't truncate it mid-caveat.
+    `${j.employer} ${noun} pay: ${span}. Every classification, with take-home pay.`,
+    `${j.code} ${noun} pay: ${span}. Every classification, with take-home pay.`,
+  );
 }
 
 function verifiedOrNull(occupation: ServiceOccupation, slug: string): ServicePayJurisdiction | null {
@@ -127,14 +140,16 @@ export function serviceStateMetadata(occupation: ServiceOccupation, slug: string
   const j = verifiedOrNull(occupation, slug);
   if (!j) return {};
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
-  const title = serviceStateHeading(j);
+  // The H1 names the employer in full; the <title> drops the trailing "Pay Scale" if it won't fit.
+  const heading = serviceStateHeading(j);
+  const title = fitTitle(heading, heading.replace(/ Pay Scale$/, ""));
   const description = stateDescription(j);
   const url = `${BASE}${cfg.hubPath}${j.slug}/`;
   return {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }

@@ -5,7 +5,8 @@ import { HOSPITALITY_FAQS, findRate } from "@/modules/guide/hospitality-award-fa
 import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { HOSPITALITY_AWARD, HOSPITALITY_PENALTIES, HOSPITALITY_RATES } from "@/lib/constants/hospitality-award";
+import { HOSPITALITY_AWARD, HOSPITALITY_RATES } from "@/lib/constants/hospitality-award";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hospitality-award-rates/`;
@@ -14,8 +15,8 @@ const URL = `${BASE}/hospitality-award-rates/`;
 const L1 = findRate(HOSPITALITY_RATES, "Level 1");
 const L6 = findRate(HOSPITALITY_RATES, "Level 6");
 
-const TITLE = `Hospitality Award Pay Rates ${SITE_CONFIG.financialYear} (${HOSPITALITY_AWARD.code}) — Casual, Penalty & Junior Rates`;
-const DESCRIPTION = `Current ${HOSPITALITY_AWARD.code} pay rates from ${HOSPITALITY_AWARD.operativeFrom}: Level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L6.hourly, 2)} at Level 6, plus casual loading, weekend and public holiday penalties, overtime and junior rates. Evening and night work add flat cash — ${formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} and ${formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour — not a percentage.`;
+const TITLE = `Hospitality Award Pay Rates ${SITE_CONFIG.financialYear} (${HOSPITALITY_AWARD.code}) — Penalty Rates`;
+const DESCRIPTION = `Current ${HOSPITALITY_AWARD.code} pay rates from ${HOSPITALITY_AWARD.operativeFrom}: Level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L6.hourly, 2)} at Level 6, plus casual, weekend, public holiday, overtime and junior rates.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -55,6 +56,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("hospitality-award-rates"),
+  dateModified: pageDateModified("hospitality-award-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

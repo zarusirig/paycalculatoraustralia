@@ -17,13 +17,13 @@ const TITLE = CHRISTMAS_2026_27_PUBLISHED
   ? "Centrelink Christmas Payment Dates 2026 & Reporting Dates"
   : "Centrelink Payment Dates: Christmas 2026 & Reporting Dates";
 const DESCRIPTION =
-  "How Centrelink payment and reporting dates work, when the Christmas 2026 dates will be published, and last year's official Christmas and New Year tables for JobSeeker, pensions and families. Plus a tool to list your next fortnightly dates.";
+  "Centrelink payment dates: how payment and reporting dates work, when the Christmas 2026 dates are published, last year's holiday tables, and your next dates.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

@@ -36,11 +36,7 @@
 // arithmetic on the page. A derived figure is never stored as if published.
 // =============================================================================
 
-/**
- * States with a spoke page. ACT and NT are deliberately absent: their
- * instruments have not been read yet. Adding one is a new file plus one line
- * in NURSING_PAY_BY_STATE — no type or component change.
- */
+/** States and territories with a spoke page — all eight since H2 (24 Sep 2026). */
 export type NursingStateSlug = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
 export type NursingStateCode = "NSW" | "VIC" | "QLD" | "WA" | "SA" | "TAS" | "ACT" | "NT";

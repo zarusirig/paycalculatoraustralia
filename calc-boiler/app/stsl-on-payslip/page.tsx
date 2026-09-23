@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import STSLOnPayslipPage from "@/modules/guide/stsl-on-payslip";
+import { faqPageSchema } from "@/lib/faq";
+import { STSL_FAQS } from "@/modules/guide/stsl-on-payslip-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/stsl-on-payslip/`;
 const TITLE = "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)";
-const DESCRIPTION = "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld to cover your HECS-HELP repayment. See how it's calculated, why the amount changes, and how to stop it once your loan is paid off.";
+const DESCRIPTION = "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -40,6 +43,7 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("stsl-on-payslip", "2026-07-02"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
@@ -48,17 +52,7 @@ const article: WithContext<Article> = {
   dateModified: "2026-07-02",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What does STSL mean on a payslip?", acceptedAnswer: { "@type": "Answer", text: "STSL stands for Study and Training Support Loans. It is the extra PAYG amount your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Student Loan, or other government study loan. It only applies once your earnings pass the repayment threshold ($69,528 for FY2026-27)." } },
-    { "@type": "Question", name: "Is STSL the same as HECS?", acceptedAnswer: { "@type": "Answer", text: "Effectively yes for most people. STSL is the ATO's umbrella term covering HECS-HELP, FEE-HELP, VET Student Loans, SA-HELP, and apprenticeship loans. If your only loan is HECS, the STSL line on your payslip is your HECS withholding." } },
-    { "@type": "Question", name: "Why did STSL suddenly appear on my payslip?", acceptedAnswer: { "@type": "Answer", text: "Usually because a pay rise, extra hours, or a bonus pushed your per-pay earnings above the repayment threshold (annualised $69,528 for FY2026-27), or because you updated your TFN declaration to declare a study loan." } },
-    { "@type": "Question", name: "Does STSL withholding reduce my HELP debt straight away?", acceptedAnswer: { "@type": "Answer", text: "No. Withheld STSL sits as a credit with the ATO until your tax return is assessed. Your loan balance — including 1 June indexation — is only reduced at assessment. Voluntary repayments are the only way to reduce the balance mid-year." } },
-    { "@type": "Question", name: "How do I stop STSL deductions after paying off my HECS?", acceptedAnswer: { "@type": "Answer", text: "Give your employer a Withholding Declaration (or update their payroll portal) stating you no longer have a study loan debt. The ATO does not notify employers automatically. Any extra STSL withheld in the meantime is refunded when you lodge your tax return." } },
-  ]
-};
+const faq = faqPageSchema(STSL_FAQS);
 
 export default function Page() {
   return (

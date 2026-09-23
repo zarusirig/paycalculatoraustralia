@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { FORTNIGHTLY_FAQS } from "./fortnightly-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -85,7 +86,7 @@ export default function FortnightlyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Fortnightly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["fortnightly", "annual"]} value={period} label="I'm entering my gross"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -98,7 +99,7 @@ export default function FortnightlyPayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
                     {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
@@ -411,32 +412,7 @@ export default function FortnightlyPayCalculatorPage() {
           {/* --- FAQs --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is fortnightly pay calculated in Australia?">
-                Fortnightly pay is calculated by dividing your gross annual salary by 26 (the number of fortnights in a year). The employer then deducts PAYG income tax, the 2% Medicare levy, and any HECS-HELP repayments using the ATO&apos;s fortnightly tax table. The remaining amount is your fortnightly take-home pay.
-              </FAQItem>
-              <FAQItem value="super" question="Is superannuation deducted from my fortnightly pay?">
-                No. Your employer pays superannuation at {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your gross salary. It is not deducted from your fortnightly take-home pay. The SG contribution is paid directly into your nominated super fund, and since Payday Super commenced on 1 July 2026 it must be received there within 7 business days of each payday.
-              </FAQItem>
-              <FAQItem value="periods" question="Are there 26 or 27 fortnightly pays in a year?">
-                A standard year has 26 fortnightly pay periods (26 x 14 = 364 days). Because a calendar year has 365 or 366 days, every 11 to 12 years a financial year contains 27 fortnightly pay days. When this occurs, employers adjust PAYG withholding to avoid an end-of-year tax shortfall.
-              </FAQItem>
-              <FAQItem value="vs-monthly" question="Is fortnightly pay better than monthly pay?">
-                Annual take-home pay is identical under both frequencies. Fortnightly pay provides 26 paychecks instead of 12, producing 2 months per year with 3 pay periods. This extra fortnight helps employees accelerate mortgage repayments, build savings, or manage cash flow more closely than a monthly cycle.
-              </FAQItem>
-              <FAQItem value="refund" question="Will I get a tax refund if I am paid fortnightly?">
-                The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.
-              </FAQItem>
-              <FAQItem value="hecs" question="How does HECS-HELP affect fortnightly take-home pay?">
-                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. The repayment is divided across 26 fortnights by the employer.
-              </FAQItem>
-              <FAQItem value="gross-net" question="What is the difference between gross fortnightly pay and net fortnightly pay?">
-                Gross fortnightly pay is your annual salary divided by 26 before any deductions. Net fortnightly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS repayments are withheld. On an $85,000 salary, gross fortnightly pay is {formatAUD(85_000 / 26, 2)} and net fortnightly pay is <strong>{formatAUD(workedExample.fortnightly, 2)}</strong>.
-              </FAQItem>
-              <FAQItem value="tax-free" question="Does the $18,200 tax-free threshold apply to fortnightly pay?">
-                Yes. The $18,200 tax-free threshold is built into the ATO&apos;s fortnightly tax table. Employees who claim the threshold on their Tax File Number Declaration have the first $700 of each fortnightly gross pay ($18,200 / 26) effectively tax-free. Employees who do not claim the threshold pay tax on every dollar from the first fortnightly pay period.
-              </FAQItem>
-            </Accordion>
+            <FaqAccordion faqs={FORTNIGHTLY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -467,14 +443,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-navy"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

@@ -32,8 +32,8 @@ export default function CentrelinkDatesCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Your Next Centrelink Dates</h2>
         <p className="text-sm text-warmgray mb-6">Enter one payment or reporting date from your Centrelink online account or a letter. We&rsquo;ll list the next 12 on your fortnightly cycle and flag any that fall on a public holiday or over Christmas, when Services Australia may move them earlier.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField id="cl-kind" label="The date is my" value={kind} onChange={setKind} options={[{ value: "payment", label: "Payment date" }, { value: "reporting", label: "Reporting date" }]} />
             <div>
               <label htmlFor="cl-known" className={LABEL}>Date</label>

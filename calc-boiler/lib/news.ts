@@ -1,4 +1,40 @@
 import { AUTHORS } from "@/lib/authors";
+// --- G6: constants the G6 news entries quote (figures are never re-keyed here) ---
+import {
+  AGE_PENSION_RATES,
+  DEEMING_SEPTEMBER_2026,
+  JOBSEEKER_RATES,
+  MARCH_2026,
+  SEPTEMBER_2026,
+} from "@/lib/constants/centrelink-income-test";
+import {
+  SCHADS_HOME_CARE_DISABILITY,
+  SCHADS_HOME_CARE_DISABILITY_DEC_2026,
+  SCHADS_SCHEDULE_E_INCREASE,
+} from "@/lib/constants/schads-award";
+import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
+import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
+import { QLD_STATE_WAGE_CASE_2026 } from "@/lib/constants/minimum-wage";
+import { GENERAL_INTEREST_CHARGE } from "@/lib/constants/australian-tax";
+import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
+import {
+  FTL_MAX_INDIVIDUAL,
+  PENALTY_UNIT,
+  RETURN_DATES_2026,
+  TAX_CALENDAR_SOURCES,
+  formatIso,
+  weekdayOf,
+} from "@/lib/constants/tax-calendar-2026-27";
+import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import {
+  AWARD_TRANSPORT_CHANGE_DATE,
+  CENTS_PER_KM_SOURCES,
+  CPK_KM_CAP,
+  CURRENT_CPK_RATE,
+  CURRENT_CPK_YEAR,
+} from "@/lib/constants/cents-per-km";
+// --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -28,10 +64,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "minimum-wage-increase-july-2026",
     headline: "Minimum Wage Rises 6% to $26.44 an Hour From 1 July 2026",
     title: "Minimum Wage Increase July 2026: FWC Lifts NMW 6% — New Rates",
-    description: "The Fair Work Commission's 2026 Annual Wage Review lifts the national minimum wage 6% — from $24.95 to $26.44 an hour ($1,004.90 a week) — and modern award rates 4.75%, from 1 July 2026. See who gets the increase and what it means for your take-home pay.",
+    description: "The minimum wage rises 6% from $24.95 to $26.44 an hour ($1,004.90 a week) and award rates 4.75% from 1 July 2026. Who gets the increase and your take-home pay.",
     category: "Wages",
     datePublished: "2026-06-02",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Annual Salary Calculator" },
@@ -44,7 +80,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What is the new minimum wage in Australia from 1 July 2026?", answer: "The national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week, a 6% rise from the Fair Work Commission's Annual Wage Review, effective from the first full pay period on or after 1 July 2026. Modern award minimum rates rose by a separate 4.75%." },
-      { question: "Who gets the 4.75% wage increase?", answer: "Around 2.8 million award-reliant employees — about 21% of the Australian workforce — get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
+      { question: "Who gets the 4.75% wage increase?", answer: "Award-reliant employees — about 23% of employees, according to the ABS (May 2025) — get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
       { question: "When does the 2026 minimum wage increase start?", answer: "From the first full pay period starting on or after 1 July 2026. If your pay week begins on a Wednesday, the new rate applies from the first Wednesday in July." },
     ],
   },
@@ -52,7 +88,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "new-minimum-wage-take-home-pay",
     headline: "What the New $26.44 Minimum Wage Means for Your Take-Home Pay",
     title: "New Minimum Wage 2026: Weekly, Fortnightly & Annual Take-Home Pay",
-    description: "From 1 July 2026 the minimum wage is $26.44/hour — $1,004.90 a week or about $52,255 a year full-time. Here's what actually lands in your bank account after tax, and how casuals and part-timers work out their new rate.",
+    description: "From 1 July 2026 the minimum wage is $26.44/hour, $1,004.90 a week or about $52,255 a year. What lands in your bank after tax, and new casual and part-time rates.",
     category: "Wages",
     datePublished: "2026-06-16",
     dateModified: "2026-07-02",
@@ -77,10 +113,10 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "award-wage-increase-2026-industries",
     headline: "Award Wages Rise 4.75% From July: Retail, Hospitality and Care Rates",
     title: "Award Wage Increase 2026: New Rates by Industry From 1 July",
-    description: "All modern award minimum rates rise 4.75% from the first full pay period after 1 July 2026. What the increase looks like in retail, hospitality, aged care and other award-reliant industries — and how to check your new rate.",
+    description: "Award rates rise 4.75% from the first full pay period after 1 July 2026. What it means in retail, hospitality, aged care and more, and how to check your rate.",
     category: "Wages",
     datePublished: "2026-06-24",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/award-rates/", label: "Award Rates Guide" },
@@ -92,7 +128,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Minimum wages increase from 1 July 2026", url: "https://www.fairwork.gov.au/about-us/workplace-laws/annual-wage-review/annual-wage-review-2026", publisher: "Fair Work Ombudsman" },
     ],
     faq: [
-      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026 — including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. About 2.8 million award-reliant employees, roughly 21% of the workforce, are covered." },
+      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026 — including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. Award-reliant employees, about 23% of employees according to the ABS (May 2025), are covered." },
       { question: "Is the award wage increase the same as the minimum wage increase?", answer: "No. The 4.75% rise applies only to modern award minimum rates. The national minimum wage — the safety-net rate for employees not covered by an award or agreement — rose separately by 6% to $26.44 an hour." },
       { question: "How do I find my new award rate?", answer: "Check your award's classification schedule for your role and grade, then apply the 4.75% increase to the current base rate. Fair Work Ombudsman publishes updated pay guides for each award from 1 July, and our award rates guide links to the current tables." },
       { question: "When do the new award rates start being paid?", answer: "From the first full pay period starting on or after 1 July 2026 — not 1 July itself. If your pay cycle doesn't align with the calendar, your first full July pay may still include a few days at the old rate." },
@@ -101,8 +137,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   {
     slug: "c13-classification-phase-out",
     headline: "FWC Begins Phasing Out the C13 Award Classification",
-    title: "C13 Classification Phase-Out: What the Lowest Award Rate Change Means",
-    description: "The Fair Work Commission is phasing out the C13 classification — the lowest ongoing rate in the award system — in three stages, starting 1 July 2026. What C13 workers can expect their pay to do as the transition rolls through.",
+    title: "C13 Classification Phase-Out: What the Award Rate Change Means",
+    description: "The Fair Work Commission is phasing out C13, the lowest ongoing award rate, in three stages from 1 July 2026. What it means for C13 workers' pay.",
     category: "Wages",
     datePublished: "2026-06-10",
     dateModified: "2026-07-02",
@@ -130,7 +166,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026, employers must pay super guarantee into your fund within 7 business days of each payday. Here's what payday super means for you.",
     category: "Super",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -145,7 +181,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { question: "What is payday super and when does it start?", answer: "Payday super is a law requiring employers to pay super guarantee contributions into an employee's fund within 7 business days of each payday, rather than quarterly. It started on 1 July 2026 and applies to qualifying earnings paid from that date, even if the work was done earlier." },
       { question: "What happens if my employer pays my super late under payday super?", answer: "If super isn't in your fund within 7 business days of payday, your employer becomes liable for the new super guarantee charge, which includes the shortfall, interest and administrative penalties. You can check contributions have landed through your fund's app or the ATO online services in myGov." },
       { question: "Can employers still use the Small Business Superannuation Clearing House?", answer: "No. The SBSCH closed permanently on 30 June 2026. Employers who relied on it needed to move to a commercial clearing house or their payroll software's default fund service before payday super started, to keep meeting the new 7-business-day deadline." },
-      { question: "Does payday super change how much super I get paid?", answer: "No, payday super changes the timing of contributions, not the rate. Super guarantee stays at 12% of ordinary time earnings for 2026-27. The change means your super lands in your account sooner and more often, which can slightly boost compounding returns over your career." },
+      { question: "Does payday super change how much super I get paid?", answer: "No, payday super changes the timing of contributions, not the rate. Super guarantee stays at 12% for 2026-27, now calculated on qualifying earnings (ordinary time earnings plus commissions for work done entirely outside ordinary hours). The change means your super lands in your account sooner and more often, which can slightly boost compounding returns over your career." },
     ],
   },
   {
@@ -155,7 +191,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Payday super requires employers to pay your super guarantee alongside every pay run from 1 July 2026. Here's what to check on your payslip now.",
     category: "Super",
     datePublished: "2026-07-02",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
@@ -174,7 +210,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026, Division 296 adds a 15% tax on earnings from super balances above $3 million, plus 10% above $10 million. Who it hits and when.",
     category: "Super",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
@@ -188,7 +224,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "What is Division 296 tax and who does it apply to?", answer: "Division 296 is an extra 15% tax on the share of super earnings attributed to the portion of an individual's total super balance above $3 million. It applies from 1 July 2026, with a further 10% on earnings attributed to balances above $10 million, taking the combined extra tax on that top slice to 25%." },
       { question: "When is Division 296 tax first assessed?", answer: "Division 296 tax first applies to earnings in the 2026-27 financial year. Because it's based on your total super balance at 30 June, the earliest individuals will receive an assessment is after 30 June 2027, once the ATO calculates earnings attributable to balances above the $3 million threshold." },
-      { question: "Does Division 296 tax unrealised capital gains?", answer: "Yes. Division 296 earnings are calculated using the growth in your total super balance over the year, adjusted for contributions and withdrawals, which can include unrealised gains on assets like property or shares that haven't been sold. This is one of the most contested features of the measure." },
+      { question: "Does Division 296 tax unrealised capital gains?", answer: "No, not under the law as passed. The original 2023 proposal would have used growth in your total super balance, including unrealised gains, but in October 2025 the government switched to a realised earnings approach. Your super fund calculates your share of its earnings and reports it to the ATO, which taxes the proportion relating to your balance above each threshold." },
       { question: "Are the $3 million and $10 million thresholds indexed?", answer: "Yes. Both the $3 million large super balance threshold and the $10 million very large super balance threshold are indexed to CPI, in increments of $150,000 and $500,000 respectively, so they will rise over time rather than staying fixed at today's dollar values." },
     ],
   },
@@ -237,7 +273,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Payday super, Division 296 and higher contribution caps all start or change in 2026-27. A plain-English guide to who is affected and what changes.",
     category: "Super",
     datePublished: "2026-05-12",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
@@ -412,7 +448,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026 the 16% tax rate on income between $18,201 and $45,000 fell to 15%, cutting up to $268 a year off every taxpayer bill this year.",
     category: "Tax",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -424,8 +460,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Tax reform", url: "https://budget.gov.au/content/04-tax-reform.htm", publisher: "Budget 2026-27, Australian Government" },
     ],
     faq: [
-      { question: "What tax rate changed on 1 July 2026?", answer: "The second marginal tax rate, applied to taxable income between $18,201 and $45,000, dropped from 16% to 15% from 1 July 2026. It's the second stage of tax cuts legislated in the 2025 Budget under the Treasury Laws Amendment (More Cost of Living Relief) Act 2025." },
-      { question: "How much is the 1 July 2026 tax cut worth?", answer: "Every taxpayer earning above $45,000 saves the maximum $268 a year, because the full $26,799 of income in that bracket is now taxed 1 percentage point lower. Taxpayers earning less than $45,000 save proportionally less, based on how much of their income falls in the bracket." },
+      { question: "What tax rate changed on 1 July 2026?", answer: "The second marginal tax rate, applied to taxable income between $18,201 and $45,000, dropped from 16% to 15% from 1 July 2026. It's the first of two further cuts legislated in March 2025, after that year's Budget." },
+      { question: "How much is the 1 July 2026 tax cut worth?", answer: "Every taxpayer earning above $45,000 saves the maximum $268 a year, because the full $26,800 of income in that bracket is now taxed 1 percentage point lower. Taxpayers earning less than $45,000 save proportionally less, based on how much of their income falls in the bracket." },
       { question: "Is there another tax cut coming after this one?", answer: "Yes. The same legislation cuts the rate again, from 15% to 14%, from 1 July 2027, on the same $18,201 to $45,000 bracket, taking the maximum annual saving to $536 a year compared with 2024-25 settings — double the saving delivered by the 1 July 2026 cut alone." },
       { question: "Do I need to do anything to get the tax cut?", answer: "No. The lower withholding rate is built into the PAYG tax tables employers and payroll software use automatically from the first pay run after 1 July 2026, so the extra take-home pay shows up in your pay packet without any action on your part." },
     ],
@@ -462,7 +498,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Lodging your 2025-26 tax return? Medicare levy thresholds rose, the $2 gift minimum was scrapped, and the WFH rate stays at 70 cents an hour.",
     category: "Tax",
     datePublished: "2026-06-29",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
@@ -476,7 +512,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "When is the 2026 tax return deadline?", answer: "If you lodge your own 2025-26 tax return, it's due by 31 October 2026. If you engage a registered tax agent before that date, your deadline can extend to 15 May 2027, provided you're on their client list before 31 October." },
       { question: "What is the work-from-home deduction rate for 2025-26?", answer: "The fixed rate method stays at 70 cents per work hour for 2025-26, unchanged from 2024-25. You can still separately claim depreciation on assets over $300, work-related purchases up to $300, and home office cleaning and repair costs on top of the fixed rate." },
-      { question: "Did the $2 minimum for gift deductions change?", answer: "Yes. From the 2025-26 income year, the $2 minimum donation threshold for deductible gift recipients was removed, so you can now claim a deduction for any eligible gift or donation regardless of size, provided you keep a valid receipt from the recipient." },
+      { question: "Did the $2 minimum for gift deductions change?", answer: "Yes. The $2 minimum donation threshold for deductible gift recipients has been removed, backdated to gifts made from 1 July 2024, so you can now claim a deduction for any eligible gift or donation regardless of size, provided you keep a valid receipt. Political donations still need to be $2 or more." },
       { question: "Does the $1,000 instant deduction apply to this year's return?", answer: "No, not yet. The $1,000 instant work-related deduction applies to the 2026-27 income year and is claimed on the return lodged from July 2027. The return you lodge this tax time, for 2025-26, still uses the normal substantiation rules for work expenses." },
     ],
   },
@@ -487,7 +523,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026: minimum wage up 6% to $26.44/hr, payday super begins, tax drops to 15%, HECS threshold rises to $69,528. The full roundup.",
     category: "Tax",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
@@ -507,7 +543,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What changed on 1 July 2026?", answer: "The minimum wage rose 6% to $26.44 an hour, payday super began requiring employers to pay super within 7 business days of payday, the 16% tax rate dropped to 15%, the HECS repayment threshold rose to $69,528, and several Centrelink payment rates were indexed upward." },
-      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group — every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect around 2.8 million award-reliant workers plus national minimum wage earners." },
+      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group — every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect award-reliant workers (about 23% of employees, per the ABS) plus national minimum wage earners." },
       { question: "Do these changes apply automatically?", answer: "Most do. The tax cut, payday super and minimum wage rise are all built into payroll systems and PAYG withholding tables from the first pay run after 1 July 2026, so you don't need to apply for them — they should simply appear in your pay and super." },
       { question: "Where can I check how these changes affect my own pay?", answer: "Run your salary through our take-home pay calculator to see your new after-tax figure, or the income tax calculator to check your exact tax cut, HECS repayment and Medicare levy under the FY2026-27 settings — all in one place, updated for every change on this page." },
     ],
@@ -544,7 +580,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "The Age Pension rose $22.20 a fortnight to $1,200.90 for singles from 20 March 2026; couples get $905.20 each. DSP and Carer Payment rose by the same amount.",
     category: "Centrelink & Payments",
     datePublished: "2026-03-20",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },
@@ -618,7 +654,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     slug: "victorian-teachers-pay-rise-2026",
     headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes — What the New Agreement Pays and When",
     title: "VIC Teachers Pay Rise 2026: 93.1% Vote Yes, $133,456 Top Step",
-    description: "Victorian government school staff approved the new schools agreement with 93.1% voting yes. A top-step teacher goes from $118,063 to $133,456 from October 2026 and $151,419 by 2029, a graduate to $92,882, plus a $2,000 lump sum — once the Fair Work Commission approves it. Timeline, strikes and new rates.",
+    description: "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum.",
     category: "Wages",
     datePublished: "2026-09-17",
     dateModified: "2026-09-23",
@@ -647,7 +683,289 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
   },
   // --- end W5 ---
+  // --- G6: news articles, 24 Sep 2026 ---
+  ...G6_ARTICLES(),
+  // --- end G6 ---
 ];
+
+// --- G6: news article metadata (functions of the constants they quote) ---
+function G6_ARTICLES(): NewsArticleMeta[] {
+  const m = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const w = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+  const p = (r: number) => `${(r * 100).toFixed(2).replace(/0$/, "")}%`;
+  const apMar = AGE_PENSION_RATES[MARCH_2026].maxFortnightly;
+  const apSep = AGE_PENSION_RATES[SEPTEMBER_2026].maxFortnightly;
+  const jsMar = JOBSEEKER_RATES[MARCH_2026].maxFortnightly;
+  const jsSep = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly;
+  const D = DEEMING_SEPTEMBER_2026;
+  const apRise = m(apSep.single.total - apMar.single.total);
+  const apCoupleRise = m(apSep.coupleCombined.total - apMar.coupleCombined.total);
+
+  const SE = SCHADS_SCHEDULE_E_INCREASE;
+  const sePct = `${Math.round(SE.interimIncrease * 100)}%`;
+  const seL3Now = SCHADS_HOME_CARE_DISABILITY.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+  const seL3Dec = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+
+
+  const HP = HPSS_OCT_2026;
+  const hpGradNew = HPSS_OCT_2026_LEVEL_1[7][0].weekly;
+  const hpGradOld = HPSS_TABLES.flatMap((t) => t.rows).find((r) => r.label === "Level 1 pay point 2")?.weekly ?? NaN;
+
+
+  const JP = PENDING_JUNIOR_CHANGE;
+  const jFF = JUNIOR_TRANSITION_SCHEDULES.fastFood;
+  const jRetail = JUNIOR_TRANSITION_SCHEDULES.retail;
+  const jPh = JUNIOR_TRANSITION_SCHEDULES.pharmacy;
+
+
+  const QS = QLD_STATE_WAGE_CASE_2026;
+  const qPct = `${(QS.increase * 100).toFixed(2)}%`;
+
+
+  const gicNext = `${(GENERAL_INTEREST_CHARGE.nextQuarter.annualRate * 100).toFixed(2)}%`;
+
+
+  const atcPct = `${(ATC_24_MONTH_COLUMN.increase * 100).toFixed(1)}%`;
+  const atcL1 = ATC_24_MONTH_COLUMN.salaries["Level 1"];
+  const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
+  const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
+
+
+  const atExtra = `$${withholdingForPeriod(1_300 + 22, "weekly") - withholdingForPeriod(1_300, "weekly")}`;
+
+  return [
+    {
+      slug: "age-pension-increase-september-2026",
+      headline: `Age Pension Rises ${apRise} a Fortnight From 20 September 2026 — but Deeming Rates Rise Too`,
+      title: `Age Pension Increase September 2026: +${apRise} to ${m(apSep.single.total)}`,
+      description: `The full Age Pension rose ${apRise} to ${m(apSep.single.total)} a fortnight on 20 September 2026 (couples ${m(apSep.coupleCombined.total)}). JobSeeker ${m(jsSep.single)}; deeming now ${p(D.lowerRate)}/${p(D.upperRate)}.`,
+      category: "Centrelink & Payments",
+      datePublished: "2026-09-20",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator" },
+        { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator" },
+        { href: "/centrelink-payment-dates/", label: "Centrelink Payment Dates" },
+      ],
+      relatedArticles: ["age-pension-increase-march-2026", "deeming-rates-change-2026", "centrelink-changes-july-2026"],
+      sources: [
+        { title: "Some payment rates are increasing on 20 September 2026 (8 September 2026)", url: "https://www.servicesaustralia.gov.au/some-payment-rates-are-increasing-20-september-2026", publisher: "Services Australia" },
+        { title: "Deeming rates have increased (20 September 2026)", url: D.sources.news, publisher: "Services Australia" },
+        { title: "Deeming", url: D.sources.deeming, publisher: "Services Australia" },
+        { title: "Social Security Payment Parameters — 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },
+        { title: "September pensions and deeming rates update", url: D.sources.dva, publisher: "Department of Veterans' Affairs" },
+      ],
+      faq: [
+        { question: "How much did the Age Pension go up in September 2026?", answer: `From 20 September 2026 the maximum Age Pension rose by ${apRise} a fortnight for singles, to ${m(apSep.single.total)}, and by ${apCoupleRise} a fortnight for couples combined, to ${m(apSep.coupleCombined.total)} (${m(apSep.coupleEach.total)} each). The totals include the Pension Supplement and Energy Supplement. Carer Payment and the Disability Support Pension rose by the same amounts.` },
+        { question: "What are the new deeming rates from 20 September 2026?", answer: `Deeming rates rose from ${p(D.previousLowerRate)} to ${p(D.lowerRate)} on the first ${w(D.thresholds.single)} of a single person's financial assets (${w(D.thresholds.couple)} combined for a couple), and from ${p(D.previousUpperRate)} to ${p(D.upperRate)} on anything above that.` },
+        { question: "What is the JobSeeker rate from 20 September 2026?", answer: `A single person with no children can get up to ${m(jsSep.single)} a fortnight, up from ${m(jsMar.single)}. The partnered rate is ${m(jsSep.partnered)} each, and the rate for a single parent or someone aged 55 or over after nine months on payment is ${m(jsSep.singleWithChildren)}.` },
+        { question: "Do I need to do anything to get the pension increase?", answer: "No. Services Australia applies the new rates and deeming rates automatically. Your next payment amount shows in your Centrelink online account or the Express Plus Centrelink app." },
+      ],
+    },
+    {
+      slug: "schads-home-care-disability-pay-rise-december-2026",
+      headline: `Home Care Disability Workers Get a ${sePct} Pay Rise From ${SE.operativeFrom} Under the SCHADS Award`,
+      title: `SCHADS ${sePct} Pay Rise: Home Care Disability Rates From 1 Dec 2026`,
+      description: `SCHADS home care disability (Schedule E) rates rise ${sePct} from ${SE.operativeFrom}, deferred from October. Level 3 goes from ${m(seL3Now)} to ${m(seL3Dec)} a week.`,
+      category: "Wages",
+      datePublished: "2026-09-11",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/weekly-pay-calculator/", label: "Weekly Pay Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Gender-based undervaluation — priority awards review, SCHADS Award: Decision ${SE.decision} (${SE.decidedOn})`, url: SE.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Determination ${SE.determination} — Schedule E interim increase`, url: SE.determinationUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: SE.reviewUrl, publisher: "Fair Work Commission" },
+        { title: "Changes to the Social, Community, Home Care and Disability Services Award (21 September 2026)", url: SE.fwoUrl, publisher: "Fair Work Ombudsman" },
+        { title: "Vehicle allowance determination PR813674", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813674.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: `When does the SCHADS ${sePct} pay rise start?`, answer: `From the first full pay period starting on or after ${SE.operativeFrom}. The Fair Work Commission had proposed ${SE.deferredFrom}, but deferred it in ${SE.decision} because the Commonwealth had not committed to funding the increase.` },
+        { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award — home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
+        { question: `Is the increase exactly ${sePct} for everyone?`, answer: `Almost. Every Schedule E rate rises ${sePct} except Level 4 pay point 2 (${(SE.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}%) and Level 5 pay point 2 (${(SE.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%), whose full remaining increase is smaller than ${sePct}.` },
+        { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase — ${SE.remainderRange} — applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
+      ],
+    },
+    {
+      slug: "health-professionals-award-changes-october-2026",
+      headline: `Health Professionals Award Changes From ${HP.operativeFrom}: New AQF Pay Structure Lifts an AQF 7 Graduate to ${m(hpGradNew)} a Week`,
+      title: `Health Professionals Award Changes 1 October 2026: New Rates`,
+      description: `Allied health moves to an AQF-based pay structure from ${HP.operativeFrom}. An AQF 7 graduate goes from ${m(hpGradOld)} to ${m(hpGradNew)} a week. New rates and later stages.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist Pay Rates" },
+        { href: "/job-pay-rates/psychologist/", label: "Psychologist Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["schads-home-care-disability-pay-rise-december-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Determination ${HP.determination} — Health Professionals and Support Services Award 2020`, url: HP.determinationUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.decision} (${HP.decidedOn})`, url: HP.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.structureDecision} (${HP.structureDecidedOn})`, url: HP.structureDecisionUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: HP.reviewUrl, publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "What changes in the Health Professionals Award on 1 October 2026?", answer: `Health professional employees move to a new classification structure. Level 1 pay depends on the AQF level of the profession's standard minimum qualification (AQF 5 to 9) and years of experience (1st, 2nd–3rd, 4th–6th, 7th year+); Levels 2.1, 2.2, 3 and 4 cover senior, advanced and manager roles. It applies from the first full pay period starting on or after ${HP.operativeFrom} under determination ${HP.determination}.` },
+        { question: "Will my pay go down under the new structure?", answer: "No. Clause J.4.3 of the award keeps an employee who was classified on 30 September 2026 on their old minimum rate if it is higher than the rate for their new classification." },
+        { question: "Are there more increases after October 2026?", answer: `Yes. October 2026 is the first of five stages. Further increases apply from ${HP.laterStages.slice(0, -1).join(", ")} and ${HP.laterStages[HP.laterStages.length - 1]}, as set in ${HP.structureDecision}.` },
+        { question: "What is the new graduate rate for an AQF Level 7 health professional?", answer: `AQF Level 7 in the 1st year is ${m(hpGradNew)} a week full-time (${m(HPSS_OCT_2026_LEVEL_1[7][0].hourly)} an hour), rising to ${m(HPSS_OCT_2026_LEVEL_1[7][3].weekly)} from the 7th year.` },
+      ],
+    },
+    {
+      slug: "junior-pay-rates-december-2026",
+      headline: `Junior Pay Rates Rise From ${JP.earliestStart}: 18 to 20-Year-Olds in Retail, Fast Food and Pharmacy Move Toward the Adult Rate`,
+      title: `Junior Pay Rates 1 December 2026: New % for 18–20-Year-Olds`,
+      description: `18 to 20-year-olds with 6+ months' service in retail, fast food and pharmacy move toward the adult rate from ${JP.earliestStart}. Full timetable to ${jFF.rows[jFF.rows.length - 1].effective}.`,
+      category: "Wages",
+      datePublished: "2026-08-26",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/junior-pay-rates/", label: "Junior Pay Rates Guide" },
+        { href: "/fast-food-award-rates/", label: "Fast Food Award Rates" },
+        { href: "/casual-loading-calculator/", label: "Casual Loading Calculator" },
+      ],
+      relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Implementation decision ${JP.implementationDecision} (${JP.implementationDecidedOn}), AM2024/24`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb222.pdf", publisher: "Fair Work Commission" },
+        { title: `Determination ${jRetail.determination} — ${jRetail.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jRetail.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jFF.determination} — ${jFF.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jFF.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jPh.determination} — ${jPh.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jPh.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Principal decision ${JP.decision} (${JP.decidedOn})`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb75.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "When do junior pay rates change in 2026?", answer: `From the first full pay period starting on or after ${JP.earliestStart}, for employees aged 18 to 20 under the General Retail, Fast Food and Pharmacy Industry Awards who have ${JP.serviceQualifier}. Further steps follow until ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Do 18-year-olds get the full adult wage from December 2026?", answer: `No. It is a phase-in. Under the Fast Food Award an 18-year-old with more than 6 months' service goes from ${jFF.present.age18}% to ${jFF.rows[0].age18}% of the adult rate on ${jFF.rows[0].effective}, then rises five percentage points each July and December until reaching 100% on ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Who does not get the junior pay increase?", answer: "Employees under 18, employees aged 18 to 20 with 6 months' service or less with their employer, and workers under awards other than the General Retail, Fast Food and Pharmacy Industry Awards. In retail, only employee levels 1 to 3 have junior rates, and 20-year-olds with more than 6 months' service already get the adult rate." },
+        { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild — a five-point first step, then steps of up to ten points each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
+      ],
+    },
+    {
+      slug: "queensland-state-wage-case-2026",
+      headline: `Queensland State Wage Case 2026: State Award Wages Rise ${qPct} From ${QS.operativeFrom}`,
+      title: `QLD State Wage Case 2026: ${qPct} Rise, ${m(QS.qmwWeekly)} Minimum Wage`,
+      description: `The QIRC's ${QS.citation} lifts Queensland state award wages ${qPct} from ${QS.operativeFrom} and sets the state minimum wage at ${m(QS.qmwWeekly)} a week. Who it covers.`,
+      category: "Wages",
+      datePublished: "2026-09-04",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/public-service-pay-scales/qld/", label: "Queensland Public Service Pay Scales" },
+        { href: "/pay-calculator-qld/", label: "Queensland Pay Calculator" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Declaration of General Ruling (State Wage Case 2026) ${QS.citation}`, url: QS.url, publisher: "Queensland Industrial Relations Commission" },
+        { title: "Queensland Public Service Officers and Other Employees Award – State 2015 (reprint as at 1 September 2026)", url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/qld_public_service_010926.pdf", publisher: "Queensland Industrial Relations Commission" },
+        { title: "Annual Wage Review 2026", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews/annual-wage-review-2026", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "How much did Queensland state award wages increase in 2026?", answer: `By ${qPct}, operative on and from ${QS.operativeFrom}, under the QIRC's State Wage Case decision ${QS.citation} delivered on ${QS.deliveredOn}. Work-related monetary allowances and service increments rose by the same percentage.` },
+        { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees — the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
+        { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards — chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
+        { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly — their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
+      ],
+    },
+    {
+      slug: "tax-return-deadline-october-2026",
+      headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
+      title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
+      description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNext}.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
+        { href: "/tax-return-2026/", label: "2026 Tax Return Guide" },
+        { href: "/tax-calendar/", label: "Tax Calendar 2026-27" },
+      ],
+      relatedArticles: ["tax-time-2026-whats-new", "hecs-marginal-repayment-first-tax-time", "1000-dollar-instant-tax-deduction"],
+      sources: [
+        { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: "Australian Taxation Office" },
+        { title: "Lodge your tax return with a registered tax agent", url: RETURN_2026_SOURCES.taxAgent, publisher: "Australian Taxation Office" },
+        { title: "Due dates for tax returns: individuals and trusts (registered agent lodgment program)", url: RETURN_2026_SOURCES.agentProgram, publisher: "Australian Taxation Office" },
+        { title: "Lodgment and payment dates on weekends or public holidays", url: TAX_CALENDAR_SOURCES.weekends, publisher: "Australian Taxation Office" },
+        { title: "Failure to lodge on time penalty", url: TAX_CALENDAR_SOURCES.failureToLodge, publisher: "Australian Taxation Office" },
+        { title: "Penalty units", url: TAX_CALENDAR_SOURCES.penaltyUnits, publisher: "Australian Taxation Office" },
+        { title: "General interest charge (GIC) rates (updated 4 September 2026)", url: GENERAL_INTEREST_CHARGE.sourceUrl, publisher: "Australian Taxation Office" },
+        { title: "General interest charge", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/interest-we-charge/general-interest-charge", publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day — ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
+        { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
+        { question: "What is the ATO general interest charge rate for October to December 2026?", answer: `${gicNext} a year (a daily rate of ${GENERAL_INTEREST_CHARGE.nextQuarter.dailyRatePercent}%), up from ${(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}% for ${GENERAL_INTEREST_CHARGE.quarter}. GIC compounds daily on overdue tax, and GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
+        { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
+      ],
+    },
+    {
+      slug: "air-traffic-controller-pay-rise-october-2026",
+      headline: `Air Traffic Controllers Get ${atcPct} Pay Rise on ${ATC_24_MONTH_COLUMN.dueOn}: Level 1 Rises to ${w(atcL1)}, Level 10 to ${w(atcL10)}`,
+      title: `Air Traffic Controller Pay Rise October 2026: ${atcPct}, New Salaries`,
+      description: `Airservices controllers get the final ${atcPct} rise under their 2024-2027 agreement on ${ATC_24_MONTH_COLUMN.dueOn}: Level 1 to ${w(atcL1)}, Level 10 to ${w(atcL10)}.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
+      ],
+      relatedArticles: ["victorian-teachers-pay-rise-2026", "tax-cut-july-2026"],
+      sources: [
+        { title: "Air Traffic Control Classification Base Salary 2024-2027 (Attachment 1)", url: ATC_24_MONTH_COLUMN.sourceUrl, publisher: "Airservices Australia" },
+        { title: ATC_PAY.instrument.name, url: ATC_PAY.instrument.url, publisher: "Airservices Australia" },
+        { title: "Airservices to boost ATC overtime pay during school holidays (context)", url: "https://australianaviation.com.au/2026/09/airservices-to-boost-atc-overtime-pay-during-school-holidays/", publisher: "Australian Aviation" },
+        { title: "Airservices offers triple pay to stop flight delays (context)", url: "https://www.theaustralian.com.au/business/aviation/airservices-trials-300-per-cent-overtime-pay-for-controllers-to-stop-flight-chaos/news-story/f7077fe3c2761aa78dc40751af07f83a", publisher: "The Australian" },
+      ],
+      faq: [
+        { question: "When do air traffic controllers get their next pay rise?", answer: `The Airservices agreement's "24 months" salary column, a ${atcPct} rise, falls due on ${ATC_24_MONTH_COLUMN.dueOn} — 24 months after the agreement commenced on 7 October 2024. The salary table does not name the pay period it is first paid in.` },
+        { question: "How much does a Level 1 air traffic controller earn from October 2026?", answer: `${w(atcL1)} a year base salary, up from ${w(atcL1Now)}. Controllers then progress one level a year to Level 10, which pays ${w(atcL10)} from ${ATC_24_MONTH_COLUMN.dueOn}. Penalty rates, overtime and allowances are paid on top.` },
+        { question: "What do trainee air traffic controllers earn?", answer: `An ab initio trainee is paid ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])} and a field trainee ${w(ATC_24_MONTH_COLUMN.salaries["Field Trainee"])} under the agreement's "24 months" column from ${ATC_24_MONTH_COLUMN.dueOn}.` },
+        { question: "Is this the last pay rise under the current agreement?", answer: "Yes. It is the third and final salary column. The agreement reaches its nominal expiry date on 7 October 2027, and salaries after that depend on a replacement agreement." },
+      ],
+    },
+    {
+      slug: "award-transport-payments-withholding-october-2026",
+      headline: `Tax Now Withheld From Award Transport Payments From ${AWARD_TRANSPORT_CHANGE_DATE}: What It Does to Your Pay`,
+      title: `Award Transport Payments: Withholding Starts ${AWARD_TRANSPORT_CHANGE_DATE}`,
+      description: `From ${AWARD_TRANSPORT_CHANGE_DATE} employers must withhold tax from award transport payments. On a $22 weekly allowance, a $1,300-a-week worker has about ${atExtra} more withheld.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
+        { href: "/cents-per-km/", label: "Cents per km Guide" },
+        { href: "/travel-allowance/", label: "Travel Allowance Guide" },
+      ],
+      relatedArticles: ["tax-cut-july-2026", "payday-super-employees-payslip"],
+      sources: [
+        { title: "Changes to award transport payments (published 26 August 2026, QC66099)", url: CENTS_PER_KM_SOURCES.atoAwardTransportChanges, publisher: "Australian Taxation Office" },
+        { title: "Withholding for allowances (QC51680)", url: CENTS_PER_KM_SOURCES.atoWithholdingForAllowances, publisher: "Australian Taxation Office" },
+        { title: "Cents per kilometre method", url: CENTS_PER_KM_SOURCES.atoMethod, publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "What changes for award transport payments on 1 October 2026?", answer: `For amounts previously treated as award transport payments and paid on or after ${AWARD_TRANSPORT_CHANGE_DATE}, employers must withhold PAYG and no longer identify them separately in Single Touch Payroll. The Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026, repealed the provisions that set withholding on these payments to nil.` },
+        { question: "Will my take-home pay go down?", answer: `Slightly, if you receive an award transport payment. The allowance is now included in the pay your employer withholds from. On the FY2026-27 weekly tax table, a $22 weekly allowance for someone earning $1,300 a week adds about ${atExtra} of withholding a week. Withholding is a prepayment; your final tax is worked out in your return.` },
+        { question: "Does this affect cents per kilometre car allowances?", answer: `No. A cents-per-km car allowance paid at or below the ATO rate (${Math.round(CURRENT_CPK_RATE * 100)}c for ${CURRENT_CPK_YEAR}) for up to ${CPK_KM_CAP.toLocaleString("en-AU")} business kilometres still has no withholding, under the ATO's withholding for allowances rules.` },
+        { question: "How do employers change their STP reporting?", answer: "The ATO allows a cutover method (report new amounts under the allowance's normal category from the first payment on or after 1 October 2026) or a zeroing-out method (an STP update event moving the year-to-date amount, available until 31 December 2026). Award transport payments (allowance type AD) cannot be reported for payments made on or after 1 July 2027." },
+      ],
+    },
+  ];
+}
+// --- end G6 ---
 
 /** All articles, newest first. */
 export function getAllNews(): NewsArticleMeta[] {

@@ -41,8 +41,8 @@ export default function EaAwardFloorChecker() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Is Your Agreement Rate Above the Award?</h2>
         <p className="text-sm text-warmgray mb-6">An enterprise agreement can&rsquo;t pay a lower base rate than the award that would otherwise cover you. Compare your agreement&rsquo;s hourly rate with the award rate from 1 July 2026.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField
               id="ea-award"
               label="Award that would cover your job"

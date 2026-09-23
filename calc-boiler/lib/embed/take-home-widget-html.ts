@@ -92,8 +92,8 @@ var $=function(id){return document.getElementById(id)};
 var fmt=function(n){return n.toLocaleString("en-AU",{style:"currency",currency:"AUD",maximumFractionDigits:0})};
 var fmt2=function(n){return n.toLocaleString("en-AU",{style:"currency",currency:"AUD",minimumFractionDigits:2,maximumFractionDigits:2})};
 var q=new URLSearchParams(location.search);
-if(q.get("salary")&&isFinite(+q.get("salary")))$("s").value=q.get("salary");
-if(q.get("period")){var o=$("p").querySelector('option[value="'+q.get("period")+'"]');if(o)$("p").value=q.get("period")}
+if(q.get("salary")&&isFinite(+q.get("salary"))&&+q.get("salary")>=0)$("s").value=q.get("salary");
+if(q.get("period")){for(var k=0,os=$("p").options;k<os.length;k++)if(os[k].value===q.get("period"))$("p").value=q.get("period")}
 if(q.get("theme")==="dark"||q.get("theme")==="light")document.documentElement.setAttribute("data-theme",q.get("theme"));
 function annual(){var v=parseFloat($("s").value)||0,p=$("p").value;return p==="h"?v*D.hoursPerWeek*52:v*(+p)}
 function run(){

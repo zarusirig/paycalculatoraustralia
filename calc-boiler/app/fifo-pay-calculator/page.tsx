@@ -13,13 +13,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "fifo-pay-calculator";
 const TITLE = "FIFO Pay Calculator: Roster, Overtime & Take-Home (2026-27)";
 const DESCRIPTION =
-  "Work out FIFO pay on a 2:1, 8:6, even-time or 4:1 roster: hourly rate, overtime past 38 hours, shift loadings and site allowances, then take-home after 2026-27 tax. Plus how LAFHA and travel allowances are taxed.";
+  "Work out FIFO pay on a 2:1, 8:6, even-time or 4:1 roster: hourly rate, overtime, shift loadings and site allowances, then take-home after 2026-27 tax.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

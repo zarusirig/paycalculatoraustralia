@@ -13,7 +13,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { EMPLOYMENT } from "../australian-tax";
+import { EMPLOYMENT, SUPER_GUARANTEE, calculatePayBreakdown } from "../australian-tax";
 import {
   HOURLY_RATE_MAX,
   HOURLY_RATE_MIN,
@@ -21,6 +21,10 @@ import {
   hourlyRateFromSlug,
   hourlyRateSlug,
   notesForRate,
+  // G5
+  casualAfterTax,
+  hourlyAfterTax,
+  prevNextRate,
 } from "../hourly-rates";
 
 test("rates are unique, ascending and inside the published band", () => {
@@ -78,4 +82,49 @@ test("slugs round-trip and never contain a dot (Next drops the trailing slash on
   assert.equal(hourlyRateFromSlug("26-44"), 26.44);
   assert.ok(Number.isNaN(hourlyRateFromSlug("26.44")));
   assert.ok(Number.isNaN(hourlyRateFromSlug("abc")));
+});
+
+// --- G5: after-tax figures ---------------------------------------------------
+
+test("G5: hourlyAfterTax reconciles gross = tax + Medicare + take-home", () => {
+  for (const rate of [20, 26.44, 30, 35, 45.5, 80, 100]) {
+    for (const hours of [20, 25, 38]) {
+      const f = hourlyAfterTax(rate, hours);
+      assert.ok(Math.abs(f.grossAnnual - rate * hours * EMPLOYMENT.weeksPerYear) < 0.01);
+      assert.ok(Math.abs(f.grossAnnual - f.incomeTax - f.medicareLevy - f.takeHomeAnnual) < 1, `${rate}@${hours}`);
+      // <=, not <: $20 x 20 hours ($20,800) is under the LITO-effective tax-free threshold.
+      assert.ok(f.perHour <= rate && f.perHour > 0);
+      assert.ok(Math.abs(f.perWeek * 52 - f.takeHomeAnnual) < 1);
+    }
+  }
+});
+
+test("G5: $35 an hour at 38 hours matches the engine on $69,160", () => {
+  const f = hourlyAfterTax(35);
+  assert.equal(f.grossAnnual, 69_160);
+  const b = calculatePayBreakdown({ grossSalary: 69_160 });
+  assert.equal(f.takeHomeAnnual, b.takeHomePay);
+  assert.equal(f.employerSuper, b.superContribution);
+});
+
+test("G5: casual rate adds the 25% loading before tax", () => {
+  const c = casualAfterTax(30);
+  assert.equal(c.rate, 37.5);
+  assert.ok(c.perWeek > hourlyAfterTax(30).perWeek);
+});
+
+test("G5: employer super is capped at the maximum contribution base", () => {
+  // $100 an hour x 38 x 52 = $197,600, under the base; at 60 hours it is over.
+  const over = hourlyAfterTax(100, 60);
+  assert.ok(over.grossAnnual > SUPER_GUARANTEE.maxContributionBaseAnnual);
+  assert.equal(over.employerSuper, Math.round(SUPER_GUARANTEE.maxSGAnnual));
+});
+
+test("G5: prevNextRate walks the page list and stops at the ends", () => {
+  assert.deepEqual(prevNextRate(HOURLY_RATE_MIN).prev, null);
+  assert.deepEqual(prevNextRate(HOURLY_RATE_MAX).next, null);
+  const { prev, next } = prevNextRate(30);
+  assert.ok(prev !== null && next !== null && prev < 30 && next > 30);
+  assert.ok(HOURLY_RATE_PAGES.includes(prev) && HOURLY_RATE_PAGES.includes(next));
+  assert.deepEqual(prevNextRate(19.99), { prev: null, next: null });
 });

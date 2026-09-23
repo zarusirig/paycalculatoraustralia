@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import GrossPayCalculatorPage from "@/modules/calculator/gross-pay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { GROSS_PAY_FAQS } from "@/modules/calculator/gross-pay-calculator-faqs";
+import { formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/gross-pay-calculator/`;
@@ -60,40 +63,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("gross-pay-calculator"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is the difference between gross and net pay?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Gross pay is the total amount you earn before any taxes or deductions are taken out. Net pay (or take-home pay) is the amount that actually lands in your bank account after income tax, Medicare levy, and other deductions.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How do you calculate gross from net in Australia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Because Australia has a progressive tax system with different marginal rates, you cannot just multiply your net pay by a single percentage. You have to \"reverse engineer\" the calculation by figuring out which tax brackets your required gross income falls into and adding the appropriate tax back on top of your net amount.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does gross pay include superannuation?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Generally, no. When negotiating a salary in Australia, "Gross Pay" or "Base Salary" excludes the compulsory employer superannuation guarantee (currently ${Math.round(SUPER_GUARANTEE.rate * 100)}% for FY${FY}). A "Total Remuneration Package" (TRP) includes super.`,
-      },
-    },
-  ],
-};
+const faq = faqPageSchema(GROSS_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Gross Pay Calculator",

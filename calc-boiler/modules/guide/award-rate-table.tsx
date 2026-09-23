@@ -1,5 +1,3 @@
-"use client";
-
 // Shared classification rate table for the per-award rate pages.
 //
 // Hospitality and retail publish the same shape (level, weekly, hourly) but
