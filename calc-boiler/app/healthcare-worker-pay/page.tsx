@@ -20,7 +20,7 @@ const RN_ENTRY_LOW = ENTRIES[0];
 const RN_ENTRY_HIGH = ENTRIES[ENTRIES.length - 1];
 
 const TITLE = "Healthcare Worker Pay — Nurses by State, Doctors & Allied Health";
-const DESCRIPTION = `Nurse and midwife pay scales for all six states from the enterprise agreements: registered nurses start on ${formatAUD(RN_ENTRY_LOW)} to ${formatAUD(
+const DESCRIPTION = `Nurse and midwife pay scales for every state and territory, from the agreements: registered nurses start on ${formatAUD(RN_ENTRY_LOW)} to ${formatAUD(
   RN_ENTRY_HIGH,
 )}. Plus doctors and allied health.`;
 
@@ -49,7 +49,7 @@ const webPage: WithContext<WebPage> = {
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 
-/** Makes the six spokes discoverable as a set, not just as inline anchors. */
+/** Makes the eight spokes discoverable as a set, not just as inline anchors. */
 const stateList: WithContext<ItemList> = {
   "@context": "https://schema.org",
   "@type": "ItemList",

@@ -22,14 +22,14 @@ import { QLD_NURSING_PAY } from "./qld";
 import { WA_NURSING_PAY } from "./wa";
 import { SA_NURSING_PAY } from "./sa";
 import { TAS_NURSING_PAY } from "./tas";
+// H2 (24 Sep 2026): ACT and NT built.
+import { ACT_NURSING_PAY } from "./act";
+import { NT_NURSING_PAY } from "./nt";
 
 export * from "./types";
 export * from "./nurses-award-2020";
 
-/**
- * Registered states. Partial on purpose: ACT and NT are a later wave and the
- * type already carries their slugs so adding them needs no refactor.
- */
+/** Registered states — all eight since H2 (24 Sep 2026). */
 export const NURSING_PAY_BY_STATE: Partial<Record<NursingStateSlug, NursingStateData>> = {
   nsw: NSW_NURSING_PAY,
   vic: VIC_NURSING_PAY,
@@ -37,13 +37,15 @@ export const NURSING_PAY_BY_STATE: Partial<Record<NursingStateSlug, NursingState
   wa: WA_NURSING_PAY,
   sa: SA_NURSING_PAY,
   tas: TAS_NURSING_PAY,
+  act: ACT_NURSING_PAY,
+  nt: NT_NURSING_PAY,
 };
 
 /** Slugs with a built page, in the order the hub lists them. */
-export const NURSING_PAY_STATES: NursingStateSlug[] = ["nsw", "vic", "qld", "wa", "sa", "tas"];
+export const NURSING_PAY_STATES: NursingStateSlug[] = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
 
 /** States we have deliberately not built yet, so the hub can say so. */
-export const NURSING_PAY_STATES_NOT_BUILT = ["Australian Capital Territory", "Northern Territory"] as const;
+export const NURSING_PAY_STATES_NOT_BUILT: readonly string[] = [];
 
 export function getNursingPay(slug: string): NursingStateData | undefined {
   return NURSING_PAY_BY_STATE[slug as NursingStateSlug];

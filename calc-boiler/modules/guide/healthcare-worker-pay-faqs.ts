@@ -23,7 +23,7 @@ export const STATES = NURSING_PAY_STATES.map((slug) => NURSING_PAY_BY_STATE[slug
 );
 
 /**
- * Nurse figures on this hub are derived from the six verified state pay scales
+ * Nurse figures on this hub are derived from the eight verified state and territory pay scales
  * in lib/data/nursing-pay, not from survey averages. `spread` returns the
  * lowest and highest published entry (or top) rate across those states, so the
  * hub can never disagree with a spoke.
@@ -39,7 +39,7 @@ export function spread(pick: "entry" | "top"): { low: number; high: number; lowS
   };
 }
 
-/** Lowest and highest published entry rate for a family, across the six states. */
+/** Lowest and highest published entry rate for a family, across the eight states and territories. */
 export function familySpread(family: ScaleFamily): { low: number; high: number } | null {
   const values: number[] = [];
   for (const state of STATES) {
@@ -113,7 +113,7 @@ export const PACKAGING_BENEFIT = salaryPackagingBenefit(PACKAGE_SALARY, PACKAGED
 export const HEALTHCARE_FAQS: readonly FaqItem[] = [
   {
     q: "How much do registered nurses earn in Australia?",
-    a: `It depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the six state scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(RN_ENTRY.low)} in ${RN_ENTRY.lowState} to ${formatAUD(RN_ENTRY.high)} in ${RN_ENTRY.highState}, and the top of the base registered nurse scale runs from ${formatAUD(RN_TOP.low)} to ${formatAUD(RN_TOP.high)}. Those are base rates before shift penalties, which for a nurse on a rotating roster add a substantial amount on top. Pick your state above for the full published scale.`,
+    a: `It depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the eight state and territory pay scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(RN_ENTRY.low)} in ${RN_ENTRY.lowState} to ${formatAUD(RN_ENTRY.high)} in ${RN_ENTRY.highState}, and the top of the base registered nurse scale runs from ${formatAUD(RN_TOP.low)} to ${formatAUD(RN_TOP.high)}. Those are base rates before shift penalties, which for a nurse on a rotating roster add a substantial amount on top. Pick your state above for the full published scale.`,
   },
   {
     q: "What is the Nurses Award 2020 and does it apply to me?",

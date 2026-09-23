@@ -46,8 +46,8 @@ const STATES: NursingStateData[] = NURSING_PAY_STATES.map((slug) => {
 
 // ---------- registry ----------
 
-test("all six spoke states are registered and self-consistent", () => {
-  assert.equal(STATES.length, 6);
+test("all eight spoke states and territories are registered and self-consistent", () => {
+  assert.equal(STATES.length, 8);
   for (const state of STATES) {
     assert.equal(getNursingPay(state.slug), state);
     assert.equal(state.code, state.code.toUpperCase());
@@ -56,9 +56,9 @@ test("all six spoke states are registered and self-consistent", () => {
   }
 });
 
-test("ACT and NT are not built, and asking for them returns undefined", () => {
-  assert.equal(getNursingPay("act"), undefined);
-  assert.equal(getNursingPay("nt"), undefined);
+test("ACT and NT are built (H2), and an unknown slug returns undefined", () => {
+  assert.equal(getNursingPay("act")?.code, "ACT");
+  assert.equal(getNursingPay("nt")?.code, "NT");
   assert.equal(getNursingPay("nowhere"), undefined);
 });
 
@@ -163,7 +163,7 @@ test("NSW hourly is weekly divided by 38, the award's own part-time divisor", ()
 });
 
 test("states whose source publishes no hourly rate return null rather than a guess", () => {
-  for (const slug of ["wa", "sa", "tas"] as const) {
+  for (const slug of ["wa", "sa", "tas", "act", "nt"] as const) {
     const state = NURSING_PAY_BY_STATE[slug]!;
     const rn = baseRegisteredScale(state)!;
     assert.equal(hourlyFor(rn.points[0], state), null, `${slug} must not invent an hourly rate`);
@@ -231,8 +231,8 @@ test("familiesPresent only lists families the state actually has", () => {
     for (const family of families) {
       assert.ok(state.scales.some((s) => s.family === family));
     }
-    // Only Victoria runs a separately titled midwifery scale.
-    if (state.slug !== "vic") assert.ok(!families.includes("midwife"));
+    // Only Victoria and the ACT print a separately titled midwifery scale.
+    if (state.slug !== "vic" && state.slug !== "act") assert.ok(!families.includes("midwife"));
   }
 });
 
@@ -315,4 +315,33 @@ test("at-a-glance rows match the full tables they summarise", () => {
   const qldRn = scaleSummaries(getNursingPay("qld")!)[0];
   assert.equal(qldRn.low, 83_872, "QLD Nurse Grade 5 re-entry rate");
   assert.equal(qldRn.high, 112_607, "QLD Nurse Grade 5 pay point 7");
+});
+
+// ---------- H2 (24 Sep 2026): ACT and NT pinned to the published figures ----------
+
+test("ACT figures match Schedule 1 of the ACTPS Nursing and Midwifery EA 2023-2026, 4 Dec 2025 column", () => {
+  const act = getNursingPay("act")!;
+  const rn = registeredNurseRange(act)!;
+  assert.equal(rn.entry, 82_993, "RN Level 1 pay point 1");
+  assert.equal(rn.top, 108_780, "RN Level 1 pay point 8");
+  const byCode = (code: string) => act.scales.find((s) => s.gradeCode === code)!;
+  assert.deepEqual(byCode("EN1").points.map(annualFor), [75_849, 77_041, 78_230, 79_421, 80_611]);
+  assert.deepEqual(byCode("RN2").points.map(annualFor), [112_841, 114_970, 117_095, 119_223]);
+  assert.deepEqual(byCode("RN5").points.map(annualFor), [144_410, 154_206, 163_994, 175_188, 194_780, 214_371]);
+  assert.equal(annualFor(byCode("NP").points[0]), 154_206);
+  // The midwife ladder mirrors the RN ladder exactly.
+  assert.deepEqual(byCode("RM1").points.map(annualFor), byCode("RN1").points.map(annualFor));
+  assert.equal(act.instruments[0].reference, "AG2024/2516");
+});
+
+test("NT figures match Table 1 of the NTPS Nurses and Midwives' 2022-2026 EA, 19 Aug 2025 column", () => {
+  const nt = getNursingPay("nt")!;
+  const rn = registeredNurseRange(nt)!;
+  assert.equal(rn.entry, 80_665, "Nurse 2.1");
+  assert.equal(rn.top, 107_800, "Nurse 2.8");
+  const byCode = (code: string) => nt.scales.find((s) => s.gradeCode === code)!;
+  assert.deepEqual(byCode("Nurse 1").points.map(annualFor), [71_359, 73_568, 75_854, 78_203, 80_665, 81_479]);
+  assert.deepEqual(byCode("Nurse 6").points.map(annualFor), [149_765, 155_757, 157_329]);
+  assert.deepEqual(byCode("Nurse 8").points.map(annualFor), [181_233, 187_306, 189_196]);
+  assert.equal(nt.instruments[0].reference, "AG2023/2310");
 });

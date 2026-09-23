@@ -5,7 +5,8 @@
 // Education Staff Enterprise Agreement 2024, approved by the South Australian
 // Employment Tribunal on 25 March 2024 (ET-24-00640), CROSS-CHECKED against the
 // Department for Education's own "School teachers pay rates" schedule
-// (School Teacher Web Rates, 08/05/2026). Read on 28 August 2026.
+// (School Teacher Web Rates, 08/05/2026). Read on 28 August 2026; re-checked
+// unchanged on 24 September 2026 (H2).
 //
 // The agreement's schedules run in dated dollar columns, ending at "1st fpp on
 // or after 1.5.2026". That is the column in force and the one published here.
@@ -39,7 +40,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
     "https://www.education.sa.gov.au/working-us/careers-education/working-conditions/pay-rates-forms-new-employees-and-enterprise-agreements",
   ratesEffectiveFrom: "the first full pay period on or after 1 May 2026",
   nextIncrease: null,
-  verifiedOn: "28 August 2026",
+  verifiedOn: "24 September 2026",
 
   scales: [
     {
@@ -156,7 +157,8 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "1 May 2026 is the last salary column the 2024 agreement makes, and the agreement's nominal life is three years from 25 March 2024. No successor agreement or further increase has been published, so there is no next scheduled rise to show.",
+    "1 May 2026 is the last salary column the 2024 agreement makes, and the agreement's nominal life is three years from 25 March 2024 (to March 2027). No successor agreement or further increase has been published, so there is no next scheduled rise to show.",
+    "Re-checked on 24 September 2026: the Department for Education's pay rates page still links the 2024 agreement and the School Teacher Web Rates sheet dated 8 May 2026, whose figures match the table below, and the Attorney-General's Department still lists the 2024 agreement as current.",
   ],
 
   unverified: [

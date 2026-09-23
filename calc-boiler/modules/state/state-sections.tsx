@@ -523,8 +523,9 @@ export function EmployerPayrollTaxLink({ profile }: { profile: StateEmployeeProf
 // Built spokes, mirrored from lib/data/public-service-pay (JURISDICTIONS) and
 // lib/data/nursing-pay (NURSING_PAY_STATES). Hard-coded so this client bundle
 // does not pull in every pay table; update both lists when a state is added.
-const PUBLIC_SERVICE_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa"];
-const NURSE_PAY_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa", "tas"];
+// H2 (24 Sep 2026): TAS, ACT and NT public service; ACT and NT nurses.
+const PUBLIC_SERVICE_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
+const NURSE_PAY_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
 
 export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
   const code = profile.code.toLowerCase() as PayrollTaxStateCode;
