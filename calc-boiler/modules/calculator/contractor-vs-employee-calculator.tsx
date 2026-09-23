@@ -122,7 +122,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Side-by-Side Pay Comparison on the Same Rate</h2>
 
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5 bg-sandstone p-5 rounded-xl border border-sandstone-dark/10">
                   <h3 className="font-medium text-navy">Your Equivalent Rate</h3>
@@ -465,7 +465,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Contracting becomes financially advantageous when the contract rate exceeds the equivalent employee salary by <strong>at least 30%</strong>. Below that threshold, the value of lost entitlements typically outweighs the higher gross income.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3 flex items-center"><ChevronRight className="h-5 w-5 mr-1" /> Contracting is better when:</h3>
                 <ul className="space-y-2 text-sm pl-2 border-l-2 border-eucalyptus-light">
@@ -715,7 +715,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
             <p className="mb-4 text-warmgray">
               These calculators complement the contractor vs employee comparison by modelling specific components of your pay, tax, and superannuation.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/take-home-pay-calculator/" className="bg-white hover:bg-sandstone rounded-lg shadow-sm border border-sandstone-dark/20 p-4 transition-all hover:shadow-md">
                 <h3 className="font-semibold text-navy text-sm">Take-Home Pay Calculator</h3>
                 <p className="text-warmgray text-xs mt-1">Calculate your exact after-tax income as an employee with all deductions applied.</p>

@@ -83,9 +83,9 @@ export default function MedicareLevySurchargeCalculator() {
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Medicare Levy Surcharge Calculator {MLS_INCOME_YEAR}</h2>
         <p className="text-sm text-warmgray mb-6">Uses the ATO&rsquo;s {MLS_INCOME_YEAR} surcharge tiers. Enter income for the whole year, before any cover changes.</p>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="mls-status" className="block text-sm font-medium text-navy mb-1">For the whole year you were</label>
                 <select id="mls-status" value={status} onChange={(e) => setStatus(e.target.value as Status)} className={INPUT}>
@@ -99,7 +99,7 @@ export default function MedicareLevySurchargeCalculator() {
               )}
             </div>
 
-            <fieldset className="grid gap-4 sm:grid-cols-2">
+            <fieldset className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <legend className="text-sm font-semibold text-navy mb-2 sm:col-span-2">Your income for MLS purposes</legend>
               <Field id="mls-taxable" label="Taxable income" value={taxable} onChange={setTaxable} />
               <Field id="mls-rfb" label="Reportable fringe benefits" hint="From your income statement, e.g. a novated lease." value={rfb} onChange={setRfb} />
@@ -153,7 +153,7 @@ export default function MedicareLevySurchargeCalculator() {
           <div className="mt-8 border-t border-sandstone-dark/20 pt-6">
             <h3 className="text-base font-semibold text-navy mb-1" style={FONT}>Is hospital cover cheaper than the surcharge?</h3>
             <p className="text-sm text-warmgray mb-4">Enter a real quote for private patient hospital cover. Your government rebate is worked out from the same tier.</p>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-4">
               <Field id="mls-premium" label="Annual hospital premium, before rebate" value={premium} onChange={setPremium} step={100} />
               <div>
                 <label htmlFor="mls-age" className="block text-sm font-medium text-navy mb-1">Oldest person on the policy</label>

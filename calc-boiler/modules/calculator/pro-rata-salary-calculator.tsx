@@ -44,7 +44,7 @@ export default function ProRataSalaryCalculator() {
           Enter the full-time salary and the hours or days you work. The result updates as you type.
         </p>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
               <label htmlFor="pr-fte" className="mb-1 block text-sm font-medium text-navy">Full-time (FTE) salary</label>

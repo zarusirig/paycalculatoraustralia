@@ -81,8 +81,8 @@ export default function ConcessionalCapCalculator() {
         <h2 className="text-xl font-semibold text-navy mb-1" style={FONT}>Concessional Cap &amp; Salary Sacrifice Calculator {FY}</h2>
         <p className="text-sm text-warmgray mb-6">Checks your before-tax contributions against the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap (plus any carry-forward), then shows what salary sacrificing does to your pay and your super.</p>
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <Field id="cc-salary" label="Salary (before sacrifice, excluding super)" hint={`Employer super guarantee is ${formatPercent(SUPER_GUARANTEE.rate, 0)} of this.`} value={salary} onChange={setSalary} />
             <Field id="cc-sacrifice" label="Salary sacrifice to super, per year" value={sacrifice} onChange={setSacrifice} step={500} />
             <Field id="cc-personal" label="Personal contributions you'll claim a deduction for" value={personal} onChange={setPersonal} step={500} />

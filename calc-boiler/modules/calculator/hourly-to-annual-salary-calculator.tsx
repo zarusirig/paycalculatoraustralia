@@ -95,7 +95,7 @@ export default function HourlyToAnnualCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md border-t-4 border-t-eucalyptus">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
                 {/* Inputs */}
                 <div className="space-y-6">
@@ -156,7 +156,7 @@ export default function HourlyToAnnualCalculatorPage() {
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">
                       <h3 className="font-semibold text-navy text-sm">Your True Take-Home Pay</h3>
                     </div>
-                    <div className="p-0">
+                    <div className="p-0 overflow-x-auto">
                       <table className="w-full text-sm">
                         <thead className="bg-white border-b border-sandstone-dark/10">
                           <tr>
@@ -355,7 +355,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Under the National Employment Standards (NES), the maximum ordinary hours for a full-time employee is <strong>38 hours per week</strong>, equal to 7.6 hours per day across a 5-day working week. Some Enterprise Agreements and older contracts specify 40 hours, producing 2,080 annual hours instead of the standard 1,976 hours.
             </p>
-            <div className="grid sm:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
               <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm text-center">
                 <div className="text-3xl font-bold text-navy mb-1">38</div>
                 <div className="text-sm font-semibold text-eucalyptus-dark uppercase">Hours / Week</div>
@@ -491,7 +491,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Permanent employees receive paid leave, so the 52-week multiplier accurately reflects their annual earnings, while casual employees are only paid for weeks actually worked.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-navy mb-2">Permanent Employees (Full & Part-Time)</h3>
                 <p className="text-sm mb-3">If you are perm on an hourly rate, you get paid for 52 weeks of the year, even when you aren&apos;t working, because you are legally entitled to:</p>
@@ -552,7 +552,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               These Australian tax calculators handle the next steps after converting your hourly rate to an annual salary for FY{SITE_CONFIG.financialYear}.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/take-home-pay-calculator/" className="block bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy mb-1">Take-Home Pay Calculator</h3>
                 <p className="text-sm text-warmgray">Enter your annual gross salary to see your net pay after income tax, Medicare levy, and HECS-HELP repayments.</p>

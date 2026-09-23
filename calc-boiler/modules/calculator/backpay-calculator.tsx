@@ -105,7 +105,7 @@ export default function BackpayCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Backpay</h2>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                     <div>
@@ -139,7 +139,7 @@ export default function BackpayCalculatorPage() {
                         onChange={(e) => setWeeksUnderpaid(clamp(Number(e.target.value || 1), 1, 312))}
                         className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       <input type="range" min={1} max={156} step={1} value={clamp(weeksUnderpaid, 1, 156)}
-                        onChange={(e) => setWeeksUnderpaid(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setWeeksUnderpaid(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                       <p className="text-xs text-warmgray-light mt-1">You can claim up to 6 years (312 weeks) of underpayment.</p>
                     </div>
                   </form>

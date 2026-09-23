@@ -97,7 +97,7 @@ export default function GrossPayCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-[auto_1fr] gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-start">
 
                 {/* Inputs */}
                 <div className="bg-white p-6 rounded-2xl border border-sandstone-dark/10 shadow-sm md:w-80">
@@ -373,7 +373,7 @@ export default function GrossPayCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Here are some common net take-home targets and the gross annual salary required to hit them under the FY25-26 tax brackets:
             </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { net: 1000, per: "week" },
                 { net: 1500, per: "week" },

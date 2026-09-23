@@ -108,7 +108,7 @@ export default function TakeHomePayCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["annual", "monthly", "fortnightly", "weekly"]} value={period} label="I'm entering my gross pay"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -121,7 +121,7 @@ export default function TakeHomePayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={PRESETS[period]} current={amount} onPick={setAmount} />
                     {period !== "annual" && <p className="mt-1 text-xs text-warmgray-light">= {formatAUD(salary)} a year</p>}

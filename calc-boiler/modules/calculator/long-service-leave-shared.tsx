@@ -107,7 +107,7 @@ export function RelatedLinks({ current }: { current?: JurisdictionCode | "hub" }
     <div className="space-y-6">
       <div>
         <h3 className="font-semibold text-navy mb-2">Long service leave in your state</h3>
-        <ul className="grid sm:grid-cols-2 gap-2 text-warmgray text-sm">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-warmgray text-sm">
           {current !== "hub" && (
             <li>
               <Link href="/long-service-leave-calculator/" className={LINK}>

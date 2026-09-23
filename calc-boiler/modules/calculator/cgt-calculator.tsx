@@ -174,7 +174,7 @@ export default function CgtCalculator() {
           tax, not a separate tax with its own rate.
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">
           {/* Inputs */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <MoneyField

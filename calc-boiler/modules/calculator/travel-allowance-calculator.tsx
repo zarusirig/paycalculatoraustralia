@@ -59,8 +59,8 @@ export default function TravelAllowanceCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>ATO Reasonable Travel Allowance Calculator {TD_2026_4.incomeYear}</h2>
         <p className="text-sm text-warmgray mb-6">The ATO&rsquo;s reasonable amounts for accommodation, meals and incidentals from {TD_2026_4.id}, for your salary and destination. Enter the allowance you were paid to see how much of it your employer should withhold tax from.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <NumberField id="ta-salary" label="Annual salary (excluding allowances)" hint="Part-time: use the full-time equivalent." value={salary} onChange={setSalary} step={1000} />
             <SelectField id="ta-kind" label="Where you're staying" value={kind} onChange={setKind} options={KIND_OPTIONS} />
             {kind === "capital" && (

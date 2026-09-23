@@ -118,7 +118,7 @@ export default function SecondJobTaxCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Tax on Two Jobs</h2>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                     <div>
@@ -129,7 +129,7 @@ export default function SecondJobTaxCalculatorPage() {
                           onChange={(e) => setJob1Salary(clamp(Number(e.target.value || 0), 0, 300000))}
                           className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       </div>
-                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                         value={clamp(job1Salary, 0, 200000)} onChange={(e) => setJob1Salary(Number(e.target.value))} />
                     </div>
                     <div>
@@ -140,7 +140,7 @@ export default function SecondJobTaxCalculatorPage() {
                           onChange={(e) => setJob2Salary(clamp(Number(e.target.value || 0), 0, 300000))}
                           className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       </div>
-                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                      <input type="range" min={0} max={200000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                         value={clamp(job2Salary, 0, 200000)} onChange={(e) => setJob2Salary(Number(e.target.value))} />
                     </div>
                     <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">

@@ -70,7 +70,7 @@ export default function MonthlyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-6 text-center">Calculate Your Monthly Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <div>
                     <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross Annual Salary</label>
@@ -80,7 +80,7 @@ export default function MonthlyPayCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeHECS} onChange={(e) => setIncludeHECS(e.target.checked)}

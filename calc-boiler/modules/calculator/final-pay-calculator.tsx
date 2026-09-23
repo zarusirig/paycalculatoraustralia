@@ -125,7 +125,7 @@ export default function FinalPayCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Final Pay</h2>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                     <div>
@@ -143,7 +143,7 @@ export default function FinalPayCalculatorPage() {
                         onChange={(e) => setYearsService(clamp(Number(e.target.value || 0), 0, 50))}
                         className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       <input type="range" min={0} max={30} step={1} value={clamp(yearsService, 0, 30)}
-                        onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     </div>
                     <div>
                       <label htmlFor="leave" className="block text-sm font-medium text-navy mb-1">Unused Annual Leave (days)</label>

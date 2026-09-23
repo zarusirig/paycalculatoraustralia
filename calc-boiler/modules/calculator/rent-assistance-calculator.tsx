@@ -72,7 +72,7 @@ export default function RentAssistanceCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">How Much Rent Assistance Can You Get?</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <div>
                     <label htmlFor="situation" className={LABEL}>Your situation</label>

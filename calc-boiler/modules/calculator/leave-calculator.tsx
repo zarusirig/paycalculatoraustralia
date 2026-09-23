@@ -76,7 +76,7 @@ export default function LeaveCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-6">Calculate Your Leave Entitlements</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
@@ -88,7 +88,7 @@ export default function LeaveCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={250000} step={5000} value={clamp(salary, 0, 250000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
 
                   <div>
@@ -97,7 +97,7 @@ export default function LeaveCalculatorPage() {
                       onChange={(e) => setYearsService(clamp(Number(e.target.value || 0), 0, 40))}
                       className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     <input type="range" min={0} max={20} step={1} value={clamp(yearsService, 0, 20)}
-                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
 
                   <label className="flex cursor-pointer items-center gap-2 text-sm">

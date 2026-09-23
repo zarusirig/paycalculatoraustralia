@@ -85,7 +85,7 @@ export default function FortnightlyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Fortnightly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["fortnightly", "annual"]} value={period} label="I'm entering my gross"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -98,7 +98,7 @@ export default function FortnightlyPayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
                     {/* Mobile: the result card stacks below the form, so surface the answer here too. */}

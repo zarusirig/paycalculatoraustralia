@@ -61,8 +61,8 @@ export default function PayDatesCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Pay Date Calculator</h2>
         <p className="text-sm text-warmgray mb-6">Enter any one pay day (a past payslip date works) and how often you&rsquo;re paid. You&rsquo;ll get every pay day in the financial year and whether it has an extra pay.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <SelectField id="pd-cycle" label="Paid" value={cycle} onChange={setCycle} options={CYCLES} />
             <div>
               <label htmlFor="pd-anchor" className={LABEL}>A pay day</label>

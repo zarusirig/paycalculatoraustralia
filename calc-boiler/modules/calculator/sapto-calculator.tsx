@@ -66,7 +66,7 @@ export default function SaptoCalculator() {
           of your return.
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">
           {/* Inputs */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
@@ -113,7 +113,7 @@ export default function SaptoCalculator() {
                 value={clamp(rebateIncome, 0, 100_000)}
                 onChange={(e) => setRebateIncome(Number(e.target.value))}
                 className="mt-2 w-full accent-eucalyptus"
-                aria-hidden="true"
+                aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
                 Taxable income plus reportable super contributions, total net investment loss and

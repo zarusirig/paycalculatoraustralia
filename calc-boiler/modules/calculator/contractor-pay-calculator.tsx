@@ -290,7 +290,7 @@ export default function ContractorPayCalculator() {
         {/* Key Features */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Pay Calculator Key Features</h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               "Accurate take-home pay for ABN workers, freelancers, consultants and gig-economy roles",
               "Calculate hourly, daily, weekly, fortnightly and monthly contractor income",
@@ -310,7 +310,7 @@ export default function ContractorPayCalculator() {
         {/* Understanding Results */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Understanding Your Contractor Results</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
             <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
             <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income — you remit it to the ATO." />
@@ -593,7 +593,7 @@ export default function ContractorPayCalculator() {
           <p className="mb-4 text-warmgray">
             Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 5 calculators cover the most common related scenarios.
           </p>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               { href: "/contractor-vs-employee-calculator/", title: "Contractor vs Employee Calculator", desc: "Compare contractor rates against employee salaries with full entitlement costing" },
               { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: `Calculate income tax at every bracket for FY${SITE_CONFIG.financialYear} including LITO and Medicare levy` },

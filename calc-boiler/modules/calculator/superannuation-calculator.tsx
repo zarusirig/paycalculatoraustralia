@@ -67,7 +67,7 @@ export default function SuperannuationCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <div>
                     <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross Annual Salary</label>
@@ -77,7 +77,7 @@ export default function SuperannuationCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
                   <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 rounded-lg shadow-md transition-all">Calculate Super</button>
                 </form>
@@ -208,7 +208,7 @@ export default function SuperannuationCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Counts as Ordinary Time Earnings?</h2>
             <p className="mb-4 text-warmgray">&quot;Ordinary Time Earnings&quot; (OTE) is the earnings base your employer uses to calculate the 12% SG contribution. The ATO defines OTE as the amount your employer pays you for your ordinary hours of work.</p>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div><h3 className="font-semibold text-eucalyptus-dark mb-2">Included in OTE</h3>
                 <ul className="list-disc pl-5 text-warmgray space-y-1"><li>Base salary and wages</li><li>Commissions</li><li>Shift loadings</li><li>Paid leave (annual, personal, long service)</li><li>Some allowances and bonuses</li></ul>
               </div>
@@ -310,7 +310,7 @@ export default function SuperannuationCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators</h2>
             <p className="mb-4 text-warmgray">Superannuation is one component of your total pay package. These calculators cover income tax, take-home pay, and employer costs for a complete picture.</p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/" className="block rounded-xl border border-sandstone-dark/20 p-4 hover:bg-sandstone transition-colors">
                 <h3 className="font-semibold text-navy mb-1" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Australian Tax Calculator</h3>
                 <p className="text-sm text-warmgray">Full pay breakdown with income tax, Medicare levy, HECS-HELP, and superannuation for FY{SITE_CONFIG.financialYear}.</p>

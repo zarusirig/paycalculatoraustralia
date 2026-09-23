@@ -131,7 +131,7 @@ export default function MedicareLevyCalculator() {
           {MEDICARE_LEVY_INCOME_YEAR} figures, the latest published.
         </p>
 
-        <div className="grid md:grid-cols-[1fr_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-8">
           {/* Inputs */}
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
@@ -180,7 +180,7 @@ export default function MedicareLevyCalculator() {
                 value={clamp(taxableIncome, 0, 250_000)}
                 onChange={(e) => setTaxableIncome(Number(e.target.value))}
                 className="mt-2 w-full accent-eucalyptus"
-                aria-hidden="true"
+                aria-hidden="true" tabIndex={-1}
               />
               <p className="text-xs text-warmgray-light mt-1">
                 Gross income less allowable deductions — not your gross salary.
