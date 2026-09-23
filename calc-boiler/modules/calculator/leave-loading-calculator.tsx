@@ -33,7 +33,7 @@ const AWARD_OPTIONS = [
   { value: OTHER, label: "Enterprise agreement or contract with 17.5%" },
 ] as const;
 
-const pct = (m: number) => `${Math.round(m * 100)}%`;
+const pct = (m: number) => `${Math.round(m * 1000) / 10}%`;
 
 export default function LeaveLoadingCalculator() {
   const [code, setCode] = useState<string>(LEAVE_LOADING_RULES[0].code);
