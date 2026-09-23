@@ -32,6 +32,7 @@ function money(n: number) {
 
 /** Title leads with the answer: the hourly minimum, or the median for award-free jobs. */
 function titleFor(occ: Occupation): string {
+  if (occ.metaTitle) return occ.metaTitle;
   const r = headlineRow(occ);
   if (r) return `${occ.name} Pay Rates Australia 2026 — ${money(r.hourly)}/hr Award Minimum`;
   if (occ.median) return `${occ.name} Pay Rates Australia 2026 — No Award, ${formatAUD(occ.median.medianWeekly)}/wk Median`;
@@ -41,7 +42,7 @@ function titleFor(occ: Occupation): string {
 function descriptionFor(occ: Occupation): string {
   const r = headlineRow(occ);
   if (r && occ.award) {
-    return `${occ.name} award pay rates for 2026–27 under the ${occ.award.name} [${occ.award.code}]: ${money(r.hourly)}/hr, ${money(r.weekly)}/wk, casual ${money(r.casualHourly)}/hr. Every classification, penalty rates, overtime and take-home pay. Verified ${occ.verifiedOn}.`;
+    return `${occ.name} award pay rates for 2026–27 under the ${occ.award.name} [${occ.award.code}]: ${money(r.hourly)}/hr, ${money(r.weekly)}/wk${r.casualHourly !== null ? `, casual ${money(r.casualHourly)}/hr` : ""}. Every classification, penalty rates, overtime and take-home pay. Verified ${occ.verifiedOn}.`;
   }
   return `Is there an award for ${occ.plural}? What the law requires (the National Minimum Wage), the ${occ.median ? `${formatAUD(occ.median.medianWeekly)} a week median` : "market median"}, and take-home pay. Verified ${occ.verifiedOn}.`;
 }

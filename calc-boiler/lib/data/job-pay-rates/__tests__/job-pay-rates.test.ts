@@ -10,9 +10,11 @@ import {
   headlineRow,
   isOccupationSlug,
   nearestTakeHomeAmount,
+  rowAnnual,
   weeklyRange,
 } from "../index";
 import { REAL_ESTATE_ROWS } from "../real-estate-common";
+import { dailyHireHourly } from "../building-construction-common";
 import { SCHADS_SACS } from "../../../constants/schads-award";
 import { EMPLOYMENT } from "../../../constants/australian-tax";
 
@@ -58,6 +60,7 @@ test("casual rate is the hourly rate plus 25%, to the cent", () => {
   for (const occ of OCCUPATIONS) {
     for (const table of occ.tables) {
       for (const row of table.rows) {
+        if (row.casualHourly === null) continue; // the award sets no casual rate (asserted separately)
         const derived = cents(row.hourly) * 1.25;
         assert.ok(
           Math.abs(derived - cents(row.casualHourly)) <= 1,
@@ -71,6 +74,7 @@ test("casual rate is the hourly rate plus 25%, to the cent", () => {
 test("rates sit at or above the National Minimum Wage", () => {
   for (const occ of OCCUPATIONS) {
     for (const table of occ.tables) {
+      if (table.belowMinimumWage) continue; // apprentice/trainee tables — asserted separately
       for (const row of table.rows) {
         assert.ok(row.weekly >= EMPLOYMENT.minimumWageWeekly, `${occ.slug} / ${row.label}`);
         assert.ok(row.hourly >= EMPLOYMENT.minimumWageHourly, `${occ.slug} / ${row.label}`);
@@ -225,4 +229,155 @@ test("annual and after-tax figures link to a take-home page that exists", () => 
 test("annualFromWeekly uses 52 weeks", () => {
   assert.equal(annualFromWeekly(1586.3), 82_488);
   assert.equal(annualFromWeekly(1102), 57_304);
+});
+
+// ---------------------------------------------------------------------------
+// W4 (wave 2) occupations — spot checks against the consolidated award text
+// read 23 September 2026.
+// ---------------------------------------------------------------------------
+
+test("W4: HPSS health professional rates match cl 17.2 and Schedule C.2.3", () => {
+  // [label, weekly, hourly, casual] exactly as the award prints them.
+  const published: [string, number, number, number][] = [
+    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
+    ["Level 1 pay point 3", 1273.4, 33.51, 41.89],
+    ["Level 1 pay point 4", 1317.2, 34.66, 43.33],
+    ["Level 2 pay point 1", 1493.9, 39.31, 49.14],
+    ["Level 4 pay point 4", 2705.1, 71.19, 88.99],
+  ];
+  for (const slug of ["occupational-therapist", "physiotherapist", "psychologist"]) {
+    for (const [label, weekly, hourly, casual] of published) {
+      const r = row(slug, label);
+      assert.deepEqual([r.weekly, r.hourly, r.casualHourly], [weekly, hourly, casual], `${slug} ${label}`);
+    }
+    assert.equal(getOccupation(slug)!.award!.code, "MA000027");
+  }
+  assert.equal(headlineRow(getOccupation("occupational-therapist")!)!.hourly, 33.51); // 4-year degree entry
+  assert.equal(headlineRow(getOccupation("psychologist")!)!.hourly, 34.66); // masters entry
+});
+
+test("W4: social worker rates are the SCHADS constants, headline is the 4-year graduate entry", () => {
+  const sw = getOccupation("social-worker")!;
+  for (const r of sw.tables[0].rows) {
+    const source = SCHADS_SACS.find((s) => s.classification === r.label);
+    assert.ok(source, r.label);
+    assert.equal(r.weekly, source.weekly);
+  }
+  const h = headlineRow(sw)!;
+  assert.equal(h.label, "Level 3 pay point 4");
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1649.97, 43.42, 54.28]);
+});
+
+test("W4: nurse rates are the Nurses Award constants and match Schedule B casual rates", () => {
+  const h = headlineRow(getOccupation("nurse")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1219.5, 32.09, 40.11]); // Schedule B.1.3(c)
+  assert.equal(row("nurse", "Nursing assistant — 1st year").casualHourly, 34.56); // Schedule B.1.1(c)
+  assert.equal(row("nurse", "Aged care RN level 1 — First year at this level").hourly, 41.36);
+});
+
+test("W4: carpenter minimum = CW3 + industry allowance + tool allowance, all purposes", () => {
+  const general = row("carpenter", "Carpenter (CW3) — general building and construction");
+  assert.equal(cents(general.weekly), cents(1119.1 + 67.15 + 41.22));
+  assert.deepEqual([general.hourly, general.casualHourly], [32.3, 40.38]);
+  const residential = row("carpenter", "Carpenter (CW3) — residential building");
+  assert.equal(cents(residential.weekly), cents(1119.1 + 53.72 + 41.22));
+  assert.equal(residential.hourly, 31.95);
+  assert.equal(dailyHireHourly(general.weekly), 33.33); // cl 19.3(a): x 52/50.4, / 38
+});
+
+test("W4: plumber weekly sums reproduce Schedule C.1.3 hourly rates to the cent", () => {
+  const plumber = getOccupation("plumber")!;
+  for (const table of plumber.tables) {
+    for (const r of table.rows) {
+      assert.equal(Math.round((r.weekly / 38) * 100), cents(r.hourly), `${r.label}: ${r.weekly}/38 vs ${r.hourly}`);
+    }
+  }
+  const h = headlineRow(plumber)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1246.54, 32.8, 41.0]);
+});
+
+test("W4: crane operator — Mobile Crane Hiring Award Schedule B and building award CW levels", () => {
+  assert.deepEqual(
+    [row("crane-operator", "Mobile crane employee level 2 (MCE2)").hourly, row("crane-operator", "Mobile crane employee level 2 (MCE2)").casualHourly],
+    [32.06, 40.08],
+  );
+  assert.equal(row("crane-operator", "Mobile crane employee level 1 (MCE1)").weekly, 1182.89); // 1119.10 + 63.79
+  assert.equal(row("crane-operator", "CW7 — tower crane; mobile cranes over 180 tonnes").hourly, 34.83); // (1256.30 + 67.15)/38
+});
+
+test("W4: apprentice electrician rates reproduce Schedule B.4 from the cl 16.4 formula", () => {
+  const app = getOccupation("apprentice-electrician")!;
+  for (const table of app.tables) {
+    assert.ok(table.belowMinimumWage, table.id);
+    for (const r of table.rows) {
+      assert.equal(r.casualHourly, null, `${r.label}: the award sets no casual apprentice rate`);
+      assert.equal(Math.round((r.weekly / 38) * 100), cents(r.hourly), `${r.label}: ${r.weekly}/38 vs ${r.hourly}`);
+    }
+  }
+  assert.equal(row("apprentice-electrician", "1st year — completed Year 12").hourly, 17.97);
+  assert.equal(row("apprentice-electrician", "1st year — not completed Year 12").hourly, 16.39);
+  assert.equal(row("apprentice-electrician", "Adult apprentice — 2nd to 4th year").hourly, 28.9);
+});
+
+test("W4: only apprentice tables may sit below the National Minimum Wage, and only with a reason", () => {
+  for (const occ of OCCUPATIONS) {
+    for (const table of occ.tables) {
+      if (!table.belowMinimumWage) continue;
+      assert.equal(occ.slug, "apprentice-electrician", `${occ.slug}/${table.id} claims a below-NMW exemption`);
+      assert.match(table.belowMinimumWage, /apprentice/i);
+    }
+  }
+});
+
+test("W4: engineer — annual wage, the award's weekly conversion and Schedule C hourly agree", () => {
+  const eng = getOccupation("engineer")!;
+  for (const r of eng.tables[0].rows) {
+    assert.ok(r.annual, r.label);
+    assert.equal(cents(r.weekly), Math.round(((r.annual! * 6) / 313) * 100), r.label); // cl 14.2
+    assert.equal(Math.round(((r.annual! * 6) / 313 / 38) * 100), cents(r.hourly), r.label); // cl 14.2 hourly
+  }
+  const h = headlineRow(eng)!;
+  assert.deepEqual([h.annual, h.hourly, h.casualHourly], [68_538, 34.57, 43.21]);
+  assert.equal(rowAnnual(h), 68_538); // the page shows the award's annual wage, not weekly x 52
+});
+
+test("W4: lawyer — law graduate is Legal Services Award level 5; admitted lawyers get the NMW", () => {
+  const h = headlineRow(getOccupation("lawyer")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1291.8, 33.99, 42.49]);
+  const nmw = row("lawyer", "National Minimum Wage (adult)");
+  assert.equal(nmw.hourly, EMPLOYMENT.minimumWageHourly);
+  assert.equal(nmw.casualHourly, 33.05);
+});
+
+test("W4: doctor rates are cl 16.1 verbatim (annual = weekly x 52 to the dollar)", () => {
+  const doc = getOccupation("doctor")!;
+  for (const t of doc.tables) {
+    for (const r of t.rows) assert.ok(Math.abs(r.annual! - r.weekly * 52) < 1, `${r.label}: ${r.annual} vs ${r.weekly} x 52`);
+  }
+  assert.deepEqual([row("doctor", "Intern").weekly, row("doctor", "Intern").hourly, row("doctor", "Intern").casualHourly], [1277.54, 33.62, 42.03]);
+  assert.equal(row("doctor", "Specialist").annual, 121_535);
+});
+
+test("W4: teacher aide — cl 17.1 rates, annual = weekly x 52.18, Schedule B.2.1 casuals", () => {
+  const ta = getOccupation("teacher-aide")!;
+  for (const r of ta.tables[0].rows) assert.equal(r.annual, Math.round(r.weekly * 52.18), r.label);
+  const h = headlineRow(ta)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1073.1, 28.24, 35.3]);
+});
+
+test("W4: early childhood teacher — long day care is 4% above preschool, casual = 2-hour rate / 2", () => {
+  const h = headlineRow(getOccupation("early-childhood-teacher")!)!;
+  assert.deepEqual([h.weekly, h.annual, h.hourly, h.casualHourly], [1513.6, 78_979, 39.83, 49.79]);
+  const pre = row("early-childhood-teacher", "Level 1 — preschool");
+  assert.equal(Math.round(pre.weekly * 1.04 * 10) / 10, h.weekly);
+  assert.equal(pre.casualHourly, 47.88);
+});
+
+test("W4: a metaTitle override still states the headline hourly rate", () => {
+  for (const occ of OCCUPATIONS) {
+    if (!occ.metaTitle) continue;
+    const r = headlineRow(occ);
+    assert.ok(r, occ.slug);
+    assert.ok(occ.metaTitle.includes(`$${r.hourly.toFixed(2)}`), `${occ.slug}: ${occ.metaTitle}`);
+  }
 });

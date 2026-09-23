@@ -100,7 +100,10 @@ export default function JobPayRatesHubPage() {
                           {r ? formatAUD(r.hourly, 2) : formatAUD(occ.tables[0].rows[0].hourly, 2)}
                         </td>
                         <td className="px-4 py-3 text-right">
-                          {r ? formatAUD(r.casualHourly, 2) : formatAUD(occ.tables[0].rows[0].casualHourly, 2)}
+                          {(() => {
+                            const c = r ? r.casualHourly : occ.tables[0].rows[0].casualHourly;
+                            return c === null ? "—" : formatAUD(c, 2);
+                          })()}
                         </td>
                         <td className="px-4 py-3 text-right">{occ.median ? formatAUD(occ.median.medianWeekly) : "—"}</td>
                       </tr>

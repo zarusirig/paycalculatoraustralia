@@ -10,15 +10,29 @@
 import { calculatePayBreakdown } from "../../constants/australian-tax";
 import { nearestTakeHomeAmount, takeHomeHref, isExactTakeHomeAmount } from "../teacher-pay";
 import { ACCOUNTANT } from "./accountant";
+import { APPRENTICE_ELECTRICIAN } from "./apprentice-electrician";
 import { BUS_DRIVER } from "./bus-driver";
+import { CARPENTER } from "./carpenter";
+import { CRANE_OPERATOR } from "./crane-operator";
 import { DENTAL_ASSISTANT } from "./dental-assistant";
+import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
+import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
 import { ELECTRICIAN } from "./electrician";
+import { ENGINEER } from "./engineer";
+import { LAWYER } from "./lawyer";
 import { MEDICAL_RECEPTIONIST } from "./medical-receptionist";
+import { NURSE } from "./nurse";
+import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
 import { PHARMACIST } from "./pharmacist";
+import { PHYSIOTHERAPIST } from "./physiotherapist";
+import { PLUMBER } from "./plumber";
 import { PROPERTY_MANAGER } from "./property-manager";
+import { PSYCHOLOGIST } from "./psychologist";
 import { REAL_ESTATE_AGENT } from "./real-estate-agent";
 import { SECURITY_GUARD } from "./security-guard";
+import { SOCIAL_WORKER } from "./social-worker";
+import { TEACHER_AIDE } from "./teacher-aide";
 import { TRUCK_DRIVER } from "./truck-driver";
 import type { Occupation, OccupationSlug, RateRow } from "./types";
 import { OCCUPATION_SLUGS } from "./types";
@@ -35,6 +49,21 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   "bus-driver": BUS_DRIVER,
   "medical-receptionist": MEDICAL_RECEPTIONIST,
   "security-guard": SECURITY_GUARD,
+  // W4 (wave 2)
+  "occupational-therapist": OCCUPATIONAL_THERAPIST,
+  physiotherapist: PHYSIOTHERAPIST,
+  psychologist: PSYCHOLOGIST,
+  "social-worker": SOCIAL_WORKER,
+  nurse: NURSE,
+  carpenter: CARPENTER,
+  plumber: PLUMBER,
+  "apprentice-electrician": APPRENTICE_ELECTRICIAN,
+  "crane-operator": CRANE_OPERATOR,
+  engineer: ENGINEER,
+  lawyer: LAWYER,
+  doctor: DOCTOR,
+  "teacher-aide": TEACHER_AIDE,
+  "early-childhood-teacher": EARLY_CHILDHOOD_TEACHER,
 };
 
 /** Every occupation, in the order the hub lists them. */
@@ -58,6 +87,11 @@ export function headlineRow(occ: Occupation): RateRow | null {
     throw new Error(`headlineRow: ${occ.slug} points at ${tableId} / ${label}, which does not exist`);
   }
   return row;
+}
+
+/** A row's full-time annual figure: the award's published annual salary when it sets one, else weekly x 52. */
+export function rowAnnual(row: RateRow): number {
+  return row.annual ?? annualFromWeekly(row.weekly);
 }
 
 /** Full-time annual equivalent of a weekly rate: 52 weeks, rounded to the dollar. */
