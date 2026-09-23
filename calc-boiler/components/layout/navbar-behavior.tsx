@@ -248,7 +248,7 @@ export default function NavbarBehavior() {
       );
       (li as HTMLElement).dataset.active = String(hit && pathname !== "/");
     });
-    header.querySelectorAll("a[data-nav-link]").forEach((a) => {
+    header.querySelectorAll("#site-nav a[href]").forEach((a) => {
       if (a.getAttribute("href") === pathname)
         a.setAttribute("aria-current", "page");
       else a.removeAttribute("aria-current");

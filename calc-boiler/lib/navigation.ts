@@ -142,13 +142,14 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         title: "Work & leave",
         links: [
           { href: "/overtime-pay-calculator/", label: "Overtime pay" },
-          { href: "/leave-calculator/", label: "Annual leave" },
+          { href: "/leave-calculator/", label: "Annual leave payout" },
+          { href: "/leave-loading-calculator/", label: "Leave loading" },
+          { href: "/time-in-lieu/", label: "Time in lieu (TOIL)" },
           { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
           { href: "/long-service-leave-calculator/", label: "Long service leave" },
           { href: "/casual-loading-calculator/", label: "Casual loading" },
           { href: "/pro-rata-salary-calculator/", label: "Pro-rata salary" },
           { href: "/backpay-calculator/", label: "Backpay" },
-          { href: "/final-pay-calculator/", label: "Final pay" },
         ],
       },
       {
@@ -161,8 +162,8 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
           { href: "/parenting-payment-calculator/", label: "Parenting Payment" },
-          { href: "/carer-payment-calculator/", label: "Carer Payment" },
           { href: "/parental-leave-pay/", label: "Paid Parental Leave" },
+          { href: "/centrelink-working-credit-calculator/", label: "Working Credit" },
         ],
       },
       {
@@ -355,13 +356,22 @@ export const MEGA_MENU: readonly MegaMenu[] = [
       {
         title: "Tax",
         links: [
-          { href: "/tax-deductions-guide/", label: "Tax deductions" },
-          { href: "/work-from-home-deductions/", label: "Work-from-home deductions" },
           { href: "/tax-refund-guide/", label: "Tax refund guide" },
           { href: "/low-income-tax-offset/", label: "Low income tax offset" },
           { href: "/tax-bracket-history/", label: "Tax bracket history" },
           { href: "/stage-3-tax-cuts/", label: "Stage 3 tax cuts" },
           { href: "/tax-calendar/", label: "Tax calendar" },
+          { href: "/notice-of-assessment/", label: "Notice of assessment" },
+        ],
+      },
+      {
+        title: "Deductions & allowances",
+        href: "/tax-deductions-guide/",
+        links: [
+          { href: "/tax-deductions-guide/", label: "Tax deductions" },
+          { href: "/work-from-home-deductions/", label: "Work-from-home deductions" },
+          { href: "/cents-per-km/", label: "Cents per km (car)" },
+          { href: "/travel-allowance/", label: "Travel allowance" },
           { href: "/fringe-benefits-tax/", label: "Fringe benefits tax" },
         ],
       },
@@ -381,12 +391,12 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         title: "Work & employment",
         links: [
           { href: "/first-job-pay-guide/", label: "Your first job" },
-          { href: "/new-job-checklist/", label: "New job checklist" },
+          { href: "/gross-vs-net-pay/", label: "Gross vs net pay" },
+          { href: "/enterprise-agreement/", label: "Enterprise agreements" },
           { href: "/annual-leave-guide/", label: "Annual leave" },
           { href: "/full-time-vs-part-time-vs-casual/", label: "Full-time vs part-time vs casual" },
-          { href: "/salary-vs-hourly/", label: "Salary vs hourly" },
           { href: "/gig-economy-pay-guide/", label: "Gig economy pay" },
-          { href: "/tax-file-number-declaration/", label: "TFN declaration" },
+          { href: "/new-job-checklist/", label: "New job checklist" },
         ],
       },
       {
