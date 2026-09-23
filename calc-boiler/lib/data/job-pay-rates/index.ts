@@ -10,7 +10,10 @@
 import { calculatePayBreakdown } from "../../constants/australian-tax";
 import { nearestTakeHomeAmount, takeHomeHref, isExactTakeHomeAmount } from "../teacher-pay";
 import { ACCOUNTANT } from "./accountant";
+import { APPRENTICE_ELECTRICIAN } from "./apprentice-electrician";
 import { BUS_DRIVER } from "./bus-driver";
+import { CARPENTER } from "./carpenter";
+import { CRANE_OPERATOR } from "./crane-operator";
 import { DENTAL_ASSISTANT } from "./dental-assistant";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { ELECTRICIAN } from "./electrician";
@@ -19,6 +22,7 @@ import { NURSE } from "./nurse";
 import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
 import { PHARMACIST } from "./pharmacist";
 import { PHYSIOTHERAPIST } from "./physiotherapist";
+import { PLUMBER } from "./plumber";
 import { PROPERTY_MANAGER } from "./property-manager";
 import { PSYCHOLOGIST } from "./psychologist";
 import { REAL_ESTATE_AGENT } from "./real-estate-agent";
@@ -46,6 +50,10 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   psychologist: PSYCHOLOGIST,
   "social-worker": SOCIAL_WORKER,
   nurse: NURSE,
+  carpenter: CARPENTER,
+  plumber: PLUMBER,
+  "apprentice-electrician": APPRENTICE_ELECTRICIAN,
+  "crane-operator": CRANE_OPERATOR,
 };
 
 /** Every occupation, in the order the hub lists them. */

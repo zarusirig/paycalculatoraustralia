@@ -36,6 +36,10 @@ export const OCCUPATION_SLUGS = [
   "psychologist",
   "social-worker",
   "nurse",
+  "carpenter",
+  "plumber",
+  "apprentice-electrician",
+  "crane-operator",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
