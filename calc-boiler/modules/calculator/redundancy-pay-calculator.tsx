@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,57 +8,118 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import { NOTICE_PERIODS, SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
 import {
-  formatAUD,
-  formatPercent,
-  SOURCES,
-  SITE_CONFIG,
-} from "@/lib/constants";
+  ETP_RATES,
+  GENUINE_REDUNDANCY_AGE_LIMIT,
+  NES_REDUNDANCY_SCALE,
+  PRESERVATION_AGE,
+  REDUNDANCY_TAX,
+  REDUNDANCY_TAX_2025_26,
+  SMALL_BUSINESS_HEADCOUNT,
+  genuineRedundancyTaxFreeLimit,
+  nesRedundancyWeeks,
+  redundancyTax,
+} from "@/lib/constants/redundancy";
+import {
+  JURISDICTION_CODES,
+  LSL_JURISDICTIONS,
+  entitlementOnEnding,
+  serviceFromParts,
+} from "@/lib/constants/long-service-leave";
+import type { RedundancyFaq } from "./redundancy-pay-faqs";
+
+// All tax figures come from lib/constants/redundancy.ts (ATO-sourced, tested).
+// Before 23 Sep 2026 this page hardcoded the 2024-25 limit ($12,524 + $6,263)
+// and a flat 32% — never reintroduce a local figure here.
+
+const FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
+const H2 = "text-2xl font-semibold text-navy mb-4";
+const H3 = "text-lg font-semibold text-navy mb-2 mt-6";
+const P = "mb-4 text-warmgray";
+const LINK = "text-eucalyptus-dark hover:underline font-medium";
+const TABLE_WRAP = "overflow-x-auto rounded-xl border border-sandstone-dark/20";
+const TH = "px-4 py-3 text-left font-semibold text-navy";
+const TD = "px-4 py-3 text-navy";
+
+const Y = REDUNDANCY_TAX.incomeYear;
+const pct = (r: number) => formatPercent(r, 0);
 
 function clamp(n: number, min: number, max: number) {
-  return Math.min(max, Math.max(min, n));
+  return Math.min(max, Math.max(min, Number.isFinite(n) ? n : min));
 }
 
-function getRedundancyWeeks(years: number) {
-  if (years < 1) return 0;
-  if (years < 2) return 4;
-  if (years < 3) return 6;
-  if (years < 4) return 7;
-  if (years < 5) return 8;
-  if (years < 6) return 10;
-  if (years < 7) return 11;
-  if (years < 8) return 13;
-  if (years < 9) return 14;
-  if (years < 10) return 16;
-  return 12; // 10+ years
-}
+const ATO_GENUINE =
+  "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/genuine-redundancy-payments";
+const ATO_ETP_RATES =
+  "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/employment-termination-payments";
+const FWO_REDUNDANCY = "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements";
+const SA_IMP = "https://www.servicesaustralia.gov.au/income-maintenance-period";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Redundancy pay and entitlements", url: "https://www.fairwork.gov.au/ending-employment/redundancy", publisher: SOURCES.fwc.name },
-  { title: "Taxation of genuine redundancy", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/leaving-your-job/genuine-redundancy-payments", publisher: SOURCES.ato.name },
+  { title: "Redundancy pay & entitlements", url: FWO_REDUNDANCY, publisher: SOURCES.fwo.name },
+  { title: "Genuine redundancy payments", url: ATO_GENUINE, publisher: SOURCES.ato.name },
+  { title: "Employment termination payments — key rates and thresholds", url: ATO_ETP_RATES, publisher: SOURCES.ato.name },
+  { title: "Income maintenance period", url: SA_IMP, publisher: "Services Australia" },
 ];
 
-export default function RedundancyPayCalculatorPage() {
+/** Worked example 1 — NES minimum, fully tax-free. */
+const EX1 = { salary: 90_000, years: 5 };
+const EX1_WEEKLY = EX1.salary / 52;
+const EX1_WEEKS = nesRedundancyWeeks(EX1.years);
+const EX1_TAX = redundancyTax({
+  grossPayment: EX1_WEEKLY * EX1_WEEKS,
+  completedYears: EX1.years,
+  genuine: true,
+  reachedPreservationAge: false,
+});
+
+/** Worked example 2 — an above-NES package (4 weeks a year) that crosses the limit. */
+const EX2 = { salary: 150_000, years: 3, weeksPerYear: 4 };
+const EX2_WEEKLY = EX2.salary / 52;
+const EX2_WEEKS = EX2.years * EX2.weeksPerYear;
+const EX2_TAX = redundancyTax({
+  grossPayment: EX2_WEEKLY * EX2_WEEKS,
+  completedYears: EX2.years,
+  genuine: true,
+  reachedPreservationAge: false,
+});
+
+const LIMIT_YEARS = [1, 2, 3, 5, 8, 10, 15, 20];
+const TABLE_SALARY = 80_000;
+
+/** Earliest completed years at which each state's LSL is paid out on a redundancy. */
+function lslOnRedundancyFrom(code: (typeof JURISDICTION_CODES)[number]): number {
+  const j = LSL_JURISDICTIONS[code];
+  const atWindow = entitlementOnEnding(code, serviceFromParts(j.proRataFromYears), "redundancy");
+  return atWindow.payableOnEndingWeeks > 0 ? j.proRataFromYears : j.proRataUnconditionalFromYears;
+}
+
+function scaleLabel(fromYears: number, toYears: number | null): string {
+  if (fromYears === 0) return "Less than 1 year";
+  if (toYears === null) return `${fromYears} years and over`;
+  return `${fromYears} year${fromYears === 1 ? "" : "s"}, less than ${toYears}`;
+}
+
+export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly RedundancyFaq[] }) {
   const [baseSalary, setBaseSalary] = useState(90_000);
   const [yearsService, setYearsService] = useState(5);
+  const [genuine, setGenuine] = useState(true);
+  const [reachedPreservation, setReachedPreservation] = useState(false);
+  const [smallBusiness, setSmallBusiness] = useState(false);
 
-  const weeklyPay = baseSalary / 52;
-  const entitlementWeeks = getRedundancyWeeks(yearsService);
-  const grossRedundancy = weeklyPay * entitlementWeeks;
-
-  // 2024-25 limits as stable placeholder reference for tax-free component
-  const taxFreeBase = 12524;
-  const taxFreePerYear = 6263;
-  const taxFreeLimit = taxFreeBase + taxFreePerYear * yearsService;
-
-  const actualTaxFree = Math.min(grossRedundancy, taxFreeLimit);
-  const taxableETP = Math.max(0, grossRedundancy - actualTaxFree);
-
-  // Standard ETP concessional rate under cap is usually 32% (incl Medicare)
-  const etpTaxRate = 0.32;
-  const estimatedTax = taxableETP * etpTaxRate;
-
-  const netRedundancy = grossRedundancy - estimatedTax;
+  const r = useMemo(() => {
+    const weeklyPay = baseSalary / 52;
+    const weeks = smallBusiness ? 0 : nesRedundancyWeeks(yearsService);
+    const gross = weeklyPay * weeks;
+    const tax = redundancyTax({
+      grossPayment: gross,
+      completedYears: yearsService,
+      genuine,
+      reachedPreservationAge: reachedPreservation,
+    });
+    return { weeklyPay, weeks, gross, tax };
+  }, [baseSalary, yearsService, genuine, reachedPreservation, smallBusiness]);
 
   return (
     <div className="min-h-screen flex-grow">
@@ -72,12 +133,14 @@ export default function RedundancyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Redundancy Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Redundancy Pay Calculator Australia — Entitlements & Tax
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={FONT}>
+            Redundancy Pay Calculator Australia {Y}
           </h1>
           <p className="text-lg text-warmgray">
-            Calculate your redundancy payout based on the National Employment Standards (NES).
-            See your weeks of entitlement, the tax-free component, and your estimated actual payout.
+            Enter your base salary and completed years of service to see your National Employment
+            Standards redundancy pay, the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
+            {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, and what you take home. The same rules
+            apply in NSW, Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -86,616 +149,375 @@ export default function RedundancyPayCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Redundancy Pay</h2>
-
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
-                {/* Inputs */}
-                <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              <h2 className="text-xl font-semibold text-navy mb-6" style={FONT}>Calculate Your Redundancy Pay</h2>
+              <div className="grid md:grid-cols-[1fr_1.4fr] gap-8">
+                <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
-                    <label htmlFor="baseSalary" className="block text-sm font-medium text-gray-700 mb-1">Base Annual Salary</label>
+                    <label htmlFor="baseSalary" className="block text-sm font-medium text-navy mb-1">Base annual salary (ordinary hours)</label>
                     <div className="flex items-center">
                       <span className="text-warmgray-light mr-2">$</span>
-                      <input type="number" id="baseSalary" min={0} max={1000000} step={1000} value={baseSalary}
-                        onChange={(e) => setBaseSalary(clamp(Number(e.target.value || 0), 0, 1000000))}
-                        className="block w-full rounded-md border-gray-300 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
+                      <input type="number" id="baseSalary" min={0} max={1_000_000} step={1000} value={baseSalary}
+                        onChange={(e) => setBaseSalary(clamp(Number(e.target.value || 0), 0, 1_000_000))}
+                        className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
+                    <p className="text-xs text-warmgray-light mt-1">Exclude overtime, bonuses, allowances and penalty rates.</p>
                   </div>
-
                   <div>
-                    <label htmlFor="yearsService" className="block text-sm font-medium text-gray-700 mb-1">Completed Years of Service</label>
+                    <label htmlFor="yearsService" className="block text-sm font-medium text-navy mb-1">Completed years of continuous service</label>
                     <input type="number" id="yearsService" min={0} max={50} step={1} value={yearsService}
-                        onChange={(e) => setYearsService(clamp(Number(e.target.value || 0), 0, 50))}
-                        className="block w-24 rounded-md border-gray-300 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
+                      onChange={(e) => setYearsService(clamp(Math.floor(Number(e.target.value || 0)), 0, 50))}
+                      className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     <input type="range" min={0} max={25} step={1} value={clamp(yearsService, 0, 25)}
-                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-4 w-full accent-eucalyptus" aria-hidden="true" />
-                    <p className="text-xs text-warmgray-light mt-2">Only full years of continuous service are counted.</p>
+                      onChange={(e) => setYearsService(Number(e.target.value))} className="mt-3 w-full accent-eucalyptus" aria-hidden="true" />
                   </div>
+                  <label className="flex items-start gap-2 text-sm text-navy">
+                    <input type="checkbox" checked={genuine} onChange={(e) => setGenuine(e.target.checked)} className="mt-1 accent-eucalyptus" />
+                    <span>Genuine redundancy (the job is gone and I am under {GENUINE_REDUNDANCY_AGE_LIMIT})</span>
+                  </label>
+                  <label className="flex items-start gap-2 text-sm text-navy">
+                    <input type="checkbox" checked={reachedPreservation} onChange={(e) => setReachedPreservation(e.target.checked)} className="mt-1 accent-eucalyptus" />
+                    <span>I will be {PRESERVATION_AGE} or older by 30 June (preservation age)</span>
+                  </label>
+                  <label className="flex items-start gap-2 text-sm text-navy">
+                    <input type="checkbox" checked={smallBusiness} onChange={(e) => setSmallBusiness(e.target.checked)} className="mt-1 accent-eucalyptus" />
+                    <span>My employer has fewer than {SMALL_BUSINESS_HEADCOUNT} employees</span>
+                  </label>
                 </form>
 
-                {/* Results */}
-                <div className="space-y-6">
+                <div className="space-y-5" role="region" aria-live="polite">
                   <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
-                    <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Net Severance Payout</div>
-                    <div className="text-4xl font-extrabold text-navy mb-1">
-                      {formatAUD(netRedundancy)}
-                    </div>
+                    <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Redundancy pay after tax</div>
+                    <div className="text-4xl font-extrabold text-navy mb-1 tabular-nums">{formatAUD(r.tax.net)}</div>
                     <div className="text-sm text-warmgray mt-2">
-                      Based on your entitlement of <strong>{entitlementWeeks} weeks</strong>.
+                      {r.weeks} weeks × {formatAUD(r.weeklyPay, 2)} a week = {formatAUD(r.gross, 2)} gross
                     </div>
                   </div>
-
-                  {/* Breakdown Table */}
-                  <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
-                    <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">
-                      <h3 className="font-semibold text-gray-700 text-sm uppercase tracking-wider">Tax & Component Breakdown</h3>
-                    </div>
-                    <div className="p-5 space-y-3 text-sm">
-                      <Row label="Gross Redundancy Pay" value={formatAUD(grossRedundancy)} bold />
-                      <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label="Tax-Free Component" value={formatAUD(actualTaxFree)} green />
-                      <Row label="Taxable Component (ETP)" value={formatAUD(taxableETP)} />
-                      <Row label={`Est. Tax on ETP (${formatPercent(etpTaxRate, 0)})`} value={`-${formatAUD(estimatedTax)}`} />
-                      <div className="border-t border-sandstone-dark/20 pt-3" />
-                      <Row label="Net Take-Home Payout" value={formatAUD(netRedundancy)} bold highlight />
-                    </div>
+                  <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
+                    <Row label="NES redundancy pay (gross)" value={formatAUD(r.gross, 2)} bold />
+                    <Row label={genuine ? `Tax-free limit (${Y})` : "Tax-free limit"} value={genuine ? formatAUD(r.tax.taxFreeLimit) : "Nil — not genuine"} />
+                    <Row label="Tax-free part" value={formatAUD(r.tax.taxFree, 2)} green />
+                    <Row label="Taxable ETP part" value={formatAUD(r.tax.etpTaxable, 2)} />
+                    <Row label={`Tax on ETP (${pct(r.tax.rateWithinCap)}${r.tax.etpAboveCap > 0 ? ` / ${pct(ETP_RATES.aboveCap)} over cap` : ""})`} value={`−${formatAUD(r.tax.tax, 2)}`} />
+                    <div className="border-t border-sandstone-dark/20 pt-3" />
+                    <Row label="Take-home redundancy pay" value={formatAUD(r.tax.net, 2)} bold highlight />
                   </div>
-
-                  {actualTaxFree >= taxFreeLimit && (
-                    <div className="bg-sandstone border-l-4 border-ochre/70 p-4 text-xs text-gray-700">
-                      <strong>Note:</strong> You have hit the ATO tax-free limit threshold for your years of service. Any additional payout is taxed.
-                    </div>
+                  {smallBusiness && (
+                    <p className="bg-sandstone border-l-4 border-ochre/70 p-4 text-xs text-navy">
+                      Small business employers owe no NES redundancy pay. Check your award or agreement, and
+                      you are still owed notice, unused annual leave and any long service leave.
+                    </p>
                   )}
+                  {!smallBusiness && r.weeks === 0 && (
+                    <p className="bg-sandstone border-l-4 border-ochre/70 p-4 text-xs text-navy">
+                      Under 1 year of continuous service there is no NES redundancy pay.
+                    </p>
+                  )}
+                  <p className="text-xs text-warmgray-light">
+                    Excludes notice, unused leave and long service leave, which are paid and taxed separately — use the{" "}
+                    <Link href="/final-pay-calculator/" className={LINK}>final pay calculator</Link> for the whole payout.
+                  </p>
                 </div>
               </div>
             </CardContent>
           </Card>
         </section>
 
-        {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {/* NES TABLE + TAX-FREE BOX */}
+          <section id="redundancy-pay-table">
+            <h2 className={H2} style={FONT}>Redundancy Pay Table: Weeks by Years of Service</h2>
+            <p className={P}>
+              The National Employment Standards set the minimum redundancy pay for every national system
+              employee in Australia. It is worked out on <strong>completed years of continuous service</strong> —
+              4 years and 11 months counts as 4 — and paid at your base rate for ordinary hours.
+            </p>
+            <div className="grid md:grid-cols-[1.5fr_1fr] gap-6">
+              <div className={TABLE_WRAP}>
+                <table className="w-full text-sm">
+                  <caption className="sr-only">NES redundancy pay scale, Fair Work Act 2009 section 119</caption>
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th scope="col" className={TH}>Continuous service</th>
+                      <th scope="col" className={TH + " text-right"}>Redundancy pay</th>
+                      <th scope="col" className={TH + " text-right"}>On {formatAUD(TABLE_SALARY)}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/10">
+                    {NES_REDUNDANCY_SCALE.map((b, i) => (
+                      <tr key={b.fromYears} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                        <td className={TD}>{scaleLabel(b.fromYears, b.toYears)}</td>
+                        <td className={TD + " text-right font-semibold"}>{b.weeks === 0 ? "Nil" : `${b.weeks} weeks`}</td>
+                        <td className={TD + " text-right tabular-nums text-warmgray"}>{formatAUD((TABLE_SALARY / 52) * b.weeks)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <aside className="rounded-xl border-2 border-eucalyptus/40 bg-eucalyptus-light/20 p-5 self-start">
+                <h3 className="text-base font-semibold text-navy mb-2" style={FONT}>Tax-free redundancy limit {Y}</h3>
+                <p className="text-3xl font-extrabold text-navy tabular-nums">{formatAUD(REDUNDANCY_TAX.taxFreeBase)}</p>
+                <p className="text-sm text-warmgray mb-3">plus <strong className="text-navy">{formatAUD(REDUNDANCY_TAX.taxFreePerYear)}</strong> for each completed year of service</p>
+                <p className="text-xs text-warmgray">
+                  Applies to genuine redundancy payments made from 1 July 2026. For {REDUNDANCY_TAX_2025_26.incomeYear} it was{" "}
+                  {formatAUD(REDUNDANCY_TAX_2025_26.taxFreeBase)} + {formatAUD(REDUNDANCY_TAX_2025_26.taxFreePerYear)}. ETP cap {Y}:{" "}
+                  {formatAUD(REDUNDANCY_TAX.etpCap)}. Source:{" "}
+                  <a href={ATO_ETP_RATES} target="_blank" rel="noopener noreferrer" className={LINK}>ATO</a>.
+                </p>
+              </aside>
+            </div>
+            <p className="mt-3 text-xs text-warmgray-light">
+              Fair Work Act 2009 s 119. The {formatAUD(TABLE_SALARY)} column is base salary ÷ 52 × weeks. Awards,
+              enterprise agreements and contracts can pay more, never less. Employers with fewer than{" "}
+              {SMALL_BUSINESS_HEADCOUNT} employees are exempt, and casuals are not covered.
+            </p>
 
-          {/* --- HOW IS REDUNDANCY PAY CALCULATED --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Redundancy Pay Calculated in Australia?</h2>
-            <p className="mb-4 text-warmgray">
-              Redundancy pay in Australia is calculated by multiplying your <strong>base weekly pay</strong> by the number of <strong>entitlement weeks</strong> set out in the National Employment Standards (NES). The base rate of pay is your ordinary hourly rate multiplied by your standard weekly hours, excluding overtime, bonuses, incentive payments, and allowances.
-            </p>
-            <p className="mb-4 text-warmgray">
-              The formula is: <strong>Annual Base Salary / 52 x Entitlement Weeks = Gross Redundancy Pay</strong>. An employee earning $90,000 per year with 5 completed years of continuous service receives a base weekly rate of <strong>$1,730.77</strong>. The NES entitlement at 5 years is <strong>10 weeks</strong>, producing a gross redundancy payment of <strong>$17,307.69</strong>.
-            </p>
-            <p className="mb-4 text-warmgray">
-              The Australian tax calculator applies the ATO tax-free limit to genuine redundancy payments, then taxes the remaining amount as an &quot;Employment Termination Payment&quot; (ETP) at the concessional rate of <strong>32%</strong> (including the Medicare levy). Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to estimate how your total assessable income, including the taxable ETP component, affects your marginal rate for the FY2025-26 financial year.
-            </p>
-
-            <h3 className="text-lg font-semibold text-gray-700 mb-2 mt-6">Worked Example: $90,000 Salary, 5 Years of Service</h3>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 max-w-2xl mx-auto">
+            <h3 className={H3} style={FONT}>Tax-free amount by years of service ({Y})</h3>
+            <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Step</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Amount</th>
+                    <th scope="col" className={TH}>Completed years</th>
+                    <th scope="col" className={TH + " text-right"}>Tax-free limit</th>
+                    <th scope="col" className={TH + " text-right"}>NES weeks</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">Base weekly pay ($90,000 / 52)</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">$1,730.77</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">NES entitlement weeks (5 years)</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">10 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">Gross redundancy pay</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">$17,307.69</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">Tax-free limit ($12,524 + $6,263 x 5)</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">$43,839.00</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">Taxable ETP (gross minus tax-free)</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">$0.00</td>
-                  </tr>
-                  <tr className="bg-sandstone/50 hover:bg-sandstone border-t-2 border-sandstone-dark/20">
-                    <td className="px-4 py-3 text-navy font-medium">Net redundancy payout</td>
-                    <td className="px-4 py-3 text-right font-bold text-ochre">$17,307.69</td>
-                  </tr>
+                  {LIMIT_YEARS.map((y, i) => (
+                    <tr key={y} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                      <td className={TD}>{y}</td>
+                      <td className={TD + " text-right tabular-nums font-semibold"}>{formatAUD(genuineRedundancyTaxFreeLimit(y))}</td>
+                      <td className={TD + " text-right"}>{nesRedundancyWeeks(y)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-xs text-warmgray-light max-w-2xl mx-auto">
-              At this salary and service level, the entire gross payment falls within the ATO tax-free threshold, so the employee receives <strong>100%</strong> of the gross amount.
+            <p className="mt-3 text-sm text-warmgray">
+              The NES minimum alone almost never reaches the limit. The tax-free cap starts to matter when an
+              agreement or negotiated package pays several weeks per year of service.
             </p>
           </section>
 
-          {/* --- REDUNDANCY PAY TABLE --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Redundancy Pay Table by Years of Service?</h2>
-            <p className="mb-4 text-warmgray">
-              The NES redundancy pay table specifies the minimum number of weeks an employer pays based on completed years of continuous service, ranging from <strong>4 weeks</strong> at 1 year to a peak of <strong>16 weeks</strong> at 9 years. Small businesses with fewer than 15 employees at the time of dismissal are exempt from the NES redundancy pay obligation. Enterprise agreements, awards, and employment contracts override the NES minimum where they provide a higher entitlement.
+          {/* WORKED EXAMPLES */}
+          <section id="worked-example">
+            <h2 className={H2} style={FONT}>How Is Redundancy Pay Calculated? Two Worked Examples</h2>
+            <p className={P}>
+              The formula is <strong>base annual salary ÷ 52 × NES weeks = gross redundancy pay</strong>. The
+              ATO then compares the payment with the tax-free limit for your completed years, and anything
+              above it is taxed as an employment termination payment (ETP).
             </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 max-w-2xl mx-auto">
+            <h3 className={H3} style={FONT}>{formatAUD(EX1.salary)} salary, {EX1.years} years, NES minimum</h3>
+            <div className={TABLE_WRAP}>
+              <table className="w-full text-sm">
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  <tr><td className={TD}>Base weekly pay ({formatAUD(EX1.salary)} ÷ 52)</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX1_WEEKLY, 2)}</td></tr>
+                  <tr><td className={TD}>NES weeks at {EX1.years} completed years</td><td className={TD + " text-right"}>{EX1_WEEKS} weeks</td></tr>
+                  <tr><td className={TD}>Gross redundancy pay</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX1_WEEKLY * EX1_WEEKS, 2)}</td></tr>
+                  <tr><td className={TD}>Tax-free limit ({formatAUD(REDUNDANCY_TAX.taxFreeBase)} + {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} × {EX1.years})</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX1_TAX.taxFreeLimit)}</td></tr>
+                  <tr className="bg-sandstone/50"><td className={TD + " font-medium"}>Tax / take-home</td><td className={TD + " text-right font-bold tabular-nums"}>{formatAUD(EX1_TAX.tax, 2)} / {formatAUD(EX1_TAX.net, 2)}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 className={H3} style={FONT}>{formatAUD(EX2.salary)} salary, {EX2.years} years, {EX2.weeksPerYear} weeks per year of service</h3>
+            <div className={TABLE_WRAP}>
+              <table className="w-full text-sm">
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  <tr><td className={TD}>Package ({EX2.years} × {EX2.weeksPerYear} = {EX2_WEEKS} weeks × {formatAUD(EX2_WEEKLY, 2)})</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_WEEKLY * EX2_WEEKS, 2)}</td></tr>
+                  <tr><td className={TD}>Tax-free limit ({formatAUD(REDUNDANCY_TAX.taxFreeBase)} + {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} × {EX2.years})</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_TAX.taxFreeLimit)}</td></tr>
+                  <tr><td className={TD}>Taxable ETP part</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_TAX.etpTaxable, 2)}</td></tr>
+                  <tr><td className={TD}>Tax at {pct(EX2_TAX.rateWithinCap)} (under {PRESERVATION_AGE})</td><td className={TD + " text-right tabular-nums"}>−{formatAUD(EX2_TAX.tax, 2)}</td></tr>
+                  <tr className="bg-sandstone/50"><td className={TD + " font-medium"}>Take-home</td><td className={TD + " text-right font-bold tabular-nums"}>{formatAUD(EX2_TAX.net, 2)}</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              The base rate excludes overtime, bonuses, incentive payments, allowances, loadings and penalty
+              rates. Part-time employees use their own ordinary weekly pay.
+            </p>
+          </section>
+
+          {/* TAX */}
+          <section id="redundancy-tax">
+            <h2 className={H2} style={FONT}>How Is Redundancy Pay Taxed in {Y}?</h2>
+            <p className={P}>
+              A <strong>genuine redundancy payment</strong> is tax-free up to the limit and is not included in
+              your assessable income. The part above the limit is an ETP. The whole of a non-genuine payment is
+              an ETP, with no tax-free part.
+            </p>
+            <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Period of Continuous Service</th>
-                    <th className="px-4 py-3 text-right font-semibold text-gray-700">Redundancy Pay (Weeks)</th>
+                    <th scope="col" className={TH}>Age at 30 June</th>
+                    <th scope="col" className={TH + " text-right"}>ETP up to {formatAUD(REDUNDANCY_TAX.etpCap)}</th>
+                    <th scope="col" className={TH + " text-right"}>Above the cap</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">Less than 1 year</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">Nil</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">1 year, but less than 2 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">4 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">2 years, but less than 3 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">6 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">3 years, but less than 4 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">7 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">4 years, but less than 5 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">8 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">5 years, but less than 6 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">10 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">6 years, but less than 7 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">11 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">7 years, but less than 8 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">13 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">8 years, but less than 9 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">14 weeks</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">9 years, but less than 10 years</td>
-                    <td className="px-4 py-3 text-right font-medium text-warmgray">16 weeks</td>
-                  </tr>
-                  <tr className="bg-sandstone/50 hover:bg-sandstone border-t-2 border-sandstone-dark/20">
-                    <td className="px-4 py-3 text-navy font-medium">10 years and over</td>
-                    <td className="px-4 py-3 text-right font-bold text-ochre">12 weeks*</td>
-                  </tr>
+                  <tr><td className={TD}>Under preservation age ({PRESERVATION_AGE})</td><td className={TD + " text-right font-semibold"}>{pct(ETP_RATES.underPreservationAge)}</td><td className={TD + " text-right"}>{pct(ETP_RATES.aboveCap)}</td></tr>
+                  <tr className="bg-eucalyptus-light/30"><td className={TD}>Preservation age or older</td><td className={TD + " text-right font-semibold"}>{pct(ETP_RATES.atOrOverPreservationAge)}</td><td className={TD + " text-right"}>{pct(ETP_RATES.aboveCap)}</td></tr>
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-xs text-warmgray-light max-w-2xl mx-auto">
-              * The entitlement drops from 16 to 12 weeks at the 10-year mark because long service leave entitlements generally kick in to act as a financial buffer.
+            <p className="mt-3 text-sm text-warmgray">
+              Rates include the 2% Medicare levy. The excess over the tax-free limit on a genuine redundancy
+              is an &ldquo;excluded&rdquo; ETP, so only the {Y} ETP cap applies to it. A non-genuine payment can
+              also be limited by the $180,000 whole-of-income cap, which depends on your other income — this
+              calculator does not model that, so treat its figure for a non-genuine payment as the lowest the
+              tax could be.
+            </p>
+            <h3 className={H3} style={FONT}>What makes a redundancy genuine?</h3>
+            <ul className="list-disc pl-5 space-y-2 text-warmgray">
+              <li>You are <strong>dismissed</strong> because your position is genuinely redundant — the employer no longer needs the job done by anyone. Resigning, or dismissal for performance or misconduct, does not count.</li>
+              <li>You are dismissed <strong>before pension age ({GENUINE_REDUNDANCY_AGE_LIMIT})</strong>.</li>
+              <li>The payment is no more than an <strong>arm&apos;s length</strong> amount, and there is <strong>no arrangement to re-employ</strong> you.</li>
+            </ul>
+            <p className="mt-3 text-sm text-warmgray">
+              Consultation and redeployment duties under the Fair Work Act decide whether a dismissal is a
+              genuine redundancy for unfair dismissal purposes. That is a separate test from the ATO&apos;s. See the
+              ATO&apos;s <a href={ATO_GENUINE} target="_blank" rel="noopener noreferrer" className={LINK}>genuine redundancy payments</a> page.
             </p>
           </section>
 
-          {/* --- WHO USES THIS CALCULATOR --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Who Uses This Redundancy Pay Calculator?</h2>
-            <p className="mb-4 text-warmgray">
-              This Australian redundancy pay calculator serves employees, employers, HR professionals, accountants, and financial advisors who need to estimate termination entitlements under the NES.
+          {/* STATES */}
+          <section id="redundancy-by-state">
+            <h2 className={H2} style={FONT}>Redundancy Calculator for QLD, NSW, VIC, WA and Every State</h2>
+            <p className={P}>
+              There is no separate Queensland or NSW redundancy calculator because there is no separate state
+              scale: NES redundancy pay comes from the Fair Work Act and is identical across Australia for
+              national system employees. Two things do change with your state:
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray mb-4">
-              <li><strong>Employees facing redundancy</strong> who want to verify their employer&apos;s payout figure before signing a deed of release</li>
-              <li><strong>HR managers and payroll officers</strong> calculating severance obligations for workforce restructures, office closures, or role elimination</li>
-              <li><strong>Accountants and tax agents</strong> estimating the tax-free component versus the taxable ETP portion for client reporting</li>
-              <li><strong>Financial planners</strong> modelling a client&apos;s take-home pay and cash flow after termination</li>
-              <li><strong>Small business owners</strong> determining whether the 15-employee exemption applies to their redundancy obligation</li>
+              <li><strong>Long service leave</strong> is paid on top of redundancy pay under each state&apos;s own Act, and several states pay it out earlier when the reason is redundancy.</li>
+              <li><strong>State system employees</strong> — mainly state public servants, and in WA the employees of sole traders, partnerships and other unincorporated businesses — are covered by their state&apos;s industrial laws and awards rather than the NES scale.</li>
             </ul>
-            <p className="text-warmgray">
-              Employees who receive a redundancy payout also need to calculate the income tax impact on their overall assessable income. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to estimate your salary after tax for any period of re-employment within the same financial year.
-            </p>
-          </section>
-
-          {/* --- HOW IS REDUNDANCY PAY TAXED --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Redundancy Pay Taxed in Australia?</h2>
-            <p className="mb-4 text-warmgray">
-              Redundancy pay taxation depends entirely on whether the ATO classifies the payment as a <strong>&quot;genuine redundancy&quot;</strong> or a <strong>&quot;non-genuine redundancy.&quot;</strong> A genuine redundancy receives a tax-free component; a non-genuine redundancy is taxed in full at your marginal rate within the standard income tax brackets.
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm border-t-4 border-t-green-500">
-                <h3 className="font-semibold text-navy mb-2">Genuine Redundancy</h3>
-                <p className="text-sm mb-3">A redundancy is &quot;genuine&quot; when:</p>
-                <ul className="space-y-1 text-sm pl-4 list-disc marker:text-green-500">
-                  <li>Your employer no longer needs your job to be done by anyone at all (e.g., due to automation, restructuring, or bankruptcy).</li>
-                  <li>The employer followed any consultation requirements in the award or enterprise agreement.</li>
-                  <li>The employee is under age 65 (the &quot;Pension Age&quot; threshold) at the time of dismissal.</li>
-                </ul>
-                <p className="text-sm mt-3 font-medium text-eucalyptus-dark">Eligible for the tax-free component.</p>
-              </div>
-              <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm border-t-4 border-t-red-400">
-                <h3 className="font-semibold text-navy mb-2">Non-Genuine Redundancy</h3>
-                <p className="text-sm mb-3">It is not considered a genuine redundancy if:</p>
-                <ul className="space-y-1 text-sm pl-4 list-disc marker:text-red-400">
-                  <li>You were dismissed for performance or misconduct.</li>
-                  <li>You resigned voluntarily without an offer.</li>
-                  <li>Your employer hires someone else to do your exact job reasonably soon after.</li>
-                  <li>You are an employee of a small business (fewer than 15 employees).</li>
-                </ul>
-                <p className="text-sm mt-3 font-medium text-ochre">Taxed at normal marginal rates as an ETP with no tax-free component.</p>
-              </div>
-            </div>
-
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">Tax-Free Component for Genuine Redundancy</h3>
-            <p className="mb-3 text-warmgray">
-              The ATO sets a tax-free limit each financial year comprising a <strong>base amount</strong> plus a <strong>per-year-of-service amount</strong>. For the 2024-25 income year, the base amount is <strong>$12,524</strong> and the per-completed-year amount is <strong>$6,263</strong>. An employee with 8 completed years receives a tax-free limit of $12,524 + ($6,263 x 8) = <strong>$62,628</strong>. Any redundancy amount below this threshold incurs zero tax.
-            </p>
-
-            <h3 className="text-lg font-semibold text-gray-700 mb-2 mt-5">ETP Tax Rates on the Taxable Portion</h3>
-            <p className="mb-3 text-warmgray">
-              Any amount above the tax-free limit is treated as an &quot;Employment Termination Payment&quot; (ETP). ETPs are subject to caps and concessional tax rates. For employees below preservation age, the concessional rate is <strong>32%</strong> (including the 2% Medicare levy surcharge). For employees at or above preservation age, the first <strong>$235,000</strong> (2024-25 ETP cap) is taxed at <strong>17%</strong> (including Medicare). Amounts exceeding the ETP cap are taxed at the top marginal rate of <strong>47%</strong>. Use the <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline">Bonus Tax Calculator</Link> to estimate withholding on other lump-sum payments received in the same income year.
-            </p>
-          </section>
-
-          {/* --- WHAT OTHER ENTITLEMENTS --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Other Entitlements Apply on Termination?</h2>
-            <p className="mb-4 text-warmgray">
-              Redundancy pay is one of several entitlements an employer owes on termination. The total final payout typically includes <strong>5 separate components</strong>, each taxed under different rules and calculated independently.
-            </p>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 max-w-3xl mx-auto">
+            <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Entitlement</th>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Calculation Basis</th>
-                    <th className="px-4 py-3 text-left font-semibold text-gray-700">Tax Treatment</th>
+                    <th scope="col" className={TH}>State</th>
+                    <th scope="col" className={TH + " text-right"}>NES redundancy pay</th>
+                    <th scope="col" className={TH + " text-right"}>LSL paid on redundancy from</th>
+                    <th scope="col" className={TH + " text-right"}>Full LSL</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Redundancy pay</td>
-                    <td className="px-4 py-3 text-warmgray">NES weeks x base weekly pay</td>
-                    <td className="px-4 py-3 text-warmgray">Tax-free component + ETP rate on excess</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Notice period (or payment in lieu)</td>
-                    <td className="px-4 py-3 text-warmgray">1-5 weeks depending on service &amp; age</td>
-                    <td className="px-4 py-3 text-warmgray">Taxed at marginal rate as ordinary income</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Accrued annual leave</td>
-                    <td className="px-4 py-3 text-warmgray">Unused hours x hourly rate</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal rate (capped at 32% if pre-1993 accrued)</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Long service leave</td>
-                    <td className="px-4 py-3 text-warmgray">State-specific (typically 8.67 weeks per 10 years)</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal rate (concessional for pre-16 Aug 1978)</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Superannuation on final pay</td>
-                    <td className="px-4 py-3 text-warmgray">12% SG rate on ordinary time earnings</td>
-                    <td className="px-4 py-3 text-warmgray">15% contributions tax in the super fund</td>
-                  </tr>
+                  {JURISDICTION_CODES.map((code, i) => {
+                    const j = LSL_JURISDICTIONS[code];
+                    return (
+                      <tr key={code} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                        <td className={TD + " font-medium"}>
+                          <Link href={`/long-service-leave-calculator/${code}/`} className={LINK}>{j.abbr}</Link>
+                        </td>
+                        <td className={TD + " text-right"}>Same scale</td>
+                        <td className={TD + " text-right"}>{lslOnRedundancyFrom(code)} years</td>
+                        <td className={TD + " text-right"}>{Number(j.weeksAtQualifying.toFixed(2))} weeks at {j.takeAfterYears} yrs</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <p className="mt-4 text-warmgray">
-              The <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline">Leave Calculator</Link> estimates the payout value of your accrued annual leave and long service leave balances. Employers must also continue superannuation contributions on ordinary time earnings during the notice period &mdash; use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to check your employer&apos;s SG rate obligations for FY2025-26.
+            <p className="mt-3 text-xs text-warmgray-light">
+              Long service leave figures from each state or territory Act — see the state pages linked above
+              for the rules and a calculator set to that state.
             </p>
           </section>
 
-          {/* --- COMMON MISTAKES --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Redundancy Pay Mistakes?</h2>
-            <p className="mb-4 text-warmgray">
-              Employees and employers make <strong>5 recurring errors</strong> when calculating redundancy pay in Australia. Each mistake results in an incorrect payout, underpaid tax, or lost entitlements.
+          {/* OTHER ENTITLEMENTS */}
+          <section id="notice-and-final-pay">
+            <h2 className={H2} style={FONT}>Notice and Other Final Pay on Redundancy</h2>
+            <p className={P}>
+              Redundancy pay is only one part of a final payout. Notice (or pay instead of it), unused annual
+              leave and long service leave are separate entitlements, owed even by small businesses.
             </p>
-            <ol className="list-decimal pl-5 space-y-3 text-warmgray">
-              <li><strong>Using total salary instead of base rate of pay.</strong> Redundancy is calculated on the base rate only. Overtime loadings, allowances, bonuses, and incentive payments are excluded from the weekly pay figure.</li>
-              <li><strong>Counting partial years of service.</strong> The NES counts only <strong>completed full years</strong> of continuous service. An employee with 4 years and 11 months receives the 4-year entitlement (8 weeks), not the 5-year entitlement (10 weeks).</li>
-              <li><strong>Forgetting the small business exemption.</strong> Employers with fewer than <strong>15 employees</strong> at the time of dismissal are not required to pay NES redundancy. The headcount includes all employees across the business, not just one location.</li>
-              <li><strong>Conflating notice pay with redundancy pay.</strong> Notice pay (1-5 weeks) and redundancy pay are separate legal entitlements that stack. They are also taxed differently: notice pay is ordinary income at your marginal rate, while genuine redundancy pay receives a tax-free component.</li>
-              <li><strong>Assuming the entire payout is tax-free.</strong> The tax-free component only applies to the amount up to the ATO limit. High-salary employees with short service periods frequently exceed the tax-free threshold, creating a taxable ETP component at 32% or higher.</li>
-            </ol>
-          </section>
-
-          {/* --- CONTEXT BORDER --- */}
-
-{/* Merged from /redundancy-pay-calculator/ on 2026-08-28 — the guide 301s here (GSC: same query network, split ranking). */}
-                      {/* SECTION 3 */}
-            <section id="genuine-vs-nongenuine">
-              <h2>What Is Genuine vs Non-Genuine Redundancy?</h2>
-              <p>
-                A &quot;Genuine Redundancy&quot; is a termination where the employer <strong>no longer requires the job to be performed by anyone</strong> and has complied with all consultation obligations in the applicable modern award or enterprise agreement. The distinction between genuine and non-genuine redundancy determines whether the tax-free component applies to the severance payment.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-4 not-prose my-6 text-sm">
-                <div className="bg-eucalyptus-light/30 border border-sandstone-dark/20 rounded-lg p-5">
-                  <h4 className="font-bold text-eucalyptus-dark mb-2 flex items-center gap-2">
-                    Genuine Redundancy
-                  </h4>
-                  <ul className="space-y-1 text-eucalyptus-dark list-disc list-inside">
-                    <li>The employer&apos;s business undergoes major operational changes (like adopting AI, merging with a rival, or going bankrupt).</li>
-                    <li>The job you were doing simply does not need to be done by <em>anyone</em> anymore.</li>
-                    <li>The employer followed all legal consultation requirements before pulling the trigger.</li>
-                  </ul>
-                </div>
-                <div className="bg-sandstone border border-sandstone-dark/20 rounded-lg p-5">
-                  <h4 className="font-bold text-ochre mb-2 flex items-center gap-2">
-                    Non-Genuine Redundancy
-                  </h4>
-                  <ul className="space-y-1 text-ochre list-disc list-inside">
-                    <li>You were fired for poor performance or gross misconduct.</li>
-                    <li>They let you go, but immediately hired someone else to sit in your exact chair and do your exact job (this is grounds for Unfair Dismissal).</li>
-                    <li>They could have redeployed you to a different department but chose not to.</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Feature</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Genuine Redundancy</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Non-Genuine Redundancy</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-3 font-medium">Tax-free component</td><td className="px-6 py-3">Yes &mdash; up to ATO limit</td><td className="px-6 py-3">No &mdash; fully taxable as ETP</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">Job still exists?</td><td className="px-6 py-3">No &mdash; role permanently eliminated</td><td className="px-6 py-3">Yes &mdash; someone else performs the role</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">Consultation required?</td><td className="px-6 py-3">Yes &mdash; per award/agreement</td><td className="px-6 py-3">Not met or not applicable</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">Redeployment attempted?</td><td className="px-6 py-3">Yes &mdash; reasonable efforts made</td><td className="px-6 py-3">No &mdash; employer skipped this step</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">Unfair dismissal claim?</td><td className="px-6 py-3">Generally not available</td><td className="px-6 py-3">Available &mdash; lodge within 21 days</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <p>
-                The ATO independently assesses whether a redundancy qualifies as genuine at tax time. An employer labelling a termination &quot;redundancy&quot; on the separation certificate does not guarantee genuine status. The employee must also be under age 65 at the time of dismissal to access the tax-free component. Employees over preservation age who receive a non-genuine redundancy have the entire payment taxed as an Employment Termination Payment at marginal or concessional ETP rates.
-              </p>
-            </section>
-            {/* SECTION 4 */}
-            <section id="step-by-step-redundancy">
-              <h2>Step-by-Step: What Happens When You Are Made Redundant?</h2>
-              <p>
-                The redundancy process follows a <strong>legally mandated sequence</strong> under the Fair Work Act 2009 and applicable modern awards. Employers who skip steps expose themselves to unfair dismissal claims, penalties, and orders for compensation.
-              </p>
-              <ol>
-                <li><strong>Consultation notice:</strong> The employer notifies affected employees and any union representatives that redundancies are being considered. The applicable award or enterprise agreement specifies minimum consultation periods, typically <strong>7&ndash;14 days</strong>.</li>
-                <li><strong>Redeployment assessment:</strong> The employer assesses whether the employee can be redeployed to a suitable alternative position within the business or any associated entity. Failure to undertake this step converts a genuine redundancy into a non-genuine one.</li>
-                <li><strong>Written notice of termination:</strong> The employer provides formal written notice. The minimum notice period is <strong>1 week</strong> for employees with less than 1 year of service, <strong>2 weeks</strong> for 1&ndash;3 years, <strong>3 weeks</strong> for 3&ndash;5 years, and <strong>4 weeks</strong> for 5+ years. Employees over 45 with at least 2 years of service receive an additional week.</li>
-                <li><strong>Final pay calculation:</strong> The employer calculates all entitlements: redundancy pay (NES weeks), notice pay (or payment in lieu), accrued annual leave, accrued long service leave, and any outstanding wages or loadings.</li>
-                <li><strong>Payment and separation certificate:</strong> Final payments must be made on or before the employee&apos;s last working day, or no later than <strong>7 days after termination</strong>. The employer issues a separation certificate and PAYG payment summary reflecting the tax-free component (if genuine) and any ETP amounts.</li>
-                <li><strong>Centrelink waiting period:</strong> The employee may apply for JobSeeker Payment, but redundancy pay and leave payouts generate an &quot;Income Maintenance Period&quot; that delays eligibility by the number of weeks covered by the payout. Check our <Link href="/centrelink-income-test/">Centrelink Income Test</Link> guide for threshold details.</li>
-              </ol>
-            </section>
-            {/* SECTION 6 */}
-            <section id="etp-tax">
-              <h2>What Are Employment Termination Payments (ETPs)?</h2>
-              <p>
-                An Employment Termination Payment is <strong>any lump sum paid to an employee because their employment ends</strong>, excluding the genuine redundancy tax-free component, accrued leave, and superannuation. ETPs include golden handshakes, gratuities, non-genuine redundancy payments, and any genuine redundancy amount that exceeds the ATO&apos;s tax-free limit.
-              </p>
-              <p>
-                The ATO classifies ETPs into two types. A &quot;Life Benefit ETP&quot; is paid directly to the employee while alive. A &quot;Death Benefit ETP&quot; is paid to a dependant or the estate of a deceased employee. The tax treatment differs significantly between the two, and within life benefit ETPs, the rate varies based on whether the employee has reached preservation age.
-              </p>
-
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Employee Age</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">ETP Tax Rate (up to cap)</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Above ETP Cap</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-3">Below preservation age</td><td className="px-6 py-3 font-semibold">32% (including Medicare levy)</td><td className="px-6 py-3">Top marginal rate (47%)</td></tr>
-                      <tr><td className="px-6 py-3">At or above preservation age</td><td className="px-6 py-3 font-semibold">17% (including Medicare levy)</td><td className="px-6 py-3">Top marginal rate (47%)</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <p>
-                The ETP cap for FY2025-26 is <strong>$245,000</strong>. Any ETP amount exceeding this cap is taxed at the top marginal rate of <strong>47%</strong> (including Medicare levy). The whole-of-income cap also applies &mdash; if your total taxable income plus ETP exceeds <strong>$180,000</strong>, the portion above that threshold is taxed at 47%. Understanding these thresholds is critical for executives and long-tenured employees with large separation packages.
-              </p>
-            </section>
-            {/* SECTION 8 */}
-            <section id="small-business-exemptions">
-              <h2>Are Small Businesses Exempt from Redundancy Pay?</h2>
-              <p>
-                Small businesses with <strong>fewer than 15 employees</strong> at the time of termination are fully exempt from paying NES redundancy pay. This exemption is absolute &mdash; the employer pays zero weeks of severance regardless of how long the employee worked there.
-              </p>
-
-              <div className="bg-sandstone border border-sandstone-dark/20 p-6 rounded-xl not-prose my-6 text-sm">
-                <div className="flex items-start gap-4">
-                  <ShieldAlert className="h-6 w-6 text-warmgray mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-base font-bold text-navy mb-1">Small Business Exemption</h3>
-                    <p className="text-navy">If your employer is a &quot;Small Business&quot; (fewer than 15 total employees across the whole company), they are legally exempt from having to pay you any statutory redundancy pay at all under the base NES. Always verify headcount.</p>
-                  </div>
-                </div>
-              </div>
-
-              <p>
-                The 15-employee threshold counts all employees including casual employees engaged on a regular and systematic basis. It includes employees across all locations, branches, and associated entities. Part-time employees count as one full headcount, not a fraction. The headcount is assessed at the exact time the termination notice is given, not at the start of employment or any earlier date.
-              </p>
-              <p>
-                Even when the small business exemption applies, the employer still owes notice pay, accrued annual leave, accrued long service leave, and outstanding wages. Only the redundancy pay (severance weeks) component is exempt. Employees of small businesses who believe the headcount was artificially reduced to trigger the exemption can challenge the decision through the Fair Work Commission.
-              </p>
-              <p>
-                Some enterprise agreements and employment contracts override the small business exemption by including redundancy clauses that apply regardless of employer size. Always check the specific terms of your agreement.
-              </p>
-            </section>
-            {/* SECTION 9 */}
-            <section id="state-long-service-leave">
-              <h2>How Does Long Service Leave on Redundancy Vary by State?</h2>
-              <p>
-                Long service leave entitlements on redundancy are governed by <strong>state and territory legislation</strong>, not the NES. Each jurisdiction sets different qualifying periods, accrual rates, and pro-rata access rules for employees terminated by redundancy.
-              </p>
-
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">State/Territory</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Full Entitlement</th>
-                        <th className="px-6 py-4 border-b border-sandstone-dark/20">Pro-Rata on Redundancy</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-3 font-medium">NSW</td><td className="px-6 py-3">2 months after 10 years</td><td className="px-6 py-3">Available after 5 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">VIC</td><td className="px-6 py-3">8.67 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">QLD</td><td className="px-6 py-3">8.67 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">SA</td><td className="px-6 py-3">13 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">WA</td><td className="px-6 py-3">8.67 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">TAS</td><td className="px-6 py-3">8.67 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">NT</td><td className="px-6 py-3">13 weeks after 10 years</td><td className="px-6 py-3">Available after 7 years</td></tr>
-                      <tr><td className="px-6 py-3 font-medium">ACT</td><td className="px-6 py-3">6.07 weeks after 7 years</td><td className="px-6 py-3">Available after 5 years</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <p>
-                In NSW, employees terminated by redundancy after <strong>5 years</strong> of continuous service receive a pro-rata long service leave payout, the most accessible threshold in Australia. South Australia and the Northern Territory provide the most generous full entitlement at <strong>13 weeks after 10 years</strong>. Victoria, Queensland, Western Australia, and Tasmania share the standard <strong>8.67 weeks after 10 years</strong> with pro-rata access after 7 years on redundancy.
-              </p>
-              <p>
-                Long service leave payouts on redundancy are taxed differently depending on when the leave was accrued. Leave accrued before <strong>16 August 1978</strong> is entirely tax-free. Leave accrued between 16 August 1978 and 17 August 1993 is taxed at a flat <strong>32%</strong>. Leave accrued after 17 August 1993 is taxed at the employee&apos;s marginal rate.
-              </p>
-            </section>
-
-                    {/* --- RELATED CALCULATORS --- */}
-          <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Related Calculators Help After Redundancy?</h2>
-            <p className="mb-4 text-warmgray">
-              A redundancy event triggers multiple financial calculations beyond the severance payout itself. These <strong>5 Australian tax calculators</strong> cover the most common post-redundancy scenarios.
-            </p>
+            <div className={TABLE_WRAP}>
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr><th scope="col" className={TH}>Continuous service</th><th scope="col" className={TH + " text-right"}>Minimum notice (NES)</th></tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {NOTICE_PERIODS.map((n, i) => (
+                    <tr key={n.years} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                      <td className={TD}>{n.years}</td>
+                      <td className={TD + " text-right"}>{n.weeks} week{n.weeks === 1 ? "" : "s"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray mb-4">Add 1 week if you are over 45 and have at least 2 years of continuous service.</p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
-              <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> &mdash; estimate your net salary after tax when you start a new job, factoring in the income already earned at your previous employer within the same financial year.</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; calculate your total income tax liability for FY2025-26, including the taxable ETP component from your redundancy payment in your assessable income.</li>
-              <li><Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline">Leave Calculator</Link> &mdash; determine the dollar value of accrued annual leave and long service leave that your employer owes on termination.</li>
-              <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; verify whether your employer contributed the correct 12% SG rate on your ordinary time earnings through to your final day of employment.</li>
-              <li><Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline">Tax Return Calculator</Link> &mdash; estimate your tax refund or liability at end of year if you were made redundant part-way through the 2025-26 financial year and had varying withholding amounts.</li>
+              <li><strong>Unused annual leave</strong> is paid out with leave loading if your award or agreement provides it. When the reason is a genuine redundancy it is taxed at no more than 32%.</li>
+              <li><strong>Long service leave</strong> depends on your state — see the table above and the <Link href="/long-service-leave-calculator/" className={LINK}>long service leave calculator</Link>.</li>
+              <li><strong>Super</strong> is not payable on the redundancy payment or on leave paid out at termination, only on wages to your last day.</li>
+            </ul>
+          </section>
+
+          {/* SMALL BUSINESS / CASUALS / CENTRELINK */}
+          <section id="exemptions">
+            <h2 className={H2} style={FONT}>Small Businesses, Casuals and Centrelink</h2>
+            <div className="bg-sandstone border border-sandstone-dark/20 p-5 rounded-xl text-sm mb-4 flex items-start gap-4">
+              <ShieldAlert className="h-6 w-6 text-warmgray mt-0.5 flex-shrink-0" />
+              <p className="text-navy">
+                An employer with fewer than <strong>{SMALL_BUSINESS_HEADCOUNT} employees</strong> when notice is given
+                owes no NES redundancy pay. The count covers the whole business and associated entities, and
+                includes casuals employed on a regular and systematic basis. An award or agreement can still require
+                redundancy pay, and if a small business pays a genuine redundancy the ATO tax-free limit applies.
+              </p>
+            </div>
+            <p className={P}>
+              <strong>Casual employees</strong> are excluded from NES redundancy pay however long they have worked.
+              Apprentices and employees on fixed-term contracts that simply run out are also excluded.
+            </p>
+            <p className={P}>
+              <strong>Centrelink:</strong> Services Australia can apply an{" "}
+              <a href={SA_IMP} target="_blank" rel="noopener noreferrer" className={LINK}>income maintenance period</a>{" "}
+              for redundancy and leave payments — a payment worth 10 weeks of wages can mean waiting about 10
+              weeks for JobSeeker — and a liquid assets waiting period of up to 13 weeks. See the{" "}
+              <Link href="/centrelink-income-test/" className={LINK}>Centrelink income test calculator</Link>.
+            </p>
+          </section>
+
+          {/* RELATED */}
+          <section>
+            <h2 className={H2} style={FONT}>Related Calculators</h2>
+            <ul className="list-disc pl-5 space-y-2 text-warmgray">
+              <li><Link href="/final-pay-calculator/" className={LINK}>Final Pay Calculator</Link> — redundancy, notice and leave together</li>
+              <li><Link href="/long-service-leave-calculator/" className={LINK}>Long Service Leave Calculator</Link> — what your state pays on top</li>
+              <li><Link href="/leave-calculator/" className={LINK}>Leave Calculator</Link> — the value of unused annual leave</li>
+              <li><Link href="/take-home-pay-calculator/" className={LINK}>Take-Home Pay Calculator</Link> — pay in your next job</li>
+              <li><Link href="/tax-return-calculator/" className={LINK}>Tax Return Calculator</Link> — the year you were made redundant</li>
             </ul>
           </section>
 
           <MethodologyDisclosure>
-            <p className="mb-2 text-sm">Calculations are estimates based on the following:</p>
             <ul className="list-disc pl-4 space-y-1">
-              <li>Assumes minimum NES entitlements applied to standard weekly earnings (Base / 52).</li>
-              <li>Does not include unused annual leave or long service leave payouts (which are taxed separately).</li>
-              <li>Uses historical/estimated ATO tax-free threshold limits to demonstrate the tax boundary.</li>
-              <li>Applies a flat estimated ETP withholding rate of 32% on the taxable portion. Actual withholding by your employer may vary based on your age (preservation age) and total income caps.</li>
+              <li>Redundancy pay = base annual salary ÷ 52 × the NES weeks for completed years of service (Fair Work Act s 119).</li>
+              <li>Tax-free limit, ETP cap and ETP rates are the ATO&apos;s {Y} figures, held in one tested constants file.</li>
+              <li>Notice, unused leave and long service leave are excluded. The whole-of-income cap for non-genuine payments is not modelled.</li>
+              <li>General information only, not tax or legal advice. The Fair Work Ombudsman (13 13 94) can confirm your entitlement.</li>
             </ul>
           </MethodologyDisclosure>
 
-          {/* --- EXPANDED FAQs --- */}
+          {/* FAQ */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
+            <h2 className={H2} style={FONT}>Frequently Asked Questions</h2>
+            <div className="sr-only">
+              <h3>Redundancy pay questions and answers</h3>
+              {faqs.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+            </div>
             <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="amount" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much redundancy pay am I entitled to?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Under the National Employment Standards (NES), redundancy pay ranges from <strong>4 weeks</strong> for 1 completed year of service up to <strong>16 weeks</strong> for 9 completed years. The entitlement drops to <strong>12 weeks</strong> after 10 years because long service leave entitlements provide an additional financial buffer. Employees with less than 1 year of continuous service receive no redundancy pay under the NES.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="taxfree" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is redundancy pay tax-free?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A portion of a genuine redundancy payment is tax-free. The ATO limit comprises a base amount of <strong>$12,524</strong> plus <strong>$6,263</strong> for each completed year of service (2024-25 rates). Any amount above this limit is taxed as an Employment Termination Payment (ETP) at a concessional rate of <strong>32%</strong> (including the Medicare levy) for employees below preservation age.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="genuine" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What makes a redundancy &quot;genuine&quot;?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A redundancy is genuine when the employer no longer needs the job to be done by anyone, the employer complied with consultation requirements in the applicable award or enterprise agreement, and the employee is under age 65. Dismissals for performance, voluntary resignations, and situations where the employer rehires for the same role are classified as non-genuine.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="notice" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is notice pay included in my redundancy payout?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Notice pay and redundancy pay are two completely separate legal entitlements that stack on top of each other. Your employer must give you <strong>1-5 weeks</strong> of notice (or pay in lieu), depending on your length of service and age. Notice pay is taxed as regular income at your normal marginal rate. The tax-free treatment only applies to the genuine redundancy component.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="leave-payout" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do I get paid out unused annual leave on redundancy?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. On top of redundancy pay and notice pay, your employer must pay out all accrued but untaken annual leave and long service leave. These are separate entitlements with separate tax treatment. Unused annual leave accumulated since 1993 is taxed at your marginal rate. Use our <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline">Leave Calculator</Link> to estimate the payout value of your accrued leave balance.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="small-business" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do small businesses have to pay redundancy?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Employers with fewer than <strong>15 employees</strong> at the time of dismissal are exempt from paying NES redundancy. The headcount includes all employees across all locations of the business, including casual employees engaged on a regular and systematic basis. However, a small business employer must still pay out notice, accrued annual leave, and any long service leave owed under state legislation.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super-on-redundancy" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is superannuation paid on redundancy pay?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. Employers do not pay the <strong>12% superannuation guarantee</strong> on redundancy payments, payment in lieu of notice, or unused leave payouts. The SG rate applies only to ordinary time earnings. Superannuation contributions stop on the employee&apos;s last day of employment. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to verify contributions up to your termination date.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="negotiate" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I negotiate a higher redundancy payout than the NES minimum?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The NES sets the <strong>minimum floor</strong>, not a ceiling. Many enterprise agreements, industry awards, and individual employment contracts provide for higher redundancy pay &mdash; commonly <strong>3-4 weeks per year of service</strong> in sectors such as banking, mining, and the public service. Employees can also negotiate an ex-gratia payment as part of a deed of release, though amounts above the genuine redundancy tax-free limit are taxed as an ETP.</p></AccordionContent>
-              </AccordionItem>
-                          <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a genuine redundancy in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    A genuine redundancy occurs when the employer no longer needs the job to be done by anyone, usually due to restructuring, downsizing, or technology changes, and the employer has complied with all consultation obligations in the applicable modern award or enterprise agreement. The employee must also be under 65 years old at dismissal.
-                  </AccordionContent>
+              {faqs.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
+                  <AccordionTrigger className="text-left">{f.q}</AccordionTrigger>
+                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
                 </AccordionItem>
-              <AccordionItem value="tax-free" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is my redundancy payout completely tax-free?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. The tax-free component is strictly capped at <strong>$12,524 plus $6,263 for each completed year of service</strong> in FY2025-26. Any amount exceeding this limit is taxed as an Employment Termination Payment, typically at <strong>32%</strong> for employees below preservation age or <strong>17%</strong> for those at or above preservation age.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="small" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are small businesses exempt from redundancy pay?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Under the Fair Work Act, a business employing fewer than <strong>15 total employees</strong> at the time of the termination notice is exempt from paying statutory NES redundancy pay. The employer still owes notice pay, accrued annual leave, long service leave, and outstanding wages. Enterprise agreements may override this exemption.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="unfair" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What if my redundancy isn&apos;t genuine?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    If your employer makes your role &quot;redundant&quot; but immediately hires someone else to do the same job, it may be a case of <strong>unfair dismissal</strong>. You can lodge a complaint with the Fair Work Commission within <strong>21 days</strong> of being terminated. If the Commission finds the dismissal was not genuine, you may be entitled to reinstatement or compensation &mdash; potentially much more than the standard NES redundancy entitlement.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="unused-leave" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I get paid out my unused leave when made redundant?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. On top of redundancy pay and notice pay, the employer must pay out all accrued but untaken annual leave including <strong>17.5% leave loading</strong> under most awards. Accrued long service leave is also payable if the employee meets the state-specific qualifying period, which is typically <strong>5&ndash;7 years</strong> on redundancy depending on the state.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="notice-vs-redundancy" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is notice pay the same as redundancy pay?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Notice pay and redundancy pay are two entirely separate legal entitlements that stack on top of each other. Notice pay compensates for the minimum notice period (<strong>1&ndash;5 weeks</strong> depending on service and age) and is taxed as ordinary income at the employee&apos;s marginal PAYG rate. Redundancy pay compensates for the loss of the position (<strong>4&ndash;16 weeks</strong>) and the genuine component receives tax-free treatment up to the ATO limit.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does redundancy pay affect my Centrelink payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Redundancy pay, notice pay, and leave payouts generate an &quot;Income Maintenance Period&quot; that delays JobSeeker Payment eligibility. The waiting period equals the number of weeks of pay received, calculated by dividing the total gross payout by the employee&apos;s weekly base rate. A <strong>$50,000 payout</strong> at a $1,500/week rate generates a waiting period of approximately <strong>33 weeks</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="preservation-age" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is preservation age and how does it affect redundancy tax?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Preservation age is the age at which you can access your superannuation. It is <strong>60 years</strong> for anyone born after 1 July 1964. For employees at or above preservation age at the time of redundancy, the ETP tax rate on amounts above the tax-free limit is a concessional <strong>17%</strong> (including Medicare levy) instead of the standard <strong>32%</strong>. This concessional rate applies up to the ETP cap of $245,000 for FY2025-26.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="casuals" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are casual employees entitled to redundancy pay?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Casual employees are <strong>not entitled to NES redundancy pay</strong>, regardless of how long they have worked for the employer. Only permanent full-time and part-time employees qualify. A casual employee who has been engaged on a regular and systematic basis for 12 months or more may have grounds to argue they are a permanent employee in substance, but this requires a formal conversion or Fair Work determination.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I report redundancy on my tax return?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The employer reports the tax-free redundancy component and ETP amount separately on the PAYG payment summary. The tax-free portion does not appear as assessable income on your tax return. The ETP component is reported at a specific label and taxed at the applicable ETP rate, not added to your ordinary income. Notice pay and leave payouts appear as regular salary and wages. Pre-fill data from the ATO typically populates these fields automatically in myTax.
-                  </AccordionContent>
-                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 
-          <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+          <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
         </div>
       </div>
     </div>
@@ -704,9 +526,9 @@ export default function RedundancyPayCalculatorPage() {
 
 function Row({ label, value, bold, green, highlight }: { label: string; value: string; bold?: boolean; green?: boolean; highlight?: boolean }) {
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       <span className={bold ? "font-semibold text-navy" : "text-warmgray"}>{label}</span>
-      <span className={`${bold ? "font-bold" : "font-medium"} ${green ? "text-eucalyptus-dark" : highlight ? "text-ochre" : "text-gray-700"}`}>{value}</span>
+      <span className={`tabular-nums ${bold ? "font-bold" : "font-medium"} ${green ? "text-eucalyptus-dark" : highlight ? "text-ochre" : "text-navy"}`}>{value}</span>
     </div>
   );
 }
