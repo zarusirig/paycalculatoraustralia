@@ -8,44 +8,84 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import { formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { HECS_HELP_2025_26, LITO, MEDICARE_LEVY } from "@/lib/constants/australian-tax";
+import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
 import {
-  calculatePayBreakdown,
-  formatAUD,
-  formatPercent,
-  SOURCES,
-  SITE_CONFIG,
-} from "@/lib/constants";
+  DEFAULT_RETURN_YEAR,
+  RETURN_YEARS,
+  estimateReturn,
+  type ReturnIncomeYear,
+} from "@/lib/constants/tax-return-estimator";
+import {
+  FTL_MAX_INDIVIDUAL,
+  PENALTY_UNIT,
+  RETURN_DATES_2026,
+  TAX_CALENDAR_SOURCES,
+  formatIso,
+} from "@/lib/constants/tax-calendar-2026-27";
+import {
+  EXAMPLE_INPUTS,
+  EXAMPLE_NEXT_YEAR,
+  EXAMPLE_THIS_YEAR,
+  TAX_RETURN_CALCULATOR_FAQS,
+} from "@/modules/calculator/tax-return-calculator-faqs";
+
+const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const R = RETURN_2026;
+const THIS = RETURN_YEARS["2025-26"];
+const NEXT = RETURN_YEARS["2026-27"];
+const YEARS: ReturnIncomeYear[] = ["2025-26", "2026-27"];
+const pct = (r: number) => `${Math.round(r * 10_000) / 100}%`;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: "Lodge your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return", publisher: SOURCES.ato.name },
+  { title: "Tax rates – Australian residents", url: RETURN_2026_SOURCES.rates, publisher: SOURCES.ato.name },
+  { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: SOURCES.ato.name },
+  { title: "Registered agent lodgment program – individuals and trusts", url: RETURN_2026_SOURCES.agentProgram, publisher: SOURCES.ato.name },
+  { title: "Medicare levy surcharge income, thresholds and rates", url: RETURN_2026_SOURCES.mls, publisher: SOURCES.ato.name },
+  { title: "Study and training loans – what's new", url: RETURN_2026_SOURCES.studyLoans, publisher: SOURCES.ato.name },
+  { title: "Working from home – fixed rate method", url: RETURN_2026_SOURCES.wfh, publisher: SOURCES.ato.name },
+  { title: "Cents per kilometre method", url: RETURN_2026_SOURCES.carCentsPerKm, publisher: SOURCES.ato.name },
+  { title: "Failure to lodge on time penalty", url: TAX_CALENDAR_SOURCES.failureToLodge, publisher: SOURCES.ato.name },
+  { title: "Penalty units", url: TAX_CALENDAR_SOURCES.penaltyUnits, publisher: SOURCES.ato.name },
 ];
 
+/** Example deduction claims. Tax saved is at the 30% bracket plus the 2% Medicare levy. */
+const DEDUCTION_EXAMPLES: { name: string; what: string; low: number; high: number }[] = [
+  { name: "Work from home", what: `Fixed rate of ${R.wfhFixedRateCents}c per hour worked from home in ${THIS.incomeYear}, covering energy, internet, phone and stationery. You need a record of your actual hours.`, low: 1_000, high: 3_000 },
+  { name: "Car and travel", what: `Work trips (not home to work) at ${R.carCentsPerKm}c per km for ${THIS.incomeYear}, up to ${R.carMaxKm.toLocaleString("en-AU")} km, or the logbook method`, low: 500, high: 4_000 },
+  { name: "Uniform and clothing", what: "Buying and cleaning occupation-specific clothing and protective gear", low: 150, high: 500 },
+  { name: "Self-education", what: "Courses, textbooks and conferences directly related to your current job", low: 200, high: 2_000 },
+  { name: "Tools and equipment", what: "Items costing $300 or less claimed in full; dearer items depreciated over their effective life", low: 100, high: 1_000 },
+  { name: "Union fees and subscriptions", what: "Union dues, professional association memberships, trade journals", low: 200, high: 800 },
+  { name: "Donations", what: "Gifts of $2 or more to deductible gift recipients (DGRs)", low: 50, high: 500 },
+];
+const SAVE_RATE = THIS.brackets[2].rate + MEDICARE_LEVY.rate;
+
 export default function TaxReturnCalculatorPage() {
-  const [totalIncome, setTotalIncome] = useState(85_000);
-  const [taxWithheld, setTaxWithheld] = useState(20_000);
-  const [deductions, setDeductions] = useState(2_500);
+  const [year, setYear] = useState<ReturnIncomeYear>(DEFAULT_RETURN_YEAR);
+  const [totalIncome, setTotalIncome] = useState<number>(EXAMPLE_INPUTS.grossIncome);
+  const [taxWithheld, setTaxWithheld] = useState<number>(EXAMPLE_INPUTS.taxWithheld);
+  const [deductions, setDeductions] = useState<number>(EXAMPLE_INPUTS.deductions);
   const [hasPrivateHealth, setHasPrivateHealth] = useState(true);
   const [includeHECS, setIncludeHECS] = useState(false);
 
-  const taxableIncome = Math.max(0, totalIncome - deductions);
-
-  const result = useMemo(
-    () => calculatePayBreakdown({
-      grossSalary: taxableIncome,
-      includeHECS,
-      hasPrivateHealth,
+  const Y = RETURN_YEARS[year];
+  const r = useMemo(
+    () => estimateReturn(year, {
+      grossIncome: totalIncome,
+      deductions,
+      taxWithheld,
+      hasPrivateHospitalCover: hasPrivateHealth,
+      hasStudyLoan: includeHECS,
     }),
-    [taxableIncome, includeHECS, hasPrivateHealth]
+    [year, totalIncome, deductions, taxWithheld, hasPrivateHealth, includeHECS]
   );
-
-  const actualTaxOwed = result.totalDeductions;
-  const refundOrOwing = taxWithheld - actualTaxOwed;
-  const isRefund = refundOrOwing >= 0;
+  const isRefund = r.refund >= 0;
 
   return (
     <div className="min-h-screen flex-grow">
@@ -56,15 +96,16 @@ export default function TaxReturnCalculatorPage() {
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
               <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
-              <li><span className="font-medium text-navy" aria-current="page">Tax Return Estimator</span></li>
+              <li><span className="font-medium text-navy" aria-current="page">Tax Return Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Tax Return Estimator Australia 2025-26
+          <h1 style={H} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
+            Tax Return Calculator {THIS.returnName}: Estimate Your {THIS.incomeYear} Refund
           </h1>
           <p className="text-lg text-warmgray">
-            Estimate your tax refund or amount owing. Enter your income, tax withheld, and deductions
-            to see if you can expect money back at tax time.
+            Estimate your refund or tax bill for the {THIS.incomeYear} return you lodge now, due{" "}
+            <strong>{R.selfLodgeDueDate}</strong> if you lodge it yourself. It uses the {THIS.incomeYear} tax rates your
+            return is actually assessed on. Switch to {NEXT.incomeYear} to plan next year&rsquo;s return.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -74,11 +115,11 @@ export default function TaxReturnCalculatorPage() {
           <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-5 flex items-start gap-4">
             <AlertTriangle className="h-6 w-6 text-ochre flex-shrink-0 mt-0.5" />
             <div>
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="font-semibold text-navy mb-1">Estimation Only</h2>
+              <h2 style={H} className="font-semibold text-navy mb-1">Estimation Only</h2>
               <p className="text-sm text-warmgray">
-                This tool provides a <strong>rough estimate</strong> of your tax refund or liability. It is not tax advice.
-                Your actual refund depends on your complete tax return including all income sources, deductions, and offsets.
-                Lodge your return through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myGov / myTax</a> for an accurate result.
+                This tool gives a <strong>rough estimate</strong> of your refund or amount owing. It is not tax advice.
+                Your actual result depends on your complete return, including all income, deductions and offsets.
+                Lodge through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myGov / myTax</a> for the real figure.
               </p>
             </div>
           </div>
@@ -88,10 +129,26 @@ export default function TaxReturnCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-6">Estimate Your Tax Refund</h2>
+              <h2 style={H} className="text-xl font-semibold text-navy mb-6">Estimate Your Tax Refund</h2>
               <div className="grid md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+                  <fieldset>
+                    <legend className="block text-sm font-medium text-navy mb-2">Income year</legend>
+                    <div className="grid grid-cols-2 gap-2" role="radiogroup">
+                      {YEARS.map((y) => (
+                        <label
+                          key={y}
+                          className={`cursor-pointer rounded-md border px-3 py-2 text-center text-sm font-medium transition-colors ${year === y ? "border-eucalyptus bg-eucalyptus-light/40 text-navy" : "border-sandstone-dark/30 text-warmgray hover:border-eucalyptus"}`}
+                        >
+                          <input type="radio" name="income-year" value={y} checked={year === y} onChange={() => setYear(y)} className="sr-only" />
+                          {y}
+                        </label>
+                      ))}
+                    </div>
+                    <p className="text-xs text-warmgray-light mt-1">{Y.purpose}.</p>
+                  </fieldset>
+
                   <div>
                     <label htmlFor="totalIncome" className="block text-sm font-medium text-navy mb-1">Total Gross Income</label>
                     <div className="flex items-center">
@@ -100,7 +157,7 @@ export default function TaxReturnCalculatorPage() {
                         onChange={(e) => setTotalIncome(clamp(Number(e.target.value || 0), 0, 500000))}
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <p className="text-xs text-warmgray-light mt-1">From your payment summary or income statement</p>
+                    <p className="text-xs text-warmgray-light mt-1">For {Y.incomeYearStart} to {Y.incomeYearEnd}, from your income statement</p>
                   </div>
 
                   <div>
@@ -122,57 +179,57 @@ export default function TaxReturnCalculatorPage() {
                         onChange={(e) => setDeductions(clamp(Number(e.target.value || 0), 0, 100000))}
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <p className="text-xs text-warmgray-light mt-1">Work-related expenses, WFH, uniforms, etc.</p>
+                    <p className="text-xs text-warmgray-light mt-1">Work-related expenses, WFH, donations, tax agent fees</p>
                   </div>
 
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={!hasPrivateHealth} onChange={(e) => setHasPrivateHealth(!e.target.checked)}
                       className="h-4 w-4 rounded border-sandstone-dark/30 text-eucalyptus" />
-                    <span className="text-navy">No private health insurance</span>
+                    <span className="text-navy">No private hospital cover all year</span>
                   </label>
 
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeHECS} onChange={(e) => setIncludeHECS(e.target.checked)}
                       className="h-4 w-4 rounded border-sandstone-dark/30 text-eucalyptus" />
-                    <span className="text-navy">HECS-HELP debt</span>
+                    <span className="text-navy">HECS-HELP or other study loan</span>
                   </label>
                 </form>
 
                 {/* Results */}
-                <div className="space-y-6">
+                <div className="space-y-6" aria-live="polite">
                   <div className={`${isRefund ? "bg-eucalyptus-light/30 border-sandstone-dark/20" : "bg-sandstone border-sandstone-dark/20"} border rounded-xl p-6 text-center shadow-sm`}>
                     <div className={`text-sm font-semibold ${isRefund ? "text-eucalyptus-dark" : "text-ochre"} uppercase tracking-wider mb-2`}>
-                      {isRefund ? "Estimated Refund" : "Estimated Amount Owing"}
+                      {isRefund ? "Estimated Refund" : "Estimated Amount Owing"} · {year}
                     </div>
                     <div className="text-4xl font-extrabold text-navy mb-1">
-                      {formatAUD(Math.abs(refundOrOwing))}
+                      {formatAUD(Math.abs(r.refund))}
                     </div>
                     <div className="text-sm text-warmgray mt-2">
                       {isRefund
-                        ? "Your employer withheld more tax than your actual liability"
-                        : "Your employer withheld less tax than your actual liability"
-                      }
+                        ? "More tax was withheld than your estimated tax for the year"
+                        : "Less tax was withheld than your estimated tax for the year"}
                     </div>
                   </div>
 
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">
-                      <h3 className="font-semibold text-navy text-sm uppercase tracking-wider">Tax Reconciliation</h3>
+                      <h3 className="font-semibold text-navy text-sm uppercase tracking-wider">Tax Reconciliation ({year})</h3>
                     </div>
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Total Gross Income" value={formatAUD(totalIncome)} />
                       <Row label="Less: Deductions" value={`-${formatAUD(deductions)}`} />
-                      <Row label="Taxable Income" value={formatAUD(taxableIncome)} bold />
+                      <Row label="Taxable Income" value={formatAUD(r.taxableIncome)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label="Income Tax" value={formatAUD(result.netIncomeTax)} />
-                      <Row label="Medicare Levy" value={formatAUD(result.medicareLevy)} />
-                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={formatAUD(result.medicareSurcharge)} />}
-                      {includeHECS && <Row label="HECS Repayment" value={formatAUD(result.hecsRepayment)} />}
+                      <Row label="Income Tax (before offsets)" value={formatAUD(r.incomeTax)} />
+                      {r.lito > 0 && <Row label="Less: Low Income Tax Offset" value={`-${formatAUD(r.lito)}`} />}
+                      <Row label="Medicare Levy" value={formatAUD(r.medicareLevy)} />
+                      {r.mls > 0 && <Row label="Medicare Levy Surcharge" value={formatAUD(r.mls)} />}
+                      {includeHECS && <Row label="Study Loan Repayment" value={formatAUD(r.helpRepayment)} />}
                       <div className="border-t border-sandstone-dark/20 pt-3" />
-                      <Row label="Total Tax Liability" value={formatAUD(actualTaxOwed)} bold />
+                      <Row label="Total Tax Liability" value={formatAUD(r.totalLiability)} bold />
                       <Row label="Tax Already Withheld (PAYG)" value={formatAUD(taxWithheld)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
-                      <Row label={isRefund ? "Estimated Refund" : "Amount Owing"} value={formatAUD(Math.abs(refundOrOwing))} bold highlight={isRefund} red={!isRefund} />
+                      <Row label={isRefund ? "Estimated Refund" : "Amount Owing"} value={formatAUD(Math.abs(r.refund))} bold highlight={isRefund} red={!isRefund} />
                     </div>
                   </div>
 
@@ -180,15 +237,22 @@ export default function TaxReturnCalculatorPage() {
                     <h3 className="font-semibold text-navy text-sm mb-3">Quick Stats</h3>
                     <div className="grid grid-cols-2 gap-3 text-sm">
                       <div className="text-center bg-white p-3 rounded-lg border border-sandstone-dark/10">
-                        <div className="font-bold text-navy">{formatPercent(result.effectiveTaxRate)}</div>
-                        <div className="text-xs text-warmgray-light">Effective Tax Rate</div>
+                        <div className="font-bold text-navy">{formatPercent(r.averageRate)}</div>
+                        <div className="text-xs text-warmgray-light">Average Tax Rate</div>
                       </div>
                       <div className="text-center bg-white p-3 rounded-lg border border-sandstone-dark/10">
-                        <div className="font-bold text-navy">{formatPercent(result.marginalTaxRate)}</div>
-                        <div className="text-xs text-warmgray-light">Marginal Tax Rate</div>
+                        <div className="font-bold text-navy">{formatPercent(r.marginalRate)}</div>
+                        <div className="text-xs text-warmgray-light">Marginal Rate (incl. Medicare)</div>
                       </div>
                     </div>
                   </div>
+
+                  <p className="text-xs text-warmgray">
+                    {year === "2025-26"
+                      ? `Uses the ${THIS.incomeYear} rates (second bracket ${pct(THIS.secondBracketRate)}), the ${THIS.incomeYear} Medicare levy surcharge tiers and study loan thresholds.`
+                      : `Uses the ${NEXT.incomeYear} rates (second bracket ${pct(NEXT.secondBracketRate)}). The ATO has not yet published ${NEXT.incomeYear} Medicare levy low-income thresholds, so the ${THIS.incomeYear} ones are used; this only matters for taxable incomes up to ${formatAUD(MEDICARE_LEVY.shadeInThreshold)}.`}{" "}
+                    Assumes a single Australian resident for the full year with no dependants.
+                  </p>
                 </div>
               </div>
             </CardContent>
@@ -198,41 +262,39 @@ export default function TaxReturnCalculatorPage() {
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Your Tax Return Calculated?</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">How Is Your Tax Return Calculated?</h2>
             <p className="mb-4 text-warmgray">
-              Your Australian tax return is calculated by comparing the total tax withheld by your employer against your actual tax liability for the 2025-26 financial year. The ATO uses your assessable income, allowable deductions, and applicable offsets to determine the precise amount you owe or receive back.
+              Your tax return compares the tax withheld from your pay with the tax you actually owe for the income year. The return you lodge in {THIS.returnName} covers the {THIS.incomeYear} year, {THIS.incomeYearStart} to {THIS.incomeYearEnd}, and is assessed on the {THIS.incomeYear} rates.
             </p>
             <p className="mb-4 text-warmgray">
-              Throughout the year, your employer withholds tax from each pay under the <strong>PAYG withholding</strong> system. This withholding is based on standard tax tables that assume a single income source and no deductions beyond the tax-free threshold. When you lodge your tax return, the ATO recalculates your liability using the actual figures.
+              During the year, your employer withholds tax from each pay under the <strong>PAYG withholding</strong> system. Withholding is worked out pay by pay and does not know about your deductions, other jobs or investment income. When you lodge, the ATO works out your tax on the whole year&rsquo;s figures.
             </p>
             <div className="grid sm:grid-cols-2 gap-6 mb-4">
               <div className="bg-white p-6 rounded-xl border border-sandstone-dark/20 shadow-sm border-t-4 border-t-eucalyptus">
                 <h3 className="font-semibold text-navy mb-2">Over-Withheld = Refund</h3>
-                <p className="text-sm text-warmgray">If your employer withheld <em>more</em> tax than your actual liability (common if you claimed deductions), you get the difference back as a refund.</p>
+                <p className="text-sm text-warmgray">If more tax was withheld than you owe (common when you claim deductions), you get the difference back as a refund.</p>
               </div>
               <div className="bg-white p-6 rounded-xl border border-sandstone-dark/20 shadow-sm border-t-4 border-t-ochre">
                 <h3 className="font-semibold text-navy mb-2">Under-Withheld = Bill</h3>
-                <p className="text-sm text-warmgray">If not enough was withheld (e.g., multiple jobs, incorrect TFN declaration), you owe the ATO the shortfall when you lodge your return.</p>
+                <p className="text-sm text-warmgray">If not enough was withheld (for example, two jobs both claiming the tax-free threshold), you owe the ATO the shortfall.</p>
               </div>
             </div>
-            <p className="mb-4 text-warmgray">
-              The calculation follows 4 steps:
-            </p>
+            <p className="mb-4 text-warmgray">The calculation follows 4 steps:</p>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
-              <li><strong>Determine assessable income</strong> &mdash; add all salary, wages, interest, dividends, and other income received during FY2025-26</li>
-              <li><strong>Subtract allowable deductions</strong> &mdash; work-related expenses, self-education costs, and donation claims reduce your taxable income</li>
-              <li><strong>Apply income tax brackets and offsets</strong> &mdash; the ATO calculates tax on your taxable income using marginal rates, then applies the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>$700</strong> and the &quot;Medicare Levy&quot; at <strong>2%</strong></li>
-              <li><strong>Compare to PAYG withheld</strong> &mdash; the difference between your total tax liability and tax already withheld determines your refund or amount owing</li>
+              <li><strong>Add up assessable income</strong> &mdash; salary, wages, interest, dividends and other income received in {THIS.incomeYear}</li>
+              <li><strong>Subtract allowable deductions</strong> &mdash; work-related expenses, self-education, donations and tax agent fees reduce your taxable income</li>
+              <li><strong>Apply the tax rates and offsets</strong> &mdash; tax is worked out on taxable income at marginal rates, then the Low Income Tax Offset (up to <strong>{formatAUD(LITO.maxOffset)}</strong>) is taken off and the <strong>{pct(MEDICARE_LEVY.rate)}</strong> Medicare levy is added</li>
+              <li><strong>Compare with tax withheld</strong> &mdash; the difference between your total tax and the tax already withheld is your refund or amount owing</li>
             </ol>
             <p className="text-warmgray">
-              Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the full breakdown of income tax brackets applied to your salary before estimating your return.
+              For deadlines, refund times and what changed this year, see the <Link href="/tax-return-2026/" className="text-eucalyptus-dark hover:underline">2026 tax return guide</Link>. For tax on the pay you are earning now, use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
             </p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Deductions Increase Your Tax Refund?</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Deductions Increase Your Tax Refund?</h2>
             <p className="mb-4 text-warmgray">
-              Claiming eligible deductions reduces your taxable income, which lowers your tax liability and increases your refund. Every <strong>$1</strong> of deductions saves between <strong>$0.19 and $0.45</strong> in tax depending on your marginal tax rate for FY2025-26.
+              Deductions reduce your taxable income, which lowers your tax and increases your refund. In {THIS.incomeYear}, each <strong>$1</strong> of deductions saves between <strong>{Math.round(THIS.brackets[1].rate * 100)}c and {Math.round(THIS.brackets[4].rate * 100)}c</strong> of income tax depending on your marginal rate, plus up to 2c of Medicare levy.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -240,149 +302,97 @@ export default function TaxReturnCalculatorPage() {
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Deduction Category</th>
                     <th className="px-4 py-3 text-left font-semibold text-navy">What You Claim</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Typical Claim</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax Saved (32.5%)</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Example Claim</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax Saved ({pct(SAVE_RATE)})</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Work from home</td>
-                    <td className="px-4 py-3 text-warmgray">Fixed rate of 67c per hour for electricity, internet, phone, and stationery</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$1,000 &ndash; $3,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$325 &ndash; $975</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Car and travel</td>
-                    <td className="px-4 py-3 text-warmgray">Work-related travel using cents-per-km (85c/km) or logbook method</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$500 &ndash; $5,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$163 &ndash; $1,625</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Uniform and clothing</td>
-                    <td className="px-4 py-3 text-warmgray">Purchasing and laundering occupation-specific clothing, protective gear</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$150 &ndash; $500</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$49 &ndash; $163</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Self-education</td>
-                    <td className="px-4 py-3 text-warmgray">Courses, textbooks, and conferences directly related to current employment</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$200 &ndash; $2,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$65 &ndash; $650</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Tools and equipment</td>
-                    <td className="px-4 py-3 text-warmgray">Items up to $300 claimed immediately; items over $300 depreciated over useful life</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$100 &ndash; $1,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$33 &ndash; $325</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Union fees and subscriptions</td>
-                    <td className="px-4 py-3 text-warmgray">Professional association memberships, union dues, trade journals</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$200 &ndash; $800</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$65 &ndash; $260</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Donations</td>
-                    <td className="px-4 py-3 text-warmgray">Gifts of $2 or more to registered deductible gift recipients (DGRs)</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$50 &ndash; $500</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$16 &ndash; $163</td>
-                  </tr>
+                  {DEDUCTION_EXAMPLES.map((d) => (
+                    <tr key={d.name} className="hover:bg-sandstone">
+                      <td className="px-4 py-3 font-medium text-navy">{d.name}</td>
+                      <td className="px-4 py-3 text-warmgray">{d.what}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(d.low)} &ndash; {formatAUD(d.high)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(d.low * SAVE_RATE)} &ndash; {formatAUD(d.high * SAVE_RATE)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
-            <p className="mt-3 text-xs text-warmgray-light">You must have spent the money yourself, it must be directly related to earning your income, and you need records to prove it. Claims without receipts are limited to <strong>$300</strong> total.</p>
+            <p className="mt-3 text-xs text-warmgray-light">
+              Tax saved assumes taxable income between $45,001 and $135,000 ({pct(THIS.brackets[2].rate)} rate plus the Medicare levy). You must have spent the money yourself, it must relate directly to earning your income, and you need records. For {NEXT.incomeYear} the car rate rises to {R.carCentsPerKmNextYear}c per km.
+            </p>
             <p className="mt-3 text-warmgray">
-              Salary sacrifice arrangements reduce your assessable income before tax. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to compare take-home pay with and without salary packaging.
+              Salary sacrifice reduces your taxable income before tax is withheld. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to compare take-home pay with and without it.
             </p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Who Uses This Tax Return Calculator?</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Tax Rates Apply to Your {THIS.incomeYear} Return?</h2>
             <p className="mb-4 text-warmgray">
-              This Australian tax return calculator is used by employees, freelancers, and retirees who want to estimate their refund before lodging through myTax. Over <strong>13.6 million</strong> individual tax returns are lodged in Australia each financial year.
-            </p>
-            <ul className="space-y-3 text-warmgray mb-4">
-              <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">1</span>
-                <span><strong>PAYG employees</strong> checking whether their employer withheld the correct amount of tax, especially after starting a new role, receiving a pay rise, or working overtime</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">2</span>
-                <span><strong>Multiple-job holders</strong> who need to reconcile PAYG withheld across 2 or more employers &mdash; each employer withholds tax as if they are the sole income source</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">3</span>
-                <span><strong>Contractors and sole traders</strong> estimating quarterly BAS obligations and year-end tax liability using our <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">Contractor Pay Calculator</Link></span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">4</span>
-                <span><strong>HECS-HELP debtors</strong> calculating whether their compulsory repayment reduces their refund &mdash; repayments start at incomes above <strong>$69,528</strong> for FY2025-26</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">5</span>
-                <span><strong>Financial planners</strong> running scenarios for clients comparing deduction strategies, superannuation contributions, and salary sacrifice arrangements</span>
-              </li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Average Tax Refund in Australia by Income Level?</h2>
-            <p className="mb-4 text-warmgray">
-              The average Australian tax refund is approximately <strong>$2,800</strong> per individual, though this varies significantly by income bracket. Higher earners typically receive larger refunds in absolute dollars because each dollar of deductions saves more tax at higher marginal rates.
+              The {THIS.incomeYear} return uses a <strong>{pct(THIS.secondBracketRate)}</strong> second bracket. That rate fell to <strong>{pct(NEXT.secondBracketRate)}</strong> from 1 July 2026, so a calculator set to {NEXT.incomeYear} shows up to <strong>{formatAUD((THIS.secondBracketRate - NEXT.secondBracketRate) * (THIS.brackets[1].max - THIS.brackets[0].max))}</strong> less tax than your {THIS.returnName} return really works out.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Marginal Rate</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Avg Refund</th>
-                    <th className="px-4 py-3 text-right font-semibold text-navy">Avg Deductions Claimed</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">{THIS.incomeYear} rate</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">{NEXT.incomeYear} rate</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax saved by $1,000 of deductions ({THIS.incomeYear})</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">$0 &ndash; $18,200</td>
-                    <td className="px-4 py-3 text-right text-warmgray">0%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$400</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$350</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">$18,201 &ndash; $45,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">16%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$1,200</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$1,100</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">$45,001 &ndash; $135,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">30%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$2,900</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$2,600</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">$135,001 &ndash; $190,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">37%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$4,100</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$4,500</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">$190,001+</td>
-                    <td className="px-4 py-3 text-right text-warmgray">45%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$5,600</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$8,200</td>
-                  </tr>
+                  {THIS.brackets.map((b, i) => (
+                    <tr key={b.min} className="hover:bg-sandstone">
+                      <td className="px-4 py-3 font-medium text-navy">
+                        {b.max === Infinity ? `${formatAUD(b.min)}+` : `${formatAUD(b.min)} – ${formatAUD(b.max)}`}
+                      </td>
+                      <td className="px-4 py-3 text-right text-warmgray">{pct(b.rate)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{pct(NEXT.brackets[i].rate)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(1_000 * b.rate)}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             <p className="text-warmgray">
-              A taxpayer earning <strong>$85,000</strong> with <strong>$2,500</strong> in deductions and standard PAYG withholding typically receives a refund between <strong>$1,500 and $3,500</strong>. Taxpayers without private health insurance pay an additional &quot;Medicare Levy Surcharge&quot; of <strong>1% to 1.5%</strong>, which reduces the refund. Use our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see your after-tax income including the Medicare levy and surcharge.
+              Worked example: {formatAUD(EXAMPLE_INPUTS.grossIncome)} of income, {formatAUD(EXAMPLE_INPUTS.deductions)} of deductions and {formatAUD(EXAMPLE_INPUTS.taxWithheld)} withheld gives an estimated {THIS.incomeYear} refund of <strong>{formatAUD(EXAMPLE_THIS_YEAR.refund)}</strong>. The same inputs at {NEXT.incomeYear} rates show {formatAUD(EXAMPLE_NEXT_YEAR.refund)}. Without private hospital cover, singles earning over {formatAUD(THIS.mlsSinglesThreshold)} also pay the Medicare levy surcharge. Use our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> for your after-tax pay this year.
             </p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Difference Between a Tax Return and a Tax Refund?</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Who Uses This Tax Return Calculator?</h2>
             <p className="mb-4 text-warmgray">
-              A &quot;tax return&quot; is the form you lodge with the ATO reporting your income, deductions, and offsets. A &quot;tax refund&quot; is the money the ATO pays back to you when your employer withheld more tax than your actual liability.
+              Employees, contractors and retirees use it to estimate their refund before lodging through myTax or a tax agent.
+            </p>
+            <ul className="space-y-3 text-warmgray mb-4">
+              <li className="flex items-start gap-3">
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">1</span>
+                <span><strong>PAYG employees</strong> checking whether the right amount of tax was withheld, especially after a new job, a pay rise or overtime</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">2</span>
+                <span><strong>People with two or more jobs</strong> reconciling tax withheld by each employer, since each withholds as if it were your only job</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">3</span>
+                <span><strong>Contractors and sole traders</strong> estimating their year-end tax alongside our <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">Contractor Pay Calculator</Link></span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">4</span>
+                <span><strong>Study loan holders</strong> checking how much their compulsory repayment takes off the refund &mdash; for {THIS.incomeYear}, repayments start above <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong> and apply only to income above it</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full mt-0.5">5</span>
+                <span><strong>Anyone planning ahead</strong> for {NEXT.incomeYear}, comparing deductions, super contributions and salary sacrifice before 30 June 2027</span>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Is the Difference Between a Tax Return and a Tax Refund?</h2>
+            <p className="mb-4 text-warmgray">
+              A &quot;tax return&quot; is the form you lodge with the ATO reporting your income, deductions and offsets. A &quot;tax refund&quot; is the money the ATO pays back when more tax was withheld than you owe.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
@@ -396,110 +406,116 @@ export default function TaxReturnCalculatorPage() {
                 <tbody className="divide-y divide-sandstone-dark/10">
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">Definition</td>
-                    <td className="px-4 py-3 text-warmgray">The annual form lodged with the ATO declaring income and deductions</td>
-                    <td className="px-4 py-3 text-warmgray">The money returned when PAYG withheld exceeds actual tax owed</td>
+                    <td className="px-4 py-3 text-warmgray">The yearly form lodged with the ATO declaring income and deductions</td>
+                    <td className="px-4 py-3 text-warmgray">The money returned when tax withheld is more than the tax you owe</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Who files it</td>
-                    <td className="px-4 py-3 text-warmgray">Every Australian resident who earns above <strong>$18,200</strong></td>
-                    <td className="px-4 py-3 text-warmgray">Automatically issued by the ATO after assessment</td>
+                    <td className="px-4 py-3 font-medium text-navy">Who</td>
+                    <td className="px-4 py-3 text-warmgray">Most people who earned income or had tax withheld during the year</td>
+                    <td className="px-4 py-3 text-warmgray">Issued by the ATO after it assesses your return</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">Deadline</td>
-                    <td className="px-4 py-3 text-warmgray"><strong>31 October</strong> (self-lodging) or <strong>15 May</strong> (via tax agent)</td>
-                    <td className="px-4 py-3 text-warmgray">Processed within <strong>2&ndash;4 weeks</strong> of lodgement</td>
+                    <td className="px-4 py-3 font-medium text-navy">Timing ({THIS.incomeYear})</td>
+                    <td className="px-4 py-3 text-warmgray">Due <strong>{R.selfLodgeDueDate}</strong> (self-lodged) or usually <strong>{R.agentDueDateMostPeople}</strong> (tax agent)</td>
+                    <td className="px-4 py-3 text-warmgray">Most myTax refunds within <strong>{R.onlineRefundTypical}</strong>; paper within {R.paperRefundBusinessDays} business days</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">Outcome</td>
-                    <td className="px-4 py-3 text-warmgray">Results in either a refund or an amount owing</td>
-                    <td className="px-4 py-3 text-warmgray">Deposited directly into your nominated bank account</td>
+                    <td className="px-4 py-3 text-warmgray">Either a refund or an amount owing</td>
+                    <td className="px-4 py-3 text-warmgray">Paid into your nominated bank account</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">Guaranteed?</td>
-                    <td className="px-4 py-3 text-warmgray">Mandatory for most income earners</td>
-                    <td className="px-4 py-3 text-warmgray">Not guaranteed &mdash; you receive a bill if under-withheld</td>
+                    <td className="px-4 py-3 text-warmgray">Required for most income earners</td>
+                    <td className="px-4 py-3 text-warmgray">No &mdash; you get a bill if too little was withheld</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <p className="text-warmgray">
-              Lodging a tax return does not always produce a refund. Approximately <strong>25%</strong> of Australian taxpayers receive a bill rather than a refund, most commonly those with multiple income sources, investment income, or insufficient PAYG withholding.
+              Lodging a return doesn&rsquo;t always produce a refund. People with more than one job, investment income with no tax withheld, or a study loan are the most likely to get a bill.
             </p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Tax Return Deadlines for FY2025-26</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Tax Return Deadlines for {THIS.incomeYear}</h2>
             <p className="mb-4 text-warmgray">
-              The FY2025-26 tax return covers income earned from <strong>1 July 2025 to 30 June 2026</strong>. Missing the lodgement deadline results in a failure-to-lodge penalty starting at <strong>$313</strong> for every 28-day period the return is overdue, up to a maximum of <strong>$1,565</strong>.
+              The {THIS.incomeYear} return covers income from <strong>{THIS.incomeYearStart} to {THIS.incomeYearEnd}</strong>. A late return can attract a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)}</strong> (one penalty unit from {PENALTY_UNIT.from}) for every {PENALTY_UNIT.ftlDaysPerUnit} days or part of that it is overdue, up to <strong>{formatAUD(FTL_MAX_INDIVIDUAL)}</strong> for an individual.
             </p>
             <ul className="space-y-3 text-warmgray">
               <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full">1 Jul</span>
-                <span>New financial year begins &mdash; income statements become available on myGov from mid-July as employers finalise payroll</span>
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap capitalize">{R.prefillReady}</span>
+                <span>The ATO has pre-filled most employer, bank, health fund and government information. Wait until your income statement is &quot;tax ready&quot;.</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full">14 Aug</span>
-                <span>Most employers have finalised income statements in myGov &mdash; the ATO pre-fills deduction data from health insurers, banks, and government agencies</span>
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">{formatIso(RETURN_DATES_2026.selfLodge.iso)}</span>
+                <span>
+                  Deadline if you lodge yourself through myTax, and the last day to get on a tax agent&rsquo;s client list.
+                  {RETURN_DATES_2026.selfLodge.effectiveIso !== RETURN_DATES_2026.selfLodge.iso && <> It falls on a weekend this year, so you can lodge on {formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}.</>}
+                </span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full">31 Oct</span>
-                <span>Deadline to lodge your tax return if self-preparing through myTax</span>
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">{formatIso(RETURN_DATES_2026.agentLargeLiability.iso)}</span>
+                <span>Agent clients whose latest return had a tax liability of $20,000 or more</span>
               </li>
               <li className="flex items-start gap-3">
-                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full">15 May</span>
-                <span>Extended deadline if lodging through a registered tax agent (you must be registered with the agent before 31 October)</span>
+                <span className="bg-sandstone text-navy text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">{formatIso(RETURN_DATES_2026.agentMostPeople.iso)}</span>
+                <span>Most other clients of a registered tax agent. Your agent confirms the date that applies to you.</span>
               </li>
             </ul>
+            <p className="mt-4 text-warmgray">
+              Every other date in the year, including BAS and super, is on the <Link href="/tax-calendar/" className="text-eucalyptus-dark hover:underline">tax calendar</Link>.
+            </p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Are the Most Common Tax Return Mistakes?</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">What Are the Most Common Tax Return Mistakes?</h2>
             <p className="mb-4 text-warmgray">
-              The ATO adjusts approximately <strong>1.8 million</strong> tax returns each year due to errors, omissions, and incorrect claims. Avoiding these 5 common mistakes protects your refund and prevents penalties.
+              The ATO matches your return against data from employers, banks, share registries and government agencies. Avoiding these 5 mistakes protects your refund.
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-              <li><strong>Forgetting to declare all income sources</strong> &mdash; the ATO receives data from banks, employers, government agencies, and share registries. Omitting interest income above <strong>$1</strong>, dividend income, or government payments triggers automatic data-matching reviews.</li>
-              <li><strong>Claiming private expenses as work deductions</strong> &mdash; the home-to-work commute, personal phone usage, and general clothing are not deductible. The ATO flags claims that exceed industry benchmarks, such as car expenses above <strong>$3,500</strong> for office-based workers.</li>
-              <li><strong>Not updating your tax file number (TFN) declaration</strong> &mdash; claiming the tax-free threshold from multiple employers simultaneously causes under-withholding. Only one employer applies the <strong>$18,200</strong> tax-free threshold; additional employers must withhold at the &quot;no tax-free threshold&quot; rate.</li>
-              <li><strong>Missing the Medicare Levy Surcharge</strong> &mdash; singles earning above <strong>$93,000</strong> and families above <strong>$186,000</strong> without private hospital cover pay the surcharge at <strong>1% to 1.5%</strong>. Many taxpayers forget to account for this additional cost.</li>
-              <li><strong>Lodging before employer data is finalised</strong> &mdash; lodging your return in early July before your employer has submitted income statements to the ATO results in missing pre-fill data. Waiting until mid-August ensures all income and deduction data is available.</li>
+              <li><strong>Leaving out income</strong> &mdash; bank interest, dividends, government payments and second jobs are all reported to the ATO. Missing them triggers an amendment.</li>
+              <li><strong>Claiming private expenses</strong> &mdash; travel between home and work, personal phone use and everyday clothing are not deductible.</li>
+              <li><strong>Claiming the tax-free threshold twice</strong> &mdash; only one employer should apply the <strong>$18,200</strong> tax-free threshold. Claiming it from two causes under-withholding and a bill.</li>
+              <li><strong>Forgetting the Medicare levy surcharge</strong> &mdash; for {THIS.incomeYear}, singles earning above <strong>{formatAUD(THIS.mlsSinglesThreshold)}</strong> without private hospital cover pay 1% to 1.5% extra. Family thresholds are higher.</li>
+              <li><strong>Lodging too early</strong> &mdash; lodging before your income statement is &quot;tax ready&quot; risks missing pre-fill data. The ATO has most of it by {R.prefillReady}.</li>
             </ol>
             <p className="text-warmgray">
-              Taxpayers carrying a HECS-HELP debt face an additional risk: compulsory repayments are calculated on your &quot;Repayment Income&quot;, not your taxable income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your compulsory repayment amount before lodging.
+              Study loan repayments are based on &quot;repayment income&quot;, which can be higher than taxable income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to check your compulsory repayment.
             </p>
           </section>
 
           {/* --- CONTEXT BORDER --- */}
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Australian Tax Calculators</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Related Australian Tax Calculators</h2>
             <p className="mb-4 text-warmgray">
-              Estimating your tax return is one part of understanding your total pay. These calculators cover superannuation, take-home pay, salary sacrifice, and income tax brackets for FY2025-26.
+              Estimating your tax return is one part of understanding your pay. These tools cover this year&rsquo;s pay, super, salary sacrifice and study loans.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
+              <Link href="/tax-return-2026/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="font-semibold text-navy mb-1">Tax Return 2026 Guide</h3>
+                <p className="text-sm text-warmgray">Deadlines, refund times and what changed for the {THIS.incomeYear} return.</p>
+              </Link>
               <Link href="/income-tax-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">Income Tax Calculator</h3>
-                <p className="text-sm text-warmgray">See the full breakdown of income tax brackets, LITO, and marginal rates applied to your salary.</p>
+                <p className="text-sm text-warmgray">Tax brackets, LITO and marginal rates on the pay you earn this year.</p>
               </Link>
               <Link href="/take-home-pay-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">Take-Home Pay Calculator</h3>
-                <p className="text-sm text-warmgray">Calculate your net pay after tax, Medicare levy, superannuation, and HECS-HELP deductions.</p>
+                <p className="text-sm text-warmgray">Net pay after tax, Medicare levy, super and study loan repayments.</p>
               </Link>
               <Link href="/superannuation-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">Superannuation Calculator</h3>
-                <p className="text-sm text-warmgray">Calculate your employer SG rate contribution at 12% and estimate your projected super balance.</p>
+                <p className="text-sm text-warmgray">Employer super at 12% and your projected balance.</p>
               </Link>
               <Link href="/salary-sacrifice-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">Salary Sacrifice Calculator</h3>
-                <p className="text-sm text-warmgray">Compare pre-tax and post-tax salary packaging to maximise your take-home pay and super contributions.</p>
+                <p className="text-sm text-warmgray">Compare pre-tax and post-tax salary packaging.</p>
               </Link>
               <Link href="/hecs-help-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">HECS-HELP Calculator</h3>
-                <p className="text-sm text-warmgray">Estimate your compulsory HECS-HELP repayment based on your repayment income and current thresholds.</p>
-              </Link>
-              <Link href="/gross-pay-calculator/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="font-semibold text-navy mb-1">Gross Pay Calculator</h3>
-                <p className="text-sm text-warmgray">Reverse-calculate your gross salary from a target take-home pay amount including all deductions.</p>
+                <p className="text-sm text-warmgray">Your compulsory study loan repayment at current thresholds.</p>
               </Link>
             </div>
           </section>
@@ -507,48 +523,24 @@ export default function TaxReturnCalculatorPage() {
           <MethodologyDisclosure>
             <p className="mb-2 text-sm">This estimator uses the following approach:</p>
             <ul className="list-disc pl-4 space-y-1">
-              <li>Calculates actual tax liability using FY2025-26 tax brackets, LITO offset, and Medicare levy</li>
-              <li>Compares the result to your stated PAYG tax withheld to estimate your refund/liability</li>
-              <li>Does not account for: private ruling offsets, foreign income, capital gains, rental income, dividend franking credits, or other income sources</li>
-              <li>This is an estimate only — lodge through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myTax</a> for your actual result</li>
+              <li>{THIS.incomeYear} (default): the {THIS.incomeYear} resident tax rates, LITO, the {THIS.incomeYear} Medicare levy thresholds, Medicare levy surcharge tiers and study loan bands. These are the rates your {THIS.returnName} return is assessed on.</li>
+              <li>{NEXT.incomeYear}: the current-year rates used across this site. Medicare levy low-income thresholds for {NEXT.incomeYear} are not yet published, so the {THIS.incomeYear} ones are used.</li>
+              <li>Compares the result with your PAYG tax withheld to estimate your refund or amount owing.</li>
+              <li>Uses taxable income for the surcharge and study loan tests. Real returns also add items such as reportable fringe benefits and super contributions.</li>
+              <li>Does not include other offsets, foreign income, capital gains, rental income, franking credits or the private health insurance rebate adjustment.</li>
+              <li>This is an estimate only &mdash; lodge through <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myTax</a> for your actual result.</li>
             </ul>
           </MethodologyDisclosure>
 
           <section>
-            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
+            <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
             <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="how-much" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much will my tax refund be?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Your refund equals the difference between tax withheld by your employer and your actual tax liability. The average Australian tax refund is approximately <strong>$2,800</strong>. A PAYG employee earning <strong>$85,000</strong> with <strong>$2,500</strong> in deductions and standard withholding typically receives a refund between <strong>$1,500 and $3,500</strong> depending on offsets, Medicare levy, and HECS-HELP status.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="when-refund" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>When will I get my tax refund?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Electronic returns lodged through myTax are processed within <strong>2 to 4 weeks</strong>. Paper returns take <strong>10 to 12 weeks</strong>. Returns selected for review or data-matching verification take up to <strong>30 business days</strong>. Lodging after mid-August (when pre-fill data is complete) reduces the chance of processing delays.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="no-deductions" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do I get a refund if I have no deductions?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes, in many cases. A refund occurs whenever your employer withheld more tax than your actual liability. This happens when you started a job partway through the year, had irregular pay periods, or earned below <strong>$45,000</strong> where the &quot;Low Income Tax Offset&quot; reduces your actual tax below the PAYG withholding amount. The LITO provides up to <strong>$700</strong> in offset that is not factored into standard withholding tables.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="owe-money" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What if I owe money to the ATO?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">If your tax withheld was less than your actual liability, you receive a bill from the ATO. Common causes include holding multiple jobs (each employer withholds as if it is your sole income source), receiving untaxed investment income, or submitting an incorrect TFN declaration. The ATO offers interest-free payment plans for debts under <strong>$100,000</strong> with terms up to <strong>24 months</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs-refund" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does HECS-HELP reduce my tax refund?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Compulsory HECS-HELP repayments are calculated as part of your tax assessment and reduce your refund dollar-for-dollar. For FY2025-26, repayments start at <strong>1%</strong> of repayment income for earners above <strong>$69,528</strong> and increase to <strong>10%</strong> for incomes above <strong>$151,201</strong>. An employee earning <strong>$85,000</strong> with a HELP debt pays approximately <strong>$3,400</strong> in compulsory repayments.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="private-health" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How does private health insurance affect my tax return?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Singles earning above <strong>$93,000</strong> and families above <strong>$186,000</strong> without private hospital cover pay the &quot;Medicare Levy Surcharge&quot; at <strong>1%</strong>, <strong>1.25%</strong>, or <strong>1.5%</strong> depending on income tier. This surcharge is assessed at lodgement and reduces your refund or increases your bill. Holding compliant private hospital cover for the full financial year eliminates the surcharge entirely.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="multiple-jobs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Why do I owe tax when I have two jobs?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Each employer withholds tax independently using PAYG tables that assume a single income source. Your primary employer applies the <strong>$18,200</strong> tax-free threshold, but if your second employer also applies the threshold (because you ticked &quot;claim tax-free threshold&quot; on both TFN declarations), insufficient tax is withheld across both roles. The solution is to claim the tax-free threshold from only one employer and select &quot;no tax-free threshold&quot; for all additional employers.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="lodge-early" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is it better to lodge my tax return early or wait?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Waiting until mid-August produces the most accurate result. The ATO pre-fills your return with data from employers, banks, health insurers, and government agencies, but most of this data is not available until <strong>6 to 8 weeks</strong> after 30 June. Lodging in early July risks missing income sources, which triggers ATO amendments and potential penalties. The deadline for self-lodged returns is <strong>31 October</strong>.</p></AccordionContent>
-              </AccordionItem>
+              {TAX_RETURN_CALCULATOR_FAQS.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
+                  <AccordionTrigger>{f.q}</AccordionTrigger>
+                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 
