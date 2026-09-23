@@ -13,6 +13,9 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
 import { ADF_SERVICE_SLUGS } from "@/lib/data/adf-pay/types";
+// --- T2 payroll tax cluster (23 Sep 2026) ---
+import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
+// --- end T2 ---
 // T6 programmatic salary grid (2026-09-23)
 import { SALARY_TO_HOURLY_SALARIES, TAKE_HOME_SALARIES, TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 
@@ -305,6 +308,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T2 payroll tax cluster (23 Sep 2026): calculator, hub, 8 state pages ---
+  allPages.push({ slug: "payroll-tax-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "payroll-tax", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const state of PAYROLL_TAX_STATE_CODES) {
+    allPages.push({ slug: `payroll-tax/${state}`, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end T2 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---

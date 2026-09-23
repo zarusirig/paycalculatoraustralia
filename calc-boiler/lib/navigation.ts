@@ -50,6 +50,9 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Annual Converter", description: "Convert between any pay frequency" },
       { href: "/contractor-pay-calculator/", label: "Contractor Pay Calculator", description: "ABN workers, freelancers & gig economy rates" },
       { href: "/employer-cost-calculator/", label: "Employer Cost Calculator", description: "True cost beyond salary" },
+      // --- T2 payroll tax cluster (23 Sep 2026) ---
+      { href: "/payroll-tax-calculator/", label: "Payroll Tax Calculator", description: "State payroll tax on 2026-27 rates, all 8 states" },
+      // --- end T2 ---
       { href: "/bonus-tax-calculator/", label: "Bonus Tax Calculator", description: "Tax on bonuses and lump sum payments" },
       { href: "/commission-tax-calculator/", label: "Commission Tax Calculator", description: "Tax on commission and Schedule 5 withholding" },
       { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator", description: "Overtime and penalty rate pay" },
