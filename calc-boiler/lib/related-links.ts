@@ -193,7 +193,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
 
   // Minimum wage and junior pages ↔ jobs and employers
   "/minimum-wage-australia/": [JUNIOR, JOBS_HUB, EMPLOYERS_HUB, AWARD_RATES, L("/minimum-wage-history-australia/", "Minimum Wage History", "How the national minimum wage has changed year by year."), L("/news/minimum-wage-increase-july-2026/", "Minimum Wage Increase July 2026", "What the latest review changed.")],
-  "/minimum-wage-history-australia/": [MIN_WAGE, JUNIOR, AWARD_RATES, L("/news/minimum-wage-increase-july-2026/", "Minimum Wage Increase July 2026", "What the latest review changed.")],
+  "/minimum-wage-history-australia/": [MIN_WAGE, JUNIOR, L("/australian-pay-report-2026/", "Australian Pay Report 2026", "How the minimum wage compares with median and average earnings."), AWARD_RATES, L("/news/minimum-wage-increase-july-2026/", "Minimum Wage Increase July 2026", "What the latest review changed.")],
   "/junior-pay-rates/": [MIN_WAGE, MCDONALDS, COLES, L("/retail-award-rates/", "Retail Award Rates", "The award covering most junior retail workers."), L("/fast-food-award-rates/", "Fast Food Award Rates", "The award behind most first jobs."), L("/first-job-pay-guide/", "First Job Pay Guide", "Payslips, tax and super in your first job.")],
   "/first-job-pay-guide/": [JUNIOR, L("/new-job-checklist/", "New Job Checklist", "TFN declaration, super choice and your first payslip."), MCDONALDS, PAYSLIP],
   "/new-job-checklist/": [L("/tax-file-number-declaration/", "TFN Declaration", "Which boxes to tick on your first day."), JUNIOR, AWARD_RATES, PAYSLIP],
@@ -205,7 +205,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
 
   // Weak pages found by the audit
   "/salary-sacrifice-calculator/": [L("/salary-sacrifice-vs-mortgage/", "Salary Sacrifice vs Mortgage", "Extra super or extra home loan repayments?"), L("/salary-packaging-guide/", "Salary Packaging Guide", "What else you can package, and the caps."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC],
-  "/average-salary-australia/": [JOBS_HUB, L("/tech-salary-guide-australia/", "Tech Salary Guide", "Software, data and IT salaries in Australia."), TAKE_HOME_HUB, PAY_RISE],
+  "/average-salary-australia/": [JOBS_HUB, L("/australian-pay-report-2026/", "Australian Pay Report 2026", "Minimum, median and average pay side by side, with the data."), L("/tech-salary-guide-australia/", "Tech Salary Guide", "Software, data and IT salaries in Australia."), TAKE_HOME_HUB, PAY_RISE],
   "/pension-age-australia/": [L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors and pensioners tax offset."), INCOME_TEST_HUB, SUPER_CALC],
   "/age-pension-income-test-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When you qualify for the Age Pension."), INCOME_TEST_HUB, L("/news/deeming-rates-change-2026/", "Deeming Rates 2026", "How Centrelink counts savings from this year."), WORKING_CREDIT],
   "/division-293-tax/": [L("/news/super-tax-changes-explained/", "Super Tax Changes Explained", "Who the new Division 296 tax affects."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC, TAX_BRACKETS],
@@ -511,7 +511,7 @@ const CLUSTERS: Cluster[] = [
   // --- News posts with no topical cluster above: back to the news index ---
   {
     match: (p) => p.startsWith("/news/"),
-    links: [L("/news/", "Pay and Tax News", "Every rate change and rule change, as it happens."), L("/tax-changes-2026-27/", "Tax Changes 2026-27", "Everything that changed on 1 July."), TAKE_HOME, INCOME_TAX],
+    links: [L("/news/", "Pay and Tax News", "Every rate change and rule change, as it happens."), L("/tax-changes-2026-27/", "Tax Changes 2026-27", "Everything that changed on 1 July."), L("/australian-pay-report-2026/", "Australian Pay Report 2026", "What Australians earn and keep, in charts and CSVs."), TAKE_HOME],
   },
 ];
 
