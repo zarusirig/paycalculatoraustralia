@@ -114,8 +114,8 @@ export default function UnderstandingYourPayslipPage() {
                     <CheckCircle2 className="h-4 w-4 text-eucalyptus" /> Identity Details
                   </h4>
                   <ul className="space-y-1 text-navy">
-                    <li>Employer's name and ABN</li>
-                    <li>Employee's name</li>
+                    <li>Employer&apos;s name and ABN</li>
+                    <li>Employee&apos;s name</li>
                   </ul>
                 </div>
                 <div className="bg-white border rounded-lg p-4 shadow-sm">
@@ -309,7 +309,7 @@ export default function UnderstandingYourPayslipPage() {
                 The SG rate increased from <strong>11.5%</strong> to <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on 1 July 2025. On an <strong>$85,000</strong> salary, your employer contributes <strong>$10,200 per year</strong> (or <strong>$392.31 per fortnight</strong>) to your nominated super fund. From 1 July 2026 the maximum super contribution base is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, so earnings above it do not attract additional SG contributions (it was $62,500 per quarter until 30 June 2026). Read the <Link href="/superannuation-guide/">Superannuation Guide</Link> for a full breakdown of SG rates, contribution caps, and Division 293 tax.
               </p>
               <p className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4 text-navy text-sm italic">
-                <strong>Crucial Check:</strong> Ensure your payslip clearly states the name of your chosen super fund and the dollar amount being contributed. It is alarmingly common for businesses to list super on a payslip but fail to actually transfer the cash to the fund (a practice known as Super Theft). If you suspect this, log into your Super fund's portal to verify the cash actually arrived.
+                <strong>Crucial Check:</strong> Ensure your payslip clearly states the name of your chosen super fund and the dollar amount being contributed. It is alarmingly common for businesses to list super on a payslip but fail to actually transfer the cash to the fund (a practice known as Super Theft). If you suspect this, log into your Super fund&apos;s portal to verify the cash actually arrived.
               </p>
               <h3>When Must Employers Pay Super?</h3>
               <p>
@@ -509,7 +509,7 @@ export default function UnderstandingYourPayslipPage() {
                     <FileText className="h-6 w-6 text-eucalyptus-light" />
                     <h3 className="text-lg font-bold">Compare Payslips</h3>
                   </div>
-                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer's payslip to check you aren't being underpaid.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer&apos;s payslip to check you aren&apos;t being underpaid.</p>
                   <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Generate Demo Payslip
                   </Link>
