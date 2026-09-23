@@ -7,9 +7,6 @@ import { MEDICARE_LEVY, formatAUD, formatPercent } from "@/lib/constants";
 import {
   MEDICARE_LEVY_INCOME_YEAR,
   MEDICARE_LEVY_SENIORS,
-  MLS_CHILD_INCREMENT,
-  MLS_INCOME_YEAR,
-  calculateMLS,
   calculateMedicareLevyDetailed,
   type MedicareLevyBand,
 } from "@/lib/constants/medicare-levy-extra";
@@ -74,8 +71,6 @@ export default function MedicareLevyCalculator() {
   const [spouseIncome, setSpouseIncome] = useState(45_000);
   const [children, setChildren] = useState(0);
   const [seniorPensioner, setSeniorPensioner] = useState(false);
-  const [hasCover, setHasCover] = useState(false);
-  const [surchargeExtras, setSurchargeExtras] = useState(0);
 
   const hasSpouse = situation === "couple";
   const dependentChildren = situation === "single" ? 0 : children;
@@ -92,19 +87,10 @@ export default function MedicareLevyCalculator() {
     [taxableIncome, hasSpouse, spouseIncome, dependentChildren, seniorPensioner],
   );
 
-  const mls = useMemo(
-    () =>
-      calculateMLS({
-        mlsIncome: taxableIncome + surchargeExtras,
-        spouseMlsIncome: spouseIncome,
-        hasSpouse,
-        dependentChildren,
-        hasPrivateHospitalCover: hasCover,
-      }),
-    [taxableIncome, surchargeExtras, spouseIncome, hasSpouse, dependentChildren, hasCover],
-  );
-
-  const total = levy.levy + mls.surcharge;
+  // The Medicare levy surcharge has its own calculator at
+  // /medicare-levy-surcharge-calculator/ (W2, 23 Sep 2026), which separates the
+  // income that sets the tier from the income the rate is charged on (ATO
+  // QC71227). This calculator is the 2% levy only.
 
   // Every sentence below is generated from the engine result, so the
   // explanation cannot drift from the number above it.
@@ -141,9 +127,8 @@ export default function MedicareLevyCalculator() {
         </h2>
         <p className="text-sm text-warmgray mb-6">
           Works out the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy including the low-income
-          shade-in, the family and seniors thresholds, and the separate Medicare levy surcharge.
-          Levy thresholds are the ATO&rsquo;s {MEDICARE_LEVY_INCOME_YEAR} figures; surcharge tiers
-          are {MLS_INCOME_YEAR}.
+          shade-in and the family and seniors thresholds. Thresholds are the ATO&rsquo;s{" "}
+          {MEDICARE_LEVY_INCOME_YEAR} figures, the latest published.
         </p>
 
         <div className="grid md:grid-cols-[1fr_1fr] gap-8">
@@ -244,8 +229,6 @@ export default function MedicareLevyCalculator() {
                 />
                 <p className="text-xs text-warmgray-light mt-1">
                   Each one lifts the family levy threshold by {formatAUD(MEDICARE_LEVY.additionalChild)}.
-                  For the surcharge, only children after the first count, at{" "}
-                  {formatAUD(MLS_CHILD_INCREMENT)} each.
                 </p>
               </div>
             )}
@@ -272,47 +255,6 @@ export default function MedicareLevyCalculator() {
               </span>
             </label>
 
-            <div className="border-t border-sandstone-dark/20 pt-5 space-y-5">
-              <label className="flex items-start gap-2 text-sm text-navy">
-                <input
-                  type="checkbox"
-                  checked={hasCover}
-                  onChange={(e) => setHasCover(e.target.checked)}
-                  className="mt-1 rounded border-sandstone-dark/40 text-eucalyptus focus:ring-eucalyptus/20"
-                />
-                <span>
-                  I held private patient hospital cover all year
-                  <span className="block text-xs text-warmgray-light">
-                    Removes the surcharge only. It does not reduce the{" "}
-                    {formatPercent(MEDICARE_LEVY.rate, 0)} levy by a cent.
-                  </span>
-                </span>
-              </label>
-
-              <div>
-                <label htmlFor="ml-extras" className="block text-sm font-medium text-navy mb-1">
-                  Other income counted for the surcharge
-                </label>
-                <div className="flex items-center">
-                  <span className="text-warmgray-light mr-2">$</span>
-                  <input
-                    type="number"
-                    id="ml-extras"
-                    min={0}
-                    max={1_000_000}
-                    step={100}
-                    value={surchargeExtras}
-                    onChange={(e) => setSurchargeExtras(clamp(Number(e.target.value || 0), 0, 1_000_000))}
-                    className={inputClass}
-                  />
-                </div>
-                <p className="text-xs text-warmgray-light mt-1">
-                  Reportable fringe benefits, reportable super contributions and total net investment
-                  losses. These count for the surcharge but not for the levy, which is why salary
-                  sacrificing does not get you under the surcharge threshold.
-                </p>
-              </div>
-            </div>
           </form>
 
           {/* Results */}
@@ -389,48 +331,15 @@ export default function MedicareLevyCalculator() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
-              <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">
-                <h3 className="font-semibold text-navy text-sm uppercase tracking-wider">
-                  Medicare levy surcharge — a separate charge
-                </h3>
-              </div>
-              <div className="p-5 space-y-3 text-sm">
-                <Row
-                  label={
-                    mls.usesFamilyThresholds
-                      ? "Combined income for surcharge purposes"
-                      : "Your income for surcharge purposes"
-                  }
-                  value={formatAUD(mls.testedIncome)}
-                />
-                <Row label="Surcharge-free up to" value={formatAUD(mls.baseThreshold)} muted />
-                <Row
-                  label="Your tier"
-                  value={
-                    mls.tier === 0
-                      ? "Base tier — nil"
-                      : `Tier ${mls.tier} at ${formatPercent(mls.rate, 2)}`
-                  }
-                  muted
-                />
-                <div className="border-t border-sandstone-dark/20 pt-3" />
-                <Row label="Medicare levy surcharge" value={money(mls.surcharge)} bold />
-                <p className="text-xs text-warmgray-light pt-1">
-                  {mls.avoidedByCover
-                    ? "Your hospital cover is what makes this nil. Without it you would be in a surcharge tier on this income."
-                    : mls.tier === 0
-                      ? `You are under the ${formatAUD(mls.baseThreshold)} threshold, so no surcharge applies whether or not you hold cover.`
-                      : `Charged on your own income for surcharge purposes at the tier set by your ${mls.usesFamilyThresholds ? "combined" : ""} income. Compliant hospital cover for the full year removes it entirely.`}
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-navy text-white rounded-xl p-5 flex items-baseline justify-between gap-4">
-              <span className="text-sm font-semibold uppercase tracking-wider">
-                Total Medicare cost
-              </span>
-              <span className="text-2xl font-extrabold tabular-nums">{money(total)}</span>
+            <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5 text-sm">
+              <p className="font-semibold text-navy">No private hospital cover and earning over the surcharge threshold?</p>
+              <p className="mt-1 text-warmgray">
+                The Medicare levy surcharge is a separate 1% to 1.5% charge. Work it out with the{" "}
+                <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">
+                  Medicare levy surcharge calculator
+                </Link>
+                .
+              </p>
             </div>
 
             <p className="text-xs text-warmgray-light">

@@ -96,6 +96,9 @@ export default function TaxFileNumberDeclarationPage() {
                 <li><strong>Multiple jobs:</strong> Claim the tax-free threshold at your <strong>main job only</strong> (usually the highest-paying one). Answer &ldquo;No&rdquo; at all other jobs.</li>
                 <li><strong>Pensions:</strong> If you also receive a pension or government payment, you may need to consider whether to claim the threshold at your job or with the payer.</li>
               </ul>
+              <p>
+                Not sure which job to claim it on? Our <Link href="/tax-free-threshold/">tax-free threshold guide</Link> has a quick &ldquo;should I claim it on this job?&rdquo; check and shows how much each pay changes.
+              </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 7: HECS-HELP and Other Study Loans</h3>
               <p>

@@ -62,7 +62,7 @@ export default function TaxBracketsGuidePage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-sm text-warmgray-light">The tax-free threshold remains at $18,200. With the <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">Low Income Tax Offset</Link>, the effective tax-free threshold increases to {formatAUD(LITO.effectiveTaxFreeThreshold)}.</p>
+          <p className="mt-3 text-sm text-warmgray-light">The <Link href="/tax-free-threshold/" className="text-eucalyptus-dark hover:underline">tax-free threshold</Link> remains at $18,200. With the <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">Low Income Tax Offset</Link>, the effective tax-free threshold increases to {formatAUD(LITO.effectiveTaxFreeThreshold)}.</p>
           <p className="mt-2 text-sm"><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Calculate your exact tax →</Link></p>
         </section>
 
@@ -396,7 +396,7 @@ export default function TaxBracketsGuidePage() {
             </AccordionItem>
             <AccordionItem value="tax-free-threshold" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>What is the tax-free threshold in Australia?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> for Australian residents. Income up to this amount is taxed at 0%. With the Low Income Tax Offset (LITO), the effective tax-free threshold rises to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>, meaning taxpayers earning below this amount pay zero net income tax. You claim the tax-free threshold by selecting &quot;yes&quot; on your TFN Declaration form when starting a new job.</p></AccordionContent>
+              <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> for Australian residents. Income up to this amount is taxed at 0%. With the Low Income Tax Offset (LITO), the effective tax-free threshold rises to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>, meaning taxpayers earning below this amount pay zero net income tax. You claim the tax-free threshold by selecting &quot;yes&quot; on your TFN Declaration form when starting a new job. Our <Link href="/tax-free-threshold/" className="text-eucalyptus-dark hover:underline">tax-free threshold guide</Link> covers when to claim it, two jobs and part-year residents.</p></AccordionContent>
             </AccordionItem>
             <AccordionItem value="salary-sacrifice" className="rounded-xl border border-sandstone-dark/20 px-5">
               <AccordionTrigger>Does salary sacrifice reduce my tax bracket?</AccordionTrigger>

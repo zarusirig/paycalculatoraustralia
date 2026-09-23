@@ -332,6 +332,16 @@ export interface MlsInput {
   dependentChildren: number;
   /** Compliant private patient hospital cover held for the whole year. */
   hasPrivateHospitalCover: boolean;
+  /**
+   * The amount the rate is charged on, where it differs from mlsIncome. ATO
+   * QC71227 ("Paying the Medicare levy surcharge", 5 May 2026): the rate "is
+   * levied on your taxable income, total reportable fringe benefits, and any
+   * amount on which family trust distribution tax has been paid" — NOT on net
+   * investment losses or reportable super contributions, which only decide the
+   * tier. Omitted, the whole of mlsIncome is charged, which is right only when
+   * mlsIncome is taxable income plus fringe benefits.
+   */
+  surchargeBase?: number;
 }
 
 export interface MlsResult {
@@ -400,7 +410,7 @@ export function calculateMLS(input: MlsInput): MlsResult {
   const avoidedByCover = input.hasPrivateHospitalCover && tier > 0;
 
   return {
-    surcharge: input.hasPrivateHospitalCover ? 0 : own * rate,
+    surcharge: input.hasPrivateHospitalCover ? 0 : Math.max(0, input.surchargeBase ?? own) * rate,
     rate: input.hasPrivateHospitalCover ? 0 : rate,
     tier: input.hasPrivateHospitalCover ? 0 : tier,
     testedIncome,

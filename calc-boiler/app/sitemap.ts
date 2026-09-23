@@ -301,6 +301,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   // --- end C2/C5 ---
+  // --- W2 wave 2: tax-free threshold, MLS calculator, concessional cap (23 Sep 2026) ---
+  allPages.push({ slug: "tax-free-threshold", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "medicare-levy-surcharge-calculator", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "concessional-contributions-cap", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end W2 ---
   // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
   allPages.push({ slug: "payday-super", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
