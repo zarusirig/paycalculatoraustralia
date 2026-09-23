@@ -613,6 +613,40 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { question: "Do I need to do anything to get the higher FTB rate?", answer: "No. Services Australia applies the indexed rates automatically to ongoing Family Tax Benefit recipients from the first payment after 1 July 2026. If you're not currently claiming but think you're now eligible under the higher income limits, you'll need to lodge or update a claim through myGov." },
     ],
   },
+  // --- W5: Victorian teachers pay rise (23 Sep 2026) ---
+  {
+    slug: "victorian-teachers-pay-rise-2026",
+    headline: "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes — What the New Agreement Pays and When",
+    title: "VIC Teachers Pay Rise 2026: 93.1% Vote Yes, $133,456 Top Step",
+    description: "Victorian government school staff approved the new schools agreement with 93.1% voting yes. A top-step teacher goes from $118,063 to $133,456 from October 2026 and $151,419 by 2029, a graduate to $92,882, plus a $2,000 lump sum — once the Fair Work Commission approves it. Timeline, strikes and new rates.",
+    category: "Wages",
+    datePublished: "2026-09-17",
+    dateModified: "2026-09-23",
+    authorId: "penny-ward",
+    relatedCalculators: [
+      { href: "/teacher-pay-australia/vic/", label: "Victorian Teacher Pay Scale" },
+      { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      { href: "/take-home-pay-on/135000/", label: "Take-Home Pay on $135,000" },
+    ],
+    relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
+    sources: [
+      { title: "Proposed Victorian Government Schools Agreement 2026 (Schedule 1: Salary Rates)", url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615", publisher: "Victorian Department of Education" },
+      { title: "Enterprise Bargaining: Overview (updated 17 September 2026)", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/overview", publisher: "Victorian Department of Education" },
+      { title: "Enterprise Bargaining: Resources — Agreement Explanation and Approval Process FAQs", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/resources", publisher: "Victorian Department of Education" },
+      { title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)", url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise", publisher: "Premier of Victoria" },
+      { title: "Labor Is Giving Education Workers A Payrise (17 August 2026)", url: "https://www.premier.vic.gov.au/labor-giving-education-workers-payrise", publisher: "Premier of Victoria" },
+      { title: "VGSA 2026: Our campaign for a new agreement for members in public schools", url: "https://www.aeuvic.asn.au/vgsa-2026-our-campaign-new-agreement-members-public-schools", publisher: "Australian Education Union Victorian Branch" },
+      { title: "Victorian teachers and support staff strike for first time in 13 years over pay dispute", url: "https://www.abc.net.au/news/2026-03-24/teacher-strike-victoria-school-closures/106487444", publisher: "ABC News" },
+      { title: "Victorian teachers 'need relief' as tens of thousands strike for a second time", url: "https://www.abc.net.au/news/2026-07-23/victorian-teachers-on-strike-today-as-offer-is-rejected/106946678", publisher: "ABC News" },
+    ],
+    faq: [
+      { question: "How much is the Victorian teachers pay rise?", answer: "Salaries rise by 28.3% to 32.4% over four years, depending on classification. Under Schedule 1 of the proposed Victorian Government Schools Agreement 2026, the top classroom teacher step (2-6) goes from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 from November 2029. A graduate at 1-1 goes from $79,589 to $92,882, then $105,384. Every full-time employee also gets a $2,000 lump sum when the agreement starts." },
+      { question: "When do Victorian teachers get the pay rise?", answer: "Staff approved the agreement in a ballot announced on 17 September 2026. It now needs Fair Work Commission approval, which the government says can take up to six weeks, and starts operating seven days after approval. Schedule 1 dates the first increases from the first pay period on or after 10 August 2026 and 1 October 2026, then 1 November 2027, 2028 and 2029." },
+      { question: "Are Victorian teachers still going on strike?", answer: "No. Victorian government school staff struck statewide on 24 March and 23 July 2026. A third 24-hour strike planned for 19 August 2026 was cancelled after AEU members voted to accept the government's revised offer, and the agreement has since been approved by an all-staff ballot." },
+      { question: "Does the new agreement cover education support staff?", answer: "Yes. The proposed agreement covers the executive, principal, teacher, paraprofessional and education support classes. The government says education support salaries rise by at least 28.3% over four years, and education support staff get four professional practice days a year from 2027 for the first time." },
+    ],
+  },
+  // --- end W5 ---
 ];
 
 /** All articles, newest first. */

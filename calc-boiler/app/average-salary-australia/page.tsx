@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
 import AverageSalaryAustraliaPage from "@/modules/guide/average-salary-australia";
+import { AVERAGE_SALARY_FAQS } from "@/modules/guide/average-salary-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { Article, BreadcrumbList, Dataset, FAQPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import {
+  AVERAGE_SALARY_RELEASES,
+  AVERAGE_SALARY_VERIFIED_ISO,
+  averageSalaryDescription,
+  averageSalaryTitle,
+} from "@/lib/data/average-salary";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/average-salary-australia/`;
-const TITLE = "Average Salary in Australia — By Industry, State & Age";
-const DESCRIPTION = "Average salaries in Australia by industry, state, and experience level. From mining ($120K+) to hospitality ($55K). See where your salary sits and calculate your take-home pay.";
+// Title and description quote figures computed from the ABS data module, so a
+// data refresh updates the SERP snippet with it.
+const TITLE = averageSalaryTitle();
+const DESCRIPTION = averageSalaryDescription();
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", modifiedTime: AVERAGE_SALARY_VERIFIED_ISO },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -24,16 +33,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Average Salary Australia", item: URL },
-  ]
-};
-
-const webPage: WithContext<WebPage> = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: TITLE,
-  url: URL,
-  description: DESCRIPTION,
-  publisher: { "@type": "Organization", name: SITE_CONFIG.name },
+  ],
 };
 
 const article: WithContext<Article> = {
@@ -41,25 +41,47 @@ const article: WithContext<Article> = {
   "@type": "Article",
   headline: TITLE,
   description: DESCRIPTION,
+  dateModified: AVERAGE_SALARY_VERIFIED_ISO,
+  inLanguage: "en-AU",
   author: AUTHORS["penny-ward"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
+  citation: AVERAGE_SALARY_RELEASES.map((r) => r.url),
+};
+
+const dataset: WithContext<Dataset> = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: "Average and median salary in Australia — by state, industry, age and gender",
+  description:
+    "Australian average (mean) and median earnings compiled from Australian Bureau of Statistics releases: full-time adult average weekly ordinary time earnings from Average Weekly Earnings (May 2026) nationally and by state, industry, sector and sex; median weekly earnings and percentiles from Employee Earnings (August 2025) by state, industry, age and sex; and full-time quartiles from Employee Earnings and Hours (May 2025). Weekly figures as published, with yearly equivalents (weekly × 52).",
+  url: URL,
+  inLanguage: "en-AU",
+  isAccessibleForFree: true,
+  dateModified: AVERAGE_SALARY_VERIFIED_ISO,
+  temporalCoverage: "2025-05/2026-05",
+  spatialCoverage: { "@type": "Place", name: "Australia" },
+  keywords: ["average salary Australia", "median income Australia", "average weekly earnings", "median salary Australia"],
+  variableMeasured: ["Average weekly ordinary time earnings", "Median weekly earnings in main job", "Weekly earnings percentiles"],
+  creator: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },
+  isBasedOn: AVERAGE_SALARY_RELEASES.map((r) => r.url),
+  license: "https://creativecommons.org/licenses/by/4.0/",
 };
 
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What is the average salary in Australia?", acceptedAnswer: { "@type": "Answer", text: "The average full-time salary in Australia is approximately $98,000 per year (before tax) as of late 2025. However, the median salary — which better represents a 'typical' worker — is around $72,000. The gap between mean and median reflects high earners in mining, finance, and technology pulling the average upward." } },
-    { "@type": "Question", name: "What is the highest paying industry in Australia?", acceptedAnswer: { "@type": "Answer", text: "Mining is the highest paying industry in Australia with an average full-time salary of approximately $130,000. This is followed by Information Technology ($110,000), Financial Services ($105,000), and Construction ($95,000)." } },
-    { "@type": "Question", name: "Which state has the highest average salary?", acceptedAnswer: { "@type": "Answer", text: "Western Australia has the highest average salary at approximately $110,000 per year, driven by the mining and resources sector. New South Wales follows at $102,000, with the ACT at $100,000 reflecting its concentration of public service roles." } },
-  ]
+  mainEntity: AVERAGE_SALARY_FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
 };
 
 export default function Page() {
   return (
     <>
-      <JsonLd code={[breadcrumb, webPage, article, faq]} />
+      <JsonLd code={[breadcrumb, article, dataset, faq]} />
       <AverageSalaryAustraliaPage />
     </>
   );
