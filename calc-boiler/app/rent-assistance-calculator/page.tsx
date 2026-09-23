@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payment-calculator";
-import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
+import RentAssistanceCalculatorPage from "@/modules/calculator/rent-assistance-calculator";
+import { RENT_FAQS } from "@/modules/calculator/rent-assistance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
-import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
+import { FAMILY_PAYMENT_SOURCES, RENT_ASSISTANCE } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
-const URL = `${BASE}/jobseeker-payment-calculator/`;
-const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
-const TITLE = "JobSeeker Payment Calculator 2026 — Rates From 20 September";
-const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See how much you keep when you work — the $150 free area, 50c and 60c tapers, partner income and the cut-off for your situation — plus eligibility. Verified at Services Australia.`;
+const URL = `${BASE}/rent-assistance-calculator/`;
+const TITLE = "Rent Assistance Calculator — Centrelink Rates From 20 Sep 2026";
+const DESCRIPTION = `Centrelink Rent Assistance pays 75c for each dollar of rent over the threshold, up to ${formatAUD(RENT_ASSISTANCE.rows.single.max, 2)} a fortnight single or ${formatAUD(RENT_ASSISTANCE.rows.singleFamily1or2.max, 2)} for families, from ${RENT_ASSISTANCE.ratesFrom}. Enter your rent to see your amount, with every threshold and maximum.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -27,30 +26,29 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Centrelink Income Test", item: `${BASE}/centrelink-income-test/` },
-    { "@type": "ListItem", position: 3, name: "JobSeeker Payment Calculator", item: URL },
+    { "@type": "ListItem", position: 3, name: "Rent Assistance Calculator", item: URL },
   ],
 };
 
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "JobSeeker Payment Calculator",
+  name: "Rent Assistance Calculator",
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: CENTRELINK_SOURCES.verifiedOnISO,
+  dateModified: FAMILY_PAYMENT_SOURCES.verifiedOnISO,
   inLanguage: "en-AU",
 };
 
-// Built from the same array the on-page accordion renders, so the structured
-// data cannot drift from the visible answers.
+// Built from the array the on-page accordion renders, so they cannot drift.
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: JOBSEEKER_FAQS.map((f) => ({
+  mainEntity: RENT_FAQS.map((f) => ({
     "@type": "Question" as const,
     name: f.q,
     acceptedAnswer: { "@type": "Answer" as const, text: f.a },
@@ -58,9 +56,9 @@ const faq: WithContext<FAQPage> = {
 };
 
 const howToSchema = calculatorHowTo({
-  name: "How to Use the JobSeeker Payment Calculator",
+  name: "How to Use the Rent Assistance Calculator",
   url: URL,
-  description: "Enter your fortnightly wages and situation to see your JobSeeker payment after the income test.",
+  description: "Choose your situation and enter the rent you pay each week, fortnight or month to see your Rent Assistance.",
   steps: PAY_CALCULATOR_STEPS,
 });
 
@@ -68,7 +66,7 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <JobseekerPaymentCalculatorPage />
+      <RentAssistanceCalculatorPage />
     </>
   );
 }

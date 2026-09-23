@@ -3,9 +3,8 @@
 // for the 20 September 2026 set, the DSS rates list).
 //
 // These strings are also the page's FAQPage JSON-LD, which is generated at
-// build time on a static export — so they must not depend on the clock. Every
-// answer that quotes a rate carries BOTH dated figures instead, which reads
-// correctly on either side of 20 September 2026.
+// build time on a static export — so they must not depend on the clock. The
+// answers quote the dated set by name ("from 20 September 2026"), never "now".
 import { formatAUD } from "@/lib/constants";
 import {
   JOBSEEKER_INCOME_TEST,
@@ -26,6 +25,18 @@ export interface JobseekerFaq { q: string; a: string }
 
 export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
   {
+    q: "How much is JobSeeker Payment a fortnight?",
+    a: `From 20 September 2026: ${formatAUD(SEP.maxFortnightly.single)} a fortnight if you're single with no children (about ${formatAUD(SEP.maxFortnightly.single / 2)} a week), ${formatAUD(SEP.maxFortnightly.singleWithChildren)} if you're single with a dependent child, 55 or older after 9 months on payment, or have a partial capacity to work, and ${formatAUD(SEP.maxFortnightly.partnered)} each if you're partnered. These are maximums — your payment reduces once your own income passes ${formatAUD(T.freeArea)} a fortnight.`,
+  },
+  {
+    q: "Who is eligible for JobSeeker Payment?",
+    a: "You must be between 22 and Age Pension age, meet the residence rules and the income and assets tests, and be either unemployed and looking for work (including if you work part-time or casually, have been stood down or had your hours cut) or sick or injured and unable to do your usual work or study for a short time.",
+  },
+  {
+    q: "Is JobSeeker the same as Newstart or the JobSeeker allowance?",
+    a: "Yes — JobSeeker Payment replaced Newstart Allowance in March 2020, and many people still call it the JobSeeker allowance. It is an allowance, so it uses the allowance income test (the $150 free area and 50c/60c tapers), not the pension income test.",
+  },
+  {
     q: "How much can I earn before JobSeeker reduces?",
     a: `${formatAUD(T.freeArea)} a fortnight. Above that your payment reduces by 50 cents for each dollar up to ${formatAUD(T.band1End)}, then 60 cents for each dollar over ${formatAUD(T.band1End)}. The free area and the tapers are unchanged by the 20 September 2026 indexation. Working credits, built up in fortnights when you earn under ${formatAUD(T.workingCreditThreshold)}, can cover some income before the test applies.`,
   },
@@ -38,7 +49,7 @@ export const JOBSEEKER_FAQS: readonly JobseekerFaq[] = [
     a: `To 19 September 2026: ${formatAUD(MAR.publishedCutOff.single)} a fortnight for a single person with no children, ${formatAUD(MAR.publishedCutOff.singleOver55LongTerm)} if you are 55 or older after 9 months on payment, and ${formatAUD(MAR.publishedCutOff.principalCarer)} for a single principal carer. From 20 September 2026 those become ${formatAUD(SEP.publishedCutOff.single)}, ${formatAUD(SEP.publishedCutOff.singleOver55LongTerm)} and ${formatAUD(SEP.publishedCutOff.principalCarer)}. Earn more than that in a fortnight and you are paid $0 for it — unless working credits cover part of the income.`,
   },
   {
-    q: "How much will JobSeeker go up on 20 September 2026?",
+    q: "How much did JobSeeker go up on 20 September 2026?",
     a: `A single person with no children goes from ${formatAUD(MAR.maxFortnightly.single)} to ${formatAUD(SEP.maxFortnightly.single)} a fortnight, up ${formatAUD(SEP.maxFortnightly.single - MAR.maxFortnightly.single, 2)}. Single with a dependent child, aged 55+ after 9 months, or with a partial capacity to work: ${formatAUD(MAR.maxFortnightly.singleWithChildren)} to ${formatAUD(SEP.maxFortnightly.singleWithChildren)}. Partnered (each): ${formatAUD(MAR.maxFortnightly.partnered)} to ${formatAUD(SEP.maxFortnightly.partnered)}. Single principal carers exempt from mutual obligations: ${formatAUD(MAR.maxFortnightly.principalCarerExempt)} to ${formatAUD(SEP.maxFortnightly.principalCarerExempt)}. The first payment at the new rate covers the fortnight that starts on or after 20 September.`,
   },
   {

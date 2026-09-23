@@ -157,9 +157,14 @@ export type GuideAuthorship = {
 export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // Tax & deductions guides — James Harrington
   "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
-  "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
-  "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "age-pension-income-test-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  // C4 Centrelink family payments (added 2026-09-23)
+  "parenting-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "family-tax-benefit-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "rent-assistance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // end C4
   "salary-package-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "commission-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
@@ -193,7 +198,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "redundancy-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
   "overtime-penalty-rates-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-04" },
   "annual-leave-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-07" },
-  "centrelink-income-test": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-03" },
+  "centrelink-income-test": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "parental-leave-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-02" },
 
   // Wave 8-11 Expansion Guides — Tax & Deductions (James Harrington)

@@ -35,6 +35,7 @@ import {
   RATE_SET_KEYS,
   SEPTEMBER_2026,
   WORK_BONUS,
+  YOUTH_ALLOWANCE_JOBSEEKER,
   YOUTH_ALLOWANCE_STUDENT,
   agePensionCutOff,
   agePensionFortnightly,
@@ -90,22 +91,22 @@ test("ratesOnDate picks the set in force, switching on 20 September 2026", () =>
 });
 
 test("the default (server-rendered) set is the one in force on the verified date", () => {
-  assert.equal(CENTRELINK_SOURCES.verifiedOn, "28 August 2026");
+  assert.equal(CENTRELINK_SOURCES.verifiedOn, "23 September 2026");
   assert.equal(DEFAULT_RATE_SET_KEY, rateSetKeyOnDate(CENTRELINK_SOURCES.verifiedOnISO));
-  assert.equal(DEFAULT_RATE_SET_KEY, MARCH_2026);
+  assert.equal(DEFAULT_RATE_SET_KEY, SEPTEMBER_2026);
   // The back-compatible aliases follow the default set, not the clock.
-  assert.equal(JOBSEEKER.maxFortnightly.single, MAR.maxFortnightly.single);
-  assert.equal(JOBSEEKER.ratesFrom, "20 March 2026");
-  assert.equal(AGE_PENSION.maxFortnightly.single.total, MAR_P.maxFortnightly.single.total);
-  assert.equal(AGE_PENSION.ratesFrom, "20 March 2026");
+  assert.equal(JOBSEEKER.maxFortnightly.single, SEP.maxFortnightly.single);
+  assert.equal(JOBSEEKER.ratesFrom, "20 September 2026");
+  assert.equal(AGE_PENSION.maxFortnightly.single.total, SEP_P.maxFortnightly.single.total);
+  assert.equal(AGE_PENSION.ratesFrom, "20 September 2026");
   assert.deepEqual([...RATE_SET_KEYS], ["2026-03-20", "2026-09-20"]);
 });
 
-test("March cut-offs are published, September cut-offs are labelled derived", () => {
+test("both sets carry Services Australia's published cut-offs (September re-verified 23 Sep 2026)", () => {
   assert.equal(MAR.cutOffSource, "published");
   assert.equal(MAR_P.cutOffSource, "published");
-  assert.equal(SEP.cutOffSource, "derived");
-  assert.equal(SEP_P.cutOffSource, "derived");
+  assert.equal(SEP.cutOffSource, "published");
+  assert.equal(SEP_P.cutOffSource, "published");
 });
 
 // ---------------------------------------------------------------------------
@@ -191,7 +192,7 @@ test("published March JobSeeker cut-offs reconcile to the typical total and the 
     `single-with-child cut-off ${withChild} vs published ${MAR.publishedCutOff.singleWithChildNotCarer}`);
 });
 
-test("every DERIVED September JobSeeker cut-off reconciles to its rate and taper", () => {
+test("every published September JobSeeker cut-off reconciles to its rate and taper", () => {
   assert.equal(jobseekerCutOff(SEP.typicalTotal.single), 1_557.17);
   assert.equal(jobseekerCutOff(SEP.typicalTotal.singleOver55LongTerm), 1_667.33);
   assert.equal(jobseekerCutOff(SEP.typicalTotal.partialCapacity), 1_667.33);
@@ -201,8 +202,9 @@ test("every DERIVED September JobSeeker cut-off reconciles to its rate and taper
 
   // …and those are exactly the figures stored in the file.
   assert.equal(SEP.publishedCutOff.single, jobseekerCutOff(SEP.typicalTotal.single));
-  assert.equal(SEP.publishedCutOff.singleOver55LongTerm, jobseekerCutOff(SEP.typicalTotal.singleOver55LongTerm));
-  assert.equal(SEP.publishedCutOff.partialCapacity, jobseekerCutOff(SEP.typicalTotal.partialCapacity));
+  // Services Australia rounds the 55+/partial-capacity cut-off UP a cent.
+  assert.ok(Math.abs(SEP.publishedCutOff.singleOver55LongTerm - jobseekerCutOff(SEP.typicalTotal.singleOver55LongTerm)) <= 0.01);
+  assert.ok(Math.abs(SEP.publishedCutOff.partialCapacity - jobseekerCutOff(SEP.typicalTotal.partialCapacity)) <= 0.01);
   assert.equal(SEP.publishedCutOff.singleWithChildNotCarer, jobseekerCutOff(SEP.typicalTotal.singleWithChildren));
   assert.equal(SEP.publishedCutOff.principalCarer, jobseekerCutOff(SEP.typicalTotal.principalCarer, true));
   assert.equal(SEP.publishedCutOff.principalCarerExempt, jobseekerCutOff(SEP.typicalTotal.principalCarerExempt, true));
@@ -344,7 +346,7 @@ test("Age Pension rates rise on 20 September 2026 by the DSS increases", () => {
 });
 
 test("agePensionFortnightly defaults to the verified-date set and honours an explicit one", () => {
-  assert.equal(agePensionFortnightly(1_000, "single"), agePensionFortnightly(1_000, "single", MAR_P));
+  assert.equal(agePensionFortnightly(1_000, "single"), agePensionFortnightly(1_000, "single", SEP_P));
   assert.equal(agePensionFortnightly(1_000, "single", MAR_P), r2(1_200.90 - (1_000 - 226) * 0.5));
   assert.equal(agePensionFortnightly(1_000, "single", SEP_P), r2(1_237.70 - (1_000 - 226) * 0.5));
 });
@@ -360,4 +362,34 @@ test("Work Bonus offsets the first $300 of employment income, then the balance",
   assert.equal(assessableAfterWorkBonus(1_000, 0), 700);
   assert.equal(assessableAfterWorkBonus(1_000, 500), 200);
   assert.equal(assessableAfterWorkBonus(1_000, WORK_BONUS.maxBalance), 0);
+});
+
+// ---------------------------------------------------------------------------
+// Youth Allowance for job seekers — rates read 23 Sep 2026
+// ---------------------------------------------------------------------------
+
+test("Youth Allowance job seeker rates equal the student rates for the same situation", () => {
+  const J = YOUTH_ALLOWANCE_JOBSEEKER.maxFortnightly;
+  const S = YOUTH_ALLOWANCE_STUDENT.maxFortnightly;
+  assert.equal(J.under18AtHome, S.under18AtHome);
+  assert.equal(J.under18AwayFromHome, S.under18AwayFromHome);
+  assert.equal(J.over18AtHome, S.over18AtHome);
+  assert.equal(J.over18AwayFromHome, S.awayFromHome);
+  assert.equal(J.singleWithChildren, S.singleWithChildren);
+  assert.equal(J.coupleNoChildren, S.coupleNoChildren);
+  assert.equal(J.coupleWithChildren, S.coupleWithChildren);
+  // The exempt principal carer rate is the JobSeeker one, indexed 20 Sep.
+  assert.equal(J.singlePrincipalCarerExempt, SEP.maxFortnightly.principalCarerExempt);
+});
+
+test("Youth Allowance job seeker cut-offs rise with the maximum rate", () => {
+  const C = YOUTH_ALLOWANCE_JOBSEEKER.publishedCutOff;
+  const ordered = [C.under18AtHome, C.over18AtHome, C.awayFromHome, C.coupleWithChildren, C.singleWithChildren, C.singlePrincipalCarerExempt];
+  for (let i = 1; i < ordered.length; i++) assert.ok(ordered[i] > ordered[i - 1]);
+  // A cut-off can't be lower than the income at which a flat 60c taper from
+  // the $150 free area would exhaust the maximum rate.
+  const J = YOUTH_ALLOWANCE_JOBSEEKER;
+  assert.ok(C.under18AtHome > J.freeArea + J.maxFortnightly.under18AtHome / 0.6);
+  assert.ok(C.over18AtHome > J.freeArea + J.maxFortnightly.over18AtHome / 0.6);
+  assert.ok(C.awayFromHome > J.freeArea + J.maxFortnightly.over18AwayFromHome / 0.6);
 });

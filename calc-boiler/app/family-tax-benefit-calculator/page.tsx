@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payment-calculator";
-import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
+import FamilyTaxBenefitCalculatorPage from "@/modules/calculator/family-tax-benefit-calculator";
+import { FTB_FAQS } from "@/modules/calculator/family-tax-benefit-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
-import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
+import { FAMILY_PAYMENT_SOURCES, FTB_A, FTB_B } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
-const URL = `${BASE}/jobseeker-payment-calculator/`;
-const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
-const TITLE = "JobSeeker Payment Calculator 2026 — Rates From 20 September";
-const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See how much you keep when you work — the $150 free area, 50c and 60c tapers, partner income and the cut-off for your situation — plus eligibility. Verified at Services Australia.`;
+const URL = `${BASE}/family-tax-benefit-calculator/`;
+const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} — FTB Part A & B`;
+const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: the ${formatAUD(FTB_A.lowerThreshold)} and ${formatAUD(FTB_A.higherThreshold)} income thresholds, the ${formatAUD(FTB_B.primaryEarnerLimit)} Part B limit, and how a pay rise changes your payment.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -27,30 +26,29 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Centrelink Income Test", item: `${BASE}/centrelink-income-test/` },
-    { "@type": "ListItem", position: 3, name: "JobSeeker Payment Calculator", item: URL },
+    { "@type": "ListItem", position: 3, name: "Family Tax Benefit Calculator", item: URL },
   ],
 };
 
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "JobSeeker Payment Calculator",
+  name: "Family Tax Benefit Calculator",
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: CENTRELINK_SOURCES.verifiedOnISO,
+  dateModified: FAMILY_PAYMENT_SOURCES.verifiedOnISO,
   inLanguage: "en-AU",
 };
 
-// Built from the same array the on-page accordion renders, so the structured
-// data cannot drift from the visible answers.
+// Built from the array the on-page accordion renders, so they cannot drift.
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: JOBSEEKER_FAQS.map((f) => ({
+  mainEntity: FTB_FAQS.map((f) => ({
     "@type": "Question" as const,
     name: f.q,
     acceptedAnswer: { "@type": "Answer" as const, text: f.a },
@@ -58,9 +56,9 @@ const faq: WithContext<FAQPage> = {
 };
 
 const howToSchema = calculatorHowTo({
-  name: "How to Use the JobSeeker Payment Calculator",
+  name: "How to Use the Family Tax Benefit Calculator",
   url: URL,
-  description: "Enter your fortnightly wages and situation to see your JobSeeker payment after the income test.",
+  description: "Enter your family type, each adult's adjusted taxable income and your children's ages to estimate FTB Part A and Part B.",
   steps: PAY_CALCULATOR_STEPS,
 });
 
@@ -68,7 +66,7 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <JobseekerPaymentCalculatorPage />
+      <FamilyTaxBenefitCalculatorPage />
     </>
   );
 }
