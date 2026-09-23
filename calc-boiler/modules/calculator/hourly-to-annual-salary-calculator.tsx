@@ -10,7 +10,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { HOURLY_TO_ANNUAL_FAQS, SALARY_TO_HOURLY_ANSWER, SALARY_TO_HOURLY_ROWS } from "./hourly-to-annual-salary-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
-import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   calculatePayBreakdown,

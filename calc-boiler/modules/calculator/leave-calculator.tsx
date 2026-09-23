@@ -40,7 +40,6 @@ export default function LeaveCalculatorPage() {
 
   // Weekly pay
   const weeklyPay = salary / 52;
-  const dailyPay = salary / 260;
 
   // Leave loading (17.5% on base rate)
   const leaveLoadingPerWeek = includeLoading ? weeklyPay * LEAVE_LOADING_RATE : 0;
