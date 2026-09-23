@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import FinalPayCalculatorPage from "@/modules/calculator/final-pay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { FINAL_PAY_FAQS } from "@/modules/calculator/final-pay-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
@@ -53,32 +55,7 @@ const webAppSchema: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "When must my employer pay my final pay?",
-      acceptedAnswer: { "@type": "Answer", text: "Most awards require your employer to pay your final pay within 7 days after your last day of employment. If your award or agreement has no rule, the Fair Work Act's general pay rules apply. Final pay includes outstanding wages, accrued leave, and any notice period pay." },
-    },
-    {
-      "@type": "Question",
-      name: "Is leave loading included in my final pay?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes, if you would have received annual leave loading (typically 17.5%) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends, even if the award, agreement or contract says otherwise." },
-    },
-    {
-      "@type": "Question",
-      name: "Do I get long service leave in my final pay?",
-      acceptedAnswer: { "@type": "Answer", text: "Long service leave entitlements vary by state. In most states, you become eligible after 7-10 years of continuous service. Some states provide a pro-rata entitlement if you are terminated after 5-7 years." },
-    },
-    {
-      "@type": "Question",
-      name: "How is my final pay taxed?",
-      acceptedAnswer: { "@type": "Answer", text: "Outstanding wages and notice period pay are taxed at your normal marginal rate. Unused annual leave is taxed at your marginal rate (or a maximum of 32% for pre-August 1993 leave). Long service leave has separate concessional tax treatment depending on when it accrued." },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(FINAL_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Final Pay Calculator",
