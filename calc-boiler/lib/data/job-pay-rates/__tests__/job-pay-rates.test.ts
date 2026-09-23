@@ -17,6 +17,16 @@ import { REAL_ESTATE_ROWS } from "../real-estate-common";
 import { dailyHireHourly } from "../building-construction-common";
 import { SCHADS_SACS } from "../../../constants/schads-award";
 import { EMPLOYMENT } from "../../../constants/australian-tax";
+import { HOSPITALITY_RATES, RETAIL_RATES } from "../../../constants/hospitality-award";
+import { RESTAURANT_TABLE_3 } from "../hospitality-common";
+import {
+  AGED_CARE_AWARD,
+  CLEANING_AWARD,
+  HAIR_BEAUTY_AWARD,
+  NURSES_AWARD as MODERN_NURSES_AWARD,
+  RESTAURANT_AWARD,
+  findAwardRate,
+} from "../../../constants/modern-awards";
 
 const cents = (x: number) => Math.round(x * 100);
 
@@ -380,4 +390,169 @@ test("W4: a metaTitle override still states the headline hourly rate", () => {
     assert.ok(r, occ.slug);
     assert.ok(occ.metaTitle.includes(`$${r.hourly.toFixed(2)}`), `${occ.slug}: ${occ.metaTitle}`);
   }
+});
+
+// ---------------------------------------------------------------------------
+// T5 (wave 3) occupations — spot checks against the consolidated award text
+// and the Fair Work Ombudsman pay guides, read 23 September 2026.
+// ---------------------------------------------------------------------------
+
+function checkPublished(slug: string, published: [string, number, number, number | null][]) {
+  for (const [label, weekly, hourly, casual] of published) {
+    const r = row(slug, label);
+    assert.deepEqual([r.weekly, r.hourly, r.casualHourly], [weekly, hourly, casual], `${slug} / ${label}`);
+  }
+}
+
+test("T5: midwife is paid on the Nurses Award RN ladder — identical rows to the nurse page", () => {
+  const h = headlineRow(getOccupation("midwife")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1219.5, 32.09, 40.11]);
+  assert.deepEqual(getOccupation("midwife")!.tables[0].rows, getOccupation("nurse")!.tables[0].rows);
+  assert.equal(getOccupation("midwife")!.award!.code, "MA000034");
+});
+
+test("T5: nurse/midwife RN level 1 rows agree with the T4 Nurses Award constants", () => {
+  const rn1 = getOccupation("midwife")!.tables[0].rows;
+  assert.equal(rn1.length, 8);
+  rn1.forEach((r, i) => {
+    const level = `Registered nurse level 1 — pay point ${i + 1}${i === 7 ? " and thereafter" : ""}`;
+    const t4 = findAwardRate(MODERN_NURSES_AWARD, level);
+    assert.deepEqual([r.weekly, r.hourly], [t4.weekly, t4.hourly], level);
+  });
+});
+
+test("T5: rows switched to the T4 constants keep the published figures", () => {
+  assert.deepEqual(
+    [AGED_CARE_AWARD.meta.href, CLEANING_AWARD.meta.href, HAIR_BEAUTY_AWARD.meta.href, RESTAURANT_AWARD.meta.href],
+    ["/aged-care-award-rates/", "/cleaning-award-rates/", "/hair-and-beauty-award-rates/", "/restaurant-award-rates/"],
+  );
+  assert.equal(getOccupation("aged-care-worker")!.award!.awardPageHref, "/aged-care-award-rates/");
+  assert.equal(getOccupation("cleaner")!.award!.awardPageHref, "/cleaning-award-rates/");
+  assert.equal(getOccupation("hairdresser")!.award!.awardPageHref, "/hair-and-beauty-award-rates/");
+  assert.equal(getOccupation("barista")!.award!.awardPageHref, "/restaurant-award-rates/");
+});
+
+test("T5: childcare worker — post-March 2026 CSE levels, cl 14.1(b), pay guide casuals", () => {
+  checkPublished("childcare-worker", [
+    ["Level 1 — Introductory Educator", 1094.8, 28.81, 36.01],
+    ["Level 2 — Educator", 1128.4, 29.69, 37.11],
+    ["Level 3 — Qualified Educator", 1233.9, 32.47, 40.59],
+    ["Level 5 — Advanced Educator", 1389.5, 36.57, 45.71],
+    ["Level 8 — Director", 1752.7, 46.12, 57.65],
+    ["Support Worker Level 1.1 — on commencement", 1004.9, 26.44, 33.05],
+  ]);
+  assert.equal(headlineRow(getOccupation("childcare-worker")!)!.label, "Level 3 — Qualified Educator");
+});
+
+test("T5: aged care worker — direct care cl 14.3 and general cl 14.1 match the 1 Sep 2026 pay guide", () => {
+  checkPublished("aged-care-worker", [
+    ["Direct care level 1 — Introductory", 1239.0, 32.61, 40.76],
+    ["Direct care level 3 — Qualified", 1376.7, 36.23, 45.29],
+    ["Direct care level 6 — Team Leader", 1541.9, 40.58, 50.73],
+    ["General level 1", 1055.4, 27.77, 34.71],
+    ["General level 7", 1278.6, 33.65, 42.06],
+  ]);
+});
+
+test("T5: cleaner — Table 2 rates; pay guide casual and part-time (15% allowance) figures", () => {
+  checkPublished("cleaner", [
+    ["Cleaning Services Employee Level 1", 1028.9, 27.08, 33.85],
+    ["Cleaning Services Employee Level 3", 1119.1, 29.45, 36.81],
+  ]);
+  const l1 = row("cleaner", "Cleaning Services Employee Level 1");
+  assert.equal(Math.round(cents(l1.hourly) * 1.15) / 100, 31.14); // cl 10.2 part-time allowance
+});
+
+test("T5: Restaurant Award Table 3 is the same dollars as the Hospitality Award at every level", () => {
+  assert.equal(RESTAURANT_TABLE_3.length, 7);
+  for (const r of RESTAURANT_TABLE_3) {
+    const level = r.level === "Introductory Level" ? "Introductory" : r.level;
+    const h = HOSPITALITY_RATES.find((x) => x.level === level);
+    assert.ok(h, r.level);
+    assert.deepEqual([r.weekly, r.hourly], [h.weekly, h.hourly], r.level);
+  }
+});
+
+test("T5: chef, bartender and barista headline rows", () => {
+  checkPublished("chef", [
+    ["Cook grade 3 (tradesperson) — commis chef", 1119.1, 29.45, 36.81],
+    ["Cook grade 5 (tradesperson) — chef de partie", 1221.1, 32.13, 40.16],
+    ["Restaurant — Cook grade 3 (tradesperson)", 1119.1, 29.45, 36.81],
+  ]);
+  checkPublished("bartender", [["Food and beverage attendant grade 2", 1029.1, 27.08, 33.85]]);
+  checkPublished("barista", [
+    ["Food and beverage attendant grade 2", 1029.1, 27.08, 33.85],
+    ["Fast Food Level 1", 1056.8, 27.81, 34.76],
+  ]);
+  assert.equal(getOccupation("barista")!.award!.code, "MA000119");
+});
+
+test("T5: mechanic — Vehicle award cl 16.2 and the pay guide's casual daytime rate", () => {
+  checkPublished("mechanic", [
+    ["R6 — Tradesperson Level I (motor mechanic)", 1119.1, 29.45, 36.81],
+    ["R7 — Tradesperson Level II (master technician)", 1224.4, 32.22, 40.28],
+    ["R5 — Vehicle RS&R industry employee Level 5", 1088.2, 28.64, 35.8],
+  ]);
+});
+
+test("T5: hairdresser — Table 4 levels and the cl 18.6 graduate rate (92.5% of the standard rate)", () => {
+  checkPublished("hairdresser", [
+    ["Level 3", 1119.1, 29.45, 36.81],
+    ["Level 5", 1174.0, 30.89, 38.61],
+    ["Hairdressing graduate — first 12 months", 1035.17, 27.24, null],
+  ]);
+  assert.equal(Math.round(1119.1 * 0.925 * 100) / 100, 1035.17);
+});
+
+test("T5: lab technician — HPSS level 1 shared rows, support services lab assistant, Manufacturing C9–C5", () => {
+  checkPublished("lab-technician", [
+    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
+    ["Support Services level 1 — laboratory assistant", 1024.7, 26.97, 33.71],
+    ["Support Services level 3 — laboratory assistant", 1106.2, 29.11, 36.39],
+    ["C9 — Laboratory Technician Level I", 1154.3, 30.38, 37.98],
+    ["C5 — Laboratory Technician Level V", 1309.5, 34.46, 43.08],
+  ]);
+});
+
+test("T5: pharmacy assistant reads the shared Pharmacy Award constants", () => {
+  checkPublished("pharmacy-assistant", [
+    ["Pharmacy assistant level 1", 1056.8, 27.81, 34.76],
+    ["Pharmacy assistant level 4", 1165.1, 30.66, 38.33],
+  ]);
+  assert.equal(getOccupation("pharmacy-assistant")!.penalties, getOccupation("pharmacist")!.penalties);
+});
+
+test("T5: receptionist and bookkeeper read the shared Clerks Award constants", () => {
+  checkPublished("receptionist", [
+    ["Level 1 — Year 1", 1024.7, 26.97, 33.71],
+    ["Level 2 — Year 1", 1119.1, 29.45, 36.81],
+  ]);
+  checkPublished("bookkeeper", [
+    ["Level 3", 1182.1, 31.11, 38.89],
+    ["Level 4", 1241.4, 32.67, 40.84],
+  ]);
+  assert.equal(getOccupation("bookkeeper")!.award!.code, "MA000002");
+});
+
+test("T5: pathology collector — cl 16.2(c) transitional table and Schedule C.1.9 casuals", () => {
+  checkPublished("pathology-collector", [
+    ["Level 5 — entry (unqualified)", 1157.2, 30.45, 38.06],
+    ["Level 6 — qualified (Certificate III)", 1163.9, 30.63, 38.29],
+    ["Level 7 — experienced (unqualified, not previously Level 6)", 1203.5, 31.67, 39.59],
+    ["Level 7 — experienced (qualified or previously Level 6)", 1241.4, 32.67, 40.84],
+  ]);
+});
+
+test("T5: dental hygienist uses the shared HPSS health professional table", () => {
+  const h = headlineRow(getOccupation("dental-hygienist")!)!;
+  assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 pay point 2", 1219.5, 32.09, 40.11]);
+});
+
+test("T5: retail worker reads the shared retail constants", () => {
+  const rows = getOccupation("retail-worker")!.tables[0].rows;
+  assert.equal(rows.length, RETAIL_RATES.length);
+  checkPublished("retail-worker", [
+    ["Retail Employee Level 1", 1056.8, 27.81, 34.76],
+    ["Retail Employee Level 8", 1291.8, 33.99, 42.49],
+  ]);
 });
