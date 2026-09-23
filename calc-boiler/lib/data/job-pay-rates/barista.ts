@@ -52,6 +52,7 @@ export const BARISTA: Occupation = {
     code: RESTAURANT_AWARD_REF.code,
     url: awardTextUrl(RESTAURANT_AWARD_REF.code),
     consolidatedTo: RESTAURANT_AWARD_REF.consolidatedTo,
+    awardPageHref: "/restaurant-award-rates/",
   },
   headline: {
     tableId: "cafe",
@@ -138,6 +139,7 @@ export const BARISTA: Occupation = {
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
+    { href: "/restaurant-award-rates/", label: "Restaurant Award Pay Rates" },
     { href: "/fast-food-award-rates/", label: "Fast Food Award Pay Rates" },
     { href: "/hospitality-award-rates/", label: "Hospitality Award Pay Rates" },
     { href: "/job-pay-rates/bartender/", label: "Bartender Pay Rates" },

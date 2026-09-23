@@ -139,6 +139,7 @@ export const CHEF: Occupation = {
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
     { href: "/hospitality-award-rates/", label: "Hospitality Award Pay Rates" },
+    { href: "/restaurant-award-rates/", label: "Restaurant Award Pay Rates" },
     { href: "/job-pay-rates/bartender/", label: "Bartender Pay Rates" },
     { href: "/job-pay-rates/barista/", label: "Barista Pay Rates" },
     { href: "/retail-hospitality-pay-guide/", label: "Retail & Hospitality Pay Guide" },

@@ -1,7 +1,7 @@
 // Cleaner — Cleaning Services Award 2020 [MA000022] (T5, wave 3).
 //
-// TODO(after T4 merge): T4 is adding MA000022 to lib/constants/modern-awards.ts.
-// Once merged, switch these rows to rowFromModernAward().
+// Rows are READ FROM lib/constants/modern-awards.ts (CLEANING_AWARD, added by
+// T4), the same table /cleaning-award-rates/ renders.
 //
 // Source: FWC consolidated award text, awards.fairwork.gov.au/MA000022.html,
 // "incorporates all amendments up to and including 1 July 2026 (PR799280,
@@ -18,6 +18,7 @@
 // Median: Jobs and Skills Australia, ANZSCO 8112 Commercial Cleaners, $1,254 a
 // week / $33 an hour (ABS SEEH May 2025), read 23 September 2026.
 
+import { CLEANING_AWARD } from "../../constants/modern-awards";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
@@ -25,9 +26,9 @@ import {
   FWO_PAY_GUIDES,
   JOB_PAY_VERIFIED_ON,
   awardTextUrl,
-  casualFromHourly,
   jsaSource,
   jsaUrl,
+  rowFromModernAward,
 } from "./common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
@@ -42,14 +43,12 @@ const MEDIAN: MedianEarnings = {
   url: jsaUrl("8112-commercial-cleaners"),
 };
 
-function r(label: string, weekly: number, hourly: number, note?: string): RateRow {
-  return { label, weekly, hourly, casualHourly: casualFromHourly(hourly), ...(note ? { note } : {}) };
-}
+const r = (level: string, note: string): RateRow => rowFromModernAward(CLEANING_AWARD, level, `Cleaning Services Employee ${level}`, note);
 
 export const CLEANER_ROWS: RateRow[] = [
-  r("Cleaning Services Employee Level 1", 1028.9, 27.08, "General cleaning, vacuuming, toilets, rubbish, trolley collection"),
-  r("Cleaning Services Employee Level 2", 1062.9, 27.97, "Carpet cleaning, ride-on machinery, pressure washing, leading hand"),
-  r("Cleaning Services Employee Level 3", 1119.1, 29.45, "Building supervisor: coordinates Level 1 and 2 cleaners"),
+  r("Level 1", "General cleaning, vacuuming, toilets, rubbish, trolley collection"),
+  r("Level 2", "Carpet cleaning, ride-on machinery, pressure washing, leading hand"),
+  r("Level 3", "Building supervisor: coordinates Level 1 and 2 cleaners"),
 ];
 
 export const CLEANER: Occupation = {
@@ -61,6 +60,7 @@ export const CLEANER: Occupation = {
     code: CODE,
     url: awardTextUrl(CODE),
     consolidatedTo: CONSOLIDATED_TO,
+    awardPageHref: CLEANING_AWARD.meta.href,
   },
   headline: {
     tableId: "cleaners",
@@ -145,6 +145,7 @@ export const CLEANER: Occupation = {
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
+    { href: "/cleaning-award-rates/", label: "Cleaning Award Pay Rates" },
     { href: "/job-pay-rates/aged-care-worker/", label: "Aged Care Worker Pay Rates" },
     { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates Guide" },
     { href: "/casual-loading-calculator/", label: "Casual Loading Calculator" },

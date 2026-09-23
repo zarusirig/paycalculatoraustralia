@@ -68,7 +68,7 @@ export const MIDWIFE: Occupation = {
     code: NURSES_AWARD.code,
     url: awardTextUrl(NURSES_AWARD.code),
     consolidatedTo: "1 August 2026",
-    awardPageHref: "/healthcare-worker-pay/",
+    awardPageHref: "/nurses-award-rates/",
   },
   headline: {
     tableId: "registered-midwife",
@@ -162,6 +162,7 @@ export const MIDWIFE: Occupation = {
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
     { href: "/job-pay-rates/nurse/", label: "Nurse Pay Rates" },
+    { href: "/nurses-award-rates/", label: "Nurses Award Pay Rates" },
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
     ...NURSE_STATE_PAGES.map((p) => ({ href: p.href, label: p.label.replace("Nurse pay", "Nurse & midwife pay") })),
   ],

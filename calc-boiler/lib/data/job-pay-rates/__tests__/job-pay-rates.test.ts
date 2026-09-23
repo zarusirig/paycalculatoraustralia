@@ -19,6 +19,14 @@ import { SCHADS_SACS } from "../../../constants/schads-award";
 import { EMPLOYMENT } from "../../../constants/australian-tax";
 import { HOSPITALITY_RATES, RETAIL_RATES } from "../../../constants/hospitality-award";
 import { RESTAURANT_TABLE_3 } from "../hospitality-common";
+import {
+  AGED_CARE_AWARD,
+  CLEANING_AWARD,
+  HAIR_BEAUTY_AWARD,
+  NURSES_AWARD as MODERN_NURSES_AWARD,
+  RESTAURANT_AWARD,
+  findAwardRate,
+} from "../../../constants/modern-awards";
 
 const cents = (x: number) => Math.round(x * 100);
 
@@ -403,6 +411,27 @@ test("T5: midwife is paid on the Nurses Award RN ladder — identical rows to th
   assert.equal(getOccupation("midwife")!.award!.code, "MA000034");
 });
 
+test("T5: nurse/midwife RN level 1 rows agree with the T4 Nurses Award constants", () => {
+  const rn1 = getOccupation("midwife")!.tables[0].rows;
+  assert.equal(rn1.length, 8);
+  rn1.forEach((r, i) => {
+    const level = `Registered nurse level 1 — pay point ${i + 1}${i === 7 ? " and thereafter" : ""}`;
+    const t4 = findAwardRate(MODERN_NURSES_AWARD, level);
+    assert.deepEqual([r.weekly, r.hourly], [t4.weekly, t4.hourly], level);
+  });
+});
+
+test("T5: rows switched to the T4 constants keep the published figures", () => {
+  assert.deepEqual(
+    [AGED_CARE_AWARD.meta.href, CLEANING_AWARD.meta.href, HAIR_BEAUTY_AWARD.meta.href, RESTAURANT_AWARD.meta.href],
+    ["/aged-care-award-rates/", "/cleaning-award-rates/", "/hair-and-beauty-award-rates/", "/restaurant-award-rates/"],
+  );
+  assert.equal(getOccupation("aged-care-worker")!.award!.awardPageHref, "/aged-care-award-rates/");
+  assert.equal(getOccupation("cleaner")!.award!.awardPageHref, "/cleaning-award-rates/");
+  assert.equal(getOccupation("hairdresser")!.award!.awardPageHref, "/hair-and-beauty-award-rates/");
+  assert.equal(getOccupation("barista")!.award!.awardPageHref, "/restaurant-award-rates/");
+});
+
 test("T5: childcare worker — post-March 2026 CSE levels, cl 14.1(b), pay guide casuals", () => {
   checkPublished("childcare-worker", [
     ["Level 1 — Introductory Educator", 1094.8, 28.81, 36.01],
@@ -435,8 +464,10 @@ test("T5: cleaner — Table 2 rates; pay guide casual and part-time (15% allowan
 });
 
 test("T5: Restaurant Award Table 3 is the same dollars as the Hospitality Award at every level", () => {
+  assert.equal(RESTAURANT_TABLE_3.length, 7);
   for (const r of RESTAURANT_TABLE_3) {
-    const h = HOSPITALITY_RATES.find((x) => x.level === r.level);
+    const level = r.level === "Introductory Level" ? "Introductory" : r.level;
+    const h = HOSPITALITY_RATES.find((x) => x.level === level);
     assert.ok(h, r.level);
     assert.deepEqual([r.weekly, r.hourly], [h.weekly, h.hourly], r.level);
   }

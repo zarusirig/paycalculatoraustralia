@@ -5,13 +5,11 @@
 // lib/constants/hospitality-award.ts (HOSPITALITY_RATES), the same data the
 // /hospitality-award-rates/ page renders — not re-typed.
 //
-// Restaurant Industry Award 2020 [MA000119] rows are transcribed here from
-// cl 18.1, Table 3 of the consolidated award ("incorporates all amendments up
-// to and including 1 July 2026 (PR799280, PR799399 and PR799554)"), read
-// 23 September 2026. The dollar figures are identical to the Hospitality
-// Award's Table 3 at every level; a test asserts that.
-// TODO(after T4 merge): T4 is adding MA000119 to lib/constants/modern-awards.ts.
-// Switch RESTAURANT_TABLE_3 to read from it.
+// Restaurant Industry Award 2020 [MA000119] rows are READ FROM
+// lib/constants/modern-awards.ts (RESTAURANT_AWARD, added by T4), the table
+// /restaurant-award-rates/ renders (cl 18.1, Table 3, consolidated to 1 July
+// 2026). The dollar figures are identical to the Hospitality Award's Table 3
+// at every level; a test asserts that.
 //
 // Differences that matter between the two awards (both read 23 Sep 2026):
 //   - Evening loadings: Hospitality +$2.95/hr 7 pm–midnight and +$4.42/hr
@@ -23,7 +21,8 @@
 //     Hospitality 200% from midnight Friday to midnight Sunday (Table 13).
 
 import { HOSPITALITY_RATES } from "../../constants/hospitality-award";
-import { casualFromHourly } from "./common";
+import { RESTAURANT_AWARD } from "../../constants/modern-awards";
+import { casualFromHourly, rowFromModernAward } from "./common";
 import type { PenaltyRow, RateRow } from "./types";
 
 export const RESTAURANT_AWARD_REF = {
@@ -38,16 +37,8 @@ export const HOSPITALITY_AWARD_REF = {
   consolidatedTo: "1 July 2026",
 } as const;
 
-/** Restaurant Award cl 18.1, Table 3 — level, weekly, hourly. */
-export const RESTAURANT_TABLE_3: readonly { level: string; weekly: number; hourly: number }[] = [
-  { level: "Introductory", weekly: 978.1, hourly: 25.74 },
-  { level: "Level 1", weekly: 1004.9, hourly: 26.44 },
-  { level: "Level 2", weekly: 1029.1, hourly: 27.08 },
-  { level: "Level 3", weekly: 1062.9, hourly: 27.97 },
-  { level: "Level 4", weekly: 1119.1, hourly: 29.45 },
-  { level: "Level 5", weekly: 1189.4, hourly: 31.3 },
-  { level: "Level 6", weekly: 1221.1, hourly: 32.13 },
-];
+/** Restaurant Award cl 18.1, Table 3 — the shared constants. */
+export const RESTAURANT_TABLE_3 = RESTAURANT_AWARD.rates;
 
 /** A Hospitality Award row for a wage level, from the shared constants. */
 export function hospitalityRow(level: string, label: string, note?: string): RateRow {
@@ -58,9 +49,7 @@ export function hospitalityRow(level: string, label: string, note?: string): Rat
 
 /** A Restaurant Award row for a wage level. */
 export function restaurantRow(level: string, label: string, note?: string): RateRow {
-  const r = RESTAURANT_TABLE_3.find((x) => x.level === level);
-  if (!r) throw new Error(`hospitality-common: no Restaurant Award ${level}`);
-  return { label, weekly: r.weekly, hourly: r.hourly, casualHourly: casualFromHourly(r.hourly), ...(note ? { note } : {}) };
+  return rowFromModernAward(RESTAURANT_AWARD, level, label, note);
 }
 
 /** Hospitality Award cl 29.2, Table 14. */

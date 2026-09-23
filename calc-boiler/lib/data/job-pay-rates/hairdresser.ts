@@ -1,7 +1,8 @@
 // Hairdresser — Hair and Beauty Industry Award 2020 [MA000005] (T5, wave 3).
 //
-// TODO(after T4 merge): T4 is adding MA000005 to lib/constants/modern-awards.ts.
-// Once merged, switch these rows to rowFromModernAward().
+// Table 4 rows are READ FROM lib/constants/modern-awards.ts (HAIR_BEAUTY_AWARD,
+// added by T4), the same table /hair-and-beauty-award-rates/ renders. The
+// graduate row (cl 18.6) is not in the shared constants and stays here.
 //
 // Source: FWC consolidated award text, awards.fairwork.gov.au/MA000005.html,
 // "incorporates all amendments up to and including 1 July 2026 (PR799280,
@@ -21,6 +22,7 @@
 // Median: Jobs and Skills Australia, ANZSCO 3911 Hairdressers, $1,209 a week /
 // $32 an hour (ABS SEEH May 2025), read 23 September 2026.
 
+import { HAIR_BEAUTY_AWARD } from "../../constants/modern-awards";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
@@ -28,9 +30,9 @@ import {
   FWO_PAY_GUIDES,
   JOB_PAY_VERIFIED_ON,
   awardTextUrl,
-  casualFromHourly,
   jsaSource,
   jsaUrl,
+  rowFromModernAward,
 } from "./common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
@@ -45,17 +47,15 @@ const MEDIAN: MedianEarnings = {
   url: jsaUrl("3911-hairdressers"),
 };
 
-function r(label: string, weekly: number, hourly: number, note?: string): RateRow {
-  return { label, weekly, hourly, casualHourly: casualFromHourly(hourly), ...(note ? { note } : {}) };
-}
+const r = (level: string, note: string): RateRow => rowFromModernAward(HAIR_BEAUTY_AWARD, level, level, note);
 
 export const HAIR_BEAUTY_ROWS: RateRow[] = [
-  r("Level 1", 1056.8, 27.81, "Receptionist or salon assistant"),
-  r("Level 2", 1081.0, 28.45, "Make-up artist or nail technician (Cert II), unqualified beautician"),
-  r("Level 3", 1119.1, 29.45, "Hairdresser with Certificate III in Hairdressing; beautician (Cert III)"),
-  r("Level 4", 1139.9, 30.0, "Beauty therapist with Certificate IV"),
-  r("Level 5", 1174.0, 30.89, "Hairdresser with Certificate IV; trichologist"),
-  r("Level 6", 1215.9, 32.0, "Beauty therapist with a Diploma"),
+  r("Level 1", "Receptionist or salon assistant"),
+  r("Level 2", "Make-up artist or nail technician (Cert II), unqualified beautician"),
+  r("Level 3", "Hairdresser with Certificate III in Hairdressing; beautician (Cert III)"),
+  r("Level 4", "Beauty therapist with Certificate IV"),
+  r("Level 5", "Hairdresser with Certificate IV; trichologist"),
+  r("Level 6", "Beauty therapist with a Diploma"),
 ];
 
 export const HAIRDRESSER: Occupation = {
@@ -67,6 +67,7 @@ export const HAIRDRESSER: Occupation = {
     code: CODE,
     url: awardTextUrl(CODE),
     consolidatedTo: CONSOLIDATED_TO,
+    awardPageHref: HAIR_BEAUTY_AWARD.meta.href,
   },
   headline: {
     tableId: "hair-beauty",
@@ -154,6 +155,7 @@ export const HAIRDRESSER: Occupation = {
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
+    { href: "/hair-and-beauty-award-rates/", label: "Hair and Beauty Award Pay Rates" },
     { href: "/job-pay-rates/retail-worker/", label: "Retail Worker Pay Rates" },
     { href: "/casual-loading-calculator/", label: "Casual Loading Calculator" },
     { href: "/commission-tax-calculator/", label: "Commission Tax Calculator" },

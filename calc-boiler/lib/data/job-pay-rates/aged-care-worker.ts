@@ -1,9 +1,9 @@
 // Aged care worker (personal care worker / assistant in nursing) — Aged Care
 // Award 2010 [MA000018] (T5, wave 3).
 //
-// TODO(after T4 merge): T4 is adding MA000018 to lib/constants/modern-awards.ts.
-// Once merged, switch these rows to rowFromModernAward() so this page and the
-// award page read one table.
+// Rows are READ FROM lib/constants/modern-awards.ts (AGED_CARE_AWARD, added by
+// T4), the same table /aged-care-award-rates/ renders. The transcription notes
+// below record what was independently re-read from the award.
 //
 // Source: FWC consolidated award text, awards.fairwork.gov.au/MA000018.html,
 // "incorporates all amendments up to and including 1 September 2026
@@ -25,15 +25,16 @@
 // Median: Jobs and Skills Australia, ANZSCO 4231 Aged and Disabled Carers,
 // $1,761 a week / $46 an hour (ABS SEEH May 2025), read 23 September 2026.
 
+import { AGED_CARE_AWARD } from "../../constants/modern-awards";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
   FWO_PAY_GUIDES,
   JOB_PAY_VERIFIED_ON,
   awardTextUrl,
-  casualFromHourly,
   jsaSource,
   jsaUrl,
+  rowFromModernAward,
 } from "./common";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
@@ -48,27 +49,25 @@ const MEDIAN: MedianEarnings = {
   url: jsaUrl("4231-aged-and-disabled-carers"),
 };
 
-function r(label: string, weekly: number, hourly: number, note?: string): RateRow {
-  return { label, weekly, hourly, casualHourly: casualFromHourly(hourly), ...(note ? { note } : {}) };
-}
+const r = (level: string, label: string, note?: string): RateRow => rowFromModernAward(AGED_CARE_AWARD, level, label, note);
 
 export const AGED_CARE_DIRECT_CARE_ROWS: RateRow[] = [
-  r("Direct care level 1 — Introductory", 1239.0, 32.61, "Less than 3 months' aged care experience"),
-  r("Direct care level 2 — Direct Carer", 1307.8, 34.42, "3 months' or more experience"),
-  r("Direct care level 3 — Qualified", 1376.7, 36.23, "Certificate III in Individual Support (Ageing) or equivalent"),
-  r("Direct care level 4 — Senior", 1431.8, 37.68, "Certificate III plus 4 years at level 3 since 1 January 2025"),
-  r("Direct care level 5 — Specialist", 1486.8, 39.13, "Certificate IV in Ageing Support required by the employer"),
-  r("Direct care level 6 — Team Leader", 1541.9, 40.58, "Certificate IV, supervises and trains direct carers"),
+  r("Direct care — level 1 (Introductory)", "Direct care level 1 — Introductory", "Less than 3 months' aged care experience"),
+  r("Direct care — level 2 (Direct Carer)", "Direct care level 2 — Direct Carer", "3 months' or more experience"),
+  r("Direct care — level 3 (Qualified)", "Direct care level 3 — Qualified", "Certificate III in Individual Support (Ageing) or equivalent"),
+  r("Direct care — level 4 (Senior)", "Direct care level 4 — Senior", "Certificate III plus 4 years at level 3 since 1 January 2025"),
+  r("Direct care — level 5 (Specialist)", "Direct care level 5 — Specialist", "Certificate IV in Ageing Support required by the employer"),
+  r("Direct care — level 6 (Team Leader)", "Direct care level 6 — Team Leader", "Certificate IV, supervises and trains direct carers"),
 ];
 
 const GENERAL_ROWS: RateRow[] = [
-  r("General level 1", 1055.4, 27.77, "Entry level: cleaner, laundry hand, food services assistant"),
-  r("General level 2", 1097.2, 28.87),
-  r("General level 3", 1139.4, 29.98, "Includes cook, receptionist, experienced cleaner"),
-  r("General level 4", 1152.8, 30.34),
-  r("General level 5", 1191.8, 31.36),
-  r("General level 6", 1256.0, 33.05),
-  r("General level 7", 1278.6, 33.65),
+  r("General — level 1", "General level 1", "Entry level: cleaner, laundry hand, food services assistant"),
+  r("General — level 2", "General level 2"),
+  r("General — level 3", "General level 3", "Includes cook, receptionist, experienced cleaner"),
+  r("General — level 4", "General level 4"),
+  r("General — level 5", "General level 5"),
+  r("General — level 6", "General level 6"),
+  r("General — level 7", "General level 7"),
 ];
 
 export const AGED_CARE_WORKER: Occupation = {
@@ -80,6 +79,7 @@ export const AGED_CARE_WORKER: Occupation = {
     code: CODE,
     url: awardTextUrl(CODE),
     consolidatedTo: "1 September 2026",
+    awardPageHref: AGED_CARE_AWARD.meta.href,
   },
   headline: {
     tableId: "direct-care",
@@ -171,6 +171,7 @@ export const AGED_CARE_WORKER: Occupation = {
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
+    { href: "/aged-care-award-rates/", label: "Aged Care Award Pay Rates" },
     { href: "/job-pay-rates/disability-support-worker/", label: "Disability Support Worker Pay Rates" },
     { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
     { href: "/job-pay-rates/nurse/", label: "Nurse Pay Rates" },

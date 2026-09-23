@@ -83,7 +83,7 @@ export const NURSE: Occupation = {
     code: NURSES_AWARD.code,
     url: awardTextUrl(NURSES_AWARD.code),
     consolidatedTo: "1 August 2026",
-    awardPageHref: "/healthcare-worker-pay/",
+    awardPageHref: "/nurses-award-rates/",
   },
   headline: {
     tableId: "registered-nurse-1",
@@ -185,5 +185,9 @@ export const NURSE: Occupation = {
     jsaSource(MEDIAN),
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
-  related: [{ href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" }, ...NURSE_STATE_PAGES],
+  related: [
+    { href: "/nurses-award-rates/", label: "Nurses Award Pay Rates" },
+    { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
+    ...NURSE_STATE_PAGES,
+  ],
 };
