@@ -522,16 +522,25 @@ export default function BonusTaxCalculatorPage() {
                 Since Payday Super began, the maximum super contribution base is an annual figure &mdash; <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for FY{FY}. Employers are not required to pay SG on qualifying earnings above this cap. For more detail on contribution limits and rates, see our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
               </p>
             </section>
-            <section id="lump-sum-b">
-              <h2>What Is Lump Sum B (Back Pay)?</h2>
+            <section id="lump-sum-e">
+              {/* Verified via Firecrawl 24 Sep 2026:
+                  ATO STP Phase 2 "Reporting back payments": lump sum E = back payment of remuneration
+                  that accrued, or was payable, more than 12 months before the date of payment; the
+                  $1,200 threshold no longer applies from 1 July 2025.
+                  https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/single-touch-payroll/in-detail/single-touch-payroll-phase-2-employer-reporting-guidelines/reporting-the-amounts-you-have-paid/reporting-back-payments
+                  ATO "Lump sum payment in arrears" (updated 8 Jun 2026): assessable in the year received;
+                  ATO considers a LSPIA tax offset, Medicare levy exemption (from 1 Jul 2024) and MLS offset.
+                  https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare/lump-sum-payment-in-arrears
+                  Lump sum B is unused long service leave, not back pay. */}
+              <h2>What Is Lump Sum E (Back Pay From Earlier Years)?</h2>
               <p>
-                &quot;Lump Sum B&quot; is a back payment relating to previous financial years, and the ATO spreads it across the relevant years to prevent an unfair tax bracket increase in the current year.
+                &quot;Lump Sum E&quot; is back pay for wages that accrued more than 12 months before you were paid. It is taxed in the year you receive it, but the ATO considers you for a tax offset, a Medicare levy exemption and a Medicare levy surcharge offset so you are not taxed more heavily just because the money arrived late.
               </p>
               <p>
-                Back payments relating to previous financial years are handled under Lump Sum B on your payment summary. The tax on these is calculated differently — the ATO spreads the payment across the relevant years to avoid unfairly pushing you into a higher bracket for the current year. Your employer reports the amount and the number of years it relates to. The ATO then calculates the correct tax at lodgment time.
+                Your employer reports it separately as Lump Sum E on your income statement — since 1 July 2025 there is no minimum amount. When you lodge, you enter the breakdown of which years it relates to and the ATO works out the offset; the myTax estimate does not show it. Back pay for the last 12 months is simply part of your normal income. &quot;Lump Sum B&quot; is something different (unused long service leave) and is not back pay.
               </p>
               <p>
-                Common examples of Lump Sum B payments include retrospective pay rises under enterprise agreements, back-paid award rate increases, and settlement payments for underpayment claims. A $6,000 back payment covering 3 financial years is split as <strong>$2,000 per year</strong>, and the ATO calculates the marginal rate for each year independently.
+                Common examples of Lump Sum E payments include retrospective pay rises under enterprise agreements, back-paid award rate increases, and underpayment settlements. Use the <Link href="/backpay-calculator/">back pay calculator</Link> to estimate how much you are owed.
               </p>
             </section>
 
