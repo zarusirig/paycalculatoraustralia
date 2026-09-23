@@ -26,7 +26,7 @@ import {
   type ModernAwardData,
 } from "../modern-awards";
 import { AWR_2026_FLOORS, HOSPITALITY_ALLOWANCES, RETAIL_ALLOWANCES } from "../hospitality-award";
-import { FWO_PUBLISHED_JUNIOR_RATES } from "../junior-rates";
+import { FWO_PUBLISHED_JUNIOR_RATES, JUNIOR_TRANSITION_SCHEDULES } from "../junior-rates";
 import { AWARD_DIRECTORY } from "../award-directory";
 
 const ALL: readonly ModernAwardData[] = Object.values(MODERN_AWARDS);
@@ -211,6 +211,20 @@ test("junior phase-in: fast food and retail move 5 points a half-year, pharmacy 
   assert.notEqual(ff.age18[0], 100);
   assert.notEqual(ff.age19[0], 100);
   assert.equal(JUNIOR_PHASE_IN.commences, "1 December 2026");
+});
+
+test("phase-in agrees with junior-rates.ts JUNIOR_TRANSITION_SCHEDULES (independent transcription)", () => {
+  const pairs = [
+    [JUNIOR_PHASE_IN.fastFood, JUNIOR_TRANSITION_SCHEDULES.fastFood],
+    [JUNIOR_PHASE_IN.retail, JUNIOR_TRANSITION_SCHEDULES.retail],
+    [JUNIOR_PHASE_IN.pharmacy, JUNIOR_TRANSITION_SCHEDULES.pharmacy],
+  ] as const;
+  for (const [mine, theirs] of pairs) {
+    assert.equal(mine.determination, theirs.determination);
+    assert.deepEqual([...mine.age18], theirs.rows.map((r) => r.age18));
+    assert.deepEqual([...mine.age19], theirs.rows.map((r) => r.age19));
+    assert.deepEqual([...mine.age20], theirs.rows.map((r) => r.age20));
+  }
 });
 
 // --- Allowances --------------------------------------------------------------

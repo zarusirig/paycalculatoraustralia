@@ -127,6 +127,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "schads-award-pay-rates",
     "hospitality-award-rates",
     "retail-award-rates",
+    // --- Award cluster C3 (Sep 2026): additional per-award rate pages ---
+    "fast-food-award-rates",
+    "pharmacy-award-rates",
+    "manufacturing-award-rates",
+    "security-award-rates",
+    "clerks-award-rates",
+    // --- end award cluster C3 ---
     "junior-pay-rates",
     "employer-cost-calculator",
     "overtime-penalty-rates-guide",
