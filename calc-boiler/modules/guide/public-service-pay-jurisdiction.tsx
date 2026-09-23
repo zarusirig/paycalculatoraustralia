@@ -22,6 +22,9 @@ import {
   type Jurisdiction,
   type PaySchedule,
 } from "@/lib/data/public-service-pay";
+import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
+import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
 
@@ -290,6 +293,26 @@ export default function PublicServicePayJurisdictionPage({
 }: {
   jurisdiction: Jurisdiction;
 }) {
+  const faqs = jurisdictionFaqs(jurisdiction);
+
+  // Google AU "related searches" for "vps pay scales" / "aps pay scales"
+  // (Sept 2026), generalised per jurisdiction and pointed at pages that answer them.
+  const firstBands = jurisdiction.schedules[0]?.streams.flatMap((stream) => stream.bands) ?? [];
+  const typicalBand = firstBands[Math.floor(firstBands.length / 2)];
+  const stateSlug = jurisdiction.slug === "aps" ? "act" : jurisdiction.slug;
+  const relatedSearches: RelatedSearch[] = [
+    ...(typicalBand
+      ? [{ label: `${typicalBand.code} salary after tax`, href: takeHomeHref(bandMidpoint(typicalBand)) }]
+      : []),
+    { label: "Public service pay scales by state", href: "/public-service-pay-scales/" },
+    ...((TEACHER_STATE_SLUGS as readonly string[]).includes(jurisdiction.slug)
+      ? [{ label: `${jurisdiction.slug.toUpperCase()} teacher salary`, href: `/teacher-pay-australia/${jurisdiction.slug}/` }]
+      : []),
+    { label: `${stateSlug.toUpperCase()} pay calculator`, href: `/pay-calculator-${stateSlug}/` },
+    { label: "Salary packaging calculator", href: "/salary-sacrifice-calculator/" },
+    { label: "Super on top of salary", href: "/superannuation-calculator/" },
+  ];
+
   const sources: SourceLink[] = jurisdiction.sources.map((source) => ({
     title: source.effectiveFrom
       ? `${source.title} (from ${source.effectiveFrom})`
@@ -452,12 +475,21 @@ export default function PublicServicePayJurisdictionPage({
               </ul>
             </section>
 
+            <div className="not-prose my-8">
+              <RelatedSearches items={relatedSearches} />
+            </div>
+
             {/* FAQ */}
             <section id="faq">
               <h2 style={HEADING_FONT}>{jurisdiction.shortName} pay questions</h2>
+              {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
+                  jurisdictionFaqs() also feeds the FAQPage JSON-LD in the route. */}
+              <div className="sr-only">
+                {faqs.map((f) => (<div key={f.q}><h3>{f.q}</h3><p>{f.a}</p></div>))}
+              </div>
               <div className="not-prose">
                 <Accordion type="single" collapsible className="w-full">
-                  {jurisdiction.faqs.map((faq, index) => (
+                  {faqs.map((faq, index) => (
                     <AccordionItem key={faq.q} value={`faq-${index}`}>
                       <AccordionTrigger className="text-left text-navy">{faq.q}</AccordionTrigger>
                       <AccordionContent className="text-warmgray">{faq.a}</AccordionContent>
