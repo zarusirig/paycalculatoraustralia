@@ -194,6 +194,44 @@ test("Big W: cl 4.1.1 weekly x (AWR + Boosted Leave) each July, weekly prevails"
   }
 });
 
+test("Australia Post: Booklet Sept 2026 salaries via A / 313 x 6 / 36.75, casual +22.5%", () => {
+  const ap = getEmployerPay("australia-post");
+  assert.ok(ap);
+  // Rates of Pay Booklet, "4% as at First Full Pay Period September 2026".
+  const annual: Record<string, number> = {
+    "Trainee Postal Delivery Officer (adult)": 56_075,
+    "Postal Delivery Officer — pay point 1": 59_948,
+    "Postal Delivery Officer — pay point 3": 64_138,
+    "Postal Delivery Officer — pay point 5": 66_906,
+    "Senior Postal Delivery Officer Grade 1": 69_302,
+    "Trainee Postal Services Officer (adult)": 56_979,
+    "Postal Services Officer — pay point 1": 60_903,
+    "Postal Services Officer — pay point 5": 73_050,
+  };
+  // Sept 2025 column x 1.04, rounded to the dollar, gives the Sept 2026 column.
+  const sept2025: Record<string, number> = {
+    "Trainee Postal Delivery Officer (adult)": 53_918,
+    "Postal Services Officer — pay point 5": 70_240,
+  };
+  for (const [level, a2025] of Object.entries(sept2025)) {
+    assert.equal(Math.round(a2025 * 1.04), annual[level], level);
+  }
+  assert.equal(ap.rates.length, Object.keys(annual).length);
+  for (const r of ap.rates) {
+    const a = annual[r.level];
+    assert.ok(a, r.level);
+    assert.ok(r.description.includes(`$${a.toLocaleString("en-AU")}`), r.level);
+    assert.equal(r.hourly, halfUp(((a / 313) * 6) / 36.75), r.level);
+    assert.equal(r.casualHourly, halfUp(r.hourly * 1.225), r.level);
+  }
+  assert.equal(ap.casualLoading, 0.225);
+  assert.equal(ap.juniorScale.length, 0, "permanent under-21s get adult rates (cl 11.6.1)");
+  const text = [...ap.penaltyNotes, ...ap.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.5, 1.725, 2, 2.225]) {
+    assert.ok(text.includes(`$${halfUp(29.25 * pct).toFixed(2)}`), `${pct}`);
+  }
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);
