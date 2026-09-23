@@ -23,7 +23,7 @@
 // re-declare the list anywhere else.
 // =============================================================================
 
-import { EMPLOYMENT } from "./australian-tax";
+import { EMPLOYMENT, calculatePayBreakdown } from "./australian-tax"; // G5: calculatePayBreakdown
 import { HOSPITALITY_AWARD, HOSPITALITY_RATES, RETAIL_AWARD, RETAIL_RATES } from "./hospitality-award";
 import {
   SCHADS_AWARD,
@@ -168,3 +168,77 @@ export function hourlyRateFromSlug(slug: string): number {
 export const FEATURED_HOURLY_RATES: readonly number[] = HOURLY_RATE_PAGES.filter(
   (r) => Number.isInteger(r) && r % 5 === 0,
 );
+
+// =============================================================================
+// G5 — "$N an hour after tax" figures (added 24 Sep 2026).
+//
+// Demand check (docs/seo/2026-09-24-hourly-after-tax-demand.md): the "after
+// tax" phrasing is ~170 searches a month across $20–$80, against ~5,600 for
+// "$N an hour is how much a year", and Google ranks the same rate URL for
+// both. So the after-tax view extends /hourly-to-salary/[rate]/ rather than
+// getting its own URL family. Every figure comes from calculatePayBreakdown.
+// =============================================================================
+
+/** Part-time rows shown next to the 38-hour full-time week. */
+export const AFTER_TAX_PART_TIME_HOURS: readonly number[] = [20, 25];
+
+export interface HourlyAfterTax {
+  rate: number;
+  hoursPerWeek: number;
+  grossAnnual: number;
+  /** Income tax after the Low Income Tax Offset. */
+  incomeTax: number;
+  medicareLevy: number;
+  takeHomeAnnual: number;
+  /** Employer Superannuation Guarantee on top of pay (capped at the maximum contribution base). */
+  employerSuper: number;
+  perHour: number;
+  perWeek: number;
+  perFortnight: number;
+  perMonth: number;
+}
+
+/**
+ * After-tax pay for an hourly rate at a given number of hours a week, for a
+ * resident claiming the tax-free threshold, with no HECS-HELP debt and no
+ * Medicare Levy Surcharge — the same basis as the other programmatic pages.
+ */
+export function hourlyAfterTax(
+  rate: number,
+  hoursPerWeek: number = EMPLOYMENT.standardWeeklyHours,
+): HourlyAfterTax {
+  const grossAnnual = round2(rate * hoursPerWeek * EMPLOYMENT.weeksPerYear);
+  const b = calculatePayBreakdown({ grossSalary: grossAnnual });
+  const hoursPerYear = hoursPerWeek * EMPLOYMENT.weeksPerYear;
+  return {
+    rate,
+    hoursPerWeek,
+    grossAnnual,
+    incomeTax: b.netIncomeTax,
+    medicareLevy: b.medicareLevy,
+    takeHomeAnnual: b.takeHomePay,
+    employerSuper: b.superContribution,
+    perHour: round2(b.takeHomePay / hoursPerYear),
+    perWeek: b.weekly,
+    perFortnight: b.fortnightly,
+    perMonth: b.monthly,
+  };
+}
+
+/** The same rate with the casual loading added (25% under most modern awards). */
+export function casualAfterTax(
+  rate: number,
+  hoursPerWeek: number = EMPLOYMENT.standardWeeklyHours,
+): HourlyAfterTax {
+  return hourlyAfterTax(round2(rate * (1 + CASUAL_LOADING)), hoursPerWeek);
+}
+
+/** Previous and next generated rate, for the prev/next links. */
+export function prevNextRate(rate: number): { prev: number | null; next: number | null } {
+  const i = HOURLY_RATE_PAGES.indexOf(round2(rate));
+  if (i === -1) return { prev: null, next: null };
+  return {
+    prev: i > 0 ? HOURLY_RATE_PAGES[i - 1] : null,
+    next: i < HOURLY_RATE_PAGES.length - 1 ? HOURLY_RATE_PAGES[i + 1] : null,
+  };
+}
