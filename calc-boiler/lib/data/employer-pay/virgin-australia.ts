@@ -99,7 +99,7 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
     { when: "Roster period: over 144 hours, or over 1,872 hours a calendar year", permanent: "+100%", casual: "—" },
   ],
   notices: [
-    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($57,064.80 a year) for a full-time cabin crew member. The Cabin Crew 1 salary ($56,246.04, or $1,081.65 a week) is lower, and an agreement cannot pay a base rate below the award (Fair Work Act s 206), so full-time CC1 crew must get at least the award rate. Every level's hourly rate is above the award's $28.88.",
+    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($57,064.80 a year) for a full-time cabin crew member. The Cabin Crew 1 salary ($56,246.04, or $1,081.65 a week) is lower. Every level's hourly rate is above the award's $28.88 — the weekly figure is lower because the agreement's full-time week is 36 hours, not 38. An agreement's base rate can't be below the award's base rate for the same work (Fair Work Act s 206); if you think your pay falls short, check with the Fair Work Ombudsman or your union.",
     "The CC1, CC2 and SC1 salaries rose by 3.5% in November 2025, not the 3% printed in the table: the agreement guarantees those levels the Annual Wage Review percentage when it is higher, up to 4%, and the 2025 review gave 3.5%. The figures here apply that rule; your payslip may differ by a cent.",
     "The agreement reached its nominal expiry date on 31 August 2026 and prints no rise after November 2025. Any further increase depends on a new agreement.",
   ],
@@ -128,7 +128,7 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
     },
     {
       q: "Is Virgin cabin crew pay below the award?",
-      a: "Hourly rates are above the Aircraft Cabin Crew Award's $28.88, but the Cabin Crew 1 salary of $1,081.65 a week is below the award's full-time minimum of $1,097.40 a week from 1 July 2026. An agreement cannot pay a base rate below the award, so full-time CC1 crew must get at least the award rate.",
+      a: "Hourly rates are above the Aircraft Cabin Crew Award's $28.88, but the Cabin Crew 1 salary of $1,081.65 a week is below the award's full-time minimum of $1,097.40 a week from 1 July 2026. The gap comes from the shorter 36-hour full-time week, not a lower hourly rate. If you think your pay falls short of the award, check with the Fair Work Ombudsman or your union.",
     },
     {
       q: "Do Virgin cabin crew get public holiday pay?",

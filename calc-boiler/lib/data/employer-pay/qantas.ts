@@ -105,7 +105,7 @@ export const QANTAS_PAY: EmployerPay = {
   ],
   notices: [
     "This page covers only Qantas Airways Limited's short haul (domestic) cabin crew agreement. If you fly long haul, or are employed by Qantas Domestic Pty Ltd, QantasLink or Jetstar, a different agreement sets your pay — check the agreement named on your payslip.",
-    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($28.88 an hour) for a full-time cabin crew member. The agreement's printed salaries for years 1 to 3 ($1,038.39) and year 4 ($1,072.28) are lower, and an agreement cannot pay a base rate below the award (Fair Work Act s 206), so full-time crew at those levels must get at least the award's weekly rate. If your base salary is lower, raise it with Qantas or your union.",
+    "From 1 July 2026 the Aircraft Cabin Crew Award sets a minimum of $1,097.40 a week ($28.88 an hour) for a full-time cabin crew member. The agreement's printed salaries for years 1 to 3 ($1,038.39) and year 4 ($1,072.28) are lower. The agreement's hourly rates are above the award's $28.88 because its full-time week is shorter than 38 hours. An agreement's base rate can't be below the award's base rate for the same work (Fair Work Act s 206); if you think your pay falls short, check with the Fair Work Ombudsman or your union.",
     "The agreement's last scheduled rise was on 1 January 2026, and it reaches its nominal expiry date on 31 December 2026. Any further rise depends on a new agreement.",
   ],
   unverified: [
@@ -130,7 +130,7 @@ export const QANTAS_PAY: EmployerPay = {
     },
     {
       q: "Is Qantas cabin crew pay below the award?",
-      a: "The Aircraft Cabin Crew Award's full-time minimum from 1 July 2026 is $1,097.40 a week. The agreement's printed salaries for years 1 to 4 ($1,038.39 and $1,072.28) are lower, and an agreement cannot pay a base rate below the award, so those crew must be paid at least $1,097.40 a week.",
+      a: "The Aircraft Cabin Crew Award's full-time minimum from 1 July 2026 is $1,097.40 a week. The agreement's printed salaries for years 1 to 4 ($1,038.39 and $1,072.28) are lower per week, but the agreement's hourly rates are above the award's $28.88 because its full-time week is shorter. Whether any crew member is underpaid depends on how the comparison is made for their hours — if you think you are, check with the Fair Work Ombudsman or your union.",
     },
     {
       q: "Does this apply to Qantas long haul, QantasLink or Jetstar crew?",
