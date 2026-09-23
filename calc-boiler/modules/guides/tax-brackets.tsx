@@ -7,421 +7,475 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
-  TAX_BRACKETS,
-  NON_RESIDENT_TAX_BRACKETS,
   LITO,
-  TAX_HISTORY,
-  SOURCES,
-  SITE_CONFIG,
   MEDICARE_LEVY,
+  NON_RESIDENT_TAX_BRACKETS,
+  SITE_CONFIG,
+  SOURCES,
+  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS_2026_27,
+  TAX_FREE_THRESHOLD,
   formatAUD,
   formatPercent,
-  calculateIncomeTax,
-  calculateLITO,
-  annualToWeekly,
+  type TaxBracket,
 } from "@/lib/constants";
+import { MLS_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
+import {
+  FOREIGN_TABLE_YEAR,
+  LEGISLATED_CUT_2027_28,
+  TAX_BRACKETS_2027_28,
+  WHM_TABLE_YEAR,
+  WHM_TAX_BRACKETS_2025_26,
+  analyseIncome,
+  incomeTaxAfterLitoOnScale,
+  nilTaxIncomeOnScale,
+  taxOnScale,
+  thresholdTax,
+} from "@/lib/constants/tax-rates-reference";
+import TaxBracketsLookup from "@/modules/calculator/tax-brackets-lookup";
+import { MAX_SAVING_2026_27, MAX_SAVING_2027_28, TAX_BRACKETS_FAQS } from "@/modules/guides/tax-brackets-faqs";
+
+// =============================================================================
+// /tax-brackets/ — rebuilt 23 Sep 2026 (Wave 3, T1).
+//
+// Why it had been sitting at #47–#56 for "tax brackets australia" (60.5k):
+//  - H1 and hero said "2025-26" and "Applies 1 July 2025 to 30 June 2026" two
+//    months into 2026-27; the <title> carried no year at all.
+//  - Hardcoded 16% rows and a $17,788 worked example contradicted the 15%
+//    table rendered from constants on the same page.
+//  - "Unchanged from FY2024-25" and "16% drops to 15% in FY2026-27" were
+//    written in the future tense about a change already in force.
+//  - Wrong Medicare levy surcharge threshold ($93,000) and a SAPTO effective
+//    threshold that no longer holds after the 2026-27 SAPTO changes.
+//  - No 2025-26 table side by side, no marginal-rate section with its own
+//    anchor, no quick lookup — the SERP (ATO, MLC, Canstar) all lead with the
+//    year and the table.
+// Every figure below now comes from lib/constants (sources cited there).
+// =============================================================================
+
+const FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
+const FY = SITE_CONFIG.financialYear;
+const PREV = SITE_CONFIG.previousFinancialYear;
+const B = TAX_BRACKETS_2026_27;
+const P = TAX_BRACKETS_2025_26;
+const N = TAX_BRACKETS_2027_28;
+const TOP = B[B.length - 1];
+const NIL = nilTaxIncomeOnScale(B);
+const NIL_PREV = nilTaxIncomeOnScale(P);
+const NIL_NEXT = nilTaxIncomeOnScale(N);
+const pct = (r: number) => formatPercent(r, 0);
+
+const ATO_RES = "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents";
+const ATO_FOREIGN = "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents";
+const ATO_WHM = "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-working-holiday-makers";
+const ATO_LITO =
+  "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset";
+const ATO_MLS =
+  "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Individual income tax rates – residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: "Non-resident tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents", publisher: SOURCES.ato.name },
-  { title: "Low Income Tax Offset", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset", publisher: SOURCES.ato.name },
+  { title: "Tax rates – Australian resident", url: ATO_RES, publisher: SOURCES.ato.name },
+  { title: "Personal income tax – new tax cuts for every Australian taxpayer (QC104015)", url: LEGISLATED_CUT_2027_28.atoUrl, publisher: SOURCES.ato.name },
+  { title: "Treasury Laws Amendment (More Cost of Living Relief) Bill 2025", url: LEGISLATED_CUT_2027_28.aphUrl, publisher: "Parliament of Australia" },
+  { title: "Tax rates – foreign resident", url: ATO_FOREIGN, publisher: SOURCES.ato.name },
+  { title: "Tax rates – working holiday maker (QC73322)", url: ATO_WHM, publisher: SOURCES.ato.name },
+  { title: "Low income tax offset (QC105020)", url: ATO_LITO, publisher: SOURCES.ato.name },
+  { title: "Medicare levy surcharge income, thresholds and rates", url: ATO_MLS, publisher: SOURCES.ato.name },
 ];
 
-export default function TaxBracketsGuidePage() {
+/** ATO wording: "$4,020 plus 30c for each $1 over $45,000". */
+function atoWording(b: TaxBracket, i: number, all: readonly TaxBracket[]): string {
+  if (b.rate === 0) return "Nil";
+  const cents = `${Math.round(b.rate * 1000) / 10}c for each $1`;
+  if (i === 0) return cents;
+  const over = ` over ${formatAUD(all[i - 1].max)}`;
+  return b.base > 0 ? `${formatAUD(b.base)} plus ${cents}${over}` : `${cents}${over}`;
+}
+
+function range(b: TaxBracket): string {
+  return Number.isFinite(b.max) ? `${formatAUD(b.min)} – ${formatAUD(b.max)}` : `${formatAUD(b.min)} and over`;
+}
+
+const TH = "px-4 py-3 font-semibold text-navy";
+const TD = "px-4 py-3";
+
+function BracketTable({ brackets, caption, medicare = true }: { brackets: readonly TaxBracket[]; caption: string; medicare?: boolean }) {
   return (
-    <div className="min-h-screen flex-grow">
-      <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12">
-          <nav aria-label="breadcrumb"><ol className="flex items-center space-x-1 text-sm text-warmgray">
+    <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+      <table className="w-full text-sm text-left text-warmgray">
+        <caption className="sr-only">{caption}</caption>
+        <thead className="bg-sandstone">
+          <tr>
+            <th className={TH}>Taxable income</th>
+            <th className={TH}>Tax on this income</th>
+            <th className={`${TH} text-right`}>Marginal rate</th>
+            {medicare && <th className={`${TH} text-right`}>Incl. 2% Medicare</th>}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+          {brackets.map((b, i) => (
+            <tr key={b.min}>
+              <td className={`${TD} font-medium text-navy tabular-nums whitespace-nowrap`}>{range(b)}</td>
+              <td className={TD}>{atoWording(b, i, brackets)}</td>
+              <td className={`${TD} text-right tabular-nums`}>{pct(b.rate)}</td>
+              {medicare && <td className={`${TD} text-right tabular-nums`}>{b.rate > 0 ? pct(b.rate + MEDICARE_LEVY.rate) : "0%"}</td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+const COMPARE_INCOMES = [30_000, 45_000, 60_000, 80_000, 100_000, 120_000, 150_000, 200_000];
+const MARGINAL_INCOMES = [20_000, 25_000, 30_000, 40_000, 50_000, 60_000, 70_000, 90_000, 120_000, 150_000, 200_000, 250_000];
+const TAX_ON_LINKS = [40_000, 50_000, 60_000, 70_000, 80_000, 90_000, 100_000, 110_000, 120_000, 130_000, 140_000, 150_000, 160_000, 180_000, 200_000];
+const FOREIGN_INCOMES = [30_000, 50_000, 80_000, 120_000, 200_000];
+
+export default function TaxBracketsGuidePage() {
+  const authorship = getGuideAuthorship("tax-brackets");
+  const prevThresholds = thresholdTax(P);
+  const nextThresholds = thresholdTax(N);
+  const a90 = analyseIncome(90_000);
+  const a50 = analyseIncome(50_000);
+
+  return (
+    <div className="min-h-screen flex-grow bg-white">
+      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+        <nav aria-label="breadcrumb" className="mb-6">
+          <ol className="flex items-center space-x-1 text-sm text-warmgray">
             <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Tax Brackets</span></li>
-          </ol></nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Australian Tax Brackets 2025-26 — Income Tax Rates &amp; Thresholds</h1>
-          <p className="text-lg text-warmgray">Australia uses a progressive tax system — different portions of your income are taxed at different rates. You don&apos;t pay your top marginal rate on your entire salary.</p>
-          <TrustBar className="mt-4" />
-          <p className="mt-3 text-sm text-warmgray-light bg-white/60 rounded-lg p-3 inline-block">All rates sourced from the ATO. Applies 1 July 2025 to 30 June 2026.</p>
-        </section>
-
-        {/* What Are the Australian Tax Brackets for FY{SITE_CONFIG.financialYear}? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Are the Australian Tax Brackets for FY{SITE_CONFIG.financialYear}?</h2>
-          <p className="mb-4 text-warmgray">Australia has <strong>5 income tax brackets</strong> for FY{SITE_CONFIG.financialYear}, with a tax-free threshold of $18,200 and a top marginal rate of 45% on income above $190,000.</p>
-          <p className="mb-4 text-warmgray">These rates apply to Australian residents for tax purposes. They do not include the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link>, which is calculated separately on your taxable income. The Australian Taxation Office publishes these income tax brackets each financial year, and the FY{SITE_CONFIG.financialYear} rates remain unchanged from FY2024-25 following the Stage 3 tax cuts.</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left font-semibold text-navy">Taxable Income</th><th className="px-4 py-3 text-left font-semibold text-navy">Tax On This Income</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS.map((b, i) => (
-                  <tr key={i} className="hover:bg-sandstone">
-                    <td className="px-4 py-3 text-navy">{formatAUD(b.min)} – {b.max === Infinity ? "and over" : formatAUD(b.max)}</td>
-                    <td className="px-4 py-3 text-warmgray">{i === 0 ? "Nil" : (i === 1 ? b.label : `${formatAUD(b.base)} plus ${b.label.split("plus ")[1] || b.label}`)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">The <Link href="/tax-free-threshold/" className="text-eucalyptus-dark hover:underline">tax-free threshold</Link> remains at $18,200. With the <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">Low Income Tax Offset</Link>, the effective tax-free threshold increases to {formatAUD(LITO.effectiveTaxFreeThreshold)}.</p>
-          <p className="mt-2 text-sm"><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Calculate your exact tax →</Link></p>
-        </section>
-
-        {/* How Does Marginal Tax Work? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Does Marginal Tax Work?</h2>
-          <p className="mb-4 text-warmgray">Marginal tax means each dollar of income is taxed only at the rate for the bracket it falls in, not the highest bracket rate on your entire salary.</p>
-          <p className="mb-4 text-warmgray">The most common misunderstanding about Australian taxation is that earning more &quot;pushes all your income&quot; into a higher bracket. This is false. Australia&apos;s progressive system splits your assessable income into slices, and each slice is taxed independently. Only the dollars within each bracket are taxed at that bracket&apos;s rate.</p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2">Step-by-Step: How Progressive Tax Is Calculated</h3>
-          <p className="mb-3 text-warmgray">The ATO calculates your income tax liability using these steps:</p>
-          <ol className="list-decimal list-inside space-y-2 text-warmgray mb-4">
-            <li><strong>$0 to $18,200</strong> — taxed at 0%. This is the tax-free threshold. Every resident pays $0 on this portion.</li>
-            <li><strong>$18,201 to $45,000</strong> — taxed at 16 cents per dollar. The maximum tax in this bracket is <strong>$4,288</strong> (on $26,800 of income).</li>
-            <li><strong>$45,001 to $135,000</strong> — taxed at 30 cents per dollar. The maximum tax in this bracket is <strong>$27,000</strong> (on $90,000 of income).</li>
-            <li><strong>$135,001 to $190,000</strong> — taxed at 37 cents per dollar. The maximum tax in this bracket is <strong>$20,350</strong> (on $55,000 of income).</li>
-            <li><strong>$190,001 and above</strong> — taxed at 45 cents per dollar. There is no upper limit on this bracket.</li>
           </ol>
-          <p className="text-warmgray">Your total tax equals the sum of tax from each bracket. This total divided by your gross income gives your effective tax rate, which is always lower than your marginal rate. Use our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the bracket-by-bracket breakdown for your salary.</p>
-        </section>
+        </nav>
 
-        {/* Tax Brackets Worked Example at $90,000 */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Do You Pay on $90,000? — Worked Example</h2>
-          <p className="mb-4 text-warmgray">On a salary of $90,000 in FY{SITE_CONFIG.financialYear}, total income tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))))}</strong> before the Medicare levy, giving an effective tax rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) / 90000)}</strong>.</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Tax Bracket</th><th className="px-4 py-3 text-right">Income in Bracket</th><th className="px-4 py-3 text-right">Rate</th><th className="px-4 py-3 text-right">Tax</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr><td className="px-4 py-3">$0 – $18,200</td><td className="px-4 py-3 text-right">$18,200</td><td className="px-4 py-3 text-right">0%</td><td className="px-4 py-3 text-right">$0</td></tr>
-                <tr><td className="px-4 py-3">$18,201 – $45,000</td><td className="px-4 py-3 text-right">$26,800</td><td className="px-4 py-3 text-right">16%</td><td className="px-4 py-3 text-right">$4,288</td></tr>
-                <tr><td className="px-4 py-3">$45,001 – $90,000</td><td className="px-4 py-3 text-right">$45,000</td><td className="px-4 py-3 text-right">30%</td><td className="px-4 py-3 text-right">$13,500</td></tr>
-                <tr className="bg-eucalyptus-light/40 font-semibold"><td className="px-4 py-3">Gross Income Tax</td><td className="px-4 py-3 text-right">$90,000</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right">$17,788</td></tr>
-                <tr><td className="px-4 py-3">Less: LITO</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right">−{formatAUD(Math.round(calculateLITO(90000)))}</td></tr>
-                <tr className="bg-eucalyptus-light/40 font-semibold"><td className="px-4 py-3">Net Income Tax</td><td className="px-4 py-3 text-right">$90,000</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right">{formatAUD(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))))}</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-warmgray">Your <strong>marginal tax rate</strong> at $90,000 is 30% (the third bracket). Your <strong>effective tax rate</strong> is only {formatPercent(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) / 90000)}. Add the 2% Medicare levy ({formatAUD(Math.round(90000 * 0.02))}) and your total deductions rise to <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) + Math.round(90000 * 0.02))}</strong>, leaving take-home pay of approximately <strong>{formatAUD(90000 - Math.max(0, Math.round(calculateIncomeTax(90000) - calculateLITO(90000))) - Math.round(90000 * 0.02))}</strong> per year.</p>
-          <p className="mt-2 text-warmgray">Your employer also pays <strong>{formatAUD(Math.round(90000 * 0.12))}</strong> in superannuation (12% SG rate) on top of your salary. This does not reduce your take-home pay. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see how super contributions grow over time.</p>
-        </section>
+        <header className="mb-10 max-w-4xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>
+            Tax Brackets Australia {FY}: Income Tax Rates &amp; Thresholds
+          </h1>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">
+            Australia has five resident income tax brackets for {FY}: <strong>nil</strong> up to {formatAUD(B[0].max)}, <strong>{pct(B[1].rate)}</strong> to {formatAUD(B[1].max)}, <strong>{pct(B[2].rate)}</strong> to {formatAUD(B[2].max)}, <strong>{pct(B[3].rate)}</strong> to {formatAUD(B[3].max)} and <strong>{pct(TOP.rate)}</strong> above that. The second rate fell from {pct(P[1].rate)} to {pct(B[1].rate)} on 1 July 2026, worth up to {formatAUD(MAX_SAVING_2026_27)} a year, and falls again to {pct(N[1].rate)} on {LEGISLATED_CUT_2027_28.effectiveDate}. The 2% Medicare levy is charged on top.
+          </p>
+          <TrustBar className="!max-w-none" />
+        </header>
 
-        {/* How Did the Stage 3 Tax Cuts Change the Brackets? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Did the Stage 3 Tax Cuts Change the Brackets?</h2>
-          <p className="mb-4 text-warmgray">The Stage 3 tax cuts reduced the 19% bracket to <strong>16%</strong>, the 32.5% bracket to <strong>30%</strong>, and expanded the third bracket ceiling from $120,000 to <strong>$135,000</strong>, effective {TAX_HISTORY.stage3TaxCuts.effectiveDate}.</p>
-          <p className="mb-4 text-warmgray">The revised Stage 3 cuts were announced in January 2024 and passed into law in March 2024. The original plan would have removed the 37% bracket entirely, but the revised version spread the tax relief more evenly across all income levels. Every taxpayer earning above $18,200 received a tax cut.</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">What Changed</th><th className="px-4 py-3 text-right">Before (FY2023-24)</th><th className="px-4 py-3 text-right">After (FY2024-25 onwards)</th><th className="px-4 py-3 text-right">Saving</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr><td className="px-4 py-3">Second bracket rate</td><td className="px-4 py-3 text-right">19%</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">16%</td><td className="px-4 py-3 text-right">3% lower</td></tr>
-                <tr><td className="px-4 py-3">Third bracket rate</td><td className="px-4 py-3 text-right">32.5%</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">30%</td><td className="px-4 py-3 text-right">2.5% lower</td></tr>
-                <tr><td className="px-4 py-3">Third bracket ceiling</td><td className="px-4 py-3 text-right">$120,000</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">$135,000</td><td className="px-4 py-3 text-right">$15,000 higher</td></tr>
-                <tr><td className="px-4 py-3">Fourth bracket ceiling</td><td className="px-4 py-3 text-right">$180,000</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">$190,000</td><td className="px-4 py-3 text-right">$10,000 higher</td></tr>
-                <tr><td className="px-4 py-3">Tax-free threshold</td><td className="px-4 py-3 text-right">$18,200</td><td className="px-4 py-3 text-right">$18,200</td><td className="px-4 py-3 text-right">No change</td></tr>
-                <tr><td className="px-4 py-3">Top rate (45%)</td><td className="px-4 py-3 text-right">$180,001+</td><td className="px-4 py-3 text-right">$190,001+</td><td className="px-4 py-3 text-right">$10,000 higher start</td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 not-prose">
+          {[
+            { k: "Tax-free threshold", v: formatAUD(TAX_FREE_THRESHOLD), s: `No income tax up to ${formatAUD(NIL)} with LITO` },
+            { k: `Second rate ${FY}`, v: pct(B[1].rate), s: `Was ${pct(P[1].rate)} in ${PREV}` },
+            { k: "Top marginal rate", v: pct(TOP.rate), s: `Over ${formatAUD(TOP.min - 1)}; ${pct(TOP.rate + MEDICARE_LEVY.rate)} with Medicare` },
+            { k: "Tax at $100,000", v: formatAUD(analyseIncome(100_000).incomeTax), s: `Plus ${formatAUD(analyseIncome(100_000).medicareLevy)} Medicare levy` },
+          ].map((c) => (
+            <div key={c.k} className="rounded-xl border border-sandstone-dark/20 bg-sandstone/60 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-warmgray">{c.k}</p>
+              <p className="text-2xl font-extrabold text-navy tabular-nums" style={FONT}>{c.v}</p>
+              <p className="text-xs text-warmgray-light">{c.s}</p>
+            </div>
+          ))}
+        </div>
 
-          <h3 className="text-lg font-semibold text-navy mt-6 mb-2">Dollar Savings by Salary Level</h3>
-          <p className="mb-3 text-warmgray">The annual tax reduction under Stage 3 varies by income. Low and middle-income earners received proportionally larger percentage savings:</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Salary</th><th className="px-4 py-3 text-right">Tax Before (FY2023-24)</th><th className="px-4 py-3 text-right">Tax After (FY{SITE_CONFIG.financialYear})</th><th className="px-4 py-3 text-right">Annual Saving</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {[
-                  { salary: 40000, taxBefore: 4142 },
-                  { salary: 60000, taxBefore: 9967 },
-                  { salary: 80000, taxBefore: 16467 },
-                  { salary: 100000, taxBefore: 22967 },
-                  { salary: 120000, taxBefore: 29467 },
-                  { salary: 150000, taxBefore: 40567 },
-                  { salary: 200000, taxBefore: 60667 },
-                ].map((row) => {
-                  const rawAfter = calculateIncomeTax(row.salary);
-                  const litoAfter = calculateLITO(row.salary);
-                  const netAfter = Math.max(0, Math.round(rawAfter - litoAfter));
-                  const saving = row.taxBefore - netAfter;
-                  return (
-                    <tr key={row.salary} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 font-medium text-navy">{formatAUD(row.salary)}</td>
-                      <td className="px-4 py-3 text-right">{formatAUD(row.taxBefore)}</td>
-                      <td className="px-4 py-3 text-right">{formatAUD(netAfter)}</td>
-                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(saving)}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">Savings are income tax only, before LITO variations between years. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> to model how a salary increase interacts with these new brackets.</p>
-        </section>
-
-        {/* Tax Brackets Historical Comparison */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Have Tax Brackets Changed Over Three Years?</h2>
-          <p className="mb-4 text-warmgray">The tax bracket rates decreased in FY2024-25 with the Stage 3 cuts and remain identical in FY{SITE_CONFIG.financialYear}, with no further changes until the 16% rate drops to <strong>15%</strong> in FY2026-27.</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-navy">Bracket</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">FY2023-24</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">FY2024-25</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">FY{SITE_CONFIG.financialYear}</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr><td className="px-4 py-3">$0 – $18,200</td><td className="px-4 py-3 text-right">0%</td><td className="px-4 py-3 text-right">0%</td><td className="px-4 py-3 text-right">0%</td></tr>
-                <tr><td className="px-4 py-3">$18,201 – $45,000</td><td className="px-4 py-3 text-right">19%</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">16%</td><td className="px-4 py-3 text-right">16%</td></tr>
-                <tr><td className="px-4 py-3">$45,001 – $120,000</td><td className="px-4 py-3 text-right">32.5%</td><td className="px-4 py-3 text-right" colSpan={2}>Replaced by expanded bracket below</td></tr>
-                <tr><td className="px-4 py-3">$45,001 – $135,000</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">30%</td><td className="px-4 py-3 text-right">30%</td></tr>
-                <tr><td className="px-4 py-3">$120,001 – $180,000</td><td className="px-4 py-3 text-right">37%</td><td className="px-4 py-3 text-right" colSpan={2}>Replaced by expanded bracket below</td></tr>
-                <tr><td className="px-4 py-3">$135,001 – $190,000</td><td className="px-4 py-3 text-right">—</td><td className="px-4 py-3 text-right">37%</td><td className="px-4 py-3 text-right">37%</td></tr>
-                <tr><td className="px-4 py-3">$180,001+ / $190,001+</td><td className="px-4 py-3 text-right">45%</td><td className="px-4 py-3 text-right">45%</td><td className="px-4 py-3 text-right">45%</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-warmgray">The FY{SITE_CONFIG.financialYear} brackets are identical to FY2024-25. The next legislated change takes effect on {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to 15%. A further reduction to 14% is scheduled for 1 July 2027. These changes save <strong>$268 per year</strong> for every taxpayer earning above $45,000.</p>
-        </section>
-
-        {/* Effective Tax Rate vs Marginal Rate */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Difference Between Effective Tax Rate and Marginal Rate?</h2>
-          <p className="mb-4 text-warmgray">Your effective tax rate is the average rate paid across all income (total tax divided by total income), while your marginal rate is the rate on the last dollar earned — these two figures diverge significantly at every income level.</p>
-          <p className="mb-4 text-warmgray">Understanding the gap between these rates is critical for financial decisions. A worker earning $80,000 has a marginal rate of 30%, but their effective rate is only <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))) / 80000)}</strong>. This means a <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">pay rise</Link> is never &quot;eaten by tax&quot; — only the additional dollars are taxed at the marginal rate.</p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2">Effective vs Marginal Rate at Common Salaries</h3>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Salary</th><th className="px-4 py-3 text-right">Income Tax</th><th className="px-4 py-3 text-right">Eff. Rate</th><th className="px-4 py-3 text-right">Marginal</th><th className="px-4 py-3 text-right">Weekly Tax</th><th className="px-4 py-3 text-right">Take-Home</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {[40000, 50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000, 200000].map((s) => {
-                  const raw = calculateIncomeTax(s);
-                  const lito = calculateLITO(s);
-                  const net = Math.max(0, Math.round(raw - lito));
-                  let marginal = 0;
-                  for (const b of TAX_BRACKETS) { if (s >= b.min) marginal = b.rate; }
-                  return (
-                    <tr key={s} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 font-medium text-navy">{formatAUD(s)}</td>
-                      <td className="px-4 py-3 text-right">{formatAUD(net)}</td>
-                      <td className="px-4 py-3 text-right">{formatPercent(net / s)}</td>
-                      <td className="px-4 py-3 text-right">{formatPercent(marginal, 0)}</td>
-                      <td className="px-4 py-3 text-right text-warmgray-light">{formatAUD(annualToWeekly(net), 2)}</td>
-                      <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(s - net)}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">These are income tax only. Actual take-home is also reduced by <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> (2%) and <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP repayments</Link>.</p>
-          <p className="mt-1 text-sm"><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">See your exact take-home pay with all deductions →</Link></p>
-        </section>
-
-        {/* Non-Resident Tax Brackets Comparison */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Do Non-Resident Tax Brackets Compare to Resident Rates?</h2>
-          <p className="mb-4 text-warmgray">Non-residents pay <strong>30% from the first dollar</strong> with no tax-free threshold, making their tax significantly higher at low-to-mid incomes and slightly lower at very high incomes due to no Medicare levy.</p>
-          <p className="mb-4 text-warmgray">Residency for tax purposes is determined by domicile, length of stay, and ties to Australia — it is not the same as visa status. The ATO applies 4 tests: the resides test, domicile test, 183-day test, and Commonwealth superannuation test. Non-residents do not receive the $18,200 tax-free threshold, the <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline">Low Income Tax Offset</Link>, or SAPTO. They also do not pay the 2% Medicare levy.</p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2">Resident vs Non-Resident Bracket Comparison</h3>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-navy">Income Range</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Resident Rate</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Non-Resident Rate</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr><td className="px-4 py-3">$0 – $18,200</td><td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">0%</td><td className="px-4 py-3 text-right">30%</td></tr>
-                <tr><td className="px-4 py-3">$18,201 – $45,000</td><td className="px-4 py-3 text-right">16%</td><td className="px-4 py-3 text-right">30%</td></tr>
-                <tr><td className="px-4 py-3">$45,001 – $135,000</td><td className="px-4 py-3 text-right">30%</td><td className="px-4 py-3 text-right">30%</td></tr>
-                <tr><td className="px-4 py-3">$135,001 – $190,000</td><td className="px-4 py-3 text-right">37%</td><td className="px-4 py-3 text-right">37%</td></tr>
-                <tr><td className="px-4 py-3">$190,001+</td><td className="px-4 py-3 text-right">45%</td><td className="px-4 py-3 text-right">45%</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3 className="text-lg font-semibold text-navy mt-6 mb-2">Tax Comparison at Key Salary Levels</h3>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Salary</th><th className="px-4 py-3 text-right">Resident Tax</th><th className="px-4 py-3 text-right">Non-Resident Tax</th><th className="px-4 py-3 text-right">Difference</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {[50000, 80000, 100000, 150000, 200000].map((s) => {
-                  const resRaw = calculateIncomeTax(s, true);
-                  const resLito = calculateLITO(s);
-                  const resTax = Math.max(0, Math.round(resRaw - resLito));
-                  const nonResTax = Math.round(calculateIncomeTax(s, false));
-                  const diff = nonResTax - resTax;
-                  return (
-                    <tr key={s} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 font-medium text-navy">{formatAUD(s)}</td>
-                      <td className="px-4 py-3 text-right">{formatAUD(resTax)}</td>
-                      <td className="px-4 py-3 text-right">{formatAUD(nonResTax)}</td>
-                      <td className="px-4 py-3 text-right font-semibold">{diff > 0 ? `+${formatAUD(diff)}` : formatAUD(diff)}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-warmgray">Residents paying the 2% Medicare levy narrows the gap at higher incomes. For a detailed non-resident calculation, see our <Link href="/non-resident-tax/" className="text-eucalyptus-dark hover:underline">Non-Resident Tax Guide</Link>.</p>
-
-          <h3 className="text-lg font-semibold text-navy mt-6 mb-2">Working Holiday Maker Rates</h3>
-          <p className="text-warmgray">Working holiday makers (subclass 417 and 462 visas) pay a flat <strong>15%</strong> on the first $45,000, then standard non-resident rates on income above $45,000. Employers must register with the ATO as a working holiday maker employer to apply this rate correctly through PAYG withholding.</p>
-        </section>
-
-        {/* How Do Tax Offsets Interact with Brackets? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Do Tax Offsets Interact with Tax Brackets?</h2>
-          <p className="mb-4 text-warmgray">Tax offsets reduce your tax payable (not your taxable income), with the LITO providing up to <strong>{formatAUD(LITO.maxOffset)}</strong> and SAPTO up to <strong>$2,230</strong> for eligible taxpayers.</p>
-          <p className="mb-4 text-warmgray">Offsets are applied after the ATO calculates your gross tax liability from the bracket table. They are &quot;non-refundable&quot; — they reduce tax to zero but do not generate a refund by themselves. This distinction matters: a tax deduction reduces assessable income (and shifts which bracket your top dollars fall in), while a tax offset directly reduces the final tax bill.</p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2">Low Income Tax Offset (LITO)</h3>
-          <p className="mb-3 text-warmgray">The LITO provides a tax reduction of up to {formatAUD(LITO.maxOffset)} for lower-income earners:</p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone"><tr><th className="px-4 py-3 text-left">Taxable Income</th><th className="px-4 py-3 text-left">LITO Amount</th></tr></thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr><td className="px-4 py-3">Up to {formatAUD(LITO.fullOffsetCeiling)}</td><td className="px-4 py-3">{formatAUD(LITO.maxOffset)} (full offset)</td></tr>
-                <tr><td className="px-4 py-3">{formatAUD(LITO.phaseOut1.start)} – {formatAUD(LITO.phaseOut1.end)}</td><td className="px-4 py-3">{formatAUD(LITO.maxOffset)} minus 5c per $1 over {formatAUD(LITO.fullOffsetCeiling)}</td></tr>
-                <tr><td className="px-4 py-3">{formatAUD(LITO.phaseOut2.start)} – {formatAUD(LITO.nilOffsetIncome)}</td><td className="px-4 py-3">$325 minus 1.5c per $1 over {formatAUD(LITO.phaseOut1.end)}</td></tr>
-                <tr><td className="px-4 py-3">{formatAUD(LITO.nilOffsetIncome)}+</td><td className="px-4 py-3">Nil</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">Combined with the tax-free threshold, the LITO means you can earn up to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong> before paying any net income tax. <Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline font-medium">Full LITO guide →</Link></p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2 mt-6">Seniors and Pensioners Tax Offset (SAPTO)</h3>
-          <p className="text-warmgray mb-3">Eligible seniors of Age Pension age receive an additional offset of up to <strong>$2,230</strong> (singles) or <strong>$1,602</strong> (each member of a couple). SAPTO combined with LITO raises the effective tax-free threshold to <strong>$33,082</strong> for single seniors. To qualify, the taxpayer must meet the age requirement and satisfy the income test. SAPTO phases out at 12.5 cents per dollar over the shade-out threshold.</p>
-
-          <h3 className="text-lg font-semibold text-navy mb-2 mt-6">Medicare Levy and Medicare Levy Surcharge</h3>
-          <p className="text-warmgray">The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> of 2% applies on top of income tax and is not reduced by LITO or SAPTO. Taxpayers earning above $93,000 (singles) without private hospital cover also pay the &quot;Medicare Levy Surcharge&quot; at rates of 1%, 1.25%, or 1.5% depending on income tier. This surcharge is separate from the standard 2% levy.</p>
-        </section>
-
-        {/* What Changed in FY{SITE_CONFIG.financialYear}? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed in FY{SITE_CONFIG.financialYear}?</h2>
-          <p className="mb-4 text-warmgray">The income tax brackets for FY{SITE_CONFIG.financialYear} are <strong>unchanged</strong> from FY2024-25 — the same rates, thresholds, and LITO structure apply for the second consecutive year under the Stage 3 framework.</p>
-          <p className="mb-3 text-warmgray">While the tax brackets themselves did not change, several related settings were updated for FY{SITE_CONFIG.financialYear}:</p>
-          <ul className="list-disc list-inside space-y-2 text-warmgray mb-4">
-            <li>The <strong>superannuation guarantee rate</strong> increased from 11.5% to <strong>12%</strong>, raising employer super contributions but not affecting take-home pay directly</li>
-            <li>The <strong>HECS-HELP repayment system</strong> switched from percentage-of-income tiers to a marginal model, with a new threshold of <strong>$69,528</strong></li>
-            <li>The <strong>maximum super contribution base</strong> changed to $62,500 per quarter, capping employer SG obligations for very high earners</li>
-            <li>The <strong>concessional contributions cap</strong> remains at $30,000 per year</li>
+        <nav aria-label="On this page" className="mb-10 not-prose rounded-xl border border-sandstone-dark/20 p-4 text-sm">
+          <p className="font-semibold text-navy mb-2">On this page</p>
+          <ul className="grid gap-1 sm:grid-cols-2 lg:grid-cols-3 text-eucalyptus-dark">
+            <li><a href="#brackets-2026-27" className="hover:underline">Tax brackets {FY}</a></li>
+            <li><a href="#tax-on-income" className="hover:underline">How much tax on your income</a></li>
+            <li><a href="#brackets-2025-26" className="hover:underline">{FY} vs {PREV} side by side</a></li>
+            <li><a href="#tax-at-thresholds" className="hover:underline">Tax at each threshold</a></li>
+            <li><a href="#marginal-tax-rate" className="hover:underline">Marginal tax rate vs average rate</a></li>
+            <li><a href="#non-resident-whm" className="hover:underline">Non-resident &amp; working holiday rates</a></li>
+            <li><a href="#medicare-levy" className="hover:underline">Medicare levy and what&rsquo;s not in the table</a></li>
+            <li><a href="#what-changed" className="hover:underline">What changed from {PREV}</a></li>
+            <li><a href="#brackets-2027-28" className="hover:underline">Tax brackets 2027-28</a></li>
           </ul>
-          <p className="text-warmgray">The next bracket change is legislated for {TAX_HISTORY.upcomingFY2026_27.effectiveDate}, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% takes effect on 1 July 2027. Both changes save $268 per year for anyone earning above $45,000. Read our full coverage of the <Link href="/news/tax-cut-july-2026/" className="text-eucalyptus-dark hover:underline">July 2026 tax cut</Link> for what it means for your pay. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to model your tax under the current brackets.</p>
-        </section>
+        </nav>
 
-        {/* Related Resources */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Resources</h2>
-          <p className="mb-4 text-warmgray">These Australian tax calculators and guides provide detailed breakdowns for specific tax topics covered on this page.</p>
-          <ul className="space-y-3 text-warmgray">
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> — enter your salary and see a bracket-by-bracket tax breakdown with LITO, Medicare levy, and HECS applied automatically</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Take-Home Pay Calculator</Link> — calculate your after-tax income including superannuation, salary sacrifice, and overtime</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy Guide</Link> — understand the 2% levy, low-income exemptions, and surcharge tiers for taxpayers without private health insurance</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> — model your student loan repayments under the new FY{SITE_CONFIG.financialYear} marginal repayment system</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/low-income-tax-offset/" className="text-eucalyptus-dark hover:underline font-medium">Low Income Tax Offset (LITO) Guide</Link> — see how LITO reduces your tax and raises the effective tax-free threshold to {formatAUD(LITO.effectiveTaxFreeThreshold)}</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/non-resident-tax/" className="text-eucalyptus-dark hover:underline font-medium">Non-Resident Tax Guide</Link> — compare resident and non-resident brackets and understand working holiday maker taxation</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Weekly Tax Table</Link> — look up the exact PAYG amount your employer withholds from each weekly pay</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <ChevronRight className="h-4 w-4 mt-1 text-eucalyptus-dark flex-shrink-0" />
-              <span><Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline font-medium">Fortnightly Tax Table</Link> — see how these brackets translate into fortnightly PAYG withholding amounts</span>
-            </li>
-          </ul>
-        </section>
+        <div className="flex flex-col lg:flex-row gap-12">
+          <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
-        {/* FAQ */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-          <Accordion type="multiple" className="space-y-3">
-            <AccordionItem value="100k" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>How much tax do I pay on $100,000 in Australia?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">On $100,000, you pay <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(100000) - calculateLITO(100000))))}</strong> in income tax (effective rate {formatPercent(Math.max(0, Math.round(calculateIncomeTax(100000) - calculateLITO(100000))) / 100000)}). Add the 2% Medicare levy ({formatAUD(Math.round(100000 * 0.02))}) and your total tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(100000) - calculateLITO(100000))) + Math.round(100000 * 0.02))}</strong>. Take-home: approximately <strong>{formatAUD(100000 - Math.max(0, Math.round(calculateIncomeTax(100000) - calculateLITO(100000))) - Math.round(100000 * 0.02))}</strong>/year or <strong>{formatAUD(annualToWeekly(100000 - Math.max(0, Math.round(calculateIncomeTax(100000) - calculateLITO(100000))) - Math.round(100000 * 0.02)), 2)}</strong>/week.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="highest" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>What is the highest tax rate in Australia?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">The highest marginal rate is <strong>45%</strong> on income over $190,000. Including the Medicare levy (2%), the effective top rate is <strong>47%</strong>. Taxpayers without private health insurance earning above $144,000 also pay the Medicare Levy Surcharge of 1.5%, bringing the total to <strong>48.5%</strong>.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="new-rates" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>When do the new tax rates start?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">Current FY{SITE_CONFIG.financialYear} rates have been in effect since 1 July 2025. The next change takes effect on <strong>1 July 2026</strong>, when the second bracket rate drops from 16% to <strong>15%</strong>. A further reduction to 14% is legislated for 1 July 2027.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="taxable" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>How is taxable income calculated?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">Taxable income equals your assessable income minus allowable deductions. Assessable income includes salary, wages, bonuses, interest, dividends, and rental income. Deductions include work-related expenses such as uniforms, tools, self-education, and professional memberships. Your employer withholds tax via PAYG throughout the year, and you reconcile the difference in your annual tax return.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="marginal-effective" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>What is the difference between marginal rate and effective rate?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">Your marginal rate is the tax rate on the last dollar you earn — it determines the bracket your next dollar falls into. Your effective rate is the average rate across all income (total tax divided by total income). On $80,000: marginal rate = <strong>30%</strong>, effective rate = <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))) / 80000)}</strong>. On $150,000: marginal rate = <strong>37%</strong>, effective rate = <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(150000) - calculateLITO(150000))) / 150000)}</strong>.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="30-percent" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>Do I pay 30% tax on my whole salary?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Australia&apos;s tax system is progressive. If your salary is $80,000, the 30% rate only applies to the portion between $45,001 and $80,000 ($35,000). The first $18,200 is tax-free and the next $26,800 is taxed at 15%. Your total tax is <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))))}</strong> — an effective rate of <strong>{formatPercent(Math.max(0, Math.round(calculateIncomeTax(80000) - calculateLITO(80000))) / 80000)}</strong>, not 30%. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see your bracket-by-bracket breakdown.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="200k-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>How much tax on $200,000 in Australia?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">On $200,000, you pay <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(200000) - calculateLITO(200000))))}</strong> in income tax (effective rate: {formatPercent(Math.max(0, Math.round(calculateIncomeTax(200000) - calculateLITO(200000))) / 200000)}). Your marginal rate is 45% on income above $190,000. Add the 2% Medicare levy ({formatAUD(Math.round(200000 * 0.02))}) and total deductions increase to <strong>{formatAUD(Math.max(0, Math.round(calculateIncomeTax(200000) - calculateLITO(200000))) + Math.round(200000 * 0.02))}</strong>. At this income level, check whether the <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare Levy Surcharge</Link> applies if you do not have private health insurance.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="non-res-threshold" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>Do non-residents get a tax-free threshold?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Non-residents for tax purposes are taxed from the first dollar at <strong>30%</strong> (up to $135,000). They do not receive the $18,200 tax-free threshold, the LITO, or SAPTO. Non-residents also do not pay the Medicare levy. Working holiday makers (visa subclass 417 and 462) pay a flat <strong>15%</strong> on the first $45,000.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="tax-free-threshold" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>What is the tax-free threshold in Australia?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> for Australian residents. Income up to this amount is taxed at 0%. With the Low Income Tax Offset (LITO), the effective tax-free threshold rises to <strong>{formatAUD(LITO.effectiveTaxFreeThreshold)}</strong>, meaning taxpayers earning below this amount pay zero net income tax. You claim the tax-free threshold by selecting &quot;yes&quot; on your TFN Declaration form when starting a new job. Our <Link href="/tax-free-threshold/" className="text-eucalyptus-dark hover:underline">tax-free threshold guide</Link> covers when to claim it, two jobs and part-year residents.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="salary-sacrifice" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>Does salary sacrifice reduce my tax bracket?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">Salary sacrifice into superannuation reduces your taxable income, which lowers the bracket your top dollars fall into. A worker earning $140,000 who sacrifices $10,000 into super drops their taxable income to $130,000, moving from the 37% bracket to the 30% bracket. The sacrificed amount is taxed at <strong>15%</strong> inside super rather than your marginal rate. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model the savings.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="pay-rise-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>Will a pay rise push me into a higher tax bracket?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">A pay rise increases your marginal tax rate only on the additional income, not on your existing salary. Earning $90,000 and receiving a $10,000 raise means the extra $10,000 is taxed at 30% (the third bracket rate). Your first $90,000 continues to be taxed exactly the same. You always take home more after a pay rise — the idea of &quot;losing money&quot; by moving into a higher bracket is a common misconception. See the <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for a detailed before-and-after comparison.</p></AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="super-tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-              <AccordionTrigger>Is superannuation taxed at my income tax bracket rate?</AccordionTrigger>
-              <AccordionContent><p className="text-warmgray">No. Employer super contributions (the SG rate of <strong>12%</strong> in FY{SITE_CONFIG.financialYear}) are taxed at a flat <strong>15%</strong> inside the super fund, not at your marginal income tax rate. High-income earners with combined income and concessional contributions above $250,000 pay an additional 15% (Division 293 tax), bringing the effective super tax rate to 30%. Super contributions do not count toward your income tax bracket calculation.</p></AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </section>
+            <section id="brackets-2026-27">
+              <h2 style={FONT}>Australian Tax Brackets {FY} (Residents)</h2>
+              <p>These are the ATO&rsquo;s resident income tax rates for the {FY} income year, 1 July 2026 to 30 June 2027. They apply to your <em>taxable income</em> (assessable income minus deductions) if you were an Australian resident for tax purposes all year and are entitled to the full tax-free threshold.</p>
+              <BracketTable brackets={B} caption={`Australian resident tax brackets ${FY}`} />
+              <p>Each rate applies only to the slice of income inside its band. The dollar amount in each row (for example {formatAUD(B[2].base)}) is simply the total tax on every band below it, so you can work out tax on any income as <strong>that amount plus the rate times the income over the threshold</strong>. The <Link href="/tax-free-threshold/">tax-free threshold</Link> is the nil band at the top of the table; it has been {formatAUD(TAX_FREE_THRESHOLD)} since 2012.</p>
+            </section>
 
-        {/* CTA */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 text-center">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Calculate your exact tax and take-home pay</h2>
-          <p className="text-warmgray mb-6 max-w-lg mx-auto">Use our free Australian tax calculator for a personalised breakdown of income tax brackets, Medicare levy, HECS-HELP, and superannuation.</p>
-          <Link href="/" className="bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all">Pay Calculator →</Link>
-        </section>
+            <div className="not-prose my-10"><TaxBracketsLookup /></div>
 
-        <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
-              {(() => { const a = getGuideAuthorship("tax-brackets"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
+            <section id="brackets-2025-26">
+              <h2 style={FONT}>Tax Brackets {FY} vs {PREV}: Side by Side</h2>
+              <p>The thresholds are identical in both years. Only the second rate moved, from {pct(P[1].rate)} to {pct(B[1].rate)}, which lowers the base amount in every row above it by {formatAUD(MAX_SAVING_2026_27)}. Use the {PREV} column for the tax return you lodge in 2026 (the <Link href="/tax-return-calculator/">tax return calculator</Link> does this for you) and the {FY} column for this year&rsquo;s pay.</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <caption className="sr-only">Resident tax brackets {PREV} and {FY}</caption>
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Taxable income</th>
+                      <th className={TH}>{PREV}</th>
+                      <th className={TH}>{FY}</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {B.map((b, i) => (
+                      <tr key={b.min}>
+                        <td className={`${TD} font-medium text-navy tabular-nums whitespace-nowrap`}>{range(b)}</td>
+                        <td className={TD}>{atoWording(P[i], i, P)}</td>
+                        <td className={`${TD} text-navy`}>{atoWording(b, i, B)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Tax on common incomes: {PREV} vs {FY}</h3>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Taxable income</th>
+                      <th className={`${TH} text-right`}>{PREV} tax</th>
+                      <th className={`${TH} text-right`}>{FY} tax</th>
+                      <th className={`${TH} text-right`}>Saving</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {COMPARE_INCOMES.map((inc) => {
+                      const before = Math.round(incomeTaxAfterLitoOnScale(inc, P));
+                      const after = Math.round(incomeTaxAfterLitoOnScale(inc, B));
+                      return (
+                        <tr key={inc}>
+                          <td className={`${TD} font-medium text-navy tabular-nums`}>{formatAUD(inc)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatAUD(before)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatAUD(after)}</td>
+                          <td className={`${TD} text-right tabular-nums font-semibold text-eucalyptus-dark`}>{formatAUD(before - after)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-warmgray-light">Income tax after the low income tax offset, before the Medicare levy. For earlier years back to 2019-20 see <Link href="/tax-bracket-history/">tax bracket history</Link>.</p>
+            </section>
+
+            <section id="tax-at-thresholds">
+              <h2 style={FONT}>How Much Tax at Each Threshold</h2>
+              <p>The most you can pay inside each bracket, and the running total at the top of it. Income tax only, before offsets and the Medicare levy.</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Bracket</th>
+                      <th className={`${TH} text-right`}>Income in band</th>
+                      <th className={`${TH} text-right`}>Max tax in band</th>
+                      <th className={`${TH} text-right`}>Total tax at top ({FY})</th>
+                      <th className={`${TH} text-right`}>Total at top ({PREV})</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {B.filter((b) => Number.isFinite(b.max)).map((b, i) => {
+                      const width = b.max - Math.max(0, b.min - 1);
+                      return (
+                        <tr key={b.min}>
+                          <td className={`${TD} font-medium text-navy tabular-nums whitespace-nowrap`}>{range(b)} ({pct(b.rate)})</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatAUD(width)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatAUD(Math.round(width * b.rate))}</td>
+                          <td className={`${TD} text-right tabular-nums font-semibold text-navy`}>{formatAUD(Math.round(taxOnScale(b.max, B)))}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatAUD(prevThresholds[i].tax)}</td>
+                        </tr>
+                      );
+                    })}
+                    <tr>
+                      <td className={`${TD} font-medium text-navy whitespace-nowrap`}>{range(TOP)} ({pct(TOP.rate)})</td>
+                      <td className={`${TD} text-right`} colSpan={4}>{pct(TOP.rate)} of every dollar over {formatAUD(TOP.min - 1)}, no cap</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="marginal-tax-rate">
+              <h2 style={FONT}>Marginal Tax Rate vs Average Tax Rate</h2>
+              <p>Your <strong>marginal tax rate</strong> is the rate on your next dollar of income: the rate of the bracket your taxable income finishes in. Your <strong>average tax rate</strong> (often called the effective tax rate) is your total tax divided by your total income. Because the lower bands are taxed at lower rates, the average is always below the marginal rate. On {formatAUD(a90.income)} the marginal rate is {pct(a90.bracketRate)}, but the average income tax rate is only {formatPercent(a90.averageIncomeTaxRate)}.</p>
+              <p>The marginal rate is the one that matters for decisions at the edge: what you keep from overtime, a <Link href="/pay-rise-calculator/">pay rise</Link> or a <Link href="/bonus-tax-calculator/">bonus</Link>, and what a deduction or <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> saves you. Moving into a higher bracket never reduces your take-home pay, because only the dollars above the threshold are taxed at the higher rate.</p>
+
+              <h3>The real marginal rate: LITO withdrawal and Medicare shading</h3>
+              <p>The bracket rate is not always what the next dollar costs. Two things push the true (effective) marginal rate above it for lower incomes:</p>
+              <ul>
+                <li><strong>LITO withdrawal.</strong> The <Link href="/low-income-tax-offset/">low income tax offset</Link> shrinks by 5c per dollar between {formatAUD(LITO.fullOffsetCeiling)} and {formatAUD(LITO.phaseOut1.end)}, and by 1.5c per dollar up to {formatAUD(LITO.nilOffsetIncome)}. So a dollar earned at {formatAUD(40_000)} costs {pct(B[1].rate)} + 5c + 2c Medicare = {formatPercent(analyseIncome(40_000).effectiveMarginalRate, 0)}, and at {formatAUD(a50.income)} it costs {formatPercent(a50.effectiveMarginalRate)}.</li>
+                <li><strong>Medicare levy shade-in.</strong> Between {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} and {formatAUD(MEDICARE_LEVY.shadeInThreshold)} the levy phases in at 10c per dollar instead of 2c (singles, {PREV} thresholds, the latest the ATO has published).</li>
+              </ul>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <caption className="sr-only">Marginal and average tax rates by income, {FY}</caption>
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Taxable income</th>
+                      <th className={`${TH} text-right`}>Bracket rate</th>
+                      <th className={`${TH} text-right`}>With Medicare</th>
+                      <th className={`${TH} text-right`}>Tax on next $1,000</th>
+                      <th className={`${TH} text-right`}>Average rate</th>
+                      <th className={`${TH} text-right`}>Avg. incl. Medicare</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {MARGINAL_INCOMES.map((inc) => {
+                      const a = analyseIncome(inc);
+                      const higher = a.effectiveMarginalRate > a.marginalWithMedicare + 0.0005;
+                      return (
+                        <tr key={inc}>
+                          <td className={`${TD} font-medium text-navy tabular-nums`}>{formatAUD(inc)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{pct(a.bracketRate)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{pct(a.marginalWithMedicare)}</td>
+                          <td className={`${TD} text-right tabular-nums ${higher ? "font-semibold text-ochre" : ""}`}>{formatAUD(a.taxOnNext1000)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatPercent(a.averageIncomeTaxRate)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{formatPercent(a.averageTotalRate)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm text-warmgray-light">Resident, {FY} rates, single, no HELP debt, no Medicare levy surcharge. Highlighted: the next $1,000 costs more than the bracket rate plus Medicare. Below {formatAUD(NIL)} the next $1,000 can cost nothing because LITO absorbs the tax.</p>
+            </section>
+
+            <section id="tax-on-salary">
+              <h2 style={FONT}>Tax on Common Salaries</h2>
+              <p>Income tax plus Medicare levy for {FY}. Each link opens the full breakdown for that salary, with weekly, fortnightly and monthly figures.</p>
+              <ul className="not-prose grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
+                {TAX_ON_LINKS.map((inc) => {
+                  const a = analyseIncome(inc);
+                  return (
+                    <li key={inc}>
+                      <Link href={`/tax-on/${inc}/`} className="flex justify-between rounded-lg border border-sandstone-dark/20 px-3 py-2 hover:border-eucalyptus hover:bg-eucalyptus-light/20">
+                        <span className="font-medium text-navy">Tax on {formatAUD(inc)}</span>
+                        <span className="tabular-nums text-warmgray">{formatAUD(a.totalTax)}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+
+            <section id="non-resident-whm">
+              <h2 style={FONT}>Non-Resident and Working Holiday Maker Tax Rates</h2>
+              <p>Foreign residents and working holiday makers use different scales: no tax-free threshold, no low income tax offset and no Medicare levy. Residency for tax purposes is not the same as visa status, so check the <Link href="/non-resident-tax/">non-resident tax guide</Link> if you&rsquo;re unsure which applies.</p>
+              <h3>Foreign resident tax rates</h3>
+              <BracketTable brackets={NON_RESIDENT_TAX_BRACKETS} caption="Foreign resident tax rates" medicare={false} />
+              <p className="text-sm text-warmgray-light">The ATO&rsquo;s foreign-resident page currently shows these rates for {FOREIGN_TABLE_YEAR}. The 1 July 2026 cut applied only to the resident second band, which foreign residents don&rsquo;t have, and the ATO&rsquo;s foreign-resident withholding scale for {FY} is unchanged.</p>
+              <h3>Working holiday maker tax rates (visa 417 and 462)</h3>
+              <BracketTable brackets={WHM_TAX_BRACKETS_2025_26} caption="Working holiday maker tax rates" medicare={false} />
+              <p className="text-sm text-warmgray-light">Latest table published by the ATO, for {WHM_TABLE_YEAR}. See <Link href="/working-holiday-tax/">working holiday tax</Link> for how employers register to withhold at these rates.</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Taxable income</th>
+                      <th className={`${TH} text-right`}>Resident ({FY}, incl. Medicare)</th>
+                      <th className={`${TH} text-right`}>Foreign resident</th>
+                      <th className={`${TH} text-right`}>Working holiday maker</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {FOREIGN_INCOMES.map((inc) => (
+                      <tr key={inc}>
+                        <td className={`${TD} font-medium text-navy tabular-nums`}>{formatAUD(inc)}</td>
+                        <td className={`${TD} text-right tabular-nums`}>{formatAUD(analyseIncome(inc).totalTax)}</td>
+                        <td className={`${TD} text-right tabular-nums`}>{formatAUD(Math.round(taxOnScale(inc, NON_RESIDENT_TAX_BRACKETS)))}</td>
+                        <td className={`${TD} text-right tabular-nums`}>{formatAUD(Math.round(taxOnScale(inc, WHM_TAX_BRACKETS_2025_26)))}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="medicare-levy">
+              <h2 style={FONT}>Medicare Levy and What the Brackets Don&rsquo;t Include</h2>
+              <p>The ATO&rsquo;s rates do not include the Medicare levy. Most residents pay an extra <strong>2% of their whole taxable income</strong>, which is why the table above shows each rate with 2 points added. Other amounts that sit outside the brackets:</p>
+              <ul>
+                <li><strong><Link href="/medicare-levy/">Medicare levy</Link></strong>: nil for a single person up to {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}, shading in to the full 2% at {formatAUD(MEDICARE_LEVY.shadeInThreshold)} ({PREV} thresholds, the latest the ATO has published).</li>
+                <li><strong><Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link></strong>: 1% to 1.5% more for singles whose income for surcharge purposes is over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} and who have no private hospital cover ({MLS_INCOME_YEAR} tiers). That makes the top rate {formatPercent(TOP.rate + MEDICARE_LEVY.rate + MEDICARE_LEVY.surcharge.tier3.rate)} for someone uninsured.</li>
+                <li><strong><Link href="/hecs-help-calculator/">HELP and other study loans</Link></strong>: compulsory repayments are collected with your tax but are a separate calculation on repayment income.</li>
+                <li><strong>Tax offsets</strong> such as the <Link href="/low-income-tax-offset/">low income tax offset</Link> and <Link href="/sapto-calculator/">SAPTO</Link> reduce the tax the brackets produce, dollar for dollar.</li>
+              </ul>
+            </section>
+
+            <section id="what-changed">
+              <h2 style={FONT}>What Changed From {PREV} to {FY}</h2>
+              <ul>
+                <li><strong>Second rate cut from {pct(P[1].rate)} to {pct(B[1].rate)}</strong> on income from {formatAUD(B[1].min)} to {formatAUD(B[1].max)}, from 1 July 2026. Anyone earning over {formatAUD(B[1].max)} saves {formatAUD(MAX_SAVING_2026_27)} a year; below that the saving is 1c per dollar over {formatAUD(TAX_FREE_THRESHOLD)}.</li>
+                <li><strong>Thresholds unchanged</strong>: {formatAUD(B[0].max)}, {formatAUD(B[1].max)}, {formatAUD(B[2].max)} and {formatAUD(B[3].max)}, as they have been since 1 July 2024.</li>
+                <li><strong>Base amounts fell</strong> to {formatAUD(B[2].base)}, {formatAUD(B[3].base)} and {formatAUD(B[4].base)} (from {formatAUD(P[2].base)}, {formatAUD(P[3].base)} and {formatAUD(P[4].base)}).</li>
+                <li><strong>No-tax point with LITO rose</strong> from {formatAUD(NIL_PREV)} to {formatAUD(NIL)}, because {formatAUD(LITO.maxOffset)} of offset now covers more income at {pct(B[1].rate)}.</li>
+                <li><strong>PAYG withholding</strong>: new ATO tax tables apply to pay from 1 July 2026, so the cut shows up in each pay rather than waiting for your return. Check yours with the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link> or the <Link href="/payg-withholding-tables/">PAYG withholding tables</Link>.</li>
+              </ul>
+              <p>More detail, including super and HELP changes, is in <Link href="/tax-changes-2026-27/">tax changes 2026-27</Link>.</p>
+            </section>
+
+            <section id="brackets-2027-28">
+              <h2 style={FONT}>Tax Brackets 2027-28: The Legislated Cut to {pct(N[1].rate)}</h2>
+              <p>The second cut is already law. The {LEGISLATED_CUT_2027_28.act} ({LEGISLATED_CUT_2027_28.actNumber}, assented {LEGISLATED_CUT_2027_28.assent}) reduces the {pct(B[1].rate)} rate to <strong>{pct(N[1].rate)}</strong> from {LEGISLATED_CUT_2027_28.effectiveDate}. The thresholds stay where they are. The ATO&rsquo;s rate table doesn&rsquo;t show 2027-28 yet, so the base amounts below are worked out from the legislated rate.</p>
+              <BracketTable brackets={N} caption="Resident tax brackets 2027-28 (legislated)" />
+              <p>Compared with {FY}, anyone earning over {formatAUD(N[1].max)} saves another {formatAUD(MAX_SAVING_2027_28)} a year, and the no-tax point with LITO rises to {formatAUD(NIL_NEXT)}. Tax at the top of each band will be {nextThresholds.slice(1).map((t) => formatAUD(t.tax)).join(", ")}.</p>
+            </section>
+
+            <section id="faq">
+              <h2 style={FONT}>Tax Brackets FAQ</h2>
+              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
+                {TAX_BRACKETS_FAQS.map((f, i) => (
+                  <AccordionItem key={f.q} value={`faq-${i}`} className="rounded-xl border border-sandstone-dark/20 px-5">
+                    <AccordionTrigger className="text-left font-semibold text-navy">{f.q}</AccordionTrigger>
+                    <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </section>
+
+            <div className="mt-12 not-prose space-y-6">
+              <MethodologyDisclosure>
+                <p>Resident rates for {PREV} and {FY} are the ATO&rsquo;s published tables. The 2027-28 table applies the legislated {pct(N[1].rate)} rate to the unchanged thresholds; the same method reproduces the ATO&rsquo;s {PREV} and {FY} tables exactly. Tax after LITO uses the ATO&rsquo;s LITO formula. Medicare levy uses the single low-income thresholds; family thresholds, the surcharge and HELP are excluded unless stated. Figures are rounded to the dollar.</p>
+              </MethodologyDisclosure>
+              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
+              {authorship && <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />}
+            </div>
+          </article>
+
+          <aside className="lg:w-1/3">
+            <div className="sticky top-8 space-y-4 not-prose">
+              <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone p-5">
+                <p className="font-bold text-navy mb-3">Tax calculators</p>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    { href: "/income-tax-calculator/", label: "Income tax calculator" },
+                    { href: "/take-home-pay-calculator/", label: "Take-home pay calculator" },
+                    { href: "/tax-withheld-calculator/", label: "Tax withheld calculator" },
+                    { href: "/low-income-tax-offset/", label: "LITO calculator" },
+                    { href: "/pay-rise-calculator/", label: "Pay rise calculator" },
+                    { href: "/second-job-tax-calculator/", label: "Second job tax calculator" },
+                  ].map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="flex items-center justify-between rounded-lg bg-white border border-sandstone-dark/20 px-3 py-2 text-navy hover:border-eucalyptus">
+                        {l.label}<ChevronRight className="h-4 w-4 text-warmgray-light" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-xl border border-sandstone-dark/20 p-5">
+                <p className="font-bold text-navy mb-3">Related guides</p>
+                <ul className="space-y-2 text-sm text-eucalyptus-dark">
+                  <li><Link href="/tax-free-threshold/" className="hover:underline">Tax-free threshold</Link></li>
+                  <li><Link href="/tax-bracket-history/" className="hover:underline">Tax bracket history</Link></li>
+                  <li><Link href="/stage-3-tax-cuts/" className="hover:underline">Stage 3 tax cuts</Link></li>
+                  <li><Link href="/medicare-levy/" className="hover:underline">Medicare levy</Link></li>
+                  <li><Link href="/non-resident-tax/" className="hover:underline">Non-resident tax</Link></li>
+                  <li><Link href="/weekly-tax-table/" className="hover:underline">Weekly tax table</Link></li>
+                  <li><Link href="/fortnightly-tax-table/" className="hover:underline">Fortnightly tax table</Link></li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+        </div>
       </div>
     </div>
   );
