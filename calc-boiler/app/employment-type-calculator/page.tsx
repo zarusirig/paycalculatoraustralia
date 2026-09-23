@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import EmploymentTypeCalculatorPage from "@/modules/calculator/employment-type-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { EMPLOYMENT_TYPE_FAQS } from "@/modules/calculator/employment-type-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
@@ -53,32 +55,7 @@ const webAppSchema: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is casual loading better than annual leave?",
-      acceptedAnswer: { "@type": "Answer", text: "The 25% casual loading compensates for the lack of paid leave. For most workers, the total value of annual leave (4 weeks), personal leave (10 days), and public holidays exceeds the 25% loading, making permanent employment more valuable in total package terms." },
-    },
-    {
-      "@type": "Question",
-      name: "Do casual workers get superannuation?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Casuals receive the 12% superannuation guarantee like other employees (if they are under 18, only in weeks they work more than 30 hours), calculated on ordinary time earnings including the casual loading." },
-    },
-    {
-      "@type": "Question",
-      name: "What is the difference between part-time and casual?",
-      acceptedAnswer: { "@type": "Answer", text: "Part-time employees work regular guaranteed hours (under 38 per week), receive paid leave, and have ongoing employment. Casual employees have no guaranteed hours, receive 25% casual loading instead of leave, and can be terminated without notice." },
-    },
-    {
-      "@type": "Question",
-      name: "Can I convert from casual to permanent?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Under the Fair Work Act, casual employees who have worked regular hours for 12 months can request conversion to permanent (full-time or part-time) employment. Employers with 15+ employees must offer conversion if the criteria are met." },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(EMPLOYMENT_TYPE_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Employment Type Calculator",

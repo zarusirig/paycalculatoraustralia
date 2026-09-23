@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { BACKPAY_FAQS } from "@/modules/calculator/backpay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -257,32 +258,7 @@ export default function BackpayCalculatorPage() {
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="space-y-3">
-                <AccordionItem value="how-far" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>How far back can I claim backpay in Australia?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Under the Fair Work Act, you can claim underpayments going back <strong>6 years</strong> from the date you make a complaint. This applies to wages, overtime, penalty rates, allowances, and superannuation contributions.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Is backpay taxed differently to normal wages?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Backpay received as a lump sum may be withheld at a higher rate under <strong>ATO Schedule 5</strong>. However, you can request the ATO to spread the amount over the financial years it relates to, potentially reducing your tax liability at assessment time.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Does my employer owe super on backpay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. The <strong>12% superannuation guarantee</strong> applies to all ordinary time earnings, including any underpaid amount. Your employer must make additional super contributions on the wage difference and may face a Super Guarantee Charge (SGC) for late payments.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="report" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>How do I report underpayment to the Fair Work Ombudsman?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Lodge a complaint online at <strong>fairwork.gov.au</strong> or call <strong>13 13 94</strong>. The Fair Work Ombudsman can investigate, mediate, and in serious cases take legal action. Gather payslips, rosters, and bank statements as evidence before filing.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="criminal" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Is wage theft a criminal offence in Australia?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes, in some states. <strong>Victoria and Queensland</strong> have enacted wage theft laws that make deliberate underpayment a criminal offence with penalties including fines and imprisonment. The federal government has also introduced criminal penalties for serious wage theft under amendments to the Fair Work Act.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="penalty" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Do I get interest on underpaid wages?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Interest is not automatically included in Fair Work claims, but courts may award interest on underpaid wages in legal proceedings. The ATO also charges a <strong>Super Guarantee Charge (SGC)</strong> on late super payments, which includes an interest component and administration fee.</p></AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={BACKPAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             {/* Related */}

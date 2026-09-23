@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -201,32 +202,7 @@ export default function ConstructionTradesPayPage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="tradie-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do tradies earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K–$110K) and boilermakers ($85K–$120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K–$250K+ but have higher business costs.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="apprentice-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do apprentices get paid?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Apprentice wages start at approximately 55% of the qualified trade rate in Year 1, increasing to 65% in Year 2, 80% in Year 3, and 95% in Year 4. For an electrician apprentice, this means approximately $44K–$49K in Year 1, rising to $76K–$86K in Year 4. Adult apprentices (21+) receive higher minimum rates.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What are the overtime rates in construction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under the Building and Construction General On-site Award, overtime is time-and-a-half for the first 2 hours and double time thereafter on weekdays. Saturday is time-and-a-half for the first 2 hours then double time. Sunday is double time for all hours. Public holidays are double time and a half (2.5x).</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="site-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a site allowance?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A site allowance is a daily payment made to construction workers to compensate for the conditions of working on a construction site, including noise, dust, and lack of permanent amenities. The industry allowance ranges from $32–$45/day under the award, but enterprise agreement site allowances on major projects can be $50–$80+ per day.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tool-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is the tool allowance taxable?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, the tool allowance is assessable income and included in your gross earnings for tax purposes. However, you can claim a deduction for the cost of tools you purchase for work. If individual tools cost less than $300, you can claim an immediate deduction. Tools costing more than $300 must be depreciated over their effective life.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="highest-paid" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the highest-paid trade in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K–$120K. Electricians working in mining or oil and gas can earn $130K–$170K+. Crane operators, while not a traditional trade, can earn $100K–$150K+ on major construction projects due to their specialised skills and the high demand for certified operators.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={CONSTRUCTION_TRADES_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
