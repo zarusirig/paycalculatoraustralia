@@ -60,7 +60,7 @@ export const TAS: Jurisdiction = {
 
   metaTitle: "Tasmanian State Service Pay Scales 2026 — Band 1–9 Salaries",
   metaDescription:
-    "Tasmanian State Service pay from 1 December 2025: every General Stream Band 1–9 and Professional Stream salary point ($55,616 to $228,493) from the Public Sector Union Wages Agreement 2025, with take-home pay.",
+    "Tasmanian State Service pay from 1 December 2025: every General Stream Band 1–9 and Professional Stream salary point, from the PSUWA 2025, with take-home pay.",
 
   instrument:
     "The Tasmanian State Service Award sets the classification structure — a General Stream of Bands 1 to 9 and a Professional Stream of Bands 1 to 6 — and the Public Sector Union Wages Agreement 2025, an industrial agreement under s55 of the Industrial Relations Act 1984 (Tas), sets the salaries in its Schedule 1. The agreement prevails over the award where they differ (clause 6).",

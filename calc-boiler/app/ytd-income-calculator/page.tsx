@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/ytd-income-calculator/`;
@@ -11,7 +12,7 @@ const URL = `${BASE}/ytd-income-calculator/`;
 export const metadata: Metadata = {
   title: "YTD Calculator Australia — Year to Date Income & Annualiser",
   description:
-    "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into a projected annual salary and tax estimate.",
+    "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into projected annual salary and tax.",
   alternates: { canonical: URL },
   openGraph: {
     title: "YTD Calculator Australia — Year to Date Income",
@@ -48,7 +49,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("ytd-income-calculator"),
   inLanguage: "en-AU",
 };
 

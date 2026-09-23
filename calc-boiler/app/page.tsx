@@ -11,6 +11,7 @@ import type {
 } from "schema-dts";
 import { HOME_FAQS } from "@/modules/home/home-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { pageDateModified } from "@/lib/page-dates";
 
 const FY = SITE_CONFIG.financialYear;
 
@@ -101,7 +102,7 @@ const webAppSchema: WithContext<WebApplication> = {
     "@type": "Organization",
     name: SITE_CONFIG.name,
   },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified(""),
   inLanguage: "en-AU",
 };
 

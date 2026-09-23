@@ -14,14 +14,14 @@ import CopySnippet from "@/modules/guide/copy-snippet";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/embed/`;
 const TITLE = "Free Take-Home Pay Calculator Widget for Your Website";
-const DESCRIPTION = `Embed a free Australian take-home pay calculator on your website, intranet or blog. ${EMBED_DATA.fy} ATO rates, HECS and super options, updated automatically. Copy one line of code.`;
+const DESCRIPTION = `Embed a free Australian take-home pay calculator on your website or blog. ${EMBED_DATA.fy} ATO rates, HECS and super options, updated automatically. One line of code.`;
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

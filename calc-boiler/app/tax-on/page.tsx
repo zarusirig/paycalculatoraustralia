@@ -10,14 +10,14 @@ const last = TAX_ON_SALARIES[TAX_ON_SALARIES.length - 1];
 const example = calculatePayBreakdown({ grossSalary: 80_000 });
 
 const TITLE = `Tax on Every Salary in Australia: ${formatAUD(first)} to ${formatAUD(last)} (${SITE_CONFIG.financialYear})`;
-const DESCRIPTION = `Income tax and Medicare levy on ${TAX_ON_SALARIES.length} salaries from ${formatAUD(first)} to ${formatAUD(last)} for ${SITE_CONFIG.financialYear}. E.g. tax on $80,000 is ${formatAUD(example.netIncomeTax)} plus ${formatAUD(example.medicareLevy)} Medicare. Bracket-by-bracket on each page.`;
+const DESCRIPTION = `Income tax and Medicare levy on ${TAX_ON_SALARIES.length} salaries from ${formatAUD(first)} to ${formatAUD(last)} for ${SITE_CONFIG.financialYear}. E.g. tax on $80,000 is ${formatAUD(example.netIncomeTax)} plus ${formatAUD(example.medicareLevy)} Medicare. Bracket by bracket.`;
 const URL = `${SITE_CONFIG.baseUrl}/tax-on/`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
 };
 
 export default function TaxOnHubPage() {

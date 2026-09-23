@@ -4,17 +4,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/full-time-vs-part-time-vs-casual/`;
 const TITLE = "Full-Time vs Part-Time vs Casual — Complete Comparison";
-const DESCRIPTION = "Compare full-time, part-time, and casual employment: leave entitlements, notice periods, casual loading (25%), casual conversion, and which type is best for your situation.";
+const DESCRIPTION = "Full-time vs part-time vs casual: leave entitlements, notice periods, the 25% casual loading, casual conversion and which type suits your situation.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +40,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("full-time-vs-part-time-vs-casual"),
+  dateModified: pageDateModified("full-time-vs-part-time-vs-casual"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,
@@ -51,7 +54,7 @@ const faq: WithContext<FAQPage> = {
   "@type": "FAQPage",
   mainEntity: [
     { "@type": "Question", name: "What is casual loading in Australia?", acceptedAnswer: { "@type": "Answer", text: "Casual loading is typically 25% on top of the base hourly rate, paid to compensate casuals for not receiving paid leave, notice of termination, or redundancy pay. The exact percentage may vary under specific Modern Awards." } },
-    { "@type": "Question", name: "Can a casual employee become permanent?", acceptedAnswer: { "@type": "Answer", text: "Yes. Under the Fair Work Act, employers must offer casual conversion to eligible employees who have worked regular hours for 12 months. Casual employees can also request conversion after 6 months of regular and systematic work." } },
+    { "@type": "Question", name: "Can a casual employee become permanent?", acceptedAnswer: { "@type": "Answer", text: "Yes. Since 26 August 2024, a casual employee who has been employed for at least 6 months (12 months for a small business employer) and believes they no longer fit the casual definition can notify their employer in writing that they want to change to full-time or part-time employment. The employer must respond within 21 days; employers are no longer required to offer conversion." } },
     { "@type": "Question", name: "Do part-time employees get the same leave as full-time?", acceptedAnswer: { "@type": "Answer", text: "Part-time employees receive the same types of leave entitlements as full-time employees, but calculated on a pro-rata basis according to their ordinary hours of work." } },
     { "@type": "Question", name: "What are the standard hours for full-time work?", acceptedAnswer: { "@type": "Answer", text: "Full-time employees work 38 ordinary hours per week under the National Employment Standards. Some awards or agreements may average this over a cycle (e.g., 76 hours per fortnight)." } },
     { "@type": "Question", name: "Do casual employees get superannuation?", acceptedAnswer: { "@type": "Answer", text: "Yes. From 1 July 2022, all employees including casuals receive the Super Guarantee regardless of how much they earn. The SG rate is 12% in FY2026-27." } },

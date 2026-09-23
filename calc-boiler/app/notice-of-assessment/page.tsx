@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/notice-of-assessment/`;
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +40,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("notice-of-assessment"),
+  dateModified: pageDateModified("notice-of-assessment"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
@@ -51,8 +54,8 @@ const faq: WithContext<FAQPage> = {
   "@type": "FAQPage",
   mainEntity: [
     { "@type": "Question", name: "What is a Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "A Notice of Assessment (NOA) is an official document issued by the Australian Taxation Office after processing your tax return. It shows your taxable income, the tax calculated, any offsets applied, Medicare levy, HECS-HELP repayment, tax credits, and the final result — either a refund or an amount owing." } },
-    { "@type": "Question", name: "How long does it take to receive a Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "If you lodge electronically through myTax or a tax agent, the ATO typically issues your Notice of Assessment within 2 weeks. Paper lodgements take 10-12 weeks. Complex returns requiring manual review may take longer." } },
-    { "@type": "Question", name: "What can I do if I disagree with my Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "You have 2 years from the date of the assessment to request an amendment for most individual taxpayers (4 years for more complex affairs). You can lodge an objection through myGov, your tax agent, or by writing to the ATO. If the objection is disallowed, you can escalate to the Administrative Appeals Tribunal." } },
+    { "@type": "Question", name: "How long does it take to receive a Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "If you lodge electronically through myTax or a tax agent, the ATO typically issues your Notice of Assessment within 2 weeks. For paper returns, the ATO says most refunds issue within 50 business days. Complex returns requiring manual review may take longer." } },
+    { "@type": "Question", name: "What can I do if I disagree with my Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "You have 2 years from the date of the assessment to request an amendment for most individual taxpayers (4 years for more complex affairs). You can lodge an objection through myGov, your tax agent, or by writing to the ATO. If the objection is disallowed, you can escalate to the Administrative Review Tribunal (which replaced the AAT on 14 October 2024) or the Federal Court." } },
   ]
 };
 

@@ -120,7 +120,7 @@ export default function TaxChanges202627Page() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Guarantee Stays at 12%</h3>
               <p>
-                The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>12%</strong> on 1 July 2025 after a decade-long incremental increase from 9.5%. No further increases are legislated for FY2026-27 or beyond. Employers must continue paying SG on ordinary time earnings up to the maximum super contribution base.
+                The Superannuation Guarantee (SG) rate reached its legislated ceiling of <strong>12%</strong> on 1 July 2025 after a decade-long incremental increase from 9.5%. No further increases are legislated for FY2026-27 or beyond. From 1 July 2026 employers calculate SG on <strong>qualifying earnings</strong> (ordinary time earnings plus commissions for work done entirely outside ordinary hours), up to the annual maximum super contribution base.
               </p>
               <p>
                 The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY2026-27 (up from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> &mdash; both confirmed by the ATO and applying from 1 July 2026. These caps are indexed to Average Weekly Ordinary Time Earnings (AWOTE) and are rounded down to the nearest $2,500.

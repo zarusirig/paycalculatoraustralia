@@ -11,6 +11,7 @@ import {
   averageSalaryDescription,
   averageSalaryTitle,
 } from "@/lib/data/average-salary";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/average-salary-australia/`;
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", modifiedTime: AVERAGE_SALARY_VERIFIED_ISO },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", modifiedTime: AVERAGE_SALARY_VERIFIED_ISO, images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,6 +40,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("average-salary-australia"),
   headline: TITLE,
   description: DESCRIPTION,
   dateModified: AVERAGE_SALARY_VERIFIED_ISO,

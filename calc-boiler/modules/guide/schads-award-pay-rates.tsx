@@ -26,6 +26,7 @@ import {
 import { SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-faqs";
 import { toCents } from "@/modules/guide/hospitality-award-faqs";
 import { AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
+import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 
 /** Weekend and public holiday multipliers; casual figures include the loading. */
 const SCHADS_MATRIX = [
@@ -250,7 +251,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                         { label: "Public holiday", perm: SCHADS_PENALTIES.publicHoliday, cas: SCHADS_PENALTIES.casualPublicHoliday },
                       ].map((row) => (
                         <tr key={row.label}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}{row.label === "Public holiday" && <PublicHolidayRowLink />}</th>
                           <td className="px-5 py-3 font-medium">{PCT(row.perm)}</td>
                           <td className="px-5 py-3 font-medium">{PCT(row.cas)}</td>
                           <td className="px-5 py-3">{formatAUD(toCents(L4.hourly * row.perm), 2)}</td>

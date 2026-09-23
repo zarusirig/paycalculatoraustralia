@@ -16,7 +16,7 @@ export default function PaydaySuperStartsJuly2026() {
           { label: "Super guarantee due", before: "Quarterly", after: "Every payday" },
           { label: "Payment deadline", after: "Within 7 business days of payday" },
           { label: "SBSCH availability", before: "Open", after: "Closed permanently from 30 June 2026" },
-          { label: "Super guarantee rate", after: "12% of ordinary time earnings" },
+          { label: "Super guarantee rate", after: "12% of qualifying earnings" },
           { label: "Takes effect", after: "1 July 2026" },
         ]}
       />
@@ -31,8 +31,8 @@ export default function PaydaySuperStartsJuly2026() {
         details are confirmed. Employers must also work out and pay super on qualifying earnings
         paid from 1 July 2026 even where the underlying work was performed before that date, so the
         cut-over applies to when you&apos;re paid rather than when the shift or task happened. Payroll
-        systems now need to calculate ordinary time earnings, apply the 12% super guarantee rate,
-        and initiate the payment on the same day wages are processed, which is a substantial change
+        systems now need to calculate qualifying earnings, apply the 12% super guarantee rate,
+        and get each contribution to the fund within 7 business days of payday, which is a substantial change
         from batching contributions once every three months.
       </p>
 
@@ -52,14 +52,13 @@ export default function PaydaySuperStartsJuly2026() {
 
       <h2>What happens if super is paid late</h2>
       <p>
-        Missing the 7-business-day deadline triggers the redesigned super guarantee charge, which is
-        no longer tax-deductible and includes the shortfall amount, interest, and administrative
-        penalties. The ATO can now see contribution timing far sooner through Single Touch Payroll
+        Missing the 7-business-day deadline triggers the redesigned super guarantee charge, made up of
+        the shortfall, notional earnings at the general interest charge rate, an administrative
+        uplift and, where choice rules were broken, a choice loading. The ATO can now see contribution timing far sooner through Single Touch Payroll
         and fund reporting, so late payments are expected to be identified and chased up faster than
-        under the old quarterly system. Because the charge is no longer deductible, a late payment
-        under payday super can end up more expensive for an employer than simply paying the super
-        guarantee correctly and on time in the first place, which is part of the compliance incentive
-        behind the redesign.
+        under the old quarterly system. Unlike the old quarterly charge, the new charge is tax-deductible,
+        but the uplift and interest still make a late payment more expensive for an employer than
+        paying the super guarantee correctly and on time in the first place.
       </p>
 
       <h2>How employees can check it&apos;s working</h2>
@@ -73,8 +72,8 @@ export default function PaydaySuperStartsJuly2026() {
 
       <h2>What this means for your pay</h2>
       <p>
-        Payday super doesn&apos;t change your super guarantee rate — it stays at 12% of ordinary
-        time earnings for 2026-27 — only how quickly it reaches your account. Getting contributions
+        Payday super doesn&apos;t change your super guarantee rate — it stays at 12% of qualifying
+        earnings for 2026-27 — only how quickly it reaches your account. Getting contributions
         in sooner and more often means slightly more time in the market for compounding growth over
         a working life. Run your numbers through our{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to see how

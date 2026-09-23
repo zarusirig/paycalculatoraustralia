@@ -29,7 +29,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   code: "VIC",
   name: "Victoria",
   nameInSentence: "Victoria",
-  metaTitle: "Teacher Salary Victoria 2026 — VIC Teachers Pay Rise & New Pay Scale",
+  metaTitle: "Teacher Salary Victoria 2026 — VIC Teacher Pay Rise & Pay Scale",
   h1: "Teacher Salary Victoria 2026 — VIC Teachers Pay Scale and the 2026 Pay Rise",
   employer: "Victorian Department of Education",
   agreementName: "Victorian Government Schools Agreement 2022 (VGSA 2022)",

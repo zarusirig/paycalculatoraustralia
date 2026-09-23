@@ -45,7 +45,7 @@ export const NT: Jurisdiction = {
 
   metaTitle: "NT Public Sector Pay Scales 2026 — AO2 to SAO2 Salaries",
   metaDescription:
-    "Northern Territory public sector pay from 13 August 2026: every AO2–AO7, SAO1, SAO2 and EO2–EO3 pay point ($63,931 to $187,176) from the NTPS 2025–2029 Enterprise Agreement, with take-home pay.",
+    "NT public sector pay from 13 August 2026: every AO2–AO7, SAO1–2 and EO2–3 pay point ($63,931 to $187,176) from the NTPS 2025–2029 EA, with take-home pay.",
 
   instrument:
     "The Northern Territory Public Sector 2025–2029 Enterprise Agreement, a single-enterprise agreement approved by the Fair Work Commission on 30 January 2026 (AG2025/4592). It covers NT Public Sector employees in the general classifications — administrative, professional, technical, physical and others — with salaries in Part A of Schedule 11. Teachers, nurses and some other groups have their own NTPS agreements.",

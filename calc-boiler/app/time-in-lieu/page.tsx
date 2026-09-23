@@ -6,13 +6,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "time-in-lieu";
 const TITLE = "Time in Lieu (TOIL) Australia: Award Rules + Calculator";
 const DESCRIPTION =
-  "Time in lieu is paid time off instead of overtime pay. It isn't in the NES: your award must allow it. Hour for hour under Clerks and Hospitality, time and a half under Retail and Fast Food. 6-month limit, paid out at overtime rates.";
+  "Time in lieu is paid time off instead of overtime pay. It isn't in the NES, so your award must allow it: hour for hour under Clerks, time and a half under Retail.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

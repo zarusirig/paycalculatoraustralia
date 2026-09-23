@@ -56,7 +56,7 @@ export const ACT: Jurisdiction = {
 
   metaTitle: "ACT Public Service Pay Scales 2026 — ASO & SOG Salaries",
   metaDescription:
-    "ACT Public Service pay from 4 December 2025: every ASO 1–6 and Senior Officer Grade C, B and A pay point ($65,124 to $172,246) from the ACTPS Administrative and Related Classifications EA 2023–2026, with take-home pay.",
+    "ACT Public Service pay from 4 December 2025: every ASO 1–6 and Senior Officer Grade C–A pay point ($65,124 to $172,246) from the ACTPS Admin EA, with take-home pay.",
 
   instrument:
     "The ACT Public Sector Administrative and Related Classifications Enterprise Agreement 2023–2026, a single-enterprise agreement approved by the Fair Work Commission on 13 September 2023 (AG2023/2959). It covers Administrative Services Officers (ASO 1 to 6) and Senior Officers (Grades C, B and A) across all ACT Government directorates, plus a number of related local classifications, in Annex A. ACT executives are not covered by it.",
