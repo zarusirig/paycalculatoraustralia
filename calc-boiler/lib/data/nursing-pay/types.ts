@@ -194,6 +194,14 @@ export interface NursingStateData {
   highlights: string[];
   /** Extra reading beyond the instruments, e.g. an employer salary page. */
   extraSources?: RateSource[];
+  /**
+   * Search-shaped <title> override, e.g. "QLD Nurse Pay Rates 2026 — Queensland
+   * Health Nursing Wages". When absent the route builds one from shortName, the
+   * verification year and the employer. See `nursingPageTitle` in ./index.ts.
+   */
+  metaTitle?: string;
+  /** H1 override; defaults to a longer form of the title. */
+  h1?: string;
 }
 
 /** Rates for a single classification in the federal Nurses Award 2020. */

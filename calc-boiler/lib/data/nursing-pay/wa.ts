@@ -44,6 +44,8 @@ export const WA_NURSING_PAY: NursingStateData = {
   code: "WA",
   name: "Western Australia",
   shortName: "WA",
+  metaTitle: "WA Nurse Pay Rates 2026 — WA Health Nursing & Midwifery Salary",
+  h1: "WA Nurse Pay Rates 2026 — WA Health Nursing & Midwifery Pay Scales",
   employer: "WA health service providers (WA Country Health Service, East/North/South Metropolitan and Child and Adolescent Health Services)",
   ordinaryHoursPerWeek: 38,
 

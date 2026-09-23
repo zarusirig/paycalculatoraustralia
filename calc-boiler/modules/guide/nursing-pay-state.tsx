@@ -20,7 +20,11 @@ import {
   hourlyFor,
   instrumentFor,
   nearestTakeHomeSalary,
+  nursingPageH1,
+  ratesYear,
   registeredNurseRange,
+  scaleAnchor,
+  scaleSummaries,
   scalesInFamily,
   takeHomeHref,
 } from "@/lib/data/nursing-pay";
@@ -89,7 +93,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
         {/* HERO */}
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            Nurse &amp; Midwife Pay Rates {state.shortName} — {state.employer.split(" (")[0]} Pay Scales
+            {nursingPageH1(state)}
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">{state.intro}</p>
           <p className="mb-6 rounded-lg border border-eucalyptus/30 bg-eucalyptus-light/20 p-4 text-sm text-navy">
@@ -102,6 +106,9 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+            {/* ── At a glance: one row per classification, linking to its full table ── */}
+            <AtAGlance state={state} />
+
             {/* ── What a registered nurse earns ── */}
             {range ? (
               <section id="what-an-rn-earns">
@@ -620,6 +627,94 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
   );
 }
 
+/**
+ * The answer-first table: every classification on one screen, bottom and top
+ * step, each salary linking to its take-home page and each name to its full
+ * table further down. Built from the same scales the full tables render.
+ */
+function AtAGlance({ state }: { state: NursingStateData }) {
+  const rows = scaleSummaries(state);
+  const primary = state.instruments[0];
+  const anyHourly = rows.some((r) => r.lowHourly !== null);
+  return (
+    <section id="at-a-glance">
+      <h2 style={HEADING_FONT}>
+        {state.shortName} nurse pay rates {ratesYear(state)} at a glance
+      </h2>
+      <p>
+        Base rates in force from {primary.effectiveFrom} under the {primary.name}
+        {primary.nextIncrease ? `; the next scheduled change is ${primary.nextIncrease}` : ""}. Tap a
+        classification for every pay point, or a salary to see it after tax.
+      </p>
+      <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+        <table className="w-full min-w-[34rem] text-left text-sm text-warmgray">
+          <caption className="sr-only">
+            {state.name} nursing and midwifery pay rates by classification, lowest and highest step
+          </caption>
+          <thead className="bg-sandstone font-semibold text-navy">
+            <tr>
+              <th scope="col" className="px-4 py-3">
+                Classification
+              </th>
+              {anyHourly ? (
+                <th scope="col" className="px-4 py-3 text-right">
+                  Hourly from
+                </th>
+              ) : null}
+              <th scope="col" className="px-4 py-3 text-right">
+                Lowest step a year
+              </th>
+              <th scope="col" className="px-4 py-3 text-right">
+                Highest step a year
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+            {rows.map((row) => (
+              <tr key={row.anchor}>
+                <th scope="row" className="px-4 py-3 text-left font-medium">
+                  <a href={`#${row.anchor}`} className="text-navy hover:text-eucalyptus-dark hover:underline">
+                    {row.scale.gradeCode ?? row.scale.classification}
+                  </a>
+                  {row.scale.gradeCode ? (
+                    <span className="block text-xs font-normal text-warmgray">{row.scale.classification}</span>
+                  ) : null}
+                </th>
+                {anyHourly ? (
+                  <td className="px-4 py-3 text-right">
+                    {row.lowHourly !== null ? formatAUD(row.lowHourly, 2) : "—"}
+                  </td>
+                ) : null}
+                <td className="px-4 py-3 text-right">
+                  {row.low !== null ? <GlanceSalary annual={row.low} /> : "No published rate"}
+                </td>
+                <td className="px-4 py-3 text-right">
+                  {row.high !== null && row.high !== row.low ? <GlanceSalary annual={row.high} /> : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {state.derivation.annual ? (
+        <p className="text-sm text-warmgray">
+          {state.employer.split(" (")[0]} does not publish annual salaries; annual figures here are{" "}
+          {state.derivation.annual}.
+        </p>
+      ) : null}
+    </section>
+  );
+}
+
+function GlanceSalary({ annual }: { annual: number }) {
+  return (
+    <Link href={takeHomeHref(annual)} className="font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
+      {formatAUD(annual)}
+      <span className="sr-only"> — see take-home pay on {formatAUD(nearestTakeHomeSalary(annual))}</span>
+    </Link>
+  );
+}
+
 function TakeHomeCard({ heading, annual, note }: { heading: string; annual: number; note: string }) {
   return (
     <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone/40 p-5">
@@ -645,11 +740,12 @@ function ScaleTable({ scale, state }: { scale: PayScale; state: NursingStateData
   const anyWeekly = scale.points.some((p) => typeof p.weekly === "number");
 
   return (
-    <div className="not-prose my-6">
-      <p className="mb-1 text-base font-semibold text-navy">
+    <div className="not-prose my-6 scroll-mt-24" id={scaleAnchor(state, scale)}>
+      <h4 className="mb-1 text-base font-semibold text-navy">
         {scale.classification}
         {scale.gradeCode ? <span className="ml-2 text-sm font-normal text-warmgray">({scale.gradeCode})</span> : null}
-      </p>
+        {" "}pay rates
+      </h4>
       {inst ? (
         <p className="mb-2 text-xs text-warmgray-light">
           {inst.name} — rates effective {inst.effectiveFrom}
