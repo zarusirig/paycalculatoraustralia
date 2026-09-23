@@ -492,6 +492,156 @@ input[type="range"]::-moz-range-thumb {
   border-color: rgb(45 158 124 / 0.3);
 }
 
+/* ─── Site navigation (components/layout/navbar.tsx) ───
+   Short class names on purpose: the header renders ~300 links into every
+   page's HTML (and again in the RSC payload), so per-link utility strings
+   would add ~400KB to every page. One DOM serves both breakpoints: below lg
+   the nav is a drawer of accordions, from lg the panels are dropdown sheets. */
+@utility sn-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eucalyptus-dark;
+}
+@utility sn-kicker {
+  @apply text-[11px] font-bold uppercase tracking-[0.14em];
+}
+
+@layer components {
+  .sn-top {
+    @apply sn-ring flex items-center rounded-md font-medium text-navy/80 transition-colors hover:text-navy max-lg:min-h-14 max-lg:text-lg max-lg:text-navy lg:px-3 lg:py-2 lg:text-sm;
+  }
+  button.sn-top {
+    @apply w-full cursor-pointer justify-between gap-1;
+  }
+  .sn-top > span {
+    font-family: "Bricolage Grotesque", sans-serif;
+    @apply max-lg:font-semibold;
+  }
+  .sn-top[aria-expanded="true"] {
+    @apply text-navy;
+  }
+  .sn-top[aria-current="page"],
+  [data-active="true"] > .sn-top {
+    @apply text-eucalyptus-dark;
+  }
+  .sn-top > svg {
+    @apply h-4 w-4 shrink-0 text-warmgray-light transition-transform duration-200;
+  }
+  .sn-top[aria-expanded="true"] > svg {
+    rotate: 180deg;
+  }
+  /* Border chevron: one rule instead of an inline SVG per group. */
+  .sn-gb::after {
+    content: "";
+    @apply mr-1.5 size-2 shrink-0 rotate-45 border-r-2 border-b-2 border-warmgray-light transition-transform duration-200;
+  }
+  .sn-gb[aria-expanded="true"]::after {
+    @apply -rotate-[135deg];
+  }
+
+  .sn-panel {
+    @apply lg:absolute lg:inset-x-0 lg:top-full lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto lg:border-y lg:border-sandstone-dark/50 lg:bg-white lg:shadow-[0_24px_48px_-24px_rgba(26,39,68,0.35)];
+  }
+  .sn-body {
+    @apply pb-5 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-[17rem_1fr] lg:gap-10 lg:px-8 lg:py-7;
+  }
+  .sn-foot {
+    @apply hidden border-t border-sandstone-dark/40 bg-sandstone/60 lg:block;
+  }
+
+  /* "Start here" hubs: sandstone rail on desktop, 2-up cards on mobile. */
+  .sn-rail {
+    @apply lg:self-start lg:rounded-xl lg:bg-sandstone lg:p-3;
+  }
+  .sn-rail > p {
+    @apply sn-kicker hidden px-3 pb-2 pt-1 text-warmgray lg:block;
+  }
+  .sn-rail > ul {
+    @apply max-lg:mb-2 max-lg:grid max-lg:grid-cols-2 max-lg:gap-2;
+  }
+  .sn-hub {
+    @apply sn-ring flex h-full flex-col rounded-lg px-3 py-2.5 text-xs leading-snug text-warmgray-light transition-colors hover:bg-white max-lg:min-h-16 max-lg:bg-sandstone;
+  }
+  .sn-hub > b {
+    @apply mb-0.5 text-sm font-semibold text-navy;
+  }
+  .sn-hub:hover > b {
+    @apply text-eucalyptus-dark;
+  }
+  .sn-hub[aria-current="page"] {
+    @apply bg-eucalyptus-light ring-1 ring-eucalyptus/40;
+  }
+
+  .sn-groups {
+    @apply max-lg:divide-y max-lg:divide-sandstone-dark/40 max-lg:border-t max-lg:border-sandstone-dark/40 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:gap-y-7;
+  }
+  .sn-groups.sn-m {
+    @apply lg:hidden;
+  }
+  /* Desktop group heading; links to the group's hub when it has one. */
+  .sn-gh {
+    @apply sn-kicker mb-2 hidden border-b border-eucalyptus/25 pb-2 text-eucalyptus-dark lg:block;
+  }
+  .sn-gh > a {
+    @apply sn-ring rounded hover:text-navy;
+  }
+  .sn-gh > a::after,
+  .sn-all::after {
+    content: " \2192";
+    white-space: pre;
+  }
+  /* Mobile group accordion trigger. */
+  .sn-gb {
+    @apply sn-ring flex min-h-12 w-full cursor-pointer items-center justify-between rounded-md text-left text-[15px] font-medium text-navy lg:hidden;
+  }
+  .sn-gb i {
+    @apply ml-2 rounded-full bg-sandstone px-2 py-0.5 text-xs font-normal not-italic text-warmgray;
+  }
+  .sn-list {
+    @apply hidden pb-3 data-[open=true]:block lg:block lg:pb-0;
+  }
+  .sn-list a {
+    @apply sn-ring flex items-center rounded text-warmgray transition-colors hover:text-eucalyptus-dark max-lg:min-h-11 max-lg:pl-3 max-lg:text-[15px] lg:py-1 lg:text-sm;
+  }
+  .sn-list a[aria-current="page"] {
+    @apply font-semibold text-eucalyptus-dark;
+  }
+  .sn-list a.sn-all {
+    @apply font-medium text-eucalyptus-dark lg:hidden;
+  }
+
+  /* By state: states down, topics across (desktop only). */
+  .sn-grid {
+    @apply hidden w-full border-separate border-spacing-0 text-sm lg:table;
+  }
+  .sn-grid thead th {
+    @apply sn-kicker pb-2 text-left text-warmgray;
+  }
+  .sn-grid thead a {
+    @apply sn-ring rounded text-eucalyptus-dark hover:text-navy hover:underline;
+  }
+  .sn-grid tbody th,
+  .sn-grid td {
+    @apply border-t border-sandstone-dark/40 py-1.5 pr-3 text-left font-normal;
+  }
+  .sn-grid tbody tr:hover > * {
+    @apply bg-sandstone/50;
+  }
+  .sn-grid tbody th b {
+    @apply font-semibold text-navy;
+  }
+  .sn-grid tbody th small {
+    @apply text-xs text-warmgray-light;
+  }
+  .sn-grid td > span {
+    @apply inline-block min-w-11 text-center text-warmgray-light/60;
+  }
+  .sn-grid td > a {
+    @apply sn-ring inline-flex min-w-11 items-center justify-center rounded-md border border-sandstone-dark/60 bg-white px-2 py-0.5 text-xs font-semibold text-navy transition-colors hover:border-eucalyptus hover:bg-eucalyptus-light hover:text-eucalyptus-dark;
+  }
+  .sn-grid td > a[aria-current="page"] {
+    @apply border-eucalyptus bg-eucalyptus-light;
+  }
+}
+
 /* ─── Reduced Motion ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {
