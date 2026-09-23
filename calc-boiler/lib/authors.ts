@@ -159,7 +159,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
-  "age-pension-income-test-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "age-pension-income-test-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" }, // H3: re-reviewed with the rates-first upgrade
   // C4 Centrelink family payments (added 2026-09-23)
   "parenting-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "family-tax-benefit-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },

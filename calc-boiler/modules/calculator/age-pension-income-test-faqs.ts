@@ -15,6 +15,7 @@ import {
   agePensionFortnightly,
   assessableAfterWorkBonus,
 } from "@/lib/constants/centrelink-income-test";
+import { DEEMING } from "@/lib/constants/centrelink-means-test";
 
 const IT = AGE_PENSION_INCOME_TEST;
 const MAR = AGE_PENSION_RATES[MARCH_2026];
@@ -40,8 +41,8 @@ export const PENSION_FAQS: readonly PensionFaq[] = [
     a: `Every fortnight ${formatAUD(WORK_BONUS.fortnightlyCredit)} of Work Bonus credit is added to your balance, up to ${formatAUD(WORK_BONUS.maxBalance)}. When you work, the first ${formatAUD(WORK_BONUS.fortnightlyCredit)} of employment income each fortnight is disregarded, and any balance you have built up offsets what is left, before the income test applies. Earning ${formatAUD(1_000)} a fortnight with a ${formatAUD(5_000)} balance leaves ${formatAUD(assessableAfterWorkBonus(1_000, 5_000))} assessable; with no balance, ${formatAUD(assessableAfterWorkBonus(1_000, 0))}. The credit and the maximum balance are set in legislation and are not indexed in September.`,
   },
   {
-    q: "What is the maximum Age Pension?",
-    a: `To 19 September 2026: ${formatAUD(MAR.maxFortnightly.single.total)} a fortnight single (${formatAUD(MAR.maxFortnightly.single.basic)} basic rate plus ${formatAUD(MAR.maxFortnightly.single.supplement)} Pension Supplement and ${formatAUD(MAR.maxFortnightly.single.energy)} Energy Supplement) and ${formatAUD(MAR.maxFortnightly.coupleEach.total)} each for a couple (${formatAUD(MAR.maxFortnightly.coupleCombined.total)} combined). From 20 September 2026: ${formatAUD(SEP.maxFortnightly.single.total)} single (${formatAUD(SEP.maxFortnightly.single.basic)} plus ${formatAUD(SEP.maxFortnightly.single.supplement)} and ${formatAUD(SEP.maxFortnightly.single.energy)}) and ${formatAUD(SEP.maxFortnightly.coupleEach.total)} each (${formatAUD(SEP.maxFortnightly.coupleCombined.total)} combined). Rates are adjusted on 20 March and 20 September.`,
+    q: "What are the Age Pension rates from 20 September 2026?",
+    a: `From 20 September 2026 the maximum Age Pension is ${formatAUD(SEP.maxFortnightly.single.total, 2)} a fortnight single (${formatAUD(SEP.maxFortnightly.single.basic, 2)} basic rate plus ${formatAUD(SEP.maxFortnightly.single.supplement, 2)} Pension Supplement and ${formatAUD(SEP.maxFortnightly.single.energy, 2)} Energy Supplement) and ${formatAUD(SEP.maxFortnightly.coupleEach.total, 2)} each for a couple (${formatAUD(SEP.maxFortnightly.coupleCombined.total, 2)} combined). To 19 September 2026 it was ${formatAUD(MAR.maxFortnightly.single.total, 2)} single and ${formatAUD(MAR.maxFortnightly.coupleEach.total, 2)} each (${formatAUD(MAR.maxFortnightly.coupleCombined.total, 2)} combined). Rates are adjusted on 20 March and 20 September.`,
   },
   {
     q: "How much pension do I get on $1,000 a fortnight of other income?",
@@ -49,7 +50,7 @@ export const PENSION_FAQS: readonly PensionFaq[] = [
   },
   {
     q: "Does the calculator include the assets test and deeming?",
-    a: "No. Services Australia runs both an income test and an assets test and pays the lower result, and it deems income from financial assets rather than using actual returns. Enter your deemed and other income in the 'other income' field if you know it; the assets test is outside this calculator.",
+    a: `This calculator runs the income test only. Services Australia runs both an income test and an assets test and pays the lower result, and it deems income from financial assets (${(DEEMING.lowerRate * 100).toFixed(2)}% on the first ${formatAUD(DEEMING.thresholds.single)} for a single pensioner, ${(DEEMING.upperRate * 100).toFixed(2)}% above, from ${DEEMING.ratesFrom}) rather than using actual returns. Enter your deemed and other income in the 'other income' field here, or use our Age Pension assets test calculator, which runs both tests and deems your savings for you.`,
   },
   {
     q: "Is the Age Pension taxable?",
