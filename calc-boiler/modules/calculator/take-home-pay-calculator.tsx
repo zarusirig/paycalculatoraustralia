@@ -25,6 +25,7 @@ import {
   calculateMedicareSurcharge,
 } from "@/lib/constants";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+import { AmountPresets, convertPeriod, HeadTermLinks, PERIOD_NOUN, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 // Every worked figure on this page is computed from the tax engine. The copy
 // had frozen at FY2025-26 values (16% first bracket, "$63,612 on $80,000",
@@ -65,8 +66,20 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
 ];
 
+const PRESETS: Record<EntryPeriod, readonly number[]> = {
+  annual: [50_000, 75_000, 100_000, 150_000],
+  monthly: [4_000, 6_000, 8_000, 10_000],
+  fortnightly: [2_000, 3_000, 4_000, 5_000],
+  weekly: [1_000, 1_500, 2_000, 2_500],
+};
+const MAX_BY_PERIOD: Record<EntryPeriod, number> = { annual: 500_000, monthly: 45_000, fortnightly: 20_000, weekly: 10_000 };
+
 export default function TakeHomePayCalculatorPage() {
-  const [salary, setSalary] = useState(80_000);
+  // Net-pay calculators on page 1 (paycalculator.com.au, moneysmart,
+  // wagecalculator) all accept the pay period the user actually knows.
+  const [period, setPeriod] = useState<EntryPeriod>("annual");
+  const [amount, setAmount] = useState(80_000);
+  const salary = Math.round(amount * PERIODS_PER_YEAR[period]);
   const [includeHECS, setIncludeHECS] = useState(false);
   const [hasPrivateHealth, setHasPrivateHealth] = useState(true);
 
@@ -79,16 +92,16 @@ export default function TakeHomePayCalculatorPage() {
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+        {/* Compact hero: the calculator must sit above the fold (intent map, Sep 2026). */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb"><ol className="flex items-center space-x-1 text-sm text-warmgray">
             <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-gray-400" /></li>
-            <li><span className="font-medium text-navy" aria-current="page">Take-Home Pay Calculator</span></li>
+            <li><span className="font-medium text-navy" aria-current="page">Take Home Pay Calculator</span></li>
           </ol></nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Calculator Australia {SITE_CONFIG.financialYear} — Pay After Tax</h1>
-          <p className="text-lg text-navy">On <strong>$80,000</strong> you take home <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight, {formatAUD(EX80.weekly)} a week) after income tax and Medicare in FY{SITE_CONFIG.financialYear}.</p>
-          <p className="text-warmgray mt-2">Enter your salary to work out exactly what hits your bank account, with HECS-HELP and super if they apply.</p>
-          <TrustBar className="mt-4" />
+          <h1 className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take Home Pay Calculator Australia {SITE_CONFIG.financialYear} — Net Pay After Tax</h1>
+          <p className="text-base md:text-lg text-navy">On <strong>$80,000</strong> your net pay is <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight, {formatAUD(EX80.weekly)} a week) after income tax and Medicare in FY{SITE_CONFIG.financialYear}. Enter your own weekly, fortnightly, monthly or annual pay below — this after tax income calculator adds HECS-HELP and super if they apply.</p>
+          <TrustBar className="mt-3" />
         </section>
 
         {/* CALCULATOR */}
@@ -97,15 +110,25 @@ export default function TakeHomePayCalculatorPage() {
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                  <PeriodToggle periods={["annual", "monthly", "fortnightly", "weekly"]} value={period} label="I'm entering my gross pay"
+                    onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
                   <div>
-                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross Annual Salary</label>
+                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross {period === "annual" ? "annual salary" : `${period} pay`} (before tax)</label>
                     <div className="flex items-center"><span className="text-warmgray-light mr-2">$</span>
-                      <input type="number" id="salary" min={0} max={500000} step={1000} value={salary}
-                        onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 500000))}
-                        className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
+                      <input type="number" id="salary" min={0} max={MAX_BY_PERIOD[period]} step={period === "annual" ? 1000 : 1} value={amount}
+                        onChange={(e) => setAmount(clamp(Number(e.target.value || 0), 0, MAX_BY_PERIOD[period]))}
+                        className="block w-full rounded-md border-sandstone-dark/30 text-lg font-semibold shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    {period === "annual" && (
+                      <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    )}
+                    <AmountPresets values={PRESETS[period]} current={amount} onPick={setAmount} />
+                    {period !== "annual" && <p className="mt-1 text-xs text-warmgray-light">= {formatAUD(salary)} a year</p>}
+                    {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
+                    <p className="mt-3 rounded-lg bg-eucalyptus-light/40 px-3 py-2 text-sm text-navy md:hidden" aria-hidden="true">
+                      Take-home: <strong className="text-eucalyptus-dark">{formatAUD(result.takeHomePay)}</strong>/yr · {formatAUD(result.fortnightly)}/fn · {formatAUD(result.weekly)}/wk
+                    </p>
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm"><input type="checkbox" checked={includeHECS}
                     onChange={(e) => setIncludeHECS(e.target.checked)}
@@ -118,7 +141,13 @@ export default function TakeHomePayCalculatorPage() {
 
                 <Card className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
                   <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your Pay Breakdown</h2>
+                    <h2 className="text-xl font-semibold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your Net Pay After Tax</h2>
+                    {/* Headline result first, moneysmart-style: the answer before the breakdown. */}
+                    <div className="mb-4 rounded-xl bg-white p-4 text-center shadow-sm">
+                      <p className="text-xs text-warmgray-light">You take home</p>
+                      <p className="text-3xl font-extrabold text-eucalyptus-dark">{formatAUD(period === "annual" ? result.takeHomePay : period === "monthly" ? result.monthly : period === "fortnightly" ? result.fortnightly : result.weekly)}</p>
+                      <p className="text-xs text-warmgray">per {PERIOD_NOUN[period]} · {formatPercent(result.effectiveTaxRate)} effective tax</p>
+                    </div>
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Salary" value={formatAUD(salary)} bold />
                       <div className="border-t border-sandstone-dark/20" />
@@ -152,6 +181,8 @@ export default function TakeHomePayCalculatorPage() {
             </CardContent>
           </Card>
         </section>
+
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "incomeTaxCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">

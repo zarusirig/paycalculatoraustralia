@@ -517,7 +517,7 @@ export const SITE_CONFIG = {
   financialYearStart: "1 July 2026",
   financialYearEnd: "30 June 2027",
   previousFinancialYear: "2025-26",
-  lastVerified: "28 July 2026",
+  lastVerified: "23 September 2026",
   domain: "pay-calculator-australia.com",
   baseUrl: "https://pay-calculator-australia.com",
   email: "hello@pay-calculator-australia.com",

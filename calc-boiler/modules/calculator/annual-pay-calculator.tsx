@@ -22,6 +22,7 @@ import {
   TAX_BRACKETS_2025_26,
 } from "@/lib/constants";
 import { hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { AmountPresets, HeadTermLinks } from "@/modules/calculator/head-term-ui";
 
 // Every figure in the copy is derived from lib/constants. The page previously
 // carried FY2025-26 prose (16% bracket, $63,933 on $80,000, $93,000 MLS
@@ -34,9 +35,6 @@ const effRate = (salary: number) => {
   const r = net(salary);
   return `${(((r.netIncomeTax + r.medicareLevy) / salary) * 100).toFixed(1)}%`;
 };
-const Q80 = net(80_000);
-const Q100 = net(100_000);
-const Q120 = net(120_000);
 const EX = net(85_000);
 const EX_HECS = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: true, hasPrivateHealth: true }).hecsRepayment;
 const EX_BRACKET2_TAX = Math.round((TAX_BRACKETS[1].max - TAX_BRACKETS[0].max) * TAX_BRACKETS[1].rate);
@@ -46,6 +44,13 @@ const EX_BRACKET3_TAX = Math.round((85_000 - TAX_BRACKETS[1].max) * TAX_BRACKETS
 // https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release
 const AWOTE_WEEKLY = 2_083.7;
 const AWOTE_ANNUAL = Math.round(AWOTE_WEEKLY * 52);
+
+// Hero quick-answer figures from the tax engine (they had frozen at FY2025-26
+// values under a FY2026-27 heading).
+const QA80 = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+const QA100 = calculatePayBreakdown({ grossSalary: 100_000, includeHECS: false, hasPrivateHealth: true });
+const QA120 = calculatePayBreakdown({ grossSalary: 120_000, includeHECS: false, hasPrivateHealth: true });
+const SALARY_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -69,7 +74,8 @@ export default function AnnualPayCalculatorPage() {
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         {/* HERO */}
-        <section className="bg-sandstone rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
+        <section className="bg-sandstone rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -77,17 +83,15 @@ export default function AnnualPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Annual Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary Calculator Australia — Yearly Take-Home Pay ({SITE_CONFIG.financialYear})</h1>
-          <p className="text-lg text-warmgray">Enter any gross annual salary to see exactly what it means as a single yearly take-home figure — after income tax, the Medicare levy, HECS-HELP and super for FY{FY}.</p>
-          <div className="mt-5 rounded-xl border-l-4 border-eucalyptus-dark bg-white/80 p-4 shadow-sm">
-            <p className="text-sm text-navy"><strong>Quick answer:</strong> a gross annual salary of <strong>$80,000</strong> in Australia for FY{FY} delivers approximately <strong>{formatAUD(Q80.takeHomePay)} in annual take-home pay</strong> ({formatAUD(Q80.netIncomeTax)} income tax + {formatAUD(Q80.medicareLevy)} Medicare levy). At <strong>$100,000</strong> the figure is roughly <strong>{formatAUD(Q100.takeHomePay)}</strong>; at <strong>$120,000</strong> it is approximately <strong>{formatAUD(Q120.takeHomePay)}</strong>. Use the calculator below to enter your exact yearly salary.</p>
-          </div>
-          <TrustBar className="mt-4" />
+          <h1 className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary After Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-base md:text-lg text-navy">A gross salary of <strong>$80,000</strong> is <strong>{formatAUD(QA80.takeHomePay)} a year after tax</strong> in FY{SITE_CONFIG.financialYear} ({formatAUD(QA80.netIncomeTax)} income tax + {formatAUD(QA80.medicareLevy)} Medicare levy). At $100,000 it is {formatAUD(QA100.takeHomePay)}; at $120,000, {formatAUD(QA120.takeHomePay)}.</p>
+          <p className="text-warmgray mt-2">Enter any yearly salary for your annual take-home pay after income tax, Medicare, HECS-HELP and super.</p>
+          <TrustBar className="mt-3" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-semibold text-navy mb-6 text-center" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Annual Take-Home Pay</h2>
+          <h2 className="text-xl md:text-2xl font-semibold text-navy mb-4 text-center" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Salary After Tax</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8">
@@ -101,6 +105,7 @@ export default function AnnualPayCalculatorPage() {
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
                       onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    <AmountPresets values={SALARY_PRESETS} current={salary} onPick={setSalary} />
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeHECS} onChange={(e) => setIncludeHECS(e.target.checked)}
@@ -137,6 +142,8 @@ export default function AnnualPayCalculatorPage() {
             </CardContent>
           </Card>
         </section>
+
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["salaryCalculator", "afterTaxIncomeCalculator", "incomeTaxCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">

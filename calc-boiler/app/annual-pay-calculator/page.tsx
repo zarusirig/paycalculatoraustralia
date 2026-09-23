@@ -4,23 +4,36 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, formatPercent, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
-
-// FAQ answers derived from the same engine as the on-page quick answer.
-const FY = SITE_CONFIG.financialYear;
-const A80 = calculatePayBreakdown({ grossSalary: 80_000 });
-const A100 = calculatePayBreakdown({ grossSalary: 100_000 });
-const EFF100 = (((A100.netIncomeTax + A100.medicareLevy) / 100_000) * 100).toFixed(1);
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/annual-pay-calculator/`;
 
+const FY = SITE_CONFIG.financialYear;
+// Answer-first figure from the tax engine at build time, never hardcoded.
+const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+// FAQ answers from the same engine (they had frozen at FY2025-26 figures such
+// as $63,933 on $80,000 and a 16% second bracket).
+const at100k = calculatePayBreakdown({ grossSalary: 100_000, includeHECS: false, hasPrivateHealth: true });
+const EFF100 = (((at100k.netIncomeTax + at100k.medicareLevy) / 100_000) * 100).toFixed(1);
+
+// Head-term intent map (docs/seo/2026-09-23-head-term-intent-map.md): this URL
+// is the ONE primary for "salary after tax calculator" (6.6k, /monthly-pay-
+// calculator/ was #71) and "salary after tax" (2.9k, this URL #44). "Annual
+// salary calculator"/"yearly salary calculator" currently rank via
+// /hourly-to-annual-salary-calculator/ (#20-24) and are left there. The generic
+// "salary calculator" head term belongs to the homepage — this page links to it.
+// Previous: "Annual Salary Calculator Australia — Yearly Take-Home Pay" (no FY,
+// description hardcoded FY2026-27).
+const TITLE = `Annual Salary After Tax Calculator Australia ${FY}`;
+const DESCRIPTION = `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.`;
+
 export const metadata: Metadata = {
-  title: "Annual Salary Calculator Australia — Yearly Take-Home Pay",
-  description: "Free annual salary calculator for Australia FY2026-27. Convert any yearly gross salary (e.g. $80,000, $100,000) into annual take-home pay after income tax, Medicare levy & HECS.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: "Annual Salary Calculator Australia — Yearly Take-Home Pay (2026-27)", description: "Convert any gross annual salary into your yearly take-home figure after tax, Medicare & HECS.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Annual Salary Calculator Australia", description: "Yearly take-home pay calculated instantly for FY2026-27." },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: TITLE, description: `Yearly take-home pay after tax for FY${FY}.` },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = {
@@ -35,7 +48,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Annual Pay Calculator Australia",
+  name: `Annual Salary After Tax Calculator Australia ${FY}`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -50,8 +63,8 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "What is $80,000 a year after tax in Australia?", acceptedAnswer: { "@type": "Answer", text: `A gross annual salary of $80,000 in Australia for FY${FY} results in approximately ${formatAUD(A80.takeHomePay)} in annual take-home pay after ${formatAUD(A80.netIncomeTax)} in income tax and ${formatAUD(A80.medicareLevy)} Medicare levy. Your employer pays an additional ${formatAUD(A80.superContribution)} into super on top.` } },
-    { "@type": "Question", name: "What is $100,000 a year after tax in Australia?", acceptedAnswer: { "@type": "Answer", text: `A gross annual salary of $100,000 in Australia for FY${FY} results in approximately ${formatAUD(A100.takeHomePay)} in annual take-home pay after ${formatAUD(A100.netIncomeTax)} in income tax and ${formatAUD(A100.medicareLevy)} Medicare levy. The effective rate of tax plus Medicare levy is ${EFF100}%.` } },
+    { "@type": "Question", name: "What is $80,000 a year after tax in Australia?", acceptedAnswer: { "@type": "Answer", text: `A gross annual salary of $80,000 in Australia for FY${FY} results in approximately ${formatAUD(at80k.takeHomePay)} in annual take-home pay after ${formatAUD(at80k.netIncomeTax)} in income tax and ${formatAUD(at80k.medicareLevy)} Medicare levy. Your employer pays an additional ${formatAUD(at80k.superContribution)} into super on top.` } },
+    { "@type": "Question", name: "What is $100,000 a year after tax in Australia?", acceptedAnswer: { "@type": "Answer", text: `A gross annual salary of $100,000 in Australia for FY${FY} results in approximately ${formatAUD(at100k.takeHomePay)} in annual take-home pay after ${formatAUD(at100k.netIncomeTax)} in income tax and ${formatAUD(at100k.medicareLevy)} Medicare levy. The effective rate of tax plus Medicare levy is ${EFF100}%.` } },
     { "@type": "Question", name: "How is annual pay calculated in Australia?", acceptedAnswer: { "@type": "Answer", text: `Annual take-home pay is your gross yearly salary minus total income tax, the 2% Medicare levy, and any HECS-HELP repayments for the Australian financial year (1 July to 30 June). The ATO applies progressive tax brackets — ${bracketRatesSentence()}.` } },
     { "@type": "Question", name: "What is the annual salary calculator used for?", acceptedAnswer: { "@type": "Answer", text: "The annual salary calculator converts a yearly gross figure into a single annual take-home number for budgeting, salary comparisons, loan applications, and tax return verification. It is preferred over per-cycle calculators when you negotiate a yearly package or compare two job offers." } },
     { "@type": "Question", name: "Does my annual pay include superannuation?", acceptedAnswer: { "@type": "Answer", text: `Generally no. Your gross annual salary forms your 'Ordinary Time Earnings' (OTE). Your employer pays an additional ${formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee on top into your nominated super fund. The base salary plus super together form your total remuneration package.` } },
