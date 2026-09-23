@@ -491,6 +491,32 @@ test("T5: pharmacy assistant reads the shared Pharmacy Award constants", () => {
   assert.equal(getOccupation("pharmacy-assistant")!.penalties, getOccupation("pharmacist")!.penalties);
 });
 
+test("T5: receptionist and bookkeeper read the shared Clerks Award constants", () => {
+  checkPublished("receptionist", [
+    ["Level 1 — Year 1", 1024.7, 26.97, 33.71],
+    ["Level 2 — Year 1", 1119.1, 29.45, 36.81],
+  ]);
+  checkPublished("bookkeeper", [
+    ["Level 3", 1182.1, 31.11, 38.89],
+    ["Level 4", 1241.4, 32.67, 40.84],
+  ]);
+  assert.equal(getOccupation("bookkeeper")!.award!.code, "MA000002");
+});
+
+test("T5: pathology collector — cl 16.2(c) transitional table and Schedule C.1.9 casuals", () => {
+  checkPublished("pathology-collector", [
+    ["Level 5 — entry (unqualified)", 1157.2, 30.45, 38.06],
+    ["Level 6 — qualified (Certificate III)", 1163.9, 30.63, 38.29],
+    ["Level 7 — experienced (unqualified, not previously Level 6)", 1203.5, 31.67, 39.59],
+    ["Level 7 — experienced (qualified or previously Level 6)", 1241.4, 32.67, 40.84],
+  ]);
+});
+
+test("T5: dental hygienist uses the shared HPSS health professional table", () => {
+  const h = headlineRow(getOccupation("dental-hygienist")!)!;
+  assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 pay point 2", 1219.5, 32.09, 40.11]);
+});
+
 test("T5: retail worker reads the shared retail constants", () => {
   const rows = getOccupation("retail-worker")!.tables[0].rows;
   assert.equal(rows.length, RETAIL_RATES.length);

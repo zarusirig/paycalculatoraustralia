@@ -14,6 +14,7 @@ import { AGED_CARE_WORKER } from "./aged-care-worker";
 import { APPRENTICE_ELECTRICIAN } from "./apprentice-electrician";
 import { BARISTA } from "./barista";
 import { BARTENDER } from "./bartender";
+import { BOOKKEEPER } from "./bookkeeper";
 import { BUS_DRIVER } from "./bus-driver";
 import { CARPENTER } from "./carpenter";
 import { CHEF } from "./chef";
@@ -21,6 +22,7 @@ import { CHILDCARE_WORKER } from "./childcare-worker";
 import { CLEANER } from "./cleaner";
 import { CRANE_OPERATOR } from "./crane-operator";
 import { DENTAL_ASSISTANT } from "./dental-assistant";
+import { DENTAL_HYGIENIST } from "./dental-hygienist";
 import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
@@ -34,6 +36,7 @@ import { MEDICAL_RECEPTIONIST } from "./medical-receptionist";
 import { MIDWIFE } from "./midwife";
 import { NURSE } from "./nurse";
 import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
+import { PATHOLOGY_COLLECTOR } from "./pathology-collector";
 import { PHARMACIST } from "./pharmacist";
 import { PHARMACY_ASSISTANT } from "./pharmacy-assistant";
 import { PHYSIOTHERAPIST } from "./physiotherapist";
@@ -41,6 +44,7 @@ import { PLUMBER } from "./plumber";
 import { PROPERTY_MANAGER } from "./property-manager";
 import { PSYCHOLOGIST } from "./psychologist";
 import { REAL_ESTATE_AGENT } from "./real-estate-agent";
+import { RECEPTIONIST } from "./receptionist";
 import { RETAIL_WORKER } from "./retail-worker";
 import { SECURITY_GUARD } from "./security-guard";
 import { SOCIAL_WORKER } from "./social-worker";
@@ -89,6 +93,10 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   hairdresser: HAIRDRESSER,
   "lab-technician": LAB_TECHNICIAN,
   "pharmacy-assistant": PHARMACY_ASSISTANT,
+  receptionist: RECEPTIONIST,
+  bookkeeper: BOOKKEEPER,
+  "pathology-collector": PATHOLOGY_COLLECTOR,
+  "dental-hygienist": DENTAL_HYGIENIST,
 };
 
 /** Every occupation, in the order the hub lists them. */
