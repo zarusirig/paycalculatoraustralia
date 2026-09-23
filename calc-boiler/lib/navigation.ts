@@ -809,6 +809,12 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   {
+    title: "Sales Pay",
+    guides: [
+      { href: "/ote-salary/", label: "OTE Salary Meaning", description: "On-target earnings: base + commission at target" },
+    ],
+  },
+  {
     title: "Centrelink Payments",
     guides: [
       { href: "/disability-support-pension-calculator/", label: "Disability Support Pension", description: "DSP rates, income test and the 29-hour rule" },

@@ -336,6 +336,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "sick-leave-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "compassionate-leave": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "disability-support-pension-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "ote-salary": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end G3 ---
 };
 
