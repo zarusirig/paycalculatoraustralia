@@ -1,361 +1,411 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import {
-  navigationItems,
+  MEGA_MENU,
+  NAV_CTA,
+  PRIMARY_NAV_LINKS,
   navigationLogo,
-  GUIDE_CATEGORIES,
-  STATE_CATEGORIES,
-  TAX_ON_SALARY_CATEGORIES,
+  type MegaMenu,
+  type MenuGroup,
 } from "@/lib/navigation";
+import NavbarBehavior from "./navbar-behavior";
 
-type CategoryItem = { label: string; href: string; description?: string };
-type Category = { title: string; items: CategoryItem[] };
+/*
+ * Server component. Every menu link is in the static HTML of every page: the
+ * panels are always rendered and hidden with the `hidden` attribute, which
+ * NavbarBehavior (a small client island with no markup of its own) toggles.
+ * Before Sep 2026 the menu mounted its links inside framer-motion's
+ * AnimatePresence, so crawlers saw 5 header links and none of the menu.
+ *
+ * One DOM serves both breakpoints. From `lg` the panels are dropdown sheets
+ * under the bar; below `lg` the same <nav> becomes a full-height drawer and
+ * each panel an accordion section, with the groups inside it as nested
+ * accordions. Group headings render twice (a heading for desktop, a button
+ * for mobile) because only mobile needs them to be interactive.
+ */
 
-const MEGA_MENU_MAP: Record<string, { categories: Category[]; gridCols?: string }> = {
-  "Tax on Salary": {
-    categories: TAX_ON_SALARY_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.salaries] as CategoryItem[],
-    })),
-  },
-  Guides: {
-    categories: GUIDE_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.guides] as CategoryItem[],
-    })),
-  },
-  "By State": {
-    categories: STATE_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.states] as CategoryItem[],
-    })),
-  },
-};
+const HEADING_FONT = {
+  fontFamily: "'Bricolage Grotesque', sans-serif",
+} as const;
+
+const focusRing =
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-eucalyptus-dark";
 
 export default function Navbar() {
-  const pathname = usePathname() || "/";
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveMenu(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const closeAll = useCallback(() => {
-    setActiveMenu(null);
-    setMobileOpen(false);
-    setMobileActiveMenu(null);
-  }, []);
-
-  const isLinkActive = (href: string) =>
-    href === "/" ? pathname === "/" : href !== "#" && pathname.startsWith(href);
-
-  const renderDesktopLink = (href: string, label: string, hasMegaMenu?: boolean) => {
-    const isActive = isLinkActive(href);
-
-    if (!hasMegaMenu) {
-      return (
+  return (
+    <header
+      id="site-header"
+      data-scrolled="false"
+      data-mobile-open="false"
+      className="group/header fixed inset-x-0 top-0 z-50 border-b border-transparent bg-white/85 backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-300 data-[scrolled=true]:border-sandstone-dark/40 data-[scrolled=true]:bg-white/95 data-[scrolled=true]:shadow-md max-lg:data-[mobile-open=true]:bg-white"
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link
-          key={href + label}
-          href={href}
-          className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-            isActive ? "text-eucalyptus-dark" : "text-navy/70 hover:text-navy"
-          }`}
+          href={navigationLogo.href}
+          className={`group flex shrink-0 items-center gap-2.5 rounded-lg ${focusRing}`}
         >
-          {label}
-          <span
-            className={`absolute left-1 right-1 -bottom-0.5 h-[2px] rounded-full bg-eucalyptus transition-all duration-300 ${
-              isActive ? "w-[calc(100%-8px)] opacity-100" : "w-0 opacity-0"
-            }`}
+          <Image
+            src="/images/logo.svg"
+            alt=""
+            width={36}
+            height={36}
+            className="rounded-lg shadow-md transition-transform duration-200 group-hover:scale-105"
+            priority
           />
+          <span
+            className="text-base font-bold tracking-tight text-navy transition-colors group-hover:text-eucalyptus-dark"
+            style={HEADING_FONT}
+          >
+            {navigationLogo.label}
+          </span>
         </Link>
-      );
-    }
 
-    const isOpen = activeMenu === label;
-    const megaData = MEGA_MENU_MAP[label];
-
-    return (
-      <div
-        key={label}
-        className="relative"
-        onMouseEnter={() => setActiveMenu(label)}
-        onMouseLeave={() => setActiveMenu(null)}
-      >
         <button
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveMenu(isOpen ? null : label);
-            }
-            if (e.key === "Escape") setActiveMenu(null);
-          }}
-          aria-expanded={isOpen}
-          aria-haspopup="true"
-          className={`flex items-center space-x-0 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-            isActive ? "text-eucalyptus-dark" : "text-navy/70 hover:text-navy"
-          }`}
+          type="button"
+          id="nav-toggle"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          className={`-mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-navy transition-colors hover:bg-sandstone lg:hidden ${focusRing}`}
         >
-          <span>{label}</span>
-          <ChevronDown
-            className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
+          <span className="sr-only group-data-[mobile-open=true]/header:hidden">
+            Open menu
+          </span>
+          <span className="sr-only hidden group-data-[mobile-open=true]/header:inline">
+            Close menu
+          </span>
+          <Menu
+            aria-hidden="true"
+            className="h-6 w-6 group-data-[mobile-open=true]/header:hidden"
+          />
+          <X
+            aria-hidden="true"
+            className="hidden h-6 w-6 group-data-[mobile-open=true]/header:block"
           />
         </button>
 
-        <AnimatePresence>
-          {isOpen && megaData && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-1/2 z-50 mt-0 w-screen max-w-5xl -translate-x-1/2"
+        <nav
+          id="site-nav"
+          aria-label="Main"
+          className="max-lg:absolute max-lg:inset-x-0 max-lg:top-full max-lg:hidden max-lg:h-[calc(100dvh-4rem)] max-lg:overflow-y-auto max-lg:overscroll-contain max-lg:border-t max-lg:border-sandstone-dark/40 max-lg:bg-white max-lg:group-data-[mobile-open=true]/header:block lg:flex lg:items-center lg:gap-2"
+        >
+          <ul className="max-lg:divide-y max-lg:divide-sandstone-dark/50 max-lg:px-4 lg:flex lg:items-center lg:gap-0.5">
+            {MEGA_MENU.map((menu) => (
+              <MenuItem key={menu.id} menu={menu} />
+            ))}
+            {PRIMARY_NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  data-nav-link
+                  className={`flex items-center rounded-md font-medium text-navy/80 transition-colors hover:text-navy aria-[current=page]:text-eucalyptus-dark max-lg:min-h-14 max-lg:text-lg max-lg:text-navy lg:px-3 lg:py-2 lg:text-sm ${focusRing}`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="space-y-3 px-4 pb-10 pt-4 lg:contents lg:space-y-0">
+            <Link
+              href={NAV_CTA.href}
+              className={`flex min-h-12 items-center justify-center gap-1.5 rounded-lg bg-eucalyptus-dark px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy lg:ml-2 lg:min-h-9 ${focusRing}`}
             >
-              <div className="rounded-xl border border-sandstone-dark/40 bg-white/95 shadow-xl backdrop-blur-sm ring-1 ring-black/5">
-                <div className="p-8">
-                  <div className="flex flex-wrap justify-normal gap-8">
-                    {megaData.categories.map((category) => (
-                      <div key={category.title} className="space-y-2">
-                        <h4 className="border-b border-eucalyptus/20 pb-2 text-xs font-semibold uppercase tracking-widest text-eucalyptus-dark">
-                          {category.title}
-                        </h4>
-                        <ul className={megaData.gridCols ?? "space-y-1"}>
-                          {category.items.map((item, index) => (
-                            <li key={index}>
-                              <Link
-                                href={item.href}
-                                className="group block py-1.5 text-sm text-warmgray transition-all duration-200 hover:translate-x-1 hover:text-navy"
-                                onClick={closeAll}
-                              >
-                                <div>
-                                  <div className="font-medium group-hover:text-eucalyptus-dark">{item.label}</div>
-                                  {item.description && (
-                                    <div className="mt-0.5 text-xs text-warmgray-light">
-                                      {item.description}
-                                    </div>
-                                  )}
-                                </div>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    );
-  };
-
-  return (
-    <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-sandstone-dark/30 bg-white/90 shadow-md backdrop-blur-lg"
-          : "border-b border-transparent bg-white/70 backdrop-blur-sm"
-      }`}
-      ref={dropdownRef}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link href={navigationLogo.href} className="group flex items-center gap-2.5">
-            <Image
-              src="/images/logo.svg"
-              alt="Pay Calculator Australia"
-              width={36}
-              height={36}
-              className="rounded-lg shadow-md transition-transform duration-200 group-hover:scale-105"
-              priority
-            />
-            <div className="flex flex-col">
-              <span
-                className="text-base font-bold tracking-tight text-navy transition-colors group-hover:text-eucalyptus-dark"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                {navigationLogo.label}
-              </span>
-            </div>
-          </Link>
-
-          <nav className="hidden items-center space-x-0.5 lg:flex" aria-label="Main navigation">
-            {navigationItems.map(({ href, label, hasMegaMenu }) =>
-              renderDesktopLink(href, label, hasMegaMenu)
-            )}
-          </nav>
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-lg p-2 text-navy transition-colors hover:bg-sandstone lg:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+              {NAV_CTA.label}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/site-directory/"
+              className={`flex min-h-11 items-center justify-center rounded-lg text-sm font-medium text-warmgray underline-offset-4 hover:text-navy hover:underline lg:hidden ${focusRing}`}
+            >
+              Browse every page in the site directory
+            </Link>
+          </div>
+        </nav>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="border-t border-sandstone-dark/30 bg-white lg:hidden"
-          >
-            <div className="max-h-[80vh] space-y-4 overflow-y-auto px-4 py-6">
-              {navigationItems.map(({ href, label, hasMegaMenu }, index) => {
-                const isActive = isLinkActive(href);
-
-                if (!hasMegaMenu) {
-                  return (
-                    <motion.div
-                      key={href + label}
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        href={href}
-                        className={`block py-2 font-medium transition-colors ${
-                          isActive ? "text-eucalyptus-dark" : "text-navy hover:text-eucalyptus-dark"
-                        }`}
-                        onClick={closeAll}
-                      >
-                        {label}
-                      </Link>
-                    </motion.div>
-                  );
-                }
-
-                const megaData = MEGA_MENU_MAP[label];
-                if (!megaData) return null;
-
-                const isOpen = mobileActiveMenu === label;
-                const totalItems = megaData.categories.reduce(
-                  (acc, cat) => acc + cat.items.length,
-                  0
-                );
-
-                return (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="space-y-3"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3
-                        className={`flex-1 text-lg font-semibold ${
-                          isActive ? "text-eucalyptus-dark" : "text-navy"
-                        }`}
-                        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                      >
-                        {label}
-                        <span className="ml-2 rounded-full bg-sandstone px-2 py-0.5 text-sm text-warmgray">
-                          {totalItems}
-                        </span>
-                      </h3>
-                      <button
-                        onClick={() =>
-                          setMobileActiveMenu(isOpen ? null : label)
-                        }
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setMobileActiveMenu(isOpen ? null : label);
-                          }
-                        }}
-                        className="p-1"
-                        aria-expanded={isOpen}
-                        aria-label={`${isOpen ? "Collapse" : "Expand"} ${label}`}
-                      >
-                        <ChevronDown
-                          className={`h-4 w-4 text-warmgray transition-transform duration-200 ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                    </div>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-4 pl-2"
-                        >
-                          {megaData.categories.map((category) => (
-                            <div key={category.title} className="space-y-2">
-                              <h4 className="text-xs font-semibold uppercase tracking-widest text-eucalyptus-dark">
-                                {category.title}
-                              </h4>
-                              <ul className="space-y-1 pl-3">
-                                {category.items.map((item, idx) => (
-                                  <li key={idx}>
-                                    <Link
-                                      href={item.href}
-                                      className="block py-1 text-sm text-warmgray transition-colors hover:text-eucalyptus-dark"
-                                      onClick={closeAll}
-                                    >
-                                      <div>
-                                        <div>{item.label}</div>
-                                        {item.description && (
-                                          <div className="mt-0.5 text-xs text-warmgray-light">
-                                            {item.description}
-                                          </div>
-                                        )}
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <NavbarBehavior />
     </header>
   );
+}
+
+function MenuItem({ menu }: { menu: MegaMenu }) {
+  const panelId = `nav-panel-${menu.id}`;
+  return (
+    <li data-menu-item className="group/item">
+      <button
+        type="button"
+        id={`nav-btn-${menu.id}`}
+        data-menu-button
+        aria-expanded="false"
+        aria-controls={panelId}
+        className={`flex w-full items-center justify-between gap-1 rounded-md font-medium text-navy/80 transition-colors hover:text-navy aria-expanded:text-navy group-data-[active=true]/item:text-eucalyptus-dark max-lg:min-h-14 max-lg:text-lg max-lg:text-navy lg:px-3 lg:py-2 lg:text-sm ${focusRing}`}
+      >
+        <span className="max-lg:font-semibold" style={HEADING_FONT}>
+          {menu.label}
+        </span>
+        <ChevronDown
+          aria-hidden="true"
+          className="h-4 w-4 text-warmgray-light transition-transform duration-200 group-has-[[aria-expanded=true]]/item:rotate-180 lg:h-3.5 lg:w-3.5"
+        />
+      </button>
+
+      <div
+        id={panelId}
+        data-menu-panel
+        role="region"
+        aria-labelledby={`nav-btn-${menu.id}`}
+        hidden
+        className="lg:absolute lg:inset-x-0 lg:top-full lg:max-h-[calc(100dvh-4rem)] lg:overflow-y-auto lg:border-y lg:border-sandstone-dark/50 lg:bg-white lg:shadow-[0_24px_48px_-24px_rgba(26,39,68,0.35)]"
+      >
+        <div className="pb-5 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-[17rem_1fr] lg:gap-10 lg:px-8 lg:pb-0 lg:pt-7">
+          <Rail menu={menu} />
+          <div className="lg:pb-7">
+            {menu.stateGrid ? (
+              <>
+                <StateGrid grid={menu.stateGrid} />
+                <GroupList menu={menu} mobileOnly />
+              </>
+            ) : (
+              <GroupList menu={menu} />
+            )}
+          </div>
+        </div>
+        <div className="hidden border-t border-sandstone-dark/40 bg-sandstone/60 lg:block">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3 text-sm">
+            <span className="text-warmgray">{menu.intro}</span>
+            <Link
+              href="/site-directory/"
+              className={`inline-flex items-center gap-1 rounded font-medium text-eucalyptus-dark hover:text-navy hover:underline ${focusRing}`}
+            >
+              Browse every page{" "}
+              <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+/** "Start here" hubs. Desktop: a sandstone rail. Mobile: the first rows of the section. */
+function Rail({ menu }: { menu: MegaMenu }) {
+  return (
+    <div className="lg:mb-7 lg:self-start lg:rounded-xl lg:bg-sandstone lg:p-3">
+      <p className="hidden px-3 pb-2 pt-1 text-[11px] font-bold uppercase tracking-[0.14em] text-warmgray lg:block">
+        Start here
+      </p>
+      <ul className="max-lg:mb-2 max-lg:grid max-lg:grid-cols-2 max-lg:gap-2">
+        {menu.featured.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              data-nav-link
+              className={`group/f flex h-full flex-col rounded-lg px-3 py-2.5 transition-colors hover:bg-white max-lg:min-h-16 max-lg:bg-sandstone aria-[current=page]:bg-eucalyptus-light aria-[current=page]:ring-1 aria-[current=page]:ring-eucalyptus/40 ${focusRing}`}
+            >
+              <span className="flex items-center gap-1 text-sm font-semibold text-navy group-hover/f:text-eucalyptus-dark">
+                {l.label}
+                <ArrowRight
+                  aria-hidden="true"
+                  className="hidden h-3.5 w-3.5 -translate-x-1 opacity-0 transition-all group-hover/f:translate-x-0 group-hover/f:opacity-100 lg:inline"
+                />
+              </span>
+              {l.description && (
+                <span className="mt-0.5 text-xs leading-snug text-warmgray-light">
+                  {l.description}
+                </span>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function GroupList({
+  menu,
+  mobileOnly = false,
+}: {
+  menu: MegaMenu;
+  mobileOnly?: boolean;
+}) {
+  return (
+    <div
+      className={`max-lg:divide-y max-lg:divide-sandstone-dark/40 max-lg:border-t max-lg:border-sandstone-dark/40 ${
+        mobileOnly
+          ? "lg:hidden"
+          : "lg:grid lg:grid-cols-3 lg:gap-x-10 lg:gap-y-7"
+      }`}
+    >
+      {menu.groups.map((g) => (
+        <Group
+          key={g.title}
+          group={g}
+          id={`nav-grp-${menu.id}-${slug(g.title)}`}
+        />
+      ))}
+    </div>
+  );
+}
+
+function Group({ group, id }: { group: MenuGroup; id: string }) {
+  const hubListed = group.href
+    ? group.links.some((l) => l.href === group.href)
+    : true;
+  return (
+    <section aria-labelledby={`${id}-h`}>
+      {/* Desktop heading (links to the hub when there is one). */}
+      <h3
+        id={`${id}-h`}
+        className="mb-2 hidden border-b border-eucalyptus/25 pb-2 text-[11px] font-bold uppercase tracking-[0.14em] text-eucalyptus-dark lg:block"
+      >
+        {group.href ? (
+          <Link
+            href={group.href}
+            data-nav-link
+            className={`group/h inline-flex items-center gap-1 rounded hover:text-navy ${focusRing}`}
+          >
+            {group.title}
+            <ArrowRight
+              aria-hidden="true"
+              className="h-3 w-3 transition-transform group-hover/h:translate-x-0.5"
+            />
+          </Link>
+        ) : (
+          group.title
+        )}
+      </h3>
+      {/* Mobile accordion trigger. */}
+      <button
+        type="button"
+        data-group-button
+        aria-expanded="false"
+        aria-controls={id}
+        className={`flex min-h-12 w-full items-center justify-between rounded-md text-left text-[15px] font-medium text-navy lg:hidden ${focusRing}`}
+      >
+        <span>
+          {group.title}
+          <span className="ml-2 rounded-full bg-sandstone px-2 py-0.5 text-xs font-normal text-warmgray">
+            {group.links.length}
+          </span>
+        </span>
+        <ChevronDown
+          aria-hidden="true"
+          className="h-4 w-4 text-warmgray-light transition-transform [[aria-expanded=true]>&]:rotate-180"
+        />
+      </button>
+      <ul
+        id={id}
+        data-open="false"
+        className="hidden pb-3 data-[open=true]:block lg:block lg:pb-0"
+      >
+        {group.links.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              data-nav-link
+              className={`flex items-center rounded text-warmgray transition-colors hover:text-eucalyptus-dark aria-[current=page]:font-semibold aria-[current=page]:text-eucalyptus-dark max-lg:min-h-11 max-lg:pl-3 max-lg:text-[15px] lg:py-1 lg:text-sm ${focusRing}`}
+            >
+              {l.label}
+            </Link>
+          </li>
+        ))}
+        {!hubListed && group.href && (
+          <li className="lg:hidden">
+            <Link
+              href={group.href}
+              data-nav-link
+              className={`flex min-h-11 items-center gap-1 rounded pl-3 text-[15px] font-medium text-eucalyptus-dark ${focusRing}`}
+            >
+              All {group.title.toLowerCase()}{" "}
+              <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+            </Link>
+          </li>
+        )}
+      </ul>
+    </section>
+  );
+}
+
+/** Desktop-only: states down, topics across, so a reader finds their state once. */
+function StateGrid({ grid }: { grid: NonNullable<MegaMenu["stateGrid"]> }) {
+  return (
+    <table className="hidden w-full border-separate border-spacing-0 text-sm lg:table">
+      <caption className="sr-only">State pages by topic</caption>
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            className="pb-2 text-left text-[11px] font-bold uppercase tracking-[0.14em] text-warmgray"
+          >
+            State
+          </th>
+          {grid.topics.map((t) => (
+            <th
+              key={t.key}
+              scope="col"
+              className="pb-2 text-left text-[11px] font-bold uppercase tracking-[0.14em]"
+            >
+              <Link
+                href={t.hub}
+                data-nav-link
+                className={`rounded text-eucalyptus-dark hover:text-navy hover:underline ${focusRing}`}
+              >
+                {t.label}
+              </Link>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {grid.rows.map((row) => (
+          <tr key={row.code} className="group/row">
+            <th
+              scope="row"
+              className="border-t border-sandstone-dark/40 py-1.5 pr-4 text-left font-normal group-hover/row:bg-sandstone/50"
+            >
+              <span className="font-semibold text-navy">{row.code}</span>{" "}
+              <span className="text-xs text-warmgray-light">{row.name}</span>
+            </th>
+            {grid.topics.map((t) => {
+              const href = row.cells[t.key];
+              return (
+                <td
+                  key={t.key}
+                  className="border-t border-sandstone-dark/40 py-1.5 pr-3 group-hover/row:bg-sandstone/50"
+                >
+                  {href ? (
+                    <Link
+                      href={href}
+                      data-nav-link
+                      aria-label={`${row.code} ${t.label.toLowerCase()}`}
+                      className={`inline-flex min-w-11 items-center justify-center rounded-md border border-sandstone-dark/60 bg-white px-2 py-0.5 text-xs font-semibold text-navy transition-colors hover:border-eucalyptus hover:bg-eucalyptus-light hover:text-eucalyptus-dark aria-[current=page]:border-eucalyptus aria-[current=page]:bg-eucalyptus-light ${focusRing}`}
+                    >
+                      {row.code}
+                    </Link>
+                  ) : (
+                    <span
+                      className="inline-block min-w-11 text-center text-warmgray-light/60"
+                      aria-label="No page"
+                    >
+                      –
+                    </span>
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function slug(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }
