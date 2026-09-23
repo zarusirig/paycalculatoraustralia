@@ -12,6 +12,7 @@ import {
   SCHADS_HOME_CARE_DISABILITY_DEC_2026,
   SCHADS_SCHEDULE_E_INCREASE,
 } from "@/lib/constants/schads-award";
+import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -684,6 +685,11 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const seL3Now = SCHADS_HOME_CARE_DISABILITY.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
   const seL3Dec = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
 
+
+  const HP = HPSS_OCT_2026;
+  const hpGradNew = HPSS_OCT_2026_LEVEL_1[7][0].weekly;
+  const hpGradOld = HPSS_TABLES.flatMap((t) => t.rows).find((r) => r.label === "Level 1 pay point 2")?.weekly ?? NaN;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -741,6 +747,34 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award — home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
         { question: `Is the increase exactly ${sePct} for everyone?`, answer: `Almost. Every Schedule E rate rises ${sePct} except Level 4 pay point 2 (${(SE.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}%) and Level 5 pay point 2 (${(SE.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%), whose full remaining increase is smaller than ${sePct}.` },
         { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase — ${SE.remainderRange} — applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
+      ],
+    },
+    {
+      slug: "health-professionals-award-changes-october-2026",
+      headline: `Health Professionals Award Changes From ${HP.operativeFrom}: New AQF Pay Structure Lifts an AQF 7 Graduate to ${m(hpGradNew)} a Week`,
+      title: `Health Professionals Award Changes 1 October 2026: New Rates`,
+      description: `From ${HP.operativeFrom} allied health professionals under the Health Professionals and Support Services Award move to a new structure based on qualification (AQF) level and years of experience. An AQF 7 graduate on the 3-year-degree pay point goes from ${m(hpGradOld)} to ${m(hpGradNew)} a week. New rates, translation and later stages.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist Pay Rates" },
+        { href: "/job-pay-rates/psychologist/", label: "Psychologist Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      ],
+      relatedArticles: ["schads-home-care-disability-pay-rise-december-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Determination ${HP.determination} — Health Professionals and Support Services Award 2020`, url: HP.determinationUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.decision} (${HP.decidedOn})`, url: HP.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Decision ${HP.structureDecision} (${HP.structureDecidedOn})`, url: HP.structureDecisionUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: HP.reviewUrl, publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "What changes in the Health Professionals Award on 1 October 2026?", answer: `Health professional employees move to a new classification structure. Level 1 pay depends on the AQF level of the profession's standard minimum qualification (AQF 5 to 9) and years of experience (1st, 2nd–3rd, 4th–6th, 7th year+); Levels 2.1, 2.2, 3 and 4 cover senior, advanced and manager roles. It applies from the first full pay period starting on or after ${HP.operativeFrom} under determination ${HP.determination}.` },
+        { question: "Will my pay go down under the new structure?", answer: "No. Clause J.4.3 of the award keeps an employee who was classified on 30 September 2026 on their old minimum rate if it is higher than the rate for their new classification." },
+        { question: "Are there more increases after October 2026?", answer: `Yes. October 2026 is the first of five stages. Further increases apply from ${HP.laterStages.slice(0, -1).join(", ")} and ${HP.laterStages[HP.laterStages.length - 1]}, as set in ${HP.structureDecision}.` },
+        { question: "What is the new graduate rate for an AQF Level 7 health professional?", answer: `AQF Level 7 in the 1st year is ${m(hpGradNew)} a week full-time (${m(HPSS_OCT_2026_LEVEL_1[7][0].hourly)} an hour), rising to ${m(HPSS_OCT_2026_LEVEL_1[7][3].weekly)} from the 7th year.` },
       ],
     },
   ];
