@@ -2,20 +2,32 @@ import type { Metadata } from "next";
 import PayRiseCalculatorPage from "@/modules/calculator/pay-rise-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rise-calculator/`;
 
+const FY = SITE_CONFIG.financialYear;
+// Answer-first figure from the tax engine at build time.
+const RAISE_10K_ON_80K =
+  calculatePayBreakdown({ grossSalary: 90_000 }).takeHomePay - calculatePayBreakdown({ grossSalary: 80_000 }).takeHomePay;
+
+// 12.5k impr, 1.4% CTR (pos 5.2). GSC: "payrise calculator", "pay rise
+// calculator", "pay increase calculator australia"; DataForSEO: "salary
+// increase calculator", "wage increase calculator" (720/mo each). Title adds
+// "Australia" and the FY; description leads with a computed answer.
+// Previous: "Pay Rise Calculator — How Much Extra Will You Take Home?".
+const TITLE = `Pay Rise Calculator Australia ${FY}: Extra Take-Home Pay`;
+const DESCRIPTION = `A $10,000 pay rise on $80,000 adds ${formatAUD(RAISE_10K_ON_80K)} a year after tax in ${FY} (${formatAUD(RAISE_10K_ON_80K / 52)} a week). Work out what any salary increase or percentage raise really adds to your pay.`;
+
 export const metadata: Metadata = {
-  title: "Pay Rise Calculator — How Much Extra Will You Take Home?",
-  description:
-    "Enter your current & new salary to see exactly how much extra you take home after tax. See the marginal rate impact on your pay rise for FY2026-27.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Rise Calculator — How Much Extra Will You Take Home?",
-    description: "Calculate your new take-home pay after a pay rise and see exactly how much goes to tax.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pay Rise Calculator Australia",
+    title: TITLE,
     description: "Calculate your take-home pay increase after tax and Medicare.",
   },
 };
@@ -68,7 +80,7 @@ const faq: WithContext<FAQPage> = {
       name: "Does my employer pay extra super on my pay rise?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes. Under the Superannuation Guarantee, your employer must pay 12% super on your ordinary time earnings. So a $10,000 pay rise also means an extra $1,200 deposited into your super fund.",
+        text: `Yes. Under the Superannuation Guarantee, your employer must pay ${Math.round(SUPER_GUARANTEE.rate * 100)}% super on your qualifying earnings. So a $10,000 pay rise also means an extra ${formatAUD(10_000 * SUPER_GUARANTEE.rate)} deposited into your super fund.`,
       },
     },
     {
