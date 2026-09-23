@@ -245,6 +245,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "stsl-on-payslip": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "payslip-generator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "ytd-income-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
+
+  // --- C2/C5 occupation pay rates + ADF pay scales (23 Sep 2026) ---
+  "job-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "adf-pay-scales": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end C2/C5 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
