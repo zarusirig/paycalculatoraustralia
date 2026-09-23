@@ -10,7 +10,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/job-pay-rates/`;
 const TITLE = "Job Pay Rates Australia 2026 — Award Minimums by Occupation";
 const DESCRIPTION =
-  "Award pay rates for pharmacists, electricians, dental assistants, truck and bus drivers, disability support workers, security guards and more. Hourly, casual and weekly minimums for 2026–27, straight from each modern award.";
+  "Award pay rates for 40+ jobs: nurses and midwives, aged care and childcare workers, chefs, baristas, retail workers, cleaners, mechanics, hairdressers, electricians, truck drivers and more. Hourly, casual and weekly minimums for 2026–27, straight from each modern award.";
 
 export const metadata: Metadata = {
   title: TITLE,

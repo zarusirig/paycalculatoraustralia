@@ -6,7 +6,8 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import { FWO_PAY_GUIDES, JOB_PAY_RATES_FROM, JOB_PAY_VERIFIED_ON } from "@/lib/data/job-pay-rates/common";
-import { OCCUPATIONS, headlineRow } from "@/lib/data/job-pay-rates";
+import { OCCUPATIONS, headlineRow, type Occupation } from "@/lib/data/job-pay-rates";
+import { JOB_SECTORS, OCCUPATION_SECTOR } from "@/lib/data/job-pay-rates/sectors";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 
 export const JOB_PAY_HUB_FAQS = [
@@ -26,7 +27,49 @@ export const JOB_PAY_HUB_FAQS = [
     q: "What if my job is not covered by an award?",
     a: "Award-free employees are still entitled to the National Minimum Wage — $26.44 an hour or $1,004.90 a week for adults from 1 July 2026 — and the National Employment Standards. Accountants are one example: see the accountant page.",
   },
+  {
+    q: "Why can the same job fall under different awards?",
+    a: "Most awards cover an industry, so the employer's business decides which one applies. A chef in a hotel is under the Hospitality Award but one in a restaurant is under the Restaurant Award; a barista in a café and one at a takeaway coffee kiosk can be on different awards with different minimums. The job pages for those roles show each award side by side.",
+  },
 ];
+
+/** Sectors in display order, each with its jobs sorted by name; empty sectors dropped. */
+const SECTORS_WITH_JOBS = JOB_SECTORS.map((sector) => ({
+  ...sector,
+  jobs: OCCUPATIONS.filter((o) => OCCUPATION_SECTOR[o.slug] === sector.id).sort((a, b) => a.name.localeCompare(b.name)),
+})).filter((sector) => sector.jobs.length > 0);
+
+function JobRow({ occ }: { occ: Occupation }) {
+  const r = headlineRow(occ);
+  const casual = r ? r.casualHourly : occ.tables[0].rows[0].casualHourly;
+  return (
+    <tr>
+      <th scope="row" className="px-4 py-3 text-left font-medium">
+        <Link
+          href={`/job-pay-rates/${occ.slug}/`}
+          className="text-eucalyptus-dark underline decoration-eucalyptus/40 underline-offset-4 hover:text-navy"
+        >
+          {occ.name}
+        </Link>
+      </th>
+      <td className="px-4 py-3">
+        {occ.award ? (
+          <>
+            {occ.award.code}
+            {r ? <span className="block text-xs">{r.label}</span> : null}
+          </>
+        ) : (
+          "Award-free (National Minimum Wage)"
+        )}
+      </td>
+      <td className="px-4 py-3 text-right font-semibold text-navy">
+        {r ? formatAUD(r.hourly, 2) : formatAUD(occ.tables[0].rows[0].hourly, 2)}
+      </td>
+      <td className="px-4 py-3 text-right">{casual === null ? "—" : formatAUD(casual, 2)}</td>
+      <td className="px-4 py-3 text-right">{occ.median ? formatAUD(occ.median.medianWeekly) : "—"}</td>
+    </tr>
+  );
+}
 
 export default function JobPayRatesHubPage() {
   const authorship = getGuideAuthorship("job-pay-rates");
@@ -61,56 +104,41 @@ export default function JobPayRatesHubPage() {
               <p>
                 The award minimum is for the classification named in the second column; each job page explains why
                 that classification fits and lists every other level. The median is Jobs and Skills Australia&rsquo;s figure for full-time
-                employees in the occupation.
+                employees in the occupation. Jobs are grouped by sector; several — chefs, baristas, lab technicians —
+                are covered by different awards depending on the employer, and their pages show each one.
               </p>
-              <TableShell minWidth="46rem" caption="Minimum pay by job, 2026–27">
-                <thead className="bg-sandstone font-semibold text-navy">
-                  <tr>
-                    <th scope="col" className="px-4 py-3">Job</th>
-                    <th scope="col" className="px-4 py-3">Award / classification</th>
-                    <th scope="col" className="px-4 py-3 text-right">Minimum hourly</th>
-                    <th scope="col" className="px-4 py-3 text-right">Casual hourly</th>
-                    <th scope="col" className="px-4 py-3 text-right">Median weekly</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                  {OCCUPATIONS.map((occ) => {
-                    const r = headlineRow(occ);
-                    return (
-                      <tr key={occ.slug}>
-                        <th scope="row" className="px-4 py-3 text-left font-medium">
-                          <Link
-                            href={`/job-pay-rates/${occ.slug}/`}
-                            className="text-eucalyptus-dark underline decoration-eucalyptus/40 underline-offset-4 hover:text-navy"
-                          >
-                            {occ.name}
-                          </Link>
-                        </th>
-                        <td className="px-4 py-3">
-                          {occ.award ? (
-                            <>
-                              {occ.award.code}
-                              {r ? <span className="block text-xs">{r.label}</span> : null}
-                            </>
-                          ) : (
-                            "Award-free (National Minimum Wage)"
-                          )}
-                        </td>
-                        <td className="px-4 py-3 text-right font-semibold text-navy">
-                          {r ? formatAUD(r.hourly, 2) : formatAUD(occ.tables[0].rows[0].hourly, 2)}
-                        </td>
-                        <td className="px-4 py-3 text-right">
-                          {(() => {
-                            const c = r ? r.casualHourly : occ.tables[0].rows[0].casualHourly;
-                            return c === null ? "—" : formatAUD(c, 2);
-                          })()}
-                        </td>
-                        <td className="px-4 py-3 text-right">{occ.median ? formatAUD(occ.median.medianWeekly) : "—"}</td>
+              <nav aria-label="Jobs by sector" className="not-prose mb-6 flex flex-wrap gap-2 text-sm">
+                {SECTORS_WITH_JOBS.map((sector) => (
+                  <a
+                    key={sector.id}
+                    href={`#${sector.id}`}
+                    className="rounded-full border border-sandstone-dark/30 px-3 py-1 text-eucalyptus-dark hover:text-navy"
+                  >
+                    {sector.title}
+                  </a>
+                ))}
+              </nav>
+              {SECTORS_WITH_JOBS.map((sector) => (
+                <div key={sector.id} id={sector.id} className="scroll-mt-24">
+                  <h3 style={HEADING_FONT}>{sector.title}</h3>
+                  <TableShell minWidth="46rem" caption={`Minimum pay by job, 2026–27 — ${sector.title}`}>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-4 py-3">Job</th>
+                        <th scope="col" className="px-4 py-3">Award / classification</th>
+                        <th scope="col" className="px-4 py-3 text-right">Minimum hourly</th>
+                        <th scope="col" className="px-4 py-3 text-right">Casual hourly</th>
+                        <th scope="col" className="px-4 py-3 text-right">Median weekly</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </TableShell>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {sector.jobs.map((occ) => (
+                        <JobRow key={occ.slug} occ={occ} />
+                      ))}
+                    </tbody>
+                  </TableShell>
+                </div>
+              ))}
             </section>
 
             <section id="how-to-read">
@@ -153,8 +181,13 @@ export default function JobPayRatesHubPage() {
           <aside className="lg:w-1/3">
             <div className="sticky top-8 space-y-3">
               <h2 className="mb-2 text-base font-bold text-navy">Pay rates by job</h2>
-              {OCCUPATIONS.map((occ) => (
-                <SidebarLink key={occ.slug} href={`/job-pay-rates/${occ.slug}/`} label={`${occ.name} pay rates`} />
+              {SECTORS_WITH_JOBS.map((sector) => (
+                <div key={sector.id} className="space-y-3">
+                  <p className="pt-2 text-xs font-semibold uppercase tracking-wide text-warmgray">{sector.title}</p>
+                  {sector.jobs.map((occ) => (
+                    <SidebarLink key={occ.slug} href={`/job-pay-rates/${occ.slug}/`} label={`${occ.name} pay rates`} />
+                  ))}
+                </div>
               ))}
               <SidebarLink href="/adf-pay-scales/" label="ADF pay scales" />
               <SidebarLink href="/award-rates/" label="All award rates" />
