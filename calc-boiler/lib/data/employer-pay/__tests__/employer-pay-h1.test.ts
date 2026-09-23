@@ -155,6 +155,45 @@ test("Costco: printed cl 5.1 column C (24 months) and casual = rate x 1.25", () 
   assert.ok(costco.rates[0].hourly > 29.45);
 });
 
+test("Big W: cl 4.1.1 weekly x (AWR + Boosted Leave) each July, weekly prevails", () => {
+  const bigw = getEmployerPay("big-w");
+  assert.ok(bigw);
+  // cl 4.1.1 weekly rates (July 2023) and cl 4.2.1 increases: AWR + Boosted, added not multiplied.
+  const printed2023: Record<string, number> = {
+    "Store Team Member Level 1": 944.18,
+    "Store Team Member Level 2": 965.89,
+    "Store Team Member Level 4": 1013.57,
+    "Store Team Member Level 6": 1056.41,
+  };
+  const rises = [0.0375 + 0.0025, 0.035 + 0.005, 0.0475 + 0.005];
+  for (const r of bigw.rates) {
+    let weekly = printed2023[r.level];
+    assert.ok(weekly, r.level);
+    for (const rise of rises) weekly = roundCents(weekly * (1 + rise));
+    assert.equal(r.weekly, weekly, r.level);
+    assert.equal(r.hourly, roundCents(weekly / 38), r.level);
+    assert.equal(r.casualHourly, halfUp(r.hourly * 1.25), r.level);
+  }
+  // Above the Retail Award equivalents (Levels 1, 2, 4, 6 from 1 July 2026).
+  assert.deepEqual(
+    bigw.rates.map((r, i) => r.hourly > [27.81, 28.45, 29.45, 31.11][i]),
+    [true, true, true, true],
+  );
+  // Narrower reading disclosed on the page: every rise on the 2023 base.
+  const narrowL1 = roundCents(roundCents(944.18 * (1 + 0.04 + 0.04 + 0.0525)) / 38);
+  assert.equal(narrowL1, 28.14);
+  assert.ok(bigw.notices.join(" ").includes("$28.14"));
+  assert.ok(narrowL1 > 27.81, "above Retail Award Level 1 either way");
+  // Junior dollars: % of the Level 1 weekly / 38.
+  const juniors = Object.fromEntries(juniorRates(bigw).map((j) => [j.age, [j.hourly, j.casualHourly]]));
+  assert.deepEqual(juniors["16 and under"], [14.14, 17.68]);
+  assert.deepEqual(juniors["17"], [16.97, 21.21]);
+  const text = [...bigw.penaltyNotes, ...bigw.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) {
+    assert.ok(text.includes(`$${halfUp(28.29 * pct).toFixed(2)}`), `${pct}`);
+  }
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);

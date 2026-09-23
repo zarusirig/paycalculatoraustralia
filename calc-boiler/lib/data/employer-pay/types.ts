@@ -30,6 +30,7 @@ export const EMPLOYER_SLUGS = [
   "liquorland",
   "costco",
   "iga",
+  "big-w",
   // --- end H1 ---
 ] as const;
 
