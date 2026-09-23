@@ -45,7 +45,7 @@ import {
   takeHomeHref,
 } from "@/lib/data/nursing-pay";
 import { NURSES_AWARD } from "@/lib/data/nursing-pay/nurses-award-2020";
-import { annualFromWeekly } from "@/lib/data/job-pay-rates";
+import { annualFromWeekly, headlineRow, rowAnnual } from "@/lib/data/job-pay-rates";
 import { DOCTOR } from "@/lib/data/job-pay-rates/doctor";
 import { PHYSIOTHERAPIST } from "@/lib/data/job-pay-rates/physiotherapist";
 import { PHARMACIST } from "@/lib/data/job-pay-rates/pharmacist";
