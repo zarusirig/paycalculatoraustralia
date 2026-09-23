@@ -150,6 +150,15 @@ test("state FAQs are unique and non-empty (one array feeds the page and the JSON
   }
 });
 
+test("holiday counts quoted in each standfirst match the data", () => {
+  for (const s of STATE_PUBLIC_HOLIDAYS) {
+    const m = /(\d+) (?:state-wide |whole-day )?public holidays in 2026(?: and (\d+) in 2027)?/.exec(s.standfirst);
+    if (!m) continue;
+    assert.equal(Number(m[1]), statewideDays(yearOf(s, 2026)!).length, `${s.code} 2026 count in standfirst`);
+    if (m[2]) assert.equal(Number(m[2]), statewideDays(yearOf(s, 2027)!).length, `${s.code} 2027 count in standfirst`);
+  }
+});
+
 test("calculator presets point at a real award", () => {
   for (const s of STATE_PUBLIC_HOLIDAYS) {
     assert.ok(getAwardPublicHolidayRate(s.calculatorPreset.awardKey), `${s.code} preset award`);
