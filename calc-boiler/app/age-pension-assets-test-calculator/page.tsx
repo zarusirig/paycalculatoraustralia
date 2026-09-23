@@ -1,4 +1,5 @@
 import AgePensionAssetsTestCalculatorPage from "@/modules/calculator/age-pension-assets-test-calculator";
+import AgePensionAssetsTestCalculatorContent from "@/modules/calculator/age-pension-assets-test-calculator-content";
 import { ASSETS_TEST_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -16,7 +17,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Age Pension Assets Test Calculator", description: DESCRIPTION, faqs: ASSETS_TEST_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
-      <AgePensionAssetsTestCalculatorPage />
+      <AgePensionAssetsTestCalculatorPage><AgePensionAssetsTestCalculatorContent /></AgePensionAssetsTestCalculatorPage>
     </>
   );
 }

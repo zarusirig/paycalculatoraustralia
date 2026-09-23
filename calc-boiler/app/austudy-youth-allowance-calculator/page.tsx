@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AustudyYouthAllowanceCalculatorPage from "@/modules/calculator/austudy-youth-allowance-calculator";
+import AustudyYouthAllowanceCalculatorContent from "@/modules/calculator/austudy-youth-allowance-calculator-content";
 import { STUDENT_FAQS } from "@/modules/calculator/austudy-youth-allowance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -68,7 +69,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AustudyYouthAllowanceCalculatorPage />
+      <AustudyYouthAllowanceCalculatorPage><AustudyYouthAllowanceCalculatorContent /></AustudyYouthAllowanceCalculatorPage>
     </>
   );
 }

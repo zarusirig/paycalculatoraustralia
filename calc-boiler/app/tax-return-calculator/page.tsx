@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TaxReturnCalculatorPage from "@/modules/calculator/tax-return-calculator";
+import TaxReturnCalculatorContent from "@/modules/calculator/tax-return-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -88,7 +89,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <TaxReturnCalculatorPage />
+      <TaxReturnCalculatorPage>
+        <TaxReturnCalculatorContent />
+      </TaxReturnCalculatorPage>
     </>
   );
 }

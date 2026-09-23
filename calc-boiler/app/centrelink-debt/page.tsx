@@ -1,4 +1,5 @@
 import CentrelinkDebtPage from "@/modules/calculator/centrelink-debt";
+import CentrelinkDebtContent, { CentrelinkDebtIntro } from "@/modules/calculator/centrelink-debt-content";
 import { DEBT_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -15,7 +16,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Centrelink Debt", description: DESCRIPTION, faqs: DEBT_FAQS, calculator: false, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
-      <CentrelinkDebtPage />
+      <CentrelinkDebtPage intro={<CentrelinkDebtIntro />}><CentrelinkDebtContent /></CentrelinkDebtPage>
     </>
   );
 }

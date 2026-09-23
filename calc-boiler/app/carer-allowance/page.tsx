@@ -1,4 +1,5 @@
 import CarerAllowancePage from "@/modules/calculator/carer-allowance";
+import CarerAllowanceContent from "@/modules/calculator/carer-allowance-content";
 import { CARER_ALLOWANCE_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -16,7 +17,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Carer Allowance", description: DESCRIPTION, faqs: CARER_ALLOWANCE_FAQS, calculator: true, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
-      <CarerAllowancePage />
+      <CarerAllowancePage><CarerAllowanceContent /></CarerAllowancePage>
     </>
   );
 }

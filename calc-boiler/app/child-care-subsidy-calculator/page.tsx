@@ -1,4 +1,5 @@
 import ChildCareSubsidyCalculatorPage from "@/modules/calculator/child-care-subsidy-calculator";
+import ChildCareSubsidyCalculatorContent from "@/modules/calculator/child-care-subsidy-calculator-content";
 import { CCS_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -16,7 +17,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Child Care Subsidy Calculator", description: DESCRIPTION, faqs: CCS_FAQS, calculator: true, dateModified: CCS_SOURCES.verifiedOnISO })} />
-      <ChildCareSubsidyCalculatorPage />
+      <ChildCareSubsidyCalculatorPage><ChildCareSubsidyCalculatorContent /></ChildCareSubsidyCalculatorPage>
     </>
   );
 }

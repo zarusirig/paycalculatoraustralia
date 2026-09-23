@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FamilyTaxBenefitCalculatorPage from "@/modules/calculator/family-tax-benefit-calculator";
+import FamilyTaxBenefitCalculatorContent from "@/modules/calculator/family-tax-benefit-calculator-content";
 import { FTB_FAQS } from "@/modules/calculator/family-tax-benefit-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -67,7 +68,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <FamilyTaxBenefitCalculatorPage />
+      <FamilyTaxBenefitCalculatorPage><FamilyTaxBenefitCalculatorContent /></FamilyTaxBenefitCalculatorPage>
     </>
   );
 }

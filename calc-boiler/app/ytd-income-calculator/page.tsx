@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import YTDIncomeCalculatorPage from "@/modules/calculator/ytd-income-calculator";
+import YTDIncomeCalculatorContent from "@/modules/calculator/ytd-income-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -74,7 +75,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <YTDIncomeCalculatorPage />
+      <YTDIncomeCalculatorPage>
+        <YTDIncomeCalculatorContent />
+      </YTDIncomeCalculatorPage>
     </>
   );
 }

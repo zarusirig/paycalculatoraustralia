@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FinalPayCalculatorPage from "@/modules/calculator/final-pay-calculator";
+import FinalPayCalculatorContent from "@/modules/calculator/final-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -70,7 +71,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <FinalPayCalculatorPage />
+      <FinalPayCalculatorPage><FinalPayCalculatorContent /></FinalPayCalculatorPage>
     </>
   );
 }

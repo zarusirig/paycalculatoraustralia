@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payment-calculator";
+import JobseekerPaymentCalculatorContent from "@/modules/calculator/jobseeker-payment-calculator-content";
 import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -69,7 +70,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <JobseekerPaymentCalculatorPage />
+      <JobseekerPaymentCalculatorPage><JobseekerPaymentCalculatorContent /></JobseekerPaymentCalculatorPage>
     </>
   );
 }

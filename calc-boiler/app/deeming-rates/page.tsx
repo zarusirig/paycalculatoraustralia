@@ -1,4 +1,5 @@
 import DeemingRatesPage from "@/modules/calculator/deeming-rates";
+import DeemingRatesContent from "@/modules/calculator/deeming-rates-content";
 import { DEEMING_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
@@ -17,7 +18,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Deeming Rates and Deeming Calculator", description: DESCRIPTION, faqs: DEEMING_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
-      <DeemingRatesPage />
+      <DeemingRatesPage><DeemingRatesContent /></DeemingRatesPage>
     </>
   );
 }

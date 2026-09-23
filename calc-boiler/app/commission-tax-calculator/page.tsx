@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CommissionTaxCalculatorPage from "@/modules/calculator/commission-tax-calculator";
+import CommissionTaxCalculatorContent from "@/modules/calculator/commission-tax-calculator-content";
 import { COMMISSION_TAX_FAQS } from "@/modules/calculator/commission-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -67,7 +68,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <CommissionTaxCalculatorPage />
+      <CommissionTaxCalculatorPage><CommissionTaxCalculatorContent /></CommissionTaxCalculatorPage>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RentAssistanceCalculatorPage from "@/modules/calculator/rent-assistance-calculator";
+import RentAssistanceCalculatorContent from "@/modules/calculator/rent-assistance-calculator-content";
 import { RENT_FAQS } from "@/modules/calculator/rent-assistance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -67,7 +68,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <RentAssistanceCalculatorPage />
+      <RentAssistanceCalculatorPage><RentAssistanceCalculatorContent /></RentAssistanceCalculatorPage>
     </>
   );
 }

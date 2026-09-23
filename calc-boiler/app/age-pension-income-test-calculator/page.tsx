@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AgePensionIncomeTestCalculatorPage from "@/modules/calculator/age-pension-income-test-calculator";
+import AgePensionIncomeTestCalculatorContent from "@/modules/calculator/age-pension-income-test-calculator-content";
 import { PENSION_FAQS } from "@/modules/calculator/age-pension-income-test-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -70,7 +71,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AgePensionIncomeTestCalculatorPage />
+      <AgePensionIncomeTestCalculatorPage><AgePensionIncomeTestCalculatorContent /></AgePensionIncomeTestCalculatorPage>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ParentalLeavePayPage from "@/modules/guide/parental-leave-pay";
+import ParentalLeavePayContent from "@/modules/guide/parental-leave-pay-content";
 import { PPL_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -61,7 +62,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA as unknown as WithContext<WebApplication>]} />
-      <ParentalLeavePayPage />
+      <ParentalLeavePayPage>
+        <ParentalLeavePayContent />
+      </ParentalLeavePayPage>
     </>
   );
 }

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import NovatedLeaseCalculatorPage from "@/modules/calculator/novated-lease-calculator";
+import NovatedLeaseCalculatorContent, {
+  NovatedLeaseEvExemption,
+  NovatedLeaseHecsAndFbtRates,
+} from "@/modules/calculator/novated-lease-calculator-content";
 import { NOVATED_LEASE_FAQS } from "@/modules/calculator/novated-lease-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -73,7 +77,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <NovatedLeaseCalculatorPage />
+      <NovatedLeaseCalculatorPage evExemption={<NovatedLeaseEvExemption />} hecsAndFbtRates={<NovatedLeaseHecsAndFbtRates />}>
+        <NovatedLeaseCalculatorContent />
+      </NovatedLeaseCalculatorPage>
     </>
   );
 }
