@@ -9,19 +9,27 @@ import { AUTHORS } from "@/lib/authors";
 import { MODERN_AWARDS, type ModernAwardKey } from "@/lib/constants/modern-awards";
 import { getAwardPageCopy } from "@/modules/guide/modern-award-content";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { fitTitle } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
+
+/** <title>: the copy's title, dropping the award code (kept in the page body) if it won't fit. */
+export function awardTitle(key: ModernAwardKey): string {
+  const copy = getAwardPageCopy(key);
+  return fitTitle(copy.title, copy.title.replace(` (${MODERN_AWARDS[key].meta.code})`, ""));
+}
 
 export function buildAwardMetadata(key: ModernAwardKey): Metadata {
   const award = MODERN_AWARDS[key];
   const copy = getAwardPageCopy(key);
   const url = `${BASE}${award.meta.href}`;
+  const title = awardTitle(key);
   return {
-    title: copy.title,
+    title,
     description: copy.description,
     alternates: { canonical: url },
     openGraph: {
-      title: copy.title,
+      title,
       description: `All ${award.meta.code} classification rates, penalties, junior rates and allowances, operative ${award.meta.operativeFrom}.`,
       url,
       siteName: SITE_CONFIG.name,
@@ -29,7 +37,7 @@ export function buildAwardMetadata(key: ModernAwardKey): Metadata {
       locale: "en_AU",
       images: ["/og-image.png"],
     },
-    twitter: { card: "summary_large_image", title: copy.title, description: copy.description },
+    twitter: { card: "summary_large_image", title, description: copy.description },
   };
 }
 

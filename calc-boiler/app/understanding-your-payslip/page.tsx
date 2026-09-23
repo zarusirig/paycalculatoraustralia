@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/understanding-your-payslip/`;
 const TITLE = "Understanding Your Payslip in Australia — A Complete Guide";
-const DESCRIPTION = "Learn how to read your Australian payslip. Understand gross pay, NET pay, PAYG withholding, superannuation contributions, and your legal rights under the Fair Work Ombudsman.";
+const DESCRIPTION = "How to read your Australian payslip: gross pay, net pay, PAYG withholding, superannuation contributions, and your rights under the Fair Work Ombudsman.";
 
 export const metadata: Metadata = {
   title: TITLE,

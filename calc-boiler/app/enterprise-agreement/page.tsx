@@ -6,7 +6,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "enterprise-agreement";
 const TITLE = "Enterprise Agreement (EBA) Search: How to Find Yours";
 const DESCRIPTION =
-  "What an enterprise agreement is, how to find yours in the Fair Work Commission's agreement search step by step, why an expired EBA still applies, and how EBA pay compares with the award floor. Coles, Woolworths and more.";
+  "What an enterprise agreement is, how to find yours in the Fair Work Commission's search, why an expired EBA still applies, and how EBA pay compares with the award.";
 
 export const metadata: Metadata = {
   title: TITLE,

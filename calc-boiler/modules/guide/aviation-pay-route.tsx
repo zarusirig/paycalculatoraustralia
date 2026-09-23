@@ -15,6 +15,7 @@ import {
 } from "@/lib/data/aviation-pay";
 import { toIsoDate } from "@/lib/data/service-pay";
 import AviationPayPageView, { AVIATION_COPY } from "./aviation-pay";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -23,14 +24,21 @@ function description(slug: AviationPageSlug): string {
   const entry = aviationEntrySalary(page);
   const top = aviationTopSalary(page);
   const range = entry !== null && top !== null ? `${formatAUD(entry)} to ${formatAUD(top)}` : "";
-  return slug === "pilot"
-    ? `Pilot minimum pay under the Air Pilots Award [MA000046]${range ? `: ${range} a year` : ""}, every award salary table, how casual pilots are paid, and take-home pay. Verified ${page.verifiedOn}.`
-    : `Air traffic controller pay under the Airservices Australia enterprise agreement${range ? `: ${range} a year base` : ""}, trainee pay, scheduled increases and take-home pay. Verified ${page.verifiedOn}.`;
+  if (slug === "pilot") {
+    const base = `Pilot minimum pay under the Air Pilots Award [MA000046]${range ? `: ${range} a year` : ""}, every award salary table, how casual pilots are paid, and take-home pay.`;
+    return fitDescription(`${base} Verified ${page.verifiedOn}.`, base);
+  }
+  return fitDescription(
+    `Air traffic controller pay under the Airservices Australia enterprise agreement${range ? `: ${range} a year base` : ""}, trainee pay, scheduled increases and take-home pay. Verified ${page.verifiedOn}.`,
+    `Air traffic controller salary in Australia${range ? `: ${range} a year base` : ""} under the Airservices agreement, plus trainee pay, scheduled increases and take-home pay.`,
+  );
 }
 
 export function aviationMetadata(slug: AviationPageSlug): Metadata {
   const page = AVIATION_PAY[slug];
-  const title = AVIATION_COPY[slug].heading(aviationRatesYear(page));
+  const heading = AVIATION_COPY[slug].heading(aviationRatesYear(page));
+  // The H1 keeps "ATC Pay Scale"; the <title> shortens it if it won't fit.
+  const title = fitTitle(heading, heading.replace(/ ATC Pay Scale$/, " Pay Scale"), heading.replace(/ ATC Pay Scale$/, " Pay"));
   const desc = description(slug);
   const url = `${BASE}${AVIATION_PATHS[slug]}`;
   return {

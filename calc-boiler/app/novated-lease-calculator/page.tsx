@@ -10,7 +10,7 @@ import { pageDateModified } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-calculator/`;
 const TITLE = "Novated Lease Calculator — EV, PHEV and FBT";
-const DESCRIPTION = "Salary sacrifice a car and see both payslip lines: the pre-tax deduction, the post-tax employee contribution, FBT or the electric car exemption, and your take-home pay before and after. Includes the reportable fringe benefits amount that changes your HECS-HELP repayment. FBT and luxury car tax figures verified at ato.gov.au.";
+const DESCRIPTION = "Novated lease calculator: salary sacrifice a car and see the pre-tax deduction, post-tax contribution, FBT or the EV exemption, and take-home pay before and after.";
 
 export const metadata: Metadata = {
   title: TITLE,

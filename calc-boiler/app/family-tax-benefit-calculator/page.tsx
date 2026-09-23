@@ -10,7 +10,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/family-tax-benefit-calculator/`;
 const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} — FTB Part A & B`;
-const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: the ${formatAUD(FTB_A.lowerThreshold)} and ${formatAUD(FTB_A.higherThreshold)} income thresholds, the ${formatAUD(FTB_B.primaryEarnerLimit)} Part B limit, and how a pay rise changes your payment.`;
+const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: income thresholds, the Part B limit and how a pay rise changes it.`;
 
 export const metadata: Metadata = {
   title: TITLE,

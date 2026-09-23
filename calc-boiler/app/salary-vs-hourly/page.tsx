@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-vs-hourly/`;
 const TITLE = "Salary vs Hourly Pay Australia — Which Is Better For You?";
-const DESCRIPTION = "Salary vs hourly pay: compare the real differences. Overtime access, leave entitlements, stability, and total package value. See which arrangement pays more for your situation.";
+const DESCRIPTION = "Salary vs hourly pay: the real differences in overtime, leave entitlements, stability and total package value. See which arrangement pays more for your situation.";
 
 export const metadata: Metadata = {
   title: TITLE,

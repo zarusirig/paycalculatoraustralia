@@ -6,7 +6,7 @@ import { WORKING_CREDIT } from "@/lib/constants/working-credit";
 
 const SLUG = "centrelink-working-credit-calculator";
 const TITLE = "Centrelink Working Credit Calculator (2026)";
-const DESCRIPTION = `Working Credit builds up to ${WORKING_CREDIT.maxPerFortnight} credits a fortnight while your income is under $${WORKING_CREDIT.accrualThreshold}, to a maximum of ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} (${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance job seekers). See how credits keep JobSeeker paying when you start work.`;
+const DESCRIPTION = `Working Credit builds up to ${WORKING_CREDIT.maxPerFortnight} credits a fortnight when you earn under $${WORKING_CREDIT.accrualThreshold}, up to ${WORKING_CREDIT.maxBalance.toLocaleString("en-AU")} (${WORKING_CREDIT.maxBalanceYouthAllowanceJobSeeker.toLocaleString("en-AU")} for Youth Allowance job seekers), keeping JobSeeker paid.`;
 
 export const metadata: Metadata = {
   title: TITLE,

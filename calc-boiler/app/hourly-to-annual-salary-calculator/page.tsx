@@ -22,7 +22,7 @@ const netAt = (rate: number) => calculatePayBreakdown({ grossSalary: annualAt(ra
 // "hourly to annual salary calculator" (12% CTR). DataForSEO: "how many hours
 // in a year" 12.1k/mo, KD 4 — answered in the description and on the page.
 const TITLE = `Hourly to Annual Salary Calculator Australia: $${HEADLINE_RATE}/hr = ${formatAUD(annualAt(HEADLINE_RATE))}`;
-const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours a year), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
+const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,

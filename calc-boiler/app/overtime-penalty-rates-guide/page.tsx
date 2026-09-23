@@ -13,8 +13,8 @@ const URL = `${BASE}/overtime-penalty-rates-guide/`;
 // Derived so the description cannot drift from the tables on the page.
 const RETAIL_L1 = RETAIL_RATES.find((r) => r.level === "Level 1")!;
 
-const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime Loadings";
-const DESCRIPTION = `What you must be paid for weekends, public holidays, evenings and overtime. Verified retail, hospitality and SCHADS penalty tables — Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}%, and casual loadings that add rather than compound. Hospitality evening and night work adds flat cash, not a multiplier.`;
+const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime";
+const DESCRIPTION = `Penalty rates for weekends, public holidays, evenings and overtime: Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}% (retail), plus hospitality and SCHADS tables.`;
 
 export const metadata: Metadata = {
   title: TITLE,

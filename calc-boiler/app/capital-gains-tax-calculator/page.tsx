@@ -21,7 +21,7 @@ const DISCOUNT = formatPercent(CGT_DISCOUNT_RATES.individual, 0);
 const TAXED_SHARE = formatPercent(1 - CGT_DISCOUNT_RATES.individual, 0);
 
 const TITLE = `Capital Gains Tax Calculator — ${DISCOUNT} Discount, ${CGT_INCOME_YEAR}`;
-const DESCRIPTION = `There is no capital gains tax rate in Australia — CGT is part of your income tax, so your gain is taxed at your marginal rate. Hold an asset ${CGT_MINIMUM_OWNERSHIP_MONTHS} months and only ${TAXED_SHARE} of the gain is taxed. Work out your ${CGT_INCOME_YEAR} bill with cost base, capital losses and the main residence exemption.`;
+const DESCRIPTION = `There is no capital gains tax rate in Australia: your gain is taxed at your marginal rate, and only ${TAXED_SHARE} of it after ${CGT_MINIMUM_OWNERSHIP_MONTHS} months. Work out your ${CGT_INCOME_YEAR} CGT bill.`;
 
 export const metadata: Metadata = {
   title: TITLE,

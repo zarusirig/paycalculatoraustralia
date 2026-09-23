@@ -12,7 +12,7 @@ const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
 export const metadata: Metadata = {
   title: "Part-Time vs Full-Time vs Casual Pay Calculator",
   description:
-    "Compare take-home pay and entitlements across employment types. See the real difference between full-time, part-time, and casual including leave, super, and casual loading.",
+    "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Part-Time vs Full-Time vs Casual Calculator — Compare Pay & Entitlements",

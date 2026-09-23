@@ -10,7 +10,7 @@ import { pageDateModified } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/commission-tax-calculator/`;
 const TITLE = "Commission Tax Calculator Australia — Tax on Commission";
-const DESCRIPTION = `How much tax you pay on commission in ${SITE_CONFIG.financialYear}: the tax it adds to your year at your marginal rate, and the amount withheld from the commission pay under ATO Schedule 5 — plus the refund or bill that settles the difference.`;
+const DESCRIPTION = `Tax on commission in ${SITE_CONFIG.financialYear}: what it adds at your marginal rate, what's withheld under ATO Schedule 5, and the refund or bill that settles the difference.`;
 
 export const metadata: Metadata = {
   title: TITLE,

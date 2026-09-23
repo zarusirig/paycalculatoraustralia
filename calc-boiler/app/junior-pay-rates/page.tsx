@@ -19,7 +19,7 @@ const U16 = byAge("Under 16");
 // year old australia" 2.1k impressions, 16/14/17 variants) and the old
 // "Junior Pay Rates" title earned 0.43% CTR at position 6.2.
 const TITLE = `Minimum Wage by Age ${SITE_CONFIG.financialYear}: 14, 15, 16, 17 Year Olds (Australia)`;
-const DESCRIPTION = `Minimum wage by age from ${NMW_ORDER.operativeFrom}: under 16 ${formatAUD(U16.hourly, 2)}/hr, 16 ${formatAUD(A16.hourly, 2)}, 17 ${formatAUD(byAge("17").hourly, 2)}, 18 ${formatAUD(byAge("18").hourly, 2)}, 19 ${formatAUD(byAge("19").hourly, 2)}, 20 ${formatAUD(byAge("20").hourly, 2)}, then ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} at ${ADULT_AGE}. Casual rates, retail, fast food and hospitality junior rates, and working age by state.`;
+const DESCRIPTION = `Minimum wage by age from ${NMW_ORDER.operativeFrom}: under 16 ${formatAUD(U16.hourly, 2)}/hr, 16 ${formatAUD(A16.hourly, 2)}, 17 ${formatAUD(byAge("17").hourly, 2)}, 18 ${formatAUD(byAge("18").hourly, 2)}, 19 ${formatAUD(byAge("19").hourly, 2)}, 20 ${formatAUD(byAge("20").hourly, 2)}, then ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} at ${ADULT_AGE}. Casual and award junior rates.`;
 
 export const metadata: Metadata = {
   title: TITLE,

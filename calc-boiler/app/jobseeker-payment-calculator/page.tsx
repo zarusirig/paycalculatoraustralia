@@ -11,7 +11,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
 const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
 const TITLE = "JobSeeker Payment Calculator 2026 — Rates From 20 September";
-const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See how much you keep when you work — the $150 free area, 50c and 60c tapers, partner income and the cut-off for your situation — plus eligibility. Verified at Services Australia.`;
+const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See what you keep when you work: the $150 free area, tapers and partner income.`;
 
 export const metadata: Metadata = {
   title: TITLE,

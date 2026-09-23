@@ -13,6 +13,7 @@ import {
   topOfClassroomScale,
   type TeacherPayState,
 } from "@/lib/data/teacher-pay";
+import { fitDescription } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -45,7 +46,12 @@ function descriptionFor(state: TeacherPayState) {
   if (grad === null || top === null) {
     return `What ${state.employer} pays public school teachers, what we could verify from the ${state.agreementName}, and what we deliberately do not publish. Checked ${state.verifiedOn}.`;
   }
-  return `Every step of the ${state.code} teacher pay scale, from ${formatAUD(grad)} for a graduate to ${formatAUD(top)} at the top, plus leadership rates. From the ${state.agreementName}, effective ${state.ratesEffectiveFrom}. Each salary links to its take-home figure. Verified ${state.verifiedOn}.`;
+  const lead = `${state.code} teacher salary: ${formatAUD(grad)} for a graduate to ${formatAUD(top)} at the top of the scale`;
+  return fitDescription(
+    `Every step of the ${state.code} teacher pay scale, from ${formatAUD(grad)} for a graduate to ${formatAUD(top)} at the top, plus leadership rates. From the ${state.agreementName}, effective ${state.ratesEffectiveFrom}. Each salary links to its take-home figure. Verified ${state.verifiedOn}.`,
+    `${lead}, effective ${state.ratesEffectiveFrom}. Every step, leadership rates and take-home pay.`,
+    `${lead}. Every step, leadership rates and take-home pay.`,
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -20,7 +20,7 @@ const TITLE = `Zone Tax Offset Calculator — ${A} Zone A, ${SPECIAL} Special Ar
 
 export const metadata: Metadata = {
   title: TITLE,
-  description: `Work out your zone tax offset instantly. Zone A ${A}, Zone B ${B}, special area ${SPECIAL}, plus dependant base amounts. Follows the ATO's T4 worksheets for the ${ZONE_OFFSET_INCOME_YEAR} income year.`,
+  description: `Work out your zone tax offset: Zone A ${A}, Zone B ${B}, special area ${SPECIAL}, plus dependant amounts. Follows the ATO's T4 worksheets for the ${ZONE_OFFSET_INCOME_YEAR} income year.`,
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,

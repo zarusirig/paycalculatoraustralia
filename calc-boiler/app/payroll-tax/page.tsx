@@ -11,7 +11,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payroll-tax/`;
 
 const TITLE = `Payroll Tax Australia ${PAYROLL_TAX_FY}: Rates and Thresholds by State`;
-const DESCRIPTION = `Payroll tax rates and thresholds for every state and territory in ${PAYROLL_TAX_FY}, from $1m (VIC, WA) to $2.5m (NT). How it is calculated, who must register, due dates, and what it costs at $1.5m to $10m of wages.`;
+const DESCRIPTION = `Payroll tax rates and thresholds for every state and territory in ${PAYROLL_TAX_FY}, from $1m (VIC, WA) to $2.5m (NT). How it's calculated, who registers and due dates.`;
 
 export const metadata: Metadata = {
   title: TITLE,

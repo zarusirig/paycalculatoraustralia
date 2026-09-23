@@ -12,7 +12,7 @@ const URL = `${BASE}/ytd-income-calculator/`;
 export const metadata: Metadata = {
   title: "YTD Calculator Australia — Year to Date Income & Annualiser",
   description:
-    "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into a projected annual salary and tax estimate.",
+    "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into projected annual salary and tax.",
   alternates: { canonical: URL },
   openGraph: {
     title: "YTD Calculator Australia — Year to Date Income",

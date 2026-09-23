@@ -12,7 +12,7 @@ const URL = `${BASE}/pay-calculator-vic/`;
 export const metadata: Metadata = {
   title: "Pay Calculator VIC — Your Take-Home Pay in Victoria",
   description:
-    "Work out your take-home pay in Victoria. A free salary and wage calculator on current ATO rates, plus Victorian public holidays, penalty rates and long service leave.",
+    "Work out your take-home pay in Victoria: a salary and wage calculator on current ATO rates, plus VIC public holidays, penalty rates and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Pay Calculator VIC — Your Take-Home Pay in Victoria",

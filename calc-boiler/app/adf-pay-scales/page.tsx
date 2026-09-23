@@ -9,7 +9,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/adf-pay-scales/`;
 const TITLE = "ADF Pay Scales 2026 — Army, Navy & Air Force Salary by Rank";
 const DESCRIPTION =
-  "Australian Defence Force pay rates by rank and pay grade from PACMAN, effective 6 November 2025: Private $79,096–$126,292, officers from $87,091, recruits $60,517. Full tables and take-home pay.";
+  "ADF pay scales by rank and pay grade from PACMAN, effective 6 November 2025: Private $79,096–$126,292, officers from $87,091, recruits $60,517. With take-home pay.";
 
 export const metadata: Metadata = {
   title: TITLE,

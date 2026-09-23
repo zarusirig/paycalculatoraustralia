@@ -9,7 +9,7 @@ const first = SALARY_TO_HOURLY_SALARIES[0];
 const last = SALARY_TO_HOURLY_SALARIES[SALARY_TO_HOURLY_SALARIES.length - 1];
 const hours = EMPLOYMENT.hoursPerYear;
 
-const TITLE = `Annual Salary to Hourly Rate in Australia: ${formatAUD(first)} to ${formatAUD(last)} (${SITE_CONFIG.financialYear})`;
+const TITLE = `Salary to Hourly Rate Australia ${SITE_CONFIG.financialYear}: ${formatAUD(first)} to ${formatAUD(last)}`;
 const DESCRIPTION = `Hourly rate for ${SALARY_TO_HOURLY_SALARIES.length} annual salaries on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${hours.toLocaleString("en-AU")} hours a year). E.g. $80,000 a year is ${formatAUD(80_000 / hours, 2)} an hour before tax. After-tax hourly rate on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/salary-to-hourly/`;
 

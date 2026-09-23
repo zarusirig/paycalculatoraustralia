@@ -10,7 +10,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
 const TITLE = "Free Payslip Generator Australia — Create Payslips Online";
 const DESCRIPTION =
-  "Create a professional, Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup, no data stored.";
+  "Create a Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -7,7 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-guide/`;
 const TITLE = "How a Novated Lease Works — Explained Step by Step";
-const DESCRIPTION = "What a novated lease actually is: the three-way agreement, what sits in the running-cost budget, how the employee contribution cancels FBT, which electric cars are exempt, the 1 April 2025 plug-in hybrid cut-off, and what you owe at the end of the lease.";
+const DESCRIPTION = "What a novated lease is: the three-way agreement, how the employee contribution cancels FBT, which EVs are exempt, and what you owe at the end.";
 
 export const metadata: Metadata = {
   title: TITLE,

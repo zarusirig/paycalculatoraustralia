@@ -15,6 +15,7 @@ import {
   type JurisdictionCode,
 } from "@/lib/constants/long-service-leave";
 import { pageDateModified } from "@/lib/page-dates";
+import { fitDescription } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -42,7 +43,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // and the engine; the title only needs to read cleanly.
   const w = Number(j.weeksAtQualifying.toFixed(2));
   const title = `Long Service Leave Calculator ${j.abbr} — ${w} Weeks After ${j.takeAfterYears} Years`;
-  const description = `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}, accruing ${j.weeksPerYear.toFixed(4)} weeks a year. Pro-rata from ${j.proRataFromYears} years, what a resignation pays, casual and part-time rules, cashing out, and the tax on a payout.`;
+  const description = fitDescription(
+    `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}, accruing ${j.weeksPerYear.toFixed(4)} weeks a year. Pro-rata from ${j.proRataFromYears} years, what a resignation pays, casual and part-time rules, cashing out, and the tax on a payout.`,
+    `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}. Pro-rata from ${j.proRataFromYears} years, resignation payouts, casuals and tax.`,
+    `${j.abbr} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}. Pro-rata from ${j.proRataFromYears} years, resignation payouts, casuals and tax.`,
+    `${j.abbr} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years, pro-rata from ${j.proRataFromYears} years. Resignation payouts, casuals and tax.`,
+  );
 
   return {
     title,

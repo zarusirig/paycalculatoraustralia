@@ -9,8 +9,8 @@ const first = TAKE_HOME_SALARIES[0];
 const last = TAKE_HOME_SALARIES[TAKE_HOME_SALARIES.length - 1];
 const example = calculatePayBreakdown({ grossSalary: 100_000 });
 
-const TITLE = `Salary After Tax in Australia: Take-Home Pay on ${TAKE_HOME_SALARIES.length} Salaries (${SITE_CONFIG.financialYear})`;
-const DESCRIPTION = `Take-home pay after tax for every salary from ${formatAUD(first)} to ${formatAUD(last)} in ${SITE_CONFIG.financialYear}, in $1,000 steps from $40k to $150k. E.g. $100,000 after tax is ${formatAUD(example.takeHomePay)}. Weekly, fortnightly and monthly on each page.`;
+const TITLE = `Salary After Tax Australia ${SITE_CONFIG.financialYear}: Take-Home Pay on ${TAKE_HOME_SALARIES.length} Salaries`;
+const DESCRIPTION = `Take-home pay after tax for every salary from ${formatAUD(first)} to ${formatAUD(last)} in ${SITE_CONFIG.financialYear}. E.g. $100,000 after tax is ${formatAUD(example.takeHomePay)}. Weekly, fortnightly and monthly on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/take-home-pay-on/`;
 
 export const metadata: Metadata = {

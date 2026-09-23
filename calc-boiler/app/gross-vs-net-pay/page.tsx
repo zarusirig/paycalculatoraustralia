@@ -8,7 +8,7 @@ import { payslipFromGross } from "@/lib/constants/gross-vs-net";
 const SLUG = "gross-vs-net-pay";
 const EX = payslipFromGross({ gross: 3_000, frequency: "fortnightly" });
 const TITLE = "Gross vs Net Pay Australia: Difference + Converter";
-const DESCRIPTION = `Gross pay is before tax and deductions; net pay is what reaches your bank. ${formatAUD(3_000)} gross a fortnight is ${formatAUD(EX.net, 2)} net in 2026-27. What a gross payment is, a worked payslip, and a gross to net / net to gross converter.`;
+const DESCRIPTION = `Gross pay is before tax; net pay is what reaches your bank. ${formatAUD(3_000)} gross a fortnight is ${formatAUD(EX.net, 2)} net in 2026-27. A worked payslip and a gross to net converter.`;
 
 export const metadata: Metadata = {
   title: TITLE,

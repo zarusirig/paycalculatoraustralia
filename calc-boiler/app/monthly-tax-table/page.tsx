@@ -4,7 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { PAYG_FINANCIAL_YEAR, PAYG_PREVIOUS_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
+import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
 import { MONTHLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/monthly-tax-table-faqs";
 import {
   ATO_MONTHLY,
@@ -17,7 +17,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-tax-table/`;
 const TITLE = `Monthly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007) — PAYG Calculator`;
 const DESCRIPTION =
-  `Monthly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007): enter your monthly salary to see the tax withheld with or without the tax-free threshold. Full table, HELP/STSL, ${PAYG_PREVIOUS_FINANCIAL_YEAR} toggle and CSV download.`;
+  `Monthly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007): enter your monthly salary to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.`;
 const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = {

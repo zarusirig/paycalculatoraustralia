@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employer-cost-calculator/`;
 const TITLE = "True Cost of an Employee Calculator Australia";
-const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia. Learn about superannuation, payroll tax, workers compensation, and leave provisions loaded onto a base salary.";
+const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia: superannuation, payroll tax, workers compensation and leave provisions on top of base salary.";
 
 export const metadata: Metadata = {
   title: TITLE,

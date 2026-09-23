@@ -14,7 +14,7 @@ const low = Math.min(...AWARD_DIRECTORY.map((a) => a.headlineHourly));
 const high = Math.max(...AWARD_DIRECTORY.map((a) => a.headlineHourly));
 
 const TITLE = `Award Rates ${SITE_CONFIG.financialYear} — A–Z Pay Rates for ${AWARD_DIRECTORY.length} Modern Awards`;
-const DESCRIPTION = `Current award rates in Australia from 1 July 2026: Level 1 pay ${formatAUD(low, 2)}–${formatAUD(high, 2)}/hr across the fast food, retail, hospitality, pharmacy, manufacturing, clerks, security and SCHADS awards, with casual, penalty and junior rates. National minimum wage ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr.`;
+const DESCRIPTION = `Current award rates from 1 July 2026: Level 1 pay ${formatAUD(low, 2)}–${formatAUD(high, 2)}/hr across the major awards, with casual, penalty and junior rates. Minimum wage ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)}/hr.`;
 
 export const metadata: Metadata = {
   title: TITLE,

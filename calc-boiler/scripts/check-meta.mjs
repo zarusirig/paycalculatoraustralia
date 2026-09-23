@@ -15,7 +15,10 @@
  *   - JSON-LD that does not parse
  * Warnings (exit 0 unless --strict):
  *   - <title> longer than 65 characters, meta description longer than 165
- *   - Article / NewsArticle / BlogPosting without datePublished
+ *   - description ending in "…" (fitDescription had to cut mid-sentence)
+ *   - Article / NewsArticle / BlogPosting without datePublished, or with
+ *     datePublished later than dateModified
+ * Also an error: any `dateModified/datePublished: new Date()` in app/ or modules/.
  *
  * Pages with <meta name="robots" content="noindex"> are skipped.
  */
@@ -90,6 +93,7 @@ const problems = {
   "JSON-LD dateModified = build date": [],
   [`title > ${TITLE_MAX} chars`]: [],
   [`description > ${DESC_MAX} chars`]: [],
+  "description cut with …": [],
   "Article without datePublished": [],
   "datePublished after dateModified": [],
 };
@@ -120,6 +124,8 @@ for (const file of files) {
   if (title.length > TITLE_MAX) problems[`title > ${TITLE_MAX} chars`].push(`${url}  (${title.length}) ${title}`);
   const desc = metaContent(html, "name", "description") ?? "";
   if (desc.length > DESC_MAX) problems[`description > ${DESC_MAX} chars`].push(`${url}  (${desc.length})`);
+  // lib/seo-title.ts fitDescription() cut it mid-sentence: add a shorter form.
+  if (desc.endsWith("…")) problems["description cut with …"].push(url);
 
   // The page's truthful last-modified time (ms), or null if unknown.
   let truthfulMs;

@@ -13,8 +13,8 @@ const URL = `${BASE}/private-health-insurance-medicare/`;
 // /medicare-levy-surcharge-calculator/. This page owns the cover decision.
 const MLS_SINGLE = formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1);
 const MLS_FAMILY = formatAUD(familyBaseThreshold(0));
-const TITLE = "Private Health Insurance vs the Surcharge: Is Hospital Cover Worth It?";
-const DESCRIPTION = `Is private hospital cover cheaper than the Medicare levy surcharge? The ${MLS_INCOME_YEAR} surcharge and rebate tiers, how to find your break-even premium, and lifetime health cover loading.`;
+const TITLE = "Private Health Insurance vs Medicare Levy Surcharge: Worth It?";
+const DESCRIPTION = `Is private hospital cover cheaper than the Medicare levy surcharge? The ${MLS_INCOME_YEAR} surcharge and rebate tiers, your break-even premium and lifetime cover loading.`;
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -9,7 +9,7 @@ import { pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/stsl-on-payslip/`;
 const TITLE = "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)";
-const DESCRIPTION = "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld to cover your HECS-HELP repayment. See how it's calculated, why the amount changes, and how to stop it once your loan is paid off.";
+const DESCRIPTION = "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.";
 
 export const metadata: Metadata = {
   title: TITLE,

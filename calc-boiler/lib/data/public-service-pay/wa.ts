@@ -43,7 +43,7 @@ export const WA: Jurisdiction = {
 
   metaTitle: "WA Public Sector Pay Rates 2026 — Level 1–9 Salary Scale",
   metaDescription:
-    "Western Australian public sector pay from 13 June 2026: every General Division increment from Level 1.1 ($68,028) to Class 4 ($244,449) and the Specified Calling scale, from the Public Sector CSA Agreement 2024, with take-home pay.",
+    "WA public sector pay from 13 June 2026: every General Division step from Level 1.1 ($68,028) to Class 4 ($244,449), the Specified Calling scale and take-home pay.",
 
   instrument:
     "The Public Sector CSA Agreement 2024, registered by the Public Service Arbitrator of the Western Australian Industrial Relations Commission on 23 December 2024. It sets the General Division salaries (Levels 1 to 9 and Classes 1 to 4) in Schedule 2, the Specified Calling salaries in Schedule 3 and the Legal Grade salaries in Schedule 4, for public service officers employed by the agencies listed in Schedule 6.",

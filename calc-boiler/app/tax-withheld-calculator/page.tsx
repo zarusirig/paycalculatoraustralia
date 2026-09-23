@@ -15,7 +15,7 @@ const FY = SITE_CONFIG.financialYear;
 // (9.9k). Distinct from the /weekly|fortnightly|monthly-tax-table/ pages,
 // which are lookup tables; this is per-pay withholding → year-end refund/bill.
 const TITLE = `Tax Withheld Calculator ${FY}: ATO PAYG Withholding Estimator`;
-const DESCRIPTION = `Work out the tax withheld from your weekly, fortnightly or monthly pay for ${FY} using the ATO's PAYG withholding formulas, with or without the tax-free threshold and HECS-HELP, then see your likely refund or tax bill.`;
+const DESCRIPTION = `Work out the tax withheld from your weekly, fortnightly or monthly pay for ${FY} with the ATO's PAYG formulas, tax-free threshold and HECS-HELP, then your refund.`;
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-file-number-declaration/`;
 const TITLE = "Tax File Number Declaration — How to Fill It In";
-const DESCRIPTION = "How to complete a TFN declaration for a new job. Tax-free threshold claim, HECS debt notification, and what happens if you don't provide your TFN. Step-by-step guide.";
+const DESCRIPTION = "How to complete a TFN declaration for a new job: the tax-free threshold claim, HECS debt notification, and what happens if you don't provide your TFN. Step by step.";
 
 export const metadata: Metadata = {
   title: TITLE,

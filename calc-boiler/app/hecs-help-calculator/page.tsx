@@ -14,7 +14,7 @@ const B2 = HECS_HELP.bands[2];
 const B3 = HECS_HELP.bands[3];
 
 const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} — Thresholds & Rates Table`;
-const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, repayment at common incomes, indexation history, voluntary repayments and the overseas rules — one page for every study and training loan.`;
+const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, indexation, voluntary repayments and the overseas rules.`;
 
 export const metadata: Metadata = {
   title: TITLE,

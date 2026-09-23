@@ -10,7 +10,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pro-rata-salary-calculator/`;
 
 const TITLE = `Pro-Rata Salary Calculator ${SITE_CONFIG.financialYear}: Part-Time Pay After Tax`;
-const DESCRIPTION = `Work out a pro-rata salary from the full-time (FTE) salary and your hours or days. ${formatAUD(PRO_RATA_EXAMPLE.fte)} at 3 days a week = ${formatAUD(PRO_RATA_EXAMPLE.threeDays.annualSalary)}. Weekly, fortnightly and monthly pay, after-tax take-home, and part-year pro rata.`;
+const DESCRIPTION = `Work out a pro-rata salary from the full-time (FTE) salary and your hours or days. ${formatAUD(PRO_RATA_EXAMPLE.fte)} at 3 days a week = ${formatAUD(PRO_RATA_EXAMPLE.threeDays.annualSalary)}. Weekly, fortnightly and after-tax pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,

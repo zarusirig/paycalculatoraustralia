@@ -6,7 +6,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "leave-loading-calculator";
 const TITLE = "Leave Loading Calculator: 17.5% Annual Leave Loading";
 const DESCRIPTION =
-  "Work out 17.5% annual leave loading, including the award test that pays your weekend or shift penalties instead if they're higher. Which awards pay it, how it's taxed, super on loading, and payout when you leave.";
+  "Work out 17.5% annual leave loading, including the award test that pays your shift penalties instead if higher. Which awards pay it, how it's taxed and payout.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/full-time-vs-part-time-vs-casual/`;
 const TITLE = "Full-Time vs Part-Time vs Casual — Complete Comparison";
-const DESCRIPTION = "Compare full-time, part-time, and casual employment: leave entitlements, notice periods, casual loading (25%), casual conversion, and which type is best for your situation.";
+const DESCRIPTION = "Full-time vs part-time vs casual: leave entitlements, notice periods, the 25% casual loading, casual conversion and which type suits your situation.";
 
 export const metadata: Metadata = {
   title: TITLE,

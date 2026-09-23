@@ -10,7 +10,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
 const TITLE = "Tax Changes 2026-27 — What Changed From 1 July 2026";
-const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, super guarantee at 12%, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and what it means for your take-home pay.`;
+const DESCRIPTION = `Every confirmed Australian tax change for FY2026-27: the 15% rate cut, 12% super guarantee, the ${formatAUD(HECS_HELP.minimumThreshold)} HECS threshold, Payday Super, and your take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,

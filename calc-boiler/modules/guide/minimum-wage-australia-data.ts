@@ -34,7 +34,7 @@ export const currentRow = NMW_HISTORY[NMW_HISTORY.length - 1];
 
 export const MW_TITLE = `Minimum Wage Australia ${currentRow.fy}: ${money(NMW.hourly)} an Hour, ${money(NMW.weekly)} a Week`;
 
-export const MW_DESCRIPTION = `The National Minimum Wage is ${money(NMW.hourly)} an hour, ${money(NMW.weekly)} a week or ${formatAUD(NMW.annual, 2)} a year from ${NMW_DECISION.operativeFrom}, up ${currentRow.published} from ${money(NMW.previousHourly)}. Casual ${money(NMW.casualHourly)}. After-tax pay, award minimums, state rules and the next review.`;
+export const MW_DESCRIPTION = `The National Minimum Wage is ${money(NMW.hourly)} an hour, ${money(NMW.weekly)} a week or ${formatAUD(NMW.annual, 2)} a year from ${NMW_DECISION.operativeFrom}, up ${currentRow.published} from ${money(NMW.previousHourly)}. Casual ${money(NMW.casualHourly)}, plus after-tax pay.`;
 
 export interface Faq {
   q: string;

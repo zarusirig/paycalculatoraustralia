@@ -9,7 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-co-contribution/`;
 const TITLE = "Super Co-Contribution & Spouse Tax Offset Explained";
-const DESCRIPTION = "Government super co-contribution: up to $500 matched for low-income earners. Plus spouse super contribution tax offset up to $540. Eligibility, thresholds, and how to claim.";
+const DESCRIPTION = "Government super co-contribution: up to $500 matched for low-income earners, plus the spouse contribution tax offset up to $540. Eligibility, thresholds, claiming.";
 
 export const metadata: Metadata = {
   title: TITLE,

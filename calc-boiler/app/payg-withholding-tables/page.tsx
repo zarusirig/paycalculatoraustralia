@@ -14,7 +14,7 @@ const URL = `${BASE}/payg-withholding-tables/`;
 // monthly tax table" queries belong to the dedicated pages, which this page
 // links to with exact-match anchors.
 const TITLE = `PAYG Withholding Tax Tables ${PAYG_FINANCIAL_YEAR}: Weekly, Fortnightly, Monthly`;
-const DESCRIPTION = `Which ATO PAYG withholding tax table to use in ${PAYG_FINANCIAL_YEAR}: weekly (NAT 1005), fortnightly (NAT 1006) and monthly (NAT 1007) tax tables, Schedule 5 for bonuses, and how Schedule 1 withholding works.`;
+const DESCRIPTION = `Which ATO PAYG withholding tax table to use in ${PAYG_FINANCIAL_YEAR}: weekly (NAT 1005), fortnightly (NAT 1006) and monthly (NAT 1007) tables, plus Schedule 5 for bonuses.`;
 
 export const metadata: Metadata = {
   title: TITLE,

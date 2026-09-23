@@ -12,7 +12,7 @@ const PAGE_URL = `${BASE_URL}/final-pay-calculator/`;
 export const metadata: Metadata = {
   title: "Final Pay Calculator Australia — End of Employment Payout",
   description:
-    "Calculate your final pay when leaving a job. See unused annual leave payout, notice period pay, long service leave, and tax on your final payment. Free Australian calculator.",
+    "Calculate your final pay when leaving a job: unused annual leave payout, notice pay, long service leave and the tax on your final payment. Free calculator.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Final Pay Calculator Australia — End of Employment Payout (2026-27)",
