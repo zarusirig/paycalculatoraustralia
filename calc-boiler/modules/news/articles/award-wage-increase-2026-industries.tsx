@@ -7,14 +7,14 @@ export default function AwardWageIncrease2026Industries() {
       <p className="lead">
         Every modern award minimum rate rises <strong>4.75%</strong> from the first full pay
         period on or after 1 July 2026 — separate from the 6% national minimum wage increase.
-        Around 2.8 million award-reliant workers, roughly 21% of the workforce, get the rise
+        Award-reliant workers, about 23% of employees according to the ABS (May 2025), get the rise
         automatically, spanning retail, hospitality, aged care and beyond.
       </p>
 
       <NewsKeyFacts
         rows={[
           { label: "Modern award minimum rates", before: "—", after: "+4.75%" },
-          { label: "Award-reliant employees affected", after: "~2.8 million (~21% of workforce)" },
+          { label: "Award-reliant employees affected", after: "~23% of employees (ABS, May 2025)" },
           { label: "Takes effect", after: "First full pay period on or after 1 July 2026" },
           { label: "Awards covered", after: "Hospitality, Retail, Fast Food, Restaurant, Aged Care and all other modern awards" },
         ]}
@@ -46,7 +46,7 @@ export default function AwardWageIncrease2026Industries() {
         The Fair Work Commission handed down both figures in the same Annual Wage Review 2026
         decision, announced on 2 June 2026, but treated them as two separate questions: what the
         safety-net minimum wage should be for workers with no award coverage, and what modern
-        award rates should be for the roughly 2.8 million employees whose pay is set by a
+        award rates should be for the employees whose pay is set by a
         classification structure. The Commission can and does move these figures by different
         percentages in the same review, as it has this year.
       </p>

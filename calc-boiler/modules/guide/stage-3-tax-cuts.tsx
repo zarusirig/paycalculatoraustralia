@@ -36,7 +36,7 @@ export default function Stage3TaxCutsPage() {
                 The Stage 3 tax cuts were originally legislated in 2019 as part of a three-stage plan. The original design collapsed three tax brackets into two, creating a single <strong>30% rate from $45,001 to $200,000</strong>. In January 2024, the government announced a <strong>revised plan</strong> that instead reduced the bottom rate from 19% to 16%, kept more brackets, and spread the benefit more widely.
               </p>
               <p>
-                The 16% rate in this table applied for FY2024-25 and FY2025-26 only. A separate law, the Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2025, cut it again to <strong>15% from 1 July 2026</strong> and legislates <strong>14% from 1 July 2027</strong>. See <Link href="/tax-brackets/">current tax brackets</Link> for the FY{SITE_CONFIG.financialYear} rates.
+                The 16% rate in this table applied for FY2024-25 and FY2025-26 only. A separate law passed in March 2025 cut it again to <strong>15% from 1 July 2026</strong> and legislates <strong>14% from 1 July 2027</strong>. See <Link href="/tax-brackets/">current tax brackets</Link> for the FY{SITE_CONFIG.financialYear} rates.
               </p>
 
               <div className="not-prose my-6">
@@ -160,7 +160,7 @@ export default function Stage3TaxCutsPage() {
                       <tr><td className="px-5 py-3 font-medium">5 March 2024</td><td className="px-5 py-3">Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2024 receives Royal Assent</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2024</td><td className="px-5 py-3"><strong>Revised Stage 3 takes effect</strong> — new tax brackets apply from FY2024-25</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2025</td><td className="px-5 py-3">FY2025-26 begins — same brackets continue. SG rate increases to 12%</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">1 July 2026</td><td className="px-5 py-3">16% rate cut to <strong>15%</strong> (Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2025); a further cut to 14% is legislated from 1 July 2027</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">1 July 2026</td><td className="px-5 py-3">16% rate cut to <strong>15%</strong> (legislated in March 2025); a further cut to 14% is legislated from 1 July 2027</td></tr>
                     </tbody>
                   </table>
                 </div>

@@ -203,7 +203,7 @@ export default function TaxDeductionsGuidePage() {
 
                 <AccordionItem value="donations" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I claim charitable donations as a deduction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Gifts of <strong>$2 or more</strong> to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible. Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Gifts to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible, and the old <strong>$2 minimum</strong> no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026). Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.</AccordionContent>
                 </AccordionItem>
 
               </Accordion>

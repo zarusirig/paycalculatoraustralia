@@ -31,7 +31,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "The Fair Work Commission's 2026 Annual Wage Review lifts the national minimum wage 6% — from $24.95 to $26.44 an hour ($1,004.90 a week) — and modern award rates 4.75%, from 1 July 2026. See who gets the increase and what it means for your take-home pay.",
     category: "Wages",
     datePublished: "2026-06-02",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Annual Salary Calculator" },
@@ -44,7 +44,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What is the new minimum wage in Australia from 1 July 2026?", answer: "The national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week, a 6% rise from the Fair Work Commission's Annual Wage Review, effective from the first full pay period on or after 1 July 2026. Modern award minimum rates rose by a separate 4.75%." },
-      { question: "Who gets the 4.75% wage increase?", answer: "Around 2.8 million award-reliant employees — about 21% of the Australian workforce — get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
+      { question: "Who gets the 4.75% wage increase?", answer: "Award-reliant employees — about 23% of employees, according to the ABS (May 2025) — get the 4.75% modern award increase. National minimum wage earners instead receive a separate 6% rise to $26.44 an hour. Enterprise agreement or over-award workers are only affected if their pay is tied to award movements." },
       { question: "When does the 2026 minimum wage increase start?", answer: "From the first full pay period starting on or after 1 July 2026. If your pay week begins on a Wednesday, the new rate applies from the first Wednesday in July." },
     ],
   },
@@ -80,7 +80,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "All modern award minimum rates rise 4.75% from the first full pay period after 1 July 2026. What the increase looks like in retail, hospitality, aged care and other award-reliant industries — and how to check your new rate.",
     category: "Wages",
     datePublished: "2026-06-24",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/award-rates/", label: "Award Rates Guide" },
@@ -92,7 +92,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Minimum wages increase from 1 July 2026", url: "https://www.fairwork.gov.au/about-us/workplace-laws/annual-wage-review/annual-wage-review-2026", publisher: "Fair Work Ombudsman" },
     ],
     faq: [
-      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026 — including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. About 2.8 million award-reliant employees, roughly 21% of the workforce, are covered." },
+      { question: "Which awards get the 4.75% pay rise in 2026?", answer: "Every modern award minimum rate rises 4.75% from the first full pay period on or after 1 July 2026 — including the Hospitality Award, Retail Award, Fast Food Industry Award, Restaurant Industry Award and the Aged Care Award. Award-reliant employees, about 23% of employees according to the ABS (May 2025), are covered." },
       { question: "Is the award wage increase the same as the minimum wage increase?", answer: "No. The 4.75% rise applies only to modern award minimum rates. The national minimum wage — the safety-net rate for employees not covered by an award or agreement — rose separately by 6% to $26.44 an hour." },
       { question: "How do I find my new award rate?", answer: "Check your award's classification schedule for your role and grade, then apply the 4.75% increase to the current base rate. Fair Work Ombudsman publishes updated pay guides for each award from 1 July, and our award rates guide links to the current tables." },
       { question: "When do the new award rates start being paid?", answer: "From the first full pay period starting on or after 1 July 2026 — not 1 July itself. If your pay cycle doesn't align with the calendar, your first full July pay may still include a few days at the old rate." },
@@ -130,7 +130,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026, employers must pay super guarantee into your fund within 7 business days of each payday. Here's what payday super means for you.",
     category: "Super",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -145,7 +145,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { question: "What is payday super and when does it start?", answer: "Payday super is a law requiring employers to pay super guarantee contributions into an employee's fund within 7 business days of each payday, rather than quarterly. It started on 1 July 2026 and applies to qualifying earnings paid from that date, even if the work was done earlier." },
       { question: "What happens if my employer pays my super late under payday super?", answer: "If super isn't in your fund within 7 business days of payday, your employer becomes liable for the new super guarantee charge, which includes the shortfall, interest and administrative penalties. You can check contributions have landed through your fund's app or the ATO online services in myGov." },
       { question: "Can employers still use the Small Business Superannuation Clearing House?", answer: "No. The SBSCH closed permanently on 30 June 2026. Employers who relied on it needed to move to a commercial clearing house or their payroll software's default fund service before payday super started, to keep meeting the new 7-business-day deadline." },
-      { question: "Does payday super change how much super I get paid?", answer: "No, payday super changes the timing of contributions, not the rate. Super guarantee stays at 12% of ordinary time earnings for 2026-27. The change means your super lands in your account sooner and more often, which can slightly boost compounding returns over your career." },
+      { question: "Does payday super change how much super I get paid?", answer: "No, payday super changes the timing of contributions, not the rate. Super guarantee stays at 12% for 2026-27, now calculated on qualifying earnings (ordinary time earnings plus commissions for work done entirely outside ordinary hours). The change means your super lands in your account sooner and more often, which can slightly boost compounding returns over your career." },
     ],
   },
   {
@@ -155,7 +155,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Payday super requires employers to pay your super guarantee alongside every pay run from 1 July 2026. Here's what to check on your payslip now.",
     category: "Super",
     datePublished: "2026-07-02",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
@@ -174,7 +174,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026, Division 296 adds a 15% tax on earnings from super balances above $3 million, plus 10% above $10 million. Who it hits and when.",
     category: "Super",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
@@ -188,7 +188,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "What is Division 296 tax and who does it apply to?", answer: "Division 296 is an extra 15% tax on the share of super earnings attributed to the portion of an individual's total super balance above $3 million. It applies from 1 July 2026, with a further 10% on earnings attributed to balances above $10 million, taking the combined extra tax on that top slice to 25%." },
       { question: "When is Division 296 tax first assessed?", answer: "Division 296 tax first applies to earnings in the 2026-27 financial year. Because it's based on your total super balance at 30 June, the earliest individuals will receive an assessment is after 30 June 2027, once the ATO calculates earnings attributable to balances above the $3 million threshold." },
-      { question: "Does Division 296 tax unrealised capital gains?", answer: "Yes. Division 296 earnings are calculated using the growth in your total super balance over the year, adjusted for contributions and withdrawals, which can include unrealised gains on assets like property or shares that haven't been sold. This is one of the most contested features of the measure." },
+      { question: "Does Division 296 tax unrealised capital gains?", answer: "No, not under the law as passed. The original 2023 proposal would have used growth in your total super balance, including unrealised gains, but in October 2025 the government switched to a realised earnings approach. Your super fund calculates your share of its earnings and reports it to the ATO, which taxes the proportion relating to your balance above each threshold." },
       { question: "Are the $3 million and $10 million thresholds indexed?", answer: "Yes. Both the $3 million large super balance threshold and the $10 million very large super balance threshold are indexed to CPI, in increments of $150,000 and $500,000 respectively, so they will rise over time rather than staying fixed at today's dollar values." },
     ],
   },
@@ -237,7 +237,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Payday super, Division 296 and higher contribution caps all start or change in 2026-27. A plain-English guide to who is affected and what changes.",
     category: "Super",
     datePublished: "2026-05-12",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
@@ -412,7 +412,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026 the 16% tax rate on income between $18,201 and $45,000 fell to 15%, cutting up to $268 a year off every taxpayer bill this year.",
     category: "Tax",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -424,8 +424,8 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
       { title: "Tax reform", url: "https://budget.gov.au/content/04-tax-reform.htm", publisher: "Budget 2026-27, Australian Government" },
     ],
     faq: [
-      { question: "What tax rate changed on 1 July 2026?", answer: "The second marginal tax rate, applied to taxable income between $18,201 and $45,000, dropped from 16% to 15% from 1 July 2026. It's the second stage of tax cuts legislated in the 2025 Budget under the Treasury Laws Amendment (More Cost of Living Relief) Act 2025." },
-      { question: "How much is the 1 July 2026 tax cut worth?", answer: "Every taxpayer earning above $45,000 saves the maximum $268 a year, because the full $26,799 of income in that bracket is now taxed 1 percentage point lower. Taxpayers earning less than $45,000 save proportionally less, based on how much of their income falls in the bracket." },
+      { question: "What tax rate changed on 1 July 2026?", answer: "The second marginal tax rate, applied to taxable income between $18,201 and $45,000, dropped from 16% to 15% from 1 July 2026. It's the first of two further cuts legislated in March 2025, after that year's Budget." },
+      { question: "How much is the 1 July 2026 tax cut worth?", answer: "Every taxpayer earning above $45,000 saves the maximum $268 a year, because the full $26,800 of income in that bracket is now taxed 1 percentage point lower. Taxpayers earning less than $45,000 save proportionally less, based on how much of their income falls in the bracket." },
       { question: "Is there another tax cut coming after this one?", answer: "Yes. The same legislation cuts the rate again, from 15% to 14%, from 1 July 2027, on the same $18,201 to $45,000 bracket, taking the maximum annual saving to $536 a year compared with 2024-25 settings — double the saving delivered by the 1 July 2026 cut alone." },
       { question: "Do I need to do anything to get the tax cut?", answer: "No. The lower withholding rate is built into the PAYG tax tables employers and payroll software use automatically from the first pay run after 1 July 2026, so the extra take-home pay shows up in your pay packet without any action on your part." },
     ],
@@ -462,7 +462,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Lodging your 2025-26 tax return? Medicare levy thresholds rose, the $2 gift minimum was scrapped, and the WFH rate stays at 70 cents an hour.",
     category: "Tax",
     datePublished: "2026-06-29",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
@@ -476,7 +476,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     faq: [
       { question: "When is the 2026 tax return deadline?", answer: "If you lodge your own 2025-26 tax return, it's due by 31 October 2026. If you engage a registered tax agent before that date, your deadline can extend to 15 May 2027, provided you're on their client list before 31 October." },
       { question: "What is the work-from-home deduction rate for 2025-26?", answer: "The fixed rate method stays at 70 cents per work hour for 2025-26, unchanged from 2024-25. You can still separately claim depreciation on assets over $300, work-related purchases up to $300, and home office cleaning and repair costs on top of the fixed rate." },
-      { question: "Did the $2 minimum for gift deductions change?", answer: "Yes. From the 2025-26 income year, the $2 minimum donation threshold for deductible gift recipients was removed, so you can now claim a deduction for any eligible gift or donation regardless of size, provided you keep a valid receipt from the recipient." },
+      { question: "Did the $2 minimum for gift deductions change?", answer: "Yes. The $2 minimum donation threshold for deductible gift recipients has been removed, backdated to gifts made from 1 July 2024, so you can now claim a deduction for any eligible gift or donation regardless of size, provided you keep a valid receipt. Political donations still need to be $2 or more." },
       { question: "Does the $1,000 instant deduction apply to this year's return?", answer: "No, not yet. The $1,000 instant work-related deduction applies to the 2026-27 income year and is claimed on the return lodged from July 2027. The return you lodge this tax time, for 2025-26, still uses the normal substantiation rules for work expenses." },
     ],
   },
@@ -487,7 +487,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "From 1 July 2026: minimum wage up 6% to $26.44/hr, payday super begins, tax drops to 15%, HECS threshold rises to $69,528. The full roundup.",
     category: "Tax",
     datePublished: "2026-07-01",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "james-harrington",
     relatedCalculators: [
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
@@ -507,7 +507,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "What changed on 1 July 2026?", answer: "The minimum wage rose 6% to $26.44 an hour, payday super began requiring employers to pay super within 7 business days of payday, the 16% tax rate dropped to 15%, the HECS repayment threshold rose to $69,528, and several Centrelink payment rates were indexed upward." },
-      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group — every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect around 2.8 million award-reliant workers plus national minimum wage earners." },
+      { question: "Which of these changes affects the most people?", answer: "The tax cut affects the broadest group — every resident taxpayer earning above $18,201 gets a saving of up to $268 a year. The minimum wage and award rises directly affect award-reliant workers (about 23% of employees, per the ABS) plus national minimum wage earners." },
       { question: "Do these changes apply automatically?", answer: "Most do. The tax cut, payday super and minimum wage rise are all built into payroll systems and PAYG withholding tables from the first pay run after 1 July 2026, so you don't need to apply for them — they should simply appear in your pay and super." },
       { question: "Where can I check how these changes affect my own pay?", answer: "Run your salary through our take-home pay calculator to see your new after-tax figure, or the income tax calculator to check your exact tax cut, HECS repayment and Medicare levy under the FY2026-27 settings — all in one place, updated for every change on this page." },
     ],
@@ -544,7 +544,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "The Age Pension rose $22.20 a fortnight to $1,200.90 for singles from 20 March 2026; couples get $905.20 each. DSP and Carer Payment rose by the same amount.",
     category: "Centrelink & Payments",
     datePublished: "2026-03-20",
-    dateModified: "2026-07-02",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },

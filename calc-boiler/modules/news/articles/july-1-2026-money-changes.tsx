@@ -24,8 +24,8 @@ export default function July12026MoneyChanges() {
       <h2>Pay: minimum wage and award rates rise</h2>
       <p>
         The national minimum wage rose 6% to $26.44 an hour — $1,004.90 for a 38-hour week — while
-        modern award minimum rates rose a separate 4.75%, reaching about 2.8 million
-        award-reliant workers, roughly 21% of the workforce. The rise applies from the first full
+        modern award minimum rates rose a separate 4.75%, reaching award-reliant
+        workers, about 23% of employees according to the ABS (May 2025). The rise applies from the first full
         pay period on or after 1 July 2026. Read the full breakdown in{" "}
         <Link href="/news/minimum-wage-increase-july-2026/">minimum wage rise explained</Link>,
         then check your own pay with the{" "}
@@ -37,8 +37,8 @@ export default function July12026MoneyChanges() {
         Employers must now pay super guarantee into your fund within 7 business days of each
         payday, instead of waiting until the end of the quarter — see{" "}
         <Link href="/news/payday-super-starts-july-2026/">payday super starts</Link> for what
-        changed for employers and employees. The super guarantee rate itself stays at 12% of
-        ordinary time earnings; use the{" "}
+        changed for employers and employees. The super guarantee rate itself stays at 12%, now
+        calculated on qualifying earnings; use the{" "}
         <Link href="/superannuation-calculator/">superannuation calculator</Link> to project your
         balance. Higher balances are also affected: Division 296 tax, an extra 15% on earnings
         from balances above $3 million, applies from the same date.

@@ -15,14 +15,14 @@ export default function PaydaySuperEmployeesPayslip() {
           { label: "Super calculated", before: "Per quarter", after: "Per payday" },
           { label: "Super shown on payslip", after: "Accrued amount for that pay period" },
           { label: "Fund deposit timing", after: "Within 7 business days of payday" },
-          { label: "Super guarantee rate", after: "12% of ordinary time earnings" },
+          { label: "Super guarantee rate", after: "12% of qualifying earnings" },
         ]}
       />
 
       <h2>What should appear on your payslip now</h2>
       <p>
         Your payslip should still show a super guarantee line for each pay period — the same as
-        before — calculated as 12% of your ordinary time earnings for that pay run. What&apos;s
+        before — calculated as 12% of your qualifying earnings (for most people, ordinary time earnings) for that pay run. What&apos;s
         changed is the obligation behind it: employers must now pay that amount to your fund within
         7 business days, rather than bundling several pay periods together and paying once a
         quarter. If you&apos;re unsure what each line on your payslip means, our{" "}
