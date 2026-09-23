@@ -154,7 +154,7 @@ numbers show. Check CrUX or PageSpeed field data 28 days after deploy.
 - `npm run check:nav`: 292 hrefs checked, all resolve.
 - Anchor counts are unchanged: `/` 498, `/take-home-pay-on/80000/` 435, `/retail-award-rates/` 441.
 
-## Follow-up: related links on the server and 48 more calculator splits (2026-09-24, later)
+## Follow-up: related links on the server and 49 more calculator splits (2026-09-24, later)
 
 This follow-up clears remaining items 1 and 2 above. GA4 and every Adsterra unit are unchanged: the same six ad
 slots render in the same order on every page.
@@ -197,7 +197,7 @@ Calculator row now measures bonus-tax, because income-tax was already split in t
   `grep -rl 'chunks/app/page-' out --include=index.html` must list only `out/index.html`.
 - No string from `lib/related-links.ts` is in any client chunk. The layout chunk went from 44 KB to 9 KB raw.
 
-### 2. Client card / server content split on 48 more pages
+### 2. Client card / server content split on 49 more modules
 - **The split pattern.** The interactive part stays client and takes `children`. The article (tables, worked examples,
   FAQ, sources) is a new server component, `<module>-content.tsx`. Pages that have a state-dependent section in the
   middle of the article pass the static blocks around it as extra ReactNode props:
@@ -206,7 +206,7 @@ Calculator row now measures bonus-tax, because income-tax was already split in t
   - novated-lease: `evExemption` and `hecsAndFbtRates`
   - centrelink-debt: `intro`
   - employer-cost: `sidebar`
-- **Split this way (43 pages):**
+- **Split this way (44 modules):**
   - bonus-tax, second-job, backpay, pay-rise, fortnightly, weekly, monthly, annual, hourly-to-annual, gross,
     take-home, contractor, HECS, redundancy, super, salary-sacrifice
   - contractor-vs-employee, payslip, leave, employment-type, employer-cost, novated-lease, tax-return, overtime,
