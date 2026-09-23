@@ -20,6 +20,12 @@ import {
   RETAIL_RATES,
 } from "@/lib/constants/hospitality-award";
 import { SCHADS_AWARD, SCHADS_PENALTIES, SCHADS_SACS } from "@/lib/constants/schads-award";
+// --- G4 public holiday pay cluster ---
+import { STATE_PUBLIC_HOLIDAYS, statePath, statewideDays, yearOf } from "@/lib/data/public-holidays";
+const PH_COUNTS = STATE_PUBLIC_HOLIDAYS.map((st) => statewideDays(yearOf(st, 2026)!).length);
+const PH_COUNT_MIN = Math.min(...PH_COUNTS);
+const PH_COUNT_MAX = Math.max(...PH_COUNTS);
+// --- end G4 ---
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Overtime and penalty rates", url: "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates", publisher: SOURCES.fwo.name },
@@ -215,7 +221,9 @@ export default function OvertimePenaltyRatesGuidePage() {
                 </div>
               </div>
 
-              <p>Australia has <strong>8 national public holidays</strong> per year: New Year&apos;s Day, Australia Day, Good Friday, Easter Saturday, Easter Monday, Anzac Day, Queen&apos;s Birthday (King&apos;s Birthday from 2023), and Christmas Day plus Boxing Day. Each state and territory adds <strong>1-3 additional public holidays</strong>, bringing the total to 10-13 days depending on location.</p>
+              {/* --- G4 public holiday pay cluster (24 Sep 2026): corrected count, read from the state data --- */}
+              <p>Public holidays are set by each state and territory, not nationally, so the days that attract the public holiday rate depend on where your job is based. In 2026 the number of whole-day state-wide holidays ranges from <strong>{PH_COUNT_MIN}</strong> to <strong>{PH_COUNT_MAX}</strong>, before regional show days and the part-day Christmas Eve and New Year&apos;s Eve holidays in some states. <Link href="/public-holiday-pay/">Public holiday pay rates, your rights and a calculator</Link> &middot; dates by state: {STATE_PUBLIC_HOLIDAYS.map((st, i) => (<span key={st.slug}>{i > 0 ? ", " : ""}<Link href={statePath(st.slug)}>{st.code}</Link></span>))}.</p>
+              {/* --- end G4 --- */}
               <p>Weekend penalty rates are the most significant driver of higher pay for shift workers. A full-time hospitality worker on the level 1 rate of {formatAUD(HOSP_L1.hourly, 2)} per hour who works every Sunday receives <strong>{formatAUD(HOSP_L1.hourly * HOSPITALITY_PENALTIES.sunday, 2)} per hour</strong> ({HOSPITALITY_PENALTIES.sunday}x) for those shifts. Over 52 Sundays at 8 hours that is an extra <strong>{formatAUD(HOSP_L1.hourly * (HOSPITALITY_PENALTIES.sunday - 1) * 8 * 52, 0)}</strong> compared with weekday rates.</p>
             </section>
 
