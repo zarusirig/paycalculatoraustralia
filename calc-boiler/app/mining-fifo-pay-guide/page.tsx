@@ -3,7 +3,6 @@ import MiningFIFOPayGuidePage from "@/modules/guide/mining-fifo-pay-guide";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { MINING_FIFO_FAQS } from "@/modules/guide/mining-fifo-pay-guide-faqs";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/mining-fifo-pay-guide/`;

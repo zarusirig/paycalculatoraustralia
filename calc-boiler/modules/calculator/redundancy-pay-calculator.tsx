@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { NOTICE_PERIODS, SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { NOTICE_PERIODS, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
 import {
   ETP_RATES,
   GENUINE_REDUNDANCY_AGE_LIMIT,

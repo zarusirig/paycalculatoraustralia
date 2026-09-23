@@ -3,7 +3,6 @@ import TaxDeductionsGuidePage from "@/modules/guide/tax-deductions-guide";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { TAX_DEDUCTIONS_FAQS } from "@/modules/guide/tax-deductions-guide-faqs";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/tax-deductions-guide/`;

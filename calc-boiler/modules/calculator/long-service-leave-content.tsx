@@ -18,7 +18,7 @@ import {
   type JurisdictionCode,
 } from "@/lib/constants/long-service-leave";
 import LongServiceLeaveCalculator from "./long-service-leave-calculator";
-import { LSL_HUB_FAQS, spokeFaqs, type Faq } from "./long-service-leave-faqs";
+import { LSL_HUB_FAQS, spokeFaqs } from "./long-service-leave-faqs";
 import {
   ATO_SOURCE,
   FONT,
