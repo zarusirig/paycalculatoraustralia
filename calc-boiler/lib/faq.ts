@@ -9,6 +9,12 @@ import type { FAQPage, WithContext } from "schema-dts";
 export interface FaqItem {
   q: string;
   a: string;
+  /**
+   * Optional internal links: phrase (must occur in `a`) → href. The visible
+   * answer renders the first occurrence of each phrase as a link; the JSON-LD
+   * keeps the identical plain text.
+   */
+  links?: Readonly<Record<string, string>>;
 }
 
 /** FAQPage JSON-LD built from the same array the page renders. */
