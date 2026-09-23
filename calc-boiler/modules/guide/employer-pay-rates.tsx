@@ -15,12 +15,15 @@ import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import {
   EMPLOYERS,
-  annualFullTime,
+  // --- J7: salaried cabin crew ---
+  annualFor,
+  fullTimeHours,
+  takeHomeHrefForAnnual,
+  // --- end J7 ---
   entryRate,
   formatPct,
   hourlyToSalaryLink,
   juniorRates,
-  takeHomeHrefForHourly,
   topRate,
   weeklyExamples,
   type EmployerPay,
@@ -67,7 +70,9 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   const juniors = juniorRates(e);
   const anyDerivedJunior = juniors.some((j) => !j.published);
   const examples = weeklyExamples(e);
-  const takeHome = takeHomeHrefForHourly(entry.hourly);
+  // J7: salaried instruments (cabin crew) use their own annual salary / full-time hours.
+  const entryAnnual = annualFor(e, entry);
+  const takeHome = takeHomeHrefForAnnual(entryAnnual);
   const hourlyLink = hourlyToSalaryLink(entry.hourly);
   const loading = formatPct(e.casualLoading);
   const isAward = e.instrument.kind === "modern-award";
@@ -181,12 +186,15 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                           <span className="mt-1 block text-xs font-normal text-warmgray">{row.description}</span>
                         </th>
                         <td className="px-5 py-3 text-right font-medium text-navy">{money(row.hourly)}</td>
-                        <td className="px-5 py-3 text-right">{money(row.casualHourly)}</td>
+                        {/* J7: some airline classifications have no casual rate */}
+                        <td className="px-5 py-3 text-right">{row.noCasual ? "—" : money(row.casualHourly)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
+              {/* J7: how the hourly figure relates to a salary (cabin crew) */}
+              {e.payBasisNote && <p className="text-sm">{e.payBasisNote}</p>}
               {/* H1: instruments whose casual rate is not base + loading */}
               {e.casualRateNote && <p className="text-sm">{e.casualRateNote}</p>}
             </section>
@@ -287,8 +295,17 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                 </table>
               </div>
               <p>
-                A full-time year (38 hours × 52 weeks) at {money(entry.hourly)} is{" "}
-                {formatAUD(annualFullTime(entry.hourly))} before tax. See{" "}
+                {entry.annualSalary !== undefined ? (
+                  <>
+                    A full-time year at {entry.level} is {formatAUD(entryAnnual)} before tax (the
+                    agreement&rsquo;s salary). See{" "}
+                  </>
+                ) : (
+                  <>
+                    A full-time year ({fullTimeHours(e)} hours × 52 weeks) at {money(entry.hourly)} is{" "}
+                    {formatAUD(entryAnnual)} before tax. See{" "}
+                  </>
+                )}
                 <Link href={takeHome.href}>take-home pay on {formatAUD(takeHome.amount)}</Link>{" "}
                 (the nearest salary we publish) and{" "}
                 <Link href={hourlyLink.href}>
