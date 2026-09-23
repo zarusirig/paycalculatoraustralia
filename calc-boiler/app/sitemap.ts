@@ -85,6 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "age-pension-assets-test-calculator",
     "deeming-rates",
     "disability-support-pension-calculator",
+    "child-care-subsidy-calculator",
     // end H3
     "final-pay-calculator",
     "employment-type-calculator",
