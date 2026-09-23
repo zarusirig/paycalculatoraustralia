@@ -10,9 +10,12 @@
 import { calculatePayBreakdown } from "../../constants/australian-tax";
 import { nearestTakeHomeAmount, takeHomeHref, isExactTakeHomeAmount } from "../teacher-pay";
 import { ACCOUNTANT } from "./accountant";
+import { AGED_CARE_WORKER } from "./aged-care-worker";
 import { APPRENTICE_ELECTRICIAN } from "./apprentice-electrician";
 import { BUS_DRIVER } from "./bus-driver";
 import { CARPENTER } from "./carpenter";
+import { CHILDCARE_WORKER } from "./childcare-worker";
+import { CLEANER } from "./cleaner";
 import { CRANE_OPERATOR } from "./crane-operator";
 import { DENTAL_ASSISTANT } from "./dental-assistant";
 import { DOCTOR } from "./doctor";
@@ -22,6 +25,7 @@ import { ELECTRICIAN } from "./electrician";
 import { ENGINEER } from "./engineer";
 import { LAWYER } from "./lawyer";
 import { MEDICAL_RECEPTIONIST } from "./medical-receptionist";
+import { MIDWIFE } from "./midwife";
 import { NURSE } from "./nurse";
 import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
 import { PHARMACIST } from "./pharmacist";
@@ -64,6 +68,11 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   doctor: DOCTOR,
   "teacher-aide": TEACHER_AIDE,
   "early-childhood-teacher": EARLY_CHILDHOOD_TEACHER,
+  // T5 (wave 3)
+  midwife: MIDWIFE,
+  "childcare-worker": CHILDCARE_WORKER,
+  "aged-care-worker": AGED_CARE_WORKER,
+  cleaner: CLEANER,
 };
 
 /** Every occupation, in the order the hub lists them. */

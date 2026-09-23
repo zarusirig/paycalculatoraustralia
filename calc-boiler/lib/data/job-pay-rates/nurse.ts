@@ -55,7 +55,8 @@ function scale(classification: string, source: readonly AwardScale[]): AwardScal
   return s;
 }
 
-function rows(classification: string, source: readonly AwardScale[], prefix: string): RateRow[] {
+/** Nurses Award pay points as rate rows (shared with the midwife page). */
+export function nursesAwardRows(classification: string, source: readonly AwardScale[], prefix: string): RateRow[] {
   return scale(classification, source).points.map((p) => ({
     label: `${prefix} — ${p.label}`,
     weekly: p.weekly,
@@ -101,15 +102,15 @@ export const NURSE: Occupation = {
       title: "Registered nurse level 1 pay rates — Nurses Award, general stream",
       intro:
         "Clause 15.1, from the first full pay period on or after 1 July 2026 (PR799315). Casual is the hourly rate plus the 25% loading, matching Schedule B.1.3.",
-      rows: rows("Registered nurse — level 1", NURSES_AWARD_GENERAL, "Registered nurse level 1"),
+      rows: nursesAwardRows("Registered nurse — level 1", NURSES_AWARD_GENERAL, "Registered nurse level 1"),
     },
     {
       id: "registered-nurse-2-3",
       title: "Registered nurse levels 2 and 3 — clinical nurse and clinical nurse consultant roles",
       intro: "Clause 15.1, general stream.",
       rows: [
-        ...rows("Registered nurse — level 2", NURSES_AWARD_GENERAL, "Registered nurse level 2"),
-        ...rows("Registered nurse — level 3", NURSES_AWARD_GENERAL, "Registered nurse level 3"),
+        ...nursesAwardRows("Registered nurse — level 2", NURSES_AWARD_GENERAL, "Registered nurse level 2"),
+        ...nursesAwardRows("Registered nurse — level 3", NURSES_AWARD_GENERAL, "Registered nurse level 3"),
       ],
     },
     {
@@ -117,8 +118,8 @@ export const NURSE: Occupation = {
       title: "Nursing assistant and enrolled nurse pay rates",
       intro: "Clause 15.1, general stream.",
       rows: [
-        ...rows("Nursing assistant", NURSES_AWARD_GENERAL, "Nursing assistant"),
-        ...rows("Enrolled nurse", NURSES_AWARD_GENERAL, "Enrolled nurse"),
+        ...nursesAwardRows("Nursing assistant", NURSES_AWARD_GENERAL, "Nursing assistant"),
+        ...nursesAwardRows("Enrolled nurse", NURSES_AWARD_GENERAL, "Enrolled nurse"),
       ],
     },
     {
@@ -127,8 +128,8 @@ export const NURSE: Occupation = {
       intro:
         "Clause 15.3, from the first full pay period on or after 1 August 2026 (PR812118). These apply only to aged care employees.",
       rows: [
-        ...rows("Registered nurse — aged care level 1", NURSES_AWARD_AGED_CARE, "Aged care RN level 1"),
-        ...rows("Registered nurse — aged care level 2", NURSES_AWARD_AGED_CARE, "Aged care RN level 2"),
+        ...nursesAwardRows("Registered nurse — aged care level 1", NURSES_AWARD_AGED_CARE, "Aged care RN level 1"),
+        ...nursesAwardRows("Registered nurse — aged care level 2", NURSES_AWARD_AGED_CARE, "Aged care RN level 2"),
       ],
     },
   ],

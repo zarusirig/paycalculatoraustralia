@@ -381,3 +381,53 @@ test("W4: a metaTitle override still states the headline hourly rate", () => {
     assert.ok(occ.metaTitle.includes(`$${r.hourly.toFixed(2)}`), `${occ.slug}: ${occ.metaTitle}`);
   }
 });
+
+// ---------------------------------------------------------------------------
+// T5 (wave 3) occupations — spot checks against the consolidated award text
+// and the Fair Work Ombudsman pay guides, read 23 September 2026.
+// ---------------------------------------------------------------------------
+
+function checkPublished(slug: string, published: [string, number, number, number | null][]) {
+  for (const [label, weekly, hourly, casual] of published) {
+    const r = row(slug, label);
+    assert.deepEqual([r.weekly, r.hourly, r.casualHourly], [weekly, hourly, casual], `${slug} / ${label}`);
+  }
+}
+
+test("T5: midwife is paid on the Nurses Award RN ladder — identical rows to the nurse page", () => {
+  const h = headlineRow(getOccupation("midwife")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1219.5, 32.09, 40.11]);
+  assert.deepEqual(getOccupation("midwife")!.tables[0].rows, getOccupation("nurse")!.tables[0].rows);
+  assert.equal(getOccupation("midwife")!.award!.code, "MA000034");
+});
+
+test("T5: childcare worker — post-March 2026 CSE levels, cl 14.1(b), pay guide casuals", () => {
+  checkPublished("childcare-worker", [
+    ["Level 1 — Introductory Educator", 1094.8, 28.81, 36.01],
+    ["Level 2 — Educator", 1128.4, 29.69, 37.11],
+    ["Level 3 — Qualified Educator", 1233.9, 32.47, 40.59],
+    ["Level 5 — Advanced Educator", 1389.5, 36.57, 45.71],
+    ["Level 8 — Director", 1752.7, 46.12, 57.65],
+    ["Support Worker Level 1.1 — on commencement", 1004.9, 26.44, 33.05],
+  ]);
+  assert.equal(headlineRow(getOccupation("childcare-worker")!)!.label, "Level 3 — Qualified Educator");
+});
+
+test("T5: aged care worker — direct care cl 14.3 and general cl 14.1 match the 1 Sep 2026 pay guide", () => {
+  checkPublished("aged-care-worker", [
+    ["Direct care level 1 — Introductory", 1239.0, 32.61, 40.76],
+    ["Direct care level 3 — Qualified", 1376.7, 36.23, 45.29],
+    ["Direct care level 6 — Team Leader", 1541.9, 40.58, 50.73],
+    ["General level 1", 1055.4, 27.77, 34.71],
+    ["General level 7", 1278.6, 33.65, 42.06],
+  ]);
+});
+
+test("T5: cleaner — Table 2 rates; pay guide casual and part-time (15% allowance) figures", () => {
+  checkPublished("cleaner", [
+    ["Cleaning Services Employee Level 1", 1028.9, 27.08, 33.85],
+    ["Cleaning Services Employee Level 3", 1119.1, 29.45, 36.81],
+  ]);
+  const l1 = row("cleaner", "Cleaning Services Employee Level 1");
+  assert.equal(Math.round(cents(l1.hourly) * 1.15) / 100, 31.14); // cl 10.2 part-time allowance
+});
