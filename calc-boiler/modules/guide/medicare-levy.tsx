@@ -84,6 +84,9 @@ const LEVY_ROWS = [25_000, 29_000, 32_000, LOWER, UPPER, 45_000, 75_000, 100_000
   .filter((v, i, a) => a.indexOf(v) === i)
   .sort((a, b) => a - b);
 
+/** Incomes for the surcharge table — either side of each tier boundary. */
+const MLS_EXAMPLE_INCOMES = [100_000, 110_000, 125_000, 150_000, 175_000, 200_000];
+
 const MLS_TIERS = [
   { name: "Base tier", tier: MEDICARE_LEVY.surcharge.tier1, family: MEDICARE_LEVY.surcharge.familyTier1, base: true },
   { name: "Tier 1", tier: MEDICARE_LEVY.surcharge.tier1, family: MEDICARE_LEVY.surcharge.familyTier1, base: false },
@@ -97,7 +100,7 @@ export default function MedicareLevyPage() {
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Medicare Levy Calculator</span></li></ol></nav>
 
       <header className="mb-10 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Calculator</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Calculator <span className="block text-2xl md:text-3xl font-bold text-warmgray mt-2">with Medicare Levy Surcharge (MLS) Calculator</span></h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
           The Medicare levy is <strong>{RATE} of your taxable income</strong> — but not from the first dollar. Below {formatAUD(LOWER)} you pay nothing, and between {formatAUD(LOWER)} and {formatAUD(UPPER)} you pay {SHADE} of the excess instead. Work out your exact levy below, including the family and seniors thresholds and the separate Medicare levy surcharge.
         </p>
@@ -196,6 +199,22 @@ export default function MedicareLevyPage() {
                 </tr>
               ))}
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">ATO, <a href={ATO_MLS} target="_blank" rel="noopener noreferrer" className="hover:underline">Medicare levy surcharge income, thresholds and rates</a>. {MLS_INCOME_YEAR} income year. Family thresholds rise {formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first.</p></div>
+
+            <h3 id="mls-calculator" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Medicare Levy Surcharge Calculator: What You Pay Without Cover</h3>
+            <p>Single, no dependants, no private patient hospital cover for the whole of {MLS_INCOME_YEAR}. The surcharge is charged on your <strong>whole</strong> income for surcharge purposes, not just the part over the threshold. Use the calculator above for a spouse, children or part-year cover.</p>
+            <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Income for MLS purposes</th><th className="px-5 py-3 text-right">MLS rate</th><th className="px-5 py-3 text-right">Surcharge</th><th className="px-5 py-3 text-right">Plus {RATE} levy</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
+              {MLS_EXAMPLE_INCOMES.map((income, i) => {
+                const m = calculateMLS({ mlsIncome: income, spouseMlsIncome: 0, hasSpouse: false, dependentChildren: 0, hasPrivateHospitalCover: false });
+                return (
+                  <tr key={income} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}>
+                    <td className="px-5 py-3 font-medium text-navy tabular-nums">{formatAUD(income)}</td>
+                    <td className="px-5 py-3 text-right tabular-nums">{m.rate === 0 ? "Nil" : formatPercent(m.rate, 2)}</td>
+                    <td className="px-5 py-3 text-right font-medium text-navy tabular-nums">{formatAUD(m.surcharge)}</td>
+                    <td className="px-5 py-3 text-right tabular-nums">{formatAUD(single(income).levy)}</td>
+                  </tr>
+                );
+              })}
+            </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Assumes income for MLS purposes equals taxable income for the levy column. ATO {MLS_INCOME_YEAR} tiers.</p></div>
 
             <p>The ATO&rsquo;s example: Tom is 35, single, has no hospital cover, taxable income of {formatAUD(90_000)} and reportable fringe benefits of {formatAUD(27_000)}. His income for surcharge purposes is {formatAUD(117_000)}, which puts him in Tier {TOM.tier} at {formatPercent(TOM.rate, 0)} — a surcharge of <strong>{formatAUD(TOM.surcharge)}</strong>, charged on the whole {formatAUD(117_000)} rather than on the excess over the threshold. That cliff edge is why the surcharge is usually more expensive than a basic hospital policy once you are past the {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} threshold.</p>
 
