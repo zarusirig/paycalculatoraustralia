@@ -52,7 +52,7 @@ const SOURCES_LIST: SourceLink[] = [
 ];
 
 /**
- * Nurse figures on this hub are derived from the six verified state pay scales
+ * Nurse figures on this hub are derived from the eight verified state and territory pay scales
  * in lib/data/nursing-pay, not from survey averages. `spread` returns the
  * lowest and highest published entry (or top) rate across those states, so the
  * hub can never disagree with a spoke.
@@ -68,7 +68,7 @@ function spread(pick: "entry" | "top"): { low: number; high: number; lowState: s
   };
 }
 
-/** Lowest and highest published entry rate for a family, across the six states. */
+/** Lowest and highest published entry rate for a family, across the eight states and territories. */
 function familySpread(family: ScaleFamily): { low: number; high: number } | null {
   const values: number[] = [];
   for (const state of STATES) {
@@ -190,8 +190,8 @@ export default function HealthcareWorkerPayPage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3">Registered Nurse — entry step, public health system<span className="block text-xs text-warmgray-light">Lowest in {RN_ENTRY.lowState}, highest in {RN_ENTRY.highState}</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(RN_ENTRY.low)} – {formatAUD(RN_ENTRY.high)}</td></tr>
                       <tr><td className="px-5 py-3">Registered Nurse — top of the base scale<span className="block text-xs text-warmgray-light">Lowest in {RN_TOP.lowState}, highest in {RN_TOP.highState}</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(RN_TOP.low)} – {formatAUD(RN_TOP.high)}</td></tr>
-                      {EN_SPREAD ? (<tr><td className="px-5 py-3">Enrolled Nurse — across the six state scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(EN_SPREAD.low)} – {formatAUD(EN_SPREAD.high)}</td></tr>) : null}
-                      {NP_SPREAD ? (<tr><td className="px-5 py-3">Nurse Practitioner — across the six state scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(NP_SPREAD.low)} – {formatAUD(NP_SPREAD.high)}</td></tr>) : null}
+                      {EN_SPREAD ? (<tr><td className="px-5 py-3">Enrolled Nurse — across the eight state and territory scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(EN_SPREAD.low)} – {formatAUD(EN_SPREAD.high)}</td></tr>) : null}
+                      {NP_SPREAD ? (<tr><td className="px-5 py-3">Nurse Practitioner — across the eight state and territory scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(NP_SPREAD.low)} – {formatAUD(NP_SPREAD.high)}</td></tr>) : null}
                       <tr><td className="px-5 py-3"><Link href="/job-pay-rates/doctor/" className="text-eucalyptus-dark hover:underline">Doctor</Link> — intern to resident, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award; private hospitals and other national-system employers</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_INTERN)} – {formatAUD(DR_RESIDENT)}</td></tr>
                       <tr><td className="px-5 py-3">Registrar to senior registrar, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_REGISTRAR_LOW)} – {formatAUD(DR_REGISTRAR_HIGH)}</td></tr>
                       <tr><td className="px-5 py-3">Specialist to senior principal specialist, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_SPECIALIST_LOW)} – {formatAUD(DR_SPECIALIST_HIGH)}</td></tr>
@@ -205,7 +205,7 @@ export default function HealthcareWorkerPayPage() {
                 </div>
               </div>
               <p>
-                The nursing rows are not survey averages. They are the lowest and highest figures actually published in the six state pay scales below, and each one is traceable to a named enterprise agreement, certified agreement or state award. The doctor, allied health and aged care rows are either award minimums read from the Fair Work Commission&apos;s consolidated award text or Jobs and Skills Australia median full-time earnings (ABS, May 2025, weekly &times; 52), and are labelled as such. Award minimums are a floor: doctors and allied health staff in state public hospitals are paid under state agreements that pay more, and contractors have no award minimum. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare healthcare pay against other industries.
+                The nursing rows are not survey averages. They are the lowest and highest figures actually published in the eight state and territory pay scales below, and each one is traceable to a named enterprise agreement, certified agreement or state award. The doctor, allied health and aged care rows are either award minimums read from the Fair Work Commission&apos;s consolidated award text or Jobs and Skills Australia median full-time earnings (ABS, May 2025, weekly &times; 52), and are labelled as such. Award minimums are a floor: doctors and allied health staff in state public hospitals are paid under state agreements that pay more, and contractors have no award minimum. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare healthcare pay against other industries.
               </p>
               <p>
                 These figures are base salaries before penalty rates and allowances. Nurses and doctors who work regular evening, night and weekend shifts earn more than the base salary through shift and weekend penalties; how much depends on the roster and the state (see the penalty table below).
@@ -247,9 +247,11 @@ export default function HealthcareWorkerPayPage() {
                   );
                 })}
               </div>
-              <p className="text-sm text-warmgray-light">
-                Not published yet: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read, and we would rather publish nothing than a guess.
-              </p>
+              {NURSING_PAY_STATES_NOT_BUILT.length > 0 && (
+                <p className="text-sm text-warmgray-light">
+                  Not published yet: {NURSING_PAY_STATES_NOT_BUILT.join(" and ")}. Their instruments have not been read, and we would rather publish nothing than a guess.
+                </p>
+              )}
             </section>
 
             {/* ── The Nurses Award 2020 ── */}
@@ -286,7 +288,7 @@ export default function HealthcareWorkerPayPage() {
                         <td className="px-5 py-3 text-right font-medium">{formatAUD(AWARD_AGED_RN1.points[0].weekly * 52)}</td>
                       </tr>
                       <tr className="bg-eucalyptus-light/20 font-semibold text-navy">
-                        <td className="px-5 py-3">Public health system entry step, six states<span className="block text-xs font-normal text-warmgray-light">Lowest {RN_ENTRY.lowState}, highest {RN_ENTRY.highState}</span></td>
+                        <td className="px-5 py-3">Public health system entry step, eight states and territories<span className="block text-xs font-normal text-warmgray-light">Lowest {RN_ENTRY.lowState}, highest {RN_ENTRY.highState}</span></td>
                         <td className="px-5 py-3 text-right">—</td>
                         <td className="px-5 py-3 text-right">—</td>
                         <td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.low)} – {formatAUD(RN_ENTRY.high)}</td>
@@ -425,7 +427,7 @@ export default function HealthcareWorkerPayPage() {
               <Accordion type="multiple" className="not-prose mt-6 space-y-3">
                 <AccordionItem value="nurse-salary" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How much do registered nurses earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">It depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the six state scales published on this site, the entry step for a registered nurse or midwife runs from {formatAUD(RN_ENTRY.low)} in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base registered nurse scale runs from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}. Those are base rates before shift penalties, which for a nurse on a rotating roster add a substantial amount on top. Pick your state above for the full published scale.</AccordionContent>
+                  <AccordionContent className="text-warmgray">It depends on the state, because each state public health system has its own agreement and its own classification ladder. Across the eight state and territory scales published on this site, the entry step for a registered nurse or midwife runs from {formatAUD(RN_ENTRY.low)} in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base registered nurse scale runs from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}. Those are base rates before shift penalties, which for a nurse on a rotating roster add a substantial amount on top. Pick your state above for the full published scale.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="nurses-award" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the Nurses Award 2020 and does it apply to me?</AccordionTrigger>
@@ -456,7 +458,7 @@ export default function HealthcareWorkerPayPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Every nursing figure on this page is generated from the six verified state pay scales in the state pages linked above, so the hub and the spokes cannot disagree. Each of those scales was read directly from a named enterprise agreement, certified agreement, state award or employer wage schedule, with the effective date recorded — nothing is estimated, averaged or interpolated, and rows a source does not publish are left out and listed as gaps.</p>
+                <p>Every nursing figure on this page is generated from the eight verified state and territory pay scales in the state pages linked above, so the hub and the spokes cannot disagree. Each of those scales was read directly from a named enterprise agreement, certified agreement, state award or employer wage schedule, with the effective date recorded — nothing is estimated, averaged or interpolated, and rows a source does not publish are left out and listed as gaps.</p>
                 <p>Nurses Award 2020 rates are read from the Fair Work Ombudsman&apos;s consolidated award text: the general stream operative from {NURSES_AWARD.generalRatesFrom} ({NURSES_AWARD.generalDetermination}) and the aged care stream from {NURSES_AWARD.agedCareRatesFrom} ({NURSES_AWARD.agedCareDetermination}).</p>
                 <p>Doctor, allied health and aged care figures are award minimums read from the Fair Work Commission&apos;s consolidated award text (via our <Link href="/job-pay-rates/">job pay rates</Link> data, verified 23 September 2026) or Jobs and Skills Australia median full-time earnings, and are labelled as such. Salary packaging figures use the ATO&apos;s grossed-up FBT exemption caps divided by the type 2 gross-up rate ({FBT.grossUpType2}). Take-home figures use FY{SITE_CONFIG.financialYear} marginal rates including the Medicare levy, calculated with the same engine as the site&apos;s calculators.</p>
               </MethodologyDisclosure>
@@ -481,9 +483,11 @@ export default function HealthcareWorkerPayPage() {
                       />
                     ))}
                   </div>
-                  <p className="mt-3 text-xs text-warmgray-light">
-                    {NURSING_PAY_STATES_NOT_BUILT.join(" and ")} are not published yet.
-                  </p>
+                  {NURSING_PAY_STATES_NOT_BUILT.length > 0 && (
+                    <p className="mt-3 text-xs text-warmgray-light">
+                      {NURSING_PAY_STATES_NOT_BUILT.join(" and ")} are not published yet.
+                    </p>
+                  )}
                 </CardContent>
               </Card>
 

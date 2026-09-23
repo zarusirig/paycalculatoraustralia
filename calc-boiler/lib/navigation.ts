@@ -83,8 +83,9 @@ const STATES = [
 
 // Which states have a built page in each state-split cluster. The route
 // check fails if one of these is removed without updating the list.
-const NURSE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas"];
-const PUBLIC_SERVICE_STATES = ["nsw", "vic", "qld", "wa", "sa"];
+// H2 (24 Sep 2026): ACT/NT nurses and TAS/ACT/NT public service added.
+const NURSE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
+const PUBLIC_SERVICE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
 
 export const MEGA_MENU: readonly MegaMenu[] = [
   {

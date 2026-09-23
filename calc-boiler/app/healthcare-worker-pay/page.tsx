@@ -21,7 +21,7 @@ const RN_ENTRY_HIGH = ENTRIES[ENTRIES.length - 1];
 const AWARD_RN1 = NURSES_AWARD_GENERAL.find((s) => s.classification === "Registered nurse — level 1")!;
 
 const TITLE = "Healthcare Worker Pay — Nurse Pay by State, Doctors & Allied Health";
-const DESCRIPTION = `Nurse and midwife pay scales for all six states, read from the actual enterprise agreements: registered nurses from ${formatAUD(
+const DESCRIPTION = `Nurse and midwife pay scales for every state and territory, read from the actual enterprise agreements: registered nurses from ${formatAUD(
   RN_ENTRY_LOW,
 )} to ${formatAUD(
   RN_ENTRY_HIGH,
@@ -52,7 +52,7 @@ const webPage: WithContext<WebPage> = {
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 
-/** Makes the six spokes discoverable as a set, not just as inline anchors. */
+/** Makes the eight spokes discoverable as a set, not just as inline anchors. */
 const stateList: WithContext<ItemList> = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -74,7 +74,7 @@ const faq: WithContext<FAQPage> = {
       name: "How much do registered nurses earn in Australia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `It depends on the state, because each public health system has its own agreement and its own classification ladder. Across the six state pay scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(
+        text: `It depends on the state, because each public health system has its own agreement and its own classification ladder. Across the eight state and territory pay scales published on this site, the entry step for a registered nurse or midwife runs from ${formatAUD(
           RN_ENTRY_LOW,
         )} to ${formatAUD(
           RN_ENTRY_HIGH,
