@@ -305,6 +305,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T1 wave 3 tax core (23 Sep 2026) ---
+  allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  // --- end T1 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

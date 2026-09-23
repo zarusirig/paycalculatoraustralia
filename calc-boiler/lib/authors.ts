@@ -176,7 +176,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "salary-package-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "commission-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
-  "low-income-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
+  "low-income-tax-offset": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" }, // T1 rebuild
   "payg-withholding-tables": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "weekly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "fortnightly-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
@@ -291,6 +291,10 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tax-return-2026": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "pension-age-australia": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end W1 ---
+
+  // --- T1 wave 3 tax core (23 Sep 2026) ---
+  "tax-withheld-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end T1 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
