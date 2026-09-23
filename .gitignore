@@ -28,3 +28,5 @@ firebase-debug.log
 *.tsbuildinfo
 next-env.d.ts
 curl_output.html
+.playwright-mcp/
+.claude/worktrees/
