@@ -124,7 +124,7 @@ export default function NovatedLeaseCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">Work Out Your Novated Lease Deductions and Take-Home Pay</h2>
-              <div className="grid lg:grid-cols-[1fr_1.4fr] gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
                     <label htmlFor="salary" className={LABEL}>Annual salary (before tax, excluding super)</label>
@@ -132,7 +132,7 @@ export default function NovatedLeaseCalculatorPage() {
                       <input type="number" id="salary" min={0} max={1_000_000} step={1_000} value={salary}
                         onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 1_000_000))} className={INPUT} /></div>
                     <input type="range" min={40_000} max={300_000} step={1_000} value={clamp(salary, 40_000, 300_000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
 
                   <div>
@@ -141,7 +141,7 @@ export default function NovatedLeaseCalculatorPage() {
                       <input type="number" id="price" min={0} max={250_000} step={1_000} value={vehiclePrice}
                         onChange={(e) => setVehiclePrice(clamp(Number(e.target.value || 0), 0, 250_000))} className={INPUT} /></div>
                     <input type="range" min={20_000} max={130_000} step={1_000} value={clamp(vehiclePrice, 20_000, 130_000)}
-                      onChange={(e) => setVehiclePrice(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setVehiclePrice(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     <p className="text-xs text-warmgray-light mt-1">
                       The FBT base value: cost price including GST and any luxury car tax, plus dealer delivery and
                       non-business accessories, but excluding registration and stamp duty.
@@ -493,7 +493,7 @@ export default function NovatedLeaseCalculatorPage() {
 
           <section>
             <h2 style={FONT} className={H2}>Related Calculators and Guides</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/novated-lease-guide/" className="group rounded-xl border border-sandstone-dark/20 p-4 hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy group-hover:text-eucalyptus-dark text-sm">How a Novated Lease Works</h3>
                 <p className="text-sm text-warmgray mt-1">The three-way agreement, what sits in the budget, and what happens if you leave your job.</p>

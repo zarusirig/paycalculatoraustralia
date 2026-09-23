@@ -90,7 +90,7 @@ export default function SalarySacrificeCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Compare Your Pay Before and After Salary Sacrifice</h2>
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <div>
@@ -102,7 +102,7 @@ export default function SalarySacrificeCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
                   <div>
                     <label htmlFor="sacrifice" className="block text-sm font-medium text-navy mb-1">Salary Sacrifice Amount</label>
@@ -606,7 +606,7 @@ export default function SalarySacrificeCalculatorPage() {
                 Salary sacrifice reduces take-home pay immediately. The tax savings are real, but the trade-off is lower disposable income each pay cycle. Employees must assess whether the reduced cash flow is sustainable before committing.
               </p>
 
-              <div className="grid md:grid-cols-2 gap-4 not-prose mb-6 mt-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose mb-6 mt-4">
                 <Card className="bg-eucalyptus-light/30 border-sandstone-dark/20">
                   <CardContent className="p-4">
                     <h4 className="font-semibold text-eucalyptus-dark mb-2">The Pros</h4>

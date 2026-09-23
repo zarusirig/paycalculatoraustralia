@@ -102,7 +102,7 @@ export default function IncomeTaxCalculatorPage({ children }: { children: React.
           <section className="max-w-4xl mx-auto">
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Input */}
                   <div className="space-y-6">
                     <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
@@ -123,7 +123,7 @@ export default function IncomeTaxCalculatorPage({ children }: { children: React.
                           />
                         </div>
                         {period === "annual" && (
-                          <input type="range" min={0} max={300000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                          <input type="range" min={0} max={300000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                             value={clamp(amount, 0, 300000)} onChange={(e) => setAmount(Number(e.target.value))} />
                         )}
                         <AmountPresets values={PRESETS[period]} current={amount} onPick={setAmount} />

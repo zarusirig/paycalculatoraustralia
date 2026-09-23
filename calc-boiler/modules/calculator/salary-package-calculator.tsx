@@ -91,7 +91,7 @@ export default function SalaryPackageCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">Split a Package Into Base Salary, Super and Take-Home</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <fieldset>
                     <legend className="block text-sm font-medium text-navy mb-2">The figure in the offer is</legend>
@@ -115,12 +115,12 @@ export default function SalaryPackageCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={30_000} max={300_000} step={1000} value={clamp(amount, 30_000, 300_000)}
-                      onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
                 </form>
 
                 <div className="space-y-6">
-                  <div className="grid sm:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-5 text-center shadow-sm">
                       <div className="text-xs font-semibold text-ochre uppercase tracking-wider mb-2">Base salary</div>
                       <div className="text-2xl font-extrabold text-navy">{formatAUD(split.base)}</div>

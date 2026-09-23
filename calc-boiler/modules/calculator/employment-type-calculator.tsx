@@ -118,7 +118,7 @@ export default function EmploymentTypeCalculatorPage() {
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Compare Employment Types</h2>
 
                 {/* Inputs */}
-                <form onSubmit={(e) => e.preventDefault()} className="grid md:grid-cols-2 gap-6 mb-8">
+                <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div>
                     <label htmlFor="hourly" className="block text-sm font-medium text-navy mb-1">Base Hourly Rate</label>
                     <div className="flex items-center">
@@ -127,7 +127,7 @@ export default function EmploymentTypeCalculatorPage() {
                         onChange={(e) => setHourlyRate(clamp(Number(e.target.value || 0), 0, 200))}
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                     </div>
-                    <input type="range" min={20} max={100} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                    <input type="range" min={20} max={100} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                       value={clamp(hourlyRate, 20, 100)} onChange={(e) => setHourlyRate(Number(e.target.value))} />
                   </div>
                   <div>
@@ -135,7 +135,7 @@ export default function EmploymentTypeCalculatorPage() {
                     <input type="number" id="hours" min={1} max={38} step={1} value={hoursPerWeek}
                       onChange={(e) => setHoursPerWeek(clamp(Number(e.target.value || 1), 1, 38))}
                       className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
-                    <input type="range" min={5} max={38} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                    <input type="range" min={5} max={38} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                       value={clamp(hoursPerWeek, 5, 38)} onChange={(e) => setHoursPerWeek(Number(e.target.value))} />
                     <p className="text-xs text-warmgray-light mt-1">Full-time is always {EMPLOYMENT.standardWeeklyHours} hours/week</p>
                   </div>
@@ -213,7 +213,7 @@ export default function EmploymentTypeCalculatorPage() {
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do Full-Time, Part-Time, and Casual Compare?</h2>
               <p className="mb-4 text-warmgray">The three main employment types in Australia differ in <strong>hours, entitlements, and pay structure</strong>. While casual employees receive a higher hourly rate through the 25% casual loading, permanent employees receive paid leave and greater job security.</p>
 
-              <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                   <h3 className="font-semibold text-navy mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full-Time</h3>
                   <ul className="space-y-1 text-sm text-warmgray list-disc pl-4">

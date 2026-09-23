@@ -121,7 +121,7 @@ export default function YTDIncomeCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-[auto_1fr] gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-start">
 
                 {/* Inputs */}
                 <div className="bg-white p-6 rounded-2xl border border-sandstone-dark/10 shadow-sm md:w-80">

@@ -47,7 +47,7 @@ export default function TaxBracketsLookup() {
           Enter your taxable income for {FY}. Australian resident, full year, tax-free threshold. Includes the low income tax offset and the 2% Medicare levy.
         </p>
 
-        <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-[1fr_auto] items-end">
+        <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-[1fr_auto] items-end">
           <div>
             <label htmlFor="tb-income" className="block text-sm font-medium text-navy mb-1">Taxable income ($ a year)</label>
             <input

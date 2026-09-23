@@ -36,8 +36,8 @@ export default function CentsPerKmCalculator() {
       <CardContent className="p-6 md:p-8">
         <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Cents per Kilometre Calculator</h2>
         <p className="text-sm text-warmgray mb-6">Your car expense deduction at the ATO rate, and, if your employer pays a car allowance per km, how much of it is paid tax-free and how much is withheld from.</p>
-        <div className="grid gap-8 lg:grid-cols-2">
-          <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 gap-4 sm:grid-cols-2 content-start">
             <NumberField id="cpk-km" label="Work-related kilometres this year" hint="Per car. Home to work doesn't count as work travel." value={km} onChange={setKm} step={100} />
             <SelectField id="cpk-year" label="Income year" value={year} onChange={setYear} options={YEARS.map((y) => ({ value: y, label: `${y} (${cents(CENTS_PER_KM_RATES[y])}/km)` }))} />
             <NumberField id="cpk-allow" label="Car allowance your employer pays (cents per km)" hint="Leave at 0 if you don't get one." value={allowanceRate} onChange={setAllowanceRate} step={1} />

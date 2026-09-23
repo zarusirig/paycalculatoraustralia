@@ -197,7 +197,7 @@ export default function PayslipGeneratorPage() {
         <section className="max-w-6xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid lg:grid-cols-[minmax(320px,380px)_1fr] gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(320px,380px)_1fr] gap-8 items-start">
 
                 {/* INPUTS */}
                 <div className="bg-white p-6 rounded-2xl border border-sandstone-dark/10 shadow-sm space-y-6">
@@ -377,7 +377,7 @@ export default function PayslipGeneratorPage() {
 
                 {/* PAYSLIP PREVIEW */}
                 <div>
-                  <div id="payslip-print-area" className="bg-white border border-sandstone-dark/20 rounded-2xl shadow-sm p-6 md:p-8">
+                  <div id="payslip-print-area" className="bg-white border border-sandstone-dark/20 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 max-sm:overflow-x-auto">
                     <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-navy pb-4 mb-4">
                       <div>
                         <div className="text-xl font-bold text-navy">{businessName || "Business Name"}</div>

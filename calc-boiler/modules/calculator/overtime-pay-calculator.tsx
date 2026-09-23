@@ -87,7 +87,7 @@ export default function OvertimePayCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-6">Calculate Your Overtime Pay</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
@@ -117,7 +117,7 @@ export default function OvertimePayCalculatorPage() {
                       onChange={(e) => setHoursWorked(clamp(Number(e.target.value || 0), 0, 80))}
                       className="block w-28 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     <input type="range" min={0} max={40} step={1} value={clamp(hoursWorked, 0, 40)}
-                      onChange={(e) => setHoursWorked(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setHoursWorked(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
 
                   <div>

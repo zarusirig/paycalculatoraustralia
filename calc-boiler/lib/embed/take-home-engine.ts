@@ -62,7 +62,7 @@ export interface EmbedResult {
  * (no Medicare levy surcharge) and no salary sacrifice.
  */
 export const EMBED_ENGINE_JS = `function pcaTakeHome(D, raw, hecsOn, superIn) {
-  raw = Number(raw) || 0;
+  raw = Math.max(0, Number(raw) || 0);
   var r = D.sg.rate, cap = D.sg.maxBase;
   var base = raw;
   if (superIn) base = raw / (1 + r) > cap ? Math.round(raw - cap * r) : Math.round(raw / (1 + r));

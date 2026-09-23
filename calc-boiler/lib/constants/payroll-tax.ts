@@ -18,6 +18,8 @@
 // left to the revenue office's own portal.
 // =============================================================================
 
+import { calculateSuper } from "./australian-tax";
+
 export type PayrollTaxStateCode = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
 export const PAYROLL_TAX_STATE_CODES: readonly PayrollTaxStateCode[] = [
@@ -658,3 +660,41 @@ export const PAYROLL_TAX_AUSTRALIA_URL = "https://www.payrolltax.gov.au/lodging"
 
 /** Worked example salary bill used on the state pages (a mid-sized employer). */
 export const EXAMPLE_WAGE_BILLS = [1_500_000, 3_000_000, 5_000_000, 10_000_000] as const;
+
+// ---------------------------------------------------------------------------
+// Employer on-cost estimate for /employer-cost-calculator/ (one employee).
+// Inputs are clamped so an empty or negative field can never produce NaN, a
+// negative cost, or an Infinity multiplier (QA 24 Sep 2026).
+// ---------------------------------------------------------------------------
+
+export interface EmployerOnCostsInput {
+  baseSalary: number;
+  /** Payroll tax as a percentage, e.g. 4.85. */
+  payrollTaxPct: number;
+  /** Workers compensation premium as a percentage, e.g. 1.5. */
+  workcoverPct: number;
+}
+
+export interface EmployerOnCosts {
+  salary: number;
+  superAmt: number;
+  leaveProvision: number;
+  payrollTaxAmt: number;
+  workcoverAmt: number;
+  trueCost: number;
+  /** trueCost ÷ salary, or null when the salary is 0. */
+  multiplier: number | null;
+}
+
+const clampFinite = (v: number, max: number) => (Number.isFinite(v) ? Math.min(Math.max(v, 0), max) : 0);
+
+export function employerOnCosts(input: EmployerOnCostsInput): EmployerOnCosts {
+  const salary = clampFinite(input.baseSalary, 100_000_000);
+  // 12% SG, capped at the annual maximum contribution base (Payday Super).
+  const superAmt = calculateSuper(salary);
+  const leaveProvision = salary * (4 / 52); // 4 weeks' annual leave ≈ 7.69%
+  const payrollTaxAmt = (salary + superAmt) * (clampFinite(input.payrollTaxPct, 100) / 100);
+  const workcoverAmt = salary * (clampFinite(input.workcoverPct, 100) / 100);
+  const trueCost = salary + superAmt + leaveProvision + payrollTaxAmt + workcoverAmt;
+  return { salary, superAmt, leaveProvision, payrollTaxAmt, workcoverAmt, trueCost, multiplier: salary > 0 ? trueCost / salary : null };
+}

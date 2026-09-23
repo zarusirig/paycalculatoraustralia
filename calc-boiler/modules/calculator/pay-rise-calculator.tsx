@@ -101,7 +101,7 @@ export default function PayRiseCalculatorPage() {
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Pay Before and After a Rise</h2>
 
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <div>
@@ -356,7 +356,7 @@ export default function PayRiseCalculatorPage() {
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Negotiate a Pay Rise</h2>
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-eucalyptus-dark mb-3">1. Build Your Case</h3>
                 <p className="text-sm">Don&apos;t just ask for more money because of inflation. Track your specific achievements over the last 6-12 months. Did you save the company money? Drive new revenue? Take on duties outside your job description?</p>

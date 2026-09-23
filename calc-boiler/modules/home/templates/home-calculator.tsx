@@ -424,7 +424,7 @@ export default function HomeCalculator() {
                   value={clamp(amount, 0, 300000)}
                   onChange={(e) => setAmount(Number(e.target.value))}
                   className="mt-0 w-full accent-eucalyptus"
-                  aria-hidden="true"
+                  aria-hidden="true" tabIndex={-1}
                 />
                 <div className="mt-0.5 flex justify-between text-[9px] text-warmgray-light/60">
                   {[0, 50000, 100000, 150000, 200000, 250000, 300000].map((tick) => (

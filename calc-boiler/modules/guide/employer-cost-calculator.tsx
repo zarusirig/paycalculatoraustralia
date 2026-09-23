@@ -12,7 +12,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
-import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
+import { calculatePayrollTax, employerOnCosts } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -47,12 +47,13 @@ export default function EmployerCostCalculatorPage() {
   const [payrollTaxRate, setPayrollTaxRate] = useState<number>(Math.round(STATE_PAYROLL_TAX.VIC.rate * 10000) / 100);
   const [workcoverRate, setWorkcoverRate] = useState<number>(1.5); // Default average proxy
 
-  // Logic
-  // 12% SG, capped at the annual maximum contribution base (Payday Super, from 1 July 2026).
-  const superAmt = calculateSuper(baseSalary);
-  const leaveProvision = baseSalary * (4 / 52); // ~7.69% for 4 weeks annual leave
-  const payrollTaxAmt = (baseSalary + superAmt) * (payrollTaxRate / 100);
-  const workcoverAmt = baseSalary * (workcoverRate / 100);
+  // Inputs are clamped inside employerOnCosts (12% SG capped at the annual
+  // maximum contribution base), so an empty/negative field can never show NaN.
+  const { salary, superAmt, leaveProvision, payrollTaxAmt, workcoverAmt, trueCost, multiplier: costMultiplier } = employerOnCosts({
+    baseSalary,
+    payrollTaxPct: payrollTaxRate,
+    workcoverPct: workcoverRate,
+  });
 
   // Worked example in the "Total Cost of Employment" section below — a $95,000 Victorian marketing
   // manager. Payroll tax is sourced from STATE_PAYROLL_TAX so it can never drift from the verified rate.
@@ -66,8 +67,6 @@ export default function EmployerCostCalculatorPage() {
   const WORKED_TOTAL = WORKED_SALARY + WORKED_SUPER + WORKED_ANNUAL_LEAVE + WORKED_PERSONAL_LEAVE + WORKED_PAYROLL_TAX + WORKED_WORKCOVER;
   const WORKED_MULTIPLIER = WORKED_TOTAL / WORKED_SALARY;
 
-  const trueCost = baseSalary + superAmt + leaveProvision + payrollTaxAmt + workcoverAmt;
-  const costMultiplier = trueCost / baseSalary;
 
   return (
     <div className="min-h-screen flex-grow bg-sandstone/30">
@@ -185,7 +184,7 @@ export default function EmployerCostCalculatorPage() {
                   <div className="space-y-4 font-medium">
                     <div className="flex justify-between items-center text-warmgray">
                       <span>Base Salary:</span>
-                      <span className="text-navy">${baseSalary.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</span>
+                      <span className="text-navy">${salary.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits:2})}</span>
                     </div>
 
                     <div className="flex justify-between items-center text-ochre">
@@ -217,7 +216,7 @@ export default function EmployerCostCalculatorPage() {
                       </div>
                       <div className="text-right pb-1">
                         <span className="text-sm font-semibold text-warmgray-light uppercase tracking-wider block">Real Multiplier</span>
-                        <span className="text-xl font-bold text-eucalyptus-dark">{costMultiplier.toFixed(2)}x</span>
+                        <span className="text-xl font-bold text-eucalyptus-dark">{costMultiplier === null ? "—" : `${costMultiplier.toFixed(2)}x`}</span>
                       </div>
                     </div>
 
