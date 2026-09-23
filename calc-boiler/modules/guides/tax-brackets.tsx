@@ -32,6 +32,7 @@ import {
   taxOnScale,
   thresholdTax,
 } from "@/lib/constants/tax-rates-reference";
+import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import TaxBracketsLookup from "@/modules/calculator/tax-brackets-lookup";
 import { MAX_SAVING_2026_27, MAX_SAVING_2027_28, TAX_BRACKETS_FAQS } from "@/modules/guides/tax-brackets-faqs";
 
@@ -354,6 +355,7 @@ export default function TaxBracketsGuidePage() {
                   );
                 })}
               </ul>
+              <p className="text-sm"><Link href="/tax-on/">Tax on every salary from {formatAUD(TAX_ON_SALARIES[0])} to {formatAUD(TAX_ON_SALARIES[TAX_ON_SALARIES.length - 1])} &rarr;</Link></p>
             </section>
 
             <section id="non-resident-whm">

@@ -3,13 +3,14 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { SITE_CONFIG, formatAUD, formatPercent } from "@/lib/constants";
+import { LITO, SITE_CONFIG, formatAUD, formatPercent } from "@/lib/constants";
 import {
   RESIDENT_SCALES,
   analyseIncome,
   bracketRateAt,
   incomeTaxAfterLitoOnScale,
 } from "@/lib/constants/tax-rates-reference";
+import { hasPage, salaryHref } from "@/lib/data/salary-pages";
 
 // "Tax on $X" quick lookup + marginal rate. Every number comes from
 // lib/constants/tax-rates-reference.ts, which composes australian-tax.ts, so
@@ -22,9 +23,9 @@ const FY = SITE_CONFIG.financialYear;
 const PREV = SITE_CONFIG.previousFinancialYear;
 const QUICK = [45_000, 60_000, 80_000, 100_000, 135_000, 190_000];
 
-/** /tax-on/{n}/ is generated for $30,000–$200,000 in $5,000 steps. */
+/** Link to the /tax-on/{n}/ page when that salary is in the generated grid. */
 function taxOnHref(income: number): string | null {
-  return income >= 30_000 && income <= 200_000 && income % 5_000 === 0 ? `/tax-on/${income}/` : null;
+  return hasPage("tax-on", income) ? salaryHref("tax-on", income) : null;
 }
 
 export default function TaxBracketsLookup() {
@@ -128,7 +129,7 @@ export default function TaxBracketsLookup() {
           <p className="mt-3 text-sm text-navy">
             Take-home after income tax and Medicare: <strong className="tabular-nums">{formatAUD(a.takeHome)}</strong> a year ({formatAUD(a.takeHome / 52, 2)} a week).
             {gap > 0.05 && (
-              <> Your next dollar costs <strong>{formatPercent(a.effectiveMarginalRate)}</strong>, more than the headline {formatPercent(a.marginalWithMedicare, 0)}, because {a.lito > 0 && a.income > 37_500 ? "the low income tax offset is withdrawn as income rises" : "the Medicare levy is phasing in"} (see <a href="#marginal-tax-rate" className="text-eucalyptus-dark underline">marginal tax rate</a>).</>
+              <> Your next dollar costs <strong>{formatPercent(a.effectiveMarginalRate)}</strong>, more than the headline {formatPercent(a.marginalWithMedicare, 0)}, because {a.lito > 0 && a.income > LITO.fullOffsetCeiling ? "the low income tax offset is withdrawn as income rises" : "the Medicare levy is phasing in"} (see <a href="#marginal-tax-rate" className="text-eucalyptus-dark underline">marginal tax rate</a>).</>
             )}
           </p>
           <p className="mt-2 text-sm">
