@@ -223,7 +223,7 @@ export default function CentrelinkIncomeTestPage() {
               <li><Link href="/austudy-youth-allowance-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Austudy &amp; Youth Allowance Calculator</Link> &mdash; the student income test with current rates</li>
               <li><Link href="/age-pension-income-test-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Age Pension Income Test Calculator</Link> &mdash; single and couple tests with the Work Bonus</li>
               <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; estimate your after-tax income including Centrelink payments in your total assessable income</li>
-              <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; view the FY2025-26 marginal tax rates that apply to your combined employment and Centrelink income</li>
+              <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> &mdash; view the FY{SITE_CONFIG.financialYear} marginal tax rates that apply to your combined employment and Centrelink income</li>
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> &mdash; calculate PAYG withholding on your employment income, including the Medicare levy and surcharge thresholds</li>
               <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; check how your employer&apos;s SG rate contributions affect your retirement savings alongside Centrelink entitlements</li>
               <li><Link href="/parenting-payment-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Parenting Payment Calculator</Link> &mdash; single and partnered, with the 40c single-parent taper</li>

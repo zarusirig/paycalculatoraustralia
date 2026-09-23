@@ -5,7 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+// Cents-per-km and WFH fixed rates per ATO pages cited in tax-return-2025-26.ts
+// (verified 23 Sep 2026): 88c/km for 2024-25 and 2025-26, 91c/km for 2026-27;
+// WFH 70c/hour for 2024-25 and 2025-26.
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
@@ -75,7 +79,7 @@ export default function TaxDeductionsGuidePage() {
                 You can claim the cost of travel between separate workplaces, travel for work duties (such as visiting clients), and travel to attend conferences or training. <strong>Home-to-work commuting is not deductible</strong> except in limited circumstances (carrying bulky tools with no secure storage at work, or itinerant workers). The two methods for car expenses are:
               </p>
               <ul>
-                <li><strong>Cents per kilometre:</strong> Claim <strong>85 cents per km</strong> up to a maximum of 5,000 business kilometres per year ($4,250 maximum). No written evidence of kilometres is required, but you must be able to show how you calculated the distance.</li>
+                <li><strong>Cents per kilometre:</strong> Claim <strong>{RETURN_2026.carCentsPerKm} cents per km</strong> on your {RETURN_2026.incomeYear} return, up to a maximum of {RETURN_2026.carMaxKm.toLocaleString("en-AU")} business kilometres per car ({formatAUD((RETURN_2026.carCentsPerKm * RETURN_2026.carMaxKm) / 100)} maximum). The rate rises to {RETURN_2026.carCentsPerKmNextYear} cents from 1 July 2026. No written evidence of kilometres is required, but you must be able to show how you calculated the distance.</li>
                 <li><strong>Logbook method:</strong> Keep a logbook for a continuous 12-week period to establish the work-use percentage of your car. Claim actual running costs (fuel, registration, insurance, servicing, depreciation) multiplied by the business-use percentage. The logbook is valid for 5 years provided your driving pattern remains similar.</li>
               </ul>
 
@@ -91,7 +95,7 @@ export default function TaxDeductionsGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working From Home</h3>
               <p>
-                If you work from home, you can claim running expenses using the <strong>revised fixed rate method at 67 cents per hour</strong>, which covers electricity, phone, internet, stationery, and computer consumables. Alternatively, the actual cost method lets you calculate each expense separately. Office furniture (desks, chairs) costing over $300 is depreciated. See our detailed <Link href="/work-from-home-deductions/">Work From Home Deductions Guide</Link> for a full comparison of methods.
+                If you work from home, you can claim running expenses using the <strong>fixed rate method at {RETURN_2026.wfhFixedRateCents} cents per hour</strong> (2024-25 and 2025-26 income years), which covers electricity, phone, internet, stationery, and computer consumables. Alternatively, the actual cost method lets you calculate each expense separately. Office furniture (desks, chairs) costing over $300 is depreciated. See our detailed <Link href="/work-from-home-deductions/">Work From Home Deductions Guide</Link> for a full comparison of methods.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Self-Education Expenses</h3>
@@ -114,7 +118,7 @@ export default function TaxDeductionsGuidePage() {
             <section id="deduction-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will Deductions Save You?</h2>
               <p>
-                Your tax savings depend on your <strong>marginal tax rate</strong> — the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket for common deduction amounts.
+                Your tax savings depend on your <strong>marginal tax rate</strong> — the rate applied to the last dollar you earn. Higher-income earners save more per dollar of deductions because their marginal rate is higher. The table below shows exact savings at each FY2025-26 tax bracket (the year covered by returns lodged in 2026) for common deduction amounts. From 1 July 2026 the lowest band is 15%, so on your 2026-27 return a $1,000 deduction saves $150 in that band.
               </p>
 
               <div className="not-prose my-6">

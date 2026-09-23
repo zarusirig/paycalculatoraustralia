@@ -7,7 +7,9 @@ import { NON_RESIDENT_FAQS } from "./non-resident-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, HECS_HELP, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
+import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
+import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -130,10 +132,10 @@ export default function NonResidentTaxPage() {
               <ul>
                 <li><strong>No tax-free threshold ($18,200)</strong> &mdash; tax applies from the first dollar of income, costing up to <strong>{formatAUD(Math.round(TAX_FREE_THRESHOLD * SECOND_BRACKET_RATE))}</strong> in additional tax at the {formatPercent(SECOND_BRACKET_RATE, 0)} marginal rate</li>
                 <li><strong>No Low Income Tax Offset</strong> &mdash; residents earning below $66,667 receive up to <strong>$700</strong> in LITO, reducing their effective tax rate. See the <Link href="/low-income-tax-offset/">Low Income Tax Offset guide</Link> for full phase-out details</li>
-                <li><strong>No Senior Australians and Pensioners Tax Offset</strong> &mdash; SAPTO provides up to <strong>$2,230</strong> for eligible seniors, creating an effective tax-free threshold of <strong>$33,532</strong> for single pensioners</li>
-                <li><strong>No Zone Tax Offset</strong> &mdash; residents living in remote or isolated areas (Zone A, Zone B, or special areas) receive offsets ranging from <strong>$338</strong> to <strong>$1,173</strong> per year. See the <Link href="/zone-tax-offset/">Zone Tax Offset guide</Link> for eligible locations</li>
+                <li><strong>No Senior Australians and Pensioners Tax Offset</strong> &mdash; SAPTO provides up to <strong>{formatAUD(SAPTO_BANDS.single.maxOffset)}</strong> for eligible single seniors ({SAPTO_INCOME_YEAR} figures, the latest the ATO has published)</li>
+                <li><strong>No Zone Tax Offset</strong> &mdash; residents living in remote or isolated areas (Zone A, Zone B, or special areas) receive base offsets ranging from <strong>{formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)}</strong> (Zone B) to <strong>{formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)}</strong> (special areas) per year, before any dependant amounts ({ZONE_OFFSET_INCOME_YEAR} figures). See the <Link href="/zone-tax-offset/">Zone Tax Offset guide</Link> for eligible locations</li>
                 <li><strong>No Medicare levy exemption</strong> &mdash; while non-residents do not pay the 2% levy, they also cannot access bulk-billed GP visits, public hospital treatment, or subsidised prescriptions under the PBS</li>
-                <li><strong>No CGT main residence exemption</strong> &mdash; non-residents pay capital gains tax on the sale of Australian property with no 50% CGT discount and no main residence exemption, even if the property was their home while they were a resident</li>
+                <li><strong>No CGT main residence exemption</strong> &mdash; non-residents pay capital gains tax on the sale of Australian property with no 50% CGT discount (for gains accrued after 8 May 2012) and, since 2020, generally no main residence exemption, even if the property was their home while they were a resident</li>
               </ul>
               <p>Non-residents retain the ability to claim work-related deductions, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> into superannuation (subject to the concessional contribution cap of <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>), and claim deductions for self-education expenses, union fees, and work-related travel.</p>
             </section>
@@ -168,7 +170,7 @@ export default function NonResidentTaxPage() {
               <p>Non-residents lodge an Australian tax return through <strong>myTax</strong> (the ATO&apos;s online portal) or through a registered tax agent, with the same 31 October deadline as residents.</p>
               <p>The lodgement process follows 6 steps:</p>
               <ol>
-                <li><strong>Obtain a Tax File Number (TFN)</strong> &mdash; apply online through the ATO or at an Australian post office. Without a TFN, your employer withholds at the maximum rate of <strong>45%</strong> plus the 2% Medicare levy</li>
+                <li><strong>Obtain a Tax File Number (TFN)</strong> &mdash; apply online through the ATO or at an Australian post office. Without a TFN, your employer withholds at the maximum rate of <strong>45%</strong> (foreign residents do not have the 2% Medicare levy added)</li>
                 <li><strong>Collect your income statements</strong> &mdash; your employer provides an income statement (previously called a payment summary or group certificate) through Single Touch Payroll by 14 July each year</li>
                 <li><strong>Log in to myTax</strong> &mdash; access myTax through your myGov account. Non-residents outside Australia can use myTax without an Australian phone number</li>
                 <li><strong>Select &quot;non-resident&quot;</strong> &mdash; when completing the return, select your residency status for each period. The system applies non-resident tax rates automatically</li>

@@ -8,7 +8,20 @@ import { EXTRA_SUPER_VS_HECS_FAQS } from "./extra-super-vs-hecs-repayment-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, HECS_HELP, MEDICARE_LEVY, calculateHECS, formatAUD } from "@/lib/constants";
+
+// $200/month model. Both options use the same $200 of PRE-TAX salary: the old
+// table compared $200 pre-tax into super with $200 AFTER tax off HECS, which
+// overstated the HECS side by the tax on that $200.
+const MONTHLY = 200;
+const MARGINAL = 0.3 + MEDICARE_LEVY.rate;
+// 7.5% gross less 0.7% fees, then 15% earnings tax (the assumptions stated below).
+const SUPER_NET = (0.075 - 0.007) * 0.85;
+const fv = (annual: number, rate: number, years: number) => (annual * ((1 + rate) ** years - 1)) / rate;
+const SUPER_10Y = fv(MONTHLY * 12 * 0.85, SUPER_NET, 10);
+const HECS_10Y = fv(MONTHLY * 12 * (1 - MARGINAL), HECS_HELP.indexationRate, 10);
+const CAP = SUPER_GUARANTEE.concessionalCap;
+const HECS_AT_90K = calculateHECS(90_000);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -77,10 +90,10 @@ export default function ExtraSuperVsHecsRepaymentPage() {
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS-HELP Indexation</h3>
               <p>
-                HECS-HELP debt is indexed on <strong>1 June each year</strong> to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was introduced by the government in 2023 following the indexation shock of 7.1% in June 2023 (when the cap was applied retrospectively).
+                HECS-HELP debt is indexed on <strong>1 June each year</strong> to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024 after the 7.1% indexation of June 2023, and applied retrospectively from 1 June 2023. The rate applied on 1 June 2026 was {(HECS_HELP.indexationRate * 100).toFixed(1)}%.
               </p>
               <p>
-                Under normal conditions, the indexation rate typically falls between <strong>3% and 4%</strong> per year. This means your HECS debt grows by 3&ndash;4% annually on the balance as at 1 June &mdash; but it does not compound monthly like a mortgage. It is applied as a single annual adjustment.
+                Recent rates have been around <strong>3% to 4%</strong> or lower ({(HECS_HELP.indexationRate * 100).toFixed(1)}% in 2026). Your HECS debt grows by that rate on the balance as at 1 June &mdash; but it does not compound monthly like a mortgage. It is applied as a single annual adjustment.
               </p>
               <p>
                 Crucially, HECS is an <strong>interest-free loan</strong> &mdash; indexation maintains the real value of the debt but does not add a profit margin. There is no benefit to paying it off early beyond avoiding the indexation amount.
@@ -88,7 +101,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Super Fund Returns</h3>
               <p>
-                According to APRA data, the median Australian super fund has returned approximately <strong>7&ndash;8% per year</strong> (before fees) over rolling 10-year periods. After fees (typically 0.5&ndash;1.0%) and the 15% earnings tax inside super, the net return is closer to <strong>5.5&ndash;6.5%</strong> for a growth or balanced option.
+                Balanced and growth super options have historically returned around <strong>7&ndash;8% per year</strong> before fees over long periods, though past returns are not guaranteed. After fees (typically 0.5&ndash;1.0%) and the 15% earnings tax inside super, the net return is closer to <strong>5.5&ndash;6.5%</strong> for a growth or balanced option.
               </p>
               <p>
                 This comfortably exceeds the 3&ndash;4% HECS indexation rate in most years. However, super returns are <strong>not guaranteed</strong> &mdash; in any given year, returns could be negative. HECS indexation, by contrast, is a known cost that you can eliminate with certainty by making voluntary repayments.
@@ -99,8 +112,8 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             <section id="when-super-wins">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>When Extra Super Wins</h2>
               <ul>
-                <li><strong>Young with a long time to retirement (25+ years):</strong> More time means more compounding. A $200/month contribution starting at age 25 could grow to over <strong>$200,000</strong> by age 60 at 7% gross returns, compared to saving roughly <strong>$30,000&ndash;$40,000</strong> in avoided HECS indexation.</li>
-                <li><strong>Higher marginal tax rate (30%+):</strong> The tax saving of 15&ndash;30 cents per dollar contributed to super significantly outweighs the 3&ndash;4% indexation saving on HECS.</li>
+                <li><strong>Young with a long time to retirement (25+ years):</strong> More time means more compounding. A $200/month contribution starting at age 25 could grow to over <strong>$200,000</strong> by age 60 at 7% gross returns, while indexation avoided on a HECS balance stops as soon as the debt is cleared.</li>
+                <li><strong>Higher marginal tax rate (30%+):</strong> The tax saving of 15&ndash;30 cents per dollar (17&ndash;32 cents with the Medicare levy) contributed to super significantly outweighs the indexation saving on HECS.</li>
                 <li><strong>Small HECS balance relative to income:</strong> If your HECS is under $20,000 and your compulsory repayments will clear it within 3&ndash;5 years anyway, the indexation cost is minimal and super contributions provide far more long-term value.</li>
                 <li><strong>Unused concessional cap space:</strong> If you have carry-forward cap amounts from previous years (available when total super is under $500,000), the tax benefit is especially compelling.</li>
               </ul>
@@ -112,9 +125,9 @@ export default function ExtraSuperVsHecsRepaymentPage() {
               <ul>
                 <li><strong>Large HECS balance ($50,000+):</strong> A $60,000 HECS debt indexed at 4% costs $2,400 per year in indexation alone. Reducing the balance by $10,000 saves $400/year in indexation &mdash; a guaranteed, risk-free return.</li>
                 <li><strong>High indexation environment:</strong> If CPI or WPI is running above 4%, the guaranteed return from avoiding indexation becomes more attractive relative to the uncertainty of super returns.</li>
-                <li><strong>Close to paying off HECS:</strong> If you owe $5,000&ndash;$15,000 and a lump-sum payment would clear the debt entirely, eliminating the compulsory repayment from your payslip immediately boosts your take-home pay by <strong>1&ndash;4%</strong> of gross income (depending on the repayment rate at your income level).</li>
+                <li><strong>Close to paying off HECS:</strong> If you owe $5,000&ndash;$15,000 and a lump-sum payment would clear the debt entirely, eliminating the compulsory repayment from your payslip immediately boosts your take-home pay. Under the marginal system that is {formatAUD(HECS_AT_90K)} a year at a $90,000 income in FY{SITE_CONFIG.financialYear}, and up to 10% of repayment income at the top band.</li>
                 <li><strong>About to cross a repayment threshold:</strong> If your income is close to a higher HECS repayment band, paying down the debt before 1 June can reduce the indexation amount applied that year.</li>
-                <li><strong>Low marginal tax rate (16&ndash;19% bracket):</strong> The super tax saving is only 1&ndash;4 cents per dollar, which barely justifies locking money away when you could eliminate a debt that costs 3&ndash;4% per year.</li>
+                <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches your 15% rate, so the super tax saving is at most the 2c Medicare levy per dollar, which barely justifies locking money away when you could eliminate a debt that grows with indexation each year.</li>
               </ul>
             </section>
 
@@ -136,29 +149,29 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
-                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Monthly pre-tax cost</td>
+                        <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Monthly pre-tax salary used</td>
                         <td className="px-6 py-4 border-l text-right">$200</td>
-                        <td className="px-6 py-4 border-l text-right">$200 (after-tax)</td>
+                        <td className="px-6 py-4 border-l text-right">$200</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax on contribution</td>
-                        <td className="px-6 py-4 border-l text-right">15% ($30/mo)</td>
-                        <td className="px-6 py-4 border-l text-right">Already taxed at 30%</td>
+                        <td className="px-6 py-4 border-l text-right">15% contributions tax ($30/mo)</td>
+                        <td className="px-6 py-4 border-l text-right">30% + 2% Medicare levy ({formatAUD(MONTHLY * MARGINAL)}/mo)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Net amount working for you</td>
-                        <td className="px-6 py-4 border-l text-right">$170/mo into super</td>
-                        <td className="px-6 py-4 border-l text-right">$200/mo off HECS</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * 0.85)}/mo into super</td>
+                        <td className="px-6 py-4 border-l text-right">{formatAUD(MONTHLY * (1 - MARGINAL))}/mo off HECS</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Growth rate assumption</td>
-                        <td className="px-6 py-4 border-l text-right">~6.1% net after tax/fees</td>
-                        <td className="px-6 py-4 border-l text-right">3.5% (indexation avoided)</td>
+                        <td className="px-6 py-4 border-l text-right">~{(SUPER_NET * 100).toFixed(1)}% net after tax/fees</td>
+                        <td className="px-6 py-4 border-l text-right">{(HECS_HELP.indexationRate * 100).toFixed(1)}% (indexation avoided, 1 June 2026 rate)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">10-year value created</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">~$28,500</td>
-                        <td className="px-6 py-4 border-l text-right">~$27,800 (debt reduced + indexation saved)</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">~{formatAUD(Math.round(SUPER_10Y / 100) * 100)}</td>
+                        <td className="px-6 py-4 border-l text-right">~{formatAUD(Math.round(HECS_10Y / 100) * 100)} (debt reduced + indexation saved)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Accessible before 60?</td>
@@ -167,16 +180,16 @@ export default function ExtraSuperVsHecsRepaymentPage() {
                       </tr>
                       <tr className="bg-eucalyptus/5">
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Tax saving (annual)</td>
-                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">$360/yr</td>
+                        <td className="px-6 py-4 border-l text-right font-bold text-eucalyptus-dark">{formatAUD(MONTHLY * 12 * (MARGINAL - 0.15))}/yr</td>
                         <td className="px-6 py-4 border-l text-right">$0</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 6.1% net return. HECS assumes $200/mo voluntary repayment reducing a $40,000 balance with 3.5% annual indexation avoided. Figures are approximate illustrations.</p>
+                <p className="text-xs text-warmgray mt-2">Super assumes $200/mo salary sacrifice, 15% contributions tax, 7.5% gross return less 0.7% fees and 15% earnings tax. HECS assumes the same $200/mo of salary, taxed at 30% plus the 2% Medicare levy, paid off a large enough balance, with indexation at the {(HECS_HELP.indexationRate * 100).toFixed(1)}% applied on 1 June 2026. Figures are approximate illustrations.</p>
               </div>
               <p>
-                At the 30% tax bracket, the outcomes are remarkably close over 10 years. The key differentiator is <strong>accessibility</strong>: the HECS reduction immediately benefits your cash flow once the debt is cleared, while the super balance remains locked. At higher tax brackets (37% or 45%), the super option pulls ahead more decisively due to the larger tax saving.
+                At the 30% tax bracket, super comes out ahead over 10 years, mainly because the same pre-tax $200 puts {formatAUD(MONTHLY * 0.85)} into super but only {formatAUD(MONTHLY * (1 - MARGINAL))} off your HECS debt once income tax and the Medicare levy are taken out. The key differentiator is <strong>accessibility</strong>: the HECS reduction immediately benefits your cash flow once the debt is cleared, while the super balance remains locked. At higher tax brackets (37% or 45%), the super option pulls ahead more decisively due to the larger tax saving.
               </p>
             </section>
 
@@ -188,7 +201,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Comparisons on this page use illustrative assumptions: 7.5% gross super return (long-term median from APRA data), 15% contributions tax, 15% earnings tax, and 0.7% fees inside super. HECS indexation is modelled at 3.5% (mid-range of recent CPI/WPI-capped outcomes). All figures are approximate and do not constitute financial advice.</p>
+                <p>Comparisons on this page use illustrative assumptions: 7.5% gross super return (long-term median from APRA data), 15% contributions tax, 15% earnings tax, and 0.7% fees inside super. HECS indexation is modelled at the 1 June 2026 rate. All figures are approximate and do not constitute financial advice.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("extra-super-vs-hecs-repayment"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

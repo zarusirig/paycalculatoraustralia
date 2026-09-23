@@ -217,21 +217,34 @@ export function bringForwardThresholds(): { threeYear: number; twoYear: number; 
   return { threeYear: tbc - 2 * ncc, twoYear: tbc - ncc, nilCap: tbc };
 }
 
-// ---------- Government super co-contribution & spouse offset ----------
-// ATO "Government contributions" (Table 25), last updated 27 April 2026:
-// 2026-27 lower threshold $49,293, higher $64,293. 50% match, $500 maximum,
-// reduced by 3.333c per $1 over the lower threshold (higher = lower + $15,000).
+// ---------- Government super co-contribution ----------
+// ATO "Key superannuation rates and thresholds – government contributions"
+// (last updated 27 April 2026, checked 24 Sep 2026), Table 25:
+//   2026–27: maximum $500, lower threshold $49,293, higher threshold $64,293
+//   2025–26: $47,488 / $62,488.
+// The lower threshold is indexed to AWOTE; the higher is $15,000 above it.
+// The entitlement is 50c per $1 of eligible personal contributions, reduced
+// by 3.333c for every $1 of total income above the lower threshold.
 export const CO_CONTRIBUTION = {
   incomeYear: "2026-27",
   maxEntitlement: 500,
   matchRate: 0.5,
   lowerThreshold: 49_293,
   higherThreshold: 64_293,
+  reductionPerDollar: 0.03333,
   /** Personal contribution needed for the maximum entitlement. */
   contributionForMax: 1_000,
   /** At least this share of total income must be from employment/business. */
   eligibleIncomeShare: 0.1,
+  previous: { incomeYear: "2025-26", lowerThreshold: 47_488, higherThreshold: 62_488 },
 } as const;
+
+/** Maximum co-contribution at a given total income (before the contribution limit). */
+export function maxCoContribution(totalIncome: number): number {
+  if (totalIncome >= CO_CONTRIBUTION.higherThreshold) return 0;
+  const reduction = Math.max(0, totalIncome - CO_CONTRIBUTION.lowerThreshold) * CO_CONTRIBUTION.reductionPerDollar;
+  return Math.max(0, Math.round(CO_CONTRIBUTION.maxEntitlement - reduction));
+}
 
 /** Spouse contribution tax offset (ITAA 1997 s 290-230). Not indexed. */
 export const SPOUSE_OFFSET = {

@@ -36,6 +36,9 @@ export default function Stage3TaxCutsPage() {
               <p>
                 The Stage 3 tax cuts were originally legislated in 2019 as part of a three-stage plan. The original design collapsed three tax brackets into two, creating a single <strong>30% rate from $45,001 to $200,000</strong>. In January 2024, the government announced a <strong>revised plan</strong> that instead reduced the bottom rate from 19% to 16%, kept more brackets, and spread the benefit more widely.
               </p>
+              <p>
+                The 16% rate in this table applied for FY2024-25 and FY2025-26 only. A separate law passed in March 2025 cut it again to <strong>15% from 1 July 2026</strong> and legislates <strong>14% from 1 July 2027</strong>. See <Link href="/tax-brackets/">current tax brackets</Link> for the FY{SITE_CONFIG.financialYear} rates.
+              </p>
 
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -63,7 +66,7 @@ export default function Stage3TaxCutsPage() {
             <section id="before-after">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Before &amp; After — Tax Savings at Every Income Level</h2>
               <p>
-                The following table compares the income tax payable under the <strong>pre-Stage 3 rates (FY2023-24)</strong> versus the <strong>revised Stage 3 rates (FY2024-25 onwards)</strong>. All figures exclude Medicare levy and tax offsets, showing pure income tax only.
+                The following table compares the income tax payable under the <strong>pre-Stage 3 rates (FY2023-24)</strong> versus the <strong>revised Stage 3 rates (FY2024-25 and FY2025-26)</strong>. All figures exclude Medicare levy and tax offsets, showing pure income tax only. From 1 July 2026 the 15% rate adds up to $268 a year on top of these savings (1 percentage point on the $26,800 between $18,200 and $45,000).
               </p>
 
               <div className="not-prose my-6">
@@ -130,7 +133,7 @@ export default function Stage3TaxCutsPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>High-Income Earners ($135,001 – $190,000)</h3>
               <p>
-                This group receives smaller savings under the revised plan compared to the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong> — still substantial, but less than the $7,575 that the original plan would have delivered.
+                This group receives smaller savings under the revised plan compared to the original plan. The original plan would have applied a flat 30% to incomes up to $200,000, whereas the revised plan retains a <strong>37% bracket from $135,001 to $190,000</strong>. The saving at $150,000 is <strong>$3,729</strong> — still substantial, but less than the $3,975 that the original plan would have delivered.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Very High-Income Earners ($190,001+)</h3>
@@ -154,9 +157,11 @@ export default function Stage3TaxCutsPage() {
                       <tr><td className="px-5 py-3 font-medium">1 July 2020</td><td className="px-5 py-3"><strong>Stage 2:</strong> 19% bracket extended from $37,000 to $45,000; 32.5% bracket extended from $90,000 to $120,000</td></tr>
                       <tr><td className="px-5 py-3 font-medium">June 2022</td><td className="px-5 py-3">LMITO (Stage 1) expired — not extended by the new Albanese government</td></tr>
                       <tr><td className="px-5 py-3 font-medium">25 January 2024</td><td className="px-5 py-3">Albanese government announces <strong>revised Stage 3</strong> — reduces bottom rate to 16%, retains 37% bracket, extends 30% bracket to $135,000</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">March 2024</td><td className="px-5 py-3">Treasury Laws Amendment (Cost of Living Tax Cuts) Bill 2024 passes Parliament</td></tr>
+                      {/* Assent date verified at legislation.gov.au C2024A00003 (Act No. 3, 2024). */}
+                      <tr><td className="px-5 py-3 font-medium">5 March 2024</td><td className="px-5 py-3">Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2024 receives Royal Assent</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2024</td><td className="px-5 py-3"><strong>Revised Stage 3 takes effect</strong> — new tax brackets apply from FY2024-25</td></tr>
                       <tr><td className="px-5 py-3 font-medium">1 July 2025</td><td className="px-5 py-3">FY2025-26 begins — same brackets continue. SG rate increases to 12%</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">1 July 2026</td><td className="px-5 py-3">16% rate cut to <strong>15%</strong> (legislated in March 2025); a further cut to 14% is legislated from 1 July 2027</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -172,7 +177,7 @@ export default function Stage3TaxCutsPage() {
               <FaqAccordion faqs={STAGE_3_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax calculations use the pre-Stage 3 rates (FY2023-24: 0%, 19%, 32.5%, 37%, 45%) and the revised Stage 3 rates (FY2024-25 onwards: 0%, 16%, 30%, 37%, 45%) as published by the Australian Taxation Office. Figures exclude Medicare levy, LITO, and other offsets to show the pure bracket impact. Weekly savings assume 52 weeks per year.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax calculations use the pre-Stage 3 rates (FY2023-24: 0%, 19%, 32.5%, 37%, 45%) and the revised Stage 3 rates (FY2024-25 and FY2025-26: 0%, 16%, 30%, 37%, 45%; the 16% rate became 15% from 1 July 2026) as published by the Australian Taxation Office. Figures exclude Medicare levy, LITO, and other offsets to show the pure bracket impact. Weekly savings assume 52 weeks per year.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("stage-3-tax-cuts"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

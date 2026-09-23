@@ -263,7 +263,7 @@ export default function EmploymentTypeCalculatorPage() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Conversion Rights</h2>
-              <p className="mb-4 text-warmgray">Under the Fair Work Act, casual employees who have worked <strong>regular and systematic hours for 12 months</strong> with the same employer may request conversion to permanent employment. Employers with 15 or more employees must offer conversion if the employee meets the criteria, unless there are reasonable grounds to refuse.</p>
+              <p className="mb-4 text-warmgray">Since 26 August 2024, a casual employee who has worked for their employer for at least <strong>6 months (12 months for a small business employer with fewer than 15 employees)</strong> and believes they no longer meet the casual definition can notify their employer that they want to become permanent. The employer must respond in writing within 21 days and can only refuse on fair and reasonable operational grounds. Employers are no longer required to offer conversion.</p>
               <p className="text-warmgray">For a detailed comparison guide, see our <Link href="/full-time-vs-part-time-vs-casual/" className="text-eucalyptus-dark hover:underline font-medium">Full-Time vs Part-Time vs Casual</Link> guide. To calculate your superannuation entitlements under any employment type, use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link>.</p>
             </section>
 

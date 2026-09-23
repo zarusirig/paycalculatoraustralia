@@ -8,7 +8,12 @@ import { SALARY_VS_HOURLY_FAQS } from "./salary-vs-hourly-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+
+// Tax comparison from the FY2026-27 engine (resident, no HECS). The old copy
+// quoted $13,688 on $75,000 and $18,515 on $91,091, matching neither year.
+const EX_SALARY = calculatePayBreakdown({ grossSalary: 75_000 });
+const EX_HOURLY = calculatePayBreakdown({ grossSalary: 91_091 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -92,8 +97,8 @@ export default function SalaryVsHourlyPage() {
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Superannuation</td>
-                        <td className="p-3 text-navy">12% on OTE (ordinary time earnings)</td>
-                        <td className="p-3 text-navy">12% on OTE (includes casual loading)</td>
+                        <td className="p-3 text-navy">12% on qualifying earnings (mainly ordinary time earnings)</td>
+                        <td className="p-3 text-navy">12% on qualifying earnings (includes casual loading)</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Notice period</td>
@@ -237,7 +242,7 @@ export default function SalaryVsHourlyPage() {
                         <td className="p-3 text-navy text-right">$5,852 (perm) / $0 (casual)</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super (12% on OTE)</td>
+                        <td className="p-3 text-navy font-medium">Super (12% on qualifying earnings)</td>
                         <td className="p-3 text-navy text-right">$9,000</td>
                         <td className="p-3 text-navy text-right">$9,129</td>
                       </tr>
@@ -261,7 +266,7 @@ export default function SalaryVsHourlyPage() {
                 From a pure tax perspective, <strong>there is no difference</strong>. Both salaried and hourly employees pay individual income tax at the same marginal rates. PAYG withholding is calculated on gross earnings regardless of how pay is structured. The ATO does not differentiate between salary and hourly income on your tax return.
               </p>
               <p>
-                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. A salaried employee on $75,000 pays approximately <strong>$13,688</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>$18,515</strong>. While the hourly worker earns more, a larger proportion goes to tax — the effective tax rate rises from 18.3% to 20.3%.
+                The tax difference emerges <strong>indirectly</strong>. Hourly workers with overtime earn higher gross income, pushing them into higher tax brackets. In FY{SITE_CONFIG.financialYear}, a salaried employee on $75,000 pays approximately <strong>{formatAUD(EX_SALARY.totalDeductions)}</strong> in income tax (including Medicare). The hourly worker earning $91,091 pays approximately <strong>{formatAUD(EX_HOURLY.totalDeductions)}</strong>. While the hourly worker earns more, a larger proportion goes to tax — the effective tax rate rises from {formatPercent(EX_SALARY.effectiveTaxRate)} to {formatPercent(EX_HOURLY.effectiveTaxRate)}.
               </p>
               <p>
                 Salary sacrifice opportunities are typically more accessible to salaried employees. Employers are more likely to offer packaging arrangements (super, novated leases, devices) to permanent salaried staff. Check your eligibility with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
@@ -274,7 +279,7 @@ export default function SalaryVsHourlyPage() {
                 The standard conversion assumes <strong>38 hours per week</strong> (full-time under the Fair Work Act) and <strong>52 weeks per year</strong>:
               </p>
               <ul>
-                <li><strong>Annual to hourly:</strong> $75,000 / 52 / 38 = <strong>$37.93/hr</strong></li>
+                <li><strong>Annual to hourly:</strong> $75,000 / 52 / 38 = <strong>$37.96/hr</strong></li>
                 <li><strong>Hourly to annual:</strong> $38.50 x 38 x 52 = <strong>$76,076/yr</strong></li>
               </ul>
               <p>
@@ -300,7 +305,7 @@ export default function SalaryVsHourlyPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Total package calculations use FY2025-26 tax rates, 12% SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards. Individual award conditions may vary.</p>
+                <p>Total package calculations use FY{SITE_CONFIG.financialYear} tax rates, 12% SG rate, and standard Fair Work Act entitlements. Overtime is calculated at 1.5x the base hourly rate for the first 2 hours per day, consistent with most modern awards. Individual award conditions may vary.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("salary-vs-hourly"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

@@ -7,7 +7,13 @@ import { ANNUAL_LEAVE_FAQS } from "./annual-leave-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, EMPLOYMENT, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+
+// Payout example: $90,000 over 1,976 hours (38 x 52). The old copy used
+// $45.53/hr; the correct figure is $45.55.
+const PAYOUT_RATE = Math.round((90_000 / EMPLOYMENT.hoursPerYear) * 100) / 100;
+const PAYOUT_BASE = Math.round(156 * PAYOUT_RATE * 100) / 100;
+const PAYOUT_LOADING = Math.round(PAYOUT_BASE * 0.175 * 100) / 100;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -25,7 +31,7 @@ export default function AnnualLeaveGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Annual Leave Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Leave Guide Australia</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Your complete guide to annual leave entitlements, 17.5% leave loading, pro-rata calculations, and payout rules when you leave your job. Updated for FY2025-26.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Your complete guide to annual leave entitlements, 17.5% leave loading, pro-rata calculations, and payout rules when you leave your job. Updated for FY{SITE_CONFIG.financialYear}.</p>
           <TrustBar className="!max-w-none" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
@@ -85,9 +91,9 @@ export default function AnnualLeaveGuidePage() {
               <p>The payout covers every hour of accumulated leave at the employee&apos;s base rate of pay at the time of termination. Leave loading is also included in the payout if the employee&apos;s Award, enterprise agreement, or contract provides for it. The payout is calculated as follows:</p>
               <ol>
                 <li><strong>Determine accrued hours.</strong> Include all carried-over leave plus pro-rata accrual for the current period.</li>
-                <li><strong>Calculate hourly rate.</strong> For a $90,000 salary on 38 hours/week: $90,000 &divide; (52 &times; 38) = <strong>$45.53 per hour</strong>.</li>
-                <li><strong>Multiply.</strong> If the employee has 156 accrued hours: 156 &times; $45.53 = <strong>$7,102.68</strong>.</li>
-                <li><strong>Add leave loading (if applicable).</strong> $7,102.68 &times; 17.5% = $1,242.97, bringing the total payout to <strong>$8,345.65</strong>.</li>
+                <li><strong>Calculate hourly rate.</strong> For a $90,000 salary on 38 hours/week: $90,000 &divide; (52 &times; 38) = <strong>{formatAUD(PAYOUT_RATE, 2)} per hour</strong>.</li>
+                <li><strong>Multiply.</strong> If the employee has 156 accrued hours: 156 &times; {formatAUD(PAYOUT_RATE, 2)} = <strong>{formatAUD(PAYOUT_BASE, 2)}</strong>.</li>
+                <li><strong>Add leave loading (if applicable).</strong> {formatAUD(PAYOUT_BASE, 2)} &times; 17.5% = {formatAUD(PAYOUT_LOADING, 2)}, bringing the total payout to <strong>{formatAUD(PAYOUT_BASE + PAYOUT_LOADING, 2)}</strong>.</li>
               </ol>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is the Annual Leave Payout Taxed?</h3>
@@ -248,18 +254,18 @@ export default function AnnualLeaveGuidePage() {
               <p>South Australia and the Northern Territory offer the most generous long service leave at <strong>13 weeks after 10 years</strong>. Victoria and the ACT have the shortest qualifying periods at <strong>7 years</strong>. Long service leave payouts on termination may qualify for concessional tax treatment &mdash; pre-16 August 1978 service is taxed at a flat <strong>5%</strong>, while post-1978 service is taxed at <strong>32%</strong> (up to the whole-of-income cap). The remaining long service leave balance is taxed at the employee&apos;s marginal rate. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model how a long service leave payout affects your overall take-home pay.</p>
             </section>
 
-            {/* ── H2 9: What Changed in FY2025-26? ── */}
-            <section id="changes-2025-26">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Annual Leave in FY2025-26?</h2>
-              <p>The core annual leave entitlement of 4 weeks per year remains <strong>unchanged for FY2025-26</strong>, but several related changes affect how leave interacts with pay, tax, and superannuation.</p>
+            {/* ── H2 9: What Changed in FY2026-27? ── */}
+            <section id="changes-2026-27">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Annual Leave in FY{SITE_CONFIG.financialYear}?</h2>
+              <p>The core annual leave entitlement of 4 weeks per year is <strong>unchanged for FY{SITE_CONFIG.financialYear}</strong>, but several related changes from 1 July 2026 affect how leave interacts with pay, tax, and superannuation.</p>
               <ul>
-                <li><strong>Stage 3 tax cuts (from 1 July 2024):</strong> Lower marginal rates mean annual leave payouts on termination now attract less tax. An employee with $10,000 of accrued leave at the $90,000 salary level saves approximately <strong>$350 in tax</strong> compared to FY2023-24 rates.</li>
-                <li><strong>Superannuation guarantee increased to 12%:</strong> The SG rate rose to <strong>12%</strong> from 1 July 2025. Employers paying annual leave must also pay super on ordinary-hours leave payments. This increases the total cost of leave for employers but does not change the employee&apos;s take-home pay during leave.</li>
-                <li><strong>National minimum wage increase:</strong> The Fair Work Commission&apos;s 2025 Annual Wage Review set the national minimum wage at <strong>$26.44 per hour</strong> ($1,004.90 per week). Leave loading calculations for minimum-wage workers now use this higher base.</li>
-                <li><strong>Right to disconnect:</strong> From 26 August 2024 (small businesses from 26 August 2025), employees have the right to refuse contact outside working hours. This right extends to periods of annual leave, meaning employers cannot require employees to respond to emails or calls while on leave.</li>
-                <li><strong>Casual conversion changes:</strong> Revised casual employment provisions clarify that casual employees who convert to permanent employment begin accruing annual leave from the conversion date. Prior casual service does not generate retrospective leave accrual.</li>
+                <li><strong>Lower tax on the second bracket:</strong> The rate on income from $18,201 to $45,000 fell from 16% to <strong>{Math.round(TAX_BRACKETS[1].rate * 100)}%</strong>, worth up to $268 a year. Leave payouts are taxed at your marginal rate, so the change reaches leave pay too.</li>
+                <li><strong>Payday Super:</strong> The SG rate stays at <strong>12%</strong> (it reached 12% on 1 July 2025), but from 1 July 2026 super on leave payments is due with the pay that includes them and must reach the fund within 7 business days. Leave loading attracts super unless it is paid only to make up for lost overtime.</li>
+                <li><strong>National minimum wage increase:</strong> The Fair Work Commission&apos;s 2026 Annual Wage Review set the national minimum wage at <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per week) from 1 July 2026. Leave loading calculations for minimum-wage workers now use this higher base.</li>
+                <li><strong>Right to disconnect:</strong> From 26 August 2024 (small businesses from 26 August 2025), employees have the right to refuse contact outside working hours unless the refusal is unreasonable, and that includes periods of annual leave.</li>
+                <li><strong>Casual conversion:</strong> Casual employees who convert to permanent employment begin accruing annual leave from the conversion date. Prior casual service does not generate retrospective leave accrual.</li>
               </ul>
-              <p>The income tax brackets for FY2025-26 remain as adjusted by the Stage 3 tax cuts. Consult the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full schedule of rates and thresholds applicable to leave payouts.</p>
+              <p>Consult the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full FY{SITE_CONFIG.financialYear} schedule of rates and thresholds applicable to leave payouts.</p>
             </section>
 
             {/* ── H2 10: Related Resources ── */}
@@ -269,7 +275,7 @@ export default function AnnualLeaveGuidePage() {
               <ul>
                 <li><Link href="/leave-calculator/">Leave Calculator</Link> &mdash; Calculate your accrued annual leave balance and payout value based on salary, start date, and ordinary hours.</li>
                 <li><Link href="/redundancy-pay-calculator/">Redundancy Pay Calculator</Link> &mdash; Model your total termination payment including redundancy, notice period, and accrued leave.</li>
-                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; See how the 12% SG rate applies to your salary and leave payments for FY2025-26.</li>
+                <li><Link href="/superannuation-calculator/">Superannuation Calculator</Link> &mdash; See how the 12% SG rate applies to your salary and leave payments for FY{SITE_CONFIG.financialYear}.</li>
                 <li><Link href="/understanding-your-payslip/">Understanding Your Payslip</Link> &mdash; Identify your leave balance, leave loading, and year-to-date accrual on your pay statement.</li>
                 <li><Link href="/award-rates/">Award Rates Guide</Link> &mdash; Find the minimum pay rates, penalty rates, and leave loading provisions for your industry Award.</li>
                 <li><Link href="/overtime-penalty-rates-guide/">Overtime &amp; Penalty Rates Guide</Link> &mdash; Understand how penalty rates interact with leave loading under the &quot;better off overall&quot; test.</li>
@@ -283,7 +289,7 @@ export default function AnnualLeaveGuidePage() {
             </section>
 
             <div className="mt-12 not-prose">
-              <MethodologyDisclosure title="How this guide works"><p>Leave entitlement data is sourced from the Fair Work Ombudsman and the National Employment Standards. State-specific long service leave information is sourced from relevant state legislation. Tax rates and superannuation thresholds reflect FY2025-26 values published by the Australian Taxation Office.</p></MethodologyDisclosure>
+              <MethodologyDisclosure title="How this guide works"><p>Leave entitlement data is sourced from the Fair Work Ombudsman and the National Employment Standards. State-specific long service leave information is sourced from relevant state legislation. Tax rates and superannuation thresholds reflect FY{SITE_CONFIG.financialYear} values published by the Australian Taxation Office.</p></MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("annual-leave-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>

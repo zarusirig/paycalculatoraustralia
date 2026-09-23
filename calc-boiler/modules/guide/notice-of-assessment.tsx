@@ -8,7 +8,22 @@ import { NOTICE_OF_ASSESSMENT_FAQS } from "./notice-of-assessment-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, LITO, formatAUD } from "@/lib/constants";
+import { RETURN_2026, MLS_2025_26_SINGLE, incomeTax2025_26, medicareLevy2025_26, helpRepayment2025_26 } from "@/lib/constants/tax-return-2025-26";
+import { HECS_HELP, HECS_HELP_2025_26, MEDICARE_LEVY } from "@/lib/constants/australian-tax";
+
+// Worked example for a 2025-26 return (the NOAs being issued now), computed
+// from the 2025-26 constants. The old hardcoded copy showed $17,288 tax on
+// $87,000, which is $400 too high at 16% ($4,288 + 30% x $42,000 = $16,888).
+const EX_TAXABLE = 87_000;
+const EX_TAX = incomeTax2025_26(EX_TAXABLE);
+const EX_OFFSETS = 325; // illustrative, e.g. a private health insurance rebate
+const EX_MEDICARE = medicareLevy2025_26(EX_TAXABLE);
+const EX_HELP = helpRepayment2025_26(EX_TAXABLE);
+const EX_TOTAL = EX_TAX - EX_OFFSETS + EX_MEDICARE + EX_HELP;
+const EX_WITHHELD = 23_500;
+const EX_RESULT = EX_WITHHELD - EX_TOTAL;
+const MLS_SINGLE_2025_26 = MLS_2025_26_SINGLE[0].min - 1;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -56,7 +71,7 @@ export default function NoticeOfAssessmentPage() {
                 A Notice of Assessment (NOA) is an official document the Australian Taxation Office issues after processing your income tax return. It is the ATO&apos;s formal calculation of your tax position for the financial year, showing exactly how much tax you owe, any credits you are entitled to, and whether you receive a refund or have an amount owing.
               </p>
               <p>
-                The NOA is issued for every tax return lodged &mdash; whether you lodge through myTax, a registered tax agent, or on paper. It is typically available within <strong>2 weeks</strong> of electronic lodgement or <strong>10&ndash;12 weeks</strong> for paper returns.
+                The NOA is issued for every tax return lodged &mdash; whether you lodge through myTax, a registered tax agent, or on paper. It is typically available within <strong>2 weeks</strong> of electronic lodgement; for paper returns the ATO says most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>.
               </p>
               <p>
                 Your NOA is an important document. You may need it when applying for loans, government benefits, or rental applications as proof of income. Keep a copy of each year&apos;s NOA for at least <strong>5 years</strong> (the standard ATO record-keeping period). You can access all your past NOAs through your myGov account linked to the ATO.
@@ -77,54 +92,54 @@ export default function NoticeOfAssessmentPage() {
                       <tr>
                         <th className="px-6 py-4">Line Item</th>
                         <th className="px-6 py-4">What It Means</th>
-                        <th className="px-6 py-4">Example ($90K salary)</th>
+                        <th className="px-6 py-4">Example ($90K salary, {RETURN_2026.incomeYear} return)</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-6 py-4 font-medium">Taxable Income</td>
                         <td className="px-6 py-4">Your gross income minus allowable deductions</td>
-                        <td className="px-6 py-4">$87,000</td>
+                        <td className="px-6 py-4">{formatAUD(EX_TAXABLE)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Tax on Taxable Income</td>
                         <td className="px-6 py-4">Income tax calculated using progressive tax brackets</td>
-                        <td className="px-6 py-4">$17,288</td>
+                        <td className="px-6 py-4">{formatAUD(EX_TAX)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Less: Tax Offsets</td>
                         <td className="px-6 py-4">Reductions including LITO, private health rebate, etc.</td>
-                        <td className="px-6 py-4">&minus;$325</td>
+                        <td className="px-6 py-4">&minus;{formatAUD(EX_OFFSETS)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Plus: Medicare Levy</td>
                         <td className="px-6 py-4">Standard 2% Medicare levy on taxable income</td>
-                        <td className="px-6 py-4">+$1,740</td>
+                        <td className="px-6 py-4">+{formatAUD(EX_MEDICARE)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Plus: Medicare Levy Surcharge</td>
-                        <td className="px-6 py-4">1%&ndash;1.5% if no PHI and income over $93K</td>
+                        <td className="px-6 py-4">1%&ndash;1.5% if no PHI and income over {formatAUD(MLS_SINGLE_2025_26)} (singles, {RETURN_2026.incomeYear})</td>
                         <td className="px-6 py-4">$0</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Plus: HECS-HELP Repayment</td>
                         <td className="px-6 py-4">Compulsory repayment if income exceeds threshold</td>
-                        <td className="px-6 py-4">+$3,000</td>
+                        <td className="px-6 py-4">+{formatAUD(EX_HELP)}</td>
                       </tr>
                       <tr className="bg-sandstone/50">
                         <td className="px-6 py-4 font-bold">Total Tax Liability</td>
                         <td className="px-6 py-4 font-bold">Sum of all taxes and levies</td>
-                        <td className="px-6 py-4 font-bold">$21,703</td>
+                        <td className="px-6 py-4 font-bold">{formatAUD(EX_TOTAL)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Less: PAYG Credits</td>
                         <td className="px-6 py-4">Tax already withheld by your employer(s) during the year</td>
-                        <td className="px-6 py-4">&minus;$23,500</td>
+                        <td className="px-6 py-4">&minus;{formatAUD(EX_WITHHELD)}</td>
                       </tr>
                       <tr className="bg-eucalyptus-light/20">
                         <td className="px-6 py-4 font-bold">Result</td>
                         <td className="px-6 py-4 font-bold">Refund (if negative) or Amount Owing (if positive)</td>
-                        <td className="px-6 py-4 font-bold text-green-600">Refund: $1,797</td>
+                        <td className="px-6 py-4 font-bold text-green-600">Refund: {formatAUD(EX_RESULT)}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -135,15 +150,15 @@ export default function NoticeOfAssessmentPage() {
 
               <p><strong>Taxable Income</strong> is your total assessable income (salary, wages, interest, dividends, capital gains, rental income) minus allowable deductions (work-related expenses, self-education, working from home, etc.). This is the starting point for your tax calculation.</p>
 
-              <p><strong>Tax on Taxable Income</strong> is calculated using the <Link href="/tax-brackets/">progressive tax brackets</Link>. For FY2025-26, the first $18,200 is tax-free, $18,201&ndash;$45,000 is taxed at 16%, $45,001&ndash;$135,000 at 30%, and so on. The ATO applies each bracket sequentially to your taxable income.</p>
+              <p><strong>Tax on Taxable Income</strong> is calculated using the <Link href="/tax-brackets/">progressive tax brackets</Link>. For a 2025-26 return, the first $18,200 is tax-free, $18,201&ndash;$45,000 is taxed at 16%, $45,001&ndash;$135,000 at 30%, and so on (the 16% rate fell to 15% from 1 July 2026, so your 2026-27 return will use 15%). The ATO applies each bracket sequentially to your taxable income.</p>
 
-              <p><strong>Tax Offsets</strong> reduce the tax calculated above. The most common offset is the <Link href="/low-income-tax-offset/">Low Income Tax Offset (LITO)</Link>, which provides up to $700 for incomes under $66,667. Other offsets include the private health insurance rebate, senior and pensioner tax offset, and zone tax offset. Non-refundable offsets can reduce tax to zero but not below.</p>
+              <p><strong>Tax Offsets</strong> reduce the tax calculated above. The most common offset is the <Link href="/low-income-tax-offset/">Low Income Tax Offset (LITO)</Link>, which provides up to {formatAUD(LITO.maxOffset)} and phases out completely at {formatAUD(LITO.nilOffsetIncome)}. Other offsets include the private health insurance rebate, senior and pensioner tax offset, and zone tax offset. Non-refundable offsets can reduce tax to zero but not below.</p>
 
-              <p><strong>Medicare Levy</strong> is a flat 2% of your taxable income. A reduced rate applies if your taxable income is below the low-income threshold ($27,222 for singles). See our <Link href="/medicare-levy/">Medicare Levy Guide</Link> for the full details, including exemptions for foreign residents and certain visa holders.</p>
+              <p><strong>Medicare Levy</strong> is a flat 2% of your taxable income. No levy is payable at or below the low-income threshold ({formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} for singles in 2025-26), and a reduced levy applies up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. See our <Link href="/medicare-levy/">Medicare Levy Guide</Link> for the full details, including exemptions for foreign residents and certain visa holders.</p>
 
-              <p><strong>Medicare Levy Surcharge</strong> applies if you earn over $93,000 (singles) or $186,000 (families) and do not hold eligible private hospital cover. The surcharge is 1%&ndash;1.5% depending on your income tier. See our <Link href="/private-health-insurance-medicare/">Private Health Insurance &amp; Medicare guide</Link>.</p>
+              <p><strong>Medicare Levy Surcharge</strong> applies on a 2025-26 return if your income for MLS purposes is over {formatAUD(MLS_SINGLE_2025_26)} (singles) or {formatAUD(MLS_SINGLE_2025_26 * 2)} (families) and do not hold eligible private hospital cover. The surcharge is 1%&ndash;1.5% depending on your income tier. See our <Link href="/private-health-insurance-medicare/">Private Health Insurance &amp; Medicare guide</Link>.</p>
 
-              <p><strong>HECS-HELP Repayment</strong> is your compulsory student loan repayment, calculated on your Repayment Income. Under the new marginal system, you only pay on income above the $69,528 threshold. The amount shown on your NOA is the total compulsory repayment for the year.</p>
+              <p><strong>HECS-HELP Repayment</strong> is your compulsory student loan repayment, calculated on your Repayment Income. Under the marginal system introduced for 2025-26, you only pay on income above the threshold: {formatAUD(HECS_HELP_2025_26.minimumThreshold)} on a 2025-26 return, rising to {formatAUD(HECS_HELP.minimumThreshold)} for 2026-27. The amount shown on your NOA is the total compulsory repayment for the year.</p>
 
               <p><strong>PAYG Credits</strong> represent the tax your employer(s) withheld from your pay during the year. If your employer withheld more than your total tax liability, you receive a refund. If they withheld less, you owe the difference.</p>
             </section>
@@ -176,7 +191,7 @@ export default function NoticeOfAssessmentPage() {
                 If the ATO has made a decision you disagree with (as opposed to a simple error), you can lodge a formal objection. Objections must be lodged within <strong>2 years</strong> of the assessment date for individuals. The ATO will review your objection and issue a decision, typically within 60 days.
               </p>
               <p>
-                If your objection is disallowed, you can escalate to the <strong>Administrative Appeals Tribunal (AAT)</strong> or the <strong>Federal Court</strong> for an independent review.
+                If your objection is disallowed, you can escalate to the <strong>Administrative Review Tribunal (ART)</strong>, which replaced the Administrative Appeals Tribunal on 14 October 2024, or the <strong>Federal Court</strong> for an independent review.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6">
@@ -227,7 +242,7 @@ export default function NoticeOfAssessmentPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Information is sourced from the Australian Taxation Office&apos;s published guidance on Notices of Assessment, amendment processes, and objection procedures. Tax calculations use FY2025-26 resident tax brackets and rates. The worked example is illustrative and simplified. Individual NOA results depend on your specific income, deductions, offsets, and withholding arrangements.</p>
+                <p>Information is sourced from the Australian Taxation Office&apos;s published guidance on Notices of Assessment, amendment processes, and objection procedures. The worked example uses the 2025-26 resident tax brackets, Medicare levy and HELP repayment rates, because that is the year covered by the notices being issued now. The worked example is illustrative and simplified. Individual NOA results depend on your specific income, deductions, offsets, and withholding arrangements.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("notice-of-assessment"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

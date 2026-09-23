@@ -7,7 +7,16 @@ import { GIG_ECONOMY_FAQS } from "./gig-economy-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+
+// Tax + Medicare on net gig income from the FY2026-27 engine (resident, LITO
+// and Medicare low-income shading applied, no HECS/MLS). The old hardcoded
+// table used the 16% rate with no LITO, overstating tax at $30,000 by ~$1,200.
+const GIG_ROWS = [30_000, 50_000, 75_000, 100_000].map((income) => {
+  const tax = calculatePayBreakdown({ grossSalary: income }).totalDeductions;
+  return { income, tax, pct: tax / income };
+});
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -79,10 +88,9 @@ export default function GigEconomyPayGuidePage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr><td className="px-5 py-3">$18,200 or less</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">0%</td><td className="px-5 py-3 text-right">$0</td></tr>
-                      <tr><td className="px-5 py-3">$30,000</td><td className="px-5 py-3 text-right">$2,488</td><td className="px-5 py-3 text-right">~8%</td><td className="px-5 py-3 text-right">$83</td></tr>
-                      <tr><td className="px-5 py-3">$50,000</td><td className="px-5 py-3 text-right">$6,788</td><td className="px-5 py-3 text-right">~14%</td><td className="px-5 py-3 text-right">$136</td></tr>
-                      <tr><td className="px-5 py-3">$75,000</td><td className="px-5 py-3 text-right">$14,288</td><td className="px-5 py-3 text-right">~19%</td><td className="px-5 py-3 text-right">$190</td></tr>
-                      <tr><td className="px-5 py-3">$100,000</td><td className="px-5 py-3 text-right">$22,788</td><td className="px-5 py-3 text-right">~23%</td><td className="px-5 py-3 text-right">$228</td></tr>
+                      {GIG_ROWS.map((r) => (
+                        <tr key={r.income}><td className="px-5 py-3">{formatAUD(r.income)}</td><td className="px-5 py-3 text-right">{formatAUD(r.tax)}</td><td className="px-5 py-3 text-right">~{Math.round(r.pct * 100)}%</td><td className="px-5 py-3 text-right">{formatAUD(r.pct * 1000)}</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -223,7 +231,7 @@ export default function GigEconomyPayGuidePage() {
               <FaqAccordion faqs={GIG_ECONOMY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Gig economy tax information is sourced from the Australian Taxation Office (ATO). Tax calculations use FY2025-26 resident tax brackets. Deduction ranges are estimates based on typical gig worker claims. GST rules for rideshare services are per ATO Taxation Determination. Individual circumstances vary — consult a registered tax agent for personalised advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Gig economy tax information is sourced from the Australian Taxation Office (ATO). Tax calculations use FY{SITE_CONFIG.financialYear} resident tax brackets, with LITO and the Medicare levy low-income shading applied. Deduction ranges are estimates based on typical gig worker claims. GST rules for rideshare services are per ATO Taxation Determination. Individual circumstances vary — consult a registered tax agent for personalised advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("gig-economy-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">
