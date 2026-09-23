@@ -43,6 +43,7 @@ import { REBEL_PAY } from "./rebel";
 import { HARVEY_NORMAN_PAY } from "./harvey-norman";
 import { SPOTLIGHT_PAY } from "./spotlight";
 import { ANACONDA_PAY } from "./anaconda";
+import { STARBUCKS_PAY } from "./starbucks";
 // --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -77,6 +78,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "harvey-norman": HARVEY_NORMAN_PAY,
   spotlight: SPOTLIGHT_PAY,
   anaconda: ANACONDA_PAY,
+  starbucks: STARBUCKS_PAY,
   // --- end J7 ---
 };
 
