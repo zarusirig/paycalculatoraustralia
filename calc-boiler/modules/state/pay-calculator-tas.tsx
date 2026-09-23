@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import TrustBar from "@/components/common/trust-bar";
@@ -10,11 +8,12 @@ import {
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { TAS_FAQS } from "./pay-calculator-tas-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -166,27 +165,9 @@ export default function PayCalculatorTASPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in Tasmania?">
-              No. Income tax, the Medicare levy and HECS-HELP repayment thresholds are set federally by the ATO and are identical in Tasmania, on the mainland, and in both territories. There is no Tasmanian income tax.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average Tasmanian salary?">
-              Full-time adults in Tasmania earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — the lowest of any state or territory. The worked example above shows the net result per week, fortnight and month.
-            </FAQItem>
-            <FAQItem value="regatta" question="Do I get Royal Hobart Regatta or Recreation Day?">
-              One or the other, depending on where in Tasmania you work. The Regatta in February is observed in certain areas including Hobart; the areas that do not observe it get Recreation Day in early November instead. Both are Tasmanian-only public holidays.
-            </FAQItem>
-            <FAQItem value="eighthours" question="What is Eight Hours Day?">
-              Eight Hours Day, held on the second Monday in March, is Tasmania&apos;s version of Labour Day. It commemorates the campaign for the eight-hour working day. It attracts the same public holiday entitlements as any other gazetted holiday.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in Tasmania?">
-              Private sector employees get 8⅔ weeks after 10 years of continuous employment, then 4⅓ weeks every further 5 years. A pro-rata payment may be owed on termination once you have completed 7 but fewer than 10 years. Government and TasBuild construction workers are covered by separate arrangements.
-            </FAQItem>
-            <FAQItem value="payroll" question="Do Tasmanian employees pay payroll tax?">
-              No. Payroll tax is charged to employers whose Australian wages exceed {formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}. It never appears on an employee&apos;s payslip and does not reduce gross pay.
-            </FAQItem>
-            <FAQItem value="medicare" question="Do I pay the Medicare levy surcharge in TAS?">
-              The Medicare levy surcharge is federal and applies on the same income thresholds everywhere in Australia. Untick &quot;I hold private hospital cover&quot; in the calculator above to see whether it applies at your income and what it costs.
-            </FAQItem>
+            {TAS_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

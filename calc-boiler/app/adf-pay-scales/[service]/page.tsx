@@ -13,6 +13,7 @@ import {
   salaryRange,
   type AdfService,
 } from "@/lib/data/adf-pay";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -29,13 +30,22 @@ function canonicalFor(slug: string) {
 }
 
 function titleFor(s: AdfService) {
-  return `${s.name} Pay Scales 2026 — ${s.fullName} Salary by Rank & Pay Grade`;
+  return fitTitle(
+    `${s.name} Pay Scales 2026 — ${s.fullName} Salary by Rank & Pay Grade`,
+    `${s.name} Pay Scales 2026 — ${s.fullName} Salary by Rank`,
+    `${s.name} Pay Scales 2026 — ${s.fullName} Salary`,
+  );
 }
 
 function descriptionFor(s: AdfService) {
   const pte = OTHER_RANK_SALARIES.find((t) => t.id === "pte")!;
   const r = salaryRange(pte);
-  return `${s.fullName} pay rates from PACMAN, effective ${ADF_PAY_EFFECTIVE}: ${pte.names[s.key]} ${formatAUD(r.min)}–${formatAUD(r.max)}, every rank and increment, which pay grade each ${s.name} job is on, and take-home pay.`;
+  const lead = `${s.fullName} pay rates from PACMAN, effective ${ADF_PAY_EFFECTIVE}: ${pte.names[s.key]} ${formatAUD(r.min)}–${formatAUD(r.max)}`;
+  return fitDescription(
+    `${lead}, every rank and increment, which pay grade each ${s.name} job is on, and take-home pay.`,
+    `${lead}, every rank and increment, each job's pay grade and take-home pay.`,
+    `${lead}, every rank, pay grade and take-home pay.`,
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

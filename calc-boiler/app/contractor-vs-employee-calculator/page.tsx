@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import ContractorVsEmployeeCalculatorPage from "@/modules/calculator/contractor-vs-employee-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { CONTRACTOR_VS_EMPLOYEE_FAQS } from "@/modules/calculator/contractor-vs-employee-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contractor-vs-employee-calculator/`;
@@ -48,43 +51,11 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("contractor-vs-employee-calculator"),
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Should I be a contractor or employee?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "It depends on the rate differential. If contracting pays 30%+ more than the equivalent employee salary, the financial benefit usually outweighs the loss of entitlements. Below that, employment is typically better value.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do contractors have to pay super?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Contractors are not legally required to pay their own super (unlike employers). However, for retirement planning, setting aside 12% voluntarily is strongly recommended. You can claim a tax deduction for personal super contributions.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do I need to register for GST as a contractor?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "You must register for GST if your annual turnover is $75,000 or more. If below $75,000, registration is optional. When registered, you charge clients an additional 10% GST and remit it to the ATO quarterly via your BAS.",
-      },
-    },
-    { "@type": "Question", name: "What is the main difference between an employee and a contractor?", acceptedAnswer: { "@type": "Answer", text: "An employee works in and is part of the employer's business, taking direction and control from them. A contractor is running their own independent business, providing services to another business for a set result." } },
-    { "@type": "Question", name: "Do independent contractors pay their own tax?", acceptedAnswer: { "@type": "Answer", text: "Yes, independent contractors are responsible for managing their own tax affairs through their ABN. They do not have PAYG tax automatically withheld from their invoices like employees do from their payslips, unless a specific voluntary agreement is in place." } },
-    { "@type": "Question", name: "Are contractors entitled to superannuation?", acceptedAnswer: { "@type": "Answer", text: "Generally no, but there is a major exception. If a contractor is hired wholly or principally for their personal 'labour and skills', the employer may be legally required to pay the 12% Superannuation Guarantee on their behalf, even if they quote an ABN." } },
-  ],
-};
+const faq = faqPageSchema(CONTRACTOR_VS_EMPLOYEE_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Contractor vs Employee Calculator",

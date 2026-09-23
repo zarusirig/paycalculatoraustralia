@@ -7,8 +7,8 @@ import { CARER_SUPPORT_SOURCES, crisisPaymentAmount } from "@/lib/constants/cent
 import { JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 
 const SLUG = "centrelink-crisis-payment";
-const TITLE = "Centrelink Crisis Payment 2026 — Eligibility, Amount & How to Claim";
-const DESCRIPTION = `Crisis Payment is one week of your payment's maximum basic rate — ${formatAUD(crisisPaymentAmount(JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single), 2)} on single JobSeeker. Who qualifies (family and domestic violence, forced to leave home, humanitarian entry, prison release), the 7-day contact rule and how to claim.`;
+const TITLE = "Centrelink Crisis Payment 2026: Eligibility, Amount, How to Claim";
+const DESCRIPTION = `Crisis Payment is one week of your payment's maximum basic rate: ${formatAUD(crisisPaymentAmount(JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single), 2)} on single JobSeeker. Who qualifies, the 7-day contact rule and how to claim.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

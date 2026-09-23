@@ -51,7 +51,7 @@ export type StateRow = {
   cells: Partial<Record<StateTopicKey, string>>;
 };
 
-export type StateTopicKey = "pay" | "payrollTax" | "lsl" | "teachers" | "nurses" | "publicService";
+export type StateTopicKey = "pay" | "payrollTax" | "lsl" | "teachers" | "nurses" | "publicService" | "publicHolidays"; // publicHolidays: G4
 
 export type MegaMenu = {
   id: string;
@@ -83,8 +83,9 @@ const STATES = [
 
 // Which states have a built page in each state-split cluster. The route
 // check fails if one of these is removed without updating the list.
-const NURSE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas"];
-const PUBLIC_SERVICE_STATES = ["nsw", "vic", "qld", "wa", "sa"];
+// H2 (24 Sep 2026): ACT/NT nurses and TAS/ACT/NT public service added.
+const NURSE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
+const PUBLIC_SERVICE_STATES = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"];
 
 export const MEGA_MENU: readonly MegaMenu[] = [
   {
@@ -315,6 +316,9 @@ export const MEGA_MENU: readonly MegaMenu[] = [
       { title: "Pay calculator", links: STATES.map(([c, abbr]) => ({ href: `/pay-calculator-${c}/`, label: `Pay calculator ${abbr}` })) },
       { title: "Payroll tax", href: "/payroll-tax/", links: STATES.map(([c, abbr]) => ({ href: `/payroll-tax/${c}/`, label: `${abbr} payroll tax` })) },
       { title: "Long service leave", href: "/long-service-leave-calculator/", links: STATES.map(([c, abbr]) => ({ href: `/long-service-leave-calculator/${c}/`, label: `${abbr} long service leave` })) },
+      // --- G4 public holiday pay cluster (24 Sep 2026) ---
+      { title: "Public holidays", href: "/public-holiday-pay/", links: STATES.map(([c, abbr]) => ({ href: `/public-holiday-pay/${c}/`, label: `${abbr} public holidays` })) },
+      // --- end G4 ---
       { title: "Teacher pay", href: "/teacher-pay-australia/", links: STATES.map(([c, abbr]) => ({ href: `/teacher-pay-australia/${c}/`, label: `${abbr} teacher pay` })) },
       { title: "Nurse pay", href: "/healthcare-worker-pay/", links: NURSE_STATES.map((c) => ({ href: `/healthcare-worker-pay/${c}/`, label: `${c.toUpperCase()} nurse pay` })) },
       {
@@ -331,6 +335,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         { key: "pay", label: "Pay calculator", hub: "/" },
         { key: "payrollTax", label: "Payroll tax", hub: "/payroll-tax/" },
         { key: "lsl", label: "Long service leave", hub: "/long-service-leave-calculator/" },
+        { key: "publicHolidays", label: "Public holidays", hub: "/public-holiday-pay/" }, // G4
         { key: "teachers", label: "Teachers", hub: "/teacher-pay-australia/" },
         { key: "nurses", label: "Nurses", hub: "/healthcare-worker-pay/" },
         { key: "publicService", label: "Public service", hub: "/public-service-pay-scales/" },
@@ -342,6 +347,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           pay: `/pay-calculator-${c}/`,
           payrollTax: `/payroll-tax/${c}/`,
           lsl: `/long-service-leave-calculator/${c}/`,
+          publicHolidays: `/public-holiday-pay/${c}/`, // G4
           teachers: `/teacher-pay-australia/${c}/`,
           nurses: NURSE_STATES.includes(c) ? `/healthcare-worker-pay/${c}/` : undefined,
           publicService: PUBLIC_SERVICE_STATES.includes(c) ? `/public-service-pay-scales/${c}/` : undefined,

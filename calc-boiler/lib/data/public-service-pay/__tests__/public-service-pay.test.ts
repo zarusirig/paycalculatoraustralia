@@ -68,11 +68,12 @@ test("bandMidpoint sits inside the band", () => {
 // ---------- data integrity ----------
 
 test("registry lists exactly the built jurisdictions", () => {
-  assert.deepEqual([...JURISDICTION_SLUGS], ["aps", "vic", "qld", "nsw", "wa", "sa"]);
+  assert.deepEqual([...JURISDICTION_SLUGS], ["aps", "vic", "qld", "nsw", "wa", "sa", "tas", "act", "nt"]);
   assert.ok(isBuiltSlug("aps"));
   assert.ok(isBuiltSlug("nsw"));
-  assert.ok(!isBuiltSlug("tas"));
-  assert.equal(getJurisdiction("tas"), undefined);
+  assert.ok(isBuiltSlug("tas"));
+  assert.ok(!isBuiltSlug("nowhere"));
+  assert.equal(getJurisdiction("nowhere"), undefined);
   assert.equal(getJurisdiction("qld")?.shortName, "Queensland");
 });
 
@@ -83,7 +84,7 @@ test("planned jurisdictions never overlap the built ones", () => {
       `${planned.slug} is both built and planned`,
     );
   }
-  assert.equal(PLANNED_JURISDICTIONS.length, 3);
+  assert.equal(PLANNED_JURISDICTIONS.length, 0, "every service is built since H2");
 });
 
 test("every band is a sane, whole-dollar range", () => {
@@ -340,4 +341,50 @@ test("WA headings say WA, not a bare level number", () => {
   const first = levelSections(getJurisdiction("wa")!)[0];
   assert.equal(first.heading, "WA Level 1 salary 2026");
   assert.equal(first.id, "level-1");
+});
+
+// ---------- H2 (24 Sep 2026): Tasmania, ACT and NT pinned to the published figures ----------
+
+test("Tasmania matches PSUWA 2025 Schedule 1, 1 December 2025 column", () => {
+  const b1 = findBand("tss band 1", "tas")!;
+  assert.deepEqual(b1.band.payPoints!.map((p) => p.annual), [55_616, 59_300, 62_973, 66_430, 67_344]);
+  const b4 = findBand("tss band 4", "tas")!;
+  assert.deepEqual([b4.band.min, b4.band.max], [86_325, 99_237]);
+  const b9 = findBand("tss band 9", "tas")!;
+  assert.deepEqual([b9.band.min, b9.band.max], [175_521, 194_052]);
+  assert.equal(findBand("professional stream band 6", "tas")!.band.max, 228_493);
+  assert.equal(b1.schedule.effectiveFrom, "the first full pay period on or after 1 December 2025");
+});
+
+test("ACT matches Annex A of the ACTPS Administrative EA 2023-2026, 4 December 2025 column", () => {
+  const aso6 = findBand("aso6", "act")!;
+  assert.deepEqual(aso6.band.payPoints!.map((p) => p.annual), [102_657, 104_996, 107_622, 112_584, 116_592]);
+  const aso1 = findBand("aso1", "act")!;
+  assert.deepEqual([aso1.band.min, aso1.band.max], [65_124, 68_798]);
+  assert.equal(findBand("sog a", "act")!.band.min, 172_246);
+  assert.equal(getJurisdiction("act")!.superannuation.rate, 12.5);
+  // Unpinned "aso1" still resolves to South Australia, which is registered first.
+  assert.equal(findBand("aso1")!.jurisdiction.slug, "sa");
+});
+
+test("NT matches Schedule 11 of the NTPS 2025-2029 EA, 13 August 2026 column", () => {
+  const ao5 = findBand("nt ao5", "nt")!;
+  assert.deepEqual(ao5.band.payPoints!.map((p) => p.annual), [93_674, 96_003, 98_332]);
+  const ao2 = findBand("ao2", "nt")!;
+  assert.deepEqual([ao2.band.min, ao2.band.max], [63_931, 69_226]);
+  assert.equal(findBand("sao2", "nt")!.band.max, 171_482);
+  // Unpinned "ao5" still resolves to Queensland, which is registered first.
+  assert.equal(findBand("ao5")!.jurisdiction.slug, "qld");
+});
+
+test("TAS, ACT and NT level sections are anchored and prefixed", () => {
+  const tas = levelSections(getJurisdiction("tas")!);
+  assert.equal(tas[0].id, "band-1");
+  assert.equal(tas[0].heading, "Tasmanian State Service Band 1 salary 2026");
+  assert.equal(tas.length, 9);
+  const act = levelSections(getJurisdiction("act")!).map((s) => s.id);
+  assert.deepEqual(act, ["aso-1", "aso-2", "aso-3", "aso-4", "aso-5", "aso-6", "sog-c", "sog-b", "sog-a"]);
+  const nt = levelSections(getJurisdiction("nt")!);
+  assert.equal(nt[0].heading, "NT AO2 salary 2026");
+  assert.equal(nt.length, 10);
 });

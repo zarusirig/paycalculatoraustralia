@@ -1,12 +1,20 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { APPRENTICE_ELECTRICIAN, CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { INDUSTRY_ALLOWANCE, CARPENTER_TOOL_ALLOWANCE, MULTISTOREY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
+
+const TRADE_TAKE_HOME = [
+  { role: "Painter", gross: 75_000 },
+  { role: "Carpenter", gross: 85_000 },
+  { role: "Electrician", gross: 95_000 },
+  { role: "Boilermaker", gross: 105_000 },
+] as const;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -81,7 +89,7 @@ export default function ConstructionTradesPayPage() {
             <section id="apprentice-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Apprentice Pay Rates</h2>
               <p>
-                Apprentice wages in Australia are set as a percentage of the qualified trade rate, increasing each year as the apprentice gains skills and experience. The Building and Construction General On-site Award specifies minimum apprentice rates, though many employers and enterprise agreements pay above these minimums.
+                Apprentice wages in Australia are set as a percentage of the qualified trade rate, increasing each year as the apprentice gains skills and experience. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -90,14 +98,13 @@ export default function ConstructionTradesPayPage() {
                       <tr>
                         <th className="px-5 py-3">Year</th>
                         <th className="px-5 py-3 text-right">% of Trade Rate</th>
-                        <th className="px-5 py-3 text-right">Approx. Annual (Electrician)</th>
+                        <th className="px-5 py-3 text-right">Award minimum, apprentice electrician (38 hrs)</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Year 1</td><td className="px-5 py-3 text-right">~55%</td><td className="px-5 py-3 text-right">$44,000 – $49,000</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Year 2</td><td className="px-5 py-3 text-right">~65%</td><td className="px-5 py-3 text-right">$52,000 – $58,000</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Year 3</td><td className="px-5 py-3 text-right">~80%</td><td className="px-5 py-3 text-right">$64,000 – $72,000</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Year 4</td><td className="px-5 py-3 text-right">~95%</td><td className="px-5 py-3 text-right">$76,000 – $86,000</td></tr>
+                      {APPRENTICE_ELECTRICIAN.map((r) => (
+                        <tr key={r.year}><td className="px-5 py-3 font-medium">{r.year}</td><td className="px-5 py-3 text-right">{Math.round(r.pct * 100)}%</td><td className="px-5 py-3 text-right">{formatAUD(r.hourly * 38 * 52)} ({formatAUD(r.hourly, 2)}/hr)</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -105,7 +112,7 @@ export default function ConstructionTradesPayPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Adult Apprentice Rates</h3>
               <p>
-                Adult apprentices (aged 21 and over) receive higher minimum rates than school-leaver apprentices. Under most awards and enterprise agreements, adult apprentices earn at least the <strong>national minimum wage</strong> ($26.44/hr) from Year 1, rather than the reduced junior apprentice rate. This recognises that adult apprentices have higher living costs and may have family responsibilities.
+                Adult apprentices (aged 21 and over) receive higher minimum rates than school-leaver apprentices. Under the Electrical award, for example, an adult apprentice gets 80% of the qualified electrician rate in first year ($25.87/hr) and at least the grade 1 rate from second year ($28.90/hr), instead of the junior apprentice percentages. This recognises that adult apprentices have higher living costs and may have family responsibilities.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Government Incentives</h3>
@@ -131,18 +138,18 @@ export default function ConstructionTradesPayPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Industry Allowance</td><td className="px-5 py-3 text-right font-medium">$32–$45/day</td><td className="px-5 py-3">All on-site construction work</td></tr>
-                      <tr><td className="px-5 py-3">Tool Allowance</td><td className="px-5 py-3 text-right font-medium">$20–$35/day</td><td className="px-5 py-3">Tradies who supply own tools</td></tr>
-                      <tr><td className="px-5 py-3">Height Allowance</td><td className="px-5 py-3 text-right font-medium">$0.60–$1.50/hr</td><td className="px-5 py-3">Working above certain heights</td></tr>
-                      <tr><td className="px-5 py-3">Confined Space</td><td className="px-5 py-3 text-right font-medium">$0.80–$1.50/hr</td><td className="px-5 py-3">Working in confined spaces</td></tr>
-                      <tr><td className="px-5 py-3">Travel / Fares</td><td className="px-5 py-3 text-right font-medium">$20–$30/day</td><td className="px-5 py-3">Travelling to site beyond set distance</td></tr>
-                      <tr><td className="px-5 py-3">First Aid</td><td className="px-5 py-3 text-right font-medium">$3.50–$4.50/day</td><td className="px-5 py-3">Designated first aid officer</td></tr>
+                      <tr><td className="px-5 py-3">Industry Allowance</td><td className="px-5 py-3 text-right font-medium">{formatAUD(INDUSTRY_ALLOWANCE.general, 2)}/week ({formatAUD(INDUSTRY_ALLOWANCE.residential, 2)} residential)</td><td className="px-5 py-3">All on-site construction work (cl 22.1, all purposes)</td></tr>
+                      <tr><td className="px-5 py-3">Tool Allowance</td><td className="px-5 py-3 text-right font-medium">{formatAUD(CARPENTER_TOOL_ALLOWANCE, 2)}/week (carpenter)</td><td className="px-5 py-3">Set per trade in cl 21.1; carpenters and joiners shown</td></tr>
+                      <tr><td className="px-5 py-3">{MULTISTOREY_ALLOWANCE.name}</td><td className="px-5 py-3 text-right font-medium">{MULTISTOREY_ALLOWANCE.amount}</td><td className="px-5 py-3">Buildings of 5 or more storeys, rising with floor level (cl 23.3(e))</td></tr>
+                      <tr><td className="px-5 py-3">Confined Space</td><td className="px-5 py-3 text-right font-medium">Per hour, set by the award</td><td className="px-5 py-3">Working in confined spaces</td></tr>
+                      <tr><td className="px-5 py-3">Travel / Fares</td><td className="px-5 py-3 text-right font-medium">Per day, set by the award</td><td className="px-5 py-3">Travelling to site beyond set distance</td></tr>
+                      <tr><td className="px-5 py-3">First Aid</td><td className="px-5 py-3 text-right font-medium">Per day, set by the award</td><td className="px-5 py-3">Designated first aid officer</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                On major commercial and infrastructure projects, enterprise agreement site allowances can be <strong>significantly higher</strong> — $50–$80+ per day on large CBD projects. These allowances can add <strong>$8,000–$15,000</strong> per year to a construction worker&apos;s income. All allowances are treated as ordinary income for tax purposes. Check the <Link href="/award-rates/">Award Rates Guide</Link> for more details on construction award provisions.
+                On major commercial and infrastructure projects, enterprise agreement site allowances can be <strong>significantly higher</strong> than the award amounts. All allowances are treated as ordinary income for tax purposes. Check the <Link href="/award-rates/">Award Rates Guide</Link> for more details on construction award provisions.
               </p>
             </section>
 
@@ -159,7 +166,7 @@ export default function ConstructionTradesPayPage() {
                 <li><strong>Public Holidays:</strong> Double time and a half (2.5x) for all hours worked, with a minimum 4-hour engagement.</li>
               </ul>
               <p>
-                A qualified carpenter earning <strong>$40/hr</strong> base rate who works 5 hours of overtime on a Saturday earns: 2 hours at $60/hr + 3 hours at $80/hr = <strong>$360</strong> for the Saturday shift alone. Over a year, regular Saturday work can add <strong>$15,000–$25,000</strong> to annual income. Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your exact overtime earnings.
+                A qualified carpenter earning <strong>$40/hr</strong> base rate who works 5 hours of overtime on a Saturday earns: 2 hours at $60/hr + 3 hours at $80/hr = <strong>$360</strong> for the Saturday shift alone. Regular Saturday work adds up quickly over a year. Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your exact overtime earnings.
               </p>
             </section>
 
@@ -167,7 +174,7 @@ export default function ConstructionTradesPayPage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Below are take-home pay estimates for common construction and trades roles in FY2025-26, including typical allowances but excluding overtime:
+                Below are take-home pay estimates for common construction and trades roles in FY{SITE_CONFIG.financialYear}, including typical allowances but excluding overtime (LITO and Medicare levy applied, no HECS):
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -181,10 +188,10 @@ export default function ConstructionTradesPayPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Painter</td><td className="px-5 py-3 text-right">$75,000</td><td className="px-5 py-3 text-right">$15,467</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$59,533</td></tr>
-                      <tr><td className="px-5 py-3">Carpenter</td><td className="px-5 py-3 text-right">$85,000</td><td className="px-5 py-3 text-right">$18,467</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$66,533</td></tr>
-                      <tr><td className="px-5 py-3">Electrician</td><td className="px-5 py-3 text-right">$95,000</td><td className="px-5 py-3 text-right">$21,717</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$73,283</td></tr>
-                      <tr><td className="px-5 py-3">Boilermaker</td><td className="px-5 py-3 text-right">$105,000</td><td className="px-5 py-3 text-right">$24,717</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">$80,283</td></tr>
+                      {TRADE_TAKE_HOME.map((r) => {
+                        const b = calculatePayBreakdown({ grossSalary: r.gross });
+                        return (<tr key={r.role}><td className="px-5 py-3">{r.role}</td><td className="px-5 py-3 text-right">{formatAUD(r.gross)}</td><td className="px-5 py-3 text-right">{formatAUD(b.totalDeductions)}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(b.takeHomePay)}</td></tr>);
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -201,37 +208,12 @@ export default function ConstructionTradesPayPage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="tradie-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do tradies earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Qualified tradies earn between $65,000 and $120,000 depending on trade, experience, and overtime. Electricians ($80K–$110K) and boilermakers ($85K–$120K) are among the highest-paid trades. Self-employed tradies with their own business can gross $150K–$250K+ but have higher business costs.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="apprentice-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do apprentices get paid?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Apprentice wages start at approximately 55% of the qualified trade rate in Year 1, increasing to 65% in Year 2, 80% in Year 3, and 95% in Year 4. For an electrician apprentice, this means approximately $44K–$49K in Year 1, rising to $76K–$86K in Year 4. Adult apprentices (21+) receive higher minimum rates.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What are the overtime rates in construction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under the Building and Construction General On-site Award, overtime is time-and-a-half for the first 2 hours and double time thereafter on weekdays. Saturday is time-and-a-half for the first 2 hours then double time. Sunday is double time for all hours. Public holidays are double time and a half (2.5x).</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="site-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a site allowance?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A site allowance is a daily payment made to construction workers to compensate for the conditions of working on a construction site, including noise, dust, and lack of permanent amenities. The industry allowance ranges from $32–$45/day under the award, but enterprise agreement site allowances on major projects can be $50–$80+ per day.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tool-allowance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is the tool allowance taxable?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, the tool allowance is assessable income and included in your gross earnings for tax purposes. However, you can claim a deduction for the cost of tools you purchase for work. If individual tools cost less than $300, you can claim an immediate deduction. Tools costing more than $300 must be depreciated over their effective life.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="highest-paid" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the highest-paid trade in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Boilermakers and electricians are typically the highest-paid trades, with qualified workers earning $85K–$120K. Electricians working in mining or oil and gas can earn $130K–$170K+. Crane operators, while not a traditional trade, can earn $100K–$150K+ on major construction projects due to their specialised skills and the high demand for certified operators.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={CONSTRUCTION_TRADES_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Construction and trades salary data is compiled from ABS average weekly earnings for the construction industry, Fair Work Commission pay guides for the Building and Construction General On-site Award, and published enterprise agreement rates. Salary ranges represent total annual earnings including base rate and typical allowances, but excluding overtime. Tax calculations use ATO marginal rates for FY2025-26 including the 2% Medicare levy.</p>
+                <p>Construction and trades salary data is compiled from ABS average weekly earnings for the construction industry, Fair Work Commission pay guides for the Building and Construction General On-site Award, and published enterprise agreement rates. Salary ranges represent total annual earnings including base rate and typical allowances, but excluding overtime. Tax calculations use ATO marginal rates for FY{SITE_CONFIG.financialYear} including the 2% Medicare levy.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("construction-trades-pay"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

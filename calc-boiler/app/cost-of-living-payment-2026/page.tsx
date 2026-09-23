@@ -6,7 +6,7 @@ import { CARER_SUPPORT_SOURCES, COST_OF_LIVING_FACTS } from "@/lib/constants/cen
 
 const SLUG = "cost-of-living-payment-2026";
 const TITLE = "Cost of Living Payment 2026 — Is There One? (Checked Sep 2026)";
-const DESCRIPTION = `No Commonwealth cost of living payment exists in 2026: Services Australia says it stopped from ${COST_OF_LIVING_FACTS.cwthCostOfLivingPaymentEnded}, and Energy Bill Relief ended ${COST_OF_LIVING_FACTS.energyBillReliefEnded}. What you can get instead — the 20 September 2026 payment increases, Rent Assistance and state concessions.`;
+const DESCRIPTION = `No Commonwealth cost of living payment exists in 2026: it stopped from ${COST_OF_LIVING_FACTS.cwthCostOfLivingPaymentEnded}. What you can get instead: 20 September 2026 increases and Rent Assistance.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

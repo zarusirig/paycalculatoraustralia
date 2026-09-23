@@ -63,8 +63,9 @@ export default function TaxTime2026WhatsNew() {
 
       <h2>Smaller changes worth knowing</h2>
       <p>
-        The $2 minimum donation threshold for deductible gift recipients has been removed, so any
-        eligible gift — no matter how small — is now deductible with a receipt. And if you incur
+        The $2 minimum donation threshold for deductible gift recipients has been removed, backdated
+        to gifts made from 1 July 2024, so any eligible gift — no matter how small — is now
+        deductible with a receipt (political donations still need to be $2 or more). And if you incur
         general interest charge or shortfall interest charge from 1 July 2025 onward, you can no
         longer claim that interest as a tax deduction on your 2025-26 or later returns.
       </p>

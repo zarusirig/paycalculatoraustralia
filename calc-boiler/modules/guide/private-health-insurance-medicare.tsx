@@ -1,10 +1,9 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { PHI_MEDICARE_FAQS } from "./private-health-insurance-medicare-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
@@ -37,8 +36,6 @@ const pct3 = (r: number) => `${(r * 100).toFixed(3)}%`;
 const BREAK_EVEN_INCOMES = [110_000, 130_000, 150_000, 200_000];
 const singleMls = (income: number) =>
   estimateMls({ own: { taxableIncome: income, reportableFringeBenefits: 0, netInvestmentLosses: 0, reportableSuperContributions: 0 }, hasSpouse: false, spouseMlsIncome: 0, dependentChildren: 0, daysWithoutCover: 365 });
-const EG150 = singleMls(150_000);
-const EG150_BREAK_EVEN = EG150.fullYearSurcharge / (1 - phiRebateRate(EG150.tier, "under65"));
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -234,32 +231,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
             {/* SECTION 6: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="what-triggers-mls" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What income triggers the Medicare Levy Surcharge?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">In {MLS_INCOME_YEAR} the MLS applies to singles with income for MLS purposes above <strong>{formatAUD(SINGLE_BASE)}</strong> or families above <strong>{formatAUD(FAMILY_BASE)}</strong> who do not hold appropriate private patient hospital cover. Income for MLS purposes includes taxable income, reportable fringe benefits, total net investment losses and reportable super contributions.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="phi-vs-mls" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is it cheaper to get PHI or pay the surcharge?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">It depends on your income and your quote. Compare the surcharge you would pay with the premium after your rebate: at {formatAUD(150_000)} a single pays {formatAUD(EG150.fullYearSurcharge)} of surcharge, so cover is cheaper if it costs less than {formatAUD(EG150_BREAK_EVEN)} a year before the rebate. PHI also provides actual hospital coverage.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="extras-count" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does extras-only cover exempt me from the MLS?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray"><strong>No.</strong> Only private <em>hospital</em> cover (or combined hospital and extras) counts for MLS exemption. An extras-only policy covering dental, optical, or physiotherapy does not satisfy the requirement. You need a compliant hospital insurance policy with an excess of $750 or less for singles ($1,500 for families).</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lhc-loading" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is Lifetime Health Cover loading?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">LHC loading adds <strong>2% per year</strong> to your hospital cover premium for every year you are aged over 30 without hospital cover. It maxes out at 70%. A person who first takes out cover at age 45 pays a 30% loading. The loading is removed after 10 continuous years of holding hospital cover.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="part-year" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I pay MLS for the full year if I get PHI part-way through?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The MLS is calculated on a <strong>daily basis</strong>. If you hold eligible hospital cover for part of the financial year, the surcharge only applies for the days you were not covered. Taking out cover on 1 January means you pay MLS for the first 184 days and are exempt for the remaining 181 days.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="family-threshold" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How does the family threshold work?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The {MLS_INCOME_YEAR} family MLS threshold is <strong>{formatAUD(FAMILY_BASE)}</strong> combined income for MLS purposes. This increases by $1,500 for each dependent child after the first. Family income is the combined income of you and your spouse (including de facto partners). You, your spouse and your dependent children all need appropriate hospital cover for the family to avoid it.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={PHI_MEDICARE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

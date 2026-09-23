@@ -7,7 +7,7 @@ import { CARER_ALLOWANCE, CARER_SUPPORT_SOURCES } from "@/lib/constants/centreli
 
 const SLUG = "carer-allowance";
 const TITLE = "Carer Allowance 2026 — Centrelink Rate, Income Limit & Work";
-const DESCRIPTION = `Centrelink Carer Allowance is ${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, not taxed, with a ${formatAUD(CARER_ALLOWANCE.incomeLimit)} combined income limit and no assets test. How it works with your wages and Carer Payment, plus the ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} Carer Supplement.`;
+const DESCRIPTION = `Centrelink Carer Allowance is ${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, not taxed, with a ${formatAUD(CARER_ALLOWANCE.incomeLimit)} combined income limit and no assets test. Plus the ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} Carer Supplement.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

@@ -34,7 +34,7 @@ test("headline annual figures are the ABS weekly figures × 52", () => {
 test("title and description quote the computed figures", () => {
   assert.equal(
     averageSalaryTitle(),
-    "Average Salary in Australia 2026: $108,352 a Year (Median $90,532)",
+    "Average Salary Australia 2026: $108,352 a Year (Median $90,532)",
   );
   const d = averageSalaryDescription();
   assert.match(d, /\$108,352/);

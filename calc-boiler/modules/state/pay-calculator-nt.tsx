@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import TrustBar from "@/components/common/trust-bar";
@@ -9,11 +7,12 @@ import {
   formatAUD,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { NT_FAQS } from "./pay-calculator-nt-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -179,27 +178,9 @@ export default function PayCalculatorNTPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in the Northern Territory?">
-              No. The Medicare levy is a federal charge of <strong>2%</strong> of taxable income, applied uniformly across Australia, and income tax brackets and HECS-HELP thresholds are federal too. NT residents pay the same rates as everyone else — the zone tax offset is the only NT-linked adjustment, and it is claimed in your tax return.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average NT salary?">
-              Full-time adults in the NT earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above shows the net figure before any zone tax offset.
-            </FAQItem>
-            <FAQItem value="zone" question="Why isn't the zone tax offset in the calculator?">
-              Because it depends on the exact locality you live in and on a residency test — more than half the income year in the zone. It is a rebate against tax payable, claimed in your return, so it does not change your fortnightly withholding. See the <Link href="/zone-tax-offset/" className="text-eucalyptus-dark hover:underline">zone tax offset guide</Link> for the amounts by zone.
-            </FAQItem>
-            <FAQItem value="picnic" question="What is Picnic Day?">
-              Picnic Day is a Northern Territory public holiday held on the first Monday in August — 3 August in 2026. It is observed nowhere else in Australia and attracts full public holiday entitlements, including penalty rates under most awards if you work it.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in the NT?">
-              After 10 years of continuous service you may be eligible for 13 weeks, calculated at 1.3 weeks for each year of employment. Part years do not count. Between 7 and 10 years a pro-rata payment is owed only if you reach retirement age, the employer ends the job for something other than serious misconduct, or you resign for illness, incapacity or pressing necessity.
-            </FAQItem>
-            <FAQItem value="allowances" question="Are district allowances included in my long service leave pay?">
-              No. NT long service leave is paid at your usual rate of pay, which excludes overtime, penalties, and district and site allowances. If a large part of your income comes from allowances, your leave pay will be noticeably lower than your normal fortnightly pay.
-            </FAQItem>
-            <FAQItem value="payroll" question="Do NT employees pay payroll tax?">
-              No. It is charged to employers whose Australian wages exceed {formatAUD(STATE_PAYROLL_TAX.NT.threshold)} — the highest threshold in Australia — and it never appears on an employee&apos;s payslip.
-            </FAQItem>
+            {NT_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

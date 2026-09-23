@@ -1,12 +1,22 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { MINING_FIFO_FAQS } from "./mining-fifo-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { AWE_HEADLINE, AWE_BY_INDUSTRY, AWE_RELEASE, annualise } from "@/lib/data/average-salary";
+import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
+
+// National average and mining AWOTE come from the ABS figures in
+// lib/data/average-salary (the old "$98,000" was a years-old figure).
+const NATIONAL_AVG = annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly);
+const MINING_AVG = annualise(AWE_BY_INDUSTRY.find((r) => r.label === "Mining")?.weekly ?? 0);
+// $150,000 example from the FY2026-27 engine (old copy: $38,717 tax, which
+// matched neither 2025-26 nor 2026-27 rates).
+const EX = calculatePayBreakdown({ grossSalary: 150_000 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -50,7 +60,7 @@ export default function MiningFIFOPayGuidePage() {
             <section id="mining-salaries-by-role">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Average Mining Salaries by Role</h2>
               <p>
-                Mining salaries in Australia are significantly higher than the national average of approximately $98,000. The combination of remote location, physically demanding work, and specialised skills drives salaries well above $100,000 for most roles. The table below shows typical annual salary ranges for common mining positions, including base salary and typical overtime or allowances.
+                Mining salaries in Australia are significantly higher than the national full-time average of about {formatAUD(NATIONAL_AVG)} a year; the ABS puts average full-time ordinary earnings in mining at about {formatAUD(MINING_AVG)} ({AWE_RELEASE.referencePeriod}). The combination of remote location, physically demanding work, and specialised skills drives salaries well above $100,000 for most roles. The table below shows typical annual salary ranges for common mining positions, including base salary and typical overtime or allowances.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -123,7 +133,7 @@ export default function MiningFIFOPayGuidePage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Zone Tax Offset — Key Change for FIFO Workers</h3>
               <p>
-                The <Link href="/zone-tax-offset/">zone tax offset</Link> provides a tax reduction for people who live in remote or isolated areas of Australia. Zone A provides an offset of <strong>$338</strong>, Zone B provides <strong>$57</strong>, and special areas within these zones provide additional amounts up to <strong>$1,173</strong>.
+                The <Link href="/zone-tax-offset/">zone tax offset</Link> provides a tax reduction for people who live in remote or isolated areas of Australia. Zone A provides a base offset of <strong>{formatAUD(ZONE_AREA_RATES.zoneA.fixedAmount)}</strong>, Zone B provides <strong>{formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)}</strong>, and special areas within these zones provide <strong>{formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)}</strong> instead of the zone amount ({ZONE_OFFSET_INCOME_YEAR} figures).
               </p>
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
                 <div>
@@ -144,10 +154,10 @@ export default function MiningFIFOPayGuidePage() {
             <section id="take-home-pay">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay on a Mining Salary</h2>
               <p>
-                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>$38,717</strong> in income tax (including the Medicare levy) for FY2025-26, leaving a take-home pay of approximately <strong>$111,283</strong> per year, or <strong>$4,280 per fortnight</strong>. Adding tax-free LAFHA of $10,000 per year brings the effective take-home to approximately <strong>$121,283</strong>.
+                A mining worker earning <strong>$150,000</strong> per year pays approximately <strong>{formatAUD(EX.totalDeductions)}</strong> in income tax (including the Medicare levy) for FY{SITE_CONFIG.financialYear}, leaving a take-home pay of approximately <strong>{formatAUD(EX.takeHomePay)}</strong> per year, or <strong>{formatAUD(EX.takeHomePay / 26)} per fortnight</strong>. Adding tax-free LAFHA of $10,000 per year brings the effective take-home to approximately <strong>{formatAUD(EX.takeHomePay + 10_000)}</strong>.
               </p>
               <p>
-                Superannuation at <strong>12%</strong> adds another <strong>$18,000</strong> on top of the $150,000 gross salary, bringing the total remuneration package to <strong>$168,000</strong>. Use the <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your exact mining salary, including overtime and allowances, and see your after-tax position for FY2025-26.
+                Superannuation at <strong>12%</strong> adds another <strong>{formatAUD(150_000 * SUPER_GUARANTEE.rate)}</strong> on top of the $150,000 gross salary, bringing the total remuneration package to <strong>{formatAUD(150_000 * (1 + SUPER_GUARANTEE.rate))}</strong>. Use the <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to model your exact mining salary, including overtime and allowances, and see your after-tax position for FY2025-26.
               </p>
               <div className="not-prose my-8">
                 <Link href="/take-home-pay-calculator/" className="inline-flex items-center gap-2 px-6 py-3 bg-eucalyptus-dark text-white font-semibold rounded-lg hover:bg-navy transition-colors">
@@ -161,37 +171,12 @@ export default function MiningFIFOPayGuidePage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="fifo-salary" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do FIFO miners earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">FIFO mining salaries typically range from $100,000 to $200,000+ depending on role, experience, and roster type. Entry-level labourers start around $80,000–$110,000, while experienced drillers, electricians, and site managers can earn $160,000–$220,000. The Pilbara in WA and the Bowen Basin in QLD offer the highest pay.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="zone-offset" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can FIFO workers claim the zone tax offset?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Generally no. Since 2015, FIFO workers who maintain their usual place of residence outside the remote zone are not eligible for the zone tax offset. The offset requires the zone to be your &quot;usual place of residence.&quot; Only workers who genuinely relocate to a remote town can claim it.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lafha" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is LAFHA tax-free for FIFO workers?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">LAFHA can be tax-free if specific conditions are met: the worker must maintain a home at a different location, and the allowance must be paid under a structured arrangement. The tax-free component covers the additional food and accommodation costs incurred while living away from home for work. Check with your employer&apos;s payroll team for your specific arrangement.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="best-roster" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the best FIFO roster for earning?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The 2 weeks on / 1 week off (2/1) roster maximises earning potential because you work approximately 243 days per year. However, 8/6 and 4/3 rosters offer better work-life balance. The highest-paying rosters are typically those with longer swings (3/1 or 4/1), though these are less common and can impact wellbeing.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="deductions" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can FIFO workers claim travel to the airport as a deduction?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Generally no. The ATO treats travel from home to the airport as ordinary commuting, which is not deductible. However, if you carry bulky tools or equipment that cannot be stored at the workplace, you may be able to claim vehicle expenses for the home-to-airport portion of the journey.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How does overtime work in mining?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Mining overtime depends on your employment agreement. Under the Mining Industry Award, overtime is generally paid at time-and-a-half for the first 2 hours and double time after that. Many mining enterprise agreements offer annualised salaries that include overtime, while others pay hourly rates with overtime loading for hours beyond 7.6 per day or 38 per week.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={MINING_FIFO_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How this guide works">
-                <p>Mining salary data is compiled from ABS average weekly earnings data for the mining industry, job advertisement data, and published enterprise agreements. Salary ranges represent typical total packages including base salary, overtime, and common allowances. Tax calculations use ATO tax tables for FY2025-26. All figures are estimates and actual pay varies by employer, site, and individual agreement.</p>
+                <p>Mining salary data is compiled from ABS average weekly earnings data for the mining industry, job advertisement data, and published enterprise agreements. Salary ranges represent typical total packages including base salary, overtime, and common allowances. Tax calculations use ATO tax rates for FY{SITE_CONFIG.financialYear}. All figures are estimates and actual pay varies by employer, site, and individual agreement.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("mining-fifo-pay-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

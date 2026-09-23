@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import BackpayCalculatorPage from "@/modules/calculator/backpay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { BACKPAY_FAQS } from "@/modules/calculator/backpay-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
@@ -11,7 +14,7 @@ const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
 export const metadata: Metadata = {
   title: "Backpay Calculator Australia — Underpayment & Wage Theft",
   description:
-    "Calculate how much you're owed in backpay. Enter your actual rate vs correct rate, hours worked, and period. See total underpayment including super and leave. Free calculator.",
+    "Calculate how much backpay you're owed: enter your actual and correct rates, hours and period to see the total underpayment, including super and leave.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
@@ -49,36 +52,11 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("backpay-calculator"),
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How far back can I claim backpay in Australia?",
-      acceptedAnswer: { "@type": "Answer", text: "Under the Fair Work Act, you can claim underpayments going back 6 years from the date you make a complaint. This applies to wages, overtime, penalty rates, allowances, and superannuation." },
-    },
-    {
-      "@type": "Question",
-      name: "Is backpay taxed differently to normal wages?",
-      acceptedAnswer: { "@type": "Answer", text: "Backpay received as a lump sum may be taxed at a higher rate under PAYG withholding (Schedule 5 — back payments). However, you can request the ATO to spread the amount over the financial years it relates to, potentially reducing your tax liability." },
-    },
-    {
-      "@type": "Question",
-      name: "Does my employer owe super on backpay?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. The 12% superannuation guarantee applies to all ordinary time earnings, including any underpayment. If you were underpaid wages, your employer also underpaid super contributions on that amount." },
-    },
-    {
-      "@type": "Question",
-      name: "How do I report underpayment to the Fair Work Ombudsman?",
-      acceptedAnswer: { "@type": "Answer", text: "You can lodge a complaint online at fairwork.gov.au or call 13 13 94. The Fair Work Ombudsman can investigate, mediate, and in serious cases take legal action against employers who underpay workers." },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(BACKPAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Backpay Calculator",

@@ -59,7 +59,7 @@ export function nursingStateFaqs(state: NursingStateData): NursingFaq[] {
     } else {
       faqs.push({
         q: `What is the hourly rate for a registered nurse in ${state.shortName}?`,
-        a: `${state.employer.split(" (")[0]} does not publish one. The pay scale is an annual salary and the instrument prescribes no divisor for converting it, so this page does not print an hourly figure rather than publishing a number the source never set. The full-time week is ${state.ordinaryHoursPerWeek} hours.`,
+        a: `${state.employer.split(" (")[0]} does not publish one. The pay scale is an annual salary with no hourly column, so this page does not print an hourly figure rather than publishing a number the source never set. The full-time week is ${state.ordinaryHoursPerWeek} hours.`,
       });
     }
   }
