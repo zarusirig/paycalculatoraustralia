@@ -121,7 +121,11 @@ export function JuniorScaleTable({
                   ? toCents(adultHourly * band.percentage)
                   : toCents(weeklyFor(band.percentage) / standardWeeklyHours);
               const weekly =
-                adultHourly !== undefined ? toCents(hourly * standardWeeklyHours) : toCents(weeklyFor(band.percentage));
+                adultHourly !== undefined
+                  ? band.percentage === 1
+                    ? adultWeekly
+                    : toCents(hourly * standardWeeklyHours)
+                  : toCents(weeklyFor(band.percentage));
               return (
                 <tr key={band.age}>
                   <th scope="row" className="px-5 py-3 text-left font-medium">{band.age}</th>

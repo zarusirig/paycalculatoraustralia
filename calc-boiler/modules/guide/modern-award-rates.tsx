@@ -325,7 +325,11 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                     {juniorHourlyBasis ? (
                       <>This award applies the percentage to the adult <strong>hourly</strong> rate, so the dollar columns are the percentage of {juniorBase.level} ({formatAUD(juniorBase.hourly, 2)} an hour).</>
                     ) : (
-                      <>The dollar columns apply the percentage to {juniorBase.level} ({formatAUD(juniorBase.weekly, 2)} a week) and divide by {meta.standardWeeklyHours}.</>
+                      <>
+                        The dollar columns apply the percentage to {juniorBase.level} ({formatAUD(juniorBase.weekly, 2)} a week)
+                        {award.junior.weeklyRoundTo ? <>, round the weekly figure to the nearest {formatAUD(award.junior.weeklyRoundTo, 2)} as the award requires,</> : null}{" "}
+                        and divide by {meta.standardWeeklyHours}.
+                      </>
                     )}{" "}
                     The full adult rate applies from age {award.junior.adultAge}.
                   </p>
