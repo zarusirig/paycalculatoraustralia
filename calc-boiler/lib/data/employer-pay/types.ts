@@ -46,6 +46,7 @@ export const EMPLOYER_SLUGS = [
   "target",
   "priceline",
   "rebel",
+  "harvey-norman",
   // --- end J7 ---
 ] as const;
 

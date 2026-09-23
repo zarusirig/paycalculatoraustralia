@@ -40,6 +40,7 @@ import { OFFICEWORKS_PAY } from "./officeworks";
 import { TARGET_PAY } from "./target";
 import { PRICELINE_PAY } from "./priceline";
 import { REBEL_PAY } from "./rebel";
+import { HARVEY_NORMAN_PAY } from "./harvey-norman";
 // --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -71,6 +72,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   target: TARGET_PAY,
   priceline: PRICELINE_PAY,
   rebel: REBEL_PAY,
+  "harvey-norman": HARVEY_NORMAN_PAY,
   // --- end J7 ---
 };
 
