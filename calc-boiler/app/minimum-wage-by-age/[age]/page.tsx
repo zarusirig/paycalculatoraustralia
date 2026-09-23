@@ -8,6 +8,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { NMW_ORDER } from "@/lib/constants/junior-rates";
 import { isMinWageAge, type MinWageAge } from "@/lib/constants/minimum-wage";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -63,6 +64,8 @@ export default async function Page({ params }: PageProps) {
   const article: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
+    datePublished: pageDatePublished(`minimum-wage-by-age/${raw}`),
+    dateModified: pageDateModified(`minimum-wage-by-age/${raw}`),
     headline: title,
     image: `${BASE}/og-image.png`,
     description: spokeDescription(age),

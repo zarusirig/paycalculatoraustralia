@@ -8,6 +8,7 @@ import { faqPageSchema } from "@/lib/faq";
 import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on-salary-faqs";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
+import { pageDateModified } from "@/lib/page-dates";
 
 interface PageProps {
   params: Promise<{
@@ -71,7 +72,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
     browserRequirements: "Requires JavaScript",
     offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
     creator: { "@type": "Organization", name: SITE_CONFIG.name },
-    dateModified: new Date().toISOString().split("T")[0],
+    dateModified: pageDateModified(`take-home-pay-on/${resolvedParams.salary}`),
     inLanguage: "en-AU",
   };
 

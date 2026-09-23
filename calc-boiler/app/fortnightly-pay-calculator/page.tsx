@@ -7,6 +7,7 @@ import { FORTNIGHTLY_FAQS } from "@/modules/calculator/fortnightly-pay-calculato
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-pay-calculator/`;
@@ -63,7 +64,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("fortnightly-pay-calculator"),
   inLanguage: "en-AU"
 };
 

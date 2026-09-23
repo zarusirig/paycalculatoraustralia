@@ -13,6 +13,8 @@ import {
   registeredNurseRange,
 } from "@/lib/data/nursing-pay";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { fitDescription } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -42,15 +44,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // out of the visible title.
   const title = nursingPageTitle(state);
 
+  const employer = state.employer.split(" (")[0];
+  const rn = range ? `registered nurse and midwife from ${formatAUD(range.entry)} to ${formatAUD(range.top)}` : "";
+  // Instrument names run to ~110 characters: named only when the description still fits.
   const description = range
-    ? `${state.employer.split(" (")[0]} nursing pay scales: registered nurse and midwife from ${formatAUD(
-        range.entry,
-      )} to ${formatAUD(
-        range.top,
-      )}, plus enrolled nurse, clinical nurse, unit manager and nurse practitioner rates. From the ${
-        instrument.name
-      }, effective ${instrument.effectiveFrom}. Shift penalties and after-tax figures included.`
-    : `${state.employer.split(" (")[0]} nursing and midwifery pay scales from the ${instrument.name}, effective ${instrument.effectiveFrom}.`;
+    ? fitDescription(
+        `${employer} nursing pay scales: ${rn}, plus enrolled nurse, clinical nurse, unit manager and nurse practitioner rates. From the ${instrument.name}, effective ${instrument.effectiveFrom}. Shift penalties and after-tax figures included.`,
+        `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Enrolled nurse, clinical nurse and NP rates, shift penalties and after-tax pay.`,
+        `${employer} nursing pay scales: ${rn}, effective ${instrument.effectiveFrom}. Plus EN, CN and NP rates and after-tax pay.`,
+      )
+    : fitDescription(
+        `${employer} nursing and midwifery pay scales from the ${instrument.name}, effective ${instrument.effectiveFrom}.`,
+        `${employer} nursing and midwifery pay scales, effective ${instrument.effectiveFrom}.`,
+      );
 
   return {
     title,
@@ -92,6 +98,8 @@ export default async function Page({ params }: PageProps) {
   const article: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
+    datePublished: pageDatePublished(`healthcare-worker-pay/${slug}`),
+    dateModified: pageDateModified(`healthcare-worker-pay/${slug}`),
     "@id": `${url}#article`,
     headline: `Nurse and midwife pay rates in ${state.name}`,
     image: `${BASE}/og-image.png`,

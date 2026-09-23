@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { Article, BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 import { faqPageSchema } from "@/lib/faq";
 import { PENALTY_RATES_FAQS } from "@/modules/guide/overtime-penalty-rates-guide-faqs";
@@ -12,14 +13,14 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
 
 
-const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime Loadings";
-const DESCRIPTION = `What you must be paid for weekends, public holidays, evenings and overtime. Verified retail, hospitality and SCHADS penalty tables — Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}%, and casual loadings that add rather than compound. Hospitality evening and night work adds flat cash, not a multiplier.`;
+const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime";
+const DESCRIPTION = `Penalty rates for weekends, public holidays, evenings and overtime: Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}% (retail), plus hospitality and SCHADS tables.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: "Penalty rate tables by award, casual vs permanent, and how loadings are taxed.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: "Penalty rate tables by award, casual vs permanent, and how loadings are taxed.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -30,6 +31,8 @@ const faq = faqPageSchema(PENALTY_RATES_FAQS);
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("overtime-penalty-rates-guide"),
+  dateModified: pageDateModified("overtime-penalty-rates-guide"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS[GUIDE_AUTHORSHIP["overtime-penalty-rates-guide"].authorId].jsonLd,

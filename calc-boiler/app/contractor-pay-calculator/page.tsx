@@ -11,11 +11,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
+import { pageDateModified } from "@/lib/page-dates";
 
 export const metadata: Metadata = {
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
   description:
-    "Calculate your take-home as a contractor in Australia. See your net pay after GST, income tax, super self-contribution & deductions — ABN vs PAYG comparison for FY2026-27.",
+    "Contractor pay calculator for Australia: net pay after GST, income tax, super and deductions, with an ABN vs PAYG comparison for FY2026-27.",
   alternates: {
     canonical: `${SITE_CONFIG.baseUrl}/contractor-pay-calculator/`,
   },
@@ -53,7 +54,7 @@ const webAppSchema: WithContext<WebApplication> = {
     "@type": "Organization",
     name: SITE_CONFIG.name,
   },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("contractor-pay-calculator"),
   inLanguage: "en-AU",
 };
 

@@ -5,6 +5,7 @@ import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { MLS_INCOME_YEAR } from "@/lib/constants/medicare-levy-surcharge";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PHI_MEDICARE_FAQS } from "@/modules/guide/private-health-insurance-medicare-faqs";
 
@@ -12,14 +13,14 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/private-health-insurance-medicare/`;
 // Retitled 23 Sep 2026 (W2): "Medicare levy surcharge" queries belong to
 // /medicare-levy-surcharge-calculator/. This page owns the cover decision.
-const TITLE = "Private Health Insurance vs the Surcharge: Is Hospital Cover Worth It?";
-const DESCRIPTION = `Is private hospital cover cheaper than the Medicare levy surcharge? The ${MLS_INCOME_YEAR} surcharge and rebate tiers, how to find your break-even premium, and lifetime health cover loading.`;
+const TITLE = "Private Health Insurance vs Medicare Levy Surcharge: Worth It?";
+const DESCRIPTION = `Is private hospital cover cheaper than the Medicare levy surcharge? The ${MLS_INCOME_YEAR} surcharge and rebate tiers, your break-even premium and lifetime cover loading.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -44,6 +45,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("private-health-insurance-medicare"),
+  dateModified: pageDateModified("private-health-insurance-medicare"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

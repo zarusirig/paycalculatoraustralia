@@ -6,6 +6,7 @@ import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { faqPageSchema } from "@/lib/faq";
 import { MONTHLY_PAY_FAQS } from "@/modules/calculator/monthly-pay-calculator-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-pay-calculator/`;
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: `Monthly take-home pay after tax — ${FY} rates.` },
 };
 
@@ -46,7 +47,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("monthly-pay-calculator"),
   inLanguage: "en-AU"
 };
 

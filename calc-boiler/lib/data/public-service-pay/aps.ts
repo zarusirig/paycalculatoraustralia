@@ -50,9 +50,9 @@ export const APS: Jurisdiction = {
   headline:
     "There is no single APS pay scale. Across the whole service at 31 December 2025 the median APS 6 base salary was $108,092, with 90% of APS 6 staff paid between $97,316 and $115,199. The median was $82,906 at APS 4, $92,324 at APS 5, $135,701 at EL 1 and $168,064 at EL 2. Each agency bargains its own enterprise agreement, but from 12 March 2026 every agency's APS 6 range must reach at least $99,734 at the bottom and $111,701 at the top under the service-wide salary thresholds.",
 
-  metaTitle: "APS Pay Scales 2026 — APS 4, APS 5, APS 6, EL1 & EL2 Salary Ranges",
+  metaTitle: "APS Pay Scales 2026 — APS 4, APS 5, APS 6, EL1 & EL2 Salaries",
   metaDescription:
-    "APS 4, APS 5, APS 6, EL1 and EL2 salaries in 2026: the APS-wide salary thresholds from 12 March 2026, actual pay ranges and medians from the APSC's remuneration data, a real agency pay-point scale, and each salary after tax.",
+    "APS 4, APS 5, APS 6, EL1 and EL2 salaries in 2026: APS-wide thresholds from 12 March 2026, actual pay ranges and medians from APSC data, and each salary after tax.",
 
   instrument:
     "Agency enterprise agreements made under the Fair Work Act 2009, using the classifications in the Public Service Classification Rules 2000. Since 2023 they have been bargained service-wide for common terms, but pay ranges are still set agency by agency.",

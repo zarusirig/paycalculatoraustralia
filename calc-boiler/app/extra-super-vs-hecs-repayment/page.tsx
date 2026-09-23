@@ -6,17 +6,18 @@ import { faqPageSchema } from "@/lib/faq";
 import { EXTRA_SUPER_VS_HECS_FAQS } from "@/modules/guide/extra-super-vs-hecs-repayment-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/extra-super-vs-hecs-repayment/`;
 const TITLE = "Extra Super vs Voluntary HECS Repayment — Which Is Smarter?";
-const DESCRIPTION = "Should you put extra money into super or pay off your HECS debt faster? Compare tax benefits, HECS indexation, and long-term outcomes. Decision framework for Australian workers.";
+const DESCRIPTION = "Extra super or pay off HECS faster? Compare the tax benefit, HECS indexation and long-term outcomes, with a decision framework for Australian workers.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -41,6 +42,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("extra-super-vs-hecs-repayment"),
+  dateModified: pageDateModified("extra-super-vs-hecs-repayment"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

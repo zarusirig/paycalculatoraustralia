@@ -12,6 +12,7 @@ import {
   PAYROLL_TAX_STATES,
   isPayrollTaxStateCode,
 } from "@/lib/constants/payroll-tax";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -30,8 +31,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!isPayrollTaxStateCode(state)) return {};
   const s = PAYROLL_TAX_STATES[state];
   const url = `${BASE}/payroll-tax/${state}/`;
-  const title = `${s.abbr} Payroll Tax ${PAYROLL_TAX_FY}: ${s.headlineRate} Rate, ${millions(s.annualThreshold)} Threshold, Calculator`;
-  const description = `${s.name} payroll tax for ${PAYROLL_TAX_FY}: ${s.headlineRate} above a ${formatAUD(s.annualThreshold)} threshold. How to calculate it, worked examples, who must register, due dates, and a calculator set to ${s.abbr}.`;
+  const title = fitTitle(
+    `${s.abbr} Payroll Tax ${PAYROLL_TAX_FY}: ${s.headlineRate} Rate, ${millions(s.annualThreshold)} Threshold, Calculator`,
+    `${s.abbr} Payroll Tax ${PAYROLL_TAX_FY}: ${s.headlineRate} Rate, ${millions(s.annualThreshold)} Threshold`,
+  );
+  const lead = `${s.name} payroll tax for ${PAYROLL_TAX_FY}: ${s.headlineRate} above a ${formatAUD(s.annualThreshold)} threshold.`;
+  const description = fitDescription(
+    `${lead} How to calculate it, worked examples, who must register, due dates, and a calculator set to ${s.abbr}.`,
+    `${lead} How to calculate it, who must register, due dates and a ${s.abbr} calculator.`,
+    `${lead} Worked examples, registration, due dates and a calculator.`,
+  );
   return {
     title,
     description,

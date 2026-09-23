@@ -5,20 +5,16 @@ import { SGC_FAQS } from "@/modules/guide/super-guarantee-charge-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import {
-  GENERAL_INTEREST_CHARGE,
-  SUPER_GUARANTEE,
-  SUPER_GUARANTEE_CHARGE,
-} from "@/lib/constants/australian-tax";
+import { SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE } from "@/lib/constants/australian-tax";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-charge/`;
 
 const C = SUPER_GUARANTEE_CHARGE.current;
-const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 2)}%`;
 
 const TITLE = "Super Guarantee Charge — What Late Super Costs in 2026-27";
-const DESCRIPTION = `Payday Super commenced ${SUPER_GUARANTEE.paydaySuperStart} and rebuilt the SGC. Super must reach the fund within ${C.businessDaysToPay} business days of payday. The charge is the shortfall, notional earnings at ${pct(GENERAL_INTEREST_CHARGE.annualRate)} compounded daily, an administrative uplift up to ${pct(C.administrativeUpliftMax)} reducible to nil, and a choice loading — and it is now tax-deductible.`;
+const DESCRIPTION = `Payday Super started ${SUPER_GUARANTEE.paydaySuperStart} and rebuilt the SGC: super must reach the fund within ${C.businessDaysToPay} business days of payday. The charge and notional earnings explained.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -58,6 +54,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("super-guarantee-charge"),
+  dateModified: pageDateModified("super-guarantee-charge"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

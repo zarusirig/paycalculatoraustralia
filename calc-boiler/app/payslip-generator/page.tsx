@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_GENERATOR_FAQS } from "@/modules/calculator/payslip-generator-faqs";
 
@@ -11,7 +12,7 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
 const TITLE = "Free Payslip Generator Australia — Create Payslips Online";
 const DESCRIPTION =
-  "Create a professional, Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup, no data stored.";
+  "Create a Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -60,7 +61,7 @@ const webApp: WithContext<WebApplication> = {
     "Print or save as PDF",
     "Client-side only — no data stored",
   ],
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("payslip-generator"),
   inLanguage: "en-AU",
 };
 

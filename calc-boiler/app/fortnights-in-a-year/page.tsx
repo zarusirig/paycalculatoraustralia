@@ -16,13 +16,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "fortnights-in-a-year";
 const TITLE = "How Many Fortnights in a Year? 26 or 27 Pays in 2026-27";
 const DESCRIPTION =
-  "There are 26 fortnights in a year plus a day, so usually 26 fortnightly pays, 52 weekly and 12 monthly. See when 2026-27 has 27 fortnightly or 53 weekly pay days, every pay date for your cycle, and the ATO's extra withholding.";
+  "There are 26 fortnights in a year plus a day: usually 26 fortnightly pays, 52 weekly and 12 monthly. See when 2026-27 has 27 fortnightly or 53 weekly pay days.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

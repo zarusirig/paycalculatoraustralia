@@ -20,7 +20,7 @@ const TITLE = `SAPTO Calculator & Eligibility Checker — Offset up to ${SINGLE}
 
 export const metadata: Metadata = {
   title: TITLE,
-  description: `Check SAPTO eligibility and work out your seniors and pensioners tax offset instantly. Up to ${SINGLE} single, ${COUPLE} each for a couple, with the ATO's rebate income thresholds and the half-of-combined test for couples. ${SAPTO_INCOME_YEAR} income year.`,
+  description: `Check SAPTO eligibility and work out your seniors and pensioners tax offset: up to ${SINGLE} single, ${COUPLE} each for a couple. ${SAPTO_INCOME_YEAR} income year.`,
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,

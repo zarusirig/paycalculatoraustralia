@@ -4,26 +4,27 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { PAYG_FINANCIAL_YEAR, PAYG_PREVIOUS_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
+import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
 import { WEEKLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/weekly-tax-table-faqs";
 import {
   ATO_SCHEDULE_1,
   ATO_TAX_TABLES_INDEX,
   ATO_WEEKLY,
 } from "@/modules/tax-tables/ato-schedules";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/weekly-tax-table/`;
 const TITLE = `Weekly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1005) — PAYG Calculator`;
 const DESCRIPTION =
-  `Weekly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1005): enter your weekly pay to see the tax withheld with or without the tax-free threshold. Full table, HELP/STSL, ${PAYG_PREVIOUS_FINANCIAL_YEAR} toggle and CSV download.`;
+  `Weekly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1005): enter your weekly pay to see the tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.`;
 const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -49,6 +50,7 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("weekly-tax-table"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,
