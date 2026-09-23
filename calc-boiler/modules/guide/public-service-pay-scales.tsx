@@ -72,9 +72,10 @@ export default function PublicServicePayScalesPage() {
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             Nine services, nine classification systems, nine sets of numbers. The federal APS
             runs APS 1&ndash;6, EL 1, EL 2 and SES Bands 1&ndash;3 with a median APS 6 base salary of{" "}
-            <strong className="text-navy">$108,092</strong>; the Victorian Public Service runs grades
-            1&ndash;7 with value ranges and progression steps, paying{" "}
-            <strong className="text-navy">$56,677 to $263,771</strong> from 1 May 2026; Queensland
+            <strong className="text-navy">$108,092</strong>; Victoria runs grades 1&ndash;7 with value
+            ranges and progression steps (every grade and step is on the{" "}
+            <Link href="/public-service-pay-scales/vic/" className="font-medium text-eucalyptus-dark hover:underline">VPS salary 2026</Link>{" "}
+            page); Queensland
             runs AO, PO, TO and OO streams, with an AO3 on{" "}
             <strong className="text-navy">$81,032 to $89,903</strong> under the state award from 1
             September 2026. NSW pays a
@@ -147,7 +148,8 @@ export default function PublicServicePayScalesPage() {
                   <strong>Victoria (VPS).</strong> Grades 1 to 7, each split into value ranges (3.1,
                   3.2 and so on) that reflect work value, and each value range split into progression
                   steps. One agreement covers the whole service, so the table is the same wherever
-                  you work in the VPS.
+                  you work in the VPS. See every grade on the{" "}
+                  <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> table.
                 </li>
                 <li>
                   <strong>Queensland.</strong> Four streams &mdash; administrative (AO), professional
@@ -254,8 +256,8 @@ export default function PublicServicePayScalesPage() {
                 <Link href="/public-service-pay-scales/qld/">Queensland page</Link> keeps the two
                 layers apart: the award rate that job advertisements quote, and one entity&rsquo;s
                 certified agreement schedule shown beside it. Victoria is the exception &mdash; one
-                agreement, one table, published in{" "}
-                <Link href="/public-service-pay-scales/vic/">Schedule C</Link>.
+                agreement, one table, published in Schedule C (our{" "}
+                <Link href="/public-service-pay-scales/vic/">VPS salary 2026</Link> page transcribes it).
               </p>
             </section>
 

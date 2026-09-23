@@ -13,6 +13,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
@@ -177,7 +178,7 @@ export default function PayRiseCalculatorPage() {
                       <h3 className="font-semibold text-warmgray-light uppercase tracking-wider text-xs mb-3">Current Pay</h3>
                       <div className="space-y-2 flex-grow">
                         <Row label="Gross" value={formatAUD(currentSalary)} />
-                        <Row label="Tax + Med" value={`-${formatAUD(currentBreakdown.totalDeductions)}`} />
+                        <Row label="Tax + Med" value={formatNegAUD(currentBreakdown.totalDeductions)} />
                       </div>
                       <div className="pt-2 mt-2 border-t border-sandstone-dark/20">
                         <Row label="Take-Home" value={formatAUD(currentBreakdown.takeHomePay)} bold />
@@ -187,7 +188,7 @@ export default function PayRiseCalculatorPage() {
                       <h3 className="font-semibold text-ochre uppercase tracking-wider text-xs mb-3">New Pay</h3>
                       <div className="space-y-2 flex-grow">
                         <Row label="Gross" value={formatAUD(newSalary)} highlight />
-                        <Row label="Tax + Med" value={`-${formatAUD(newBreakdown.totalDeductions)}`} />
+                        <Row label="Tax + Med" value={formatNegAUD(newBreakdown.totalDeductions)} />
                       </div>
                       <div className="pt-2 mt-2 border-t border-sandstone-dark/20">
                         <Row label="Take-Home" value={formatAUD(newBreakdown.takeHomePay)} bold green />
@@ -306,7 +307,7 @@ export default function PayRiseCalculatorPage() {
                       <tr key={`${base}-${raise}`} className="hover:bg-sandstone/50">
                         <td className="px-4 py-3 font-medium text-navy">{formatAUD(base!)}</td>
                         <td className="px-4 py-3 text-right text-gray-700">+{formatAUD(raise!)}</td>
-                        <td className="px-4 py-3 text-right text-ochre">-{formatAUD(taxAnn)}</td>
+                        <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(taxAnn)}</td>
                         <td className="px-4 py-3 text-right font-medium text-ochre">+{formatAUD(netAnn)}</td>
                         <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">+{formatAUD(netWk)}/wk</td>
                       </tr>

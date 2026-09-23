@@ -57,8 +57,14 @@ const MLS = L("/medicare-levy-surcharge-calculator/", "Medicare Levy Surcharge C
 const PAYG_TABLES = L("/payg-withholding-tables/", "PAYG Withholding Tables", "The ATO weekly, fortnightly and monthly tax tables.");
 const TAKE_HOME_HUB = L("/take-home-pay-on/", "Take-Home Pay on Every Salary", "Net pay tables from $20,000 to $500,000.");
 const TAX_ON_HUB = L("/tax-on/", "Tax on Every Salary", "Income tax, Medicare and your marginal rate at each salary.");
-const WEEKLY_PAY = L("/weekly-pay-calculator/", "Weekly Pay Calculator", "Your pay after tax, week by week.");
-const FORTNIGHTLY_PAY = L("/fortnightly-pay-calculator/", "Fortnightly Pay Calculator", "Net pay for a fortnightly pay cycle.");
+// Exact-match titles (the card title is the anchor) with the "... tax calculator"
+// head term in the blurb: both queries share one primary URL (intent map,
+// docs/seo/2026-09-23-head-term-intent-map.md). Sep 2026: these two pages
+// weren't in the top 20 for their own "weekly/fortnightly pay calculator"
+// queries, so the tax-table, withholding, pay-frequency, payday-super and
+// state pay pages below now link to them.
+const WEEKLY_PAY = L("/weekly-pay-calculator/", "Weekly Pay Calculator", "The weekly tax calculator: tax and take-home on each week's pay.");
+const FORTNIGHTLY_PAY = L("/fortnightly-pay-calculator/", "Fortnightly Pay Calculator", "The fortnightly tax calculator: tax and take-home every pay.");
 const PAY_RISE = L("/pay-rise-calculator/", "Pay Rise Calculator", "What a raise actually adds to each pay.");
 const PAYROLL_TAX_CALC = L("/payroll-tax-calculator/", "Payroll Tax Calculator", "Estimate state payroll tax on your total wages bill.");
 const PAYROLL_TAX_HUB = L("/payroll-tax/", "Payroll Tax Rates by State", "Thresholds and rates for all eight states and territories.");
@@ -166,7 +172,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/enterprise-agreement/": [AWARD_RATES, EMPLOYERS_HUB, TOIL, L("/backpay-calculator/", "Backpay Calculator", "Work out an underpayment and the tax on back pay.")],
   "/travel-allowance/": [L("/cents-per-km/", "Cents per Kilometre", "Car expense claims at the ATO rate."), PAYSLIP, L("/tax-deductions-guide/", "Tax Deductions Guide", "What you can actually claim."), L("/tax-return-calculator/", "Tax Return Calculator", "Estimate your refund before you lodge.")],
   "/cents-per-km/": [L("/travel-allowance/", "Travel Allowance", "ATO reasonable amounts for overnight work travel."), PAYSLIP, L("/work-from-home-deductions/", "Work From Home Deductions", "The fixed-rate method and what it covers."), L("/tax-deductions-guide/", "Tax Deductions Guide", "What you can actually claim.")],
-  "/gross-vs-net-pay/": [TAKE_HOME, L("/gross-pay-calculator/", "Gross Pay Calculator", "Work back from net pay to the gross figure."), TAX_WITHHELD, PAYSLIP],
+  "/gross-vs-net-pay/": [WEEKLY_PAY, FORTNIGHTLY_PAY, TAKE_HOME, L("/gross-pay-calculator/", "Gross Pay Calculator", "Work back from net pay to the gross figure."), TAX_WITHHELD, PAYSLIP],
   "/centrelink-working-credit-calculator/": [JOBSEEKER, INCOME_TEST_HUB, FORTNIGHTLY_PAY, L("/age-pension-income-test-calculator/", "Age Pension Income Test", "The Work Bonus, the pension's own earnings shield.")],
   "/understanding-your-payslip/": [GROSS_VS_NET, LEAVE_LOADING, L("/travel-allowance/", "Allowances on Your Payslip", "Travel allowance rates and when they are taxed."), TAX_WITHHELD, TOIL, L("/news/payday-super-employees-payslip/", "Payday Super on Your Payslip", "What changed on payslips from July 2026.")],
   "/payslip-generator/": [PAYSLIP, GROSS_VS_NET, LEAVE_LOADING, TAX_WITHHELD],
@@ -189,17 +195,17 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/tax-brackets/": [TAX_ON_HUB, TAX_WITHHELD, TAX_FREE_THRESHOLD, L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time.")],
   "/low-income-tax-offset/": [L("/take-home-pay-on/45000/", "Take-Home Pay on $45,000", "Net pay at an income where LITO is in play."), TAX_FREE_THRESHOLD, L("/super-co-contribution/", "Super Co-Contribution", "The government top-up for lower-income earners."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors offset, stacked with LITO.")],
   "/tax-free-threshold/": [L("/tax-on/20000/", "Tax on $20,000", "What you pay just above the tax-free threshold."), LITO, TAX_WITHHELD, TAX_BRACKETS],
-  "/tax-withheld-calculator/": [PAYG_TABLES, TAKE_HOME_HUB, GROSS_VS_NET, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "PAYG withholding for fortnightly pay.")],
+  "/tax-withheld-calculator/": [WEEKLY_PAY, FORTNIGHTLY_PAY, PAYG_TABLES, TAKE_HOME_HUB, GROSS_VS_NET, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "PAYG withholding for fortnightly pay.")],
   "/medicare-levy-surcharge-calculator/": [L("/medicare-levy/", "Medicare Levy Calculator", "The 2% levy and the low-income reduction."), L("/take-home-pay-on/120000/", "Take-Home Pay on $120,000", "Net pay at an income where the surcharge can bite."), L("/private-health-insurance-medicare/", "Private Health Insurance & Medicare", "Cover, the rebate and the surcharge together."), TAX_BRACKETS],
   "/medicare-levy/": [MLS, TAX_ON_HUB, TAX_BRACKETS, TAKE_HOME],
 
   // Salary hubs ↔ pay calculators
   "/take-home-pay-on/": [TAKE_HOME, WEEKLY_PAY, FORTNIGHTLY_PAY, PAY_RISE],
-  "/tax-on/": [INCOME_TAX, TAX_WITHHELD, TAX_BRACKETS, FORTNIGHTLY_PAY],
-  "/salary-to-hourly/": [L("/hourly-to-annual-salary-calculator/", "Hourly to Annual Salary Calculator", "Convert any hourly rate to a yearly salary."), WEEKLY_PAY, PAY_RISE, TAKE_HOME],
+  "/tax-on/": [INCOME_TAX, TAX_WITHHELD, TAX_BRACKETS, FORTNIGHTLY_PAY, WEEKLY_PAY, TAKE_HOME_HUB],
+  "/salary-to-hourly/": [L("/hourly-to-annual-salary-calculator/", "Hourly to Annual Salary Calculator", "Convert any hourly rate to a yearly salary."), WEEKLY_PAY, FORTNIGHTLY_PAY, PAY_RISE, TAKE_HOME, TAKE_HOME_HUB],
   "/pay-rise-calculator/": [TAKE_HOME_HUB, INCOME_TAX, TAX_BRACKETS, L("/salary-sacrifice-calculator/", "Salary Sacrifice Calculator", "Put part of the rise into super before tax.")],
-  "/weekly-pay-calculator/": [TAKE_HOME, L("/weekly-tax-table/", "Weekly Tax Table", "The ATO withholding for weekly pay."), TAKE_HOME_HUB, OVERTIME],
-  "/fortnightly-pay-calculator/": [TAKE_HOME, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "The ATO withholding for fortnightly pay."), TAKE_HOME_HUB, WORKING_CREDIT],
+  "/weekly-pay-calculator/": [TAKE_HOME, L("/weekly-tax-table/", "Weekly Tax Table", "The ATO withholding for weekly pay."), FORTNIGHTLY_PAY, TAKE_HOME_HUB, OVERTIME, PAYSLIP],
+  "/fortnightly-pay-calculator/": [TAKE_HOME, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "The ATO withholding for fortnightly pay."), WEEKLY_PAY, TAKE_HOME_HUB, WORKING_CREDIT, L("/fortnights-in-a-year/", "Fortnights in a Year", "26 or 27 pay days: every pay date this financial year.")],
 
   // Minimum wage and junior pages ↔ jobs and employers
   "/minimum-wage-australia/": [JUNIOR, JOBS_HUB, EMPLOYERS_HUB, AWARD_RATES, L("/minimum-wage-history-australia/", "Minimum Wage History", "How the national minimum wage has changed year by year."), L("/news/minimum-wage-increase-july-2026/", "Minimum Wage Increase July 2026", "What the latest review changed.")],
@@ -230,7 +236,8 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/sapto-calculator/": [L("/pension-age-australia/", "Pension Age Australia", "When the Age Pension, and SAPTO, can start."), L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), LITO, TAX_BRACKETS],
   "/salary-packaging-guide/": [L("/salary-package-calculator/", "Salary Package Calculator", "Base salary and take-home from a total package."), L("/novated-lease-calculator/", "Novated Lease Calculator", "Packaging a car, with the EV exemption."), L("/salary-sacrifice-vs-mortgage/", "Salary Sacrifice or Pay Down the Mortgage?", "Where a spare pre-tax dollar does more."), L("/salary-sacrifice-calculator/", "Salary Sacrifice Calculator", "See if sacrificing into super leaves you better off.")],
   "/teacher-pay-australia/vic/": [L("/teacher-pay-australia/", "Teacher Pay Australia", "Every state's classroom teacher scale, side by side."), L("/news/victorian-teachers-pay-rise-2026/", "Victorian Teachers' Pay Rise 2026", "The new VIC agreement and when each step lands."), TAKE_HOME, L("/salary-packaging-guide/", "Salary Packaging Guide", "What teachers can package and what it saves.")],
-  "/payday-super/": [L("/news/payday-super-employees-payslip/", "Payday Super and Your Payslip", "What employees see from July 2026."), L("/super-guarantee-charge/", "Super Guarantee Charge", "What late or missed super costs an employer."), EMPLOYER_COST, SUPER_CALC],
+  "/fortnights-in-a-year/": [FORTNIGHTLY_PAY, WEEKLY_PAY, L("/fortnightly-tax-table/", "Fortnightly Tax Table", "Withholding on each fortnightly pay, including the 27-pay extra."), L("/centrelink-payment-dates/", "Centrelink Payment Dates", "When fortnightly Centrelink payments land.")],
+  "/payday-super/": [L("/news/payday-super-employees-payslip/", "Payday Super and Your Payslip", "What employees see from July 2026."), L("/super-guarantee-charge/", "Super Guarantee Charge", "What late or missed super costs an employer."), EMPLOYER_COST, SUPER_CALC, WEEKLY_PAY, FORTNIGHTLY_PAY],
 };
 
 /**
@@ -337,8 +344,11 @@ const CLUSTERS: Cluster[] = [
         L(`/long-service-leave-calculator/${st}/`, `${name} Long Service Leave`, `Accrual and payout under ${name} long service leave law.`),
         L(`/payroll-tax/${st}/`, `${name} Payroll Tax`, "For employers: the threshold and rate in this state."),
         AWARD_RATES,
+        FORTNIGHTLY_PAY,
+        WEEKLY_PAY,
       ];
     },
+    limit: 6,
   },
   // --- Centrelink income-test spokes ↔ hub ↔ pay calculators ---
   {
@@ -487,11 +497,15 @@ const CLUSTERS: Cluster[] = [
   {
     match: (p) => p.endsWith("-tax-table/") || p === "/payg-withholding-tables/",
     links: [
+      WEEKLY_PAY,
+      FORTNIGHTLY_PAY,
       TAX_WITHHELD,
       { href: "/weekly-tax-table/", title: "Weekly Tax Table", blurb: "PAYG withholding for weekly pay cycles." },
       { href: "/fortnightly-tax-table/", title: "Fortnightly Tax Table", blurb: "PAYG withholding for fortnightly pay cycles." },
       PAYSLIP,
+      { href: "/monthly-tax-table/", title: "Monthly Tax Table", blurb: "PAYG withholding for monthly pay cycles." },
     ],
+    limit: 6,
   },
   // --- Leave, redundancy, final pay ---
   {
@@ -533,7 +547,8 @@ const CLUSTERS: Cluster[] = [
   // --- Pay frequency calculators ---
   {
     match: (p) => ["/weekly-pay-calculator/", "/fortnightly-pay-calculator/", "/monthly-pay-calculator/", "/annual-pay-calculator/", "/gross-pay-calculator/", "/hourly-to-salary/", "/hourly-to-annual-salary-calculator/", "/ytd-income-calculator/", "/work-hours-calculator/"].includes(p),
-    links: [TAKE_HOME, INCOME_TAX, OVERTIME, PAYSLIP],
+    links: [WEEKLY_PAY, FORTNIGHTLY_PAY, TAKE_HOME, INCOME_TAX, OVERTIME, PAYSLIP],
+    limit: 6,
   },
   // --- Occupation / salary guides ---
   {

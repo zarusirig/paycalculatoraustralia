@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { EXTRA_SUPER_VS_HECS_FAQS } from "./extra-super-vs-hecs-repayment-faqs";

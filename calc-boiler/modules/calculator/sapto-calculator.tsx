@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   SAPTO_BANDS,
   SAPTO_INCOME_YEAR,
@@ -212,7 +212,7 @@ export default function SaptoCalculator() {
                     <div className="border-t border-sandstone-dark/10 pt-3" />
                     <Row
                       label={`Reduction at ${SAPTO_REDUCTION_RATE * 100}c per $1 over`}
-                      value={`−${formatAUD(result.reduction, 2)}`}
+                      value={formatNegAUD(result.reduction, 2, "−")}
                     />
                   </>
                 )}

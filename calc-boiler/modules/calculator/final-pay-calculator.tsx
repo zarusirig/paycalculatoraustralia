@@ -14,6 +14,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SOURCES,
   SITE_CONFIG,
@@ -194,7 +195,7 @@ export default function FinalPayCalculatorPage() {
                         {result.redundancyPay > 0 && <Row label="Redundancy Pay (NES)" value={formatAUD(result.redundancyPay)} green />}
                         <div className="border-t border-sandstone-dark/20 pt-3" />
                         <Row label="Total Before Tax" value={formatAUD(result.totalBeforeTax)} bold />
-                        <Row label={`Estimated Tax (~${formatPercent(result.effectiveRate)})`} value={`-${formatAUD(result.estimatedTax)}`} />
+                        <Row label={`Estimated Tax (~${formatPercent(result.effectiveRate)})`} value={formatNegAUD(result.estimatedTax)} />
                         <div className="border-t border-sandstone-dark/20 pt-3" />
                         <Row label="Net Final Pay" value={formatAUD(result.netFinalPay)} bold highlight />
                       </div>

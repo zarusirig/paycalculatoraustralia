@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   PAYROLL_TAX_FY,
   PAYROLL_TAX_STATE_CODES,
@@ -11,15 +11,13 @@ import {
   calculatePayrollTax,
   type PayrollTaxStateCode,
 } from "@/lib/constants/payroll-tax";
+import { parseMoneyInput } from "@/lib/money-input";
 import { pctTrim } from "./format";
 
 const inputClass =
   "block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm";
 
-function toNumber(v: string): number {
-  const n = Number(v.replace(/[^0-9.]/g, ""));
-  return Number.isFinite(n) && n > 0 ? Math.min(n, 1e11) : 0;
-}
+const errorInputClass = "border-red-400 focus:border-red-500 focus:ring-red-200";
 
 function Row({ label, value, bold, muted }: { label: string; value: string; bold?: boolean; muted?: boolean }) {
   return (
@@ -49,8 +47,12 @@ export default function PayrollTaxCalculator({
   const [regional, setRegional] = useState(false);
 
   const info = PAYROLL_TAX_STATES[state];
-  const stateWages = toNumber(stateWagesText);
-  const australianWages = interstate ? Math.max(toNumber(ausWagesText), stateWages) : stateWages;
+  const stateParsed = parseMoneyInput(stateWagesText);
+  const ausParsed = parseMoneyInput(ausWagesText);
+  const stateWages = stateParsed.value;
+  const ausWages = ausParsed.value;
+  const australianWages = interstate ? Math.max(ausWages, stateWages) : stateWages;
+  const inputError = Boolean(stateParsed.error || (interstate && ausParsed.error));
   const regionalApplies = state === "vic" || state === "qld";
 
   const r = useMemo(
@@ -58,7 +60,7 @@ export default function PayrollTaxCalculator({
     [state, stateWages, australianWages, regional, regionalApplies],
   );
 
-  const ausBelowState = interstate && toNumber(ausWagesText) > 0 && toNumber(ausWagesText) < stateWages;
+  const ausBelowState = interstate && !ausParsed.error && ausWages > 0 && ausWages < stateWages;
 
   return (
     <Card className="not-prose shadow-md">
@@ -97,13 +99,18 @@ export default function PayrollTaxCalculator({
                 <span className="mr-2 text-warmgray-light">$</span>
                 <input
                   id="pt-wages"
-                  inputMode="numeric"
+                  inputMode="decimal"
                   value={stateWagesText}
                   onChange={(e) => setStateWagesText(e.target.value)}
-                  className={inputClass}
+                  aria-invalid={stateParsed.error ? true : undefined}
+                  aria-describedby={stateParsed.error ? "pt-wages-error pt-wages-hint" : "pt-wages-hint"}
+                  className={`${inputClass} ${stateParsed.error ? errorInputClass : ""}`}
                 />
               </div>
-              <p className="mt-1 text-xs text-warmgray-light">For a group, the whole group&rsquo;s {info.abbr} wages.</p>
+              {stateParsed.error && (
+                <p id="pt-wages-error" className="mt-1 text-xs font-medium text-red-600">{stateParsed.message}</p>
+              )}
+              <p id="pt-wages-hint" className="mt-1 text-xs text-warmgray-light">For a group, the whole group&rsquo;s {info.abbr} wages.</p>
             </div>
 
             <label className="flex items-start gap-2 text-sm text-navy">
@@ -130,12 +137,17 @@ export default function PayrollTaxCalculator({
                   <span className="mr-2 text-warmgray-light">$</span>
                   <input
                     id="pt-aus"
-                    inputMode="numeric"
+                    inputMode="decimal"
                     value={ausWagesText}
                     onChange={(e) => setAusWagesText(e.target.value)}
-                    className={inputClass}
+                    aria-invalid={ausParsed.error ? true : undefined}
+                    aria-describedby={ausParsed.error ? "pt-aus-error" : undefined}
+                    className={`${inputClass} ${ausParsed.error ? errorInputClass : ""}`}
                   />
                 </div>
+                {ausParsed.error && (
+                  <p id="pt-aus-error" className="mt-1 text-xs font-medium text-red-600">{ausParsed.message}</p>
+                )}
                 {ausBelowState && (
                   <p className="mt-1 text-xs text-ochre">Australian wages include the {info.abbr} wages, so they are treated as at least {formatAUD(stateWages)}.</p>
                 )}
@@ -167,36 +179,40 @@ export default function PayrollTaxCalculator({
               <div className="mb-2 text-sm font-semibold uppercase tracking-wider text-ochre">
                 {info.abbr} payroll tax for the year
               </div>
-              <div className="mb-1 text-4xl font-extrabold text-navy">{formatAUD(r.total)}</div>
+              <div className="mb-1 text-4xl font-extrabold text-navy">{inputError ? "—" : formatAUD(r.total)}</div>
               <div className="mt-2 text-sm text-warmgray">
-                {r.overThreshold
-                  ? `about ${formatAUD(r.total / 12)} a month · ${pctTrim(r.effectiveRate, 2)} of ${info.abbr} wages`
-                  : `Australian wages are under the ${formatAUD(info.annualThreshold)} threshold`}
+                {inputError
+                  ? "Check the wages figure to see the payroll tax."
+                  : r.overThreshold
+                    ? `about ${formatAUD(r.total / 12)} a month · ${pctTrim(r.effectiveRate, 2)} of ${info.abbr} wages`
+                    : `Australian wages are under the ${formatAUD(info.annualThreshold)} threshold`}
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 bg-white">
-              <div className="border-b border-sandstone-dark/20 bg-sandstone px-5 py-3">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-navy">How it is worked out</h3>
+            {!inputError && (
+              <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 bg-white">
+                <div className="border-b border-sandstone-dark/20 bg-sandstone px-5 py-3">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-navy">How it is worked out</h3>
+                </div>
+                <div className="space-y-3 p-5 text-sm">
+                  <Row label={`${info.abbr} taxable wages`} value={formatAUD(r.stateWages)} />
+                  {interstate && <Row label={`${info.abbr} share of Australian wages`} value={pctTrim(r.share, 1)} muted />}
+                  <Row label="Less threshold / deduction" value={formatNegAUD(r.deduction, 0, "−")} />
+                  <Row label="Wages taxed" value={formatAUD(r.taxableWages)} />
+                  <Row
+                    label={state === "tas" && r.rate === 0.061 ? "Rates (4% band, then 6.1%)" : "Rate"}
+                    value={pctTrim(r.rate, 4)}
+                    muted
+                  />
+                  <Row label="Payroll tax" value={formatAUD(r.payrollTax)} />
+                  {r.surchargeLabel && (
+                    <Row label={r.surchargeLabel} value={formatAUD(r.surcharge)} muted={r.surcharge === 0} />
+                  )}
+                  <div className="border-t border-sandstone-dark/20 pt-3" />
+                  <Row label="Total for the year" value={formatAUD(r.total)} bold />
+                </div>
               </div>
-              <div className="space-y-3 p-5 text-sm">
-                <Row label={`${info.abbr} taxable wages`} value={formatAUD(r.stateWages)} />
-                {interstate && <Row label={`${info.abbr} share of Australian wages`} value={pctTrim(r.share, 1)} muted />}
-                <Row label="Less threshold / deduction" value={`−${formatAUD(r.deduction)}`} />
-                <Row label="Wages taxed" value={formatAUD(r.taxableWages)} />
-                <Row
-                  label={state === "tas" && r.rate === 0.061 ? "Rates (4% band, then 6.1%)" : "Rate"}
-                  value={pctTrim(r.rate, 4)}
-                  muted
-                />
-                <Row label="Payroll tax" value={formatAUD(r.payrollTax)} />
-                {r.surchargeLabel && (
-                  <Row label={r.surchargeLabel} value={formatAUD(r.surcharge)} muted={r.surcharge === 0} />
-                )}
-                <div className="border-t border-sandstone-dark/20 pt-3" />
-                <Row label="Total for the year" value={formatAUD(r.total)} bold />
-              </div>
-            </div>
+            )}
 
             <p className="text-xs text-warmgray-light">
               Full financial year only. Part-year employers get a smaller threshold, and monthly returns use the

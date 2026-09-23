@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   CENTRELINK_SOURCES,
   JOBSEEKER,
@@ -232,14 +232,14 @@ export default function JobseekerPaymentCalculatorPage() {
                       <Row label={`Maximum rate (${RATE_SET_LABELS[activeKey]})`} value={formatAUD(activeRate, 2)} bold />
                       <Row label={`Free area (first ${formatAUD(T.freeArea)})`} value="no reduction" />
                       {sit.carer ? (
-                        <Row label={`40c per $1 over ${formatAUD(T.freeArea)}`} value={`-${formatAUD(result.ownReduction, 2)}`} />
+                        <Row label={`40c per $1 over ${formatAUD(T.freeArea)}`} value={formatNegAUD(result.ownReduction, 2)} />
                       ) : (
                         <>
-                          <Row label={`50c per $1 from ${formatAUD(T.freeArea)} to ${formatAUD(T.band1End)}`} value={`-${formatAUD(Math.min(Math.max(0, income - T.freeArea), T.band1End - T.freeArea) * 0.5, 2)}`} />
-                          <Row label={`60c per $1 over ${formatAUD(T.band1End)}`} value={`-${formatAUD(Math.max(0, income - T.band1End) * 0.6, 2)}`} />
+                          <Row label={`50c per $1 from ${formatAUD(T.freeArea)} to ${formatAUD(T.band1End)}`} value={formatNegAUD(Math.min(Math.max(0, income - T.freeArea), T.band1End - T.freeArea) * 0.5, 2)} />
+                          <Row label={`60c per $1 over ${formatAUD(T.band1End)}`} value={formatNegAUD(Math.max(0, income - T.band1End) * 0.6, 2)} />
                         </>
                       )}
-                      {sit.partnered && <Row label={`60c per $1 of partner income over ${formatAUD(result.partnerLimit)}`} value={`-${formatAUD(result.partnerReduction, 2)}`} />}
+                      {sit.partnered && <Row label={`60c per $1 of partner income over ${formatAUD(result.partnerLimit)}`} value={formatNegAUD(result.partnerReduction, 2)} />}
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label="Payment" value={formatAUD(result.payment, 2)} bold highlight />
                       <Row label={`Payment on the ${RATE_SET_LABELS[otherKey]} rate`} value={formatAUD(result.otherPayment, 2)} />
@@ -320,7 +320,7 @@ export default function JobseekerPaymentCalculatorPage() {
                     return (
                       <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                         <td className={TD + " font-medium"}>{formatAUD(inc)}</td>
-                        <td className={TD + " text-right"}>-{formatAUD(jobseekerReduction(inc), 2)}</td>
+                        <td className={TD + " text-right"}>{formatNegAUD(jobseekerReduction(inc), 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(payMar, 2)}</td>
                         <td className={TD + " text-right font-bold"}>{formatAUD(paySep, 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(paySep + inc, 2)}</td>

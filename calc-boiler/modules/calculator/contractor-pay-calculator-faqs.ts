@@ -16,6 +16,7 @@ import {
   SUPER_GUARANTEE,
   TAX_BRACKETS,
 } from "@/lib/constants";
+import { contractorRateToEquivalentSalary } from "@/lib/constants/contractor-rate";
 import type { FaqItem } from "@/lib/faq";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
 
@@ -50,12 +51,24 @@ export const CONTRACTOR_RATE_ANSWER: FaqItem = {
   a: `Start from the salary you want to replace. To match ${formatAUD(TARGET_SALARY)} plus ${SG} super over ${BILLABLE_WEEKS} billable weeks of ${H} hours, you need at least ${formatAUD(FLOOR_RATE, 2)} an hour, against ${formatAUD(EMPLOYEE_HOURLY, 2)} an hour as an employee. That is the floor: unbilled time, insurance and sick days are why many contractors charge 1.4 to 1.6 times the employee rate.`,
 };
 
+/** Worked example for "How do I convert a contractor rate to a salary?". */
+export const SALARY_EXAMPLE_RATE = 100;
+export const SALARY_EXAMPLE = contractorRateToEquivalentSalary(SALARY_EXAMPLE_RATE, "hour");
+const SG_DIVISOR = (1 + SUPER_GUARANTEE.rate).toFixed(2);
+
+/** PAA answer reused as the lead of the "What Contractor Hourly Rate Equals a Salary?" section. */
+export const CONTRACTOR_SALARY_ANSWER: FaqItem = {
+  q: "How do I convert a contractor rate to a salary?",
+  a: `Multiply the rate by the hours you can actually bill, take off the costs an employer would pay, then divide by ${SG_DIVISOR} for super. At ${formatAUD(SALARY_EXAMPLE_RATE)} an hour, ${SALARY_EXAMPLE.billableDays} billable days (${SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hours) earn ${formatAUD(SALARY_EXAMPLE.billedIncome)}. Less ${formatAUD(SALARY_EXAMPLE.insurance + SALARY_EXAMPLE.admin)} insurance and admin, that equals a ${formatAUD(SALARY_EXAMPLE.equivalentSalary)} salary plus ${SG} super.`,
+};
+
 export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "How much do I take home as a contractor in Australia?",
     a: `A contractor charging $1,000 per day grosses ${formatAUD(DAY_RATE_GROSS)} over 48 working weeks and takes home roughly ${formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)} after income tax and the ${ML} Medicare levy (FY${FY}). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the ${SG} Super Guarantee for yourself. ABN contractors need to charge more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.`,
   },
   CONTRACTOR_RATE_ANSWER,
+  CONTRACTOR_SALARY_ANSWER,
   {
     q: "What is the 80% rule for contractors?",
     a: "It is part of the ATO's personal services income (PSI) rules. If 80% or more of your PSI in a year comes from one client and its associates, you can only self-assess as a personal services business by passing the results test. If you fail it and have no personal services business determination from the ATO, the PSI rules apply, which limit the deductions you can claim and stop you splitting that income with others.",

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { SUPER_GUARANTEE, formatAUD, formatPercent } from "@/lib/constants";
+import { SUPER_GUARANTEE, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import { FREQUENCY_LABELS, PAY_PERIODS, type PayFrequency } from "@/lib/constants/payg-withholding";
 import { grossFromNet, payslipFromGross } from "@/lib/constants/gross-vs-net";
 import { CALC_FONT, NumberField, RESULT_LIST, ResultRow, SelectField } from "./t3-calc-shared";
@@ -60,11 +60,11 @@ export default function GrossVsNetCalculator() {
           <div className="space-y-4">
             <dl className={RESULT_LIST}>
               <ResultRow label="Gross pay" value={formatAUD(slip.gross, 2)} bold={mode === "net-to-gross"} />
-              {slip.salarySacrifice > 0 && <ResultRow label="Less salary sacrifice (pre-tax)" value={`−${formatAUD(slip.salarySacrifice, 2)}`} muted />}
+              {slip.salarySacrifice > 0 && <ResultRow label="Less salary sacrifice (pre-tax)" value={formatNegAUD(slip.salarySacrifice, 2, "−")} muted />}
               {slip.salarySacrifice > 0 && <ResultRow label="Taxable gross" value={formatAUD(slip.taxableGross, 2)} />}
-              <ResultRow label="PAYG tax withheld" value={`−${formatAUD(slip.paygWithheld, 2)}`} muted />
-              {slip.stslWithheld > 0 && <ResultRow label="Study loan (HELP) repayment" value={`−${formatAUD(slip.stslWithheld, 2)}`} muted />}
-              {slip.postTaxDeductions > 0 && <ResultRow label="After-tax deductions" value={`−${formatAUD(slip.postTaxDeductions, 2)}`} muted />}
+              <ResultRow label="PAYG tax withheld" value={formatNegAUD(slip.paygWithheld, 2, "−")} muted />
+              {slip.stslWithheld > 0 && <ResultRow label="Study loan (HELP) repayment" value={formatNegAUD(slip.stslWithheld, 2, "−")} muted />}
+              {slip.postTaxDeductions > 0 && <ResultRow label="After-tax deductions" value={formatNegAUD(slip.postTaxDeductions, 2, "−")} muted />}
               <ResultRow label="Net pay" value={formatAUD(slip.net, 2)} bold={mode === "gross-to-net"} />
               <ResultRow label={`Employer super (${formatPercent(SUPER_GUARANTEE.rate, 0)}, paid on top)`} value={formatAUD(slip.employerSuper, 2)} muted />
             </dl>

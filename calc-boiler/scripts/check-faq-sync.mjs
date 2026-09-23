@@ -15,10 +15,10 @@
 //   - a JSON-LD question is not visible on the page;
 //   - a JSON-LD answer is not visible on the page as the same text
 //     (whitespace-insensitive, so inline <strong>/<a> and line breaks don't matter);
-//   - a page has FAQPage markup and a visible FAQ question that the markup omits.
-//
-// Pages that show question accordions but carry no FAQPage markup are listed
-// as a note (missing markup is not a mismatch).
+//   - a page has FAQPage markup and a visible FAQ question that the markup omits;
+//   - a page shows question accordions but carries no FAQPage markup at all
+//     (build the accordion and the JSON-LD from one array: lib/faq.ts
+//     faqPageSchema() + components/common/faq-accordion.tsx).
 //
 // Usage: node scripts/check-faq-sync.mjs [outDir] [--verbose]
 
@@ -133,7 +133,7 @@ let pages = 0;
 let faqPages = 0;
 let jsonLdQuestions = 0;
 const failures = []; // { url, problems[] }
-const unmarked = []; // pages with visible question accordions and no FAQPage
+const unmarked = []; // pages with visible question accordions and no FAQPage (an error)
 let mismatchCount = 0;
 
 for (const file of htmlFiles(outDir)) {
@@ -145,7 +145,10 @@ for (const file of htmlFiles(outDir)) {
   const url = urlOf(file);
 
   if (ld.length === 0) {
-    if (visible.length > 0) unmarked.push({ url, count: visible.length });
+    if (visible.length > 0) {
+      unmarked.push({ url, count: visible.length });
+      problems.push(`${visible.length} visible FAQ question(s) but no FAQPage JSON-LD (first: "${visible[0]}")`);
+    }
     if (problems.length) failures.push({ url, problems });
     continue;
   }
@@ -182,11 +185,6 @@ for (const file of htmlFiles(outDir)) {
 for (const { url, problems } of failures) {
   console.log(`\n${url}`);
   for (const p of problems) console.log(`  - ${p}`);
-}
-
-if (unmarked.length && verbose) {
-  console.log(`\nNote: ${unmarked.length} page(s) show question accordions without FAQPage markup (not a mismatch):`);
-  for (const u of unmarked) console.log(`  ${u.url} (${u.count})`);
 }
 
 console.log(

@@ -13,6 +13,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   HECS_HELP,
   MEDICARE_LEVY,
@@ -187,10 +188,10 @@ export default function CommissionTaxCalculatorPage() {
                       <Row label="Gross commission" value={formatAUD(commission)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label={`Marginal rate on combined ${formatAUD(result.combined)}`} value={`${formatPercent(result.marginalRate, 0)} + ${formatPercent(MEDICARE_LEVY.rate, 0)} Medicare`} />
-                      <Row label="Tax added to the year" value={`-${formatAUD(result.annualTax)}`} />
+                      <Row label="Tax added to the year" value={formatNegAUD(result.annualTax)} />
                       <Row label="Net commission for the year" value={formatAUD(result.netAnnual)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label={`Withheld on the ${FREQUENCY_LABELS[frequency].toLowerCase()} pay (Schedule 5)`} value={`-${formatAUD(result.withholding.withheldFromAdditionalPayment)}`} />
+                      <Row label={`Withheld on the ${FREQUENCY_LABELS[frequency].toLowerCase()} pay (Schedule 5)`} value={formatNegAUD(result.withholding.withheldFromAdditionalPayment)} />
                       <Row label="In hand on the day" value={formatAUD(result.withholding.netAdditionalPayment)} bold highlight />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row

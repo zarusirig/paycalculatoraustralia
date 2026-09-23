@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import { payslipFromGross } from "@/lib/constants/gross-vs-net";
 import { takeHomeHref } from "@/lib/data/teacher-pay";
 import GrossVsNetCalculator from "@/modules/calculator/gross-vs-net-calculator";
@@ -68,10 +68,10 @@ export default function GrossVsNetPayPage() {
               head={["Term", "What it means", "Example (fortnight)"]}
               rows={[
                 ["Gross pay", "All earnings for the period before any deduction: ordinary hours, overtime, penalties, allowances, leave and loading, bonuses.", formatAUD(FULL.gross, 2)],
-                ["Pre-tax deductions", "Salary sacrifice (to super or a novated lease) comes off before tax is worked out.", `−${formatAUD(FULL.salarySacrifice, 2)}`],
+                ["Pre-tax deductions", "Salary sacrifice (to super or a novated lease) comes off before tax is worked out.", formatNegAUD(FULL.salarySacrifice, 2, "−")],
                 ["Taxable gross", "The amount PAYG withholding is calculated on.", formatAUD(FULL.taxableGross, 2)],
-                ["Tax withheld", "PAYG withholding (includes the Medicare levy), plus any HELP/study loan amount.", `−${formatAUD(FULL.paygWithheld + FULL.stslWithheld, 2)}`],
-                ["After-tax deductions", "Union fees, donations, repayments you’ve authorised.", `−${formatAUD(FULL.postTaxDeductions, 2)}`],
+                ["Tax withheld", "PAYG withholding (includes the Medicare levy), plus any HELP/study loan amount.", formatNegAUD(FULL.paygWithheld + FULL.stslWithheld, 2, "−")],
+                ["After-tax deductions", "Union fees, donations, repayments you’ve authorised.", formatNegAUD(FULL.postTaxDeductions, 2, "−")],
                 ["Net pay", "What’s paid into your bank account.", formatAUD(FULL.net, 2)],
                 ["Employer super", `${SG} super guarantee on your earnings, paid to your fund, not to you.`, formatAUD(FULL.employerSuper, 2)],
               ]}

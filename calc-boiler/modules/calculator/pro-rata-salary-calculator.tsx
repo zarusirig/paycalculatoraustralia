@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { EMPLOYMENT, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, calculatePayBreakdown, formatAUD, formatNegAUD } from "@/lib/constants";
 import { PRO_RATA_DEFAULTS, calculateProRata, type ProRataInput } from "@/lib/constants/minimum-wage";
 
 function num(v: string, min: number, max: number): number {
@@ -132,7 +132,7 @@ export default function ProRataSalaryCalculator() {
                   </>
                 )}
                 <div className="border-t border-sandstone-dark/20 pt-3" />
-                <Row label="Tax and Medicare levy (year)" value={`−${formatAUD(tax.totalDeductions)}`} />
+                <Row label="Tax and Medicare levy (year)" value={formatNegAUD(tax.totalDeductions, 0, "−")} />
                 <Row label="After tax, per year" value={formatAUD(tax.takeHomePay)} bold />
                 <Row label="After tax, per fortnight" value={formatAUD(tax.takeHomePay / 26, 2)} />
                 <Row label="After tax, per week" value={formatAUD(afterTaxWeekly, 2)} />

@@ -9,7 +9,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   calculateSchedule5MethodB,
   NO_TFN_RATES,
@@ -129,7 +129,7 @@ function Schedule5Widget() {
                 <div className="border-t border-sandstone-dark/20" />
                 <div className="flex justify-between">
                   <span className="text-warmgray">Tax withheld (apportionment)</span>
-                  <span className="text-navy">-{formatAUD(result.withheldFromAdditionalPayment, 2)}</span>
+                  <span className="text-navy">{formatNegAUD(result.withheldFromAdditionalPayment, 2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-warmgray">Effective rate on bonus</span>

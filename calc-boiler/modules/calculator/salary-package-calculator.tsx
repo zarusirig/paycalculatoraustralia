@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { calculatePayBreakdown, formatAUD, formatPercent, SITE_CONFIG, SOURCES, SUPER_GUARANTEE } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatNegAUD, formatPercent, SITE_CONFIG, SOURCES, SUPER_GUARANTEE } from "@/lib/constants";
 import { packageFromBase, splitPackage, type PackageSplit } from "@/lib/constants/salary-package";
 import { SALARY_PACKAGE_FAQS } from "./salary-package-faqs";
 
@@ -140,8 +140,8 @@ export default function SalaryPackageCalculatorPage() {
                       <h3 className="font-semibold text-navy text-sm uppercase tracking-wider">Take-home pay on the {formatAUD(split.base)} base ({SITE_CONFIG.financialYear})</h3>
                     </div>
                     <div className="p-5 space-y-3 text-sm">
-                      <Row label="Income tax (after LITO)" value={`-${formatAUD(pay.netIncomeTax)}`} />
-                      <Row label="Medicare levy" value={`-${formatAUD(pay.medicareLevy)}`} />
+                      <Row label="Income tax (after LITO)" value={formatNegAUD(pay.netIncomeTax)} />
+                      <Row label="Medicare levy" value={formatNegAUD(pay.medicareLevy)} />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label="Per year" value={formatAUD(pay.takeHomePay)} bold highlight />
                       <Row label="Per month" value={formatAUD(pay.monthly)} />

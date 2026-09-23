@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   AGE_PENSION_INCOME_TEST,
   WORK_BONUS,
@@ -165,14 +165,14 @@ export default function AgePensionAssetsTestCalculatorPage() {
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Assessable assets" value={formatAUD(r.assets)} />
                       <Row label={`Full-pension limit (${SITUATION_LABEL[situation].toLowerCase()}, ${home === "homeowner" ? "homeowner" : "non-homeowner"})`} value={formatAUD(r.limit)} />
-                      <Row label={`Over the limit × ${situation === "single" ? "$3" : "$1.50 each"} per $1,000`} value={`-${formatAUD(r.assetsReduction, 2)}`} />
+                      <Row label={`Over the limit × ${situation === "single" ? "$3" : "$1.50 each"} per $1,000`} value={formatNegAUD(r.assetsReduction, 2)} />
                       <Row label="Assets test rate" value={formatAUD(r.byAssets, 2)} bold />
                       <Row label="Part pension stops above" value={formatAUD(r.cutOff)} />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label="Wages after the Work Bonus" value={formatAUD(r.wages, 2)} />
                       <Row label="Deemed income on financial assets" value={formatAUD(r.deemed, 2)} />
                       <Row label="Other income" value={formatAUD(otherIncome, 2)} />
-                      <Row label={`${situation === "single" ? "50c" : "25c each"} per $1 over ${formatAUD(IT[situation === "single" ? "single" : "couple"].freeArea)}`} value={`-${formatAUD(pensionReduction(r.assessable, situation === "single" ? "single" : "couple"), 2)}`} />
+                      <Row label={`${situation === "single" ? "50c" : "25c each"} per $1 over ${formatAUD(IT[situation === "single" ? "single" : "couple"].freeArea)}`} value={formatNegAUD(pensionReduction(r.assessable, situation === "single" ? "single" : "couple"), 2)} />
                       <Row label="Income test rate" value={formatAUD(r.byIncome, 2)} bold />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label="Paid: the lower of the two" value={formatAUD(r.paid, 2)} bold highlight />
@@ -216,7 +216,7 @@ export default function AgePensionAssetsTestCalculatorPage() {
                     <tr key={a} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                       <td className={TD + " font-medium"}>{formatAUD(a)}</td>
                       <td className={TD + " text-right"}>{formatAUD(Math.max(0, a - AT.fullPensionLimit.single.homeowner))}</td>
-                      <td className={TD + " text-right"}>-{formatAUD(assetsTestReduction(a, "single", "homeowner"), 2)}</td>
+                      <td className={TD + " text-right"}>{formatNegAUD(assetsTestReduction(a, "single", "homeowner"), 2)}</td>
                       <td className={TD + " text-right font-bold"}>{formatAUD(assetsTestRate(a, "single", "homeowner"), 2)}</td>
                     </tr>
                   ))}
