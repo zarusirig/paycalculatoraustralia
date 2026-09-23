@@ -1,5 +1,3 @@
-"use client";
-
 // Shared building blocks for the per-award rate pages: the pay-guide style
 // level x employment-type matrix, allowances, the 1 December 2026 junior
 // phase-in, calculator links and a print button.
@@ -8,7 +6,7 @@
 // cent with roundCents (float-safe), the way Fair Work publishes derived rates.
 
 import Link from "next/link";
-import { ChevronRight, Printer } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { formatAUD } from "@/lib/constants";
 import { roundCents, type JuniorPhaseInSchedule } from "@/lib/constants/modern-awards";
 import { HOURLY_RATE_PAGES, hourlyRateSlug } from "@/lib/constants/hourly-rates";
@@ -217,31 +215,7 @@ export function JuniorPhaseInTable({
   );
 }
 
-/**
- * Print button. Print styles hide site chrome so the rate tables print as a
- * clean pay guide — the page's answer to "... pay rates pdf" searches.
- */
-export function PrintButton({ label = "Print or save as PDF" }: { label?: string }) {
-  return (
-    <>
-      <style media="print">{`
-        body > :not(main), main aside, main nav, .no-print { display: none !important; }
-        body { background: #fff !important; }
-        table { page-break-inside: auto; }
-        tr { page-break-inside: avoid; }
-        .overflow-x-auto { overflow: visible !important; }
-      `}</style>
-      <button
-        type="button"
-        onClick={() => window.print()}
-        className="no-print inline-flex items-center gap-2 rounded-md border border-eucalyptus-dark px-4 py-2 text-sm font-semibold text-eucalyptus-dark hover:bg-eucalyptus-dark hover:text-white"
-      >
-        <Printer className="h-4 w-4" aria-hidden="true" />
-        {label}
-      </button>
-    </>
-  );
-}
+export { PrintButton } from "./print-button";
 
 const HOURLY_PAGES = new Set(HOURLY_RATE_PAGES.map((r) => Math.round(r * 100)));
 

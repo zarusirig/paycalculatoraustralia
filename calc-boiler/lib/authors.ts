@@ -289,6 +289,10 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "pilot-salary": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end F5 ---
 
+  // --- G4 public holiday pay cluster (24 Sep 2026) ---
+  "public-holiday-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end G4 ---
+
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
   "minimum-wage-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "minimum-wage-by-age": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },

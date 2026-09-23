@@ -165,3 +165,18 @@ test("vehicle allowance wording names the rate in force and the other one", () =
   assert.match(during, /\$1\.01 per km again from 1 March 2027/);
   assert.match(schadsVehicleAllowanceWording("2027-03-01"), /^\$1\.01 per km \(the temporary \$1\.05 rate/);
 });
+
+// --- G6: Schedule E interim increase from 1 Dec 2026 (PR814259) ---
+import { SCHADS_HOME_CARE_DISABILITY_DEC_2026, SCHADS_SCHEDULE_E_INCREASE } from "../schads-award";
+
+test("G6: every Schedule E Dec 2026 rate is the current rate x the interim increase, to 10c", () => {
+  assert.equal(SCHADS_HOME_CARE_DISABILITY_DEC_2026.length, SCHADS_HOME_CARE_DISABILITY.length);
+  const ex = SCHADS_SCHEDULE_E_INCREASE.exceptions as Record<string, number>;
+  for (const row of SCHADS_HOME_CARE_DISABILITY_DEC_2026) {
+    const now = SCHADS_HOME_CARE_DISABILITY.find((r) => r.classification === row.classification);
+    assert.ok(now, row.classification);
+    const pct = ex[row.classification] ?? SCHADS_SCHEDULE_E_INCREASE.interimIncrease;
+    assert.ok(Math.abs(now.weekly * (1 + pct) - row.weekly) <= 0.1, `${row.classification}: ${now.weekly} -> ${row.weekly}`);
+  }
+});
+// --- end G6 ---

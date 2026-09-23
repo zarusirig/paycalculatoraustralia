@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { EMPLOYMENT_TYPE_FAQS } from "@/modules/calculator/employment-type-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -13,7 +14,6 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
-  formatPercent,
   EMPLOYMENT,
   SUPER_GUARANTEE,
   SOURCES,
@@ -118,7 +118,7 @@ export default function EmploymentTypeCalculatorPage() {
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Compare Employment Types</h2>
 
                 {/* Inputs */}
-                <form onSubmit={(e) => e.preventDefault()} className="grid md:grid-cols-2 gap-6 mb-8">
+                <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div>
                     <label htmlFor="hourly" className="block text-sm font-medium text-navy mb-1">Base Hourly Rate</label>
                     <div className="flex items-center">
@@ -127,7 +127,7 @@ export default function EmploymentTypeCalculatorPage() {
                         onChange={(e) => setHourlyRate(clamp(Number(e.target.value || 0), 0, 200))}
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                     </div>
-                    <input type="range" min={20} max={100} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                    <input type="range" min={20} max={100} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                       value={clamp(hourlyRate, 20, 100)} onChange={(e) => setHourlyRate(Number(e.target.value))} />
                   </div>
                   <div>
@@ -135,7 +135,7 @@ export default function EmploymentTypeCalculatorPage() {
                     <input type="number" id="hours" min={1} max={38} step={1} value={hoursPerWeek}
                       onChange={(e) => setHoursPerWeek(clamp(Number(e.target.value || 1), 1, 38))}
                       className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
-                    <input type="range" min={5} max={38} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                    <input type="range" min={5} max={38} step={1} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1}
                       value={clamp(hoursPerWeek, 5, 38)} onChange={(e) => setHoursPerWeek(Number(e.target.value))} />
                     <p className="text-xs text-warmgray-light mt-1">Full-time is always {EMPLOYMENT.standardWeeklyHours} hours/week</p>
                   </div>
@@ -213,7 +213,7 @@ export default function EmploymentTypeCalculatorPage() {
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do Full-Time, Part-Time, and Casual Compare?</h2>
               <p className="mb-4 text-warmgray">The three main employment types in Australia differ in <strong>hours, entitlements, and pay structure</strong>. While casual employees receive a higher hourly rate through the 25% casual loading, permanent employees receive paid leave and greater job security.</p>
 
-              <div className="grid md:grid-cols-3 gap-4 mb-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                   <h3 className="font-semibold text-navy mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Full-Time</h3>
                   <ul className="space-y-1 text-sm text-warmgray list-disc pl-4">
@@ -263,7 +263,7 @@ export default function EmploymentTypeCalculatorPage() {
 
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual Conversion Rights</h2>
-              <p className="mb-4 text-warmgray">Under the Fair Work Act, casual employees who have worked <strong>regular and systematic hours for 12 months</strong> with the same employer may request conversion to permanent employment. Employers with 15 or more employees must offer conversion if the employee meets the criteria, unless there are reasonable grounds to refuse.</p>
+              <p className="mb-4 text-warmgray">Since 26 August 2024, a casual employee who has worked for their employer for at least <strong>6 months (12 months for a small business employer with fewer than 15 employees)</strong> and believes they no longer meet the casual definition can notify their employer that they want to become permanent. The employer must respond in writing within 21 days and can only refuse on fair and reasonable operational grounds. Employers are no longer required to offer conversion.</p>
               <p className="text-warmgray">For a detailed comparison guide, see our <Link href="/full-time-vs-part-time-vs-casual/" className="text-eucalyptus-dark hover:underline font-medium">Full-Time vs Part-Time vs Casual</Link> guide. To calculate your superannuation entitlements under any employment type, use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link>.</p>
             </section>
 
@@ -282,32 +282,7 @@ export default function EmploymentTypeCalculatorPage() {
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="space-y-3">
-                <AccordionItem value="loading-vs-leave" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Is casual loading better than annual leave?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">For most workers, no. The 25% casual loading sounds generous, but the combined value of annual leave (4 weeks), personal leave (10 days), and public holidays exceeds <strong>14%</strong> of earnings. Permanent employment also provides job security, notice periods, and potential redundancy pay.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Do casual workers get superannuation?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. Casuals receive the <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee</strong> like other employees (if they are under 18, only in weeks they work more than 30 hours). Super is calculated on the casual employee&apos;s ordinary time earnings, which includes the 25% casual loading.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="pt-vs-casual" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>What is the difference between part-time and casual?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Part-time employees work <strong>regular guaranteed hours</strong> (under 38 per week), receive paid annual and personal leave on a pro-rata basis, and have ongoing employment. Casual employees have <strong>no guaranteed hours</strong>, receive 25% casual loading instead of leave, and either party can end the arrangement without notice.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="conversion" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Can I convert from casual to permanent?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. Under the Fair Work Act, casual employees who have worked <strong>regular hours for 12 months</strong> can request conversion to permanent employment. Employers with 15+ employees must offer conversion if criteria are met, unless there are reasonable business grounds to refuse.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="which-better" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Which employment type pays more overall?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Casual workers receive more cash in hand due to the 25% loading, but permanent employees receive a higher <strong>total package value</strong> when leave, job security, notice periods, and redundancy pay are included. The best option depends on whether you value flexibility (casual) or stability and entitlements (permanent).</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tax-diff" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Do casual employees pay more tax?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Tax is based on <strong>total annual income</strong>, not employment type. A casual earning $70,000/year pays the same income tax as a full-time employee earning $70,000/year. However, casual employees earn more gross income (due to loading) for the same hours, which may place them in a higher tax bracket.</p></AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={EMPLOYMENT_TYPE_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             {/* Related */}

@@ -1,13 +1,27 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SOLE_TRADER_COMPANY_FAQS } from "@/modules/guide/employee-vs-sole-trader-vs-company-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, LITO, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+
+// Structure comparison, derived from the FY2026-27 engine. The old tables
+// mixed 2025-26 rates with arithmetic errors (e.g. $38,838 tax on $150,000).
+const DIRECTOR_SALARY = 70_000;
+const COMPANY_TAX_RATE = 0.25;
+const COMPARISONS = [100_000, 150_000, 200_000].map((income) => {
+  const employeeTax = calculatePayBreakdown({ grossSalary: income }).totalDeductions;
+  const soleTraderSuper = Math.round(income * SUPER_GUARANTEE.rate);
+  const soleTraderTax = calculatePayBreakdown({ grossSalary: income - soleTraderSuper }).totalDeductions;
+  const companySuper = Math.round(DIRECTOR_SALARY * SUPER_GUARANTEE.rate);
+  const companyTax =
+    calculatePayBreakdown({ grossSalary: DIRECTOR_SALARY }).totalDeductions +
+    Math.round((income - DIRECTOR_SALARY - companySuper) * COMPANY_TAX_RATE);
+  return { income, employeeTax, soleTraderSuper, soleTraderTax, companySuper, companyTax };
+});
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -133,7 +147,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 As an employee, your employer handles PAYG withholding, superannuation contributions (12% SG), workers&apos; compensation insurance, and payroll tax. You receive the National Employment Standards protections: 4 weeks annual leave, 10 days personal/carer&apos;s leave, notice of termination, and redundancy pay.
               </p>
               <p>
-                Employees pay individual income tax at marginal rates from 0% to 45%, plus the 2% Medicare levy. The tax-free threshold of $18,200 applies, and the Low Income Tax Offset (LITO) provides up to $700 in additional relief for incomes under $66,667.
+                Employees pay individual income tax at marginal rates from 0% to 45%, plus the 2% Medicare levy. The tax-free threshold of $18,200 applies, and the Low Income Tax Offset (LITO) provides up to {formatAUD(LITO.maxOffset)} in additional relief, phasing out completely at {formatAUD(LITO.nilOffsetIncome)}.
               </p>
               <p>
                 <strong>Best for:</strong> Workers who value stability, paid leave, employer-funded super, and minimal administrative burden. Most Australians are best served as employees unless their income or business circumstances specifically favour another structure.
@@ -149,7 +163,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 Sole traders pay individual income tax at the same marginal rates as employees. Business income is reported on the individual tax return, and deductions for business expenses reduce taxable income. The key differences from employment are:
               </p>
               <ul>
-                <li><strong>No employer super</strong> — Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the $30,000 concessional cap</li>
+                <li><strong>No employer super</strong> — Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
                 <li><strong>GST registration</strong> — Required when annual turnover reaches <strong>$75,000</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
                 <li><strong>BAS lodgment</strong> — Quarterly (or monthly) Business Activity Statements reporting GST collected and paid, plus PAYG instalments on expected income tax</li>
                 <li><strong>No leave entitlements</strong> — Time off means no income. Factor in 4-6 weeks of non-earning time when comparing to employment</li>
@@ -192,10 +206,9 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </ul>
               <h3>Setup and Ongoing Costs</h3>
               <ul>
-                <li>ASIC company registration: <strong>$576</strong> (2025-26)</li>
-                <li>Annual ASIC review fee: <strong>$310</strong></li>
+                <li>ASIC company registration and annual review fees (indexed each 1 July; check the current amounts at asic.gov.au)</li>
                 <li>Accountant fees (company tax return, BAS, bookkeeping): <strong>$2,500-$5,000/year</strong></li>
-                <li>Total first-year setup: approximately <strong>$800-$1,200</strong> including registration and initial accounting</li>
+                <li>Initial setup: ASIC registration plus initial accounting and bank setup</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Businesses earning consistently over $120,000-$135,000 that want asset protection, the ability to retain profits at 25%, and a more professional structure for clients and contracts.
@@ -205,15 +218,16 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="take-home-comparison">
               <h2>Take-Home Pay Comparison</h2>
               <p>
-                The following table compares approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super. The company column assumes paying a $70,000 salary and retaining/distributing the rest.
+                The following table compares approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super at 12%, claimed as a tax deduction. The company column assumes paying a $70,000 salary plus 12% super and retaining the rest in the company.
               </p>
 
-              <div className="overflow-x-auto not-prose my-6">
+              {COMPARISONS.map((c) => (
+              <div key={c.income} className="overflow-x-auto not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="min-w-full text-sm">
                     <thead>
                       <tr className="bg-sandstone">
-                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At $100K Income</th>
+                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At {formatAUD(c.income)} Income</th>
                         <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Employee</th>
                         <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Sole Trader</th>
                         <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Company</th>
@@ -222,116 +236,35 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                     <tbody>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Gross income</td>
-                        <td className="p-3 text-navy text-right">$100,000</td>
-                        <td className="p-3 text-navy text-right">$100,000</td>
-                        <td className="p-3 text-navy text-right">$100,000</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.income)}</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Income tax + Medicare</td>
-                        <td className="p-3 text-navy text-right">$22,788</td>
-                        <td className="p-3 text-navy text-right">$22,788</td>
-                        <td className="p-3 text-navy text-right">~$22,088*</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.employeeTax)}</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderTax)}</td>
+                        <td className="p-3 text-navy text-right">~{formatAUD(c.companyTax)}*</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Super cost</td>
                         <td className="p-3 text-navy text-right">$0 (employer pays)</td>
-                        <td className="p-3 text-navy text-right">$12,000 (self-funded)</td>
-                        <td className="p-3 text-navy text-right">$8,400 (on $70K salary)</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.soleTraderSuper)} (self-funded, deducted)</td>
+                        <td className="p-3 text-navy text-right">{formatAUD(c.companySuper)} (on {formatAUD(DIRECTOR_SALARY)} salary)</td>
                       </tr>
                       <tr className="bg-eucalyptus-light/30">
                         <td className="p-3 text-navy font-bold">Cash in hand</td>
-                        <td className="p-3 text-navy text-right font-bold">$77,212</td>
-                        <td className="p-3 text-navy text-right font-bold">$65,212</td>
-                        <td className="p-3 text-navy text-right font-bold">~$69,512</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.employeeTax)}</td>
+                        <td className="p-3 text-navy text-right font-bold">{formatAUD(c.income - c.soleTraderSuper - c.soleTraderTax)}</td>
+                        <td className="p-3 text-navy text-right font-bold">~{formatAUD(c.income - c.companySuper - c.companyTax)}</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
-
-              <div className="overflow-x-auto not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="min-w-full text-sm">
-                    <thead>
-                      <tr className="bg-sandstone">
-                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At $150K Income</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Employee</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Sole Trader</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Company</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Gross income</td>
-                        <td className="p-3 text-navy text-right">$150,000</td>
-                        <td className="p-3 text-navy text-right">$150,000</td>
-                        <td className="p-3 text-navy text-right">$150,000</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">Income tax + Medicare</td>
-                        <td className="p-3 text-navy text-right">$38,838</td>
-                        <td className="p-3 text-navy text-right">$38,838</td>
-                        <td className="p-3 text-navy text-right">~$33,538*</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super cost</td>
-                        <td className="p-3 text-navy text-right">$0 (employer pays)</td>
-                        <td className="p-3 text-navy text-right">$18,000 (self-funded)</td>
-                        <td className="p-3 text-navy text-right">$8,400 (on $70K salary)</td>
-                      </tr>
-                      <tr className="bg-eucalyptus-light/30">
-                        <td className="p-3 text-navy font-bold">Cash in hand</td>
-                        <td className="p-3 text-navy text-right font-bold">$111,162</td>
-                        <td className="p-3 text-navy text-right font-bold">$93,162</td>
-                        <td className="p-3 text-navy text-right font-bold">~$108,062</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div className="overflow-x-auto not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="min-w-full text-sm">
-                    <thead>
-                      <tr className="bg-sandstone">
-                        <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">At $200K Income</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Employee</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Sole Trader</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Company</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Gross income</td>
-                        <td className="p-3 text-navy text-right">$200,000</td>
-                        <td className="p-3 text-navy text-right">$200,000</td>
-                        <td className="p-3 text-navy text-right">$200,000</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">Income tax + Medicare</td>
-                        <td className="p-3 text-navy text-right">$57,338</td>
-                        <td className="p-3 text-navy text-right">$57,338</td>
-                        <td className="p-3 text-navy text-right">~$46,538*</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super cost</td>
-                        <td className="p-3 text-navy text-right">$0 (employer pays)</td>
-                        <td className="p-3 text-navy text-right">$24,000 (self-funded)</td>
-                        <td className="p-3 text-navy text-right">$8,400 (on $70K salary)</td>
-                      </tr>
-                      <tr className="bg-eucalyptus-light/30">
-                        <td className="p-3 text-navy font-bold">Cash in hand</td>
-                        <td className="p-3 text-navy text-right font-bold">$142,662</td>
-                        <td className="p-3 text-navy text-right font-bold">$118,662</td>
-                        <td className="p-3 text-navy text-right font-bold">~$145,062</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              ))}
               <p className="text-sm text-warmgray">
-                *Company figures combine personal tax on the $70K director salary with 25% company tax on retained profits, plus franking credits on dividends. Actual outcomes vary based on dividend timing and personal deductions. These are simplified illustrations — consult an accountant for precise modelling.
+                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with 25% company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays 15% contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates and are simplified illustrations. These are simplified illustrations — consult an accountant for precise modelling.
               </p>
             </section>
 
@@ -348,7 +281,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 <li><strong>Professional credibility</strong> — Some clients and government contracts require engaging with a company rather than a sole trader</li>
               </ul>
               <p>
-                Do <strong>not</strong> switch solely for tax reasons at lower income levels. The additional accounting costs ($2,500-$5,000/year), ASIC fees ($310/year), and compliance burden (separate bank accounts, company tax returns, director obligations) can outweigh any tax benefit below $120,000.
+                Do <strong>not</strong> switch solely for tax reasons at lower income levels. The additional accounting costs ($2,500-$5,000/year), annual ASIC review fees, and compliance burden (separate bank accounts, company tax returns, director obligations) can outweigh any tax benefit below $120,000.
               </p>
             </section>
 
@@ -365,54 +298,12 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="when-switch" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When should I switch from sole trader to a company?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Consider switching when your taxable income consistently exceeds $120,000-$135,000, when you need asset protection from business liabilities, or when you want to retain profits at the 25% company tax rate. The additional compliance costs ($3,000-$5,000/year for accounting and ASIC fees) mean the switch is not worthwhile at lower income levels.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="same-tax" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do sole traders pay the same tax as employees?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Sole traders pay individual income tax at the same marginal rates as employees (0% to 45% plus Medicare levy). The difference is that sole traders can deduct business expenses before tax, must self-manage PAYG instalments and BAS lodgment, and are responsible for their own superannuation contributions.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="company-rate" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the company tax rate in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The base rate entity company tax rate is <strong>25%</strong> for companies with aggregated turnover under $50 million (FY2025-26). This flat rate applies to all taxable company income. When profits are distributed as franked dividends, the shareholder receives a franking credit for the 25% tax already paid, avoiding double taxation.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="gst" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When do I need to register for GST?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    GST registration is mandatory when your annual turnover reaches <strong>$75,000</strong> (or $150,000 for non-profit organisations). Below the threshold, registration is optional but can be beneficial if your business purchases include significant GST that you could claim back as input tax credits. Once registered, you must lodge BAS and charge 10% GST on taxable supplies.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="super-sole" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do sole traders have to pay super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No, super contributions are optional for sole traders — but strongly recommended. You can contribute up to <strong>$30,000</strong> per year in concessional (tax-deductible) contributions and claim the full amount as a deduction on your tax return. This reduces your taxable income while building retirement savings. Without employer SG, sole traders must proactively fund their own retirement.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="abn" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much does it cost to set up each structure?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    <strong>Sole trader:</strong> Free — ABN registration is instant and no-cost through the Australian Business Register. <strong>Company:</strong> ASIC registration costs $576 (2025-26), plus $310 annual review fee. Initial accounting setup adds $500-$1,000. Total first-year cost is approximately $800-$1,200 for a company, compared to $0 for a sole trader.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SOLE_TRADER_COMPANY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Tax comparisons use FY2025-26 individual marginal rates and the 25% base rate entity company tax rate. Take-home pay figures are simplified illustrations assuming no deductions beyond the standard tax-free threshold and Medicare levy. Company scenarios assume a $70,000 director salary with retained earnings taxed at 25%. Actual outcomes depend on deductions, dividend timing, and individual circumstances. This is general information, not business structuring advice.</p>
+                <p>Tax comparisons use FY{SITE_CONFIG.financialYear} individual marginal rates and the 25% base rate entity company tax rate. Take-home pay figures are simplified illustrations assuming no deductions beyond the standard tax-free threshold and Medicare levy. Company scenarios assume a $70,000 director salary with retained earnings taxed at 25%. Actual outcomes depend on deductions, dividend timing, and individual circumstances. This is general information, not business structuring advice.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("employee-vs-sole-trader-vs-company"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

@@ -1,9 +1,10 @@
 "use client";
 
+import FaqAccordion from "@/components/common/faq-accordion";
+import { CONTRACTOR_PAY_FAQS, DAY_RATE_GROSS, DAY_RATE_NET, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -19,7 +20,6 @@ import {
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
-  GENERAL_INTEREST_CHARGE,
 } from "@/lib/constants";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
@@ -27,10 +27,6 @@ import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
 
 // Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
 // 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
-const annualTaxAndMedicare = (income: number) =>
-  Math.max(0, Math.round(calculateIncomeTax(income, true) - calculateLITO(income))) + calculateMedicareLevy(income);
-const DAY_RATE_GROSS = 1_000 * 5 * 48;
-const DAY_RATE_NET = DAY_RATE_GROSS - annualTaxAndMedicare(DAY_RATE_GROSS);
 const TAX_ON_100K = annualTaxAndMedicare(100_000);
 const CC_CAP = SUPER_GUARANTEE.concessionalCap;
 // Saving from a full concessional contribution at $100k: marginal 30% + 2%
@@ -290,7 +286,7 @@ export default function ContractorPayCalculator() {
         {/* Key Features */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Pay Calculator Key Features</h2>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               "Accurate take-home pay for ABN workers, freelancers, consultants and gig-economy roles",
               "Calculate hourly, daily, weekly, fortnightly and monthly contractor income",
@@ -310,7 +306,7 @@ export default function ContractorPayCalculator() {
         {/* Understanding Results */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Understanding Your Contractor Results</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
             <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
             <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income — you remit it to the ATO." />
@@ -593,7 +589,7 @@ export default function ContractorPayCalculator() {
           <p className="mb-4 text-warmgray">
             Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 5 calculators cover the most common related scenarios.
           </p>
-          <ul className="grid gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
               { href: "/contractor-vs-employee-calculator/", title: "Contractor vs Employee Calculator", desc: "Compare contractor rates against employee salaries with full entitlement costing" },
               { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: `Calculate income tax at every bracket for FY${SITE_CONFIG.financialYear} including LITO and Medicare levy` },
@@ -615,32 +611,7 @@ export default function ContractorPayCalculator() {
         {/* FAQ */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Frequently Asked Questions</h2>
-          <Accordion type="multiple" className="space-y-3">
-            <FAQItem value="what-contractor" question="What is a contractor for tax purposes?">
-              A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor — see our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">contractor vs employee guide</Link>.
-            </FAQItem>
-            <FAQItem value="gst" question="Do I need to charge GST as a contractor?">
-              If your ABN business income exceeds <strong>$75,000 per year</strong>, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO quarterly — it&apos;s not your income. If you&apos;re under $75,000, GST registration is optional.
-            </FAQItem>
-            <FAQItem value="super-contractor" question="Do contractors need to pay super?">
-              If you&apos;re an independent contractor working under your own ABN, super is optional (but recommended). However, if a business hires you primarily for your labour (rather than achieving a specific result), they may be required to pay super on your behalf. Use the &quot;Includes Super&quot; toggle to model either scenario.
-            </FAQItem>
-            <FAQItem value="hourly-rate" question="How do I calculate my contractor hourly rate?">
-              Your contractor rate should cover the benefits you lose compared to employment: super ({formatPercent(SUPER_GUARANTEE.rate, 0)}), annual leave (4 weeks), sick leave, public holidays, insurance, and admin time. A common rule of thumb: multiply an equivalent employee hourly rate by 1.4-1.6 to get your contractor rate.
-            </FAQItem>
-            <FAQItem value="deductions" question="Can contractors claim business deductions?">
-              Yes. Contractors can deduct legitimate business expenses from their assessable income — including equipment, home office, vehicle, phone, software, professional development, and insurance. This calculator estimates tax on your gross income; your actual tax may be lower after claiming deductions on your tax return.
-            </FAQItem>
-            <FAQItem value="payg-instalments" question="How do PAYG instalments work for contractors?">
-              The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on <strong>28 October, 28 February, 28 April, and 28 July</strong>. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Paying a PAYG instalment late attracts the general interest charge &mdash; <strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} a year</strong> for {GENERAL_INTEREST_CHARGE.quarter}, reset every quarter.
-            </FAQItem>
-            <FAQItem value="abn-tfn" question="Do I need both an ABN and a TFN as a contractor?">
-              Yes. Your <strong>Tax File Number (TFN)</strong> is used for your personal income tax return. Your <strong>Australian Business Number (ABN)</strong> is required on every invoice you issue. Clients who pay contractors without a valid ABN on the invoice must withhold <strong>47%</strong> of the payment and remit it to the ATO.
-            </FAQItem>
-            <FAQItem value="contractor-insurance" question="What insurance do contractors need in Australia?">
-              Most contractors carry 3 types of insurance: <strong>public liability</strong> ($5–$20 million cover, costing $300–$1,200/year), <strong>professional indemnity</strong> (required for consultants, accountants, and IT professionals, costing $400–$2,000/year), and <strong>income protection</strong> (replaces up to 75% of income during illness or injury). Workers&apos; compensation is compulsory in some states for contractors who employ others.
-            </FAQItem>
-          </Accordion>
+          <FaqAccordion faqs={CONTRACTOR_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="leading-relaxed text-warmgray" />
         </section>
 
         <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -708,16 +679,5 @@ function ResultCard({ title, desc }: { title: string; desc: string }) {
       <h3 className="mb-2 font-semibold text-navy">{title}</h3>
       <p className="text-sm leading-relaxed text-warmgray">{desc}</p>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent>
-        <p className="leading-relaxed text-warmgray">{children}</p>
-      </AccordionContent>
-    </AccordionItem>
   );
 }

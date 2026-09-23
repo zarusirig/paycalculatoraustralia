@@ -3,11 +3,23 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ChevronRight, Newspaper } from "lucide-react";
-import { formatNewsDate, getAllNews, NEWS_CATEGORIES, type NewsCategory } from "@/lib/news";
+import type { NewsCategory } from "@/lib/news";
 
-export default function NewsIndexPage() {
+/**
+ * G6: the list arrives as props from the server page. Importing lib/news here
+ * would ship every constants module its entries quote to the browser.
+ */
+export type NewsIndexItem = {
+  slug: string;
+  headline: string;
+  description: string;
+  category: NewsCategory;
+  dateLabel: string;
+};
+
+export default function NewsIndexPage({ items, categories }: { items: NewsIndexItem[]; categories: NewsCategory[] }) {
   const [filter, setFilter] = useState<NewsCategory | "All">("All");
-  const articles = getAllNews().filter((a) => filter === "All" || a.category === filter);
+  const articles = items.filter((a) => filter === "All" || a.category === filter);
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -32,7 +44,7 @@ export default function NewsIndexPage() {
         </header>
 
         <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter news by category">
-          {(["All", ...NEWS_CATEGORIES] as const).map((cat) => (
+          {(["All", ...categories] as const).map((cat) => (
             <button
               key={cat}
               type="button"
@@ -56,7 +68,7 @@ export default function NewsIndexPage() {
               <h2 className="text-xl font-bold leading-snug" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                 <Link href={`/news/${a.slug}/`} className="text-navy hover:text-eucalyptus-dark hover:underline">{a.headline}</Link>
               </h2>
-              <p className="mt-1 text-sm text-warmgray-light">{formatNewsDate(a.datePublished)}</p>
+              <p className="mt-1 text-sm text-warmgray-light">{a.dateLabel}</p>
               <p className="mt-2 text-warmgray leading-relaxed">{a.description}</p>
             </li>
           ))}

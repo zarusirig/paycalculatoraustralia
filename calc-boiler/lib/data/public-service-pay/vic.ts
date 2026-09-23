@@ -35,7 +35,7 @@ export const VIC: Jurisdiction = {
 
   metaTitle: "VPS Salary 2026 — VPS 1–7 & STS Pay Rates and Salary Bands",
   metaDescription:
-    "VPS pay rates from 1 May 2026: VPS 3 $81,496–$98,955, VPS 4 $100,894–$114,476, VPS 5 $116,413–$140,849, VPS 6 $142,790–$191,084. Every pay point from VPS 1.1.1 to 7.3.5 (including STS) from the VPS Agreement 2024, with take-home pay.",
+    "VPS pay rates from 1 May 2026: VPS 3 $81,496–$98,955, VPS 4 $100,894–$114,476, VPS 5 $116,413–$140,849, VPS 6 $142,790–$191,084, with take-home pay.",
 
   instrument:
     "Victorian Public Service Enterprise Agreement 2024. Grades and value ranges are defined in Schedule C, and the classification and value range standard descriptors sit alongside the salary table.",

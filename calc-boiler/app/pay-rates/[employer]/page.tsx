@@ -11,6 +11,7 @@ import {
   getEmployerPay,
   type EmployerPay,
 } from "@/lib/data/employer-pay";
+import { fitDescription } from "@/lib/seo-title";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -32,7 +33,13 @@ function titleFor(e: EmployerPay) {
 
 function descriptionFor(e: EmployerPay) {
   const entry = entryRate(e);
-  return `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level} under the ${e.instrument.title}. Every level, junior rates by age, penalty rates and weekly pay. Verified ${e.verifiedOn}.`;
+  const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level}`;
+  return fitDescription(
+    `${lead} under the ${e.instrument.title}. Every level, junior rates by age, penalty rates and weekly pay. Verified ${e.verifiedOn}.`,
+    `${lead} under the ${e.instrument.title}. Every level, junior rates by age, penalty rates and weekly pay.`,
+    `${lead} under the ${e.instrument.title}. Every level, junior and penalty rates.`,
+    `${lead}. Every level, junior rates by age, penalty rates and weekly pay.`,
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

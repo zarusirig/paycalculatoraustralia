@@ -1,13 +1,33 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SALARY_SACRIFICE_VS_MORTGAGE_FAQS } from "./salary-sacrifice-vs-mortgage-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
+
+// Scenario table, computed rather than typed. The old figures ($98K after 10
+// years from $6,000 a year) exceeded even the pre-tax contributions grown at
+// the gross return, and the mortgage row did not match any repayment model.
+// Model: $6,000 a year of pre-tax salary.
+//  - Super: 15% contributions tax, then growth at 7.5% less 15% earnings tax.
+//  - Mortgage: the same $6,000 taxed at 30% + 2% Medicare, paid off the loan;
+//    the value is the equity built (repayments plus interest avoided).
+const PRE_TAX = 6_000;
+const SUPER_NET_RETURN = 0.075 * (1 - 0.15);
+const MARGINAL = 0.3 + MEDICARE_LEVY.rate;
+const fv = (annual: number, rate: number, years: number) => (annual * ((1 + rate) ** years - 1)) / rate;
+const SCENARIOS = [0.05, 0.06, 0.07].flatMap((rate) =>
+  [10, 20].map((years) => ({
+    key: `${rate}-${years}`,
+    superValue: fv(PRE_TAX * 0.85, SUPER_NET_RETURN, years),
+    mortgageValue: fv(PRE_TAX * (1 - MARGINAL), rate, years),
+  })),
+);
+const k = (v: number) => `$${Math.round(v / 1000)}K`;
+const CAP = SUPER_GUARANTEE.concessionalCap;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -96,35 +116,20 @@ export default function SalarySacrificeVsMortgagePage() {
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       <tr>
                         <td className="px-4 py-3 font-semibold text-navy bg-sandstone">Salary sacrifice into super*</td>
-                        <td className="px-4 py-3 border-l text-center">$98K</td>
-                        <td className="px-4 py-3 border-l text-center">$262K</td>
-                        <td className="px-4 py-3 border-l text-center">$98K</td>
-                        <td className="px-4 py-3 border-l text-center">$262K</td>
-                        <td className="px-4 py-3 border-l text-center">$98K</td>
-                        <td className="px-4 py-3 border-l text-center">$262K</td>
+                        {SCENARIOS.map((c) => (<td key={c.key} className="px-4 py-3 border-l text-center">{k(c.superValue)}</td>))}
                       </tr>
                       <tr>
                         <td className="px-4 py-3 font-semibold text-navy bg-sandstone">Extra mortgage repayment**</td>
-                        <td className="px-4 py-3 border-l text-center">$77K</td>
-                        <td className="px-4 py-3 border-l text-center">$198K</td>
-                        <td className="px-4 py-3 border-l text-center">$82K</td>
-                        <td className="px-4 py-3 border-l text-center">$219K</td>
-                        <td className="px-4 py-3 border-l text-center">$87K</td>
-                        <td className="px-4 py-3 border-l text-center">$243K</td>
+                        {SCENARIOS.map((c) => (<td key={c.key} className="px-4 py-3 border-l text-center">{k(c.mortgageValue)}</td>))}
                       </tr>
                       <tr className="bg-eucalyptus/5 font-semibold">
                         <td className="px-4 py-3 font-semibold text-navy bg-sandstone">Super advantage</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$21K</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$64K</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$16K</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$43K</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$11K</td>
-                        <td className="px-4 py-3 border-l text-center text-eucalyptus-dark">+$19K</td>
+                        {SCENARIOS.map((c) => (<td key={c.key} className="px-4 py-3 border-l text-center text-eucalyptus-dark">+{k(c.superValue - c.mortgageValue)}</td>))}
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">*Super assumes 7.5% gross return, 15% contributions tax, 15% earnings tax, net ~6.1% after-tax return. **Mortgage saving represents total interest avoided (guaranteed, tax-free). Both assume 30% marginal tax rate. Figures are approximate and rounded.</p>
+                <p className="text-xs text-warmgray mt-2">*Super: $6,000 a year of pre-tax salary, less 15% contributions tax ($5,100 invested), growing at 7.5% less 15% earnings tax (about 6.4% a year). **Mortgage: the same $6,000 taxed at 30% plus the 2% Medicare levy ($4,080 a year) paid off the loan; the figure is the equity built, i.e. extra repayments plus the interest they avoid (guaranteed, tax-free). Figures are approximate and rounded, ignore fees, and assume constant returns.</p>
               </div>
               <p>
                 At a <strong>5% mortgage rate</strong>, salary sacrifice clearly wins over both timeframes. At <strong>7%</strong>, the super advantage narrows significantly &mdash; and for someone who values accessibility, the mortgage option becomes more compelling despite the lower headline number.
@@ -138,7 +143,7 @@ export default function SalarySacrificeVsMortgagePage() {
                 <li><strong>High marginal tax rate (37% or 45%):</strong> The tax saving on contributions is 22&ndash;32 cents per dollar, creating a significant head start that compound growth amplifies over time.</li>
                 <li><strong>Low mortgage interest rate (under 5%):</strong> When your mortgage rate is low, the guaranteed return from extra repayments is modest, making super&apos;s higher expected return more attractive.</li>
                 <li><strong>Long time to retirement (15+ years):</strong> More time means more compounding. The locked nature of super is less of a concern when preservation age is distant.</li>
-                <li><strong>Unused concessional cap space:</strong> If you haven&apos;t been maximising your $30,000 concessional cap (and have unused carry-forward amounts from previous years), the tax benefit is especially valuable.</li>
+                <li><strong>Unused concessional cap space:</strong> If you haven&apos;t been maximising your {formatAUD(CAP)} concessional cap (and have unused carry-forward amounts from previous years), the tax benefit is especially valuable.</li>
               </ul>
             </section>
 
@@ -149,7 +154,7 @@ export default function SalarySacrificeVsMortgagePage() {
                 <li><strong>High mortgage interest rate (6%+):</strong> A guaranteed 6&ndash;7% tax-free return is hard to beat, especially on a risk-adjusted basis. Super returns are not guaranteed and can be negative in any given year.</li>
                 <li><strong>Close to retirement (under 10 years):</strong> Less time for compounding reduces super&apos;s advantage, and you may need accessible equity for retirement planning.</li>
                 <li><strong>Need for financial flexibility:</strong> Extra mortgage payments build accessible equity (via redraw or offset). Super is locked until preservation age. If you might need the money for renovations, emergencies, or career changes, mortgage equity is more useful.</li>
-                <li><strong>Low marginal tax rate (16% or 19% bracket):</strong> The tax saving from salary sacrifice (just 1&ndash;4 cents per dollar) barely justifies locking money away for decades.</li>
+                <li><strong>Low marginal tax rate (15% bracket):</strong> The 15% contributions tax matches the 15% income tax rate, so the saving from salary sacrifice is at most the 2c Medicare levy per dollar, which barely justifies locking money away for decades.</li>
                 <li><strong>Large existing mortgage:</strong> If your mortgage is large relative to income, reducing the principal faster saves substantial interest over the remaining loan term.</li>
               </ul>
             </section>
@@ -161,7 +166,7 @@ export default function SalarySacrificeVsMortgagePage() {
                 For many Australians, the optimal strategy is a combination of both:
               </p>
               <ol>
-                <li><strong>Salary sacrifice to the cap:</strong> Contribute enough to maximise the tax benefit, particularly if you are in the 37% or 45% bracket. For FY2025-26, the concessional cap is <strong>$30,000</strong> (including employer SG). If your employer contributes $12,000 in SG, you can salary sacrifice up to $18,000 before hitting the cap.</li>
+                <li><strong>Salary sacrifice to the cap:</strong> Contribute enough to maximise the tax benefit, particularly if you are in the 37% or 45% bracket. For FY{SITE_CONFIG.financialYear}, the concessional cap is <strong>{formatAUD(CAP)}</strong> (including employer SG). If your employer contributes $12,000 in SG, you can salary sacrifice up to {formatAUD(CAP - 12_000)} before hitting the cap.</li>
                 <li><strong>Direct remaining surplus to the mortgage:</strong> Any additional savings beyond the super cap (or beyond what you are comfortable locking away) goes to extra mortgage payments for the guaranteed, accessible return.</li>
                 <li><strong>Use an offset account:</strong> Rather than making direct extra repayments, park surplus cash in a mortgage offset account. This provides the same interest saving while keeping the money instantly accessible.</li>
               </ol>
@@ -173,38 +178,7 @@ export default function SalarySacrificeVsMortgagePage() {
             {/* SECTION 6: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="which-better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is salary sacrifice into super better than paying off a mortgage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It depends on your marginal tax rate, mortgage rate, and time to retirement. Generally, salary sacrifice provides a better long-term outcome when your tax rate is high (37%+) and your mortgage rate is below 5&ndash;6%. Extra mortgage payments win when rates are high and you need financial flexibility.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tax-benefit" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much tax do I save by salary sacrificing into super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrifice contributions are taxed at 15% inside super. If your marginal rate is 30%, you save 15 cents per dollar. At 37%, you save 22 cents. At 45%, you save 30 cents (plus the 2% Medicare Levy saving). For someone in the 37% bracket salary sacrificing $500/month, that is <strong>$1,320 per year</strong> in tax savings.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="access-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I access salary sacrificed super to pay off my mortgage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Not until you reach preservation age (currently 60) and meet a condition of release such as retirement. There is no provision to withdraw super for mortgage payments under normal circumstances. Early access is only available in cases of severe financial hardship, terminal illness, or compassionate grounds as determined by the ATO.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="cap" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the maximum I can salary sacrifice into super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The concessional contributions cap is <strong>$30,000 per year</strong> for FY2025-26. This includes employer SG contributions and salary sacrifice. Unused cap amounts from the previous 5 financial years can be carried forward if your total super balance is under $500,000. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model your specific situation.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hybrid" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I do both salary sacrifice and extra mortgage payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    A hybrid approach often works best. Salary sacrifice enough to capture the tax benefit (especially if in the 37% or 45% bracket), then direct surplus cash to mortgage repayments or an offset account. This balances the tax advantage with financial accessibility.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SALARY_SACRIFICE_VS_MORTGAGE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

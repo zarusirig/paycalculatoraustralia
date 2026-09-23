@@ -71,7 +71,7 @@ export default function PayrollTaxCalculator({
           super, taxable fringe benefits and taxable contractor payments, less exempt wages.
         </p>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
             <div>
               <label htmlFor="pt-state" className="mb-1 block text-sm font-medium text-navy">State or territory</label>

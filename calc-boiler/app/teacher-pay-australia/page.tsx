@@ -9,20 +9,22 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/teacher-pay-australia/`;
 
 // Every figure in the title and description comes from the state files, so the
-// snippet cannot promise a number the page does not show.
+// snippet cannot promise a number the page does not show. Title, H1 and
+// description stay national (no state names): state queries belong to the
+// /teacher-pay-australia/{state}/ pages, which the rows below link to by name.
 const summary = teacherHubSummary();
 const TITLE = `Teacher Salary Australia ${summary.year} — Teacher Pay by State (All 8)`;
 const DESCRIPTION = `Teacher salaries in every Australian state: graduates start on ${formatAUD(
   summary.lowestGraduate.graduate,
 )} to ${formatAUD(summary.highestGraduate.graduate)} and the classroom scale tops out at ${formatAUD(
   summary.lowestTop.top,
-)} to ${formatAUD(summary.highestTop.top)}. NSW, VIC, QLD, WA, SA, TAS, ACT and NT pay scales, each from its agreement, with take-home pay.`;
+)} to ${formatAUD(summary.highestTop.top)}, with take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

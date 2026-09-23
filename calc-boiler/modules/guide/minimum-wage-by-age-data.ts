@@ -14,6 +14,7 @@ import {
   type MinWageAge,
 } from "@/lib/constants/minimum-wage";
 import { ADULT_AGE, NMW_ORDER, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
+import { fitDescription } from "@/lib/seo-title";
 
 export const money = (v: number) => formatAUD(v, 2);
 export const pctLabel = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
@@ -113,7 +114,13 @@ export function spokeTitle(age: MinWageAge): string {
 export function spokeDescription(age: MinWageAge): string {
   const s = ageSummary(age);
   const lead = aAge(age).replace(/^a/, "A");
-  return `${lead}-year-old's minimum wage from ${NMW_ORDER.operativeFrom}: ${money(s.nmw.hourly)}/hr (${money(s.nmw.casualHourly)} casual) with no award, ${money(s.retail.hourly)} under the retail award${age === 20 ? " (first 6 months)" : ""}, ${money(s.fastFood.hourly)} in fast food and ${money(s.hospitality.hourly)} in hospitality. Weekly pay at 10, 15 and 20 hours, and tax.`;
+  const rates = `${money(s.retail.hourly)} under the retail award${age === 20 ? " (first 6 months)" : ""}, ${money(s.fastFood.hourly)} in fast food and ${money(s.hospitality.hourly)} in hospitality`;
+  return fitDescription(
+    `${lead}-year-old's minimum wage from ${NMW_ORDER.operativeFrom}: ${money(s.nmw.hourly)}/hr (${money(s.nmw.casualHourly)} casual) with no award, ${rates}. Weekly pay at 10, 15 and 20 hours, and tax.`,
+    `${lead}-year-old's minimum wage from ${NMW_ORDER.operativeFrom}: ${money(s.nmw.hourly)}/hr (${money(s.nmw.casualHourly)} casual) with no award, ${rates}.`,
+    `${lead}-year-old's minimum wage from ${NMW_ORDER.operativeFrom}: ${money(s.nmw.hourly)}/hr with no award, ${rates}.`,
+    `${lead}-year-old's minimum wage from ${NMW_ORDER.operativeFrom}: ${money(s.nmw.hourly)}/hr with no award, ${money(s.retail.hourly)} in retail${age === 20 ? " (first 6 months)" : ""}, ${money(s.fastFood.hourly)} in fast food, ${money(s.hospitality.hourly)} in hospitality.`,
+  );
 }
 
 export interface Faq {

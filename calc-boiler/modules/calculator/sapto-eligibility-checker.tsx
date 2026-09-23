@@ -113,7 +113,7 @@ export default function SaptoEligibilityChecker() {
             </div>
           </fieldset>
 
-          <fieldset className="grid sm:grid-cols-2 gap-4">
+          <fieldset className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <legend className="text-sm font-semibold text-navy mb-2 sm:col-span-2">2. Your situation and rebate income</legend>
             <div>
               <label htmlFor="sapto-el-status" className="block text-sm font-medium text-navy mb-1">Situation</label>

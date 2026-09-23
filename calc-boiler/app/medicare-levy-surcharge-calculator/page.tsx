@@ -15,14 +15,14 @@ const FAMILY = formatAUD(familyBaseThreshold(0));
 // Canonical page for "medicare levy surcharge" intent. /medicare-levy/ owns the
 // 2% levy itself and links here for the surcharge.
 const TITLE = `Medicare Levy Surcharge Calculator ${MLS_INCOME_YEAR}: Thresholds & Rates`;
-const DESCRIPTION = `Medicare levy surcharge calculator for ${MLS_INCOME_YEAR}: 1% to 1.5% above ${SINGLE} (singles) or ${FAMILY} (families) without hospital cover. Income for MLS purposes, family and child thresholds, and whether cover is cheaper than the surcharge.`;
+const DESCRIPTION = `Medicare levy surcharge calculator for ${MLS_INCOME_YEAR}: 1% to 1.5% above ${SINGLE} (singles) or ${FAMILY} (families) without hospital cover, and whether cover is cheaper.`;
 const LAST = GUIDE_AUTHORSHIP["medicare-levy-surcharge-calculator"].lastReviewed;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

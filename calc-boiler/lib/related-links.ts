@@ -380,7 +380,7 @@ const CLUSTERS: Cluster[] = [
   {
     match: (p) => p.startsWith("/public-service-pay-scales/"),
     links: [
-      { href: "/public-service-pay-scales/", title: "Public Service Pay Scales", blurb: "APS, VPS and Queensland classifications side by side." },
+      { href: "/public-service-pay-scales/", title: "Public Service Pay Scales", blurb: "APS and every state and territory classification side by side." },
       TAKE_HOME,
       { href: "/salary-package-calculator/", title: "Salary Package Calculator", blurb: "Turn a package including super into base salary and take-home." },
       { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "What your accrued leave is worth." },

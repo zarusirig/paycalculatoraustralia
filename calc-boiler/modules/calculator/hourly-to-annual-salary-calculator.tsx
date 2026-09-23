@@ -6,7 +6,8 @@ import { FEATURED_HOURLY_RATES, HOURLY_RATE_PAGES, hourlyRateSlug } from "@/lib/
 import { annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { HOURLY_TO_ANNUAL_FAQS } from "./hourly-to-annual-salary-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -18,7 +19,6 @@ import {
   SOURCES,
   SITE_CONFIG,
   TAX_BRACKETS,
-  HECS_HELP,
 } from "@/lib/constants";
 import { NMW, NMW_DECISION } from "@/lib/constants/minimum-wage";
 
@@ -95,7 +95,7 @@ export default function HourlyToAnnualCalculatorPage() {
         <section className="max-w-4xl mx-auto">
           <Card className="shadow-md border-t-4 border-t-eucalyptus">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-[1fr_1.5fr] gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
                 {/* Inputs */}
                 <div className="space-y-6">
@@ -156,7 +156,7 @@ export default function HourlyToAnnualCalculatorPage() {
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">
                       <h3 className="font-semibold text-navy text-sm">Your True Take-Home Pay</h3>
                     </div>
-                    <div className="p-0">
+                    <div className="p-0 overflow-x-auto">
                       <table className="w-full text-sm">
                         <thead className="bg-white border-b border-sandstone-dark/10">
                           <tr>
@@ -355,7 +355,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Under the National Employment Standards (NES), the maximum ordinary hours for a full-time employee is <strong>38 hours per week</strong>, equal to 7.6 hours per day across a 5-day working week. Some Enterprise Agreements and older contracts specify 40 hours, producing 2,080 annual hours instead of the standard 1,976 hours.
             </p>
-            <div className="grid sm:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
               <div className="bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm text-center">
                 <div className="text-3xl font-bold text-navy mb-1">38</div>
                 <div className="text-sm font-semibold text-eucalyptus-dark uppercase">Hours / Week</div>
@@ -491,7 +491,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Permanent employees receive paid leave, so the 52-week multiplier accurately reflects their annual earnings, while casual employees are only paid for weeks actually worked.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white border text-warmgray border-sandstone-dark/20 rounded-xl p-5 shadow-sm">
                 <h3 className="font-semibold text-navy mb-2">Permanent Employees (Full & Part-Time)</h3>
                 <p className="text-sm mb-3">If you are perm on an hourly rate, you get paid for 52 weeks of the year, even when you aren&apos;t working, because you are legally entitled to:</p>
@@ -552,7 +552,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="mb-4 text-warmgray">
               These Australian tax calculators handle the next steps after converting your hourly rate to an annual salary for FY{SITE_CONFIG.financialYear}.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/take-home-pay-calculator/" className="block bg-white border border-sandstone-dark/20 rounded-xl p-5 shadow-sm hover:border-eucalyptus transition-colors">
                 <h3 className="font-semibold text-navy mb-1">Take-Home Pay Calculator</h3>
                 <p className="text-sm text-warmgray">Enter your annual gross salary to see your net pay after income tax, Medicare levy, and HECS-HELP repayments.</p>
@@ -575,40 +575,7 @@ export default function HourlyToAnnualCalculatorPage() {
           {/* H2: FAQs */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="calc" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How do you calculate annual salary from an hourly rate?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Multiply your hourly rate by the number of hours you work each week, then multiply that result by 52 (the number of weeks in a year). For example, $40/hr &times; 38 hours &times; 52 weeks = <strong>$79,040</strong> gross per year.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="nes" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is a standard working week in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The National Employment Standards (NES) define maximum ordinary hours as <strong>38 hours per week</strong> for full-time employees. This equates to 7.6 hours per day over a 5-day working week, producing <strong>1,976</strong> ordinary hours per year.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does my hourly rate include superannuation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. For permanent employees, the employer pays an additional <strong>12%</strong> superannuation guarantee on top of your ordinary time earnings. Casual employees also receive the 12% SG rate on top of their hourly rate, which already includes 25% casual loading.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="overtime" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Should I include overtime in my annual salary calculation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The standard conversion (hourly &times; hours &times; 52) covers only ordinary time earnings. Overtime is paid at penalty rates of <strong>1.5x or 2x</strong> and is not guaranteed weekly. Calculate overtime separately and add it to your base annual salary. Superannuation is generally calculated on ordinary time earnings only, not on overtime hours.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="part-time" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How do I convert a part-time hourly rate to a full-time equivalent?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The hourly rate does not change between part-time and full-time. To find the full-time equivalent (FTE) salary, multiply your hourly rate by 38 hours &times; 52 weeks. A part-time worker earning $35/hr at 20 hours per week has an actual annual salary of <strong>$36,400</strong>, but the FTE salary is <strong>$69,160</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="casual-loading" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How does casual loading affect the annual salary calculation?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Casual loading of <strong>25%</strong> is added to the base hourly rate to compensate for the absence of paid leave. A base rate of $30/hr becomes $37.50/hr with casual loading. The annual gross at 38 hours is <strong>$74,100</strong>, but this includes compensation for 4 weeks of annual leave and 10 days of personal leave that casuals do not receive as paid time off.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="tax-threshold" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>At what hourly rate do I start paying income tax?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> per year. At 38 hours per week, you start paying income tax at an hourly rate above <strong>$9.21/hr</strong>. Every dollar of assessable income above $18,200 is taxed at the applicable marginal rate, starting at {Math.round(TAX_BRACKETS[1].rate * 100)}% for income between {formatAUD(TAX_BRACKETS[1].min)} and {formatAUD(TAX_BRACKETS[1].max)} in FY{SITE_CONFIG.financialYear}.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does my HECS-HELP debt affect this conversion?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> for FY{SITE_CONFIG.financialYear}. At $30/hr (38 hours) your annual salary of <strong>$59,280</strong> is below the threshold, so no repayment applies. At $40/hr it reaches $79,040 and the marginal rate of <strong>15c per dollar</strong> above the threshold applies to the excess. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark underline hover:text-navy">HECS-HELP Calculator</Link> to see the exact repayment amount.</p></AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={HOURLY_TO_ANNUAL_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <section className="bg-eucalyptus-light/30 rounded-2xl p-8 text-center mt-12">

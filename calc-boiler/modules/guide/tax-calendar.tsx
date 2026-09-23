@@ -1,4 +1,3 @@
-"use client";
 // Every date on this page comes from lib/constants/tax-calendar-2026-27.ts,
 // which derives the return dates from RETURN_2026 and the last quarterly super
 // dates from SUPER_GUARANTEE_CHARGE.legacy. ATO source URLs for each date are

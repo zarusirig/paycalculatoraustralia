@@ -159,3 +159,87 @@ export function hpssOccupation(input: HpssOccupationInput): Occupation {
     ...(input.metaTitle ? { metaTitle: input.metaTitle } : {}),
   };
 }
+
+// --- G6: HPSS health professional classification structure from 1 October 2026 ---
+/**
+ * Determination PR814029 (Expert Panel, 7 September 2026, AM2024/20), issued
+ * with decision [2026] FWCFB 231; read in full on 24 September 2026. It
+ * replaces clause 17 for Health Professional employees with a structure keyed
+ * to the AQF level of the profession's standard minimum qualification
+ * (Schedule B) and years of experience, and "comes into operation on
+ * 1 October 2026" — per employee from the first full pay period starting on or
+ * after that date. These are the FIRST-STAGE rates: [2026] FWCFB 123 [80]
+ * (26 May 2026) phases the rest in "from 30 June in each of 2027, 2028, 2029
+ * and 2030". Translation: clause J.4.1 (old Levels 1 and 2) and J.4.2 (old
+ * Levels 3 and 4); J.4.3 keeps anyone on their old rate if it is higher.
+ * Weekly (full-time) and hourly exactly as clauses 17.1 and 17.2 print them.
+ */
+export interface HpssNewRate {
+  label: string;
+  weekly: number;
+  hourly: number;
+}
+
+const band = (aqf: number, w: [number, number, number, number], h: [number, number, number, number]): HpssNewRate[] =>
+  ["1st year", "2nd – 3rd year", "4th – 6th year", "7th year+"].map((y, i) => ({
+    label: `Level 1 — AQF ${aqf} — ${y}`,
+    weekly: w[i],
+    hourly: h[i],
+  }));
+
+export const HPSS_OCT_2026_LEVEL_1: Record<5 | 6 | 7 | 8 | 9, HpssNewRate[]> = {
+  5: band(5, [1232.7, 1308.8, 1426.0, 1541.3], [32.44, 34.44, 37.53, 40.56]),
+  6: band(6, [1232.7, 1308.8, 1483.3, 1659.3], [32.44, 34.44, 39.03, 43.67]),
+  7: band(7, [1308.8, 1409.0, 1565.3, 1689.5], [34.44, 37.08, 41.19, 44.46]),
+  8: band(8, [1337.1, 1444.9, 1584.9, 1721.4], [35.19, 38.02, 41.71, 45.3]),
+  9: band(9, [1444.9, 1545.2, 1659.3, 1755.0], [38.02, 40.66, 43.67, 46.18]),
+};
+
+export const HPSS_OCT_2026_SENIOR: HpssNewRate[] = [
+  { label: "Level 2.1 — Senior Clinician, Specialist, Supervisor or Educator (under 5 years at Level 2)", weekly: 1945.4, hourly: 51.19 },
+  { label: "Level 2.2 — Senior Clinician, Specialist, Supervisor or Educator (5 years or more)", weekly: 1983.2, hourly: 52.19 },
+  { label: "Level 3 — Advanced Clinician, Senior Specialist or Section Manager", weekly: 1983.2, hourly: 52.19 },
+  { label: "Level 4 — Manager", weekly: 2499.1, hourly: 65.77 },
+];
+
+/** Schedule B.3 standard minimum qualification, for the professions our pages cover. */
+export const HPSS_PROFESSION_AQF: Record<string, readonly number[]> = {
+  Physiotherapist: [7],
+  "Occupational Therapist": [7],
+  Pharmacist: [7],
+  "Exercise Physiologist": [7],
+  Psychologist: [9],
+  Dietitian: [7, 8, 9],
+  "Social Worker": [7, 8, 9],
+  "Speech Pathologist": [7, 8, 9],
+};
+
+export const HPSS_OCT_2026 = {
+  determination: "PR814029",
+  decision: "[2026] FWCFB 231",
+  decidedOn: "7 September 2026",
+  structureDecision: "[2026] FWCFB 123",
+  structureDecidedOn: "26 May 2026",
+  operativeFrom: "1 October 2026",
+  laterStages: ["30 June 2027", "30 June 2028", "30 June 2029", "30 June 2030"],
+  determinationUrl: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814029.pdf",
+  decisionUrl: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb231.pdf",
+  structureDecisionUrl: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb123.pdf",
+  reviewUrl: "https://www.fwc.gov.au/hearings-decisions/major-cases/gender-based-undervaluation-priority-awards-review",
+  /**
+   * Clause J.4.1(e): an AQF Level 7 profession with 3-year-degree entry
+   * (e.g. physiotherapy, occupational therapy). Old label → new band index.
+   */
+  translationAqf7ThreeYear: [
+    { from: "Level 1 pay point 2", to: 0 },
+    { from: "Level 1 pay point 3", to: 1 },
+    { from: "Level 1 pay point 4", to: 1 },
+    { from: "Level 1 pay point 5", to: 2 },
+    { from: "Level 1 pay point 6", to: 2 },
+    { from: "Level 2 pay point 1", to: 2 },
+    { from: "Level 2 pay point 2", to: 3 },
+    { from: "Level 2 pay point 3", to: 3 },
+    { from: "Level 2 pay point 4", to: 3 },
+  ],
+} as const;
+// --- end G6 ---

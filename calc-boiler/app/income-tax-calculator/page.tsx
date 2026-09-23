@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import IncomeTaxCalculatorPage from "@/modules/calculator/income-tax-calculator";
+import IncomeTaxCalculatorContent from "@/modules/calculator/income-tax-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import {
@@ -17,6 +18,7 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/income-tax-calculator/`;
@@ -185,7 +187,7 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("income-tax-calculator"),
   inLanguage: "en-AU",
 };
 
@@ -210,7 +212,9 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <IncomeTaxCalculatorPage faqs={FAQS} />
+      <IncomeTaxCalculatorPage>
+        <IncomeTaxCalculatorContent faqs={FAQS} />
+      </IncomeTaxCalculatorPage>
     </>
   );
 }

@@ -18,6 +18,25 @@
 // rates remain the 1 January 2025 column of the 2022 agreement — which is also
 // the range SA Health quotes on its careers salaries page.
 //
+// UPDATE, 24 SEPTEMBER 2026 (H2 re-verification)
+// ----------------------------------------------
+// Two facts change what "in force" means, and neither comes with an official
+// dollar table:
+//   1. SA Health's own explainer for the proposed 2026 agreement says "The South
+//      Australian Government has previously determined to provide administrative
+//      increases of 4% in January 2026 and a further 2% in October 2026". Those
+//      increases sit outside the 2022 agreement, so pay since January 2026 is
+//      above the 1/1/2025 column reproduced below.
+//   2. The proposed 2026 agreement was balloted 20–29 July 2026 and was not
+//      approved by employees (ABC News, 30 July 2026). SA Health's bargaining
+//      page (last updated 23 July 2026) records no later step.
+// SA Health has not published the post-January-2026 dollar rates (its careers
+// salaries page still quotes $74,831 – $211,200, the 1/1/2025 figures). The
+// ANMF (SA Branch) publishes a schedule, but it is a union document, so per the
+// no-guessing rule we neither reproduce nor compute the new figures. The table
+// stays on the last officially published column and the page says plainly that
+// current pay is higher.
+//
 // TRANSCRIPTION CHECK
 // -------------------
 // The 2022 agreement PDF is a scan, so the salary table was read by OCR. Two
@@ -58,11 +77,11 @@ export const SA_NURSING_PAY: NursingStateData = {
       name: "Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022",
       effectiveFrom: "first full pay period after 1 January 2025",
       nextIncrease:
-        "none scheduled under this agreement — it nominally expired on 31 July 2025 and a replacement was balloted in July 2026",
+        "a further 2% administrative increase in October 2026, determined by the SA Government outside the agreement (on top of the 4% administrative increase from January 2026) — SA Health has not published the resulting dollar rates",
       tribunal: "South Australian Employment Tribunal",
       source: EA_SOURCE,
       note:
-        "Appendix 6 prints four columns, each 3% above the last: 1/1/2022, 1/1/2023, 1/1/2024 and 1/1/2025. The 1/1/2025 column is the last one and the one still in force.",
+        "Appendix 6 prints four columns, each 3% above the last: 1/1/2022, 1/1/2023, 1/1/2024 and 1/1/2025. The 1/1/2025 column is the last one the agreement prints. The SA Government has since paid a 4% administrative increase from January 2026, so current pay is 4% above these figures; SA Health has not published the new table.",
     },
   ],
 
@@ -252,20 +271,34 @@ export const SA_NURSING_PAY: NursingStateData = {
   unverified: [
     "An hourly rate for any SA classification",
     "Afternoon, weekend and public holiday penalty rates, which sit in the parent award rather than the agreement",
-    "Any rate under the proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026, which had not been recorded as approved by the South Australian Employment Tribunal when this page was checked",
+    "The dollar rates paid since the SA Government's 4% administrative increase from January 2026, and after the further 2% due in October 2026. SA Health confirms both percentages but had not published the resulting pay table when this page was checked on 24 September 2026, so the table above is the last officially published column (1 January 2025) and is 4% below current pay",
+    "Any rate under the proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026, which employees voted down in the 20–29 July 2026 ballot (reported 30 July 2026)",
   ],
 
-  verifiedOn: "28 August 2026",
+  verifiedOn: "24 September 2026",
 
   intro:
-    "South Australian public sector nurses and midwives are paid under an enterprise agreement approved by the South Australian Employment Tribunal, and SA is the one state on this page where the current instrument has passed its nominal expiry. The 2022 agreement's last scheduled increase landed on 1 January 2025; a replacement went to ballot in July 2026 and takes effect only once the Tribunal approves it. Until then the figures below are what SA Health pays.",
+    "South Australian public sector nurses and midwives are paid under the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025. The figures below are its last published column, from 1 January 2025. Since then the SA Government has paid a 4% administrative increase from January 2026 and has committed a further 2% from October 2026, so current pay is higher than this table — SA Health confirms the percentages but has not published the new dollar rates. A proposed 2026 agreement was voted down by employees in July 2026, so bargaining continues.",
 
   highlights: [
     "SA numbers its scales RN/M1 to RN/M6 and overlaps them: a Clinical Nurse/Midwife at the bottom of Level 2 earns exactly what a Registered Nurse/Midwife earns at the 5th increment.",
     "There is no separate nurse practitioner scale — nurse practitioners sit at Level 4 with the advanced unit manager and consultant roles.",
     "Night shift Monday to Friday attracts 20.5%, set by the agreement itself in place of the award rate.",
-    "The 2022 agreement nominally expired on 31 July 2025. A replacement was balloted 20 to 29 July 2026 and had not been recorded as approved when this page was checked, so watch for a rate change.",
+    "Current pay is 4% above the table: the SA Government paid a 4% administrative increase from January 2026, and a further 2% is due in October 2026. SA Health had not published the new dollar rates when this page was checked on 24 September 2026.",
+    "The 2022 agreement nominally expired on 31 July 2025, and a proposed replacement was voted down in the 20–29 July 2026 ballot, so bargaining continues.",
   ],
 
-  extraSources: [SALARY_PAGE],
+  extraSources: [
+    SALARY_PAGE,
+    {
+      title: "Proposed Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2026 — the agreement explained (confirms 4% January 2026 and 2% October 2026 administrative increases)",
+      url: "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/resources/proposed+nursing+midwifery+south+australian+public+sector+enterprise+agreement+2026",
+      publisher: "SA Health",
+    },
+    {
+      title: "SA nurses and midwives reject government pay rise offer (30 July 2026)",
+      url: "https://www.abc.net.au/news/2026-07-30/public-sector-nurses-and-midwives-reject-sa-government-offer/106975694",
+      publisher: "ABC News",
+    },
+  ],
 };

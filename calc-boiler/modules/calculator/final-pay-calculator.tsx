@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { FINAL_PAY_FAQS } from "./final-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -16,7 +17,6 @@ import {
   formatPercent,
   SOURCES,
   SITE_CONFIG,
-  SUPER_GUARANTEE,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
@@ -125,7 +125,7 @@ export default function FinalPayCalculatorPage() {
             <Card className="shadow-md">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Final Pay</h2>
-                <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                   {/* Inputs */}
                   <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                     <div>
@@ -143,7 +143,7 @@ export default function FinalPayCalculatorPage() {
                         onChange={(e) => setYearsService(clamp(Number(e.target.value || 0), 0, 50))}
                         className="block w-24 rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm" />
                       <input type="range" min={0} max={30} step={1} value={clamp(yearsService, 0, 30)}
-                        onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setYearsService(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     </div>
                     <div>
                       <label htmlFor="leave" className="block text-sm font-medium text-navy mb-1">Unused Annual Leave (days)</label>
@@ -274,32 +274,7 @@ export default function FinalPayCalculatorPage() {
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="space-y-3">
-                <AccordionItem value="when-paid" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>When must my employer pay my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Most awards require final pay within <strong>7 days</strong> after your last day of employment. Check your award or enterprise agreement; if it has no rule, the Fair Work Act requires pay at least monthly, and payment in lieu of notice has its own timing rules.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="leave-loading" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Is leave loading included in my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes, if you would have received annual leave loading (typically <strong>17.5%</strong>) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends &mdash; the Fair Work Ombudsman says this applies even where the award, agreement or contract says it is not payable on termination.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lsl" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>When do I get long service leave in my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Long service leave entitlements vary by state. In most states, you become eligible after <strong>7-10 years</strong> of continuous service with the same employer. Some states provide a pro-rata entitlement if you are terminated after 5-7 years. Use the <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline">Leave Calculator</Link> to estimate your balance.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>How is my final pay taxed?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Outstanding wages and notice pay are taxed at your <strong>normal marginal rate</strong>. Unused annual leave is taxed at your marginal rate (or a max of 32% for pre-1993 leave). Long service leave has concessional treatment for pre-1978 accrual. Genuine redundancy pay receives a tax-free component.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-final" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Does my employer pay super on my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Employers must pay the <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} SG</strong> on ordinary time earnings up to your last day, and on any <strong>payment in lieu of notice</strong> &mdash; the ATO treats it as ordinary time earnings for every termination reason. Super is <strong>not</strong> payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to verify.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="dispute" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>What if my employer does not pay my final entitlements?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Contact the <strong>Fair Work Ombudsman</strong> on 13 13 94 or lodge a complaint online at fairwork.gov.au. The FWO can investigate, mediate, and take legal action against employers who fail to pay final entitlements. You have <strong>6 years</strong> from the date of underpayment to make a claim.</p></AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={FINAL_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             {/* Related */}

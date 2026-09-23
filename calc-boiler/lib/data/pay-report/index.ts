@@ -283,6 +283,10 @@ export const PUBLIC_SERVICE_PICKS = [
   { slug: "qld", scheduleId: "award-2026", streamId: "ao-award", entryCode: "AO1", topCode: "AO8" },
   { slug: "wa", scheduleId: "wa-csa-2026", streamId: "wa-general", entryCode: "Level 1", topCode: "Level 9" },
   { slug: "sa", scheduleId: "sa-salaried-2026", streamId: "sa-aso", entryCode: "ASO-1", topCode: "ASO-8" },
+  // H2 (24 Sep 2026): Tasmania, ACT and NT.
+  { slug: "tas", scheduleId: "tas-tssa-2025", streamId: "tas-general", entryCode: "Band 1", topCode: "Band 9" },
+  { slug: "act", scheduleId: "act-admin-2025", streamId: "act-aso", entryCode: "ASO 1", topCode: "SOG A" },
+  { slug: "nt", scheduleId: "nt-ea-2026", streamId: "nt-admin", entryCode: "AO2", topCode: "SAO2" },
 ] as const;
 
 function publicServiceRows(): PublicSectorRow[] {
@@ -353,9 +357,7 @@ export function publicSectorRows(): PublicSectorRow[] {
 
 /** Occupations we do not yet hold verified state scales for. Said on the page, never estimated. */
 export const PUBLIC_SECTOR_NOT_COVERED = [
-  "Police (no state police enterprise agreement scales are in our verified dataset yet)",
-  "Registered nurses in the ACT and NT",
-  "Public servants in Tasmania, the ACT and the NT",
+  "Police, firefighters and paramedics (their verified state tables are on the police, firefighter and paramedic pay pages, but they are not in this comparison yet)",
 ] as const;
 
 // ---------------------------------------------------------------------------

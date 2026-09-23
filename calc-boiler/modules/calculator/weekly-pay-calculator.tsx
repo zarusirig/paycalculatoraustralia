@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -18,9 +17,10 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { WEEKLY_PAY_FAQS } from "./weekly-pay-calculator-faqs";
 
 // Worked-example figures, computed from the tax engine so the copy rolls over
 // with the constants (it had frozen at FY2025-26 16%-bracket numbers).
@@ -83,7 +83,7 @@ export default function WeeklyPayCalculatorPage() {
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Weekly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
                   <PeriodToggle periods={["weekly", "annual"]} value={period} label="I'm entering my gross"
                     onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
@@ -96,7 +96,7 @@ export default function WeeklyPayCalculatorPage() {
                     </div>
                     {period === "annual" && (
                       <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
-                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     )}
                     <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
                     {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
@@ -341,38 +341,7 @@ export default function WeeklyPayCalculatorPage() {
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <FAQItem value="how" question="How is weekly pay calculated in Australia?">
-                Weekly pay is calculated by dividing your gross annual salary by 52 weeks, then subtracting PAYG income tax, the Medicare levy (2%), and any HECS-HELP repayments. An employee earning $80,000 per year receives gross weekly pay of <strong>$1,538.46</strong>. After {formatAUD(EX.netIncomeTax / 52, 2)} in income tax and {formatAUD(EX.medicareLevy / 52, 2)} in Medicare levy, the weekly take-home pay is <strong>{formatAUD(EX.weekly, 2)}</strong> in FY{SITE_CONFIG.financialYear}.
-              </FAQItem>
-              <FAQItem value="super" question="Is superannuation deducted from my weekly pay?">
-                No. Your employer pays the super guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your salary. This amount does not reduce your weekly take-home pay. The only exception is voluntary salary sacrifice contributions, where you choose to redirect part of your pre-tax salary into super to reduce your taxable income.
-              </FAQItem>
-              <FAQItem value="change" question="Why did my weekly pay change on 1 July?">
-                Weekly pay changes at the start of each financial year (1 July) because updated PAYG withholding tables take effect. For FY{SITE_CONFIG.financialYear}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds from each weekly payment.
-              </FAQItem>
-              <FAQItem value="gross-vs-net" question="What is the difference between gross weekly pay and net weekly pay?">
-                Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an $80,000 salary, gross weekly pay is <strong>{formatAUD(80_000 / 52)}</strong> and net weekly pay is <strong>{formatAUD(EX.weekly)}</strong> — a difference of <strong>{formatAUD(EX_WEEKLY_GAP)}</strong> per week.
-              </FAQItem>
-              <FAQItem value="52-weeks" question="Why do we divide by 52 and not 48?">
-                Full-time employees in Australia receive 4 weeks of paid annual leave and 10 days of paid personal leave per year. These paid leave entitlements are included in the annual salary, which covers all 52 weeks. Dividing by 48 would overstate weekly pay by approximately 8.3%.
-              </FAQItem>
-              <FAQItem value="53-pays" question="Are there 52 or 53 weekly pays in a year?">
-                Usually {WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a
-                financial year contains <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. Your salary is then spread over one more pay. The ATO&apos;s{" "}
-                <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link> publishes an optional extra amount you can ask your
-                employer to withhold that year so you are not short at tax time. 2026-27 is one of those years if you&apos;re paid on a Wednesday: see <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">pay periods in 2026-27</Link>.
-              </FAQItem>
-              <FAQItem value="casual" question="How do casual workers calculate weekly pay?">
-                Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of <strong>25%</strong> is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.
-              </FAQItem>
-              <FAQItem value="threshold" question="Do I pay tax if my weekly pay is below $350?">
-                Earning <strong>$350</strong> per week is equivalent to <strong>$18,200</strong> per year, which is the tax-free threshold. If your total annual income from all sources stays at or below $18,200, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold — your second job is taxed from the first dollar.
-              </FAQItem>
-              <FAQItem value="budget" question="How should I budget on weekly pay?">
-                Financial advisors typically recommend the 50/30/20 rule: allocate <strong>50%</strong> of your after-tax weekly pay to needs (rent, groceries, transport), <strong>30%</strong> to wants (dining out, entertainment), and <strong>20%</strong> to savings and debt repayment. On a net weekly income of {formatAUD(EX.weekly)} (from an $80,000 salary), that equals {formatAUD(EX.weekly * 0.5)} for needs, {formatAUD(EX.weekly * 0.3)} for wants, and {formatAUD(EX.weekly * 0.2)} for savings.
-              </FAQItem>
-            </Accordion>
+            <FaqAccordion faqs={WEEKLY_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="text-warmgray leading-relaxed" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
@@ -403,14 +372,5 @@ function Row({ label, value, bold, sub }: { label: string; value: string; bold?:
       <span className={bold ? "font-semibold text-navy" : (sub ? "" : "text-warmgray")}>{label}</span>
       <span className={bold ? "font-bold text-navy" : "font-medium text-navy"}>{value}</span>
     </div>
-  );
-}
-
-function FAQItem({ value, question, children }: { value: string; question: string; children: React.ReactNode }) {
-  return (
-    <AccordionItem value={value} className="rounded-xl border border-sandstone-dark/20 px-5">
-      <AccordionTrigger className="text-left text-base font-medium text-navy">{question}</AccordionTrigger>
-      <AccordionContent><p className="text-warmgray leading-relaxed">{children}</p></AccordionContent>
-    </AccordionItem>
   );
 }

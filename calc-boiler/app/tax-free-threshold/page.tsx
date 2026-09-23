@@ -16,13 +16,13 @@ const NIL = formatAUD(effectiveNilTaxIncome());
 // Intent split with /tax-brackets/: that page answers "what are the rates";
 // this one answers "what is the threshold, and should I claim it on this job".
 const TITLE = `Tax-Free Threshold ${FY}: ${T} — Should You Claim It?`;
-const DESCRIPTION = `The Australian tax-free threshold is ${T} (${formatAUD(TFT_PER_PERIOD.weekly)} a week) for ${FY}, and no income tax up to ${NIL} with LITO. How to claim it on your TFN declaration, two jobs, and what it changes in each pay.`;
+const DESCRIPTION = `The Australian tax-free threshold is ${T} (${formatAUD(TFT_PER_PERIOD.weekly)} a week) for ${FY}, and no income tax up to ${NIL} with LITO. How to claim it on your TFN declaration.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

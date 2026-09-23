@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ExternalLink, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";

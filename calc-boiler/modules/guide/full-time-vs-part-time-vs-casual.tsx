@@ -1,9 +1,8 @@
-"use client";
-
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { EMPLOYMENT_TYPE_GUIDE_FAQS } from "./full-time-vs-part-time-vs-casual-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -152,7 +151,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>12 months</strong> unpaid parental leave (plus the right to request an additional 12 months)</li>
                 <li>Notice of termination of <strong>1 to 5 weeks</strong> depending on length of service (plus 1 extra week if over 45 and employed 2+ years)</li>
                 <li>Redundancy pay of <strong>4 to 16 weeks</strong> pay depending on years of service</li>
-                <li><strong>12%</strong> Super Guarantee on ordinary time earnings</li>
+                <li><strong>12%</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Workers seeking maximum job security, full leave entitlements, and predictable income. Ideal for those with fixed financial commitments like a mortgage.
@@ -170,7 +169,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li>All NES leave entitlements calculated pro-rata (e.g., a 20-hour/week employee receives 2 weeks equivalent paid annual leave)</li>
                 <li>Same notice of termination and redundancy pay rights as full-time</li>
                 <li>Overtime rates apply when working <strong>beyond agreed hours</strong> (not just beyond 38 hours), depending on the applicable award</li>
-                <li><strong>12%</strong> Super Guarantee on all ordinary time earnings</li>
+                <li><strong>12%</strong> Super Guarantee on qualifying earnings (ordinary time earnings for most employees)</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Workers who want stability and leave entitlements but need a schedule that accommodates study, caring responsibilities, or a second job. Parents returning from parental leave often transition to part-time.
@@ -188,8 +187,8 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>2 days unpaid</strong> carer&apos;s leave per occasion and 2 days unpaid compassionate leave</li>
                 <li>No notice period required from either party to end the engagement</li>
                 <li>Minimum engagement per shift of <strong>2 to 4 hours</strong> depending on the award</li>
-                <li><strong>12%</strong> Super Guarantee on all ordinary time earnings (no minimum earnings threshold since 1 July 2022)</li>
-                <li><strong>Casual conversion right:</strong> After 12 months of regular and systematic employment, the employer must offer conversion to permanent (full-time or part-time). Employees can also request conversion after 6 months.</li>
+                <li><strong>12%</strong> Super Guarantee on qualifying earnings (no minimum earnings threshold since 1 July 2022)</li>
+                <li><strong>Casual conversion right:</strong> After 6 months of employment (12 months with a small business employer), a casual who believes they no longer fit the casual definition can notify their employer in writing that they want to become full-time or part-time. Since 26 August 2024 employers are no longer required to offer conversion.</li>
               </ul>
               <p>
                 <strong>Best for:</strong> Workers who prioritise flexibility over stability &mdash; students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation.
@@ -261,10 +260,11 @@ export default function FullTimeVsPartTimeVsCasualPage() {
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Casual to Permanent Conversion</h3>
               <p>
-                Under the Fair Work Act (as amended by the <em>Fair Work Legislation Amendment (Closing Loopholes No. 2) Act 2024</em>), employers of 15 or more employees must offer casual conversion after <strong>12 months</strong> if the employee has worked a regular pattern of hours for at least the last 6 months. Employees can also initiate a request after 6 months.
+                {/* FWO "Your guide to casual employment" (2025-03), checked 24 Sep 2026: employee choice pathway from 26 Aug 2024; 6 months (12 for small business); response within 21 days; employer "can offer or not offer". */}
+                Under the Fair Work Act (as amended by the <em>Fair Work Legislation Amendment (Closing Loopholes No. 2) Act 2024</em>), the &ldquo;employee choice&rdquo; pathway replaced the old employer-offer system on <strong>26 August 2024</strong>. A casual employed for at least <strong>6 months</strong> (12 months with a small business employer of fewer than 15 staff) who believes they no longer meet the definition of a casual employee can notify their employer in writing that they want to change to full-time or part-time employment. Employers are no longer required to offer conversion.
               </p>
               <p>
-                The employer can refuse conversion only on &ldquo;reasonable business grounds&rdquo; &mdash; for example, if the position is genuinely temporary, seasonal, or the hours will change significantly. The refusal must be in writing with reasons.
+                The employer must consult the employee and respond in writing within <strong>21 days</strong>. It can refuse only if the employee still meets the casual definition, or on fair and reasonable operational grounds such as the change requiring a substantial restructure of the role, and the refusal must give reasons.
               </p>
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Requesting Part-Time After Parental Leave</h3>
               <p>
@@ -279,44 +279,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             {/* SECTION 7: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="casual-loading" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What exactly does the 25% casual loading cover?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The 25% casual loading compensates for the absence of paid annual leave (4 weeks), paid personal leave (10 days), notice of termination, and redundancy pay. It is calculated on the base rate of pay under the applicable Award or agreement. Some awards specify a different loading percentage.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="conversion" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When can a casual employee become permanent?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Employers with 15 or more staff must offer casual conversion after 12 months of regular employment. Casual employees can also request conversion after 6 months. Small business employers (fewer than 15 employees) are not required to offer conversion but must respond to employee requests.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="pt-leave" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do part-time employees get the same leave as full-time?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Part-time employees receive the same <em>types</em> of leave but calculated on a pro-rata basis. For example, a part-time employee working 20 hours per week accrues annual leave at 20/38 of the full-time rate. The same principle applies to personal/carer&apos;s leave, compassionate leave, and long-service leave.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do casual employees get superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Since 1 July 2022, all employees &mdash; including casuals &mdash; receive the <strong>12% Super Guarantee</strong> regardless of how much they earn per month. The previous $450/month minimum earnings threshold was removed.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="financially-better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is casual or part-time better financially?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Casuals earn 25% loading but miss paid leave worth roughly 10&ndash;15% of salary when actually used. For ongoing regular work, part-time typically provides better overall value once leave, notice period, and redundancy protections are factored in. For short-term or irregular work, casual loading can make it more lucrative. Use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">Employment Type Calculator</Link> to model your specific scenario.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="fired-casual" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can a casual employee be fired without notice?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Technically, casual employment can end without notice from either party since there is no firm advance commitment. However, a casual employed for 12 months or more on a regular and systematic basis may be protected by unfair dismissal laws. The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={EMPLOYMENT_TYPE_GUIDE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

@@ -122,7 +122,7 @@ export default function CommissionTaxCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={FONT} className="text-xl font-semibold text-navy mb-6">How Much Tax on Your Commission?</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <div>
                     <label htmlFor="baseSalary" className="block text-sm font-medium text-navy mb-1">Base salary or retainer (annual)</label>
@@ -133,7 +133,7 @@ export default function CommissionTaxCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={300000} step={5000} value={clamp(baseSalary, 0, 300000)}
-                      onChange={(e) => setBaseSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setBaseSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                     <p className="text-xs text-warmgray-light mt-1">Commission-only? Enter $0.</p>
                   </div>
 
@@ -146,7 +146,7 @@ export default function CommissionTaxCalculatorPage() {
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
                     <input type="range" min={0} max={100000} step={500} value={clamp(commission, 0, 100000)}
-                      onChange={(e) => setCommission(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                      onChange={(e) => setCommission(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" tabIndex={-1} />
                   </div>
 
                   <div>
@@ -166,7 +166,7 @@ export default function CommissionTaxCalculatorPage() {
                 </form>
 
                 <div className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-5 text-center shadow-sm">
                       <div className="text-xs font-semibold text-ochre uppercase tracking-wider mb-2">Tax the commission adds to your year</div>
                       <div className="text-3xl font-extrabold text-navy">{formatAUD(result.annualTax)}</div>

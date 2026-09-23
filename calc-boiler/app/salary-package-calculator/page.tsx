@@ -5,17 +5,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-package-calculator/`;
 const TITLE = "Salary Package Calculator — Including Super or Plus Super";
-const DESCRIPTION = `Turn "$X package", "$X including super" or "$X plus super" into base salary, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super, total package and ${SITE_CONFIG.financialYear} take-home pay. Tables for $50k–$300k both ways, and the super cap for high packages.`;
+const DESCRIPTION = `Turn "$X package", "$X including super" or "$X plus super" into base salary, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super, total package and ${SITE_CONFIG.financialYear} take-home pay. Tables for $50k–$300k both ways.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: "Package including super → base salary, super and take-home. Plus super → total package." },
 };
 
@@ -38,7 +39,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("salary-package-calculator"),
   inLanguage: "en-AU",
 };
 

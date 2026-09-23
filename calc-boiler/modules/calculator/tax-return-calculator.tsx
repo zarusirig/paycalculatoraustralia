@@ -130,7 +130,7 @@ export default function TaxReturnCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={H} className="text-xl font-semibold text-navy mb-6">Estimate Your Tax Refund</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
                   <fieldset>
@@ -139,7 +139,7 @@ export default function TaxReturnCalculatorPage() {
                       {YEARS.map((y) => (
                         <label
                           key={y}
-                          className={`cursor-pointer rounded-md border px-3 py-2 text-center text-sm font-medium transition-colors ${year === y ? "border-eucalyptus bg-eucalyptus-light/40 text-navy" : "border-sandstone-dark/30 text-warmgray hover:border-eucalyptus"}`}
+                          className={`cursor-pointer rounded-md border px-3 py-2 text-center text-sm font-medium transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-eucalyptus ${year === y ? "border-eucalyptus bg-eucalyptus-light/40 text-navy" : "border-sandstone-dark/30 text-warmgray hover:border-eucalyptus"}`}
                         >
                           <input type="radio" name="income-year" value={y} checked={year === y} onChange={() => setYear(y)} className="sr-only" />
                           {y}
@@ -269,7 +269,7 @@ export default function TaxReturnCalculatorPage() {
             <p className="mb-4 text-warmgray">
               During the year, your employer withholds tax from each pay under the <strong>PAYG withholding</strong> system. Withholding is worked out pay by pay and does not know about your deductions, other jobs or investment income. When you lodge, the ATO works out your tax on the whole year&rsquo;s figures.
             </p>
-            <div className="grid sm:grid-cols-2 gap-6 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
               <div className="bg-white p-6 rounded-xl border border-sandstone-dark/20 shadow-sm border-t-4 border-t-eucalyptus">
                 <h3 className="font-semibold text-navy mb-2">Over-Withheld = Refund</h3>
                 <p className="text-sm text-warmgray">If more tax was withheld than you owe (common when you claim deductions), you get the difference back as a refund.</p>
@@ -492,7 +492,7 @@ export default function TaxReturnCalculatorPage() {
             <p className="mb-4 text-warmgray">
               Estimating your tax return is one part of understanding your pay. These tools cover this year&rsquo;s pay, super, salary sacrifice and study loans.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Link href="/tax-return-2026/" className="block bg-white p-5 rounded-xl border border-sandstone-dark/20 shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold text-navy mb-1">Tax Return 2026 Guide</h3>
                 <p className="text-sm text-warmgray">Deadlines, refund times and what changed for the {THIS.incomeYear} return.</p>

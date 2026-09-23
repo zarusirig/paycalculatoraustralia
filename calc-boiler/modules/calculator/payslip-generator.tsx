@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Printer, Lock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { PAYSLIP_GENERATOR_FAQS } from "./payslip-generator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -196,7 +197,7 @@ export default function PayslipGeneratorPage() {
         <section className="max-w-6xl mx-auto">
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
-              <div className="grid lg:grid-cols-[minmax(320px,380px)_1fr] gap-8 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(320px,380px)_1fr] gap-8 items-start">
 
                 {/* INPUTS */}
                 <div className="bg-white p-6 rounded-2xl border border-sandstone-dark/10 shadow-sm space-y-6">
@@ -376,7 +377,7 @@ export default function PayslipGeneratorPage() {
 
                 {/* PAYSLIP PREVIEW */}
                 <div>
-                  <div id="payslip-print-area" className="bg-white border border-sandstone-dark/20 rounded-2xl shadow-sm p-6 md:p-8">
+                  <div id="payslip-print-area" className="bg-white border border-sandstone-dark/20 rounded-2xl shadow-sm p-4 sm:p-6 md:p-8 max-sm:overflow-x-auto">
                     <div className="flex flex-wrap items-start justify-between gap-4 border-b-2 border-navy pb-4 mb-4">
                       <div>
                         <div className="text-xl font-bold text-navy">{businessName || "Business Name"}</div>
@@ -664,32 +665,7 @@ export default function PayslipGeneratorPage() {
           {/* FAQs */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="legal" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Is it legal to make your own payslip?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes — as long as the payslip is accurate. Small employers, bookkeepers and sole traders regularly create payslips manually or with tools like this one. What is illegal is creating a false payslip (for example, to inflate income on a loan application), which is fraud. Employers must also still meet Single Touch Payroll reporting obligations regardless of how the payslip itself is produced.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="include" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What must a payslip include in Australia?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">At minimum: the employer&apos;s name and ABN, the employee&apos;s name, the date of payment, the pay period, gross and net pay, the hourly rate and hours worked (for hourly employees) or annual salary (for salaried employees), any loadings, allowances or bonuses as separate line items, each deduction with its purpose, and superannuation contributions with the name of the fund. The full list is set out in the Fair Work Regulations 2009 and summarised in the table on this page.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="abn" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How do I make a payslip for an ABN contractor?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Genuine independent contractors invoice for their work rather than receiving payslips — they handle their own tax and (usually) their own super, so a contractor normally issues an invoice, not a payslip. If you are paying someone with an ABN but they work like an employee (set hours, your direction, your equipment), they may legally be an employee entitled to payslips and super. Check the distinction with our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">contractor vs employee guide</Link> and use the <Link href="/contractor-pay-calculator/" className="text-eucalyptus-dark hover:underline">contractor pay calculator</Link> to compare rates.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="casual" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Do casual employees get payslips?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Every employee — full-time, part-time or casual — must receive a payslip within one working day of being paid. A casual&apos;s payslip should show the ordinary hourly rate including casual loading, the hours worked, and any penalty rates as separate items.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="software" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I use this instead of payroll software?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">For producing a compliant payslip document, yes. But employers with staff must also report each pay run to the ATO through Single Touch Payroll (STP), which requires STP-enabled software or a registered agent. This generator is ideal for one-off payslips, replacing lost payslips in your records, nannies and household employees under simplified arrangements, or checking that payroll software output looks right.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="accuracy" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How accurate is the PAYG tax estimate?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Typically within a few dollars per pay. The generator annualises the period&apos;s earnings and applies the FY{SITE_CONFIG.financialYear} tax brackets, LITO and Medicare levy, while employers&apos; payroll software uses the ATO&apos;s Schedule 1 withholding coefficients, which round slightly differently. If you need the exact figure, look it up in the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">PAYG withholding tables</Link> and enter it in the override field.</p></AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={PAYSLIP_GENERATOR_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
           </section>
 
           <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

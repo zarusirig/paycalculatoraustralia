@@ -1,8 +1,8 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { NEW_JOB_FAQS } from "./new-job-checklist-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -99,7 +99,7 @@ export default function NewJobChecklistPage() {
               <ul>
                 <li>{"✅"} <strong>Verify gross pay matches your contract.</strong> For salaried employees, divide your annual salary by the number of pay periods (26 for fortnightly, 12 for monthly). For hourly workers, check hours multiplied by your rate.</li>
                 <li>{"✅"} <strong>Check tax withholding is reasonable.</strong> Use our <Link href="/">Pay Calculator</Link> to compare expected vs actual PAYG withholding. If tax seems too high, confirm your TFN declaration was processed and the tax-free threshold applied.</li>
-                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Check your super fund online portal within <strong>28 days of the end of the quarter</strong> to confirm the contribution arrived.</li>
+                <li>{"✅"} <strong>Confirm super is being paid.</strong> Super may not appear on your first payslip if it has not yet been processed. Since Payday Super started on 1 July 2026, contributions must reach your fund within <strong>7 business days of each payday</strong> (20 business days for a new employee&apos;s first contribution), so check your super fund online portal a few weeks after starting to confirm it arrived.</li>
                 <li>{"✅"} <strong>Check leave balances are accruing.</strong> Full-time employees accrue annual leave from day one. After your first pay period, you should see leave balance appearing on your payslip or in your employer&apos;s HR system.</li>
                 <li>{"✅"} <strong>Review allowances and loadings.</strong> If your contract or award includes shift penalties, overtime rates, or allowances (meal, travel, uniform), verify these are being applied correctly.</li>
               </ul>
@@ -135,57 +135,25 @@ export default function NewJobChecklistPage() {
                       <tr><td className="px-5 py-3 font-medium">Base salary</td><td className="px-5 py-3">$90,000</td><td className="px-5 py-3">Cash salary before tax</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Superannuation (12%)</td><td className="px-5 py-3">$10,800</td><td className="px-5 py-3">Paid by employer into your super fund</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Salary sacrifice (if available)</td><td className="px-5 py-3">$5,000 – $15,000</td><td className="px-5 py-3">Pre-tax contributions reduce taxable income</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">Leave entitlements</td><td className="px-5 py-3">~$7,600</td><td className="px-5 py-3">4 weeks annual leave = 7.7% of base</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Leave entitlements</td><td className="px-5 py-3">~$6,923</td><td className="px-5 py-3">4 weeks paid annual leave (4/52 of base) &mdash; already inside the base salary, not extra cash</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Other benefits</td><td className="px-5 py-3">Varies</td><td className="px-5 py-3">Parking, health insurance, bonuses, WFH equipment</td></tr>
-                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">$108,400+</td><td className="px-5 py-3">True value of the position</td></tr>
+                      <tr className="font-semibold text-navy"><td className="px-5 py-3">Total package value</td><td className="px-5 py-3">$100,800+</td><td className="px-5 py-3">Base salary plus super, before other benefits</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                When negotiating, ask about salary sacrifice options, bonus structures, and professional development budgets. A $5,000 salary sacrifice into super saves approximately <strong>$1,625</strong> in tax for someone in the 37% bracket compared to receiving the same amount as cash salary. Model different scenarios with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
+                When negotiating, ask about salary sacrifice options, bonus structures, and professional development budgets. A $5,000 salary sacrifice into super saves approximately <strong>$1,200</strong> for someone in the 37% bracket compared to receiving the same amount as cash salary ($1,950 of income tax and Medicare levy avoided, less $750 of 15% contributions tax in the fund). Model different scenarios with our <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>.
               </p>
             </section>
 
             {/* ───── SECTION 5: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="tax-free-both" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I claim the tax-free threshold at my new job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If this is your <strong>only job</strong>, always claim the tax-free threshold. If you are transitioning from one job to another with no overlap, claim it at your new employer and your old employer&apos;s withholding stops when you leave. If you are keeping two jobs simultaneously, only claim the threshold at the <strong>highest-paying</strong> one.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="existing-super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I use my existing super fund or the employer&apos;s default?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">In most cases, use your <strong>existing fund</strong> to avoid creating multiple accounts that erode your balance with duplicate fees and insurance premiums. Provide your fund&apos;s name, USI (Unique Superannuation Identifier), and member number to your new employer. Compare fees before switching — if the employer&apos;s default fund has significantly lower fees, it may be worth switching.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-long-first-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long until I receive my first pay?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">This depends on when you start relative to the pay cycle. If you start on Monday and the pay cycle ends Friday, your first pay arrives the following pay day. In the worst case, you may wait up to <strong>3-4 weeks</strong> for your first pay if you start just after a pay cycle ends and the employer processes the next full cycle before paying you.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="old-job-leave" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens to unused leave from my old job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Sick/personal leave is <strong>not paid out</strong> — it has no cash value when you leave.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="probation" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does probation affect my pay or entitlements?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. During probation you receive the <strong>same pay, super, and leave entitlements</strong> as after probation. The only difference is that the notice period for termination is typically shorter (usually 1 week). Your employer cannot pay you less during probation than what is specified in your contract or the applicable award.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="hecs-new-job" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need to tell my new employer about HECS-HELP debt?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. On your TFN Declaration, tick &quot;Yes&quot; if you have a HELP, VSL, SFSS, or TSL debt. Your employer withholds additional amounts once your income exceeds the compulsory repayment threshold (<strong>$69,528</strong> for FY2026-27). If you do not declare your debt, you may face a lump sum repayment when you lodge your tax return.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={NEW_JOB_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY2025-26 SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY{SITE_CONFIG.financialYear} SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("new-job-checklist"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { ChevronRight, ArrowRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -71,7 +70,7 @@ export default function PublicServicePayScalesPage() {
             Public Service Pay Scales in Australia
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            Six services, six classification systems, six sets of numbers. The federal APS
+            Nine services, nine classification systems, nine sets of numbers. The federal APS
             runs APS 1&ndash;6, EL 1, EL 2 and SES Bands 1&ndash;3 with a median APS 6 base salary of{" "}
             <strong className="text-navy">$108,092</strong>; the Victorian Public Service runs grades
             1&ndash;7 with value ranges and progression steps, paying{" "}
@@ -82,8 +81,12 @@ export default function PublicServicePayScalesPage() {
             Clerk Grade 5 <strong className="text-navy">$102,936 to $106,182</strong> from July 2026, WA a
             Level 5 <strong className="text-navy">$108,848 to $118,961</strong> from 13 June 2026, and
             South Australia an ASO-4 <strong className="text-navy">$82,212 to $86,180</strong> from July
-            2026. Every figure on these pages is transcribed from the agreement, award or determination
-            that sets it.
+            2026. Tasmania pays a General Stream Band 4{" "}
+            <strong className="text-navy">$86,325 to $99,237</strong> from December 2025, the ACT an ASO 6{" "}
+            <strong className="text-navy">$102,657 to $116,592</strong> from 4 December 2025, and the
+            Northern Territory an AO5 <strong className="text-navy">$93,674 to $98,332</strong> from 13
+            August 2026. Every figure on these pages is transcribed from the agreement, award or
+            determination that sets it.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -326,11 +329,12 @@ export default function PublicServicePayScalesPage() {
               </ul>
             </section>
 
-            {/* Not covered */}
+            {/* Not covered — empty since H2 (24 Sep 2026) added TAS, ACT and NT */}
+            {PLANNED_JURISDICTIONS.length > 0 && (
             <section id="not-covered">
               <h2 style={HEADING_FONT}>Services not covered yet</h2>
               <p>
-                {PLANNED_JURISDICTIONS.length === 3 ? "Three" : PLANNED_JURISDICTIONS.length} public
+                {PLANNED_JURISDICTIONS.length} public
                 services are not on this page yet. Rather than publish figures we have not read from the
                 primary instrument, here is who sets them:
               </p>
@@ -341,9 +345,13 @@ export default function PublicServicePayScalesPage() {
                   </li>
                 ))}
               </ul>
+            </section>
+            )}
+
+            <section id="state-calculators">
+              <h2 style={HEADING_FONT}>Take-home pay by state and territory</h2>
               <p>
-                For state pay and tax questions in the meantime, the state calculators cover income
-                tax and take-home pay wherever you work:{" "}
+                The state calculators cover income tax and take-home pay wherever you work:{" "}
                 <Link href="/pay-calculator-vic/">Victoria</Link>,{" "}
                 <Link href="/pay-calculator-qld/">Queensland</Link>,{" "}
                 <Link href="/pay-calculator-nsw/">NSW</Link>,{" "}

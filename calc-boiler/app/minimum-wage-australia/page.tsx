@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { NMW_ORDER } from "@/lib/constants/junior-rates";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-australia/`;
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: MW_TITLE,
   description: MW_DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: MW_TITLE, description: MW_DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+  openGraph: { title: MW_TITLE, description: MW_DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: MW_TITLE, description: MW_DESCRIPTION },
 };
 
@@ -34,6 +35,8 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("minimum-wage-australia"),
+  dateModified: pageDateModified("minimum-wage-australia"),
   headline: MW_TITLE,
   description: MW_DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

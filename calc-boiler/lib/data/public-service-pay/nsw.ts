@@ -56,7 +56,7 @@ export const NSW: Jurisdiction = {
 
   metaTitle: "NSW Public Service Pay Rates 2026 — Clerk Grade 1–12 & NSW Health",
   metaDescription:
-    "NSW public sector pay from 1 July 2026: every Clerk Grade 1 to 12 salary from the Crown Employees (Public Sector - Salaries 2024) Award, NSW Health Administration Officer weekly rates, the next increase date and each salary after tax.",
+    "NSW public sector pay from 1 July 2026: every Clerk Grade 1 to 12 salary, NSW Health Administration Officer rates, the next increase date and each salary after tax.",
 
   instrument:
     "Administrative and clerical officers in the NSW public service are paid under the Crown Employees (Public Sector - Salaries 2024) Award, made by the Industrial Relations Commission of New South Wales. It is a state award, not a Fair Work instrument. NSW Health administrative staff are covered instead by the Health Employees' Administrative Staff (State) Award 2025.",

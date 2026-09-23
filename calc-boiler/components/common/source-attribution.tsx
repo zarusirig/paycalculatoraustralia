@@ -27,7 +27,7 @@ export default function SourceAttribution({
       </h2>
       <ol className="space-y-3">
         {sources.map((source, index) => (
-          <li key={source.url} className="flex items-start gap-3 text-sm">
+          <li key={`${index}-${source.url}`} className="flex items-start gap-3 text-sm">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-eucalyptus-light text-xs font-semibold text-eucalyptus-dark">
               {index + 1}
             </span>
