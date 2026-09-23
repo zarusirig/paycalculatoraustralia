@@ -104,7 +104,7 @@ export const TEACHER_AIDE: Occupation = {
     "Paid for school terms only? Under cl 12.2 your adjusted salary is the annual rate x (weeks worked + 4 weeks' leave) / 52.18. The award's example: Level 3.1 over 39.4 term weeks is $48,601 a year, not $58,436.",
   ],
   notShown: [
-    "Government school teacher aide scales, which are set by each state.",
+    "Government school teacher aide scales, which are set by each state (see school support staff pay by state).",
     "Levels 5 to 8 (senior administration and specialist roles) and junior rates.",
   ],
   faqs: [
@@ -137,6 +137,7 @@ export const TEACHER_AIDE: Occupation = {
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
+    { href: "/school-support-staff-pay/", label: "Government School Teacher Aide Pay by State" }, // J6
     { href: "/teacher-pay-australia/", label: "Teacher Pay Australia" },
     { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
     { href: "/pro-rata-salary-calculator/", label: "Pro Rata Salary Calculator" },

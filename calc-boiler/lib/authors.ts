@@ -357,6 +357,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "public-service-pay-scales/aps/aps-6": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "public-service-pay-scales/aps/el1": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "public-service-pay-scales/aps/el2": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/nsw": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/vic": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/qld": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/wa": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "school-support-staff-pay/sa": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end J6 ---
 };
 

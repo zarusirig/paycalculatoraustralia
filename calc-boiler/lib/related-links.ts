@@ -181,6 +181,7 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   // --- end G3 ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   "/centrelink-payment-rates/": [JOBSEEKER, INCOME_TEST_HUB, L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Rates from 20 September and the income test with the Work Bonus."), L("/family-tax-benefit-calculator/", "Family Tax Benefit Calculator", "FTB Part A and Part B on your family income."), L("/centrelink-payment-dates/", "Centrelink Payment Dates", "When each payment lands, including around public holidays.")],
+  "/school-support-staff-pay/": [L("/job-pay-rates/teacher-aide/", "Teacher Aide Award Rates", "The minimum for private and Catholic school aides."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), L("/hourly-to-annual-salary-calculator/", "Hourly to Salary Calculator", "Turn an hourly rate into a yearly figure."), TAKE_HOME],
   // --- end J6 ---
 
   // Tax core ↔ salary tables
@@ -397,6 +398,17 @@ const CLUSTERS: Cluster[] = [
       { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "What your accrued leave is worth." },
     ],
   },
+  // --- J6 wave 4 backlog (24 Sep 2026): school support staff state pages ---
+  {
+    match: (p) => p.startsWith("/school-support-staff-pay/") && p !== "/school-support-staff-pay/",
+    links: [
+      { href: "/school-support-staff-pay/", title: "Teacher Aide Pay by State", blurb: "Every state's school support staff rates side by side." },
+      { href: "/job-pay-rates/teacher-aide/", title: "Teacher Aide Award Rates", blurb: "The minimum for private and Catholic school aides." },
+      { href: "/hourly-to-annual-salary-calculator/", title: "Hourly to Salary Calculator", blurb: "Turn an hourly rate into a yearly figure." },
+      TAKE_HOME,
+    ],
+  },
+  // --- end J6 ---
   // --- Novated lease: calculator and explainer point at each other ---
   {
     match: (p) => p === "/novated-lease-calculator/" || p === "/novated-lease-guide/",

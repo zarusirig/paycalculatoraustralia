@@ -264,6 +264,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/public-service-pay-scales/vic/", label: "VPS pay scales" },
           { href: "/teacher-pay-australia/", label: "Teacher pay" },
           { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
+          { href: "/school-support-staff-pay/", label: "Teacher aide pay" }, // J6
           { href: "/healthcare-worker-pay/", label: "Nurse & healthcare pay" },
           { href: "/adf-pay-scales/", label: "ADF pay scales" },
           { href: "/paramedic-pay/", label: "Paramedics" },
@@ -844,6 +845,17 @@ export const GUIDE_CATEGORIES = [
     title: "Centrelink Rates",
     guides: [
       { href: "/centrelink-payment-rates/", label: "Centrelink Payment Rates", description: "Every payment's rate from 20 September 2026" },
+    ],
+  },
+  {
+    title: "School Support Staff Pay",
+    guides: [
+      { href: "/school-support-staff-pay/", label: "Teacher Aide Pay by State", description: "Government school support staff rates" },
+      { href: "/school-support-staff-pay/nsw/", label: "NSW SLSO Pay Rates", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/vic/", label: "VIC Education Support Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/qld/", label: "QLD Teacher Aide Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/wa/", label: "WA Education Assistant Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/sa/", label: "SA SSO Pay Rates", description: "Current rates and take-home pay" },
     ],
   },
   {
