@@ -3,13 +3,29 @@
 import Link from "next/link";
 import { ChevronRight, FileText, CheckCircle2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, SUPER_GUARANTEE, HECS_HELP, TAX_BRACKETS, formatPercent, formatAUD, calculatePayBreakdown } from "@/lib/constants";
+import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { PAYSLIP_FAQS } from "./understanding-your-payslip-faqs";
+
+// Worked examples come from the site's FY2026-27 tax engine (resident, no
+// HECS, private cover so no MLS) — never hardcode them: the previous copy
+// showed $67,533 net on $85,000 with a $700 LITO, but LITO is nil above
+// $66,667, and the figures predated the 1 July 2026 rate cut.
+const EX85 = calculatePayBreakdown({ grossSalary: 85_000 });
+const EX150 = calculatePayBreakdown({ grossSalary: 150_000 });
+const FN = 26;
+const fn = (annual: number) => formatAUD(annual / FN, 2);
+// Payslip breaches are civil remedy provisions: 60 penalty units for an
+// individual, 300 for a body corporate (Fair Work Act 2009 s 539, s 546).
+// Penalty unit per ATO "Penalty units" page, see tax-calendar-2026-27.ts.
+const PAYSLIP_PENALTY_INDIVIDUAL = 60 * PENALTY_UNIT.amount;
+const PAYSLIP_PENALTY_COMPANY = 300 * PENALTY_UNIT.amount;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Payslips", url: "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips", publisher: SOURCES.fwo.name },
@@ -52,7 +68,7 @@ export default function UnderstandingYourPayslipPage() {
                 A payslip is a written record your employer provides every pay cycle showing exactly how your salary was calculated, taxed, and distributed. Australian employers issue payslips weekly, fortnightly, or monthly depending on the pay cycle stated in your employment contract.
               </p>
               <p>
-                The Fair Work Act 2009 makes payslips a legal requirement for every employee in Australia, including full-time, part-time, and casual workers. Employers who fail to issue a payslip face penalties of up to <strong>$19,800 per breach</strong> for individuals and <strong>$99,000 per breach</strong> for companies. Understanding your payslip protects you from underpayment, incorrect tax withholding, and missing superannuation contributions. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to generate a benchmark payslip you can compare against your real one.
+                The Fair Work Act 2009 makes payslips a legal requirement for every employee in Australia, including full-time, part-time, and casual workers. Employers who fail to issue a payslip face penalties of up to <strong>{formatAUD(PAYSLIP_PENALTY_INDIVIDUAL)} per breach</strong> for individuals and <strong>{formatAUD(PAYSLIP_PENALTY_COMPANY)} per breach</strong> for companies (60 and 300 penalty units at {formatAUD(PENALTY_UNIT.amount)} each from {PENALTY_UNIT.from}). Understanding your payslip protects you from underpayment, incorrect tax withholding, and missing superannuation contributions. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to generate a benchmark payslip you can compare against your real one.
               </p>
               <p>
                 Payslips can be delivered electronically (email, payroll portal, PDF) or as a printed document. Both formats carry the same legal weight. Modern payroll systems including Xero, MYOB, and Employment Hero generate compliant payslips automatically.
@@ -78,13 +94,13 @@ export default function UnderstandingYourPayslipPage() {
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Identity</td><td className="px-4 py-2">Employer&apos;s name</td><td className="px-4 py-2">ABC Pty Ltd</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Identity</td><td className="px-4 py-2">Employer&apos;s ABN</td><td className="px-4 py-2">12 345 678 901</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Identity</td><td className="px-4 py-2">Employee&apos;s name</td><td className="px-4 py-2">Jane Smith</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Timing</td><td className="px-4 py-2">Pay period start and end dates</td><td className="px-4 py-2">1 Jul &ndash; 14 Jul 2025</td></tr>
-                    <tr className="bg-white"><td className="px-4 py-2 font-medium">Timing</td><td className="px-4 py-2">Date of payment</td><td className="px-4 py-2">16 Jul 2025</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Timing</td><td className="px-4 py-2">Pay period start and end dates</td><td className="px-4 py-2">1 Jul &ndash; 14 Jul 2026</td></tr>
+                    <tr className="bg-white"><td className="px-4 py-2 font-medium">Timing</td><td className="px-4 py-2">Date of payment</td><td className="px-4 py-2">16 Jul 2026</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Pay</td><td className="px-4 py-2">Gross amount paid</td><td className="px-4 py-2">$4,230.77</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Pay</td><td className="px-4 py-2">Net amount paid</td><td className="px-4 py-2">$3,241.15</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Pay</td><td className="px-4 py-2">Loadings, allowances, bonuses, incentive payments, penalty rates (each itemised separately)</td><td className="px-4 py-2">Overtime: $320.00</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Hours</td><td className="px-4 py-2">Ordinary hours worked</td><td className="px-4 py-2">76 hours</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Hours</td><td className="px-4 py-2">Hourly rate (if applicable)</td><td className="px-4 py-2">$42.31/hr</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Hours</td><td className="px-4 py-2">Hourly rate (if applicable)</td><td className="px-4 py-2">$55.67/hr</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Tax</td><td className="px-4 py-2">PAYG withholding amount</td><td className="px-4 py-2">$989.62</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Super</td><td className="px-4 py-2">Super contribution amount</td><td className="px-4 py-2">$507.69</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Super</td><td className="px-4 py-2">Name of super fund</td><td className="px-4 py-2">AustralianSuper</td></tr>
@@ -99,8 +115,8 @@ export default function UnderstandingYourPayslipPage() {
                     <CheckCircle2 className="h-4 w-4 text-eucalyptus" /> Identity Details
                   </h4>
                   <ul className="space-y-1 text-navy">
-                    <li>Employer's name and ABN</li>
-                    <li>Employee's name</li>
+                    <li>Employer&apos;s name and ABN</li>
+                    <li>Employee&apos;s name</li>
                   </ul>
                 </div>
                 <div className="bg-white border rounded-lg p-4 shadow-sm">
@@ -143,7 +159,7 @@ export default function UnderstandingYourPayslipPage() {
                 A standard Australian payslip follows a top-to-bottom flow: identity, earnings, deductions, net pay, superannuation, and leave balances. Each line represents a distinct calculation step.
               </p>
               <p>
-                The worked example below shows a fortnightly payslip for an employee earning <strong>$85,000 per year</strong> with no HECS-HELP debt and no salary sacrifice arrangements.
+                The worked example below shows a fortnightly payslip for an employee earning <strong>$85,000 per year</strong> with no HECS-HELP debt and no salary sacrifice arrangements, using FY{SITE_CONFIG.financialYear} rates. Actual withholding from the ATO tables can differ from these annualised figures by a few dollars.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -158,8 +174,8 @@ export default function UnderstandingYourPayslipPage() {
                   <tbody className="text-navy divide-y divide-gray-100">
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Base Salary (76 hrs)</td><td className="px-4 py-2 text-right">$3,269.23</td><td className="px-4 py-2">$85,000 &divide; 26 fortnights</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Gross Pay</td><td className="px-4 py-2 text-right font-semibold">$3,269.23</td><td className="px-4 py-2">Total earnings before deductions</td></tr>
-                    <tr className="bg-white"><td className="px-4 py-2 font-medium">PAYG Withholding</td><td className="px-4 py-2 text-right text-red-600">&minus;$669.23</td><td className="px-4 py-2">Income tax + Medicare Levy combined</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Net Pay</td><td className="px-4 py-2 text-right font-bold text-eucalyptus-dark">$2,600.00</td><td className="px-4 py-2">Cash deposited into your bank account</td></tr>
+                    <tr className="bg-white"><td className="px-4 py-2 font-medium">PAYG Withholding</td><td className="px-4 py-2 text-right text-red-600">&minus;{fn(EX85.totalDeductions)}</td><td className="px-4 py-2">Income tax + Medicare Levy combined</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Net Pay</td><td className="px-4 py-2 text-right font-bold text-eucalyptus-dark">{fn(EX85.takeHomePay)}</td><td className="px-4 py-2">Cash deposited into your bank account</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Super (SG {formatPercent(SUPER_GUARANTEE.rate, 0)})</td><td className="px-4 py-2 text-right">$392.31</td><td className="px-4 py-2">Employer-paid, not deducted from your pay</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Annual Leave Balance</td><td className="px-4 py-2 text-right">96.45 hrs</td><td className="px-4 py-2">Accumulated paid leave available</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Personal Leave Balance</td><td className="px-4 py-2 text-right">52.20 hrs</td><td className="px-4 py-2">Sick/carer&apos;s leave available</td></tr>
@@ -178,7 +194,7 @@ export default function UnderstandingYourPayslipPage() {
                 Gross pay is the total amount your employer owes you before any deductions. Net pay (take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare Levy, and other deductions are subtracted.
               </p>
               <p>
-                The formula is: <code>Net Pay = Gross Pay &minus; PAYG Tax &minus; Medicare Levy &minus; Other Deductions</code>. On an <strong>$85,000</strong> gross salary in FY2025-26, net pay is approximately <strong>$67,533 per year</strong> (or <strong>$2,597 per fortnight</strong>) for a resident with no HECS debt. The gap between gross and net widens at higher income tax brackets. An employee earning <strong>$150,000 gross</strong> takes home approximately <strong>$106,692 net</strong> &mdash; a deduction rate of <strong>28.9%</strong>.
+                The formula is: <code>Net Pay = Gross Pay &minus; PAYG Tax &minus; Medicare Levy &minus; Other Deductions</code>. On an <strong>$85,000</strong> gross salary in FY{SITE_CONFIG.financialYear}, net pay is approximately <strong>{formatAUD(EX85.takeHomePay)} per year</strong> (or <strong>{formatAUD(EX85.takeHomePay / FN)} per fortnight</strong>) for a resident with no HECS debt. The gap between gross and net widens at higher income tax brackets. An employee earning <strong>$150,000 gross</strong> takes home approximately <strong>{formatAUD(EX150.takeHomePay)} net</strong> &mdash; a deduction rate of <strong>{formatPercent(EX150.effectiveTaxRate)}</strong>.
               </p>
               <ul>
                 <li><strong>Gross Pay:</strong> The total, pre-tax amount earned during the pay period. A &ldquo;$100k salary&rdquo; refers to the gross annual figure. Gross pay includes base salary, overtime, penalty rates, allowances, and commissions.</li>
@@ -202,14 +218,14 @@ export default function UnderstandingYourPayslipPage() {
                       <th className="px-4 py-3 text-left font-semibold">Deduction</th>
                       <th className="px-4 py-3 text-left font-semibold">Type</th>
                       <th className="px-4 py-3 text-left font-semibold">How It Works</th>
-                      <th className="px-4 py-3 text-left font-semibold">FY2025-26 Rate / Threshold</th>
+                      <th className="px-4 py-3 text-left font-semibold">FY{SITE_CONFIG.financialYear} Rate / Threshold</th>
                     </tr>
                   </thead>
                   <tbody className="text-navy divide-y divide-gray-100">
-                    <tr className="bg-white"><td className="px-4 py-2 font-medium">PAYG Withholding</td><td className="px-4 py-2">Mandatory</td><td className="px-4 py-2">Income tax + Medicare Levy withheld each pay cycle</td><td className="px-4 py-2">16%&ndash;45% marginal + 2% ML</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">HECS-HELP Repayment</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Withheld when income exceeds repayment threshold</td><td className="px-4 py-2">Threshold: <strong>$69,528</strong></td></tr>
+                    <tr className="bg-white"><td className="px-4 py-2 font-medium">PAYG Withholding</td><td className="px-4 py-2">Mandatory</td><td className="px-4 py-2">Income tax + Medicare Levy withheld each pay cycle</td><td className="px-4 py-2">{formatPercent(TAX_BRACKETS[1].rate, 0)}&ndash;45% marginal + 2% ML</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">HECS-HELP Repayment</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Withheld when income exceeds repayment threshold</td><td className="px-4 py-2">Threshold: <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong></td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Child Support</td><td className="px-4 py-2">Mandatory (if applicable)</td><td className="px-4 py-2">Employer deducts per Services Australia notice</td><td className="px-4 py-2">Varies by assessment</td></tr>
-                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Salary Sacrifice (Super)</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Pre-tax contribution to super fund</td><td className="px-4 py-2">Concessional cap: <strong>$30,000</strong>/yr</td></tr>
+                    <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Salary Sacrifice (Super)</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Pre-tax contribution to super fund</td><td className="px-4 py-2">Concessional cap: <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>/yr</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Salary Sacrifice (Other)</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Novated lease, laptop, additional insurance</td><td className="px-4 py-2">Subject to FBT rules</td></tr>
                     <tr className="bg-gray-50"><td className="px-4 py-2 font-medium">Union Fees</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Deducted per written authorisation</td><td className="px-4 py-2">Typically $10&ndash;$30/fortnight</td></tr>
                     <tr className="bg-white"><td className="px-4 py-2 font-medium">Private Health Insurance</td><td className="px-4 py-2">Voluntary</td><td className="px-4 py-2">Employer may deduct premiums at employee request</td><td className="px-4 py-2">Varies by policy</td></tr>
@@ -228,7 +244,7 @@ export default function UnderstandingYourPayslipPage() {
                 &ldquo;PAYG Withholding&rdquo; is the single largest deduction on every Australian payslip. Your employer withholds income tax plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare Levy each pay cycle and remits the combined amount directly to the ATO.
               </p>
               <p>
-                PAYG stands for &ldquo;Pay As You Go.&rdquo; The system spreads your annual tax liability across 26 fortnights (or 52 weeks, or 12 months) so you do not face a lump-sum tax bill at the end of the financial year. On an <strong>$85,000</strong> salary, total annual PAYG withholding is approximately <strong>$17,467</strong>, comprising <strong>$15,767</strong> in income tax (after the &ldquo;Low Income Tax Offset&rdquo; of <strong>$700</strong>) and <strong>$1,700</strong> in Medicare Levy.
+                PAYG stands for &ldquo;Pay As You Go.&rdquo; The system spreads your annual tax liability across 26 fortnights (or 52 weeks, or 12 months) so you do not face a lump-sum tax bill at the end of the financial year. On an <strong>$85,000</strong> salary, total annual PAYG withholding is approximately <strong>{formatAUD(EX85.totalDeductions)}</strong>, comprising <strong>{formatAUD(EX85.netIncomeTax)}</strong> in income tax (no Low Income Tax Offset applies at this income &mdash; it cuts out at $66,667) and <strong>{formatAUD(EX85.medicareLevy)}</strong> in Medicare Levy.
               </p>
               <p>
                 If your employer withholds too much tax during the year, the ATO refunds the excess when you lodge your tax return in July or August. Conversely, under-withholding results in a tax bill. The ATO&apos;s withholding schedules determine the correct amount based on your gross earnings, residency status, tax-free threshold claim, and HECS-HELP status. Check the <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> to verify your employer is withholding the correct amount.
@@ -241,14 +257,14 @@ export default function UnderstandingYourPayslipPage() {
                 The {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare Levy does not appear as a separate line on your payslip. It is bundled into the PAYG withholding amount alongside your income tax.
               </p>
               <p>
-                Your employer calculates income tax and the Medicare Levy together, then withholds the combined total. On an <strong>$85,000</strong> salary, the Medicare Levy component is <strong>$1,700 per year</strong> (or <strong>$65.38 per fortnight</strong>). Employees earning below the low-income threshold of <strong>$27,222</strong> pay a reduced Medicare Levy or are fully exempt. The &ldquo;Medicare Levy Surcharge&rdquo; (MLS) of 1%&ndash;1.5% applies to individuals earning above <strong>$93,000</strong> who do not hold private hospital cover. To see exactly how much of your PAYG withholding goes towards Medicare, use our <Link href="/medicare-levy/">Medicare Levy Calculator</Link> which isolates the levy at any salary level.
+                Your employer calculates income tax and the Medicare Levy together, then withholds the combined total. On an <strong>$85,000</strong> salary, the Medicare Levy component is <strong>$1,700 per year</strong> (or <strong>$65.38 per fortnight</strong>). Singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> (the latest ATO-published threshold, for 2025-26) pay no Medicare Levy, and a reduced levy applies up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &ldquo;Medicare Levy Surcharge&rdquo; (MLS) of 1%&ndash;1.5% applies in FY{SITE_CONFIG.financialYear} to singles with income for MLS purposes above <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)}</strong> who do not hold private hospital cover. To see exactly how much of your PAYG withholding goes towards Medicare, use our <Link href="/medicare-levy/">Medicare Levy Calculator</Link> which isolates the levy at any salary level.
               </p>
             </section>
 
             <section id="check-errors">
               <h2>How Do You Check Your Payslip for Errors?</h2>
               <p>
-                Payslip errors affect <strong>1 in 6</strong> Australian workers according to Fair Work Ombudsman compliance data. Checking your payslip each pay cycle takes 5 minutes and protects against underpayment, incorrect tax withholding, and missing super contributions.
+                Checking your payslip each pay cycle takes a few minutes and protects against underpayment, incorrect tax withholding, and missing super contributions.
               </p>
               <p>
                 Follow these 6 steps every time you receive a payslip:
@@ -257,7 +273,7 @@ export default function UnderstandingYourPayslipPage() {
                 <li><strong>Verify your hours:</strong> Multiply your ordinary hours by your hourly rate. The result must match the gross pay figure. For salaried employees on <strong>$85,000</strong>, the fortnightly gross is <strong>$3,269.23</strong> ($85,000 &divide; 26).</li>
                 <li><strong>Check overtime and penalty rates:</strong> Overtime, Saturday, Sunday, and public holiday hours must each appear as separate line items with the correct loading. Standard overtime rates range from <strong>1.5x</strong> (first 2&ndash;3 hours) to <strong>2.0x</strong> (subsequent hours) depending on your award.</li>
                 <li><strong>Confirm PAYG withholding:</strong> Compare the tax withheld against the ATO&apos;s online tax withheld calculator or our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>. A discrepancy of more than <strong>$5 per pay cycle</strong> warrants investigation.</li>
-                <li><strong>Validate superannuation:</strong> The super amount must equal your ordinary time earnings multiplied by {formatPercent(SUPER_GUARANTEE.rate, 0)}. On <strong>$3,269.23</strong> fortnightly gross, super is <strong>$392.31</strong>.</li>
+                <li><strong>Validate superannuation:</strong> The super amount must equal your qualifying earnings (ordinary time earnings for most employees) multiplied by {formatPercent(SUPER_GUARANTEE.rate, 0)}. On <strong>$3,269.23</strong> fortnightly gross, super is <strong>$392.31</strong>.</li>
                 <li><strong>Cross-check YTD totals:</strong> Add the current period&apos;s amounts to the previous payslip&apos;s YTD figures. The new YTD must equal the sum. A mismatch indicates a payroll processing error.</li>
                 <li><strong>Verify leave balances:</strong> Full-time employees accrue <strong>4 weeks</strong> (152 hours) of annual leave per year, equal to <strong>2.923 hours per week</strong>. Check that your balance increases by this amount each pay period.</li>
               </ol>
@@ -277,11 +293,11 @@ export default function UnderstandingYourPayslipPage() {
               <ul>
                 <li><strong>YTD Gross:</strong> Total gross earnings since 1 July. At 30 June, this figure must match the gross income on your &ldquo;Income Statement&rdquo; (formerly called the PAYG Payment Summary) in myGov.</li>
                 <li><strong>YTD Tax:</strong> Total PAYG withholding (income tax + Medicare Levy) deducted so far. If this amount is significantly higher than expected based on your salary, you are likely over-withholding and due a refund. Review our <Link href="/tax-refund-guide/">Tax Refund Guide</Link> for details.</li>
-                <li><strong>YTD Super:</strong> Total superannuation contributions your employer has made. Cross-reference this against your super fund&apos;s online portal to confirm the money actually arrived. Super theft &mdash; where an employer lists super on a payslip but never transfers it &mdash; affects over <strong>2.8 million</strong> Australian workers annually, costing an estimated <strong>$5.9 billion</strong> per year.</li>
+                <li><strong>YTD Super:</strong> Total superannuation contributions your employer has made. Cross-reference this against your super fund&apos;s online portal to confirm the money actually arrived. Unpaid super &mdash; where an employer lists super on a payslip but never transfers it &mdash; is one of the most common payslip problems.</li>
               </ul>
               <h3>How to Use YTD to Estimate Your Tax Refund</h3>
               <p>
-                Compare your YTD Tax figure against the annual tax liability for your salary level. On an <strong>$85,000</strong> gross salary, total annual tax plus Medicare is approximately <strong>$17,467</strong>. If your YTD Tax at 30 June exceeds this amount, the difference is your expected tax refund. Common causes of over-withholding include not claiming the tax-free threshold, incorrect HECS-HELP flag on your TFN declaration, and working multiple jobs with each employer withholding at the full marginal rate.
+                Compare your YTD Tax figure against the annual tax liability for your salary level. On an <strong>$85,000</strong> gross salary, total annual tax plus Medicare is approximately <strong>{formatAUD(EX85.totalDeductions)}</strong> in FY{SITE_CONFIG.financialYear}. If your YTD Tax at 30 June exceeds this amount, the difference is your expected tax refund. Common causes of over-withholding include not claiming the tax-free threshold, incorrect HECS-HELP flag on your TFN declaration, and working multiple jobs with each employer withholding at the full marginal rate.
               </p>
             </section>
 
@@ -291,10 +307,10 @@ export default function UnderstandingYourPayslipPage() {
                 The &ldquo;Superannuation Guarantee&rdquo; (SG) contribution of {formatPercent(SUPER_GUARANTEE.rate, 0)} appears as a separate line on your payslip showing the dollar amount and the name of your super fund. This amount is paid by your employer on top of your gross salary.
               </p>
               <p>
-                The SG rate increased from <strong>11.5%</strong> to <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on 1 July 2025. On an <strong>$85,000</strong> salary, your employer contributes <strong>$10,200 per year</strong> (or <strong>$392.31 per fortnight</strong>) to your nominated super fund. The maximum super contribution base is <strong>$62,500 per quarter</strong> for FY2025-26, meaning earnings above <strong>$250,000 per year</strong> do not attract additional SG contributions. Read the <Link href="/superannuation-guide/">Superannuation Guide</Link> for a full breakdown of SG rates, contribution caps, and Division 293 tax.
+                The SG rate increased from <strong>11.5%</strong> to <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on 1 July 2025. On an <strong>$85,000</strong> salary, your employer contributes <strong>$10,200 per year</strong> (or <strong>$392.31 per fortnight</strong>) to your nominated super fund. From 1 July 2026 the maximum super contribution base is an annual figure of <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong>, so earnings above it do not attract additional SG contributions (it was $62,500 per quarter until 30 June 2026). Read the <Link href="/superannuation-guide/">Superannuation Guide</Link> for a full breakdown of SG rates, contribution caps, and Division 293 tax.
               </p>
               <p className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4 text-navy text-sm italic">
-                <strong>Crucial Check:</strong> Ensure your payslip clearly states the name of your chosen super fund and the dollar amount being contributed. It is alarmingly common for businesses to list super on a payslip but fail to actually transfer the cash to the fund (a practice known as Super Theft). If you suspect this, log into your Super fund's portal to verify the cash actually arrived.
+                <strong>Crucial Check:</strong> Ensure your payslip clearly states the name of your chosen super fund and the dollar amount being contributed. It is alarmingly common for businesses to list super on a payslip but fail to actually transfer the cash to the fund (a practice known as Super Theft). If you suspect this, log into your Super fund&apos;s portal to verify the cash actually arrived.
               </p>
               <h3>When Must Employers Pay Super?</h3>
               <p>
@@ -333,19 +349,19 @@ export default function UnderstandingYourPayslipPage() {
 
             {/* --- CONTEXT BORDER --- */}
 
-            <section id="fy2025-26-changes">
-              <h2>What Changed for Payslips in FY2025-26?</h2>
+            <section id="fy2026-27-changes">
+              <h2>What Changed for Payslips in FY{SITE_CONFIG.financialYear}?</h2>
               <p>
-                Three changes in the 2025-26 financial year directly affect the numbers on your payslip: the SG rate increase, the Stage 3 income tax bracket adjustments (carried over from 1 July 2024), and the new HECS-HELP marginal repayment system.
+                Four changes from 1 July 2026 directly affect the numbers on your payslip: Payday Super, the cut to the {formatPercent(TAX_BRACKETS[1].rate, 0)} tax rate, the indexed HECS-HELP threshold, and the annual maximum super contribution base.
               </p>
               <ul>
-                <li><strong>SG rate increased to {formatPercent(SUPER_GUARANTEE.rate, 0)}:</strong> The super line on your payslip rises from 11.5% to 12% of ordinary time earnings from 1 July 2025. On an $85,000 salary, this adds <strong>$425 per year</strong> to your super.</li>
-                <li><strong>Stage 3 tax cuts (ongoing):</strong> The 19% bracket reduced to <strong>16%</strong> and the 32.5% bracket reduced to <strong>30%</strong>, with the threshold extended from $120,000 to <strong>$135,000</strong>. PAYG withholding amounts on your payslip reflect these lower rates.</li>
-                <li><strong>HECS-HELP marginal system:</strong> The repayment threshold increased to <strong>$69,528</strong> (from $69,528). Repayments now use a marginal model at <strong>15 cents per dollar</strong> over $69,528 instead of the previous percentage-of-total-income system. Employees with HECS debt see lower withholding amounts near the threshold.</li>
-                <li><strong>Income Statement deadline:</strong> Employers must finalise STP data and mark Income Statements as &ldquo;Tax Ready&rdquo; by <strong>14 July 2026</strong> for the FY2025-26 year.</li>
+                <li><strong>Payday Super:</strong> Super is now due with every pay and must reach your fund within 7 business days, calculated on qualifying earnings at {formatPercent(SUPER_GUARANTEE.rate, 0)} (the rate reached 12% on 1 July 2025).</li>
+                <li><strong>Lower tax on the second bracket:</strong> The rate on income from $18,201 to $45,000 fell from 16% to <strong>{formatPercent(TAX_BRACKETS[1].rate, 0)}</strong>, worth up to $268 a year. PAYG withholding amounts on your payslip reflect the new rate.</li>
+                <li><strong>HECS-HELP threshold:</strong> The repayment threshold rose to <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> (from {formatAUD(HECS_HELP.previousThreshold)}). Repayments use the marginal model introduced in FY2025-26: <strong>15 cents per dollar</strong> over the threshold rather than a percentage of total income.</li>
+                <li><strong>Income Statement deadline:</strong> Employers must finalise STP data and mark Income Statements as &ldquo;Tax Ready&rdquo; by <strong>14 July 2027</strong> for the FY{SITE_CONFIG.financialYear} year.</li>
               </ul>
               <p>
-                Compare your payslip before and after 1 July 2025 to confirm these changes are reflected. Use our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> to calculate your exact repayment amount under the new marginal system.
+                Compare your payslip before and after 1 July 2026 to confirm these changes are reflected. Use our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> to calculate your exact repayment amount under the marginal system.
               </p>
             </section>
 
@@ -379,80 +395,7 @@ export default function UnderstandingYourPayslipPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="what-is-diff" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between Gross and Net Pay?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Gross pay is your total earnings before any deductions. Net pay is the amount deposited into your bank account after PAYG withholding (income tax + Medicare Levy), HECS-HELP repayments, salary sacrifice, and any other authorised deductions are subtracted. On an $85,000 gross salary in FY2025-26, net pay is approximately <strong>$67,533</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="timing" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When must my employer give me my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Under the Fair Work Act 2009, your employer must provide a payslip within <strong>1 working day</strong> of paying your wage. The payslip can be delivered electronically (email, payroll portal) or as a printed document. Failure to comply carries penalties of up to <strong>$19,800</strong> per breach for individuals.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does my HECS-HELP repayment show separately on my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. If you ticked &ldquo;Yes&rdquo; to having a study/training loan on your TFN Declaration, your employer withholds extra tax to cover your <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link> repayment. This amount is bundled into the PAYG withholding line. The FY2025-26 repayment threshold is <strong>$69,528</strong>. Below this income level, no repayment is withheld.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-check" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I check if my employer is actually paying my super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Log into your super fund&apos;s online portal (or use the ATO&apos;s myGov link) and check your transaction history. Your employer must pay SG within <strong>28 days</strong> after the end of each quarter. If contributions are missing, lodge a complaint with the ATO. Under the current {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate, missing a single quarter on a $100,000 salary means <strong>$3,000</strong> of lost retirement savings.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="overtime" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should overtime appear separately on my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. The Fair Work Act requires employers to itemise each component of pay separately &mdash; including base hours, overtime hours, penalty rate loadings, and any allowances. If your overtime is combined with standard hours, ask payroll to itemise it. This is especially important for verifying <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">Award Rates</Link> compliance and correct penalty rate calculations.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="no-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What should I do if my employer does not give me a payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Request your payslip in writing first. If your employer continues to withhold payslips, lodge a complaint with the Fair Work Ombudsman at <strong>fairwork.gov.au</strong> or call <strong>13 13 94</strong>. Failing to provide payslips is a breach of the Fair Work Act carrying penalties of up to <strong>$99,000 per breach</strong> for companies. You can also lodge an anonymous tip if you prefer not to be identified.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="electronic-vs-paper" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is an electronic payslip as valid as a paper payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Electronic payslips (PDF, email, payroll portal access) carry the same legal weight as printed payslips under the Fair Work Act. The employer must ensure the electronic payslip is accessible to the employee and contains all 14 mandatory items. Most Australian employers now use electronic payslips through STP-compliant payroll software.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do casual employees receive payslips?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Casual employees are entitled to a payslip within 1 working day of being paid, the same as full-time and part-time employees. A casual payslip must show the hourly rate including the <strong>25% casual loading</strong>, hours worked, PAYG withholding, and super contributions. Super is payable on casual earnings at the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate regardless of hours worked.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="keep-payslips" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long should I keep my payslips?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The ATO recommends keeping payslips for a minimum of <strong>5 years</strong> from the date you lodge the relevant tax return. Employers must retain payroll records for <strong>7 years</strong>. Storing payslips digitally (scanned PDFs or payroll portal exports) satisfies record-keeping requirements and provides evidence in the event of a Fair Work dispute.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="payslip-tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need payslips to lodge my tax return?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Since the introduction of Single Touch Payroll (STP), your employer reports your income and tax data directly to the ATO each pay cycle. The ATO pre-fills your Income Statement in myGov by <strong>14 July</strong> each year. Payslips serve as a backup verification tool rather than a primary lodgement document. Cross-check your final YTD payslip figures against your Income Statement before lodging.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="salary-sacrifice-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How does salary sacrifice appear on a payslip?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrifice amounts appear as a pre-tax deduction between gross pay and taxable income. The payslip shows your gross salary, then subtracts the salary sacrifice amount, resulting in a lower taxable income. PAYG withholding is then calculated on this reduced figure. For example, sacrificing <strong>$500 per fortnight</strong> into super on an $85,000 salary reduces fortnightly taxable income from $3,269 to $2,769, lowering the PAYG withholding accordingly.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="pay-rise-payslip" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I compare payslips before and after a pay rise?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Compare the gross pay, PAYG withholding, and net pay lines between your old and new payslips. A pay rise increases gross pay but also pushes you into a higher income tax bracket, so the net increase is smaller than the gross increase. Use the <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> to model the exact before-and-after impact on your take-home pay, super contributions, and effective tax rate.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={PAYSLIP_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">
@@ -494,7 +437,7 @@ export default function UnderstandingYourPayslipPage() {
                     <FileText className="h-6 w-6 text-eucalyptus-light" />
                     <h3 className="text-lg font-bold">Compare Payslips</h3>
                   </div>
-                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer's payslip to check you aren't being underpaid.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">Input your gross salary to generate a synthetic payslip. Compare it against your real employer&apos;s payslip to check you aren&apos;t being underpaid.</p>
                   <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Generate Demo Payslip
                   </Link>

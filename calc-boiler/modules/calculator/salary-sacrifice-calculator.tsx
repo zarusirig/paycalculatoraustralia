@@ -4,13 +4,13 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SALARY_SACRIFICE_FAQS } from "./salary-sacrifice-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   calculatePayBreakdown,
-  EMPLOYMENT,
   formatAUD,
   formatPercent,
   SUPER_GUARANTEE,
@@ -19,7 +19,6 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import {
-  EV_EXEMPTION,
   FBT,
   FBT_CAPS,
   capFaceValue,
@@ -27,7 +26,7 @@ import {
   LUXURY_CAR_TAX,
   statutoryTaxableValue,
 } from "@/lib/constants/novated-lease";
-import { carryForwardWindow, CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
 
 // Second-bracket figures are derived: at 15% (FY2026-27) the income tax saving
 // on salary sacrifice is nil — the page previously showed 16% and "$0.01".
@@ -35,7 +34,6 @@ const FY = SITE_CONFIG.financialYear;
 const SECOND_RATE = TAX_BRACKETS[1].rate;
 const SECOND_RATE_PCT = `${Math.round(SECOND_RATE * 1000) / 10}%`;
 const SECOND_SAVING = `$${Math.max(0, SECOND_RATE - CONTRIBUTIONS_TAX_RATE).toFixed(2)}`;
-const CF_WINDOW = carryForwardWindow();
 // $40,000 petrol car, statutory formula, full year, no employee contribution.
 const ICE_TAXABLE_VALUE = statutoryTaxableValue(40_000);
 const ICE_FBT = Math.round(fbtPayable(ICE_TAXABLE_VALUE));
@@ -699,88 +697,7 @@ export default function SalarySacrificeCalculatorPage() {
           {/* --- H2: Frequently Asked Questions --- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="limit" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much can I salary sacrifice into super?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">There is no legal limit on the amount you can salary sacrifice, but your total concessional super contributions (employer SG + salary sacrifice + personal deductible contributions) cannot exceed <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> per year without incurring excess contributions tax. On a $100,000 salary, your employer contributes $12,000 in SG, leaving room for up to <strong>$18,000</strong> in salary sacrifice.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="reduce" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does salary sacrifice reduce my take-home pay?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The sacrificed amount is deducted before income tax is calculated, reducing your net pay. The reduction is smaller than the sacrifice amount because of the tax saving. Sacrificing <strong>$10,000</strong> on an $80,000 salary reduces take-home pay by approximately <strong>$6,800</strong> — the remaining $3,200 is the tax you no longer pay.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="other" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I salary sacrifice into things other than super?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Salary sacrifice arrangements can cover novated car leases, portable electronic devices, and additional employer super contributions. Non-super items attract &quot;Fringe Benefits Tax&quot; (FBT) unless they qualify for an exemption. Super sacrifice is the most tax-effective option for most Australian employees because concessional contributions are taxed at only <strong>15%</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does salary sacrifice reduce my HECS-HELP repayment?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. The ATO adds reportable super contributions back to your income when calculating your &quot;HECS-HELP repayment income.&quot; Salary sacrifice does not lower your HECS repayment threshold or repayment amount. Use the <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to model your repayment obligation.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="div293" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>What is Division 293 tax and does it affect my salary sacrifice?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Division 293 imposes an additional <strong>15%</strong> tax on concessional contributions when your income plus concessional super exceeds <strong>$250,000</strong>. This brings the total contributions tax to <strong>30%</strong>. Even at 30%, salary sacrifice saves tax for earners in the 37% or 45% brackets because the marginal rate plus Medicare levy (<strong>39%</strong> or <strong>47%</strong>) still exceeds the 30% Division 293 rate.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="change-amount" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I change my salary sacrifice amount mid-year?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Most employers allow adjustments to salary sacrifice arrangements at any time, though some restrict changes to quarterly intervals. Changes apply to future pay periods only — you cannot retrospectively sacrifice income already received. Contact your payroll team to confirm your employer&apos;s specific adjustment schedule.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="carry-forward" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can I carry forward unused concessional cap amounts?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. If your total super balance is below <strong>$500,000</strong> on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to <strong>5 prior years</strong> &mdash; for FY{FY}, the years {CF_WINDOW[0]?.year} to {CF_WINDOW[CF_WINDOW.length - 1]?.year}. Unused amounts older than 5 years expire. This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="mortgage" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Should I salary sacrifice or pay off my mortgage faster?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The answer depends on your mortgage interest rate versus expected after-tax super return. At a 6% mortgage rate, salary sacrifice into super typically delivers a better after-tax outcome because the 15% concessional tax rate is significantly lower than the 30%+ marginal rate on the same income used for extra mortgage repayments. Run the numbers at your specific salary using the calculator above.</p></AccordionContent>
-              </AccordionItem>
-                          <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is salary sacrificing?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrificing is an ATO-approved arrangement where an employee agrees to receive a lower gross salary in exchange for the employer providing a benefit of equivalent value — such as additional super contributions, a novated car lease, or a portable electronic device. The arrangement reduces the employee&apos;s assessable income, resulting in lower income tax and PAYG withholding.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrificing lower my HECS-HELP repayments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. The ATO calculates HECS-HELP repayments against your <strong>Repayment Income (RI)</strong>, which includes taxable income plus reportable employer super contributions plus reportable fringe benefits. Salary sacrifice reduces taxable income but the sacrificed amounts are added back as reportable items. The net effect on HECS repayments is zero.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="super-tax" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I pay tax on salary sacrificed super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. The super fund deducts <strong>15%</strong> contributions tax on all concessional contributions, including salary sacrifice amounts. Because 15% is lower than the standard marginal income tax brackets of 30%, 37%, and 45%, the employee pays less total tax than receiving the same amount as cash salary.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="ev-lease" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I salary sacrifice a car?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes, through a <strong>novated lease</strong>. Your employer deducts lease payments and running costs (fuel, insurance, registration, servicing) from your pre-tax salary. Battery electric and hydrogen fuel cell cars first held and used from {EV_EXEMPTION.firstHeldAndUsedFrom}, and on which luxury car tax has never been payable, are FBT-exempt under the Electric Car Discount. Plug-in hybrids stopped qualifying on {EV_EXEMPTION.phevExcludedFrom} unless the car was already held and used, and a binding commitment made, before that date.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="min-wage" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice reduce my pay below minimum wage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does salary sacrifice affect Centrelink payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It depends on the specific payment. Services Australia calculates eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments using <strong>adjusted taxable income (ATI)</strong>, which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice reduces taxable income but increases reportable items, so ATI remains similar. The net impact on Centrelink eligibility is typically minimal.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="nfp" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do not-for-profit employees get extra salary sacrifice benefits?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Employees of public benevolent institutions (PBIs) and health promotion charities have a <strong>{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)}</strong> grossed-up FBT exemption cap per FBT year, which covers about <strong>{formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))}</strong> of rent, mortgage repayments or other GST-free living expenses. Employees of public and not-for-profit hospitals and public ambulance services have a lower <strong>{formatAUD(FBT_CAPS.hospitalAndAmbulance)}</strong> grossed-up cap, about <strong>{formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}</strong> of expenses. A separate <strong>{formatAUD(FBT_CAPS.salaryPackagedEntertainment)}</strong> grossed-up cap (about {formatAUD(capFaceValue(FBT_CAPS.salaryPackagedEntertainment))} of meals) applies on top for salary-packaged meal entertainment. See the <Link href="/salary-packaging-guide/" className="text-eucalyptus-dark hover:underline">Salary Packaging Guide</Link> for worked examples.
-                  </AccordionContent>
-                </AccordionItem>
-              <AccordionItem value="laptop" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I salary sacrifice a laptop or phone?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Portable electronic devices used <strong>primarily for employment duties</strong> are FBT-exempt. Eligible items include laptops, tablets, mobile phones, and GPS devices. The exemption applies to 1 device per category per FBT year (1 April to 31 March). The employer purchases the device from your pre-tax salary, reducing your taxable income by the device cost. A $2,500 laptop at a 30% marginal rate saves <strong>$750</strong> in income tax.
-                  </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <FaqAccordion faqs={SALARY_SACRIFICE_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
           </section>
 
           <section className="bg-sandstone rounded-2xl p-8 text-center">

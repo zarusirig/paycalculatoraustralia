@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -11,6 +10,8 @@ import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import { TAX_FREE_THRESHOLD } from "@/lib/constants/australian-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TFN_DECLARATION_FAQS } from "./tax-file-number-declaration-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   // Question numbering verified 23 Sep 2026 against the ATO paper form instructions:
@@ -206,32 +207,7 @@ export default function TaxFileNumberDeclarationPage() {
             {/* SECTION 5: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="no-tfn" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I don&apos;t provide my TFN?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Your employer must withhold tax at the <strong>highest marginal rate of 47%</strong> from every dollar you earn. This rate includes the 45% top tax rate plus 2% Medicare levy. The over-withheld tax is recovered when you lodge your annual tax return, but you will have significantly reduced take-home pay in the meantime.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="two-jobs-threshold" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim the tax-free threshold at two jobs?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray"><strong>You should only claim the tax-free threshold at one job</strong> &mdash; your main (highest-paying) employer. If you claim it at two jobs, both employers withhold less tax than they should, and you will likely owe money when you lodge your tax return. Use our <Link href="/second-job-tax-calculator/" className="text-eucalyptus-dark underline">Second Job Tax Calculator</Link> to see the impact.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hecs-not-declared" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What if I forget to declare my HECS debt?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If you don&apos;t declare your HECS-HELP debt on your TFN declaration, your employer won&apos;t withhold any HECS repayments from your pay. The ATO will calculate your compulsory repayment when you lodge your tax return, and you&apos;ll owe the full amount as a lump sum. Submit a new TFN declaration to your employer as soon as possible to start having HECS withheld going forward.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lost-tfn" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I find my TFN if I&apos;ve lost it?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">You can find your TFN on previous tax returns, your myGov account (linked to the ATO), or correspondence from the ATO. You can also call the ATO on <strong>13 28 61</strong> to request your TFN. For security, the ATO will post your TFN to your registered address &mdash; they will not provide it over the phone or email.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="new-declaration-needed" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need a new TFN declaration each financial year?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray"><strong>No.</strong> Your TFN declaration remains in effect with your current employer until you submit a replacement or leave the job. You only need a new one if your circumstances change (e.g., new HECS debt, change in residency, want to move the tax-free threshold to a different employer).</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="contractor" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do contractors need to complete a TFN declaration?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Independent contractors operating under their own ABN do <strong>not</strong> complete a TFN declaration. Instead, they quote their ABN on invoices. Contractors without an ABN may have the top rate withheld by the payer. Employees (including casuals) must always provide a TFN declaration. See our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark underline">Contractor vs Employee Guide</Link> for help determining your status.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={TFN_DECLARATION_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

@@ -13,6 +13,8 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { NSW_FAQS } from "./pay-calculator-nsw-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -166,27 +168,9 @@ export default function PayCalculatorNSWPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in NSW compared to other states?">
-              No. Income tax in Australia is levied by the federal government through the ATO. The tax brackets, Medicare levy, and HECS-HELP repayment rates are exactly the same in NSW as they are in Victoria, Queensland, Western Australia, or any other state and territory. There is no state-level income tax anywhere in Australia.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average NSW salary?">
-              Full-time adults in NSW earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above breaks that down to weekly, fortnightly and monthly net pay.
-            </FAQItem>
-            <FAQItem value="holidays" question="How many public holidays does NSW have?">
-              Thirteen state-wide public holidays in 2026, the fewest of any state or territory. NSW adds a day when Anzac Day and Boxing Day fall on a weekend but has no equivalent of Melbourne Cup Day, Canberra Day or the Royal Queensland Show. Regional show days are declared locally and sit outside the state-wide list.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in NSW?">
-              After 10 years of continuous service with the same employer you are entitled to 8.67 weeks — two months — of paid leave, then 4.33 weeks for each further 5 years. Between 5 and 10 years a pro-rata payment is only owed in defined circumstances.
-            </FAQItem>
-            <FAQItem value="employee" question="Do employees pay payroll tax or workers compensation premiums?">
-              No. Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These costs do not appear on your payslip and do not reduce your gross salary or take-home pay. Employers factor these on-costs into total hiring budgets, which indirectly influences salary offers.
-            </FAQItem>
-            <FAQItem value="medicare" question="Do I pay the Medicare levy surcharge in NSW?">
-              The Medicare levy surcharge applies identically across all states. Untick &quot;I hold private hospital cover&quot; in the calculator above and it will add the surcharge at your income level so you can see the difference in dollars.
-            </FAQItem>
-            <FAQItem value="hecs" question="How does HECS-HELP change my NSW take-home pay?">
-              HECS-HELP repayment thresholds are federal and identical in every state. Tick the HECS-HELP box in the calculator to see the repayment withheld at your salary and what your fortnightly pay drops to.
-            </FAQItem>
+            {NSW_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

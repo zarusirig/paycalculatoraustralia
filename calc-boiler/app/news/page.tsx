@@ -8,13 +8,13 @@ import NewsIndexPage from "@/modules/news/index-page";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
 const TITLE = "Australian Pay & Tax News — Wage, Super & Tax Changes";
-const DESCRIPTION = "The latest Australian pay news: minimum wage decisions, tax changes, superannuation rules, HECS updates and Centrelink payment increases — with what each change means for your take-home pay.";
+const DESCRIPTION = "The latest Australian pay news: minimum wage decisions, tax changes, super rules, HECS updates and Centrelink increases, and what each means for your take-home pay.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

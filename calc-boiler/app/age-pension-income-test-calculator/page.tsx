@@ -5,17 +5,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/age-pension-income-test-calculator/`;
 const TITLE = "Age Pension Income Test Calculator — Work Bonus Included";
-const DESCRIPTION = "How income changes your Age Pension: the $226 single and $396 couple free areas, 50c and 25c tapers, the $300-a-fortnight Work Bonus and its balance, and the maximum rates before and after the 20 September 2026 increase. Figures verified at Services Australia.";
+const DESCRIPTION = "Age Pension income test: the $226 single and $396 couple free areas, 50c and 25c tapers, the $300 Work Bonus and maximum rates from 20 September 2026.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
@@ -39,7 +40,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("age-pension-income-test-calculator"),
   inLanguage: "en-AU",
 };
 

@@ -5,17 +5,18 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/commission-tax-calculator/`;
 const TITLE = "Commission Tax Calculator Australia — Tax on Commission";
-const DESCRIPTION = `How much tax you pay on commission in ${SITE_CONFIG.financialYear}: the tax it adds to your year at your marginal rate, and the amount withheld from the commission pay under ATO Schedule 5 — plus the refund or bill that settles the difference.`;
+const DESCRIPTION = `Tax on commission in ${SITE_CONFIG.financialYear}: what it adds at your marginal rate, what's withheld under ATO Schedule 5, and the refund or bill that settles the difference.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: "Tax on commission: annual cost at your marginal rate, and Schedule 5 withholding on the pay." },
 };
 
@@ -38,7 +39,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("commission-tax-calculator"),
   inLanguage: "en-AU",
 };
 

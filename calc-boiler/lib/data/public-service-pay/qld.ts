@@ -55,7 +55,7 @@ export const QLD: Jurisdiction = {
 
   metaTitle: "QLD Government Pay Rates 2026 — AO, PO, TO and OO Salary Scales",
   metaDescription:
-    "Queensland public service pay points: AO1–AO8, PO1–PO6, TO1–TO6 and OO1–OO7, from the Queensland Public Service Officers and Other Employees Award – State 2015 and a certified agreement schedule, plus Queensland Health nursing rates and what each level is worth after tax.",
+    "Queensland public service pay points: AO1–AO8, PO1–PO6, TO1–TO6 and OO1–OO7 from the state award and agreement, plus Queensland Health nurses and pay after tax.",
 
   instrument:
     "The Queensland Public Service Officers and Other Employees Award – State 2015 sets the classification structure — administrative (AO), professional (PO), technical (TO) and operational (OO) streams, each with numbered pay points — and the award rate for each point. Certified agreements set rates for the entities they cover, and an employee is always paid at least the award rate.",

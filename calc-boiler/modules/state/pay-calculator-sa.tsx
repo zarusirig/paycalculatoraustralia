@@ -7,14 +7,14 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { SA_FAQS } from "./pay-calculator-sa-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -173,27 +173,9 @@ export default function PayCalculatorSAPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in South Australia?">
-              No. Income tax is levied by the federal government through the ATO and is <strong>identical in all 6 states and 2 territories</strong>. Your income tax brackets, LITO, and Medicare levy are the same whether you live in Adelaide, Sydney, or Perth. There is no state-level personal income tax anywhere in Australia.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average SA salary?">
-              Full-time adults in SA earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above shows the weekly, fortnightly and monthly net figures.
-            </FAQItem>
-            <FAQItem value="parttime-holidays" question="Are Christmas Eve and New Year's Eve public holidays in SA?">
-              Both are part-day public holidays in South Australia, running from 7 pm to midnight. Hours worked before 7 pm are ordinary hours and hours after it attract public holiday entitlements, so a single evening shift can span both.
-            </FAQItem>
-            <FAQItem value="proclamation" question="Why does SA have Proclamation Day instead of Boxing Day?">
-              South Australia gazettes 26 December as the Proclamation Day holiday, marking the proclamation of the colony in 1836. For pay purposes it functions the same way as Boxing Day elsewhere, and an additional public holiday is observed on Monday 28 December 2026.
-            </FAQItem>
-            <FAQItem value="lsl" question="Why is long service leave better in South Australia?">
-              The Long Service Leave Act 1987 (SA) sets accrual at 1.3 weeks per completed year, which produces 13 weeks at the 10-year mark. Most other states accrue about 0.867 weeks a year and reach only 8.67 weeks at 10 years. A pro-rata payment becomes available once you complete 7 years.
-            </FAQItem>
-            <FAQItem value="payroll" question="Do SA employees pay payroll tax?">
-              No. Payroll tax is charged to the employer once its Australian wage bill passes {formatAUD(STATE_PAYROLL_TAX.SA.threshold)}, at a rate of up to {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}. It never appears as a deduction on an employee&apos;s payslip.
-            </FAQItem>
-            <FAQItem value="packaging" question="Does salary packaging change my SA take-home pay?">
-              Yes, and it is common in SA health and not-for-profit employment. Packaged amounts reduce your taxable income, which reduces income tax and the Medicare levy. Model it with the <Link href="/salary-packaging-guide/" className="text-eucalyptus-dark hover:underline">salary packaging guide</Link> and the <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">salary package calculator</Link>.
-            </FAQItem>
+            {SA_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>

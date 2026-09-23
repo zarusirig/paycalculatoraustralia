@@ -2,16 +2,16 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, MEDICARE_LEVY, HECS_HELP, HECS_HELP_2025_26, LITO, TAX_BRACKETS, TAX_BRACKETS_2025_26, TAX_FREE_THRESHOLD, GENERAL_INTEREST_CHARGE, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, MEDICARE_LEVY, HECS_HELP_2025_26, LITO, TAX_BRACKETS, TAX_BRACKETS_2025_26, TAX_FREE_THRESHOLD, GENERAL_INTEREST_CHARGE, formatAUD, formatPercent } from "@/lib/constants";
 import { RETURN_2026, RETURN_2026_SOURCES, MLS_2025_26_SINGLE, incomeTax2025_26, lito2025_26, medicareLevy2025_26 } from "@/lib/constants/tax-return-2025-26";
 import { PENALTY_UNIT, FTL_MAX_INDIVIDUAL } from "@/lib/constants/tax-calendar-2026-27";
-import { PHI_REBATE, formatMlsRate } from "@/lib/constants/medicare-levy-surcharge";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { TAX_REFUND_FAQS } from "./tax-refund-guide-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Lodge your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return", publisher: SOURCES.ato.name },
@@ -41,12 +41,7 @@ const EX_REFUND = EX_WITHHELD - EX_LIABILITY;
 const BRACKET_2 = TAX_BRACKETS_2025_26[1];
 const BRACKET_3 = TAX_BRACKETS_2025_26[2];
 const TOP_BRACKET = TAX_BRACKETS_2025_26[TAX_BRACKETS_2025_26.length - 1];
-const WFH_RATE = RETURN_2026.wfhFixedRateCents / 100;
-const WFH_EXAMPLE_HOURS = 1_100;
 const MLS_BASE_2025_26 = MLS_2025_26_SINGLE[0].min - 1;
-const MLS_BASE_SINGLE = MEDICARE_LEVY.surcharge.tier1.min - 1;
-const MLS_BASE_FAMILY = MEDICARE_LEVY.surcharge.familyTier1.min - 1;
-const PHI_REBATE_NIL_ABOVE = MEDICARE_LEVY.surcharge.tier3.min - 1;
 const FTL_PER_PERIOD = PENALTY_UNIT.amount;
 
 export default function TaxRefundGuidePage() {
@@ -350,69 +345,7 @@ export default function TaxRefundGuidePage() {
             {/* ───── SECTION 11: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="what-is-refund" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A tax refund is the amount the ATO returns to you when your employer withheld more PAYG tax during the year than your actual assessed tax liability. The refund represents over-withheld income, not a government payment.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="average" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the average tax refund in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">There is no reliable single figure: averages reported early in tax time are snapshots that shift as more returns are processed. Your own refund depends mainly on your deductions, your marginal rate, and whether you worked part of the year. Our <Link href="/tax-return-calculator/" className="text-eucalyptus-dark underline">Tax Return Estimator</Link> gives a personal estimate.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="no-lodge" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I don&apos;t lodge a tax return?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Individuals who earn above the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold are generally required to lodge. Failure to lodge can attract a penalty of <strong>{formatAUD(FTL_PER_PERIOD)} per {PENALTY_UNIT.ftlDaysPerUnit}-day period</strong> (up to {formatAUD(FTL_MAX_INDIVIDUAL)}). Even if you earned less than {formatAUD(TAX_FREE_THRESHOLD)}, lodging is beneficial when tax was withheld — you receive a full refund of all PAYG tax paid.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="owe" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What if I owe the ATO money?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The ATO issues a Notice of Assessment showing the amount owed. Common causes include holding multiple jobs, earning investment income, or incorrectly claiming the tax-free threshold at more than one employer. Payment plans are available — the ATO charges interest at the General Interest Charge rate (<strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} per annum for {GENERAL_INTEREST_CHARGE.quarter}</strong>) on overdue amounts.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-long" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long does a tax refund take to arrive?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The ATO says most returns lodged online through myTax process in <strong>{RETURN_2026.onlineProcessingBusinessDays} business days</strong> and most refunds issue within {RETURN_2026.onlineRefundTypical}. For paper returns, most refunds issue within {RETURN_2026.paperRefundBusinessDays} business days. Returns selected for review take longer.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="deductions-no-receipts" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I claim deductions without receipts?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The ATO requires records for all deduction claims. For work-related expenses under <strong>$300 in total</strong>, you are not required to provide written evidence, but you must be able to show how you calculated the amount. Laundry of eligible work clothing allows claims up to <strong>$150</strong> without written records. All claims above these thresholds require receipts, invoices, or bank/credit card statements.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="wfh" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I claim working from home expenses?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">For FY{RY}, the ATO&apos;s fixed rate method allows a deduction of <strong>{RETURN_2026.wfhFixedRateCents} cents per hour</strong> worked from home. This rate covers electricity, phone, internet, stationery, and computer consumables. You must keep a record of hours worked from home — either a timesheet, roster, diary, or similar document for the entire income year. An employee who records {WFH_EXAMPLE_HOURS.toLocaleString("en-AU")} hours worked from home in the year claims <strong>{formatAUD(WFH_EXAMPLE_HOURS * WFH_RATE)}</strong>.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="multiple-jobs" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I owe tax if I have two jobs?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Holding 2 or more jobs does not automatically create a tax debt, but it increases the risk. Claim the tax-free threshold at only <strong>one employer</strong> (usually the highest-paying job). Your second employer should withhold tax at the &quot;no tax-free threshold&quot; rate. If both employers apply the tax-free threshold, you accumulate under-withheld tax that results in a debt at lodgment.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="amendment" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I amend a tax return after lodging?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. You can amend a tax return within <strong>2 years</strong> of the original assessment date for individuals (4 years for more complex affairs). Amendments are lodged through myTax or your tax agent. The ATO reprocesses your return and issues an amended assessment. </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="hecs-impact" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does HECS-HELP affect my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">HECS-HELP compulsory repayments reduce your tax refund. Repayments are calculated on your &quot;HELP repayment income&quot; &mdash; essentially your taxable income plus certain other amounts. For the FY{RY} return, repayments apply only once that income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it: {formatPercent(HECS_HELP_2025_26.bands[1].marginalRate, 0)} of the excess up to {formatAUD(HECS_HELP_2025_26.bands[1].max)}, then {formatAUD(HECS_HELP_2025_26.bands[2].base)} plus {formatPercent(HECS_HELP_2025_26.bands[2].marginalRate, 0)} above that, until {formatPercent(HECS_HELP_2025_26.bands[3].marginalRate, 0)} of total repayment income applies from {formatAUD(HECS_HELP_2025_26.bands[3].min)}. The threshold rises to {formatAUD(HECS_HELP.minimumThreshold)} for FY{SITE_CONFIG.financialYear}. Your employer may already withhold HELP repayments from each pay, in which case the impact on your refund is already accounted for.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="private-health" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does private health insurance affect my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Private hospital cover affects your tax in two ways. First, holding appropriate hospital cover exempts you from the &quot;Medicare Levy Surcharge&quot; (MLS) of <strong>{formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}&ndash;{formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}</strong>. For FY{SITE_CONFIG.financialYear} it applies on income for MLS purposes above <strong>{formatAUD(MLS_BASE_SINGLE)}</strong> (singles) or <strong>{formatAUD(MLS_BASE_FAMILY)}</strong> (families); on the FY{RY} return you are lodging now, the singles threshold is {formatAUD(MLS_BASE_2025_26)}. Second, the private health insurance rebate reduces your premium cost. You can receive the rebate as a reduction in premiums during the year or as a refundable tax offset at lodgment. The rebate is income-tested on the same tiers and falls to 0% in the top tier &mdash; above {formatAUD(PHI_REBATE_NIL_ABOVE)} for singles in FY{SITE_CONFIG.financialYear} (rates for {PHI_REBATE.period}). Check your own position with the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark underline">Medicare levy surcharge calculator</Link>.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="super-refund" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I get a tax deduction for superannuation contributions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Employees can claim a tax deduction for <strong>personal super contributions</strong> made from after-tax income by submitting a &quot;Notice of Intent to Claim&quot; to their super fund before lodging. The total of employer SG contributions ({formatPercent(SUPER_GUARANTEE.rate, 0)}), salary sacrifice, and personal deductible contributions counts toward the concessional contributions cap: <strong>{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}</strong> for FY{RY} and {formatAUD(SUPER_GUARANTEE.concessionalCap)} from 1 July 2026 (see the <Link href="/concessional-contributions-cap/" className="text-eucalyptus-dark underline">concessional cap guide</Link>), plus any unused carry-forward amounts. Contributions above the cap are taxed at your marginal rate, less a 15% offset, instead of the concessional 15% rate.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={TAX_REFUND_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax return information is sourced from the Australian Taxation Office (ATO). Worked figures are computed from our FY{RY} constants (the return being lodged in 2026); current-year MLS and rebate thresholds are labelled FY{SITE_CONFIG.financialYear}. The GIC rate shown is for {GENERAL_INTEREST_CHARGE.quarter} and resets quarterly. Your individual circumstances, including applicable tax offsets, HECS-HELP obligations, and Medicare levy surcharge status, affect your actual refund amount. Use our Australian tax calculator tools for personalised estimates.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

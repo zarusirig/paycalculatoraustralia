@@ -55,9 +55,9 @@ test("award ranking covers every directory award, highest first, only C14 below 
 
 test("public sector rows resolve for teachers, nurses and six public services", () => {
   const rows = publicSectorRows();
-  assert.equal(rows.filter((r) => r.group === "Public service").length, 6);
+  assert.equal(rows.filter((r) => r.group === "Public service").length, 9);
   assert.ok(rows.filter((r) => r.group === "Teachers").length >= 6);
-  assert.ok(rows.filter((r) => r.group === "Registered nurses").length >= 6);
+  assert.ok(rows.filter((r) => r.group === "Registered nurses").length >= 8);
   for (const r of rows) assert.ok(r.top >= r.entry && r.entry > 40_000, `${r.group} ${r.code}`);
 });
 

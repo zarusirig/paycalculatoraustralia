@@ -11,11 +11,12 @@ import {
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { ACT_FAQS } from "./pay-calculator-act-faqs";
 import {
   AbsEarningsTable,
   FAQItem,
@@ -179,27 +180,9 @@ export default function PayCalculatorACTPage() {
 
 
           <FAQSection>
-            <FAQItem value="federal" question="Is income tax different in the ACT?">
-              No. Your income tax, Medicare levy, and HECS-HELP obligations are determined by the ATO at the federal level and do not change based on your residential address. Cross-border commuters from Queanbeyan, Yass, or Bungendore pay the same taxation as Canberra residents.
-            </FAQItem>
-            <FAQItem value="takehome" question="What is the take-home pay on the average Canberra salary?">
-              Full-time adults in the ACT earn {formatAUD(PROFILE.awote.personsFullTime, 2)} a week in ordinary time earnings, about {formatAUD(typicalSalary(PROFILE))} a year — the highest in Australia (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}). The worked example above shows what is left after tax.
-            </FAQItem>
-            <FAQItem value="holidays" question="Which public holidays are unique to the ACT?">
-              Canberra Day, held on the second Monday in March, and Reconciliation Day, held on the first Monday on or after 27 May. Neither is observed in NSW, so a worker based in Canberra gets two penalty-rate days a Queanbeyan colleague does not.
-            </FAQItem>
-            <FAQItem value="crossborder" question="I live in Queanbeyan but work in Canberra. Which public holidays do I get?">
-              The ones where you are based for work. Public holiday entitlements follow the location your job is based in, not where you live or where you happen to be on the day, so an ACT-based role gets the ACT calendar.
-            </FAQItem>
-            <FAQItem value="lsl" question="When do I get long service leave in the ACT?">
-              After 7 years of continuous service you are entitled to 6.0667 weeks of paid leave, plus a further fifth of a month for each subsequent year. A pro-rata payment can be owed from 5 years in defined circumstances. Public sector employees and portable-scheme industries are covered separately.
-            </FAQItem>
-            <FAQItem value="super" question="Does 15.4% super change my take-home pay?">
-              No. Superannuation is paid on top of your salary, not deducted from it, so a higher scheme rate raises your total package without changing your net pay. The calculator above uses the statutory {formatPercent(SUPER_GUARANTEE.rate, 0)} guarantee; adjust the package figure if you are on the APS rate.
-            </FAQItem>
-            <FAQItem value="payroll" question="Do ACT employees pay payroll tax?">
-              No. It is charged to employers whose Australia-wide wages exceed {formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}. It is never deducted from wages and never appears on a payslip.
-            </FAQItem>
+            {ACT_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}><FaqAnswer faq={f} /></FAQItem>
+            ))}
           </FAQSection>
 
           <MethodologyDisclosure>
