@@ -17,6 +17,7 @@ import { WOOLWORTHS_PAY } from "./woolworths";
 import { BUNNINGS_PAY } from "./bunnings";
 import { MCDONALDS_PAY } from "./mcdonalds";
 import { CHEMIST_WAREHOUSE_PAY } from "./chemist-warehouse";
+import { KMART_PAY } from "./kmart";
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -24,6 +25,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   bunnings: BUNNINGS_PAY,
   mcdonalds: MCDONALDS_PAY,
   "chemist-warehouse": CHEMIST_WAREHOUSE_PAY,
+  kmart: KMART_PAY,
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */

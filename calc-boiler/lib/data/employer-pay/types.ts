@@ -22,6 +22,7 @@ export const EMPLOYER_SLUGS = [
   "bunnings",
   "mcdonalds",
   "chemist-warehouse",
+  "kmart",
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];

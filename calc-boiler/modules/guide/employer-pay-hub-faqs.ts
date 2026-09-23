@@ -19,7 +19,7 @@ export const PAY_RATES_HUB_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Why do fast food jobs pay less than supermarket jobs?",
-    a: `${awardCovered.length > 0 ? `${awardCovered.join(", ")} staff are paid under a modern award rather than their own enterprise agreement. ` : ""}Awards set a minimum, and each industry's award has its own rates and junior percentages. Supermarket agreements are bargained separately and must leave staff better off overall than the award.`,
+    a: `${awardCovered.length > 0 ? `${awardCovered.join(" and ")} staff are paid under a modern award rather than their own enterprise agreement. ` : ""}Awards set a minimum, and each industry's award has its own rates and junior percentages. Supermarket agreements are bargained separately and must leave staff better off overall than the award.`,
   },
   {
     q: "Do these rates include superannuation?",

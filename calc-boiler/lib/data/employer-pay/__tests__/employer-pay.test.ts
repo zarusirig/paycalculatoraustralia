@@ -249,6 +249,22 @@ test("Bunnings: Sep 2023 rate x 1.03 x 1.03 (cl 1.5)", () => {
   assert.equal(bunnings.casualLoading, 0.225);
 });
 
+test("Kmart: Retail Award 1 July 2026 rate for the equivalent level + 15c (cl 8.1.2)", () => {
+  // Retail Award MA000004 from 1 July 2026: Level 1, 2, 4, 4, 6.
+  const awardEquivalent = [27.81, 28.45, 29.45, 29.45, 31.11];
+  const kmart = getEmployerPay("kmart");
+  assert.ok(kmart);
+  assert.deepEqual(
+    kmart.rates.map((r) => r.hourly),
+    awardEquivalent.map((r) => roundCents(r + 0.15)),
+  );
+  // Junior limb (b) — award % on the Kmart base — beats limb (c), award junior + 1c.
+  for (const row of juniorRates(kmart)) {
+    const awardJuniorPlusCent = roundCents(roundCents((1056.8 * row.percentage) / 38) + 0.01);
+    assert.ok(row.hourly >= awardJuniorPlusCent, `${row.age}`);
+  }
+});
+
 test("award-covered employers match the 1 July 2026 award tables", () => {
   const mcd = getEmployerPay("mcdonalds");
   const cw = getEmployerPay("chemist-warehouse");
