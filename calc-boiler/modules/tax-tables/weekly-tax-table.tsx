@@ -101,7 +101,7 @@ export default function WeeklyTaxTablePage() {
               <p className="text-sm text-warmgray-light">
                 Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
                 sample amounts exactly.{" "}
-                <Link href="/weekly-pay-calculator/">Calculate your exact weekly pay here.</Link>
+                To skip the lookup, the <Link href="/weekly-pay-calculator/">weekly tax calculator</Link> works out your exact weekly pay.
               </p>
             </section>
 
