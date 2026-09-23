@@ -12,9 +12,11 @@ import {
   calculatePAYGWithholding,
   NO_TFN_RATES,
   PAYG_TABLES_UPDATED,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
 } from "@/lib/constants/payg-withholding";
 import TaxTableLookupWidget from "./lookup-widget";
-import WithholdingTable from "./withholding-table";
+import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import ExtraPayTable from "./extra-pay-table";
 import AtoDownloads from "./ato-downloads";
@@ -62,18 +64,18 @@ export default function FortnightlyTaxTablePage() {
         </nav>
 
         {/* HERO HEADER */}
-        <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Fortnightly Tax Table 2026-27 (ATO NAT 1006) — PAYG Withholding Amounts
+        <header id="lookup" className="mb-10 lg:mb-14 max-w-5xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Fortnightly Tax Table {PAYG_FINANCIAL_YEAR} (ATO {ATO_FORTNIGHTLY.nat})
           </h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-3">
-            The fortnightly tax table &mdash; published by the ATO as <strong>{ATO_FORTNIGHTLY.nat}</strong> &mdash; sets out how
-            much tax your employer withholds from each fortnightly pay under the PAYG system. For 2026-27, earning{" "}
-            {formatAUD(2_000)} a fortnight with the tax-free threshold means {formatAUD(example2000.totalWithheld)} withheld
-            and {formatAUD(example2000.netPerPeriod)} take-home.
+          <p className="text-lg md:text-xl text-warmgray leading-relaxed mb-5">
+            Enter your fortnightly earnings to see the tax withheld under the ATO fortnightly tax table. For {PAYG_FINANCIAL_YEAR},{" "}
+            {formatAUD(2_000)} a fortnight with the tax-free threshold claimed has <strong>{formatAUD(example2000.totalWithheld)}</strong>{" "}
+            withheld ({formatAUD(example2000.netPerPeriod)} take-home).
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">
-            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the FY2026-27 rate cut (15% on $18,201&ndash;$45,000)
+          <TaxTableLookupWidget frequency="fortnightly" defaultGross={2_000} />
+          <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
+            {ATO_FORTNIGHTLY.nat} published {ATO_FORTNIGHTLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -82,33 +84,24 @@ export default function FortnightlyTaxTablePage() {
 
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            <section id="lookup">
-              <h2>Fortnightly Tax Table Lookup — Check Your Withholding Instantly</h2>
-              <p>
-                Enter your gross fortnightly pay to see the PAYG amount that should be withheld this
-                financial year, including the study loan (STSL) component if you have a HECS-HELP debt.
-              </p>
-              <TaxTableLookupWidget frequency="fortnightly" defaultGross={3_000} />
-            </section>
-
             <section id="fortnightly-tax-table-2026-27">
-              <h2>Fortnightly Tax Table 2026-27 (NAT 1006)</h2>
+              <h2>Full Fortnightly Tax Table {PAYG_FINANCIAL_YEAR} — With and Without the Tax-Free Threshold</h2>
               <p>
-                The table below shows PAYG withholding for common fortnightly earnings under the 2026-27
-                resident rates, in the three most-used {ATO_FORTNIGHTLY.nat} columns: claiming the tax-free
-                threshold (column 2 of the ATO table), claiming it with a study loan, and not claiming it
-                (column 3, typical for a <Link href="/second-job-tax-calculator/">second job</Link>).
-                Fortnightly is Australia&apos;s most common pay cycle &mdash; 26 pays a year.
+                The table lists the amount to withhold from fortnightly earnings in {formatAUD(100)} steps, in the two
+                {" "}{ATO_FORTNIGHTLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
+                table) and not claimed (column 3, typical for a{" "}
+                <Link href="/second-job-tax-calculator/">second job</Link>) &mdash; plus the total with a study loan.
+                Fortnightly is Australia&apos;s most common pay cycle, with 26 pays a year. Switch to{" "}
+                {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an older pay run, or download the full table as a CSV.
               </p>
-              <WithholdingTable
+              <FullTaxTable
                 frequency="fortnightly"
-                amounts={FORTNIGHTLY_TABLE_ROWS}
-                caption="Fortnightly PAYG withholding amounts for 2026-27 by gross fortnightly earnings, ATO NAT 1006"
+                caption={`Fortnightly tax table: PAYG withholding by fortnightly earnings, ATO ${ATO_FORTNIGHTLY.nat}`}
               />
               <p className="text-sm text-warmgray-light">
-                Every figure is computed at page load from the ATO Schedule 1 coefficients, so it reproduces
-                the printed {ATO_FORTNIGHTLY.nat} look-up table exactly &mdash; including the property that every
-                amount is an even number of dollars.{" "}
+                Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
+                sample amounts exactly &mdash; including the property that every fortnightly amount is an even number of
+                dollars.{" "}
                 <Link href="/fortnightly-pay-calculator/">Calculate your exact fortnightly pay here.</Link>
               </p>
             </section>

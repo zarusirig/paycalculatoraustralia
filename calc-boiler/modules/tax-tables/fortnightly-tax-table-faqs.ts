@@ -4,7 +4,14 @@
 // the FAQPage JSON-LD, so the structured data cannot drift from the page.
 
 import { formatAUD } from "@/lib/constants";
-import { calculatePAYGWithholding, NO_TFN_RATES } from "@/lib/constants/payg-withholding";
+import {
+  calculatePAYGWithholding,
+  withholdingForPeriod,
+  CSV_TABLE_RANGES,
+  NO_TFN_RATES,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
+} from "@/lib/constants/payg-withholding";
 import type { TaxTableFaq } from "./weekly-tax-table-faqs";
 import { ATO_FORTNIGHTLY, ATO_WORKED_EXAMPLES, FORTNIGHTLY_EXTRA_PAY } from "./ato-schedules";
 
@@ -12,6 +19,8 @@ const ex = ATO_WORKED_EXAMPLES.fortnightly;
 const at2000 = calculatePAYGWithholding(2_000, "fortnightly");
 const at3000 = calculatePAYGWithholding(3_000, "fortnightly", { hasSTSL: true });
 const at2000Foreign = calculatePAYGWithholding(2_000, "fortnightly", { foreignResident: true });
+const at3000Now = withholdingForPeriod(3_000, "fortnightly", "tft", PAYG_FINANCIAL_YEAR);
+const at3000Prev = withholdingForPeriod(3_000, "fortnightly", "tft", PAYG_PREVIOUS_FINANCIAL_YEAR);
 
 export const FORTNIGHTLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
@@ -61,5 +70,13 @@ export const FORTNIGHTLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
     q: "Where is the official ATO fortnightly tax table?",
     a: `${ATO_FORTNIGHTLY.nat} is published at ${ATO_FORTNIGHTLY.pageUrl}, with a printable PDF look-up table and an XLSX look-up tool. Both are linked directly from this page. This page reproduces the same Schedule 1 coefficient formulas, but for payroll compliance you should confirm against the current ATO publication.`,
+  },
+  {
+    q: `What changed between the ${PAYG_PREVIOUS_FINANCIAL_YEAR} and ${PAYG_FINANCIAL_YEAR} fortnightly tax tables?`,
+    a: `The rate on income between $18,201 and $45,000 fell from 16% to 15% on 1 July 2026, so the ATO reissued ${ATO_FORTNIGHTLY.nat} with new Schedule 1 coefficients. At ${formatAUD(3_000)} a fortnight with the tax-free threshold claimed, withholding is ${formatAUD(at3000Prev)} under the ${PAYG_PREVIOUS_FINANCIAL_YEAR} table and ${formatAUD(at3000Now)} under ${PAYG_FINANCIAL_YEAR}. Use the year toggle on this page to see ${PAYG_PREVIOUS_FINANCIAL_YEAR} amounts for an older pay run.`,
+  },
+  {
+    q: "Can I download the fortnightly tax table as a spreadsheet?",
+    a: `Yes. The "Download CSV" button above the table builds the fortnightly table in $2 steps (the ATO's fortnightly amounts only change every $2) up to ${formatAUD(CSV_TABLE_RANGES.fortnightly.to)} a fortnight, for whichever financial year is selected, with columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents. It opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
   },
 ] as const;
