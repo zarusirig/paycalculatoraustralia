@@ -71,15 +71,19 @@ export default function PublicServicePayScalesPage() {
             Public Service Pay Scales in Australia
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
-            Three different classification systems, three different sets of numbers. The federal APS
+            Six services, six classification systems, six sets of numbers. The federal APS
             runs APS 1&ndash;6, EL 1, EL 2 and SES Bands 1&ndash;3 with a median APS 6 base salary of{" "}
             <strong className="text-navy">$108,092</strong>; the Victorian Public Service runs grades
             1&ndash;7 with value ranges and progression steps, paying{" "}
             <strong className="text-navy">$56,677 to $263,771</strong> from 1 May 2026; Queensland
             runs AO, PO, TO and OO streams, with an AO3 on{" "}
-            <strong className="text-navy">$77,354 to $85,833</strong> under the state award. Every
-            figure on these pages is transcribed from the agreement, award or determination that sets
-            it.
+            <strong className="text-navy">$81,032 to $89,903</strong> under the state award from 1
+            September 2026. NSW pays a
+            Clerk Grade 5 <strong className="text-navy">$102,936 to $106,182</strong> from July 2026, WA a
+            Level 5 <strong className="text-navy">$108,848 to $118,961</strong> from 13 June 2026, and
+            South Australia an ASO-4 <strong className="text-navy">$82,212 to $86,180</strong> from July
+            2026. Every figure on these pages is transcribed from the agreement, award or determination
+            that sets it.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -125,7 +129,7 @@ export default function PublicServicePayScalesPage() {
               <h2 style={HEADING_FONT}>How the classification systems work</h2>
               <p>
                 A public service classification does two things at once: it describes the work level,
-                and it fixes the salary range attached to it. The three services build that structure
+                and it fixes the salary range attached to it. Each service builds that structure
                 differently.
               </p>
               <ul>
@@ -147,6 +151,23 @@ export default function PublicServicePayScalesPage() {
                   (PO), technical (TO) and operational (OO) &mdash; each with numbered levels and
                   numbered pay points inside them, written as AO3/2 or PO4/1. The award sets the
                   floor and each entity&rsquo;s certified agreement can sit above it.
+                </li>
+                <li>
+                  <strong>NSW.</strong> Clerk Grades 1 to 12 under the Crown Employees (Public Sector -
+                  Salaries 2024) Award, each with a 1st-year and a thereafter rate. Roles are usually
+                  advertised across two grades, such as Clerk Grade 9/10. NSW Health administrative staff
+                  are on a separate award with Administration Officer levels.
+                </li>
+                <li>
+                  <strong>Western Australia.</strong> General Division Levels 1 to 9, written as
+                  level.increment (5.1, 5.2 &hellip;), then Classes 1 to 4, under the Public Sector CSA
+                  Agreement 2024.
+                </li>
+                <li>
+                  <strong>South Australia.</strong> Streams such as Administrative Services (ASO-1 to
+                  ASO-8), Operational Services (OPS) and Professional Officers (PO) under the Salaried
+                  2026 agreement; School Services Officers (SSO-1 to SSO-6) are on a separate education
+                  staff agreement.
                 </li>
               </ul>
 
@@ -180,6 +201,24 @@ export default function PublicServicePayScalesPage() {
                       <td className="px-4 py-3">Stream + level/pay point, e.g. AO3/2, PO4/1</td>
                       <td className="px-4 py-3">State award floor plus entity certified agreements</td>
                       <td className="px-4 py-3 text-right">12.75% (under 75)</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium text-navy">NSW</td>
+                      <td className="px-4 py-3">Clerk Grade 1&ndash;12, usually advertised in pairs, e.g. 9/10</td>
+                      <td className="px-4 py-3">Crown Employees state award (IRC NSW)</td>
+                      <td className="px-4 py-3 text-right">Not stated in the award</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium text-navy">Western Australia</td>
+                      <td className="px-4 py-3">Level.increment, e.g. 5.2; then Class 1&ndash;4</td>
+                      <td className="px-4 py-3">Public Sector CSA Agreement 2024</td>
+                      <td className="px-4 py-3 text-right">Not stated in the agreement</td>
+                    </tr>
+                    <tr>
+                      <td className="px-4 py-3 font-medium text-navy">South Australia</td>
+                      <td className="px-4 py-3">Stream-level, e.g. ASO-4, SSO-2, PO-3</td>
+                      <td className="px-4 py-3">Salaried 2026 agreement; SSOs on an education staff agreement</td>
+                      <td className="px-4 py-3 text-right">Not stated in the agreements</td>
                     </tr>
                   </tbody>
                 </table>
@@ -228,13 +267,13 @@ export default function PublicServicePayScalesPage() {
               <ul>
                 <li>
                   The median APS 6 base salary of <strong>$108,092</strong> sits close to VPS pay
-                  point 4.1.4 (<strong>$107,681</strong>) and Queensland&rsquo;s AO5/2 award rate (
-                  <strong>$107,721</strong>).
+                  point 4.1.4 (<strong>$107,681</strong>) and Queensland&rsquo;s AO5/1 award rate from 1
+                  September 2026 (<strong>$109,704</strong>).
                 </li>
                 <li>
-                  The median EL 1 base salary of <strong>$135,701</strong> sits between VPS 5.2.4 (
-                  <strong>$139,100</strong>) and Queensland&rsquo;s AO7/2 award rate (
-                  <strong>$136,837</strong>).
+                  The median EL 1 base salary of <strong>$135,701</strong> sits between
+                  Queensland&rsquo;s AO6/4 award rate (<strong>$134,019</strong>) and VPS 5.2.4 (
+                  <strong>$139,100</strong>).
                 </li>
                 <li>
                   The top of the published VPS structure, <strong>$263,771</strong> at 7.3.5, is
@@ -291,8 +330,9 @@ export default function PublicServicePayScalesPage() {
             <section id="not-covered">
               <h2 style={HEADING_FONT}>Services not covered yet</h2>
               <p>
-                Six public services are not on this page. Rather than publish figures we have not
-                read from the primary instrument, here is who sets them:
+                {PLANNED_JURISDICTIONS.length === 3 ? "Three" : PLANNED_JURISDICTIONS.length} public
+                services are not on this page yet. Rather than publish figures we have not read from the
+                primary instrument, here is who sets them:
               </p>
               <ul>
                 {PLANNED_JURISDICTIONS.map((planned) => (

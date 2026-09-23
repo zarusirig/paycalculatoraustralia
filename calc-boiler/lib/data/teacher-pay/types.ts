@@ -115,4 +115,24 @@ export interface TeacherPayState {
   unverified: string[];
   sources: TeacherPaySource[];
   faqs: TeacherPayFaq[];
+  /**
+   * Search-shaped <title> override, e.g. "Teacher Salary Victoria 2026 — VIC
+   * Teachers Pay Scale & Wages". When absent the route builds one from the
+   * state code, the verification year and the published range.
+   */
+  metaTitle?: string;
+  /** H1 override. */
+  h1?: string;
+  /**
+   * Label of the step in the FIRST scale where a qualified graduate starts,
+   * when that is not the first row — Queensland's Band 1 is for Permission to
+   * Teach and interns, South Australia's first row is Special Authority, and
+   * Tasmania starts four-year-trained graduates at Band 1 Level 5.
+   */
+  graduateStep?: string;
+  /**
+   * Label of the step in the FIRST scale that is the top of the incremental
+   * classroom scale, when rows by application or certification follow it.
+   */
+  topClassroomStep?: string;
 }
