@@ -1,9 +1,11 @@
+import Link from "next/link";
 import type { Metadata } from 'next';
 import { TakeHomePayOnSalary } from '@/modules/programmatic/take-home-pay-on-salary';
 import { calculatePayBreakdown, formatAUD, EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { TAKE_HOME_SALARIES, salaryFacts } from "@/lib/data/salary-pages";
 
 interface PageProps {
   params: Promise<{
@@ -11,12 +13,10 @@ interface PageProps {
   }>;
 }
 
+// The grid lives in lib/data/salary-pages (T6: $1k steps $40k-$150k plus the
+// high-salary tail) so the sitemap, hub and prev/next links cannot drift.
 export async function generateStaticParams() {
-  const salaries = [];
-  for (let salary = 30000; salary <= 200000; salary += 5000) {
-    salaries.push({ salary: salary.toString() });
-  }
-  return salaries;
+  return TAKE_HOME_SALARIES.map((salary) => ({ salary: salary.toString() }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // study loan, which is what the ATO and every other AU pay site answer.
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const withHecs = calculatePayBreakdown({ grossSalary: salaryAmount, includeHECS: true });
-  const shortSalary = `$${salaryAmount / 1000}k`;
+  const shortSalary = `$${(salaryAmount / 1000).toLocaleString("en-AU")}k`;
 
   return {
     // Answer-first, in the phrasing GSC shows ("110k after tax australia",
@@ -53,6 +53,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
 
   const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
   const hourlyNet = breakdown.takeHomePay / EMPLOYMENT.hoursPerYear;
+  const sacrifice = salaryFacts(salaryAmount).sacrificeThousand;
 
   const BASE = SITE_CONFIG.baseUrl;
   const URL = `${BASE}/take-home-pay-on/${resolvedParams.salary}/`;
@@ -78,7 +79,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: "Take-Home Pay Calculator", item: `${BASE}/take-home-pay-calculator/` },
+      { "@type": "ListItem", position: 2, name: "Take-Home Pay by Salary", item: `${BASE}/take-home-pay-on/` },
       { "@type": "ListItem", position: 3, name: `Take-Home Pay on ${formattedSalary}`, item: URL }
     ]
   };
@@ -126,7 +127,9 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
         name: `How can I increase my take-home pay on ${formattedSalary}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Salary sacrifice to superannuation is the most effective strategy. Concessional contributions up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} are taxed at 15% inside super, compared to your marginal rate. Maximising work-related deductions also reduces taxable income.`
+          text: `${sacrifice.netGain > 150
+            ? `Salary sacrifice to superannuation is the most direct lever on ${formattedSalary}: each $1,000 sacrificed costs ${formatAUD(sacrifice.takeHomeCost)} of take-home pay and puts ${formatAUD(sacrifice.intoSuper)} into super after contributions tax.`
+            : `On ${formattedSalary}, salary sacrifice saves little or no tax (each $1,000 costs ${formatAUD(sacrifice.takeHomeCost)} of take-home for ${formatAUD(sacrifice.intoSuper)} in super).`} Concessional contributions are capped at ${formatAUD(SUPER_GUARANTEE.concessionalCap)} a year, employer SG included. Maximising work-related deductions also reduces your taxable income.`
         }
       }
     ]
@@ -141,9 +144,9 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
           {/* Breadcrumb navigation */}
           <nav aria-label="Breadcrumb" className="mb-6">
             <ol className="flex items-center justify-center gap-2 text-sm text-warmgray">
-              <li><a href="/" className="hover:text-eucalyptus transition-colors">Home</a></li>
+              <li><Link href="/" className="hover:text-eucalyptus transition-colors">Home</Link></li>
               <li className="text-warmgray/50">/</li>
-              <li><a href="/take-home-pay-calculator/" className="hover:text-eucalyptus transition-colors">Take-Home Pay Calculator</a></li>
+              <li><Link href="/take-home-pay-on/" className="hover:text-eucalyptus transition-colors">Take-Home Pay by Salary</Link></li>
               <li className="text-warmgray/50">/</li>
               <li className="text-navy font-medium">Take-Home Pay on {formattedSalary}</li>
             </ol>

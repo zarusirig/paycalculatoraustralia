@@ -247,6 +247,21 @@ export default function Footer() {
                     </Link>
                   </li>
                 ))}
+                {/* T6: hub pages linking every salary in each programmatic family */}
+                {[
+                  { href: "/take-home-pay-on/", label: "Every salary after tax" },
+                  { href: "/tax-on/", label: "Tax on every salary" },
+                  { href: "/salary-to-hourly/", label: "Salary to hourly table" },
+                ].map((h) => (
+                  <li key={h.href}>
+                    <Link
+                      href={h.href}
+                      className="text-sm font-medium text-sandstone-dark/50 transition-colors duration-200 hover:text-eucalyptus"
+                    >
+                      {h.label} →
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

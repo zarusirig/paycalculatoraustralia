@@ -268,6 +268,10 @@ export default function TakeHomePayCalculatorPage() {
               Figures exclude HECS-HELP repayments and Medicare Levy Surcharge. If you carry a HECS debt, your take-home decreases further &mdash;{" "}
               <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">calculate your HECS repayment</Link> to see the impact.
             </p>
+            {/* T6: hub linking every /take-home-pay-on/ page */}
+            <p className="text-warmgray mb-4">
+              Need a specific figure? See <Link href="/take-home-pay-on/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay on every salary</Link> from $20,000 to $500,000, in $1,000 steps from $40,000 to $150,000, each with weekly, fortnightly and HECS-HELP figures.
+            </p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Take-Home Pay on Part-Time and Casual Hours</h3>
             <p className="text-warmgray">Part-time and casual employees use the same income tax brackets as full-time workers &mdash; the ATO does not distinguish by employment type. A part-time worker earning <strong>$40,000</strong> per year takes home <strong>{formatAUD(EX40.takeHomePay)}</strong>, identical to a full-time employee on the same gross salary. Casual employees receive a 25% loading in lieu of leave entitlements, which increases gross pay but also increases taxable income. A casual worker paid $30 per hour for 25 hours per week earns {formatAUD(CASUAL_GROSS)} gross and takes home <strong>{formatAUD(EX_CASUAL.takeHomePay)}</strong> after taxation and the Medicare levy.</p>
