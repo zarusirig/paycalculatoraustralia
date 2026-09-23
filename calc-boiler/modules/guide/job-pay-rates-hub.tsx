@@ -190,6 +190,16 @@ export default function JobPayRatesHubPage() {
                 </div>
               ))}
               <SidebarLink href="/adf-pay-scales/" label="ADF pay scales" />
+              {/* --- F5: agreement-paid jobs with no award floor (24 Sep 2026) --- */}
+              <p className="pt-2 text-xs font-semibold uppercase tracking-wide text-warmgray">
+                Paid under state or employer agreements
+              </p>
+              <SidebarLink href="/paramedic-pay/" label="Paramedic pay by state" />
+              <SidebarLink href="/police-pay/" label="Police pay by state" />
+              <SidebarLink href="/firefighter-pay/" label="Firefighter pay by state" />
+              <SidebarLink href="/air-traffic-controller-salary/" label="Air traffic controller salary" />
+              <SidebarLink href="/pilot-salary/" label="Pilot salary" />
+              {/* --- end F5 --- */}
               <SidebarLink href="/award-rates/" label="All award rates" />
             </div>
           </aside>

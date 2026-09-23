@@ -18,6 +18,10 @@ import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
 // --- end T2 ---
 // T6 programmatic salary grid (2026-09-23)
 import { SALARY_TO_HOURLY_SALARIES, TAKE_HOME_SALARIES, TAX_ON_SALARIES } from "@/lib/data/salary-pages";
+// --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
+import { AVIATION_PATHS } from "@/lib/data/aviation-pay";
+// --- end F5 ---
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -339,6 +343,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---
+  // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
+  // Hubs + verified state pages only, read from the same helper the routes'
+  // generateStaticParams use, so an unverified state is never listed.
+  for (const occupation of SERVICE_OCCUPATIONS) {
+    const segment = SERVICE_OCCUPATION_CONFIG[occupation].segment;
+    allPages.push({ slug: segment, changeFrequency: "monthly" as const, priority: 0.8 });
+    for (const j of verifiedJurisdictions(occupation)) {
+      allPages.push({ slug: `${segment}/${j.slug}`, changeFrequency: "monthly" as const, priority: 0.7 });
+    }
+  }
+  for (const path of Object.values(AVIATION_PATHS)) {
+    allPages.push({ slug: path.replace(/^\/|\/$/g, ""), changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F5 ---
   // --- F8 Lever D linkable assets (24 Sep 2026): data study + embed instructions.
   // /embed/take-home-pay/ is deliberately absent: it is noindex (widget document).
   allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });

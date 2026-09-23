@@ -462,6 +462,23 @@ export default function PublicServicePayScalesPage() {
                       Teacher pay by state
                     </Link>
                   </li>
+                  {/* --- F5 emergency-service pay (24 Sep 2026) --- */}
+                  <li>
+                    <Link href="/paramedic-pay/" className="text-eucalyptus-dark hover:text-navy hover:underline">
+                      Paramedic pay by state
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/police-pay/" className="text-eucalyptus-dark hover:text-navy hover:underline">
+                      Police pay by state
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/firefighter-pay/" className="text-eucalyptus-dark hover:text-navy hover:underline">
+                      Firefighter pay by state
+                    </Link>
+                  </li>
+                  {/* --- end F5 --- */}
                 </ul>
               </div>
             </div>
