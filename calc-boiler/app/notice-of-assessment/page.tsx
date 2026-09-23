@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import NoticeOfAssessmentPage from "@/modules/guide/notice-of-assessment";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { faqPageSchema } from "@/lib/faq";
+import { NOTICE_OF_ASSESSMENT_FAQS } from "@/modules/guide/notice-of-assessment-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/notice-of-assessment/`;
@@ -46,15 +48,7 @@ const article: WithContext<Article> = {
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What is a Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "A Notice of Assessment (NOA) is an official document issued by the Australian Taxation Office after processing your tax return. It shows your taxable income, the tax calculated, any offsets applied, Medicare levy, HECS-HELP repayment, tax credits, and the final result — either a refund or an amount owing." } },
-    { "@type": "Question", name: "How long does it take to receive a Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "If you lodge electronically through myTax or a tax agent, the ATO typically issues your Notice of Assessment within 2 weeks. Paper lodgements take 10-12 weeks. Complex returns requiring manual review may take longer." } },
-    { "@type": "Question", name: "What can I do if I disagree with my Notice of Assessment?", acceptedAnswer: { "@type": "Answer", text: "You have 2 years from the date of the assessment to request an amendment for most individual taxpayers (4 years for more complex affairs). You can lodge an objection through myGov, your tax agent, or by writing to the ATO. If the objection is disallowed, you can escalate to the Administrative Appeals Tribunal." } },
-  ]
-};
+const faq = faqPageSchema(NOTICE_OF_ASSESSMENT_FAQS);
 
 export default function Page() {
   return (

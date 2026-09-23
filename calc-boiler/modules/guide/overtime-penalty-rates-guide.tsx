@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { PENALTY_RATES_FAQS } from "./overtime-penalty-rates-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -341,70 +342,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             {/* ───────── SECTION 11: FAQs ───────── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              {/*
-                Crawlable mirror. The Radix accordion below unmounts closed
-                content, so without this none of these answers reach the
-                rendered HTML or an AI Overview. Gap analysis §A4.
-              */}
-              <div className="sr-only">
-                <h3>Penalty rate questions and answers</h3>
-                <div><h4>What are the penalty rates in Australia?</h4><p>Penalty rates are set by each modern award. Under the General Retail Industry Award a permanent employee receives {pctLabel(RETAIL_PENALTIES.saturday)} of the ordinary rate on Saturday, {pctLabel(RETAIL_PENALTIES.sunday)} on Sunday and {pctLabel(RETAIL_PENALTIES.publicHoliday)} on a public holiday; casuals receive {pctLabel(RETAIL_PENALTIES.casualSaturday)}, {pctLabel(RETAIL_PENALTIES.casualSunday)} and {pctLabel(RETAIL_PENALTIES.casualPublicHoliday)}. On the level 1 rate of {formatAUD(RETAIL_L1.hourly, 2)} an hour, Sunday is {formatAUD(RETAIL_L1.hourly * RETAIL_PENALTIES.sunday, 2)}.</p></div>
-                <div><h4>Are casual penalty rates compounded on top of the casual loading?</h4><p>No. Casual penalties are additive, not compounded. Casual Sunday in retail is {pctLabel(RETAIL_PENALTIES.casualSunday)} of the base rate &mdash; the {pctLabel(RETAIL_PENALTIES.sunday)} Sunday rate plus the 25% casual loading &mdash; not {pctLabel(RETAIL_PENALTIES.sunday)} multiplied by 1.25, which would give {pctLabel(RETAIL_PENALTIES.sunday * 1.25)}.</p></div>
-                <div><h4>How do hospitality evening and night rates work?</h4><p>They are flat cash amounts per hour, not multipliers. The Hospitality Industry (General) Award adds {formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)} an hour for evening work and {formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)} an hour at night on top of the ordinary rate. The retail award does use a percentage for evening work after 6pm.</p></div>
-                <div><h4>How is overtime taxed in Australia?</h4><p>Overtime and penalty rate income is added to your regular income and taxed at your marginal rate. Income between $45,001 and $135,000 is taxed at 30% &mdash; the 32.5% bracket many guides still quote has not existed since the Stage 3 changes.</p></div>
-                <div><h4>Do I get super on overtime pay?</h4><p>Generally no. Overtime is not Ordinary Time Earnings and does not attract the 12% superannuation guarantee. Penalty-loaded ordinary hours, unlike overtime, do count as ordinary time earnings and do attract super.</p></div>
-                <div><h4>Can penalty rates stack on top of each other?</h4><p>Usually not. Most awards pay only the highest applicable penalty where more than one could apply to the same hours. Under SCHADS, weekend rates substitute for shift loadings rather than adding to them, and public holiday pay replaces both.</p></div>
-              </div>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="tax" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How is overtime taxed in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Overtime is added to your regular income and taxed at your marginal rate. There is no separate tax rate for overtime or penalty rate income. The ATO treats all employment earnings identically for PAYG withholding. Use our <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">Overtime Pay Calculator</Link> to see the after-tax amount.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I get super on overtime pay?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Generally no. Overtime is not considered &quot;Ordinary Time Earnings&quot; (OTE) and does not attract the <strong>12%</strong> superannuation guarantee. Some enterprise agreements specifically include overtime in the super calculation base. Check your agreement or ask your employer&apos;s payroll department.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="find-award" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I find my exact penalty rates?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Use the Fair Work Ombudsman&apos;s <a href="https://calculate.fairwork.gov.au/FindYourAward" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">Find My Award</a> tool. It will identify your specific award and show the exact penalty rate multipliers that apply to your role. You can also check your employment contract or payslip for the applicable award name.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-loading-on-top" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is casual loading paid on top of penalty rates?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. Casual penalty rate multipliers already incorporate compensation for the lack of leave entitlements. The casual rate column in modern award penalty tables reflects a higher multiplier than the permanent employee column. The <strong>25%</strong> casual loading applies only to ordinary (non-penalty) hours.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="penalty-vs-overtime" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between penalty rates and overtime?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Penalty rates compensate for <em>when</em> you work (weekends, public holidays, evenings). Overtime compensates for working <em>more than</em> your standard hours (beyond 38 hours per week for full-time employees). A shift can attract both penalties -- for example, overtime worked on a Sunday receives the higher applicable rate under most modern awards.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="public-holiday-refuse" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I refuse to work on a public holiday?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Under section 114 of the Fair Work Act, an employee can refuse a request to work on a public holiday if the refusal is reasonable. Factors include whether the workplace is normally open on public holidays, the employee&apos;s personal circumstances, and the notice provided. Employees who do work public holidays receive penalty rates of <strong>2.0x to 2.75x</strong> depending on their award.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="salary-vs-award" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do salaried employees get penalty rates?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">It depends on the employment arrangement. Award-covered salaried employees must receive penalty rates unless their salary is high enough to &quot;absorb&quot; all applicable penalties and overtime (an &quot;annualised salary&quot; arrangement). The annualised salary must exceed the total of base pay plus all penalties the employee would otherwise receive. Employers must conduct annual reconciliations to verify this.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="underpayment" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What should I do if my employer is not paying penalty rates?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Contact the Fair Work Ombudsman on <strong>13 13 94</strong> or lodge a complaint online at fairwork.gov.au. The FWO investigates underpayment claims and can recover up to <strong>6 years</strong> of unpaid wages and penalties. Employers face penalties of up to <strong>$93,900</strong> per contravention for individuals and <strong>$469,500</strong> for companies under the Fair Work Act.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="time-in-lieu" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can my employer offer time off instead of penalty rates?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">&quot;Time Off in Lieu&quot; (TOIL) is permitted under most modern awards if both the employer and employee agree in writing. TOIL for overtime must be taken at the equivalent penalty rate -- 1 hour of overtime at 1.5x equals <strong>1.5 hours</strong> of time off. Unused TOIL must be paid out at the overtime rate if not taken within an agreed period.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hecs-impact" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do penalty rates affect my HECS-HELP repayment?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Penalty rate income increases your &quot;Repayment Income&quot; for HECS-HELP purposes, which includes taxable income, reportable fringe benefits, and net investment losses. Repayments start at <strong>1%</strong> when repayment income exceeds <strong>$69,528</strong> for FY2025-26. Higher penalty rate earnings can push you into a higher repayment bracket. See our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Repayment Calculator</Link> for details.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="right-to-disconnect" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does the Right to Disconnect affect overtime and penalties?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The &quot;Right to Disconnect&quot; provisions (effective August 2024 for employers with 15+ employees, August 2025 for small employers) allow employees to refuse out-of-hours contact unless the refusal is unreasonable. This does not eliminate overtime or penalty rates but reinforces that work performed outside rostered hours must be compensated. Employees who are contacted and required to perform work outside their scheduled shift are entitled to applicable overtime or penalty rates.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="payslip-check" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I check penalty rates on my payslip?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Your payslip must itemise each pay rate separately under the Fair Work Regulations. Look for line items labelled &quot;Saturday loading,&quot; &quot;Sunday penalty,&quot; &quot;Public holiday,&quot; or &quot;Overtime&quot; with the applicable multiplier. If your payslip bundles all hours at a single rate, request a breakdown from your employer. Learn more about payslip requirements in our <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link> guide.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={PENALTY_RATES_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import PayslipGeneratorPage from "@/modules/calculator/payslip-generator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
+import { faqPageSchema } from "@/lib/faq";
+import { PAYSLIP_GENERATOR_FAQS } from "@/modules/calculator/payslip-generator-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
@@ -62,44 +64,7 @@ const webApp: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is it legal to make your own payslip?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, as long as the payslip is accurate. Small employers, bookkeepers and sole traders regularly create payslips manually or with online tools. Creating a false payslip — for example to inflate income on a loan application — is fraud. Employers must also still meet Single Touch Payroll reporting obligations regardless of how the payslip is produced.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What must a payslip include in Australia?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Under the Fair Work Regulations 2009, a payslip must include the employer's name and ABN, the employee's name, the date of payment, the pay period, gross and net pay, the hourly rate and hours worked (for hourly employees) or annual salary (for salaried employees), any loadings, allowances or bonuses as separate items, each deduction with its purpose, and superannuation contributions with the name of the fund.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How do I make a payslip for an ABN contractor?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Genuine independent contractors invoice for their work rather than receiving payslips — they handle their own tax and usually their own super. If a worker with an ABN works like an employee (set hours, employer direction and equipment), they may legally be an employee entitled to payslips and superannuation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do casual employees get payslips?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Every employee — full-time, part-time or casual — must receive a payslip within one working day of being paid. A casual's payslip should show the ordinary hourly rate including casual loading, the hours worked, and any penalty rates as separate items.",
-      },
-    },
-  ],
-};
+const faq = faqPageSchema(PAYSLIP_GENERATOR_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Create a Payslip Online",

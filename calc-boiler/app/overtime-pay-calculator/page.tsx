@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import OvertimePayCalculatorPage from "@/modules/calculator/overtime-pay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { faqPageSchema } from "@/lib/faq";
+import { OVERTIME_PAY_FAQS } from "@/modules/calculator/overtime-pay-calculator-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-pay-calculator/`;
@@ -52,36 +54,7 @@ const webApp: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "How is overtime pay calculated?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Overtime pay is your base hourly rate multiplied by the penalty rate set in your Award or agreement. For example, time-and-a-half on a $30/hr base rate = $45/hr.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "When does overtime start?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "For most full-time employees, overtime begins after 38 hours per week (or 7.6 hours per day). The exact threshold depends on your Award or enterprise agreement.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do casual workers get overtime?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Casual employees are entitled to overtime rates when they exceed 38 hours per week. The overtime multiplier applies to the base rate, not the casual-loaded rate.",
-      },
-    },
-  ],
-};
+const faq = faqPageSchema(OVERTIME_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Overtime Pay Calculator",

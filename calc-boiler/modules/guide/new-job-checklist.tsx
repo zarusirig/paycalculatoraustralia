@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { NEW_JOB_FAQS } from "./new-job-checklist-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -150,39 +151,7 @@ export default function NewJobChecklistPage() {
             {/* ───── SECTION 5: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="tax-free-both" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I claim the tax-free threshold at my new job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If this is your <strong>only job</strong>, always claim the tax-free threshold. If you are transitioning from one job to another with no overlap, claim it at your new employer and your old employer&apos;s withholding stops when you leave. If you are keeping two jobs simultaneously, only claim the threshold at the <strong>highest-paying</strong> one.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="existing-super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I use my existing super fund or the employer&apos;s default?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">In most cases, use your <strong>existing fund</strong> to avoid creating multiple accounts that erode your balance with duplicate fees and insurance premiums. Provide your fund&apos;s name, USI (Unique Superannuation Identifier), and member number to your new employer. Compare fees before switching — if the employer&apos;s default fund has significantly lower fees, it may be worth switching.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-long-first-pay" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long until I receive my first pay?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">This depends on when you start relative to the pay cycle. If you start on Monday and the pay cycle ends Friday, your first pay arrives the following pay day. In the worst case, you may wait up to <strong>3-4 weeks</strong> for your first pay if you start just after a pay cycle ends and the employer processes the next full cycle before paying you.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="old-job-leave" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens to unused leave from my old job?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Unused annual leave must be paid out by your old employer in your final pay. Long service leave payout depends on your state and how long you worked there. These payouts are taxable income. Sick/personal leave is <strong>not paid out</strong> — it has no cash value when you leave.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="probation" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does probation affect my pay or entitlements?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. During probation you receive the <strong>same pay, super, and leave entitlements</strong> as after probation. The only difference is that the notice period for termination is typically shorter (usually 1 week). Your employer cannot pay you less during probation than what is specified in your contract or the applicable award.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="hecs-new-job" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need to tell my new employer about HECS-HELP debt?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. On your TFN Declaration, tick &quot;Yes&quot; if you have a HELP, VSL, SFSS, or TSL debt. Your employer withholds additional amounts once your income exceeds the compulsory repayment threshold (<strong>$69,528</strong> for FY2026-27). If you do not declare your debt, you may face a lump sum repayment when you lodge your tax return.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={NEW_JOB_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Employment and pay setup information is sourced from the Australian Taxation Office (ATO) and the Fair Work Ombudsman (FWO). Superannuation calculations use the FY2025-26 SG rate of 12%. Tax withholding amounts are based on current PAYG withholding tables. Award rates and minimum entitlements are set by the Fair Work Commission.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

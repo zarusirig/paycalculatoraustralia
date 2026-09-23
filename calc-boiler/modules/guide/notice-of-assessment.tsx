@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { NOTICE_OF_ASSESSMENT_FAQS } from "./notice-of-assessment-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -221,36 +222,7 @@ export default function NoticeOfAssessmentPage() {
             {/* SECTION 5: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="what-is-noa" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is a Notice of Assessment?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">A Notice of Assessment (NOA) is the ATO&apos;s official document showing the results of processing your tax return. It details your taxable income, tax calculated, offsets applied, Medicare levy, HECS repayment, PAYG credits, and the final result &mdash; either a refund or an amount you owe.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="how-long" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long does it take to receive my NOA?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Electronic lodgements through myTax or a tax agent are typically processed within <strong>2 weeks</strong>. Paper returns take <strong>10&ndash;12 weeks</strong>. Complex returns that require manual review may take longer. You can check the status of your return through your myGov account.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="disagree" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What can I do if I disagree with my NOA?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">You can request an <strong>amendment</strong> within 2 years of the assessment date (4 years for complex affairs). Amendments are lodged through myTax, your tax agent, or by paper. For formal disputes, you can lodge an <strong>objection</strong> with the ATO, and if that fails, escalate to the Administrative Appeals Tribunal.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="refund-timing" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When will I receive my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If you lodge electronically and your return is straightforward, refunds are typically paid within <strong>2 weeks</strong> of lodgement. The ATO deposits refunds directly to the bank account you nominate in your tax return. During peak lodgement periods (July&ndash;October), processing may take slightly longer.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="debt" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I owe tax?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">If your NOA shows an amount owing, you must pay by the due date on the notice (typically <strong>21 days</strong> from the issue date). You can pay via BPAY, credit/debit card, or direct debit. If you can&apos;t pay in full, contact the ATO to set up a <strong>payment plan</strong>. Interest charges (the General Interest Charge) apply to late payments.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="keep-noa" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How long should I keep my Notice of Assessment?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Keep your NOA for at least <strong>5 years</strong> from the date you lodge your tax return. This aligns with the ATO&apos;s standard record-keeping requirements. If you have carry-forward losses, capital gains cost base records, or other ongoing tax matters, keep relevant records for longer. You can access past NOAs through your myGov account at any time.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="noa-for-loans" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I use my NOA as proof of income?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Many lenders, landlords, and government agencies accept the NOA as proof of income. It is an official ATO document showing your assessed taxable income for the financial year. Banks commonly request your last 2 NOAs when assessing home loan applications. You can download your NOA from your myGov account.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={NOTICE_OF_ASSESSMENT_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">
