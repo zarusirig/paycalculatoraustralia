@@ -10,6 +10,7 @@ import {
   headlineRow,
   isOccupationSlug,
   nearestTakeHomeAmount,
+  rowAnnual,
   weeklyRange,
 } from "../index";
 import { REAL_ESTATE_ROWS } from "../real-estate-common";
@@ -326,4 +327,48 @@ test("W4: only apprentice tables may sit below the National Minimum Wage, and on
       assert.match(table.belowMinimumWage, /apprentice/i);
     }
   }
+});
+
+test("W4: engineer — annual wage, the award's weekly conversion and Schedule C hourly agree", () => {
+  const eng = getOccupation("engineer")!;
+  for (const r of eng.tables[0].rows) {
+    assert.ok(r.annual, r.label);
+    assert.equal(cents(r.weekly), Math.round(((r.annual! * 6) / 313) * 100), r.label); // cl 14.2
+    assert.equal(Math.round(((r.annual! * 6) / 313 / 38) * 100), cents(r.hourly), r.label); // cl 14.2 hourly
+  }
+  const h = headlineRow(eng)!;
+  assert.deepEqual([h.annual, h.hourly, h.casualHourly], [68_538, 34.57, 43.21]);
+  assert.equal(rowAnnual(h), 68_538); // the page shows the award's annual wage, not weekly x 52
+});
+
+test("W4: lawyer — law graduate is Legal Services Award level 5; admitted lawyers get the NMW", () => {
+  const h = headlineRow(getOccupation("lawyer")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1291.8, 33.99, 42.49]);
+  const nmw = row("lawyer", "National Minimum Wage (adult)");
+  assert.equal(nmw.hourly, EMPLOYMENT.minimumWageHourly);
+  assert.equal(nmw.casualHourly, 33.05);
+});
+
+test("W4: doctor rates are cl 16.1 verbatim (annual = weekly x 52 to the dollar)", () => {
+  const doc = getOccupation("doctor")!;
+  for (const t of doc.tables) {
+    for (const r of t.rows) assert.ok(Math.abs(r.annual! - r.weekly * 52) < 1, `${r.label}: ${r.annual} vs ${r.weekly} x 52`);
+  }
+  assert.deepEqual([row("doctor", "Intern").weekly, row("doctor", "Intern").hourly, row("doctor", "Intern").casualHourly], [1277.54, 33.62, 42.03]);
+  assert.equal(row("doctor", "Specialist").annual, 121_535);
+});
+
+test("W4: teacher aide — cl 17.1 rates, annual = weekly x 52.18, Schedule B.2.1 casuals", () => {
+  const ta = getOccupation("teacher-aide")!;
+  for (const r of ta.tables[0].rows) assert.equal(r.annual, Math.round(r.weekly * 52.18), r.label);
+  const h = headlineRow(ta)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1073.1, 28.24, 35.3]);
+});
+
+test("W4: early childhood teacher — long day care is 4% above preschool, casual = 2-hour rate / 2", () => {
+  const h = headlineRow(getOccupation("early-childhood-teacher")!)!;
+  assert.deepEqual([h.weekly, h.annual, h.hourly, h.casualHourly], [1513.6, 78_979, 39.83, 49.79]);
+  const pre = row("early-childhood-teacher", "Level 1 — preschool");
+  assert.equal(Math.round(pre.weekly * 1.04 * 10) / 10, h.weekly);
+  assert.equal(pre.casualHourly, 47.88);
 });
