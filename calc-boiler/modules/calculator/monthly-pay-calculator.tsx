@@ -19,6 +19,11 @@ import {
   MEDICARE_LEVY,
   TAX_BRACKETS,
 } from "@/lib/constants";
+import { FIRST_TAXED_BRACKET, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+
+// Answer-first lead, computed from the tax engine.
+const LEAD = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+const FIRST_RATE = formatPercent(FIRST_TAXED_BRACKET.rate, 0);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -50,8 +55,12 @@ export default function MonthlyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Monthly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Monthly Pay Calculator Australia — Net Salary Per Month</h1>
-          <p className="text-lg text-warmgray">Enter your annual salary to see exactly what you take home every month after tax, super, and Medicare. Updated for FY2025-26.</p>
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Monthly Pay Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-lg text-navy">
+            Monthly pay is your annual salary divided by <strong>12</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 12, 2)} gross
+            and <strong>{formatAUD(LEAD.monthly, 2)} take-home</strong> every month after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
+          </p>
+          <p className="text-warmgray mt-2">Enter your salary below for your own monthly tax, super and net pay.</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -120,7 +129,7 @@ export default function MonthlyPayCalculatorPage() {
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">Step-by-Step Monthly Pay Calculation</h3>
             <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
               <li><strong>Gross monthly pay:</strong> Divide your annual salary by <strong>12</strong>. An {formatAUD(80000)} salary produces a gross monthly figure of <strong>{formatAUD(80000 / 12, 2)}</strong>.</li>
-              <li><strong>Income tax:</strong> Apply the FY2025-26 marginal tax rates to your annual income, then divide the annual tax by 12. The first <strong>{formatAUD(18200)}</strong> is tax-free. Income between {formatAUD(18201)} and {formatAUD(45000)} is taxed at <strong>16%</strong>. Income between {formatAUD(45001)} and {formatAUD(135000)} is taxed at <strong>30%</strong>.</li>
+              <li><strong>Income tax:</strong> Apply the FY{SITE_CONFIG.financialYear} marginal tax rates to your annual income, then divide the annual tax by 12. The first <strong>{formatAUD(18200)}</strong> is tax-free. Income between {formatAUD(FIRST_TAXED_BRACKET.min)} and {formatAUD(FIRST_TAXED_BRACKET.max)} is taxed at <strong>{FIRST_RATE}</strong>. Income between {formatAUD(45001)} and {formatAUD(135000)} is taxed at <strong>30%</strong>.</li>
               <li><strong>Medicare levy:</strong> Add <strong>{formatPercent(MEDICARE_LEVY.rate, 0)}</strong> of your taxable income, divided by 12.</li>
               <li><strong>HECS-HELP:</strong> If you carry a study debt and earn above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, a marginal repayment is withheld each month.</li>
               <li><strong>Net monthly pay:</strong> Subtract all deductions from your gross monthly figure. The remainder is your after-tax monthly income.</li>
@@ -134,7 +143,7 @@ export default function MonthlyPayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Monthly Take-Home Pay at Different Salary Levels?</h2>
             <p className="text-warmgray mb-4">
-              Monthly net pay ranges from <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 50000, includeHECS: false, hasPrivateHealth: true }).monthly, 2)}</strong> on a {formatAUD(50000)} salary to <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 180000, includeHECS: false, hasPrivateHealth: true }).monthly, 2)}</strong> on a {formatAUD(180000)} salary. The table below shows gross monthly pay, monthly tax withheld, and net monthly take-home for 6 common Australian salaries in FY2025-26.
+              Monthly net pay ranges from <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 50000, includeHECS: false, hasPrivateHealth: true }).monthly, 2)}</strong> on a {formatAUD(50000)} salary to <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 180000, includeHECS: false, hasPrivateHealth: true }).monthly, 2)}</strong> on a {formatAUD(180000)} salary. The table below shows gross monthly pay, monthly tax withheld, and net monthly take-home for 6 common Australian salaries in FY{SITE_CONFIG.financialYear}.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -226,7 +235,7 @@ export default function MonthlyPayCalculatorPage() {
               Four deductions reduce monthly gross pay to net pay: PAYG income tax, the Medicare levy, the &quot;Medicare Levy Surcharge&quot; (if applicable), and HECS-HELP repayments. Superannuation is paid by the employer on top of salary and does not reduce your take-home pay.
             </p>
 
-            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">FY2025-26 Income Tax Brackets</h3>
+            <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">FY{SITE_CONFIG.financialYear} Income Tax Brackets</h3>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
@@ -269,7 +278,7 @@ export default function MonthlyPayCalculatorPage() {
               <li><strong>Deducting super from take-home:</strong> The employer superannuation guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top of your salary. Subtracting it from gross pay double-counts the deduction and understates your net monthly pay.</li>
               <li><strong>Ignoring LITO:</strong> The &quot;Low Income Tax Offset&quot; reduces tax payable by up to <strong>$700</strong> for incomes under {formatAUD(66667)}. Omitting it overstates monthly tax on salaries between {formatAUD(18200)} and {formatAUD(66667)}.</li>
               <li><strong>Forgetting HECS-HELP:</strong> Employees with a study debt above {formatAUD(HECS_HELP.minimumThreshold)} have a compulsory repayment withheld each pay period. The marginal repayment starts at <strong>15%</strong> of every dollar above the threshold.</li>
-              <li><strong>Applying the wrong financial year rates:</strong> The FY2025-26 income tax brackets differ from FY2024-25. The 16% bracket applies up to {formatAUD(45000)}, and the 30% bracket extends to {formatAUD(135000)} under the Stage 3 tax cuts.</li>
+              <li><strong>Applying the wrong financial year rates:</strong> Brackets change most years. In FY{SITE_CONFIG.financialYear} the first taxed bracket is {FIRST_RATE} up to {formatAUD(FIRST_TAXED_BRACKET.max)}, and the 30% bracket extends to {formatAUD(135000)} under the Stage 3 tax cuts. A calculator still using an earlier year&apos;s rates will get your monthly tax wrong.</li>
             </ol>
           </section>
 
@@ -318,7 +327,7 @@ export default function MonthlyPayCalculatorPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
             <Accordion type="multiple" className="space-y-3">
               <FAQItem value="how" question="How is monthly pay calculated in Australia?">
-                Monthly pay is calculated by dividing your gross annual salary by <strong>12</strong>, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. The ATO publishes specific monthly withholding tables that employers apply during the FY2025-26 financial year.
+                Monthly pay is calculated by dividing your gross annual salary by <strong>12</strong>, then subtracting PAYG income tax, the Medicare levy, and any HECS-HELP repayments. The ATO publishes specific monthly withholding tables that employers apply during the FY{SITE_CONFIG.financialYear} financial year.
               </FAQItem>
               <FAQItem value="super" question="Is super deducted from my monthly pay?">
                 No. Your employer pays superannuation at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> on top of your gross salary. The SG contribution does not reduce your monthly take-home pay. Since Payday Super commenced on 1 July 2026, employers remit super every payday and the contribution must reach your fund within 7 business days.
@@ -330,7 +339,7 @@ export default function MonthlyPayCalculatorPage() {
                 No. Four weeks equals <strong>28 days</strong>, but an average calendar month has <strong>30.44 days</strong>. Monthly gross pay is annual salary divided by 12, which is approximately 8.3% higher than 4 weeks&apos; pay (annual divided by 13).
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect my monthly take-home?">
-                HECS-HELP repayments reduce monthly take-home pay for employees earning above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY2025-26 system uses marginal rates starting at <strong>15%</strong> on every dollar above the threshold. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your annual and monthly repayment.
+                HECS-HELP repayments reduce monthly take-home pay for employees earning above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your annual and monthly repayment.
               </FAQItem>
               <FAQItem value="mortgage" question="Should I align my mortgage repayments with my monthly pay?">
                 Matching mortgage repayments to your pay cycle simplifies cash flow management. Employees paid monthly benefit from a single monthly mortgage debit. Switching to fortnightly mortgage repayments (even while paid monthly) produces <strong>26 half-payments</strong> — equivalent to 13 full payments per year — which reduces total interest over the life of the loan.

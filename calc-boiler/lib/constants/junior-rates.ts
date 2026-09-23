@@ -174,7 +174,7 @@ export const AWARD_JUNIOR_SCALES = [
     award: "Fast Food Industry Award",
     code: "MA000003",
     clause: "Table 4",
-    note: "Adult rate at 21.",
+    note: "Adult rate at 21. From 1 December 2026, 18 to 20-year-olds with more than 6 months' service move towards it in stages (PR813654).",
     scale: [
       { age: "Under 16", percentage: 0.4 },
       { age: "16", percentage: 0.5 },
@@ -199,52 +199,127 @@ export const AWARD_JUNIOR_SCALES = [
 ] as const;
 
 /**
- * A provisional view, not current law, and NOT a jump to the adult rate.
+ * The junior-rate transition for 18 to 20-year-olds under the Retail, Fast
+ * Food and Pharmacy awards. DETERMINED, but not yet operative (as of 23 Sep
+ * 2026), and NOT a jump to the adult rate.
  *
- * ⚠️ CORRECTED 28 July 2026 after reading the decision itself. The earlier
- * summary here — "would give 18–20 year olds the adult rate, could start
- * 1 December 2026" — conflated the START OF A PHASE-IN with the ARRIVAL of the
- * adult rate. They are years apart.
+ * History of this constant:
+ *  - 28 July 2026: modelled as the PROVISIONAL view in [2026] FWCFB 75
+ *    (31 March 2026, PR798175) — five-point steps every six months.
+ *  - 23 Sep 2026: UPDATED after reading the implementation decision
+ *    [2026] FWCFB 222 (26 August 2026) and the three determinations it issued,
+ *    each read from the determination text itself:
+ *      PR813655  General Retail Industry Award 2020, cl 17.2 Table 5
+ *      PR813654  Fast Food Industry Award 2020, cl 15.2 Table 4
+ *      PR813656  Pharmacy Industry Award 2020, cl 16.2 Table 4
+ *    Each "comes into operation on 1 December 2026" and takes effect for an
+ *    employee from their first full pay period starting on or after each date.
  *
- * FWC decision [2026] FWCFB 75 (Butler DP, Lee C, Harper-Greenwell C,
- * 31 March 2026, ref PR798175) on application AM2024/24 by the SDA decides at
- * [1082] to phase increases in "over a period of up to four years… in
- * increments of five percentage points, in intervals of around six months".
- * On 1 December 2026 an eligible 19-year-old would move from 80% to 85% — not
- * to 100%. The full adult rate arrives 1 Jul 2027 (age 20), 1 Jul 2028 (19)
- * and 1 Jul 2029 (18).
+ * What the determinations actually do:
+ *  - Retail and fast food: the provisional schedule was substantially adopted
+ *    ([2026] FWCFB 222 [260], [263]) — five percentage points each 1 December
+ *    and 1 July until 100%. Retail 20-year-olds with more than 6 months'
+ *    service ALREADY get 100%, so retail changes only 18 and 19.
+ *  - Pharmacy: a DIFFERENT, consented schedule ([262]) — ten-point annual
+ *    steps: 1 Dec 2026, 1 Jul 2027, 1 Jul 2028, 1 Jul 2029. Pharmacy
+ *    assistant levels 1 and 2 only.
+ *  - Only employees with MORE than 6 months with the employer move. Those
+ *    with 6 months or less stay on 70/80/90%. Under-18 rates are unchanged.
+ *    Service with an old employer counts on a transfer of business.
  *
- * Nothing has been varied. At [1077] the Commission says it will hear the
- * parties on timing "before any such determination is made", and at [1081]
- * that the schedule below is a "provisional view". Eligibility is more than
- * 6 months with the CURRENT employer only ([1083]). Under-18 rates are
- * unchanged ([1076]). Do not present any of this as in force.
+ * ⚠️ AFTER 1 DECEMBER 2026: flip `inForce` to true and fold the operative
+ * row into the current-rate tables (AWARD_JUNIOR_SCALES here, and
+ * RETAIL_JUNIOR_SCALE in hospitality-award.ts), then again at each step.
  */
+export type JuniorTransitionRow = { effective: string; age18: number; age19: number; age20: number };
+
+export interface JuniorTransitionSchedule {
+  award: string;
+  code: string;
+  determination: string;
+  clause: string;
+  /** Classifications the junior scale applies to at all. */
+  appliesTo: string;
+  /** Current percentages for employees with MORE than 6 months' service. */
+  present: { age18: number; age19: number; age20: number };
+  rows: readonly JuniorTransitionRow[];
+}
+
+/** Retail & fast food: the five-point, six-monthly schedule. */
+const SIX_MONTHLY_STEPS: readonly JuniorTransitionRow[] = [
+  { effective: "1 December 2026", age18: 75, age19: 85, age20: 95 },
+  { effective: "1 July 2027", age18: 80, age19: 90, age20: 100 },
+  { effective: "1 December 2027", age18: 85, age19: 95, age20: 100 },
+  { effective: "1 July 2028", age18: 90, age19: 100, age20: 100 },
+  { effective: "1 December 2028", age18: 95, age19: 100, age20: 100 },
+  { effective: "1 July 2029", age18: 100, age19: 100, age20: 100 },
+];
+
+export const JUNIOR_TRANSITION_SCHEDULES: Record<"retail" | "fastFood" | "pharmacy", JuniorTransitionSchedule> = {
+  retail: {
+    award: "General Retail Industry Award 2020",
+    code: "MA000004",
+    determination: "PR813655",
+    clause: "cl 17.2, Table 5",
+    appliesTo: "Retail employee levels 1, 2 and 3",
+    present: { age18: 70, age19: 80, age20: 100 },
+    // Retail 20-year-olds with >6 months already receive 100%.
+    rows: SIX_MONTHLY_STEPS.map((r) => ({ ...r, age20: 100 })),
+  },
+  fastFood: {
+    award: "Fast Food Industry Award 2020",
+    code: "MA000003",
+    determination: "PR813654",
+    clause: "cl 15.2, Table 4",
+    appliesTo: "All fast food classifications",
+    present: { age18: 70, age19: 80, age20: 90 },
+    rows: SIX_MONTHLY_STEPS,
+  },
+  pharmacy: {
+    award: "Pharmacy Industry Award 2020",
+    code: "MA000012",
+    determination: "PR813656",
+    clause: "cl 16.2, Table 4",
+    appliesTo: "Pharmacy assistants levels 1 and 2",
+    present: { age18: 70, age19: 80, age20: 90 },
+    rows: [
+      { effective: "1 December 2026", age18: 75, age19: 85, age20: 95 },
+      { effective: "1 July 2027", age18: 85, age19: 95, age20: 100 },
+      { effective: "1 July 2028", age18: 95, age19: 100, age20: 100 },
+      { effective: "1 July 2029", age18: 100, age19: 100, age20: 100 },
+    ],
+  },
+};
+
 export const PENDING_JUNIOR_CHANGE = {
   decision: "[2026] FWCFB 75",
   documentReference: "PR798175",
   decidedOn: "31 March 2026",
+  implementationDecision: "[2026] FWCFB 222",
+  implementationDecidedOn: "26 August 2026",
   application: "AM2024/24",
   applicant: "Shop, Distributive and Allied Employees Association",
+  /** The date the determinations come into operation. */
   earliestStart: "1 December 2026",
   awards: ["General Retail Industry Award", "Fast Food Industry Award", "Pharmacy Industry Award"],
+  /** Determinations have been made (26 August 2026). */
+  determined: true,
+  /** Not operative until the first full pay period on or after 1 December 2026. */
   inForce: false,
-  isProvisionalView: true,
-  serviceQualifier: "more than 6 months with the current employer",
+  isProvisionalView: false,
+  serviceQualifier: "more than 6 months with their employer",
+  transferOfBusinessNote:
+    "Service with the old employer counts towards the 6 months if there has been a transfer of business.",
   underEighteenUnchanged: true,
-  /** Fair Work Ombudsman's own wording on timing — quote this, not a paraphrase. */
-  fwoWording:
-    "The Commission has indicated that these changes will be introduced gradually, with further hearings to be held about how and when this will happen. However, the Commission has said that the changes could start from 1 December 2026.",
-  /** Provisional percentages from [1082]. Percentage of the adult rate. */
-  phaseIn: [
-    { effective: "Present", age18: 70, age19: 80, age20: 90 },
-    { effective: "1 December 2026", age18: 75, age19: 85, age20: 95 },
-    { effective: "1 July 2027", age18: 80, age19: 90, age20: 100 },
-    { effective: "1 December 2027", age18: 85, age19: 95, age20: 100 },
-    { effective: "1 July 2028", age18: 90, age19: 100, age20: 100 },
-    { effective: "1 December 2028", age18: 95, age19: 100, age20: 100 },
-    { effective: "1 July 2029", age18: 100, age19: 100, age20: 100 },
-  ],
+  /** The determinations' own operative wording — quote this, not a paraphrase. */
+  operativeWording:
+    "This determination comes into operation on 1 December 2026. In accordance with ss 165(3) and 166(5) of the Fair Work Act 2009 (Cth) this determination does not take effect in relation to a particular employee until the start of the employee's first full pay period that starts on or after 1 December 2026.",
+  /**
+   * Fast food schedule with a "Present" row, kept for existing consumers.
+   * Prefer JUNIOR_TRANSITION_SCHEDULES, which also carries retail and the
+   * different pharmacy schedule.
+   */
+  phaseIn: [{ effective: "Present", age18: 70, age19: 80, age20: 90 }, ...SIX_MONTHLY_STEPS],
 } as const;
 
 /**

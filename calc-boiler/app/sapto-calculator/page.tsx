@@ -14,11 +14,13 @@ const URL = `${BASE}/sapto-calculator/`;
 const SINGLE = formatAUD(SAPTO_BANDS.single.maxOffset);
 const COUPLE = formatAUD(SAPTO_BANDS.couple.maxOffset);
 
-const TITLE = `SAPTO Calculator — Seniors Tax Offset up to ${SINGLE}`;
+// No year in the title: the engine is on the ATO's 2025-26 thresholds (the
+// 2026-27 ones were announced as changing but not yet readable from the ATO).
+const TITLE = `SAPTO Calculator & Eligibility Checker — Offset up to ${SINGLE}`;
 
 export const metadata: Metadata = {
   title: TITLE,
-  description: `Work out your seniors and pensioners tax offset instantly. Up to ${SINGLE} single, ${COUPLE} each for a couple, with the ATO's rebate income thresholds and the half-of-combined test for couples. ${SAPTO_INCOME_YEAR} income year.`,
+  description: `Check SAPTO eligibility and work out your seniors and pensioners tax offset instantly. Up to ${SINGLE} single, ${COUPLE} each for a couple, with the ATO's rebate income thresholds and the half-of-combined test for couples. ${SAPTO_INCOME_YEAR} income year.`,
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,
@@ -42,7 +44,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webPage: WithContext<WebPage> = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "SAPTO Calculator",
+  name: "SAPTO Calculator & Eligibility Checker",
   url: URL,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };

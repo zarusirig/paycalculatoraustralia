@@ -35,6 +35,8 @@ export const NSW_NURSING_PAY: NursingStateData = {
   code: "NSW",
   name: "New South Wales",
   shortName: "NSW",
+  metaTitle: "NSW Nurse Pay Rates 2026 — NSW Health Registered Nurse Salary",
+  h1: "NSW Nurse Pay Rates 2026 — NSW Health Registered Nurse & Midwife Salary",
   employer: "NSW Health (local health districts and specialty networks)",
   ordinaryHoursPerWeek: 38,
 

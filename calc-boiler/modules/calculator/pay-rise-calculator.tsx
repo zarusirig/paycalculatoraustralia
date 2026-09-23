@@ -14,7 +14,35 @@ import {
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
+  HECS_HELP,
+  MEDICARE_LEVY,
+  TAX_BRACKETS,
+  calculateMedicareSurcharge,
 } from "@/lib/constants";
+import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+
+// Worked figures computed from the tax engine. The copy had frozen at FY2025-26
+// values (16% first bracket, 2023-24 MLS tiers, $30,000 cap) under a FY2026-27
+// heading.
+const net = (gross: number, includeHECS = false) => calculatePayBreakdown({ grossSalary: gross, includeHECS }).takeHomePay;
+const raiseNet = (base: number, raise: number) => net(base + raise) - net(base);
+/** Cents kept of the next $1,000, so LITO phase-out and Medicare are captured. */
+const keptPerDollar = (gross: number) => (net(gross + 1_000) - net(gross)) / 1_000;
+const pct0 = (r: number) => `${Math.round(r * 100)}%`;
+const RAISE_10K_ON_80K = raiseNet(80_000, 10_000);
+const RAISE_9K_ON_90K = raiseNet(90_000, 9_000);
+const RAISE_5K_ON_80K = raiseNet(80_000, 5_000);
+const RAISE_5K_ON_150K = raiseNet(150_000, 5_000);
+const EX80 = calculatePayBreakdown({ grossSalary: 80_000 });
+const EX90 = calculatePayBreakdown({ grossSalary: 90_000 });
+const HECS_65_TO_70 =
+  calculatePayBreakdown({ grossSalary: 70_000, includeHECS: true }).hecsRepayment -
+  calculatePayBreakdown({ grossSalary: 65_000, includeHECS: true }).hecsRepayment;
+const MLS = MEDICARE_LEVY.surcharge;
+const MLS_110K = calculateMedicareSurcharge(110_000, false);
+const TRP_110K_BASE = Math.round(110_000 / (1 + SUPER_GUARANTEE.rate));
+const B2 = TAX_BRACKETS[2];
+const B3 = TAX_BRACKETS[3];
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -58,12 +86,13 @@ export default function PayRiseCalculatorPage() {
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Pay Rise Calculator — How Much Extra Will You Take Home?
+            Pay Rise Calculator Australia — How Much Extra Will You Take Home? ({SITE_CONFIG.financialYear})
           </h1>
-          <p className="text-lg text-warmgray">
-            See exactly how much extra money you keep after tax when you get a pay rise.
-            Understand the impact of marginal tax rates in FY{SITE_CONFIG.financialYear}.
+          <p className="text-lg text-navy">
+            A <strong>$10,000 pay rise on $80,000</strong> adds <strong>{formatAUD(RAISE_10K_ON_80K)} a year</strong> to your take-home pay
+            ({formatAUD(RAISE_10K_ON_80K / 52, 2)} a week) in FY{SITE_CONFIG.financialYear}, because each extra dollar is taxed at your marginal rate.
           </p>
+          <p className="text-warmgray mt-2">Enter your salary and raise (in dollars or as a new salary) to see what you keep.</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -198,7 +227,7 @@ export default function PayRiseCalculatorPage() {
             </p>
             <div className="bg-sandstone border-l-4 border-ochre/70 p-4">
               <p className="text-navy font-medium">
-                Example: A $10,000 pay rise on an $80,000 salary yields approximately <strong>$6,800</strong> extra take-home pay per year, or <strong>$130.77</strong> extra per week after tax and Medicare.
+                Example: A $10,000 pay rise on an $80,000 salary yields <strong>{formatAUD(RAISE_10K_ON_80K)}</strong> extra take-home pay per year, or <strong>{formatAUD(RAISE_10K_ON_80K / 52, 2)}</strong> extra per week after tax and Medicare.
               </p>
             </div>
           </section>
@@ -206,7 +235,7 @@ export default function PayRiseCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Does the Pay Rise Impact Table Show?</h2>
             <p className="mb-4 text-warmgray">
-              The table below shows how pay rises of different sizes translate into after-tax income across <strong>5 salary levels</strong> in the 2025-26 financial year. Each row calculates income tax, Medicare levy, and the resulting net weekly boost.
+              The table below shows how pay rises of different sizes translate into after-tax income across <strong>5 salary levels</strong> in the {SITE_CONFIG.financialYear} financial year. Each row calculates income tax, Medicare levy, and the resulting net weekly boost.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -243,7 +272,7 @@ export default function PayRiseCalculatorPage() {
               </table>
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
-              *Calculations include income tax and Medicare levy for FY2025-26 Australian residents. HECS-HELP repayments, salary sacrifice, and the &quot;Medicare Levy Surcharge&quot; are excluded. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to model student loan repayment impact.
+              *Calculations include income tax and Medicare levy for FY{SITE_CONFIG.financialYear} Australian residents. HECS-HELP repayments, salary sacrifice, and the &quot;Medicare Levy Surcharge&quot; are excluded. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to model student loan repayment impact.
             </p>
           </section>
 
@@ -253,12 +282,12 @@ export default function PayRiseCalculatorPage() {
               A 10% gross pay rise produces <strong>less than 10%</strong> additional take-home pay because the raise is taxed at the marginal rate, which is higher than the average rate applied to total income.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian Tax Office applies income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Income between $18,201 and $45,000 is taxed at <strong>16%</strong>. Income between $45,001 and $135,000 is taxed at <strong>30%</strong>. Income between $135,001 and $190,000 is taxed at <strong>37%</strong>. Income above $190,000 is taxed at <strong>45%</strong>. The 2% Medicare levy applies on top of all these rates.
+              The Australian Tax Office applies income tax brackets progressively. In FY{SITE_CONFIG.financialYear} the resident rates are {bracketRatesSentence()}. The 2% Medicare levy applies on top of all these rates.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: 10% Rise on $90,000</h3>
             <p className="text-warmgray mb-4">
-              An employee earning <strong>$90,000</strong> receives a 10% pay rise of <strong>$9,000</strong>, bringing the new gross salary to $99,000. The entire $9,000 falls within the $45,001-$135,000 bracket, so the marginal rate is <strong>32% (30% tax + 2% Medicare)</strong>. The additional tax is approximately <strong>$2,880</strong>. The net take-home increase is <strong>$6,120 per year</strong>, or roughly <strong>$117.69 per week</strong>. That is a <strong>6.8% increase</strong> in take-home pay from a 10% gross rise. View the full tax bracket schedule on our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page.
+              An employee earning <strong>$90,000</strong> receives a 10% pay rise of <strong>$9,000</strong>, bringing the new gross salary to $99,000. The entire $9,000 falls within the {formatAUD(B2.min)}-{formatAUD(B2.max)} bracket, so the marginal rate is <strong>{pct0(B2.rate + MEDICARE_LEVY.rate)} ({pct0(B2.rate)} tax + 2% Medicare)</strong>. The additional tax is <strong>{formatAUD(9_000 - RAISE_9K_ON_90K)}</strong>. The net take-home increase is <strong>{formatAUD(RAISE_9K_ON_90K)} per year</strong>, or <strong>{formatAUD(RAISE_9K_ON_90K / 52, 2)} per week</strong>. That is a <strong>{((RAISE_9K_ON_90K / EX90.takeHomePay) * 100).toFixed(1)}% increase</strong> in take-home pay from a 10% gross rise. View the full tax bracket schedule on our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> page.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Marginal vs Average Tax Rate</h3>
@@ -273,13 +302,15 @@ export default function PayRiseCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  {[
-                    { salary: "$45,000", avg: "7.3%", marginal: "32%", kept: "68c" },
-                    { salary: "$80,000", avg: "22.0%", marginal: "32%", kept: "68c" },
-                    { salary: "$120,000", avg: "27.2%", marginal: "32%", kept: "68c" },
-                    { salary: "$150,000", avg: "30.7%", marginal: "39%", kept: "61c" },
-                    { salary: "$200,000", avg: "34.2%", marginal: "47%", kept: "53c" },
-                  ].map((row) => (
+                  {[45_000, 80_000, 120_000, 150_000, 200_000].map((gross) => {
+                    const kept = keptPerDollar(gross);
+                    return {
+                      salary: formatAUD(gross),
+                      avg: `${(calculatePayBreakdown({ grossSalary: gross }).effectiveTaxRate * 100).toFixed(1)}%`,
+                      marginal: `${Math.round((1 - kept) * 1000) / 10}%`,
+                      kept: `${Math.round(kept * 1000) / 10}c`,
+                    };
+                  }).map((row) => (
                     <tr key={row.salary} className="hover:bg-sandstone/50">
                       <td className="px-4 py-3 font-medium text-navy">{row.salary}</td>
                       <td className="px-4 py-3 text-right text-gray-700">{row.avg}</td>
@@ -291,7 +322,7 @@ export default function PayRiseCalculatorPage() {
               </table>
             </div>
             <p className="text-warmgray text-sm">
-              An employee on $80,000 keeps <strong>68 cents</strong> of every additional dollar earned. An employee on $200,000 keeps only <strong>53 cents</strong>. The gap between average and marginal rates widens as income increases.
+              An employee on $80,000 keeps <strong>{Math.round(keptPerDollar(80_000) * 100)} cents</strong> of every additional dollar earned. An employee on $200,000 keeps only <strong>{Math.round(keptPerDollar(200_000) * 100)} cents</strong>. On $45,000 the rate is higher than the bracket suggests because the Low Income Tax Offset shrinks as income rises. The gap between average and marginal rates widens as income increases.
             </p>
           </section>
 
@@ -352,11 +383,11 @@ export default function PayRiseCalculatorPage() {
               Employees and employers make <strong>5 frequent errors</strong> when estimating the value of a pay rise. Each mistake leads to unrealistic expectations about after-tax income.
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>Dividing the gross raise by 52 weeks</strong> &mdash; this ignores tax entirely. A $10,000 raise is not $192 per week; it is closer to <strong>$131 per week</strong> after the 32% marginal rate on an $80,000 salary.</li>
-              <li><strong>Using the average tax rate instead of the marginal rate</strong> &mdash; your overall effective rate of 22% does not apply to the raise. The marginal rate of 30% (plus 2% Medicare) applies to every additional dollar within the $45,001-$135,000 bracket.</li>
-              <li><strong>Forgetting the superannuation guarantee increase</strong> &mdash; a $10,000 base salary raise also adds <strong>$1,200</strong> to superannuation at the 12% SG rate. This is real compensation, but it does not appear in take-home pay. Model this with our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.</li>
-              <li><strong>Ignoring HECS-HELP threshold crossings</strong> &mdash; a pay rise that pushes repayment income above <strong>$69,528</strong> triggers student loan repayments of 15 cents per dollar above the threshold. This effectively adds 15% to the marginal rate on income above $69,528.</li>
-              <li><strong>Confusing gross salary with total package</strong> &mdash; some employment contracts quote &quot;total remuneration&quot; inclusive of superannuation. A $110,000 total package is only <strong>$98,214</strong> in base salary after extracting 12% super. Always confirm whether the quoted figure includes or excludes the employer SG contribution.</li>
+              <li><strong>Dividing the gross raise by 52 weeks</strong> &mdash; this ignores tax entirely. A $10,000 raise is not {formatAUD(10_000 / 52)} per week; it is <strong>{formatAUD(RAISE_10K_ON_80K / 52)} per week</strong> after the {pct0(B2.rate + MEDICARE_LEVY.rate)} marginal rate on an $80,000 salary.</li>
+              <li><strong>Using the average tax rate instead of the marginal rate</strong> &mdash; on $80,000 your overall effective rate of {(EX80.effectiveTaxRate * 100).toFixed(1)}% does not apply to the raise. The marginal rate of {pct0(B2.rate)} (plus 2% Medicare) applies to every additional dollar within the {formatAUD(B2.min)}-{formatAUD(B2.max)} bracket.</li>
+              <li><strong>Forgetting the superannuation guarantee increase</strong> &mdash; a $10,000 base salary raise also adds <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> to superannuation at the {pct0(SUPER_GUARANTEE.rate)} SG rate. This is real compensation, but it does not appear in take-home pay. Model this with our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.</li>
+              <li><strong>Ignoring HECS-HELP threshold crossings</strong> &mdash; a pay rise that pushes repayment income above <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> triggers student loan repayments of {Math.round(HECS_HELP.bands[1].marginalRate * 100)} cents per dollar above the threshold. This effectively adds {pct0(HECS_HELP.bands[1].marginalRate)} to the marginal rate on income in that first band.</li>
+              <li><strong>Confusing gross salary with total package</strong> &mdash; some employment contracts quote &quot;total remuneration&quot; inclusive of superannuation. A $110,000 total package is only <strong>{formatAUD(TRP_110K_BASE)}</strong> in base salary after extracting {pct0(SUPER_GUARANTEE.rate)} super. Always confirm whether the quoted figure includes or excludes the employer SG contribution.</li>
             </ol>
           </section>
 
@@ -367,7 +398,7 @@ export default function PayRiseCalculatorPage() {
             </p>
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> &mdash; see the complete breakdown of income tax, Medicare levy, and net pay at any gross salary.</li>
-              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; calculate your total Australian income tax liability for FY2025-26 including the &quot;Low Income Tax Offset&quot; (LITO).</li>
+              <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> &mdash; calculate your total Australian income tax liability for FY{SITE_CONFIG.financialYear} including the &quot;Low Income Tax Offset&quot; (LITO).</li>
               <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> &mdash; model how redirecting part of your pay rise into pre-tax super contributions reduces your taxable income.</li>
               <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> &mdash; calculate the employer SG contribution on your new salary and project long-term super balance growth.</li>
               <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link> &mdash; reverse-calculate the gross salary required to achieve a specific take-home pay target after a raise.</li>
@@ -389,11 +420,11 @@ export default function PayRiseCalculatorPage() {
             <Accordion type="multiple" className="space-y-3">
               <AccordionItem value="tax" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Why is my pay rise taxed so highly?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Your pay rise is taxed at your &quot;marginal tax rate&quot;, which is the highest tax bracket your income falls into. This is often much higher than your average tax rate, meaning a larger percentage of your <em>extra</em> pay goes to the ATO. Between $45,001 and $135,000, your marginal rate is <strong>30%</strong> plus 2% Medicare levy, totalling <strong>32%</strong>. Between $135,001 and $190,000, the combined marginal rate rises to <strong>39%</strong>.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Your pay rise is taxed at your &quot;marginal tax rate&quot;, which is the highest tax bracket your income falls into. This is often much higher than your average tax rate, meaning a larger percentage of your <em>extra</em> pay goes to the ATO. Between {formatAUD(B2.min)} and {formatAUD(B2.max)}, your marginal rate is <strong>{pct0(B2.rate)}</strong> plus 2% Medicare levy, totalling <strong>{pct0(B2.rate + MEDICARE_LEVY.rate)}</strong>. Between {formatAUD(B3.min)} and {formatAUD(B3.max)}, the combined marginal rate rises to <strong>{pct0(B3.rate + MEDICARE_LEVY.rate)}</strong>.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does my employer pay extra super on my pay rise?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Under the &quot;Superannuation Guarantee&quot;, your employer pays <strong>12%</strong> super on your ordinary time earnings for FY2025-26. A $10,000 base pay rise generates an extra <strong>$1,200</strong> deposited into your super fund per year. This contribution is subject to the &quot;maximum super contribution base&quot; of $62,500 per quarter.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. Under the &quot;Superannuation Guarantee&quot;, your employer pays <strong>{pct0(SUPER_GUARANTEE.rate)}</strong> super on your qualifying earnings for FY{SITE_CONFIG.financialYear}. A $10,000 base pay rise generates an extra <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> deposited into your super fund per year. Under Payday Super the &quot;maximum super contribution base&quot; is an annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="bracket" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Can a pay rise push me into a higher tax bracket and leave me worse off?</AccordionTrigger>
@@ -401,23 +432,23 @@ export default function PayRiseCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="sacrifice" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Can salary sacrifice boost my pay rise benefit?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Salary sacrificing part of your pay rise into super before tax avoids the marginal rate on that portion. Inside your super fund, contributions are taxed at only <strong>15%</strong> (or <strong>30%</strong> for earners above $250,000 under &quot;Division 293&quot; tax). Sacrificing $5,000 of a $10,000 pay rise saves roughly <strong>$850 to $1,600</strong> in tax depending on your bracket, while boosting retirement savings. The concessional contributions cap is <strong>$30,000</strong> per year. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model the benefit.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. Salary sacrificing part of your pay rise into super before tax avoids the marginal rate on that portion. Inside your super fund, contributions are taxed at only <strong>15%</strong> (or <strong>30%</strong> for earners above $250,000 under &quot;Division 293&quot; tax). Sacrificing $5,000 of a $10,000 pay rise saves roughly <strong>$850 to $1,600</strong> in tax depending on your bracket, while boosting retirement savings. The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY{SITE_CONFIG.financialYear}. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model the benefit.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>How does a pay rise affect my HECS-HELP repayments?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A pay rise increases your repayment income, which determines HECS-HELP obligations. The repayment threshold for FY2025-26 is <strong>$69,528</strong>. Below this threshold, no repayment is required. Above it, you repay <strong>15 cents per dollar</strong> over $69,528 up to $125,000, then <strong>17 cents per dollar</strong> over $125,000 up to $179,285, then <strong>10% of total income</strong> above $179,285. A pay rise from $65,000 to $70,000 triggers a HECS repayment of approximately <strong>$450 per year</strong>.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">A pay rise increases your repayment income, which determines HECS-HELP obligations. The repayment threshold for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>. Below this threshold, no repayment is required. Above it, you repay {hecsBandsSentence()}. A pay rise from $65,000 to $70,000 triggers a HECS repayment of <strong>{formatAUD(HECS_65_TO_70)} per year</strong>.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="weekly" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>How much extra per week is a $5,000 pay rise?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The net weekly increase from a $5,000 pay rise depends on your current salary and marginal tax rate. On an $80,000 salary (32% combined marginal rate), a $5,000 raise yields approximately <strong>$3,400</strong> extra after tax, or <strong>$65.38 per week</strong>. On a $150,000 salary (39% combined marginal rate), the same $5,000 raise yields approximately <strong>$3,050</strong> after tax, or <strong>$58.65 per week</strong>.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">The net weekly increase from a $5,000 pay rise depends on your current salary and marginal tax rate. On an $80,000 salary ({pct0(B2.rate + MEDICARE_LEVY.rate)} combined marginal rate), a $5,000 raise yields <strong>{formatAUD(RAISE_5K_ON_80K)}</strong> extra after tax, or <strong>{formatAUD(RAISE_5K_ON_80K / 52, 2)} per week</strong>. On a $150,000 salary ({pct0(B3.rate + MEDICARE_LEVY.rate)} combined marginal rate), the same $5,000 raise yields <strong>{formatAUD(RAISE_5K_ON_150K)}</strong> after tax, or <strong>{formatAUD(RAISE_5K_ON_150K / 52, 2)} per week</strong>.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="mls" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does a pay rise affect the Medicare Levy Surcharge?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes, if you do not hold private hospital cover. The &quot;Medicare Levy Surcharge&quot; applies to singles earning above <strong>$93,000</strong>. A pay rise crossing this threshold triggers an additional <strong>1.0%</strong> surcharge on total taxable income ($93,001-$108,000), increasing to <strong>1.25%</strong> ($108,001-$144,000) and <strong>1.5%</strong> (above $144,000). On a $100,000 salary without private health insurance, the MLS adds <strong>$1,000 per year</strong> in additional deductions.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes, if you do not hold private hospital cover. The &quot;Medicare Levy Surcharge&quot; applies to singles earning <strong>{formatAUD(MLS.tier1.min)}</strong> or more in FY{SITE_CONFIG.financialYear}. A pay rise crossing this threshold triggers an additional <strong>1.0%</strong> surcharge on total income ({formatAUD(MLS.tier1.min)}-{formatAUD(MLS.tier1.max)}), increasing to <strong>1.25%</strong> ({formatAUD(MLS.tier2.min)}-{formatAUD(MLS.tier2.max)}) and <strong>1.5%</strong> (above {formatAUD(MLS.tier3.min - 1)}). On a $110,000 salary without private health insurance, the MLS adds <strong>{formatAUD(MLS_110K)} per year</strong> in additional deductions.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="stage3" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Did the Stage 3 tax cuts change how pay rises are taxed?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The Stage 3 tax cuts, effective 1 July 2024, reduced the first bracket rate from <strong>19% to 16%</strong> and expanded the 30% bracket ceiling from $120,000 to <strong>$135,000</strong>. Employees earning between $120,001 and $135,000 now keep more of a pay rise because their marginal rate dropped from <strong>37% to 30%</strong>. A $10,000 raise for someone on $125,000 now yields <strong>$700 more</strong> in take-home pay compared to pre-Stage 3 rates.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. The Stage 3 tax cuts, effective 1 July 2024, reduced the first bracket rate from <strong>19% to 16%</strong> (and it fell again to <strong>{pct0(TAX_BRACKETS[1].rate)}</strong> from 1 July 2026) and expanded the 30% bracket ceiling from $120,000 to <strong>$135,000</strong>. Employees earning between $120,001 and $135,000 now keep more of a pay rise because their marginal rate dropped from <strong>37% to 30%</strong>. A $10,000 raise for someone on $125,000 now yields <strong>$700 more</strong> in take-home pay compared to pre-Stage 3 rates.</p></AccordionContent>
               </AccordionItem>
             </Accordion>
           </section>

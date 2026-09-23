@@ -104,7 +104,7 @@ export function LongServiceLeaveHub() {
             </ol>
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Long Service Leave Calculator — All 8 States and Territories
+            Long Service Leave Calculator Australia — All 8 States and Territories
           </h1>
           <p className="text-lg text-warmgray">
             Enter your start date and your ordinary weekly pay to see how many weeks of long service
@@ -113,6 +113,29 @@ export function LongServiceLeaveHub() {
             Act, verified {LSL_SOURCES.verifiedOn}.
           </p>
           <TrustBar className="mt-4" />
+          {/* State spokes, linked with descriptive anchors above the fold. Until
+              23 Sep 2026 the hub linked them only as bare "QLD"/"NSW" table cells. */}
+          <nav aria-label="Long service leave calculator by state" className="mt-6">
+            <p className="text-sm font-semibold text-navy mb-2">Choose your state for its own rules and calculator:</p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {JURISDICTION_CODES.map((code) => {
+                const j = LSL_JURISDICTIONS[code];
+                return (
+                  <li key={code}>
+                    <Link
+                      href={`/long-service-leave-calculator/${code}/`}
+                      className="flex items-center justify-between gap-2 rounded-lg border border-sandstone-dark/20 bg-white px-3 py-2 text-sm hover:border-eucalyptus"
+                    >
+                      <span className="font-medium text-eucalyptus-dark">{j.abbr} long service leave calculator</span>
+                      <span className="text-xs text-warmgray-light whitespace-nowrap">
+                        {Number(j.weeksAtQualifying.toFixed(2))} wks at {j.takeAfterYears} yrs
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </section>
 
         <section className="max-w-5xl mx-auto">
@@ -619,8 +642,11 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
             </ol>
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Long Service Leave Calculator {j.abbr} — {j.weeksAtQualifying} Weeks After{" "}
-            {j.takeAfterYears} Years
+            Long Service Leave Calculator {j.abbr}
+            {j.abbr !== j.name ? ` (${j.name})` : ""}
+            <span className="block text-xl md:text-2xl font-semibold text-warmgray mt-2">
+              {Number(j.weeksAtQualifying.toFixed(2))} weeks after {j.takeAfterYears} years under the {j.act}
+            </span>
           </h1>
           <p className="text-lg text-warmgray">
             {j.summary}

@@ -1,7 +1,7 @@
 // =============================================================================
 // Public service pay scales — registry.
 //
-// Adding a jurisdiction later (NSW, WA, SA, TAS, ACT, NT) is two steps and no
+// Adding a jurisdiction later (TAS, ACT, NT) is two steps and no
 // refactor: write lib/data/public-service-pay/<slug>.ts exporting a
 // `Jurisdiction`, register it in JURISDICTIONS below, and delete its entry from
 // PLANNED_JURISDICTIONS. generateStaticParams, the hub, the spoke, the lookup
@@ -9,8 +9,11 @@
 // =============================================================================
 
 import { APS } from "./aps";
+import { NSW } from "./nsw";
 import { QLD } from "./qld";
+import { SA } from "./sa";
 import { VIC } from "./vic";
+import { WA } from "./wa";
 import {
   normaliseCode,
   type ClassificationBand,
@@ -24,7 +27,7 @@ import {
 export * from "./types";
 
 /** Jurisdictions with verified data. Order is the order they render in. */
-export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD];
+export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD, NSW, WA, SA];
 
 /** The slugs `generateStaticParams` builds. Nothing else resolves. */
 export const JURISDICTION_SLUGS: readonly JurisdictionSlug[] = JURISDICTIONS.map((j) => j.slug);
@@ -35,24 +38,6 @@ export const JURISDICTION_SLUGS: readonly JurisdictionSlug[] = JURISDICTIONS.map
  * because they do not exist. No figures, and no link unless the URL was checked.
  */
 export const PLANNED_JURISDICTIONS: readonly PlannedJurisdiction[] = [
-  {
-    slug: "nsw",
-    name: "NSW Public Service",
-    shortName: "NSW",
-    authority: "NSW Public Service Commission and the Crown Employees (Public Sector — Salaries) Award",
-  },
-  {
-    slug: "wa",
-    name: "WA public sector",
-    shortName: "WA",
-    authority: "WA Public Sector Commission and the Public Service Award 1992",
-  },
-  {
-    slug: "sa",
-    name: "SA public sector",
-    shortName: "SA",
-    authority: "SA Office of the Commissioner for Public Sector Employment and the SA Public Sector Salaried Employees Interim Award",
-  },
   {
     slug: "tas",
     name: "Tasmanian State Service",
@@ -148,6 +133,98 @@ export function groupRange(bands: readonly ClassificationBand[]): { min: number;
   };
 }
 
+// ---------- salary-by-level sections ----------
+
+export interface LevelSection {
+  /** Anchor id, e.g. "vps-4", "aps-6", "el-1", "ao5". Unique within the page. */
+  id: string;
+  /** Short level name as searched, e.g. "VPS 4", "APS 6", "AO5". */
+  label: string;
+  /** "VPS 4 salary 2026". */
+  heading: string;
+  /** The bands in this level (two for a VPS grade with value ranges 5.1 and 5.2). */
+  bands: ClassificationBand[];
+  /** Lowest min to highest max across `bands`. */
+  range: { min: number; max: number };
+  schedule: PaySchedule;
+  /** The same classification in each comparison schedule that has it. */
+  compare: { label: string; schedule: PaySchedule; band: ClassificationBand }[];
+}
+
+/** "VPS Grade 4" -> "VPS 4"; anything else is returned unchanged. */
+export function shortLevelLabel(groupLabel: string): string {
+  return groupLabel.replace(/\s+Grade\s+/i, " ").trim();
+}
+
+/** "VPS 4" -> "vps-4", "EL 1" -> "el-1", "SES Band 1" -> "ses-band-1", "AO5" -> "ao5". */
+export function levelAnchor(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * One section per classification level for the spoke page, built from the
+ * schedule the jurisdiction's `levelGuide` names. Every figure comes from that
+ * schedule — this only regroups it — so the sections cannot drift from the
+ * full tables further down the page. Returns [] when there is no guide.
+ */
+export function levelSections(jurisdiction: Jurisdiction): LevelSection[] {
+  const guide = jurisdiction.levelGuide;
+  if (!guide) return [];
+  const schedule = jurisdiction.schedules.find((s) => s.id === guide.scheduleId);
+  if (!schedule) return [];
+  const compareSchedules = (guide.compare ?? [])
+    .map((c) => ({ label: c.label, schedule: jurisdiction.schedules.find((s) => s.id === c.scheduleId) }))
+    .filter((c): c is { label: string; schedule: PaySchedule } => c.schedule !== undefined);
+
+  const firstStreams = guide.streamIds
+    ? guide.streamIds
+        .map((id) => schedule.streams.find((s) => s.id === id))
+        .filter((s): s is NonNullable<typeof s> => s !== undefined)
+    : [...schedule.streams];
+
+  const parts: { schedule: PaySchedule; streams: PaySchedule["streams"][number][] }[] = [
+    { schedule, streams: firstStreams },
+  ];
+  for (const id of guide.extraScheduleIds ?? []) {
+    const extra = jurisdiction.schedules.find((s) => s.id === id);
+    if (extra) parts.push({ schedule: extra, streams: [...extra.streams] });
+  }
+
+  const template = guide.headingTemplate ?? "{label} salary {year}";
+  const sections: LevelSection[] = [];
+  for (const part of parts) {
+    for (const stream of part.streams) {
+      for (const group of groupBands(stream.bands)) {
+        const label = shortLevelLabel(group.label);
+        // Only the first schedule is compared: an extra schedule is a different
+        // workforce, not a second rate for the same classification.
+        const compare =
+          part.schedule === schedule && group.bands.length === 1
+            ? compareSchedules.flatMap((c) => {
+                const band = c.schedule.streams
+                  .flatMap((s) => s.bands)
+                  .find((b) => normaliseCode(b.code) === normaliseCode(group.bands[0].code));
+                return band ? [{ label: c.label, schedule: c.schedule, band }] : [];
+              })
+            : [];
+        sections.push({
+          id: levelAnchor(label),
+          label,
+          heading: template.replace("{label}", label).replace("{year}", guide.year),
+          bands: group.bands,
+          range: groupRange(group.bands),
+          schedule: part.schedule,
+          compare,
+        });
+      }
+    }
+  }
+  return sections;
+}
+
 /**
  * Hub-level questions, shaped from the queries this cluster targets. Kept in the
  * data layer so the server page and the client component read the same array
@@ -160,11 +237,11 @@ export const PUBLIC_SERVICE_PAY_FAQS: readonly PayFaq[] = [
   },
   {
     q: "How do APS levels compare with VPS grades and Queensland AO levels?",
-    a: "They are different classification systems and there is no official mapping between them, so we do not publish one. What can be compared is money: the median APS 6 base salary of $108,092 sits near VPS pay point 4.1.4 ($107,681) and Queensland's AO5/2 award rate ($107,721), while the median EL 1 of $135,701 sits between VPS 5.2.4 ($139,100) and Queensland's AO7/2 award rate ($136,837).",
+    a: "They are different classification systems and there is no official mapping between them, so we do not publish one. What can be compared is money: the median APS 6 base salary of $108,092 sits near VPS pay point 4.1.4 ($107,681) and Queensland's AO5/1 award rate from 1 September 2026 ($109,704), while the median EL 1 of $135,701 sits between Queensland's AO6/4 award rate ($134,019) and VPS 5.2.4 ($139,100).",
   },
   {
     q: "How often do public service pay rates change?",
-    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
+    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides (4.75% from 1 September 2026); NSW Crown Employees rates moved 3% from the first full pay period on or after 1 July 2026; WA rates moved on 13 June 2026; and South Australian salaried rates moved from the first full pay period on or after 1 July 2026. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
   },
   {
     q: "Do public servants get more superannuation?",

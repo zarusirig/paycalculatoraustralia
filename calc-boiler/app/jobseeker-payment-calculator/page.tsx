@@ -3,13 +3,15 @@ import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payme
 import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
-const TITLE = "JobSeeker Payment Calculator — How Working Affects Your Payment";
-const DESCRIPTION = "How much JobSeeker you keep when you earn: the $150 free area, 50c and 60c tapers, partner income limits and the maximum rates from 20 March 2026, with the cut-off for your situation. Figures verified at Services Australia.";
+const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
+const TITLE = "JobSeeker Payment Calculator 2026 — Rates From 20 September";
+const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See how much you keep when you work — the $150 free area, 50c and 60c tapers, partner income and the cut-off for your situation — plus eligibility. Verified at Services Australia.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -39,7 +41,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: CENTRELINK_SOURCES.verifiedOnISO,
   inLanguage: "en-AU",
 };
 

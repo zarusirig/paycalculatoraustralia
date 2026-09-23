@@ -24,6 +24,15 @@ import {
   WEEKLY_TABLE_AMOUNTS,
   SCHEDULE_5_WITHHOLDING_LIMIT,
   calculateSchedule5MethodB,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_FINANCIAL_YEARS,
+  PAYG_YEAR_INFO,
+  buildTaxTableRows,
+  taxTableCsv,
+  HTML_TABLE_RANGES,
+  CSV_TABLE_RANGES,
+  type PaygFinancialYear,
+  type PayFrequency,
 } from "../payg-withholding";
 
 import {
@@ -512,4 +521,397 @@ test("Schedule 5 withholding is a whole number of dollars", () => {
     const r = calculateSchedule5MethodB(3_000, bonus, "fortnightly", { claimsTaxFreeThreshold: true });
     assert.equal(r.withheldFromAdditionalPayment % 1, 0, `bonus ${bonus}`);
   }
+});
+
+// =============================================================================
+// ATO Schedule 1 "Withholding amounts sample data" — every Scale 1/2/3 row.
+//
+// The ATO publishes these rows specifically so payroll developers can prove a
+// formula implementation. They sit at the band edges (e.g. $361/$362, $537/$538)
+// where rounding and band selection go wrong, so they are a far stronger check
+// than the single worked example on each tax-table page.
+//
+// 2026-27 (published 17 June 2026, read 23 September 2026):
+// https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld/sample-data/withholding-amounts-sample-data
+// 2025-26 (edition for 1 July 2024 to 30 June 2026, read 23 September 2026):
+// https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data
+//
+// Row format: [earnings, Scale 1 (no TFT), Scale 2 (TFT), Scale 3 (foreign)].
+// Scales 5 and 6 (Medicare exemptions) are not implemented and not tested.
+// =============================================================================
+type SampleRow = readonly [number, number, number, number];
+const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly SampleRow[]>> = {
+  "2026-27": {
+    weekly: [
+      [116, 17, 0, 35],
+      [117, 18, 0, 35],
+      [187, 28, 0, 56],
+      [188, 28, 0, 56],
+      [249, 41, 0, 75],
+      [250, 41, 0, 75],
+      [361, 64, 0, 108],
+      [362, 65, 0, 109],
+      [370, 66, 1, 111],
+      [371, 66, 1, 111],
+      [514, 92, 23, 154],
+      [515, 92, 23, 154],
+      [537, 99, 26, 161],
+      [538, 100, 27, 161],
+      [672, 143, 60, 202],
+      [673, 143, 60, 202],
+      [720, 158, 68, 216],
+      [721, 159, 68, 216],
+      [864, 205, 94, 259],
+      [865, 205, 94, 259],
+      [907, 219, 108, 272],
+      [908, 219, 108, 272],
+      [931, 227, 116, 279],
+      [932, 227, 116, 280],
+      [1134, 292, 181, 340],
+      [1135, 292, 181, 340],
+      [1281, 339, 229, 384],
+      [1282, 339, 229, 385],
+      [1844, 519, 409, 553],
+      [1845, 519, 409, 553],
+      [2119, 607, 497, 636],
+      [2120, 607, 497, 636],
+      [2245, 647, 537, 673],
+      [2246, 647, 537, 674],
+      [2490, 743, 615, 747],
+      [2491, 743, 616, 747],
+      [2595, 784, 649, 778],
+      [2596, 784, 649, 779],
+      [2652, 806, 671, 800],
+      [2653, 806, 672, 800],
+      [2736, 839, 704, 831],
+      [2737, 839, 704, 831],
+      [2898, 902, 767, 891],
+      [2899, 902, 768, 891],
+      [3302, 1059, 925, 1040],
+      [3303, 1060, 925, 1041],
+      [3652, 1224, 1061, 1170],
+      [3653, 1224, 1062, 1170],
+    ],
+    fortnightly: [
+      [232, 34, 0, 70],
+      [234, 36, 0, 70],
+      [374, 56, 0, 112],
+      [376, 56, 0, 112],
+      [498, 82, 0, 150],
+      [500, 82, 0, 150],
+      [722, 128, 0, 216],
+      [724, 130, 0, 218],
+      [740, 132, 2, 222],
+      [742, 132, 2, 222],
+      [1028, 184, 46, 308],
+      [1030, 184, 46, 308],
+      [1074, 198, 52, 322],
+      [1076, 200, 54, 322],
+      [1344, 286, 120, 404],
+      [1346, 286, 120, 404],
+      [1440, 316, 136, 432],
+      [1442, 318, 136, 432],
+      [1728, 410, 188, 518],
+      [1730, 410, 188, 518],
+      [1814, 438, 216, 544],
+      [1816, 438, 216, 544],
+      [1862, 454, 232, 558],
+      [1864, 454, 232, 560],
+      [2268, 584, 362, 680],
+      [2270, 584, 362, 680],
+      [2562, 678, 458, 768],
+      [2564, 678, 458, 770],
+      [3688, 1038, 818, 1106],
+      [3690, 1038, 818, 1106],
+      [4238, 1214, 994, 1272],
+      [4240, 1214, 994, 1272],
+      [4490, 1294, 1074, 1346],
+      [4492, 1294, 1074, 1348],
+      [4980, 1486, 1230, 1494],
+      [4982, 1486, 1232, 1494],
+      [5190, 1568, 1298, 1556],
+      [5192, 1568, 1298, 1558],
+      [5304, 1612, 1342, 1600],
+      [5306, 1612, 1344, 1600],
+      [5472, 1678, 1408, 1662],
+      [5474, 1678, 1408, 1662],
+      [5796, 1804, 1534, 1782],
+      [5798, 1804, 1536, 1782],
+      [6604, 2118, 1850, 2080],
+      [6606, 2120, 1850, 2082],
+      [7304, 2448, 2122, 2340],
+      [7306, 2448, 2124, 2340],
+    ],
+    monthly: [
+      [502.67, 74, 0, 152],
+      [507, 78, 0, 152],
+      [810.33, 121, 0, 243],
+      [814.67, 121, 0, 243],
+      [1079, 178, 0, 325],
+      [1083.33, 178, 0, 325],
+      [1564.33, 277, 0, 468],
+      [1568.67, 282, 0, 472],
+      [1603.33, 286, 4, 481],
+      [1607.67, 286, 4, 481],
+      [2227.33, 399, 100, 667],
+      [2231.67, 399, 100, 667],
+      [2327, 429, 113, 698],
+      [2331.33, 433, 117, 698],
+      [2912, 620, 260, 875],
+      [2916.33, 620, 260, 875],
+      [3120, 685, 295, 936],
+      [3124.33, 689, 295, 936],
+      [3744, 888, 407, 1122],
+      [3748.33, 888, 407, 1122],
+      [3930.33, 949, 468, 1179],
+      [3934.67, 949, 468, 1179],
+      [4034.33, 984, 503, 1209],
+      [4038.67, 984, 503, 1213],
+      [4914, 1265, 784, 1473],
+      [4918.33, 1265, 784, 1473],
+      [5551, 1469, 992, 1664],
+      [5555.33, 1469, 992, 1668],
+      [7990.67, 2249, 1772, 2396],
+      [7995, 2249, 1772, 2396],
+      [9182.33, 2630, 2154, 2756],
+      [9186.67, 2630, 2154, 2756],
+      [9728.33, 2804, 2327, 2916],
+      [9732.67, 2804, 2327, 2921],
+      [10790, 3220, 2665, 3237],
+      [10794.33, 3220, 2669, 3237],
+      [11245, 3397, 2812, 3371],
+      [11249.33, 3397, 2812, 3376],
+      [11492, 3493, 2908, 3467],
+      [11496.33, 3493, 2912, 3467],
+      [11856, 3636, 3051, 3601],
+      [11860.33, 3636, 3051, 3601],
+      [12558, 3909, 3324, 3861],
+      [12562.33, 3909, 3328, 3861],
+      [14308.67, 4589, 4008, 4507],
+      [14313, 4593, 4008, 4511],
+      [15825.33, 5304, 4598, 5070],
+      [15829.67, 5304, 4602, 5070],
+    ],
+  },
+  "2025-26": {
+    weekly: [
+      [116, 19, 0, 35],
+      [117, 19, 0, 35],
+      [149, 24, 0, 45],
+      [150, 24, 0, 45],
+      [249, 45, 0, 75],
+      [250, 45, 0, 75],
+      [360, 69, 0, 108],
+      [361, 69, 0, 108],
+      [370, 71, 2, 111],
+      [371, 71, 2, 111],
+      [499, 95, 22, 150],
+      [500, 95, 22, 150],
+      [514, 98, 26, 154],
+      [515, 98, 26, 154],
+      [624, 133, 55, 187],
+      [625, 134, 55, 187],
+      [720, 164, 72, 216],
+      [721, 165, 72, 216],
+      [842, 204, 95, 253],
+      [843, 204, 95, 253],
+      [864, 211, 99, 259],
+      [865, 211, 99, 259],
+      [931, 233, 121, 279],
+      [932, 233, 121, 280],
+      [1052, 271, 160, 316],
+      [1053, 272, 160, 316],
+      [1281, 345, 234, 384],
+      [1282, 345, 234, 385],
+      [1844, 525, 414, 553],
+      [1845, 525, 414, 553],
+      [2119, 613, 502, 636],
+      [2120, 613, 502, 636],
+      [2245, 653, 542, 673],
+      [2246, 653, 542, 674],
+      [2490, 749, 621, 747],
+      [2491, 749, 621, 747],
+      [2595, 789, 654, 778],
+      [2596, 790, 655, 779],
+      [2652, 812, 676, 800],
+      [2653, 812, 677, 800],
+      [2736, 844, 709, 831],
+      [2737, 845, 710, 831],
+      [2898, 908, 772, 891],
+      [2899, 908, 773, 891],
+      [3302, 1065, 930, 1040],
+      [3303, 1066, 930, 1041],
+      [3652, 1230, 1066, 1170],
+      [3653, 1230, 1067, 1170],
+    ],
+    fortnightly: [
+      [232, 38, 0, 70],
+      [234, 38, 0, 70],
+      [298, 48, 0, 90],
+      [300, 48, 0, 90],
+      [498, 90, 0, 150],
+      [500, 90, 0, 150],
+      [720, 138, 0, 216],
+      [722, 138, 0, 216],
+      [740, 142, 4, 222],
+      [742, 142, 4, 222],
+      [998, 190, 44, 300],
+      [1000, 190, 44, 300],
+      [1028, 196, 52, 308],
+      [1030, 196, 52, 308],
+      [1248, 266, 110, 374],
+      [1250, 268, 110, 374],
+      [1440, 328, 144, 432],
+      [1442, 330, 144, 432],
+      [1684, 408, 190, 506],
+      [1686, 408, 190, 506],
+      [1728, 422, 198, 518],
+      [1730, 422, 198, 518],
+      [1862, 466, 242, 558],
+      [1864, 466, 242, 560],
+      [2104, 542, 320, 632],
+      [2106, 544, 320, 632],
+      [2562, 690, 468, 768],
+      [2564, 690, 468, 770],
+      [3688, 1050, 828, 1106],
+      [3690, 1050, 828, 1106],
+      [4238, 1226, 1004, 1272],
+      [4240, 1226, 1004, 1272],
+      [4490, 1306, 1084, 1346],
+      [4492, 1306, 1084, 1348],
+      [4980, 1498, 1242, 1494],
+      [4982, 1498, 1242, 1494],
+      [5190, 1578, 1308, 1556],
+      [5192, 1580, 1310, 1558],
+      [5304, 1624, 1352, 1600],
+      [5306, 1624, 1354, 1600],
+      [5472, 1688, 1418, 1662],
+      [5474, 1690, 1420, 1662],
+      [5796, 1816, 1544, 1782],
+      [5798, 1816, 1546, 1782],
+      [6604, 2130, 1860, 2080],
+      [6606, 2132, 1860, 2082],
+      [7304, 2460, 2132, 2340],
+      [7306, 2460, 2134, 2340],
+    ],
+    monthly: [
+      [502.67, 82, 0, 152],
+      [507, 82, 0, 152],
+      [645.67, 104, 0, 195],
+      [650, 104, 0, 195],
+      [1079, 195, 0, 325],
+      [1083.33, 195, 0, 325],
+      [1560, 299, 0, 468],
+      [1564.33, 299, 0, 468],
+      [1603.33, 308, 9, 481],
+      [1607.67, 308, 9, 481],
+      [2162.33, 412, 95, 650],
+      [2166.67, 412, 95, 650],
+      [2227.33, 425, 113, 667],
+      [2231.67, 425, 113, 667],
+      [2704, 576, 238, 810],
+      [2708.33, 581, 238, 810],
+      [3120, 711, 312, 936],
+      [3124.33, 715, 312, 936],
+      [3648.67, 884, 412, 1096],
+      [3653, 884, 412, 1096],
+      [3744, 914, 429, 1122],
+      [3748.33, 914, 429, 1122],
+      [4034.33, 1010, 524, 1209],
+      [4038.67, 1010, 524, 1213],
+      [4558.67, 1174, 693, 1369],
+      [4563, 1179, 693, 1369],
+      [5551, 1495, 1014, 1664],
+      [5555.33, 1495, 1014, 1668],
+      [7990.67, 2275, 1794, 2396],
+      [7995, 2275, 1794, 2396],
+      [9182.33, 2656, 2175, 2756],
+      [9186.67, 2656, 2175, 2756],
+      [9728.33, 2830, 2349, 2916],
+      [9732.67, 2830, 2349, 2921],
+      [10790, 3246, 2691, 3237],
+      [10794.33, 3246, 2691, 3237],
+      [11245, 3419, 2834, 3371],
+      [11249.33, 3423, 2838, 3376],
+      [11492, 3519, 2929, 3467],
+      [11496.33, 3519, 2934, 3467],
+      [11856, 3657, 3072, 3601],
+      [11860.33, 3662, 3077, 3601],
+      [12558, 3935, 3345, 3861],
+      [12562.33, 3935, 3350, 3861],
+      [14308.67, 4615, 4030, 4507],
+      [14313, 4619, 4030, 4511],
+      [15825.33, 5330, 4619, 5070],
+      [15829.67, 5330, 4624, 5070],
+    ],
+  },
+};
+
+for (const fy of PAYG_FINANCIAL_YEARS) {
+  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+    test(`ATO ${fy} Schedule 1 sample data: every ${frequency} row, Scales 1/2/3`, () => {
+      const rows = ATO_SAMPLE_DATA[fy][frequency];
+      assert.equal(rows.length, 48, "the ATO publishes 48 rows per pay period");
+      for (const [earnings, scale1, scale2, scale3] of rows) {
+        assert.equal(withholdingForPeriod(earnings, frequency, "noTft", fy), scale1, `${fy} ${frequency} $${earnings} Scale 1`);
+        assert.equal(withholdingForPeriod(earnings, frequency, "tft", fy), scale2, `${fy} ${frequency} $${earnings} Scale 2`);
+        assert.equal(withholdingForPeriod(earnings, frequency, "foreignResident", fy), scale3, `${fy} ${frequency} $${earnings} Scale 3`);
+      }
+    });
+  }
+}
+
+test("the current year is the default and matches PAYG_FINANCIAL_YEAR", () => {
+  assert.equal(PAYG_FINANCIAL_YEARS[0], PAYG_FINANCIAL_YEAR);
+  assert.equal(withholdingForPeriod(2_000, "fortnightly"), withholdingForPeriod(2_000, "fortnightly", "tft", "2026-27"));
+});
+
+test("2026-27 withholds less than 2025-26 once the 15% rate applies", () => {
+  // The 16% -> 15% cut is worth up to $268 a year: ~$10 a fortnight at the top.
+  // ATO sample data: $7,306 fortnightly Scale 2 = $2,134 (2025-26) vs $2,124 (2026-27).
+  assert.equal(withholdingForPeriod(7_306, "fortnightly", "tft", "2025-26"), 2_134);
+  assert.equal(withholdingForPeriod(7_306, "fortnightly", "tft", "2026-27"), 2_124);
+  for (const gross of [1_500, 2_500, 4_000, 6_000]) {
+    assert.ok(
+      withholdingForPeriod(gross, "fortnightly", "tft", "2026-27") <= withholdingForPeriod(gross, "fortnightly", "tft", "2025-26"),
+      `$${gross}`,
+    );
+  }
+});
+
+test("STSL is not computed for a year whose Schedule 8 is not carried", () => {
+  const r = calculatePAYGWithholding(4_000, "fortnightly", { hasSTSL: true, financialYear: "2025-26" });
+  assert.equal(PAYG_YEAR_INFO["2025-26"].stslSupported, false);
+  assert.equal(r.stslWithheld, 0);
+  assert.equal(r.stslSupported, false);
+  assert.equal(r.totalWithheld, r.paygWithheld);
+  const current = calculatePAYGWithholding(4_000, "fortnightly", { hasSTSL: true });
+  assert.equal(current.stslSupported, true);
+  assert.ok(current.stslWithheld > 0);
+});
+
+test("stepped table rows and CSV come from the same engine as the lookup", () => {
+  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+    const rows = buildTaxTableRows(frequency, "2026-27", HTML_TABLE_RANGES[frequency]);
+    assert.ok(rows.length > 40 && rows.length < 120, `${frequency} HTML table has ${rows.length} rows`);
+    for (const r of rows) {
+      assert.equal(r.withTFT, withholdingForPeriod(r.gross, frequency, "tft"));
+      assert.equal(r.noTFT, withholdingForPeriod(r.gross, frequency, "noTft"));
+      assert.equal(r.withTFTAndSTSL, calculatePAYGWithholding(r.gross, frequency, { hasSTSL: true }).totalWithheld);
+    }
+  }
+  const prev = buildTaxTableRows("weekly", "2025-26", { from: 500, to: 510, step: 5 });
+  assert.ok(prev.every((r) => r.withTFTAndSTSL === null), "no STSL column for 2025-26");
+
+  const csvRows = buildTaxTableRows("fortnightly", "2026-27", CSV_TABLE_RANGES.fortnightly);
+  const csv = taxTableCsv("fortnightly", "2026-27", csvRows);
+  const lines = csv.trim().split("\n");
+  assert.equal(lines.length, csvRows.length + 2, "comment line + header + one line per row");
+  assert.match(lines[1], /^Fortnightly earnings/);
+  // ATO NAT 1006 worked example: $989 (cents ignored) -> $40 / $176. Rows step
+  // by $2 from $0, and $988 and $989 share a weekly equivalent.
+  const row988 = lines.find((l) => l.startsWith("988,"));
+  assert.ok(row988, "fortnightly CSV steps by $2 from $0");
+  assert.equal(row988!.split(",")[1], "40");
+  assert.equal(row988!.split(",")[2], "176");
 });

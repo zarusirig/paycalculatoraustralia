@@ -161,12 +161,32 @@ export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly Calcul
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            HECS Repayment Calculator Australia {SITE_CONFIG.financialYear}
+            HECS Repayment Calculator {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
             Work out your compulsory repayment for {SITE_CONFIG.financialYear} on any study or training support loan — HELP, VSL, SFSS, SSL, ABSTUDY SSL or AASL. They all share one threshold of {formatAUD(T)}, and the marginal system charges only on the income above it.
           </p>
-          <p className="text-sm text-warmgray-light mt-2">Updated {SITE_CONFIG.lastVerified} — {SITE_CONFIG.financialYear} thresholds applied.</p>
+          {/* Above-the-fold answer for "hecs repayment thresholds" — the full table with context is #threshold below. */}
+          <div className="mt-5 overflow-x-auto rounded-xl border border-sandstone-dark/20 bg-white">
+            <table className="w-full text-sm">
+              <caption className="px-4 pt-3 text-left text-sm font-semibold text-navy">HECS repayment thresholds {SITE_CONFIG.financialYear} (marginal system)</caption>
+              <thead>
+                <tr className="border-b border-sandstone-dark/20">
+                  <th scope="col" className="px-4 py-2 text-left font-semibold text-navy">Repayment income</th>
+                  <th scope="col" className="px-4 py-2 text-left font-semibold text-navy">Compulsory repayment</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                {BAND_ROWS.map((band) => (
+                  <tr key={band.range}>
+                    <td className="px-4 py-2 text-navy tabular-nums whitespace-nowrap">{band.range}</td>
+                    <td className="px-4 py-2 text-warmgray">{band.how}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-sm text-warmgray-light mt-2">Updated {SITE_CONFIG.lastVerified} — {SITE_CONFIG.financialYear} thresholds applied. Source: <a href={ATO_THRESHOLDS_URL} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">ATO</a>.</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -266,7 +286,7 @@ export default function HECSHelpCalculatorPage({ faqs }: { faqs: readonly Calcul
             <p className="mb-4 text-warmgray">
               <strong>Repayment income</strong> is wider than your salary. The ATO adds together:
             </p>
-            <ul className="flex items-center space-x-1 text-sm text-warmgray">
+            <ul className="list-disc pl-5 space-y-1 mb-4 text-sm text-warmgray">
               <li>taxable income</li>
               <li>reportable fringe benefits</li>
               <li>total net investment loss</li>

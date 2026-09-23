@@ -4,7 +4,14 @@
 // the FAQPage JSON-LD, so the structured data cannot drift from the page.
 
 import { formatAUD } from "@/lib/constants";
-import { calculatePAYGWithholding, NO_TFN_RATES } from "@/lib/constants/payg-withholding";
+import {
+  calculatePAYGWithholding,
+  withholdingForPeriod,
+  CSV_TABLE_RANGES,
+  NO_TFN_RATES,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
+} from "@/lib/constants/payg-withholding";
 import type { TaxTableFaq } from "./weekly-tax-table-faqs";
 import { ATO_MONTHLY, ATO_WORKED_EXAMPLES } from "./ato-schedules";
 
@@ -12,6 +19,8 @@ const ex = ATO_WORKED_EXAMPLES.monthly;
 const at6500 = calculatePAYGWithholding(6_500, "monthly");
 const at8000 = calculatePAYGWithholding(8_000, "monthly", { hasSTSL: true });
 const at6500Foreign = calculatePAYGWithholding(6_500, "monthly", { foreignResident: true });
+const at6500Now = withholdingForPeriod(6_500, "monthly", "tft", PAYG_FINANCIAL_YEAR);
+const at6500Prev = withholdingForPeriod(6_500, "monthly", "tft", PAYG_PREVIOUS_FINANCIAL_YEAR);
 
 export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
@@ -61,5 +70,13 @@ export const MONTHLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
     q: "Where is the official ATO monthly tax table?",
     a: `${ATO_MONTHLY.nat} is published at ${ATO_MONTHLY.pageUrl}, with a printable PDF look-up table and an XLSX look-up tool, both linked from this page. This page applies the same Schedule 1 coefficient formulas, but confirm payroll-critical figures against the current ATO publication.`,
+  },
+  {
+    q: `What changed between the ${PAYG_PREVIOUS_FINANCIAL_YEAR} and ${PAYG_FINANCIAL_YEAR} monthly tax tables?`,
+    a: `The rate on income between $18,201 and $45,000 fell from 16% to 15% on 1 July 2026, so the ATO reissued ${ATO_MONTHLY.nat} with new Schedule 1 coefficients. At ${formatAUD(6_500)} a month with the tax-free threshold claimed, withholding is ${formatAUD(at6500Prev)} under the ${PAYG_PREVIOUS_FINANCIAL_YEAR} table and ${formatAUD(at6500Now)} under ${PAYG_FINANCIAL_YEAR}. Use the year toggle on this page to see ${PAYG_PREVIOUS_FINANCIAL_YEAR} amounts for an older pay run.`,
+  },
+  {
+    q: "Can I download the monthly tax table as a spreadsheet?",
+    a: `Yes. The "Download CSV" button above the table builds the monthly table in $1 steps up to ${formatAUD(CSV_TABLE_RANGES.monthly.to)} a month, for whichever financial year is selected, with columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents. It opens in Excel, Numbers or Google Sheets. For a salary with cents, use the lookup at the top of the page: the monthly formula treats earnings ending in exactly 33 cents specially.`,
   },
 ] as const;

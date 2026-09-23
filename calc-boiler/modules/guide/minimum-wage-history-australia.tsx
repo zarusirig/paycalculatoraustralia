@@ -1,204 +1,169 @@
-"use client";
-
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import { NMW_ORDER } from "@/lib/constants/junior-rates";
+import { NMW_DECISION, NMW_HISTORY } from "@/lib/constants/minimum-wage";
+import {
+  HISTORY_FAQS,
+  HISTORY_FIRST,
+  HISTORY_LARGEST,
+  HISTORY_LAST,
+  HISTORY_SMALLEST,
+  TOTAL_GROWTH,
+} from "@/modules/guide/minimum-wage-history-faqs";
+
+// Rebuilt 23 Sep 2026 on NMW_HISTORY (lib/constants/minimum-wage.ts). The old
+// hand-typed table showed $26.44 from 1 July 2024 and 2025-26 as "TBD".
+
+const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const money = (v: number) => formatAUD(v, 2);
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Annual Wage Reviews", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: SOURCES.fwo.name },
-  { title: "National minimum wage orders", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: "Fair Work Commission" },
+  { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
+  { title: "National minimum wage orders and Annual Wage Reviews", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: SOURCES.fwc.name },
+  { title: "Minimum wages", url: "https://www.fairwork.gov.au/pay-and-wages/minimum-wages", publisher: SOURCES.fwo.name },
   { title: "Consumer Price Index, Australia", url: "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia", publisher: "Australian Bureau of Statistics" },
 ];
 
-const WAGE_HISTORY = [
-  { year: "2010-11", hourly: "$15.00", weekly: "$569.90", increase: "\u2014", fwcDate: "1 Jul 2010" },
-  { year: "2011-12", hourly: "$15.51", weekly: "$589.30", increase: "3.4%", fwcDate: "1 Jul 2011" },
-  { year: "2012-13", hourly: "$15.96", weekly: "$606.40", increase: "2.9%", fwcDate: "1 Jul 2012" },
-  { year: "2013-14", hourly: "$16.37", weekly: "$622.20", increase: "2.6%", fwcDate: "1 Jul 2013" },
-  { year: "2014-15", hourly: "$16.87", weekly: "$640.90", increase: "3.0%", fwcDate: "1 Jul 2014" },
-  { year: "2015-16", hourly: "$17.29", weekly: "$656.90", increase: "2.5%", fwcDate: "1 Jul 2015" },
-  { year: "2016-17", hourly: "$17.70", weekly: "$672.70", increase: "2.4%", fwcDate: "1 Jul 2016" },
-  { year: "2017-18", hourly: "$18.29", weekly: "$694.90", increase: "3.3%", fwcDate: "1 Jul 2017" },
-  { year: "2018-19", hourly: "$18.93", weekly: "$719.20", increase: "3.5%", fwcDate: "1 Jul 2018" },
-  { year: "2019-20", hourly: "$19.49", weekly: "$740.80", increase: "3.0%", fwcDate: "1 Jul 2019" },
-  { year: "2020-21", hourly: "$19.84", weekly: "$753.80", increase: "1.75%", fwcDate: "1 Jul 2020" },
-  { year: "2021-22", hourly: "$20.33", weekly: "$772.60", increase: "2.5%", fwcDate: "1 Jul 2021" },
-  { year: "2022-23", hourly: "$21.38", weekly: "$812.60", increase: "5.2%", fwcDate: "1 Jul 2022" },
-  { year: "2023-24", hourly: "$23.23", weekly: "$882.80", increase: "8.65%", fwcDate: "1 Jul 2023" },
-  { year: "2024-25", hourly: "$26.44", weekly: "$1,004.90", increase: "3.75%", fwcDate: "1 Jul 2024" },
-  { year: "2025-26", hourly: "TBD", weekly: "TBD", increase: "TBD", fwcDate: "Jun 2025 (expected)" },
-];
+const ROWS = [...NMW_HISTORY].reverse();
 
 export default function MinimumWageHistoryPage() {
   return (
     <div className="min-h-screen flex-grow bg-white">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
 
-        {/* BREADCRUMBS */}
         <nav aria-label="breadcrumb" className="mb-6">
-          <ol className="flex items-center space-x-1 text-sm text-warmgray">
+          <ol className="flex flex-wrap items-center gap-x-1 text-sm text-warmgray">
             <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
-            <li><span className="font-medium text-navy" aria-current="page">Minimum Wage History</span></li>
+            <li><Link href="/minimum-wage-australia/" className="hover:text-eucalyptus-dark hover:underline">Minimum Wage Australia</Link></li>
+            <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
+            <li><span className="font-medium text-navy" aria-current="page">History</span></li>
           </ol>
         </nav>
 
-        {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Minimum Wage History Australia &mdash; Annual Rate Changes
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H2}>
+            Australian Minimum Wage History: Every Increase Since 2010
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Every year the Fair Work Commission reviews and adjusts Australia&apos;s national minimum wage. This page tracks every rate since 2010, how increases compare to inflation, and how the FWC makes its annual decision.
+            The National Minimum Wage for each financial year since {HISTORY_FIRST.fy}, the size of every Annual Wage Review increase, and what drove the big years.
           </p>
+          <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
+            <p className="text-base leading-relaxed text-navy">
+              <strong>In short:</strong> the adult minimum wage has risen from {money(HISTORY_FIRST.hourly)} an hour in {HISTORY_FIRST.fy.slice(0, 4)} to {money(HISTORY_LAST.hourly)} from {HISTORY_LAST.operativeFrom}, up {(TOTAL_GROWTH * 100).toFixed(1)}%. The biggest single rise was {HISTORY_LARGEST.published} in {HISTORY_LARGEST.operativeFrom.slice(-4)}. For today&rsquo;s rate in full, with after-tax pay, see <Link href="/minimum-wage-australia/" className="font-medium text-eucalyptus-dark underline">minimum wage Australia</Link>.
+            </p>
+          </div>
           <TrustBar className="!max-w-none" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">
-
-          {/* MAIN ARTICLE CONTENT */}
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            {/* SECTION 1: Minimum Wage by Year */}
             <section id="wage-by-year">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage by Year</h2>
+              <h2 style={H2}>National Minimum Wage by Year</h2>
               <p>
-                The national minimum wage applies to award-free and agreement-free employees over 21 years of age. Junior employees, apprentices, and those covered by Modern Awards may receive different rates. The table below shows the hourly and weekly rate for each financial year since 2010.
+                The National Minimum Wage is the floor for adults aged 21 and over who are not covered by an award or agreement. Each rate below applied from the first full pay period on or after 1 July of that year.
               </p>
               <div className="not-prose my-8">
-                <div className="overflow-x-auto overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[32rem] text-sm text-left text-navy">
+                    <caption className="sr-only">Australian National Minimum Wage history since 2010</caption>
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-4 py-4">Year</th>
-                        <th className="px-4 py-4 border-l text-right">Hourly</th>
-                        <th className="px-4 py-4 border-l text-right">Weekly (38 hrs)</th>
-                        <th className="px-4 py-4 border-l text-right">Increase</th>
-                        <th className="px-4 py-4 border-l text-right">Effective Date</th>
+                        <th scope="col" className="px-4 py-4">Financial year</th>
+                        <th scope="col" className="px-4 py-4 border-l text-right">Hourly</th>
+                        <th scope="col" className="px-4 py-4 border-l text-right">Weekly (38 hrs)</th>
+                        <th scope="col" className="px-4 py-4 border-l text-right">Increase</th>
+                        <th scope="col" className="px-4 py-4 border-l text-right">From</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      {WAGE_HISTORY.map((row, i) => (
-                        <tr key={row.year} className={i === WAGE_HISTORY.length - 2 ? "bg-eucalyptus/5" : ""}>
-                          <td className="px-4 py-3 font-semibold text-navy bg-sandstone">{row.year}</td>
-                          <td className="px-4 py-3 border-l text-right">{row.hourly}</td>
-                          <td className="px-4 py-3 border-l text-right">{row.weekly}</td>
-                          <td className="px-4 py-3 border-l text-right">{row.increase}</td>
-                          <td className="px-4 py-3 border-l text-right">{row.fwcDate}</td>
+                      {ROWS.map((row, i) => (
+                        <tr key={row.fy} className={i === 0 ? "bg-eucalyptus/5 font-medium" : ""}>
+                          <th scope="row" className="px-4 py-3 font-semibold text-navy bg-sandstone text-left">{row.fy}</th>
+                          <td className="px-4 py-3 border-l text-right">{money(row.hourly)}</td>
+                          <td className="px-4 py-3 border-l text-right">{money(row.weekly)}</td>
+                          <td className="px-4 py-3 border-l text-right">{row.published ?? "—"}</td>
+                          <td className="px-4 py-3 border-l text-right">{row.operativeFrom}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Weekly rate based on 38 ordinary hours. Source: Fair Work Commission National Minimum Wage Orders. See our coverage of the <Link href="/news/minimum-wage-increase-july-2026/">2026 minimum wage decision</Link> for the latest rate that took effect on 1 July 2026.</p>
+                <p className="text-xs text-warmgray mt-2">
+                  Weekly rate for 38 ordinary hours. Increases are as announced by the Commission, on the weekly rate. Source: Fair Work Commission National Minimum Wage Orders; the {HISTORY_LAST.fy} rate is from {NMW_DECISION.citation}.
+                </p>
               </div>
             </section>
 
-            {/* SECTION 2: Minimum Wage vs Inflation */}
-            <section id="wage-vs-inflation">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage vs Inflation</h2>
-              <p>
-                In most years, the FWC has increased the minimum wage at or above the rate of CPI inflation, preserving real purchasing power for minimum wage workers. However, there are notable exceptions:
-              </p>
+            <section id="notable-years">
+              <h2 style={H2}>The Years That Stand Out</h2>
               <ul>
-                <li><strong>FY2020-21 (1.75% increase):</strong> The smallest increase in over a decade, reflecting the economic uncertainty of COVID-19. Annual CPI at the time was running at approximately 1.1%, so the real increase was modest but positive.</li>
-                <li><strong>FY2022-23 (5.2% increase):</strong> A significant jump as the FWC responded to rising cost-of-living pressures. Annual CPI was running at 6.1%, meaning the real wage fell slightly despite the large nominal increase.</li>
-                <li><strong>FY2023-24 (8.65% increase):</strong> The largest increase in the dataset. The FWC explicitly aimed to restore real wages after the inflation shock, citing CPI of 7.0% at the time of the decision. This was the first time the increase significantly exceeded CPI since 2010.</li>
-                <li><strong>FY2024-25 (3.75% increase):</strong> A return to more moderate increases as inflation eased to approximately 3.6%. The real wage gain was modest at roughly 0.1&ndash;0.2 percentage points.</li>
+                <li><strong>{HISTORY_SMALLEST.fy} ({HISTORY_SMALLEST.published}):</strong> the smallest increase in the series, decided during the COVID-19 downturn.</li>
+                <li><strong>{HISTORY_LARGEST.fy} ({HISTORY_LARGEST.published}):</strong> the largest, as the Commission responded to inflation of 7.0% in the year to the March quarter 2023.</li>
+                <li><strong>{HISTORY_LAST.fy} ({HISTORY_LAST.published}):</strong> the National Minimum Wage rose faster than award rates ({(NMW_DECISION.awardIncrease * 100).toFixed(2)}%) because the Commission began lifting the lowest award classification, which the minimum wage is aligned to, in the first of three stages. It used the Reserve Bank&rsquo;s forecast of 4.8% inflation for the year to June 2026 as its benchmark.</li>
               </ul>
               <p>
-                Over the full 15-year period from 2010 to 2024, the minimum wage rose from <strong>$15.00 to $26.44 per hour</strong> &mdash; an increase of <strong>60.7%</strong>. Over the same period, cumulative CPI inflation was approximately <strong>40&ndash;45%</strong>, meaning minimum wage workers have maintained and slightly improved their real purchasing power.
+                Whether the minimum wage kept pace with prices in a given year depends on which inflation figure you compare against and when. For the official series, see the ABS <a href="https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia" target="_blank" rel="noopener noreferrer">Consumer Price Index</a>.
               </p>
             </section>
 
-            {/* SECTION 3: How FWC Sets Minimum Wage */}
             <section id="fwc-process">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How the Fair Work Commission Sets the Minimum Wage</h2>
+              <h2 style={H2}>How the Fair Work Commission Sets the Minimum Wage</h2>
               <p>
-                The FWC conducts an Annual Wage Review every year, as required by the <em>Fair Work Act 2009</em>. The review process runs from approximately January to June, with the new rate taking effect on <strong>1 July</strong>. Key features of the process:
+                The Commission conducts an Annual Wage Review every year under the <em>Fair Work Act 2009</em>, with the result applying from 1 July. Key features of the process:
               </p>
               <ol>
-                <li><strong>Submissions:</strong> The Australian Government, employer groups (e.g., Ai Group, ACCI), unions (ACTU), and community organisations submit evidence and arguments for or against a particular increase.</li>
-                <li><strong>Economic analysis:</strong> The FWC considers CPI, Wage Price Index (WPI), labour market data (unemployment, underemployment), business profitability, and productivity trends.</li>
-                <li><strong>Legislative criteria:</strong> The Fair Work Act requires the FWC to consider the needs of low-paid workers, the principle of equal remuneration, economic conditions, and competitiveness of the national economy.</li>
-                <li><strong>Decision:</strong> A Full Bench of the FWC publishes a detailed decision (typically 100&ndash;200 pages) explaining the reasoning behind the chosen increase. The decision applies to both the national minimum wage and all Modern Award minimum rates.</li>
+                <li><strong>Submissions:</strong> the Australian Government, employer groups, unions and community organisations file evidence and argue for a particular increase.</li>
+                <li><strong>Economic evidence:</strong> the Commission considers inflation, wages growth, employment, business conditions and productivity, drawing on its own statistical report.</li>
+                <li><strong>Legislative criteria:</strong> the Act requires it to weigh the needs of the low paid, equal remuneration, the performance of the economy and relative living standards.</li>
+                <li><strong>Decision:</strong> an expert panel publishes a reasoned decision setting both the National Minimum Wage and the increase to modern award rates.</li>
               </ol>
+            </section>
+
+            <section id="current">
+              <h2 style={H2}>The Minimum Wage Now</h2>
               <p>
-                The FWC cannot reduce the minimum wage &mdash; it can only maintain or increase it. In practice, even during the 2020 COVID recession, the Commission awarded a small increase rather than a freeze.
+                The current rate is {money(HISTORY_LAST.hourly)} an hour or {money(HISTORY_LAST.weekly)} a week. The <Link href="/minimum-wage-australia/">minimum wage Australia</Link> page has it hourly, weekly, fortnightly and annually, after tax, with award comparisons and the date of the next review. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>.
               </p>
             </section>
 
-            {/* SECTION 4: Minimum Wage Take-Home Pay */}
-            <section id="take-home-pay">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage Take-Home Pay</h2>
-              <p>
-                At the current minimum wage of <strong>$26.44/hour</strong> (38 hours per week), the gross annual salary is approximately <strong>$52,254.80</strong>. After income tax, Medicare Levy, and the Low Income Tax Offset, the approximate take-home pay for a resident with no HECS debt is around <strong>$45,230 per year</strong> or <strong>$870 per week</strong>.
-              </p>
-              <p>
-                Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to get the exact figure for your circumstances, including any HECS-HELP debt, private health insurance, or salary sacrifice arrangements.
-              </p>
-              <p>
-                Want to convert between hourly and annual salary? The <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> handles the conversion instantly.
-              </p>
-            </section>
-
-            {/* SECTION 5: FAQ */}
             <section id="faq">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="current-rate" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the current minimum wage in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    As of 1 July 2026, the national minimum wage is <strong>$26.44 per hour</strong> or <strong>$1,004.90 per 38-hour week</strong> (before tax), up from $24.95 per hour in FY2025-26, following the Fair Work Commission&apos;s Annual Wage Review decision on 2 June 2026.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="how-often" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How often does the minimum wage increase?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The Fair Work Commission reviews the minimum wage annually. The review typically runs from January to June, with the decision announced in June and the new rate taking effect on 1 July. Every year since the FWC was established, the minimum wage has been increased.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="largest-increase" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What was the largest minimum wage increase?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The largest recent increase was <strong>8.65%</strong> in FY2023-24, raising the hourly rate from $21.38 to $23.23. The FWC cited high inflation and the need to restore real wages as the primary reasons for this historically large increase.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="vs-inflation" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does the minimum wage keep up with inflation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Over the long term, yes. From 2010 to 2024, the minimum wage increased by approximately 60.7% while cumulative CPI inflation was around 40&ndash;45%. In individual years, the wage increase occasionally falls slightly below CPI (as in FY2022-23), but the FWC generally aims to at least maintain real purchasing power.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <h2 style={H2}>Frequently Asked Questions</h2>
+              {HISTORY_FAQS.map((f) => (
+                <div key={f.q}>
+                  <h3>{f.q}</h3>
+                  <p>{f.a}</p>
+                </div>
+              ))}
             </section>
 
             <div className="mt-12 not-prose">
-              <MethodologyDisclosure title="How this guide works">
-                <p>Minimum wage rates on this page are sourced from the Fair Work Commission&apos;s National Minimum Wage Orders. Weekly rates are based on 38 ordinary hours. CPI comparisons use ABS Consumer Price Index data. Annual salary estimates assume 52.143 weeks per year.</p>
+              <MethodologyDisclosure title="How this history was compiled">
+                <p>Rates are taken from the Fair Work Commission&apos;s National Minimum Wage Orders, for 38 ordinary hours a week. The table is generated from a single tested constant; an automated test checks that each hourly rate is the weekly rate divided by 38 and that each computed increase agrees with the Commission&rsquo;s announced percentage.</p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
               {(() => { const a = getGuideAuthorship("minimum-wage-history-australia"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>
 
           </article>
 
-          {/* SIDEBAR */}
           <aside className="lg:w-1/3">
             <div className="sticky top-8 space-y-6">
               <Card className="bg-sandstone border-sandstone-dark/20">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
+                  <h2 className="font-bold text-navy mb-3 block">Related Guides</h2>
                   <div className="space-y-3">
+                    <SidebarLink href="/minimum-wage-australia/" label="Minimum Wage Australia" />
+                    <SidebarLink href="/junior-pay-rates/" label="Minimum Wage by Age" />
                     <SidebarLink href="/award-rates/" label="Modern Award Rates" />
-                    <SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" />
                     <SidebarLink href="/hourly-to-annual-salary-calculator/" label="Hourly to Annual Converter" />
                   </div>
                 </CardContent>
@@ -206,8 +171,8 @@ export default function MinimumWageHistoryPage() {
 
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-bold mb-2">What Do You Actually Take Home?</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">Enter your hourly rate or salary to see your exact take-home pay after tax, super, and any deductions.</p>
+                  <h2 className="text-lg font-bold mb-2">What Do You Actually Take Home?</h2>
+                  <p className="text-eucalyptus-light text-sm mb-4">Enter your hourly rate or salary to see your take-home pay after tax for {SITE_CONFIG.financialYear}.</p>
                   <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Calculate Now <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>

@@ -4,7 +4,14 @@
 // the FAQPage JSON-LD, so the structured data cannot drift from the page.
 
 import { formatAUD } from "@/lib/constants";
-import { calculatePAYGWithholding, NO_TFN_RATES } from "@/lib/constants/payg-withholding";
+import {
+  calculatePAYGWithholding,
+  withholdingForPeriod,
+  CSV_TABLE_RANGES,
+  NO_TFN_RATES,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
+} from "@/lib/constants/payg-withholding";
 import { ATO_WEEKLY, ATO_WORKED_EXAMPLES, WEEKLY_EXTRA_PAY } from "./ato-schedules";
 
 export interface TaxTableFaq {
@@ -16,6 +23,8 @@ const ex = ATO_WORKED_EXAMPLES.weekly;
 const at1000 = calculatePAYGWithholding(1_000, "weekly");
 const at1500 = calculatePAYGWithholding(1_500, "weekly", { hasSTSL: true });
 const at1000Foreign = calculatePAYGWithholding(1_000, "weekly", { foreignResident: true });
+const at1500Now = withholdingForPeriod(1_500, "weekly", "tft", PAYG_FINANCIAL_YEAR);
+const at1500Prev = withholdingForPeriod(1_500, "weekly", "tft", PAYG_PREVIOUS_FINANCIAL_YEAR);
 
 export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
@@ -65,5 +74,13 @@ export const WEEKLY_TAX_TABLE_FAQS: readonly TaxTableFaq[] = [
   {
     q: "Do I use the weekly tax table for leave and termination payments?",
     a: "Ordinary holiday pay and long service leave taken while still employed are included in normal weekly earnings and withheld from this table. Leave loading paid as a lump sum uses Schedule 5. Unused annual or long service leave paid out on termination uses Schedule 7 (NAT 3351), and employment termination payments such as redundancy use Schedule 11 (NAT 70980). Do not withhold a study loan component from lump-sum termination payments.",
+  },
+  {
+    q: `What changed between the ${PAYG_PREVIOUS_FINANCIAL_YEAR} and ${PAYG_FINANCIAL_YEAR} weekly tax tables?`,
+    a: `The rate on income between $18,201 and $45,000 fell from 16% to 15% on 1 July 2026, so the ATO reissued the weekly table with new Schedule 1 coefficients. At ${formatAUD(1_500)} a week with the tax-free threshold claimed, withholding is ${formatAUD(at1500Prev)} under the ${PAYG_PREVIOUS_FINANCIAL_YEAR} table and ${formatAUD(at1500Now)} under ${PAYG_FINANCIAL_YEAR}. Use the year toggle on this page to see ${PAYG_PREVIOUS_FINANCIAL_YEAR} amounts for an older pay run.`,
+  },
+  {
+    q: "Can I download the weekly tax table as a spreadsheet?",
+    a: `Yes. The "Download CSV" button above the table builds the weekly table in $1 steps up to ${formatAUD(CSV_TABLE_RANGES.weekly.to)} a week, for whichever financial year is selected, with columns for the tax-free threshold claimed and not claimed, a study loan (${PAYG_FINANCIAL_YEAR} only) and foreign residents. It opens in Excel, Numbers or Google Sheets. The ATO also publishes its own XLSX look-up tool, linked on this page.`,
   },
 ] as const;

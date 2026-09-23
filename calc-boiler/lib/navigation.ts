@@ -59,6 +59,11 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator", description: "What you keep of JobSeeker when you work" },
       { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance Calculator", description: "Student income test with current rates" },
       { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator", description: "Income test with the Work Bonus" },
+      // C4 Centrelink family payments (added 2026-09-23)
+      { href: "/parenting-payment-calculator/", label: "Parenting Payment Calculator", description: "Single and partnered, with the income test" },
+      { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit Calculator", description: "FTB Part A and Part B on your family income" },
+      { href: "/rent-assistance-calculator/", label: "Rent Assistance Calculator", description: "Centrelink Rent Assistance for your rent" },
+      // end C4
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
@@ -167,11 +172,27 @@ export const GUIDE_CATEGORIES = [
       { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO Pay", description: "Salaries, rosters & allowances" },
       { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay", description: "Nurses, doctors & allied health" },
       { href: "/teacher-pay-australia/", label: "Teacher Pay", description: "Salary by state & classification" },
+      // C1 employer pay rates (2026-09-23)
+      { href: "/pay-rates/", label: "Pay Rates by Employer", description: "Coles, Woolworths, Bunnings & more" },
       { href: "/retail-hospitality-pay-guide/", label: "Retail & Hospitality", description: "Award rates & penalties" },
       { href: "/tech-salary-guide-australia/", label: "IT & Tech Salaries", description: "Developer, engineer & PM pay" },
       { href: "/construction-trades-pay/", label: "Construction & Trades", description: "Apprentice & tradie rates" },
     ],
   },
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  // Age spokes (/minimum-wage-by-age/[age]/) are listed on /site-directory/
+  // and linked from /junior-pay-rates/; they are too many for the mega menu.
+  {
+    title: "Minimum Wage & Casual Pay",
+    guides: [
+      { href: "/minimum-wage-australia/", label: "Minimum Wage Australia", description: "Current national rate, weekly and after tax" },
+      { href: "/minimum-wage-by-age/16/", label: "Minimum Wage for 16 Year Olds", description: "Award and no-award rates at 16" },
+      { href: "/pro-rata-salary-calculator/", label: "Pro-Rata Salary Calculator", description: "Part-time pay from a full-time salary" },
+      { href: "/casual-loading-calculator/", label: "Casual Loading Calculator", description: "25% casual rate vs permanent with leave" },
+      { href: "/minimum-wage-history-australia/", label: "Minimum Wage History", description: "Every increase since 2010" },
+    ],
+  },
+  // --- end minimum wage cluster ---
 ] as const;
 
 export const STATE_CATEGORIES = [

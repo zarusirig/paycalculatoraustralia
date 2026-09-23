@@ -4,11 +4,16 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
+import { PAYG_HUB_FAQS } from "@/modules/guide/payg-withholding-tables-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payg-withholding-tables/`;
-const TITLE = "PAYG Withholding Tax Tables 2026-27 — Australia";
-const DESCRIPTION = "ATO PAYG withholding tax tables for 2026-27: weekly, fortnightly, and monthly pay cycles plus Schedule 5 for bonuses. Updated 1 July 2026 with the 15% rate cut on $18,201–$45,000.";
+// Hub intent: "which table do I use". The exact-match "weekly / fortnightly /
+// monthly tax table" queries belong to the dedicated pages, which this page
+// links to with exact-match anchors.
+const TITLE = `PAYG Withholding Tax Tables ${PAYG_FINANCIAL_YEAR}: Weekly, Fortnightly, Monthly`;
+const DESCRIPTION = `Which ATO PAYG withholding tax table to use in ${PAYG_FINANCIAL_YEAR}: weekly (NAT 1005), fortnightly (NAT 1006) and monthly (NAT 1007) tax tables, Schedule 5 for bonuses, and how Schedule 1 withholding works.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -50,11 +55,11 @@ const article: WithContext<Article> = {
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What does PAYG mean in Australia?", acceptedAnswer: { "@type": "Answer", text: "PAYG stands for 'Pay As You Go'. It is the system where your employer automatically deducts income tax from your gross wages and sends it to the Australian Taxation Office (ATO) on your behalf before you receive your take-home pay." } },
-    { "@type": "Question", name: "Why does my PAYG withholding seem higher than my actual tax bracket?", acceptedAnswer: { "@type": "Answer", text: "PAYG withholding tables are designed by the ATO to ensure you don't face a large tax bill at the end of the year. They often account for the Medicare Levy (2%) and assume a steady income. If too much tax is withheld during the year, you will receive it back as a tax refund when you lodge your return." } },
-    { "@type": "Question", name: "How does my employer know how much tax to withhold?", acceptedAnswer: { "@type": "Answer", text: "When you start a job, you fill out a Tax File Number (TFN) Declaration. Your answers (such as whether you are claiming the tax-free threshold or have a HECS debt) determine exactly which ATO PAYG formula your employer's payroll software must use to calculate your tax each pay cycle." } },
-  ]
+  mainEntity: PAYG_HUB_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 export default function Page() {

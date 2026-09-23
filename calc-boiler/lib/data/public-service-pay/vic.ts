@@ -22,12 +22,20 @@ export const VIC: Jurisdiction = {
   label: "Victoria (VPS)",
   verifiedOn: "28 August 2026",
 
+  levelGuide: {
+    scheduleId: "vps-2026",
+    year: "2026",
+    title: "VPS salary by grade, from 1 May 2026",
+    intro:
+      "Each grade below lists every progression step in the 1 May 2026 column of Schedule C, with the value ranges inside the grade shown separately. Every salary links to the nearest take-home pay page. Grade 7 is also the Senior Technical Specialist (STS) structure, so the VPS 7 figures are the STS figures.",
+  },
+
   headline:
     "From 1 May 2026 a VPS Grade 3 is paid between $81,496 and $98,955, a VPS 4 between $100,894 and $114,476, a VPS 5 between $116,413 and $140,849 and a VPS 6 between $142,790 and $191,084. Those are the value ranges in Schedule C of the Victorian Public Service Enterprise Agreement 2024, which applies across the whole VPS — Victoria, unlike the APS, does publish a single table.",
 
-  metaTitle: "VPS Salary Bands 2026 — Victorian Public Service Pay Scale (VPS 1–7)",
+  metaTitle: "VPS Salary 2026 — VPS 1–7 & STS Pay Rates and Salary Bands",
   metaDescription:
-    "Every VPS pay point from 1 May 2026: grades 1 to 7, value ranges and progression steps from Schedule C of the Victorian Public Service Enterprise Agreement 2024, plus executive bands and what each band is worth after tax.",
+    "VPS pay rates from 1 May 2026: VPS 3 $81,496–$98,955, VPS 4 $100,894–$114,476, VPS 5 $116,413–$140,849, VPS 6 $142,790–$191,084. Every pay point from VPS 1.1.1 to 7.3.5 (including STS) from the VPS Agreement 2024, with take-home pay.",
 
   instrument:
     "Victorian Public Service Enterprise Agreement 2024. Grades and value ranges are defined in Schedule C, and the classification and value range standard descriptors sit alongside the salary table.",

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SalaryToHourly } from '@/modules/programmatic/salary-to-hourly';
-import { calculatePayBreakdown, formatAUD, HECS_HELP, SITE_CONFIG, EMPLOYMENT } from '@/lib/constants/australian-tax';
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG, EMPLOYMENT } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
@@ -27,15 +27,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const formattedSalary = formatAUD(salaryAmount);
   const grossHourly = salaryAmount / HOURS_PER_YEAR;
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salaryAmount,
-    includeHECS: salaryAmount >= HECS_HELP.minimumThreshold
-  });
+  const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const netHourly = breakdown.takeHomePay / HOURS_PER_YEAR;
 
   return {
-    title: `${formattedSalary} Salary to Hourly Rate — How Much Per Hour? (Australia)`,
-    description: `A ${formattedSalary} salary equals ${formatAUD(grossHourly, 2)}/hour before tax and ${formatAUD(netHourly, 2)}/hour after tax in Australia, based on a 38-hour week. Full breakdown by frequency for ${SITE_CONFIG.financialYear}.`,
+    // Answer-first, in the GSC phrasing ("80000 a year is how much an hour",
+    // "80k a year is how much an hour"). Hourly figures from the tax engine
+    // and EMPLOYMENT.hoursPerYear, never hardcoded.
+    title: `${formattedSalary} a Year Is How Much an Hour? ${formatAUD(grossHourly, 2)} in Australia`,
+    description: `$${salaryAmount / 1000}k a year is ${formatAUD(grossHourly, 2)} an hour before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${HOURS_PER_YEAR.toLocaleString("en-AU")} hours a year), or ${formatAUD(netHourly, 2)} an hour after tax in ${SITE_CONFIG.financialYear}. Weekly, fortnightly and monthly pay too.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/salary-to-hourly/${resolvedParams.amount}/`,
     },
@@ -49,10 +49,7 @@ export default async function SalaryToHourlyPage({ params }: PageProps) {
 
   const grossHourly = salaryAmount / HOURS_PER_YEAR;
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salaryAmount,
-    includeHECS: salaryAmount >= HECS_HELP.minimumThreshold
-  });
+  const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const netHourly = breakdown.takeHomePay / HOURS_PER_YEAR;
 
   const BASE = SITE_CONFIG.baseUrl;
@@ -102,10 +99,10 @@ export default async function SalaryToHourlyPage({ params }: PageProps) {
           </nav>
 
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy tracking-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            {formattedSalary} Salary to Hourly Rate
+            {formattedSalary} a Year Is How Much an Hour?
           </h1>
           <p className="text-xl text-warmgray max-w-2xl mx-auto mb-8">
-            A {formattedSalary} annual salary equals {formatAUD(grossHourly, 2)}/hour before tax and {formatAUD(netHourly, 2)}/hour after tax, based on a 38-hour week.
+            <strong className="text-navy">{formatAUD(grossHourly, 2)} an hour</strong> before tax and {formatAUD(netHourly, 2)} an hour after tax ({SITE_CONFIG.financialYear}), based on a {EMPLOYMENT.standardWeeklyHours}-hour week and {HOURS_PER_YEAR.toLocaleString("en-AU")} hours a year.
           </p>
         </div>
       </section>

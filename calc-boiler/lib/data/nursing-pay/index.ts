@@ -156,3 +156,90 @@ export function registeredNurseRange(
 export function instrumentFor(state: NursingStateData, instrumentId: string) {
   return state.instruments.find((i) => i.id === instrumentId);
 }
+
+// ---------- page titles ----------
+
+/**
+ * The year the page's rates are in force for, taken from `verifiedOn` — the
+ * date the figures were read as current. A title saying "2026" is therefore a
+ * claim that these were the operative rates during 2026, which is what the
+ * verification date establishes.
+ */
+export function ratesYear(state: NursingStateData): string {
+  const match = state.verifiedOn.match(/\b(20\d{2})\b/);
+  return match ? match[1] : "";
+}
+
+/** "NSW Health (local health districts…)" -> "NSW Health". */
+export function employerShortName(state: NursingStateData): string {
+  return state.employer.split(" (")[0];
+}
+
+export function nursingPageTitle(state: NursingStateData): string {
+  if (state.metaTitle) return state.metaTitle;
+  return `${state.shortName} Nurse Pay Rates ${ratesYear(state)} — ${employerShortName(state)} Nursing Salary`;
+}
+
+export function nursingPageH1(state: NursingStateData): string {
+  if (state.h1) return state.h1;
+  return `${state.shortName} Nurse & Midwife Pay Rates ${ratesYear(state)} — ${employerShortName(state)} Pay Scales`;
+}
+
+// ---------- per-scale anchors and the at-a-glance summary ----------
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[–—]/g, "-")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+/**
+ * Anchor id for a scale's table: the grade code where the state gives one
+ * ("nurse-grade-5", "cns-cms"), falling back to the classification name when
+ * there is no code or two scales share one (SA prints RN/M2 for two roles).
+ */
+export function scaleAnchor(state: NursingStateData, scale: PayScale): string {
+  if (scale.gradeCode) {
+    const base = slugify(scale.gradeCode);
+    const clash = state.scales.some((s) => s !== scale && s.gradeCode && slugify(s.gradeCode) === base);
+    if (!clash) return base;
+  }
+  return slugify(scale.classification);
+}
+
+export interface ScaleSummary {
+  scale: PayScale;
+  anchor: string;
+  /** Lowest and highest annual figure across priced points; null if none is priced. */
+  low: number | null;
+  high: number | null;
+  /** Hourly rate at the lowest priced point, where published or derivable. */
+  lowHourly: number | null;
+}
+
+/** One row per scale for the "at a glance" table, in the state file's order. */
+export function scaleSummaries(state: NursingStateData): ScaleSummary[] {
+  return state.scales.map((scale) => {
+    const priced = scale.points
+      .map((point) => ({ point, annual: annualFor(point) }))
+      .filter((r): r is { point: PayPoint; annual: number } => r.annual !== null);
+    if (priced.length === 0) {
+      return { scale, anchor: scaleAnchor(state, scale), low: null, high: null, lowHourly: null };
+    }
+    let lowRow = priced[0];
+    let high = priced[0].annual;
+    for (const row of priced) {
+      if (row.annual < lowRow.annual) lowRow = row;
+      if (row.annual > high) high = row.annual;
+    }
+    return {
+      scale,
+      anchor: scaleAnchor(state, scale),
+      low: lowRow.annual,
+      high,
+      lowHourly: hourlyFor(lowRow.point, state),
+    };
+  });
+}

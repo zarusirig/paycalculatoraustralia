@@ -25,6 +25,7 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   code: "TAS",
   name: "Tasmania",
   nameInSentence: "Tasmania",
+  graduateStep: "Band 1 Level 5",
   employer: "the Tasmanian Department for Education, Children and Young People",
   agreementName: "Teachers Agreement 2025",
   agreementUrl:

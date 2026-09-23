@@ -94,17 +94,59 @@ export function highestPublishedSalary(state: TeacherPayState): number | null {
 }
 
 /**
- * The entry-level classroom teacher salary — the first step of the first
- * published scale. Returns null when a state has no verified scale at all.
+ * The qualified-graduate classroom teacher salary: the `graduateStep` row of
+ * the first published scale where the state names one, otherwise that scale's
+ * first step. Returns null when a state has no verified scale at all.
  */
 export function graduateSalary(state: TeacherPayState): number | null {
-  return state.scales[0]?.steps[0]?.salary ?? null;
+  const steps = state.scales[0]?.steps;
+  if (!steps || steps.length === 0) return null;
+  if (state.graduateStep) {
+    const named = steps.find((step) => step.label === state.graduateStep);
+    if (named) return named.salary;
+  }
+  return steps[0].salary;
 }
 
-/** Top of the classroom teacher scale — the last step of the first scale. */
+/**
+ * Top of the incremental classroom teacher scale: the `topClassroomStep` row
+ * where the state names one, otherwise the last step of the first scale.
+ */
 export function topOfClassroomScale(state: TeacherPayState): number | null {
   const steps = state.scales[0]?.steps;
-  return steps && steps.length > 0 ? steps[steps.length - 1].salary : null;
+  if (!steps || steps.length === 0) return null;
+  if (state.topClassroomStep) {
+    const named = steps.find((step) => step.label === state.topClassroomStep);
+    if (named) return named.salary;
+  }
+  return steps[steps.length - 1].salary;
+}
+
+/**
+ * The year the page's rates are current for, from `verifiedOn` — the date the
+ * figures were last confirmed against the source.
+ */
+export function teacherRatesYear(state: TeacherPayState): string {
+  const match = state.verifiedOn.match(/\b(20\d{2})\b/);
+  return match ? match[1] : "";
+}
+
+/** One row per published scale for the at-a-glance table. */
+export function scaleRanges(
+  state: TeacherPayState,
+): { id: string; title: string; low: number; high: number; steps: number }[] {
+  return state.scales
+    .filter((scale) => scale.steps.length > 0)
+    .map((scale) => {
+      const salaries = scale.steps.map((step) => step.salary);
+      return {
+        id: scale.id,
+        title: scale.title,
+        low: Math.min(...salaries),
+        high: Math.max(...salaries),
+        steps: scale.steps.length,
+      };
+    });
 }
 
 export * from "./types";

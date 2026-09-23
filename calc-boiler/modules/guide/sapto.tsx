@@ -15,6 +15,7 @@ import {
   calculateSAPTO,
 } from "@/lib/constants/sapto";
 import SaptoCalculator from "@/modules/calculator/sapto-calculator";
+import SaptoEligibilityChecker from "@/modules/calculator/sapto-eligibility-checker";
 import { SAPTO_FAQS } from "@/modules/guide/sapto-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -43,9 +44,22 @@ export default function SaptoPage() {
     <div className="min-h-screen flex-grow bg-white"><div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">SAPTO Calculator</span></li></ol></nav>
 
-      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SAPTO Calculator — Seniors and Pensioners Tax Offset</h1><p className="text-xl text-warmgray leading-relaxed mb-6">The seniors and pensioners tax offset (SAPTO) is worth up to <strong>{formatAUD(S.maxOffset)}</strong> if you are single and <strong>{formatAUD(C.maxOffset)}</strong> for each partner of a couple. Work out your exact entitlement below, including the half-of-combined-income test that catches most couples out.</p><TrustBar className="!max-w-none" /></header>
+      <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SAPTO Calculator &amp; Eligibility Checker <span className="block text-2xl md:text-3xl font-bold text-warmgray mt-2">Seniors and Pensioners Tax Offset</span></h1><p className="text-xl text-warmgray leading-relaxed mb-6">The seniors and pensioners tax offset (SAPTO) is worth up to <strong>{formatAUD(S.maxOffset)}</strong> if you are single and <strong>{formatAUD(C.maxOffset)}</strong> for each partner of a couple. Work out your exact entitlement below, including the half-of-combined-income test that catches most couples out, or check whether you qualify at all with the <a href="#sapto-eligibility" className="text-eucalyptus-dark underline">eligibility checker</a>.</p><TrustBar className="!max-w-none" /></header>
 
       <div className="mb-12"><SaptoCalculator /></div>
+
+      <div className="mb-12 max-w-4xl"><SaptoEligibilityChecker /></div>
+
+      {/* ATO "Personal income tax - new tax cuts" (indexed text read 23 Sep 2026): "Senior and
+          pensioner tax offset (SAPTO) thresholds will change from 2026-27 as a result of the
+          tax cuts. There will be no changes to the maximum tax offset amounts." The new
+          thresholds were not readable from an ATO page, so the engine stays on 2025-26. */}
+      <p className="mb-12 max-w-4xl rounded-lg border-l-4 border-ochre bg-sandstone/60 p-4 text-sm text-navy">
+        <strong>2026-27:</strong> the ATO has said SAPTO thresholds change from 2026-27 because of the
+        lower 15% tax rate, while the maximum offsets ({formatAUD(S.maxOffset)} single, {formatAUD(C.maxOffset)} each
+        for a couple) stay the same. The eligibility rules above do not change. The figures on this page are the
+        ATO&rsquo;s published {SAPTO_INCOME_YEAR} thresholds for the return being lodged now.
+      </p>
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
@@ -125,7 +139,7 @@ export default function SaptoPage() {
             <ul>
               <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — the offset most SAPTO recipients also claim</li>
               <li><Link href="/zone-tax-offset/">Zone Tax Offset Calculator</Link> — for remote-area residents, and it stacks with SAPTO</li>
-              <li><Link href="/medicare-levy/">Medicare Levy Guide</Link> — including the higher SAPTO low-income threshold</li>
+              <li><Link href="/medicare-levy/">Medicare Levy Calculator</Link> — including the higher SAPTO low-income threshold</li>
               <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — your liability before offsets</li>
               <li><Link href="/tax-brackets/">Australian Tax Brackets</Link></li>
             </ul>

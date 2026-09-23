@@ -135,10 +135,15 @@ export function NotIncluded({ items }: { items: string[] }) {
   );
 }
 
-export function CentrelinkRelated({ current }: { current: "jobseeker" | "student" | "pension" }) {
+export type CentrelinkPageKey = "jobseeker" | "student" | "pension" | "parenting" | "ftb" | "rent";
+
+export function CentrelinkRelated({ current }: { current: CentrelinkPageKey }) {
   const items = [
     { key: "hub", href: "/centrelink-income-test/", label: "Centrelink income test guide", blurb: "how the free area, taper and cut-off work for every payment" },
     { key: "jobseeker", href: "/jobseeker-payment-calculator/", label: "JobSeeker payment calculator", blurb: "what you keep when you work part-time" },
+    { key: "parenting", href: "/parenting-payment-calculator/", label: "Parenting Payment calculator", blurb: "single and partnered, with the 40c taper for single parents" },
+    { key: "ftb", href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit calculator", blurb: "FTB Part A and Part B on your family income" },
+    { key: "rent", href: "/rent-assistance-calculator/", label: "Rent Assistance calculator", blurb: "75c for each dollar of rent over the threshold" },
     { key: "student", href: "/austudy-youth-allowance-calculator/", label: "Austudy and Youth Allowance calculator", blurb: "the $539 free area and the 50c/60c bands" },
     { key: "pension", href: "/age-pension-income-test-calculator/", label: "Age Pension income test calculator", blurb: "with the Work Bonus applied" },
     { key: "th", href: "/take-home-pay-calculator/", label: "Take-home pay calculator", blurb: "tax on your wages and payment together" },
