@@ -52,10 +52,16 @@ function AccordionContent({
   children,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+  // forceMount keeps every panel's answer in the static HTML. Radix otherwise
+  // unmounts closed panels, so the exported pages shipped FAQ questions with no
+  // answers: crawlers saw answers only inside FAQPage JSON-LD (content not
+  // visible on the page) and none of the answer text counted as page content.
+  // Closed panels are hidden with CSS instead of being removed from the DOM.
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm"
+      forceMount
+      className="data-[state=closed]:hidden data-[state=open]:animate-accordion-down overflow-hidden text-sm"
       {...props}
     >
       <div className={cn("pt-0 pb-4", className)}>{children}</div>
