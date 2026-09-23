@@ -34,7 +34,7 @@
 - **PAA:** **How to calculate fortnightly pay?** · How much tax do I pay on $4000 a week? · Is $2000 a week after tax good in Australia? · **How much is $80,000 a fortnight?** · How much do I take home if I earn $80,000? · Is $80k a good salary in Australia? · How much will I get taxed each fortnight? · **How much tax do I pay if I get paid fortnightly?** · **What are the PAYG fortnightly tax tables for 2026?** · What are the ATO tax rates for 2026?
 - **Related searches:** Fortnightly tax table 2026/2027/PDF · Take home pay calculator Australia gov · Pay calculator hourly rate · Salary to fortnightly pay calculator · Monthly salary calculator · Fortnightly pay calculator nsw · Weekly tax calculator.
 - **Added:**
-  - A new `fortnightly-pay-faqs.ts`. The visible accordion had 8 questions and the JSON-LD a different 6; they now share 14.
+  - `fortnightly-pay-calculator-faqs.ts` (the shared file from G1, which already unioned the old accordion and JSON-LD sets) plus 3 PAA answers: 15 questions.
   - New FAQs: "How much tax do I pay if I get paid fortnightly?", "How much is $80,000 a fortnight?" and "What is the fortnightly tax table for 2026-27?" (NAT 1006, published 17 June 2026).
   - A new H2, "How Much Tax Is Taken Out Each Fortnight?", with a withholding table from the ATO table for $1,000–$5,000 a fortnight (`calculatePAYGWithholding`).
   - A related-searches row.
@@ -56,7 +56,7 @@
 - **PAA:** How do I convert hourly to salary? · **How do I work out my hourly rate based on salary?** · **What is $70,000 a year hourly in Australia?** · **Is $45 an hour good in Australia?** · Can you live on $2000 a month? · What jobs pay $40 an hour?
 - **Related searches:** Salary to hourly rate calculator Australia (weekly) · ATO salary calculator · Hourly to salary calculator with taxes · Casual pay calculator · Monthly salary calculator · Take home pay calculator Australia gov.
 - **Added:**
-  - A new `hourly-to-annual-faqs.ts`. The JSON-LD had 9 questions and the accordion 8, partly different; they now share 15. Hardcoded figures such as $79,040, $36,400, $69,160, $74,100 and $9.21 are now derived from `EMPLOYMENT`.
+  - `hourly-to-annual-salary-calculator-faqs.ts` (G1 shared file, figures derived from `EMPLOYMENT`) plus 3 PAA answers.
   - Three PAA FAQs. "Is $45 an hour good?" compares against the NMW and ABS AWOTE for May 2026.
   - A new H2, "How Do I Work Out My Hourly Rate From My Salary?", with a salary-to-hourly table that links the `/salary-to-hourly/<n>/` pages.
   - A related-searches row.
@@ -76,7 +76,7 @@
 - **PAA:** **Do you get taxed 50% on your second job?** · **Is it worth getting a second job in Australia?** · **How much tax on second job Australia calculator?** · How much tax will I pay on $1800 a week? · Do I get taxed extra on a second job? · **Will my employer know if I have a second job?** · Can I do two full-time jobs? · Is it worth it to have a second job?
 - **Related searches:** Tax on second job Australia calculator · Do you pay more tax on a second job · Second job tax rate ATO / nsw / qld · Tax-free threshold on second job · No tax-free threshold rate · Weekly / fortnightly tax calculator · Tax withheld calculator · Tax per week calculator ATO.
 - **Added:**
-  - A new `second-job-faqs.ts` (the union of both old sets plus 4 PAA questions, 10 in total).
+  - `second-job-tax-calculator-faqs.ts` now holds the corrected answers from this branch plus 4 PAA questions, 10 in total.
   - A new H2, "What Is the Tax Rate on a Second Job?", with a table of no-threshold withholding at $250–$2,000 a fortnight.
   - A related-searches row.
 - **Accuracy fix:**
@@ -100,7 +100,7 @@
 - **PAA:** How can you calculate back pay? · **How do I calculate back pay in Australia?** · **How is back pay taxed in Australia?** · How much do you get for backpay? · How much will my backdated pay be? · **What is back pay in Australia?** · How does a back pay work? · **Do I still get back pay if I resign?** · How long does back pay take?
 - **Related searches:** Back pay calculator australia/qld/excel · Salary increase and retro pay calculator · Back pay lump sum · Back pay ATO · Back pay tax calculator Australia · Back payment gross superable · Back payment lump sum E superable (plus several US-military queries we ignored).
 - **Added:**
-  - A new `backpay-faqs.ts` (9 FAQs; 4 of them are PAA).
+  - `backpay-calculator-faqs.ts` now holds the corrected answers from this branch: 9 FAQs, 4 of them PAA.
   - A new definition H2, "What Is Back Pay?".
   - A related-searches row.
 - **Accuracy fixes** (checked via Firecrawl against ato.gov.au and fairwork.gov.au):
@@ -114,8 +114,8 @@
 - **PAA:** Are Australians getting a pay rise in 2026? · **How do I calculate my pay raise?** · **Who gets the 4.75% pay increase?** · Should you get a 3% raise every year? · **Is a 3% raise good in 2026?** · What is a fair pay rise? · Is a 3% raise really a raise? · Is a 5% raise good? · Is a 7% raise normal? · Is it better to get a bonus or raise?
 - **Related searches:** Salary increase percentage calculator · Salary increase calculator over 5/10/30 years · Monthly salary increase calculator · How much is a 3 percent raise salary · Pay rise calculator qld/nsw · Pay calculator after tax · Casual pay calculator.
 - **Added:**
-  - A new `pay-rise-faqs.ts`. The JSON-LD used to carry 3 of the 8 visible questions; it now carries all 12.
-  - WPI and CPI moved into the shared file, so the copy and the FAQs use one figure.
+  - `pay-rise-calculator-faqs.ts` (G1 shared file) plus 4 PAA answers: 12 questions.
+  - WPI and CPI moved into that file, so the page copy and the FAQs use one figure.
   - A new H2, "How Do I Calculate My Pay Rise?", with a formula box and a table of 3%, 4.75%, 5% and 10% rises on $80k (before tax, after tax and per week).
   - A related-searches row.
 
@@ -124,7 +124,7 @@
 - **PAA:** **How do I calculate my weekly pay?** · How do you calculate a weekly salary? · **Is $1200 a week good in Australia?** · How to calculate 1 week pay? · What is $27 an hour weekly? · How much will I get after tax weekly? · How is tax calculated on weekly pay? · **How much is $1200 a week taxed?** · **How much tax do I pay if I earn $1500 a week?** · $750 a week?
 - **Related searches:** Weekly tax calculator · Weekly tax table · Tax per week calculator ATO · Pay calculator after tax / hourly rate · Fortnightly pay calculator · Take home pay calculator Australia gov.
 - **Added:**
-  - A new `weekly-pay-faqs.ts`. The JSON-LD used to carry 3 short answers against 9 visible questions; both now read 13.
+  - `weekly-pay-calculator-faqs.ts` (G1 shared file) plus 4 PAA answers: 13 questions.
   - A new H2, "How Much Tax Is Taken Out of My Weekly Pay?", with a withholding table from the ATO table for $500–$2,500 a week.
   - A related-searches row.
   - Fixed pre-existing `react/no-unescaped-entities` errors.
@@ -143,7 +143,7 @@
 - **PAA:** **What is the 80% rule for contractors?** · **What rate should I charge as a contractor?** · How do I calculate my contractor rate? (already answered) · How do I convert a contractor rate to a salary? · What is the average salary for a contractor? · How much more should you earn as a contractor? · What is the 80/20 rule for contractors?
 - **Related searches:** Contractor vs employee calculator ATO · Contract vs permanent calculator · Salary to subby calculator · ABN to wages calculator · Construction contractor pay/rate calculator · Hourly rate ↔ salary calculator Australia.
 - **Added:**
-  - A new `contractor-pay-faqs.ts`, the union of both old sets plus 2 PAA questions (12 in total). The 80% rule answer was checked against the ATO page "Working out if the PSI rules apply".
+  - `contractor-pay-calculator-faqs.ts` (G1 shared file) plus 2 PAA answers, 12 in total. The 80% rule answer was checked against the ATO page "Working out if the PSI rules apply".
   - A new H2, "What Rate Should I Charge as a Contractor?", with a derived minimum-rate formula: $61.40 an hour to replace $100k plus super over 48 weeks.
   - A related-searches row.
   - Removed unsourced insurance premium ranges.
@@ -164,6 +164,11 @@
 - **Added:**
   - 3 FAQs appended to `REDUNDANCY_FAQS`. The $50k answer is computed with `redundancyTax()` at 5 and 2 years: $767 and $7,296 in tax.
   - A related-searches row: final pay, leave payout, LSL, JobSeeker, lump-sum tax and the annual leave guide.
+
+## Merge note
+Main gained G1's sitewide FAQ single-source work while this ran. It adds `lib/faq.ts`, `FaqAccordion`, `check:faq` and one `*-calculator-faqs.ts` file per calculator. On the 7 pages where both branches created an FAQ file, the resolution keeps G1's file names and wiring and adds the PAA answers into those files. The `sr-only` mirrors this branch added to the teacher and public-service pages were dropped, because the accordion now force-mounts its answers.
+
+**Build check after the merge:** `next build --webpack` passed, and `npm run check:faq` reported 907 pages, 753 with FAQPage markup and **0 mismatches**.
 
 ## Facts verified (Firecrawl, 24 Sep 2026)
 - ATO, "Lump sum payment in arrears" (updated 8 Jun 2026): back pay is assessable in the year it is received, and the LSPIA offset applies under a 10% threshold test.
