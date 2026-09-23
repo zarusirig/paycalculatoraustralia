@@ -147,6 +147,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/leave-loading-calculator/", label: "Leave loading" },
           { href: "/time-in-lieu/", label: "Time in lieu (TOIL)" },
           { href: "/sick-leave-calculator/", label: "Sick & carer's leave" }, // G3
+          { href: "/compassionate-leave/", label: "Compassionate leave" }, // G3
           { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
           { href: "/long-service-leave-calculator/", label: "Long service leave" },
           { href: "/casual-loading-calculator/", label: "Casual loading" },
@@ -803,6 +804,7 @@ export const GUIDE_CATEGORIES = [
     title: "Leave Entitlements",
     guides: [
       { href: "/sick-leave-calculator/", label: "Sick Leave Calculator", description: "Personal/carer's leave: 10 days, 1/26 of hours" },
+      { href: "/compassionate-leave/", label: "Compassionate Leave", description: "2 days paid bereavement leave per occasion" },
     ],
   },
   // --- end G3 ---

@@ -334,6 +334,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- end F7 ---
   // --- G3 wave 4 opportunities (24 Sep 2026) ---
   "sick-leave-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "compassionate-leave": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end G3 ---
 };
 
