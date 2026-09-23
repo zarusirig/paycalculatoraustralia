@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./home-link";
 import { ArrowRight, GraduationCap, Heart, PiggyBank, Receipt } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
