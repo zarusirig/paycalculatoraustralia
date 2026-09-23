@@ -169,14 +169,24 @@ export interface LevelGuide {
   /** Streams of that schedule to include, in order. Omit for every stream. */
   streamIds?: readonly string[];
   /**
-   * A second schedule whose band with the same `code` is quoted alongside —
-   * e.g. one named APS agency's agreement beside the APS-wide survey figures.
+   * Other schedules whose band with the same `code` is quoted alongside, in
+   * order — e.g. the APS-wide salary thresholds and one named agency's
+   * agreement beside the APS-wide survey figures. `label` introduces the line.
    */
-  compareScheduleId?: string;
-  /** How the comparison line is introduced, e.g. "One agency's example — Treasury". */
-  compareLabel?: string;
+  compare?: readonly { scheduleId: string; label: string }[];
+  /**
+   * Further schedules whose every stream is sectioned after the first one — e.g.
+   * South Australia's School Services Officers, who sit on a separate agreement.
+   */
+  extraScheduleIds?: readonly string[];
   /** The year used in the section headings, e.g. "2026". */
   year: string;
+  /**
+   * Heading pattern with {label} and {year} placeholders. Defaults to
+   * "{label} salary {year}"; WA uses "WA {label} salary {year}" because a bare
+   * "Level 5" means nothing out of context.
+   */
+  headingTemplate?: string;
   /** Heading of the wrapper section, e.g. "VPS salary by grade". */
   title: string;
   /** One paragraph under that heading. */

@@ -34,8 +34,12 @@ export const QLD: Jurisdiction = {
   levelGuide: {
     scheduleId: "award-2025",
     streamIds: ["ao-award"],
-    compareScheduleId: "doe-2026",
-    compareLabel: "One agency above the award — Department of Education Certified Agreement 2025",
+    compare: [
+      {
+        scheduleId: "doe-2026",
+        label: "One agency above the award — Department of Education Certified Agreement 2025",
+      },
+    ],
     year: "2026",
     title: "Queensland AO salary by level",
     intro:

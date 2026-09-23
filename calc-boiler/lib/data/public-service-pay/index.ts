@@ -1,7 +1,7 @@
 // =============================================================================
 // Public service pay scales — registry.
 //
-// Adding a jurisdiction later (NSW, WA, SA, TAS, ACT, NT) is two steps and no
+// Adding a jurisdiction later (TAS, ACT, NT) is two steps and no
 // refactor: write lib/data/public-service-pay/<slug>.ts exporting a
 // `Jurisdiction`, register it in JURISDICTIONS below, and delete its entry from
 // PLANNED_JURISDICTIONS. generateStaticParams, the hub, the spoke, the lookup
@@ -9,8 +9,11 @@
 // =============================================================================
 
 import { APS } from "./aps";
+import { NSW } from "./nsw";
 import { QLD } from "./qld";
+import { SA } from "./sa";
 import { VIC } from "./vic";
+import { WA } from "./wa";
 import {
   normaliseCode,
   type ClassificationBand,
@@ -24,7 +27,7 @@ import {
 export * from "./types";
 
 /** Jurisdictions with verified data. Order is the order they render in. */
-export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD];
+export const JURISDICTIONS: readonly Jurisdiction[] = [APS, VIC, QLD, NSW, WA, SA];
 
 /** The slugs `generateStaticParams` builds. Nothing else resolves. */
 export const JURISDICTION_SLUGS: readonly JurisdictionSlug[] = JURISDICTIONS.map((j) => j.slug);
@@ -35,24 +38,6 @@ export const JURISDICTION_SLUGS: readonly JurisdictionSlug[] = JURISDICTIONS.map
  * because they do not exist. No figures, and no link unless the URL was checked.
  */
 export const PLANNED_JURISDICTIONS: readonly PlannedJurisdiction[] = [
-  {
-    slug: "nsw",
-    name: "NSW Public Service",
-    shortName: "NSW",
-    authority: "NSW Public Service Commission and the Crown Employees (Public Sector — Salaries) Award",
-  },
-  {
-    slug: "wa",
-    name: "WA public sector",
-    shortName: "WA",
-    authority: "WA Public Sector Commission and the Public Service Award 1992",
-  },
-  {
-    slug: "sa",
-    name: "SA public sector",
-    shortName: "SA",
-    authority: "SA Office of the Commissioner for Public Sector Employment and the SA Public Sector Salaried Employees Interim Award",
-  },
   {
     slug: "tas",
     name: "Tasmanian State Service",
@@ -162,8 +147,8 @@ export interface LevelSection {
   /** Lowest min to highest max across `bands`. */
   range: { min: number; max: number };
   schedule: PaySchedule;
-  /** The same classification in the comparison schedule, where there is one. */
-  compare?: { schedule: PaySchedule; band: ClassificationBand };
+  /** The same classification in each comparison schedule that has it. */
+  compare: { label: string; schedule: PaySchedule; band: ClassificationBand }[];
 }
 
 /** "VPS Grade 4" -> "VPS 4"; anything else is returned unchanged. */
@@ -190,36 +175,51 @@ export function levelSections(jurisdiction: Jurisdiction): LevelSection[] {
   if (!guide) return [];
   const schedule = jurisdiction.schedules.find((s) => s.id === guide.scheduleId);
   if (!schedule) return [];
-  const compareSchedule = guide.compareScheduleId
-    ? jurisdiction.schedules.find((s) => s.id === guide.compareScheduleId)
-    : undefined;
+  const compareSchedules = (guide.compare ?? [])
+    .map((c) => ({ label: c.label, schedule: jurisdiction.schedules.find((s) => s.id === c.scheduleId) }))
+    .filter((c): c is { label: string; schedule: PaySchedule } => c.schedule !== undefined);
 
-  const streams = guide.streamIds
+  const firstStreams = guide.streamIds
     ? guide.streamIds
         .map((id) => schedule.streams.find((s) => s.id === id))
         .filter((s): s is NonNullable<typeof s> => s !== undefined)
     : [...schedule.streams];
 
+  const parts: { schedule: PaySchedule; streams: PaySchedule["streams"][number][] }[] = [
+    { schedule, streams: firstStreams },
+  ];
+  for (const id of guide.extraScheduleIds ?? []) {
+    const extra = jurisdiction.schedules.find((s) => s.id === id);
+    if (extra) parts.push({ schedule: extra, streams: [...extra.streams] });
+  }
+
+  const template = guide.headingTemplate ?? "{label} salary {year}";
   const sections: LevelSection[] = [];
-  for (const stream of streams) {
-    for (const group of groupBands(stream.bands)) {
-      const label = shortLevelLabel(group.label);
-      const compareBand =
-        compareSchedule && group.bands.length === 1
-          ? compareSchedule.streams
-              .flatMap((s) => s.bands)
-              .find((b) => normaliseCode(b.code) === normaliseCode(group.bands[0].code))
-          : undefined;
-      sections.push({
-        id: levelAnchor(label),
-        label,
-        heading: `${label} salary ${guide.year}`,
-        bands: group.bands,
-        range: groupRange(group.bands),
-        schedule,
-        compare:
-          compareSchedule && compareBand ? { schedule: compareSchedule, band: compareBand } : undefined,
-      });
+  for (const part of parts) {
+    for (const stream of part.streams) {
+      for (const group of groupBands(stream.bands)) {
+        const label = shortLevelLabel(group.label);
+        // Only the first schedule is compared: an extra schedule is a different
+        // workforce, not a second rate for the same classification.
+        const compare =
+          part.schedule === schedule && group.bands.length === 1
+            ? compareSchedules.flatMap((c) => {
+                const band = c.schedule.streams
+                  .flatMap((s) => s.bands)
+                  .find((b) => normaliseCode(b.code) === normaliseCode(group.bands[0].code));
+                return band ? [{ label: c.label, schedule: c.schedule, band }] : [];
+              })
+            : [];
+        sections.push({
+          id: levelAnchor(label),
+          label,
+          heading: template.replace("{label}", label).replace("{year}", guide.year),
+          bands: group.bands,
+          range: groupRange(group.bands),
+          schedule: part.schedule,
+          compare,
+        });
+      }
     }
   }
   return sections;

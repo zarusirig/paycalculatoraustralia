@@ -81,7 +81,7 @@ function bandRows(band: ClassificationBand): { label: string; salary: number }[]
       ];
 }
 
-function LevelSectionBlock({ section, compareLabel }: { section: LevelSection; compareLabel?: string }) {
+function LevelSectionBlock({ section }: { section: LevelSection }) {
   const isSurvey = section.schedule.basis === "survey";
   const only = section.bands.length === 1 ? section.bands[0] : null;
   const rows = section.bands.flatMap((band) =>
@@ -137,18 +137,15 @@ function LevelSectionBlock({ section, compareLabel }: { section: LevelSection; c
           </tbody>
         </table>
       </div>
-      {section.compare && (
-        <p className="text-base">
-          <strong>{compareLabel ?? section.compare.schedule.title}:</strong> {section.label} pays{" "}
-          {formatBandRange(section.compare.band)} from {section.compare.schedule.effectiveFrom}
-          {section.compare.band.payPoints && section.compare.band.payPoints.length > 0
-            ? ` (${section.compare.band.payPoints
-                .map((p) => `${p.label} ${formatSalary(p.annual)}`)
-                .join(", ")})`
+      {section.compare.map((c) => (
+        <p key={c.schedule.id} className="text-base">
+          <strong>{c.label}:</strong> {section.label} {formatBandRange(c.band)}
+          {c.band.payPoints && c.band.payPoints.length > 0
+            ? ` (${c.band.payPoints.map((p) => `${p.label} ${formatSalary(p.annual)}`).join(", ")})`
             : ""}
           .
         </p>
-      )}
+      ))}
     </section>
   );
 }
@@ -176,7 +173,7 @@ function LevelGuideSection({ jurisdiction }: { jurisdiction: Jurisdiction }) {
         </ul>
       </nav>
       {sections.map((section) => (
-        <LevelSectionBlock key={section.id} section={section} compareLabel={guide.compareLabel} />
+        <LevelSectionBlock key={section.id} section={section} />
       ))}
     </div>
   );

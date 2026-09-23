@@ -8,9 +8,9 @@ import { JURISDICTIONS, PUBLIC_SERVICE_PAY_FAQS } from "@/lib/data/public-servic
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/public-service-pay-scales/`;
-const TITLE = "Public Service Pay Scales Australia — APS, VPS and QLD Salary Bands";
+const TITLE = "Public Service Pay Scales 2026 — APS, VPS, QLD, NSW, WA & SA Salaries";
 const DESCRIPTION =
-  "What every public service classification pays: APS 1–6, EL1, EL2 and SES from the APSC's remuneration data, VPS grades 1–7 from the Victorian enterprise agreement, and Queensland AO, PO, TO and OO rates from the state award — each with its source and effective date.";
+  "What every public service classification pays in 2026: APS 1–6, EL1, EL2 and SES, VPS grades 1–7, Queensland AO/PO/TO/OO, NSW Clerk Grades 1–12, WA Levels 1–9 and SA ASO and SSO rates — each with its source, effective date and take-home pay.";
 
 export const metadata: Metadata = {
   title: TITLE,
