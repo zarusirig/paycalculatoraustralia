@@ -23,9 +23,12 @@
 //     CENTRELINK_SOURCES, read 28 August 2026. Cut-offs are AS PUBLISHED.
 //   - 20 September 2026 set: the DSS "Social Security Payment Parameters —
 //     20 September 2026 indexation" rates list (CENTRELINK_SOURCES.dssRatesList),
-//     published 20 August 2026, read 28 August 2026. Rates are AS PUBLISHED;
-//     the cut-offs are DERIVED (see JOBSEEKER_RATES["2026-09-20"].cutOffSource)
-//     because Services Australia publishes September cut-offs on the day.
+//     published 20 August 2026, read 28 August 2026. Re-verified against the
+//     live Services Australia rate and income-test pages on 23 September 2026,
+//     after the change: every rate matched, and the cut-offs we had derived
+//     matched the now-published figures to the cent except the JobSeeker
+//     55+/partial-capacity cut-off, which Services Australia rounds UP to
+//     $1,667.34. Both sets' cut-offs are now AS PUBLISHED.
 //
 // Two things the source pages do NOT say, and the code does not assume:
 //   - The published cut-offs for JobSeeker and the student payments are
@@ -44,9 +47,9 @@
 // =============================================================================
 
 export const CENTRELINK_SOURCES = {
-  verifiedOn: "28 August 2026",
+  verifiedOn: "23 September 2026",
   /** Machine-readable form of verifiedOn. Drives DEFAULT_RATE_SET_KEY. */
-  verifiedOnISO: "2026-08-28",
+  verifiedOnISO: "2026-09-23",
   jobseekerIncomeTest: "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment",
   jobseekerRates: "https://www.servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get",
   austudyIncomeTest: "https://www.servicesaustralia.gov.au/income-tests-for-austudy",
@@ -236,20 +239,19 @@ export const JOBSEEKER_RATES: Record<RateSetKey, JobseekerRateSet> = {
       partnerUnder22WithChildren: 1_402.00, // unchanged on 20 Sep 2026
       taper: 0.6,
     },
-    // DERIVED, NOT PUBLISHED. Services Australia publishes September cut-offs
-    // on the day. These are computed with jobseekerCutOff() from the DSS
-    // typical total rates above and the unchanged taper — the same arithmetic
-    // reproduces every published March 2026 cut-off to the cent (the tests
-    // assert that). REPLACE WITH THE PUBLISHED FIGURES AFTER 20 SEPTEMBER 2026.
+    // PUBLISHED — Services Australia JobSeeker income test page, read
+    // 23 Sep 2026. The 55+/partial-capacity figure is rounded UP a cent from
+    // the arithmetic (jobseekerCutOff gives $1,667.33), as the March
+    // single-with-child one was.
     publishedCutOff: {
       single: 1_557.17,
-      singleOver55LongTerm: 1_667.33,
-      partialCapacity: 1_667.33,
+      singleOver55LongTerm: 1_667.34,
+      partialCapacity: 1_667.34,
       principalCarer: 2_399.50,
       principalCarerExempt: 2_868.00,
       singleWithChildNotCarer: 1_655.67,
     },
-    cutOffSource: "derived",
+    cutOffSource: "published",
   },
 };
 
@@ -471,10 +473,9 @@ export const AGE_PENSION_RATES: Record<RateSetKey, AgePensionRateSet> = {
       coupleApartIllHealth: { basic: 1_135.40, supplement: 88.20, energy: 14.10, total: 1_237.70 },
     },
     transitional: { singleTotal: 997.00, partneredEachTotal: 804.40 },
-    // DERIVED, NOT PUBLISHED — computed with agePensionCutOff() from the DSS
-    // rates above and the unchanged free areas and tapers. The same arithmetic
-    // reproduces every published March 2026 cut-off to the cent (asserted in
-    // the tests). REPLACE WITH THE PUBLISHED FIGURES AFTER 20 SEPTEMBER 2026.
+    // PUBLISHED — Services Australia Age Pension income test page, read
+    // 23 Sep 2026. Identical to the figures previously derived with
+    // agePensionCutOff() from the DSS rates.
     publishedCutOff: {
       single: 2_701.40,
       coupleCombined: 4_128.00,
@@ -482,7 +483,7 @@ export const AGE_PENSION_RATES: Record<RateSetKey, AgePensionRateSet> = {
       transitionalSingle: 2_718.50,
       transitionalCoupleCombined: 4_418.00,
     },
-    cutOffSource: "derived",
+    cutOffSource: "published",
   },
 };
 
