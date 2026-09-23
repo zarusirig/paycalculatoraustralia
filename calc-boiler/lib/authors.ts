@@ -291,6 +291,16 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tax-return-2026": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "pension-age-australia": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end W1 ---
+
+  // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
+  "time-in-lieu": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "leave-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "enterprise-agreement": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "travel-allowance": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "cents-per-km": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "gross-vs-net-pay": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "centrelink-working-credit-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end T3 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

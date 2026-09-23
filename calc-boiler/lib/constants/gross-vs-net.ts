@@ -80,7 +80,7 @@ export function grossFromNet(targetNet: number, frequency: PayFrequency, options
   const target = Math.max(0, targetNet);
   if (target === 0) return 0;
   const net = (g: number) => payslipFromGross({ gross: g, frequency, options }).net;
-  let lo = target; // withholding is never negative, so gross ≥ net
+  const lo = target; // withholding is never negative, so gross ≥ net
   let hi = target * 3 + 100;
   while (net(hi) < target) hi *= 2;
   // Binary search on whole cents.
