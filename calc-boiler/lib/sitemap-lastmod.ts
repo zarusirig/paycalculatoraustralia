@@ -182,7 +182,17 @@ export function slugHasRoute(slug: string): boolean {
   return routeDirForSlug(slug) !== null;
 }
 
-/** Every static (non-dynamic) route under app/, as slugs ("" = homepage). */
+/** A page that opts out of indexing (robots: { index: false } / "noindex") must not be auto-listed. */
+function isNoindex(dir: string): boolean {
+  try {
+    const src = fs.readFileSync(path.join(dir, fs.existsSync(path.join(dir, "page.tsx")) ? "page.tsx" : "page.ts"), "utf8");
+    return /robots\s*:\s*\{[^}]*\bindex\s*:\s*false/.test(src) || /robots\s*:\s*["'`][^"'`]*noindex/.test(src);
+  } catch {
+    return false;
+  }
+}
+
+/** Every static (non-dynamic), indexable route under app/, as slugs ("" = homepage). */
 export function discoverStaticSlugs(): string[] {
   const slugs: string[] = [];
   const walk = (dir: string, prefix: string) => {
@@ -192,7 +202,7 @@ export function discoverStaticSlugs(): string[] {
       if (name.startsWith("[") || name.startsWith("_") || name.startsWith("(") || name.startsWith("@")) continue;
       const full = path.join(dir, name);
       const slug = prefix ? `${prefix}/${name}` : name;
-      if (isRouteDir(full)) slugs.push(slug);
+      if (isRouteDir(full) && !isNoindex(full)) slugs.push(slug);
       walk(full, slug);
     }
   };
