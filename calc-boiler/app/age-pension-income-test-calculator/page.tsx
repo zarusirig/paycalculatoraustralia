@@ -3,14 +3,16 @@ import AgePensionIncomeTestCalculatorPage from "@/modules/calculator/age-pension
 import { PENSION_FAQS } from "@/modules/calculator/age-pension-income-test-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { AGE_PENSION_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/age-pension-income-test-calculator/`;
-const TITLE = "Age Pension Income Test Calculator — Work Bonus Included";
-const DESCRIPTION = "Age Pension income test: the $226 single and $396 couple free areas, 50c and 25c tapers, the $300 Work Bonus and maximum rates from 20 September 2026.";
+const TITLE = "Age Pension Calculator 2026 — Rates From 20 Sep & Income Test";
+const SEP = AGE_PENSION_RATES[SEPTEMBER_2026].maxFortnightly;
+const DESCRIPTION = `Age Pension rates from 20 September 2026: ${formatAUD(SEP.single.total, 2)} a fortnight single, ${formatAUD(SEP.coupleEach.total, 2)} each for couples. Calculate it with your wages, the free areas and the Work Bonus.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -26,14 +28,14 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Centrelink Income Test", item: `${BASE}/centrelink-income-test/` },
-    { "@type": "ListItem", position: 3, name: "Age Pension Income Test Calculator", item: URL },
+    { "@type": "ListItem", position: 3, name: "Age Pension Calculator", item: URL },
   ],
 };
 
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Age Pension Income Test Calculator",
+  name: "Age Pension Calculator",
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

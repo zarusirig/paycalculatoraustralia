@@ -84,6 +84,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "carer-allowance",
     "centrelink-advance-payment",
     // end W3
+    // H3 Centrelink wave 3 (added 2026-09-24)
+    "age-pension-assets-test-calculator",
+    "deeming-rates",
+    "disability-support-pension-calculator",
+    "child-care-subsidy-calculator",
+    "commonwealth-seniors-health-card",
+    // end H3
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",
@@ -339,7 +346,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- G3 wave 4 opportunities (24 Sep 2026) ---
   allPages.push({ slug: "sick-leave-calculator", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "compassionate-leave", changeFrequency: "monthly" as const, priority: 0.8 });
-  allPages.push({ slug: "disability-support-pension-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "ote-salary", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "jury-duty-pay", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end G3 ---

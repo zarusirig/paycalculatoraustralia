@@ -12,7 +12,7 @@
 |---|---|---|---|---|
 | 1 | `/sick-leave-calculator/` **BUILT** | sick leave 8.1k (5), carer leave 5.4k (12), personal leave 2.9k (0), personal/carer's leave 1k (0), sick leave calculator 720 (0), sick leave calculator 38-hour week 590 (0) | Accrual calculator / leave → pay / sick leave balance and pay on payslip | ~1,500 |
 | 2 | `/job-pay-rates/{radiographer, sonographer, speech-pathologist, audiologist, podiatrist, dietitian}/` **BUILT** (6 pages) | radiographer salary 3.6k + …australia 1k; sonographer salary 3.6k + sonographer pay 3.6k + …australia 1.3k; speech pathologist salary 3.6k; podiatrist salary 1k; audiologist salary 880; dietitian salary 720 (all KD 0) | Take-home links / award → pay / award minimum vs payslip | ~1,300 |
-| 3 | `/disability-support-pension-calculator/` **BUILT** | disability pension 8.1k (4), centrelink disability pension 2.9k (5), dsp rates 1.3k (0), disability pension amount 390, assets test 390 | Calculator / income test on wages / payment amount each fortnight | ~900 |
+| 3 | `/disability-support-pension-calculator/` **BUILT ON MAIN BY H3** (this branch built one in parallel; dropped at merge in favour of main's) | disability pension 8.1k (4), centrelink disability pension 2.9k (5), dsp rates 1.3k (0), disability pension amount 390, assets test 390 | Calculator / income test on wages / payment amount each fortnight | ~900 |
 | 4 | `/compassionate-leave/` **BUILT** | compassionate leave 9.9k (0), family and domestic violence leave 720 (2) | Leave-pay calculator / NES leave → pay / paid or unpaid on payslip | ~850 |
 | 5 | `/ote-salary/` **BUILT** | ote meaning salary 3.6k, ote definition salary 3.6k, what is ote 1.3k, what does ote mean (in) salary 720 ×2, ote salary 480 (all 0) | OTE calculator + take-home / super on commission / checks commission, SG on payslip | ~700 |
 | 6 | `/job-pay-rates/veterinarian/` **BUILT** | vet salary 1.9k, veterinarian salary australia 720, vet salary australia 720, salary veterinarian australia 720 (all 0) | Take-home / award → pay / award minimum | ~250 |
@@ -22,13 +22,13 @@
 | 10 | Public service NT / TAS / ACT (`public-service-pay-scales/{nt,tas,act}`) — backlog | nt government pay scales 480, ntg pay scales 480 (TAS/ACT under 100) | Pass | ~70 — `JurisdictionSlug` already reserves the slugs; needs EA scraping |
 | 11 | Flight attendant, train driver occupations — backlog | flight attendant salary 2.4k, qantas flight attendant salary 720, train driver salary 1.6k, tram driver salary melbourne 720 (all 0) | Pass | ~300 — cabin crew rates sit in airline EAs, and train drivers in state rail EAs, so the award minimum alone would mislead; needs EA work |
 | 12 | School support staff pay by state — backlog | education support salary 1.3k (7), slso pay rate nsw 480 ×4 variants, sso pay rate 480 ×2 | Pass | ~150 — `/job-pay-rates/teacher-aide/` covers the award; state EAs (VIC ES, NSW SLSO, SA SSO) not built |
-| 13 | Employers batch (KFC, Hungry Jack's, Big W, Aldi) — backlog | hungry jacks pay rates 390, kfc pay rates 320, aldi pay rates 320, big w pay rates 260 | Pass | ~100 — planned in Wave 3 T4 but unbuilt; fairworkmate earns ~420 ETV on KFC alone. Needs each EA read at the FWC |
+| 13 | Employers batch (KFC, Hungry Jack's, Big W) — **built on main by H1** (17 employer pages); Aldi still open | aldi pay rates 320 | Pass | ~25 |
 | 14 | Notice period — backlog | notice period fair work 1.3k (4), notice period calculator 70 | Pass | ~100 — the NES table already lives on `/final-pay-calculator/`; a standalone page risks cannibalising it. Better: retitle a section there |
 | 15 | Super on overtime / casual super — sections, not pages | is super paid on overtime 590, do casual employees/workers get super 480 ×2 | Pass | add to `/superannuation-guide/` FAQs |
 
 ## Competitor clusters we still lack (from ranked_keywords)
 
-- **fairworkmate.com.au** (21,230 ranked keywords): top URLs by ETV are Centrelink tools (parenting payment, family tax benefit, youth allowance, jobseeker — we have all), `/wiki/centrelink-payment-rates` (2,686 ETV; "how much is jobseeker payment" 2.9k, "centrelink payment rates" 2.9k KD 14 — our per-payment calculators cover the rates, but there is no single rates table; worth a hub after the 1 Jan student-rate indexation), employer blogs (McDonald's, Coles, Woolworths, Bunnings, Kmart, Chemist Warehouse, Subway — we have; **KFC, Big W, Guzman y Gomez** — we don't, see #13), job pay rates (we cover all but warehouse worker and delivery driver, 260 each), public holidays (excluded).
+- **fairworkmate.com.au** (21,230 ranked keywords): top URLs by ETV are Centrelink tools (parenting payment, family tax benefit, youth allowance, jobseeker — we have all), `/wiki/centrelink-payment-rates` (2,686 ETV; "how much is jobseeker payment" 2.9k, "centrelink payment rates" 2.9k KD 14 — our per-payment calculators cover the rates, but there is no single rates table; worth a hub after the 1 Jan student-rate indexation), employer blogs (McDonald's, Coles, Woolworths, Bunnings, Kmart, Chemist Warehouse, Subway — we have; **KFC and Big W** now built on main by H1; **Guzman y Gomez** still open), job pay rates (we cover all but warehouse worker and delivery driver, 260 each), public holidays (excluded).
 - **wagecalculator.com.au** (8,708): 62% of ETV is the homepage. In-border URL clusters: teacher/nursing/public-service salaries by state (we have, except **public service NT**, #10), LSL calculator by state (we have), ADF pay by service (we have), `/salary/{n}` (we have). Its stamp duty and land tax calculators are off-border.
 
 ## Rejected (fail a border rule)
@@ -40,12 +40,13 @@
 
 ## What was built (commits on this branch)
 
+Note: a DSP calculator was also built here (commit 7ff256d) but H3 merged its own `/disability-support-pension-calculator/` to main first, so this branch takes main's page at merge. (Both versions independently flagged the same Services Australia typo: the DSP rates page's $65.50 couple Pension Supplement contradicts its own $933.00 total; $66.50 is correct.)
+
 | URL | Title | Sources (read 24 Sep 2026) |
 |---|---|---|
 | /job-pay-rates/radiographer/ … /dietitian/ (6) | "{Job} Salary Australia 2026 — $32.09/hr Award Minimum" | HPSS Award MA000027 Schedule B + cl 17.2–17.5, Schedule C.2.3; JSA medians (podiatrist N/A) |
 | /sick-leave-calculator/ | Sick Leave Calculator Australia: Personal & Carer's Leave | FWO paid sick and carer's leave, payment, evidence, unpaid carer's leave, cashing out, final pay, fact sheet |
 | /compassionate-leave/ | Compassionate Leave Australia: 2 Days Paid Bereavement Leave | FWO compassionate leave, fact sheet, FDV leave |
-| /disability-support-pension-calculator/ | Disability Support Pension Calculator 2026 — DSP Rates | Services Australia DSP rates, income test, assets test, working, non-medical rules (the DSP rates page's $65.50 couple supplement contradicts its own totals; we show $66.50 and say so) |
 | /ote-salary/ | OTE Salary Meaning: On-Target Earnings + Calculator | ATO ordinary time earnings list, FWC high income threshold ($190,100), FWO commission payments |
 | /jury-duty-pay/ | Jury Duty Pay Australia: Make-Up Pay Calculator | FWO jury duty (worked examples are unit tests) |
 | /job-pay-rates/veterinarian/ | Vet Salary Australia 2026 — $34.20/hr Award Minimum | Animal Care and Veterinary Services Award MA000118 cl 15.3, 16.3, 20.2, 27.3, Sched B; JSA 2347 |

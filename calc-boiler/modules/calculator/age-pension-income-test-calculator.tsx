@@ -108,11 +108,25 @@ export default function AgePensionIncomeTestCalculatorPage() {
               <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
               <li><Link href="/centrelink-income-test/" className="hover:text-eucalyptus-dark hover:underline">Centrelink Income Test</Link></li>
               <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
-              <li><span className="font-medium text-navy" aria-current="page">Age Pension Income Test Calculator</span></li>
+              <li><span className="font-medium text-navy" aria-current="page">Age Pension Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Age Pension Income Test Calculator — With the Work Bonus</h1>
-          <p className="text-lg text-warmgray">
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Age Pension Calculator 2026 — Rates From 20 September and the Income Test</h1>
+          <p className="text-lg text-warmgray mb-4">
+            The full Age Pension is <strong>{formatAUD(SEP.maxFortnightly.single.total, 2)} a fortnight</strong> for a single person and <strong>{formatAUD(SEP.maxFortnightly.coupleEach.total, 2)} each</strong> for a couple ({formatAUD(SEP.maxFortnightly.coupleCombined.total, 2)} combined) from {RATE_SET_LABELS[SEPTEMBER_2026]}, up from {formatAUD(MAR.maxFortnightly.single.total, 2)} and {formatAUD(MAR.maxFortnightly.coupleEach.total, 2)}. Your income reduces it by 50 cents a dollar over {formatAUD(IT.single.freeArea)} a fortnight (single).
+          </p>
+          <div className={TABLE_WRAP + " bg-white mb-4"}>
+            <table className="w-full text-sm">
+              <caption className="sr-only">Maximum Age Pension rates per fortnight from 20 September 2026</caption>
+              <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Per fortnight, from 20 Sep 2026</th><th scope="col" className={TH + " text-right"}>Single</th><th scope="col" className={TH + " text-right"}>Couple each</th><th scope="col" className={TH + " text-right"}>Couple combined</th></tr></thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                <tr><td className={TD}>Basic rate</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.single.basic, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleEach.basic, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleCombined.basic, 2)}</td></tr>
+                <tr><td className={TD}>Pension + Energy Supplements</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.single.supplement + SEP.maxFortnightly.single.energy, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleEach.supplement + SEP.maxFortnightly.coupleEach.energy, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleCombined.supplement + SEP.maxFortnightly.coupleCombined.energy, 2)}</td></tr>
+                <tr className="bg-eucalyptus-light/30 font-bold"><td className={TD}>Maximum Age Pension</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.single.total, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleEach.total, 2)}</td><td className={TD + " text-right"}>{formatAUD(SEP.maxFortnightly.coupleCombined.total, 2)}</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-base text-warmgray">
             See how working or other income changes your Age Pension. The Work Bonus takes the first {formatAUD(WORK_BONUS.fortnightlyCredit)} of wages out of the test each fortnight; above the {formatAUD(IT.single.freeArea)} (single) or {formatAUD(IT.couple.freeArea)} (couple, combined) free area the pension reduces by 50 cents in the dollar. Carries both the {RATE_SET_LABELS[MARCH_2026]} rates and the {RATE_SET_LABELS[SEPTEMBER_2026]} rates that replace them.
           </p>
           <TrustBar className="mt-4" />
@@ -193,6 +207,8 @@ export default function AgePensionIncomeTestCalculatorPage() {
                     </div>
                   </div>
                   <NotIncluded items={["the assets test", "deeming (enter deemed income yourself)", "transitional-rate pensioners", "Rent Assistance", "couples where only one partner gets a pension or lives apart due to ill health"]} />
+                  {/* H3 Centrelink wave 3: the two tests that were out of scope now have their own pages. */}
+                  <p className="text-sm text-navy">Have savings or other assets? The <Link href="/age-pension-assets-test-calculator/" className={LINK}>Age Pension assets test calculator</Link> runs both tests and deems your savings for you. Current deeming rates: <Link href="/deeming-rates/" className={LINK}>deeming rates and calculator</Link>.</p>
                 </div>
               </div>
             </CardContent>
@@ -305,7 +321,7 @@ export default function AgePensionIncomeTestCalculatorPage() {
               <li>Assessable income = employment income after the Work Bonus (first {formatAUD(WORK_BONUS.fortnightlyCredit)} disregarded, then the balance, per person) + other income. Reduction = {Math.round(IT.single.taper * 100)}c per dollar over {formatAUD(IT.single.freeArea)} (single) or {Math.round(IT.couple.taper * 100)}c per combined dollar over {formatAUD(IT.couple.freeArea)} off each pension (couple). Pension = maximum rate minus reduction, floored at $0. The free areas and tapers index on 1 July and did not change on 20 September 2026.</li>
               <li>Two dated rate sets are held: {RATE_SET_LABELS[MARCH_2026]} (Services Australia, read {CENTRELINK_SOURCES.marchSetReadOn}) and {RATE_SET_LABELS[SEPTEMBER_2026]} (DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}). The calculator reads today&apos;s date in your browser and applies whichever set is in force, so it changes over on 20 September by itself; both sets stay on the page because a payment summary dated before 20 September is on the March rates.</li>
               <li>The {RATE_SET_LABELS[MARCH_2026]} cut-offs are Services Australia&apos;s published figures and reconcile to the cent. The {RATE_SET_LABELS[SEPTEMBER_2026]} cut-offs are also Services Australia&apos;s published figures, re-checked on {CENTRELINK_SOURCES.verifiedOn}. Both sets reconcile exactly to cut-off = total rate ÷ taper + free area, and the tests assert it.</li>
-              <li>Not modelled: assets test, deeming, transitional rates, Rent Assistance, mixed couples. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
+              <li>Not modelled here: assets test and deeming (both are in the <Link href="/age-pension-assets-test-calculator/" className={LINK}>assets test calculator</Link>), transitional rates, Rent Assistance, mixed couples. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
             </ul>
           </MethodologyDisclosure>
 

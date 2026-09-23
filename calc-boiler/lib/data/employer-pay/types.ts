@@ -25,6 +25,23 @@ export const EMPLOYER_SLUGS = [
   "kmart",
   // --- T4 (23 Sep 2026) ---
   "subway",
+  // --- H1 (24 Sep 2026) ---
+  "hungry-jacks",
+  "liquorland",
+  "costco",
+  "iga",
+  "big-w",
+  "australia-post",
+  "jb-hi-fi",
+  "bws",
+  "dan-murphys",
+  "hoyts",
+  "kfc",
+  "dominos",
+  "red-rooster",
+  "david-jones",
+  "officeworks",
+  // --- end H1 ---
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];
@@ -148,4 +165,32 @@ export interface EmployerPay {
   awardLabel?: string;
   sources: EmployerPaySource[];
   faqs: EmployerPayFaq[];
+  // --- H1 (24 Sep 2026): instruments whose casual rate is not base x (1 + loading) ---
+  /**
+   * Set ONLY when the instrument's casual rate is not the permanent base rate
+   * plus `casualLoading` (e.g. Hungry Jack's Schedule B pays casuals the award
+   * rate x 125.25% while permanent staff get the award rate x 100.75%). The
+   * note is shown under the adult rate table, the generic loading test is
+   * skipped, and the employer's own test re-derives every casual figure.
+   */
+  casualRateNote?: string;
+  /**
+   * When true, derived junior casual rates are the junior percentage applied
+   * to the adult casual rate for rates[0], not the junior base plus the loading.
+   */
+  juniorCasualFromAdultCasual?: boolean;
+  /**
+   * Label for the adult rate juniors are a percentage of, when it is not
+   * rates[0] (e.g. cinema juniors are a % of Cinema Worker Level 4). Only valid
+   * with publishedJuniorRates covering every band.
+   */
+  juniorBaseLabel?: string;
+  /**
+   * Junior dollars WE worked out where the plain percentage-of-rates[0] rule is
+   * not the whole story (e.g. KFC's undertaking that every casual gets at least
+   * the award rate + 1c). Shown as derived, never as published; the employer's
+   * own test must re-derive every figure.
+   */
+  derivedJuniorRates?: PublishedJuniorRate[];
+  // --- end H1 ---
 }
