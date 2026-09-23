@@ -3,23 +3,13 @@ import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
+import { APPRENTICE_ELECTRICIAN, CONSTRUCTION_TRADES_FAQS } from "@/modules/guide/construction-trades-pay-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { INDUSTRY_ALLOWANCE, CARPENTER_TOOL_ALLOWANCE, MULTISTOREY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
 
-// Apprentice electrician minimums, Electrical, Electronic and Communications
-// Contracting Award [MA000025] Schedule B.4.5 (completed Year 12, started on
-// or after 1 Jan 2014), as transcribed in lib/data/job-pay-rates/apprentice-electrician.ts.
-// The old table claimed 55/65/80/95% and $44k-$86k, which no award supports.
-const APPRENTICE_ELECTRICIAN = [
-  { year: "Year 1", pct: 0.55, hourly: 17.97 },
-  { year: "Year 2", pct: 0.65, hourly: 21.13 },
-  { year: "Year 3", pct: 0.7, hourly: 22.71 },
-  { year: "Year 4", pct: 0.82, hourly: 26.5 },
-] as const;
 const TRADE_TAKE_HOME = [
   { role: "Painter", gross: 75_000 },
   { role: "Carpenter", gross: 85_000 },

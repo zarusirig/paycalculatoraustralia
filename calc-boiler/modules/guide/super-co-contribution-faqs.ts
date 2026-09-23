@@ -12,7 +12,7 @@ const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 export const SUPER_CO_CONTRIBUTION_FAQS: readonly FaqItem[] = [
   {
     q: "How much is the government super co-contribution?",
-    a: `The government matches 50 cents for every $1.00 of eligible personal (non-concessional) super contributions, up to a maximum of ${formatAUD(CC.maxEntitlement)} per financial year. To receive the full ${formatAUD(CC.maxEntitlement)} in ${CC.incomeYear}, you need to contribute ${formatAUD(CC.contributionForMax)} and have total income of ${formatAUD(CC.lowerThreshold)} or less. The maximum co-contribution reduces progressively for incomes between ${formatAUD(CC.lowerThreshold)} and ${formatAUD(CC.higherThreshold)}, where it reaches zero.`,
+    a: `The government matches ${Math.round(CC.matchRate * 100)} cents for every $1.00 of eligible personal (non-concessional) super contributions, up to a maximum of ${formatAUD(CC.maxEntitlement)} per financial year. To receive the full ${formatAUD(CC.maxEntitlement)} in ${CC.incomeYear}, you need to contribute ${formatAUD(CC.contributionForMax)} of after-tax money and have total income of ${formatAUD(CC.lowerThreshold)} or less. The maximum co-contribution reduces progressively for incomes between ${formatAUD(CC.lowerThreshold)} and ${formatAUD(CC.higherThreshold)}, where it reaches zero.`,
   },
   {
     q: "Do I need to apply for the super co-contribution?",

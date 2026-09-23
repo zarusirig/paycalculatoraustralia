@@ -7,7 +7,7 @@ import { FIRST_JOB_FAQS } from "./first-job-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, LITO, EMPLOYMENT, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, LITO, TAX_BRACKETS, calculateIncomeTax, formatAUD } from "@/lib/constants";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
 
 // Weekly payslip example: 20 hrs @ $25, withholding from the ATO Schedule 1

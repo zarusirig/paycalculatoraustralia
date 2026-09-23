@@ -24,7 +24,7 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What is the company tax rate in Australia?",
-    a: `The base rate entity company tax rate is ${COMPANY_RATE} for companies with aggregated turnover under $50 million (FY${FY}); other companies pay 30%. This flat rate applies to all taxable company income, compared to individual marginal rates that range from 0% to ${TOP} plus the ${ML} Medicare levy. When profits are distributed as franked dividends, the shareholder receives a franking credit for the company tax already paid, avoiding double taxation.`,
+    a: `The base rate entity company tax rate is ${COMPANY_RATE} for companies with aggregated turnover under $50 million and no more than 80% passive income (FY${FY}); other companies pay 30%. This flat rate applies to all taxable company income, compared to individual marginal rates that range from 0% to ${TOP} plus the ${ML} Medicare levy. When profits are distributed as franked dividends, the shareholder receives a franking credit for the company tax already paid, avoiding double taxation.`,
   },
   {
     q: "When do I need to register for GST?",
@@ -36,6 +36,6 @@ export const SOLE_TRADER_COMPANY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much does it cost to set up each structure?",
-    a: "Sole trader: Free — ABN registration is instant and no-cost through the Australian Business Register. Company: ASIC charges a registration fee of around $600 plus an annual review fee of around $320, both indexed each 1 July. Initial accounting setup adds $500-$1,000. Total first-year cost is approximately $1,100-$1,600 for a company, compared to $0 for a sole trader.",
+    a: "Sole trader: Free — ABN registration is instant and no-cost through the Australian Business Register. Company: ASIC charges a registration fee and an annual review fee, both indexed each 1 July (check asic.gov.au for the current amounts), plus initial accounting setup, compared to $0 for a sole trader.",
   },
 ];

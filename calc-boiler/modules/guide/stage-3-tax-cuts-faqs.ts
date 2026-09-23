@@ -55,7 +55,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much do the Stage 3 tax cuts save me?",
-    a: `Every taxpayer earning above ${formatAUD(TAX_FREE_THRESHOLD)} receives a tax cut under the revised plan. Compared with FY2023-24 rates, at $30,000 you save ${formatAUD(saving(30_000))}, at $50,000 you save ${formatAUD(saving(50_000))}, at $100,000 you save ${formatAUD(saving(100_000))}, and at $190,000+ you save ${formatAUD(saving(190_000))}. The exact saving depends on your taxable income — use the comparison table above or our Income Tax Calculator.`,
+    a: `Every taxpayer earning above ${formatAUD(TAX_FREE_THRESHOLD)} receives a tax cut under the revised plan, starting at ${Math.round(LOW_CUT * 100)}c for each dollar over ${formatAUD(TAX_FREE_THRESHOLD)}. Compared with FY2023-24 rates, at $30,000 you save ${formatAUD(saving(30_000))}, at $50,000 you save ${formatAUD(saving(50_000))}, at $100,000 you save ${formatAUD(saving(100_000))}, and at $190,000+ you save ${formatAUD(saving(190_000))}. The ${pct(NEW_LOW.rate)} to ${pct(TAX_BRACKETS[1].rate)} cut from ${TAX_HISTORY.upcomingFY2026_27.effectiveDate} adds up to ${formatAUD((TAX_BRACKETS[1].max - TAX_BRACKETS[1].min + 1) * (NEW_LOW.rate - TAX_BRACKETS[1].rate))} more. The exact saving depends on your taxable income — use the comparison table above or our Income Tax Calculator.`,
     links: { "Income Tax Calculator": "/income-tax-calculator/" },
   },
   {
@@ -72,7 +72,7 @@ export const STAGE_3_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Why was the 19% rate reduced to 16%?",
-    a: `The government reduced the bottom marginal rate to deliver tax relief to all taxpayers, including the 4.7 million Australians earning between ${formatAUD(NEW_LOW.min)} and ${formatAUD(NEW_LOW.max)} who would have received no benefit under the original Stage 3 plan. The ${pts(LOW_CUT)} cut saves up to ${formatAUD((NEW_LOW.max - NEW_LOW.min + 1) * LOW_CUT)} per year for this group.`,
+    a: `The government reduced the bottom marginal rate to deliver tax relief to all taxpayers, including those earning between ${formatAUD(NEW_LOW.min)} and ${formatAUD(NEW_LOW.max)} who would have received no benefit under the original Stage 3 plan. The ${pts(LOW_CUT)} cut saves up to ${formatAUD((NEW_LOW.max - NEW_LOW.min + 1) * LOW_CUT)} per year for this group.`,
   },
   {
     q: "Are there more tax changes coming?",

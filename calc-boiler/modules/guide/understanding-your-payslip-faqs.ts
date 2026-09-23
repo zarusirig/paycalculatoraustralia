@@ -9,9 +9,7 @@ import {
   SITE_CONFIG,
   SUPER_GUARANTEE,
   SUPER_GUARANTEE_CHARGE,
-  calculateIncomeTax,
-  calculateLITO,
-  calculateMedicareLevy,
+  calculatePayBreakdown,
   formatAUD,
   formatPercent,
 } from "@/lib/constants";
@@ -21,12 +19,12 @@ import type { FaqItem } from "@/lib/faq";
 const FY = SITE_CONFIG.financialYear;
 const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
 const EX_SALARY = 85_000;
-const exTax = Math.max(0, calculateIncomeTax(EX_SALARY) - calculateLITO(EX_SALARY)) + calculateMedicareLevy(EX_SALARY);
-const exNet = EX_SALARY - exTax;
+// Same engine call as the page body's worked example (EX85), so they agree.
+const exNet = calculatePayBreakdown({ grossSalary: EX_SALARY }).takeHomePay;
 // Fair Work Act civil penalty (standard contravention): 60 penalty units for an
 // individual, five times that for a body corporate.
 const FW_PENALTY_INDIVIDUAL = 60 * PENALTY_UNIT.amount;
-const FW_PENALTY_COMPANY = 5 * FW_PENALTY_INDIVIDUAL;
+const FW_PENALTY_COMPANY = 300 * PENALTY_UNIT.amount;
 const SUPER_EX_SALARY = 100_000;
 const SUPER_MISSED_MONTH = (SUPER_EX_SALARY * SUPER_GUARANTEE.rate) / 12;
 const SACRIFICE = 500;

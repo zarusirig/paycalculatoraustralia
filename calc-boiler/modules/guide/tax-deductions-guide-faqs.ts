@@ -3,7 +3,7 @@
 // structured data cannot drift from the page. Marginal rates come from
 // TAX_BRACKETS (current year) and the WFH fixed rate from RETURN_2026.
 
-import { TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { MEDICARE_LEVY, TAX_BRACKETS, TAX_BRACKETS_2025_26, formatAUD } from "@/lib/constants";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import type { FaqItem } from "@/lib/faq";
 
@@ -33,7 +33,7 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much tax do deductions save?",
-    a: `Deductions save tax at your marginal rate. Under the current resident rates, a ${formatAUD(DEDUCTION)} deduction saves ${savingsList}, plus the 2% Medicare levy on that amount if you pay it.`,
+    a: `Deductions save tax at your marginal rate. Under the current resident rates, a ${formatAUD(DEDUCTION)} deduction saves ${savingsList}, plus the ${pct(MEDICARE_LEVY.rate)} Medicare levy on that amount if you pay it. On a 2025-26 return the lowest taxed rate was ${pct(TAX_BRACKETS_2025_26[1].rate)}, so the same deduction saved ${formatAUD(DEDUCTION * TAX_BRACKETS_2025_26[1].rate)} in that bracket.`,
   },
   {
     q: "Can I claim working from home and car expenses together?",
@@ -49,6 +49,6 @@ export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I claim charitable donations as a deduction?",
-    a: "Gifts of $2 or more to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible. Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.",
+    a: "Gifts to organisations registered as Deductible Gift Recipients (DGRs) are tax deductible, and the old $2 minimum no longer applies to gifts made from 1 July 2024 (ATO, gifts and donations, updated 6 July 2026). Most major Australian charities hold DGR status. Donations to crowdfunding campaigns, political parties (above $1,500), and overseas organisations without DGR status are not deductible. Keep donation receipts as evidence.",
   },
 ];

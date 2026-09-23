@@ -2,8 +2,8 @@
 // accordion and turned into FAQPage JSON-LD in the page file, so the structured
 // data cannot drift from the page. Rates come from lib/constants.
 
-import { SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
-import { CPK_KM_CAP, CURRENT_CPK_RATE, CURRENT_CPK_YEAR, centsPerKmDeduction } from "@/lib/constants/cents-per-km";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
+import { CPK_KM_CAP, CURRENT_CPK_RATE, CURRENT_CPK_YEAR, PREVIOUS_CPK_RATE, centsPerKmDeduction } from "@/lib/constants/cents-per-km";
 import type { FaqItem } from "@/lib/faq";
 
 /** GST registration turnover threshold (ATO); not modelled elsewhere in lib/constants. */
@@ -25,7 +25,7 @@ export const GIG_ECONOMY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I use the cents-per-km method for rideshare?",
-    a: `Yes, but it is limited to ${KM} business kilometres (maximum deduction of ${formatAUD(centsPerKmDeduction(CPK_KM_CAP))} at ${Math.round(CURRENT_CPK_RATE * 100)}c/km for ${CURRENT_CPK_YEAR}). Most rideshare drivers exceed ${KM} km quickly, making the logbook method more beneficial. Keep a 12-week logbook to establish your business-use percentage, then apply it to all actual car expenses for the year.`,
+    a: `Yes, but it is limited to ${KM} business kilometres: a maximum deduction of ${formatAUD(centsPerKmDeduction(CPK_KM_CAP, "2025-26"))} at ${Math.round(PREVIOUS_CPK_RATE * 100)}c/km on a 2025-26 return, and ${formatAUD(centsPerKmDeduction(CPK_KM_CAP))} at ${Math.round(CURRENT_CPK_RATE * 100)}c/km for ${CURRENT_CPK_YEAR}. Most rideshare drivers exceed ${KM} km quickly, making the logbook method more beneficial. Keep a 12-week logbook to establish your business-use percentage, then apply it to all actual car expenses for the year.`,
   },
   {
     q: "Do I need an accountant for gig work?",
@@ -37,6 +37,6 @@ export const GIG_ECONOMY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I have to pay my own super as a gig worker?",
-    a: `Super is not compulsory for sole traders, but it is strongly advisable. Without voluntary contributions, you will reach retirement with significantly less savings. Personal concessional contributions (up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)}/year) are tax-deductible and taxed at only 15% in the fund. Even small regular contributions compound substantially over time.`,
+    a: `Super is not compulsory for sole traders, but it is strongly advisable. Without voluntary contributions, you will reach retirement with significantly less savings. Personal concessional contributions (up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)}/year in FY${SITE_CONFIG.financialYear}) are tax-deductible and taxed at only 15% in the fund. Even small regular contributions compound substantially over time.`,
   },
 ];

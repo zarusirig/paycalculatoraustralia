@@ -3,9 +3,10 @@
 // data cannot drift from the page. Rates come from lib/constants.
 
 import { HECS_HELP, MEDICARE_LEVY, SUPER_GUARANTEE, TAX_BRACKETS, formatAUD } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
 import type { FaqItem } from "@/lib/faq";
 
-const CONTRIBUTIONS_TAX = 0.15;
+const CONTRIBUTIONS_TAX = CONTRIBUTIONS_TAX_RATE;
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const cents = (r: number) => `${Math.round(r * 100)}c`;
 const taxedBrackets = TAX_BRACKETS.filter((b) => b.rate > 0);
@@ -24,7 +25,7 @@ export const EXTRA_SUPER_VS_HECS_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How is HECS-HELP debt indexed?",
-    a: `HECS-HELP debt is indexed annually on 1 June to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). The lower-of cap applies from the 2023 indexation onwards, so debt can no longer grow faster than wages. Indexation on ${HECS_HELP.indexationDate} was ${pct(HECS_HELP.indexationRate)}. Read the full breakdown in our HECS-HELP Guide.`,
+    a: `HECS-HELP debt is indexed annually on 1 June to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024, applying from 1 June 2023, to prevent debt growing faster than wages. Indexation on ${HECS_HELP.indexationDate} was ${pct(HECS_HELP.indexationRate)}. Read the full breakdown in our HECS-HELP Guide.`,
     links: { "HECS-HELP Guide": "/hecs-help-calculator/" },
   },
   {

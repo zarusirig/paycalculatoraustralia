@@ -29,7 +29,7 @@ export const FIRST_JOB_FAQS: readonly FaqItem[] = [
   },
   {
     q: "When does my employer pay super?",
-    a: `Since ${SUPER_GUARANTEE.paydaySuperStart} (Payday Super), employers must pay super with each pay: the contribution has to reach your fund within ${PAY_DAYS} business days of payday. Super appears on your payslip but is paid to your fund, not to you. Check your super fund account online to confirm contributions are being received.`,
+    a: `Since ${SUPER_GUARANTEE.paydaySuperStart} (Payday Super), employers must pay super with each pay: the contribution has to reach your fund within ${PAY_DAYS} business days of payday (the old quarterly deadlines ended with the June 2026 quarter). Super appears on your payslip but is paid to your fund, not to you. Check your super fund account online to confirm contributions are being received.`,
   },
   {
     q: "What happens if I get a second job?",

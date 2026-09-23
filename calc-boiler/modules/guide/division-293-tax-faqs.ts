@@ -3,7 +3,7 @@
 // structured data cannot drift from the page. Threshold and rates come from
 // lib/constants.
 
-import { formatAUD, MEDICARE_LEVY, TAX_BRACKETS } from "@/lib/constants";
+import { formatAUD, MEDICARE_LEVY, SUPER_GUARANTEE, TAX_BRACKETS } from "@/lib/constants";
 import {
   CONTRIBUTIONS_TAX_RATE,
   DIVISION_293,
@@ -22,6 +22,8 @@ const TOP_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate + MEDICARE_LEVY.rate
 // Worked example: taxable income plus employer contributions just over the line.
 const EX_INCOME = 230_000;
 const EX_SUPER = 30_000;
+const EX_SG = Math.round(Math.min(EX_INCOME, SUPER_GUARANTEE.maxContributionBaseAnnual) * SUPER_GUARANTEE.rate);
+const EX_SACRIFICE = EX_SUPER - EX_SG;
 const EX_EXCESS = EX_INCOME + EX_SUPER - DIVISION_293.threshold;
 const EX_TAX = division293Estimate(EX_INCOME, EX_SUPER);
 
@@ -36,7 +38,7 @@ export const DIVISION_293_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do I have to pay Division 293 if my salary is under $250K?",
-    a: `Yes, potentially. Division 293 looks at your combined income and concessional super contributions. If your taxable income is ${formatAUD(EX_INCOME)} and your employer pays ${formatAUD(EX_SUPER)} in SG contributions, your combined total is ${formatAUD(EX_INCOME + EX_SUPER)} — above the ${THRESHOLD} threshold. You would owe Division 293 tax on ${formatAUD(EX_EXCESS)} of super contributions (${formatAUD(EX_TAX)}).`,
+    a: `Yes, potentially. Division 293 looks at your combined income and concessional super contributions. If your taxable income is ${formatAUD(EX_INCOME)} and you have ${formatAUD(EX_SUPER)} of concessional contributions (for example ${formatAUD(EX_SG)} of employer SG plus ${formatAUD(EX_SACRIFICE)} of salary sacrifice), your combined total is ${formatAUD(EX_INCOME + EX_SUPER)} — above the ${THRESHOLD} threshold. You would owe Division 293 tax on ${formatAUD(EX_EXCESS)} of super contributions (${formatAUD(EX_TAX)}).`,
   },
   {
     q: "Can I pay Division 293 from my super fund?",

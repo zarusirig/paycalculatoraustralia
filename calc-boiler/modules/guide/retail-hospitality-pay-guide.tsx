@@ -8,8 +8,7 @@ import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD, calculatePayBreakdown } from "@/lib/constants";
-import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, HOSPITALITY_JUNIOR_SCALE, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES, RETAIL_JUNIOR_SCALE } from "@/lib/constants/hospitality-award";
-import { JUNIOR_PHASE_IN } from "@/lib/constants/modern-awards";
+import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 
 // Every rate below comes from the award constants (1 July 2026 pay guides).
 // The old copy used a $25.44 Level 1 rate, public holiday +150%/+175% and
@@ -24,8 +23,6 @@ const TAKE_HOME_ROWS = [
   { label: "Hospitality Level 3, FT", gross: hosp("Level 3") * 52 },
   { label: "Hospitality Level 6, FT", gross: hosp("Level 6") * 52 },
 ];
-const juniorList = (scale: readonly { age: string; percentage: number }[]) =>
-  scale.map((j) => `${j.age}: ${Math.round(j.percentage * 100)}%`).join(", ");
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 

@@ -28,7 +28,7 @@ export const EMPLOYMENT_TYPE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can I convert from casual to permanent?",
-    a: "Yes. Since 26 August 2024, a casual employee who has worked for at least 6 months (12 months if the employer is a small business with fewer than 15 employees) can notify their employer in writing that they want to become permanent, if they believe they no longer meet the definition of a casual employee. The employer must respond in writing within 21 days and can refuse only on limited grounds.",
+    a: "Yes. Since 26 August 2024, a casual employee who has worked for at least 6 months (12 months if the employer is a small business with fewer than 15 employees) can notify their employer in writing that they want to become permanent, if they believe they no longer meet the definition of a casual employee. The employer must respond in writing within 21 days and can refuse only on limited grounds; employers are no longer required to offer conversion.",
   },
   {
     q: "Which employment type pays more overall?",

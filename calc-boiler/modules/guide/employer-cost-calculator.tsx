@@ -7,12 +7,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { EMPLOYER_COST_FAQS, MAX_RATE_STATE, MAX_THRESHOLD_STATE, MIN_RATE_STATE, MIN_THRESHOLD_STATE } from "@/modules/guide/employer-cost-calculator-faqs";
+import { EMPLOYER_COST_FAQS, MULT_100K, TABLE_WORKCOVER, costRow, type CostRow, MAX_RATE_STATE, MAX_THRESHOLD_STATE, MIN_RATE_STATE, MIN_THRESHOLD_STATE } from "@/modules/guide/employer-cost-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
-import { FBT } from "@/lib/constants/novated-lease";
 import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -37,24 +36,8 @@ const PAYROLL_TABLE_NOTE: Partial<Record<string, string>> = {
   WA: "Threshold diminishes to nil at $7.5M",
 };
 
-// Cost breakdown table, derived rather than typed: Victorian payroll tax (on
-// wages + super, assuming the business is above the threshold), a 1.5%
-// WorkCover premium and SG capped at the annual maximum contribution base.
-const TABLE_WORKCOVER = 0.015;
-interface CostRow { salary: number; superAmt: number; leave: number; payroll: number; workcover: number; total: number }
-const costRow = (salary: number, payrollRate = STATE_PAYROLL_TAX.VIC.rate): CostRow => {
-  const superAmt = calculateSuper(salary);
-  const leave = Math.round(salary * (4 / 52));
-  const payroll = Math.round((salary + superAmt) * payrollRate);
-  const workcover = Math.round(salary * TABLE_WORKCOVER);
-  return { salary, superAmt, leave, payroll, workcover, total: salary + superAmt + leave + payroll + workcover };
-};
 const COST_ROWS = [60_000, 80_000, 100_000, 130_000, 180_000].map((salary) => costRow(salary));
-const MULT_100K = costRow(100_000).total / 100_000;
 const MULT_100K_NO_PAYROLL = costRow(100_000, 0).total / 100_000;
-// $15,000 car benefit, type 1 gross-up (the usual case where the provider can claim GST credits).
-const CAR_BENEFIT = 15_000;
-const CAR_FBT = Math.round(CAR_BENEFIT * FBT.grossUpType1 * FBT.rate);
 // $50/hour employee: super plus paid annual (4/52) and personal (10/260) leave.
 const HOURLY_ONCOST = 50 * (1 + SUPER_GUARANTEE.rate + 4 / 52 + 10 / 260);
 

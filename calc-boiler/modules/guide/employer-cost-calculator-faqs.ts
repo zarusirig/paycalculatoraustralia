@@ -4,6 +4,7 @@
 // thresholds come from lib/constants.
 
 import {
+  calculateSuper,
   EMPLOYMENT,
   formatAUD,
   formatPercent,
@@ -22,6 +23,20 @@ export const MAX_RATE_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].rate >
 export const MIN_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold < a[1].threshold ? b : a));
 export const MAX_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold > a[1].threshold ? b : a));
 
+// Cost breakdown table, derived rather than typed: Victorian payroll tax (on
+// wages + super, assuming the business is above the threshold), a 1.5%
+// WorkCover premium and SG capped at the annual maximum contribution base.
+export const TABLE_WORKCOVER = 0.015;
+export interface CostRow { salary: number; superAmt: number; leave: number; payroll: number; workcover: number; total: number }
+export const costRow = (salary: number, payrollRate = STATE_PAYROLL_TAX.VIC.rate): CostRow => {
+  const superAmt = calculateSuper(salary);
+  const leave = Math.round(salary * (EMPLOYMENT.annualLeaveWeeks / EMPLOYMENT.weeksPerYear));
+  const payroll = Math.round((salary + superAmt) * payrollRate);
+  const workcover = Math.round(salary * TABLE_WORKCOVER);
+  return { salary, superAmt, leave, payroll, workcover, total: salary + superAmt + leave + payroll + workcover };
+};
+export const MULT_100K = costRow(100_000).total / 100_000;
+
 const FY = SITE_CONFIG.financialYear;
 const SG = formatPercent(SUPER_GUARANTEE.rate, 0);
 const PRT_RANGE = `${formatPercent(MIN_RATE_STATE[1].rate, 2)}–${formatPercent(MAX_RATE_STATE[1].rate, 2)}`;
@@ -35,7 +50,7 @@ const FBT_EXAMPLE_TAX = Math.round(FBT_EXAMPLE_VALUE * FBT.grossUpType1 * FBT.ra
 export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   {
     q: "How much does an employee actually cost an employer?",
-    a: `The true cost is typically 1.3x to 1.45x the base salary. For a $100,000 salary, the business spends between $130,000 and $145,000 once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (0.3%–10%), and payroll tax (${PRT_RANGE}) are included. Adding recruitment, training, and equipment costs pushes the multiplier toward 1.5x.`,
+    a: `On this page's assumptions the cost is about ${MULT_100K.toFixed(2)}x the base salary: for a $100,000 salary, about ${formatAUD(MULT_100K * 100_000)} once superannuation (${SG}), annual leave provisions (${LEAVE_PROVISION}), workers compensation (${formatPercent(TABLE_WORKCOVER, 1)} here; 0.3%–10% by industry), and payroll tax (${PRT_RANGE}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.`,
   },
   {
     q: "What is payroll tax and who pays it?",
@@ -68,11 +83,11 @@ export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Is workers compensation insurance mandatory for all employers?",
-    a: "Yes. Every employer in Australia must hold workers compensation insurance, regardless of business size or number of employees. Operating without coverage carries penalties including fines of up to $55,000 in NSW and $218,088 in Victoria, plus personal liability for all injury costs. Sole traders with no employees are the only exception in most states.",
+    a: "Yes. Every employer in Australia must hold workers compensation insurance, regardless of business size or number of employees. Operating without coverage carries substantial state penalties, plus liability for the cost of any injury claim. Sole traders with no employees are the only exception in most states.",
   },
   {
     q: "What is leave loading and does every employer pay it?",
-    a: "Leave loading is an additional payment of 17.5% on top of the employee's base pay rate during annual leave. It is not a universal entitlement under the National Employment Standards. Leave loading applies only when specified in the relevant modern award, enterprise agreement, or employment contract. Approximately 60% of Australian employees covered by awards receive leave loading.",
+    a: "Leave loading is an additional payment of 17.5% on top of the employee's base pay rate during annual leave. It is not a universal entitlement under the National Employment Standards. Leave loading applies only when specified in the relevant modern award, enterprise agreement, or employment contract; most modern awards include it.",
   },
   {
     q: "How does long service leave affect employer costs?",
@@ -85,6 +100,6 @@ export const EMPLOYER_COST_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How can employers reduce total employment costs legally?",
-    a: "Employers reduce costs through 5 primary strategies: (1) offering salary sacrifice arrangements that provide tax-effective benefits at lower cost, (2) maintaining strong workplace safety records to earn WorkCover premium discounts of 10%–30%, (3) structuring the business to remain below the state payroll tax threshold, (4) using a mix of casual and part-time workers to minimise leave liability, and (5) investing in retention to reduce recruitment costs averaging $5,000–$15,000 per hire.",
+    a: "Employers reduce costs through 5 primary strategies: (1) offering salary sacrifice arrangements that provide tax-effective benefits at lower cost, (2) maintaining strong workplace safety records, which lower experience-rated WorkCover premiums, (3) structuring the business to remain below the state payroll tax threshold, (4) using a mix of casual and part-time workers to minimise leave liability, and (5) investing in retention to reduce recruitment costs.",
   },
 ];

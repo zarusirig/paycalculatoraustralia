@@ -2,6 +2,7 @@
 // and turned into FAQPage JSON-LD in app/notice-of-assessment/page.tsx, so the
 // structured data cannot drift from the page.
 
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import type { FaqItem } from "@/lib/faq";
 
 export const NOTICE_OF_ASSESSMENT_FAQS: readonly FaqItem[] = [
@@ -11,11 +12,11 @@ export const NOTICE_OF_ASSESSMENT_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How long does it take to receive my NOA?",
-    a: "Electronic lodgements through myTax or a tax agent are typically processed within 2 weeks. Paper returns take 10–12 weeks. Complex returns that require manual review may take longer. You can check the status of your return through your myGov account.",
+    a: `Electronic lodgements through myTax or a tax agent are typically processed within 2 weeks. Paper returns: most refunds issue within ${RETURN_2026.paperRefundBusinessDays} business days. Complex returns that require manual review may take longer. You can check the status of your return through your myGov account.`,
   },
   {
     q: "What can I do if I disagree with my NOA?",
-    a: "You can request an amendment within 2 years of the assessment date (4 years for complex affairs). Amendments are lodged through myTax, your tax agent, or by paper. For formal disputes, you can lodge an objection with the ATO, and if that fails, apply to the Administrative Review Tribunal (which replaced the Administrative Appeals Tribunal in October 2024).",
+    a: "You can request an amendment within 2 years of the assessment date (4 years for complex affairs). Amendments are lodged through myTax, your tax agent, or by paper. For formal disputes, you can lodge an objection with the ATO, and if that fails, apply to the Administrative Review Tribunal (which replaced the Administrative Appeals Tribunal on 14 October 2024) or the Federal Court.",
   },
   {
     q: "When will I receive my tax refund?",

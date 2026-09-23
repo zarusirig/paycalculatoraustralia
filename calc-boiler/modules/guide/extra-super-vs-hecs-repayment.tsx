@@ -8,7 +8,7 @@ import { EXTRA_SUPER_VS_HECS_FAQS } from "./extra-super-vs-hecs-repayment-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, HECS_HELP, MEDICARE_LEVY, calculateHECS, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, MEDICARE_LEVY, calculateHECS, formatAUD } from "@/lib/constants";
 
 // $200/month model. Both options use the same $200 of PRE-TAX salary: the old
 // table compared $200 pre-tax into super with $200 AFTER tax off HECS, which
@@ -20,7 +20,6 @@ const SUPER_NET = (0.075 - 0.007) * 0.85;
 const fv = (annual: number, rate: number, years: number) => (annual * ((1 + rate) ** years - 1)) / rate;
 const SUPER_10Y = fv(MONTHLY * 12 * 0.85, SUPER_NET, 10);
 const HECS_10Y = fv(MONTHLY * 12 * (1 - MARGINAL), HECS_HELP.indexationRate, 10);
-const CAP = SUPER_GUARANTEE.concessionalCap;
 const HECS_AT_90K = calculateHECS(90_000);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";

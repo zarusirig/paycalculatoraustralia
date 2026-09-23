@@ -13,6 +13,7 @@ import {
   RETAIL_PENALTIES,
   RETAIL_RATES,
 } from "@/lib/constants/hospitality-award";
+import { JUNIOR_PHASE_IN } from "@/lib/constants/modern-awards";
 import type { FaqItem } from "@/lib/faq";
 
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
@@ -44,7 +45,7 @@ export const RETAIL_HOSPITALITY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do workers under 21 get paid less?",
-    a: `Yes, but the two awards use different junior scales, each a percentage of the adult rate. Retail: ${scale(RETAIL_JUNIOR_SCALE)}; full adult rates apply from 21, or from 20 after more than 6 months with the employer. Hospitality: ${scale(HOSPITALITY_JUNIOR_SCALE)}; full adult rates apply from age ${HOSP_ADULT_AGE.replace(" and over", "")}. Hospitality juniors working as liquor service employees must be paid the adult rate.`,
+    a: `Yes, but the two awards use different junior scales, each a percentage of the adult rate. Retail: ${scale(RETAIL_JUNIOR_SCALE)}; full adult rates apply from 21, or from 20 after more than 6 months with the employer. Hospitality: ${scale(HOSPITALITY_JUNIOR_SCALE)}; full adult rates apply from age ${HOSP_ADULT_AGE.replace(" and over", "")}. Hospitality juniors working as liquor service employees must be paid the adult rate. From ${JUNIOR_PHASE_IN.commences}, retail 18 and 19-year-olds with more than 6 months' service start moving towards the adult rate in stages under ${JUNIOR_PHASE_IN.principalDecision}.`,
   },
   {
     q: "What is the public holiday pay rate?",

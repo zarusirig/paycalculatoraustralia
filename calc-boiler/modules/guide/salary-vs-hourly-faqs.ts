@@ -8,6 +8,9 @@ import type { FaqItem } from "@/lib/faq";
 const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
 const EX_SALARY = 75_000;
 const EX_HOURLY = EX_SALARY / EMPLOYMENT.weeksPerYear / EMPLOYMENT.standardWeeklyHours;
+// Fair Work high income threshold from 1 July 2026 (fwc.gov.au/high-income-threshold).
+// No lib/constants entry exists yet; indexed each 1 July.
+const HIGH_INCOME_THRESHOLD = { amount: 190_100, from: "1 July 2026" } as const;
 
 export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   {
@@ -21,7 +24,7 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do salaried employees get overtime in Australia?",
-    a: "It depends on the award or enterprise agreement. Many salaried employees have \"reasonable additional hours\" clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.",
+    a: `It depends on the award or enterprise agreement. Many salaried employees have "reasonable additional hours" clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the Fair Work high income threshold (${formatAUD(HIGH_INCOME_THRESHOLD.amount)} from ${HIGH_INCOME_THRESHOLD.from}, indexed each 1 July) who have a written guarantee of annual earnings are not covered by their award, so award overtime rules do not apply to them.`,
   },
   {
     q: "Is casual hourly pay higher than salary?",
@@ -29,7 +32,7 @@ export const SALARY_VS_HOURLY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Do hourly workers get superannuation?",
-    a: `Yes. All employees — salaried, hourly permanent, and hourly casual — receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on ordinary time earnings (OTE). There is no minimum earnings threshold. Super is calculated on OTE, which includes base rate, shift loadings, and casual loading, but generally excludes overtime.`,
+    a: `Yes. All employees — salaried, hourly permanent, and hourly casual — receive the ${pct(SUPER_GUARANTEE.rate)} Superannuation Guarantee from their employer on qualifying earnings, which for most people means ordinary time earnings (OTE). There is no minimum earnings threshold. OTE includes base rate, shift loadings, and casual loading, but generally excludes overtime.`,
   },
   {
     q: "Which is better for getting a mortgage?",

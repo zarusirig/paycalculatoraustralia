@@ -7,7 +7,7 @@ import { NON_RESIDENT_FAQS } from "./non-resident-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, HECS_HELP, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
 import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import AuthorBox from "@/components/common/author-box";
