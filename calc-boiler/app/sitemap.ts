@@ -84,6 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // H3 Centrelink wave 3 (added 2026-09-24)
     "age-pension-assets-test-calculator",
     "deeming-rates",
+    "disability-support-pension-calculator",
     // end H3
     "final-pay-calculator",
     "employment-type-calculator",

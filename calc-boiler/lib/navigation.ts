@@ -163,6 +163,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           // H3 Centrelink wave 3 (added 2026-09-24)
           { href: "/age-pension-assets-test-calculator/", label: "Age Pension assets test" },
           { href: "/deeming-rates/", label: "Deeming rates" },
+          { href: "/disability-support-pension-calculator/", label: "Disability Support Pension" },
           // end H3
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
@@ -610,6 +611,7 @@ export const CALCULATOR_CATEGORIES = [
       // H3 Centrelink wave 3 (added 2026-09-24)
       { href: "/age-pension-assets-test-calculator/", label: "Age Pension Assets Test Calculator", description: "Assets limits, the taper and which test applies" },
       { href: "/deeming-rates/", label: "Deeming Rates & Calculator", description: "1.75% and 3.75% from 20 September 2026" },
+      { href: "/disability-support-pension-calculator/", label: "Disability Support Pension Calculator", description: "DSP rates, income test and the 29-hour rule" },
       // end H3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
