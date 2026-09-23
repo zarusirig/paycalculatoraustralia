@@ -115,6 +115,30 @@ test("Priceline: printed cl 18.1 / Appendix A dollars and the agreement's multip
   }
 });
 
+test("Retail Award employers (Harvey Norman, Spotlight, Anaconda): same figures as IGA", () => {
+  const iga = get("iga");
+  for (const slug of ["harvey-norman", "spotlight", "anaconda"]) {
+    const e = get(slug);
+    assert.equal(e.instrument.kind, "modern-award", slug);
+    assert.equal(e.instrument.reference, "MA000004", slug);
+    assert.deepEqual(
+      e.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+      iga.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    );
+    assert.deepEqual(juniorRates(e), juniorRates(iga));
+    assert.deepEqual(e.penalties, iga.penalties);
+    assert.deepEqual(e.overtime, iga.overtime);
+    const text = e.faqs.map((f) => f.a).join(" ");
+    // L1 $27.81: casual x1.25, Sunday 150% / 175%, public holiday 225% / 250%.
+    for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) assert.ok(text.includes(money(27.81 * pct)), `${slug} ${pct}`);
+    assert.ok(text.includes("$27.81"), slug);
+  }
+  // Junior FAQ dollars (award % of weekly $1,056.80, / 38; casual + 25%).
+  for (const [pct, v] of [[0.45, 12.51], [0.5, 13.91], [0.6, 16.69]] as const) {
+    assert.equal(halfUp((1056.8 * pct) / 38), v);
+  }
+});
+
 test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed exactly", () => {
   const r = get("rebel");
   assert.equal(r.instrument.reference, "AG2024/952, AE524487");

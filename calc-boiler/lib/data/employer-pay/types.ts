@@ -48,6 +48,7 @@ export const EMPLOYER_SLUGS = [
   "rebel",
   "harvey-norman",
   "spotlight",
+  "anaconda",
   // --- end J7 ---
 ] as const;
 
