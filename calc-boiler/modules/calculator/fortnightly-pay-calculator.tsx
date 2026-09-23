@@ -143,7 +143,7 @@ export default function FortnightlyPayCalculatorPage() {
               falls inside the same financial year. Your salary does not rise that year; it is spread over one more pay, and the
               ATO&apos;s tax tables (which assume {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays) publish an optional extra amount you can
               ask your employer to withhold so you do not end up short at tax time. The{" "}
-              <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts.
+              <Link href="/fortnightly-tax-table/#27-pays" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">

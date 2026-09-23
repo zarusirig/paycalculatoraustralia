@@ -9,7 +9,8 @@ import {
   calculateIncomeTax,
   HECS_HELP,
   MEDICARE_LEVY,
-  SITE_CONFIG
+  SITE_CONFIG,
+  SUPER_GUARANTEE
 } from "@/lib/constants/australian-tax";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
@@ -331,7 +332,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Three common strategies reduce assessable income and lower taxation on a {formattedSalary} salary:
         </p>
         <ul className="text-navy space-y-2">
-          <li><strong>Salary sacrifice to super</strong> — concessional contributions up to the $30,000 annual cap are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model the savings.</li>
+          <li><strong>Salary sacrifice to super</strong> — concessional contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} annual cap are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model the savings.</li>
           <li><strong>Work-related deductions</strong> — claiming expenses for uniforms, tools, home office costs, and self-education reduces taxable income dollar-for-dollar.</li>
           <li><strong>Novated lease</strong> — packaging a vehicle through your employer reduces pre-tax salary, lowering both income tax and Medicare levy obligations.</li>
         </ul>

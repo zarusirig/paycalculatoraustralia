@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { TakeHomePayOnSalary } from '@/modules/programmatic/take-home-pay-on-salary';
-import { calculatePayBreakdown, formatAUD, EMPLOYMENT, SITE_CONFIG } from '@/lib/constants/australian-tax';
+import { calculatePayBreakdown, formatAUD, EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
@@ -126,7 +126,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
         name: `How can I increase my take-home pay on ${formattedSalary}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `Salary sacrifice to superannuation is the most effective strategy. Concessional contributions up to $30,000 are taxed at 15% inside super, compared to your marginal rate. Maximising work-related deductions also reduces taxable income.`
+          text: `Salary sacrifice to superannuation is the most effective strategy. Concessional contributions up to ${formatAUD(SUPER_GUARANTEE.concessionalCap)} are taxed at 15% inside super, compared to your marginal rate. Maximising work-related deductions also reduces taxable income.`
         }
       }
     ]

@@ -8,6 +8,7 @@ import {
   HECS_HELP,
   SITE_CONFIG,
   EMPLOYMENT,
+  SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
@@ -43,7 +44,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
 
   // Pay frequency data
-  const hoursPerYear = 1976; // 38 hrs × 52 weeks — matches every other AU site
+  const hoursPerYear = EMPLOYMENT.hoursPerYear; // 38 hrs × 52 weeks = 1,976
   const hourlyGross = salary / hoursPerYear;
   const hourlyNet = breakdown.takeHomePay / hoursPerYear;
 
@@ -277,7 +278,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         </p>
         <ul className="text-navy space-y-3">
           <li>
-            <strong>Salary sacrifice to super</strong> — concessional contributions up to $30,000 are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Model the savings with our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a>.
+            <strong>Salary sacrifice to super</strong> — concessional contributions up to {formatAUD(SUPER_GUARANTEE.concessionalCap)} are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Model the savings with our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a>.
           </li>
           <li>
             <strong>Maximise tax deductions</strong> — work-related expenses, home office costs, and self-education reduce taxable income dollar-for-dollar. See our <a href="/tax-deductions-guide/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Tax Deductions Guide</a> for what you can claim.
