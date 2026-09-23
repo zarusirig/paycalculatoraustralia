@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator, AlertTriangle, Info } from "lucide-react";
+import { ChevronRight, ArrowRight, Calculator, AlertTriangle, Info, Printer } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
@@ -20,7 +20,9 @@ import {
   graduateSalary,
   isExactTakeHomeAmount,
   nearestTakeHomeAmount,
+  scaleRanges,
   takeHomeHref,
+  teacherRatesYear,
   topOfClassroomScale,
   type PayScale,
   type TeacherPayState,
@@ -103,6 +105,75 @@ function ScaleTable({ scale }: { scale: PayScale }) {
   );
 }
 
+/**
+ * Answer-first summary: one row per published scale, lowest and highest
+ * salary (each linking to its take-home page) and a link to the full table.
+ * Built from the same scales the full tables render, so it cannot drift.
+ */
+function AtAGlance({ state }: { state: TeacherPayState }) {
+  const rows = scaleRanges(state);
+  return (
+    <section id="at-a-glance">
+      <h2 style={HEADING_FONT}>
+        {state.code} teacher salary {teacherRatesYear(state)} at a glance
+      </h2>
+      <p>
+        Full-time annual salaries from {state.ratesEffectiveFrom}, read from the {state.agreementName}.
+        Tap a classification for every step, or a salary to see it after tax.
+      </p>
+      <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+        <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">
+          <caption className="sr-only">
+            {state.name} public school teacher salary ranges by classification
+          </caption>
+          <thead className="bg-sandstone font-semibold text-navy">
+            <tr>
+              <th scope="col" className="px-5 py-3">
+                Classification
+              </th>
+              <th scope="col" className="px-5 py-3 text-right">
+                Steps
+              </th>
+              <th scope="col" className="px-5 py-3 text-right">
+                From
+              </th>
+              <th scope="col" className="px-5 py-3 text-right">
+                To
+              </th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+            {rows.map((row) => (
+              <tr key={row.id}>
+                <th scope="row" className="px-5 py-3 text-left font-medium">
+                  <a href={"#" + row.id} className="text-navy hover:text-eucalyptus-dark hover:underline">
+                    {row.title}
+                  </a>
+                </th>
+                <td className="px-5 py-3 text-right">{row.steps}</td>
+                <td className="px-5 py-3 text-right">
+                  <SalaryLink salary={row.low} />
+                </td>
+                <td className="px-5 py-3 text-right">
+                  {row.high !== row.low ? <SalaryLink salary={row.high} /> : "—"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <button
+        type="button"
+        onClick={() => window.print()}
+        className="not-prose inline-flex items-center gap-2 rounded-lg border border-sandstone-dark/30 bg-white px-4 py-2 text-sm font-semibold text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus-dark print:hidden"
+      >
+        <Printer className="h-4 w-4" aria-hidden="true" />
+        Print or save the {state.code} pay scale as a PDF
+      </button>
+    </section>
+  );
+}
+
 export default function TeacherPayStatePage({ state }: { state: TeacherPayState }) {
   const grad = graduateSalary(state);
   const top = topOfClassroomScale(state);
@@ -156,7 +227,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl"
             style={HEADING_FONT}
           >
-            {state.code} Teacher Salary — {state.name} Public School Pay Scale
+            {state.h1 ?? `${state.code} Teacher Salary ${teacherRatesYear(state)} — ${state.name} Public School Pay Scale`}
           </h1>
           {hasScales && grad !== null && top !== null ? (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
@@ -192,6 +263,9 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 ))}
               </div>
             )}
+
+            {/* ── At a glance: every scale's range, linking to its full table ── */}
+            {hasScales && <AtAGlance state={state} />}
 
             {/* ── The agreement ── */}
             <section id="agreement">

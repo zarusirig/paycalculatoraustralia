@@ -64,7 +64,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "At what age do you get full adult pay in Australia?",
-    a: `It depends on the instrument. Under the National Minimum Wage the full adult rate applies from ${ADULT_AGE}. But awards set their own ages, and they differ sharply: the Hair and Beauty Industry Award reaches the adult rate at 18, the earliest of any common award; the Hospitality Industry (General) Award pays 100% from 20; the General Retail Industry Award reaches 100% at 20 but only after more than six months with the same employer; and the Fast Food Industry Award holds juniors at 90% until 21. There is no single national answer.`,
+    a: `It depends on the instrument. Under the National Minimum Wage the full adult rate applies from ${ADULT_AGE}. But awards set their own ages, and they differ sharply: the Hair and Beauty Industry Award reaches the adult rate at 18, the earliest of any common award; the Hospitality Industry (General) Award pays 100% from 20; the General Retail Industry Award reaches 100% at 20 but only after more than six months with the same employer; and the Fast Food Industry Award currently holds 20-year-olds at 90% until 21. From ${PENDING_JUNIOR_CHANGE.earliestStart}, 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier} under the retail, fast food and pharmacy awards start moving to the adult rate in stages. There is no single national answer.`,
   },
   {
     q: "Do junior rates apply to every job?",
@@ -72,7 +72,7 @@ export const JUNIOR_FAQS: readonly JuniorFaq[] = [
   },
   {
     q: "Are junior rates being abolished?",
-    a: `Not currently, and nothing has changed yet. In decision ${PENDING_JUNIOR_CHANGE.decision} of ${PENDING_JUNIOR_CHANGE.decidedOn}, the Fair Work Commission decided to raise junior rates for 18 to 20-year-olds under the Retail, Fast Food and Pharmacy awards who have ${PENDING_JUNIOR_CHANGE.serviceQualifier}. Two things are widely misreported about it. First, no determination has been made — the Commission said it will hear the parties on timing first, and the schedule it published is expressly a provisional view. Second, it is a gradual phase-in of about five percentage points every six months, not a jump to the adult rate. On 1 December 2026, if adopted, an eligible 19-year-old would move from 80% to 85% — not to 100%. Full adult rates would arrive in July 2027 for 20-year-olds, July 2028 for 19-year-olds and July 2029 for 18-year-olds. Rates for under-18s are unchanged.`,
+    a: `For 18 to 20-year-olds with ${PENDING_JUNIOR_CHANGE.serviceQualifier}, gradually, under the Retail, Fast Food and Pharmacy awards only. The Fair Work Commission made the determinations on ${PENDING_JUNIOR_CHANGE.implementationDecidedOn} (${PENDING_JUNIOR_CHANGE.implementationDecision}), and the first step applies from the first full pay period on or after ${PENDING_JUNIOR_CHANGE.earliestStart}. It is a phase-in, not a jump to the adult rate: on that date an eligible 19-year-old moves from 80% to 85%. Under the retail and fast food awards rates then rise five percentage points every 1 July and 1 December, reaching the adult rate from 1 July 2027 for 20-year-olds in fast food (retail 20-year-olds with more than 6 months already get it), 1 July 2028 for 19-year-olds and 1 July 2029 for 18-year-olds. Pharmacy moves in larger annual steps on a different timetable. Employees with 6 months or less with their employer, and all under-18s, keep the current rates.`,
   },
   {
     q: "How are junior rates calculated?",

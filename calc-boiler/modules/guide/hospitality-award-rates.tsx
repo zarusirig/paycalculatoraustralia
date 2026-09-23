@@ -24,9 +24,11 @@ import {
   HOSPITALITY_MANAGERIAL_SOURCE,
   HOSPITALITY_JUNIOR_ADULT_RATE_SOURCE,
   HOSPITALITY_RATES,
+  HOSPITALITY_ALLOWANCES,
 } from "@/lib/constants/hospitality-award";
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
-import { HOSPITALITY_FAQS, casualHourly, findRate } from "@/modules/guide/hospitality-award-faqs";
+import { AllowanceTable, AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
+import { HOSPITALITY_FAQS, casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary", publisher: SOURCES.fwo.name },
@@ -40,6 +42,15 @@ const L6 = findRate(HOSPITALITY_RATES, "Level 6");
 
 const LOADING = HOSPITALITY_AWARD.casualLoading;
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
+
+const MATRIX_ROWS = HOSPITALITY_RATES.map((r) => ({ level: r.level, hourly: r.hourly }));
+/** Award Table 14 percentages; casual already includes the loading. */
+const MATRIX_COLUMNS = [
+  { label: "Mon–Fri", fullTime: 1, casual: 1 + HOSPITALITY_AWARD.casualLoading },
+  { label: "Saturday", fullTime: HOSPITALITY_PENALTIES.saturday, casual: HOSPITALITY_PENALTIES.casualSaturday },
+  { label: "Sunday", fullTime: HOSPITALITY_PENALTIES.sunday, casual: HOSPITALITY_PENALTIES.casualSunday },
+  { label: "Public holiday", fullTime: HOSPITALITY_PENALTIES.publicHoliday, casual: HOSPITALITY_PENALTIES.casualPublicHoliday },
+] as const;
 
 /** Gaps on this page are the non-retail entries in the shared unverified list. */
 const HOSPITALITY_GAPS = AWARD_UNVERIFIED.filter((g) => !g.startsWith("Retail"));
@@ -61,7 +72,7 @@ export default function HospitalityAwardRatesPage() {
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Hospitality Award Rates {SITE_CONFIG.financialYear}
+            Hospitality Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
             Every classification rate under the {HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code}) &mdash; cafes, restaurants, pubs, clubs and hotels &mdash; operative from {HOSPITALITY_AWARD.operativeFrom}.
@@ -70,6 +81,10 @@ export default function HospitalityAwardRatesPage() {
             <p className="text-base leading-relaxed text-navy">
               <strong>Direct answer:</strong> Adult hospitality rates run from <strong>{formatAUD(INTRO.hourly, 2)}</strong> an hour at the introductory level to <strong>{formatAUD(L6.hourly, 2)}</strong> at Level 6. Level 1 &mdash; the standard entry classification for a food and beverage attendant or kitchen hand &mdash; is <strong>{formatAUD(L1.hourly, 2)}</strong> an hour, or <strong>{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</strong> as a casual. Evening and night work add a <strong>flat cash amount</strong> per hour, not a percentage.
             </p>
+          </div>
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <PrintButton label="Print this pay guide / save as PDF" />
+            <span className="text-sm text-warmgray">Award code {HOSPITALITY_AWARD.code} &middot; rates from {HOSPITALITY_AWARD.operativeFrom}</span>
           </div>
           <TrustBar className="!max-w-none" />
         </header>
@@ -108,6 +123,32 @@ export default function HospitalityAwardRatesPage() {
                   </div>
                 </div>
               </div>
+            </section>
+
+            <section id="pay-guide">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</h2>
+              <p>
+                The hourly rate for every classification on each day of the week, for permanent and casual employees, in the layout of the Fair Work pay guide. Evening and night work add a flat amount on top &mdash; see <a href="#penalty-rates">penalty rates</a>.
+              </p>
+              <h3>Full-time and part-time</h3>
+              <PayGuideMatrix
+                rows={MATRIX_ROWS}
+                columns={MATRIX_COLUMNS}
+                employment="permanent"
+                casualLoading={LOADING}
+                caption="Hospitality award full-time and part-time hourly rates by day"
+              />
+              <h3>Casual (includes the {pct(LOADING)} loading)</h3>
+              <PayGuideMatrix
+                rows={MATRIX_ROWS}
+                columns={MATRIX_COLUMNS}
+                employment="casual"
+                casualLoading={LOADING}
+                caption="Hospitality award casual hourly rates by day"
+              />
+              <p className="text-sm text-warmgray">
+                Rates are the percentages in award Table 14 applied to each classification&rsquo;s hourly rate and rounded to the cent. Casual weekend and public holiday percentages already include the loading.
+              </p>
             </section>
 
             <section id="classifications">
@@ -171,9 +212,9 @@ export default function HospitalityAwardRatesPage() {
                         <tr key={row.label}>
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.perm)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.perm, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.perm), 2)}</td>
                           <td className="px-5 py-3 font-medium">{pct(row.cas)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.cas, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.cas), 2)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -201,14 +242,14 @@ export default function HospitalityAwardRatesPage() {
                       <tr>
                         <th scope="row" className="px-5 py-3 text-left font-medium">Evening</th>
                         <td className="px-5 py-3 font-medium">+{formatAUD(HOSPITALITY_PENALTIES.eveningPerHour, 2)}</td>
-                        <td className="px-5 py-3">{formatAUD(L1.hourly + HOSPITALITY_PENALTIES.eveningPerHour, 2)}</td>
-                        <td className="px-5 py-3">{formatAUD(L6.hourly + HOSPITALITY_PENALTIES.eveningPerHour, 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L1.hourly + HOSPITALITY_PENALTIES.eveningPerHour), 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L6.hourly + HOSPITALITY_PENALTIES.eveningPerHour), 2)}</td>
                       </tr>
                       <tr>
                         <th scope="row" className="px-5 py-3 text-left font-medium">Night</th>
                         <td className="px-5 py-3 font-medium">+{formatAUD(HOSPITALITY_PENALTIES.nightPerHour, 2)}</td>
-                        <td className="px-5 py-3">{formatAUD(L1.hourly + HOSPITALITY_PENALTIES.nightPerHour, 2)}</td>
-                        <td className="px-5 py-3">{formatAUD(L6.hourly + HOSPITALITY_PENALTIES.nightPerHour, 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L1.hourly + HOSPITALITY_PENALTIES.nightPerHour), 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L6.hourly + HOSPITALITY_PENALTIES.nightPerHour), 2)}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -248,7 +289,7 @@ export default function HospitalityAwardRatesPage() {
                         <tr key={row.l}>
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.l}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.v)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.v, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.v), 2)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -258,10 +299,10 @@ export default function HospitalityAwardRatesPage() {
 
               <h3>Casuals do not get the loading on overtime &mdash; and retail casuals do</h3>
               <p>
-                In hospitality the overtime clause operates on the <strong>ordinary hourly rate</strong>, and the award&rsquo;s definitions clause excludes the casual loading from that term. The consequence is concrete: for Monday to Friday, weekend and rostered-day-off overtime, <strong>a casual and a full-time employee on the same classification are paid identical overtime dollars.</strong> On Level 1 that is {formatAUD(L1.hourly * HOSPITALITY_OVERTIME.weekdayFirst2Hours, 2)} an hour for both.
+                In hospitality the overtime clause operates on the <strong>ordinary hourly rate</strong>, and the award&rsquo;s definitions clause excludes the casual loading from that term. The consequence is concrete: for Monday to Friday, weekend and rostered-day-off overtime, <strong>a casual and a full-time employee on the same classification are paid identical overtime dollars.</strong> On Level 1 that is {formatAUD(toCents(L1.hourly * HOSPITALITY_OVERTIME.weekdayFirst2Hours), 2)} an hour for both.
               </p>
               <p>
-                <strong>Public holidays are the exception.</strong> There the two do diverge &mdash; full-time overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime)} and casual overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual)}, or {formatAUD(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime, 2)} against {formatAUD(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual, 2)} on Level 1. Stating the rule without that carve-out understates casual public holiday pay.
+                <strong>Public holidays are the exception.</strong> There the two do diverge &mdash; full-time overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime)} and casual overtime is {pct(HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual)}, or {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.fullTime), 2)} against {formatAUD(toCents(L1.hourly * HOSPITALITY_PUBLIC_HOLIDAY_OVERTIME.casual), 2)} on Level 1. Stating the rule without that carve-out understates casual public holiday pay.
               </p>
               <p>
                 The <Link href="/retail-award-rates/">General Retail Industry Award</Link> does the opposite &mdash; the loading <em>is</em> included, so retail casual overtime is 175% against 150% for permanents. Two awards, two rules, and one payroll configuration cannot serve both. This is a common source of underpayment when a venue runs a bistro under one award and a shop under the other.
@@ -279,6 +320,7 @@ export default function HospitalityAwardRatesPage() {
                 standardWeeklyHours={EMPLOYMENT.standardWeeklyHours}
                 caption="Hospitality junior rates as a percentage of the adult rate"
                 adultLabel="Level 1"
+                casualLoading={LOADING}
               />
               <p>
                 Two things set hospitality apart. <strong>19-year-olds receive {pct(HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)}</strong> where the retail award pays 80%. And the <strong>full adult rate starts at 20</strong>, not 21.
@@ -297,10 +339,20 @@ export default function HospitalityAwardRatesPage() {
                 standardWeeklyHours={EMPLOYMENT.standardWeeklyHours}
                 caption="Hospitality junior office employee rates"
                 adultLabel="Level 1"
+                casualLoading={LOADING}
               />
               <p>
                 For how junior rates compare across awards and against the National Minimum Wage, see our <Link href="/junior-pay-rates/">junior pay rates guide</Link>.
               </p>
+            </section>
+
+            <section id="allowances">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Allowances</h2>
+              <p>
+                Fixed-dollar allowances in clause 26 of the award, from {HOSPITALITY_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost (such as special clothing) are not listed.
+              </p>
+              <AllowanceTable allowances={HOSPITALITY_ALLOWANCES} caption="Hospitality award allowances" />
+              <TakeHomeLinks rows={HOSPITALITY_RATES.map((r) => ({ level: r.level, hourly: r.hourly }))} heading="What does a hospitality rate take home?" />
             </section>
 
             <section id="not-covered">
@@ -379,21 +431,8 @@ export default function HospitalityAwardRatesPage() {
             <div className="sticky top-8 space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates</h2>
-                  <div className="space-y-3">
-                    {[
-                      { href: "/retail-award-rates/", label: "Retail Award Rates" },
-                      { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
-                      { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
-                      { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
-                      { href: "/award-rates/", label: "All Award Rates" },
-                    ].map((l) => (
-                      <Link key={l.href} href={l.href} className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-3 transition-all hover:border-eucalyptus/40 hover:shadow-sm">
-                        <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{l.label}</span>
-                        <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                      </Link>
-                    ))}
-                  </div>
+                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates A–Z</h2>
+                  <AwardDirectorySidebar currentHref="/hospitality-award-rates/" />
                 </CardContent>
               </Card>
 

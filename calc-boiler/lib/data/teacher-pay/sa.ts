@@ -31,6 +31,7 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   code: "SA",
   name: "South Australia",
   nameInSentence: "South Australia",
+  graduateStep: "Step 1",
   employer: "the SA Department for Education",
   agreementName:
     "South Australian School and Preschool Education Staff Enterprise Agreement 2024",

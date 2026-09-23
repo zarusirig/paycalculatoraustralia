@@ -26,8 +26,13 @@ const RATE = formatPercent(MEDICARE_LEVY.rate, 0);
 const LOWER = formatAUD(MEDICARE_LEVY.lowIncomeThreshold);
 const UPPER = formatAUD(MEDICARE_LEVY.shadeInThreshold);
 
-const TITLE = `Medicare Levy Calculator — ${RATE} Rate, Thresholds & Surcharge`;
-const DESCRIPTION = `Calculate your Medicare levy instantly, including the low-income shade-in between ${LOWER} and ${UPPER} that most calculators get wrong. Family and seniors thresholds plus the surcharge.`;
+// Retitled in place (23 Sep 2026) rather than moved to /medicare-levy-calculator/:
+// that URL already 301s here, and a move would touch ~20 files other
+// workstreams own. "Calculator" + "Surcharge Calculator" now lead the title.
+// No year in the title: the levy thresholds are the ATO's latest (2025-26,
+// they lag a year) while the MLS tiers are 2026-27.
+const TITLE = "Medicare Levy Calculator & Medicare Levy Surcharge Calculator";
+const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy with the low-income shade-in between ${LOWER} and ${UPPER}, family and seniors thresholds, plus a Medicare levy surcharge calculator with the ${MLS_INCOME_YEAR} MLS tiers.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -38,7 +43,7 @@ export const metadata: Metadata = {
     description: `Work out your Medicare levy including the shade-in, family and seniors thresholds, and the separate Medicare levy surcharge.`,
     url: URL,
     siteName: SITE_CONFIG.name,
-    type: "article",
+    type: "website",
     locale: "en_AU",
   },
   twitter: {

@@ -20,9 +20,12 @@ import {
   RETAIL_OVERTIME,
   RETAIL_PENALTIES,
   RETAIL_RATES,
+  RETAIL_ALLOWANCES,
 } from "@/lib/constants/hospitality-award";
+import { JUNIOR_PHASE_IN } from "@/lib/constants/modern-awards";
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
-import { casualHourly, findRate } from "@/modules/guide/hospitality-award-faqs";
+import { AllowanceTable, AwardDirectorySidebar, JuniorPhaseInTable, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
+import { casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
 import { RETAIL_FAQS } from "@/modules/guide/retail-award-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
@@ -35,6 +38,16 @@ const L1 = findRate(RETAIL_RATES, "Level 1");
 const L8 = findRate(RETAIL_RATES, "Level 8");
 const LOADING = RETAIL_AWARD.casualLoading;
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
+
+const MATRIX_ROWS = RETAIL_RATES.map((r) => ({ level: r.level, hourly: r.hourly }));
+/** Non-shiftworker penalties; casual percentages already include the loading. */
+const MATRIX_COLUMNS = [
+  { label: "Mon–Fri", fullTime: 1, casual: 1 + RETAIL_AWARD.casualLoading },
+  { label: "Mon–Fri after 6pm", fullTime: RETAIL_PENALTIES.eveningAfter6pm, casual: RETAIL_PENALTIES.casualEveningAfter6pm },
+  { label: "Saturday", fullTime: RETAIL_PENALTIES.saturday, casual: RETAIL_PENALTIES.casualSaturday },
+  { label: "Sunday", fullTime: RETAIL_PENALTIES.sunday, casual: RETAIL_PENALTIES.casualSunday },
+  { label: "Public holiday", fullTime: RETAIL_PENALTIES.publicHoliday, casual: RETAIL_PENALTIES.casualPublicHoliday },
+] as const;
 
 /** Gaps on this page are the retail entries in the shared unverified list. */
 const RETAIL_GAPS = AWARD_UNVERIFIED.filter((g) => g.startsWith("Retail"));
@@ -56,15 +69,19 @@ export default function RetailAwardRatesPage() {
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Retail Award Rates {SITE_CONFIG.financialYear}
+            Retail Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
             Every classification rate under the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}) &mdash; shops, supermarkets and retail chains &mdash; operative from {RETAIL_AWARD.operativeFrom}.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>Direct answer:</strong> Adult retail rates run from <strong>{formatAUD(L1.hourly, 2)}</strong> an hour ({formatAUD(L1.weekly, 2)} a week) at retail employee level 1, where most shop assistants sit, up to <strong>{formatAUD(L8.hourly, 2)}</strong> at level 8. A level 1 casual earns <strong>{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</strong> an hour, rising to {formatAUD(L1.hourly * RETAIL_PENALTIES.casualSunday, 2)} on a Sunday.
+              <strong>Direct answer:</strong> Adult retail rates run from <strong>{formatAUD(L1.hourly, 2)}</strong> an hour ({formatAUD(L1.weekly, 2)} a week) at retail employee level 1, where most shop assistants sit, up to <strong>{formatAUD(L8.hourly, 2)}</strong> at level 8. A level 1 casual earns <strong>{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</strong> an hour, rising to {formatAUD(toCents(L1.hourly * RETAIL_PENALTIES.casualSunday), 2)} on a Sunday.
             </p>
+          </div>
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <PrintButton label="Print this pay guide / save as PDF" />
+            <span className="text-sm text-warmgray">Award code {RETAIL_AWARD.code} &middot; rates from {RETAIL_AWARD.operativeFrom}</span>
           </div>
           <TrustBar className="!max-w-none" />
         </header>
@@ -85,6 +102,34 @@ export default function RetailAwardRatesPage() {
               />
               <p className="text-sm text-warmgray">
                 Weekly rates are as published by the Fair Work Ombudsman. Hourly is the weekly rate divided by {EMPLOYMENT.standardWeeklyHours} ordinary hours. The casual column adds the {pct(LOADING)} loading.
+              </p>
+            </section>
+
+            <section id="pay-guide">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Retail Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</h2>
+              <p>
+                The hourly rate for every retail level on each day, for permanent and casual non-shiftworkers, in the layout of the Fair Work pay guide.
+              </p>
+              <h3>Full-time and part-time</h3>
+              <PayGuideMatrix
+                rows={MATRIX_ROWS}
+                columns={MATRIX_COLUMNS}
+                employment="permanent"
+                casualLoading={LOADING}
+                caption="Retail award full-time and part-time hourly rates by day"
+                levelHeading="Retail employee level"
+              />
+              <h3>Casual (includes the {pct(LOADING)} loading)</h3>
+              <PayGuideMatrix
+                rows={MATRIX_ROWS}
+                columns={MATRIX_COLUMNS}
+                employment="casual"
+                casualLoading={LOADING}
+                caption="Retail award casual hourly rates by day"
+                levelHeading="Retail employee level"
+              />
+              <p className="text-sm text-warmgray">
+                The award&rsquo;s penalty percentages applied to each level&rsquo;s hourly rate and rounded to the cent. Casual percentages already include the loading.
               </p>
             </section>
 
@@ -117,9 +162,9 @@ export default function RetailAwardRatesPage() {
                         <tr key={row.label}>
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.perm)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.perm, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.perm), 2)}</td>
                           <td className="px-5 py-3 font-medium">{pct(row.cas)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.cas, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.cas), 2)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -162,7 +207,7 @@ export default function RetailAwardRatesPage() {
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.l}</th>
                           <td className="px-5 py-3 font-medium">{pct(row.p)}</td>
                           <td className="px-5 py-3 font-medium">{pct(row.c)}</td>
-                          <td className="px-5 py-3">{formatAUD(L1.hourly * row.c, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L1.hourly * row.c), 2)}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -172,7 +217,7 @@ export default function RetailAwardRatesPage() {
 
               <h3>Retail casuals do get the loading on overtime</h3>
               <p>
-                The award&rsquo;s own note to the overtime table states that casual overtime rates were calculated by <strong>adding the casual loading</strong> to the full-time rates. So a casual working the first three hours of overtime is on {pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} where a permanent employee is on {pct(RETAIL_OVERTIME.weekdayFirst3Hours)} &mdash; {formatAUD(L1.hourly * RETAIL_OVERTIME.casualWeekdayFirst3Hours, 2)} against {formatAUD(L1.hourly * RETAIL_OVERTIME.weekdayFirst3Hours, 2)} at level 1.
+                The award&rsquo;s own note to the overtime table states that casual overtime rates were calculated by <strong>adding the casual loading</strong> to the full-time rates. So a casual working the first three hours of overtime is on {pct(RETAIL_OVERTIME.casualWeekdayFirst3Hours)} where a permanent employee is on {pct(RETAIL_OVERTIME.weekdayFirst3Hours)} &mdash; {formatAUD(toCents(L1.hourly * RETAIL_OVERTIME.casualWeekdayFirst3Hours), 2)} against {formatAUD(toCents(L1.hourly * RETAIL_OVERTIME.weekdayFirst3Hours), 2)} at level 1.
               </p>
               <p>
                 <strong>Hospitality does the opposite.</strong> There the loading is excluded from overtime altogether, so casual and full-time overtime dollars are the same. If you work across both awards, this is the difference most likely to show up as an underpayment.
@@ -190,6 +235,7 @@ export default function RetailAwardRatesPage() {
                 standardWeeklyHours={EMPLOYMENT.standardWeeklyHours}
                 caption="Retail award junior rates as a percentage of the adult rate"
                 adultLabel="level 1"
+                casualLoading={LOADING}
               />
               <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <div className="flex items-start gap-4">
@@ -205,9 +251,28 @@ export default function RetailAwardRatesPage() {
               <p>
                 Two other features are unusual. The <strong>20-year-old band splits on length of service</strong>, so a 20-year-old moves to the full adult rate after more than six months with the same employer. And 19-year-olds receive {pct(RETAIL_JUNIOR_SCALE.find((b) => b.age === "19")!.percentage)} here where the hospitality award pays 85%.
               </p>
+              <h3>Junior rates from 1 December 2026: a phase-in, not the adult rate</h3>
               <p>
-                For how these compare with the Fast Food and Hair &amp; Beauty awards and with the National Minimum Wage, and for the pending change that would raise 18 to 20-year-old rates, see our <Link href="/junior-pay-rates/">junior pay rates guide</Link>.
+                Determination {JUNIOR_PHASE_IN.retail.determination}, made on {JUNIOR_PHASE_IN.decidedOn} under {JUNIOR_PHASE_IN.decision}, replaces the retail junior table for levels 1 to 3. Employees aged 18 and 19 <strong>who have been employed by their employer for more than 6 months</strong> move up 5 percentage points from the first full pay period on or after 1 December 2026, then 5 more each July and December until they reach the adult rate. Twenty-year-olds with more than 6 months already receive the adult rate. Under-18 rates, and the rates for the first 6 months with an employer, do not change.
               </p>
+              <JuniorPhaseInTable
+                schedule={JUNIOR_PHASE_IN.retail}
+                adultWeekly={L1.weekly}
+                baseLabel="retail employee level 1"
+                caption="Retail award junior rate phase-in from 1 December 2026"
+              />
+              <p>
+                For how these compare with the Fast Food and Hair &amp; Beauty awards and with the National Minimum Wage, see our <Link href="/junior-pay-rates/">junior pay rates guide</Link>.
+              </p>
+            </section>
+
+            <section id="allowances">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Retail Allowances</h2>
+              <p>
+                Fixed-dollar allowances in clause 19 of the award, from {RETAIL_AWARD.operativeFrom}. Each is paid only where the clause&rsquo;s conditions are met; reimbursements of actual cost are not listed.
+              </p>
+              <AllowanceTable allowances={RETAIL_ALLOWANCES} caption="Retail award allowances" />
+              <TakeHomeLinks rows={MATRIX_ROWS} heading="What does a retail rate take home?" />
             </section>
 
             <section id="not-covered">
@@ -286,21 +351,8 @@ export default function RetailAwardRatesPage() {
             <div className="sticky top-8 space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates</h2>
-                  <div className="space-y-3">
-                    {[
-                      { href: "/hospitality-award-rates/", label: "Hospitality Award Rates" },
-                      { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
-                      { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
-                      { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
-                      { href: "/award-rates/", label: "All Award Rates" },
-                    ].map((l) => (
-                      <Link key={l.href} href={l.href} className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-3 transition-all hover:border-eucalyptus/40 hover:shadow-sm">
-                        <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{l.label}</span>
-                        <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                      </Link>
-                    ))}
-                  </div>
+                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates A–Z</h2>
+                  <AwardDirectorySidebar currentHref="/retail-award-rates/" />
                 </CardContent>
               </Card>
 

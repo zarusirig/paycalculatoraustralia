@@ -28,6 +28,8 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   code: "VIC",
   name: "Victoria",
   nameInSentence: "Victoria",
+  metaTitle: "Teacher Salary Victoria 2026 — VIC Teachers Pay Scale & Wages",
+  h1: "Teacher Salary Victoria 2026 — Victorian Government School Teachers Pay Scale",
   employer: "Victorian Department of Education",
   agreementName: "Victorian Government Schools Agreement 2022 (VGSA 2022)",
   agreementUrl: "https://www2.education.vic.gov.au/pal/salary-rates/overview",
@@ -35,9 +37,9 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   nextIncrease: {
     date: "not yet published",
     detail:
-      "1 July 2025 is the final salary column the VGSA 2022 makes. A replacement agreement was announced in-principle on 17 August 2026, but no new salary schedule has been published, so this page does not show one.",
+      "1 July 2025 is the final salary column the VGSA 2022 makes. The replacement agreement was approved by staff ballot (93.1% yes, announced 17 September 2026) and now goes to the Fair Work Commission; the government says pay rises at least 13% by October 2026. No official salary schedule has been published yet, so no new figure is tabled.",
   },
-  verifiedOn: "28 August 2026",
+  verifiedOn: "23 September 2026",
 
   scales: [
     {
@@ -176,7 +178,7 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
 
   notices: [
     "The VGSA 2022's nominal expiry date was 31 December 2025 and 1 July 2025 is the last salary column it makes. The department has not published a newer schedule, so the rates below are what is published and payable.",
-    "An in-principle replacement agreement was announced on 17 August 2026, promising increases of 28.3% to 32.4% over four years and taking an experienced teacher from $118,063 to $151,419 by 2029. No new salary schedule has been published, so no figure from it is tabled here — this page will not estimate one.",
+    "A replacement agreement was announced in-principle on 17 August 2026, taking an experienced teacher from $118,063 to $151,419 by 2029. Staff approved it in a ballot announced on 17 September 2026, with 93.1% voting yes; the government says salaries rise by at least 28.3% over four years and at least 13% by October 2026, plus a $2,000 lump sum when the agreement starts. It still needs Fair Work Commission approval — which the government says can take up to six weeks — and the new pay starts seven days after the approved agreement is published. No official salary schedule exists yet, so no figure from it is tabled here.",
   ],
 
   unverified: [
@@ -187,6 +189,11 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   ],
 
   sources: [
+    {
+      title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)",
+      publisher: "Premier of Victoria",
+      url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise",
+    },
     {
       title: "Salary Rates: Overview (teacher and principal class salary schedules)",
       publisher: "Victorian Department of Education",

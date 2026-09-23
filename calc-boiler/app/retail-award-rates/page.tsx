@@ -15,7 +15,7 @@ const URL = `${BASE}/retail-award-rates/`;
 const L1 = findRate(RETAIL_RATES, "Level 1");
 const L8 = findRate(RETAIL_RATES, "Level 8");
 
-const TITLE = `Retail Award Rates ${SITE_CONFIG.financialYear} — Pay by Level & Penalty Rates`;
+const TITLE = `Retail Award Pay Rates ${SITE_CONFIG.financialYear} (${RETAIL_AWARD.code}) — Casual, Penalty & Junior Rates`;
 const DESCRIPTION = `Current ${RETAIL_AWARD.code} pay rates from ${RETAIL_AWARD.operativeFrom}: level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L8.hourly, 2)} at level 8, casual ${formatAUD(casualHourly(L1.hourly, RETAIL_AWARD.casualLoading), 2)}. Weekend, evening and public holiday penalties, overtime with the casual loading included, and junior rates by age.`;
 
 export const metadata: Metadata = {

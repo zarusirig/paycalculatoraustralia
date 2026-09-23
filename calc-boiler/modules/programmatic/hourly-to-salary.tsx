@@ -5,7 +5,6 @@ import {
   formatAUD,
   formatPercent,
   EMPLOYMENT,
-  HECS_HELP,
   SITE_CONFIG,
   SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
@@ -38,10 +37,10 @@ interface HourlyToSalaryProps {
 
 export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   const gross = annualFromHourly(rate);
-  const breakdown = calculatePayBreakdown({
-    grossSalary: gross,
-    includeHECS: gross >= HECS_HELP.minimumThreshold,
-  });
+  // No HECS in the headline figures (the page title quotes them, and "after
+  // tax" is asked for someone without a study loan); the loan case is noted.
+  const breakdown = calculatePayBreakdown({ grossSalary: gross });
+  const withHecs = calculatePayBreakdown({ grossSalary: gross, includeHECS: true });
   const net = breakdown.takeHomePay;
   const netHourly = net / HOURS_PER_YEAR;
   const casual = rate * (1 + EMPLOYMENT.casualLoading);
@@ -115,8 +114,10 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
         </div>
         <p className="text-xs text-warmgray-light mt-2">
           Based on {STANDARD_HOURS} hours a week over {WEEKS} weeks ({HOURS_PER_YEAR.toLocaleString()} hours a
-          year), FY{SITE_CONFIG.financialYear} resident rates including the Medicare levy
-          {gross >= HECS_HELP.minimumThreshold ? " and compulsory HECS-HELP repayments" : ""}.
+          year), FY{SITE_CONFIG.financialYear} resident rates including the Medicare levy, with no HECS-HELP debt.
+          {withHecs.hecsRepayment > 0
+            ? ` With a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} brings the annual figure to ${formatAUD(withHecs.takeHomePay)}.`
+            : ""}
         </p>
       </section>
 
@@ -145,10 +146,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
             <tbody className="divide-y divide-sandstone-dark/20 bg-white">
               {HOURS_VARIANTS.map((hours) => {
                 const annual = annualFromHourly(rate, hours);
-                const b = calculatePayBreakdown({
-                  grossSalary: annual,
-                  includeHECS: annual >= HECS_HELP.minimumThreshold,
-                });
+                const b = calculatePayBreakdown({ grossSalary: annual });
                 const standard = hours === STANDARD_HOURS;
                 return (
                   <tr key={hours} className={standard ? "bg-eucalyptus-light/40" : ""}>

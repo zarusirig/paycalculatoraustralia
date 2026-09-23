@@ -45,6 +45,8 @@ export const VIC_NURSING_PAY: NursingStateData = {
   code: "VIC",
   name: "Victoria",
   shortName: "VIC",
+  metaTitle: "VIC Nurse Pay Rates 2026 — Victorian Nurses Salary & Wages",
+  h1: "VIC Nurse Pay Rates 2026 — Victorian Public Sector Nurses Salary & Wages",
   employer: "Victorian public health services (single interest employer bargaining)",
   ordinaryHoursPerWeek: 38,
 

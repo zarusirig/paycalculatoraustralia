@@ -151,6 +151,46 @@ export interface Jurisdiction {
   unverified: readonly string[];
   faqs: readonly PayFaq[];
   verifiedOn: string;
+  /**
+   * Optional "salary by level" sections — one H2 and anchor per classification
+   * ("VPS 4 salary 2026", "APS 6 salary 2026"), built from an existing schedule
+   * so no figure is typed twice. See `levelSections` in ./index.ts.
+   */
+  levelGuide?: LevelGuide;
+}
+
+/**
+ * Which schedule's classifications get their own section on the spoke page.
+ * Pure data (no functions) because the page component is a client component.
+ */
+export interface LevelGuide {
+  /** The schedule whose bands are sectioned. */
+  scheduleId: string;
+  /** Streams of that schedule to include, in order. Omit for every stream. */
+  streamIds?: readonly string[];
+  /**
+   * Other schedules whose band with the same `code` is quoted alongside, in
+   * order — e.g. the APS-wide salary thresholds and one named agency's
+   * agreement beside the APS-wide survey figures. `label` introduces the line.
+   */
+  compare?: readonly { scheduleId: string; label: string }[];
+  /**
+   * Further schedules whose every stream is sectioned after the first one — e.g.
+   * South Australia's School Services Officers, who sit on a separate agreement.
+   */
+  extraScheduleIds?: readonly string[];
+  /** The year used in the section headings, e.g. "2026". */
+  year: string;
+  /**
+   * Heading pattern with {label} and {year} placeholders. Defaults to
+   * "{label} salary {year}"; WA uses "WA {label} salary {year}" because a bare
+   * "Level 5" means nothing out of context.
+   */
+  headingTemplate?: string;
+  /** Heading of the wrapper section, e.g. "VPS salary by grade". */
+  title: string;
+  /** One paragraph under that heading. */
+  intro: string;
 }
 
 /** A jurisdiction the cluster will cover later. Listed, never faked. */

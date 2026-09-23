@@ -93,7 +93,7 @@ export const ATO_SCHEDULE_1: AtoScheduleDoc = {
   pageUrl:
     "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld",
   published: "17 June 2026",
-  qc: "QC107122",
+  qc: "QC107116",
 };
 
 export const ATO_SCHEDULE_8: AtoScheduleDoc = {

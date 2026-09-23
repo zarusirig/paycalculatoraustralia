@@ -3,18 +3,30 @@ import SuperannuationCalculatorPage from "@/modules/calculator/superannuation-ca
 import { SUPERANNUATION_FAQS } from "@/modules/calculator/superannuation-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { calculateSuper, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-calculator/`;
 
+const FY = SITE_CONFIG.financialYear;
+const SG = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
+const SUPER_80K = calculateSuper(80_000);
+
+// 15k impr at 0.31% CTR (pos 6.2) under "Super Guarantee Calculator — 12% SG
+// on Your Salary". DataForSEO shows the demand is plain-English: "calculate
+// super on salary", "superannuation calculator for employers", "how much
+// employer super contribution", "sg calculator". Title answers that; the
+// description leads with a computed figure and the Payday Super change.
+const TITLE = `Super Calculator ${FY}: How Much Super Your Employer Pays`;
+const DESCRIPTION = `Your employer pays ${SG} super on top of salary: ${formatAUD(SUPER_80K)} a year on $80,000, paid with every pay from ${SUPER_GUARANTEE.paydaySuperStart}. Total package and ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap space for ${FY}.`;
+
 export const metadata: Metadata = {
-  title: "Super Guarantee Calculator — 12% SG on Your Salary",
-  description: "Calculate your superannuation contribution at the 12% SG rate for FY2026-27. See employer super, total package, and contribution cap space.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: "Superannuation Calculator Australia", description: "Calculate employer super at 12% SG rate. Free, updated for FY2026-27.", url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: "Super Calculator Australia", description: "Employer SG at 12% for FY2026-27." },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  twitter: { card: "summary_large_image", title: TITLE, description: `Employer super at ${SG} for ${FY}.` },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [

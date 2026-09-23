@@ -157,9 +157,14 @@ export type GuideAuthorship = {
 export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // Tax & deductions guides — James Harrington
   "tax-brackets": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-10" },
-  "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
-  "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  "jobseeker-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "austudy-youth-allowance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "age-pension-income-test-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  // C4 Centrelink family payments (added 2026-09-23)
+  "parenting-payment-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "family-tax-benefit-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "rent-assistance-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // end C4
   "salary-package-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "commission-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "medicare-levy": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
@@ -188,12 +193,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
 
   // Employment & pay guides — Penny Ward
   "understanding-your-payslip": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-09" },
-  "award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-08" },
+  "award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "contractor-vs-employee": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-06" },
   "redundancy-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-05" },
   "overtime-penalty-rates-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-04" },
   "annual-leave-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-07" },
-  "centrelink-income-test": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-03" },
+  "centrelink-income-test": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "parental-leave-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-02" },
 
   // Wave 8-11 Expansion Guides — Tax & Deductions (James Harrington)
@@ -220,10 +225,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "salary-vs-hourly": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
   "employee-vs-sole-trader-vs-company": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "full-time-vs-part-time-vs-casual": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
-  "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
+  "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "mining-fifo-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
   "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "teacher-pay-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
+  // C1 employer pay rates (hub + every /pay-rates/[employer]/ page)
+  "pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "long-service-leave-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "retail-hospitality-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "tech-salary-guide-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
@@ -236,9 +243,16 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "super-guarantee-charge": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
 
   // Per-award rate pages — Penny Ward (employment & pay)
-  "schads-award-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
-  "hospitality-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
-  "retail-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  "schads-award-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "hospitality-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "retail-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- Award cluster C3 (Sep 2026): additional per-award rate pages ---
+  "fast-food-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "pharmacy-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "manufacturing-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "security-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "clerks-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end award cluster C3 ---
   "junior-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
 
   // Wave 13 Expansion — Payslip Tools (tax-table slugs registered above)
@@ -250,6 +264,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "job-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "adf-pay-scales": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end C2/C5 ---
+
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  "minimum-wage-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "minimum-wage-by-age": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "pro-rata-salary-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "casual-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end minimum wage cluster ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

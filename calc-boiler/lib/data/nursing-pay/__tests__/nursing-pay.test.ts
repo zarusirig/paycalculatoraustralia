@@ -22,7 +22,12 @@ import {
   hourlyFor,
   instrumentFor,
   nearestTakeHomeSalary,
+  nursingPageH1,
+  nursingPageTitle,
+  ratesYear,
   registeredNurseRange,
+  scaleAnchor,
+  scaleSummaries,
   takeHomeHref,
   SCALE_FAMILY_ORDER,
   TAKE_HOME_MAX,
@@ -261,4 +266,53 @@ test("aged care award rates are higher than the general award rates at level 1",
   const general = NURSES_AWARD_GENERAL.find((s) => s.classification === "Registered nurse — level 1")!;
   const agedCare = NURSES_AWARD_AGED_CARE.find((s) => s.classification === "Registered nurse — aged care level 1")!;
   assert.ok(agedCare.points[0].weekly > general.points[0].weekly);
+});
+
+// ---------- titles, anchors and the at-a-glance table ----------
+
+test("every state page title leads with '<STATE> Nurse Pay Rates <year>'", () => {
+  for (const state of STATES) {
+    const title = nursingPageTitle(state);
+    assert.ok(
+      title.startsWith(`${state.shortName} Nurse Pay Rates ${ratesYear(state)}`),
+      `${state.slug}: ${title}`,
+    );
+    assert.ok(title.length <= 65, `${state.slug} title is ${title.length} chars`);
+    assert.ok(nursingPageH1(state).includes(ratesYear(state)), `${state.slug} H1 has no year`);
+  }
+});
+
+test("QLD title targets the Queensland Health nursing query", () => {
+  assert.equal(
+    nursingPageTitle(getNursingPay("qld")!),
+    "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
+  );
+});
+
+test("scale anchors are unique within each state and URL-safe", () => {
+  for (const state of STATES) {
+    const ids = state.scales.map((scale) => scaleAnchor(state, scale));
+    assert.equal(new Set(ids).size, ids.length, `${state.slug}: duplicate anchors ${ids.join(", ")}`);
+    for (const id of ids) assert.match(id, /^[a-z0-9]+(-[a-z0-9]+)*$/, `${state.slug}: bad anchor ${id}`);
+  }
+  assert.equal(scaleAnchor(getNursingPay("qld")!, getNursingPay("qld")!.scales[0]), "nurse-grade-5");
+});
+
+test("at-a-glance rows match the full tables they summarise", () => {
+  for (const state of STATES) {
+    const rows = scaleSummaries(state);
+    assert.equal(rows.length, state.scales.length);
+    for (const row of rows) {
+      const priced = row.scale.points.map(annualFor).filter((a): a is number => a !== null);
+      if (priced.length === 0) {
+        assert.equal(row.low, null);
+        continue;
+      }
+      assert.equal(row.low, Math.min(...priced), `${state.slug} ${row.scale.classification} low`);
+      assert.equal(row.high, Math.max(...priced), `${state.slug} ${row.scale.classification} high`);
+    }
+  }
+  const qldRn = scaleSummaries(getNursingPay("qld")!)[0];
+  assert.equal(qldRn.low, 83_872, "QLD Nurse Grade 5 re-entry rate");
+  assert.equal(qldRn.high, 112_607, "QLD Nurse Grade 5 pay point 7");
 });

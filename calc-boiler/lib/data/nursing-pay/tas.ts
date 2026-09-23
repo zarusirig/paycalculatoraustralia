@@ -39,6 +39,8 @@ export const TAS_NURSING_PAY: NursingStateData = {
   code: "TAS",
   name: "Tasmania",
   shortName: "TAS",
+  metaTitle: "TAS Nurse Pay Rates 2026 — Tasmanian Health Nursing Salary",
+  h1: "TAS Nurse Pay Rates 2026 — Tasmanian Department of Health Nursing Pay Scales",
   employer: "Department of Health Tasmania (Tasmanian State Service)",
   ordinaryHoursPerWeek: 38,
 

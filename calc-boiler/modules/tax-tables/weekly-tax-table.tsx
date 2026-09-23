@@ -12,9 +12,11 @@ import {
   calculatePAYGWithholding,
   NO_TFN_RATES,
   PAYG_TABLES_UPDATED,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
 } from "@/lib/constants/payg-withholding";
 import TaxTableLookupWidget from "./lookup-widget";
-import WithholdingTable from "./withholding-table";
+import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import ExtraPayTable from "./extra-pay-table";
 import AtoDownloads from "./ato-downloads";
@@ -63,18 +65,18 @@ export default function WeeklyTaxTablePage() {
         </nav>
 
         {/* HERO HEADER */}
-        <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Weekly Tax Table 2026-27 (ATO NAT 1005) — PAYG Withholding Amounts
+        <header id="lookup" className="mb-10 lg:mb-14 max-w-5xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Weekly Tax Table {PAYG_FINANCIAL_YEAR} (ATO {ATO_WEEKLY.nat})
           </h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-3">
-            The weekly tax table &mdash; published by the ATO as <strong>{ATO_WEEKLY.nat}</strong> &mdash; sets out how much
-            tax your employer must withhold from each weekly pay under the PAYG system. For 2026-27, a worker
-            earning {formatAUD(1_000)} a week and claiming the tax-free threshold has {formatAUD(example1000.totalWithheld)} withheld,
-            taking home {formatAUD(example1000.netPerPeriod)}.
+          <p className="text-lg md:text-xl text-warmgray leading-relaxed mb-5">
+            Enter your weekly earnings to see the tax withheld under the ATO weekly tax table. For {PAYG_FINANCIAL_YEAR},{" "}
+            {formatAUD(1_000)} a week with the tax-free threshold claimed has <strong>{formatAUD(example1000.totalWithheld)}</strong>{" "}
+            withheld ({formatAUD(example1000.netPerPeriod)} take-home).
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">
-            {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the FY2026-27 rate cut (15% on $18,201&ndash;$45,000)
+          <TaxTableLookupWidget frequency="weekly" defaultGross={1_000} />
+          <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
+            {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -83,32 +85,22 @@ export default function WeeklyTaxTablePage() {
 
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            <section id="lookup">
-              <h2>Weekly Tax Table Lookup — Check Your Withholding Instantly</h2>
-              <p>
-                Enter your gross weekly pay to see the PAYG amount your employer should withhold this
-                financial year, including the study loan (STSL) component if you have a HECS-HELP debt.
-              </p>
-              <TaxTableLookupWidget frequency="weekly" defaultGross={1_500} />
-            </section>
-
             <section id="weekly-tax-table-2026-27">
-              <h2>Weekly Tax Table 2026-27 (NAT 1005)</h2>
+              <h2>Full Weekly Tax Table {PAYG_FINANCIAL_YEAR} — With and Without the Tax-Free Threshold</h2>
               <p>
-                The table below lists PAYG withholding for common weekly earnings under the 2026-27
-                resident rates, in the three most-used {ATO_WEEKLY.nat} columns: claiming the tax-free
-                threshold (column 2 of the ATO table), claiming the threshold with a study loan, and not
-                claiming the threshold (column 3, typical for a{" "}
-                <Link href="/second-job-tax-calculator/">second job</Link>).
+                The table lists the amount to withhold from weekly earnings in {formatAUD(50)} steps, in the two
+                {" "}{ATO_WEEKLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
+                table) and not claimed (column 3, typical for a{" "}
+                <Link href="/second-job-tax-calculator/">second job</Link>) &mdash; plus the total with a study loan.
+                Switch to {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an older pay run, or download every dollar as a CSV.
               </p>
-              <WithholdingTable
+              <FullTaxTable
                 frequency="weekly"
-                amounts={WEEKLY_TABLE_ROWS}
-                caption="Weekly PAYG withholding amounts for 2026-27 by gross weekly earnings, ATO NAT 1005"
+                caption={`Weekly tax table: PAYG withholding by weekly earnings, ATO ${ATO_WEEKLY.nat}`}
               />
               <p className="text-sm text-warmgray-light">
-                Every figure is computed at page load from the ATO Schedule 1 coefficients, so it reproduces
-                the printed {ATO_WEEKLY.nat} look-up table exactly.{" "}
+                Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
+                sample amounts exactly.{" "}
                 <Link href="/weekly-pay-calculator/">Calculate your exact weekly pay here.</Link>
               </p>
             </section>

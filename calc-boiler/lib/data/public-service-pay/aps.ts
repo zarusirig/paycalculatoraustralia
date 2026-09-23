@@ -3,13 +3,16 @@
 //
 // THE TRAP THIS FILE EXISTS TO HANDLE: the APS has no single pay scale. Each
 // agency bargains its own enterprise agreement, so "the APS 6 salary" is a
-// range across ~102 agencies, not one number. Two schedules are published here
-// and they are labelled differently on purpose:
+// range across ~102 agencies, not one number. Three schedules are published
+// here and they are labelled differently on purpose:
 //
 //   1. apsc-2025 — the APSC's own APS-wide remuneration data at 31 December
 //      2025. These are ACTUAL salaries reported by every agency, expressed as
-//      percentiles. This is the only APS-wide figure that exists.
-//   2. treasury-2026 — ONE named agency's agreement, shown as an example of
+//      percentiles.
+//   2. aps-thresholds-2026 — the service-wide salary THRESHOLDS every agency's
+//      range must meet or exceed from 12 March 2026. A floor for agency ranges,
+//      never presented as what anyone is paid.
+//   3. treasury-2026 — ONE named agency's agreement, shown as an example of
 //      what a real pay-point scale looks like. It is never presented as "the"
 //      APS scale.
 //
@@ -26,12 +29,30 @@ export const APS: Jurisdiction = {
   label: "APS (federal)",
   verifiedOn: "28 August 2026",
 
-  headline:
-    "There is no single APS pay scale. Across the whole service at 31 December 2025 the median APS 6 base salary was $108,092, with 90% of APS 6 staff paid between $97,316 and $115,199. The median was $92,324 at APS 5, $135,701 at EL 1, $168,064 at EL 2, $253,804 at SES Band 1 and $321,888 at SES Band 2. Each agency bargains its own enterprise agreement, so your agency's number sits somewhere inside those ranges.",
+  levelGuide: {
+    scheduleId: "apsc-2025",
+    compare: [
+      {
+        scheduleId: "aps-thresholds-2026",
+        label: "APS-wide minimum range every agency must meet or exceed, from 12 March 2026",
+      },
+      {
+        scheduleId: "treasury-2026",
+        label: "One agency's actual scale, not the APS rate — Treasury Enterprise Agreement 2024",
+      },
+    ],
+    year: "2026",
+    title: "APS salary by level",
+    intro:
+      "One section per APS level. The table is the 5th to 95th percentile of base salaries actually paid across every agency at 31 December 2025, before the 3.4% service-wide increase from March 2026; the median is the middle salary. Under each table are the APS-wide salary thresholds from the service-wide bargaining package — the minimum and maximum every agency's range for that level must at least reach from 12 March 2026 — and, where the level exists there, the Treasury Enterprise Agreement 2024 pay points as a worked example of one real agency scale. Every salary links to the nearest take-home pay page.",
+  },
 
-  metaTitle: "APS Pay Scales 2026 — APS 1–6, EL1, EL2 and SES Salary Ranges",
+  headline:
+    "There is no single APS pay scale. Across the whole service at 31 December 2025 the median APS 6 base salary was $108,092, with 90% of APS 6 staff paid between $97,316 and $115,199. The median was $82,906 at APS 4, $92,324 at APS 5, $135,701 at EL 1 and $168,064 at EL 2. Each agency bargains its own enterprise agreement, but from 12 March 2026 every agency's APS 6 range must reach at least $99,734 at the bottom and $111,701 at the top under the service-wide salary thresholds.",
+
+  metaTitle: "APS Pay Scales 2026 — APS 4, APS 5, APS 6, EL1 & EL2 Salary Ranges",
   metaDescription:
-    "What each APS level actually pays: APS-wide base salary ranges and medians for APS 1–6, EL 1, EL 2 and SES Bands 1–3 from the APSC's 31 December 2025 remuneration data, plus a real agency pay-point scale and what each band is worth after tax.",
+    "APS 4, APS 5, APS 6, EL1 and EL2 salaries in 2026: the APS-wide salary thresholds from 12 March 2026, actual pay ranges and medians from the APSC's remuneration data, a real agency pay-point scale, and each salary after tax.",
 
   instrument:
     "Agency enterprise agreements made under the Fair Work Act 2009, using the classifications in the Public Service Classification Rules 2000. Since 2023 they have been bargained service-wide for common terms, but pay ranges are still set agency by agency.",
@@ -206,6 +227,46 @@ export const APS: Jurisdiction = {
       ],
     },
     {
+      // APS Bargaining Statement of Common Conditions (APSC, 30 November 2023),
+      // pp. 36–37, "Salary thresholds for the pay fragmentation mechanism",
+      // column "Year 3: Fragmentation 2.0 per cent, Increase 3.4 per cent".
+      // The common salary clause on p. 35 dates the 3.4% increase "from the
+      // first full pay period on or after 1 March 2026 (the 12 March 2026)".
+      // Read 23 September 2026 from the Wayback Machine copy of the APSC PDF
+      // (apsc.gov.au refused direct fetches). Treasury's APS 1.1 of $57,497
+      // equals the APS 1 threshold minimum exactly, which is the fragmentation
+      // mechanism working as described.
+      id: "aps-thresholds-2026",
+      title: "APS-wide salary thresholds from 12 March 2026 (pay fragmentation mechanism)",
+      coverage:
+        "Every APS agency. These are the minimum and maximum salary thresholds each agency's pay range for a classification must meet or exceed under the service-wide bargaining package — a floor for agency ranges, not a pay scale anyone is paid on.",
+      basis: "agreement",
+      effectiveFrom: "12 March 2026",
+      rangeMeaning:
+        "The lowest bottom and lowest top an agency's range for the level may have. Many agencies pay above both.",
+      sourceId: "apsc-common-conditions",
+      note:
+        "Published for APS 1 to EL 2 only. SES employees are outside the agency enterprise agreements, so there is no threshold for them.",
+      streams: [
+        {
+          id: "aps-thresholds",
+          name: "Salary thresholds by classification",
+          description:
+            "Year 3 thresholds, after the 2.0% fragmentation adjustment and the 3.4% service-wide increase.",
+          bands: [
+            { code: "APS 1", name: "APS 1 threshold", aliases: [], summary: "Minimum range for APS 1.", min: 57_497, max: 60_946 },
+            { code: "APS 2", name: "APS 2 threshold", aliases: [], summary: "Minimum range for APS 2.", min: 62_775, max: 68_425 },
+            { code: "APS 3", name: "APS 3 threshold", aliases: [], summary: "Minimum range for APS 3.", min: 70_477, max: 76_820 },
+            { code: "APS 4", name: "APS 4 threshold", aliases: [], summary: "Minimum range for APS 4.", min: 79_125, max: 86_246 },
+            { code: "APS 5", name: "APS 5 threshold", aliases: [], summary: "Minimum range for APS 5.", min: 88_834, max: 96_829 },
+            { code: "APS 6", name: "APS 6 threshold", aliases: [], summary: "Minimum range for APS 6.", min: 99_734, max: 111_701 },
+            { code: "EL 1", name: "EL 1 threshold", aliases: [], summary: "Minimum range for EL 1.", min: 121_755, max: 132_713 },
+            { code: "EL 2", name: "EL 2 threshold", aliases: [], summary: "Minimum range for EL 2.", min: 140_675, max: 153_336 },
+          ],
+        },
+      ],
+    },
+    {
       id: "treasury-2026",
       title: "One agency's scale: Treasury Enterprise Agreement 2024, from 12 March 2026",
       coverage:
@@ -373,6 +434,16 @@ export const APS: Jurisdiction = {
       note: "Source for 11.2% over three years — 4%, 3.8% and 3.4% from March 2024, 2025 and 2026.",
     },
     {
+      id: "apsc-common-conditions",
+      title: "APS Bargaining Statement of Common Conditions — salary thresholds for the pay fragmentation mechanism",
+      publisher: "Australian Public Service Commission",
+      url: "https://www.apsc.gov.au/sites/default/files/2023-11/APS%20Bargaining%20Statement%20of%20Common%20Conditions.pdf",
+      effectiveFrom: "12 March 2026",
+      verifiedOn: "23 September 2026",
+      note:
+        "Pages 36–37, Year 3 column. Read from the Internet Archive copy of this PDF because apsc.gov.au refused direct requests on the day.",
+    },
+    {
       id: "treasury-ea",
       title: "Treasury Enterprise Agreement 2024 — Appendix A, base salaries",
       publisher: "Department of the Treasury",
@@ -398,8 +469,16 @@ export const APS: Jurisdiction = {
 
   faqs: [
     {
+      q: "What is the APS 5 salary in 2026?",
+      a: "From 12 March 2026, every agency's APS 5 range must reach at least $88,834 at the bottom and $96,829 at the top under the service-wide salary thresholds. Across the APS at 31 December 2025 the median APS 5 base salary was $92,324, with 90% of APS 5 employees between $86,034 and $96,239. Treasury, as one agency example, pays APS 5 at $93,312 and $99,287 from 12 March 2026.",
+    },
+    {
+      q: "What is the APS 4 salary in 2026?",
+      a: "From 12 March 2026, every agency's APS 4 range must reach at least $79,125 at the bottom and $86,246 at the top under the service-wide salary thresholds. The median APS 4 base salary across the APS was $82,906 at 31 December 2025, with 90% of APS 4 employees between $76,714 and $88,200.",
+    },
+    {
       q: "What is the APS 6 salary in 2026?",
-      a: "There is no single figure, because every APS agency bargains its own enterprise agreement. Across the whole APS at 31 December 2025 the median APS 6 base salary was $108,092, and 90% of APS 6 employees were paid between $97,316 and $115,199. As an example of one agency's scale, Treasury pays APS 6 across four pay points from $105,260 to $127,521 from 12 March 2026.",
+      a: "There is no single figure, because every APS agency bargains its own enterprise agreement. From 12 March 2026, every agency's APS 6 range must reach at least $99,734 at the bottom and $111,701 at the top under the service-wide salary thresholds. Across the whole APS at 31 December 2025 the median APS 6 base salary was $108,092, and 90% of APS 6 employees were paid between $97,316 and $115,199. As an example of one agency's scale, Treasury pays APS 6 across four pay points from $105,260 to $127,521 from 12 March 2026.",
     },
     {
       q: "What is an EL1 salary?",

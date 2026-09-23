@@ -2,20 +2,32 @@ import type { Metadata } from "next";
 import GrossPayCalculatorPage from "@/modules/calculator/gross-pay-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { findGrossForNet } from "@/modules/calculator/gross-for-net";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/gross-pay-calculator/`;
 
+const FY = SITE_CONFIG.financialYear;
+// Answer-first figure from the same search the calculator runs.
+const GROSS_FOR_1500_WK = Math.round(findGrossForNet(1_500 * 52));
+
+// 14.5k impr at 0.57% CTR (pos 8.5). The page is a reverse (net → gross)
+// calculator; GSC shows "net to gross calculator" / "net to gross calculator
+// australia" and DataForSEO "salary gross calculator", "gross income". Title
+// now names that intent and the FY; description leads with a computed answer.
+// Previous: "Gross Pay Calculator Australia — Reverse Calculate from Net".
+const TITLE = `Net to Gross Pay Calculator Australia ${FY} (Reverse Tax)`;
+const DESCRIPTION = `To take home $1,500 a week you need ${formatAUD(GROSS_FOR_1500_WK)} a year gross in ${FY}. Enter any weekly, fortnightly, monthly or annual net pay to find the gross salary you need.`;
+
 export const metadata: Metadata = {
-  title: "Gross Pay Calculator Australia — Reverse Calculate from Net",
-  description:
-    "Need to take home a specific amount? Use this reverse tax calculator to find the gross salary required to hit your weekly or annual net pay target.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
-    title: "Gross Pay Calculator Australia",
-    description: "Reverse calculate the gross salary you need to negotiate to get your required take-home pay.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reverse Tax Calculator",
+    title: TITLE,
     description: "Find out exactly how much gross salary you need to hit your take-home goals.",
   },
 };
@@ -76,7 +88,7 @@ const faq: WithContext<FAQPage> = {
       name: "Does gross pay include superannuation?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Generally, no. When negotiating a salary in Australia, \"Gross Pay\" or \"Base Salary\" excludes the compulsory employer superannuation guarantee (currently 12% for FY2026-27). A \"Total Remuneration Package\" (TRP) includes super.",
+        text: `Generally, no. When negotiating a salary in Australia, "Gross Pay" or "Base Salary" excludes the compulsory employer superannuation guarantee (currently ${Math.round(SUPER_GUARANTEE.rate * 100)}% for FY${FY}). A "Total Remuneration Package" (TRP) includes super.`,
       },
     },
   ],

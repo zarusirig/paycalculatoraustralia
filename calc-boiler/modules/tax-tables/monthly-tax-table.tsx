@@ -12,9 +12,11 @@ import {
   calculatePAYGWithholding,
   NO_TFN_RATES,
   PAYG_TABLES_UPDATED,
+  PAYG_FINANCIAL_YEAR,
+  PAYG_PREVIOUS_FINANCIAL_YEAR,
 } from "@/lib/constants/payg-withholding";
 import TaxTableLookupWidget from "./lookup-widget";
-import WithholdingTable from "./withholding-table";
+import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import AtoDownloads from "./ato-downloads";
 import TaxTableFaqSection from "./faq-section";
@@ -62,18 +64,18 @@ export default function MonthlyTaxTablePage() {
         </nav>
 
         {/* HERO HEADER */}
-        <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Monthly Tax Table 2026-27 (ATO NAT 1007) — PAYG Withholding Amounts
+        <header id="lookup" className="mb-10 lg:mb-14 max-w-5xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Monthly Tax Table {PAYG_FINANCIAL_YEAR} (ATO {ATO_MONTHLY.nat})
           </h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-3">
-            The monthly tax table &mdash; published by the ATO as <strong>{ATO_MONTHLY.nat}</strong> &mdash; shows the PAYG amount
-            your employer withholds from each monthly salary payment. For 2026-27, a worker on {formatAUD(6_500)} a month who
-            claims the tax-free threshold has {formatAUD(example6500.totalWithheld)} withheld, taking
-            home {formatAUD(example6500.netPerPeriod)}.
+          <p className="text-lg md:text-xl text-warmgray leading-relaxed mb-5">
+            Enter your monthly earnings to see the tax withheld under the ATO monthly tax table. For {PAYG_FINANCIAL_YEAR},{" "}
+            {formatAUD(6_500)} a month with the tax-free threshold claimed has <strong>{formatAUD(example6500.totalWithheld)}</strong>{" "}
+            withheld ({formatAUD(example6500.netPerPeriod)} take-home).
           </p>
-          <p className="text-sm font-semibold text-eucalyptus-dark mb-6">
-            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the FY2026-27 rate cut (15% on $18,201&ndash;$45,000)
+          <TaxTableLookupWidget frequency="monthly" defaultGross={6_500} />
+          <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">
+            {ATO_MONTHLY.nat} published {ATO_MONTHLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -82,31 +84,22 @@ export default function MonthlyTaxTablePage() {
 
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
-            <section id="lookup">
-              <h2>Monthly Tax Table Lookup — Check Your Withholding Instantly</h2>
-              <p>
-                Enter your gross monthly salary to see the PAYG amount that should be withheld under
-                the 2026-27 rates, including the study loan (STSL) component if you have a HECS-HELP debt.
-              </p>
-              <TaxTableLookupWidget frequency="monthly" defaultGross={6_500} />
-            </section>
-
             <section id="monthly-tax-table-2026-27">
-              <h2>Monthly Tax Table 2026-27 (NAT 1007)</h2>
+              <h2>Full Monthly Tax Table {PAYG_FINANCIAL_YEAR} — With and Without the Tax-Free Threshold</h2>
               <p>
-                The table below lists PAYG withholding for common monthly salaries under the 2026-27 resident
-                rates, in the three most-used {ATO_MONTHLY.nat} columns: claiming the tax-free threshold
-                (column 2 of the ATO table), claiming it with a study loan, and not claiming it (column 3).
-                Monthly pay cycles &mdash; 12 pays a year &mdash; are most common in salaried professional roles.
+                The table lists the amount to withhold from monthly earnings in {formatAUD(250)} steps, in the two
+                {" "}{ATO_MONTHLY.nat} columns every employer uses &mdash; tax-free threshold claimed (column 2 of the ATO
+                table) and not claimed (column 3) &mdash; plus the total with a study loan. Monthly pay cycles, 12 pays a
+                year, are most common in salaried professional roles. Switch to {PAYG_PREVIOUS_FINANCIAL_YEAR} to check an
+                older pay run, or download every dollar as a CSV.
               </p>
-              <WithholdingTable
+              <FullTaxTable
                 frequency="monthly"
-                amounts={MONTHLY_TABLE_ROWS}
-                caption="Monthly PAYG withholding amounts for 2026-27 by gross monthly earnings, ATO NAT 1007"
+                caption={`Monthly tax table: PAYG withholding by monthly earnings, ATO ${ATO_MONTHLY.nat}`}
               />
               <p className="text-sm text-warmgray-light">
-                Every figure is computed at page load from the ATO Schedule 1 coefficients, so it reproduces
-                the printed {ATO_MONTHLY.nat} look-up table exactly.{" "}
+                Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
+                sample amounts exactly.{" "}
                 <Link href="/monthly-pay-calculator/">Calculate your exact monthly pay here.</Link>
               </p>
             </section>

@@ -4,20 +4,20 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { PAYG_FINANCIAL_YEAR, PAYG_PREVIOUS_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
 import { FORTNIGHTLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/fortnightly-tax-table-faqs";
 import {
   ATO_FORTNIGHTLY,
   ATO_SCHEDULE_1,
   ATO_TAX_TABLES_INDEX,
-  FORTNIGHTLY_TABLE_ROWS,
 } from "@/modules/tax-tables/ato-schedules";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
-const TITLE = "Fortnightly Tax Table 2026-27 (NAT 1006) — ATO PAYG";
+const TITLE = `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006) — PAYG Calculator`;
 const DESCRIPTION =
-  "ATO fortnightly tax table (NAT 1006) for 2026-27: PAYG withholding at 30 earnings levels, with and without the tax-free threshold, plus HECS-HELP (STSL), foreign resident and 27-pay-year amounts. Direct ATO PDF and XLSX links.";
-const MODIFIED = "2026-07-28";
+  `Fortnightly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006): enter your fortnightly pay to see the tax withheld with or without the tax-free threshold. Full table, HELP/STSL, ${PAYG_PREVIOUS_FINANCIAL_YEAR} toggle and CSV download.`;
+const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -64,7 +64,7 @@ const dataset: WithContext<Dataset> = {
   "@type": "Dataset",
   name: `Fortnightly PAYG withholding amounts 2026-27 (ATO ${ATO_FORTNIGHTLY.nat})`,
   description:
-    `PAYG withholding amounts for fortnightly pay periods in the Australian 2026-27 financial year, computed from the ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient method across ${FORTNIGHTLY_TABLE_ROWS.length} gross earnings levels. Covers the tax-free threshold claimed and not claimed, study and training support loan (STSL) components, and foreign resident (Scale 3) amounts.`,
+    `PAYG withholding amounts for fortnightly pay periods in the Australian 2026-27 financial year, computed from the ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient method for every $2 of fortnightly earnings (CSV download) and in $100 steps (HTML table). Covers the tax-free threshold claimed and not claimed, study and training support loan (STSL) components, and foreign resident (Scale 3) amounts.`,
   url: URL,
   identifier: ATO_FORTNIGHTLY.nat,
   keywords: [

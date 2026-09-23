@@ -5,7 +5,6 @@ import {
   calculatePayBreakdown,
   formatAUD,
   EMPLOYMENT,
-  HECS_HELP,
   SITE_CONFIG,
 } from "@/lib/constants/australian-tax";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -22,11 +21,15 @@ export async function generateStaticParams() {
 
 function figuresFor(rate: number) {
   const gross = annualFromHourly(rate);
-  const breakdown = calculatePayBreakdown({
-    grossSalary: gross,
-    includeHECS: gross >= HECS_HELP.minimumThreshold,
-  });
+  // No HECS: "after tax" is asked for someone without a study loan, and the
+  // module's headline table uses the same basis.
+  const breakdown = calculatePayBreakdown({ grossSalary: gross });
   return { gross, net: breakdown.takeHomePay, breakdown };
+}
+
+/** "$35" for whole-dollar rates, "$26.44" otherwise — matches how people search. */
+function rateLabel(rate: number): string {
+  return Number.isInteger(rate) ? formatAUD(rate) : formatAUD(rate, 2);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -35,9 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { gross, net } = figuresFor(rate);
 
   return {
-    // Leads with the answer and carries both figures, per the /tax-on/ pattern.
-    title: `${formatAUD(rate, 2)} an Hour Is How Much a Year? ${formatAUD(gross)} (${formatAUD(net)} After Tax)`,
-    description: `${formatAUD(rate, 2)} an hour is ${formatAUD(gross)} a year before tax and ${formatAUD(net)} after tax in Australia, on a ${EMPLOYMENT.standardWeeklyHours}-hour week. Weekly, fortnightly and monthly figures plus part-time hours, FY${SITE_CONFIG.financialYear}.`,
+    // Leads with the answer in the searcher's phrasing ("$35 an hour is how
+    // much a year"). "in Australia" separates us from US pages that answer on
+    // a 40-hour week; the after-tax figure moves to the description.
+    title: `${rateLabel(rate)} an Hour Is How Much a Year in Australia? ${formatAUD(gross)}`,
+    description: `${rateLabel(rate)} an hour is ${formatAUD(gross)} a year before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours), and ${formatAUD(net)} after tax in ${SITE_CONFIG.financialYear}. Weekly, fortnightly, monthly and part-time figures.`,
     alternates: { canonical: `${SITE_CONFIG.baseUrl}/hourly-to-salary/${raw}/` },
     openGraph: {
       title: `${formatAUD(rate, 2)} an Hour Is ${formatAUD(gross)} a Year`,
@@ -152,12 +157,12 @@ export default async function HourlyToSalaryPage({ params }: PageProps) {
             className="text-4xl md:text-5xl font-extrabold text-navy tracking-tight mb-6"
             style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
           >
-            {formatAUD(rate, 2)} an Hour Is How Much a Year?
+            {rateLabel(rate)} an Hour Is How Much a Year?
           </h1>
           <p className="text-xl text-warmgray max-w-2xl mx-auto mb-8">
-            {formatAUD(rate, 2)} an hour is <strong className="text-navy">{formatAUD(gross)}</strong> a
-            year before tax and <strong className="text-navy">{formatAUD(net)}</strong> after tax,
-            based on a {hours}-hour week.
+            {rateLabel(rate)} an hour is <strong className="text-navy">{formatAUD(gross)}</strong> a
+            year before tax and <strong className="text-navy">{formatAUD(net)}</strong> after tax in{" "}
+            {SITE_CONFIG.financialYear}, based on a {hours}-hour week.
           </p>
         </div>
       </section>

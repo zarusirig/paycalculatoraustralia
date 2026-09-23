@@ -11,7 +11,7 @@ import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD, SITE_CONFIG } from "@/lib/constants";
-import { AUSTUDY, CENTRELINK_SOURCES, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_STUDENT, studentFortnightly, studentReduction } from "@/lib/constants/centrelink-income-test";
+import { AUSTUDY, CENTRELINK_SOURCES, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_JOBSEEKER, YOUTH_ALLOWANCE_STUDENT, studentFortnightly, studentReduction } from "@/lib/constants/centrelink-income-test";
 import { CentrelinkRelated, FONT, H2, INPUT, LABEL, LINK, NotIncluded, P, Row, TABLE_WRAP, TD, TH, clamp, source } from "./centrelink-shared";
 import { STUDENT_FAQS } from "./austudy-youth-allowance-faqs";
 
@@ -48,6 +48,21 @@ const SOURCES_LIST = [
   source("How much Austudy you can get", CENTRELINK_SOURCES.austudyRates),
   source("Personal income test for Youth Allowance (students and Australian Apprentices)", CENTRELINK_SOURCES.youthAllowanceIncomeTest),
   source("How much Youth Allowance for students and apprentices you can get", CENTRELINK_SOURCES.youthAllowanceRates),
+  source("Who can get Youth Allowance for students and Australian Apprentices", CENTRELINK_SOURCES.youthAllowanceEligibility),
+  source("How much Youth Allowance for job seekers you can get", CENTRELINK_SOURCES.youthAllowanceJobSeekerRates),
+  source("Personal income test for Youth Allowance for job seekers", CENTRELINK_SOURCES.youthAllowanceJobSeekerIncomeTest),
+  source("Who can get Youth Allowance for job seekers", CENTRELINK_SOURCES.youthAllowanceJobSeekerEligibility),
+];
+const YJ = YOUTH_ALLOWANCE_JOBSEEKER;
+const RATE_ROWS: { label: string; student: number | null; jobSeeker: number; jsCutOff: number | null }[] = [
+  { label: "Single, no children, under 18, living at a parent's home", student: YA.maxFortnightly.under18AtHome, jobSeeker: YJ.maxFortnightly.under18AtHome, jsCutOff: YJ.publishedCutOff.under18AtHome },
+  { label: "Single, no children, under 18, living away from home", student: YA.maxFortnightly.under18AwayFromHome, jobSeeker: YJ.maxFortnightly.under18AwayFromHome, jsCutOff: YJ.publishedCutOff.awayFromHome },
+  { label: "Single, no children, 18 or older, living at a parent's home", student: YA.maxFortnightly.over18AtHome, jobSeeker: YJ.maxFortnightly.over18AtHome, jsCutOff: YJ.publishedCutOff.over18AtHome },
+  { label: "Single, no children, 18 or older, living away from home", student: YA.maxFortnightly.awayFromHome, jobSeeker: YJ.maxFortnightly.over18AwayFromHome, jsCutOff: YJ.publishedCutOff.awayFromHome },
+  { label: "Single, with children", student: YA.maxFortnightly.singleWithChildren, jobSeeker: YJ.maxFortnightly.singleWithChildren, jsCutOff: YJ.publishedCutOff.singleWithChildren },
+  { label: "Couple, no children", student: YA.maxFortnightly.coupleNoChildren, jobSeeker: YJ.maxFortnightly.coupleNoChildren, jsCutOff: YJ.publishedCutOff.awayFromHome },
+  { label: "Couple, with children", student: YA.maxFortnightly.coupleWithChildren, jobSeeker: YJ.maxFortnightly.coupleWithChildren, jsCutOff: YJ.publishedCutOff.coupleWithChildren },
+  { label: "Single principal carer exempt from mutual obligations (job seekers)", student: null, jobSeeker: YJ.maxFortnightly.singlePrincipalCarerExempt, jsCutOff: YJ.publishedCutOff.singlePrincipalCarerExempt },
 ];
 
 export default function AustudyYouthAllowanceCalculatorPage() {
@@ -76,10 +91,11 @@ export default function AustudyYouthAllowanceCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Austudy &amp; Youth Allowance Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Austudy and Youth Allowance Income Test Calculator</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Youth Allowance and Austudy Calculator — Rates, Eligibility and Income Test</h1>
           <p className="text-lg text-warmgray">
-            The student personal income test: {formatAUD(T.freeArea)} a fortnight free, 50 cents in the dollar to {formatAUD(T.band1End)}, then {formatAUD(T.band1Reduction, 2)} plus 60 cents in the dollar. Enter your gross fortnightly wages and see what you keep of Austudy or Youth Allowance, using the rates from {AUSTUDY.ratesFrom}.
+            Youth Allowance pays up to <strong>{formatAUD(YA.maxFortnightly.over18AtHome, 2)} a fortnight</strong> if you&apos;re 18 or older and live at home, and <strong>{formatAUD(YA.maxFortnightly.awayFromHome, 2)}</strong> if you live away from home; Austudy (25 and over) pays up to {formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)}. Students can earn {formatAUD(T.freeArea)} a fortnight before the payment reduces — 50 cents in the dollar to {formatAUD(T.band1End)}, then {formatAUD(T.band1Reduction, 2)} plus 60 cents. Enter your wages to see what you keep.
           </p>
+          <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">Student rates from {AUSTUDY.ratesFrom} · job seeker rates from {YJ.ratesFrom} · verified {CENTRELINK_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -127,7 +143,7 @@ export default function AustudyYouthAllowanceCalculatorPage() {
                       <Row label="Published cut-off for this situation" value={formatAUD(sit.cutOff, 2)} />
                     </div>
                   </div>
-                  <NotIncluded items={["Income Bank credits", "the parental means test (dependent students)", "the partner income test and assets test", "Rent Assistance and Energy Supplement (the published cut-off sits a little above where this payment reaches $0 for that reason)"]} />
+                  <NotIncluded items={["Income Bank credits", "the parental means test (dependent students)", "the partner income test and assets test", "Youth Allowance for job seekers (a different income test — rates and cut-offs are in the table below)", "Rent Assistance and Energy Supplement (the published cut-off sits a little above where this payment reaches $0 for that reason)"]} />
                 </div>
               </div>
             </CardContent>
@@ -135,6 +151,44 @@ export default function AustudyYouthAllowanceCalculatorPage() {
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          <section>
+            <h2 style={FONT} className={H2}>How Much Is Youth Allowance? Rates by Circumstance</h2>
+            <p className={P}>Maximum fortnightly rates before any income test. The same rates apply to students, Australian Apprentices and job seekers in the same situation; they index on {YOUTH_ALLOWANCE_STUDENT.indexedOn} (the job seeker principal carer rate on 20 March and 20 September).</p>
+            <div className={TABLE_WRAP}>
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your circumstances</th><th scope="col" className={TH + " text-right"}>Students and apprentices</th><th scope="col" className={TH + " text-right"}>Job seekers</th><th scope="col" className={TH + " text-right"}>Job seeker cut-off</th></tr></thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {RATE_ROWS.map((r, i) => (
+                    <tr key={r.label} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                      <td className={TD}>{r.label}</td>
+                      <td className={TD + " text-right font-semibold"}>{r.student === null ? "—" : formatAUD(r.student, 2)}</td>
+                      <td className={TD + " text-right"}>{formatAUD(r.jobSeeker, 2)}</td>
+                      <td className={TD + " text-right"}>{r.jsCutOff === null ? "—" : formatAUD(r.jsCutOff, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-2 text-xs text-warmgray-light">Job seeker cut-offs are Services Australia&apos;s &ldquo;maximum income before your payment reduces to $0&rdquo; figures (the principal carer one includes Pharmaceutical Allowance). Job seekers&apos; payments start reducing once income passes {formatAUD(YJ.freeArea)} a fortnight — far sooner than the {formatAUD(T.freeArea)} student free area. Students on the long-term income support rate get {formatAUD(YA.maxFortnightly.longTermAtHome, 2)} at home or {formatAUD(YA.maxFortnightly.longTermAwayFromHome, 2)} away from home (table further down).</p>
+          </section>
+
+          <section>
+            <h2 style={FONT} className={H2}>Youth Allowance Eligibility</h2>
+            <h3 style={FONT} className="text-xl font-semibold text-navy mb-3">Students and Australian Apprentices</h3>
+            <p className={P}>You must be one of the following:</p>
+            <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
+              <li>18 to 24 and studying full time;</li>
+              <li>16 to 24 and doing a full-time Australian Apprenticeship;</li>
+              <li>16 or 17 and independent, or needing to live away from home to study;</li>
+              <li>16 or 17, studying full time, having completed year 12 or equivalent.</li>
+            </ul>
+            <p className={P}>You also need to meet the residence rules and the income and assets tests, and be in an approved course or a full-time apprenticeship. You can stay on Youth Allowance after turning 25 until you finish that course. Full-time secondary students under 18 usually can&apos;t get it unless they qualify for the away-from-home rate, meet the independence criteria, or moved straight across from Youth Allowance as a job seeker.</p>
+            <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Job seekers</h3>
+            <p className={P}>You must be {YJ.minAge} to {YJ.maxAge}, meet the residence rules and the income test, and either be unemployed and looking for work (part-time or casual work is fine) or be sick or injured and unable to do your usual work or study for a short time. From 22 the equivalent payment is <Link href="/jobseeker-payment-calculator/" className={LINK}>JobSeeker</Link>.</p>
+            <h3 style={FONT} className="text-xl font-semibold text-navy mb-3 mt-6">Dependent or independent — your parents&apos; income</h3>
+            <p className={P}>Services Australia assesses you as dependent or independent. If you&apos;re dependent, a parental means test applies as well as your own income test: if your parents or guardians earn too much you can&apos;t be paid, and if you&apos;re under 18 your parent usually receives the payment. This calculator covers your own income test only — use the Payment Finder for the parental test. If you&apos;re 25 or older, the student payment is Austudy, which uses the same personal income test.</p>
+          </section>
+
           <section>
             <h2 style={FONT} className={H2}>The Student Personal Income Test</h2>
             <p className={P}>Austudy and Youth Allowance for students and Australian Apprentices share one personal income test. It is applied to your gross income — before tax, not including child support — when you claim and each fortnight you report.</p>

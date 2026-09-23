@@ -4,7 +4,9 @@
 // Source: Queensland Health, "Nursing stream wage rates", table headed
 // "Wage rates from 1 April 2026".
 // https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing
-// Read 28 August 2026 (page last published 30 July 2026).
+// Read 28 August 2026 (page last published 30 July 2026); Nurse Grades 9 to 13
+// and the confirmation that 1 April 2027 and 1 December 2027 tables are already
+// published were read from the same page on 23 September 2026.
 //
 // Queensland is the most generous publisher of the six states: the employer's
 // own wage schedule prints per annum, per fortnight, per hour AND casual per
@@ -39,6 +41,8 @@ export const QLD_NURSING_PAY: NursingStateData = {
   code: "QLD",
   name: "Queensland",
   shortName: "QLD",
+  metaTitle: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
+  h1: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages (EB12)",
   employer: "Queensland Health (Hospital and Health Services) and the Department of Education",
   ordinaryHoursPerWeek: 38,
 
@@ -47,7 +51,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
       id: "qld-eb12",
       name: "Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025",
       effectiveFrom: "1 April 2026",
-      nextIncrease: "1 April 2027",
+      nextIncrease: "1 April 2027, then 1 December 2027 — Queensland Health already publishes both tables",
       tribunal: "Queensland Industrial Relations Commission",
       reference: "Certified agreement CB/2025/126",
       source: WAGE_SCHEDULE,
@@ -164,6 +168,57 @@ export const QLD_NURSING_PAY: NursingStateData = {
       note:
         "Queensland puts the clinical nurse consultant and the nurse unit manager on the same grade and the same money — a difference from NSW, where they are separate scales.",
     },
+    // Grades 9 to 13: read from the same Queensland Health wage schedule ("Wage
+    // rates from 1 April 2026", per annum column) on 23 September 2026. Only the
+    // annual figure was transcribed for these grades, so the hourly and casual
+    // columns show a dash rather than a derived number.
+    {
+      classification: "Director of Nursing/Midwifery — Remote",
+      gradeCode: "Nurse Grade 9",
+      family: "management",
+      instrumentId: "qld-eb12",
+      points: [
+        { label: "Pay point 1", annual: 161727 },
+        { label: "Pay point 2", annual: 169048 },
+        { label: "Pay point 3", annual: 173251 },
+      ],
+    },
+    {
+      classification:
+        "Assistant Director of Nursing/Midwifery, Director of Nursing/Midwifery — Rural",
+      gradeCode: "Nurse Grade 10",
+      family: "management",
+      instrumentId: "qld-eb12",
+      points: [
+        { label: "Pay point 1", annual: 165320 },
+        { label: "Pay point 2", annual: 173327 },
+      ],
+    },
+    {
+      classification: "Nursing/Midwifery Director, Director of Nursing/Midwifery",
+      gradeCode: "Nurse Grade 11",
+      family: "management",
+      instrumentId: "qld-eb12",
+      points: [{ label: "Single rate", annual: 184991 }],
+    },
+    {
+      classification: "Nursing/Midwifery Director, Director of Nursing/Midwifery",
+      gradeCode: "Nurse Grade 12",
+      family: "management",
+      instrumentId: "qld-eb12",
+      points: [{ label: "Single rate", annual: 203658 }],
+    },
+    {
+      classification:
+        "Health Service Director of Nursing/Midwifery, Executive Director of Nursing and Midwifery",
+      gradeCode: "Nurse Grade 13",
+      family: "management",
+      instrumentId: "qld-eb12",
+      points: [
+        { label: "Band 1", annual: 218010 },
+        { label: "Band 2 (Executive Director of Nursing and Midwifery)", annual: 265059 },
+      ],
+    },
     {
       classification: "Nurse Practitioner",
       gradeCode: "Nurse Grade 8",
@@ -230,7 +285,6 @@ export const QLD_NURSING_PAY: NursingStateData = {
 
   notReproduced: [
     "Assistant in Nursing — Sterilising Services (Nurse Grade 1 Band 2)",
-    "Director of Nursing/Midwifery Remote, Assistant Director, Nursing/Midwifery Director and Executive Director grades 9 to 13",
     "Allowance schedules: hyperbaric, laundry, mental health environment, operating theatre, pharmacy, relieving in-charge, targeted training, X-ray and radium, endorsed midwife, RANIP isolation bonuses, on-call and professional development",
   ],
 
@@ -243,7 +297,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   verifiedOn: "28 August 2026",
 
   intro:
-    "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service — a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade 6, a nurse unit manager or clinical nurse consultant is Grade 7 and a nurse practitioner is Grade 8. The rates below are the ones in force from 1 April 2026.",
+    "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service — a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade 6, a nurse unit manager or clinical nurse consultant is Grade 7, a nurse practitioner is Grade 8, and Grades 9 to 13 are the director of nursing and executive grades. The rates below are the ones in force from 1 April 2026.",
 
   highlights: [
     "A registered nurse or midwife in Queensland starts at $87,790 a year, which is $44.2763 an hour — Queensland Health publishes the hourly rate to four decimal places.",

@@ -5,8 +5,11 @@ import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-sala
 import { NEWS_ARTICLES } from "@/lib/news";
 import { JURISDICTION_CODES } from "@/lib/constants/long-service-leave";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
+// C1 employer pay rates (2026-09-23)
+import { EMPLOYER_SLUGS } from "@/lib/data/employer-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
+import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -63,6 +66,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "jobseeker-payment-calculator",
     "austudy-youth-allowance-calculator",
     "age-pension-income-test-calculator",
+    // C4 Centrelink family payments (added 2026-09-23)
+    "parenting-payment-calculator",
+    "family-tax-benefit-calculator",
+    "rent-assistance-calculator",
+    // end C4
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",
@@ -119,6 +127,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "schads-award-pay-rates",
     "hospitality-award-rates",
     "retail-award-rates",
+    // --- Award cluster C3 (Sep 2026): additional per-award rate pages ---
+    "fast-food-award-rates",
+    "pharmacy-award-rates",
+    "manufacturing-award-rates",
+    "security-award-rates",
+    "clerks-award-rates",
+    // --- end award cluster C3 ---
     "junior-pay-rates",
     "employer-cost-calculator",
     "overtime-penalty-rates-guide",
@@ -246,6 +261,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     });
   }
+
+  // --- C1: employer pay-rate pages (/pay-rates/ hub + one per employer), 2026-09-23 ---
+  allPages.push({ slug: "pay-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const employer of EMPLOYER_SLUGS) {
+    allPages.push({ slug: `pay-rates/${employer}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  // --- end C1 ---
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  // Current-rate hub, age spokes (list shared with generateStaticParams),
+  // and the pro-rata and casual loading calculators.
+  allPages.push({ slug: "minimum-wage-australia", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const age of MIN_WAGE_AGES) {
+    allPages.push({ slug: `minimum-wage-by-age/${age}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  allPages.push({ slug: "pro-rata-salary-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "casual-loading-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  // --- end minimum wage cluster ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

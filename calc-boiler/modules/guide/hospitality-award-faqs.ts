@@ -16,6 +16,7 @@ import {
   HOSPITALITY_RATES,
   type AwardRate,
 } from "@/lib/constants/hospitality-award";
+import { roundCents } from "@/lib/constants/modern-awards";
 
 export function findRate(rows: readonly AwardRate[], level: string): AwardRate {
   const found = rows.find((r) => r.level === level);
@@ -23,9 +24,13 @@ export function findRate(rows: readonly AwardRate[], level: string): AwardRate {
   return found;
 }
 
-/** Round half up to the cent, matching how Fair Work publishes derived rates. */
+/**
+ * Round half up to the cent, matching how Fair Work publishes derived rates.
+ * Delegates to the constants helper, which survives float error such as
+ * 25.74 x 1.25 = 32.17499… (Fair Work publishes $32.18).
+ */
 export function toCents(value: number): number {
-  return Math.round(value * 100 + Number.EPSILON) / 100;
+  return roundCents(value);
 }
 
 export function casualHourly(hourly: number, loading: number): number {

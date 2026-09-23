@@ -8,8 +8,8 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/austudy-youth-allowance-calculator/`;
-const TITLE = "Austudy & Youth Allowance Calculator — Income Test 2026";
-const DESCRIPTION = "The student personal income test: $539 free area, 50 cents to $646, then $53.50 plus 60 cents in the dollar. See what you keep of Austudy or Youth Allowance when you work, with the rates and cut-offs from 1 January 2026.";
+const TITLE = "Youth Allowance Calculator 2026 — Rates, Eligibility & Income Test";
+const DESCRIPTION = "Youth Allowance rates by circumstance ($418.90 to $854.20 a fortnight), who is eligible, and the student income test — $539 free area, 50c to $646, then $53.50 plus 60c. See what you keep of Youth Allowance or Austudy when you work.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -13,6 +13,9 @@ import {
   groupBands,
   groupRange,
   isBuiltSlug,
+  levelAnchor,
+  levelSections,
+  shortLevelLabel,
   nearestTakeHomeSalary,
   normaliseCode,
   takeHomeHref,
@@ -65,10 +68,11 @@ test("bandMidpoint sits inside the band", () => {
 // ---------- data integrity ----------
 
 test("registry lists exactly the built jurisdictions", () => {
-  assert.deepEqual([...JURISDICTION_SLUGS], ["aps", "vic", "qld"]);
+  assert.deepEqual([...JURISDICTION_SLUGS], ["aps", "vic", "qld", "nsw", "wa", "sa"]);
   assert.ok(isBuiltSlug("aps"));
-  assert.ok(!isBuiltSlug("nsw"));
-  assert.equal(getJurisdiction("nsw"), undefined);
+  assert.ok(isBuiltSlug("nsw"));
+  assert.ok(!isBuiltSlug("tas"));
+  assert.equal(getJurisdiction("tas"), undefined);
   assert.equal(getJurisdiction("qld")?.shortName, "Queensland");
 });
 
@@ -79,7 +83,7 @@ test("planned jurisdictions never overlap the built ones", () => {
       `${planned.slug} is both built and planned`,
     );
   }
-  assert.equal(PLANNED_JURISDICTIONS.length, 6);
+  assert.equal(PLANNED_JURISDICTIONS.length, 3);
 });
 
 test("every band is a sane, whole-dollar range", () => {
@@ -158,7 +162,14 @@ test("every source carries an https url and a verification date", () => {
   for (const jurisdiction of JURISDICTIONS) {
     assert.ok(jurisdiction.sources.length > 0, `${jurisdiction.slug} has no sources`);
     for (const source of jurisdiction.sources) {
-      assert.ok(source.url.startsWith("https://"), `${source.id}: ${source.url} is not https`);
+      // The NSW Industrial Gazette is the primary source for NSW state awards and
+      // is served over plain http only (https times out), so it is the one
+      // allowed exception.
+      const httpOnlyPrimary = source.url.startsWith("http://www.ircgazette.justice.nsw.gov.au/");
+      assert.ok(
+        source.url.startsWith("https://") || httpOnlyPrimary,
+        `${source.id}: ${source.url} is not https`,
+      );
       assert.ok(source.verifiedOn.length > 0, `${source.id}: no verification date`);
       assert.ok(source.publisher.length > 0, `${source.id}: no publisher`);
     }
@@ -202,11 +213,12 @@ test("findBand answers the bare classification queries", () => {
 
   const po4 = findBand("po4");
   assert.equal(po4?.jurisdiction.slug, "qld");
-  assert.equal(po4?.schedule.id, "award-2025", "the award floor wins over the agency example");
-  assert.equal(po4?.band.min, 118_966);
+  assert.equal(po4?.schedule.id, "award-2026", "the award floor wins over the agency example");
+  assert.equal(po4?.band.min, 124_627, "1 September 2026 award rate after the 4.75% State Wage Case");
 
   assert.equal(findBand("vps3")?.band.code, "VPS 3.1");
-  assert.equal(findBand("ao3")?.band.max, 85_833);
+  assert.equal(findBand("ao3")?.band.max, 89_903);
+  assert.equal(findBand("oo4", "qld")?.schedule.id, "award-2026", "OO award rates now published");
   assert.equal(findBand("nothing-like-this"), undefined);
   assert.equal(findBand(""), undefined);
 });
@@ -234,4 +246,98 @@ test("bands without a group stay separate", () => {
   assert.ok(qld);
   const groups = groupBands(qld.schedules[0].streams[0].bands);
   assert.equal(groups.length, qld.schedules[0].streams[0].bands.length);
+});
+
+// ---------- salary-by-level sections ----------
+
+test("shortLevelLabel and levelAnchor produce the searched form", () => {
+  assert.equal(shortLevelLabel("VPS Grade 4"), "VPS 4");
+  assert.equal(shortLevelLabel("APS 6"), "APS 6");
+  assert.equal(levelAnchor("VPS 4"), "vps-4");
+  assert.equal(levelAnchor("EL 1"), "el-1");
+  assert.equal(levelAnchor("AO5"), "ao5");
+});
+
+test("VPS level sections cover grades 1 to 7 with 2026 headings", () => {
+  const sections = levelSections(getJurisdiction("vic")!);
+  assert.deepEqual(
+    sections.map((s) => s.id),
+    ["vps-1", "vps-2", "vps-3", "vps-4", "vps-5", "vps-6", "vps-7"],
+  );
+  const vps5 = sections.find((s) => s.id === "vps-5")!;
+  assert.equal(vps5.heading, "VPS 5 salary 2026");
+  assert.equal(vps5.bands.length, 2, "VPS 5 has value ranges 5.1 and 5.2");
+  assert.deepEqual(vps5.range, { min: 116_413, max: 140_849 });
+});
+
+test("APS level sections carry the Treasury example where the level exists", () => {
+  const sections = levelSections(getJurisdiction("aps")!);
+  const aps6 = sections.find((s) => s.id === "aps-6")!;
+  assert.equal(aps6.heading, "APS 6 salary 2026");
+  assert.equal(aps6.bands[0].median, 108_092);
+  assert.deepEqual(
+    aps6.compare.map((c) => [c.schedule.id, c.band.min, c.band.max]),
+    [
+      ["aps-thresholds-2026", 99_734, 111_701],
+      ["treasury-2026", 105_260, 127_521],
+    ],
+  );
+  const ses = sections.find((s) => s.id === "ses-band-1")!;
+  assert.equal(ses.compare.length, 0, "no threshold or Treasury scale exists for SES");
+});
+
+test("level section anchors are unique on every page", () => {
+  for (const jurisdiction of JURISDICTIONS) {
+    const ids = levelSections(jurisdiction).map((s) => s.id);
+    assert.equal(new Set(ids).size, ids.length, `${jurisdiction.slug} has duplicate anchors`);
+  }
+});
+
+// ---------- NSW, WA and SA (added 23 September 2026) ----------
+
+test("NSW Health annual figures are the published weekly rate x 52", () => {
+  const nsw = getJurisdiction("nsw")!;
+  const health = nsw.schedules.find((sch) => sch.id === "nsw-health-admin-2026")!;
+  let checked = 0;
+  for (const band of health.streams.flatMap((st) => st.bands)) {
+    for (const point of band.payPoints ?? []) {
+      const match = point.label.match(/\$([\d,]+\.\d{2}) a week/);
+      assert.ok(match, `${point.label} does not show its published weekly rate`);
+      const weekly = Number(match![1].replace(/,/g, ""));
+      assert.equal(point.annual, Math.round(weekly * 52), point.label);
+      checked++;
+    }
+  }
+  assert.equal(checked, 17, "Levels 1, 2, 2A and 3-6 have 17 published steps");
+});
+
+test("spot checks against the source documents", () => {
+  const clerk5 = findBand("clerk grade 5", "nsw")!;
+  assert.deepEqual([clerk5.band.min, clerk5.band.max], [102_936, 106_182]);
+  const clerk12 = findBand("clerk grade 12", "nsw")!;
+  assert.equal(clerk12.band.max, 178_369);
+
+  const wa5 = findBand("wa level 5", "wa")!;
+  assert.deepEqual(wa5.band.payPoints!.map((p) => p.annual), [108_848, 112_089, 115_459, 118_961]);
+  assert.equal(findBand("wa class 4", "wa")!.band.min, 244_449);
+
+  const aso4 = findBand("aso4", "sa")!;
+  assert.deepEqual(aso4.band.payPoints!.map((p) => p.annual), [82_212, 83_995, 85_776, 86_180]);
+  const sso1 = findBand("sso1", "sa")!;
+  assert.equal(sso1.schedule.id, "sa-sso-2026", "SSOs are on the education staff agreement");
+  assert.deepEqual([sso1.band.min, sso1.band.max], [58_360, 69_759]);
+});
+
+test("SA level sections cover ASO-1..8 then SSO-1..6", () => {
+  const ids = levelSections(getJurisdiction("sa")!).map((s) => s.id);
+  assert.deepEqual(ids, [
+    "aso-1", "aso-2", "aso-3", "aso-4", "aso-5", "aso-6", "aso-7", "aso-8",
+    "sso-1", "sso-2", "sso-3", "sso-4", "sso-5", "sso-6",
+  ]);
+});
+
+test("WA headings say WA, not a bare level number", () => {
+  const first = levelSections(getJurisdiction("wa")!)[0];
+  assert.equal(first.heading, "WA Level 1 salary 2026");
+  assert.equal(first.id, "level-1");
 });

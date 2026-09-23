@@ -9,6 +9,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import {
   NURSING_PAY_STATES,
   getNursingPay,
+  nursingPageTitle,
   registeredNurseRange,
 } from "@/lib/data/nursing-pay";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
@@ -36,9 +37,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const url = `${BASE}/healthcare-worker-pay/${state.slug}/`;
   const instrument = state.instruments[0];
 
-  const title = range
-    ? `Nurse Pay Rates ${state.shortName} — Registered Nurse ${formatAUD(range.entry)} to ${formatAUD(range.top)}`
-    : `Nurse & Midwife Pay Rates ${state.shortName}`;
+  // Search-shaped: "QLD Nurse Pay Rates 2026 — …". The dollar range moved into
+  // the description, where it earns the click without pushing the query terms
+  // out of the visible title.
+  const title = nursingPageTitle(state);
 
   const description = range
     ? `${state.employer.split(" (")[0]} nursing pay scales: registered nurse and midwife from ${formatAUD(

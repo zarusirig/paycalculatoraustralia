@@ -284,3 +284,45 @@ export const AWARD_DETERMINATIONS = {
   hospitality: "PR799290",
   retail: "PR799285",
 } as const;
+
+// =============================================================================
+// Allowances — added 23 September 2026.
+//
+// Transcribed from the consolidated award texts ("incorporates all amendments
+// up to and including 1 July 2026"): MA000009 (PR799280, PR799290 and
+// PR799447) clause 26, and MA000004 (PR799280, PR799285 and PR799443)
+// clause 19. Only allowances with a fixed dollar figure and a broadly
+// applicable trigger are listed; reimbursements of actual cost are not.
+// =============================================================================
+
+export interface FixedAllowance {
+  name: string;
+  amount: number;
+  unit: string;
+  clause: string;
+  note?: string;
+}
+
+export const HOSPITALITY_ALLOWANCES: readonly FixedAllowance[] = [
+  { name: "Meal allowance (overtime of more than 2 hours, not advised the previous day)", amount: 17.42, unit: "per occasion", clause: "cl 26.4(b)(i)", note: "Full-time and part-time employees. Or the employer supplies a meal." },
+  { name: "Tool and equipment allowance — cook or apprentice cook using their own tools", amount: 2.03, unit: "per day", clause: "cl 26.5(a)", note: "Up to a maximum of $9.94 per week." },
+  { name: "First aid allowance — full-time", amount: 13.43, unit: "per week", clause: "cl 26.12(b)(i)" },
+  { name: "First aid allowance — part-time or casual", amount: 2.69, unit: "per day", clause: "cl 26.12(b)(ii)", note: "Up to a maximum of $13.43 per week." },
+  { name: "Split shift allowance — 2 to 3 hours between shifts", amount: 3.69, unit: "per day", clause: "cl 26.14(b)(i)", note: "Full-time and part-time employees." },
+  { name: "Split shift allowance — more than 3 hours between shifts", amount: 5.6, unit: "per day", clause: "cl 26.14(b)(ii)", note: "Full-time and part-time employees." },
+  { name: "Motor vehicle allowance", amount: 1.01, unit: "per km", clause: "cl 26.7" },
+  { name: "Fork-lift driver allowance", amount: 0.44, unit: "per hour", clause: "cl 26.3(a)", note: "All-purpose." },
+  { name: "Overnight stay allowance (staying on the premises to assist guests)", amount: 67.15, unit: "per overnight stay", clause: "cl 26.15(b)(i)", note: "Work of more than an hour during the stay is paid at 150%." },
+] as const;
+
+export const RETAIL_ALLOWANCES: readonly FixedAllowance[] = [
+  { name: "Meal allowance (overtime of more than 1 hour without 24 hours' notice)", amount: 24.56, unit: "per occasion", clause: "cl 19.2(b)(i)", note: "Or the employer supplies a meal." },
+  { name: "Further meal allowance (that overtime exceeds 4 hours)", amount: 22.27, unit: "per occasion", clause: "cl 19.2(c)" },
+  { name: "Laundry of special clothing — full-time", amount: 6.42, unit: "per week", clause: "cl 19.3(c)(i)" },
+  { name: "Laundry of special clothing — part-time or casual", amount: 1.28, unit: "per shift", clause: "cl 19.3(c)(ii)" },
+  { name: "First aid allowance", amount: 14.55, unit: "per week", clause: "cl 19.10(b)" },
+  { name: "Liquor licence allowance", amount: 34.69, unit: "per week", clause: "cl 19.12" },
+  { name: "Cold work allowance (cold chambers, refrigerated storage)", amount: 0.38, unit: "per hour", clause: "cl 19.9(b)", note: "A further $0.59 an hour below 0°C (cl 19.9(c))." },
+  { name: "Motor vehicle allowance", amount: 1.0, unit: "per km", clause: "cl 19.7" },
+  { name: "Broken Hill allowance", amount: 1.26, unit: "per hour", clause: "cl 19.13" },
+] as const;

@@ -14,8 +14,11 @@ const byAge = (age: string) => JUNIOR_RATES.find((r) => r.age === age)!;
 const A16 = byAge("16");
 const U16 = byAge("Under 16");
 
-const TITLE = `Junior Pay Rates ${SITE_CONFIG.financialYear} — Minimum Wage by Age`;
-const DESCRIPTION = `What under-${ADULT_AGE}s must be paid in Australia from ${NMW_ORDER.operativeFrom}. A 16-year-old earns ${formatAUD(A16.hourly, 2)}/hr (${formatAUD(A16.casualHourly, 2)} casual), under 16 ${formatAUD(U16.hourly, 2)}, rising to the full ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} at ${ADULT_AGE}. Includes junior scales for the retail, fast food, hospitality and hair & beauty awards, and minimum working age by state.`;
+// Retitled 23 Sep 2026: GSC shows the demand is age-led ("minimum wage for 15
+// year old australia" 2.1k impressions, 16/14/17 variants) and the old
+// "Junior Pay Rates" title earned 0.43% CTR at position 6.2.
+const TITLE = `Minimum Wage by Age ${SITE_CONFIG.financialYear}: 14, 15, 16, 17 Year Olds (Australia)`;
+const DESCRIPTION = `Minimum wage by age from ${NMW_ORDER.operativeFrom}: under 16 ${formatAUD(U16.hourly, 2)}/hr, 16 ${formatAUD(A16.hourly, 2)}, 17 ${formatAUD(byAge("17").hourly, 2)}, 18 ${formatAUD(byAge("18").hourly, 2)}, 19 ${formatAUD(byAge("19").hourly, 2)}, 20 ${formatAUD(byAge("20").hourly, 2)}, then ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} at ${ADULT_AGE}. Casual rates, retail, fast food and hospitality junior rates, and working age by state.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,
-    description: `Junior minimum wage by age, plus per-award junior scales and minimum working age by state.`,
+    description: `Minimum wage by age for 14 to 20 year olds in Australia, plus retail, fast food and hospitality junior rates.`,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "article",
@@ -38,7 +41,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
     { "@type": "ListItem", position: 2, name: "Award Rates", item: `${BASE}/award-rates/` },
-    { "@type": "ListItem", position: 3, name: "Junior Pay Rates", item: URL },
+    { "@type": "ListItem", position: 3, name: "Minimum Wage by Age", item: URL },
   ],
 };
 
