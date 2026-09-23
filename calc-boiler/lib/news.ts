@@ -25,6 +25,7 @@ import {
   formatIso,
   weekdayOf,
 } from "@/lib/constants/tax-calendar-2026-27";
+import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -715,6 +716,12 @@ function G6_ARTICLES(): NewsArticleMeta[] {
 
   const gicNext = `${(GENERAL_INTEREST_CHARGE.nextQuarter.annualRate * 100).toFixed(2)}%`;
 
+
+  const atcPct = `${(ATC_24_MONTH_COLUMN.increase * 100).toFixed(1)}%`;
+  const atcL1 = ATC_24_MONTH_COLUMN.salaries["Level 1"];
+  const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
+  const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -888,6 +895,34 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
         { question: "What is the ATO general interest charge rate for October to December 2026?", answer: `${gicNext} a year (a daily rate of ${GENERAL_INTEREST_CHARGE.nextQuarter.dailyRatePercent}%), up from ${(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}% for ${GENERAL_INTEREST_CHARGE.quarter}. GIC compounds daily on overdue tax, and GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
         { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
+      ],
+    },
+    {
+      slug: "air-traffic-controller-pay-rise-october-2026",
+      headline: `Air Traffic Controllers Get ${atcPct} Pay Rise on ${ATC_24_MONTH_COLUMN.dueOn}: Level 1 Rises to ${w(atcL1)}, Level 10 to ${w(atcL10)}`,
+      title: `Air Traffic Controller Pay Rise October 2026: ${atcPct}, New Salaries`,
+      description: `Airservices Australia controllers get the final ${atcPct} rise under their 2024-2027 enterprise agreement on ${ATC_24_MONTH_COLUMN.dueOn}. Level 1 goes to ${w(atcL1)}, Level 10 to ${w(atcL10)} and an ab initio trainee to ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])}. New salary table and what it means after tax.`,
+      category: "Wages",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
+      ],
+      relatedArticles: ["victorian-teachers-pay-rise-2026", "tax-cut-july-2026"],
+      sources: [
+        { title: "Air Traffic Control Classification Base Salary 2024-2027 (Attachment 1)", url: ATC_24_MONTH_COLUMN.sourceUrl, publisher: "Airservices Australia" },
+        { title: ATC_PAY.instrument.name, url: ATC_PAY.instrument.url, publisher: "Airservices Australia" },
+        { title: "Airservices to boost ATC overtime pay during school holidays (context)", url: "https://australianaviation.com.au/2026/09/airservices-to-boost-atc-overtime-pay-during-school-holidays/", publisher: "Australian Aviation" },
+        { title: "Airservices offers triple pay to stop flight delays (context)", url: "https://www.theaustralian.com.au/business/aviation/airservices-trials-300-per-cent-overtime-pay-for-controllers-to-stop-flight-chaos/news-story/f7077fe3c2761aa78dc40751af07f83a", publisher: "The Australian" },
+      ],
+      faq: [
+        { question: "When do air traffic controllers get their next pay rise?", answer: `The Airservices agreement's "24 months" salary column, a ${atcPct} rise, falls due on ${ATC_24_MONTH_COLUMN.dueOn} — 24 months after the agreement commenced on 7 October 2024. The salary table does not name the pay period it is first paid in.` },
+        { question: "How much does a Level 1 air traffic controller earn from October 2026?", answer: `${w(atcL1)} a year base salary, up from ${w(atcL1Now)}. Controllers then progress one level a year to Level 10, which pays ${w(atcL10)} from ${ATC_24_MONTH_COLUMN.dueOn}. Penalty rates, overtime and allowances are paid on top.` },
+        { question: "What do trainee air traffic controllers earn?", answer: `An ab initio trainee is paid ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])} and a field trainee ${w(ATC_24_MONTH_COLUMN.salaries["Field Trainee"])} under the agreement's "24 months" column from ${ATC_24_MONTH_COLUMN.dueOn}.` },
+        { question: "Is this the last pay rise under the current agreement?", answer: "Yes. It is the third and final salary column. The agreement reaches its nominal expiry date on 7 October 2027, and salaries after that depend on a replacement agreement." },
       ],
     },
   ];
