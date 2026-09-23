@@ -6,7 +6,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, TAX_BRACKETS_2025_26, formatAUD } from "@/lib/constants";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+
+// ATO fixed rate method page (last updated 8 Jun 2026, checked 24 Sep 2026):
+// "2024–25 and 2025–26: use 70 cents per work hour"; 67c applied to 2022–23
+// and 2023–24; 52c to 2020–21 and 2021–22. No 2026–27 rate published yet.
+const WFH_CENTS = RETURN_2026.wfhFixedRateCents;
+const WFH_RATE = WFH_CENTS / 100;
+// 7.6-hour day x 48 working weeks, per WFH day per week.
+const WFH_ROWS = [1, 2, 3, 4, 5].map((days) => {
+  const hours = Math.round(days * 7.6 * 48);
+  return { days, hours, deduction: Math.floor(hours * WFH_RATE) };
+});
+// The marginal rates that apply to a 2025-26 return (16% became 15% from 1 July 2026).
+const SAVING_RATES = TAX_BRACKETS_2025_26.slice(1).map((b) => b.rate);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -41,10 +55,10 @@ export default function WorkFromHomeDeductionsPage() {
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Feature</th><th className="px-5 py-3">Fixed Rate Method (67c/hr)</th><th className="px-5 py-3">Actual Cost Method</th></tr>
+                      <tr><th className="px-5 py-3">Feature</th><th className="px-5 py-3">Fixed Rate Method ({WFH_CENTS}c/hr)</th><th className="px-5 py-3">Actual Cost Method</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">Rate</td><td className="px-5 py-3">67 cents per hour worked from home</td><td className="px-5 py-3">Calculate each expense separately</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">Rate</td><td className="px-5 py-3">{WFH_CENTS} cents per hour worked from home ({RETURN_2026.incomeYear})</td><td className="px-5 py-3">Calculate each expense separately</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Covers</td><td className="px-5 py-3">Electricity, phone, internet, stationery, computer consumables</td><td className="px-5 py-3">Only what you calculate and claim</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Records required</td><td className="px-5 py-3">Record of total hours worked from home for the full year</td><td className="px-5 py-3">Bills, receipts, and a method to apportion work-use %</td></tr>
                       <tr><td className="px-5 py-3 font-medium">Dedicated office needed?</td><td className="px-5 py-3">No</td><td className="px-5 py-3">No (but needed for occupancy expenses like rent/mortgage interest)</td></tr>
@@ -73,7 +87,7 @@ export default function WorkFromHomeDeductionsPage() {
             <section id="fixed-rate-covers">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What the Fixed Rate Covers</h2>
               <p>
-                The 67 cents per hour fixed rate is a single rate that bundles the running costs of working from home. You <strong>cannot claim separate deductions</strong> for any of these expenses if you use the fixed rate method:
+                The {WFH_CENTS} cents per hour fixed rate is a single rate that bundles the running costs of working from home. You <strong>cannot claim separate deductions</strong> for any of these expenses if you use the fixed rate method:
               </p>
               <ul>
                 <li><strong>Electricity and gas</strong> — for heating, cooling, and lighting your workspace</li>
@@ -82,7 +96,7 @@ export default function WorkFromHomeDeductionsPage() {
                 <li><strong>Stationery and computer consumables</strong> — printer ink, paper, pens, USB drives</li>
               </ul>
               <p>
-                The rate was revised from the former 52 cents per hour (which covered a narrower range of expenses) to the current 67 cents per hour effective 1 July 2022. The higher rate reflects the inclusion of phone and internet costs, which were previously claimed separately.
+                The rate was revised from the former 52 cents per hour (which covered a narrower range of expenses) to 67 cents per hour from 1 July 2022, and rose to {WFH_CENTS} cents per hour for the 2024-25 and 2025-26 income years. The higher rate since 2022 reflects the inclusion of phone and internet costs, which were previously claimed separately. The ATO has not yet published the rate for 2026-27.
               </p>
             </section>
 
@@ -126,21 +140,19 @@ export default function WorkFromHomeDeductionsPage() {
             <section id="wfh-savings">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Will You Save?</h2>
               <p>
-                The table below shows annual deduction amounts and tax savings using the <strong>fixed rate method (67c/hour)</strong>, based on a standard 7.6-hour work day across 48 working weeks per year.
+                The table below shows annual deduction amounts and tax savings using the <strong>fixed rate method ({WFH_CENTS}c/hour, {RETURN_2026.incomeYear})</strong>, based on a standard 7.6-hour work day across 48 working weeks per year. Tax saved uses the {RETURN_2026.incomeYear} marginal rates and excludes the 2% Medicare levy.
               </p>
 
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">WFH Days/Week</th><th className="px-5 py-3 text-right">Annual Hours</th><th className="px-5 py-3 text-right">Deduction (67c/hr)</th><th className="px-5 py-3 text-right">Tax Saved @ 16%</th><th className="px-5 py-3 text-right">Tax Saved @ 30%</th><th className="px-5 py-3 text-right">Tax Saved @ 37%</th><th className="px-5 py-3 text-right">Tax Saved @ 45%</th></tr>
+                      <tr><th className="px-5 py-3">WFH Days/Week</th><th className="px-5 py-3 text-right">Annual Hours</th><th className="px-5 py-3 text-right">Deduction ({WFH_CENTS}c/hr)</th><th className="px-5 py-3 text-right">Tax Saved @ 16%</th><th className="px-5 py-3 text-right">Tax Saved @ 30%</th><th className="px-5 py-3 text-right">Tax Saved @ 37%</th><th className="px-5 py-3 text-right">Tax Saved @ 45%</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">1 day</td><td className="px-5 py-3 text-right">365</td><td className="px-5 py-3 text-right">$245</td><td className="px-5 py-3 text-right">$39</td><td className="px-5 py-3 text-right">$74</td><td className="px-5 py-3 text-right">$91</td><td className="px-5 py-3 text-right">$110</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">2 days</td><td className="px-5 py-3 text-right">730</td><td className="px-5 py-3 text-right">$489</td><td className="px-5 py-3 text-right">$78</td><td className="px-5 py-3 text-right">$147</td><td className="px-5 py-3 text-right">$181</td><td className="px-5 py-3 text-right">$220</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">3 days</td><td className="px-5 py-3 text-right">1,094</td><td className="px-5 py-3 text-right">$733</td><td className="px-5 py-3 text-right">$117</td><td className="px-5 py-3 text-right">$220</td><td className="px-5 py-3 text-right">$271</td><td className="px-5 py-3 text-right">$330</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">4 days</td><td className="px-5 py-3 text-right">1,459</td><td className="px-5 py-3 text-right">$978</td><td className="px-5 py-3 text-right">$156</td><td className="px-5 py-3 text-right">$293</td><td className="px-5 py-3 text-right">$362</td><td className="px-5 py-3 text-right">$440</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">5 days</td><td className="px-5 py-3 text-right">1,824</td><td className="px-5 py-3 text-right">$1,222</td><td className="px-5 py-3 text-right">$196</td><td className="px-5 py-3 text-right">$367</td><td className="px-5 py-3 text-right">$452</td><td className="px-5 py-3 text-right">$550</td></tr>
+                      {WFH_ROWS.map((r) => (
+                        <tr key={r.days}><td className="px-5 py-3 font-medium">{r.days} day{r.days > 1 ? "s" : ""}</td><td className="px-5 py-3 text-right">{r.hours.toLocaleString("en-AU")}</td><td className="px-5 py-3 text-right">{formatAUD(r.deduction)}</td>{SAVING_RATES.map((rate) => (<td key={rate} className="px-5 py-3 text-right">{formatAUD(r.deduction * rate)}</td>))}</tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
@@ -157,7 +169,7 @@ export default function WorkFromHomeDeductionsPage() {
                 The ATO flags WFH claims as a key audit focus area. These are the most common errors that lead to disallowed deductions or penalties:
               </p>
               <ul>
-                <li><strong>Claiming phone/internet separately under the fixed rate method.</strong> The 67c/hr rate already includes phone and internet costs. Claiming them again separately results in double-counting and ATO adjustment.</li>
+                <li><strong>Claiming phone/internet separately under the fixed rate method.</strong> The {WFH_CENTS}c/hr rate already includes phone and internet costs. Claiming them again separately results in double-counting and ATO adjustment.</li>
                 <li><strong>No record of hours.</strong> You must maintain a record of hours worked from home for the <strong>entire income year</strong>. A 4-week representative period is not sufficient under the revised fixed rate method — the ATO requires a full-year record.</li>
                 <li><strong>Claiming occupancy expenses as an employee.</strong> Rent, mortgage interest, and property rates are only deductible for home-based businesses, not employees working from home for their employer.</li>
                 <li><strong>Claiming 100% of shared expenses.</strong> If you share your home with a partner who also works from home, each person can only claim their own proportion of expenses or hours.</li>
@@ -192,23 +204,23 @@ export default function WorkFromHomeDeductionsPage() {
 
                 <AccordionItem value="part-day" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I claim for part of a day worked from home?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. The fixed rate method is based on <strong>hours</strong>, not days. If you work from home for 4 hours in the morning and travel to the office in the afternoon, you claim 4 hours at 67 cents ($2.68). Only count actual working hours — not lunch breaks, personal errands, or time between tasks.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. The fixed rate method is based on <strong>hours</strong>, not days. If you work from home for 4 hours in the morning and travel to the office in the afternoon, you claim 4 hours at {WFH_CENTS} cents ({formatAUD(4 * WFH_RATE, 2)}). Only count actual working hours — not lunch breaks, personal errands, or time between tasks.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="shared-household" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can both my partner and I claim WFH deductions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Each person claims separately based on their own hours worked from home. Under the fixed rate method, you each claim 67 cents per hour for the hours you individually worked from home. Under the actual cost method, you would each apportion expenses based on your individual work use — you cannot both claim 100% of the same bill.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. Each person claims separately based on their own hours worked from home. Under the fixed rate method, you each claim {WFH_CENTS} cents per hour for the hours you individually worked from home. Under the actual cost method, you would each apportion expenses based on your individual work use — you cannot both claim 100% of the same bill.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="furniture-claim" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I claim a new desk and chair?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Office furniture is claimed <strong>separately from the fixed rate</strong> — it is not included in the 67c/hr. Items costing $300 or less are an immediate deduction at the work-use percentage. Items over $300 are depreciated. A $500 office chair with 80% work use is depreciated at $40 per year (10-year effective life, 80% work use). Keep the purchase receipt.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. Office furniture is claimed <strong>separately from the fixed rate</strong> — it is not included in the {WFH_CENTS}c/hr. Items costing $300 or less are an immediate deduction at the work-use percentage. Items over $300 are depreciated. A $500 office chair with 80% work use is depreciated at $40 per year (10-year effective life, 80% work use). Keep the purchase receipt.</AccordionContent>
                 </AccordionItem>
 
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Work from home deduction information is sourced from the Australian Taxation Office (ATO). The fixed rate of 67 cents per hour applies from FY2022-23 onwards. Hours and savings calculations assume a 7.6-hour work day across 48 working weeks. Your individual circumstances, working hours, and marginal tax rate determine your actual savings.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Work from home deduction information is sourced from the Australian Taxation Office (ATO). The fixed rate is 70 cents per hour for FY2024-25 and FY2025-26 (67 cents for FY2022-23 and FY2023-24); the ATO has not yet published the FY2026-27 rate. Hours and savings calculations assume a 7.6-hour work day across 48 working weeks. Your individual circumstances, working hours, and marginal tax rate determine your actual savings.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("work-from-home-deductions"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

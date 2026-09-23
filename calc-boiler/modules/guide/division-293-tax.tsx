@@ -7,7 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -66,7 +66,7 @@ export default function Division293TaxPage() {
                 <p className="text-navy text-sm font-medium">
                   <strong>Who Is Affected?</strong>
                   <br />
-                  Division 293 primarily impacts high-income professionals, executives, and business owners. An employee earning $230,000 with $30,000 in employer SG contributions has a combined income of $260,000 &mdash; triggering Division 293 on $10,000 of their super contributions.
+                  Division 293 primarily impacts high-income professionals, executives, and business owners. An employee earning $230,000 with $30,000 in concessional contributions (12% employer SG of $27,600 plus $2,400 salary sacrifice) has a combined income of $260,000 &mdash; triggering Division 293 on $10,000 of their super contributions.
                 </p>
               </div>
             </section>
@@ -183,7 +183,7 @@ export default function Division293TaxPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Consider Non-Concessional Contributions</h3>
               <p>
-                Non-concessional (after-tax) contributions do not count towards Division 293 income. If you want to boost your super balance without triggering additional Division 293 tax, after-tax contributions (up to the $120,000 annual cap) are an alternative. These contributions enter your super fund tax-free.
+                Non-concessional (after-tax) contributions do not count towards Division 293 income. If you want to boost your super balance without triggering additional Division 293 tax, after-tax contributions (up to the {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} annual cap in FY{SITE_CONFIG.financialYear}) are an alternative. These contributions enter your super fund tax-free.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Timing of Income</h3>
@@ -207,7 +207,7 @@ export default function Division293TaxPage() {
                 </AccordionItem>
                 <AccordionItem value="who-pays" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do I have to pay Division 293 if my salary is under $250K?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, potentially. Division 293 looks at your <strong>combined</strong> income and concessional super contributions. If your taxable income is $230,000 and your employer pays $30,000 in SG contributions, your combined total is $260,000 &mdash; above the $250,000 threshold. You would owe Division 293 tax on $10,000 of super contributions ($1,500).</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes, potentially. Division 293 looks at your <strong>combined</strong> income and concessional super contributions. If your taxable income is $230,000 and you have $30,000 of concessional contributions (for example $27,600 of employer SG plus $2,400 of salary sacrifice), your combined total is $260,000 &mdash; above the $250,000 threshold. You would owe Division 293 tax on $10,000 of super contributions ($1,500).</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="pay-from-super" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I pay Division 293 from my super fund?</AccordionTrigger>
@@ -230,7 +230,7 @@ export default function Division293TaxPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Division 293 thresholds and calculations are sourced from the Australian Taxation Office. Worked examples use FY2025-26 concessional contribution caps ($30,000) and the 12% SG rate. Individual circumstances vary based on reportable fringe benefits, investment losses, and multiple super fund arrangements. Consult a qualified tax adviser for personalised Division 293 planning.</p>
+                <p>Division 293 thresholds and calculations are sourced from the Australian Taxation Office. Worked examples assume $30,000 of concessional contributions, within the FY{SITE_CONFIG.financialYear} cap of {formatAUD(SUPER_GUARANTEE.concessionalCap)}, and the 12% SG rate. Individual circumstances vary based on reportable fringe benefits, investment losses, and multiple super fund arrangements. Consult a qualified tax adviser for personalised Division 293 planning.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("division-293-tax"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
