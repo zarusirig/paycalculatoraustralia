@@ -91,7 +91,8 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
-      <SchadsAwardPayRatesPage />
+      {/* Build date: fixes the date-aware vehicle allowance for server and client alike. */}
+      <SchadsAwardPayRatesPage asOf={new Date().toISOString().slice(0, 10)} />
     </>
   );
 }

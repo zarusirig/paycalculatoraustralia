@@ -5,6 +5,7 @@ import type { BreadcrumbList, FAQPage, ItemList, WebPage, WithContext } from "sc
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { NURSING_PAY_BY_STATE, NURSING_PAY_STATES, registeredNurseRange } from "@/lib/data/nursing-pay";
 import { NURSES_AWARD, NURSES_AWARD_GENERAL } from "@/lib/data/nursing-pay/nurses-award-2020";
+import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/healthcare-worker-pay/`;
@@ -24,7 +25,7 @@ const DESCRIPTION = `Nurse and midwife pay scales for all six states, read from 
   RN_ENTRY_LOW,
 )} to ${formatAUD(
   RN_ENTRY_HIGH,
-)} at the entry step. Plus what the Nurses Award 2020 really is, shift penalties by state, doctor and allied health rates, and salary packaging for public hospital staff.`;
+)} at the entry step. Plus what the Nurses Award 2020 really is, shift penalties by state, doctor, allied health and aged care award rates, and salary packaging for public hospital staff.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -106,7 +107,7 @@ const faq: WithContext<FAQPage> = {
       name: "What is salary packaging for healthcare workers?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Public hospital employees can salary package up to $15,900 of living expenses free of fringe benefits tax, plus $2,650 for meal entertainment. It does not change your gross pay or your classification — it changes how much of your pay is taxed, and on a nursing salary it is worth several thousand dollars a year in extra take-home pay.",
+        text: `Public and not-for-profit hospitals can provide fringe benefits free of FBT up to a ${formatAUD(FBT_CAPS.hospitalAndAmbulance)} grossed-up cap per employee each FBT year — about ${formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} of rent, mortgage or other GST-free living expenses — plus a separate ${formatAUD(FBT_CAPS.salaryPackagedEntertainment)} grossed-up cap (about ${formatAUD(capFaceValue(FBT_CAPS.salaryPackagedEntertainment))}) for meal entertainment. Public benevolent institutions and health promotion charities have a ${formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)} grossed-up cap. Packaging does not change your gross pay or classification; it changes how much of your pay is taxed.`,
       },
     },
   ],

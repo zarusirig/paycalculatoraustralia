@@ -6,7 +6,10 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, MEDICARE_LEVY, HECS_HELP, HECS_HELP_2025_26, LITO, TAX_BRACKETS, TAX_BRACKETS_2025_26, TAX_FREE_THRESHOLD, GENERAL_INTEREST_CHARGE, formatAUD, formatPercent } from "@/lib/constants";
+import { RETURN_2026, RETURN_2026_SOURCES, MLS_2025_26_SINGLE, incomeTax2025_26, lito2025_26, medicareLevy2025_26 } from "@/lib/constants/tax-return-2025-26";
+import { PENALTY_UNIT, FTL_MAX_INDIVIDUAL } from "@/lib/constants/tax-calendar-2026-27";
+import { PHI_REBATE, formatMlsRate } from "@/lib/constants/medicare-levy-surcharge";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -14,8 +17,37 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Lodge your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return", publisher: SOURCES.ato.name },
   { title: "Deductions you can claim", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim", publisher: SOURCES.ato.name },
   { title: "Income tax rates for individuals", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: "Processing times for tax returns", url: "https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/reports-and-returns/due-dates-for-lodging-and-paying", publisher: SOURCES.ato.name },
+  { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: SOURCES.ato.name },
+  { title: "Due dates for tax returns lodged by registered agents", url: RETURN_2026_SOURCES.agentProgram, publisher: SOURCES.ato.name },
+  { title: "Working from home fixed rate method", url: RETURN_2026_SOURCES.wfh, publisher: SOURCES.ato.name },
+  { title: "Medicare levy surcharge income, thresholds and rates", url: RETURN_2026_SOURCES.mls, publisher: SOURCES.ato.name },
+  { title: "Failure to lodge on time penalty", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/penalties/failure-to-lodge-on-time-penalty", publisher: SOURCES.ato.name },
 ];
+
+// The return being lodged now is the 2025-26 return (RETURN_2026.incomeYear),
+// so every worked figure below is computed on 2025-26 rates from constants.
+const RY = RETURN_2026.incomeYear;
+const EX_GROSS = 85_000;
+const EX_DEDUCTIONS = 2_500;
+const EX_TAXABLE = EX_GROSS - EX_DEDUCTIONS;
+const EX_TAX = incomeTax2025_26(EX_TAXABLE);
+const EX_LEVY = medicareLevy2025_26(EX_TAXABLE);
+const EX_LITO = lito2025_26(EX_TAXABLE);
+const EX_LIABILITY = EX_TAX + EX_LEVY - EX_LITO;
+// Approximation: PAYG withholding is designed to land close to the full-year
+// liability on the gross salary when no deductions are claimed.
+const EX_WITHHELD = incomeTax2025_26(EX_GROSS) + medicareLevy2025_26(EX_GROSS) - lito2025_26(EX_GROSS);
+const EX_REFUND = EX_WITHHELD - EX_LIABILITY;
+const BRACKET_2 = TAX_BRACKETS_2025_26[1];
+const BRACKET_3 = TAX_BRACKETS_2025_26[2];
+const TOP_BRACKET = TAX_BRACKETS_2025_26[TAX_BRACKETS_2025_26.length - 1];
+const WFH_RATE = RETURN_2026.wfhFixedRateCents / 100;
+const WFH_EXAMPLE_HOURS = 1_100;
+const MLS_BASE_2025_26 = MLS_2025_26_SINGLE[0].min - 1;
+const MLS_BASE_SINGLE = MEDICARE_LEVY.surcharge.tier1.min - 1;
+const MLS_BASE_FAMILY = MEDICARE_LEVY.surcharge.familyTier1.min - 1;
+const PHI_REBATE_NIL_ABOVE = MEDICARE_LEVY.surcharge.tier3.min - 1;
+const FTL_PER_PERIOD = PENALTY_UNIT.amount;
 
 export default function TaxRefundGuidePage() {
   return (
@@ -24,7 +56,7 @@ export default function TaxRefundGuidePage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax Refund Guide</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Guide — How Tax Returns Work in Australia</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how tax refunds work, what deductions you can claim, and how to maximise your return. A complete guide to the Australian tax return process for FY2025-26.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how tax refunds work, what deductions you can claim, and how to maximise your return. A complete guide to the Australian tax return process for the FY{RY} return you lodge in 2026.</p>
           <TrustBar className="!max-w-none" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
@@ -37,10 +69,10 @@ export default function TaxRefundGuidePage() {
                 A tax refund is the amount the Australian Taxation Office (ATO) returns to you when your employer withheld <strong>more PAYG tax than your actual liability</strong> for the financial year. The ATO calculates your refund after you lodge your tax return, comparing total tax withheld against your assessed tax on taxable income.
               </p>
               <p>
-                Throughout each pay cycle, your employer deducts income tax based on PAYG withholding schedules. These schedules assume you earn the same amount every pay period for the full 12 months. Three common situations create a gap between tax withheld and tax owed: claiming work-related deductions that reduce taxable income, working for only part of the financial year, and receiving tax offsets such as the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>$700</strong>.
+                Throughout each pay cycle, your employer deducts income tax based on PAYG withholding schedules. These schedules assume you earn the same amount every pay period for the full 12 months. Three common situations create a gap between tax withheld and tax owed: claiming work-related deductions that reduce taxable income, working for only part of the financial year, and receiving tax offsets such as the &quot;Low Income Tax Offset&quot; (LITO) worth up to <strong>{formatAUD(LITO.maxOffset)}</strong>.
               </p>
               <p>
-                The refund is not free money from the government — it is your own income that was over-withheld. Use our <Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY2025-26.
+                The refund is not free money from the government — it is your own income that was over-withheld. Use our <Link href="/tax-return-calculator/">Tax Return Estimator</Link> to calculate whether you are likely to receive a refund or owe additional tax for FY{RY}.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
@@ -64,15 +96,15 @@ export default function TaxRefundGuidePage() {
                 Your tax refund equals the difference between <strong>total PAYG tax withheld and your assessed tax liability</strong>. The ATO applies Australian income tax brackets, the Medicare levy, tax offsets, and allowable deductions to arrive at the final figure.
               </p>
               <p>
-                The calculation follows a defined sequence. The ATO first determines gross income from all sources: salary, wages, interest, dividends, rental income, and capital gains. Allowable deductions are then subtracted from gross income to produce taxable income. Income tax is calculated on taxable income using the FY2025-26 resident tax brackets.
+                The calculation follows a defined sequence. The ATO first determines gross income from all sources: salary, wages, interest, dividends, rental income, and capital gains. Allowable deductions are then subtracted from gross income to produce taxable income. Income tax is calculated on taxable income using the FY{RY} resident tax brackets.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example at $85,000</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example at {formatAUD(EX_GROSS)} (FY{RY} return)</h3>
               <p>
-                An employee earning <strong>$85,000</strong> gross salary with <strong>$2,500</strong> in work-related deductions has a taxable income of <strong>$82,500</strong>. The income tax on $82,500 is <strong>$15,538</strong> (calculated as $4,288 base + 30% on the amount over $45,000). The Medicare levy adds <strong>$1,650</strong> (2% of $82,500). After applying the LITO of <strong>$0</strong> (phased out above $66,667), total tax liability is <strong>$17,188</strong>.
+                An employee earning <strong>{formatAUD(EX_GROSS)}</strong> gross salary with <strong>{formatAUD(EX_DEDUCTIONS)}</strong> in work-related deductions has a taxable income of <strong>{formatAUD(EX_TAXABLE)}</strong>. The income tax on {formatAUD(EX_TAXABLE)} is <strong>{formatAUD(EX_TAX)}</strong> (calculated as {formatAUD(BRACKET_3.base)} base + {formatPercent(BRACKET_3.rate, 0)} on the amount over {formatAUD(BRACKET_3.min - 1)}). The Medicare levy adds <strong>{formatAUD(EX_LEVY)}</strong> ({formatPercent(MEDICARE_LEVY.rate, 0)} of {formatAUD(EX_TAXABLE)}). After applying the LITO of <strong>{formatAUD(EX_LITO)}</strong> (phased out above {formatAUD(LITO.nilOffsetIncome)}), total tax liability is <strong>{formatAUD(EX_LIABILITY)}</strong>.
               </p>
               <p>
-                If the employer withheld <strong>$19,717</strong> in PAYG tax (based on $85,000 without deductions), the refund is $19,717 minus $17,188 = <strong>$2,529</strong>. The deductions of $2,500 saved <strong>$750</strong> in tax at the 30% marginal rate. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your own scenario with specific income and deduction amounts.
+                PAYG withholding on {formatAUD(EX_GROSS)} with no deductions is designed to come close to the full-year tax on {formatAUD(EX_GROSS)}: about <strong>{formatAUD(EX_WITHHELD)}</strong>. If that is what was withheld, the refund is {formatAUD(EX_WITHHELD)} minus {formatAUD(EX_LIABILITY)} = <strong>{formatAUD(EX_REFUND)}</strong> &mdash; the {formatAUD(EX_DEDUCTIONS)} of deductions at the {formatPercent(BRACKET_3.rate, 0)} marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy. The exact amount withheld depends on how each pay was rounded under the withholding tables, so a real refund will differ slightly. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to model your own scenario with specific income and deduction amounts.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Formula</h3>
@@ -80,16 +112,16 @@ export default function TaxRefundGuidePage() {
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Step</th><th className="px-5 py-3">Calculation</th><th className="px-5 py-3 text-right">Example ($85k)</th></tr>
+                      <tr><th className="px-5 py-3">Step</th><th className="px-5 py-3">Calculation</th><th className="px-5 py-3 text-right">Example ({formatAUD(EX_GROSS)})</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">1. Gross income</td><td className="px-5 py-3">All assessable income sources</td><td className="px-5 py-3 text-right">$85,000</td></tr>
-                      <tr><td className="px-5 py-3">2. Subtract deductions</td><td className="px-5 py-3">Gross income − allowable deductions</td><td className="px-5 py-3 text-right">$82,500</td></tr>
-                      <tr><td className="px-5 py-3">3. Income tax on taxable income</td><td className="px-5 py-3">Apply FY2025-26 tax brackets</td><td className="px-5 py-3 text-right">$15,538</td></tr>
-                      <tr><td className="px-5 py-3">4. Add Medicare levy</td><td className="px-5 py-3">2% of taxable income</td><td className="px-5 py-3 text-right">$1,650</td></tr>
-                      <tr><td className="px-5 py-3">5. Subtract tax offsets</td><td className="px-5 py-3">LITO, SAPTO, other offsets</td><td className="px-5 py-3 text-right">$0</td></tr>
-                      <tr><td className="px-5 py-3">6. Total tax liability</td><td className="px-5 py-3">Step 3 + Step 4 − Step 5</td><td className="px-5 py-3 text-right">$17,188</td></tr>
-                      <tr className="font-semibold text-navy"><td className="px-5 py-3">7. Tax refund</td><td className="px-5 py-3">Total PAYG withheld − Total tax liability</td><td className="px-5 py-3 text-right">$2,529</td></tr>
+                      <tr><td className="px-5 py-3">1. Gross income</td><td className="px-5 py-3">All assessable income sources</td><td className="px-5 py-3 text-right">{formatAUD(EX_GROSS)}</td></tr>
+                      <tr><td className="px-5 py-3">2. Subtract deductions</td><td className="px-5 py-3">Gross income − allowable deductions</td><td className="px-5 py-3 text-right">{formatAUD(EX_TAXABLE)}</td></tr>
+                      <tr><td className="px-5 py-3">3. Income tax on taxable income</td><td className="px-5 py-3">Apply FY{RY} tax brackets</td><td className="px-5 py-3 text-right">{formatAUD(EX_TAX)}</td></tr>
+                      <tr><td className="px-5 py-3">4. Add Medicare levy</td><td className="px-5 py-3">{formatPercent(MEDICARE_LEVY.rate, 0)} of taxable income</td><td className="px-5 py-3 text-right">{formatAUD(EX_LEVY)}</td></tr>
+                      <tr><td className="px-5 py-3">5. Subtract tax offsets</td><td className="px-5 py-3">LITO, SAPTO, other offsets</td><td className="px-5 py-3 text-right">{formatAUD(EX_LITO)}</td></tr>
+                      <tr><td className="px-5 py-3">6. Total tax liability</td><td className="px-5 py-3">Step 3 + Step 4 − Step 5</td><td className="px-5 py-3 text-right">{formatAUD(EX_LIABILITY)}</td></tr>
+                      <tr className="font-semibold text-navy"><td className="px-5 py-3">7. Tax refund</td><td className="px-5 py-3">Total PAYG withheld (about {formatAUD(EX_WITHHELD)}) − Total tax liability</td><td className="px-5 py-3 text-right">{formatAUD(EX_REFUND)}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -98,33 +130,31 @@ export default function TaxRefundGuidePage() {
 
             {/* ───── SECTION 3: What Is the Average Tax Refund in Australia? ───── */}
             <section id="average-refund">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Average Tax Refund in Australia?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Big Is a Typical Tax Refund in Australia?</h2>
               <p>
-                The average Australian tax refund is approximately <strong>$2,900</strong> based on ATO statistics from the most recent complete data year. Refund amounts vary significantly by income level, occupation, and the value of deductions claimed.
+                There is no single typical refund. For most employees the refund is roughly their deductions multiplied by their marginal rate (plus the Medicare levy), plus any offset such as LITO that the withholding tables did not fully build in, plus any over-withholding from part-year work. Averages quoted in the media are early-season snapshots and move week to week, so we don&apos;t repeat them here.
               </p>
               <p>
-                Taxpayers in higher income tax brackets tend to receive larger refunds in dollar terms because deductions save tax at a higher marginal rate. A $3,000 deduction saves <strong>$480</strong> for someone in the 16% bracket but saves <strong>$1,350</strong> for someone in the 45% bracket. Part-year workers and those with multiple income sources also tend to receive above-average refunds due to withholding mismatches.
+                Taxpayers in higher income tax brackets tend to receive larger refunds in dollar terms because deductions save tax at a higher marginal rate. For FY{RY}, a $3,000 deduction saves <strong>{formatAUD(3_000 * BRACKET_2.rate)}</strong> in income tax for someone in the {formatPercent(BRACKET_2.rate, 0)} bracket but <strong>{formatAUD(3_000 * TOP_BRACKET.rate)}</strong> for someone in the {formatPercent(TOP_BRACKET.rate, 0)} bracket. Part-year workers and those with multiple income sources also tend to receive above-average refunds due to withholding mismatches.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Average Refund by Income Level</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What $1,000 of Deductions Is Worth by Bracket (FY{RY})</h3>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Taxable Income Range</th><th className="px-5 py-3">Tax Bracket</th><th className="px-5 py-3 text-right">Typical Refund</th></tr>
+                      <tr><th className="px-5 py-3">Taxable Income Range</th><th className="px-5 py-3">Marginal Rate</th><th className="px-5 py-3 text-right">Income Tax Saved per $1,000 Deducted</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">$0 – $18,200</td><td className="px-5 py-3">0% (tax-free threshold)</td><td className="px-5 py-3 text-right">$0 – $500</td></tr>
-                      <tr><td className="px-5 py-3">$18,201 – $45,000</td><td className="px-5 py-3">16%</td><td className="px-5 py-3 text-right">$800 – $1,500</td></tr>
-                      <tr><td className="px-5 py-3">$45,001 – $135,000</td><td className="px-5 py-3">30%</td><td className="px-5 py-3 text-right">$2,000 – $4,000</td></tr>
-                      <tr><td className="px-5 py-3">$135,001 – $190,000</td><td className="px-5 py-3">37%</td><td className="px-5 py-3 text-right">$3,500 – $6,000</td></tr>
-                      <tr><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3">45%</td><td className="px-5 py-3 text-right">$4,000 – $10,000+</td></tr>
+                      {TAX_BRACKETS_2025_26.map((b) => (
+                        <tr key={b.min}><td className="px-5 py-3">{formatAUD(b.min)}{b.max === Infinity ? "+" : ` – ${formatAUD(b.max)}`}</td><td className="px-5 py-3">{formatPercent(b.rate, 0)}{b.rate === 0 ? " (tax-free threshold)" : ""}</td><td className="px-5 py-3 text-right">{formatAUD(1_000 * b.rate)}</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                Individuals below the <strong>$18,200</strong> tax-free threshold who had PAYG tax withheld receive a full refund of all tax paid. This commonly applies to students, part-time workers, and people who started employment partway through the year. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify which marginal rate applies to your assessable income.
+                Individuals below the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold who had PAYG tax withheld receive a full refund of all tax paid. This commonly applies to students, part-time workers, and people who started employment partway through the year. Review the current <Link href="/tax-brackets/">Tax Brackets Guide</Link> to identify which marginal rate applies to your assessable income.
               </p>
             </section>
 
@@ -139,18 +169,18 @@ export default function TaxRefundGuidePage() {
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
                     <thead className="bg-sandstone font-semibold text-navy">
-                      <tr><th className="px-5 py-3">Deduction Category</th><th className="px-5 py-3">Method / Details</th><th className="px-5 py-3 text-right">Typical Claim Range</th><th className="px-5 py-3 text-right">Tax Saved (30% bracket)</th></tr>
+                      <tr><th className="px-5 py-3">Deduction Category</th><th className="px-5 py-3">Method / Details (FY{RY})</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Work from home</td><td className="px-5 py-3">Fixed rate: 67c per hour</td><td className="px-5 py-3 text-right">$1,000 – $3,000</td><td className="px-5 py-3 text-right">$300 – $900</td></tr>
-                      <tr><td className="px-5 py-3">Car / travel expenses</td><td className="px-5 py-3">Work-related travel (not home-to-work commuting)</td><td className="px-5 py-3 text-right">$500 – $5,000</td><td className="px-5 py-3 text-right">$150 – $1,500</td></tr>
-                      <tr><td className="px-5 py-3">Uniforms / protective clothing</td><td className="px-5 py-3">Occupation-specific, compulsory, or protective clothing + laundry</td><td className="px-5 py-3 text-right">$150 – $500</td><td className="px-5 py-3 text-right">$45 – $150</td></tr>
-                      <tr><td className="px-5 py-3">Self-education expenses</td><td className="px-5 py-3">Courses, textbooks, and conferences related to current employment</td><td className="px-5 py-3 text-right">$200 – $2,000</td><td className="px-5 py-3 text-right">$60 – $600</td></tr>
-                      <tr><td className="px-5 py-3">Tools and equipment</td><td className="px-5 py-3">Items costing $300 or less: immediate deduction; over $300: depreciate</td><td className="px-5 py-3 text-right">$100 – $1,000</td><td className="px-5 py-3 text-right">$30 – $300</td></tr>
-                      <tr><td className="px-5 py-3">Phone and internet</td><td className="px-5 py-3">Work-use percentage of personal plans</td><td className="px-5 py-3 text-right">$200 – $800</td><td className="px-5 py-3 text-right">$60 – $240</td></tr>
-                      <tr><td className="px-5 py-3">Union / professional fees</td><td className="px-5 py-3">Membership of unions, professional associations, and registration boards</td><td className="px-5 py-3 text-right">$200 – $1,000</td><td className="px-5 py-3 text-right">$60 – $300</td></tr>
-                      <tr><td className="px-5 py-3">Income protection insurance</td><td className="px-5 py-3">Premiums for policies covering loss of income</td><td className="px-5 py-3 text-right">$300 – $1,500</td><td className="px-5 py-3 text-right">$90 – $450</td></tr>
-                      <tr><td className="px-5 py-3">Donations (DGR)</td><td className="px-5 py-3">Gifts of $2+ to deductible gift recipients</td><td className="px-5 py-3 text-right">$50 – $2,000</td><td className="px-5 py-3 text-right">$15 – $600</td></tr>
+                      <tr><td className="px-5 py-3">Work from home</td><td className="px-5 py-3">Fixed rate: {RETURN_2026.wfhFixedRateCents}c per work hour, with a record of hours worked from home; or actual costs</td></tr>
+                      <tr><td className="px-5 py-3">Car / travel expenses</td><td className="px-5 py-3">Work-related travel (not home-to-work commuting); cents per km method {RETURN_2026.carCentsPerKm}c per km, up to {RETURN_2026.carMaxKm.toLocaleString("en-AU")} km per car</td></tr>
+                      <tr><td className="px-5 py-3">Uniforms / protective clothing</td><td className="px-5 py-3">Occupation-specific, compulsory, or protective clothing + laundry</td></tr>
+                      <tr><td className="px-5 py-3">Self-education expenses</td><td className="px-5 py-3">Courses, textbooks, and conferences related to current employment</td></tr>
+                      <tr><td className="px-5 py-3">Tools and equipment</td><td className="px-5 py-3">Items costing $300 or less: immediate deduction; over $300: depreciate</td></tr>
+                      <tr><td className="px-5 py-3">Phone and internet</td><td className="px-5 py-3">Work-use percentage of personal plans (not if you use the WFH fixed rate, which covers them)</td></tr>
+                      <tr><td className="px-5 py-3">Union / professional fees</td><td className="px-5 py-3">Membership of unions, professional associations, and registration boards</td></tr>
+                      <tr><td className="px-5 py-3">Income protection insurance</td><td className="px-5 py-3">Premiums for policies covering loss of income (not paid through super)</td></tr>
+                      <tr><td className="px-5 py-3">Donations (DGR)</td><td className="px-5 py-3">Gifts of $2+ to deductible gift recipients</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -164,21 +194,21 @@ export default function TaxRefundGuidePage() {
             <section id="how-to-lodge">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do You Lodge Your Tax Return?</h2>
               <p>
-                Most Australians lodge their tax return through <strong>myTax</strong>, the ATO&apos;s free online tool accessible via myGov. The process takes <strong>15–30 minutes</strong> for straightforward returns with pre-filled employer data and no complex investments.
+                Most Australians lodge their tax return through <strong>myTax</strong>, the ATO&apos;s free online tool accessible via myGov. For a straightforward return with pre-filled employer data and no complex investments, it is usually a short job.
               </p>
               <ol>
                 <li><strong>Log into myGov</strong> at <a href="https://my.gov.au" target="_blank" rel="noopener noreferrer">my.gov.au</a> and navigate to the ATO section. Link your ATO account if you have not done so previously.</li>
-                <li><strong>Wait for pre-fill data.</strong> Your employer&apos;s income statement, bank interest, private health insurance details, and government payments auto-populate after 14 July. Lodging before pre-fill data is available increases the risk of errors.</li>
+                <li><strong>Wait for pre-fill data.</strong> Your employer&apos;s income statement, bank interest, private health insurance details, and government payments auto-populate once it arrives &mdash; the ATO says most information is pre-filled by {RETURN_2026.prefillReady}. Lodging before pre-fill data is available increases the risk of errors.</li>
                 <li><strong>Verify your income.</strong> Check that your salary, wages, allowances, and other income match your final payslip and payment summaries. Report all assessable income including interest above $1, dividends, rental income, and capital gains.</li>
                 <li><strong>Add deductions.</strong> Enter work-related expenses, self-education costs, donations, and other allowable deductions. The ATO pre-fills some deductions such as income protection insurance and tax agent fees from the prior year.</li>
-                <li><strong>Review offsets and levies.</strong> The system automatically applies the &quot;Low Income Tax Offset&quot; (LITO), the &quot;Medicare Levy&quot; at 2%, and the &quot;Medicare Levy Surcharge&quot; if applicable. Confirm your private health insurance status to avoid an incorrect MLS charge.</li>
-                <li><strong>Submit and receive your Notice of Assessment.</strong> The ATO issues a Notice of Assessment confirming your refund amount or tax debt. Electronic lodgments processed within 14 business days receive refunds via direct deposit.</li>
+                <li><strong>Review offsets and levies.</strong> The system automatically applies the &quot;Low Income Tax Offset&quot; (LITO), the &quot;Medicare Levy&quot; at {formatPercent(MEDICARE_LEVY.rate, 0)}, and the &quot;Medicare Levy Surcharge&quot; if applicable. Confirm your private health insurance status to avoid an incorrect MLS charge &mdash; the <Link href="/medicare-levy-surcharge-calculator/">MLS calculator</Link> shows whether it applies to you.</li>
+                <li><strong>Submit and receive your Notice of Assessment.</strong> The ATO issues a Notice of Assessment confirming your refund amount or tax debt. The ATO says most myTax returns process in {RETURN_2026.onlineProcessingBusinessDays} business days and most refunds issue within {RETURN_2026.onlineRefundTypical}, paid by direct deposit.</li>
               </ol>
               <p>
-                Alternatively, a registered tax agent lodges on your behalf for a fee of <strong>$100–$400</strong> for standard individual returns. Tax agents access extended deadlines up to 15 May the following year. Complex returns involving investment properties, capital gains, foreign income, or business income benefit from professional preparation.
+                Alternatively, a registered tax agent can lodge on your behalf. If you are on an agent&apos;s lodgment program (contact them before 31 October), most individuals have until <strong>{RETURN_2026.agentDueDateMostPeople}</strong>. Complex returns involving investment properties, capital gains, foreign income, or business income benefit from professional preparation.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Key Deadlines for FY2025-26</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Key Deadlines for the FY{RY} Return</h3>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-warmgray">
@@ -186,17 +216,17 @@ export default function TaxRefundGuidePage() {
                       <tr><th className="px-5 py-3">Date</th><th className="px-5 py-3">Event</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-medium">1 July 2026</td><td className="px-5 py-3">FY2025-26 ends; income statements become available in myGov</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">14 July 2026</td><td className="px-5 py-3">Most employers finalise and submit income statements to the ATO</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">31 October 2026</td><td className="px-5 py-3">Deadline for self-prepared tax returns (lodging via myTax)</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">31 March 2027</td><td className="px-5 py-3">Extended deadline for most tax agent-lodged returns</td></tr>
-                      <tr><td className="px-5 py-3 font-medium">15 May 2027</td><td className="px-5 py-3">Final extended deadline for complex tax agent-lodged returns</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">{RETURN_2026.incomeYearEnd}</td><td className="px-5 py-3">FY{RY} ends</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">14 July 2026</td><td className="px-5 py-3">Employers must finalise Single Touch Payroll data, making income statements &quot;tax ready&quot; in myGov</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">{RETURN_2026.selfLodgeDueDate}</td><td className="px-5 py-3">Deadline for self-prepared tax returns (lodging via myTax)</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">{RETURN_2026.agentDueDateLargeLiability}</td><td className="px-5 py-3">Tax agent deadline where your latest return resulted in a tax liability of $20,000 or more</td></tr>
+                      <tr><td className="px-5 py-3 font-medium">{RETURN_2026.agentDueDateMostPeople}</td><td className="px-5 py-3">Tax agent deadline for most remaining individuals (or {RETURN_2026.agentConcessionDate} under the ATO concession, provided any tax owing is also paid by then)</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                Late lodgment attracts a &quot;Failure to Lodge&quot; (FTL) penalty of <strong>$313 per 28-day period</strong> up to a maximum of 5 periods ($1,565). The ATO waives penalties for first-time late lodgers who contact them proactively. Check our <Link href="/tax-calendar/">Tax Calendar</Link> for a complete schedule of Australian tax dates.
+                Late lodgment can attract a &quot;Failure to Lodge&quot; (FTL) penalty of one penalty unit &mdash; <strong>{formatAUD(FTL_PER_PERIOD)} from {PENALTY_UNIT.from}</strong> &mdash; for every {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units ({formatAUD(FTL_MAX_INDIVIDUAL)}). The ATO can remit the penalty depending on your circumstances, so contact it if you will be late. Check our <Link href="/tax-calendar/">Tax Calendar</Link> for a complete schedule of Australian tax dates.
               </p>
             </section>
 
@@ -204,10 +234,10 @@ export default function TaxRefundGuidePage() {
             <section id="processing-time">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Long Does a Tax Refund Take?</h2>
               <p>
-                Electronic tax returns lodged through myTax are processed within <strong>14 business days</strong>. Paper returns take <strong>10–12 weeks</strong>. The ATO deposits refunds directly into the bank account linked to your tax file number (TFN).
+                The ATO says most returns lodged online through myTax process in <strong>{RETURN_2026.onlineProcessingBusinessDays} business days</strong>, with most refunds issued within {RETURN_2026.onlineRefundTypical}. For paper returns, most refunds issue within <strong>{RETURN_2026.paperRefundBusinessDays} business days</strong>. The ATO deposits refunds directly into the bank account linked to your tax file number (TFN).
               </p>
               <p>
-                Processing times increase during peak lodgment season in July and August. Returns flagged for review — due to unusual deductions, data mismatches, or random audits — take <strong>30–60 business days</strong> or longer. The ATO contacts you via myGov messages if additional information is required.
+                Processing times increase during peak lodgment season in July and August. Returns flagged for review — due to unusual deductions, data mismatches, or random audits — take longer. The ATO contacts you via myGov messages if additional information is required.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Processing Time by Lodgment Method</h3>
@@ -218,10 +248,9 @@ export default function TaxRefundGuidePage() {
                       <tr><th className="px-5 py-3">Lodgment Method</th><th className="px-5 py-3">Typical Processing Time</th><th className="px-5 py-3">Refund Delivery</th></tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">myTax (online)</td><td className="px-5 py-3"><strong>2–14 business days</strong></td><td className="px-5 py-3">Direct deposit</td></tr>
-                      <tr><td className="px-5 py-3">Tax agent (electronic)</td><td className="px-5 py-3"><strong>14–21 business days</strong></td><td className="px-5 py-3">Direct deposit</td></tr>
-                      <tr><td className="px-5 py-3">Paper return</td><td className="px-5 py-3"><strong>50–60 business days</strong></td><td className="px-5 py-3">Direct deposit or cheque</td></tr>
-                      <tr><td className="px-5 py-3">Return under review</td><td className="px-5 py-3"><strong>30–60+ business days</strong></td><td className="px-5 py-3">Held until review complete</td></tr>
+                      <tr><td className="px-5 py-3">myTax (online)</td><td className="px-5 py-3"><strong>Most within {RETURN_2026.onlineProcessingBusinessDays} business days</strong></td><td className="px-5 py-3">Direct deposit</td></tr>
+                      <tr><td className="px-5 py-3">Paper return</td><td className="px-5 py-3"><strong>Most refunds within {RETURN_2026.paperRefundBusinessDays} business days</strong></td><td className="px-5 py-3">Direct deposit</td></tr>
+                      <tr><td className="px-5 py-3">Return under review</td><td className="px-5 py-3"><strong>Longer; the ATO contacts you</strong></td><td className="px-5 py-3">Held until review complete</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -238,10 +267,10 @@ export default function TaxRefundGuidePage() {
                 A tax refund occurs when your employer withheld <strong>more tax than your assessed liability</strong>; a tax debt occurs when the total tax withheld is <strong>less than your assessed liability</strong>. The ATO&apos;s Notice of Assessment confirms which outcome applies.
               </p>
               <p>
-                Tax debts arise from three primary causes: holding multiple jobs where each employer applies the tax-free threshold separately, earning untaxed investment income such as rental profits or capital gains, and incorrectly completing your TFN declaration (claiming the tax-free threshold at more than one employer). An employee earning <strong>$60,000</strong> from a primary job and <strong>$20,000</strong> from a second job where the tax-free threshold was incorrectly claimed at both employers accumulates a debt of approximately <strong>$2,912</strong> in under-withheld tax.
+                Tax debts arise from three primary causes: holding multiple jobs where each employer applies the tax-free threshold separately, earning untaxed investment income such as rental profits or capital gains, and incorrectly completing your TFN declaration (claiming the tax-free threshold at more than one employer). When the threshold is claimed at both jobs, the second employer withholds as if the first {formatAUD(TAX_FREE_THRESHOLD)} of that job&apos;s pay were tax-free, even though your main job has already used it &mdash; the shortfall shows up as a debt at lodgment. Our <Link href="/second-job-tax-calculator/">Second Job Tax Calculator</Link> shows the effect on your own figures.
               </p>
               <p>
-                The ATO charges interest on overdue tax debts at the &quot;General Interest Charge&quot; (GIC) rate, currently <strong>11.36% per annum</strong> (updated quarterly). Payment plans are available for debts you cannot pay in full. The ATO sets minimum instalment amounts based on the debt size — a $3,000 debt typically requires monthly payments of <strong>$250–$500</strong> over 6–12 months.
+                The ATO charges interest on overdue tax debts at the &quot;General Interest Charge&quot; (GIC) rate: <strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} per annum for {GENERAL_INTEREST_CHARGE.quarter}</strong>, compounding daily and reset every quarter. Payment plans are available for debts you cannot pay in full.
               </p>
               <p>
                 Avoid unexpected debts by reviewing your PAYG withholding throughout the year. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to verify your employer is withholding the correct amount based on your current salary and tax circumstances.
@@ -252,24 +281,24 @@ export default function TaxRefundGuidePage() {
             <section id="common-mistakes">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Tax Refund Mistakes?</h2>
               <p>
-                The most common tax return error is <strong>claiming deductions without adequate records</strong>, resulting in ATO adjustments, penalties, and reduced refunds. The ATO reviews approximately 2 million tax returns annually and adjusts around 350,000 claims.
+                The most common tax return error is <strong>claiming deductions without adequate records</strong>, resulting in ATO adjustments, penalties, and reduced refunds. 
               </p>
               <ul>
-                <li><strong>Claiming personal expenses as work-related.</strong> Home-to-work commuting, conventional clothing, and personal phone usage are not deductible. The ATO disallows these claims in over 150,000 returns each year.</li>
+                <li><strong>Claiming personal expenses as work-related.</strong> Home-to-work commuting, conventional clothing, and personal phone usage are not deductible.</li>
                 <li><strong>Forgetting to declare all income sources.</strong> Bank interest, dividends, Centrelink payments, foreign income, and gig economy earnings are all assessable. The ATO data-matches income from banks, share registries, government agencies, and ride-share platforms.</li>
-                <li><strong>Double-claiming the tax-free threshold.</strong> Employees with 2 or more jobs sometimes claim the $18,200 tax-free threshold at each employer. This results in under-withholding and a tax debt at lodgment.</li>
-                <li><strong>Lodging before pre-fill data is ready.</strong> Submitting your return before employers finalise income statements (typically by 14 July) increases the risk of reporting incorrect income figures. Amending a return after lodgment delays processing by 6–8 weeks.</li>
+                <li><strong>Double-claiming the tax-free threshold.</strong> Employees with 2 or more jobs sometimes claim the {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold at each employer. This results in under-withholding and a tax debt at lodgment.</li>
+                <li><strong>Lodging before pre-fill data is ready.</strong> Submitting your return before employers finalise income statements (due by 14 July) increases the risk of reporting incorrect income figures, and fixing it later means lodging an amendment.</li>
                 <li><strong>Overlooking eligible offsets and rebates.</strong> The &quot;Low Income Tax Offset&quot;, the &quot;Seniors and Pensioners Tax Offset&quot; (SAPTO), and the &quot;Zone Tax Offset&quot; are automatically applied in myTax but require accurate personal details. Incorrect information causes the ATO to omit applicable offsets. Review the <Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> to confirm your eligibility.</li>
               </ul>
             </section>
 
             {/* ───── CONTEXT BORDER ───── */}
 
-            {/* ───── SECTION 9: What Changed in FY2025-26? ───── */}
+            {/* ───── SECTION 9: What Changed for the FY2025-26 Return? ───── */}
             <section id="changes-fy2025-26">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Tax Refunds in FY2025-26?</h2>
               <p>
-                The FY2025-26 financial year retains the Stage 3 tax cuts introduced on 1 July 2024, keeping the <strong>30% marginal rate</strong> for incomes between $45,001 and $135,000. No new changes to individual income tax brackets apply for the 2025-26 year.
+                The FY2025-26 financial year retains the Stage 3 tax cuts introduced on 1 July 2024, keeping the <strong>30% marginal rate</strong> for incomes between $45,001 and $135,000. No new changes to individual income tax brackets apply for the 2025-26 year. The next change applies to the 2026-27 return you lodge from July 2027: the {formatPercent(BRACKET_2.rate, 0)} rate fell to {formatPercent(TAX_BRACKETS[1].rate, 0)} from 1 July 2026 (see <Link href="/tax-brackets/">tax brackets</Link>).
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -284,15 +313,15 @@ export default function TaxRefundGuidePage() {
                       <tr><td className="px-5 py-3">37% bracket</td><td className="px-5 py-3">$135,001 – $190,000</td><td className="px-5 py-3">$135,001 – $190,000 (unchanged)</td></tr>
                       <tr><td className="px-5 py-3">45% bracket</td><td className="px-5 py-3">$190,001+</td><td className="px-5 py-3">$190,001+ (unchanged)</td></tr>
                       <tr><td className="px-5 py-3">Superannuation Guarantee (SG) rate</td><td className="px-5 py-3">11.5%</td><td className="px-5 py-3"><strong>12%</strong></td></tr>
-                      <tr><td className="px-5 py-3">Concessional super contributions cap</td><td className="px-5 py-3">$30,000</td><td className="px-5 py-3">$30,000 (unchanged)</td></tr>
+                      <tr><td className="px-5 py-3">Concessional super contributions cap</td><td className="px-5 py-3">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}</td><td className="px-5 py-3">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} (unchanged)</td></tr>
                       <tr><td className="px-5 py-3">Medicare levy</td><td className="px-5 py-3">2%</td><td className="px-5 py-3">2% (unchanged)</td></tr>
-                      <tr><td className="px-5 py-3">Work from home fixed rate</td><td className="px-5 py-3">67c per hour</td><td className="px-5 py-3">67c per hour (unchanged)</td></tr>
+                      <tr><td className="px-5 py-3">Work from home fixed rate</td><td className="px-5 py-3">{RETURN_2026.wfhFixedRateCents}c per hour</td><td className="px-5 py-3">{RETURN_2026.wfhFixedRateCents}c per hour (unchanged)</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. This affects employees who salary sacrifice into super — a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
+                Two changes matter more for most 2025-26 refunds. Compulsory study loan repayments now apply only once repayment income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it. And the Medicare levy surcharge for singles without hospital cover starts above <strong>{formatAUD(MLS_BASE_2025_26)}</strong> for 2025-26. The superannuation guarantee rate increased from <strong>11.5% to 12%</strong> on 1 July 2025. This affects employees who salary sacrifice into super — a higher compulsory SG contribution reduces the remaining cap space for voluntary concessional contributions. See our <Link href="/superannuation-guide/">Superannuation Guide</Link> for the full breakdown of SG rates, caps, and employer obligations.
               </p>
               <p>
                 The ATO continues to invest in data-matching technology. Cryptocurrency exchanges, ride-share platforms, short-term rental platforms (Airbnb, Stayz), and the sharing economy reporting regime provide the ATO with third-party transaction data. Unreported income from these sources is increasingly detected during return processing.
@@ -307,12 +336,13 @@ export default function TaxRefundGuidePage() {
               </p>
               <ul>
                 <li><Link href="/tax-return-calculator/">Tax Return Estimator</Link> — calculate your expected refund or tax debt based on income, deductions, and PAYG withheld.</li>
-                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — compute income tax, Medicare levy, and take-home pay at any salary level for FY2025-26.</li>
+                <li><Link href="/income-tax-calculator/">Income Tax Calculator</Link> — compute income tax, Medicare levy, and take-home pay at any salary level for FY{SITE_CONFIG.financialYear}.</li>
                 <li><Link href="/tax-brackets/">Tax Brackets Guide</Link> — view all Australian income tax brackets with marginal rates, base amounts, and worked examples.</li>
                 <li><Link href="/salary-sacrifice-calculator/">Salary Sacrifice Guide</Link> — learn how salary packaging into superannuation or novated leases reduces taxable income and increases your refund.</li>
                 <li><Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> — understand how HECS-HELP repayments are calculated and how they affect your tax return and take-home pay.</li>
                 <li><Link href="/superannuation-guide/">Superannuation Guide</Link> — review employer SG rate obligations, contribution caps, and the impact of super on your overall tax position.</li>
                 <li><Link href="/low-income-tax-offset/">Low Income Tax Offset Guide</Link> — check whether LITO applies to your income and how it reduces your assessed tax liability.</li>
+                <li><Link href="/medicare-levy-surcharge-calculator/">Medicare Levy Surcharge Calculator</Link> — check whether the surcharge applies to you and what hospital cover would save.</li>
                 <li><Link href="/medicare-levy/">Medicare Levy Guide</Link> — learn about the 2% Medicare levy, the surcharge thresholds, and exemptions for low-income earners.</li>
               </ul>
             </section>
@@ -329,22 +359,22 @@ export default function TaxRefundGuidePage() {
 
                 <AccordionItem value="average" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the average tax refund in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The average Australian tax refund is approximately <strong>$2,900</strong>. Refunds range from $0 for taxpayers with accurate withholding to $10,000+ for high-income earners with significant deductions, investment losses, or part-year employment.</AccordionContent>
+                  <AccordionContent className="text-warmgray">There is no reliable single figure: averages reported early in tax time are snapshots that shift as more returns are processed. Your own refund depends mainly on your deductions, your marginal rate, and whether you worked part of the year. Our <Link href="/tax-return-calculator/" className="text-eucalyptus-dark underline">Tax Return Estimator</Link> gives a personal estimate.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="no-lodge" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What happens if I don&apos;t lodge a tax return?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Individuals who earn above the <strong>$18,200</strong> tax-free threshold are legally required to lodge. Failure to lodge attracts a penalty of <strong>$313 per 28-day period</strong> (up to $1,565). Even if you earned less than $18,200, lodging is beneficial when tax was withheld — you receive a full refund of all PAYG tax paid.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Individuals who earn above the <strong>{formatAUD(TAX_FREE_THRESHOLD)}</strong> tax-free threshold are generally required to lodge. Failure to lodge can attract a penalty of <strong>{formatAUD(FTL_PER_PERIOD)} per {PENALTY_UNIT.ftlDaysPerUnit}-day period</strong> (up to {formatAUD(FTL_MAX_INDIVIDUAL)}). Even if you earned less than {formatAUD(TAX_FREE_THRESHOLD)}, lodging is beneficial when tax was withheld — you receive a full refund of all PAYG tax paid.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="owe" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What if I owe the ATO money?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The ATO issues a Notice of Assessment showing the amount owed. Common causes include holding multiple jobs, earning investment income, or incorrectly claiming the tax-free threshold at more than one employer. Payment plans are available — the ATO charges interest at the General Interest Charge rate of <strong>11.36% per annum</strong> on overdue amounts.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The ATO issues a Notice of Assessment showing the amount owed. Common causes include holding multiple jobs, earning investment income, or incorrectly claiming the tax-free threshold at more than one employer. Payment plans are available — the ATO charges interest at the General Interest Charge rate (<strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} per annum for {GENERAL_INTEREST_CHARGE.quarter}</strong>) on overdue amounts.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="how-long" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How long does a tax refund take to arrive?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Electronic returns lodged through myTax are processed within <strong>14 business days</strong>. Many simple returns are processed within 2–5 business days. Paper returns take 50–60 business days. Returns selected for review take 30–60+ business days.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The ATO says most returns lodged online through myTax process in <strong>{RETURN_2026.onlineProcessingBusinessDays} business days</strong> and most refunds issue within {RETURN_2026.onlineRefundTypical}. For paper returns, most refunds issue within {RETURN_2026.paperRefundBusinessDays} business days. Returns selected for review take longer.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="deductions-no-receipts" className="border rounded-lg px-4 bg-white">
@@ -354,7 +384,7 @@ export default function TaxRefundGuidePage() {
 
                 <AccordionItem value="wfh" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How do I claim working from home expenses?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The ATO&apos;s fixed rate method allows a deduction of <strong>67 cents per hour</strong> worked from home. This rate covers electricity, phone, internet, stationery, and computer consumables. You must keep a record of hours worked from home — either a timesheet, roster, diary, or similar document for the entire income year. An employee working from home 3 days per week (approximately 1,100 hours per year) claims approximately <strong>$737</strong>.</AccordionContent>
+                  <AccordionContent className="text-warmgray">For FY{RY}, the ATO&apos;s fixed rate method allows a deduction of <strong>{RETURN_2026.wfhFixedRateCents} cents per hour</strong> worked from home. This rate covers electricity, phone, internet, stationery, and computer consumables. You must keep a record of hours worked from home — either a timesheet, roster, diary, or similar document for the entire income year. An employee who records {WFH_EXAMPLE_HOURS.toLocaleString("en-AU")} hours worked from home in the year claims <strong>{formatAUD(WFH_EXAMPLE_HOURS * WFH_RATE)}</strong>.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="multiple-jobs" className="border rounded-lg px-4 bg-white">
@@ -364,28 +394,28 @@ export default function TaxRefundGuidePage() {
 
                 <AccordionItem value="amendment" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I amend a tax return after lodging?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. You can amend a tax return within <strong>2 years</strong> of the original assessment date for individuals (4 years for more complex affairs). Amendments are lodged through myTax or your tax agent. The ATO reprocesses your return and issues an amended assessment. If the amendment increases your refund, the additional amount is paid within 14 business days.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. You can amend a tax return within <strong>2 years</strong> of the original assessment date for individuals (4 years for more complex affairs). Amendments are lodged through myTax or your tax agent. The ATO reprocesses your return and issues an amended assessment. </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="hecs-impact" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does HECS-HELP affect my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">HECS-HELP compulsory repayments reduce your tax refund. Repayments are calculated on your &quot;HELP Repayment Income&quot; (HRI) — essentially your taxable income plus certain other amounts. The minimum repayment threshold is <strong>$69,528</strong> for FY2025-26. Repayments start at <strong>1%</strong> of HRI and increase in increments up to <strong>10%</strong> at higher income levels. Your employer may already withhold HELP repayments from each pay, in which case the impact on your refund is already accounted for.</AccordionContent>
+                  <AccordionContent className="text-warmgray">HECS-HELP compulsory repayments reduce your tax refund. Repayments are calculated on your &quot;HELP repayment income&quot; &mdash; essentially your taxable income plus certain other amounts. For the FY{RY} return, repayments apply only once that income exceeds <strong>{formatAUD(HECS_HELP_2025_26.minimumThreshold)}</strong>, and only on the income above it: {formatPercent(HECS_HELP_2025_26.bands[1].marginalRate, 0)} of the excess up to {formatAUD(HECS_HELP_2025_26.bands[1].max)}, then {formatAUD(HECS_HELP_2025_26.bands[2].base)} plus {formatPercent(HECS_HELP_2025_26.bands[2].marginalRate, 0)} above that, until {formatPercent(HECS_HELP_2025_26.bands[3].marginalRate, 0)} of total repayment income applies from {formatAUD(HECS_HELP_2025_26.bands[3].min)}. The threshold rises to {formatAUD(HECS_HELP.minimumThreshold)} for FY{SITE_CONFIG.financialYear}. Your employer may already withhold HELP repayments from each pay, in which case the impact on your refund is already accounted for.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="private-health" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does private health insurance affect my tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Private hospital cover affects your tax in two ways. First, holding a compliant policy exempts you from the &quot;Medicare Levy Surcharge&quot; (MLS) of <strong>1%–1.5%</strong> on incomes above $93,000 (singles) or $186,000 (families). Second, the private health insurance rebate reduces your premium cost. You can receive the rebate as a reduction in premiums during the year or as a refundable tax offset at lodgment. The rebate is income-tested — it phases out for higher earners and reduces to 0% at incomes above $151,000 (singles under 65).</AccordionContent>
+                  <AccordionContent className="text-warmgray">Private hospital cover affects your tax in two ways. First, holding appropriate hospital cover exempts you from the &quot;Medicare Levy Surcharge&quot; (MLS) of <strong>{formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}&ndash;{formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)}</strong>. For FY{SITE_CONFIG.financialYear} it applies on income for MLS purposes above <strong>{formatAUD(MLS_BASE_SINGLE)}</strong> (singles) or <strong>{formatAUD(MLS_BASE_FAMILY)}</strong> (families); on the FY{RY} return you are lodging now, the singles threshold is {formatAUD(MLS_BASE_2025_26)}. Second, the private health insurance rebate reduces your premium cost. You can receive the rebate as a reduction in premiums during the year or as a refundable tax offset at lodgment. The rebate is income-tested on the same tiers and falls to 0% in the top tier &mdash; above {formatAUD(PHI_REBATE_NIL_ABOVE)} for singles in FY{SITE_CONFIG.financialYear} (rates for {PHI_REBATE.period}). Check your own position with the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark underline">Medicare levy surcharge calculator</Link>.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="super-refund" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I get a tax deduction for superannuation contributions?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Employees can claim a tax deduction for <strong>personal super contributions</strong> made from after-tax income by submitting a &quot;Notice of Intent to Claim&quot; to their super fund before lodging. The total of employer SG contributions (12% in FY2025-26), salary sacrifice, and personal deductible contributions cannot exceed the <strong>$30,000</strong> concessional contributions cap. Contributions above this cap are taxed at your marginal rate instead of the concessional 15% rate.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Employees can claim a tax deduction for <strong>personal super contributions</strong> made from after-tax income by submitting a &quot;Notice of Intent to Claim&quot; to their super fund before lodging. The total of employer SG contributions ({formatPercent(SUPER_GUARANTEE.rate, 0)}), salary sacrifice, and personal deductible contributions counts toward the concessional contributions cap: <strong>{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}</strong> for FY{RY} and {formatAUD(SUPER_GUARANTEE.concessionalCap)} from 1 July 2026 (see the <Link href="/concessional-contributions-cap/" className="text-eucalyptus-dark underline">concessional cap guide</Link>), plus any unused carry-forward amounts. Contributions above the cap are taxed at your marginal rate, less a 15% offset, instead of the concessional 15% rate.</AccordionContent>
                 </AccordionItem>
 
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax return information is sourced from the Australian Taxation Office (ATO). Deduction ranges are approximate and based on typical claims. Tax calculations use FY2025-26 resident tax brackets. Your individual circumstances, including applicable tax offsets, HECS-HELP obligations, and Medicare levy surcharge status, affect your actual refund amount. Use our Australian tax calculator tools for personalised estimates.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+            <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax return information is sourced from the Australian Taxation Office (ATO). Worked figures are computed from our FY{RY} constants (the return being lodged in 2026); current-year MLS and rebate thresholds are labelled FY{SITE_CONFIG.financialYear}. The GIC rate shown is for {GENERAL_INTEREST_CHARGE.quarter} and resets quarterly. Your individual circumstances, including applicable tax offsets, HECS-HELP obligations, and Medicare levy surcharge status, affect your actual refund amount. Use our Australian tax calculator tools for personalised estimates.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-refund-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
           </article>
           <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">

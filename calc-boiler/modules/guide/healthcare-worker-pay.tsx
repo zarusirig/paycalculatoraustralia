@@ -23,6 +23,12 @@ import {
   NURSES_AWARD_AGED_CARE,
 } from "@/lib/data/nursing-pay/nurses-award-2020";
 import type { ScaleFamily } from "@/lib/data/nursing-pay/types";
+import { annualFromWeekly, headlineRow, rowAnnual, type Occupation } from "@/lib/data/job-pay-rates";
+import { DOCTOR } from "@/lib/data/job-pay-rates/doctor";
+import { PHYSIOTHERAPIST } from "@/lib/data/job-pay-rates/physiotherapist";
+import { PHARMACIST } from "@/lib/data/job-pay-rates/pharmacist";
+import { DISABILITY_SUPPORT_WORKER } from "@/lib/data/job-pay-rates/disability-support-worker";
+import { FBT, FBT_CAPS, capFaceValue, salaryPackagingBenefit } from "@/lib/constants/novated-lease";
 
 const STATES = NURSING_PAY_STATES.map((slug) => NURSING_PAY_BY_STATE[slug]).filter(
   (s): s is NonNullable<typeof s> => Boolean(s),
@@ -36,8 +42,13 @@ const SOURCES_LIST: SourceLink[] = [
     url: s.instruments[0].source.url,
     publisher: s.instruments[0].source.publisher,
   })),
-  { title: "Salary packaging", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name },
-  { title: "Healthcare earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
+  { title: "Medical Practitioners Award 2020 [MA000031]", url: "https://awards.fairwork.gov.au/MA000031.html", publisher: SOURCES.fwc.name },
+  { title: "Health Professionals and Support Services Award 2020 [MA000027]", url: "https://awards.fairwork.gov.au/MA000027.html", publisher: SOURCES.fwc.name },
+  { title: "Pharmacy Industry Award 2020 [MA000012]", url: "https://awards.fairwork.gov.au/MA000012.html", publisher: SOURCES.fwc.name },
+  { title: "Aged Care Award 2010 [MA000018] — consolidated to 1 September 2026", url: "https://awards.fairwork.gov.au/MA000018.html", publisher: SOURCES.fwc.name },
+  { title: "Occupation profiles — median full-time earnings (ABS, May 2025)", url: "https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles", publisher: "Jobs and Skills Australia" },
+  { title: "FBT-exempt organisations — capping thresholds", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/fbt-concessions-for-not-for-profit-organisations/fbt-exempt-organisations", publisher: SOURCES.ato.name },
+  { title: "Fringe benefits tax — a guide for employers, 6.5 salary packaged entertainment", url: "https://www.ato.gov.au/law/view/document?DocID=SAV/FBTGEMP/00007", publisher: SOURCES.ato.name },
 ];
 
 /**
@@ -72,6 +83,50 @@ function familySpread(family: ScaleFamily): { low: number; high: number } | null
   return { low: Math.min(...values), high: Math.max(...values) };
 }
 
+// Aged Care Award 2010 [MA000018] cl 14.3 — aged care employee, direct care
+// stream, weekly minimums from the first full pay period on or after 1 July
+// 2026 (PR799299). Read 23 September 2026 at awards.fairwork.gov.au, award
+// "consolidated ... up to and including 1 September 2026 (PR813673)".
+// Annual figures are weekly x 52, the same convention as /job-pay-rates/.
+const AGED_CARE_DIRECT_CARE = [
+  { level: "Level 1 — Introductory", note: "Under 3 months' aged care experience", weekly: 1_239.0 },
+  { level: "Level 2 — Direct Carer", note: "3 months' or more experience", weekly: 1_307.8 },
+  { level: "Level 3 — Qualified", note: "Required Certificate III", weekly: 1_376.7 },
+  { level: "Level 6 — Team Leader", note: "Top of the direct care stream", weekly: 1_541.9 },
+] as const;
+const AGED_CARE_QUALIFIED = AGED_CARE_DIRECT_CARE[2];
+const AGED_CARE_LOW = AGED_CARE_DIRECT_CARE[0];
+const AGED_CARE_HIGH = AGED_CARE_DIRECT_CARE[AGED_CARE_DIRECT_CARE.length - 1];
+
+// FBT-exempt caps are GROSSED-UP values (FBT_CAPS, sourced in
+// lib/constants/novated-lease.ts). capFaceValue divides by the type 2 gross-up
+// rate to give the GST-free expenses (rent, mortgage) each cap covers.
+const CAP_HOSPITAL_GROSSED_UP = FBT_CAPS.hospitalAndAmbulance;
+const CAP_PBI_GROSSED_UP = FBT_CAPS.pbiAndHealthPromotionCharity;
+const CAP_ENTERTAINMENT_GROSSED_UP = FBT_CAPS.salaryPackagedEntertainment;
+const CAP_HOSPITAL = capFaceValue(CAP_HOSPITAL_GROSSED_UP);
+const CAP_PBI = capFaceValue(CAP_PBI_GROSSED_UP);
+const CAP_ENTERTAINMENT = capFaceValue(CAP_ENTERTAINMENT_GROSSED_UP);
+const PACKAGE_SALARY = 85_000;
+const PACKAGED = CAP_HOSPITAL + CAP_ENTERTAINMENT;
+
+/** Award minimum annual for a named row of an occupation's table. Throws if the row is missing. */
+function awardAnnual(occ: Occupation, tableId: string, label: string): number {
+  const row = occ.tables.find((t) => t.id === tableId)?.rows.find((r) => r.label === label);
+  if (!row) throw new Error(`healthcare hub: ${occ.slug} ${tableId}/${label} not found`);
+  return rowAnnual(row);
+}
+
+const DR_INTERN = awardAnnual(DOCTOR, "doctors-in-training", "Intern");
+const DR_RESIDENT = awardAnnual(DOCTOR, "doctors-in-training", "Resident medical practitioner pay point 1");
+const DR_REGISTRAR_LOW = awardAnnual(DOCTOR, "doctors-in-training", "Registrar pay point 1");
+const DR_REGISTRAR_HIGH = awardAnnual(DOCTOR, "doctors-in-training", "Senior registrar pay point 2");
+const DR_SPECIALIST_LOW = awardAnnual(DOCTOR, "specialists", "Specialist");
+const DR_SPECIALIST_HIGH = awardAnnual(DOCTOR, "specialists", "Senior principal specialist");
+const PHYSIO_GRAD = rowAnnual(headlineRow(PHYSIOTHERAPIST)!);
+const PHARMACIST_ENTRY = rowAnnual(headlineRow(PHARMACIST)!);
+const medianAnnual = (occ: Occupation) => annualFromWeekly(occ.median!.medianWeekly);
+
 const RN_ENTRY = spread("entry");
 const RN_TOP = spread("top");
 const NP_SPREAD = familySpread("practitioner");
@@ -83,6 +138,9 @@ const AWARD_AGED_RN1 = NURSES_AWARD_AGED_CARE.find((s) => s.classification === "
 function afterTax(gross: number): number {
   return calculatePayBreakdown({ grossSalary: gross }).takeHomePay;
 }
+
+/** Extra spendable income from packaging: packaged expenses are paid pre-tax. */
+const PACKAGING_BENEFIT = salaryPackagingBenefit(PACKAGE_SALARY, PACKAGED);
 
 export default function HealthcareWorkerPayPage() {
   return (
@@ -104,7 +162,7 @@ export default function HealthcareWorkerPayPage() {
             Healthcare Worker Pay Guide — Salaries, Penalties &amp; Salary Packaging
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Healthcare is one of Australia&apos;s largest employers, with over 1.9 million workers. From registered nurses to specialists, pay varies widely based on classification, experience, shift patterns, and whether you work in the public or private sector. This guide covers salaries, penalty rates, and the powerful salary packaging benefits available to public hospital employees.
+            Healthcare is one of Australia&apos;s largest employers. From registered nurses to specialists, pay varies widely based on classification, experience, shift patterns, and whether you work in the public or private sector. This guide covers salaries, penalty rates, and the powerful salary packaging benefits available to public hospital employees.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -134,21 +192,23 @@ export default function HealthcareWorkerPayPage() {
                       <tr><td className="px-5 py-3">Registered Nurse — top of the base scale<span className="block text-xs text-warmgray-light">Lowest in {RN_TOP.lowState}, highest in {RN_TOP.highState}</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(RN_TOP.low)} – {formatAUD(RN_TOP.high)}</td></tr>
                       {EN_SPREAD ? (<tr><td className="px-5 py-3">Enrolled Nurse — across the six state scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(EN_SPREAD.low)} – {formatAUD(EN_SPREAD.high)}</td></tr>) : null}
                       {NP_SPREAD ? (<tr><td className="px-5 py-3">Nurse Practitioner — across the six state scales</td><td className="px-5 py-3 text-right font-medium">{formatAUD(NP_SPREAD.low)} – {formatAUD(NP_SPREAD.high)}</td></tr>) : null}
-                      <tr><td className="px-5 py-3">Junior Doctor (Intern / HMO)</td><td className="px-5 py-3 text-right font-medium">$85,000 – $100,000</td></tr>
-                      <tr><td className="px-5 py-3">Registrar</td><td className="px-5 py-3 text-right font-medium">$120,000 – $160,000</td></tr>
-                      <tr><td className="px-5 py-3">Specialist (Consultant)</td><td className="px-5 py-3 text-right font-medium">$250,000 – $500,000+</td></tr>
-                      <tr><td className="px-5 py-3">Physiotherapist</td><td className="px-5 py-3 text-right font-medium">$70,000 – $90,000</td></tr>
-                      <tr><td className="px-5 py-3">Pharmacist</td><td className="px-5 py-3 text-right font-medium">$75,000 – $100,000</td></tr>
-                      <tr><td className="px-5 py-3">Aged Care Worker</td><td className="px-5 py-3 text-right font-medium">$55,000 – $65,000</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/job-pay-rates/doctor/" className="text-eucalyptus-dark hover:underline">Doctor</Link> — intern to resident, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award; private hospitals and other national-system employers</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_INTERN)} – {formatAUD(DR_RESIDENT)}</td></tr>
+                      <tr><td className="px-5 py-3">Registrar to senior registrar, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_REGISTRAR_LOW)} – {formatAUD(DR_REGISTRAR_HIGH)}</td></tr>
+                      <tr><td className="px-5 py-3">Specialist to senior principal specialist, award minimum<span className="block text-xs text-warmgray-light">Medical Practitioners Award</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(DR_SPECIALIST_LOW)} – {formatAUD(DR_SPECIALIST_HIGH)}</td></tr>
+                      <tr><td className="px-5 py-3">GPs and resident medical officers — median full-time earnings<span className="block text-xs text-warmgray-light">Jobs and Skills Australia, ANZSCO {DOCTOR.median!.anzscoCode}</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(medianAnnual(DOCTOR))}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/job-pay-rates/physiotherapist/" className="text-eucalyptus-dark hover:underline">Physiotherapist</Link> — graduate award minimum / median<span className="block text-xs text-warmgray-light">Health Professionals Award level 1 pay point 3; JSA median</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(PHYSIO_GRAD)} / {formatAUD(medianAnnual(PHYSIOTHERAPIST))}</td></tr>
+                      <tr><td className="px-5 py-3"><Link href="/job-pay-rates/pharmacist/" className="text-eucalyptus-dark hover:underline">Pharmacist</Link> — award minimum / median<span className="block text-xs text-warmgray-light">Pharmacy Industry Award &ldquo;Pharmacist&rdquo;; JSA median</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(PHARMACIST_ENTRY)} / {formatAUD(medianAnnual(PHARMACIST))}</td></tr>
+                      <tr><td className="px-5 py-3">Aged care worker (direct care) — award minimum<span className="block text-xs text-warmgray-light">Aged Care Award {AGED_CARE_LOW.level.split(" —")[0].toLowerCase()} to {AGED_CARE_HIGH.level.split(" —")[0].toLowerCase()}, from 1 July 2026</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(annualFromWeekly(AGED_CARE_LOW.weekly))} – {formatAUD(annualFromWeekly(AGED_CARE_HIGH.weekly))}</td></tr>
+                      <tr><td className="px-5 py-3">Aged and disabled carers — median full-time earnings<span className="block text-xs text-warmgray-light">Jobs and Skills Australia, ANZSCO {DISABILITY_SUPPORT_WORKER.median!.anzscoCode}</span></td><td className="px-5 py-3 text-right font-medium">{formatAUD(medianAnnual(DISABILITY_SUPPORT_WORKER))}</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The nursing rows are not survey averages. They are the lowest and highest figures actually published in the six state pay scales below, and each one is traceable to a named enterprise agreement, certified agreement or state award. The doctor and allied health rows are indicative market bands and should be treated as such. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare healthcare pay against other industries.
+                The nursing rows are not survey averages. They are the lowest and highest figures actually published in the six state pay scales below, and each one is traceable to a named enterprise agreement, certified agreement or state award. The doctor, allied health and aged care rows are either award minimums read from the Fair Work Commission&apos;s consolidated award text or Jobs and Skills Australia median full-time earnings (ABS, May 2025, weekly &times; 52), and are labelled as such. Award minimums are a floor: doctors and allied health staff in state public hospitals are paid under state agreements that pay more, and contractors have no award minimum. Use the <Link href="/average-salary-australia/">Average Salary Australia</Link> page to compare healthcare pay against other industries.
               </p>
               <p>
-                These figures are base salaries before penalty rates and allowances. Nurses and doctors who work regular evening, night and weekend shifts can earn <strong>15–30% more</strong> than the base salary through penalty rate loadings.
+                These figures are base salaries before penalty rates and allowances. Nurses and doctors who work regular evening, night and weekend shifts earn more than the base salary through shift and weekend penalties; how much depends on the roster and the state (see the penalty table below).
               </p>
             </section>
 
@@ -291,12 +351,12 @@ export default function HealthcareWorkerPayPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Public Hospital FBT Exemption</h3>
               <p>
-                Public hospital employees can salary package up to <strong>$15,900 per FBT year</strong> for general living expenses (rent, mortgage repayments, credit card payments, school fees) without incurring fringe benefits tax. This is a significant advantage over private sector workers, who cannot access this exemption. On top of the $15,900, an additional <strong>$2,650 per year</strong> can be salary packaged for meal entertainment and holiday accommodation expenses.
+                Public and not-for-profit hospitals and public ambulance services can provide fringe benefits FBT-free up to a <strong>{formatAUD(CAP_HOSPITAL_GROSSED_UP)} grossed-up cap</strong> per employee each FBT year. Because the cap is a grossed-up value, it covers about <strong>{formatAUD(CAP_HOSPITAL)}</strong> of GST-free living expenses such as rent or mortgage repayments. Public benevolent institutions and health promotion charities &mdash; which include many not-for-profit community health, disability and aged care providers &mdash; have a higher <strong>{formatAUD(CAP_PBI_GROSSED_UP)}</strong> grossed-up cap (about {formatAUD(CAP_PBI)} of expenses); an organisation that is both a PBI and a hospital uses the hospital cap. On top of either, a separate <strong>{formatAUD(CAP_ENTERTAINMENT_GROSSED_UP)} grossed-up cap</strong> (about {formatAUD(CAP_ENTERTAINMENT)}) applies to salary-packaged meal entertainment and entertainment facility leasing expenses. Private-sector employers cannot offer these exemptions.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Worked Example: Salary Packaging Impact</h3>
               <p>
-                Consider a registered nurse earning <strong>$85,000</strong> per year who salary packages the full $15,900 plus $2,650 meal entertainment:
+                Consider a public hospital nurse earning <strong>{formatAUD(PACKAGE_SALARY)}</strong> per year who packages the full hospital cap ({formatAUD(CAP_HOSPITAL)} of expenses) plus {formatAUD(CAP_ENTERTAINMENT)} of meal entertainment, on FY{SITE_CONFIG.financialYear} tax rates:
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -309,17 +369,17 @@ export default function HealthcareWorkerPayPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Gross Salary</td><td className="px-5 py-3 text-right">$85,000</td><td className="px-5 py-3 text-right">$85,000</td></tr>
-                      <tr><td className="px-5 py-3">Salary Packaged Amount</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">$18,550</td></tr>
-                      <tr><td className="px-5 py-3">Taxable Income</td><td className="px-5 py-3 text-right">$85,000</td><td className="px-5 py-3 text-right">$66,450</td></tr>
-                      <tr><td className="px-5 py-3">Income Tax + Medicare</td><td className="px-5 py-3 text-right">$19,717</td><td className="px-5 py-3 text-right">$14,150</td></tr>
-                      <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Annual Benefit</td><td className="px-5 py-3 text-right">—</td><td className="px-5 py-3 text-right text-eucalyptus-dark">+$5,567 per year</td></tr>
+                      <tr><td className="px-5 py-3">Gross Salary</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY)}</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY)}</td></tr>
+                      <tr><td className="px-5 py-3">Salary Packaged Amount</td><td className="px-5 py-3 text-right">$0</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGED)}</td></tr>
+                      <tr><td className="px-5 py-3">Taxable Income</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY)}</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY - PACKAGED)}</td></tr>
+                      <tr><td className="px-5 py-3">Income Tax + Medicare</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY - afterTax(PACKAGE_SALARY))}</td><td className="px-5 py-3 text-right">{formatAUD(PACKAGE_SALARY - PACKAGED - afterTax(PACKAGE_SALARY - PACKAGED))}</td></tr>
+                      <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Annual Benefit</td><td className="px-5 py-3 text-right">—</td><td className="px-5 py-3 text-right text-eucalyptus-dark">+{formatAUD(PACKAGING_BENEFIT)} per year</td></tr>
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                That is an extra <strong>$214 per fortnight</strong> in take-home pay simply by structuring existing expenses through salary packaging. Read the full <Link href="/salary-packaging-guide/">Salary Packaging Guide</Link> for eligibility criteria and step-by-step setup instructions.
+                That is about <strong>{formatAUD(PACKAGING_BENEFIT / 26)} a fortnight</strong> more to spend, before any administration fee your packaging provider charges. Packaged amounts still count as reportable fringe benefits for income tests such as the Medicare levy surcharge, HELP repayments and Centrelink. Read the full <Link href="/salary-packaging-guide/">Salary Packaging Guide</Link> for eligibility criteria and step-by-step setup instructions.
               </p>
             </section>
 
@@ -327,7 +387,7 @@ export default function HealthcareWorkerPayPage() {
             <section id="take-home-examples">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Examples</h2>
               <p>
-                Take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales; tap a gross figure for the full breakdown.
+                Take-home pay for FY{SITE_CONFIG.financialYear} on base salary before penalty rates, worked out with the same engine that drives the site&apos;s calculators. Actual take-home is higher for anyone doing shift work. The nursing rows use verified published pay scales and the other rows award minimums; tap a gross figure for the full breakdown.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -341,11 +401,11 @@ export default function HealthcareWorkerPayPage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3">Aged Care Worker</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(60000)} className="text-eucalyptus-dark hover:underline">{formatAUD(60000)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(60000 - afterTax(60000))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(60000))}</td></tr>
+                      <tr><td className="px-5 py-3">Aged care worker — award {AGED_CARE_QUALIFIED.level.toLowerCase()}</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))} className="text-eucalyptus-dark hover:underline">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))}</Link></td><td className="px-5 py-3 text-right">{formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly) - afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(annualFromWeekly(AGED_CARE_QUALIFIED.weekly)))}</td></tr>
                       <tr><td className="px-5 py-3">Registered nurse — lowest state entry step ({RN_ENTRY.lowState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.low)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.low)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.low - afterTax(RN_ENTRY.low))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.low))}</td></tr>
                       <tr><td className="px-5 py-3">Registered nurse — highest state entry step ({RN_ENTRY.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_ENTRY.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_ENTRY.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_ENTRY.high - afterTax(RN_ENTRY.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_ENTRY.high))}</td></tr>
                       <tr><td className="px-5 py-3">Registered nurse — highest top-of-scale ({RN_TOP.highState})</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(RN_TOP.high)} className="text-eucalyptus-dark hover:underline">{formatAUD(RN_TOP.high)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(RN_TOP.high - afterTax(RN_TOP.high))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(RN_TOP.high))}</td></tr>
-                      <tr><td className="px-5 py-3">Registrar (indicative)</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(140000)} className="text-eucalyptus-dark hover:underline">{formatAUD(140000)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(140000 - afterTax(140000))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(140000))}</td></tr>
+                      <tr><td className="px-5 py-3">Specialist — award minimum</td><td className="px-5 py-3 text-right"><Link href={takeHomeHref(DR_SPECIALIST_LOW)} className="text-eucalyptus-dark hover:underline">{formatAUD(DR_SPECIALIST_LOW)}</Link></td><td className="px-5 py-3 text-right">{formatAUD(DR_SPECIALIST_LOW - afterTax(DR_SPECIALIST_LOW))}</td><td className="px-5 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(afterTax(DR_SPECIALIST_LOW))}</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -373,7 +433,7 @@ export default function HealthcareWorkerPayPage() {
                 </AccordionItem>
                 <AccordionItem value="sal-packaging" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Who is eligible for salary packaging in healthcare?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Employees of public hospitals and not-for-profit health organisations are eligible for salary packaging of up to $15,900 for general living expenses plus $2,650 for meal entertainment per FBT year. Private hospital employees may have different or limited salary packaging options depending on their employer.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Employees of public and not-for-profit hospitals and public ambulance services can receive fringe benefits FBT-free up to a {formatAUD(CAP_HOSPITAL_GROSSED_UP)} grossed-up cap per FBT year (about {formatAUD(CAP_HOSPITAL)} of rent or mortgage), plus a separate {formatAUD(CAP_ENTERTAINMENT_GROSSED_UP)} grossed-up cap (about {formatAUD(CAP_ENTERTAINMENT)}) for meal entertainment. Public benevolent institutions and health promotion charities have a {formatAUD(CAP_PBI_GROSSED_UP)} grossed-up cap (about {formatAUD(CAP_PBI)}). For-profit private hospital employees cannot use these exemptions.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="penalty-rates" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What penalty rates do nurses receive?</AccordionTrigger>
@@ -381,15 +441,15 @@ export default function HealthcareWorkerPayPage() {
                 </AccordionItem>
                 <AccordionItem value="aged-care" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How much do aged care workers earn?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Aged care workers (personal care assistants / AINs) earn between $55,000 and $65,000 per year. Following the Fair Work Commission&apos;s aged care work value case in 2023, wages increased by 15% for direct care workers. Further increases are being phased in through to 2025.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Under the Aged Care Award 2010, direct care minimums from 1 July 2026 run from {formatAUD(AGED_CARE_LOW.weekly, 2)} a week ({AGED_CARE_LOW.level}) to {formatAUD(AGED_CARE_HIGH.weekly, 2)} ({AGED_CARE_HIGH.level}); a Certificate III-qualified carer ({AGED_CARE_QUALIFIED.level}) gets at least {formatAUD(AGED_CARE_QUALIFIED.weekly, 2)} a week, about {formatAUD(annualFromWeekly(AGED_CARE_QUALIFIED.weekly))} a year full-time. Jobs and Skills Australia reports median full-time earnings of {formatAUD(DISABILITY_SUPPORT_WORKER.median!.medianWeekly)} a week for aged and disabled carers. These rates reflect the Fair Work Commission&apos;s aged care work value decisions.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="doctor-pay" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How much do doctors earn in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Junior doctors (interns/HMOs) earn $85,000–$100,000, registrars earn $120,000–$160,000, and specialists earn $250,000–$500,000+. GP earnings vary widely based on billing structure — bulk-billing GPs may earn $150,000–$250,000, while those in private practice with mixed billing can earn significantly more.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The federal Medical Practitioners Award sets minimums of {formatAUD(DR_INTERN)} a year for an intern, {formatAUD(DR_REGISTRAR_LOW)} for a first-year registrar and {formatAUD(DR_SPECIALIST_LOW)} for a specialist. Those apply to private hospitals and other national-system employers; most junior doctors work in state public hospitals, where state medical officer agreements pay considerably more. Jobs and Skills Australia reports median full-time earnings of {formatAUD(DOCTOR.median!.medianWeekly)} a week for general practitioners and resident medical officers. Contractor GPs and specialists in private practice have no award minimum. See <Link href="/job-pay-rates/doctor/" className="text-eucalyptus-dark underline">doctor pay rates</Link> for every classification.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="public-private" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is public or private healthcare better paid?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Base salaries are often similar, but public hospital employees benefit from salary packaging ($15,900 FBT-free) which can increase take-home pay by $4,000–$6,000 per year. Private hospitals may offer higher base rates for experienced nurses but typically cannot match the salary packaging benefit. Overall, public sector total remuneration is often higher for nurses and allied health when salary packaging is included.</AccordionContent>
+                  <AccordionContent className="text-warmgray">It depends on the agreement, so compare the actual scales. What the private sector cannot match is the public hospital salary packaging exemption: on a {formatAUD(PACKAGE_SALARY)} salary, packaging the full hospital and meal entertainment caps is worth about {formatAUD(PACKAGING_BENEFIT)} a year in extra take-home pay at FY{SITE_CONFIG.financialYear} rates, before provider fees.</AccordionContent>
                 </AccordionItem>
               </Accordion>
             </section>
@@ -398,7 +458,7 @@ export default function HealthcareWorkerPayPage() {
               <MethodologyDisclosure title="How this guide works">
                 <p>Every nursing figure on this page is generated from the six verified state pay scales in the state pages linked above, so the hub and the spokes cannot disagree. Each of those scales was read directly from a named enterprise agreement, certified agreement, state award or employer wage schedule, with the effective date recorded — nothing is estimated, averaged or interpolated, and rows a source does not publish are left out and listed as gaps.</p>
                 <p>Nurses Award 2020 rates are read from the Fair Work Ombudsman&apos;s consolidated award text: the general stream operative from {NURSES_AWARD.generalRatesFrom} ({NURSES_AWARD.generalDetermination}) and the aged care stream from {NURSES_AWARD.agedCareRatesFrom} ({NURSES_AWARD.agedCareDetermination}).</p>
-                <p>Doctor and allied health bands are indicative market ranges, not published pay scales, and are labelled as such. Salary packaging figures use ATO FBT exemption thresholds for public hospitals. Take-home figures use FY{SITE_CONFIG.financialYear} marginal rates including the Medicare levy, calculated with the same engine as the site&apos;s calculators.</p>
+                <p>Doctor, allied health and aged care figures are award minimums read from the Fair Work Commission&apos;s consolidated award text (via our <Link href="/job-pay-rates/">job pay rates</Link> data, verified 23 September 2026) or Jobs and Skills Australia median full-time earnings, and are labelled as such. Salary packaging figures use the ATO&apos;s grossed-up FBT exemption caps divided by the type 2 gross-up rate ({FBT.grossUpType2}). Take-home figures use FY{SITE_CONFIG.financialYear} marginal rates including the Medicare levy, calculated with the same engine as the site&apos;s calculators.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("healthcare-worker-pay"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -442,7 +502,7 @@ export default function HealthcareWorkerPayPage() {
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-bold mb-2">Salary Packaging Impact</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">Public hospital workers can save $4,000–$6,000 per year through salary packaging. Calculate your benefit.</p>
+                  <p className="text-eucalyptus-light text-sm mb-4">On {formatAUD(PACKAGE_SALARY)}, a public hospital worker packaging the full caps keeps about {formatAUD(PACKAGING_BENEFIT)} more a year. Calculate your benefit.</p>
                   <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
                     Calculate Take-Home Pay
                   </Link>

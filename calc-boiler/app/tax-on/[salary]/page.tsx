@@ -1,9 +1,11 @@
+import Link from "next/link";
 import type { Metadata } from 'next';
 import { TaxOnSalary } from '@/modules/programmatic/tax-on-salary';
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 
 interface PageProps {
   params: Promise<{
@@ -11,12 +13,9 @@ interface PageProps {
   }>;
 }
 
+// Grid from lib/data/salary-pages (T6), shared with the sitemap and hub.
 export async function generateStaticParams() {
-  const salaries = [];
-  for (let salary = 30000; salary <= 200000; salary += 5000) {
-    salaries.push({ salary: salary.toString() });
-  }
-  return salaries;
+  return TAX_ON_SALARIES.map((salary) => ({ salary: salary.toString() }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -77,7 +76,8 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: BASE },
-      { "@type": "ListItem", position: 2, name: `Tax on ${formattedSalary}`, item: URL }
+      { "@type": "ListItem", position: 2, name: "Tax on Salary", item: `${BASE}/tax-on/` },
+      { "@type": "ListItem", position: 3, name: `Tax on ${formattedSalary}`, item: URL }
     ]
   };
 
@@ -110,6 +110,15 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
 
       <section className="bg-sandstone/30 pt-16 pb-12 border-b border-sandstone-dark/20">
         <div className="container px-4 md:px-6 max-w-4xl mx-auto text-center">
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center justify-center gap-2 text-sm text-warmgray">
+              <li><Link href="/" className="hover:text-eucalyptus transition-colors">Home</Link></li>
+              <li className="text-warmgray/50">/</li>
+              <li><Link href="/tax-on/" className="hover:text-eucalyptus transition-colors">Tax on Salary</Link></li>
+              <li className="text-warmgray/50">/</li>
+              <li className="text-navy font-medium">Tax on {formattedSalary}</li>
+            </ol>
+          </nav>
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy tracking-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Tax on {formattedSalary} in Australia
           </h1>

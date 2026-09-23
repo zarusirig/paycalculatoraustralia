@@ -330,6 +330,10 @@ export default function HourlyToAnnualCalculatorPage() {
                 </li>
               ))}
             </ul>
+            {/* T6: hub for the reverse direction, every /salary-to-hourly/ page */}
+            <p className="mt-4 text-sm text-warmgray">
+              Starting from a salary instead? The <Link href="/salary-to-hourly/" className="text-eucalyptus-dark hover:underline font-medium">annual salary to hourly rate table</Link> converts every salary from $30,000 to $500,000.
+            </p>
           </section>
 
           {/* H2: Standard Working Hours */}
