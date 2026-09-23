@@ -16,7 +16,7 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
+import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -301,7 +301,7 @@ export default function SalarySacrificeCalculatorPage() {
               </table>
             </div>
             <p className="text-sm text-warmgray-light">
-              Savings shown exclude the 2% Medicare levy reduction, which adds a further $0.02 per dollar for all brackets. Earners in the 16% bracket gain minimal benefit from salary sacrifice into super.
+              Savings shown exclude the 2% Medicare levy reduction, which adds a further $0.02 per dollar for all brackets. Earners in the 15% bracket gain minimal benefit from salary sacrifice into super.
             </p>
           </section>
 
@@ -477,7 +477,7 @@ export default function SalarySacrificeCalculatorPage() {
                       <td className="p-3 text-navy font-medium">Electric vehicle (novated lease)</td>
                       <td className="p-3 text-navy">Exempt (below LCT threshold)</td>
                       <td className="p-3 text-navy">No FBT, no income tax on sacrificed amount</td>
-                      <td className="p-3 text-navy">Vehicle price below $91,387 (FY2025-26 LCT threshold for fuel-efficient vehicles)</td>
+                      <td className="p-3 text-navy">Vehicle price below {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)} (FY{LUXURY_CAR_TAX.financialYear} LCT threshold for fuel-efficient vehicles)</td>
                     </tr>
                     <tr className="border-b border-sandstone-dark/10">
                       <td className="p-3 text-navy font-medium">Laptop / tablet (work use)</td>
@@ -520,7 +520,7 @@ export default function SalarySacrificeCalculatorPage() {
             <section id="who-benefits">
               <h2>Who Benefits Most from Salary Sacrifice?</h2>
               <p>
-                Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 16% bracket saves only <strong>$0.01 per dollar</strong>.
+                Employees in higher income tax brackets benefit the most because the gap between their marginal tax rate and the 15% super contributions tax rate is largest. A taxpayer in the 45% bracket saves <strong>$0.30 per dollar</strong> sacrificed, while a taxpayer in the 15% bracket saves nothing on income tax (15% in, 15% contributions tax out) — only the 2c Medicare levy.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -577,7 +577,7 @@ export default function SalarySacrificeCalculatorPage() {
                 <li><strong>Not-for-profit sector workers</strong> — Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) of about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} a year at PBIs and health promotion charities, or about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} at public hospitals, produces savings even at lower income levels</li>
               </ul>
               <p>
-                Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. Employees in the 16% bracket ($18,201–$45,000) receive only marginal benefit and are better served by claiming the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> instead.
+                Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. Employees in the 15% bracket ($18,201–$45,000) gain only the 2% Medicare levy saving and are better served by claiming the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> instead.
               </p>
             </section>
             <section id="risks-downsides">
@@ -651,7 +651,7 @@ export default function SalarySacrificeCalculatorPage() {
               </p>
               <ul>
                 <li><strong>Superannuation contributions</strong> — Exempt from FBT, taxed at 15% inside the fund</li>
-                <li><strong>Eligible electric vehicles</strong> — FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of $91,387</li>
+                <li><strong>Eligible electric vehicles</strong> — FBT-exempt under the Electric Car Discount when the vehicle value is below the fuel-efficient luxury car tax threshold of {formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</li>
                 <li><strong>Portable electronic devices</strong> — Laptops, tablets, and mobile phones used primarily for employment duties (limited to 1 device per FBT year per category)</li>
               </ul>
               <p>

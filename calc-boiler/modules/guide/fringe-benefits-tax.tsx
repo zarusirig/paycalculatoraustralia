@@ -6,8 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
-import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
+import { SITE_CONFIG, SOURCES, formatAUD, MEDICARE_LEVY } from "@/lib/constants";
+import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [{ title: "Fringe benefits tax", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name }, { title: "FBT rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds", publisher: SOURCES.ato.name }, { title: "Types of fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name }];
@@ -120,7 +120,7 @@ export default function FringeBenefitsTaxPage() {
             <p>However, the employee may still see fringe benefits reported on their PAYG income statement as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong>. The RFBA is the grossed-up taxable value, and while it is not taxed again, it is added to your adjusted taxable income for the purpose of:</p>
             <ul>
               <li><strong>HECS-HELP repayments</strong> — RFBA counts toward the $69,528 marginal-system threshold; model the impact with the <Link href="/hecs-help-calculator/">HECS-HELP Calculator</Link>.</li>
-              <li><strong>Medicare Levy Surcharge (MLS)</strong> — RFBA can push your income above the $93,000 singles threshold, triggering 1%–1.5% MLS unless you hold appropriate <Link href="/private-health-insurance-medicare/">private hospital cover</Link>.</li>
+              <li><strong>Medicare Levy Surcharge (MLS)</strong> — RFBA can push your income above the {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1, 0)} singles threshold, triggering 1%–1.5% MLS unless you hold appropriate <Link href="/private-health-insurance-medicare/">private hospital cover</Link>.</li>
               <li><strong>Super co-contribution</strong> — RFBA reduces eligibility for the government super co-contribution on after-tax personal contributions.</li>
               <li><strong>Family Tax Benefit and Centrelink income tests</strong> — RFBA counts toward income-tested family assistance entitlements.</li>
               <li><strong>Division 293 tax</strong> — for high-income earners with combined income plus low-tax super above $250,000.</li>
@@ -170,7 +170,7 @@ export default function FringeBenefitsTaxPage() {
             <ul>
               <li><strong>Portable electronic devices</strong> primarily for work &mdash; one laptop, one tablet, and one phone per FBT year</li>
               <li><strong>Minor benefits</strong> under $300 that are infrequent and irregular (e.g., a Christmas ham, occasional taxi fares)</li>
-              <li><strong>Eligible electric vehicles</strong> under the Electric Car Discount &mdash; battery electric vehicles and plug-in hybrids first held and used on or after 1 July 2022, with a value at first retail sale below the luxury car tax limit for fuel-efficient vehicles (<strong>$91,387</strong> for FY2025-26)</li>
+              <li><strong>Eligible electric vehicles</strong> under the Electric Car Discount &mdash; battery electric vehicles first held and used on or after 1 July 2022 (plug-in hybrids only under arrangements entered into before 1 April 2025), with a value at first retail sale below the luxury car tax limit for fuel-efficient vehicles (<strong>{formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</strong> for FY{LUXURY_CAR_TAX.financialYear})</li>
               <li><strong>Work-related items</strong> including protective clothing, tools of trade, briefcases, and software</li>
               <li><strong>Employer contributions to complying super funds</strong> (these are taxed under the superannuation regime, not FBT)</li>
               <li><strong>Certain relocation expenses</strong> for employees moving to a new work location</li>
@@ -208,7 +208,7 @@ export default function FringeBenefitsTaxPage() {
             <p>FBT does not create an additional tax liability for employees, but the <strong>Reportable Fringe Benefits Amount (RFBA)</strong> on your income statement affects income-tested thresholds for government benefits, surcharges, and obligations.</p>
             <p>When fringe benefits exceed the <strong>$2,000 grossed-up threshold</strong>, the employer must report the grossed-up taxable value as RFBA on your income statement (formerly payment summary). The ATO uses your &quot;adjusted taxable income&quot; &mdash; which includes taxable income plus RFBA, reportable super contributions, and certain other items &mdash; to determine:</p>
             <ul>
-              <li><strong>Medicare Levy Surcharge (MLS)</strong> liability &mdash; RFBA pushes your adjusted taxable income above the <strong>$93,000</strong> singles threshold, triggering a 1%, 1.25%, or 1.5% surcharge if you lack private hospital cover</li>
+              <li><strong>Medicare Levy Surcharge (MLS)</strong> liability &mdash; RFBA pushes your adjusted taxable income above the <strong>{formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1, 0)}</strong> singles threshold, triggering a 1%, 1.25%, or 1.5% surcharge if you lack private hospital cover</li>
               <li><strong>HECS-HELP repayment</strong> obligations &mdash; RFBA counts toward the <strong>$69,528</strong> compulsory repayment threshold for FY2026-27</li>
               <li><strong>Centrelink income test</strong> &mdash; RFBA is included in the income test for Family Tax Benefit, child care subsidy, and other income-tested payments</li>
               <li><strong>Division 293 tax</strong> &mdash; high-income earners with combined income and low-tax super contributions above <strong>$250,000</strong> pay an additional 15% tax on concessional super contributions</li>
@@ -224,7 +224,7 @@ export default function FringeBenefitsTaxPage() {
             <p>The FBT rate remains at <strong>47%</strong> for the FBT year ending 31 March 2026, with updated benchmark interest rates, car parking thresholds, and continued EV exemptions.</p>
             <ul>
               <li><strong>Benchmark interest rate increased to 7.77%</strong> for the FBT year ending 31 March 2026, up from 7.74% in the prior year &mdash; this increases FBT on employer-provided loans</li>
-              <li><strong>Electric Car Discount continues</strong> &mdash; eligible zero and low-emissions vehicles remain FBT-exempt, with the luxury car tax threshold for fuel-efficient vehicles at <strong>$91,387</strong></li>
+              <li><strong>Electric Car Discount continues</strong> &mdash; eligible zero and low-emissions vehicles remain FBT-exempt, with the luxury car tax threshold for fuel-efficient vehicles at <strong>{formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</strong> for FY{LUXURY_CAR_TAX.financialYear}</li>
               <li><strong>Car parking threshold updated to $10.40</strong> per day &mdash; employer-provided parking below this threshold does not attract FBT</li>
               <li><strong>Stage 3 tax cuts do not affect FBT</strong> &mdash; the FBT rate remains pegged at the top marginal rate (45%) plus Medicare levy (2%), unchanged since 2017</li>
               <li><strong>Gross-up rates unchanged</strong> &mdash; Type 1 remains at 2.0802 and Type 2 at 1.8868 because the FBT rate has not changed</li>
@@ -287,7 +287,7 @@ export default function FringeBenefitsTaxPage() {
               </AccordionItem>
               <AccordionItem value="ev-exempt" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">Are electric vehicles exempt from FBT?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Under the Electric Car Discount, eligible battery electric vehicles and plug-in hybrid electric vehicles first held and used on or after 1 July 2022 are FBT-exempt, provided the car&apos;s value at first retail sale is below the luxury car tax limit for fuel-efficient vehicles (<strong>$91,387</strong> for FY2025-26). This exemption makes novated leasing for EVs significantly more cost-effective.</AccordionContent>
+                <AccordionContent className="text-warmgray">Yes. Under the Electric Car Discount, eligible battery electric vehicles first held and used on or after 1 July 2022 are FBT-exempt (plug-in hybrids only where the arrangement was entered into before 1 April 2025), provided the car&apos;s value at first retail sale is below the luxury car tax limit for fuel-efficient vehicles (<strong>{formatAUD(LUXURY_CAR_TAX.fuelEfficientThreshold, 0)}</strong> for FY{LUXURY_CAR_TAX.financialYear}). This exemption makes novated leasing for EVs significantly more cost-effective.</AccordionContent>
               </AccordionItem>
               <AccordionItem value="grossing-up" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">What does &quot;grossing up&quot; mean for FBT?</AccordionTrigger>
