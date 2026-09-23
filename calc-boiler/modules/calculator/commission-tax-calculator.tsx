@@ -280,7 +280,7 @@ export default function CommissionTaxCalculatorPage() {
           <section>
             <h2 style={FONT} className={H2}>Is Super Paid on Commission?</h2>
             <p className={P}>
-              Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission — {formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission — up to the quarterly maximum contribution base. Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be.
+              Yes. Commission for work performed is ordinary time earnings, so it attracts the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee on top of the commission — {formatAUD(EX_COMMISSION * SUPER_GUARANTEE.rate)} on a {formatAUD(EX_COMMISSION)} commission — up to the quarterly maximum contribution base. Check your payslip shows super on the commission line, not just on base salary; the <Link href="/superannuation-calculator/" className={LINK}>super guarantee calculator</Link> shows what the year&apos;s total should be. Comparing a sales offer quoted as OTE (on-target earnings)? See <Link href="/ote-salary/" className={LINK}>what OTE salary means</Link>.
             </p>
           </section>
 

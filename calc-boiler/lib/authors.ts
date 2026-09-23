@@ -343,6 +343,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "fortnights-in-a-year": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "centrelink-payment-dates": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end F7 ---
+  // --- G3 wave 4 opportunities (24 Sep 2026) ---
+  "sick-leave-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "compassionate-leave": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "ote-salary": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "jury-duty-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end G3 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

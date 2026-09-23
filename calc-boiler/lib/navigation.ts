@@ -147,6 +147,8 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/leave-calculator/", label: "Annual leave payout" },
           { href: "/leave-loading-calculator/", label: "Leave loading" },
           { href: "/time-in-lieu/", label: "Time in lieu (TOIL)" },
+          { href: "/sick-leave-calculator/", label: "Sick & carer's leave" }, // G3
+          { href: "/compassionate-leave/", label: "Compassionate leave" }, // G3
           { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
           { href: "/long-service-leave-calculator/", label: "Long service leave" },
           { href: "/casual-loading-calculator/", label: "Casual loading" },
@@ -816,6 +818,23 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end T3 ---
+  // --- G3 wave 4 opportunities (24 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so no separate entry there.
+  {
+    title: "Leave Entitlements",
+    guides: [
+      { href: "/sick-leave-calculator/", label: "Sick Leave Calculator", description: "Personal/carer's leave: 10 days, 1/26 of hours" },
+      { href: "/compassionate-leave/", label: "Compassionate Leave", description: "2 days paid bereavement leave per occasion" },
+      { href: "/jury-duty-pay/", label: "Jury Duty Pay", description: "10 days employer make-up pay under the NES" },
+    ],
+  },
+  {
+    title: "Sales Pay",
+    guides: [
+      { href: "/ote-salary/", label: "OTE Salary Meaning", description: "On-target earnings: base + commission at target" },
+    ],
+  },
+  // --- end G3 ---
 ] as const;
 
 export const STATE_CATEGORIES = [

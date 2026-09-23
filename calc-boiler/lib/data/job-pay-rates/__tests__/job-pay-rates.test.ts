@@ -556,3 +556,59 @@ test("T5: retail worker reads the shared retail constants", () => {
     ["Retail Employee Level 8", 1291.8, 33.99, 42.49],
   ]);
 });
+
+// --- G3 (wave 4, 24 Sep 2026): allied health on the HPSS award ---
+const G3_SLUGS = ["radiographer", "sonographer", "speech-pathologist", "audiologist", "podiatrist", "dietitian"] as const;
+
+test("G3: allied health pages headline HPSS level 1 pay point 2 and say Salary in the title", () => {
+  for (const slug of G3_SLUGS) {
+    const occ = getOccupation(slug)!;
+    assert.ok(occ, slug);
+    assert.equal(occ.award?.code, "MA000027", slug);
+    const h = headlineRow(occ)!;
+    assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 pay point 2", 1219.5, 32.09, 40.11], slug);
+    assert.ok(occ.metaTitle?.includes("Salary") && occ.metaTitle.includes("$32.09"), slug);
+    assert.ok(occ.metaTitle!.length <= 65, `${slug} title ${occ.metaTitle!.length}`);
+  }
+});
+
+test("G3: FAQ figures agree with the shared HPSS rows they quote", () => {
+  const rows = getOccupation("radiographer")!.tables.flatMap((t) => t.rows);
+  const pp = (label: string) => rows.find((r) => r.label === label)!;
+  assert.equal(annualFromWeekly(pp("Level 1 pay point 2").weekly), 63_414);
+  assert.equal(pp("Level 1 pay point 3").hourly, 33.51);
+  assert.equal(pp("Level 1 pay point 4").hourly, 34.66);
+  assert.equal(pp("Level 1 pay point 5").hourly, 37.76);
+  assert.equal(pp("Level 1 pay point 6").hourly, 39.1);
+  // Weekend 150% and public holiday 250% of $32.09, as Schedule C.2.1 publishes them.
+  assert.equal(Math.round(32.09 * 1.5 * 100) / 100, 48.14);
+  assert.equal(Math.round(32.09 * 2.5 * 100) / 100, 80.23);
+});
+
+test("G3: vet rates follow the cl 15.3 NOTE chain (annual ÷ 52 to 10c, ÷ 38) and Schedule B.2.5 casuals", () => {
+  const rows = getOccupation("veterinarian")!.tables[0].rows;
+  assert.deepEqual(rows.map((r) => r.annual), [67_582, 71_300, 77_032, 84_628, 95_593]);
+  for (const r of rows) {
+    assert.equal(cents(r.weekly / 38), cents(r.hourly), r.label);
+    assert.equal(Math.round(cents(r.hourly) * 1.25), cents(r.casualHourly!), r.label);
+  }
+  const h = headlineRow(getOccupation("veterinarian")!)!;
+  assert.deepEqual([h.label, h.hourly, h.weekly], ["Level 1A", 34.2, 1299.7]);
+});
+
+test("G3: architect weekly = annual x 6/313 to 10c, as cl 13.1 prints it, and casuals match Schedule B.2", () => {
+  const rows = getOccupation("architect")!.tables[0].rows;
+  for (const r of rows) assert.equal(cents(r.weekly), cents(Math.round(((r.annual! * 6) / 313) * 10) / 10), r.label);
+  assert.deepEqual(rows.map((r) => r.casualHourly), [43.0, 45.28, 47.55, 49.71, 49.71, 51.25, 52.79]);
+  const h = headlineRow(getOccupation("architect")!)!;
+  assert.deepEqual([h.label, h.annual, h.hourly], ["Level 2(b) Registered Architect — Entry", 78_838, 39.77]);
+});
+
+test("G3: podiatrist carries no median (JSA publishes N/A); the others carry JSA medians", () => {
+  assert.equal(getOccupation("podiatrist")!.median, null);
+  assert.equal(getOccupation("radiographer")!.median!.medianWeekly, 2_360);
+  assert.equal(getOccupation("sonographer")!.median!.anzscoCode, "2512");
+  assert.equal(getOccupation("speech-pathologist")!.median!.medianWeekly, 2_003);
+  assert.equal(getOccupation("audiologist")!.median!.anzscoCode, "2527");
+  assert.equal(getOccupation("dietitian")!.median!.medianWeekly, 1_667);
+});

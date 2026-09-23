@@ -56,4 +56,13 @@ export const OCCUPATION_SECTOR: Readonly<Record<OccupationSlug, JobSectorId>> = 
   bookkeeper: "office",
   "pathology-collector": "health",
   "dental-hygienist": "health",
+  // G3 (wave 4)
+  radiographer: "health",
+  sonographer: "health",
+  "speech-pathologist": "health",
+  audiologist: "health",
+  podiatrist: "health",
+  dietitian: "health",
+  veterinarian: "health",
+  architect: "office",
 };
