@@ -218,7 +218,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "division-293-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "tax-file-number-declaration": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "notice-of-assessment": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
-  "salary-packaging-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
+  "salary-packaging-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "super-co-contribution": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
   "tax-bracket-history": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
   "super-guarantee-rate-history": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },

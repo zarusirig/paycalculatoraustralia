@@ -16,6 +16,7 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -494,13 +495,13 @@ export default function SalarySacrificeCalculatorPage() {
                       <td className="p-3 text-navy font-medium">NFP meal entertainment</td>
                       <td className="p-3 text-navy">Exempt (NFP employers only)</td>
                       <td className="p-3 text-navy">Reduces taxable income</td>
-                      <td className="p-3 text-navy">$2,650 grossed-up cap</td>
+                      <td className="p-3 text-navy">Separate {formatAUD(FBT_CAPS.salaryPackagedEntertainment)} grossed-up cap (about {formatAUD(capFaceValue(FBT_CAPS.salaryPackagedEntertainment))} of meals)</td>
                     </tr>
                     <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                       <td className="p-3 text-navy font-medium">NFP living expenses</td>
                       <td className="p-3 text-navy">Exempt (NFP employers only)</td>
                       <td className="p-3 text-navy">Reduces taxable income</td>
-                      <td className="p-3 text-navy">$15,900 or $30,000 depending on employer type</td>
+                      <td className="p-3 text-navy">{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)} grossed-up (about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} of expenses) at PBIs and health promotion charities; {formatAUD(FBT_CAPS.hospitalAndAmbulance)} (about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}) at public and NFP hospitals</td>
                     </tr>
                     <tr className="border-b border-sandstone-dark/10">
                       <td className="p-3 text-navy font-medium">ICE vehicle (novated lease)</td>
@@ -573,7 +574,7 @@ export default function SalarySacrificeCalculatorPage() {
               <ul>
                 <li><strong>High-income earners ($135,000+)</strong> — The 37% and 45% marginal rates create the largest gap above the 15% super tax rate, producing savings of $2,200 to $3,000 per $10,000 sacrificed</li>
                 <li><strong>Employees approaching retirement (age 50–67)</strong> — Carry-forward rules allow lump-sum catch-up contributions to build super balances before retirement</li>
-                <li><strong>Not-for-profit sector workers</strong> — Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) up to $15,900 or $30,000 per year produces savings even at lower income levels</li>
+                <li><strong>Not-for-profit sector workers</strong> — Access to FBT-exempt packaging of everyday living expenses (rent, mortgage, groceries) of about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} a year at PBIs and health promotion charities, or about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} at public hospitals, produces savings even at lower income levels</li>
               </ul>
               <p>
                 Employees earning below the tax-free threshold of <strong>$18,200</strong> are worse off salary sacrificing into super because the 15% contributions tax exceeds their 0% income tax rate. Employees in the 16% bracket ($18,201–$45,000) receive only marginal benefit and are better served by claiming the <Link href="/low-income-tax-offset/">Low Income Tax Offset</Link> instead.
@@ -748,7 +749,7 @@ export default function SalarySacrificeCalculatorPage() {
               <AccordionItem value="nfp" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do not-for-profit employees get extra salary sacrifice benefits?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. Employees of public benevolent institutions (PBIs) — including charities and public hospitals — can salary package everyday living expenses such as rent, mortgage repayments, and groceries up to <strong>$15,900</strong> per FBT year without incurring FBT. Public hospital employees and certain ambulance services have a higher cap of <strong>$30,000</strong>. An additional meal entertainment exemption of <strong>$2,650</strong> (grossed-up) applies on top of these caps.
+                    Yes. Employees of public benevolent institutions (PBIs) and health promotion charities have a <strong>{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)}</strong> grossed-up FBT exemption cap per FBT year, which covers about <strong>{formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))}</strong> of rent, mortgage repayments or other GST-free living expenses. Employees of public and not-for-profit hospitals and public ambulance services have a lower <strong>{formatAUD(FBT_CAPS.hospitalAndAmbulance)}</strong> grossed-up cap, about <strong>{formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}</strong> of expenses. A separate <strong>{formatAUD(FBT_CAPS.salaryPackagedEntertainment)}</strong> grossed-up cap (about {formatAUD(capFaceValue(FBT_CAPS.salaryPackagedEntertainment))} of meals) applies on top for salary-packaged meal entertainment. See the <Link href="/salary-packaging-guide/" className="text-eucalyptus-dark hover:underline">Salary Packaging Guide</Link> for worked examples.
                   </AccordionContent>
                 </AccordionItem>
               <AccordionItem value="laptop" className="border rounded-lg px-4 bg-sandstone bg-white">

@@ -5,7 +5,7 @@ import type { BreadcrumbList, FAQPage, ItemList, WebPage, WithContext } from "sc
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { NURSING_PAY_BY_STATE, NURSING_PAY_STATES, registeredNurseRange } from "@/lib/data/nursing-pay";
 import { NURSES_AWARD, NURSES_AWARD_GENERAL } from "@/lib/data/nursing-pay/nurses-award-2020";
-import { FBT } from "@/lib/constants/novated-lease";
+import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/healthcare-worker-pay/`;
@@ -107,7 +107,7 @@ const faq: WithContext<FAQPage> = {
       name: "What is salary packaging for healthcare workers?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: `Public and not-for-profit hospitals can provide fringe benefits free of FBT up to a $17,000 grossed-up cap per employee each FBT year — about ${formatAUD(Math.round(17_000 / FBT.grossUpType2))} of rent, mortgage or other GST-free living expenses — plus a separate $5,000 grossed-up cap (about ${formatAUD(Math.round(5_000 / FBT.grossUpType2))}) for meal entertainment. Public benevolent institutions and health promotion charities have a $30,000 grossed-up cap. Packaging does not change your gross pay or classification; it changes how much of your pay is taxed.`,
+        text: `Public and not-for-profit hospitals can provide fringe benefits free of FBT up to a ${formatAUD(FBT_CAPS.hospitalAndAmbulance)} grossed-up cap per employee each FBT year — about ${formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))} of rent, mortgage or other GST-free living expenses — plus a separate ${formatAUD(FBT_CAPS.salaryPackagedEntertainment)} grossed-up cap (about ${formatAUD(capFaceValue(FBT_CAPS.salaryPackagedEntertainment))}) for meal entertainment. Public benevolent institutions and health promotion charities have a ${formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)} grossed-up cap. Packaging does not change your gross pay or classification; it changes how much of your pay is taxed.`,
       },
     },
   ],
