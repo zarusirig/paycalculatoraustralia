@@ -189,8 +189,78 @@ export const SCHADS_ALLOWANCES = {
   onCallOtherOrPublicHoliday: 50.81,
   uniformPerShift: 1.26,
   uniformWeeklyMax: 6.41,
+  /**
+   * ORDINARY cl 20.7(a) rate only. It is suspended from 1 September 2026 to
+   * 28 February 2027 — use schadsVehiclePerKm() / SCHADS_VEHICLE_ALLOWANCE
+   * for the rate that applies on a given date.
+   */
   vehiclePerKm: 1.01,
 } as const;
+
+/**
+ * Vehicle allowance (cl 20.7) — date-aware.
+ *
+ * Verified 23 September 2026 at fwc.gov.au: determination PR813674 (Deputy
+ * President Clancy, Deputy President Farouque, Commissioner Tran, 26 August
+ * 2026, AM2026/10–13, following [2026] FWCFB 224) inserts cl 20.7(aa):
+ * "During the period from 1 September 2026 to 28 February 2027, clause
+ * 20.7(a) will not apply and ... the employee will instead be entitled to be
+ * reimbursed at the rate of $1.05 per kilometre." It operates from the first
+ * full pay period starting on or after 1 September 2026 (s 165(3)), and cl
+ * 20.7(a) — $1.01 per km — applies again "from 1 March 2027". Confirmed by the
+ * FWO news item "Temporary increase to vehicle allowance for Aged Care Award
+ * and SCHADS Award" (31 August 2026).
+ */
+export const SCHADS_VEHICLE_ALLOWANCE = {
+  ordinaryPerKm: SCHADS_ALLOWANCES.vehiclePerKm,
+  temporaryPerKm: 1.05,
+  /** ISO dates, inclusive. */
+  temporaryFrom: "2026-09-01",
+  temporaryTo: "2027-02-28",
+  temporaryFromLabel: "1 September 2026",
+  temporaryToLabel: "28 February 2027",
+  ordinaryResumesLabel: "1 March 2027",
+  clause: "20.7(aa)",
+  determination: "PR813674",
+  decision: "[2026] FWCFB 224",
+  sourceUrl: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813674.pdf",
+  payPeriodNote:
+    "The temporary rate starts from the first full pay period starting on or after 1 September 2026.",
+} as const;
+
+function isoDate(on: Date | string): string {
+  return typeof on === "string" ? on.slice(0, 10) : on.toISOString().slice(0, 10);
+}
+
+/** True when `on` falls inside the temporary $1.05/km window (calendar dates, inclusive). */
+export function isSchadsTemporaryVehicleRate(on: Date | string = new Date()): boolean {
+  const d = isoDate(on);
+  return d >= SCHADS_VEHICLE_ALLOWANCE.temporaryFrom && d <= SCHADS_VEHICLE_ALLOWANCE.temporaryTo;
+}
+
+/**
+ * Vehicle allowance per km on a calendar date. The start is really the first
+ * full pay period on or after 1 September 2026, which a date alone cannot
+ * express — pages must print payPeriodNote alongside the figure.
+ */
+export function schadsVehiclePerKm(on: Date | string = new Date()): number {
+  return isSchadsTemporaryVehicleRate(on)
+    ? SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm
+    : SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm;
+}
+
+/** One-line wording that is correct on any date: current rate plus the other one. */
+export function schadsVehicleAllowanceWording(on: Date | string = new Date()): string {
+  const v = SCHADS_VEHICLE_ALLOWANCE;
+  const d = isoDate(on);
+  if (d < v.temporaryFrom) {
+    return `$${v.ordinaryPerKm.toFixed(2)} per km; rises temporarily to $${v.temporaryPerKm.toFixed(2)} from ${v.temporaryFromLabel} to ${v.temporaryToLabel} (cl ${v.clause}, ${v.determination})`;
+  }
+  if (d <= v.temporaryTo) {
+    return `$${v.temporaryPerKm.toFixed(2)} per km from ${v.temporaryFromLabel} to ${v.temporaryToLabel} (temporary, cl ${v.clause}, ${v.determination}); $${v.ordinaryPerKm.toFixed(2)} per km again from ${v.ordinaryResumesLabel}`;
+  }
+  return `$${v.ordinaryPerKm.toFixed(2)} per km (the temporary $${v.temporaryPerKm.toFixed(2)} rate under cl ${v.clause} ended on ${v.temporaryToLabel})`;
+}
 
 /**
  * Not extracted, and not to be published without further verification:

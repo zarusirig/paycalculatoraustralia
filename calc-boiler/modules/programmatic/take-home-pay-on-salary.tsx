@@ -15,6 +15,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import { salaryFacts } from "@/lib/data/salary-pages";
+import { EarningsPosition, NeighbourTable, NextThousand, SalaryBandNotes, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 
 interface TakeHomePayOnSalaryProps {
   salary: number;
@@ -48,9 +50,12 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const hourlyGross = salary / hoursPerYear;
   const hourlyNet = breakdown.takeHomePay / hoursPerYear;
 
-  // Adjacent salary links
-  const prevSalary = salary - 5000;
-  const nextSalary = salary + 5000;
+  // Employer SG capped at the maximum contribution base (the engine's
+  // superContribution is an uncapped 12%, which overstates it above ~$270k).
+  const facts = salaryFacts(salary);
+  const employerSuper = facts.employerSuper;
+  const totalPackage = salary + employerSuper;
+  const sacrifice = facts.sacrificeThousand;
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
@@ -65,9 +70,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
           {withHecs.hecsRepayment > 0
             ? ` If you have a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} lowers your take-home pay to ${formatAUD(withHecs.takeHomePay)} a year (${formatAUD(withHecs.weekly)} a week).`
             : ` A HECS-HELP debt would not change this: ${formattedSalary} is below the ${formatAUD(HECS_HELP.minimumThreshold)} compulsory repayment threshold.`}
-          Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation on top of your salary at the 12% SG rate.
+          Your employer also contributes {formatAUD(employerSuper)} in superannuation on top of your salary{facts.superCapped ? ", the most SG requires because earnings above the maximum contribution base attract none" : " at the 12% SG rate"}.
           Use our <a href="/take-home-pay-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Take-Home Pay Calculator</a> to model different salary scenarios.
         </p>
+        <EarningsPosition salary={salary} />
       </section>
 
       <TrustBar />
@@ -106,7 +112,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / 52)}</td>
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
-                  <td className="px-6 py-4">Medicare Levy (2%)</td>
+                  <td className="px-6 py-4">Medicare Levy</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 12)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 26)}</td>
@@ -114,10 +120,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors">
                   <td className="px-6 py-4 text-warmgray">Superannuation (employer-paid)</td>
-                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(breakdown.superContribution)}</td>
-                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(breakdown.superContribution / 12)}</td>
-                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(breakdown.superContribution / 26)}</td>
-                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(breakdown.superContribution / 52)}</td>
+                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(employerSuper)}</td>
+                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(employerSuper / 12)}</td>
+                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(employerSuper / 26)}</td>
+                  <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(employerSuper / 52)}</td>
                 </tr>
                 <tr className="bg-eucalyptus-dark text-white font-bold">
                   <td className="px-6 py-5">Take-Home Pay</td>
@@ -131,7 +137,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
           </div>
         </Card>
         <p className="mt-4 text-sm text-warmgray">
-          Super is paid by your employer on top of your salary. Your total remuneration package is <strong>{formatAUD(breakdown.totalPackage)}</strong>. See our <a href="/income-tax-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Income Tax Calculator</a> for a detailed tax breakdown.
+          Super is paid by your employer on top of your salary. Your total remuneration package is <strong>{formatAUD(totalPackage)}</strong>. See our <a href="/income-tax-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Income Tax Calculator</a> for a detailed tax breakdown.
         </p>
       </section>
 
@@ -244,31 +250,13 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         </p>
       </section>
 
-      {/* Compare With Other Salaries */}
-      <section>
-        <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-6">Compare With Other Salaries</h2>
-        <p className="text-navy leading-relaxed mb-4">
-          See how take-home pay changes at nearby salary levels. Progressive taxation means each additional dollar is taxed at your marginal rate of {marginalRatePercent}%.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {prevSalary >= 30000 && (
-            <a href={`/take-home-pay-on/${prevSalary}/`} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
-              <p className="font-semibold text-navy mb-1">Take-Home Pay on {formatAUD(prevSalary)}</p>
-              <p className="text-sm text-warmgray">See the full breakdown for a {formatAUD(prevSalary)} salary including tax, Medicare, and super.</p>
-            </a>
-          )}
-          {nextSalary <= 200000 && (
-            <a href={`/take-home-pay-on/${nextSalary}/`} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
-              <p className="font-semibold text-navy mb-1">Take-Home Pay on {formatAUD(nextSalary)}</p>
-              <p className="text-sm text-warmgray">See the full breakdown for a {formatAUD(nextSalary)} salary including tax, Medicare, and super.</p>
-            </a>
-          )}
-          <a href={`/tax-on/${salary}/`} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
-            <p className="font-semibold text-navy mb-1">Tax on {formattedSalary}</p>
-            <p className="text-sm text-warmgray">Detailed income tax breakdown, bracket analysis, and deductions for {formattedSalary}.</p>
-          </a>
-        </div>
-      </section>
+      <SalaryBandNotes salary={salary} />
+
+      <NextThousand salary={salary} />
+
+      <NeighbourTable salary={salary} family="take-home" />
+
+      <SalaryNav salary={salary} family="take-home" />
 
       {/* Ways to Increase Take-Home Pay */}
       <section className="bg-eucalyptus-light/20 rounded-xl p-8 border border-eucalyptus/20">
@@ -278,7 +266,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         </p>
         <ul className="text-navy space-y-3">
           <li>
-            <strong>Salary sacrifice to super</strong> — concessional contributions up to {formatAUD(SUPER_GUARANTEE.concessionalCap)} are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Model the savings with our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a>.
+            <strong>Salary sacrifice to super</strong> — concessional contributions up to {formatAUD(SUPER_GUARANTEE.concessionalCap)} a year (employer SG included) are taxed at 15% inside super{facts.division293 > 0 ? " (30% with Division 293)" : ""}. On {formattedSalary}, each $1,000 sacrificed costs {formatAUD(sacrifice.takeHomeCost)} of take-home and adds {formatAUD(sacrifice.intoSuper)} to super. Model the savings with our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a>.
           </li>
           <li>
             <strong>Maximise tax deductions</strong> — work-related expenses, home office costs, and self-education reduce taxable income dollar-for-dollar. See our <a href="/tax-deductions-guide/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Tax Deductions Guide</a> for what you can claim.
@@ -306,7 +294,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
             <p className="text-sm text-warmgray">Model how salary sacrifice to super increases your take-home pay.</p>
           </a>
           <a href="/tax-brackets/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
-            <p className="font-semibold text-navy mb-1">Tax Brackets 2025-26</p>
+            <p className="font-semibold text-navy mb-1">Tax Brackets {SITE_CONFIG.financialYear}</p>
             <p className="text-sm text-warmgray">Full table of ATO marginal tax rates and income thresholds.</p>
           </a>
         </div>
@@ -339,7 +327,18 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               What is the effective hourly rate on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Based on a standard 38-hour week (1,976 hours/year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
+              Based on a standard {EMPLOYMENT.standardWeeklyHours}-hour week ({hoursPerYear.toLocaleString("en-AU")} hours a year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="item-hecs" className="bg-white border rounded-lg px-4 shadow-sm">
+            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
+              How much is {formattedSalary} after tax with a HECS debt?
+            </AccordionTrigger>
+            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
+              {withHecs.hecsRepayment > 0
+                ? `With a HECS-HELP debt, the compulsory repayment on ${formattedSalary} is ${formatAUD(withHecs.hecsRepayment)} a year, so take-home pay falls to ${formatAUD(withHecs.takeHomePay)} (${formatAUD(withHecs.weekly)} a week) in ${SITE_CONFIG.financialYear}.`
+                : `${formattedSalary} is below the ${SITE_CONFIG.financialYear} compulsory HECS-HELP repayment threshold, so a study loan does not change take-home pay of ${formatAUD(breakdown.takeHomePay)}.`}
             </AccordionContent>
           </AccordionItem>
 
@@ -348,7 +347,9 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
               How can I increase my take-home pay on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              The most effective strategy on {formattedSalary} is salary sacrifice to superannuation. At your {marginalRatePercent}% marginal rate, every dollar sacrificed saves you {marginalRatePercent}c in tax while being taxed at only 15% inside super. Maximising work-related deductions also reduces your taxable income. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model exact savings.
+              {sacrifice.netGain > 150
+                ? `Salary sacrifice to superannuation is the most direct lever on ${formattedSalary}: each $1,000 sacrificed costs ${formatAUD(sacrifice.takeHomeCost)} of take-home pay and puts ${formatAUD(sacrifice.intoSuper)} into super after contributions tax.`
+                : `On ${formattedSalary}, salary sacrifice saves little or no tax (each $1,000 costs ${formatAUD(sacrifice.takeHomeCost)} of take-home for ${formatAUD(sacrifice.intoSuper)} in super).`}{" "}Maximising work-related deductions also reduces your taxable income. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model exact savings.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -358,8 +359,8 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following general rules and assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
           <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
-          <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge.</li>
-          <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
+          <li><strong>Medicare Levy:</strong> 2%, shaded in for low incomes using the {SITE_CONFIG.previousFinancialYear} low-income thresholds (the latest the ATO has published). Assumes private hospital cover, so no Medicare Levy Surcharge.</li>
+          <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it, and capped at the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base.</li>
           <li><strong>HECS-HELP:</strong> Not deducted from the headline figures, which assume no study loan. Where salary exceeds the {formatAUD(HECS_HELP.minimumThreshold)} minimum repayment threshold, the repayment under the marginal system is shown separately.</li>
         </ol>
       </MethodologyDisclosure>

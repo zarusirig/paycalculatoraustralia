@@ -19,7 +19,11 @@ import {
   SCHADS_HOME_CARE_DISABILITY,
   SCHADS_PENALTIES,
   SCHADS_ALLOWANCES,
+  SCHADS_VEHICLE_ALLOWANCE,
+  isSchadsTemporaryVehicleRate,
   parseSchadsRates,
+  schadsVehicleAllowanceWording,
+  schadsVehiclePerKm,
 } from "../schads-award";
 
 test("hourly is weekly divided by 38, to the cent, for every SACS rate", () => {
@@ -138,4 +142,26 @@ test("trainee rates are sourced outside this award", () => {
   // the only age-linked route into SCHADS pay. Needed to state the
   // no-junior-rates negative accurately.
   assert.match(SCHADS_AWARD.traineeRatesSource, /Miscellaneous Award 2020/);
+});
+
+test("vehicle allowance: temporary $1.05/km 1 Sep 2026 – 28 Feb 2027 (PR813674), $1.01 either side", () => {
+  assert.equal(SCHADS_ALLOWANCES.vehiclePerKm, 1.01);
+  assert.equal(SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm, 1.01);
+  assert.equal(SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm, 1.05);
+  assert.equal(SCHADS_VEHICLE_ALLOWANCE.determination, "PR813674");
+  assert.equal(schadsVehiclePerKm("2026-08-31"), 1.01);
+  assert.equal(schadsVehiclePerKm("2026-09-01"), 1.05);
+  assert.equal(schadsVehiclePerKm("2026-09-23"), 1.05);
+  assert.equal(schadsVehiclePerKm("2027-02-28"), 1.05);
+  assert.equal(schadsVehiclePerKm("2027-03-01"), 1.01);
+  assert.equal(isSchadsTemporaryVehicleRate(new Date("2026-12-01T00:00:00Z")), true);
+  assert.equal(isSchadsTemporaryVehicleRate(new Date("2027-06-01T00:00:00Z")), false);
+});
+
+test("vehicle allowance wording names the rate in force and the other one", () => {
+  assert.match(schadsVehicleAllowanceWording("2026-08-01"), /^\$1\.01 per km; rises temporarily to \$1\.05/);
+  const during = schadsVehicleAllowanceWording("2026-09-23");
+  assert.match(during, /^\$1\.05 per km from 1 September 2026 to 28 February 2027/);
+  assert.match(during, /\$1\.01 per km again from 1 March 2027/);
+  assert.match(schadsVehicleAllowanceWording("2027-03-01"), /^\$1\.01 per km \(the temporary \$1\.05 rate/);
 });

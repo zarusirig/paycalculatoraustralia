@@ -205,7 +205,24 @@ const newsGroups: Group[] = chunk(getAllNews(), 3).map((col, i) => ({
   items: col.map((a) => ({ href: `/news/${a.slug}/`, label: a.title })),
 }));
 
+// --- T6: programmatic salary hubs (2026-09-23) ---
+// The salary grid is now 138 take-home/tax pages and 135 hourly pages, too
+// many to list here. Each hub below links every page in its family, grouped by
+// band, so everything stays two clicks from this directory.
+const salaryHubGroups: Group[] = [
+  {
+    title: "All salaries",
+    items: [
+      { href: "/take-home-pay-on/", label: "Take-home pay on every salary", description: "$20,000 to $500,000, $1k steps from $40k to $150k" },
+      { href: "/tax-on/", label: "Tax on every salary", description: "Income tax and Medicare levy, same grid" },
+      { href: "/salary-to-hourly/", label: "Every salary as an hourly rate", description: "$30,000 to $500,000 on a 38-hour week" },
+    ],
+  },
+];
+// --- end T6 ---
+
 const SECTIONS: { heading: string; groups: readonly Group[] }[] = [
+  { heading: "Salary Tables", groups: salaryHubGroups }, // T6
   {
     heading: "Calculators",
     groups: CALCULATOR_CATEGORIES.map((c) => ({ title: c.title, items: c.calculators })),

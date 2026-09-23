@@ -100,6 +100,61 @@ export const FBT = {
 /** Cost of $1 of taxable value: gross up at type 1, tax at 47%. */
 export const FBT_COST_PER_DOLLAR = FBT.grossUpType1 * FBT.rate; // 0.977694
 
+// ---------- FBT exemption and rebate capping thresholds ----------
+// ATO "Fringe benefits tax - rates and thresholds", Table 5 "FBT treatment for
+// certain employers" (last updated 20 May 2026, read 23 September 2026): the
+// same caps apply to the FBT years ending 31 March 2023 through 31 March 2027.
+// ATO "Fringe benefits tax - a guide for employers", 6.3 and 6.5:
+//   - every cap is a GROSSED-UP value, not the face value of the expenses;
+//   - the full cap applies even if the employee was employed for only part of
+//     the FBT year (it is NOT pro-rated);
+//   - an organisation that is both a PBI and a public or NFP hospital uses the
+//     hospital cap;
+//   - salary-packaged meal entertainment and entertainment facility leasing
+//     expenses sit inside the general cap, but if that cap is exceeded it is
+//     raised by the lesser of $5,000 and their grossed-up value — in effect a
+//     separate $5,000 grossed-up cap on top.
+export const FBT_CAPS_SOURCES = {
+  verifiedOn: "23 September 2026",
+  /** Table 5: capping thresholds for exempt and rebatable employers. */
+  ratesAndThresholds: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds",
+  /** FBT guide ch 6.3–6.5: capping, part-year employees, the $5,000 entertainment cap. */
+  fbtGuideChapter6: "https://www.ato.gov.au/law/view/document?DocID=SAV/FBTGEMP/00007",
+} as const;
+
+export const FBT_CAPS = {
+  /** Registered public benevolent institutions (other than public hospitals) and health promotion charities. */
+  pbiAndHealthPromotionCharity: 30_000,
+  /** Public hospitals, not-for-profit hospitals and public ambulance services. */
+  hospitalAndAmbulance: 17_000,
+  /** Rebatable employers: a 47% FBT rebate (not an exemption) up to this grossed-up value. */
+  rebatableEmployer: 30_000,
+  /** Salary-packaged meal entertainment and entertainment facility leasing expenses. */
+  salaryPackagedEntertainment: 5_000,
+} as const;
+
+/**
+ * Face value of benefits a grossed-up cap covers. Defaults to the type 2
+ * gross-up rate — GST-free expenses such as rent or mortgage repayments, which
+ * is how the "about $15,900" and "about $9,010" figures are derived. Pass
+ * FBT.grossUpType1 for benefits on which the employer claims GST credits.
+ */
+export function capFaceValue(grossedUpCap: number, grossUpRate: number = FBT.grossUpType2): number {
+  return Math.round(grossedUpCap / grossUpRate);
+}
+
+/**
+ * Extra spendable income a year from paying `packaged` dollars of everyday
+ * expenses from pre-tax salary instead of after-tax pay, on the current
+ * income year's tax engine (income tax, LITO, Medicare levy). Excludes
+ * packaging provider fees.
+ */
+export function salaryPackagingBenefit(salary: number, packaged: number): number {
+  const without = calculatePayBreakdown({ grossSalary: salary }).takeHomePay;
+  const withPackaging = calculatePayBreakdown({ grossSalary: salary, salarySacrifice: packaged }).takeHomePay;
+  return withPackaging + packaged - without;
+}
+
 // ---------- Electric car exemption ----------
 // ATO "Electric cars exemption", last updated 1 April 2026, and
 // ATO "FBT on plug-in hybrid electric vehicles", last updated 14 March 2025.

@@ -7,15 +7,64 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import {
+  FBT,
+  FBT_CAPS,
+  FBT_CAPS_SOURCES,
+  NOVATED_LEASE_SOURCES,
+  capFaceValue,
+  reportableFringeBenefitsAmount,
+  salaryPackagingBenefit,
+} from "@/lib/constants/novated-lease";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Salary packaging", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
-  { title: "Fringe benefits tax — exempt benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name },
-  { title: "FBT concessions for not-for-profit organisations", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/fbt-concessions-for-not-for-profit-organisations", publisher: SOURCES.ato.name },
-  { title: "Reportable fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name },
+  { title: "Fringe benefits tax — rates and thresholds (Table 5: capping thresholds)", url: FBT_CAPS_SOURCES.ratesAndThresholds, publisher: SOURCES.ato.name },
+  { title: "Fringe benefits tax — a guide for employers, ch 6.3–6.5 (capping, salary packaged entertainment)", url: FBT_CAPS_SOURCES.fbtGuideChapter6, publisher: SOURCES.ato.name },
+  { title: "Salary sacrificing for employees", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
+  { title: "Reportable fringe benefits for employees", url: NOVATED_LEASE_SOURCES.reportableFringeBenefits, publisher: SOURCES.ato.name },
+  { title: "Family Assistance Guide 3.2.3 — adjusted fringe benefits total", url: "https://guides.dss.gov.au/family-assistance-guide/3/2/3", publisher: "Department of Social Services" },
+];
+
+// Every cap is a GROSSED-UP value (ATO FBT rates and thresholds, Table 5).
+// Face values are what the cap buys in GST-free expenses such as rent or
+// mortgage repayments, i.e. the cap divided by the type 2 gross-up rate.
+const PBI_CAP = FBT_CAPS.pbiAndHealthPromotionCharity; // $30,000
+const HOSPITAL_CAP = FBT_CAPS.hospitalAndAmbulance; // $17,000
+const ENT_CAP = FBT_CAPS.salaryPackagedEntertainment; // $5,000
+const PBI_FACE = capFaceValue(PBI_CAP); // about $15,900
+const HOSPITAL_FACE = capFaceValue(HOSPITAL_CAP); // about $9,010
+const ENT_FACE_TYPE2 = capFaceValue(ENT_CAP); // about $2,650
+const ENT_FACE_TYPE1 = capFaceValue(ENT_CAP, FBT.grossUpType1); // about $2,404
+const PBI_RFBA = reportableFringeBenefitsAmount(PBI_FACE);
+const HOSPITAL_RFBA = reportableFringeBenefitsAmount(HOSPITAL_FACE);
+/** Centrelink counts RFBA from s57A employers at (1 − FBT rate) for FTB, CCS and PLP. */
+const CENTRELINK_FACTOR = 1 - FBT.rate;
+const MLS_SINGLE_THRESHOLD = MEDICARE_LEVY.surcharge.tier1.min - 1;
+
+// Worked example, on the current income year's tax engine.
+const EXAMPLE_SALARY = 80_000;
+const HIGHER_SALARY = 150_000;
+function example(packaged: number) {
+  const b = calculatePayBreakdown({ grossSalary: EXAMPLE_SALARY, salarySacrifice: packaged });
+  return { packaged, taxable: b.taxableIncome, tax: b.totalDeductions, cash: b.takeHomePay, total: b.takeHomePay + packaged };
+}
+const EX_NONE = example(0);
+const EX_PBI = example(PBI_FACE);
+const EX_HOSPITAL = example(HOSPITAL_FACE);
+const PBI_BENEFIT = salaryPackagingBenefit(EXAMPLE_SALARY, PBI_FACE);
+const HOSPITAL_BENEFIT = salaryPackagingBenefit(EXAMPLE_SALARY, HOSPITAL_FACE);
+const PBI_BENEFIT_HIGH = salaryPackagingBenefit(HIGHER_SALARY, PBI_FACE);
+const HOSPITAL_BENEFIT_HIGH = salaryPackagingBenefit(HIGHER_SALARY, HOSPITAL_FACE);
+const EXAMPLE_ROWS: { label: string; pick: (e: ReturnType<typeof example>) => number; bold?: boolean }[] = [
+  { label: "Gross salary", pick: () => EXAMPLE_SALARY },
+  { label: "Packaged living expenses (pre-tax)", pick: (e) => e.packaged },
+  { label: "Taxable income", pick: (e) => e.taxable },
+  { label: "Income tax and Medicare levy", pick: (e) => e.tax },
+  { label: "Cash in hand (taxable income − tax)", pick: (e) => e.cash },
+  { label: "Total to spend (cash + packaged expenses)", pick: (e) => e.total, bold: true },
 ];
 
 function SidebarLink({ href, label }: { href: string; label: string }) {
@@ -76,13 +125,16 @@ export default function SalaryPackagingGuidePage() {
                 All employees can access some form of salary packaging, but the range and value of benefits varies dramatically by employer type. The ATO classifies employers into categories that determine FBT exemptions:
               </p>
               <ul>
-                <li><strong>Public benevolent institutions (PBIs)</strong> — Charities, community services, disability organisations. FBT-exempt cap: <strong>$15,900</strong> per FBT year</li>
-                <li><strong>Public and not-for-profit hospitals</strong> — Public hospitals, private NFP hospitals. FBT-exempt cap: <strong>$15,900</strong> plus an additional <strong>$2,650</strong> for meal entertainment</li>
-                <li><strong>Health promotion charities</strong> — Organisations registered with the ACNC promoting health. FBT-exempt cap: <strong>$15,900</strong></li>
+                <li><strong>Public benevolent institutions (PBIs) and health promotion charities</strong> — Registered charities such as community services and disability organisations, endorsed by the ATO. FBT-exempt cap: <strong>{formatAUD(PBI_CAP)} grossed-up</strong> per employee per FBT year, which covers about <strong>{formatAUD(PBI_FACE)}</strong> of rent, mortgage or other GST-free expenses</li>
+                <li><strong>Public and not-for-profit hospitals and public ambulance services</strong> — FBT-exempt cap: <strong>{formatAUD(HOSPITAL_CAP)} grossed-up</strong>, which covers about <strong>{formatAUD(HOSPITAL_FACE)}</strong> of GST-free expenses. An organisation that is both a PBI and a hospital uses the hospital cap</li>
+                <li><strong>Rebatable employers</strong> — Certain registered charities and other non-government not-for-profit organisations. They get a {formatPercent(FBT.rate, 0)} FBT <em>rebate</em>, not an exemption, on up to {formatAUD(FBT_CAPS.rebatableEmployer)} grossed-up per employee, so FBT is reduced rather than removed</li>
                 <li><strong>Private sector employers</strong> — Salary packaging limited to super, novated leases (with FBT unless EV), and portable devices</li>
               </ul>
               <p>
-                The $15,900 cap is calculated on the <strong>grossed-up taxable value</strong> of the benefits, not the face value. For most living expenses without GST (rent, mortgage), the grossed-up value equals the face value. For items with GST, the grossed-up value is higher, meaning the effective packaging amount is slightly less than $15,900.
+                Exempt and rebatable employers can also offer a separate <strong>{formatAUD(ENT_CAP)} grossed-up cap</strong> for salary-packaged meal entertainment and entertainment facility leasing expenses, on top of the general cap.
+              </p>
+              <p>
+                Every one of these caps is a <strong>grossed-up</strong> value, not the amount of expenses you can package. For GST-free expenses such as rent and mortgage repayments, the grossed-up value is the amount packaged multiplied by the type 2 gross-up rate of <strong>{FBT.grossUpType2}</strong>, which is why a {formatAUD(PBI_CAP)} cap buys about {formatAUD(PBI_FACE)} and a {formatAUD(HOSPITAL_CAP)} cap about {formatAUD(HOSPITAL_FACE)}. Where your employer can claim GST credits on a benefit, the higher type 1 rate of {FBT.grossUpType1} applies and the cap covers less. The caps are per employee per FBT year and are <strong>not</strong> reduced if you only work part of the year.
               </p>
             </section>
 
@@ -92,9 +144,9 @@ export default function SalaryPackagingGuidePage() {
                 The following salary packaging benefits are exempt from Fringe Benefits Tax, making them the most tax-effective options available:
               </p>
 
-              <h3>NFP Living Expenses ($15,900 Cap)</h3>
+              <h3>NFP Living Expenses (about {formatAUD(PBI_FACE)} or {formatAUD(HOSPITAL_FACE)})</h3>
               <p>
-                Employees of PBIs and public hospitals can salary package everyday living expenses up to $15,900 per FBT year (1 April to 31 March). Eligible expenses include:
+                Employees of PBIs and health promotion charities can salary package about {formatAUD(PBI_FACE)} of everyday living expenses per FBT year ({FBT.yearStart} to {FBT.yearEnd}) free of FBT. Employees of public and not-for-profit hospitals and public ambulance services can package about {formatAUD(HOSPITAL_FACE)}. Commonly packaged expenses include:
               </p>
               <ul>
                 <li>Rent or mortgage repayments</li>
@@ -105,18 +157,18 @@ export default function SalaryPackagingGuidePage() {
                 <li>Health insurance premiums</li>
               </ul>
               <p>
-                At a marginal tax rate of 30%, packaging the full $15,900 saves approximately <strong>$4,770 in income tax</strong> annually. At the 37% bracket, the saving rises to <strong>$5,883</strong>.
+                On a {formatAUD(EXAMPLE_SALARY)} salary at FY{SITE_CONFIG.financialYear} rates, packaging the full PBI amount leaves you about <strong>{formatAUD(PBI_BENEFIT)} a year</strong> better off, and the full hospital amount about <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong>. On {formatAUD(HIGHER_SALARY)} (a 37% marginal rate before packaging) the figures rise to about {formatAUD(PBI_BENEFIT_HIGH)} and {formatAUD(HOSPITAL_BENEFIT_HIGH)}. These are before any fee your packaging provider charges.
               </p>
 
-              <h3>Meal Entertainment ($2,650 Cap)</h3>
+              <h3>Meal Entertainment (separate {formatAUD(ENT_CAP)} grossed-up cap)</h3>
               <p>
-                Public hospital and certain NFP employees can package meal entertainment expenses up to <strong>$2,650</strong> (grossed-up value) on top of the $15,900 living expenses cap. Qualifying meal entertainment includes:
+                Employees of PBIs, health promotion charities, public and not-for-profit hospitals, public ambulance services and rebatable employers can also package meal entertainment and entertainment facility leasing expenses up to a separate <strong>{formatAUD(ENT_CAP)} grossed-up cap</strong> on top of the general cap. In face value that is about <strong>{formatAUD(ENT_FACE_TYPE2)}</strong> of meals where the employer does not claim GST credits (type 2 gross-up), or about <strong>{formatAUD(ENT_FACE_TYPE1)}</strong> where it does (type 1). The widely quoted &quot;{formatAUD(ENT_FACE_TYPE2)}&quot; is the first of these, not the cap itself. Qualifying expenses include:
               </p>
               <ul>
-                <li>Restaurant meals and takeaway food</li>
+                <li>Restaurant and cafe meals, and food and drink provided as entertainment</li>
                 <li>Catering for social events</li>
-                <li>Food and drink consumed at entertainment venues</li>
-                <li>Holiday accommodation that includes meals</li>
+                <li>Accommodation or travel connected with that entertainment</li>
+                <li>Hire of a venue or facility for entertainment (entertainment facility leasing)</li>
               </ul>
               <p>
                 The meal entertainment benefit does <strong>not</strong> cover regular grocery shopping or work lunches eaten alone at your desk. The expense must have an entertainment or social component.
@@ -159,7 +211,7 @@ export default function SalaryPackagingGuidePage() {
             <section id="how-it-affects-pay">
               <h2>How Salary Packaging Affects Your Pay</h2>
               <p>
-                The following worked example demonstrates the impact of salary packaging for an NFP employee earning <strong>$80,000</strong> who packages the full <strong>$15,900</strong> living expenses cap:
+                The worked example below compares two employees earning <strong>{formatAUD(EXAMPLE_SALARY)}</strong> on FY{SITE_CONFIG.financialYear} tax rates: one at a PBI who packages the full <strong>{formatAUD(PBI_FACE)}</strong> of rent or mortgage covered by the {formatAUD(PBI_CAP)} grossed-up cap, and one at a public hospital who packages the full <strong>{formatAUD(HOSPITAL_FACE)}</strong> covered by the {formatAUD(HOSPITAL_CAP)} cap. Meal entertainment is left out.
               </p>
 
               <div className="overflow-x-auto not-prose my-6">
@@ -168,47 +220,26 @@ export default function SalaryPackagingGuidePage() {
                     <thead>
                       <tr className="bg-sandstone">
                         <th className="text-left p-3 font-semibold text-navy border-b border-sandstone-dark/20">Component</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Without Packaging</th>
-                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">With $15,900 Packaging</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Without packaging</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">PBI employee ({formatAUD(PBI_FACE)})</th>
+                        <th className="text-right p-3 font-semibold text-navy border-b border-sandstone-dark/20">Public hospital employee ({formatAUD(HOSPITAL_FACE)})</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Gross salary</td>
-                        <td className="p-3 text-navy text-right">$80,000</td>
-                        <td className="p-3 text-navy text-right">$80,000</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">Packaged amount (pre-tax)</td>
-                        <td className="p-3 text-navy text-right">$0</td>
-                        <td className="p-3 text-navy text-right">$15,900</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Taxable income</td>
-                        <td className="p-3 text-navy text-right">$80,000</td>
-                        <td className="p-3 text-navy text-right">$64,100</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
-                        <td className="p-3 text-navy font-medium">Income tax (incl. Medicare)</td>
-                        <td className="p-3 text-navy text-right">$16,188</td>
-                        <td className="p-3 text-navy text-right">$11,418</td>
-                      </tr>
-                      <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Cash in hand (salary - tax)</td>
-                        <td className="p-3 text-navy text-right">$63,812</td>
-                        <td className="p-3 text-navy text-right">$52,682</td>
-                      </tr>
-                      <tr className="bg-eucalyptus-light/30">
-                        <td className="p-3 text-navy font-bold">Total value (cash + packaged)</td>
-                        <td className="p-3 text-navy text-right font-bold">$63,812</td>
-                        <td className="p-3 text-navy text-right font-bold">$68,582</td>
-                      </tr>
+                      {EXAMPLE_ROWS.map((row, i) => (
+                        <tr key={row.label} className={row.bold ? "bg-eucalyptus-light/30" : `border-b border-sandstone-dark/10${i % 2 ? " bg-sandstone/30" : ""}`}>
+                          <td className={`p-3 text-navy ${row.bold ? "font-bold" : "font-medium"}`}>{row.label}</td>
+                          {[EX_NONE, EX_PBI, EX_HOSPITAL].map((e, j) => (
+                            <td key={j} className={`p-3 text-navy text-right${row.bold ? " font-bold" : ""}`}>{formatAUD(row.pick(e))}</td>
+                          ))}
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The employee saves <strong>$4,770</strong> in income tax by packaging $15,900 of living expenses. The packaged amount pays for expenses the employee would have paid from after-tax income anyway — rent, mortgage, groceries — so the full tax saving flows directly to the bottom line. Over a 10-year career in the NFP sector, this totals <strong>$47,700</strong> in cumulative tax savings.
+                The PBI employee ends up with <strong>{formatAUD(PBI_BENEFIT)}</strong> more to spend each year and the public hospital employee <strong>{formatAUD(HOSPITAL_BENEFIT)}</strong> more, because the packaged amount pays for expenses they would otherwise have paid from after-tax income. The PBI saving is larger because its cap is larger, not because the tax treatment differs. Both figures are before packaging provider fees, and the PBI figure includes the small low income tax offset that applies once taxable income falls to {formatAUD(EX_PBI.taxable)}.
               </p>
             </section>
 
@@ -218,13 +249,13 @@ export default function SalaryPackagingGuidePage() {
                 When you salary package benefits (other than super), your employer reports the grossed-up taxable value as a <strong>Reportable Fringe Benefits Amount (RFBA)</strong> on your income statement. While RFBA does not increase your income tax, it is added back for the following means-tested calculations:
               </p>
               <ul>
-                <li><strong>Centrelink income tests</strong> — Services Australia adds RFBA to your adjusted taxable income (ATI) when assessing eligibility for Family Tax Benefit, childcare subsidies, and other payments. See our <Link href="/centrelink-income-test/">Centrelink Income Test Guide</Link></li>
-                <li><strong>HECS-HELP repayments</strong> — The ATO includes RFBA in Repayment Income, potentially pushing you above a repayment threshold</li>
-                <li><strong>Medicare Levy Surcharge</strong> — RFBA is included in the income test for the MLS, which applies if you earn over $93,000 (single) without private hospital cover</li>
+                <li><strong>Centrelink income tests</strong> — Services Australia adds RFBA to your adjusted taxable income (ATI) for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service is counted at {formatPercent(CENTRELINK_FACTOR, 0)} (1 minus the FBT rate), which strips out the gross-up. See our <Link href="/centrelink-income-test/">Centrelink Income Test Guide</Link></li>
+                <li><strong>HECS-HELP repayments</strong> — The ATO includes the full RFBA in repayment income, potentially pushing you above a repayment threshold</li>
+                <li><strong>Medicare Levy Surcharge</strong> — RFBA is included in the income test for the MLS, which applies to singles with MLS income over {formatAUD(MLS_SINGLE_THRESHOLD)} in FY{SITE_CONFIG.financialYear} who don&apos;t hold private hospital cover</li>
                 <li><strong>Child support assessments</strong> — The Child Support Agency includes RFBA in adjusted taxable income</li>
               </ul>
               <p>
-                For an employee packaging the full $15,900, the RFBA reported is <strong>$15,900</strong> (for Type 2 benefits without GST, like rent/mortgage). This amount appears on your income statement and payment summary but does <strong>not</strong> increase the tax you owe — it only affects the means-tested obligations listed above.
+                The RFBA is always grossed up at the type 2 rate ({FBT.grossUpType2}), so it is close to the cap, not to what you spent. A PBI employee who packages {formatAUD(PBI_FACE)} of rent has an RFBA of about <strong>{formatAUD(PBI_RFBA)}</strong>; a public hospital employee who packages {formatAUD(HOSPITAL_FACE)} has an RFBA of about <strong>{formatAUD(HOSPITAL_RFBA)}</strong>. This amount appears on your income statement but does <strong>not</strong> increase the tax you owe — it only affects the income tests listed above.
               </p>
             </section>
 
@@ -250,9 +281,9 @@ export default function SalaryPackagingGuidePage() {
                 </AccordionItem>
 
                 <AccordionItem value="eligibility" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Who is eligible for the $15,900 FBT-exempt cap?</AccordionTrigger>
+                  <AccordionTrigger className="text-left font-semibold text-navy">Who can package living expenses free of FBT, and how much?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Employees of public benevolent institutions (PBIs), health promotion charities, public hospitals, and not-for-profit hospitals. Your employer must be registered as an FBT-exempt or FBT-rebatable organisation. Private sector employees cannot access the $15,900 living expenses cap — their packaging options are limited to super, novated leases, and portable devices.
+                    Employees of public benevolent institutions (PBIs) and health promotion charities have a {formatAUD(PBI_CAP)} grossed-up cap per FBT year, about {formatAUD(PBI_FACE)} of rent, mortgage or other GST-free expenses. Employees of public and not-for-profit hospitals and public ambulance services have a {formatAUD(HOSPITAL_CAP)} grossed-up cap, about {formatAUD(HOSPITAL_FACE)}. Both can add a separate {formatAUD(ENT_CAP)} grossed-up cap for salary-packaged meal entertainment. Rebatable employers get a partial FBT rebate rather than an exemption. Private sector employees cannot access these caps — their packaging options are limited to super, novated leases, and portable devices.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -266,14 +297,14 @@ export default function SalaryPackagingGuidePage() {
                 <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does salary packaging affect my Centrelink payments?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes, potentially. Services Australia includes your Reportable Fringe Benefits Amount (RFBA) in the adjusted taxable income calculation used for income testing. Packaging $15,900 in living expenses means $15,900 is added to your ATI for Centrelink purposes. This may reduce eligibility for Family Tax Benefit, childcare subsidies, and other income-tested payments — even though your taxable income is lower.
+                    It can. Services Australia adds your reportable fringe benefits amount (RFBA) to adjusted taxable income for Family Tax Benefit, Child Care Subsidy and Parental Leave Pay. For RFBA from a PBI, health promotion charity, public or not-for-profit hospital or public ambulance service, Centrelink counts only {formatPercent(CENTRELINK_FACTOR, 0)} of it (1 minus the {formatPercent(FBT.rate, 0)} FBT rate). A PBI employee&apos;s RFBA of about {formatAUD(PBI_RFBA)} is therefore counted as about {formatAUD(Math.round(PBI_RFBA * CENTRELINK_FACTOR))} — roughly the amount packaged — so income for these tests ends up close to what it would have been without packaging.
                   </AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="hecs" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does salary packaging reduce my HECS-HELP repayments?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. The ATO calculates HECS-HELP repayments using Repayment Income, which includes taxable income plus RFBA plus reportable employer super contributions. Salary packaging reduces your taxable income but the RFBA is added back, so your Repayment Income remains essentially unchanged. There is no HECS benefit from salary packaging.
+                    No — it usually increases them. HECS-HELP repayments are based on repayment income, which is taxable income plus the full grossed-up RFBA plus other reportable items. Packaging {formatAUD(PBI_FACE)} at a PBI lowers taxable income by {formatAUD(PBI_FACE)} but adds an RFBA of about {formatAUD(PBI_RFBA)}, so repayment income rises by about {formatAUD(PBI_RFBA - PBI_FACE)}. At a public hospital the rise is about {formatAUD(HOSPITAL_RFBA - HOSPITAL_FACE)}.
                   </AccordionContent>
                 </AccordionItem>
 
@@ -287,7 +318,7 @@ export default function SalaryPackagingGuidePage() {
                 <AccordionItem value="fbt-year" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">When does the FBT year run?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    The FBT year runs from <strong>1 April to 31 March</strong>, which is different from the financial year (1 July to 30 June). The $15,900 and $2,650 caps reset on 1 April each year. If you start a salary packaging arrangement mid-FBT year, the caps are pro-rated based on the number of days remaining in the FBT year.
+                    The FBT year runs from <strong>{FBT.yearStart} to {FBT.yearEnd}</strong>, which is different from the financial year (1 July to 30 June). The current FBT year is {FBT.yearLabel}. The {formatAUD(PBI_CAP)}, {formatAUD(HOSPITAL_CAP)} and {formatAUD(ENT_CAP)} grossed-up caps reset on 1 April each year. They are not pro-rated: the ATO applies the full cap even if you only work for the employer for part of the FBT year.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -295,7 +326,7 @@ export default function SalaryPackagingGuidePage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Salary packaging caps and FBT exemptions are based on the Fringe Benefits Tax Assessment Act 1986 and ATO rulings for public benevolent institutions and public hospitals. The worked example uses FY2025-26 individual tax rates effective 1 July 2025. NFP packaging caps are per FBT year (1 April to 31 March), not per financial year.</p>
+                <p>FBT capping thresholds are from the ATO&apos;s &quot;Fringe benefits tax — rates and thresholds&quot; (Table 5, unchanged for the FBT years ending 31 March 2023 to 31 March 2027) and chapter 6 of the ATO&apos;s FBT guide for employers, checked {FBT_CAPS_SOURCES.verifiedOn}. The caps are grossed-up values; face-value figures divide them by the type 2 gross-up rate ({FBT.grossUpType2}), or the type 1 rate ({FBT.grossUpType1}) where stated. The worked example uses FY{SITE_CONFIG.financialYear} resident tax rates, the low income tax offset and the 2% Medicare levy from the site&apos;s shared tax engine, and ignores packaging provider fees. NFP packaging caps are per FBT year (1 April to 31 March), not per financial year.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("salary-packaging-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

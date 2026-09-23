@@ -1,13 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
-import { Calculator } from "lucide-react";
 import {
   calculatePayBreakdown,
   formatAUD,
   TAX_BRACKETS,
-  calculateIncomeTax,
   HECS_HELP,
+  LITO,
   MEDICARE_LEVY,
   SITE_CONFIG,
   SUPER_GUARANTEE
@@ -17,6 +17,9 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import { salaryFacts } from "@/lib/data/salary-pages";
+import { DIVISION_293 } from "@/lib/constants/super-contributions";
+import { NextThousandTaxTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 
 interface TaxOnSalaryProps {
   salary: number;
@@ -37,9 +40,15 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
 
   const formattedSalary = formatAUD(salary);
 
-  // Generate comparison data (-20k, -10k, +10k, +20k)
-  const comparisons = [-20000, -10000, 0, 10000, 20000].map(diff => {
-    const compSalary = Math.max(0, salary + diff);
+  // Engine-derived facts, with employer SG capped at the maximum contribution
+  // base (the engine's superContribution is an uncapped 12%).
+  const facts = salaryFacts(salary);
+  const employerSuper = facts.employerSuper;
+  const totalPackage = salary + employerSuper;
+
+  // Comparison rows: ±$1k, ±$5k and ±$10k (salaries at or below $0 dropped).
+  const comparisons = [-10000, -5000, -1000, 0, 1000, 5000, 10000].filter(diff => salary + diff > 0).map(diff => {
+    const compSalary = salary + diff;
     const compBreakdown = calculatePayBreakdown({ grossSalary: compSalary });
     return {
       diff,
@@ -52,6 +61,17 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       diffToCurrent: compBreakdown.takeHomePay - breakdown.takeHomePay
     };
   });
+
+  const plusTenK = comparisons.find(c => c.diff === 10000);
+
+  // Bracket schedule sentence, derived from TAX_BRACKETS so it cannot drift.
+  const scheduleSentence = TAX_BRACKETS.map((b, i) =>
+    i === 0
+      ? `The first ${formatAUD(b.max)} is tax-free.`
+      : b.max === Infinity
+        ? `Income above ${formatAUD(b.min - 1)} is taxed at ${Math.round(b.rate * 100)}%.`
+        : `Income between ${formatAUD(b.min)} and ${formatAUD(b.max)} is taxed at ${Math.round(b.rate * 100)}%.`,
+  ).join(" ");
 
   // Determine which bracket the salary falls into
   const currentBracket = TAX_BRACKETS.filter(b => salary >= b.min).pop();
@@ -66,9 +86,6 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
     (firstTaxedBracket.max - (firstTaxedBracket.min - 1)) * (0.19 - firstTaxedBracket.rate),
   );
 
-  // Calculate what percentage goes to tax vs take-home
-  const taxPercentage = salary > 0 ? ((breakdown.netIncomeTax / salary) * 100).toFixed(1) : "0";
-  const takeHomePercentage = salary > 0 ? ((breakdown.takeHomePay / salary) * 100).toFixed(1) : "0";
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
@@ -79,7 +96,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Your effective tax rate is <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong>, and your marginal tax rate is <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong>.
         </p>
         <p className="text-navy leading-relaxed">
-          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the {SITE_CONFIG.financialYear} financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation at the 12% SG rate, bringing your total remuneration package to {formatAUD(breakdown.totalPackage)}.
+          This Australian tax calculator uses the progressive income tax brackets set by the ATO for the {SITE_CONFIG.financialYear} financial year. After income tax of {formatAUD(breakdown.netIncomeTax)} and a Medicare levy of {formatAUD(breakdown.medicareLevy)}, your take-home pay on {formattedSalary} is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year, or <strong>{formatAUD(breakdown.weekly)}</strong> per week. Your employer also contributes {formatAUD(employerSuper)} in superannuation{facts.superCapped ? " (the SG maximum, as earnings above the maximum contribution base attract none)" : " at the 12% SG rate"}, bringing your total remuneration package to {formatAUD(totalPackage)}.
         </p>
       </section>
 
@@ -92,7 +109,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Total tax on {formattedSalary} is <strong>{formatAUD(breakdown.netIncomeTax + breakdown.medicareLevy)}</strong>, comprising {formatAUD(breakdown.netIncomeTax)} in income tax and {formatAUD(breakdown.medicareLevy)} in Medicare levy.
         </p>
         <p className="text-navy leading-relaxed">
-          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. The first $18,200 is tax-free. Income between $18,201 and $45,000 is taxed at 15%. Income between $45,001 and $135,000 is taxed at 30%. Income between $135,001 and $190,000 is taxed at 37%. Income above $190,000 is taxed at 45%.
+          The ATO calculates taxation on a {formattedSalary} salary using progressive marginal rates. {scheduleSentence}
           {breakdown.litoOffset > 0 && ` The "Low Income Tax Offset" (LITO) reduces your tax bill by ${formatAUD(breakdown.litoOffset)}, lowering your net income tax to ${formatAUD(breakdown.netIncomeTax)}.`}
         </p>
         <p className="text-navy leading-relaxed">
@@ -134,7 +151,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / 52)}</td>
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
-                  <td className="px-6 py-4">Medicare Levy (2%)</td>
+                  <td className="px-6 py-4">Medicare Levy</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 12)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 26)}</td>
@@ -152,7 +169,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           </div>
         </Card>
         <p className="mt-4 text-sm text-warmgray">
-          Your employer also pays <strong>{formatAUD(breakdown.superContribution)}</strong> in superannuation (12%), making your total remuneration package <strong>{formatAUD(breakdown.totalPackage)}</strong>. Use our <a href="/superannuation-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Superannuation Calculator</a> to see how employer SG rate contributions grow your retirement balance over time.
+          Your employer also pays <strong>{formatAUD(employerSuper)}</strong> in superannuation ({facts.superCapped ? `capped at the ${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base` : "12%"}), making your total remuneration package <strong>{formatAUD(totalPackage)}</strong>.{facts.division293 > 0 && ` Because income plus super exceeds ${formatAUD(DIVISION_293.threshold)}, Division 293 adds about ${formatAUD(facts.division293)} of tax on those contributions, billed separately by the ATO.`} Use our <a href="/superannuation-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Superannuation Calculator</a> to see how employer SG rate contributions grow your retirement balance over time.
         </p>
       </section>
 
@@ -260,43 +277,20 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           </div>
         </Card>
         <p className="mt-4 text-sm text-warmgray">
-          Earning an additional $10,000 above {formattedSalary} increases take-home pay by <strong>{formatAUD(comparisons[3].diffToCurrent)}</strong> per year. The remaining portion goes to income tax and Medicare levy at the marginal rate. Use our <a href="/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Pay Calculator Australia</a> to calculate any salary with all deductions included.
+          Earning an additional $10,000 above {formattedSalary} increases take-home pay by <strong>{formatAUD(plusTenK ? plusTenK.diffToCurrent : 0)}</strong> per year. The remaining portion goes to income tax and Medicare levy at the marginal rate. Use our <Link href="/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Pay Calculator Australia</Link> to calculate any salary with all deductions included.
         </p>
 
         {/*
-          Crawlable neighbour chain. Only 10 of the 35 /tax-on/ pages are listed
-          in the footer, and the mega menu that lists all of them is client-only
-          and emits no links — so 25 of these pages had a single inbound link
-          sitewide. Linking each page to its neighbours makes the whole family
-          reachable by following the chain from any entry point.
+          Crawlable neighbour chain: prev/next plus the nearest grid pages and
+          the hub, from lib/data/salary-pages so every page in the family is
+          reachable by following links from any entry point.
         */}
-        <nav aria-label="Nearby salaries" className="mt-6">
-          <p className="mb-3 text-sm font-semibold text-navy">Tax on nearby salaries</p>
-          <ul className="flex flex-wrap gap-2">
-            {[-15000, -10000, -5000, 5000, 10000, 15000]
-              .map((offset) => salary + offset)
-              .filter((s) => s >= 30000 && s <= 200000)
-              .map((s) => (
-                <li key={s}>
-                  <a
-                    href={`/tax-on/${s}/`}
-                    className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
-                  >
-                    Tax on {formatAUD(s)}
-                  </a>
-                </li>
-              ))}
-            <li>
-              <a
-                href={`/take-home-pay-on/${salary}/`}
-                className="inline-block rounded-md border border-sandstone-dark/20 px-3 py-1.5 text-sm text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus"
-              >
-                Take-home pay on {formattedSalary}
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div className="mt-6">
+          <SalaryNav salary={salary} family="tax-on" />
+        </div>
       </section>
+
+      <NextThousandTaxTable salary={salary} />
 
       {/* H2: What Deductions Apply at This Income Level? */}
       <section className="prose prose-eucalyptus max-w-none">
@@ -308,12 +302,12 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">Income Tax ({formatAUD(breakdown.netIncomeTax)})</h3>
         <p className="text-navy leading-relaxed">
           Income tax is the largest deduction at <strong>{formatAUD(breakdown.netIncomeTax)}</strong>, calculated using progressive marginal rates across 5 brackets.
-          {breakdown.litoOffset > 0 ? ` The "Low Income Tax Offset" reduces your gross tax liability by ${formatAUD(breakdown.litoOffset)}.` : ` At ${formattedSalary}, the "Low Income Tax Offset" has fully phased out as assessable income exceeds the $66,667 threshold.`}
+          {breakdown.litoOffset > 0 ? ` The "Low Income Tax Offset" reduces your gross tax liability by ${formatAUD(breakdown.litoOffset)}.` : ` At ${formattedSalary}, the "Low Income Tax Offset" has fully phased out as assessable income exceeds the ${formatAUD(LITO.nilOffsetIncome)} threshold.`}
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">Medicare Levy ({formatAUD(breakdown.medicareLevy)})</h3>
         <p className="text-navy leading-relaxed">
-          The Medicare levy of <strong>{formatAUD(breakdown.medicareLevy)}</strong> equals 2% of taxable income. This funds Australia&#39;s public healthcare system. Employees without private hospital insurance who earn above {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (singles, {SITE_CONFIG.financialYear}) also face the "Medicare Levy Surcharge" of 1% to 1.5%. Learn more in our <a href="/medicare-levy/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Medicare Levy guide</a>.
+          The Medicare levy of <strong>{formatAUD(breakdown.medicareLevy)}</strong> {facts.medicareStage === "full" ? "equals 2% of taxable income" : facts.medicareStage === "exempt" ? `is nil because taxable income is under the ${formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} low-income threshold (${SITE_CONFIG.previousFinancialYear} figure, the latest published)` : `is shaded in at 10c per dollar above the ${formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} low-income threshold (${SITE_CONFIG.previousFinancialYear} figure, the latest published), below the full 2%`}. This funds Australia&#39;s public healthcare system. Employees without private hospital insurance who earn above {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (singles, {SITE_CONFIG.financialYear}) also face the &ldquo;Medicare Levy Surcharge&rdquo; of 1% to 1.5%. Learn more in our <a href="/medicare-levy/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Medicare Levy guide</a>.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">HECS-HELP Repayment</h3>
@@ -332,7 +326,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           Three common strategies reduce assessable income and lower taxation on a {formattedSalary} salary:
         </p>
         <ul className="text-navy space-y-2">
-          <li><strong>Salary sacrifice to super</strong> — concessional contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} annual cap are taxed at 15% inside super, compared to your {marginalRatePercent}% marginal rate. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model the savings.</li>
+          <li><strong>Salary sacrifice to super</strong> — concessional contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} annual cap (employer SG included, leaving {formatAUD(facts.concessionalRoom)} here) are taxed at {facts.division293 > 0 ? "30% with Division 293" : "15%"} inside super; each $1,000 sacrificed cuts tax and Medicare by {formatAUD(1000 - facts.sacrificeThousand.takeHomeCost)}. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model the savings.</li>
           <li><strong>Work-related deductions</strong> — claiming expenses for uniforms, tools, home office costs, and self-education reduces taxable income dollar-for-dollar.</li>
           <li><strong>Novated lease</strong> — packaging a vehicle through your employer reduces pre-tax salary, lowering both income tax and Medicare levy obligations.</li>
         </ul>
@@ -364,10 +358,10 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           These Australian tax calculators model specific scenarios for a {formattedSalary} salary, from take-home pay to superannuation and salary sacrifice.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a href="/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
+          <Link href="/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Pay Calculator Australia</p>
             <p className="text-sm text-warmgray">Calculate take-home pay on any salary with income tax, Medicare levy, and super included for FY{SITE_CONFIG.financialYear}.</p>
-          </a>
+          </Link>
           <a href="/income-tax-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Income Tax Calculator</p>
             <p className="text-sm text-warmgray">See a detailed breakdown of income tax brackets, LITO, and effective tax rates for your salary.</p>
@@ -438,9 +432,9 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
               Do I pay the Medicare Levy Surcharge on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              {salary > 93000
-                ? `Yes. Without private hospital cover, a ${formattedSalary} salary triggers the "Medicare Levy Surcharge" (MLS). The surcharge is ${salary <= 108000 ? '1.0%' : salary <= 144000 ? '1.25%' : '1.5%'} of taxable income, adding ${formatAUD(salary <= 108000 ? salary * 0.01 : salary <= 144000 ? salary * 0.0125 : salary * 0.015)} to your annual deductions. Holding private hospital insurance exempts you from the MLS.`
-                : `No. The "Medicare Levy Surcharge" applies only to singles earning above $93,000 without private hospital cover. At ${formattedSalary}, you are below this threshold and are not liable for the surcharge.`
+              {facts.mls.tier > 0
+                ? `Yes, if you are single and have no private hospital cover. A ${formattedSalary} salary falls in MLS tier ${facts.mls.tier} for ${SITE_CONFIG.financialYear}, so the "Medicare Levy Surcharge" is ${(facts.mls.rate * 100).toFixed(2).replace(/0$/, "")}% of income for MLS purposes: ${formatAUD(facts.mls.amount)} a year. Holding private hospital insurance exempts you from the MLS.`
+                : `No. For ${SITE_CONFIG.financialYear} the "Medicare Levy Surcharge" applies to singles from ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min)} of income for MLS purposes without private hospital cover. At ${formattedSalary}, you are below this threshold and are not liable for the surcharge.`
               }
             </AccordionContent>
           </AccordionItem>
@@ -478,8 +472,8 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following general rules and assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
           <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
-          <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge for those without private hospital cover.</li>
-          <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
+          <li><strong>Medicare Levy:</strong> 2%, shaded in for low incomes using the {SITE_CONFIG.previousFinancialYear} low-income thresholds (the latest the ATO has published). The Medicare Levy Surcharge is excluded from the headline figures (private hospital cover assumed).</li>
+          <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it, and capped at the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base.</li>
         </ol>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
