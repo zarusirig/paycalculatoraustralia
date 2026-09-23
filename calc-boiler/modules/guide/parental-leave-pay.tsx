@@ -12,7 +12,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG, SOURCES } from "@/lib/constants";
 import {
   PPL_CURRENT_FY,
   PPL_ENTITLEMENT,
@@ -145,7 +145,7 @@ export default function ParentalLeavePayPage() {
                       <Row key={fy} label={`${n} days in ${fy} at ${(PPL_RATES as Record<string, { daily: number }>)[fy] ? formatAUD((PPL_RATES as Record<string, { daily: number }>)[fy].daily, 2) : `${formatAUD(RATE.daily, 2)}*`}`} value={formatAUD(n * ((PPL_RATES as Record<string, { daily: number }>)[fy]?.daily ?? RATE.daily), 2)} />
                     ))}
                     <Row label="Your Parental Leave Pay" value={formatAUD(r.block.gross, 2)} bold highlight />
-                    <Row label={`Tax withheld if Services Australia pays you (${Math.round(PPL_RULES.defaultWithholding * 100)}% default)`} value={`-${formatAUD(r.withheld, 2)}`} />
+                    <Row label={`Tax withheld if Services Australia pays you (${Math.round(PPL_RULES.defaultWithholding * 100)}% default)`} value={formatNegAUD(r.withheld, 2)} />
                     <Row label={`Super from the ATO (${Math.round(PPL_RULES.superRate * 100)}%, paid after 30 June)`} value={formatAUD(r.superEst, 2)} />
                   </div>
                   {r.block.unpublishedDays > 0 && <Note tone="warn">* {r.block.unpublishedDays} of your days fall after 30 June 2027. The rate for those days isn&apos;t published yet — it usually rises on 1 July with the national minimum wage — so they are priced at today&apos;s {formatAUD(RATE.daily, 2)}.</Note>}

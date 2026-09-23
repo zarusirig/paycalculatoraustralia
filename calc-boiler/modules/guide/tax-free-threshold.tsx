@@ -17,6 +17,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
 } from "@/lib/constants";
 import { MEDICARE_LEVY_INCOME_YEAR } from "@/lib/constants/medicare-levy-extra";
 import {
@@ -140,7 +141,7 @@ export default function TaxFreeThresholdPage() {
                 <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}>
                   <td className="px-4 py-3 font-medium text-navy tabular-nums">{formatAUD(inc)}</td>
                   <td className="px-4 py-3 text-right tabular-nums">{formatAUD(calculateIncomeTax(inc), 2)}</td>
-                  <td className="px-4 py-3 text-right tabular-nums">−{formatAUD(Math.min(calculateLITO(inc), calculateIncomeTax(inc)), 2)}</td>
+                  <td className="px-4 py-3 text-right tabular-nums">{formatNegAUD(Math.min(calculateLITO(inc), calculateIncomeTax(inc)), 2, "−")}</td>
                   <td className="px-4 py-3 text-right font-medium text-navy tabular-nums">{formatAUD(incomeTaxAfterLito(inc), 2)}</td>
                   <td className="px-4 py-3 text-right tabular-nums">{formatAUD(calculateMedicareLevy(inc))}</td>
                 </tr>

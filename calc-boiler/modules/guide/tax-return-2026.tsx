@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   HECS_HELP_2025_26,
   MEDICARE_LEVY,
@@ -109,7 +109,7 @@ function RefundEstimator2026() {
                   ...(r.mls ? [["Medicare levy surcharge", r.mls] as [string, number]] : []),
                   ...(loan ? [["Study loan repayment", r.helpRepayment] as [string, number]] : []),
                 ].map(([k, v]) => (
-                  <tr key={k as string}><td className="py-2 text-warmgray">{k}</td><td className="py-2 text-right font-medium text-navy">{(v as number) < 0 ? `−${formatAUD(-(v as number))}` : formatAUD(v as number)}</td></tr>
+                  <tr key={k as string}><td className="py-2 text-warmgray">{k}</td><td className="py-2 text-right font-medium text-navy">{(v as number) < 0 ? formatNegAUD(-(v as number), 0, "−") : formatAUD(v as number)}</td></tr>
                 ))}
                 <tr><td className="py-2 font-semibold text-navy">Total tax for {R.incomeYear}</td><td className="py-2 text-right font-bold text-navy">{formatAUD(r.totalLiability)}</td></tr>
                 <tr><td className="py-2 text-warmgray">Average rate</td><td className="py-2 text-right text-navy">{formatPercent(r.averageRate)}</td></tr>

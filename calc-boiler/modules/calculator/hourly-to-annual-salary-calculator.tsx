@@ -14,6 +14,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   EMPLOYMENT,
   SUPER_GUARANTEE,
   SOURCES,
@@ -187,7 +188,7 @@ export default function HourlyToAnnualCalculatorPage() {
                             <tr key={row.label} className="hover:bg-sandstone/50">
                               <td className="px-4 py-3 font-medium text-gray-700">{row.label}</td>
                               <td className="px-4 py-3 text-right text-warmgray">{formatAUD(annualGross / row.d)}</td>
-                              <td className="px-4 py-3 text-right text-red-500">-{formatAUD(breakdown.totalDeductions / row.d)}</td>
+                              <td className="px-4 py-3 text-right text-red-500">{formatNegAUD(breakdown.totalDeductions / row.d)}</td>
                               <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">{formatAUD(breakdown.takeHomePay / row.d)}</td>
                             </tr>
                           ))}

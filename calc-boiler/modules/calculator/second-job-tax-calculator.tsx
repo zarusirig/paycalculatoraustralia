@@ -23,6 +23,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SOURCES,
   SITE_CONFIG,
@@ -180,7 +181,7 @@ export default function SecondJobTaxCalculatorPage() {
                         <h3 className="text-sm font-semibold text-navy mb-2">Job 1 — With Tax-Free Threshold</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Gross</span><span className="font-medium text-navy">{formatAUD(job1Salary)}</span></div>
-                          <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">-{formatAUD(result.job1TotalWithheld)}</span></div>
+                          <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">{formatNegAUD(result.job1TotalWithheld)}</span></div>
                           <div className="flex justify-between"><span className="font-semibold text-navy">Take-Home</span><span className="font-bold text-eucalyptus-dark">{formatAUD(result.job1TakeHome)}</span></div>
                           <div className="text-xs text-warmgray-light">Effective rate: {formatPercent(result.job1EffectiveRate)}</div>
                         </div>
@@ -193,7 +194,7 @@ export default function SecondJobTaxCalculatorPage() {
                         <h3 className="text-sm font-semibold text-navy mb-2">Job 2 — No Tax-Free Threshold</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Gross</span><span className="font-medium text-navy">{formatAUD(job2Salary)}</span></div>
-                          <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">-{formatAUD(result.job2TotalWithheld)}</span></div>
+                          <div className="flex justify-between"><span className="text-warmgray">Tax + Medicare</span><span className="font-medium text-navy">{formatNegAUD(result.job2TotalWithheld)}</span></div>
                           <div className="flex justify-between"><span className="font-semibold text-navy">Take-Home</span><span className="font-bold text-eucalyptus-dark">{formatAUD(result.job2TakeHome)}</span></div>
                           <div className="text-xs text-warmgray-light">Effective rate: {formatPercent(result.job2EffectiveRate)}</div>
                         </div>
@@ -206,8 +207,8 @@ export default function SecondJobTaxCalculatorPage() {
                         <h3 className="text-sm font-semibold text-navy mb-2">Combined — End of Financial Year</h3>
                         <div className="space-y-1 text-sm">
                           <div className="flex justify-between"><span className="text-warmgray">Combined Income</span><span className="font-medium text-navy">{formatAUD(result.totalIncome)}</span></div>
-                          <div className="flex justify-between"><span className="text-warmgray">Total Withheld</span><span className="font-medium text-navy">-{formatAUD(result.totalWithheld)}</span></div>
-                          <div className="flex justify-between"><span className="text-warmgray">Actual Tax Liability</span><span className="font-medium text-navy">-{formatAUD(result.actualTotalTax)}</span></div>
+                          <div className="flex justify-between"><span className="text-warmgray">Total Withheld</span><span className="font-medium text-navy">{formatNegAUD(result.totalWithheld)}</span></div>
+                          <div className="flex justify-between"><span className="text-warmgray">Actual Tax Liability</span><span className="font-medium text-navy">{formatNegAUD(result.actualTotalTax)}</span></div>
                           <div className="border-t border-sandstone-dark/20 my-2" />
                           <div className="flex justify-between">
                             <span className="font-semibold text-navy">{result.refundOrDebt >= 0 ? "Estimated Refund" : "Estimated Tax Debt"}</span>

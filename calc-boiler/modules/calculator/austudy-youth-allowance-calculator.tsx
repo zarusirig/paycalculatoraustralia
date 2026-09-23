@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import { AUSTUDY, CENTRELINK_SOURCES, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_JOBSEEKER, YOUTH_ALLOWANCE_STUDENT, studentFortnightly, studentReduction } from "@/lib/constants/centrelink-income-test";
 import { CentrelinkRelated, FONT, H2, INPUT, LABEL, LINK, NotIncluded, P, Row, TABLE_WRAP, TD, TH, clamp, source } from "./centrelink-shared";
 import { STUDENT_FAQS } from "./austudy-youth-allowance-faqs";
@@ -136,8 +136,8 @@ export default function AustudyYouthAllowanceCalculatorPage() {
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Maximum rate" value={formatAUD(sit.rate, 2)} bold />
                       <Row label={`Free area (first ${formatAUD(T.freeArea)})`} value="no reduction" />
-                      <Row label={`50c per $1 from ${formatAUD(T.freeArea)} to ${formatAUD(T.band1End)}`} value={`-${formatAUD(result.band1, 2)}`} />
-                      <Row label={`60c per $1 over ${formatAUD(T.band1End)}`} value={`-${formatAUD(result.band2, 2)}`} />
+                      <Row label={`50c per $1 from ${formatAUD(T.freeArea)} to ${formatAUD(T.band1End)}`} value={formatNegAUD(result.band1, 2)} />
+                      <Row label={`60c per $1 over ${formatAUD(T.band1End)}`} value={formatNegAUD(result.band2, 2)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label="Payment" value={formatAUD(result.pay, 2)} bold highlight />
                       <Row label="Published cut-off for this situation" value={formatAUD(sit.cutOff, 2)} />
@@ -235,7 +235,7 @@ export default function AustudyYouthAllowanceCalculatorPage() {
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Fortnightly wages</th><th scope="col" className={TH + " text-right"}>Reduction</th><th scope="col" className={TH + " text-right"}>Austudy</th><th scope="col" className={TH + " text-right"}>Wages + Austudy</th></tr></thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
                   {TABLE_INCOMES.map((inc, i) => { const pay = studentFortnightly(AUSTUDY.maxFortnightly.singleNoChildren, inc); return (
-                    <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}><td className={TD + " font-medium"}>{formatAUD(inc)}</td><td className={TD + " text-right"}>-{formatAUD(studentReduction(inc), 2)}</td><td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td><td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td></tr>); })}
+                    <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}><td className={TD + " font-medium"}>{formatAUD(inc)}</td><td className={TD + " text-right"}>{formatNegAUD(studentReduction(inc), 2)}</td><td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td><td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td></tr>); })}
                 </tbody>
               </table>
             </div>

@@ -6,7 +6,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import { JOB_PAY_RATES_FROM, MEDIAN_DEFINITION } from "@/lib/data/job-pay-rates/common";
 import {
   OCCUPATIONS,
@@ -284,11 +284,11 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 text-left font-medium text-navy">Income tax (after LITO)</th>
-                      <td className="px-4 py-3 text-right">−{formatAUD(net.tax)}</td>
+                      <td className="px-4 py-3 text-right">{formatNegAUD(net.tax, 0, "−")}</td>
                     </tr>
                     <tr>
                       <th scope="row" className="px-4 py-3 text-left font-medium text-navy">Medicare levy</th>
-                      <td className="px-4 py-3 text-right">−{formatAUD(net.medicare)}</td>
+                      <td className="px-4 py-3 text-right">{formatNegAUD(net.medicare, 0, "−")}</td>
                     </tr>
                     <tr className="bg-sandstone/40">
                       <th scope="row" className="px-4 py-3 text-left font-semibold text-navy">Take-home per year</th>

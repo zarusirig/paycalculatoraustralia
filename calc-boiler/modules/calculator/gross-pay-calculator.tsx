@@ -12,6 +12,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
@@ -165,12 +166,12 @@ export default function GrossPayCalculatorPage() {
                         <div className="text-right text-navy font-bold">{formatAUD(requiredGross / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="text-warmgray">Income Tax</div>
-                        <div className="text-right text-ochre hidden sm:block">-{formatAUD(finalBreakdown.netIncomeTax)}</div>
-                        <div className="text-right text-ochre">-{formatAUD(finalBreakdown.netIncomeTax / PERIOD_MULTIPLIERS[period])}</div>
+                        <div className="text-right text-ochre hidden sm:block">{formatNegAUD(finalBreakdown.netIncomeTax)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(finalBreakdown.netIncomeTax / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="text-warmgray">Medicare Levy</div>
-                        <div className="text-right text-ochre hidden sm:block">-{formatAUD(finalBreakdown.medicareLevy)}</div>
-                        <div className="text-right text-ochre">-{formatAUD(finalBreakdown.medicareLevy / PERIOD_MULTIPLIERS[period])}</div>
+                        <div className="text-right text-ochre hidden sm:block">{formatNegAUD(finalBreakdown.medicareLevy)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(finalBreakdown.medicareLevy / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="border-t border-sandstone-dark/20 pt-2 font-bold text-navy">Net Take-Home</div>
                         <div className="border-t border-sandstone-dark/20 pt-2 text-right font-bold text-eucalyptus-dark hidden sm:block">{formatAUD(finalBreakdown.takeHomePay)}</div>

@@ -11,6 +11,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
@@ -115,11 +116,11 @@ export default function AnnualPayCalculatorPage() {
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Annual Pay" value={formatAUD(salary)} bold />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(result.netIncomeTax)}`} />
+                      <Row label="Income Tax" value={formatNegAUD(result.netIncomeTax)} />
                       {result.litoOffset > 0 && <Row label="LITO Offset" value={`+${formatAUD(result.litoOffset)}`} sub />}
-                      <Row label="Medicare Levy" value={`-${formatAUD(result.medicareLevy)}`} />
-                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={`-${formatAUD(result.medicareSurcharge)}`} />}
-                      {includeHECS && <Row label="HECS Repayment" value={`-${formatAUD(result.hecsRepayment)}`} />}
+                      <Row label="Medicare Levy" value={formatNegAUD(result.medicareLevy)} />
+                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={formatNegAUD(result.medicareSurcharge)} />}
+                      {includeHECS && <Row label="HECS Repayment" value={formatNegAUD(result.hecsRepayment)} />}
                       <div className="border-t border-sandstone-dark/20" />
                       <div className="flex justify-between items-baseline pt-2 pb-2">
                         <span className="font-bold text-navy">Annual Take-Home</span>

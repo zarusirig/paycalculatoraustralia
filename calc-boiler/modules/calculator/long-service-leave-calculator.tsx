@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   JURISDICTION_CODES,
   LSL_JURISDICTIONS,
@@ -327,13 +327,13 @@ export default function LongServiceLeaveCalculator({
                   {result.components.pre1978 > 0.5 && (
                     <Row
                       label="Pre-16 Aug 1978 service (5% taxed)"
-                      value={`-${formatAUD(withheld.pre1978Withheld, 2)}`}
+                      value={formatNegAUD(withheld.pre1978Withheld, 2)}
                     />
                   )}
                   {result.components.between1978And1993 > 0.5 && (
                     <Row
                       label="16 Aug 1978 – 17 Aug 1993 (flat 32%)"
-                      value={`-${formatAUD(withheld.between1978And1993Withheld, 2)}`}
+                      value={formatNegAUD(withheld.between1978And1993Withheld, 2)}
                     />
                   )}
                   <Row
@@ -342,10 +342,10 @@ export default function LongServiceLeaveCalculator({
                         ? "Post-15 Aug 1978, genuine redundancy (flat 32%)"
                         : `Post-17 Aug 1993 at your marginal rate (${(marginalRate * 100).toFixed(1)}%)`
                     }
-                    value={`-${formatAUD(withheld.post1993Withheld, 2)}`}
+                    value={formatNegAUD(withheld.post1993Withheld, 2)}
                   />
                   <div className="border-t border-sandstone-dark/20 pt-3" />
-                  <Row label="Tax withheld" value={`-${formatAUD(withheld.total, 2)}`} />
+                  <Row label="Tax withheld" value={formatNegAUD(withheld.total, 2)} />
                   <Row label="In your hand" value={formatAUD(net, 2)} bold highlight />
                   <p className="text-xs text-warmgray pt-1">
                     Long service leave you <em>take</em> as leave is taxed like ordinary pay. This

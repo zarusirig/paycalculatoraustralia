@@ -8,7 +8,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { formatAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
 import { HECS_HELP_2025_26, LITO, MEDICARE_LEVY } from "@/lib/constants/australian-tax";
 import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
 import {
@@ -217,11 +217,11 @@ export default function TaxReturnCalculatorPage() {
                     </div>
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Total Gross Income" value={formatAUD(totalIncome)} />
-                      <Row label="Less: Deductions" value={`-${formatAUD(deductions)}`} />
+                      <Row label="Less: Deductions" value={formatNegAUD(deductions)} />
                       <Row label="Taxable Income" value={formatAUD(r.taxableIncome)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label="Income Tax (before offsets)" value={formatAUD(r.incomeTax)} />
-                      {r.lito > 0 && <Row label="Less: Low Income Tax Offset" value={`-${formatAUD(r.lito)}`} />}
+                      {r.lito > 0 && <Row label="Less: Low Income Tax Offset" value={formatNegAUD(r.lito)} />}
                       <Row label="Medicare Levy" value={formatAUD(r.medicareLevy)} />
                       {r.mls > 0 && <Row label="Medicare Levy Surcharge" value={formatAUD(r.mls)} />}
                       {includeHECS && <Row label="Study Loan Repayment" value={formatAUD(r.helpRepayment)} />}

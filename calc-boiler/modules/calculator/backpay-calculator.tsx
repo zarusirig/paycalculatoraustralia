@@ -15,6 +15,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   SOURCES,
@@ -178,7 +179,7 @@ export default function BackpayCalculatorPage() {
                         <Row label={`Unpaid Super (${formatPercent(SUPER_GUARANTEE.rate, 0)})`} value={formatAUD(result.unpaidSuper)} green />
                         <div className="border-t border-sandstone-dark/20 pt-3" />
                         <Row label="Total Before Tax (wages + leave)" value={formatAUD(result.totalOwedBeforeTax)} bold />
-                        <Row label={`Est. Tax on Backpay (~${formatPercent(result.effectiveRate)})`} value={`-${formatAUD(result.taxOnBackpay)}`} />
+                        <Row label={`Est. Tax on Backpay (~${formatPercent(result.effectiveRate)})`} value={formatNegAUD(result.taxOnBackpay)} />
                         <div className="border-t border-sandstone-dark/20 pt-3" />
                         <Row label="Net Backpay to You" value={formatAUD(result.netBackpay)} bold highlight />
                         <Row label="Plus Unpaid Super (to fund)" value={formatAUD(result.unpaidSuper)} green />

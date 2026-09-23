@@ -13,6 +13,7 @@ import { SalaryBandNotes } from "@/modules/programmatic/salary-page-sections";
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   EMPLOYMENT,
   SITE_CONFIG,
@@ -399,7 +400,7 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
     { label: "Take-home pay", annual: ft.takeHomeAnnual, strong: true },
   ];
   const per = (annual: number) => [annual / hoursYear, annual / WEEKS, annual / (WEEKS / 2), annual / 12, annual];
-  const cell = (v: number) => (v < 0 ? `−${formatAUD(-v, 2)}` : formatAUD(v, 2));
+  const cell = (v: number) => (v < 0 ? formatNegAUD(-v, 2, "−") : formatAUD(v, 2));
 
   // Part-time copy branches on what actually happens to the tax at 25 hours.
   const pt25 = partTime[partTime.length - 1];

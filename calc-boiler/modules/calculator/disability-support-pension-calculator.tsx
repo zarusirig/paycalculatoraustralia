@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import { AGE_PENSION_INCOME_TEST, pensionReduction } from "@/lib/constants/centrelink-income-test";
 import {
   DSP,
@@ -120,7 +120,7 @@ export default function DisabilitySupportPensionCalculatorPage() {
                       <Row label={couple ? "Combined assessable income" : "Assessable income"} value={formatAUD(r.assessable, 2)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label={`Maximum rate (from ${DSP.ratesFrom})`} value={formatAUD(r.max, 2)} />
-                      <Row label={`${couple ? "25c" : "50c"} per $1 over ${formatAUD(IT[couple ? "couple" : "single"].freeArea)}${couple ? " (combined)" : ""}`} value={`-${formatAUD(r.reduction, 2)}`} />
+                      <Row label={`${couple ? "25c" : "50c"} per $1 over ${formatAUD(IT[couple ? "couple" : "single"].freeArea)}${couple ? " (combined)" : ""}`} value={formatNegAUD(r.reduction, 2)} />
                       <Row label="DSP" value={formatAUD(r.pay, 2)} bold highlight />
                     </div>
                   </div>
@@ -192,7 +192,7 @@ export default function DisabilitySupportPensionCalculatorPage() {
                     return (
                       <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                         <td className={TD + " font-medium"}>{formatAUD(inc, 2)}</td>
-                        <td className={TD + " text-right"}>-{formatAUD(pensionReduction(inc, "single"), 2)}</td>
+                        <td className={TD + " text-right"}>{formatNegAUD(pensionReduction(inc, "single"), 2)}</td>
                         <td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td>
                       </tr>
