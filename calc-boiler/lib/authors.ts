@@ -271,6 +271,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "pro-rata-salary-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "casual-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end minimum wage cluster ---
+
+  // --- W2 wave 2: tax-free threshold, MLS calculator, concessional cap (23 Sep 2026) ---
+  "tax-free-threshold": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "medicare-levy-surcharge-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "concessional-contributions-cap": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end W2 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
