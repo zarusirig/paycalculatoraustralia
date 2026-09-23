@@ -185,6 +185,11 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/ote-salary/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax withheld on a commission payment."), L("/bonus-tax-calculator/", "Bonus Tax Calculator", "What a bonus is worth after tax."), SUPER_CALC, TAKE_HOME],
   "/jury-duty-pay/": [L("/sick-leave-calculator/", "Sick Leave Calculator", "How much personal/carer's leave you have."), L("/compassionate-leave/", "Compassionate Leave", "2 days paid bereavement leave each time."), PAYSLIP, TAKE_HOME],
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  "/centrelink-payment-rates/": [JOBSEEKER, INCOME_TEST_HUB, L("/age-pension-income-test-calculator/", "Age Pension Calculator", "Rates from 20 September and the income test with the Work Bonus."), L("/family-tax-benefit-calculator/", "Family Tax Benefit Calculator", "FTB Part A and Part B on your family income."), L("/centrelink-payment-dates/", "Centrelink Payment Dates", "When each payment lands, including around public holidays.")],
+  "/train-driver-salary/": [JOBS_HUB, EA, L("/overtime-pay-calculator/", "Overtime Pay Calculator", "Extra shifts and overtime, worked out."), TAKE_HOME],
+  "/school-support-staff-pay/": [L("/job-pay-rates/teacher-aide/", "Teacher Aide Award Rates", "The minimum for private and Catholic school aides."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), L("/hourly-to-annual-salary-calculator/", "Hourly to Salary Calculator", "Turn an hourly rate into a yearly figure."), TAKE_HOME],
+  // --- end J6 ---
 
   // Tax core ↔ salary tables
   "/tax-brackets/": [TAX_ON_HUB, TAX_WITHHELD, TAX_FREE_THRESHOLD, L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time.")],
@@ -404,6 +409,17 @@ const CLUSTERS: Cluster[] = [
       { href: "/long-service-leave-calculator/", title: "Long Service Leave Calculator", blurb: "What your accrued leave is worth." },
     ],
   },
+  // --- J6 wave 4 backlog (24 Sep 2026): school support staff state pages ---
+  {
+    match: (p) => p.startsWith("/school-support-staff-pay/") && p !== "/school-support-staff-pay/",
+    links: [
+      { href: "/school-support-staff-pay/", title: "Teacher Aide Pay by State", blurb: "Every state's school support staff rates side by side." },
+      { href: "/job-pay-rates/teacher-aide/", title: "Teacher Aide Award Rates", blurb: "The minimum for private and Catholic school aides." },
+      { href: "/hourly-to-annual-salary-calculator/", title: "Hourly to Salary Calculator", blurb: "Turn an hourly rate into a yearly figure." },
+      TAKE_HOME,
+    ],
+  },
+  // --- end J6 ---
   // --- Novated lease: calculator and explainer point at each other ---
   {
     match: (p) => p === "/novated-lease-calculator/" || p === "/novated-lease-guide/",
