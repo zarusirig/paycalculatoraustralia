@@ -14,9 +14,38 @@ import {
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
+  LITO,
+  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  TAX_BRACKETS,
+  TAX_BRACKETS_2025_26,
 } from "@/lib/constants";
+import { hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+
+// Every figure in the copy is derived from lib/constants. The page previously
+// carried FY2025-26 prose (16% bracket, $63,933 on $80,000, $93,000 MLS
+// threshold), an old-system HECS "5% repayment rate" and a claim that SG
+// would rise to 12.5% on 1 July 2026 (12% is the legislated ceiling).
+const FY = SITE_CONFIG.financialYear;
+const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
+const net = (salary: number) => calculatePayBreakdown({ grossSalary: salary, includeHECS: false, hasPrivateHealth: true });
+const effRate = (salary: number) => {
+  const r = net(salary);
+  return `${(((r.netIncomeTax + r.medicareLevy) / salary) * 100).toFixed(1)}%`;
+};
+const Q80 = net(80_000);
+const Q100 = net(100_000);
+const Q120 = net(120_000);
+const EX = net(85_000);
+const EX_HECS = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: true, hasPrivateHealth: true }).hecsRepayment;
+const EX_BRACKET2_TAX = Math.round((TAX_BRACKETS[1].max - TAX_BRACKETS[0].max) * TAX_BRACKETS[1].rate);
+const EX_BRACKET3_TAX = Math.round((85_000 - TAX_BRACKETS[1].max) * TAX_BRACKETS[2].rate);
+// ABS Average Weekly Earnings, May 2026 (released Aug 2026): full-time adult
+// ordinary time earnings, seasonally adjusted, $2,083.70 a week.
+// https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release
+const AWOTE_WEEKLY = 2_083.7;
+const AWOTE_ANNUAL = Math.round(AWOTE_WEEKLY * 52);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -49,9 +78,9 @@ export default function AnnualPayCalculatorPage() {
             </ol>
           </nav>
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary Calculator Australia — Yearly Take-Home Pay ({SITE_CONFIG.financialYear})</h1>
-          <p className="text-lg text-warmgray">Enter any gross annual salary to see exactly what it means as a single yearly take-home figure — after income tax, the Medicare levy, HECS-HELP and super for FY2025-26.</p>
+          <p className="text-lg text-warmgray">Enter any gross annual salary to see exactly what it means as a single yearly take-home figure — after income tax, the Medicare levy, HECS-HELP and super for FY{FY}.</p>
           <div className="mt-5 rounded-xl border-l-4 border-eucalyptus-dark bg-white/80 p-4 shadow-sm">
-            <p className="text-sm text-navy"><strong>Quick answer:</strong> a gross annual salary of <strong>$80,000</strong> in Australia for FY2025-26 delivers approximately <strong>$63,933 in annual take-home pay</strong> ($14,367 income tax + $1,600 Medicare levy). At <strong>$100,000</strong> the figure is roughly <strong>$76,633</strong>; at <strong>$120,000</strong> it is approximately <strong>$89,533</strong>. Use the calculator below to enter your exact yearly salary.</p>
+            <p className="text-sm text-navy"><strong>Quick answer:</strong> a gross annual salary of <strong>$80,000</strong> in Australia for FY{FY} delivers approximately <strong>{formatAUD(Q80.takeHomePay)} in annual take-home pay</strong> ({formatAUD(Q80.netIncomeTax)} income tax + {formatAUD(Q80.medicareLevy)} Medicare levy). At <strong>$100,000</strong> the figure is roughly <strong>{formatAUD(Q100.takeHomePay)}</strong>; at <strong>$120,000</strong> it is approximately <strong>{formatAUD(Q120.takeHomePay)}</strong>. Use the calculator below to enter your exact yearly salary.</p>
           </div>
           <TrustBar className="mt-4" />
         </section>
@@ -119,20 +148,20 @@ export default function AnnualPayCalculatorPage() {
               Annual pay is calculated by subtracting income tax, Medicare levy, and any HECS-HELP repayments from your gross yearly salary for the Australian financial year running 1 July to 30 June. This annual salary calculator gives you a single yearly figure — if you need a per-cycle breakdown instead, use our <Link href="/fortnightly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Fortnightly Pay Calculator</Link>, <Link href="/monthly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Monthly Pay Calculator</Link>, or <Link href="/weekly-pay-calculator/" className="text-eucalyptus-dark hover:underline">Weekly Pay Calculator</Link>. For a full per-payslip view, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
             <p className="text-warmgray mb-4">
-              The Australian tax calculator applies the FY2025-26 income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Each dollar above that threshold is taxed at the marginal rate for its bracket, ranging from <strong>16%</strong> up to <strong>45%</strong> on income above <strong>$190,000</strong>.
+              The Australian tax calculator applies the FY{FY} income tax brackets progressively. The first <strong>$18,200</strong> of assessable income is tax-free. Each dollar above that threshold is taxed at the marginal rate for its bracket, ranging from <strong>{pct(TAX_BRACKETS[1].rate)}</strong> up to <strong>{pct(TAX_BRACKETS[4].rate)}</strong> on income above <strong>{formatAUD(TAX_BRACKETS[4].min - 1)}</strong>.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Step-by-Step Annual Pay Calculation</h3>
             <p className="text-warmgray mb-3">
-              A worked example at <strong>$85,000</strong> gross annual salary illustrates the full calculation for FY2025-26:
+              A worked example at <strong>$85,000</strong> gross annual salary illustrates the full calculation for FY{FY}:
             </p>
             <ol className="list-decimal pl-5 space-y-2 text-warmgray">
               <li><strong>Start with gross salary:</strong> $85,000 per year.</li>
-              <li><strong>Calculate income tax:</strong> $0 on the first $18,200, then 16% on $18,201 to $45,000, 30% on $45,001 to $85,000. Total income tax is approximately <strong>$16,467</strong>.</li>
-              <li><strong>Apply the LITO offset:</strong> The &quot;Low Income Tax Offset&quot; reduces your tax by up to $700 for incomes under $66,668. At $85,000, the LITO is <strong>$0</strong>.</li>
-              <li><strong>Add the Medicare levy:</strong> A flat <strong>2%</strong> on taxable income = <strong>$1,700</strong>.</li>
-              <li><strong>Subtract HECS-HELP (if applicable):</strong> At $85,000, the repayment rate is <strong>5%</strong>, which adds a deduction of <strong>$4,250</strong>.</li>
-              <li><strong>Calculate take-home pay:</strong> $85,000 &minus; $16,467 &minus; $1,700 = <strong>$66,833</strong> per year (without HECS).</li>
+              <li><strong>Calculate income tax:</strong> $0 on the first $18,200, then {pct(TAX_BRACKETS[1].rate)} on $18,201 to $45,000 ({formatAUD(EX_BRACKET2_TAX)}), {pct(TAX_BRACKETS[2].rate)} on $45,001 to $85,000 ({formatAUD(EX_BRACKET3_TAX)}). Total income tax is <strong>{formatAUD(EX.incomeTax)}</strong>.</li>
+              <li><strong>Apply the LITO offset:</strong> The &quot;Low Income Tax Offset&quot; reduces your tax by up to {formatAUD(LITO.maxOffset)} and phases out completely at {formatAUD(LITO.nilOffsetIncome)}. At $85,000, the LITO is <strong>$0</strong>.</li>
+              <li><strong>Add the Medicare levy:</strong> A flat <strong>2%</strong> on taxable income = <strong>{formatAUD(EX.medicareLevy)}</strong>.</li>
+              <li><strong>Subtract HECS-HELP (if applicable):</strong> Under the marginal system, only income above {formatAUD(HECS_HELP.minimumThreshold)} is counted: {pct(HECS_HELP.bands[1].marginalRate)} of the excess at $85,000 adds a deduction of <strong>{formatAUD(EX_HECS)}</strong>.</li>
+              <li><strong>Calculate take-home pay:</strong> $85,000 &minus; {formatAUD(EX.netIncomeTax)} &minus; {formatAUD(EX.medicareLevy)} = <strong>{formatAUD(EX.takeHomePay)}</strong> per year (without HECS).</li>
             </ol>
             <p className="text-warmgray mt-4">
               Superannuation of <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> is paid by your employer on top of your gross salary. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see the exact employer contribution amount.
@@ -143,7 +172,7 @@ export default function AnnualPayCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Annual Pay for Each Hourly Rate?</h2>
             <p className="text-warmgray mb-4">
-              Annual pay for a standard 38-hour week equals the hourly rate multiplied by <strong>1,976 hours</strong> (38 hours x 52 weeks). The table below converts common hourly rates to annual gross salary and estimated take-home pay after tax for FY2025-26.
+              Annual pay for a standard 38-hour week equals the hourly rate multiplied by <strong>1,976 hours</strong> (38 hours x 52 weeks). The table below converts common hourly rates to annual gross salary and estimated take-home pay after tax for FY{FY}.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -218,18 +247,18 @@ export default function AnnualPayCalculatorPage() {
               </table>
             </div>
             <p className="text-warmgray mt-4">
-              The effective tax rate rises from <strong>6.5%</strong> at $50,000 to approximately <strong>30%</strong> at $200,000 because Australia uses progressive income tax brackets. For a detailed view of each bracket, visit our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> guide. To see your after-tax income on a per-pay-cycle basis, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
+              The effective tax rate (income tax plus Medicare levy) rises from <strong>{effRate(50_000)}</strong> at $50,000 to <strong>{effRate(200_000)}</strong> at $200,000 because Australia uses progressive income tax brackets. For a detailed view of each bracket, visit our <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">Australian Tax Brackets</Link> guide. To see your after-tax income on a per-pay-cycle basis, use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
             </p>
           </section>
 
-          {/* --- WHAT CHANGED IN FY2025-26 --- */}
+          {/* --- WHAT CHANGED THIS FINANCIAL YEAR --- */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Annual Pay in FY2025-26?</h2>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Annual Pay in FY{FY}?</h2>
             <p className="text-warmgray mb-4">
-              The Stage 3 tax cuts, revised from 1 July 2024, continue to apply in FY2025-26, delivering lower marginal rates across most income tax brackets and increasing after-tax income for every taxpayer earning above <strong>$18,200</strong>.
+              From 1 July 2026 the second tax rate fell from <strong>{pct(TAX_BRACKETS_2025_26[1].rate)}</strong> to <strong>{pct(TAX_BRACKETS[1].rate)}</strong> on income between $18,201 and $45,000, on top of the Stage 3 changes from 1 July 2024. Every resident taxpayer earning above <strong>$45,000</strong> saves <strong>{formatAUD(TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS[2].base)}</strong> a year compared with FY{SITE_CONFIG.previousFinancialYear}.
             </p>
 
-            <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2025-26 Income Tax Brackets</h3>
+            <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY{FY} Income Tax Brackets</h3>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
@@ -240,36 +269,22 @@ export default function AnnualPayCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr>
-                    <td className="px-4 py-3 text-navy font-medium">$0 &ndash; $18,200</td>
-                    <td className="px-4 py-3 text-right text-warmgray">0%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$0</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-navy font-medium">$18,201 &ndash; $45,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">16%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$4,288</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-navy font-medium">$45,001 &ndash; $135,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">30%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$27,000</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-navy font-medium">$135,001 &ndash; $190,000</td>
-                    <td className="px-4 py-3 text-right text-warmgray">37%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">$20,350</td>
-                  </tr>
-                  <tr>
-                    <td className="px-4 py-3 text-navy font-medium">$190,001+</td>
-                    <td className="px-4 py-3 text-right text-warmgray">45%</td>
-                    <td className="px-4 py-3 text-right text-warmgray">Uncapped</td>
-                  </tr>
+                  {TAX_BRACKETS.map((b) => (
+                    <tr key={b.min}>
+                      <td className="px-4 py-3 text-navy font-medium">
+                        {b.max === Infinity ? `${formatAUD(b.min)}+` : <>{formatAUD(b.min)} &ndash; {formatAUD(b.max)}</>}
+                      </td>
+                      <td className="px-4 py-3 text-right text-warmgray">{pct(b.rate)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">
+                        {b.max === Infinity ? "Uncapped" : formatAUD(Math.round((b.max - Math.max(b.min - 1, 0)) * b.rate))}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
             <p className="text-warmgray mt-4">
-              The superannuation guarantee rate remains at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> for FY2025-26, scheduled to increase to <strong>12.5%</strong> on 1 July 2026. The Medicare levy stays at a flat <strong>2%</strong> of taxable income. HECS-HELP repayment thresholds start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, with indexation now capped at the lower of CPI or the Wage Price Index.
+              The superannuation guarantee rate stays at <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong> for FY{FY} &mdash; the legislated ceiling, with no further scheduled increase &mdash; and since {SUPER_GUARANTEE.paydaySuperStart} employers must pay it each payday (Payday Super). The Medicare levy stays at a flat <strong>2%</strong> of taxable income. HECS-HELP repayment thresholds start at <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, with indexation now capped at the lower of CPI or the Wage Price Index.
             </p>
           </section>
 
@@ -280,10 +295,10 @@ export default function AnnualPayCalculatorPage() {
               The most common mistake is confusing gross annual salary with total package, which inflates the expected take-home pay by the value of superannuation.
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray">
-              <li><strong>Including super in gross salary.</strong> Your total remuneration package includes employer super contributions, but your taxable income is calculated on the base salary alone. A $110,000 package with {formatPercent(SUPER_GUARANTEE.rate, 0)} super means the base salary is approximately <strong>$98,214</strong>, not $110,000.</li>
-              <li><strong>Applying the top tax rate to the entire income.</strong> Australia uses marginal taxation, not a flat rate. At $100,000, the effective tax rate is approximately <strong>23%</strong>, not the 30% marginal rate that applies only to the portion between $45,001 and $135,000.</li>
+              <li><strong>Including super in gross salary.</strong> Your total remuneration package includes employer super contributions, but your taxable income is calculated on the base salary alone. A $110,000 package with {formatPercent(SUPER_GUARANTEE.rate, 0)} super means the base salary is approximately <strong>{formatAUD(Math.round(110_000 / (1 + SUPER_GUARANTEE.rate)))}</strong>, not $110,000.</li>
+              <li><strong>Applying the top tax rate to the entire income.</strong> Australia uses marginal taxation, not a flat rate. At $100,000, the effective rate of income tax plus the Medicare levy is <strong>{effRate(100_000)}</strong>, not the 30% marginal rate that applies only to the portion between $45,001 and $135,000.</li>
               <li><strong>Forgetting the Medicare levy.</strong> The <strong>2%</strong> Medicare levy adds $1,000 in deductions for every $50,000 of taxable income. This is separate from income tax and is not optional for most Australian residents.</li>
-              <li><strong>Ignoring the LITO offset.</strong> Taxpayers earning under <strong>$66,668</strong> receive the &quot;Low Income Tax Offset&quot; of up to $700, which reduces total tax owed. Omitting this offset overstates the annual tax calculation.</li>
+              <li><strong>Ignoring the LITO offset.</strong> Taxpayers earning up to <strong>{formatAUD(LITO.nilOffsetIncome)}</strong> receive the &quot;Low Income Tax Offset&quot; of up to {formatAUD(LITO.maxOffset)}, which reduces total tax owed. Omitting this offset overstates the annual tax calculation.</li>
               <li><strong>Using calendar-year figures instead of financial-year figures.</strong> The Australian financial year runs from 1 July to 30 June. Tax brackets, super rates, and HECS thresholds all reset at 1 July, not 1 January.</li>
             </ol>
           </section>
@@ -292,7 +307,7 @@ export default function AnnualPayCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Is Annual Take-Home Pay at Different Salary Levels?</h2>
             <p className="text-warmgray mb-4">
-              Annual take-home pay ranges from <strong>$46,067</strong> at a $50,000 salary to approximately <strong>$126,668</strong> at $180,000, reflecting Australia&apos;s progressive tax system for FY2025-26.
+              Annual take-home pay ranges from <strong>{formatAUD(net(50_000).takeHomePay)}</strong> at a $50,000 salary to <strong>{formatAUD(net(180_000).takeHomePay)}</strong> at $180,000, reflecting Australia&apos;s progressive tax system for FY{FY}.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -364,7 +379,7 @@ export default function AnnualPayCalculatorPage() {
                 Your tax return includes work-related deductions, investment income, bank interest, rental income, and other assessable income sources. This calculator estimates standard PAYG withholding on salary income only. The ATO reconciles all income and deductions when you lodge your annual return.
               </FAQItem>
               <FAQItem value="average" question="What is the average annual salary in Australia?">
-                The average full-time ordinary time earnings in Australia are approximately <strong>$100,000</strong> per year (ABS, late 2024). The median salary is closer to <strong>$75,000&ndash;$80,000</strong>, which better represents the typical Australian worker. At the median of $78,000, annual take-home pay is approximately <strong>$63,400</strong>.
+                Average full-time adult ordinary time earnings were <strong>{formatAUD(AWOTE_WEEKLY, 2)}</strong> a week in May 2026 (ABS, seasonally adjusted) &mdash; about <strong>{formatAUD(AWOTE_ANNUAL)}</strong> a year. At that salary, annual take-home pay is approximately <strong>{formatAUD(net(AWOTE_ANNUAL).takeHomePay)}</strong> in FY{FY}. The average is pulled up by high earners, so most full-time workers earn less than it.
               </FAQItem>
               <FAQItem value="part-year" question="How is tax calculated if I only worked part of the year?">
                 The PAYG system withholds tax as if you earn that same salary for the full 12 months. Starting or leaving a job mid-year typically results in over-withholding. The ATO recalculates your actual tax based on your total income for the year when you lodge your return and refunds any excess.
@@ -373,10 +388,10 @@ export default function AnnualPayCalculatorPage() {
                 Base salary is your gross annual pay before deductions. Total package (also called &quot;total remuneration&quot;) includes base salary plus employer superannuation contributions. A $100,000 base salary with {formatPercent(SUPER_GUARANTEE.rate, 0)} super has a total package of <strong>$112,000</strong>. Some packages also include car allowances, bonuses, and fringe benefits.
               </FAQItem>
               <FAQItem value="hecs-threshold" question="At what annual salary do HECS-HELP repayments start?">
-                Compulsory HECS-HELP repayments begin when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> for FY2025-26. Repayment income includes taxable income plus any net investment losses, reportable fringe benefits, and reportable super contributions. The minimum repayment rate is <strong>1%</strong>, increasing progressively up to <strong>10%</strong> at higher incomes.
+                Compulsory HECS-HELP repayments begin when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> for FY{FY}. Repayment income includes taxable income plus any net investment losses, reportable fringe benefits, and reportable super contributions. Under the marginal system the repayment is {hecsBandsSentence()}.
               </FAQItem>
               <FAQItem value="medicare-surcharge" question="Do I pay the Medicare Levy Surcharge on top of the Medicare levy?">
-                The &quot;Medicare Levy Surcharge&quot; (MLS) is a separate charge of <strong>1% to 1.5%</strong> applied to individuals earning over $93,000 (or $186,000 for families) who do not hold an eligible private hospital insurance policy. The standard 2% Medicare levy applies to all Australian residents regardless of private health insurance status.
+                The &quot;Medicare Levy Surcharge&quot; (MLS) is a separate charge of <strong>1% to 1.5%</strong> applied in FY{FY} to singles with income for MLS purposes over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (or {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} for families) who do not hold an eligible private hospital insurance policy. The standard 2% Medicare levy applies to all Australian residents regardless of private health insurance status.
               </FAQItem>
             </Accordion>
           </section>
