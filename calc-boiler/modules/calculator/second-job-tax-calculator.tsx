@@ -17,6 +17,18 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { PAYG_FINANCIAL_YEAR, withholdingForPeriod } from "@/lib/constants/payg-withholding";
+
+/**
+ * Annual PAYG withheld on a second job paid fortnightly with the tax-free
+ * threshold NOT claimed — ATO Schedule 1 scale 1 (NAT 1006 coefficients),
+ * which already includes the Medicare levy. Replaces a flat "30% + 2%"
+ * approximation that overstated withholding on small second jobs.
+ */
+function noTftAnnualWithholding(annual: number): number {
+  if (annual <= 0) return 0;
+  return withholdingForPeriod(annual / 26, "fortnightly", "noTft") * 26;
+}
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -44,8 +56,8 @@ export default function SecondJobTaxCalculatorPage() {
     // Job 2: WITHOUT tax-free threshold (no TFT withholding)
     // Approximate: tax on combined income minus tax on job 1 income
     // This models the marginal tax effect of a second job
-    const job2Withholding = job2Salary > 0 ? Math.round(job2Salary * 0.3) : 0;
-    const job2Medicare = calculateMedicareLevy(job2Salary);
+    const job2Withholding = noTftAnnualWithholding(job2Salary);
+    const job2Medicare = 0; // included in the scale 1 withholding amount
     const job2TotalWithheld = job2Withholding + job2Medicare;
     const job2TakeHome = job2Salary - job2TotalWithheld;
 
@@ -91,7 +103,7 @@ export default function SecondJobTaxCalculatorPage() {
               </nav>
               <div className="flex justify-between items-start mb-4 mt-4">
                 <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                  Second Job Tax Calculator Australia 2025-26
+                  Second Job Tax Calculator Australia {SITE_CONFIG.financialYear}
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
@@ -247,7 +259,7 @@ export default function SecondJobTaxCalculatorPage() {
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {[10000, 20000, 30000, 50000, 80000].map((s) => {
-                        const j2Withheld = Math.round(s * 0.3) + calculateMedicareLevy(s);
+                        const j2Withheld = noTftAnnualWithholding(s);
                         const totalInc = 60000 + s;
                         const combTax = Math.max(0, Math.round(calculateIncomeTax(totalInc) - calculateLITO(totalInc))) + calculateMedicareLevy(totalInc);
                         const j1Tax = Math.max(0, Math.round(calculateIncomeTax(60000) - calculateLITO(60000))) + calculateMedicareLevy(60000);
@@ -272,7 +284,7 @@ export default function SecondJobTaxCalculatorPage() {
             <MethodologyDisclosure>
               <ol className="list-decimal space-y-1 pl-4">
                 <li>Job 1 tax uses standard resident progressive brackets with LITO applied.</li>
-                <li>Job 2 withholding approximates the &quot;no tax-free threshold&quot; PAYG rate at ~30% plus 2% Medicare levy.</li>
+                <li>Job 2 withholding applies the ATO&apos;s {PAYG_FINANCIAL_YEAR} Schedule 1 &quot;no tax-free threshold&quot; scale (which includes the Medicare levy) to fortnightly pay.</li>
                 <li>Combined actual liability applies progressive brackets to total income from both jobs.</li>
                 <li>Estimated refund = total withheld across both jobs minus actual combined tax liability.</li>
               </ol>

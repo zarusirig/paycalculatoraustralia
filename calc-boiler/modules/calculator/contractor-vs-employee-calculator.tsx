@@ -9,12 +9,60 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
+  calculateIncomeTax,
+  calculateLITO,
   calculatePayBreakdown,
   formatAUD,
+  formatPercent,
+  GENERAL_INTEREST_CHARGE,
+  MEDICARE_LEVY,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
+  TAX_BRACKETS,
 } from "@/lib/constants";
+import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+
+// ---------------------------------------------------------------------------
+// Figures below are derived from lib/constants so they roll over each 1 July.
+// The page previously hand-typed FY2025-26 values (16% bracket, $30,000
+// concessional cap, $120,000 non-concessional cap, $93,000 MLS threshold) and
+// a worked example whose employee tax ($22,788) did not reconcile.
+// ---------------------------------------------------------------------------
+const FY = SITE_CONFIG.financialYear;
+const CC_CAP = formatAUD(SUPER_GUARANTEE.concessionalCap);
+const NCC_CAP = formatAUD(SUPER_GUARANTEE.nonConcessionalCap);
+const MLS_SINGLE = formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1);
+const MLS_FAMILY = formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1);
+const SG_PCT = formatPercent(SUPER_GUARANTEE.rate, 0);
+const GIC_PCT = formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2);
+
+// Sham contracting maximums, Fair Work Act ss 357–359, 539: 60 penalty units
+// (individual), 300 (business with fewer than 15 employees), 1,500 (15 or
+// more). FWO "Sham contracting" (updated 6 July 2026) lists $21,840 / $109,200
+// / $546,000 — i.e. the $364 penalty unit from 1 July 2026.
+// https://www.fairwork.gov.au/find-help-for/independent-contractors/sham-contracting
+const SHAM_MAX_INDIVIDUAL = formatAUD(60 * PENALTY_UNIT.amount);
+const SHAM_MAX_SMALL_BUSINESS = formatAUD(300 * PENALTY_UNIT.amount);
+const SHAM_MAX_BUSINESS = formatAUD(1_500 * PENALTY_UNIT.amount);
+
+// Worked example: $100,000 gross, $3,000 expenses, self-funded SG-rate super.
+const EX_GROSS = 100_000;
+const EX_EXPENSES = 3_000;
+const EX_SUPER = Math.round(EX_GROSS * SUPER_GUARANTEE.rate);
+const EX_LEAVE = Math.round(EX_GROSS * 0.114); // 4 weeks annual + 10 days personal ≈ 11.4%
+const exTax = (taxable: number) => Math.max(0, calculateIncomeTax(taxable) - calculateLITO(taxable));
+const EX_EMP_TAX = exTax(EX_GROSS);
+const EX_EMP_MEDICARE = Math.round(EX_GROSS * MEDICARE_LEVY.rate);
+const EX_EMP_NET = EX_GROSS - EX_EMP_TAX - EX_EMP_MEDICARE;
+const EX_CON_TAXABLE = EX_GROSS - EX_EXPENSES - EX_SUPER;
+const EX_CON_TAX = exTax(EX_CON_TAXABLE);
+const EX_CON_MEDICARE = Math.round(EX_CON_TAXABLE * MEDICARE_LEVY.rate);
+const EX_CON_NET = EX_CON_TAXABLE - EX_CON_TAX - EX_CON_MEDICARE;
+const EX_EMP_TOTAL = EX_EMP_NET + EX_SUPER + EX_LEAVE;
+const EX_CON_TOTAL = EX_CON_NET + EX_SUPER;
+
+const pct0 = (r: number) => `${Math.round(r * 1000) / 10}%`;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -171,7 +219,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               On a <strong>$100,000</strong> gross rate, an employee&apos;s total package value (including 12% superannuation guarantee paid by the employer) is <strong>$112,000</strong>. A contractor at the same $100,000 receives no employer super, no paid leave, and no workers compensation coverage. After self-funding super and covering business expenses, the contractor&apos;s disposable income drops below the employee&apos;s take-home pay. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> to see the exact income tax breakdown at any salary level.
             </p>
             <p className="mb-4 text-warmgray">
-              This contractor vs employee calculator for FY2025-26 applies the current Australian tax brackets, the <strong>12% SG rate</strong>, and the <strong>2% Medicare levy</strong> to produce an accurate side-by-side comparison. The calculation factors in deductible business expenses, voluntary super contributions, and the true cost of lost entitlements like annual leave, personal leave, and employer-provided insurance.
+              This contractor vs employee calculator for FY{FY} applies the current Australian tax brackets, the <strong>12% SG rate</strong>, and the <strong>2% Medicare levy</strong> to produce an accurate side-by-side comparison. The calculation factors in deductible business expenses, voluntary super contributions, and the true cost of lost entitlements like annual leave, personal leave, and employer-provided insurance.
             </p>
           </section>
 
@@ -249,7 +297,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               <li><strong>Employees considering contracting</strong> &mdash; IT professionals, consultants, and tradespeople offered a contract rate who want to verify whether the higher gross compensates for lost entitlements.</li>
               <li><strong>Contractors evaluating employment offers</strong> &mdash; Existing ABN holders offered a permanent role who want to compare the net financial position after accounting for super, leave, and insurance.</li>
               <li><strong>Employers setting contract rates</strong> &mdash; Hiring managers and HR teams determining a fair contractor day rate that equals their standard employee salary package.</li>
-              <li><strong>Accountants and bookkeepers</strong> &mdash; Tax professionals advising clients on the financial implications of changing their engagement structure for the 2025-26 financial year.</li>
+              <li><strong>Accountants and bookkeepers</strong> &mdash; Tax professionals advising clients on the financial implications of changing their engagement structure for the {FY} financial year.</li>
             </ul>
           </section>
 
@@ -272,12 +320,12 @@ export default function ContractorVsEmployeeCalculatorPage() {
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>PAYG instalments</strong> &mdash; quarterly income tax pre-payments to the ATO, calculated on estimated annual income.</li>
               <li><strong>GST registration</strong> &mdash; mandatory once annual turnover exceeds <strong>$75,000</strong>. The contractor charges clients 10% GST and remits it quarterly via a &quot;Business Activity Statement&quot; (BAS).</li>
-              <li><strong>Medicare levy</strong> &mdash; <strong>2%</strong> of taxable income, paid at tax time. The &quot;Medicare Levy Surcharge&quot; of 1%&ndash;1.5% applies to contractors earning above <strong>$93,000</strong> without private hospital cover.</li>
-              <li><strong>Superannuation</strong> &mdash; voluntary personal contributions are tax-deductible up to the <strong>$30,000</strong> concessional cap for FY2025-26.</li>
+              <li><strong>Medicare levy</strong> &mdash; <strong>2%</strong> of taxable income, paid at tax time. The &quot;Medicare Levy Surcharge&quot; of 1%&ndash;1.5% applies to contractors whose income for MLS purposes is above <strong>{MLS_SINGLE}</strong> (singles) or <strong>{MLS_FAMILY}</strong> (families) in {FY} without private hospital cover.</li>
+              <li><strong>Superannuation</strong> &mdash; voluntary personal contributions are tax-deductible up to the <strong>{CC_CAP}</strong> concessional cap for FY{FY} (employer contributions count towards it too).</li>
               <li><strong>Annual tax return</strong> &mdash; includes a business schedule reporting all income, expenses, and deductions.</li>
             </ol>
 
-            <h3 className="text-lg font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY2025-26 Income Tax Brackets for Both</h3>
+            <h3 className="text-lg font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>FY{FY} Income Tax Brackets for Both</h3>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
@@ -288,31 +336,19 @@ export default function ContractorVsEmployeeCalculatorPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">$0 &ndash; $18,200</td>
-                    <td className="px-4 py-3 text-gray-700"><strong>0%</strong></td>
-                    <td className="px-4 py-3 text-gray-700">$0</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">$18,201 &ndash; $45,000</td>
-                    <td className="px-4 py-3 text-gray-700"><strong>16%</strong></td>
-                    <td className="px-4 py-3 text-gray-700">$4,288</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">$45,001 &ndash; $135,000</td>
-                    <td className="px-4 py-3 text-gray-700"><strong>30%</strong></td>
-                    <td className="px-4 py-3 text-gray-700">$27,000</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">$135,001 &ndash; $190,000</td>
-                    <td className="px-4 py-3 text-gray-700"><strong>37%</strong></td>
-                    <td className="px-4 py-3 text-gray-700">$20,350</td>
-                  </tr>
-                  <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy">$190,001+</td>
-                    <td className="px-4 py-3 text-gray-700"><strong>45%</strong></td>
-                    <td className="px-4 py-3 text-gray-700">45c per $1 over $190,000</td>
-                  </tr>
+                  {TAX_BRACKETS.map((b) => (
+                    <tr key={b.min} className="hover:bg-sandstone/50">
+                      <td className="px-4 py-3 text-navy">
+                        {b.max === Infinity ? `${formatAUD(b.min)}+` : <>{formatAUD(b.min)} &ndash; {formatAUD(b.max)}</>}
+                      </td>
+                      <td className="px-4 py-3 text-gray-700"><strong>{pct0(b.rate)}</strong></td>
+                      <td className="px-4 py-3 text-gray-700">
+                        {b.max === Infinity
+                          ? `${Math.round(b.rate * 100)}c per $1 over ${formatAUD(b.min - 1)}`
+                          : formatAUD(Math.round((b.max - Math.max(b.min - 1, 0)) * b.rate))}
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -350,51 +386,51 @@ export default function ContractorVsEmployeeCalculatorPage() {
                     <td className="px-4 py-3 text-right text-gray-700">-$3,000</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-3 text-navy font-medium">Self-Funded Super (12%)</td>
+                    <td className="px-4 py-3 text-navy font-medium">Self-Funded Super ({SG_PCT})</td>
                     <td className="px-4 py-3 text-right text-gray-700">$0 (employer pays)</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-$12,000</td>
+                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_SUPER)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Taxable Income</td>
-                    <td className="px-4 py-3 text-right text-gray-700">$100,000</td>
-                    <td className="px-4 py-3 text-right text-gray-700">$85,000</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatAUD(EX_GROSS)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatAUD(EX_CON_TAXABLE)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Income Tax</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-$22,788</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-$16,288</td>
+                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_EMP_TAX)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_CON_TAX)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Medicare Levy (2%)</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-$2,000</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-$1,700</td>
+                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_EMP_MEDICARE)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_CON_MEDICARE)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50 bg-eucalyptus-light/20">
                     <td className="px-4 py-3 text-navy font-bold">Net Take-Home Cash</td>
-                    <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">$75,212</td>
-                    <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">$67,012</td>
+                    <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">{formatAUD(EX_EMP_NET)}</td>
+                    <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">{formatAUD(EX_CON_NET)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Super Balance</td>
-                    <td className="px-4 py-3 text-right text-gray-700">+$12,000 (employer)</td>
-                    <td className="px-4 py-3 text-right text-gray-700">+$12,000 (self)</td>
+                    <td className="px-4 py-3 text-right text-gray-700">+{formatAUD(EX_SUPER)} (employer)</td>
+                    <td className="px-4 py-3 text-right text-gray-700">+{formatAUD(EX_SUPER)} (self)</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Paid Leave Value</td>
-                    <td className="px-4 py-3 text-right text-gray-700">+$11,400</td>
+                    <td className="px-4 py-3 text-right text-gray-700">+{formatAUD(EX_LEAVE)}</td>
                     <td className="px-4 py-3 text-right text-gray-700">$0</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50 bg-sandstone">
                     <td className="px-4 py-3 text-navy font-bold">Total Package Value</td>
-                    <td className="px-4 py-3 text-right font-bold text-navy">$98,612</td>
-                    <td className="px-4 py-3 text-right font-bold text-navy">$79,012</td>
+                    <td className="px-4 py-3 text-right font-bold text-navy">{formatAUD(EX_EMP_TOTAL)}</td>
+                    <td className="px-4 py-3 text-right font-bold text-navy">{formatAUD(EX_CON_TOTAL)}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 mb-4">
               <p className="text-navy font-medium">
-                At the same $100,000 gross rate, the employee&apos;s total package value is <strong>$19,600 higher</strong> than the contractor&apos;s. The contractor needs to charge approximately <strong>$138,000&ndash;$145,000</strong> (before GST) to match the employee&apos;s total package.
+                At the same $100,000 gross rate, the employee&apos;s total package value is <strong>{formatAUD(EX_EMP_TOTAL - EX_CON_TOTAL)} higher</strong> than the contractor&apos;s. The contractor needs to charge approximately <strong>$138,000&ndash;$145,000</strong> (before GST) to match the employee&apos;s total package.
               </p>
             </div>
             <p className="text-warmgray">
@@ -462,7 +498,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               <li><strong>Forgetting leave entitlements</strong> &mdash; Four weeks of annual leave and 10 days of personal leave represent <strong>11.4%</strong> of an employee&apos;s salary value. Contractors who work every billable day to match income risk burnout without accounting for unpaid downtime.</li>
               <li><strong>Overlooking GST obligations</strong> &mdash; Contractors earning above $75,000 must register for GST and charge clients 10%. The GST collected is not income &mdash; it belongs to the ATO. Spending GST revenue as personal income creates a debt at BAS time.</li>
               <li><strong>Underestimating admin costs</strong> &mdash; BAS lodgment, bookkeeping, insurance premiums, and software subscriptions cost <strong>$3,000&ndash;$6,000</strong> annually. Many new contractors discover these costs only after their first BAS quarter.</li>
-              <li><strong>Assuming &quot;sham contracting&quot; is risk-free</strong> &mdash; The ATO applies a multi-factor test to determine genuine contractor status. Employers face penalties of up to <strong>$16,500 per contravention</strong> under the Fair Work Act for incorrectly classifying employees as contractors.</li>
+              <li><strong>Assuming &quot;sham contracting&quot; is risk-free</strong> &mdash; The ATO applies a multi-factor test to determine genuine contractor status. Under the Fair Work Act, courts can order penalties of up to <strong>{SHAM_MAX_INDIVIDUAL}</strong> per contravention for individuals and up to <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses for sham contracting.</li>
             </ol>
           </section>
 
@@ -549,7 +585,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-semibold text-navy bg-sandstone">Superannuation</td>
-                        <td className="px-6 py-4 border-l">Employer pays 12% SG on top of gross salary (FY2025-26).</td>
+                        <td className="px-6 py-4 border-l">Employer pays {SG_PCT} SG on top of gross salary (FY{FY}).</td>
                         <td className="px-6 py-4 border-l">Manages own super. Exception: employer pays SG if contractor is hired principally for labour.</td>
                       </tr>
                       <tr>
@@ -614,14 +650,14 @@ export default function ContractorVsEmployeeCalculatorPage() {
                 If you hire a solo graphic designer on an hourly rate to do design work just because they are good at it, the ATO classifies them as an employee <strong>for superannuation purposes only</strong>. You must pay their super. If you hire a massive plumbing <em>company</em> to fix a roof, and they send an anonymous plumber out, that is a true B2B contract and no super is owed.
               </p>
               <p>
-                Contractors who do not receive employer super contributions can still make personal concessional (before-tax) contributions up to the <strong>$30,000 annual cap</strong> and claim a full tax deduction. Non-concessional (after-tax) contributions are capped at <strong>$120,000 per year</strong>. Read the full breakdown in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
+                Contractors who do not receive employer super contributions can still make personal concessional (before-tax) contributions up to the <strong>{CC_CAP} annual cap</strong> and claim a full tax deduction. Non-concessional (after-tax) contributions are capped at <strong>{NCC_CAP} per year</strong> in FY{FY}. Read the full breakdown in our <Link href="/superannuation-guide/">Superannuation Guide</Link>.
               </p>
             </section>
             {/* ============================================================ */}
             <section id="sham-contracting">
               <h2>What Are the Risks of Sham Contracting?</h2>
               <p>
-                &ldquo;Sham contracting&rdquo; occurs when an employer deliberately disguises an employment relationship as a contracting arrangement to avoid paying entitlements &mdash; the Fair Work Ombudsman penalises offenders with fines of up to <strong>$469,500 per contravention</strong> for companies and <strong>$93,900 per contravention</strong> for individuals.
+                &ldquo;Sham contracting&rdquo; occurs when an employer deliberately disguises an employment relationship as a contracting arrangement to avoid paying entitlements &mdash; courts can impose maximum penalties per contravention of <strong>{SHAM_MAX_INDIVIDUAL}</strong> for individuals, <strong>{SHAM_MAX_SMALL_BUSINESS}</strong> for businesses with fewer than 15 employees, and <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses.
               </p>
               <p>
                 Beyond the civil penalties, sham contracting triggers 3 additional financial consequences:
@@ -632,7 +668,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
                 <li><strong>Backpayment of Award underpayments:</strong> If the worker was covered by a Modern Award, the employer must make up the difference between what was paid and the Award minimum, including overtime, penalty rates, and allowances. Review common Award structures on our <Link href="/award-rates/">Award Rates</Link> page.</li>
               </ol>
               <p>
-                Industries with the highest rates of sham contracting enforcement include construction, cleaning, hospitality, transport and logistics, and IT consulting. The Fair Work Ombudsman conducts targeted audits in these sectors annually. In FY2023-24, the FWO recovered over <strong>$473 million</strong> in underpayments across all enforcement activities.
+                Industries with the highest rates of sham contracting enforcement include construction, cleaning, hospitality, transport and logistics, and IT consulting. The Fair Work Ombudsman conducts targeted audits in these sectors annually. In FY2025-26, the FWO recovered <strong>$453 million</strong> in underpaid wages for workers.
               </p>
               <p>
                 There is no &ldquo;innocent mistake&rdquo; defence if the employer &ldquo;reasonably should have known&rdquo; the worker was an employee. The onus falls on the employer to prove the arrangement is genuine.
@@ -647,7 +683,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               <ol>
                 <li><strong>Sign a new employment contract:</strong> The contractor agreement terminates and a written employment contract replaces it, specifying the role, salary, hours, and applicable Modern Award or Enterprise Agreement.</li>
                 <li><strong>Register in the employer&apos;s PAYG system:</strong> The employee completes a Tax File Number (TFN) declaration. The employer begins withholding income tax each pay cycle using ATO withholding schedules. Learn more about the deduction process in our <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> guide.</li>
-                <li><strong>Commence Super Guarantee payments:</strong> The employer pays 12% super on top of the agreed salary from the first day of employment. Payments are due quarterly &mdash; within <strong>28 days</strong> of the end of each quarter (28 October, 28 January, 28 April, 28 July).</li>
+                <li><strong>Commence Super Guarantee payments:</strong> The employer pays 12% super on top of the agreed salary from the first day of employment. Since Payday Super began on {SUPER_GUARANTEE.paydaySuperStart}, the contribution must reach the fund within <strong>7 business days</strong> of each payday (20 business days for a new employee&apos;s first contribution).</li>
                 <li><strong>Enrol in workers&apos; compensation insurance:</strong> State-based WorkCover schemes cover the new employee immediately. The employer absorbs this cost, which ranges from <strong>0.3% to 8%</strong> of payroll depending on the industry and state.</li>
                 <li><strong>Adjust the pay rate:</strong> The gross salary is typically lower than the contractor&apos;s invoice rate because the employer now bears on-costs including super, leave accrual, and WorkCover. A contractor earning $78/hour commonly transitions to an employee salary of <strong>$100,000 to $105,000</strong> per year.</li>
               </ol>
@@ -721,7 +757,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Do contractors have to pay super?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Contractors are not legally required to pay their own super (unlike employers who must pay the SG). However, for retirement planning, setting aside 12% voluntarily is strongly recommended. You can claim a tax deduction for personal super contributions up to the <strong>$30,000</strong> concessional cap in your tax return.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Contractors are not legally required to pay their own super (unlike employers who must pay the SG). However, for retirement planning, setting aside 12% voluntarily is strongly recommended. You can claim a tax deduction for personal super contributions up to the <strong>{CC_CAP}</strong> concessional cap (FY{FY}) in your tax return.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="gst" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Do I need to register for GST as a contractor?</AccordionTrigger>
@@ -745,7 +781,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="payg" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Do contractors pay PAYG instalments?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs a <strong>general interest charge (GIC)</strong> currently set at approximately <strong>11.36%</strong> per annum.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. The ATO issues PAYG instalment notices to contractors once they lodge their first tax return showing business income. Instalments are due quarterly and pre-pay your expected income tax liability. The ATO calculates the instalment amount based on your most recent tax return or you can choose to pay based on actual quarterly income. Failure to pay PAYG instalments on time incurs the <strong>general interest charge (GIC)</strong>, which was <strong>{GIC_PCT}</strong> a year for {GENERAL_INTEREST_CHARGE.quarter} and resets every quarter.</p></AccordionContent>
               </AccordionItem>
                           <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What is the main difference between an employee and a contractor?</AccordionTrigger>
@@ -768,7 +804,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               <AccordionItem value="penalties" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What are the penalties for sham contracting?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    The Fair Work Ombudsman imposes fines of up to <strong>$93,900 per contravention</strong> for individuals and <strong>$469,500 per contravention</strong> for companies. The employer must also backpay all lost entitlements including super (plus the non-deductible Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments &mdash; often spanning several years of accumulated liability.
+                    Courts can impose maximum penalties of <strong>{SHAM_MAX_INDIVIDUAL} per contravention</strong> for individuals, <strong>{SHAM_MAX_SMALL_BUSINESS}</strong> for businesses with fewer than 15 employees and <strong>{SHAM_MAX_BUSINESS}</strong> for larger businesses. The employer must also backpay all lost entitlements including super (plus the Superannuation Guarantee Charge), annual leave, sick leave, and any Award underpayments &mdash; often spanning several years of accumulated liability.
                   </AccordionContent>
                 </AccordionItem>
               <AccordionItem value="convert" className="border rounded-lg px-4 bg-sandstone bg-white">
@@ -786,7 +822,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
               <AccordionItem value="tax-return" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do contractors pay more tax than employees?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Contractors and employees earning the same taxable income pay the same income tax &mdash; the FY2025-26 tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.
+                    Contractors and employees earning the same taxable income pay the same income tax &mdash; the FY{FY} tax brackets and Medicare levy apply identically. The difference is timing and administration: employees have tax withheld automatically, while contractors must set aside funds and pay the ATO directly. Contractors can reduce their taxable income through business deductions that employees cannot claim.
                   </AccordionContent>
                 </AccordionItem>
               <AccordionItem value="single-client" className="border rounded-lg px-4 bg-sandstone bg-white">
