@@ -10,6 +10,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { HOME_FAQS, RATE_CUT_MAX_SAVING } from "@/modules/home/home-faqs";
+import { AmountPresets, HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-ui";
 import {
   calculatePayBreakdown,
   calculateIncomeTax,
@@ -56,6 +57,16 @@ const MLS_120K = calculateMedicareSurcharge(120_000, false);
 const CASUAL_MIN_WAGE = EMPLOYMENT.minimumWageHourly * (1 + EMPLOYMENT.casualLoading);
 
 const pctX = (v: number) => `${Math.round(v * 100)}%`;
+
+const SALARY_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
+
+/** Exact-match anchors to the primary URL of each sibling head term. */
+const HOME_HEAD_TERM_LINKS = [
+  HEAD_TERM_PRIMARY.takeHomePayCalculator,
+  HEAD_TERM_PRIMARY.incomeTaxCalculator,
+  HEAD_TERM_PRIMARY.weeklyTaxCalculator,
+  HEAD_TERM_PRIMARY.fortnightlyTaxCalculator,
+];
 
 /** Approximate ABS-based average full-time salaries; presentational only —
  * payroll tax rates/thresholds come from STATE_PAYROLL_TAX. */
@@ -369,7 +380,7 @@ export default function HomePageTemplate() {
   return (
     <div className="flex-grow">
       {/* ===== HERO + CALCULATOR ===== */}
-      <section className="grain-overlay relative overflow-hidden bg-navy pb-20 pt-24 lg:pt-28">
+      <section className="grain-overlay relative overflow-hidden bg-navy pb-16 pt-20 lg:pt-24">
         {/* Background effects */}
         <div className="hero-pattern absolute inset-0" />
         <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-eucalyptus/8 blur-[100px]" />
@@ -381,16 +392,20 @@ export default function HomePageTemplate() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 text-center"
+            className="mb-6 text-center sm:mb-8"
           >
+            {/* Head-term intent map (Sep 2026): this URL is the one primary for
+                "pay calculator australia" + "salary calculator". Intro kept to
+                one sentence so the calculator sits above the fold on mobile —
+                paycalculator.com.au / wagecalculator open straight on the form. */}
             <h1
-              className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
-              Pay Calculator Australia {FY} — Salary, Tax &amp; Take-Home Pay
+              Pay Calculator Australia {FY} — Salary Calculator After Tax
             </h1>
-            <p className="mx-auto mb-5 max-w-2xl text-lg text-sandstone-dark/60">
-              Australia&apos;s free pay calculator and salary calculator for FY{FY}. Enter an annual salary or an hourly, daily, weekly, fortnightly or monthly wage — with casual loading if it applies — and see your exact take-home pay after ATO income tax, the Medicare levy, HECS-HELP repayments and {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation. Every figure uses the current FY{FY} rates, so the number you see is the number that lands in your bank account.
+            <p className="mx-auto mb-4 max-w-2xl text-base text-sandstone-dark/60 sm:text-lg">
+              Free salary calculator: enter any salary or hourly, weekly, fortnightly or monthly wage and see your take-home pay after ATO tax, Medicare, HECS-HELP and {formatPercent(SUPER_GUARANTEE.rate, 0)} super at FY{FY} rates.
             </p>
             <TrustBar className="mx-auto" variant="dark" />
           </motion.div>
@@ -454,6 +469,25 @@ export default function HomePageTemplate() {
                       />
                       <span className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-medium text-warmgray-light">{basisMeta.unit}</span>
                     </div>
+                    {/* Live summary — visible above the fold before any toggles */}
+                    <div
+                      className="mt-3 grid grid-cols-3 gap-1 rounded-xl bg-eucalyptus-light/40 p-2 text-center"
+                      aria-live="polite"
+                      aria-label="Take-home pay summary"
+                    >
+                      <div>
+                        <div className="text-[10px] font-medium uppercase tracking-wide text-warmgray-light">Take-home / yr</div>
+                        <div className="text-sm font-bold text-eucalyptus-dark sm:text-base">{formatAUD(result.takeHomePay)}</div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-medium uppercase tracking-wide text-warmgray-light">/ fortnight</div>
+                        <div className="text-sm font-bold text-navy sm:text-base">{formatAUD(result.fortnightly)}</div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-medium uppercase tracking-wide text-warmgray-light">/ week</div>
+                        <div className="text-sm font-bold text-navy sm:text-base">{formatAUD(result.weekly)}</div>
+                      </div>
+                    </div>
 
                     {/* Hours per week — hourly basis only */}
                     {payBasis === "hourly" && (
@@ -511,6 +545,7 @@ export default function HomePageTemplate() {
                             </span>
                           ))}
                         </div>
+                        <AmountPresets values={SALARY_PRESETS} current={amount} onPick={setAmount} />
                       </div>
                     )}
 
@@ -529,6 +564,7 @@ export default function HomePageTemplate() {
                         </span>
                       )}
                     </p>
+
                   </div>
 
                   {/* Casual loading toggle */}
@@ -881,12 +917,15 @@ export default function HomePageTemplate() {
 
             {/* Quick CTA links below calculator */}
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link
-                href="/income-tax-calculator/"
-                className="inline-flex items-center gap-2 rounded-lg bg-white/8 px-4 py-2.5 text-sm font-medium text-sandstone-dark/60 backdrop-blur-sm transition-all hover:bg-white/15 hover:text-white"
-              >
-                Income Tax Calculator <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              {HOME_HEAD_TERM_LINKS.map(({ href, anchor }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="inline-flex items-center gap-2 rounded-lg bg-white/8 px-4 py-2.5 text-sm font-medium capitalize text-sandstone-dark/60 backdrop-blur-sm transition-all hover:bg-white/15 hover:text-white"
+                >
+                  {anchor} <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              ))}
               <Link
                 href="/tax-brackets/"
                 className="inline-flex items-center gap-2 rounded-lg bg-white/8 px-4 py-2.5 text-sm font-medium text-sandstone-dark/60 backdrop-blur-sm transition-all hover:bg-white/15 hover:text-white"

@@ -1,361 +1,250 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 import {
-  navigationItems,
+  MEGA_MENU,
+  NAV_CTA,
+  PRIMARY_NAV_LINKS,
   navigationLogo,
-  GUIDE_CATEGORIES,
-  STATE_CATEGORIES,
-  TAX_ON_SALARY_CATEGORIES,
+  type MegaMenu,
+  type MenuGroup,
 } from "@/lib/navigation";
+import NavbarBehavior from "./navbar-behavior";
 
-type CategoryItem = { label: string; href: string; description?: string };
-type Category = { title: string; items: CategoryItem[] };
+/*
+ * Server component. Every menu link is in the static HTML of every page: the
+ * panels are always rendered and hidden with the `hidden` attribute, which
+ * NavbarBehavior (a small client island with no markup of its own) toggles.
+ * Before Sep 2026 the menu mounted its links inside framer-motion's
+ * AnimatePresence, so crawlers saw 5 header links and none of the menu.
+ *
+ * One DOM serves both breakpoints. From `lg` the panels are dropdown sheets
+ * under the bar; below `lg` the same <nav> becomes a full-height drawer and
+ * each panel an accordion section, with the groups inside it as nested
+ * accordions. Group headings render twice (a heading for desktop, a button
+ * for mobile) because only mobile needs them to be interactive.
+ *
+ * Styling for the ~300 repeated links lives in globals.css (`.sn-*`), not in
+ * utility strings: this markup ships in every page's HTML and RSC payload.
+ */
 
-const MEGA_MENU_MAP: Record<string, { categories: Category[]; gridCols?: string }> = {
-  "Tax on Salary": {
-    categories: TAX_ON_SALARY_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.salaries] as CategoryItem[],
-    })),
-  },
-  Guides: {
-    categories: GUIDE_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.guides] as CategoryItem[],
-    })),
-  },
-  "By State": {
-    categories: STATE_CATEGORIES.map((c) => ({
-      title: c.title,
-      items: [...c.states] as CategoryItem[],
-    })),
-  },
-};
+const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
 export default function Navbar() {
-  const pathname = usePathname() || "/";
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [mobileActiveMenu, setMobileActiveMenu] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setActiveMenu(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const closeAll = useCallback(() => {
-    setActiveMenu(null);
-    setMobileOpen(false);
-    setMobileActiveMenu(null);
-  }, []);
-
-  const isLinkActive = (href: string) =>
-    href === "/" ? pathname === "/" : href !== "#" && pathname.startsWith(href);
-
-  const renderDesktopLink = (href: string, label: string, hasMegaMenu?: boolean) => {
-    const isActive = isLinkActive(href);
-
-    if (!hasMegaMenu) {
-      return (
-        <Link
-          key={href + label}
-          href={href}
-          className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-            isActive ? "text-eucalyptus-dark" : "text-navy/70 hover:text-navy"
-          }`}
-        >
-          {label}
-          <span
-            className={`absolute left-1 right-1 -bottom-0.5 h-[2px] rounded-full bg-eucalyptus transition-all duration-300 ${
-              isActive ? "w-[calc(100%-8px)] opacity-100" : "w-0 opacity-0"
-            }`}
-          />
-        </Link>
-      );
-    }
-
-    const isOpen = activeMenu === label;
-    const megaData = MEGA_MENU_MAP[label];
-
-    return (
-      <div
-        key={label}
-        className="relative"
-        onMouseEnter={() => setActiveMenu(label)}
-        onMouseLeave={() => setActiveMenu(null)}
-      >
-        <button
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setActiveMenu(isOpen ? null : label);
-            }
-            if (e.key === "Escape") setActiveMenu(null);
-          }}
-          aria-expanded={isOpen}
-          aria-haspopup="true"
-          className={`flex items-center space-x-0 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-            isActive ? "text-eucalyptus-dark" : "text-navy/70 hover:text-navy"
-          }`}
-        >
-          <span>{label}</span>
-          <ChevronDown
-            className={`ml-1 h-3.5 w-3.5 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
-        </button>
-
-        <AnimatePresence>
-          {isOpen && megaData && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-1/2 z-50 mt-0 w-screen max-w-5xl -translate-x-1/2"
-            >
-              <div className="rounded-xl border border-sandstone-dark/40 bg-white/95 shadow-xl backdrop-blur-sm ring-1 ring-black/5">
-                <div className="p-8">
-                  <div className="flex flex-wrap justify-normal gap-8">
-                    {megaData.categories.map((category) => (
-                      <div key={category.title} className="space-y-2">
-                        <h4 className="border-b border-eucalyptus/20 pb-2 text-xs font-semibold uppercase tracking-widest text-eucalyptus-dark">
-                          {category.title}
-                        </h4>
-                        <ul className={megaData.gridCols ?? "space-y-1"}>
-                          {category.items.map((item, index) => (
-                            <li key={index}>
-                              <Link
-                                href={item.href}
-                                className="group block py-1.5 text-sm text-warmgray transition-all duration-200 hover:translate-x-1 hover:text-navy"
-                                onClick={closeAll}
-                              >
-                                <div>
-                                  <div className="font-medium group-hover:text-eucalyptus-dark">{item.label}</div>
-                                  {item.description && (
-                                    <div className="mt-0.5 text-xs text-warmgray-light">
-                                      {item.description}
-                                    </div>
-                                  )}
-                                </div>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    );
-  };
-
   return (
     <header
-      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-sandstone-dark/30 bg-white/90 shadow-md backdrop-blur-lg"
-          : "border-b border-transparent bg-white/70 backdrop-blur-sm"
-      }`}
-      ref={dropdownRef}
+      id="site-header"
+      data-scrolled="false"
+      data-mobile-open="false"
+      className="group/header fixed inset-x-0 top-0 z-50 border-b border-transparent bg-white/85 backdrop-blur-md transition-[background-color,box-shadow,border-color] duration-300 data-[scrolled=true]:border-sandstone-dark/40 data-[scrolled=true]:bg-white/95 data-[scrolled=true]:shadow-md max-lg:data-[mobile-open=true]:bg-white"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link href={navigationLogo.href} className="group flex items-center gap-2.5">
-            <Image
-              src="/images/logo.svg"
-              alt="Pay Calculator Australia"
-              width={36}
-              height={36}
-              className="rounded-lg shadow-md transition-transform duration-200 group-hover:scale-105"
-              priority
-            />
-            <div className="flex flex-col">
-              <span
-                className="text-base font-bold tracking-tight text-navy transition-colors group-hover:text-eucalyptus-dark"
-                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-              >
-                {navigationLogo.label}
-              </span>
-            </div>
-          </Link>
-
-          <nav className="hidden items-center space-x-0.5 lg:flex" aria-label="Main navigation">
-            {navigationItems.map(({ href, label, hasMegaMenu }) =>
-              renderDesktopLink(href, label, hasMegaMenu)
-            )}
-          </nav>
-
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-lg p-2 text-navy transition-colors hover:bg-sandstone lg:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+        <Link href={navigationLogo.href} className="sn-ring group flex shrink-0 items-center gap-2.5 rounded-lg">
+          <Image
+            src="/images/logo.svg"
+            alt=""
+            width={36}
+            height={36}
+            className="rounded-lg shadow-md transition-transform duration-200 group-hover:scale-105"
+            priority
+          />
+          <span
+            className="text-base font-bold tracking-tight text-navy transition-colors group-hover:text-eucalyptus-dark"
+            style={HEADING_FONT}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
+            {navigationLogo.label}
+          </span>
+        </Link>
+
+        <button
+          type="button"
+          id="nav-toggle"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          className="sn-ring -mr-2 flex h-11 w-11 items-center justify-center rounded-lg text-navy transition-colors hover:bg-sandstone lg:hidden"
+        >
+          <span className="sr-only group-data-[mobile-open=true]/header:hidden">Open menu</span>
+          <span className="sr-only hidden group-data-[mobile-open=true]/header:inline">Close menu</span>
+          <Menu aria-hidden="true" className="h-6 w-6 group-data-[mobile-open=true]/header:hidden" />
+          <X aria-hidden="true" className="hidden h-6 w-6 group-data-[mobile-open=true]/header:block" />
+        </button>
+
+        <nav
+          id="site-nav"
+          aria-label="Main"
+          className="max-lg:absolute max-lg:inset-x-0 max-lg:top-full max-lg:hidden max-lg:h-[calc(100dvh-4rem)] max-lg:overflow-y-auto max-lg:overscroll-contain max-lg:border-t max-lg:border-sandstone-dark/40 max-lg:bg-white max-lg:group-data-[mobile-open=true]/header:block lg:flex lg:items-center lg:gap-2"
+        >
+          <ul className="max-lg:divide-y max-lg:divide-sandstone-dark/50 max-lg:px-4 lg:flex lg:items-center lg:gap-0.5">
+            {MEGA_MENU.map((menu) => (
+              <MenuItem key={menu.id} menu={menu} />
+            ))}
+            {PRIMARY_NAV_LINKS.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="sn-top">
+                  <span>{link.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="space-y-3 px-4 pb-10 pt-4 lg:contents lg:space-y-0">
+            <Link
+              href={NAV_CTA.href}
+              className="sn-ring flex min-h-12 items-center justify-center gap-1.5 rounded-lg bg-eucalyptus-dark px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-navy lg:ml-2 lg:min-h-9"
+            >
+              {NAV_CTA.label}
+              <ArrowRight aria-hidden="true" className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/site-directory/"
+              className="sn-ring flex min-h-11 items-center justify-center rounded-lg text-sm font-medium text-warmgray underline-offset-4 hover:text-navy hover:underline lg:hidden"
+            >
+              Browse every page in the site directory
+            </Link>
+          </div>
+        </nav>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="border-t border-sandstone-dark/30 bg-white lg:hidden"
-          >
-            <div className="max-h-[80vh] space-y-4 overflow-y-auto px-4 py-6">
-              {navigationItems.map(({ href, label, hasMegaMenu }, index) => {
-                const isActive = isLinkActive(href);
-
-                if (!hasMegaMenu) {
-                  return (
-                    <motion.div
-                      key={href + label}
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                    >
-                      <Link
-                        href={href}
-                        className={`block py-2 font-medium transition-colors ${
-                          isActive ? "text-eucalyptus-dark" : "text-navy hover:text-eucalyptus-dark"
-                        }`}
-                        onClick={closeAll}
-                      >
-                        {label}
-                      </Link>
-                    </motion.div>
-                  );
-                }
-
-                const megaData = MEGA_MENU_MAP[label];
-                if (!megaData) return null;
-
-                const isOpen = mobileActiveMenu === label;
-                const totalItems = megaData.categories.reduce(
-                  (acc, cat) => acc + cat.items.length,
-                  0
-                );
-
-                return (
-                  <motion.div
-                    key={label}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="space-y-3"
-                  >
-                    <div className="flex items-center justify-between">
-                      <h3
-                        className={`flex-1 text-lg font-semibold ${
-                          isActive ? "text-eucalyptus-dark" : "text-navy"
-                        }`}
-                        style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-                      >
-                        {label}
-                        <span className="ml-2 rounded-full bg-sandstone px-2 py-0.5 text-sm text-warmgray">
-                          {totalItems}
-                        </span>
-                      </h3>
-                      <button
-                        onClick={() =>
-                          setMobileActiveMenu(isOpen ? null : label)
-                        }
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setMobileActiveMenu(isOpen ? null : label);
-                          }
-                        }}
-                        className="p-1"
-                        aria-expanded={isOpen}
-                        aria-label={`${isOpen ? "Collapse" : "Expand"} ${label}`}
-                      >
-                        <ChevronDown
-                          className={`h-4 w-4 text-warmgray transition-transform duration-200 ${
-                            isOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                    </div>
-
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="space-y-4 pl-2"
-                        >
-                          {megaData.categories.map((category) => (
-                            <div key={category.title} className="space-y-2">
-                              <h4 className="text-xs font-semibold uppercase tracking-widest text-eucalyptus-dark">
-                                {category.title}
-                              </h4>
-                              <ul className="space-y-1 pl-3">
-                                {category.items.map((item, idx) => (
-                                  <li key={idx}>
-                                    <Link
-                                      href={item.href}
-                                      className="block py-1 text-sm text-warmgray transition-colors hover:text-eucalyptus-dark"
-                                      onClick={closeAll}
-                                    >
-                                      <div>
-                                        <div>{item.label}</div>
-                                        {item.description && (
-                                          <div className="mt-0.5 text-xs text-warmgray-light">
-                                            {item.description}
-                                          </div>
-                                        )}
-                                      </div>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <NavbarBehavior />
     </header>
   );
+}
+
+function MenuItem({ menu }: { menu: MegaMenu }) {
+  const panelId = `nav-panel-${menu.id}`;
+  return (
+    <li data-menu-item>
+      <button
+        type="button"
+        id={`nav-btn-${menu.id}`}
+        data-menu-button
+        aria-expanded="false"
+        aria-controls={panelId}
+        className="sn-top"
+      >
+        <span>{menu.label}</span>
+        <ChevronDown aria-hidden="true" />
+      </button>
+
+      <div id={panelId} data-menu-panel role="region" aria-labelledby={`nav-btn-${menu.id}`} hidden className="sn-panel">
+        <div className="sn-body">
+          <div className="sn-rail">
+            <p>Start here</p>
+            <ul>
+              {menu.featured.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="sn-hub">
+                    <b>{l.label}</b>
+                    {l.description}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            {menu.stateGrid && <StateGrid grid={menu.stateGrid} />}
+            <div className={menu.stateGrid ? "sn-groups sn-m" : "sn-groups"}>
+              {menu.groups.map((g) => (
+                <Group key={g.title} group={g} id={`nav-grp-${menu.id}-${slug(g.title)}`} />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="sn-foot">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-3 text-sm">
+            <span className="text-warmgray">{menu.intro}</span>
+            <Link
+              href="/site-directory/"
+              className="sn-ring inline-flex items-center gap-1 rounded font-medium text-eucalyptus-dark hover:text-navy hover:underline"
+            >
+              Browse every page <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+}
+
+function Group({ group, id }: { group: MenuGroup; id: string }) {
+  const hubListed = !group.href || group.links.some((l) => l.href === group.href);
+  return (
+    <section aria-labelledby={`${id}-h`}>
+      {/* Desktop heading, linking to the group's hub when it has one. */}
+      <h3 id={`${id}-h`} className="sn-gh">
+        {group.href ? <Link href={group.href}>{group.title}</Link> : group.title}
+      </h3>
+      {/* Mobile accordion trigger. */}
+      <button type="button" data-group-button aria-expanded="false" aria-controls={id} className="sn-gb">
+        <span>
+          {group.title}
+          <i>{group.links.length}</i>
+        </span>
+      </button>
+      <ul id={id} data-open="false" className="sn-list">
+        {group.links.map((l) => (
+          <li key={l.href}>
+            <Link href={l.href}>{l.label}</Link>
+          </li>
+        ))}
+        {!hubListed && (
+          <li>
+            <Link href={group.href!} className="sn-all">
+              All {group.title.toLowerCase()}
+            </Link>
+          </li>
+        )}
+      </ul>
+    </section>
+  );
+}
+
+/** Desktop-only: states down, topics across, so a reader finds their state once. */
+function StateGrid({ grid }: { grid: NonNullable<MegaMenu["stateGrid"]> }) {
+  return (
+    <table className="sn-grid">
+      <caption className="sr-only">State pages by topic</caption>
+      <thead>
+        <tr>
+          <th scope="col">State</th>
+          {grid.topics.map((t) => (
+            <th key={t.key} scope="col">
+              <Link href={t.hub}>{t.label}</Link>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {grid.rows.map((row) => (
+          <tr key={row.code}>
+            <th scope="row">
+              <b>{row.code}</b> <small>{row.name}</small>
+            </th>
+            {grid.topics.map((t) => {
+              const href = row.cells[t.key];
+              return (
+                <td key={t.key}>
+                  {href ? (
+                    <Link href={href} aria-label={`${row.code} ${t.label.toLowerCase()}`}>
+                      {row.code}
+                    </Link>
+                  ) : (
+                    <span aria-label="No page">–</span>
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+function slug(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 }

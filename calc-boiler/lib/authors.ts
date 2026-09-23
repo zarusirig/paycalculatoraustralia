@@ -316,6 +316,9 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   "tax-withheld-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end T1 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026) ---
+  "australian-pay-report-2026": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end F8 ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   "fortnights-in-a-year": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },

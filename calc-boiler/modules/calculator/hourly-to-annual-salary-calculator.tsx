@@ -18,7 +18,17 @@ import {
   SOURCES,
   SITE_CONFIG,
   TAX_BRACKETS,
+  HECS_HELP,
 } from "@/lib/constants";
+import { NMW, NMW_DECISION } from "@/lib/constants/minimum-wage";
+
+// Minimum wage figures derive from NMW (Annual Wage Review 2026). The page
+// previously paired the 2026-27 hourly rate with 2024 annual/weekly figures
+// and a casual rate that did not match 25% loading.
+const NMW_CASUAL_WEEKLY = Math.round(NMW.casualHourly * NMW.hoursPerWeek * 100) / 100;
+const NMW_CASUAL_ANNUAL = Math.round(NMW_CASUAL_WEEKLY * 52 * 100) / 100;
+const NMW_NET = calculatePayBreakdown({ grossSalary: NMW.annual }).takeHomePay;
+const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
 
 // ── "How many hours in a year" ──────────────────────────────────────────────
 // Pure arithmetic on EMPLOYMENT (38-hour NES week, 52 weeks, 4 weeks' annual
@@ -261,7 +271,7 @@ export default function HourlyToAnnualCalculatorPage() {
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
               <li>Multiply the hourly rate by weekly hours: $45.50 &times; 38 = <strong>$1,729.00 per week</strong></li>
               <li>Multiply the weekly amount by 52 weeks: $1,729.00 &times; 52 = <strong>$89,908 per year</strong></li>
-              <li>Calculate employer super at 12%: $89,908 &times; 0.12 = <strong>$10,789 paid into your super fund</strong></li>
+              <li>Calculate employer super at {SG_PCT}: $89,908 &times; {SUPER_GUARANTEE.rate} = <strong>{formatAUD(Math.round(89_908 * SUPER_GUARANTEE.rate))} paid into your super fund</strong></li>
             </ol>
             <p className="text-warmgray">
               The gross salary of <strong>$89,908</strong> is the figure used to calculate your income tax, Medicare levy, and any HECS-HELP repayments. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Take-Home Pay Calculator</Link> to see the net amount deposited into your bank account each pay cycle.
@@ -275,7 +285,7 @@ export default function HourlyToAnnualCalculatorPage() {
               An hourly rate of <strong>$30 produces $59,280</strong> per year, while <strong>$60 per hour equals $118,560</strong>, both based on a standard 38-hour week across 52 weeks in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of 12%. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications that pay it.
+              The table below converts hourly wages from $20 to $100 into annual gross salary, weekly gross, and the employer superannuation guarantee contribution at the current SG rate of {SG_PCT}. Every rate links to its own page with the after-tax figure, part-time hours and the award classifications that pay it.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
               <table className="w-full text-sm">
@@ -430,13 +440,13 @@ export default function HourlyToAnnualCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Minimum Wage Annually?</h2>
             <p className="mb-4 text-warmgray">
-              The national minimum wage is <strong>$26.44 per hour</strong>, which equals <strong>$47,605.60 per year</strong> for a full-time 38-hour week as of 1 July 2024.
+              The national minimum wage is <strong>{formatAUD(NMW.hourly, 2)} per hour</strong> ({formatAUD(NMW.weekly, 2)} a week), which equals <strong>{formatAUD(NMW.annual, 2)} per year</strong> for a full-time 38-hour week from {NMW_DECISION.operativeFrom}.
             </p>
             <p className="mb-4 text-warmgray">
-              The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July. At $26.44/hr, a full-time worker earns $916.30 per week before tax. After income tax and the 2% Medicare levy, the take-home pay on the minimum wage is approximately <strong>$40,934 per year</strong>, or <strong>$787 per week</strong>.
+              The Fair Work Commission reviews the national minimum wage annually, with any increase taking effect from 1 July. At {formatAUD(NMW.hourly, 2)}/hr, a full-time worker earns {formatAUD(NMW.weekly, 2)} per week before tax. After income tax and the Medicare levy, the take-home pay on the minimum wage is approximately <strong>{formatAUD(NMW_NET)} per year</strong>, or <strong>{formatAUD(NMW_NET / 52)} per week</strong> in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="mb-4 text-warmgray">
-              Casual employees on the minimum wage receive an additional 25% casual loading, bringing their minimum hourly rate to <strong>$30.13/hr</strong>. This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. Use the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Annual Pay Calculator</Link> to calculate take-home pay at any annual salary, including the minimum wage equivalent.
+              Casual employees on the minimum wage receive an additional 25% casual loading, bringing their minimum hourly rate to <strong>{formatAUD(NMW.casualHourly, 2)}/hr</strong>. This loading compensates for the absence of paid annual leave, personal leave, and notice of termination. Use the <Link href="/annual-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Annual Pay Calculator</Link> to calculate take-home pay at any annual salary, including the minimum wage equivalent.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Minimum Wage Breakdown (FY{SITE_CONFIG.financialYear})</h3>
@@ -452,23 +462,23 @@ export default function HourlyToAnnualCalculatorPage() {
                 <tbody className="divide-y divide-sandstone-dark/10">
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-2.5 font-medium text-gray-700">Hourly rate</td>
-                    <td className="px-4 py-2.5 text-right text-warmgray">$26.44</td>
-                    <td className="px-4 py-2.5 text-right text-warmgray">$30.13</td>
+                    <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(NMW.hourly, 2)}</td>
+                    <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(NMW.casualHourly, 2)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-2.5 font-medium text-gray-700">Weekly gross (38 hrs)</td>
-                    <td className="px-4 py-2.5 text-right text-warmgray">$916.30</td>
-                    <td className="px-4 py-2.5 text-right text-warmgray">$1,144.94</td>
+                    <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(NMW.weekly, 2)}</td>
+                    <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(NMW_CASUAL_WEEKLY, 2)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-2.5 font-medium text-gray-700">Annual gross (52 wks)</td>
-                    <td className="px-4 py-2.5 text-right font-bold text-navy">$47,607.60</td>
-                    <td className="px-4 py-2.5 text-right font-bold text-navy">$59,536.88</td>
+                    <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(NMW.annual, 2)}</td>
+                    <td className="px-4 py-2.5 text-right font-bold text-navy">{formatAUD(NMW_CASUAL_ANNUAL, 2)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
-                    <td className="px-4 py-2.5 font-medium text-gray-700">Employer super (12%)</td>
-                    <td className="px-4 py-2.5 text-right text-eucalyptus-dark">$5,712.91</td>
-                    <td className="px-4 py-2.5 text-right text-eucalyptus-dark">$7,144.43</td>
+                    <td className="px-4 py-2.5 font-medium text-gray-700">Employer super ({SG_PCT})</td>
+                    <td className="px-4 py-2.5 text-right text-eucalyptus-dark">{formatAUD(NMW.annual * SUPER_GUARANTEE.rate, 2)}</td>
+                    <td className="px-4 py-2.5 text-right text-eucalyptus-dark">{formatAUD(NMW_CASUAL_ANNUAL * SUPER_GUARANTEE.rate, 2)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -531,7 +541,7 @@ export default function HourlyToAnnualCalculatorPage() {
               </li>
               <li className="flex gap-3">
                 <span className="text-red-500 font-bold mt-0.5">5.</span>
-                <span><strong>Ignoring tax bracket impacts at the annual level</strong> &mdash; an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is 32.5% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
+                <span><strong>Ignoring tax bracket impacts at the annual level</strong> &mdash; an hourly rate tells you gross income, not take-home pay. The marginal tax rate on <strong>$90,000</strong> is {Math.round(TAX_BRACKETS[2].rate * 100)}% plus the 2% Medicare levy. Use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Gross Pay Calculator</Link> to reverse-engineer the gross amount needed for a target net income.</span>
               </li>
             </ul>
           </section>
@@ -596,7 +606,7 @@ export default function HourlyToAnnualCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does my HECS-HELP debt affect this conversion?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of <strong>$69,528</strong> for FY{SITE_CONFIG.financialYear}. At $30/hr (38 hours) your annual salary of <strong>$59,280</strong> is below the threshold, so no repayment applies. At $40/hr it reaches $79,040 and the marginal rate of <strong>15c per dollar</strong> above the threshold applies to the excess. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark underline hover:text-navy">HECS-HELP Calculator</Link> to see the exact repayment amount.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> for FY{SITE_CONFIG.financialYear}. At $30/hr (38 hours) your annual salary of <strong>$59,280</strong> is below the threshold, so no repayment applies. At $40/hr it reaches $79,040 and the marginal rate of <strong>15c per dollar</strong> above the threshold applies to the excess. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark underline hover:text-navy">HECS-HELP Calculator</Link> to see the exact repayment amount.</p></AccordionContent>
               </AccordionItem>
             </Accordion>
           </section>

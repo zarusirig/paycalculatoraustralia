@@ -12,10 +12,16 @@ const FY = SITE_CONFIG.financialYear;
 // Example computed from the tax engine at build time, never hardcoded.
 const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
 
-// Queries: "65k a year is how much a week after tax", "weekly pay calculator" 1.9k/mo. Title carries the FY (rolls over with SITE_CONFIG);
+// Queries: "65k a year is how much a week after tax", "weekly pay calculator" 1.9k/mo.
+// Head-term intent map (docs/seo/2026-09-23-head-term-intent-map.md): this URL
+// is also the ONE primary for "weekly tax calculator" (18.1k, KD9, not in our
+// top 100) — its SERP is ATO tax-withheld + pay calculators, so "& Tax" joins
+// the title and the calculator now takes weekly pay as well as salary.
+// /weekly-tax-table/ keeps the "weekly tax table" terms. Title carries the FY;
 // description leads with a real after-tax figure.
-const TITLE = `Weekly Pay Calculator Australia ${FY}: Take-Home Pay`;
-const DESCRIPTION = `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Enter any salary to see your weekly tax, Medicare, super and take-home pay.`;
+// Previous: "Weekly Pay Calculator Australia ${FY}: Take-Home Pay".
+const TITLE = `Weekly Pay & Tax Calculator Australia ${FY}: Take-Home Pay`;
+const DESCRIPTION = `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Weekly tax calculator: enter your weekly pay or salary for weekly tax, Medicare, super and take-home pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -37,7 +43,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: "Weekly Pay Calculator Australia",
+  name: `Weekly Pay & Tax Calculator Australia ${FY}`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",

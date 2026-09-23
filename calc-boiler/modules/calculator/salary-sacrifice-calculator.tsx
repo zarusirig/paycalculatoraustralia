@@ -10,13 +10,35 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   calculatePayBreakdown,
+  EMPLOYMENT,
   formatAUD,
   formatPercent,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
+  TAX_BRACKETS,
 } from "@/lib/constants";
-import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
+import {
+  EV_EXEMPTION,
+  FBT,
+  FBT_CAPS,
+  capFaceValue,
+  fbtPayable,
+  LUXURY_CAR_TAX,
+  statutoryTaxableValue,
+} from "@/lib/constants/novated-lease";
+import { carryForwardWindow, CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+
+// Second-bracket figures are derived: at 15% (FY2026-27) the income tax saving
+// on salary sacrifice is nil — the page previously showed 16% and "$0.01".
+const FY = SITE_CONFIG.financialYear;
+const SECOND_RATE = TAX_BRACKETS[1].rate;
+const SECOND_RATE_PCT = `${Math.round(SECOND_RATE * 1000) / 10}%`;
+const SECOND_SAVING = `$${Math.max(0, SECOND_RATE - CONTRIBUTIONS_TAX_RATE).toFixed(2)}`;
+const CF_WINDOW = carryForwardWindow();
+// $40,000 petrol car, statutory formula, full year, no employee contribution.
+const ICE_TAXABLE_VALUE = statutoryTaxableValue(40_000);
+const ICE_FBT = Math.round(fbtPayable(ICE_TAXABLE_VALUE));
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -275,9 +297,9 @@ export default function SalarySacrificeCalculatorPage() {
                 <tbody className="divide-y divide-gray-100">
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy">$18,201 – $45,000</td>
-                    <td className="px-4 py-3 text-right text-navy">16%</td>
+                    <td className="px-4 py-3 text-right text-navy">{SECOND_RATE_PCT}</td>
                     <td className="px-4 py-3 text-right text-navy">15%</td>
-                    <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">$0.01</td>
+                    <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{SECOND_SAVING}</td>
                   </tr>
                   <tr className="hover:bg-sandstone">
                     <td className="px-4 py-3 text-navy">$45,001 – $135,000</td>
@@ -326,7 +348,7 @@ export default function SalarySacrificeCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Salary Sacrifice Compare to No Sacrifice?</h2>
             <p className="mb-4 text-warmgray">
-              Salary sacrifice reduces take-home pay but increases total super contributions and delivers a net tax saving at every marginal rate above 16%.
+              Salary sacrifice reduces take-home pay but increases total super contributions and delivers a net tax saving at every marginal rate above the 15% contributions tax rate.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -420,17 +442,17 @@ export default function SalarySacrificeCalculatorPage() {
               <li><strong>Ignoring the HECS-HELP impact</strong> — Reportable super contributions are added back to &quot;repayment income&quot; when calculating HECS-HELP repayments. Salary sacrifice does not reduce your{" "}
                 <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link>{" "}
                 obligation.</li>
-              <li><strong>Sacrificing on a low marginal rate</strong> — Employees in the 16% income tax bracket ($18,201 to $45,000) gain only 1 cent per dollar from salary sacrifice into super. The reduced liquidity is rarely worth the minimal tax saving.</li>
-              <li><strong>Reducing borrowing capacity</strong> — Lenders assess income after salary sacrifice deductions. A $15,000 annual sacrifice reduces your borrowing capacity by approximately <strong>$90,000</strong> on a standard 30-year home loan at 6% interest.</li>
+              <li><strong>Sacrificing on a low marginal rate</strong> — Employees in the {SECOND_RATE_PCT} income tax bracket ($18,201 to $45,000) save no income tax from salary sacrifice into super in FY{FY} &mdash; only the 2 cent Medicare levy saving. The reduced liquidity is rarely worth the minimal tax saving.</li>
+              <li><strong>Reducing borrowing capacity</strong> — Lenders assess income after salary sacrifice deductions. A large annual sacrifice lowers the income a lender counts, which can reduce how much you can borrow.</li>
               <li><strong>Not using carry-forward unused cap amounts</strong> — Since 1 July 2018, unused concessional cap amounts carry forward for up to 5 years if your total super balance is below <strong>$500,000</strong>. Employees who miss this opportunity leave tax savings on the table.</li>
             </ol>
           </section>
 
-          {/* --- H2: What Changed for Salary Sacrifice in FY2025-26? --- */}
+          {/* --- H2: What Changed for Salary Sacrifice this financial year? --- */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Salary Sacrifice in FY2025-26?</h2>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Salary Sacrifice in FY{FY}?</h2>
             <p className="mb-4 text-warmgray">
-              The superannuation guarantee rate increased to <strong>12%</strong> from 1 July 2025, up from 11.5% in FY2024-25, reducing the available concessional cap room for salary sacrifice.
+              The concessional cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> on 1 July 2026 (from {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}), the second income tax rate fell to <strong>{SECOND_RATE_PCT}</strong>, and Payday Super now requires employers to pay SG &mdash; still <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)}</strong>, the legislated ceiling &mdash; each payday. The SG rate itself last rose on {SUPER_GUARANTEE.effectiveDate}, from 11.5% to 12%.
             </p>
             <p className="text-warmgray">
               On a $100,000 salary, employer SG rose from $11,500 to <strong>$12,000</strong>, reducing cap room under the then {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} cap from $18,500 to $18,000. From 1 July 2026 the cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>, so the room on $100,000 is now <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)}</strong>. The Stage 3 income tax cuts from 1 July 2024 also changed the calculus: the 30% bracket now extends to $135,000 (previously $120,000), giving more employees access to the 30% vs 15% salary sacrifice benefit. Use the{" "}
@@ -542,8 +564,8 @@ export default function SalarySacrificeCalculatorPage() {
                     </tr>
                     <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                       <td className="p-3 text-navy">$18,201–$45,000</td>
-                      <td className="p-3 text-right text-navy">16%</td>
-                      <td className="p-3 text-right text-navy">$0.01</td>
+                      <td className="p-3 text-right text-navy">{SECOND_RATE_PCT}</td>
+                      <td className="p-3 text-right text-navy">{SECOND_SAVING}</td>
                       <td className="p-3 text-ochre font-medium">Minimal benefit</td>
                     </tr>
                     <tr className="border-b border-sandstone-dark/10">
@@ -644,7 +666,7 @@ export default function SalarySacrificeCalculatorPage() {
                 Fringe Benefits Tax is a <strong>47%</strong> tax imposed on employers who provide non-cash benefits to employees. FBT applies to most salary sacrifice items except superannuation, certain portable electronic devices used primarily for work, and eligible electric vehicles.
               </p>
               <p>
-                When an item attracts FBT, the employer bears the tax liability. In practice, most employers pass the FBT cost directly to the employee through payroll adjustments, eliminating any net tax benefit. An employee salary sacrificing a $40,000 internal combustion engine (ICE) vehicle through a novated lease faces approximately <strong>$18,800 in FBT</strong> annually, wiping out the income tax saving entirely.
+                When an item attracts FBT, the employer bears the tax liability. In practice, most employers pass the FBT cost directly to the employee through payroll adjustments, eliminating any net tax benefit. On a $40,000 internal combustion engine (ICE) car under the statutory formula, the taxable value is <strong>{formatAUD(ICE_TAXABLE_VALUE)}</strong> ({Math.round(FBT.statutoryRate * 100)}% of the cost) and the FBT is about <strong>{formatAUD(ICE_FBT)}</strong> a year &mdash; which is why most novated leases on petrol cars use post-tax employee contributions to reduce the taxable value to nil.
               </p>
               <p>
                 FBT-exempt items deliver the full tax benefit because no additional tax applies. The 3 most common FBT-exempt salary sacrifice categories are:
@@ -704,7 +726,7 @@ export default function SalarySacrificeCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="carry-forward" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Can I carry forward unused concessional cap amounts?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. If your total super balance is below <strong>$500,000</strong> on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to <strong>5 prior years</strong> (starting from FY2018-19). This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">Yes. If your total super balance is below <strong>$500,000</strong> on 30 June of the previous financial year, you can carry forward unused concessional cap amounts from up to <strong>5 prior years</strong> &mdash; for FY{FY}, the years {CF_WINDOW[0]?.year} to {CF_WINDOW[CF_WINDOW.length - 1]?.year}. Unused amounts older than 5 years expire. This allows a larger one-off salary sacrifice in a high-income year without exceeding the cap.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="mortgage" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Should I salary sacrifice or pay off my mortgage faster?</AccordionTrigger>
@@ -731,13 +753,13 @@ export default function SalarySacrificeCalculatorPage() {
               <AccordionItem value="ev-lease" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can I salary sacrifice a car?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes, through a <strong>novated lease</strong>. Your employer deducts lease payments and running costs (fuel, insurance, registration, servicing) from your pre-tax salary. Electric vehicles and plug-in hybrids below the luxury car tax threshold are FBT-exempt under the Electric Car Discount. For a $50,000 EV, salary packaging through a novated lease saves approximately <strong>$5,000–$8,000 per year</strong> compared to purchasing outright with after-tax income.
+                    Yes, through a <strong>novated lease</strong>. Your employer deducts lease payments and running costs (fuel, insurance, registration, servicing) from your pre-tax salary. Battery electric and hydrogen fuel cell cars first held and used from {EV_EXEMPTION.firstHeldAndUsedFrom}, and on which luxury car tax has never been payable, are FBT-exempt under the Electric Car Discount. Plug-in hybrids stopped qualifying on {EV_EXEMPTION.phevExcludedFrom} unless the car was already held and used, and a binding commitment made, before that date.
                   </AccordionContent>
                 </AccordionItem>
               <AccordionItem value="min-wage" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice reduce my pay below minimum wage?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>$26.44 per hour</strong> ($1,004.90 per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
+                    No. A salary sacrifice arrangement cannot reduce an employee&apos;s cash earnings below the national minimum wage of <strong>{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} per hour</strong> ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} per 38-hour week) or the applicable award/enterprise agreement rate. If the proposed sacrifice would breach this threshold, the employer must reject or reduce the arrangement.
                   </AccordionContent>
                 </AccordionItem>
               <AccordionItem value="centrelink" className="border rounded-lg px-4 bg-sandstone bg-white">
