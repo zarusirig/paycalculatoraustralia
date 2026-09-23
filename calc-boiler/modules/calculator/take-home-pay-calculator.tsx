@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, ShieldCheck } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TAKE_HOME_PAY_FAQS } from "./take-home-pay-calculator-faqs";

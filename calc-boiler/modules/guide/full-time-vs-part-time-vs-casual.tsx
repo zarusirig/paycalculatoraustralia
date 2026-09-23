@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { EMPLOYMENT_TYPE_GUIDE_FAQS } from "./full-time-vs-part-time-vs-casual-faqs";

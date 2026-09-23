@@ -6,8 +6,7 @@ import { PENALTY_RATES_FAQS } from "./overtime-penalty-rates-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, EMPLOYMENT, HECS_HELP, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
-import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { SITE_CONFIG, SOURCES, EMPLOYMENT, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
