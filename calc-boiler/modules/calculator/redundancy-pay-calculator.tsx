@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -100,6 +101,17 @@ function scaleLabel(fromYears: number, toYears: number | null): string {
   if (toYears === null) return `${fromYears} years and over`;
   return `${fromYears} year${fromYears === 1 ? "" : "s"}, less than ${toYears}`;
 }
+
+// Google AU "related searches" for "redundancy pay calculator" and "redundancy
+// payment" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Final pay calculator", href: "/final-pay-calculator/" },
+  { label: "Unused annual leave payout", href: "/leave-calculator/" },
+  { label: "Long service leave on redundancy", href: "/long-service-leave-calculator/" },
+  { label: "JobSeeker after redundancy", href: "/jobseeker-payment-calculator/" },
+  { label: "Tax on a lump sum", href: "/bonus-tax-calculator/" },
+  { label: "Annual leave guide", href: "/annual-leave-guide/" },
+];
 
 export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly RedundancyFaq[] }) {
   const [baseSalary, setBaseSalary] = useState(90_000);
@@ -499,6 +511,8 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
               <li>General information only, not tax or legal advice. The Fair Work Ombudsman (13 13 94) can confirm your entitlement.</li>
             </ul>
           </MethodologyDisclosure>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           {/* FAQ */}
           <section>

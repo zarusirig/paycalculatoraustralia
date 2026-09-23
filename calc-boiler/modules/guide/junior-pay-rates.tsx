@@ -19,7 +19,8 @@ import {
   NMW_ORDER,
   PENDING_JUNIOR_CHANGE,
 } from "@/lib/constants/junior-rates";
-import { JUNIOR_FAQS } from "@/modules/guide/junior-pay-rates-faqs";
+import { JUNIOR_EMPLOYER_AGES, JUNIOR_EMPLOYER_ROWS, JUNIOR_FAQS } from "@/modules/guide/junior-pay-rates-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { MIN_WAGE_AGES, ageSummary, money } from "@/modules/guide/minimum-wage-by-age-data";
 
 const SOURCES_LIST: SourceLink[] = [
@@ -27,6 +28,17 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Award and agreement free wages and conditions", url: "https://www.fairwork.gov.au/employment-conditions/awards/award-and-agreement-free-wages-and-conditions", publisher: SOURCES.fwo.name },
   { title: "Junior pay rates", url: "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates", publisher: SOURCES.fwo.name },
   { title: "Minimum working age", url: "https://www.fairwork.gov.au/find-help-for/young-workers-and-students/minimum-working-age", publisher: SOURCES.fwo.name },
+];
+
+// Google AU "related searches" for "junior pay rates" and "minimum wage for 16
+// year olds australia" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Minimum wage by age", href: "/minimum-wage-by-age/" },
+  { label: "Retail award junior rates", href: "/retail-award-rates/" },
+  { label: "Fast food award junior rates", href: "/fast-food-award-rates/" },
+  { label: "Hospitality award rates by age", href: "/hospitality-award-rates/" },
+  { label: "Kmart, Coles and Woolworths pay rates", href: "/pay-rates/" },
+  { label: "Minimum wage for 18 year olds", href: "/minimum-wage-australia/" },
 ];
 
 const byAge = (age: string) => JUNIOR_RATES.find((r) => r.age === age)!;
@@ -182,6 +194,42 @@ export default function JuniorPayRatesPage() {
               </p>
               <p>
                 So there are three questions, in order: does an award cover your job; what classification level are you; and what percentage does that award set for your age. Getting the first one wrong is the expensive mistake.
+              </p>
+            </section>
+
+            <section id="employer-junior-rates">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Do McDonald&apos;s, Kmart, Woolworths and Coles Pay Juniors?</h2>
+              <p>
+                {JUNIOR_FAQS.find((f) => f.q.startsWith("How much do McDonald"))!.a}
+              </p>
+              <div className="not-prose overflow-x-auto rounded-xl border border-sandstone-dark/20">
+                <table className="w-full text-sm">
+                  <caption className="sr-only">Casual weekday junior base rates at large employers, {SITE_CONFIG.financialYear}</caption>
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className="px-4 py-3 text-left font-semibold text-navy">Employer (casual, weekday)</th>
+                      {JUNIOR_EMPLOYER_AGES.map((age) => (
+                        <th key={age} className="px-4 py-3 text-right font-semibold text-navy">Age {age}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/10">
+                    {JUNIOR_EMPLOYER_ROWS.map((row) => (
+                      <tr key={row.slug}>
+                        <td className="px-4 py-3 text-navy">
+                          <Link href={row.href} className="font-medium text-eucalyptus-dark hover:underline">{row.name}</Link>
+                          <span className="block text-xs text-warmgray">{row.instrument}</span>
+                        </td>
+                        {row.casual.map((rate, i) => (
+                          <td key={JUNIOR_EMPLOYER_AGES[i]} className="px-4 py-3 text-right text-navy">{formatAUD(rate, 2)}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-sm">
+                Entry-level base rates including the {Math.round(CASUAL_LOADING * 100)}% casual loading, before evening, weekend and public holiday penalties. Each employer page lists every level, penalty rate and the agreement it comes from.
               </p>
             </section>
 
@@ -369,6 +417,10 @@ export default function JuniorPayRatesPage() {
                 <li><Link href="/minimum-wage-history-australia/">Minimum Wage History</Link> &mdash; how the National Minimum Wage has moved</li>
               </ul>
             </section>
+
+            <div className="not-prose my-8">
+              <RelatedSearches items={RELATED_SEARCHES} />
+            </div>
 
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>

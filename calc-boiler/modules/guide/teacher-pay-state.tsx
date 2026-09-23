@@ -30,6 +30,9 @@ import {
 
 // W5: VIC 2026 pay rise section
 import VicPayRise2026 from "@/modules/guide/teacher-pay-vic-2026";
+import { teacherStateFaqs } from "@/lib/data/teacher-pay/hub";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+import { JURISDICTION_SLUGS } from "@/lib/data/public-service-pay";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -190,6 +193,20 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
   }));
 
   const otherStates = TEACHER_PAY_STATES.filter((s) => s.slug !== state.slug);
+  const faqs = teacherStateFaqs(state);
+
+  // Google AU "related searches" for "qld teacher pay scale" / "teachers salary
+  // qld" (Sept 2026), generalised per state and pointed at pages that answer them.
+  const relatedSearches: RelatedSearch[] = [
+    ...(grad !== null ? [{ label: `${state.code} teacher salary after tax`, href: takeHomeHref(grad) }] : []),
+    { label: "Teacher salary by state", href: "/teacher-pay-australia/" },
+    ...((JURISDICTION_SLUGS as readonly string[]).includes(state.slug)
+      ? [{ label: `${state.code} public service pay scales`, href: `/public-service-pay-scales/${state.slug}/` }]
+      : []),
+    { label: `${state.code} pay calculator`, href: `/pay-calculator-${state.slug}/` },
+    { label: "Salary packaging for teachers", href: "/salary-sacrifice-calculator/" },
+    { label: "HECS repayment on a teacher salary", href: "/hecs-help-calculator/" },
+  ];
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -477,11 +494,11 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             )}
 
             {/* ── FAQ ── */}
-            {state.faqs.length > 0 && (
+            {faqs.length > 0 && (
               <section id="faq">
                 <h2 style={HEADING_FONT}>{state.code} teacher salary questions</h2>
                 <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                  {state.faqs.map((faq, index) => (
+                  {faqs.map((faq, index) => (
                     <AccordionItem
                       key={faq.q}
                       value={`faq-${index}`}
@@ -496,6 +513,10 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 </Accordion>
               </section>
             )}
+
+            <div className="not-prose my-8">
+              <RelatedSearches items={relatedSearches} />
+            </div>
 
             {/* ── Other states ── */}
             <section id="other-states">

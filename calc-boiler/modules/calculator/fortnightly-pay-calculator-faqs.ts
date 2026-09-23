@@ -15,6 +15,9 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import type { FaqItem } from "@/lib/faq";
+import { TAX_BRACKETS, TAX_BRACKETS_2025_26 } from "@/lib/constants";
+import { calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
+import { ATO_FORTNIGHTLY } from "@/modules/tax-tables/ato-schedules";
 import { hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 
@@ -29,10 +32,39 @@ const grossMonth = EXAMPLE / 12;
 const ML = formatPercent(MEDICARE_LEVY.rate, 0);
 const TFT = formatAUD(TAX_FREE_THRESHOLD);
 
+// People Also Ask (Google AU, Sept 2026) for "fortnightly pay calculator" and
+// "fortnightly tax calculator": docs/seo/2026-09-24-paa-optimisation.md.
+const AT_80K = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+/** Fortnightly gross amounts for the "tax taken out each fortnight" table and FAQ. */
+export const FORTNIGHTLY_WITHHOLDING_AMOUNTS = [1_000, 1_500, 2_000, 2_500, 3_000, 4_000, 5_000] as const;
+export const FORTNIGHTLY_WITHHOLDING_ROWS = FORTNIGHTLY_WITHHOLDING_AMOUNTS.map((gross) => {
+  const r = calculatePAYGWithholding(gross, "fortnightly");
+  return { gross, withheld: r.totalWithheld, net: r.netPerPeriod, annual: gross * N };
+});
+const WH = (gross: number) => FORTNIGHTLY_WITHHOLDING_ROWS.find((r) => r.gross === gross)!;
+const RATE_NOW = formatPercent(TAX_BRACKETS[1].rate, 0);
+const RATE_BEFORE = formatPercent(TAX_BRACKETS_2025_26[1].rate, 0);
+
+/** PAA answer reused as the lead of the "tax taken out each fortnight" section. */
+export const FORTNIGHTLY_TAX_ANSWER: FaqItem = {
+  q: "How much tax do I pay if I get paid fortnightly?",
+  a: `It depends on your gross pay each fortnight. If you claim the tax-free threshold, the ATO's ${FY} fortnightly tax table withholds ${formatAUD(WH(2_000).withheld)} from ${formatAUD(2_000)}, ${formatAUD(WH(3_000).withheld)} from ${formatAUD(3_000)} and ${formatAUD(WH(4_000).withheld)} from ${formatAUD(4_000)}. The amount already includes the Medicare levy. A HECS-HELP debt adds a separate repayment on top.`,
+};
+
 export const FORTNIGHTLY_FAQS: readonly FaqItem[] = [
   {
     q: "How is fortnightly pay calculated in Australia?",
     a: `Fortnightly pay is calculated by dividing your gross annual salary by ${N} (the number of fortnights in a year). The employer then deducts PAYG income tax, the ${ML} Medicare levy, and any HECS-HELP repayments using the ATO's fortnightly tax table. The remaining amount is your fortnightly take-home pay.`,
+  },
+  FORTNIGHTLY_TAX_ANSWER,
+  {
+    q: "How much is $80,000 a fortnight?",
+    a: `An $80,000 salary is ${formatAUD(80_000 / N, 2)} a fortnight before tax (${formatAUD(80_000)} ÷ ${N}). After income tax and the ${ML} Medicare levy for ${FY}, you take home about ${formatAUD(AT_80K.fortnightly, 2)} a fortnight, or ${formatAUD(AT_80K.takeHomePay)} a year. That assumes you claim the tax-free threshold and have no HECS-HELP debt.`,
+  },
+  {
+    q: "What is the fortnightly tax table for 2026-27?",
+    a: `The ATO's fortnightly tax table is ${ATO_FORTNIGHTLY.nat}. The current edition was published on ${ATO_FORTNIGHTLY.published} and applies to payments made from 1 July 2026. It withholds less than last year's table because the second income tax rate fell from ${RATE_BEFORE} to ${RATE_NOW}. Employers use it, or the ATO's formula behind it, to work out tax on each fortnightly pay.`,
+    links: { "fortnightly tax table": "/fortnightly-tax-table/" },
   },
   {
     q: `How much is an ${formatAUD(EXAMPLE)} salary fortnightly after tax?`,

@@ -22,11 +22,23 @@ import {
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { BONUS_TAX_FAQS } from "./bonus-tax-faqs";
+import { BONUS_TAX_FAQS, BONUS_5K, BONUS_5K_ROWS } from "./bonus-tax-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+// Google AU "related searches" for "bonus tax calculator" / "how much tax on
+// bonus australia" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Schedule 5 tax calculator", href: "/schedule-5-tax-table/" },
+  { label: "Tax withheld calculator", href: "/tax-withheld-calculator/" },
+  { label: "Tax rate on commission", href: "/commission-tax-calculator/" },
+  { label: "Back pay tax calculator", href: "/backpay-calculator/" },
+  { label: "Weekly tax calculator", href: "/weekly-pay-calculator/" },
+  { label: "Monthly pay calculator", href: "/monthly-pay-calculator/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Schedule 5 – Tax table for back payments", url: "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments", publisher: SOURCES.ato.name },
@@ -365,6 +377,40 @@ export default function BonusTaxCalculatorPage() {
             </div>
           </section>
 
+          {/* --- H2: $5,000 bonus (PAA target: answer paragraph + compact table) --- */}
+          <section>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Will I Pay on a $5,000 Bonus?</h2>
+            <p className="mb-4 text-warmgray">
+              A {formatAUD(BONUS_5K)} bonus usually costs between <strong>{formatAUD(Math.min(...BONUS_5K_ROWS.map((r) => r.tax)))}</strong> and <strong>{formatAUD(Math.max(...BONUS_5K_ROWS.map((r) => r.tax)))}</strong> in tax for FY{SITE_CONFIG.financialYear}, depending on your salary. It is taxed at your marginal rate plus the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, so a higher salary generally leaves less of the bonus in your pocket.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Tax on a {formatAUD(BONUS_5K)} bonus by salary, FY{SITE_CONFIG.financialYear}</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax on {formatAUD(BONUS_5K)}</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">You keep</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Rate</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {BONUS_5K_ROWS.map((r) => (
+                    <tr key={r.salary} className="hover:bg-sandstone">
+                      <td className="px-4 py-3 text-navy">{formatAUD(r.salary)}</td>
+                      <td className="px-4 py-3 text-right text-ochre">{formatAUD(r.tax)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(r.net)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatPercent(r.rate)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              Resident rates, no HECS-HELP debt, full year of salary. Your employer may withhold a slightly different amount from the bonus pay; the difference is settled when you lodge your return.
+            </p>
+          </section>
+
           {/* --- H2: What Changed in FY2026-27? --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Changed for Bonus Tax in FY{SITE_CONFIG.financialYear}?</h2>
@@ -503,6 +549,8 @@ export default function BonusTaxCalculatorPage() {
               <li><Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline">Tax Return Calculator</Link> &mdash; estimates whether you will receive a tax refund or owe a balance when you lodge your return after receiving bonus income</li>
             </ul>
           </section>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           <MethodologyDisclosure>
             <p className="mb-2 text-sm">This calculator estimates tax on bonuses using the following method:</p>

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
@@ -20,7 +21,7 @@ import {
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { WEEKLY_PAY_FAQS } from "./weekly-pay-calculator-faqs";
+import { WEEKLY_PAY_FAQS, WEEKLY_TAX_ANSWER, WEEKLY_WITHHOLDING_ROWS } from "./weekly-pay-calculator-faqs";
 
 // Worked-example figures, computed from the tax engine so the copy rolls over
 // with the constants (it had frozen at FY2025-26 16%-bracket numbers).
@@ -36,6 +37,17 @@ const PERIOD_PRESETS = [1_000, 1_500, 2_000, 2_500] as const;
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+// Google AU "related searches" for "weekly pay calculator" and "weekly pay
+// after tax calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Weekly tax table", href: "/weekly-tax-table/" },
+  { label: "Tax per week calculator ATO", href: "/tax-withheld-calculator/" },
+  { label: "Fortnightly pay calculator", href: "/fortnightly-pay-calculator/" },
+  { label: "Pay calculator hourly rate", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Take home pay calculator", href: "/take-home-pay-calculator/" },
+  { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -150,7 +162,7 @@ export default function WeeklyPayCalculatorPage() {
               Weekly take-home pay equals your gross annual salary divided by 52, minus PAYG income tax, the Medicare levy, and any HECS-HELP repayments withheld each week.
             </p>
             <p className="text-warmgray mb-4">
-              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the "Low Income Tax Offset" (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
+              The ATO requires employers to use PAYG (Pay As You Go) withholding tables that spread your total annual tax liability evenly across 52 pay periods. Your employer calculates the weekly amount using the published <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>, which accounts for the tax-free threshold of <strong>$18,200</strong>, the &quot;Low Income Tax Offset&quot; (LITO) of up to <strong>$700</strong>, and the applicable marginal tax rates.
             </p>
             <p className="text-warmgray mb-4">
               The calculation follows 4 steps:
@@ -163,6 +175,39 @@ export default function WeeklyPayCalculatorPage() {
             </ol>
             <p className="text-warmgray">
               Superannuation of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid by your employer on top of your salary and does not reduce your weekly take-home pay. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see the exact dollar amount your employer contributes each week.
+            </p>
+          </section>
+
+          {/* PAA: "How much is $1200 a week taxed in Australia?", "How much tax do I pay
+              if I earn $1500 a week?", "$750 a week" */}
+          <section id="tax-each-week">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Is Taken Out of My Weekly Pay?</h2>
+            <p className="text-warmgray mb-4">{WEEKLY_TAX_ANSWER.a}</p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Tax withheld per week, FY{SITE_CONFIG.financialYear}, tax-free threshold claimed</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Gross per week</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax withheld</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Take-home</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Yearly equivalent</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {WEEKLY_WITHHOLDING_ROWS.map((r) => (
+                    <tr key={r.gross}>
+                      <td className="px-4 py-3 text-navy font-medium">{formatAUD(r.gross)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.withheld)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.net)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.annual)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              ATO weekly tax table amounts for a resident claiming the tax-free threshold, no HECS-HELP debt. See every $1 step on the <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link>.
             </p>
           </section>
 
@@ -272,12 +317,12 @@ export default function WeeklyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax</h3>
             <p className="text-warmgray mb-4">
-              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The "Low Income Tax Offset" reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
+              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
             <p className="text-warmgray mb-4">
-              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The "Medicare Levy Surcharge" (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
+              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The &quot;Medicare Levy Surcharge&quot; (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
@@ -338,6 +383,8 @@ export default function WeeklyPayCalculatorPage() {
           <MethodologyDisclosure>
             <p>Calculations are based on 52 weeks per year. We divide the annual figures by 52 to provide the weekly equivalent. This aligns with standard ATO PAYG withholding practices.</p>
           </MethodologyDisclosure>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>

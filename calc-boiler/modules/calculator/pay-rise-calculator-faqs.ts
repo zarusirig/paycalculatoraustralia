@@ -16,6 +16,8 @@ import {
 import { DIVISION_293 } from "@/lib/constants/super-contributions";
 import { hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 import type { FaqItem } from "@/lib/faq";
+import { EMPLOYMENT } from "@/lib/constants";
+import { NMW_DECISION } from "@/lib/constants/minimum-wage";
 
 const FY = SITE_CONFIG.financialYear;
 const net = (gross: number, includeHECS = false) => calculatePayBreakdown({ grossSalary: gross, includeHECS }).takeHomePay;
@@ -50,7 +52,45 @@ const STAGE3_GAIN = STAGE3_RAISE * (B3.rate - B2.rate);
 const CROSS_FROM = B2.max - 1_000;
 const CROSS_TO = B2.max + 1_000;
 
+// ABS Wage Price Index, June quarter 2026 (released 19 Aug 2026): 3.2% over
+// the year, seasonally adjusted. Shared with the page copy.
+export const WPI_ANNUAL = 0.032;
+// ABS media release "CPI rose 3.8% in the year to June 2026" (quarterly CPI).
+export const CPI_ANNUAL = 0.038;
+
+// People Also Ask (Google AU, Sept 2026) for "pay rise calculator" and "salary
+// increase calculator": docs/seo/2026-09-24-paa-optimisation.md.
+const AWR = NMW_DECISION.awardIncrease;
+/** Percentage pay rises on an $80,000 salary, for the "how to calculate" table and FAQ. */
+export const RAISE_BASE = 80_000;
+export const RAISE_PERCENTAGES = [0.03, AWR, 0.05, 0.1] as const;
+export const RAISE_ROWS = RAISE_PERCENTAGES.map((rate) => {
+  const extra = Math.round(RAISE_BASE * rate);
+  const afterTax = raiseNet(RAISE_BASE, extra);
+  return { rate, newSalary: RAISE_BASE + extra, extra, afterTax, weekly: afterTax / 52 };
+});
+const ROW_5 = RAISE_ROWS.find((r) => r.rate === 0.05)!;
+
+/** PAA answer reused as the lead of the "How Do I Calculate My Pay Rise?" section. */
+export const CALCULATE_PAY_RISE_ANSWER: FaqItem = {
+  q: "How do I calculate my pay rise?",
+  a: `Divide the increase by your old salary and multiply by 100. A rise from ${formatAUD(RAISE_BASE)} to ${formatAUD(ROW_5.newSalary)} is ${formatAUD(ROW_5.extra)} ÷ ${formatAUD(RAISE_BASE)} = 5%. To go the other way, multiply your salary by 1 plus the percentage. After tax in ${FY}, that ${formatAUD(ROW_5.extra)} rise is worth ${formatAUD(ROW_5.afterTax)} a year, or ${formatAUD(ROW_5.weekly, 2)} a week.`,
+};
+
 export const PAY_RISE_FAQS: readonly FaqItem[] = [
+  CALCULATE_PAY_RISE_ANSWER,
+  {
+    q: "Are Australians getting a pay rise in 2026?",
+    a: `Award and minimum wage workers are. The Fair Work Commission's ${NMW_DECISION.name} lifted award rates and the National Minimum Wage by ${pct(AWR)} from ${NMW_DECISION.operativeFrom}, taking the minimum to ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour. Across all jobs, the ABS Wage Price Index rose ${pct(WPI_ANNUAL)} in the year to June 2026. Everyone else depends on their agreement or employer.`,
+  },
+  {
+    q: `Who gets the ${pct(AWR)} pay increase?`,
+    a: `Employees paid under a modern award, and award-free employees on the National Minimum Wage, got the ${pct(AWR)} increase from the first full pay period starting on or after ${NMW_DECISION.operativeFrom} (${NMW_DECISION.citation}). People on enterprise agreements or above-award salaries get whatever their agreement or employer sets, but their base pay can never fall below the new award rate.`,
+  },
+  {
+    q: "Is a 3% raise good in 2026?",
+    a: `It is a little below average. Wages across Australia rose ${pct(WPI_ANNUAL)} in the year to June 2026 (ABS Wage Price Index) and prices rose ${pct(CPI_ANNUAL)} (CPI), so a 3% rise is a small real pay cut. On ${formatAUD(RAISE_BASE)}, 3% is ${formatAUD(RAISE_ROWS[0].extra)} before tax and ${formatAUD(RAISE_ROWS[0].afterTax)} after tax for the year.`,
+  },
   {
     q: "Why is my pay rise taxed so highly?",
     a: `Your pay rise is taxed at your "marginal tax rate", which is the highest tax bracket your income falls into. This is often much higher than your average tax rate, meaning a larger percentage of your extra pay goes to the ATO. Between ${formatAUD(B2.min)} and ${formatAUD(B2.max)}, your marginal rate is ${pct0(B2.rate)} plus ${pct0(MEDICARE_LEVY.rate)} Medicare levy, totalling ${pct0(B2.rate + MEDICARE_LEVY.rate)}. Between ${formatAUD(B3.min)} and ${formatAUD(B3.max)}, the combined marginal rate rises to ${pct0(B3.rate + MEDICARE_LEVY.rate)}.`,

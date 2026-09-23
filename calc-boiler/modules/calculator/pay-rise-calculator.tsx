@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { PAY_RISE_FAQS } from "./pay-rise-calculator-faqs";
+import { CALCULATE_PAY_RISE_ANSWER, CPI_ANNUAL, PAY_RISE_FAQS, RAISE_BASE, RAISE_ROWS, WPI_ANNUAL } from "./pay-rise-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -38,14 +39,24 @@ const B2 = TAX_BRACKETS[2];
 // ABS Wage Price Index, June quarter 2026 (released 19 Aug 2026): 3.2% over
 // the year, seasonally adjusted. ABS Average Weekly Earnings, May 2026:
 // full-time adult ordinary time earnings $2,083.70 a week (seasonally adjusted).
-const WPI_ANNUAL = 0.032;
-// ABS media release "CPI rose 3.8% in the year to June 2026" (quarterly CPI).
-const CPI_ANNUAL = 0.038;
+// WPI_ANNUAL and CPI_ANNUAL now live in pay-rise-calculator-faqs.ts so the
+// FAQ answers and this copy share one figure.
 const AWOTE_ANNUAL = Math.round(2_083.7 * 52);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+// Google AU "related searches" for "pay rise calculator" and "salary increase
+// calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Pay calculator after tax", href: "/take-home-pay-calculator/" },
+  { label: "Pay calculator hourly rate", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Back pay on a backdated pay rise", href: "/backpay-calculator/" },
+  { label: "Minimum wage increase 2026", href: "/minimum-wage-australia/" },
+  { label: "Average salary in Australia", href: "/average-salary-australia/" },
+  { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -231,6 +242,40 @@ export default function PayRiseCalculatorPage() {
             </div>
           </section>
 
+          {/* PAA: "How do I calculate my pay raise?" — formula + compact table */}
+          <section id="calculate-pay-rise">
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do I Calculate My Pay Rise?</h2>
+            <p className="mb-4 text-warmgray">{CALCULATE_PAY_RISE_ANSWER.a}</p>
+            <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-lg mx-auto rounded-r-lg mb-4">
+              Pay rise % = (New salary &minus; Old salary) &divide; Old salary &times; 100
+            </div>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Percentage pay rises on {formatAUD(RAISE_BASE)}, FY{SITE_CONFIG.financialYear}</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Rise on {formatAUD(RAISE_BASE)}</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">New salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Extra before tax</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Extra after tax</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Per week</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {RAISE_ROWS.map((r) => (
+                    <tr key={r.rate}>
+                      <td className="px-4 py-3 text-navy font-medium">{Math.round(r.rate * 10_000) / 100}%</td>
+                      <td className="px-4 py-3 text-right text-navy">{formatAUD(r.newSalary)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.extra)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.afterTax)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.weekly, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Does the Pay Rise Impact Table Show?</h2>
             <p className="mb-4 text-warmgray">
@@ -413,6 +458,8 @@ export default function PayRiseCalculatorPage() {
               <li>Assuming the pay rise is added to Base Salary (not inclusive of Super).</li>
             </ul>
           </MethodologyDisclosure>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>

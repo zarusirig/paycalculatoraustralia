@@ -7,6 +7,7 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
+  EMPLOYMENT,
   formatAUD,
   formatPercent,
   GENERAL_INTEREST_CHARGE,
@@ -31,10 +32,33 @@ export const annualTaxAndMedicare = (income: number) =>
 export const DAY_RATE_GROSS = 1_000 * 5 * 48;
 export const DAY_RATE_NET = DAY_RATE_GROSS - annualTaxAndMedicare(DAY_RATE_GROSS);
 
+// People Also Ask (Google AU, Sept 2026) for "contractor pay calculator" and
+// "contractor rate calculator australia": docs/seo/2026-09-24-paa-optimisation.md.
+// The 80% rule wording was checked on 24 Sep 2026 against the ATO's "Working
+// out if the PSI rules apply": "To self-assess as a PSB, you must either meet
+// the results test, or meet another PSB test and pass the 80% rule."
+/** Billable weeks assumed across the page (52 less 4 weeks' unpaid leave). */
+export const BILLABLE_WEEKS = 48;
+const H = EMPLOYMENT.standardWeeklyHours;
+const TARGET_SALARY = 100_000;
+const FLOOR_RATE = (TARGET_SALARY * (1 + SUPER_GUARANTEE.rate)) / (H * BILLABLE_WEEKS);
+const EMPLOYEE_HOURLY = TARGET_SALARY / EMPLOYMENT.hoursPerYear;
+
+/** PAA answer reused as the lead of the "What Rate Should I Charge?" section. */
+export const CONTRACTOR_RATE_ANSWER: FaqItem = {
+  q: "What rate should I charge as a contractor?",
+  a: `Start from the salary you want to replace. To match ${formatAUD(TARGET_SALARY)} plus ${SG} super over ${BILLABLE_WEEKS} billable weeks of ${H} hours, you need at least ${formatAUD(FLOOR_RATE, 2)} an hour, against ${formatAUD(EMPLOYEE_HOURLY, 2)} an hour as an employee. That is the floor: unbilled time, insurance and sick days are why many contractors charge 1.4 to 1.6 times the employee rate.`,
+};
+
 export const CONTRACTOR_PAY_FAQS: readonly FaqItem[] = [
   {
     q: "How much do I take home as a contractor in Australia?",
     a: `A contractor charging $1,000 per day grosses ${formatAUD(DAY_RATE_GROSS)} over 48 working weeks and takes home roughly ${formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)} after income tax and the ${ML} Medicare levy (FY${FY}). Take-home varies with hourly or daily rate, hours worked, GST treatment, and whether you set aside the ${SG} Super Guarantee for yourself. ABN contractors need to charge more than an equivalent PAYG hourly rate to cover lost leave, super, and insurance.`,
+  },
+  CONTRACTOR_RATE_ANSWER,
+  {
+    q: "What is the 80% rule for contractors?",
+    a: "It is part of the ATO's personal services income (PSI) rules. If 80% or more of your PSI in a year comes from one client and its associates, you can only self-assess as a personal services business by passing the results test. If you fail it and have no personal services business determination from the ATO, the PSI rules apply, which limit the deductions you can claim and stop you splitting that income with others.",
   },
   {
     q: "What is a contractor for tax purposes?",

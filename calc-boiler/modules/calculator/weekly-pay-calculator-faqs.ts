@@ -15,6 +15,8 @@ import {
 } from "@/lib/constants";
 import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import type { FaqItem } from "@/lib/faq";
+import { calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
+import { AWE_HEADLINE, AWE_RELEASE } from "@/lib/data/average-salary";
 
 const FY = SITE_CONFIG.financialYear;
 const EX_SALARY = 80_000;
@@ -22,7 +24,38 @@ const EX = calculatePayBreakdown({ grossSalary: EX_SALARY, includeHECS: false, h
 const GROSS_WEEKLY = EX_SALARY / 52;
 const THRESHOLD_WEEKLY = TAX_FREE_THRESHOLD / 52;
 
+// People Also Ask (Google AU, Sept 2026) for "weekly pay calculator" and
+// "weekly pay after tax calculator": docs/seo/2026-09-24-paa-optimisation.md.
+const H = EMPLOYMENT.standardWeeklyHours;
+const ML = formatPercent(MEDICARE_LEVY.rate, 0);
+/** Weekly gross amounts for the "tax taken out each week" table and FAQs. */
+export const WEEKLY_WITHHOLDING_AMOUNTS = [500, 750, 1_000, 1_200, 1_500, 2_000, 2_500] as const;
+export const WEEKLY_WITHHOLDING_ROWS = WEEKLY_WITHHOLDING_AMOUNTS.map((gross) => {
+  const r = calculatePAYGWithholding(gross, "weekly");
+  return { gross, withheld: r.totalWithheld, net: r.netPerPeriod, annual: gross * 52 };
+});
+const WH = (gross: number) => WEEKLY_WITHHOLDING_ROWS.find((r) => r.gross === gross)!;
+
+/** PAA answer reused as the lead of the "tax taken out of my weekly pay" section. */
+export const WEEKLY_TAX_ANSWER: FaqItem = {
+  q: "How much tax will I pay on $1,200 a week?",
+  a: `If you claim the tax-free threshold, the ATO's ${FY} weekly tax table withholds ${formatAUD(WH(1_200).withheld)} from ${formatAUD(1_200)} a week, leaving ${formatAUD(WH(1_200).net)}. That covers income tax and the ${ML} Medicare levy. ${formatAUD(1_200)} a week is ${formatAUD(WH(1_200).annual)} a year. A HECS-HELP debt adds a separate repayment.`,
+};
+
 export const WEEKLY_PAY_FAQS: readonly FaqItem[] = [
+  {
+    q: "How do I calculate my weekly pay?",
+    a: `If you're paid by the hour, multiply your hourly rate by the hours you work in the week: $27 × ${H} hours = ${formatAUD(27 * H)}. If you're on a salary, divide it by 52: ${formatAUD(EX_SALARY)} ÷ 52 = ${formatAUD(GROSS_WEEKLY, 2)}. That is your gross weekly pay; tax withheld comes off it to give your take-home pay.`,
+  },
+  WEEKLY_TAX_ANSWER,
+  {
+    q: "How much tax do I pay if I earn $1,500 a week?",
+    a: `${formatAUD(WH(1_500).withheld)} a week if you claim the tax-free threshold, so you take home ${formatAUD(WH(1_500).net)} (ATO weekly tax table, ${FY}). On ${formatAUD(750)} a week the figure is ${formatAUD(WH(750).withheld)}, and on ${formatAUD(2_000)} it is ${formatAUD(WH(2_000).withheld)}. Without the threshold, for example at a second job, more is withheld.`,
+  },
+  {
+    q: "Is $1,200 a week good in Australia?",
+    a: `It is above the minimum wage but below average full-time pay. The National Minimum Wage is ${formatAUD(EMPLOYMENT.minimumWageWeekly, 2)} a week for ${H} hours, while the ABS put average full-time ordinary earnings at ${formatAUD(AWE_HEADLINE.fullTimeOrdinaryWeekly, 2)} a week in ${AWE_RELEASE.referencePeriod}. After tax, ${formatAUD(1_200)} a week is about ${formatAUD(WH(1_200).net)}.`,
+  },
   {
     q: "How is weekly pay calculated in Australia?",
     a: `Weekly pay is calculated by dividing your gross annual salary by 52 weeks, then subtracting PAYG income tax, the Medicare levy (${formatPercent(MEDICARE_LEVY.rate, 0)}), and any HECS-HELP repayments. An employee earning ${formatAUD(EX_SALARY)} per year receives gross weekly pay of ${formatAUD(GROSS_WEEKLY, 2)}. After ${formatAUD(EX.netIncomeTax / 52, 2)} in income tax and ${formatAUD(EX.medicareLevy / 52, 2)} in Medicare levy, the weekly take-home pay is ${formatAUD(EX.weekly, 2)} in FY${FY}.`,

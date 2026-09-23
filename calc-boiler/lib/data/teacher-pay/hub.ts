@@ -117,3 +117,32 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
 
   return faqs;
 }
+
+const ORDINALS = ["highest", "2nd highest", "3rd highest", "4th highest", "5th highest", "6th highest", "7th highest", "8th highest"];
+
+/**
+ * The FAQ list a STATE page renders and marks up: the state's own verified
+ * answers plus one cross-state comparison built from the same rows as the hub.
+ * PAA source: "Which Australian state pays teachers the highest?" on the live
+ * Google AU SERP for "teachers salary qld" (docs/seo/2026-09-24-paa-optimisation.md).
+ * Both the accordion and the FAQPage JSON-LD read this, so they cannot drift.
+ */
+export function teacherStateFaqs(state: TeacherPayState): TeacherPayFaq[] {
+  if (state.faqs.length === 0) return [];
+  const { rows, highestGraduate, highestTop } = teacherHubSummary();
+  const self = rows.find((r) => r.state.slug === state.slug);
+  if (!self || rows.length < 2) return state.faqs;
+  const rank = (key: "graduate" | "top") =>
+    [...rows].sort((a, b) => b[key] - a[key]).findIndex((r) => r.state.slug === state.slug);
+  const place = (i: number) => (i === rows.length - 1 ? "lowest" : ORDINALS[i]);
+  const gradPlace = place(rank("graduate"));
+  const topPlace = place(rank("top"));
+  const name = state.nameInSentence.charAt(0).toUpperCase() + state.nameInSentence.slice(1);
+  return [
+    ...state.faqs,
+    {
+      q: "Which Australian state pays teachers the highest?",
+      a: `For a new graduate, ${highestGraduate.state.nameInSentence} pays the most (${formatAUD(highestGraduate.graduate)}); at the top of the classroom scale, ${highestTop.state.nameInSentence} (${formatAUD(highestTop.top)}). ${name} pays ${formatAUD(self.graduate)} to a graduate, the ${gradPlace} of ${rows.length} states and territories, and ${formatAUD(self.top)} at the top of the scale, the ${topPlace}. Each state's rates took effect on different dates${state.nextIncrease ? `; ${state.nameInSentence}'s next change: ${state.nextIncrease.date}` : ""}.`,
+    },
+  ];
+}

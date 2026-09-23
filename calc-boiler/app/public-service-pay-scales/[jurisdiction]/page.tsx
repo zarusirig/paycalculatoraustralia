@@ -6,6 +6,7 @@ import type { BreadcrumbList, Dataset, FAQPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTION_SLUGS, getJurisdiction } from "@/lib/data/public-service-pay";
+import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 
 interface PageProps {
   params: Promise<{ jurisdiction: string }>;
@@ -71,7 +72,8 @@ export default async function Page({ params }: PageProps) {
   const faq: WithContext<FAQPage> = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: jurisdiction.faqs.map((f) => ({
+    // Same list as the on-page accordion (own FAQs + PAA additions).
+    mainEntity: jurisdictionFaqs(jurisdiction).map((f) => ({
       "@type": "Question" as const,
       name: f.q,
       acceptedAnswer: { "@type": "Answer" as const, text: f.a },

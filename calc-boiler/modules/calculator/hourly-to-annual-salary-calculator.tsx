@@ -2,12 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { FEATURED_HOURLY_RATES, HOURLY_RATE_PAGES, hourlyRateSlug } from "@/lib/constants/hourly-rates";
 import { annualFromHourly } from "@/modules/programmatic/hourly-to-salary";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { HOURLY_TO_ANNUAL_FAQS } from "./hourly-to-annual-salary-calculator-faqs";
+import { HOURLY_TO_ANNUAL_FAQS, SALARY_TO_HOURLY_ANSWER, SALARY_TO_HOURLY_ROWS } from "./hourly-to-annual-salary-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -45,6 +46,17 @@ const HEADLINE_RATE = 30;
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+// Google AU "related searches" for "hourly to annual salary calculator" and
+// "hourly rate to salary calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Salary to hourly rate calculator", href: "/salary-to-hourly/" },
+  { label: "Hourly to salary calculator with taxes", href: "/take-home-pay-calculator/" },
+  { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
+  { label: "Monthly salary calculator", href: "/monthly-pay-calculator/" },
+  { label: "Weekly pay calculator", href: "/weekly-pay-calculator/" },
+  { label: "Fortnightly pay calculator", href: "/fortnightly-pay-calculator/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwc.name },
@@ -276,6 +288,36 @@ export default function HourlyToAnnualCalculatorPage() {
             <p className="text-warmgray">
               The gross salary of <strong>$89,908</strong> is the figure used to calculate your income tax, Medicare levy, and any HECS-HELP repayments. Use the <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Take-Home Pay Calculator</Link> to see the net amount deposited into your bank account each pay cycle.
             </p>
+          </section>
+
+          {/* H2: Salary to hourly (PAA: "How do I work out my hourly rate based on salary?",
+              "What is $70,000 a year hourly in Australia?") */}
+          <section id="salary-to-hourly">
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do I Work Out My Hourly Rate From My Salary?</h2>
+            <p className="mb-4 text-warmgray">{SALARY_TO_HOURLY_ANSWER.a}</p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Annual salary to hourly rate, {EMPLOYMENT.standardWeeklyHours}-hour week</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Annual salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Hourly rate</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Weekly</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {SALARY_TO_HOURLY_ROWS.map((r) => (
+                    <tr key={r.salary}>
+                      <td className="px-4 py-3 text-navy font-medium">
+                        {r.href ? <Link href={r.href} className="text-eucalyptus-dark hover:underline">{formatAUD(r.salary)}</Link> : formatAUD(r.salary)}
+                      </td>
+                      <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(r.hourly, 2)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.salary / EMPLOYMENT.weeksPerYear, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
 
           {/* H2: Hourly to Annual Conversion Table */}
@@ -571,6 +613,8 @@ export default function HourlyToAnnualCalculatorPage() {
               </Link>
             </div>
           </section>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           {/* H2: FAQs */}
           <section>

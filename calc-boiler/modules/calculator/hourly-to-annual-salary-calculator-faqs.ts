@@ -15,6 +15,9 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import type { FaqItem } from "@/lib/faq";
+import { AWE_HEADLINE, AWE_RELEASE, annualise } from "@/lib/data/average-salary";
+import { NMW } from "@/lib/constants/minimum-wage";
+import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 
 const FY = SITE_CONFIG.financialYear;
 const H = EMPLOYMENT.standardWeeklyHours;
@@ -35,6 +38,24 @@ const perYear = (rate: number): FaqItem => ({
   q: `$${rate} an hour is how much a year in Australia?`,
   a: `$${rate}/hr full-time (${H}h/week, ${W} weeks) = ${formatAUD(annualAt(rate))} gross per year, ${formatAUD(netAt(rate))} after tax (FY${FY}).`,
 });
+
+// People Also Ask (Google AU, Sept 2026) for "hourly to annual salary
+// calculator" and "hourly rate to salary calculator":
+// docs/seo/2026-09-24-paa-optimisation.md.
+/** Salary → hourly reverse table (PAA: "How do I work out my hourly rate based on salary?"). */
+export const SALARY_TO_HOURLY_ROWS = [50_000, 60_000, 70_000, 80_000, 90_000, 100_000, 120_000, 150_000].map((salary) => ({
+  salary,
+  hourly: salary / HOURS,
+  href: SALARY_TO_HOURLY_SALARIES.includes(salary) ? `/salary-to-hourly/${salary}/` : null,
+}));
+const AWOTE_ANNUAL = annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly);
+const AWOTE_HOURLY = AWE_HEADLINE.fullTimeOrdinaryWeekly / H;
+
+/** PAA answer reused as the lead of the salary-to-hourly section. */
+export const SALARY_TO_HOURLY_ANSWER: FaqItem = {
+  q: "How do I work out my hourly rate based on salary?",
+  a: `Divide your annual salary by ${HOURS_LABEL}, the paid hours in a full-time year (${H} hours × ${W} weeks). For example, ${formatAUD(70_000)} ÷ ${HOURS_LABEL} = ${formatAUD(70_000 / HOURS, 2)} an hour. If your contract is for different weekly hours, divide by those hours × ${W} instead.`,
+};
 
 export const HOURLY_TO_ANNUAL_FAQS: readonly FaqItem[] = [
   {
@@ -76,5 +97,14 @@ export const HOURLY_TO_ANNUAL_FAQS: readonly FaqItem[] = [
     q: "Does my HECS-HELP debt affect this conversion?",
     a: `The hourly-to-annual conversion itself is unaffected, but HECS-HELP repayments reduce your take-home pay once annual income exceeds the compulsory repayment threshold of ${formatAUD(HECS_HELP.minimumThreshold)} for FY${FY}. At $30/hr (${H} hours) your annual salary of ${formatAUD(annualAt(30))} is below the threshold, so no repayment applies. At $40/hr it reaches ${formatAUD(annualAt(40))} and the marginal rate of ${Math.round(HECS_HELP.bands[1].marginalRate * 100)}c per dollar above the threshold applies to the excess. Use our HECS-HELP Calculator to see the exact repayment amount.`,
     links: { "HECS-HELP Calculator": "/hecs-help-calculator/" },
+  },
+  SALARY_TO_HOURLY_ANSWER,
+  {
+    q: "What is $70,000 a year hourly in Australia?",
+    a: `${formatAUD(70_000)} a year is ${formatAUD(70_000 / HOURS, 2)} an hour on a standard ${H}-hour week (${formatAUD(70_000)} ÷ ${HOURS_LABEL} hours). That is ${formatAUD(70_000 / W, 2)} a week before tax, and about ${formatAUD(calculatePayBreakdown({ grossSalary: 70_000 }).takeHomePay)} a year after tax in FY${FY}.`,
+  },
+  {
+    q: "Is $45 an hour good in Australia?",
+    a: `$45 an hour full-time is ${formatAUD(annualAt(45))} a year, about ${formatAUD(netAt(45))} after tax in FY${FY}. That is well above the ${formatAUD(NMW.hourly, 2)} minimum wage but below average full-time ordinary earnings, which the ABS put at ${formatAUD(AWE_HEADLINE.fullTimeOrdinaryWeekly, 2)} a week (${formatAUD(AWOTE_ANNUAL)} a year, or ${formatAUD(AWOTE_HOURLY, 2)} an hour) in ${AWE_RELEASE.referencePeriod}.`,
   },
 ];

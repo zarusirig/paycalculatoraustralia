@@ -1,9 +1,10 @@
 "use client";
 
 import FaqAccordion from "@/components/common/faq-accordion";
-import { CONTRACTOR_PAY_FAQS, DAY_RATE_GROSS, DAY_RATE_NET, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
+import { BILLABLE_WEEKS, CONTRACTOR_PAY_FAQS, CONTRACTOR_RATE_ANSWER, DAY_RATE_GROSS, DAY_RATE_NET, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
@@ -33,6 +34,17 @@ const CC_CAP = SUPER_GUARANTEE.concessionalCap;
 // Medicare levy avoided, less 15% contributions tax (taxable income stays in
 // the 30% bracket after the contribution).
 const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
+
+// Google AU "related searches" for "contractor pay calculator" and "contractor
+// rate calculator australia" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Contractor vs employee calculator", href: "/contractor-vs-employee-calculator/" },
+  { label: "ABN vs company vs employee", href: "/employee-vs-sole-trader-vs-company/" },
+  { label: "Hourly rate to salary calculator", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Salary to hourly rate calculator", href: "/salary-to-hourly/" },
+  { label: "Construction and trades pay", href: "/construction-trades-pay/" },
+  { label: "Gig economy pay guide", href: "/gig-economy-pay-guide/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -494,6 +506,15 @@ export default function ContractorPayCalculator() {
           </p>
         </section>
 
+        {/* PAA: "What rate should I charge as a contractor?" */}
+        <section id="contractor-rate">
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Rate Should I Charge as a Contractor?</h2>
+          <p className="mb-4 text-warmgray">{CONTRACTOR_RATE_ANSWER.a}</p>
+          <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-xl mx-auto rounded-r-lg">
+            Minimum hourly rate = Target salary &times; (1 + {formatPercent(SUPER_GUARANTEE.rate, 0)} super) &divide; ({EMPLOYMENT.standardWeeklyHours} hours &times; {BILLABLE_WEEKS} weeks)
+          </div>
+        </section>
+
         {/* What Hourly Rate Equals a Salary? */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Contractor Hourly Rate Equals a Salary?</h2>
@@ -607,6 +628,8 @@ export default function ContractorPayCalculator() {
             ))}
           </ul>
         </section>
+
+        <RelatedSearches items={RELATED_SEARCHES} />
 
         {/* FAQ */}
         <section>

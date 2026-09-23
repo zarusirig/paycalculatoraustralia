@@ -2,10 +2,11 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import FaqAccordion from "@/components/common/faq-accordion";
-import { FORTNIGHTLY_FAQS } from "./fortnightly-pay-calculator-faqs";
+import { FORTNIGHTLY_FAQS, FORTNIGHTLY_TAX_ANSWER, FORTNIGHTLY_WITHHOLDING_ROWS } from "./fortnightly-pay-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -31,10 +32,24 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
+// Google AU "related searches" for "fortnightly pay calculator" and
+// "fortnightly tax calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Fortnightly tax table 2026-27", href: "/fortnightly-tax-table/" },
+  { label: "Tax withheld calculator", href: "/tax-withheld-calculator/" },
+  { label: "Weekly tax calculator", href: "/weekly-pay-calculator/" },
+  { label: "Monthly salary calculator", href: "/monthly-pay-calculator/" },
+  { label: "Pay calculator hourly rate", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Take home pay calculator", href: "/take-home-pay-calculator/" },
+];
+
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: "PAYG withholding fortnightly tax table", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
 ];
+
+// Static worked example ($85,000), computed once at module scope.
+const workedExample = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: false, hasPrivateHealth: true });
 
 export default function FortnightlyPayCalculatorPage() {
   // "fortnightly tax calculator" searchers know their fortnightly pay, not their salary
@@ -53,10 +68,6 @@ export default function FortnightlyPayCalculatorPage() {
   // Answer-first lead: the default salary's take-home every fortnight.
   const lead = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
 
-  const workedExample = useMemo(
-    () => calculatePayBreakdown({ grossSalary: 85_000, includeHECS: false, hasPrivateHealth: true }),
-    []
-  );
 
   return (
     <div className="min-h-screen flex-grow">
@@ -219,6 +230,39 @@ export default function FortnightlyPayCalculatorPage() {
             </ol>
             <p className="text-warmgray mb-4">
               The employer also contributes <strong>{formatAUD(workedExample.superContribution / 26, 2)}</strong> in superannuation per fortnight at the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate. This amount does not reduce take-home pay. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to see how employer SG contributions grow over time.
+            </p>
+          </section>
+
+          {/* --- TAX TAKEN OUT EACH FORTNIGHT (PAA: "How much tax do I pay if I get paid
+              fortnightly?" / "How much will I get taxed each fortnight?") --- */}
+          <section id="tax-each-fortnight">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Much Tax Is Taken Out Each Fortnight?</h2>
+            <p className="text-warmgray mb-4">{FORTNIGHTLY_TAX_ANSWER.a}</p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Tax withheld per fortnight, FY{SITE_CONFIG.financialYear}, tax-free threshold claimed</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Gross per fortnight</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Tax withheld</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Take-home</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Yearly equivalent</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {FORTNIGHTLY_WITHHOLDING_ROWS.map((r) => (
+                    <tr key={r.gross}>
+                      <td className="px-4 py-3 text-navy font-medium">{formatAUD(r.gross)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.withheld)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.net)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.annual)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-warmgray">
+              ATO fortnightly tax table amounts for a resident claiming the tax-free threshold, no HECS-HELP debt. See every $1 step on the <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link>.
             </p>
           </section>
 
@@ -408,6 +452,8 @@ export default function FortnightlyPayCalculatorPage() {
           <MethodologyDisclosure>
             <p>Calculations are based on 26 fortnights per year. We divide the annual figures by 26 to provide the fortnightly equivalent. This aligns with standard ATO PAYG withholding practices.</p>
           </MethodologyDisclosure>
+
+          <RelatedSearches items={RELATED_SEARCHES} />
 
           {/* --- FAQs --- */}
           <section>
