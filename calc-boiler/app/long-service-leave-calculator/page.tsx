@@ -10,7 +10,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/long-service-leave-calculator/`;
-const TITLE = "Long Service Leave Calculator — All 8 States and Territories";
+const TITLE = "Long Service Leave Calculator Australia — NSW, VIC, QLD & All States";
 const DESCRIPTION =
   "Work out your long service leave: weeks accrued, what you can take now, what is paid out if you resign, and the tax on it. Every state and territory Act compared — 8.667 weeks at 10 years in NSW, QLD, WA and Tasmania, 13 weeks in SA and the NT, 7-year qualifying periods in Victoria and the ACT.";
 

@@ -29,6 +29,14 @@ export const SAPTO_FAQS: readonly SaptoFaq[] = [
     a: "You must meet two conditions. First, you must receive an Australian Government pension or allowance — Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension if you are age-pension age, or a DVA service pension — or qualify for the age pension without claiming it. Second, your rebate income must be under the relevant limit. Age-pension age has been 67 since 1 July 2023.",
   },
   {
+    q: "Am I eligible for SAPTO?",
+    a: `Check three things. (1) You received an eligible payment — Age Pension, Carer Payment, Parenting Payment (single), Disability Support Pension or invalidity service pension at age-pension age, a DVA age service pension, income support supplement or Veteran Payment — or you were 67 or older and eligible for the Age Pension but did not get it because you did not claim or failed the income or assets test. (2) Your rebate income is under ${formatAUD(S.cutOutThreshold)} single, or half your combined rebate income is under ${formatAUD(C.cutOutThreshold)} for a couple. (3) You were not in jail for the whole year.`,
+  },
+  {
+    q: "Can self-funded retirees get SAPTO?",
+    a: "Yes, if they are age-pension age (67) and would be eligible for the Age Pension apart from not claiming it or failing its income or assets test, meet the residence rules, and are under the SAPTO rebate income limit. Many self-funded retirees qualify this way without receiving any pension.",
+  },
+  {
     q: "How is SAPTO calculated for a couple?",
     a: `Two different incomes are used, which catches people out. Eligibility is tested on HALF your combined rebate income against the cut-out threshold of ${formatAUD(C.cutOutThreshold)}. But the offset amount is then worked out on your OWN rebate income against the shading-out threshold of ${formatAUD(C.shadingOutThreshold)}. So a couple can qualify while one partner still receives nothing because their individual income is too high.`,
   },

@@ -12,7 +12,7 @@ const T = HECS_HELP.minimumThreshold;
 const B2 = HECS_HELP.bands[2];
 const B3 = HECS_HELP.bands[3];
 
-const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} — ${formatAUD(T)} Threshold & Rates`;
+const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} — Thresholds & Rates Table`;
 const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, repayment at common incomes, indexation history, voluntary repayments and the overseas rules — one page for every study and training loan.`;
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * The former /hecs-help-calculator/ and /hecs-help-calculator/#threshold pages were merged
+ * The former /hecs-help-guide/ and /hecs-repayment-threshold/ pages were merged
  * into this one on 2026-08-28 (both 301 here): GSC showed the guide taking half
  * the HECS impressions at 0.18% CTR and the threshold page at 0 clicks, while
  * this page converted at 1.1%. Their distinct FAQs live below.
@@ -45,6 +45,10 @@ const FAQS: readonly CalculatorFaq[] = [
   {
     q: "How much is my HECS repayment on $80,000?",
     a: `On repayment income of ${formatAUD(80_000)} the compulsory repayment is ${formatAUD(calculateHECS(80_000))} for the year, about ${formatAUD(annualToWeekly(calculateHECS(80_000)), 2)} a week, in ${SITE_CONFIG.financialYear}. It is 15c for each $1 of the ${formatAUD(80_000 - T)} above the ${formatAUD(T)} threshold.`,
+  },
+  {
+    q: "How do I calculate my HECS repayment?",
+    a: `Take your repayment income (taxable income plus reportable fringe benefits, net investment losses, reportable super contributions and exempt foreign employment income) and find its band. For ${SITE_CONFIG.financialYear}: nil up to ${formatAUD(T)}; 15% of the income over ${formatAUD(T)}; ${formatAUD(B2.base)} plus 17% of the income over ${formatAUD(B2.min - 1)}; or ${B3.marginalRate * 100}% of your whole repayment income from ${formatAUD(B3.min)}. On ${formatAUD(100_000)} that is 15% × ${formatAUD(100_000 - T)} = ${formatAUD(calculateHECS(100_000))}.`,
   },
   {
     q: "Which student loans does this calculator cover?",
