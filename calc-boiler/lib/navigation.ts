@@ -98,6 +98,10 @@ export const GUIDE_CATEGORIES = [
       { href: "/tax-refund-guide/", label: "Tax Refund Guide", description: "Maximise your tax return" },
       { href: "/tax-calendar/", label: "Tax Calendar", description: "Key ATO dates and deadlines" },
       { href: "/fringe-benefits-tax/", label: "Fringe Benefits Tax (FBT)", description: "Employer-provided benefits tax" },
+      // --- W2 wave 2 (23 Sep 2026) ---
+      { href: "/tax-free-threshold/", label: "Tax-Free Threshold", description: "$18,200, and which job to claim it on" },
+      { href: "/medicare-levy-surcharge-calculator/", label: "Medicare Levy Surcharge Calculator", description: "MLS tiers and cover vs surcharge" },
+      // --- end W2 ---
     ],
   },
   {
@@ -106,6 +110,10 @@ export const GUIDE_CATEGORIES = [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
       { href: "/novated-lease-guide/", label: "How a Novated Lease Works", description: "The agreement and running-cost budget, explained" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
+      // --- W2 wave 2 (23 Sep 2026) ---
+      { href: "/concessional-contributions-cap/", label: "Concessional Contributions Cap", description: "The cap, carry-forward and salary sacrifice" },
+      { href: "/super-guarantee-rate-history/", label: "Super Guarantee Rate", description: "12% from 1 July 2025, and every rate since" },
+      // --- end W2 ---
     ],
   },
   {
@@ -351,6 +359,10 @@ export const FOOTER_GUIDES_TAX = [
   { href: "/notice-of-assessment/", label: "Notice of Assessment" },
   { href: "/private-health-insurance-medicare/", label: "PHI & Medicare" },
   { href: "/fringe-benefits-tax/", label: "Fringe Benefits Tax" },
+  // --- W2 wave 2 (23 Sep 2026) ---
+  { href: "/tax-free-threshold/", label: "Tax-Free Threshold" },
+  { href: "/medicare-levy-surcharge-calculator/", label: "Medicare Levy Surcharge" },
+  // --- end W2 ---
 ] as const;
 
 export const FOOTER_GUIDES_SUPER_PAY = [
@@ -361,6 +373,9 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/super-co-contribution/", label: "Super Co-Contribution" },
   { href: "/super-guarantee-rate-history/", label: "SG Rate History" },
   { href: "/super-guarantee-charge/", label: "Super Guarantee Charge" },
+  // --- W2 wave 2 (23 Sep 2026) ---
+  { href: "/concessional-contributions-cap/", label: "Concessional Cap" },
+  // --- end W2 ---
   { href: "/salary-sacrifice-vs-mortgage/", label: "Sacrifice vs Mortgage" },
   { href: "/extra-super-vs-hecs-repayment/", label: "Super vs HECS" },
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
