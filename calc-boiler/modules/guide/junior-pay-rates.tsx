@@ -17,10 +17,12 @@ import {
   JUNIOR_BANDS_SOURCE,
   JUNIOR_RATES,
   MINIMUM_WORKING_AGE,
+  JUNIOR_TRANSITION_SCHEDULES,
   NMW_ORDER,
   PENDING_JUNIOR_CHANGE,
 } from "@/lib/constants/junior-rates";
 import { JUNIOR_FAQS } from "@/modules/guide/junior-pay-rates-faqs";
+import { MIN_WAGE_AGES, ageSummary, money } from "@/modules/guide/minimum-wage-by-age-data";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
@@ -47,13 +49,13 @@ export default function JuniorPayRatesPage() {
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
             <li><Link href="/award-rates/" className="hover:text-eucalyptus-dark hover:underline">Award Rates</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
-            <li><span className="font-medium text-navy" aria-current="page">Junior Pay Rates</span></li>
+            <li><span className="font-medium text-navy" aria-current="page">Minimum Wage by Age</span></li>
           </ol>
         </nav>
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Junior Pay Rates {SITE_CONFIG.financialYear} &mdash; Minimum Wage by Age
+            Minimum Wage by Age {SITE_CONFIG.financialYear}: Junior Pay Rates for 14 to 20 Year Olds
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
             What under-{ADULT_AGE}s must legally be paid in Australia, for the National Minimum Wage and for the awards that cover most young workers.
@@ -65,6 +67,72 @@ export default function JuniorPayRatesPage() {
           </div>
           <TrustBar className="!max-w-none" />
         </header>
+
+        {/* Age-led summary: the queries are "minimum wage for a 15 year old" etc. */}
+        <section id="by-age" className="mb-12" aria-labelledby="by-age-heading">
+          <h2 id="by-age-heading" className="mb-3 text-2xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Minimum Wage by Age at a Glance
+          </h2>
+          <p className="mb-4 max-w-4xl text-warmgray">
+            Hourly rates from {NMW_ORDER.operativeFrom}, with casual rates in brackets. Pick an age for weekly pay at 10, 15 and 20 hours, tax, and the rules for that age.
+          </p>
+          <nav aria-label="Jump to an age" className="mb-5 flex flex-wrap gap-2">
+            {MIN_WAGE_AGES.map((a) => (
+              <Link key={a} href={`/minimum-wage-by-age/${a}/`} className="rounded-full border border-eucalyptus/40 bg-white px-4 py-1.5 text-sm font-medium text-eucalyptus-dark hover:bg-eucalyptus/10">
+                {a} year olds
+              </Link>
+            ))}
+            <Link href="/minimum-wage-australia/" className="rounded-full border border-eucalyptus/40 bg-white px-4 py-1.5 text-sm font-medium text-eucalyptus-dark hover:bg-eucalyptus/10">
+              {ADULT_AGE} and over
+            </Link>
+            <a href="#award-junior-scales" className="rounded-full border border-sandstone-dark/30 bg-sandstone px-4 py-1.5 text-sm font-medium text-navy hover:bg-sandstone-dark/10">By award</a>
+            <a href="#pending-change" className="rounded-full border border-sandstone-dark/30 bg-sandstone px-4 py-1.5 text-sm font-medium text-navy hover:bg-sandstone-dark/10">Are rates changing?</a>
+            <a href="#minimum-working-age" className="rounded-full border border-sandstone-dark/30 bg-sandstone px-4 py-1.5 text-sm font-medium text-navy hover:bg-sandstone-dark/10">Working age by state</a>
+          </nav>
+          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+            <table className="w-full min-w-[40rem] text-left text-sm text-navy">
+              <caption className="sr-only">Minimum wage by age in Australia from {NMW_ORDER.operativeFrom}</caption>
+              <thead className="bg-sandstone font-semibold text-navy">
+                <tr>
+                  <th scope="col" className="px-4 py-3">Age</th>
+                  <th scope="col" className="px-4 py-3">No award (NMW)</th>
+                  <th scope="col" className="px-4 py-3">Retail award L1</th>
+                  <th scope="col" className="px-4 py-3">Fast food award L1</th>
+                  <th scope="col" className="px-4 py-3">Hospitality award L1</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                {MIN_WAGE_AGES.map((a) => {
+                  const s = ageSummary(a);
+                  return (
+                    <tr key={a}>
+                      <th scope="row" className="px-4 py-3 text-left font-medium">
+                        <Link href={`/minimum-wage-by-age/${a}/`} className="text-eucalyptus-dark hover:underline">{a} year old</Link>
+                      </th>
+                      <td className="px-4 py-3 font-medium">{money(s.nmw.hourly)} <span className="text-warmgray">({money(s.nmw.casualHourly)})</span></td>
+                      <td className="px-4 py-3">
+                        {money(s.retail.hourly)} <span className="text-warmgray">({money(s.retail.casualHourly)})</span>
+                        {a === 20 ? <span className="block text-xs text-warmgray">first 6 months; adult rate after</span> : null}
+                      </td>
+                      <td className="px-4 py-3">{money(s.fastFood.hourly)} <span className="text-warmgray">({money(s.fastFood.casualHourly)})</span></td>
+                      <td className="px-4 py-3">{money(s.hospitality.hourly)} <span className="text-warmgray">({money(s.hospitality.casualHourly)})</span></td>
+                    </tr>
+                  );
+                })}
+                <tr className="bg-eucalyptus/5">
+                  <th scope="row" className="px-4 py-3 text-left font-medium">
+                    <Link href="/minimum-wage-australia/" className="text-eucalyptus-dark hover:underline">{ADULT_AGE} and over</Link>
+                  </th>
+                  <td className="px-4 py-3 font-medium">{formatAUD(EMPLOYMENT.minimumWageHourly, 2)} <span className="text-warmgray">({formatAUD(byAge("21 and over").casualHourly, 2)})</span></td>
+                  <td className="px-4 py-3" colSpan={3}>Full adult rate for the classification</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-warmgray-light">
+            No-award figures match the Fair Work Ombudsman&rsquo;s published rates. Award figures are the junior percentage of each award&rsquo;s Level 1 weekly rate divided by {EMPLOYMENT.standardWeeklyHours}; the fast food figures match the award&rsquo;s own Schedule A. 14 and 15 year olds share the under-16 band, and hospitality applies one under-17 rate to 14, 15 and 16 year olds.
+          </p>
+        </section>
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
@@ -152,7 +220,7 @@ export default function JuniorPayRatesPage() {
                 </div>
               ))}
               <p>
-                <strong>Three differences worth knowing.</strong> Retail and fast food pay differently at under-16 &mdash; 45% against 40% &mdash; while matching exactly at 16 through 19. Retail&rsquo;s 20-year-old band splits on service, reaching the adult rate only after more than six months with the same employer, where fast food holds 20-year-olds at 90% until they turn 21. And Hair and Beauty reaches the full adult rate at 18, the earliest of any common award.
+                <strong>Three differences worth knowing.</strong> Retail and fast food pay differently at under-16 &mdash; 45% against 40% &mdash; while matching exactly at 16 through 19. Retail&rsquo;s 20-year-old band splits on service, reaching the adult rate only after more than six months with the same employer, where fast food currently holds 20-year-olds at 90% until they turn 21 (that changes from 1 December 2026 for those with more than six months&rsquo; service; <a href="#pending-change">see below</a>). And Hair and Beauty reaches the full adult rate at 18, the earliest of any common award.
               </p>
               <p>
                 Full classification tables are on our <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages. Hospitality is a fourth scale again, paying 85% at 19 where retail pays 80%, and it has a separate table for office employees.
@@ -169,56 +237,69 @@ export default function JuniorPayRatesPage() {
               </p>
             </section>
 
-            {/* THE PENDING CHANGE — most commonly misreported item on this topic */}
+            {/* THE 18–20 TRANSITION — determined 26 Aug 2026, operative 1 Dec 2026, and widely misreported */}
             <section id="pending-change">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Are Junior Rates Changing?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Are Junior Rates Changing? Yes, for 18 to 20 Year Olds from 1 December 2026</h2>
               <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <div className="flex items-start gap-4">
                   <AlertTriangle className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" aria-hidden="true" />
                   <div>
-                    <h3 className="mb-2 text-base font-bold text-navy">Not yet &mdash; and not the way it is usually reported</h3>
+                    <h3 className="mb-2 text-base font-bold text-navy">Decided, starting {PENDING_JUNIOR_CHANGE.earliestStart}, and phased in over years</h3>
                     <p className="mb-2 text-sm leading-relaxed text-navy">
-                      Fair Work Commission decision <strong>{PENDING_JUNIOR_CHANGE.decision}</strong> ({PENDING_JUNIOR_CHANGE.decidedOn}) would raise junior rates for 18 to 20-year-olds under the {PENDING_JUNIOR_CHANGE.awards.join(", ")} who have {PENDING_JUNIOR_CHANGE.serviceQualifier}. <strong>Nothing has been varied.</strong> The Commission said it will hear the parties on timing before making any determination, and the schedule below is expressly a provisional view.
+                      On {PENDING_JUNIOR_CHANGE.implementationDecidedOn} the Fair Work Commission ({PENDING_JUNIOR_CHANGE.implementationDecision}, following {PENDING_JUNIOR_CHANGE.decision}) varied the {PENDING_JUNIOR_CHANGE.awards.join(", ")} so that 18 to 20-year-olds who have worked for their employer for <strong>more than 6 months</strong> move to the adult rate in stages. The first stage applies from the first full pay period starting on or after <strong>{PENDING_JUNIOR_CHANGE.earliestStart}</strong>. Until then, the current rates on this page apply.
                     </p>
                     <p className="text-sm leading-relaxed text-navy">
-                      It is also <strong>not a jump to the adult rate</strong>. It is a phase-in of about five percentage points every six months. On 1 December 2026, if adopted, an eligible 19-year-old would move from 80% to 85% &mdash; not to 100%.
+                      It is <strong>not a jump to the adult rate</strong>. On {PENDING_JUNIOR_CHANGE.earliestStart} an eligible 19-year-old moves from 80% to 85%, not to 100%. Employees with 6 months or less stay on 70%, 80% and 90%, and rates for under-18s do not change.
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="not-prose my-6">
-                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full min-w-[30rem] text-left text-sm text-navy">
-                    <caption className="sr-only">Provisional junior rate phase-in under {PENDING_JUNIOR_CHANGE.decision}</caption>
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th scope="col" className="px-5 py-4">From first pay period after</th>
-                        <th scope="col" className="px-5 py-4">Age 18</th>
-                        <th scope="col" className="px-5 py-4">Age 19</th>
-                        <th scope="col" className="px-5 py-4">Age 20</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      {PENDING_JUNIOR_CHANGE.phaseIn.map((row) => (
-                        <tr key={row.effective} className={row.effective === "Present" ? "bg-sandstone/40" : undefined}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">{row.effective}</th>
-                          <td className="px-5 py-3">{row.age18}%</td>
-                          <td className="px-5 py-3">{row.age19}%</td>
-                          <td className="px-5 py-3">{row.age20}%</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="mt-2 text-xs text-warmgray-light">
-                  Provisional view only, from {PENDING_JUNIOR_CHANGE.decision}. Applies to employees with {PENDING_JUNIOR_CHANGE.serviceQualifier}. Not in force.
-                </p>
-              </div>
-              <p>
-                In Fair Work&rsquo;s own words: &ldquo;{PENDING_JUNIOR_CHANGE.fwoWording}&rdquo;
+              {(["retail", "fastFood", "pharmacy"] as const).map((k) => {
+                const sch = JUNIOR_TRANSITION_SCHEDULES[k];
+                return (
+                  <div key={k} className="not-prose my-6">
+                    <h3 className="mb-2 text-lg font-bold text-navy">{sch.award} ({sch.determination})</h3>
+                    <p className="mb-3 text-sm text-warmgray">{sch.appliesTo}. Employees with more than 6 months&rsquo; service, % of the adult rate.</p>
+                    <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                      <table className="w-full min-w-[30rem] text-left text-sm text-navy">
+                        <caption className="sr-only">{sch.award} junior rate transition, {sch.determination}</caption>
+                        <thead className="bg-sandstone font-semibold text-navy">
+                          <tr>
+                            <th scope="col" className="px-5 py-4">From first full pay period on or after</th>
+                            <th scope="col" className="px-5 py-4">Age 18</th>
+                            <th scope="col" className="px-5 py-4">Age 19</th>
+                            <th scope="col" className="px-5 py-4">Age 20</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                          <tr className="bg-sandstone/40">
+                            <th scope="row" className="px-5 py-3 text-left font-medium">Now (to 30 November 2026)</th>
+                            <td className="px-5 py-3">{sch.present.age18}%</td>
+                            <td className="px-5 py-3">{sch.present.age19}%</td>
+                            <td className="px-5 py-3">{sch.present.age20}%</td>
+                          </tr>
+                          {sch.rows.map((row) => (
+                            <tr key={row.effective}>
+                              <th scope="row" className="px-5 py-3 text-left font-medium">{row.effective}</th>
+                              <td className="px-5 py-3">{row.age18}%</td>
+                              <td className="px-5 py-3">{row.age19}%</td>
+                              <td className="px-5 py-3">{row.age20}%</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                );
+              })}
+              <p className="text-sm text-warmgray">
+                Retail 20-year-olds with more than 6 months&rsquo; service already receive the adult rate, so the retail change affects 18 and 19-year-olds only. Pharmacy follows a different, annual schedule agreed by the union and the Pharmacy Guild. {PENDING_JUNIOR_CHANGE.transferOfBusinessNote}
               </p>
               <p>
-                Rates for employees <strong>under 18 are unchanged</strong> by this decision, and it does not touch the National Minimum Wage junior scale at all.
+                In the determinations&rsquo; own words: &ldquo;{PENDING_JUNIOR_CHANGE.operativeWording}&rdquo;
+              </p>
+              <p>
+                The change does not touch the National Minimum Wage junior scale or the hospitality award.
               </p>
             </section>
 
@@ -285,6 +366,8 @@ export default function JuniorPayRatesPage() {
                 <li><Link href="/schads-award-pay-rates/">SCHADS Award Pay Rates</Link> &mdash; the award with no junior rates</li>
                 <li><Link href="/first-job-pay-guide/">First Job Pay Guide</Link> &mdash; TFN, super and your first payslip</li>
                 <li><Link href="/award-rates/">Award Rates Australia</Link> &mdash; how modern awards work</li>
+                <li><Link href="/minimum-wage-australia/">Minimum Wage Australia</Link> &mdash; the adult rate from {ADULT_AGE}, weekly, annual and after tax</li>
+                <li><Link href="/casual-loading-calculator/">Casual Loading Calculator</Link> &mdash; what the 25% loading is worth against paid leave</li>
                 <li><Link href="/minimum-wage-history-australia/">Minimum Wage History</Link> &mdash; how the National Minimum Wage has moved</li>
               </ul>
             </section>
@@ -312,7 +395,7 @@ export default function JuniorPayRatesPage() {
                   Junior percentages come from the {NMW_ORDER.citation} ({NMW_ORDER.reference}, made {NMW_ORDER.madeOn}), read from the order itself. The {JUNIOR_ONLY.length} junior bands are set by {JUNIOR_BANDS_SOURCE.juniorClause}; the adult row comes from {JUNIOR_BANDS_SOURCE.adultClause}. Award scales are quoted from the consolidated award texts.
                 </p>
                 <p>
-                  Hourly and casual figures are regression-tested against the twelve dollar amounts the Fair Work Ombudsman publishes, so a rounding change cannot pass silently. Weekly junior amounts are our own derivation and labelled as such, because Fair Work publishes no weekly junior column. The pending {PENDING_JUNIOR_CHANGE.decision} phase-in is presented as a provisional view that is not in force, with the Commission&rsquo;s own timetable rather than a paraphrase. Minimum working ages are taken from each jurisdiction&rsquo;s own government page.
+                  Hourly and casual figures are regression-tested against the twelve dollar amounts the Fair Work Ombudsman publishes, so a rounding change cannot pass silently. Weekly junior amounts are our own derivation and labelled as such, because Fair Work publishes no weekly junior column. The 18 to 20-year-old transition schedules are transcribed from the three determinations themselves ({JUNIOR_TRANSITION_SCHEDULES.retail.determination}, {JUNIOR_TRANSITION_SCHEDULES.fastFood.determination} and {JUNIOR_TRANSITION_SCHEDULES.pharmacy.determination}, made {PENDING_JUNIOR_CHANGE.implementationDecidedOn}) and shown as future rates until they take effect. Minimum working ages are taken from each jurisdiction&rsquo;s own government page.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

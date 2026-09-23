@@ -179,6 +179,20 @@ export const GUIDE_CATEGORIES = [
       { href: "/construction-trades-pay/", label: "Construction & Trades", description: "Apprentice & tradie rates" },
     ],
   },
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  // Age spokes (/minimum-wage-by-age/[age]/) are listed on /site-directory/
+  // and linked from /junior-pay-rates/; they are too many for the mega menu.
+  {
+    title: "Minimum Wage & Casual Pay",
+    guides: [
+      { href: "/minimum-wage-australia/", label: "Minimum Wage Australia", description: "Current national rate, weekly and after tax" },
+      { href: "/minimum-wage-by-age/16/", label: "Minimum Wage for 16 Year Olds", description: "Award and no-award rates at 16" },
+      { href: "/pro-rata-salary-calculator/", label: "Pro-Rata Salary Calculator", description: "Part-time pay from a full-time salary" },
+      { href: "/casual-loading-calculator/", label: "Casual Loading Calculator", description: "25% casual rate vs permanent with leave" },
+      { href: "/minimum-wage-history-australia/", label: "Minimum Wage History", description: "Every increase since 2010" },
+    ],
+  },
+  // --- end minimum wage cluster ---
 ] as const;
 
 export const STATE_CATEGORIES = [

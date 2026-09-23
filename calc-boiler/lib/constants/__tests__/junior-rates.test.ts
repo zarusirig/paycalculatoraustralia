@@ -24,6 +24,7 @@ import {
   ADULT_AGE,
   AWARD_JUNIOR_SCALES,
   PENDING_JUNIOR_CHANGE,
+  JUNIOR_TRANSITION_SCHEDULES,
   juniorHourlyRate,
   juniorCasualHourlyRate,
   JUNIOR_BANDS_SOURCE,
@@ -145,8 +146,12 @@ test("award junior scales differ from the NMW scale and from each other", () => 
   assert.equal(hairBeauty.scale.find((s) => s.age === "18 and over")!.percentage, 1);
 });
 
-test("the pending junior-rates change is not presented as in force", () => {
+test("the junior-rates transition is determined but not in force before 1 December 2026", () => {
+  assert.equal(PENDING_JUNIOR_CHANGE.determined, true);
+  // Flip to true (and fold the operative rows into the current scales) once
+  // the first full pay period on or after 1 December 2026 has started.
   assert.equal(PENDING_JUNIOR_CHANGE.inForce, false);
+  assert.equal(PENDING_JUNIOR_CHANGE.earliestStart, "1 December 2026");
 });
 
 // =============================================================================
@@ -180,30 +185,47 @@ test("the cl 8.2 table stops at 20 — the 21+ row comes from cl 4.1", () => {
   assert.equal(Math.max(...juniorOnly.map((b) => b.years)), 20);
 });
 
-test("FWCFB 75 is a phase-in, not the adult rate — and is not in force", () => {
-  assert.equal(PENDING_JUNIOR_CHANGE.inForce, false);
-  assert.equal(PENDING_JUNIOR_CHANGE.isProvisionalView, true);
+test("the 18-20 transition is a phase-in, not the adult rate (PR813654/5/6)", () => {
+  assert.equal(PENDING_JUNIOR_CHANGE.isProvisionalView, false);
+  const { retail, fastFood, pharmacy } = JUNIOR_TRANSITION_SCHEDULES;
+  assert.equal(retail.determination, "PR813655");
+  assert.equal(fastFood.determination, "PR813654");
+  assert.equal(pharmacy.determination, "PR813656");
 
   // The dangerous misreading: that 1 December 2026 delivers the adult rate.
-  const dec26 = PENDING_JUNIOR_CHANGE.phaseIn.find((p) => p.effective === "1 December 2026")!;
-  assert.equal(dec26.age18, 75);
-  assert.equal(dec26.age19, 85);
-  assert.equal(dec26.age20, 95);
-  for (const age of [dec26.age18, dec26.age19, dec26.age20]) {
-    assert.notEqual(age, 100, "no age reaches the adult rate on 1 December 2026");
+  for (const sch of [retail, fastFood, pharmacy]) {
+    const dec26 = sch.rows[0];
+    assert.equal(dec26.effective, "1 December 2026");
+    assert.equal(dec26.age18, 75);
+    assert.equal(dec26.age19, 85);
   }
+  assert.equal(fastFood.rows[0].age20, 95);
+  assert.equal(pharmacy.rows[0].age20, 95);
+  // Retail 20-year-olds with >6 months are already on 100%.
+  assert.equal(retail.present.age20, 100);
+  assert.ok(retail.rows.every((r) => r.age20 === 100));
 
-  // Adult rate arrives by age in 2027, 2028 and 2029 respectively.
-  const first100 = (key: "age18" | "age19" | "age20") =>
-    PENDING_JUNIOR_CHANGE.phaseIn.find((p) => p.effective !== "Present" && p[key] === 100)!.effective;
-  assert.equal(first100("age20"), "1 July 2027");
-  assert.equal(first100("age19"), "1 July 2028");
-  assert.equal(first100("age18"), "1 July 2029");
+  // Retail and fast food: five points every 1 Dec and 1 Jul.
+  const first100 = (rows: readonly { effective: string; age18: number; age19: number; age20: number }[], key: "age18" | "age19" | "age20") =>
+    rows.find((p) => p[key] === 100)!.effective;
+  assert.equal(first100(fastFood.rows, "age20"), "1 July 2027");
+  assert.equal(first100(fastFood.rows, "age19"), "1 July 2028");
+  assert.equal(first100(fastFood.rows, "age18"), "1 July 2029");
+  assert.deepEqual(retail.rows.map((r) => r.age18), [75, 80, 85, 90, 95, 100]);
+  assert.deepEqual(retail.rows.map((r) => r.age19), [85, 90, 95, 100, 100, 100]);
+
+  // Pharmacy differs: annual ten-point steps, no December 2027/2028 rows.
+  assert.deepEqual(pharmacy.rows.map((r) => r.effective), ["1 December 2026", "1 July 2027", "1 July 2028", "1 July 2029"]);
+  assert.deepEqual(pharmacy.rows.map((r) => r.age18), [75, 85, 95, 100]);
+  assert.deepEqual(pharmacy.rows.map((r) => r.age19), [85, 95, 100, 100]);
 
   // Percentages never go backwards.
-  for (let i = 1; i < PENDING_JUNIOR_CHANGE.phaseIn.length; i++) {
-    for (const k of ["age18", "age19", "age20"] as const) {
-      assert.ok(PENDING_JUNIOR_CHANGE.phaseIn[i][k] >= PENDING_JUNIOR_CHANGE.phaseIn[i - 1][k]);
+  for (const sch of [retail, fastFood, pharmacy]) {
+    const rows = [{ effective: "Present", ...sch.present }, ...sch.rows];
+    for (let i = 1; i < rows.length; i++) {
+      for (const k of ["age18", "age19", "age20"] as const) {
+        assert.ok(rows[i][k] >= rows[i - 1][k], `${sch.code} ${k} at ${rows[i].effective}`);
+      }
     }
   }
 });

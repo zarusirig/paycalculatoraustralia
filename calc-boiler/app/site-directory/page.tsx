@@ -18,6 +18,7 @@ import { JURISDICTIONS as PUBLIC_SERVICE_JURISDICTIONS } from "@/lib/data/public
 import { formatAUD } from "@/lib/constants";
 // C1 employer pay rates (2026-09-23)
 import { EMPLOYERS } from "@/lib/data/employer-pay";
+import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
@@ -118,6 +119,18 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end C1 ---
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  {
+    title: "Minimum Wage by Age",
+    items: [
+      { href: "/junior-pay-rates/", label: "Minimum Wage by Age (all ages)" },
+      ...MIN_WAGE_AGES.map((a) => ({
+        href: `/minimum-wage-by-age/${a}/`,
+        label: `Minimum Wage for a ${a} Year Old`,
+      })),
+    ],
+  },
+  // --- end minimum wage cluster ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

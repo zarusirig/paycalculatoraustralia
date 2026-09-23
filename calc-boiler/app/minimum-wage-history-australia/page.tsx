@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MinimumWageHistoryPage from "@/modules/guide/minimum-wage-history-australia";
+import { HISTORY_FAQS, HISTORY_FIRST, HISTORY_LARGEST, HISTORY_LAST, TOTAL_GROWTH } from "@/modules/guide/minimum-wage-history-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
@@ -7,8 +8,13 @@ import { AUTHORS } from "@/lib/authors";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-history-australia/`;
-const TITLE = "Minimum Wage History Australia \u2014 Every Rate Since 2010";
-const DESCRIPTION = "Australian minimum wage history from 2010 to 2025. Annual Fair Work Commission increases, percentage changes, and how minimum wage compares to inflation and average earnings.";
+
+// History intent only (23 Sep 2026). Current-rate queries ("what is the
+// minimum wage in australia", "minimum wage australia 2026") belong to
+// /minimum-wage-australia/, so the title leads with "History" and the year
+// range rather than today's dollar figure.
+const TITLE = `Minimum Wage History Australia: Every Increase ${HISTORY_FIRST.fy.slice(0, 4)}–${HISTORY_LAST.fy.slice(0, 4)}`;
+const DESCRIPTION = `Year-by-year history of Australia's National Minimum Wage since ${HISTORY_FIRST.fy.slice(0, 4)}: hourly and weekly rates, every Annual Wage Review increase (largest ${HISTORY_LARGEST.published} in ${HISTORY_LARGEST.operativeFrom.slice(-4)}) and ${(TOTAL_GROWTH * 100).toFixed(0)}% total growth.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -23,7 +29,8 @@ const breadcrumb: WithContext<BreadcrumbList> = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
-    { "@type": "ListItem", position: 2, name: "Minimum Wage History", item: URL },
+    { "@type": "ListItem", position: 2, name: "Minimum Wage Australia", item: `${BASE}/minimum-wage-australia/` },
+    { "@type": "ListItem", position: 3, name: "Minimum Wage History", item: URL },
   ]
 };
 
@@ -49,12 +56,11 @@ const article: WithContext<Article> = {
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What is the current minimum wage in Australia?", acceptedAnswer: { "@type": "Answer", text: "As of 1 July 2024, the national minimum wage is $26.44 per hour or $1,004.90 per 38-hour week. The Fair Work Commission determines the rate annually." } },
-    { "@type": "Question", name: "How often does the minimum wage increase?", acceptedAnswer: { "@type": "Answer", text: "The Fair Work Commission conducts an Annual Wage Review each year, typically announcing the new rate in June with the increase taking effect from 1 July." } },
-    { "@type": "Question", name: "What was the largest minimum wage increase?", acceptedAnswer: { "@type": "Answer", text: "The largest recent increase was 8.65% in 2023, raising the hourly rate from $21.38 to $23.23. This was driven by high inflation and cost-of-living pressures." } },
-    { "@type": "Question", name: "Does the minimum wage keep up with inflation?", acceptedAnswer: { "@type": "Answer", text: "In most years, minimum wage increases have matched or slightly exceeded CPI inflation. However, during periods of high inflation like 2022-2023, real wage growth temporarily fell behind before the FWC responded with larger increases." } },
-  ]
+  mainEntity: HISTORY_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 export default function Page() {
