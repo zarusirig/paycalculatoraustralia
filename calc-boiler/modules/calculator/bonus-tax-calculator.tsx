@@ -9,6 +9,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
+  bonusTaxSplit,
   calculatePayBreakdown,
   formatAUD,
   formatPercent,
@@ -60,18 +61,13 @@ export default function BonusTaxCalculatorPage() {
   const [baseSalary, setBaseSalary] = useState(90_000);
   const [bonusAmount, setBonusAmount] = useState(10_000);
 
-  const withoutBonus = useMemo(
-    () => calculatePayBreakdown({ grossSalary: baseSalary }),
-    [baseSalary]
-  );
+  // Income tax and Medicare rows are each the with/without-bonus difference, so
+  // they always add up to the total (QA 24 Sep 2026: "bonus × top marginal
+  // rate" overstated the rows when the bonus crossed a bracket).
+  const split = useMemo(() => bonusTaxSplit(baseSalary, bonusAmount), [baseSalary, bonusAmount]);
 
-  const withBonus = useMemo(
-    () => calculatePayBreakdown({ grossSalary: baseSalary, bonus: bonusAmount }),
-    [baseSalary, bonusAmount]
-  );
-
-  const taxOnBonus = withBonus.totalDeductions - withoutBonus.totalDeductions;
-  const netBonus = bonusAmount - taxOnBonus;
+  const taxOnBonus = split.total;
+  const netBonus = split.net;
   const effectiveBonusTaxRate = bonusAmount > 0 ? taxOnBonus / bonusAmount : 0;
 
   // Find marginal bracket for the combined income
@@ -111,7 +107,7 @@ export default function BonusTaxCalculatorPage() {
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-6">How Much Tax on Your Bonus?</h2>
-              <div className="grid md:grid-cols-[1fr_2fr] gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
                   <div>
@@ -156,8 +152,8 @@ export default function BonusTaxCalculatorPage() {
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Gross Bonus" value={formatAUD(bonusAmount)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label={`Marginal Tax Rate (${formatPercent(marginalRate, 0)})`} value={`-${formatAUD(Math.round(bonusAmount * marginalRate))}`} />
-                      <Row label={`Medicare Levy (${formatPercent(MEDICARE_LEVY.rate, 0)})`} value={`-${formatAUD(Math.round(bonusAmount * MEDICARE_LEVY.rate))}`} />
+                      <Row label={`Income Tax (${formatPercent(marginalRate, 0)} marginal rate)`} value={`-${formatAUD(split.incomeTax)}`} />
+                      <Row label={`Medicare Levy (${formatPercent(MEDICARE_LEVY.rate, 0)})`} value={`-${formatAUD(split.medicare)}`} />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label="Total Tax on Bonus" value={`-${formatAUD(taxOnBonus)}`} />
                       <Row label={`Effective Rate on Bonus`} value={formatPercent(effectiveBonusTaxRate)} />

@@ -821,3 +821,21 @@ export function fortnightlyToAnnual(fortnightly: number): number {
 export function monthlyToAnnual(monthly: number): number {
   return Math.round(monthly * 12);
 }
+
+// ---------- Bonus tax split (bonus-tax-calculator) ----------
+/**
+ * Extra tax a bonus adds for the year, split into income tax (after LITO) and
+ * Medicare levy. Each part is the difference between the annual figure with
+ * and without the bonus, so the rows always add up to the total — even when
+ * the bonus crosses a bracket, where "bonus × top marginal rate" overstates it.
+ */
+export function bonusTaxSplit(baseSalary: number, bonus: number) {
+  const base = Math.max(0, Number.isFinite(baseSalary) ? baseSalary : 0);
+  const extra = Math.max(0, Number.isFinite(bonus) ? bonus : 0);
+  const without = calculatePayBreakdown({ grossSalary: base });
+  const withBonus = calculatePayBreakdown({ grossSalary: base, bonus: extra });
+  const total = withBonus.totalDeductions - without.totalDeductions;
+  const medicare =
+    withBonus.medicareLevy + withBonus.medicareSurcharge - without.medicareLevy - without.medicareSurcharge;
+  return { total, medicare, incomeTax: total - medicare, net: extra - total };
+}
