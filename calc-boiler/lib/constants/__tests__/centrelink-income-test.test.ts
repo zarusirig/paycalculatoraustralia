@@ -35,6 +35,7 @@ import {
   RATE_SET_KEYS,
   SEPTEMBER_2026,
   WORK_BONUS,
+  YOUTH_ALLOWANCE_JOBSEEKER,
   YOUTH_ALLOWANCE_STUDENT,
   agePensionCutOff,
   agePensionFortnightly,
@@ -361,4 +362,34 @@ test("Work Bonus offsets the first $300 of employment income, then the balance",
   assert.equal(assessableAfterWorkBonus(1_000, 0), 700);
   assert.equal(assessableAfterWorkBonus(1_000, 500), 200);
   assert.equal(assessableAfterWorkBonus(1_000, WORK_BONUS.maxBalance), 0);
+});
+
+// ---------------------------------------------------------------------------
+// Youth Allowance for job seekers — rates read 23 Sep 2026
+// ---------------------------------------------------------------------------
+
+test("Youth Allowance job seeker rates equal the student rates for the same situation", () => {
+  const J = YOUTH_ALLOWANCE_JOBSEEKER.maxFortnightly;
+  const S = YOUTH_ALLOWANCE_STUDENT.maxFortnightly;
+  assert.equal(J.under18AtHome, S.under18AtHome);
+  assert.equal(J.under18AwayFromHome, S.under18AwayFromHome);
+  assert.equal(J.over18AtHome, S.over18AtHome);
+  assert.equal(J.over18AwayFromHome, S.awayFromHome);
+  assert.equal(J.singleWithChildren, S.singleWithChildren);
+  assert.equal(J.coupleNoChildren, S.coupleNoChildren);
+  assert.equal(J.coupleWithChildren, S.coupleWithChildren);
+  // The exempt principal carer rate is the JobSeeker one, indexed 20 Sep.
+  assert.equal(J.singlePrincipalCarerExempt, SEP.maxFortnightly.principalCarerExempt);
+});
+
+test("Youth Allowance job seeker cut-offs rise with the maximum rate", () => {
+  const C = YOUTH_ALLOWANCE_JOBSEEKER.publishedCutOff;
+  const ordered = [C.under18AtHome, C.over18AtHome, C.awayFromHome, C.coupleWithChildren, C.singleWithChildren, C.singlePrincipalCarerExempt];
+  for (let i = 1; i < ordered.length; i++) assert.ok(ordered[i] > ordered[i - 1]);
+  // A cut-off can't be lower than the income at which a flat 60c taper from
+  // the $150 free area would exhaust the maximum rate.
+  const J = YOUTH_ALLOWANCE_JOBSEEKER;
+  assert.ok(C.under18AtHome > J.freeArea + J.maxFortnightly.under18AtHome / 0.6);
+  assert.ok(C.over18AtHome > J.freeArea + J.maxFortnightly.over18AtHome / 0.6);
+  assert.ok(C.awayFromHome > J.freeArea + J.maxFortnightly.over18AwayFromHome / 0.6);
 });

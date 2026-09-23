@@ -50,12 +50,19 @@ export const CENTRELINK_SOURCES = {
   verifiedOn: "23 September 2026",
   /** Machine-readable form of verifiedOn. Drives DEFAULT_RATE_SET_KEY. */
   verifiedOnISO: "2026-09-23",
+  /** When the 20 March 2026 set was read at Services Australia (it is no longer live there). */
+  marchSetReadOn: "28 August 2026",
   jobseekerIncomeTest: "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment",
   jobseekerRates: "https://www.servicesaustralia.gov.au/how-much-jobseeker-payment-you-can-get",
   austudyIncomeTest: "https://www.servicesaustralia.gov.au/income-tests-for-austudy",
   austudyRates: "https://www.servicesaustralia.gov.au/how-much-austudy-you-can-get",
   youthAllowanceIncomeTest: "https://www.servicesaustralia.gov.au/what-personal-income-test-for-youth-allowance-for-students-and-australian-apprentices",
   youthAllowanceRates: "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get",
+  youthAllowanceEligibility: "https://www.servicesaustralia.gov.au/who-can-get-youth-allowance-for-students-and-apprentices",
+  youthAllowanceJobSeekerRates: "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-job-seekers-you-can-get",
+  youthAllowanceJobSeekerIncomeTest: "https://www.servicesaustralia.gov.au/personal-income-test-for-youth-allowance-for-job-seekers",
+  youthAllowanceJobSeekerEligibility: "https://www.servicesaustralia.gov.au/who-can-get-youth-allowance-for-job-seekers",
+  jobseekerEligibility: "https://www.servicesaustralia.gov.au/who-can-get-jobseeker-payment",
   agePensionIncomeTest: "https://www.servicesaustralia.gov.au/income-test-for-age-pension",
   agePensionRates: "https://www.servicesaustralia.gov.au/how-much-age-pension-you-can-get",
   workBonus: "https://www.servicesaustralia.gov.au/how-work-bonus-works",
@@ -390,6 +397,45 @@ export const YOUTH_ALLOWANCE_STUDENT = {
     longTermAwayFromHome: 1_904.00,
     longTermCoupleNoChildren: 1_791.67,
   },
+} as const;
+
+/**
+ * Youth Allowance for JOB SEEKERS (16–21, not studying full time). Read at
+ * Services Australia on 23 September 2026 ("maximum fortnightly payment from
+ * 20 September 2026"). Only the single principal carer exempt rate indexes on
+ * 20 March / 20 September; every other rate indexes on 1 January and equals
+ * the student rate for the same situation (asserted in the tests).
+ *
+ * The income test is NOT modelled: Services Australia's job seeker page says
+ * the payment reduces over $150 a fortnight but states the second band as
+ * "$150 and $250", while the JobSeeker page uses $256. Until that is resolved
+ * we publish only the maximum rates and Services Australia's own cut-offs.
+ */
+export const YOUTH_ALLOWANCE_JOBSEEKER = {
+  ratesFrom: "20 September 2026",
+  freeArea: 150,
+  maxFortnightly: {
+    under18AtHome: 418.90,
+    under18AwayFromHome: 677.20,
+    over18AtHome: 482.40,
+    over18AwayFromHome: 677.20,
+    singleWithChildren: 854.20,
+    coupleNoChildren: 677.20,
+    coupleWithChildren: 733.20,
+    singlePrincipalCarerExempt: 1_068.20,
+  },
+  /** "Maximum income before your payment reduces to $0", as published. */
+  publishedCutOff: {
+    under18AtHome: 871.34,
+    over18AtHome: 978.34,
+    awayFromHome: 1_307.00,
+    coupleWithChildren: 1_401.50,
+    singleWithChildren: 1_605.67,
+    singlePrincipalCarerExempt: 1_978.67,
+  },
+  /** Age range for Youth Allowance as a job seeker. */
+  minAge: 16,
+  maxAge: 21,
 } as const;
 
 /** Fortnightly reduction under the student personal income test. */

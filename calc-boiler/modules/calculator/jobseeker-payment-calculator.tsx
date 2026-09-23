@@ -150,11 +150,33 @@ export default function JobseekerPaymentCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">JobSeeker Payment Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">JobSeeker Payment Calculator — How Working Affects Your Payment</h1>
+          <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">JobSeeker Payment Calculator — Rates and How Working Affects Your Payment</h1>
           <p className="text-lg text-warmgray">
-            Enter your gross fortnightly wages and see how much JobSeeker you keep. Uses the Services Australia income test — {formatAUD(T.freeArea)} free area, 50 cents to {formatAUD(T.band1End)}, 60 cents above — with both the {RATE_SET_LABELS[MARCH_2026]} maximum rates and the {RATE_SET_LABELS[SEPTEMBER_2026]} rates that replace them.
+            JobSeeker Payment is <strong>{formatAUD(active.maxFortnightly.single, 2)} a fortnight</strong> for a single person with no children, {formatAUD(active.maxFortnightly.singleWithChildren, 2)} with a dependent child and {formatAUD(active.maxFortnightly.partnered, 2)} each for a couple, from {active.ratesFrom}. Enter your gross fortnightly wages to see how much you keep: the first {formatAUD(T.freeArea)} is free, then it reduces by 50 cents to {formatAUD(T.band1End)} and 60 cents above.
           </p>
+          <p className="mt-3 inline-block rounded-full bg-eucalyptus-light/60 px-3 py-1 text-xs font-semibold text-navy">Rates from {active.ratesFrom} · verified {CENTRELINK_SOURCES.verifiedOn}</p>
           <TrustBar className="mt-4" />
+        </section>
+
+        <section className="max-w-4xl mx-auto" aria-labelledby="how-much-jobseeker">
+          <h2 id="how-much-jobseeker" style={FONT} className={H2}>How Much Is JobSeeker Payment?</h2>
+          <p className={P}>These are the maximum fortnightly rates from {active.ratesFrom}, before any reduction for income. JobSeeker is paid every two weeks, and Energy Supplement is paid on top.</p>
+          <div className={TABLE_WRAP}>
+            <table className="w-full text-sm">
+              <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Your situation</th><th scope="col" className={TH + " text-right"}>Per fortnight</th><th scope="col" className={TH + " text-right"}>Per week</th><th scope="col" className={TH + " text-right"}>Income cut-off (fortnight)</th></tr></thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                {SITUATIONS.map((s, i) => (
+                  <tr key={s.key} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                    <td className={TD}>{s.label}</td>
+                    <td className={TD + " text-right font-semibold"}>{formatAUD(rateFor(active, s), 2)}</td>
+                    <td className={TD + " text-right"}>{formatAUD(rateFor(active, s) / 2, 2)}</td>
+                    <td className={TD + " text-right"}>{s.partnered ? "depends on partner income" : formatAUD(cutOffFor(active, s)!, 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-warmgray-light">Services Australia&apos;s figures, indexed on {JOBSEEKER.indexedOn}; the next change is 20 March 2027. The single rate with a dependent child also applies if you are 55 or older after 9 continuous months on payment, or have a partial capacity to work of less than 15 hours a week.</p>
         </section>
 
         <section className="max-w-4xl mx-auto space-y-6">
@@ -280,7 +302,7 @@ export default function JobseekerPaymentCalculatorPage() {
               </table>
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
-              Rates are indexed on {JOBSEEKER.indexedOn}. The {RATE_SET_LABELS[MARCH_2026]} figures are Services Australia&apos;s, read on {CENTRELINK_SOURCES.verifiedOn}; the {RATE_SET_LABELS[SEPTEMBER_2026]} rates are from the DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}.{" "}
+              Rates are indexed on {JOBSEEKER.indexedOn}. The {RATE_SET_LABELS[MARCH_2026]} figures are Services Australia&apos;s, read on {CENTRELINK_SOURCES.marchSetReadOn}; the {RATE_SET_LABELS[SEPTEMBER_2026]} rates are from the DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}.{" "}
               {SEP.cutOffSource === "derived" && "The September cut-offs are calculated from those published rates and the unchanged taper — Services Australia publishes its own cut-off figures on the day, and we will replace ours with them."}{" "}
               Cut-offs include an Energy Supplement (and, for some situations, a Pharmaceutical Allowance) that not every recipient gets, which is why the payment above reaches $0 slightly below them.
             </p>
@@ -312,6 +334,17 @@ export default function JobseekerPaymentCalculatorPage() {
           </section>
 
           <section>
+            <h2 style={FONT} className={H2}>Who Can Get JobSeeker Payment</h2>
+            <p className={P}>JobSeeker Payment (it replaced Newstart Allowance, so it is still often called the JobSeeker allowance) is the main Centrelink payment for people of working age who are looking for work. To get it you must:</p>
+            <ul className="list-disc pl-6 space-y-2 text-warmgray mb-4">
+              <li>be between 22 and Age Pension age;</li>
+              <li>meet the residence rules, and the income and assets tests;</li>
+              <li>be unemployed and looking for work — which includes working part-time or casually, being temporarily stood down, or having your hours cut — <em>or</em> be sick or injured and unable to do your usual work or study for a short time (with a medical certificate).</li>
+            </ul>
+            <p className={P}>Under 22? Look at <Link href="/austudy-youth-allowance-calculator/" className={LINK}>Youth Allowance</Link>. Single and caring for a child under 14? <Link href="/parenting-payment-calculator/" className={LINK}>Parenting Payment</Link> pays more and tapers more gently. If you rent privately you may also get <Link href="/rent-assistance-calculator/" className={LINK}>Rent Assistance</Link> with your JobSeeker.</p>
+          </section>
+
+          <section>
             <h2 style={FONT} className={H2}>Working Credits</h2>
             <p className={P}>In fortnights when your income is under {formatAUD(T.workingCreditThreshold)}, you build working credits. Services Australia uses them first in a fortnight when you earn more, which can keep some payment flowing above the published cut-off. The calculator does not include them because the balance is individual — check yours in your Centrelink online account before relying on a figure here.</p>
           </section>
@@ -322,15 +355,15 @@ export default function JobseekerPaymentCalculatorPage() {
           </section>
 
           <section>
-            <h2 style={FONT} className={H2}>Related Calculators and Guides</h2>
+            <h2 style={FONT} className={H2}>Other Centrelink Payment Calculators</h2>
             <CentrelinkRelated current="jobseeker" />
           </section>
 
           <MethodologyDisclosure>
             <ul className="list-disc pl-4 space-y-1">
               <li>Reduction = 50c × income between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)} + 60c × income over {formatAUD(T.band1End)}; single principal carers 40c × income over {formatAUD(T.freeArea)}. Partner income (partner not on a pension): 60c × income over the limit for their age. The free area and tapers index on 1 July and did not change on 20 September 2026.</li>
-              <li>Payment = maximum rate for the situation minus the reduction, floored at $0. Two dated rate sets are held: {RATE_SET_LABELS[MARCH_2026]} (Services Australia, read {CENTRELINK_SOURCES.verifiedOn}) and {RATE_SET_LABELS[SEPTEMBER_2026]} (DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}). The calculator reads today&apos;s date in your browser and applies whichever set is in force, so it changes over on 20 September by itself.</li>
-              <li>The {RATE_SET_LABELS[MARCH_2026]} cut-offs are Services Australia&apos;s published figures. The {RATE_SET_LABELS[SEPTEMBER_2026]} cut-offs are <strong>derived</strong> — cut-off = (typical total rate − $53) ÷ 0.6 + $256, or ÷ 0.4 + $150 for a single principal carer — because Services Australia publishes September cut-offs on the day. The same arithmetic reproduces every March 2026 published cut-off, and the tests assert it.</li>
+              <li>Payment = maximum rate for the situation minus the reduction, floored at $0. Two dated rate sets are held: {RATE_SET_LABELS[MARCH_2026]} (Services Australia, read {CENTRELINK_SOURCES.marchSetReadOn}) and {RATE_SET_LABELS[SEPTEMBER_2026]} (DSS rates list published {CENTRELINK_SOURCES.dssRatesListPublished}). The calculator reads today&apos;s date in your browser and applies whichever set is in force, so it changes over on 20 September by itself.</li>
+              <li>Both sets of cut-offs are Services Australia&apos;s published figures; the {RATE_SET_LABELS[SEPTEMBER_2026]} ones were re-checked on its income test page on {CENTRELINK_SOURCES.verifiedOn}. Each reconciles to cut-off = (typical total rate − $53) ÷ 0.6 + $256, or ÷ 0.4 + $150 for a single principal carer, to within a cent — the tests assert it.</li>
               <li>Not modelled: working credits, assets test, Rent Assistance and other supplements, partners receiving a pension. {SITE_CONFIG.name} is not Services Australia — use their Payment Finder for a claim estimate.</li>
             </ul>
           </MethodologyDisclosure>

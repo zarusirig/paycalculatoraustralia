@@ -1,12 +1,31 @@
 // FAQ copy for /austudy-youth-allowance-calculator/. Figures from
 // lib/constants/centrelink-income-test.ts (verified at Services Australia).
 import { formatAUD } from "@/lib/constants";
-import { AUSTUDY, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_STUDENT, studentFortnightly, studentReduction } from "@/lib/constants/centrelink-income-test";
+import { AUSTUDY, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_JOBSEEKER, YOUTH_ALLOWANCE_STUDENT, studentFortnightly, studentReduction } from "@/lib/constants/centrelink-income-test";
+
+const YA = YOUTH_ALLOWANCE_STUDENT.maxFortnightly;
+const YJ = YOUTH_ALLOWANCE_JOBSEEKER;
 
 const T = STUDENT_INCOME_TEST;
 export interface StudentFaq { q: string; a: string }
 
 export const STUDENT_FAQS: readonly StudentFaq[] = [
+  {
+    q: "How much is Youth Allowance a fortnight?",
+    a: `Up to ${formatAUD(YA.under18AtHome, 2)} if you're under 18 and live at a parent's home, ${formatAUD(YA.over18AtHome, 2)} if you're 18 or older at home, ${formatAUD(YA.awayFromHome, 2)} if you live away from home, ${formatAUD(YA.singleWithChildren, 2)} single with children and ${formatAUD(YA.coupleWithChildren, 2)} in a couple with children. Student rates apply from ${YOUTH_ALLOWANCE_STUDENT.ratesFrom}; job seekers get the same rates. Your income, your partner's and (if you're dependent) your parents' can reduce it.`,
+  },
+  {
+    q: "Who is eligible for Youth Allowance?",
+    a: `Students and Australian Apprentices: 18 to 24 and studying full time, 16 to 24 in a full-time apprenticeship, or 16–17 and independent, needing to live away from home to study, or studying full time after finishing year 12. Job seekers: ${YJ.minAge} to ${YJ.maxAge}, and unemployed and looking for work, or temporarily unable to work or study because of illness or injury. Everyone must meet the residence rules and the income and assets tests.`,
+  },
+  {
+    q: "How much can I earn on Youth Allowance as a job seeker?",
+    a: `Your payment starts reducing once your income passes ${formatAUD(YJ.freeArea)} a fortnight. It reaches $0 at ${formatAUD(YJ.publishedCutOff.under18AtHome, 2)} a fortnight if you're under 18 at home, ${formatAUD(YJ.publishedCutOff.over18AtHome, 2)} if you're 18 or older at home, and ${formatAUD(YJ.publishedCutOff.awayFromHome, 2)} if you live away from home. Students have a much bigger free area — ${formatAUD(T.freeArea)} a fortnight.`,
+  },
+  {
+    q: "Do my parents' incomes affect my Youth Allowance?",
+    a: "Yes, if Services Australia assesses you as dependent — a parental means test then applies alongside your own income test, and your parents' taxable income is reassessed each year. If you're independent, your parents' income doesn't count — for example, Services Australia treats a job seeker as independent once they have lived with a partner for 12 months. This calculator covers your own income only.",
+  },
   {
     q: "How much can I earn on Austudy or Youth Allowance before it reduces?",
     a: `${formatAUD(T.freeArea)} a fortnight, before tax. Between ${formatAUD(T.freeArea)} and ${formatAUD(T.band1End)} the payment reduces by 50 cents per dollar; over ${formatAUD(T.band1End)} it is ${formatAUD(T.band1Reduction, 2)} plus 60 cents for each dollar. Income Bank credits, built up in fortnights you earn under ${formatAUD(T.freeArea)}, are used first.`,
