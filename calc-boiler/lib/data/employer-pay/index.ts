@@ -26,6 +26,7 @@ import { COSTCO_PAY } from "./costco";
 import { IGA_PAY } from "./iga";
 import { BIG_W_PAY } from "./big-w";
 import { AUSTRALIA_POST_PAY } from "./australia-post";
+import { JB_HI_FI_PAY } from "./jb-hi-fi";
 // --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -43,6 +44,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   iga: IGA_PAY,
   "big-w": BIG_W_PAY,
   "australia-post": AUSTRALIA_POST_PAY,
+  "jb-hi-fi": JB_HI_FI_PAY,
   // --- end H1 ---
 };
 

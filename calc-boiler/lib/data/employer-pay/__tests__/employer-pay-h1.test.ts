@@ -232,6 +232,24 @@ test("Australia Post: Booklet Sept 2026 salaries via A / 313 x 6 / 36.75, casual
   }
 });
 
+test("JB Hi-Fi: the same Retail Award figures as IGA, and FAQ dollars match", () => {
+  const jb = getEmployerPay("jb-hi-fi");
+  const iga = getEmployerPay("iga");
+  assert.ok(jb && iga);
+  assert.equal(jb.instrument.kind, "modern-award");
+  assert.equal(jb.instrument.reference, "MA000004");
+  assert.deepEqual(
+    jb.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    iga.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+  );
+  assert.deepEqual(juniorRates(jb), juniorRates(iga));
+  assert.deepEqual(jb.penalties, iga.penalties);
+  const text = jb.faqs.map((f) => f.a).join(" ");
+  for (const v of ["$27.81", "$34.76", "$13.91", "$17.39", "$16.69", "$20.86", "$41.72", "$62.57", "$48.67", "$69.53"]) {
+    assert.ok(text.includes(v), v);
+  }
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);
