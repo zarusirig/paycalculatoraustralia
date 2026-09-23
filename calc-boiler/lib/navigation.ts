@@ -56,6 +56,9 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/leave-calculator/", label: "Leave Calculator", description: "Annual leave entitlements and payout" },
       { href: "/tax-return-calculator/", label: "Tax Return Calculator", description: "Estimate your tax refund" },
       { href: "/second-job-tax-calculator/", label: "Second Job Tax Calculator", description: "Tax on multiple jobs" },
+      // --- T1 wave 3 (23 Sep 2026) ---
+      { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator", description: "PAYG withheld per pay and your likely refund" },
+      // --- end T1 ---
       { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator", description: "What you keep of JobSeeker when you work" },
       { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance Calculator", description: "Student income test with current rates" },
       { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator", description: "Income test with the Work Bonus" },
@@ -358,6 +361,9 @@ export const FOOTER_CALCULATORS = [
   { href: "/ytd-income-calculator/", label: "YTD Income Calculator" },
   { href: "/capital-gains-tax-calculator/", label: "Capital Gains Tax Calculator" },
   { href: "/work-hours-calculator/", label: "Work Hours Calculator" },
+  // --- T1 wave 3 (23 Sep 2026) ---
+  { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
+  // --- end T1 ---
 ] as const;
 
 // Footer guides — split into logical groups for multi-column layout
