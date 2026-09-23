@@ -1,4 +1,13 @@
 import { AUTHORS } from "@/lib/authors";
+// --- G6: constants the G6 news entries quote (figures are never re-keyed here) ---
+import {
+  AGE_PENSION_RATES,
+  DEEMING_SEPTEMBER_2026,
+  JOBSEEKER_RATES,
+  MARCH_2026,
+  SEPTEMBER_2026,
+} from "@/lib/constants/centrelink-income-test";
+// --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -647,7 +656,57 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
   },
   // --- end W5 ---
+  // --- G6: news articles, 24 Sep 2026 ---
+  ...G6_ARTICLES(),
+  // --- end G6 ---
 ];
+
+// --- G6: news article metadata (functions of the constants they quote) ---
+function G6_ARTICLES(): NewsArticleMeta[] {
+  const m = (n: number) => `$${n.toLocaleString("en-AU", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  const w = (n: number) => `$${Math.round(n).toLocaleString("en-AU")}`;
+  const p = (r: number) => `${(r * 100).toFixed(2).replace(/0$/, "")}%`;
+  const apMar = AGE_PENSION_RATES[MARCH_2026].maxFortnightly;
+  const apSep = AGE_PENSION_RATES[SEPTEMBER_2026].maxFortnightly;
+  const jsMar = JOBSEEKER_RATES[MARCH_2026].maxFortnightly;
+  const jsSep = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly;
+  const D = DEEMING_SEPTEMBER_2026;
+  const apRise = m(apSep.single.total - apMar.single.total);
+  const apCoupleRise = m(apSep.coupleCombined.total - apMar.coupleCombined.total);
+
+  return [
+    {
+      slug: "age-pension-increase-september-2026",
+      headline: `Age Pension Rises ${apRise} a Fortnight From 20 September 2026 — but Deeming Rates Rise Too`,
+      title: `Age Pension Increase September 2026: +${apRise} to ${m(apSep.single.total)}`,
+      description: `From 20 September 2026 the full Age Pension is ${m(apSep.single.total)} a fortnight for singles (up ${apRise}) and ${m(apSep.coupleCombined.total)} for couples combined (up ${apCoupleRise}). JobSeeker rose to ${m(jsSep.single)}, and deeming rates rose to ${p(D.lowerRate)} and ${p(D.upperRate)}. Worked examples and who gets what.`,
+      category: "Centrelink & Payments",
+      datePublished: "2026-09-20",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator" },
+        { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator" },
+        { href: "/centrelink-payment-dates/", label: "Centrelink Payment Dates" },
+      ],
+      relatedArticles: ["age-pension-increase-march-2026", "deeming-rates-change-2026", "centrelink-changes-july-2026"],
+      sources: [
+        { title: "Some payment rates are increasing on 20 September 2026 (8 September 2026)", url: "https://www.servicesaustralia.gov.au/some-payment-rates-are-increasing-20-september-2026", publisher: "Services Australia" },
+        { title: "Deeming rates have increased (20 September 2026)", url: D.sources.news, publisher: "Services Australia" },
+        { title: "Deeming", url: D.sources.deeming, publisher: "Services Australia" },
+        { title: "Social Security Payment Parameters — 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },
+        { title: "September pensions and deeming rates update", url: D.sources.dva, publisher: "Department of Veterans' Affairs" },
+      ],
+      faq: [
+        { question: "How much did the Age Pension go up in September 2026?", answer: `From 20 September 2026 the maximum Age Pension rose by ${apRise} a fortnight for singles, to ${m(apSep.single.total)}, and by ${apCoupleRise} a fortnight for couples combined, to ${m(apSep.coupleCombined.total)} (${m(apSep.coupleEach.total)} each). The totals include the Pension Supplement and Energy Supplement. Carer Payment and the Disability Support Pension rose by the same amounts.` },
+        { question: "What are the new deeming rates from 20 September 2026?", answer: `Deeming rates rose from ${p(D.previousLowerRate)} to ${p(D.lowerRate)} on the first ${w(D.thresholds.single)} of a single person's financial assets (${w(D.thresholds.couple)} combined for a couple), and from ${p(D.previousUpperRate)} to ${p(D.upperRate)} on anything above that.` },
+        { question: "What is the JobSeeker rate from 20 September 2026?", answer: `A single person with no children can get up to ${m(jsSep.single)} a fortnight, up from ${m(jsMar.single)}. The partnered rate is ${m(jsSep.partnered)} each, and the rate for a single parent or someone aged 55 or over after nine months on payment is ${m(jsSep.singleWithChildren)}.` },
+        { question: "Do I need to do anything to get the pension increase?", answer: "No. Services Australia applies the new rates and deeming rates automatically. Your next payment amount shows in your Centrelink online account or the Express Plus Centrelink app." },
+      ],
+    },
+  ];
+}
+// --- end G6 ---
 
 /** All articles, newest first. */
 export function getAllNews(): NewsArticleMeta[] {

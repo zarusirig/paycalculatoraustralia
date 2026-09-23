@@ -25,6 +25,9 @@ import DeemingRatesChange2026 from "./deeming-rates-change-2026";
 import CentrelinkChangesJuly2026 from "./centrelink-changes-july-2026";
 // W5: Victorian teachers pay rise (23 Sep 2026)
 import VictorianTeachersPayRise2026 from "./victorian-teachers-pay-rise-2026";
+// --- G6: news articles, 24 Sep 2026 ---
+import AgePensionIncreaseSeptember2026 from "./age-pension-increase-september-2026";
+// --- end G6 ---
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -54,4 +57,7 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "centrelink-changes-july-2026": CentrelinkChangesJuly2026,
   // W5: Victorian teachers pay rise (23 Sep 2026)
   "victorian-teachers-pay-rise-2026": VictorianTeachersPayRise2026,
+  // --- G6: news articles, 24 Sep 2026 ---
+  "age-pension-increase-september-2026": AgePensionIncreaseSeptember2026,
+  // --- end G6 ---
 };
