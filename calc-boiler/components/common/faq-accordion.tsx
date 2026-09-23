@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import type { FaqItem } from "@/lib/faq";
 
@@ -9,10 +9,10 @@ import type { FaqItem } from "@/lib/faq";
  */
 export function FaqAnswer({ faq, linkClassName = "text-eucalyptus-dark hover:underline font-medium" }: { faq: FaqItem; linkClassName?: string }) {
   if (!faq.links) return <>{faq.a}</>;
-  let parts: ReactNode[] = [faq.a];
+  let parts: (string | ReactElement)[] = [faq.a];
   for (const [phrase, href] of Object.entries(faq.links)) {
     let done = false;
-    parts = parts.flatMap((part) => {
+    parts = parts.flatMap((part): (string | ReactElement)[] => {
       if (done || typeof part !== "string") return [part];
       const at = part.indexOf(phrase);
       if (at < 0) return [part];
