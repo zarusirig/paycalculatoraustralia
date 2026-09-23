@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import FaqAccordion from "@/components/common/faq-accordion";

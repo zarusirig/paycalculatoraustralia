@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, calculateIncomeTax, calculateMedicareLevy, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, calculateIncomeTax, calculateMedicareLevy, formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   ZONE_AREA_RATES,
   ZONE_OFFSET_INCOME_YEAR,
@@ -150,7 +150,7 @@ export default function ZoneTaxOffsetPage() {
               <tr><td className="px-5 py-3">Gross salary</td><td className="px-5 py-3">{formatAUD(EXAMPLE_SALARY)}</td><td className="px-5 py-3">{formatAUD(EXAMPLE_SALARY)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Income tax (FY{SITE_CONFIG.financialYear})</td><td className="px-5 py-3">{formatAUD(EXAMPLE_TAX)}</td><td className="px-5 py-3">{formatAUD(EXAMPLE_TAX)}</td></tr>
               <tr><td className="px-5 py-3">Medicare levy</td><td className="px-5 py-3">{formatAUD(EXAMPLE_MEDICARE)}</td><td className="px-5 py-3">{formatAUD(EXAMPLE_MEDICARE)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Zone tax offset</td><td className="px-5 py-3">−{formatAUD(0)}</td><td className="px-5 py-3">−{formatAUD(SPECIAL)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Zone tax offset</td><td className="px-5 py-3">{formatNegAUD(0, 0, "−")}</td><td className="px-5 py-3">{formatNegAUD(SPECIAL, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Total tax payable</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_TOTAL_TAX)}</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_TOTAL_TAX_ZTO)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3 font-medium">Annual take-home pay</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_NET)}</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_NET_ZTO)}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Fortnightly take-home pay</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_NET / 26)}</td><td className="px-5 py-3 font-medium">{formatAUD(EXAMPLE_NET_ZTO / 26)}</td></tr>

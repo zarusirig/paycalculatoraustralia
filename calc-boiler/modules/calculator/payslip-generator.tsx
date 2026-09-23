@@ -15,6 +15,7 @@ import {
   calculateMedicareLevy,
   calculateHECS,
   formatAUD,
+  formatNegAUD,
   SUPER_GUARANTEE,
   EMPLOYMENT,
   TAX_FREE_THRESHOLD,
@@ -460,8 +461,8 @@ export default function PayslipGeneratorPage() {
                       <tbody className="text-navy">
                         <tr className="border-b border-sandstone-dark/10">
                           <td className="py-2">PAYG withholding{includeHECS ? " (incl. STSL)" : ""}{calc.usingOverride ? "" : " — estimate"}</td>
-                          <td className="py-2 text-right text-ochre">-{formatAUD(calc.periodTax, 2)}</td>
-                          <td className="py-2 text-right text-warmgray">-{formatAUD(calc.ytd.tax, 2)}</td>
+                          <td className="py-2 text-right text-ochre">{formatNegAUD(calc.periodTax, 2)}</td>
+                          <td className="py-2 text-right text-warmgray">{formatNegAUD(calc.ytd.tax, 2)}</td>
                         </tr>
                       </tbody>
                     </table>

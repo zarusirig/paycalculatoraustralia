@@ -13,7 +13,8 @@ import Link from "next/link";
 import { ChevronDown, ChevronUp, TrendingUp, Building2, GraduationCap, Heart, DollarSign, Percent, PiggyBank, Receipt } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AmountPresets } from "@/modules/calculator/head-term-ui";
-import { calculatePayBreakdown, formatAUD, formatPercent, SUPER_GUARANTEE, EMPLOYMENT } from "@/lib/constants";
+import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-primary";
+import { calculatePayBreakdown, formatAUD, formatNegAUD, formatPercent, SUPER_GUARANTEE, EMPLOYMENT } from "@/lib/constants";
 import { SourceBadge } from "./source-badge";
 
 type PayBasis = "annual" | "hourly" | "daily" | "weekly" | "fortnightly" | "monthly";
@@ -376,6 +377,15 @@ export default function HomeCalculator() {
                 <div className="text-sm font-bold text-navy sm:text-base">{formatAUD(result.weekly)}</div>
               </div>
             </div>
+            {/* Per-period primaries, right under the fortnight/week figures:
+                the homepage was ranking for "fortnightly/weekly pay calculator"
+                in place of the dedicated pages (intent map, Sep 2026). */}
+            <p className="mt-2 text-center text-xs text-warmgray">
+              Paid by the fortnight or week? Use the{" "}
+              <Link href={HEAD_TERM_PRIMARY.fortnightlyPayCalculator.href} className="font-medium text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.fortnightlyPayCalculator.anchor}</Link>
+              {" "}or the{" "}
+              <Link href={HEAD_TERM_PRIMARY.weeklyPayCalculator.href} className="font-medium text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.weeklyPayCalculator.anchor}</Link>.
+            </p>
 
             {/* Hours per week — hourly basis only */}
             {payBasis === "hourly" && (
@@ -667,14 +677,14 @@ export default function HomeCalculator() {
               <ResultRow label="Gross Salary" value={formatAUD(result.grossSalary)} bold />
               {result.bonus > 0 && <ResultRow label="Bonus" value={`+${formatAUD(result.bonus)}`} />}
               {result.overtimeEarnings > 0 && <ResultRow label="Overtime" value={`+${formatAUD(result.overtimeEarnings)}`} />}
-              {result.novatedLease > 0 && <ResultRow label="Novated Lease" value={`-${formatAUD(result.novatedLease)}`} />}
+              {result.novatedLease > 0 && <ResultRow label="Novated Lease" value={formatNegAUD(result.novatedLease)} />}
               <ResultRow label="Taxable Income" value={formatAUD(result.taxableIncome)} bold />
               <div className="border-t border-sandstone-dark/20" />
-              <ResultRow label="Income Tax" value={`-${formatAUD(result.netIncomeTax)}`} color="text-ochre" icon={<Receipt className="h-3.5 w-3.5" />} />
+              <ResultRow label="Income Tax" value={formatNegAUD(result.netIncomeTax)} color="text-ochre" icon={<Receipt className="h-3.5 w-3.5" />} />
               {result.litoOffset > 0 && <ResultRow label="LITO Offset" value={`+${formatAUD(result.litoOffset)}`} sub />}
-              <ResultRow label="Medicare Levy" value={`-${formatAUD(result.medicareLevy)}`} color="text-rose-500" icon={<Heart className="h-3.5 w-3.5" />} />
-              {result.medicareSurcharge > 0 && <ResultRow label="Medicare Surcharge" value={`-${formatAUD(result.medicareSurcharge)}`} color="text-rose-500" />}
-              {includeHECS && <ResultRow label="HECS Repayment" value={`-${formatAUD(result.hecsRepayment)}`} color="text-violet-500" icon={<GraduationCap className="h-3.5 w-3.5" />} />}
+              <ResultRow label="Medicare Levy" value={formatNegAUD(result.medicareLevy)} color="text-rose-500" icon={<Heart className="h-3.5 w-3.5" />} />
+              {result.medicareSurcharge > 0 && <ResultRow label="Medicare Surcharge" value={formatNegAUD(result.medicareSurcharge)} color="text-rose-500" />}
+              {includeHECS && <ResultRow label="HECS Repayment" value={formatNegAUD(result.hecsRepayment)} color="text-violet-500" icon={<GraduationCap className="h-3.5 w-3.5" />} />}
               <div className="border-t border-sandstone-dark/20" />
               <div className="flex items-baseline justify-between pt-1">
                 <span className="text-base font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay</span>

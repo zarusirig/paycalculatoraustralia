@@ -172,6 +172,9 @@ export default function AdsterraBanner({
   useEffect(() => {
     // Only the visible branch of a responsive pair may request an ad.
     if (!isRendered(wrapperRef.current)) {
+      // Visibility depends on post-mount layout (CSS breakpoints), which can't be
+      // known during render; syncing it into state here is intentional.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setState("skipped");
       return;
     }

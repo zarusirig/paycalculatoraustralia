@@ -161,6 +161,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/centrelink-income-test/",
         links: [
           { href: "/centrelink-income-test/", label: "Income test explained" },
+          { href: "/centrelink-payment-rates/", label: "All payment rates" }, // J6
           { href: "/jobseeker-payment-calculator/", label: "JobSeeker" },
           { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
           // H3 Centrelink wave 3 (added 2026-09-24)
@@ -258,9 +259,12 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         links: [
           { href: "/public-service-pay-scales/", label: "Public service pay scales" },
           { href: "/public-service-pay-scales/aps/", label: "APS pay scales" },
+          { href: "/public-service-pay-scales/aps/aps-6/", label: "APS 6 salary" }, // J6
+          { href: "/public-service-pay-scales/aps/el1/", label: "EL1 salary" }, // J6
           { href: "/public-service-pay-scales/vic/", label: "VPS pay scales" },
           { href: "/teacher-pay-australia/", label: "Teacher pay" },
           { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
+          { href: "/school-support-staff-pay/", label: "Teacher aide pay" }, // J6
           { href: "/healthcare-worker-pay/", label: "Nurse & healthcare pay" },
           { href: "/adf-pay-scales/", label: "ADF pay scales" },
           { href: "/paramedic-pay/", label: "Paramedics" },
@@ -835,6 +839,43 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end G3 ---
+  // --- J6 wave 4 backlog (24 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so no separate entry there.
+  {
+    title: "Centrelink Rates",
+    guides: [
+      { href: "/centrelink-payment-rates/", label: "Centrelink Payment Rates", description: "Every payment's rate from 20 September 2026" },
+    ],
+  },
+  {
+    title: "School Support Staff Pay",
+    guides: [
+      { href: "/school-support-staff-pay/", label: "Teacher Aide Pay by State", description: "Government school support staff rates" },
+      { href: "/school-support-staff-pay/nsw/", label: "NSW SLSO Pay Rates", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/vic/", label: "VIC Education Support Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/qld/", label: "QLD Teacher Aide Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/wa/", label: "WA Education Assistant Pay", description: "Current rates and take-home pay" },
+      { href: "/school-support-staff-pay/sa/", label: "SA SSO Pay Rates", description: "Current rates and take-home pay" },
+    ],
+  },
+  {
+    title: "Transport Pay",
+    guides: [
+      { href: "/train-driver-salary/", label: "Train Driver Salary", description: "Sydney Trains and Metro Melbourne driver pay" },
+    ],
+  },
+  {
+    title: "APS Salary by Level",
+    guides: [
+      { href: "/public-service-pay-scales/aps/aps-3/", label: "APS 3 Salary", description: "APS 3 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-4/", label: "APS 4 Salary", description: "APS 4 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-5/", label: "APS 5 Salary", description: "APS 5 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-6/", label: "APS 6 Salary", description: "APS 6 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/el1/", label: "EL1 Salary", description: "EL1 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/el2/", label: "EL2 Salary", description: "EL2 pay by agency and after tax" },
+    ],
+  },
+  // --- end J6 ---
 ] as const;
 
 export const STATE_CATEGORIES = [

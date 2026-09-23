@@ -6,8 +6,7 @@ import { GIG_ECONOMY_FAQS } from "./gig-economy-pay-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD } from "@/lib/constants";
-import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 
 // Tax + Medicare on net gig income from the FY2026-27 engine (resident, LITO
 // and Medicare low-income shading applied, no HECS/MLS). The old hardcoded

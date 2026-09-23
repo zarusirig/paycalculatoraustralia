@@ -47,8 +47,10 @@ export default function VicPayRise2026() {
             {VIC_2026_AGREEMENT.name} in a ballot announced on {VIC_2026_AGREEMENT.ballotAnnounced}:{" "}
             {VIC_2026_AGREEMENT.ballotParticipants.toLocaleString("en-AU")} employees voted (
             {VIC_2026_AGREEMENT.ballotParticipationPct}% of those eligible) and{" "}
-            {VIC_2026_AGREEMENT.ballotYesPct}% voted yes. It now needs Fair Work Commission approval
-            and starts operating seven days after that. Until then the VGSA 2022 rates further down
+            {VIC_2026_AGREEMENT.ballotYesPct}% voted yes. The department lodged it with the Fair Work
+            Commission on {VIC_2026_AGREEMENT.fwcLodged} ({VIC_2026_AGREEMENT.fwcMatter}, at{" "}
+            {VIC_2026_AGREEMENT.fwcStage} when checked on {VIC_2026_AGREEMENT.fwcCheckedOn}). It starts
+            operating seven days after the Commission approves it. Until then the VGSA 2022 rates further down
             this page are what is paid.
           </p>
         </div>

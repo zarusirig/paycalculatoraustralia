@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   FAMILY_PAYMENT_SOURCES,
   RENT_ASSISTANCE,
@@ -109,7 +109,7 @@ export default function RentAssistanceCalculatorPage() {
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20"><h3 className="font-semibold text-navy text-sm uppercase tracking-wider">How it was worked out</h3></div>
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Your rent a fortnight" value={formatAUD(result.fortnightlyRent, 2)} bold />
-                      <Row label="Rent threshold (no assistance below this)" value={`-${formatAUD(row.threshold, 2)}`} />
+                      <Row label="Rent threshold (no assistance below this)" value={formatNegAUD(row.threshold, 2)} />
                       <Row label="Rent above the threshold × 75c" value={formatAUD(Math.max(0, result.fortnightlyRent - row.threshold) * RA.rate, 2)} />
                       <Row label="Maximum for your situation" value={formatAUD(row.max, 2)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />

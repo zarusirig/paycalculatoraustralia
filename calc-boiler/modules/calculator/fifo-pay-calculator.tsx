@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import { calculateFifoPay, FIFO_DEFAULTS, ROSTER_PRESETS, type FifoInput } from "@/lib/constants/fifo-pay";
 import { CALC_FONT, NOTE_OK, NumberField, RESULT_LIST, ResultRow, SelectField } from "./t3-calc-shared";
 
@@ -67,10 +67,10 @@ export default function FifoPayCalculator() {
               <ResultRow label={`Hours per ${r.cycleDays}-day cycle`} value={`${r.hoursPerCycle.toLocaleString("en-AU")} (${r.ordinaryHoursPerCycle.toLocaleString("en-AU")} ordinary, ${r.overtimeHoursPerCycle.toLocaleString("en-AU")} overtime)`} muted />
               <ResultRow label="Gross pay per cycle" value={formatAUD(r.perCycle.gross, 2)} />
               <ResultRow label="Gross pay per year" value={formatAUD(r.annual.gross)} bold />
-              <ResultRow label="Income tax (after LITO)" value={`−${formatAUD(t.netIncomeTax)}`} muted />
-              <ResultRow label="Medicare levy" value={`−${formatAUD(t.medicareLevy)}`} muted />
-              {t.medicareSurcharge > 0 && <ResultRow label="Medicare levy surcharge" value={`−${formatAUD(t.medicareSurcharge)}`} muted />}
-              {t.hecsRepayment > 0 && <ResultRow label="HECS-HELP repayment" value={`−${formatAUD(t.hecsRepayment)}`} muted />}
+              <ResultRow label="Income tax (after LITO)" value={formatNegAUD(t.netIncomeTax, 0, "−")} muted />
+              <ResultRow label="Medicare levy" value={formatNegAUD(t.medicareLevy, 0, "−")} muted />
+              {t.medicareSurcharge > 0 && <ResultRow label="Medicare levy surcharge" value={formatNegAUD(t.medicareSurcharge, 0, "−")} muted />}
+              {t.hecsRepayment > 0 && <ResultRow label="HECS-HELP repayment" value={formatNegAUD(t.hecsRepayment, 0, "−")} muted />}
               <ResultRow label="Take-home per year" value={formatAUD(t.takeHomePay)} bold />
               <ResultRow label="Take-home per fortnight" value={formatAUD(r.takeHomePerFortnight, 2)} />
               <ResultRow label={`Take-home per ${r.cycleDays}-day cycle`} value={formatAUD(r.takeHomePerCycle, 2)} />

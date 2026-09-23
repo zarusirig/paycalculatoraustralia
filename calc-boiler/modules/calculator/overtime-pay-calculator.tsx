@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatNegAUD,
   formatPercent,
   EMPLOYMENT,
   MEDICARE_LEVY,
@@ -151,7 +152,7 @@ export default function OvertimePayCalculatorPage() {
                       <Row label={`Penalty Rate (${multiplier}×)`} value={`${formatAUD(overtimeRate, 2)}/hr`} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label={`Gross Overtime (${hoursWorked} hrs)`} value={formatAUD(grossOvertimePay)} bold />
-                      <Row label={`Est. Tax (${formatPercent(effectiveTaxRate, 0)} incl. Medicare)`} value={`-${formatAUD(estimatedTax)}`} />
+                      <Row label={`Est. Tax (${formatPercent(effectiveTaxRate, 0)} incl. Medicare)`} value={formatNegAUD(estimatedTax)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label="Net Overtime Pay" value={formatAUD(netOvertimePay)} bold highlight />
                     </div>

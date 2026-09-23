@@ -3,6 +3,7 @@ import React from "react";
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   TAX_BRACKETS,
   HECS_HELP,
   LITO,
@@ -141,17 +142,17 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
                   <td className="px-6 py-4">Income Tax</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / 12)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / 26)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / 52)}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax / 12, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax / 26, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax / 52, 0, "−")}</td>
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
                   <td className="px-6 py-4">Medicare Levy</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 12)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 26)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 52)}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy / 12, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy / 26, 0, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy / 52, 0, "−")}</td>
                 </tr>
                 <tr className="bg-eucalyptus-dark text-white font-bold">
                   <td className="px-6 py-5">Take-Home Pay</td>
@@ -212,7 +213,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                 {breakdown.litoOffset > 0 && (
                   <tr className="bg-sandstone text-navy transition-colors">
                     <td colSpan={3} className="px-6 py-4 text-right font-medium">Minus Low Income Tax Offset (LITO)</td>
-                    <td className="px-6 py-4 text-right font-bold text-eucalyptus">−{formatAUD(breakdown.litoOffset)}</td>
+                    <td className="px-6 py-4 text-right font-bold text-eucalyptus">{formatNegAUD(breakdown.litoOffset, 0, "−")}</td>
                   </tr>
                 )}
                 <tr className="bg-sandstone text-navy font-bold border-t-2 border-sandstone-dark/20">

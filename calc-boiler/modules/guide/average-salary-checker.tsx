@@ -9,6 +9,7 @@ import {
   salaryPercentile,
   type Population,
 } from "@/lib/data/average-salary";
+import { parseMoneyInput } from "@/lib/money-input";
 
 const POPULATIONS: { id: Population; label: string; median: number }[] = [
   { id: "fullTime", label: "Full-time employees", median: HEADLINE.medianFullTimeAnnual },
@@ -29,8 +30,9 @@ export default function AverageSalaryChecker() {
   const [raw, setRaw] = useState("85000");
   const [population, setPopulation] = useState<Population>("fullTime");
 
-  const salary = Number(raw.replace(/[^0-9.]/g, ""));
-  const valid = Number.isFinite(salary) && salary > 0 && salary < 100_000_000;
+  const parsed = parseMoneyInput(raw, { max: 99_999_999 });
+  const salary = parsed.value;
+  const valid = !parsed.error && salary > 0;
   const result = useMemo(() => (valid ? salaryPercentile(salary, population) : null), [salary, population, valid]);
   const pop = POPULATIONS.find((p) => p.id === population)!;
 
@@ -52,13 +54,17 @@ export default function AverageSalaryChecker() {
             <span className="text-warmgray">$</span>
             <input
               id={inputId}
-              inputMode="numeric"
+              inputMode="decimal"
               value={raw}
               onChange={(e) => setRaw(e.target.value)}
               className="w-full bg-transparent px-2 py-2.5 text-lg text-navy outline-none"
-              aria-describedby={`${inputId}-help`}
+              aria-invalid={parsed.error ? true : undefined}
+              aria-describedby={parsed.error ? `${inputId}-error ${inputId}-help` : `${inputId}-help`}
             />
           </div>
+          {parsed.error && (
+            <p id={`${inputId}-error`} className="mt-1 text-xs font-medium text-red-600">{parsed.message}</p>
+          )}
         </div>
         <fieldset className="flex-1">
           <legend className="mb-1 block text-sm font-semibold text-navy">Compare with</legend>

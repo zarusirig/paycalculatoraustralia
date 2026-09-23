@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   CARE_TYPE_LABELS,
   CCS,
@@ -151,7 +151,7 @@ export default function ChildCareSubsidyCalculatorPage() {
                 </div>
                 <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
                   <Row label="Fees charged, a fortnight" value={formatAUD(total.fees, 2)} />
-                  <Row label="CCS paid to your centre" value={`-${formatAUD(total.paid, 2)}`} />
+                  <Row label="CCS paid to your centre" value={formatNegAUD(total.paid, 2)} />
                   <Row label="Gap fee you pay" value={formatAUD(total.gap, 2)} bold highlight />
                   <Row label={`Withheld (${CCS.defaultWithholding * 100}%), paid at balancing if not needed`} value={formatAUD(total.withheld, 2)} />
                   <Row label="Standard CCS percentage" value={`${ccsStandardPercent(familyIncome).toFixed(2)}%`} />

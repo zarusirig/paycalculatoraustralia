@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { ShieldCheck, Award, Calendar } from "lucide-react";
 import type { Author, Reviewer } from "@/lib/authors";
 

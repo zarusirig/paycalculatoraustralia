@@ -13,6 +13,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
@@ -23,6 +24,7 @@ import {
 } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { PeriodPayTable } from "@/modules/calculator/period-pay-table";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
@@ -88,7 +90,7 @@ export default function FortnightlyPayCalculatorPage() {
             {formatAUD(80_000 / 26, 2)} gross and <strong>{formatAUD(lead.fortnightly, 2)} take-home</strong> every fortnight after
             income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2 text-sm md:text-base">Use it as a fortnightly tax calculator: enter your fortnightly pay or annual salary.</p>
+          <p className="text-warmgray mt-2 text-sm md:text-base">Use this fortnightly pay calculator as a fortnightly tax calculator: enter your fortnightly pay or annual salary.</p>
           <TrustBar className="mt-3" />
         </section>
 
@@ -133,10 +135,10 @@ export default function FortnightlyPayCalculatorPage() {
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Fortnightly Pay" value={formatAUD(salary / 26, 2)} bold />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(result.netIncomeTax / 26, 2)}`} />
-                      <Row label="Medicare Levy" value={`-${formatAUD(result.medicareLevy / 26, 2)}`} />
-                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={`-${formatAUD(result.medicareSurcharge / 26, 2)}`} />}
-                      {includeHECS && <Row label="HECS Repayment" value={`-${formatAUD(result.hecsRepayment / 26, 2)}`} />}
+                      <Row label="Income Tax" value={formatNegAUD(result.netIncomeTax / 26, 2)} />
+                      <Row label="Medicare Levy" value={formatNegAUD(result.medicareLevy / 26, 2)} />
+                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={formatNegAUD(result.medicareSurcharge / 26, 2)} />}
+                      {includeHECS && <Row label="HECS Repayment" value={formatNegAUD(result.hecsRepayment / 26, 2)} />}
                       <div className="border-t border-sandstone-dark/20" />
                       <div className="flex justify-between items-baseline pt-2 pb-2">
                         <span className="font-bold text-navy">Fortnightly Take-Home</span>
@@ -152,6 +154,9 @@ export default function FortnightlyPayCalculatorPage() {
               </div>
             </CardContent>
           </Card>
+          {/* Period-specific table directly under the calculator: the value the
+              homepage's all-periods calculator doesn't give (intent map, Sep 2026). */}
+          <PeriodPayTable period="fortnightly" currentSalary={salary} />
         </section>
 
         <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "incomeTaxCalculator", "weeklyTaxCalculator"]} />

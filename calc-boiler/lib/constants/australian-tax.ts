@@ -788,6 +788,20 @@ export function formatAUD(value: number, decimals = 0): string {
   });
 }
 
+/**
+ * A deduction shown with a leading minus: formatNegAUD(1234) → "-$1,234".
+ * A value that rounds to zero at `decimals` renders as "$0" / "$0.00" with no
+ * minus (so a nil deduction never reads "-$0.00"). A negative value (a
+ * deduction that is really a credit) renders unsigned rather than "--$5".
+ * `minus` keeps each page's glyph: "-" (hyphen) or "−" (U+2212).
+ */
+export function formatNegAUD(value: number, decimals = 0, minus: "-" | "−" = "-"): string {
+  if (!Number.isFinite(value)) return formatAUD(0, decimals);
+  if (Math.round(Math.abs(value) * 10 ** decimals) === 0) return formatAUD(0, decimals);
+  const abs = formatAUD(Math.abs(value), decimals);
+  return value > 0 ? `${minus}${abs}` : abs;
+}
+
 export function formatAUDCompact(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `$${(value / 1_000).toFixed(0)}K`;

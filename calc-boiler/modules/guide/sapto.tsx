@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   SAPTO_BANDS,
   SAPTO_INCOME_YEAR,
@@ -88,7 +88,7 @@ export default function SaptoPage() {
             <p>The ATO&rsquo;s own example. A single age pensioner with rebate income of {formatAUD(39_000)} is above the {formatAUD(S.shadingOutThreshold)} shading-out threshold but below the {formatAUD(S.cutOutThreshold)} cut-out, so the offset tapers:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Rebate income above the threshold</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(39_000)} − {formatAUD(S.shadingOutThreshold)} = {formatAUD(39_000 - S.shadingOutThreshold)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Reduction at {SAPTO_REDUCTION_RATE * 100}c per $1</td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(JOSE.reduction, 2)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Reduction at {SAPTO_REDUCTION_RATE * 100}c per $1</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(JOSE.reduction, 2, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-medium">SAPTO (rounded up)</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(JOSE.offset)}</td></tr>
             </tbody></table></div></div>
           </section>

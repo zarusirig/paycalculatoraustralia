@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD, formatPercent } from "@/lib/constants";
+import { formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   CGT_DISCOUNT_RATES,
   CGT_INCOME_YEAR,
@@ -312,7 +312,7 @@ export default function CgtCalculator() {
               </div>
               <div className="p-5 space-y-3 text-sm">
                 <Row label="Capital proceeds" value={formatAUD(r.capitalProceeds)} />
-                <Row label="Cost base" value={`−${formatAUD(r.costBase)}`} />
+                <Row label="Cost base" value={formatNegAUD(r.costBase, 0, "−")} />
                 <div className="border-t border-sandstone-dark/10 pt-3" />
                 <Row
                   label={r.isCapitalLoss ? "Capital loss" : "Capital gain"}
@@ -327,7 +327,7 @@ export default function CgtCalculator() {
                         <div className="border-t border-sandstone-dark/10 pt-3" />
                         <Row
                           label="Capital losses applied"
-                          value={`−${formatAUD(r.lossesApplied)}`}
+                          value={formatNegAUD(r.lossesApplied, 0, "−")}
                           hint="Subtracted before the discount, as the ATO requires"
                         />
                         <Row label="Gain after losses" value={formatAUD(r.gainAfterLosses)} />
@@ -348,7 +348,7 @@ export default function CgtCalculator() {
                           ? `CGT discount (${formatPercent(r.discountRate, 0)})`
                           : "CGT discount"
                       }
-                      value={r.discountRate > 0 ? `−${formatAUD(r.discountAmount)}` : "Not eligible"}
+                      value={r.discountRate > 0 ? formatNegAUD(r.discountAmount, 0, "−") : "Not eligible"}
                       hint={
                         r.discountRate > 0
                           ? undefined

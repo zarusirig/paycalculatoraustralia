@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   AGE_PENSION,
   AGE_PENSION_INCOME_TEST,
@@ -193,13 +193,13 @@ export default function AgePensionIncomeTestCalculatorPage() {
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20"><h3 className="font-semibold text-navy text-sm uppercase tracking-wider">How the income test applied</h3></div>
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Employment income" value={formatAUD(employment + (situation === "couple" ? partnerEmployment : 0), 2)} />
-                      <Row label={`Work Bonus (first ${formatAUD(WORK_BONUS.fortnightlyCredit)} each, then balance)`} value={`-${formatAUD(result.workBonusSaved, 2)}`} />
+                      <Row label={`Work Bonus (first ${formatAUD(WORK_BONUS.fortnightlyCredit)} each, then balance)`} value={formatNegAUD(result.workBonusSaved, 2)} />
                       <Row label="Other income" value={formatAUD(otherIncome, 2)} />
                       <Row label="Assessable income" value={formatAUD(result.assessable, 2)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label={`Maximum rate (${RATE_SET_LABELS[activeKey]})`} value={formatAUD(result.max, 2)} />
                       <Row label={`Free area (${situation === "couple" ? "combined" : "single"})`} value={formatAUD(free, 2)} />
-                      <Row label={`${Math.round(taper * 100)}c per $1 over the free area${situation === "couple" ? " (each)" : ""}`} value={`-${formatAUD(result.reduction, 2)}`} />
+                      <Row label={`${Math.round(taper * 100)}c per $1 over the free area${situation === "couple" ? " (each)" : ""}`} value={formatNegAUD(result.reduction, 2)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label={situation === "couple" ? "Pension each" : "Pension"} value={formatAUD(result.each, 2)} bold highlight />
                       <Row label={`On the ${RATE_SET_LABELS[otherKey]} rate`} value={formatAUD(result.otherEach, 2)} />
@@ -298,7 +298,7 @@ export default function AgePensionIncomeTestCalculatorPage() {
                     return (
                       <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                         <td className={TD + " font-medium"}>{formatAUD(inc, 2)}</td>
-                        <td className={TD + " text-right"}>-{formatAUD(pensionReduction(inc, "single"), 2)}</td>
+                        <td className={TD + " text-right"}>{formatNegAUD(pensionReduction(inc, "single"), 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(payMar, 2)}</td>
                         <td className={TD + " text-right font-bold"}>{formatAUD(paySep, 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(paySep + inc, 2)}</td>

@@ -13,6 +13,11 @@ export const HEAD_TERM_PRIMARY = {
   taxCalculatorAustralia: { href: "/income-tax-calculator/", anchor: "tax calculator Australia" },
   weeklyTaxCalculator: { href: "/weekly-pay-calculator/", anchor: "weekly tax calculator" },
   fortnightlyTaxCalculator: { href: "/fortnightly-pay-calculator/", anchor: "fortnightly tax calculator" },
+  // Sep 2026: /weekly-pay-calculator/ and /fortnightly-pay-calculator/ were not
+  // in the top 20 for their own "… pay calculator" queries (the homepage ranked
+  // instead), so these anchors join the tax anchors above. Same primary URLs.
+  weeklyPayCalculator: { href: "/weekly-pay-calculator/", anchor: "weekly pay calculator" },
+  fortnightlyPayCalculator: { href: "/fortnightly-pay-calculator/", anchor: "fortnightly pay calculator" },
   grossPayCalculator: { href: "/gross-pay-calculator/", anchor: "gross pay calculator" },
   salaryAfterTaxCalculator: { href: "/annual-pay-calculator/", anchor: "salary after tax calculator" },
 } as const;
