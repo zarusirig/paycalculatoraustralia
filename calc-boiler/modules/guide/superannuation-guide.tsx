@@ -76,7 +76,7 @@ export default function SuperannuationGuidePage() {
             <section id="sg-rate">
               <h2>How Much Super Does Your Employer Pay?</h2>
               <p>
-                The Superannuation Guarantee (SG) rate is <strong>12%</strong>, paid on top of your earnings. Since <strong>Payday Super commenced on 1 July 2026</strong>, employers must pay it <strong>every payday</strong> rather than quarterly, and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong> of each payday (20 business days for a new employee or a first contribution to a new fund).
+                The <Link href="/super-guarantee-rate-history/">superannuation guarantee rate</Link> is <strong>12%</strong>, paid on top of your earnings. Since <strong>Payday Super commenced on 1 July 2026</strong>, employers must pay it <strong>every payday</strong> rather than quarterly, and the contribution must be <em>received</em> by your fund within <strong>7 business days</strong> of each payday (20 business days for a new employee or a first contribution to a new fund).
               </p>
               <p>
                 The SG rate increased by 0.5 percentage points each year from 2021 to reach the legislated ceiling of 12% on 1 July 2025. No further increases are currently legislated. On a salary of $85,000, the 12% SG adds <strong>$10,200 per year</strong> to your super balance. The previous rate of {formatPercent(SUPER_GUARANTEE.previousRate, 1)} applied during FY2024-25.
@@ -164,7 +164,7 @@ export default function SuperannuationGuidePage() {
             <section id="contribution-caps">
               <h2>What Are the Super Contribution Caps?</h2>
               <p>
-                The ATO limits how much you can contribute to super at concessional tax rates each financial year. The concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> for FY2025-26. Exceeding either cap triggers additional tax on the excess amount.
+                The ATO limits how much you can contribute to super at concessional tax rates each financial year. The concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> and the non-concessional cap is <strong>{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)}</strong> for FY{SITE_CONFIG.financialYear}. Exceeding either cap triggers additional tax on the excess amount.
               </p>
 
               <div className="not-prose my-8">
@@ -173,7 +173,7 @@ export default function SuperannuationGuidePage() {
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th className="px-6 py-4">Cap Type</th>
-                        <th className="px-6 py-4">Annual Limit (FY2025-26)</th>
+                        <th className="px-6 py-4">Annual Limit (FY{SITE_CONFIG.financialYear})</th>
                         <th className="px-6 py-4">Tax Rate Inside Super</th>
                         <th className="px-6 py-4">Penalty If Exceeded</th>
                       </tr>
@@ -193,18 +193,18 @@ export default function SuperannuationGuidePage() {
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Bring-forward (non-concessional)</td>
-                        <td className="px-6 py-4 font-bold">$360,000 over 3 years</td>
+                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.bringForwardCap)} over 3 years</td>
                         <td className="px-6 py-4">0%</td>
-                        <td className="px-6 py-4">Available only if total super balance is below $1.9 million</td>
+                        <td className="px-6 py-4">Depends on your total super balance at 30 June of the previous year</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div>
 
-              <h3>Concessional Contributions Cap ($30,000)</h3>
+              <h3>Concessional Contributions Cap ({formatAUD(SUPER_GUARANTEE.concessionalCap)})</h3>
               <p>
-                The {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap includes three contribution types: employer SG payments, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> amounts, and personal contributions for which you claim a tax deduction. All three count toward the single cap. On an $85,000 salary, the employer SG of $10,200 leaves <strong>$19,800</strong> of unused cap space for voluntary concessional contributions.
+                The {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap includes three contribution types: employer SG payments, <Link href="/salary-sacrifice-calculator/">salary sacrifice</Link> amounts, and personal contributions for which you claim a tax deduction. All three count toward the single cap. On an $85,000 salary, the employer SG of $10,200 leaves <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 10_200)}</strong> of unused cap space for voluntary concessional contributions. Our <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide has a calculator for your own salary, including carry-forward.
               </p>
               <p>
                 These contributions are taxed at <strong>15%</strong> within the super fund rather than your marginal tax rate. Unused concessional cap amounts carry forward for up to 5 years, provided your total super balance is below $500,000 at 30 June of the previous financial year. This &quot;carry-forward&quot; rule lets you contribute large lump sums in a single year &mdash; for example, after receiving a bonus or inheritance.
@@ -354,8 +354,8 @@ export default function SuperannuationGuidePage() {
                       </tr>
                       <tr>
                         <td className="px-6 py-4">Remaining concessional cap space</td>
-                        <td className="px-6 py-4 font-bold">$19,800</td>
-                        <td className="px-6 py-4">$30,000 &minus; $10,200</td>
+                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.concessionalCap - 10_200)}</td>
+                        <td className="px-6 py-4">{formatAUD(SUPER_GUARANTEE.concessionalCap)} &minus; $10,200</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4">Income tax on $85K salary</td>
@@ -387,12 +387,12 @@ export default function SuperannuationGuidePage() {
                 Salary sacrifice redirects a portion of your pre-tax salary into your super fund, where it is taxed at <strong>15%</strong> instead of your marginal rate. The tax saving ranges from <strong>$150 per $1,000 sacrificed</strong> (at the 30% bracket) to <strong>$300 per $1,000</strong> (at the 45% bracket), making it one of the most effective legal tax-reduction strategies in Australia.
               </p>
               <p>
-                Salary sacrifice contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap alongside employer SG payments. Exceeding the cap triggers additional tax at your marginal rate on the excess amount. Before arranging salary sacrifice with your employer, calculate your available cap space by subtracting your annual SG from $30,000.
+                Salary sacrifice contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap alongside employer SG payments. Exceeding the cap triggers additional tax at your marginal rate on the excess amount. Before arranging salary sacrifice with your employer, calculate your available cap space by subtracting your annual SG from {formatAUD(SUPER_GUARANTEE.concessionalCap)}, or use the <Link href="/concessional-contributions-cap/">concessional cap calculator</Link>.
               </p>
 
               <h3>Worked Example: Salary Sacrifice on $100,000</h3>
               <p>
-                An employee earning $100,000 receives 12% SG ($12,000), leaving $18,000 of concessional cap space ({formatAUD(SUPER_GUARANTEE.concessionalCap)} &minus; $12,000). If they salary sacrifice $10,000:
+                An employee earning $100,000 receives 12% SG ($12,000), leaving {formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)} of concessional cap space ({formatAUD(SUPER_GUARANTEE.concessionalCap)} &minus; $12,000). If they salary sacrifice $10,000:
               </p>
               <ul>
                 <li>Taxable income drops from $100,000 to <strong>$90,000</strong></li>
@@ -430,18 +430,18 @@ export default function SuperannuationGuidePage() {
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Maximum contribution base (quarterly)</td>
-                        <td className="px-6 py-4">$62,270</td>
-                        <td className="px-6 py-4 font-bold text-eucalyptus-dark">{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</td>
+                        <td className="px-6 py-4">$65,070</td>
+                        <td className="px-6 py-4 font-bold text-eucalyptus-dark">{formatAUD(SUPER_GUARANTEE.maxContributionBasePerQuarterUntil2026)}</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Concessional cap</td>
                         <td className="px-6 py-4">$30,000</td>
-                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.concessionalCap)} (unchanged)</td>
+                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} (unchanged; {formatAUD(SUPER_GUARANTEE.concessionalCap)} from 1 July 2026)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Non-concessional cap</td>
                         <td className="px-6 py-4">$120,000</td>
-                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} (unchanged)</td>
+                        <td className="px-6 py-4 font-bold">{formatAUD(SUPER_GUARANTEE.nonConcessionalCapPrevious)} (unchanged; {formatAUD(SUPER_GUARANTEE.nonConcessionalCap)} from 1 July 2026)</td>
                       </tr>
                       <tr>
                         <td className="px-6 py-4 font-medium">Transfer balance cap</td>

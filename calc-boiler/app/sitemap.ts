@@ -74,6 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "family-tax-benefit-calculator",
     "rent-assistance-calculator",
     // end C4
+    // W3 Centrelink wave 2 (added 2026-09-23)
+    "carer-payment-calculator",
+    "carer-allowance",
+    "centrelink-advance-payment",
+    // end W3
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",
@@ -148,6 +153,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "centrelink-income-test",
     "fringe-benefits-tax",
     "parental-leave-pay",
+    // W3 Centrelink wave 2 (added 2026-09-23)
+    "centrelink-crisis-payment",
+    "centrelink-debt",
+    "cost-of-living-payment-2026",
+    // end W3
     "zone-tax-offset",
     "sapto-calculator",
     "tax-calendar",
@@ -291,6 +301,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   // --- end C2/C5 ---
+  // --- W2 wave 2: tax-free threshold, MLS calculator, concessional cap (23 Sep 2026) ---
+  allPages.push({ slug: "tax-free-threshold", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "medicare-levy-surcharge-calculator", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "concessional-contributions-cap", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end W2 ---
+  // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
+  allPages.push({ slug: "payday-super", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
+  allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end W1 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

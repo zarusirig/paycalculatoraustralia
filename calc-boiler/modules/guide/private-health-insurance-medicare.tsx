@@ -7,7 +7,38 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, MEDICARE_LEVY } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, formatAUD } from "@/lib/constants";
+import {
+  MLS_APPROPRIATE_COVER_MAX_EXCESS,
+  MLS_INCOME_YEAR,
+  PHI_REBATE,
+  estimateMls,
+  familyBaseThreshold,
+  formatMlsRate,
+  phiRebateRate,
+} from "@/lib/constants/medicare-levy-surcharge";
+import type { MlsTier } from "@/lib/constants/medicare-levy-extra";
+
+// Corrected 23 Sep 2026 (W2): this page carried 2023-24 surcharge thresholds
+// ($93,000 / $186,000) and rebate rates next to 2026-27 tier bounds, plus
+// estimated premiums with no source. Every figure now derives from
+// lib/constants/medicare-levy-surcharge.ts (ATO, verified 23 Sep 2026), and
+// the surcharge itself is calculated on /medicare-levy-surcharge-calculator/.
+const S = MEDICARE_LEVY.surcharge;
+const SINGLE_BASE = S.tier1.min - 1;
+const FAMILY_BASE = familyBaseThreshold(0);
+const TIER_ROWS: { name: string; tier: MlsTier; single: string; family: string; rate: number }[] = [
+  { name: "Base tier (no MLS)", tier: 0, single: `${formatAUD(SINGLE_BASE)} or less`, family: `${formatAUD(FAMILY_BASE)} or less`, rate: 0 },
+  { name: "Tier 1", tier: 1, single: `${formatAUD(S.tier1.min)} – ${formatAUD(S.tier1.max)}`, family: `${formatAUD(S.familyTier1.min)} – ${formatAUD(S.familyTier1.max)}`, rate: S.tier1.rate },
+  { name: "Tier 2", tier: 2, single: `${formatAUD(S.tier2.min)} – ${formatAUD(S.tier2.max)}`, family: `${formatAUD(S.familyTier2.min)} – ${formatAUD(S.familyTier2.max)}`, rate: S.tier2.rate },
+  { name: "Tier 3", tier: 3, single: `${formatAUD(S.tier3.min)} or more`, family: `${formatAUD(S.familyTier3.min)} or more`, rate: S.tier3.rate },
+];
+const pct3 = (r: number) => `${(r * 100).toFixed(3)}%`;
+const BREAK_EVEN_INCOMES = [110_000, 130_000, 150_000, 200_000];
+const singleMls = (income: number) =>
+  estimateMls({ own: { taxableIncome: income, reportableFringeBenefits: 0, netInvestmentLosses: 0, reportableSuperContributions: 0 }, hasSpouse: false, spouseMlsIncome: 0, dependentChildren: 0, daysWithoutCover: 365 });
+const EG150 = singleMls(150_000);
+const EG150_BREAK_EVEN = EG150.fullYearSurcharge / (1 - phiRebateRate(EG150.tier, "under65"));
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -38,7 +69,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
             Private Health Insurance &amp; Medicare — When PHI Saves You Money
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Should you get private health insurance to avoid the Medicare Levy Surcharge? We break down the income thresholds, surcharge rates, PHI rebate tiers, and the financial tipping points where getting cover actually saves you money.
+            Should you get private hospital cover to avoid the Medicare levy surcharge? How the surcharge and the private health insurance rebate interact, how to find the premium at which cover pays for itself, and lifetime health cover loading. To work out your own surcharge, use the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -63,7 +94,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
                 The Medicare Levy Surcharge (MLS) is an <strong>additional</strong> tax on top of the standard 2% Medicare levy. It applies to Australian taxpayers who earn above the income threshold and do <strong>not</strong> hold an eligible private hospital cover policy.
               </p>
               <p>
-                The MLS is designed to encourage higher income earners to take out private health insurance, reducing pressure on the public health system. The surcharge is calculated on your taxable income, reportable fringe benefits, and total net investment losses.
+                Your tier is set by your income for MLS purposes: taxable income plus reportable fringe benefits, total net investment losses and reportable super contributions. The rate is then charged on your taxable income plus reportable fringe benefits. The {MLS_INCOME_YEAR} tiers:
               </p>
 
               <div className="not-prose my-6">
@@ -78,36 +109,20 @@ export default function PrivateHealthInsuranceMedicarePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr>
-                        <td className="px-6 py-4 font-medium">Base Tier (No MLS)</td>
-                        <td className="px-6 py-4">$0 &ndash; $93,000</td>
-                        <td className="px-6 py-4">$0 &ndash; $186,000</td>
-                        <td className="px-6 py-4 font-semibold">0%</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-medium">Tier 1</td>
-                        <td className="px-6 py-4">${MEDICARE_LEVY.surcharge.tier1.min.toLocaleString()} &ndash; ${MEDICARE_LEVY.surcharge.tier1.max.toLocaleString()}</td>
-                        <td className="px-6 py-4">$186,001 &ndash; $216,000</td>
-                        <td className="px-6 py-4 font-semibold">{(MEDICARE_LEVY.surcharge.tier1.rate * 100).toFixed(0)}%</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-medium">Tier 2</td>
-                        <td className="px-6 py-4">${MEDICARE_LEVY.surcharge.tier2.min.toLocaleString()} &ndash; ${MEDICARE_LEVY.surcharge.tier2.max.toLocaleString()}</td>
-                        <td className="px-6 py-4">$216,001 &ndash; $288,000</td>
-                        <td className="px-6 py-4 font-semibold">{(MEDICARE_LEVY.surcharge.tier2.rate * 100).toFixed(2)}%</td>
-                      </tr>
-                      <tr>
-                        <td className="px-6 py-4 font-medium">Tier 3</td>
-                        <td className="px-6 py-4">${MEDICARE_LEVY.surcharge.tier3.min.toLocaleString()}+</td>
-                        <td className="px-6 py-4">$288,001+</td>
-                        <td className="px-6 py-4 font-semibold">{(MEDICARE_LEVY.surcharge.tier3.rate * 100).toFixed(1)}%</td>
-                      </tr>
+                      {TIER_ROWS.map((t) => (
+                        <tr key={t.name}>
+                          <td className="px-6 py-4 font-medium">{t.name}</td>
+                          <td className="px-6 py-4">{t.single}</td>
+                          <td className="px-6 py-4">{t.family}</td>
+                          <td className="px-6 py-4 font-semibold">{formatMlsRate(t.rate)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               </div>
               <p>
-                The MLS thresholds have <strong>not been indexed since 2014-15</strong>. As wages grow, more Australians are crossing the $93,001 threshold each year through bracket creep. See our <Link href="/medicare-levy/">Medicare Levy Guide</Link> for the full breakdown of the standard 2% levy.
+                The thresholds have risen every year since 2022-23, when the singles threshold was $90,000. Family thresholds rise $1,500 for each dependent child after the first. Work out your own tier and surcharge with the <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge calculator</Link>; the standard 2% levy is covered by our <Link href="/medicare-levy/">Medicare levy calculator</Link>.
               </p>
             </section>
 
@@ -129,14 +144,13 @@ export default function PrivateHealthInsuranceMedicarePage() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-medium">$93,000 or less</td><td className="px-6 py-4">24.608%</td><td className="px-6 py-4">28.710%</td><td className="px-6 py-4">32.812%</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$93,001 &ndash; $108,000</td><td className="px-6 py-4">16.405%</td><td className="px-6 py-4">20.507%</td><td className="px-6 py-4">24.608%</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$108,001 &ndash; $144,000</td><td className="px-6 py-4">8.202%</td><td className="px-6 py-4">12.303%</td><td className="px-6 py-4">16.405%</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$144,001+</td><td className="px-6 py-4">0%</td><td className="px-6 py-4">0%</td><td className="px-6 py-4">0%</td></tr>
+                      {TIER_ROWS.map((t) => (
+                        <tr key={t.name}><td className="px-6 py-4 font-medium">{t.single}</td><td className="px-6 py-4">{pct3(phiRebateRate(t.tier, "under65"))}</td><td className="px-6 py-4">{pct3(phiRebateRate(t.tier, "age65to69"))}</td><td className="px-6 py-4">{pct3(phiRebateRate(t.tier, "age70plus"))}</td></tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">Family thresholds are double the singles thresholds. Add $1,500 for each dependent child after the first.</p>
+                <p className="text-xs text-warmgray mt-2">Rates from {PHI_REBATE.period}, by the age of the oldest person on the policy. Families use the family column in the surcharge table above. Source: ATO, income thresholds and rates for the private health insurance rebate.</p>
               </div>
               <p>
                 You can receive the rebate as either a premium reduction (paid directly to your insurer) or as a refundable tax offset when you lodge your tax return. Most people opt for the premium reduction to lower their monthly costs immediately.
@@ -147,40 +161,41 @@ export default function PrivateHealthInsuranceMedicarePage() {
             <section id="financial-decision">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>PHI vs Surcharge — The Financial Decision</h2>
               <p>
-                The key question is: <strong>is it cheaper to pay the MLS or buy private hospital cover?</strong> The answer depends on your income level. At lower MLS tiers, basic hospital cover is often cheaper than the surcharge. At higher incomes, the difference becomes even more pronounced.
+                The key question is: <strong>is it cheaper to pay the MLS or buy private hospital cover?</strong> Premiums vary too much by insurer, state and excess for a single answer, so work out your <strong>break-even premium</strong>: the surcharge divided by the share of the premium you pay after your rebate. A quote below that, before the rebate, costs less than the surcharge.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full text-sm text-left text-navy">
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th className="px-6 py-4">Income</th>
-                        <th className="px-6 py-4">Annual MLS Cost</th>
-                        <th className="px-6 py-4">Basic PHI (Est.)</th>
-                        <th className="px-6 py-4">Cheaper Option</th>
+                        <th className="px-6 py-4">Single, taxable income</th>
+                        <th className="px-6 py-4">Annual MLS</th>
+                        <th className="px-6 py-4">Rebate (under 65)</th>
+                        <th className="px-6 py-4">Cover is cheaper below</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-medium">$95,000</td><td className="px-6 py-4">$950</td><td className="px-6 py-4">~$1,200</td><td className="px-6 py-4 text-red-600 font-semibold">MLS cheaper</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$100,000</td><td className="px-6 py-4">$1,000</td><td className="px-6 py-4">~$1,200</td><td className="px-6 py-4 text-red-600 font-semibold">MLS cheaper</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$110,000</td><td className="px-6 py-4">$1,375</td><td className="px-6 py-4">~$1,200</td><td className="px-6 py-4 text-green-600 font-semibold">PHI cheaper</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$130,000</td><td className="px-6 py-4">$1,625</td><td className="px-6 py-4">~$1,300</td><td className="px-6 py-4 text-green-600 font-semibold">PHI cheaper</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$150,000</td><td className="px-6 py-4">$2,250</td><td className="px-6 py-4">~$1,500</td><td className="px-6 py-4 text-green-600 font-semibold">PHI cheaper</td></tr>
-                      <tr><td className="px-6 py-4 font-medium">$200,000</td><td className="px-6 py-4">$3,000</td><td className="px-6 py-4">~$1,500</td><td className="px-6 py-4 text-green-600 font-semibold">PHI cheaper</td></tr>
+                      {BREAK_EVEN_INCOMES.map((inc) => {
+                        const m = singleMls(inc);
+                        const r = phiRebateRate(m.tier, "under65");
+                        return (
+                          <tr key={inc}><td className="px-6 py-4 font-medium">{formatAUD(inc)}</td><td className="px-6 py-4">{formatAUD(m.fullYearSurcharge)}</td><td className="px-6 py-4">{pct3(r)}</td><td className="px-6 py-4 font-semibold">{formatAUD(m.fullYearSurcharge / (1 - r))} a year</td></tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
-                <p className="text-xs text-warmgray mt-2">PHI estimates are for basic hospital cover (singles, under 65, no LHC loading). Rebate applied where eligible. Actual premiums vary by insurer and state.</p>
+                <p className="text-xs text-warmgray mt-2">{MLS_INCOME_YEAR} tiers, no fringe benefits, a full year without cover. Premium before rebate, ignoring lifetime health cover loading. Enter your own quote in the <Link href="/medicare-levy-surcharge-calculator/" className="underline">Medicare levy surcharge calculator</Link>.</p>
               </div>
               <p>
-                The crossover point is typically around <strong>$105,000&ndash;$110,000</strong> for singles. Below this, the surcharge may be cheaper than even basic cover. Above it, PHI becomes the better financial option &mdash; and you get hospital coverage as a bonus.
+                At or under {formatAUD(SINGLE_BASE)} (singles) there is no surcharge to avoid, so cover is a health decision rather than a tax one.
               </p>
 
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-6">
                 <p className="text-navy text-sm font-medium">
                   <strong>Important</strong>
                   <br />
-                  Only <em>hospital</em> cover counts for MLS exemption. Extras-only policies (dental, optical, physio) do <strong>not</strong> exempt you from the surcharge. Your policy must be a compliant private hospital insurance product.
+                  Only <em>hospital</em> cover counts for MLS exemption. Extras-only policies (dental, optical, physio) do <strong>not</strong> exempt you from the surcharge. Your policy must be private patient hospital cover with an excess of {formatAUD(MLS_APPROPRIATE_COVER_MAX_EXCESS.single)} or less for singles ({formatAUD(MLS_APPROPRIATE_COVER_MAX_EXCESS.family)} for couples and families).
                 </p>
               </div>
             </section>
@@ -222,11 +237,11 @@ export default function PrivateHealthInsuranceMedicarePage() {
               <Accordion type="multiple" className="not-prose mt-6 space-y-3">
                 <AccordionItem value="what-triggers-mls" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">What income triggers the Medicare Levy Surcharge?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The MLS applies to singles with income above <strong>$93,000</strong> or families above <strong>$186,000</strong> who do not hold an eligible private hospital cover policy. Income for MLS purposes includes taxable income, reportable fringe benefits, and total net investment losses.</AccordionContent>
+                  <AccordionContent className="text-warmgray">In {MLS_INCOME_YEAR} the MLS applies to singles with income for MLS purposes above <strong>{formatAUD(SINGLE_BASE)}</strong> or families above <strong>{formatAUD(FAMILY_BASE)}</strong> who do not hold appropriate private patient hospital cover. Income for MLS purposes includes taxable income, reportable fringe benefits, total net investment losses and reportable super contributions.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="phi-vs-mls" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is it cheaper to get PHI or pay the surcharge?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">It depends on your income. Below approximately $105,000, the 1% surcharge may be cheaper than basic hospital cover. Above $110,000, basic PHI (around $1,200&ndash;$1,500 per year) is typically cheaper than the surcharge. At $150,000+, the surcharge costs $2,250+ while basic cover remains around $1,500. PHI also provides actual hospital coverage.</AccordionContent>
+                  <AccordionContent className="text-warmgray">It depends on your income and your quote. Compare the surcharge you would pay with the premium after your rebate: at {formatAUD(150_000)} a single pays {formatAUD(EG150.fullYearSurcharge)} of surcharge, so cover is cheaper if it costs less than {formatAUD(EG150_BREAK_EVEN)} a year before the rebate. PHI also provides actual hospital coverage.</AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="extras-count" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Does extras-only cover exempt me from the MLS?</AccordionTrigger>
@@ -242,14 +257,14 @@ export default function PrivateHealthInsuranceMedicarePage() {
                 </AccordionItem>
                 <AccordionItem value="family-threshold" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">How does the family threshold work?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The family MLS threshold is <strong>$186,000</strong> combined income. This increases by $1,500 for each dependent child after the first. The family&apos;s income is based on the combined income of you and your spouse (including de facto partners). Both adults need to be covered by eligible hospital insurance for the family to be exempt.</AccordionContent>
+                  <AccordionContent className="text-warmgray">The {MLS_INCOME_YEAR} family MLS threshold is <strong>{formatAUD(FAMILY_BASE)}</strong> combined income for MLS purposes. This increases by $1,500 for each dependent child after the first. Family income is the combined income of you and your spouse (including de facto partners). You, your spouse and your dependent children all need appropriate hospital cover for the family to avoid it.</AccordionContent>
                 </AccordionItem>
               </Accordion>
             </section>
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Medicare Levy Surcharge thresholds and rates are sourced from the ATO. PHI rebate tiers are based on current government rebate percentages. Premium estimates are approximate and based on average basic hospital cover costs for singles in major metropolitan areas. Actual premiums vary by insurer, state, age, and excess level. This guide is for general information only and does not constitute financial advice.</p>
+                <p>Medicare levy surcharge thresholds and rates, and private health insurance rebate rates, are the ATO&apos;s {MLS_INCOME_YEAR} figures, verified 23 September 2026. Break-even premiums are calculated from those figures; this guide does not estimate premiums, which vary by insurer, state, age and excess. General information only, not financial advice.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("private-health-insurance-medicare"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
@@ -264,7 +279,8 @@ export default function PrivateHealthInsuranceMedicarePage() {
                 <CardContent className="p-6">
                   <h3 className="font-bold text-navy mb-3">Related Guides &amp; Tools</h3>
                   <div className="space-y-3">
-                    <SidebarLink href="/medicare-levy/" label="Medicare Levy Guide" />
+                    <SidebarLink href="/medicare-levy-surcharge-calculator/" label="Medicare Levy Surcharge Calculator" />
+                    <SidebarLink href="/medicare-levy/" label="Medicare Levy Calculator" />
                     <SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" />
                     <SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" />
                     <SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" />
@@ -275,9 +291,9 @@ export default function PrivateHealthInsuranceMedicarePage() {
               <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-bold mb-2">See your MLS impact</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">Calculate whether the Medicare Levy Surcharge applies to you and how much it costs.</p>
-                  <Link href="/income-tax-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
-                    Income Tax Calculator <ArrowRight className="inline h-4 w-4 ml-1" />
+                  <p className="text-eucalyptus-light text-sm mb-4">Calculate whether the Medicare levy surcharge applies to you and how much it costs.</p>
+                  <Link href="/medicare-levy-surcharge-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
+                    MLS Calculator <ArrowRight className="inline h-4 w-4 ml-1" />
                   </Link>
                 </CardContent>
               </Card>

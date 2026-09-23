@@ -28,11 +28,14 @@ const UPPER = formatAUD(MEDICARE_LEVY.shadeInThreshold);
 
 // Retitled in place (23 Sep 2026) rather than moved to /medicare-levy-calculator/:
 // that URL already 301s here, and a move would touch ~20 files other
-// workstreams own. "Calculator" + "Surcharge Calculator" now lead the title.
-// No year in the title: the levy thresholds are the ATO's latest (2025-26,
-// they lag a year) while the MLS tiers are 2026-27.
-const TITLE = "Medicare Levy Calculator & Medicare Levy Surcharge Calculator";
-const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy with the low-income shade-in between ${LOWER} and ${UPPER}, family and seniors thresholds, plus a Medicare levy surcharge calculator with the ${MLS_INCOME_YEAR} MLS tiers.`;
+// workstreams own. No year in the title: the levy thresholds are the ATO's
+// latest (2025-26, they lag a year).
+//
+// Intent split (W2, 23 Sep 2026): "Medicare levy surcharge" queries now belong
+// to /medicare-levy-surcharge-calculator/. This page owns the 2% levy and keeps
+// only a short surcharge summary that links there.
+const TITLE = `Medicare Levy Calculator: ${RATE} Levy, Low-Income & Family Thresholds`;
+const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy with the low-income shade-in between ${LOWER} and ${UPPER}, family and seniors thresholds, and exemptions. The ${MLS_INCOME_YEAR} surcharge has its own calculator.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
   alternates: { canonical: URL },
   openGraph: {
     title: TITLE,
-    description: `Work out your Medicare levy including the shade-in, family and seniors thresholds, and the separate Medicare levy surcharge.`,
+    description: `Work out your Medicare levy including the low-income shade-in and the family and seniors thresholds.`,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -49,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: TITLE,
-    description: `Medicare levy calculator with the low-income shade-in, family and seniors thresholds, and the surcharge.`,
+    description: `Medicare levy calculator with the low-income shade-in and the family and seniors thresholds.`,
   },
 };
 
@@ -76,7 +79,7 @@ const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name: "Medicare Levy Calculator",
-  description: `Works out the ${RATE} Medicare levy including the low-income shade-in, family and seniors thresholds, and the Medicare levy surcharge. Levy thresholds are the ATO's ${MEDICARE_LEVY_INCOME_YEAR} figures; surcharge tiers are ${MLS_INCOME_YEAR}.`,
+  description: `Works out the ${RATE} Medicare levy including the low-income shade-in and the family and seniors thresholds, using the ATO's ${MEDICARE_LEVY_INCOME_YEAR} figures.`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -90,7 +93,7 @@ const webApp: WithContext<WebApplication> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: `Medicare Levy — ${RATE} Rate, Thresholds, Surcharge and Exemptions`,
+  headline: `Medicare Levy — ${RATE} Rate, Thresholds and Exemptions`,
   url: URL,
   datePublished: "2025-07-01",
   dateModified: GUIDE_AUTHORSHIP["medicare-levy"].lastReviewed,

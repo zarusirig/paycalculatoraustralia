@@ -64,6 +64,11 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit Calculator", description: "FTB Part A and Part B on your family income" },
       { href: "/rent-assistance-calculator/", label: "Rent Assistance Calculator", description: "Centrelink Rent Assistance for your rent" },
       // end C4
+      // W3 Centrelink wave 2 (added 2026-09-23)
+      { href: "/carer-payment-calculator/", label: "Carer Payment Calculator", description: "Rates, income test and the 100-hour work rule" },
+      { href: "/carer-allowance/", label: "Carer Allowance", description: "Fortnightly rate and the $250,000 income limit" },
+      { href: "/centrelink-advance-payment/", label: "Centrelink Advance Payment", description: "Advance amounts and fortnightly repayment" },
+      // end W3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
       { href: "/backpay-calculator/", label: "Backpay Calculator", description: "Underpayment and arrears" },
@@ -98,6 +103,10 @@ export const GUIDE_CATEGORIES = [
       { href: "/tax-refund-guide/", label: "Tax Refund Guide", description: "Maximise your tax return" },
       { href: "/tax-calendar/", label: "Tax Calendar", description: "Key ATO dates and deadlines" },
       { href: "/fringe-benefits-tax/", label: "Fringe Benefits Tax (FBT)", description: "Employer-provided benefits tax" },
+      // --- W2 wave 2 (23 Sep 2026) ---
+      { href: "/tax-free-threshold/", label: "Tax-Free Threshold", description: "$18,200, and which job to claim it on" },
+      { href: "/medicare-levy-surcharge-calculator/", label: "Medicare Levy Surcharge Calculator", description: "MLS tiers and cover vs surcharge" },
+      // --- end W2 ---
     ],
   },
   {
@@ -106,6 +115,10 @@ export const GUIDE_CATEGORIES = [
       { href: "/superannuation-guide/", label: "Superannuation Guide", description: "How super works in Australia" },
       { href: "/novated-lease-guide/", label: "How a Novated Lease Works", description: "The agreement and running-cost budget, explained" },
       { href: "/super-guarantee-charge/", label: "Super Guarantee Charge", description: "Payday Super and what late super costs" },
+      // --- W2 wave 2 (23 Sep 2026) ---
+      { href: "/concessional-contributions-cap/", label: "Concessional Contributions Cap", description: "The cap, carry-forward and salary sacrifice" },
+      { href: "/super-guarantee-rate-history/", label: "Super Guarantee Rate", description: "12% from 1 July 2025, and every rate since" },
+      // --- end W2 ---
     ],
   },
   {
@@ -145,7 +158,12 @@ export const GUIDE_CATEGORIES = [
       { href: "/working-holiday-tax/", label: "Working Holiday Tax", description: "Tax rates for 417 & 462 visa holders" },
       { href: "/non-resident-tax/", label: "Non-Resident Tax", description: "Foreign resident tax rates" },
       { href: "/centrelink-income-test/", label: "Centrelink Income Test", description: "Payment thresholds and taper rates" },
-      { href: "/parental-leave-pay/", label: "Parental Leave Pay", description: "Government-funded parental leave" },
+      { href: "/parental-leave-pay/", label: "Paid Parental Leave Calculator", description: "26 weeks, pay, income and work tests" },
+      // W3 Centrelink wave 2 (added 2026-09-23)
+      { href: "/centrelink-crisis-payment/", label: "Centrelink Crisis Payment", description: "Eligibility, amount and the 7-day rule" },
+      { href: "/centrelink-debt/", label: "Centrelink Debt", description: "Overpayments, refunds and the apportionment scheme" },
+      { href: "/cost-of-living-payment-2026/", label: "Cost of Living Payment 2026", description: "Is there one? What exists instead" },
+      // end W3
       { href: "/zone-tax-offset/", label: "Zone Tax Offset", description: "Remote area tax concessions" },
       { href: "/sapto-calculator/", label: "SAPTO Calculator", description: "Seniors and pensioners tax offset" },
     ],
@@ -204,6 +222,18 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end minimum wage cluster ---
+  // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so these three are listed
+  // there automatically — no separate site-directory entry needed.
+  {
+    title: "Tax Time & Retirement 2026",
+    guides: [
+      { href: "/tax-return-2026/", label: "Tax Return 2026", description: "2025-26 deadline, refund estimate & tax rates" },
+      { href: "/payday-super/", label: "Payday Super", description: "Super paid every payday from 1 July 2026" },
+      { href: "/pension-age-australia/", label: "Pension Age Australia", description: "Age Pension and super access age by birth date" },
+    ],
+  },
+  // --- end W1 ---
 ] as const;
 
 export const STATE_CATEGORIES = [
@@ -351,6 +381,10 @@ export const FOOTER_GUIDES_TAX = [
   { href: "/notice-of-assessment/", label: "Notice of Assessment" },
   { href: "/private-health-insurance-medicare/", label: "PHI & Medicare" },
   { href: "/fringe-benefits-tax/", label: "Fringe Benefits Tax" },
+  // --- W2 wave 2 (23 Sep 2026) ---
+  { href: "/tax-free-threshold/", label: "Tax-Free Threshold" },
+  { href: "/medicare-levy-surcharge-calculator/", label: "Medicare Levy Surcharge" },
+  // --- end W2 ---
 ] as const;
 
 export const FOOTER_GUIDES_SUPER_PAY = [
@@ -361,6 +395,9 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/super-co-contribution/", label: "Super Co-Contribution" },
   { href: "/super-guarantee-rate-history/", label: "SG Rate History" },
   { href: "/super-guarantee-charge/", label: "Super Guarantee Charge" },
+  // --- W2 wave 2 (23 Sep 2026) ---
+  { href: "/concessional-contributions-cap/", label: "Concessional Cap" },
+  // --- end W2 ---
   { href: "/salary-sacrifice-vs-mortgage/", label: "Sacrifice vs Mortgage" },
   { href: "/extra-super-vs-hecs-repayment/", label: "Super vs HECS" },
   { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
@@ -392,7 +429,7 @@ export const FOOTER_GUIDES_EMPLOYMENT = [
   { href: "/working-holiday-tax/", label: "Working Holiday Tax" },
   { href: "/non-resident-tax/", label: "Non-Resident Tax" },
   { href: "/centrelink-income-test/", label: "Centrelink Income Test" },
-  { href: "/parental-leave-pay/", label: "Parental Leave Pay" },
+  { href: "/parental-leave-pay/", label: "Paid Parental Leave" },
   { href: "/zone-tax-offset/", label: "Zone Tax Offset" },
   { href: "/sapto-calculator/", label: "SAPTO Calculator" },
   { href: "/hourly-to-salary/40/", label: "$40 an Hour Is How Much a Year" },

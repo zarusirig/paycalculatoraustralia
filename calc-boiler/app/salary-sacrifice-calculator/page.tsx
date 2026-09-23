@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SalarySacrificeCalculatorPage from "@/modules/calculator/salary-sacrifice-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -60,7 +60,7 @@ const faq: WithContext<FAQPage> = {
       name: "How much can I salary sacrifice?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "There's no legal limit, but total concessional super contributions (employer SG + salary sacrifice) can't exceed $30,000 per year without penalty. On $100,000, your employer contributes $12,000, leaving room for up to $18,000 in sacrifice.",
+        text: `There's no set limit on the sacrifice itself, but total concessional super contributions (employer SG + salary sacrifice + deductible personal contributions) over the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap for ${SITE_CONFIG.financialYear} are taxed at your marginal rate. On $100,000, your employer contributes $12,000, leaving room for up to ${formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)} in sacrifice.`,
       },
     },
     {

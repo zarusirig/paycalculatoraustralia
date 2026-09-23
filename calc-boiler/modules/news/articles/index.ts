@@ -23,6 +23,8 @@ import CentrelinkPaymentIncreaseJanuary2026 from "./centrelink-payment-increase-
 import AgePensionIncreaseMarch2026 from "./age-pension-increase-march-2026";
 import DeemingRatesChange2026 from "./deeming-rates-change-2026";
 import CentrelinkChangesJuly2026 from "./centrelink-changes-july-2026";
+// W5: Victorian teachers pay rise (23 Sep 2026)
+import VictorianTeachersPayRise2026 from "./victorian-teachers-pay-rise-2026";
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -50,4 +52,6 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "age-pension-increase-march-2026": AgePensionIncreaseMarch2026,
   "deeming-rates-change-2026": DeemingRatesChange2026,
   "centrelink-changes-july-2026": CentrelinkChangesJuly2026,
+  // W5: Victorian teachers pay rise (23 Sep 2026)
+  "victorian-teachers-pay-rise-2026": VictorianTeachersPayRise2026,
 };
