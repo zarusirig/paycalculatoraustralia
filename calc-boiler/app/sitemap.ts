@@ -333,6 +333,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `payroll-tax/${state}`, changeFrequency: "monthly" as const, priority: 0.8 });
   }
   // --- end T2 ---
+  // --- G3 wave 4 opportunities (24 Sep 2026) ---
+  allPages.push({ slug: "sick-leave-calculator", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end G3 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---

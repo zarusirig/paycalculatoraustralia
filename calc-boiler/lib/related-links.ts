@@ -173,6 +173,9 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/overtime-pay-calculator/": [TOIL, PENALTY_GUIDE, L("/casual-loading-calculator/", "Casual Loading Calculator", "The 25% loading and how it interacts with penalties."), AWARD_RATES],
   "/overtime-penalty-rates-guide/": [OVERTIME, TOIL, EA, AWARD_RATES],
   "/casual-loading-calculator/": [OVERTIME, JUNIOR, L("/full-time-vs-part-time-vs-casual/", "Full-Time vs Part-Time vs Casual", "Leave, loading and hours compared."), AWARD_RATES],
+  // --- G3 wave 4 opportunities (24 Sep 2026) ---
+  "/sick-leave-calculator/": [L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out."), LEAVE_LOADING, L("/final-pay-calculator/", "Final Pay Calculator", "What is (and isn't) paid out when you leave."), PAYSLIP],
+  // --- end G3 ---
 
   // Tax core ↔ salary tables
   "/tax-brackets/": [TAX_ON_HUB, TAX_WITHHELD, TAX_FREE_THRESHOLD, L("/tax-bracket-history/", "Tax Bracket History", "How the rates and thresholds have changed over time.")],
