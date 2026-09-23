@@ -8,6 +8,7 @@ import {
   TAX_BRACKETS,
   calculateIncomeTax,
   HECS_HELP,
+  MEDICARE_LEVY,
   SITE_CONFIG
 } from "@/lib/constants/australian-tax";
 import { Card } from "@/components/ui/card";
@@ -27,20 +28,18 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
     { title: "Study and training support loans", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "ATO" },
   ];
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salary,
-    includeHECS: salary >= HECS_HELP.minimumThreshold
-  });
+  // Headline figures exclude HECS-HELP (the usual "tax on $X" question is for
+  // someone without a study loan, and the page title shows these numbers).
+  // The loan case is shown separately from `withHecs`.
+  const breakdown = calculatePayBreakdown({ grossSalary: salary });
+  const withHecs = calculatePayBreakdown({ grossSalary: salary, includeHECS: true });
 
   const formattedSalary = formatAUD(salary);
 
   // Generate comparison data (-20k, -10k, +10k, +20k)
   const comparisons = [-20000, -10000, 0, 10000, 20000].map(diff => {
     const compSalary = Math.max(0, salary + diff);
-    const compBreakdown = calculatePayBreakdown({
-      grossSalary: compSalary,
-      includeHECS: compSalary >= HECS_HELP.minimumThreshold
-    });
+    const compBreakdown = calculatePayBreakdown({ grossSalary: compSalary });
     return {
       diff,
       salary: compSalary,
@@ -57,6 +56,14 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
   const currentBracket = TAX_BRACKETS.filter(b => salary >= b.min).pop();
   const marginalRatePercent = currentBracket ? (currentBracket.rate * 100).toFixed(0) : "0";
   const bracketLabel = currentBracket?.label ?? "Tax-free threshold";
+
+  // First taxed bracket, for the Stage 3 / 1 July 2026 cut copy. Derived so it
+  // cannot drift from TAX_BRACKETS (it read "16%" after the 15% rate began).
+  const firstTaxedBracket = TAX_BRACKETS[1];
+  const firstBracketRatePercent = Math.round(firstTaxedBracket.rate * 100);
+  const firstBracketSavingVs2023_24 = Math.round(
+    (firstTaxedBracket.max - (firstTaxedBracket.min - 1)) * (0.19 - firstTaxedBracket.rate),
+  );
 
   // Calculate what percentage goes to tax vs take-home
   const taxPercentage = salary > 0 ? ((breakdown.netIncomeTax / salary) * 100).toFixed(1) : "0";
@@ -132,15 +139,6 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 26)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 52)}</td>
                 </tr>
-                {breakdown.hecsRepayment > 0 && (
-                  <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
-                    <td className="px-6 py-4">HECS/HELP Repayment</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 12)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 26)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 52)}</td>
-                  </tr>
-                )}
                 <tr className="bg-eucalyptus-dark text-white font-bold">
                   <td className="px-6 py-5">Take-Home Pay</td>
                   <td className="px-6 py-5 text-right">{formatAUD(breakdown.takeHomePay)}</td>
@@ -161,7 +159,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-4">What Tax Bracket Does {formattedSalary} Fall Into?</h2>
         <p className="text-navy leading-relaxed mb-4">
-          A {formattedSalary} salary falls into the <strong>{marginalRatePercent}% marginal tax bracket</strong> for Australian residents in FY2025-26 ({bracketLabel}).
+          A {formattedSalary} salary falls into the <strong>{marginalRatePercent}% marginal tax bracket</strong> for Australian residents in FY{SITE_CONFIG.financialYear} ({bracketLabel}).
         </p>
         <p className="text-navy leading-relaxed mb-4">
           The marginal rate applies only to income within that bracket, not your entire salary. Your {formattedSalary} salary is split across multiple income tax brackets, with each portion taxed at its corresponding rate. The table below shows the exact tax calculated in each bracket.
@@ -212,7 +210,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           </div>
         </Card>
         <p className="mt-4 text-navy leading-relaxed">
-          The Stage 3 tax cuts effective from 1 July 2024 reduced the 19% bracket rate to 16% and expanded the 30% bracket ceiling from $120,000 to $135,000. These changes apply to your {formattedSalary} salary for FY2025-26. View the full <a href="/tax-brackets/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Australian Tax Brackets</a> table for all income thresholds and rates.
+          The Stage 3 tax cuts effective from 1 July 2024 reduced the 19% bracket rate to 16% and expanded the 30% bracket ceiling from $120,000 to $135,000, and from 1 July 2026 the 16% rate fell to {firstBracketRatePercent}%. The FY{SITE_CONFIG.financialYear} rates above apply to your {formattedSalary} salary. View the full <a href="/tax-brackets/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Australian Tax Brackets</a> table for all income thresholds and rates.
         </p>
       </section>
 
@@ -303,7 +301,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       <section className="prose prose-eucalyptus max-w-none">
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-4">What Deductions Apply at This Income Level?</h2>
         <p className="text-navy leading-relaxed">
-          Total compulsory deductions on {formattedSalary} are <strong>{formatAUD(breakdown.totalDeductions)}</strong>, representing {(breakdown.effectiveTaxRate * 100).toFixed(1)}% of gross salary. These deductions comprise income tax, Medicare levy, and HECS-HELP repayments (if applicable).
+          Total compulsory deductions on {formattedSalary} are <strong>{formatAUD(breakdown.totalDeductions)}</strong>, representing {(breakdown.effectiveTaxRate * 100).toFixed(1)}% of gross salary. These deductions comprise income tax and the Medicare levy; a HECS-HELP repayment, if you have a study loan, is shown below.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">Income Tax ({formatAUD(breakdown.netIncomeTax)})</h3>
@@ -314,17 +312,17 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">Medicare Levy ({formatAUD(breakdown.medicareLevy)})</h3>
         <p className="text-navy leading-relaxed">
-          The Medicare levy of <strong>{formatAUD(breakdown.medicareLevy)}</strong> equals 2% of taxable income. This funds Australia&#39;s public healthcare system. Employees without private hospital insurance who earn above $93,000 (singles) also face the "Medicare Levy Surcharge" of 1% to 1.5%. Learn more in our <a href="/medicare-levy/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Medicare Levy guide</a>.
+          The Medicare levy of <strong>{formatAUD(breakdown.medicareLevy)}</strong> equals 2% of taxable income. This funds Australia&#39;s public healthcare system. Employees without private hospital insurance who earn above {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (singles, {SITE_CONFIG.financialYear}) also face the "Medicare Levy Surcharge" of 1% to 1.5%. Learn more in our <a href="/medicare-levy/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Medicare Levy guide</a>.
         </p>
 
         <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-bold text-navy mt-6 mb-3">HECS-HELP Repayment</h3>
         {salary >= HECS_HELP.minimumThreshold ? (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, the compulsory HECS-HELP repayment is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year. The FY2025-26 repayment threshold is $69,528 under the new marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
+            If you have a study loan, the compulsory HECS-HELP repayment at {formattedSalary} is <strong>{formatAUD(withHecs.hecsRepayment)}</strong> per year. The FY{SITE_CONFIG.financialYear} repayment threshold is {formatAUD(HECS_HELP.minimumThreshold)} under the marginal system. Repayments are withheld from your salary by your employer through PAYG withholding. Calculate the exact impact on your disposable salary with our <a href="/hecs-help-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">HECS-HELP Repayment Calculator</a>.
           </p>
         ) : (
           <p className="text-navy leading-relaxed">
-            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY2025-26 minimum repayment threshold is <strong>$69,528</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
+            At {formattedSalary}, no compulsory HECS-HELP repayment applies. The FY{SITE_CONFIG.financialYear} minimum repayment threshold is <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>. Income below this level does not trigger compulsory repayments, though voluntary repayments remain available at any time.
           </p>
         )}
 
@@ -344,8 +342,8 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-4">If You Have a HECS Debt on {formattedSalary}</h2>
         {salary >= HECS_HELP.minimumThreshold ? (
           <p className="text-navy leading-relaxed mb-4">
-            With a HECS/HELP debt, your compulsory repayment on {formattedSalary} is <strong>{formatAUD(breakdown.hecsRepayment)}</strong> per year
-            (<strong>{formatAUD(breakdown.hecsRepayment / 52)}</strong> per week). This reduces your take-home pay to <strong>{formatAUD(breakdown.takeHomePay)}</strong>.
+            With a HECS/HELP debt, your compulsory repayment on {formattedSalary} is <strong>{formatAUD(withHecs.hecsRepayment)}</strong> per year
+            (<strong>{formatAUD(withHecs.hecsRepayment / 52)}</strong> per week). This reduces your take-home pay from {formatAUD(breakdown.takeHomePay)} to <strong>{formatAUD(withHecs.takeHomePay)}</strong>.
           </p>
         ) : (
           <p className="text-navy leading-relaxed mb-4">
@@ -367,7 +365,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <a href="/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Pay Calculator Australia</p>
-            <p className="text-sm text-warmgray">Calculate take-home pay on any salary with income tax, Medicare levy, and super included for FY2025-26.</p>
+            <p className="text-sm text-warmgray">Calculate take-home pay on any salary with income tax, Medicare levy, and super included for FY{SITE_CONFIG.financialYear}.</p>
           </a>
           <a href="/income-tax-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Income Tax Calculator</p>
@@ -383,7 +381,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           </a>
           <a href="/take-home-pay-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Take-Home Pay Calculator</p>
-            <p className="text-sm text-warmgray">Convert gross salary to net pay after all compulsory deductions including HECS-HELP repayments.</p>
+            <p className="text-sm text-warmgray">Convert gross salary to net pay after income tax and the Medicare levy, with an optional HECS-HELP repayment.</p>
           </a>
           <a href="/tax-return-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Tax Return Calculator</p>
@@ -402,7 +400,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
               On {formattedSalary}, you pay <strong>{formatAUD(breakdown.netIncomeTax)}</strong> in income tax ({(breakdown.effectiveTaxRate * 100).toFixed(1)}% effective rate) plus
-              {" "}{formatAUD(breakdown.medicareLevy)} in Medicare levy. Your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year or <strong>{formatAUD(breakdown.weekly)}</strong> per week. This calculation uses the ATO progressive marginal tax rates for FY2025-26.
+              {" "}{formatAUD(breakdown.medicareLevy)} in Medicare levy. Your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year or <strong>{formatAUD(breakdown.weekly)}</strong> per week. This calculation uses the ATO progressive marginal tax rates for FY{SITE_CONFIG.financialYear}.
             </AccordionContent>
           </AccordionItem>
 
@@ -421,7 +419,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
               How much superannuation does my employer pay on {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Your employer contributes <strong>{formatAUD(breakdown.superContribution)}</strong> per year to your super fund at the 12% super guarantee rate for FY2025-26. This is paid on top of your {formattedSalary} gross salary, not deducted from it. Your total remuneration package including super is <strong>{formatAUD(breakdown.totalPackage)}</strong>.
+              Your employer contributes <strong>{formatAUD(breakdown.superContribution)}</strong> per year to your super fund at the 12% super guarantee rate for FY{SITE_CONFIG.financialYear}. This is paid on top of your {formattedSalary} gross salary, not deducted from it. Your total remuneration package including super is <strong>{formatAUD(breakdown.totalPackage)}</strong>.
             </AccordionContent>
           </AccordionItem>
 
@@ -451,7 +449,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
               How did the Stage 3 tax cuts affect {formattedSalary}?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              The Stage 3 tax cuts effective 1 July 2024 reduced the second bracket rate from 19% to 16% and expanded the 30% bracket ceiling from $120,000 to $135,000. On {formattedSalary}, these changes reduced income tax compared to the previous FY2023-24 rates. The 16% rate applies to income between $18,201 and $45,000, saving taxpayers up to $804 per year in that bracket alone.
+              The Stage 3 tax cuts effective 1 July 2024 reduced the second bracket rate from 19% to 16% and expanded the 30% bracket ceiling from $120,000 to $135,000, and a further cut took that rate to {firstBracketRatePercent}% from 1 July 2026. On {formattedSalary}, these changes reduced income tax compared to the FY2023-24 rates. The {firstBracketRatePercent}% rate applies to income between {formatAUD(firstTaxedBracket.min)} and {formatAUD(firstTaxedBracket.max)}, saving up to {formatAUD(firstBracketSavingVs2023_24)} a year in that bracket alone against the old 19% rate.
             </AccordionContent>
           </AccordionItem>
 
@@ -469,7 +467,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
               What is the difference between marginal and effective tax rate?
             </AccordionTrigger>
             <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              The marginal tax rate of <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong> is the rate applied to each additional dollar earned. The effective tax rate of <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong> is the total percentage of your {formattedSalary} salary paid in all deductions. The effective rate is always lower because the first $18,200 is tax-free and lower brackets are taxed at 16% and 30% before reaching the marginal rate.
+              The marginal tax rate of <strong>{(breakdown.marginalTaxRate * 100).toFixed(1)}%</strong> is the rate applied to each additional dollar earned. The effective tax rate of <strong>{(breakdown.effectiveTaxRate * 100).toFixed(1)}%</strong> is the total percentage of your {formattedSalary} salary paid in all deductions. The effective rate is always lower because the first $18,200 is tax-free and lower brackets are taxed at {firstBracketRatePercent}% and 30% before reaching the marginal rate.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -478,7 +476,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       <MethodologyDisclosure>
         <p className="mb-2 text-sm text-warmgray">Calculations are based on the following general rules and assumptions:</p>
         <ol className="list-decimal pl-4 space-y-1 text-sm text-warmgray">
-          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY2025-26.</li>
+          <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge for those without private hospital cover.</li>
           <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
         </ol>

@@ -4,7 +4,6 @@ import React from "react";
 import {
   calculatePayBreakdown,
   formatAUD,
-  HECS_HELP,
   SITE_CONFIG,
   EMPLOYMENT,
 } from "@/lib/constants/australian-tax";
@@ -36,10 +35,11 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
     { title: "Average Weekly Earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: "ABS" },
   ];
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salary,
-    includeHECS: salary >= HECS_HELP.minimumThreshold,
-  });
+  // No HECS in the headline: the intro says "after income tax and Medicare
+  // levy", and the page title quotes these figures. The loan case is stated
+  // separately from `withHecs`.
+  const breakdown = calculatePayBreakdown({ grossSalary: salary });
+  const withHecs = calculatePayBreakdown({ grossSalary: salary, includeHECS: true });
 
   const formattedSalary = formatAUD(salary);
 
@@ -74,6 +74,9 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
         <p className="text-lg text-navy leading-relaxed">
           A <strong>{formattedSalary}</strong> annual salary in Australia equals <strong>{formatAUD(grossHourly, 2)}/hour</strong> before tax, based on a standard 38-hour work week (1,976 working hours per year).
           After income tax and Medicare levy, your effective hourly rate drops to <strong>{formatAUD(netHourly, 2)}/hour</strong>.
+          {withHecs.hecsRepayment > 0
+            ? ` With a HECS-HELP debt, the compulsory repayment takes it to ${formatAUD(withHecs.takeHomePay / HOURS_PER_YEAR, 2)}/hour.`
+            : ""}
         </p>
         <p className="text-navy leading-relaxed">
           This calculation uses 52 weeks per year and a standard 38-hour week as defined by the Fair Work Act.
@@ -171,13 +174,6 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / HOURS_PER_YEAR, 2)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy)}</td>
                 </tr>
-                {breakdown.hecsRepayment > 0 && (
-                  <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
-                    <td className="px-6 py-4">HECS-HELP</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / HOURS_PER_YEAR, 2)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment)}</td>
-                  </tr>
-                )}
                 <tr className="bg-eucalyptus-dark text-white font-bold">
                   <td className="px-6 py-5">Net Take-Home</td>
                   <td className="px-6 py-5 text-right">{formatAUD(netHourly, 2)}</td>

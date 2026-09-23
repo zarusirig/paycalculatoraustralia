@@ -26,10 +26,13 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
     { title: "Superannuation guarantee", url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/super-guarantee", publisher: "ATO" },
   ];
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salary,
-    includeHECS: salary >= HECS_HELP.minimumThreshold,
-  });
+  // Headline figures exclude HECS-HELP: "$X after tax" is asked (and answered
+  // by the ATO and every other AU pay site) for someone without a study loan.
+  // Folding HECS in made $100,000 read $72,909 here against $77,480 everywhere
+  // else, and contradicted this page's own FAQ. The loan case is shown
+  // separately via `withHecs`.
+  const breakdown = calculatePayBreakdown({ grossSalary: salary });
+  const withHecs = calculatePayBreakdown({ grossSalary: salary, includeHECS: true });
 
   const formattedSalary = formatAUD(salary);
   const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
@@ -57,8 +60,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
           That works out to <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month in your pocket.
         </p>
         <p className="text-navy leading-relaxed">
-          This breakdown includes {formatAUD(breakdown.netIncomeTax)} in income tax, {formatAUD(breakdown.medicareLevy)} in Medicare levy
-          {breakdown.hecsRepayment > 0 ? `, and ${formatAUD(breakdown.hecsRepayment)} in HECS-HELP repayments` : ""}.
+          This breakdown deducts {formatAUD(breakdown.netIncomeTax)} in income tax and {formatAUD(breakdown.medicareLevy)} in Medicare levy.
+          {withHecs.hecsRepayment > 0
+            ? ` If you have a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} lowers your take-home pay to ${formatAUD(withHecs.takeHomePay)} a year (${formatAUD(withHecs.weekly)} a week).`
+            : ` A HECS-HELP debt would not change this: ${formattedSalary} is below the ${formatAUD(HECS_HELP.minimumThreshold)} compulsory repayment threshold.`}
           Your employer also contributes {formatAUD(breakdown.superContribution)} in superannuation on top of your salary at the 12% SG rate.
           Use our <a href="/take-home-pay-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Take-Home Pay Calculator</a> to model different salary scenarios.
         </p>
@@ -106,15 +111,6 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 26)}</td>
                   <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / 52)}</td>
                 </tr>
-                {breakdown.hecsRepayment > 0 && (
-                  <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
-                    <td className="px-6 py-4">HECS/HELP Repayment</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 12)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 26)}</td>
-                    <td className="px-6 py-4 text-right">−{formatAUD(breakdown.hecsRepayment / 52)}</td>
-                  </tr>
-                )}
                 <tr className="hover:bg-sandstone/30 transition-colors">
                   <td className="px-6 py-4 text-warmgray">Superannuation (employer-paid)</td>
                   <td className="px-6 py-4 text-right text-warmgray">+{formatAUD(breakdown.superContribution)}</td>
@@ -363,7 +359,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
           <li><strong>Income Tax:</strong> Calculated using the official ATO progressive marginal tax rates for resident individuals for FY{SITE_CONFIG.financialYear}.</li>
           <li><strong>Medicare Levy:</strong> Assumed at the standard 2% rate. Does not account for low-income reductions or the Medicare Levy Surcharge.</li>
           <li><strong>Superannuation:</strong> Calculated at the 12% Super Guarantee rate on top of the stated salary, not deducted from it.</li>
-          <li><strong>HECS-HELP:</strong> Included where salary exceeds the $69,528 minimum repayment threshold using the new marginal system.</li>
+          <li><strong>HECS-HELP:</strong> Not deducted from the headline figures, which assume no study loan. Where salary exceeds the {formatAUD(HECS_HELP.minimumThreshold)} minimum repayment threshold, the repayment under the marginal system is shown separately.</li>
         </ol>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
