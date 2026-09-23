@@ -372,6 +372,8 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
                 </table>
               </div>
               <p className="mt-3 text-sm text-warmgray">Figures use FY{FY} resident rates with LITO applied where eligible and the Medicare levy&apos;s low-income reduction included. HECS-HELP and the <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare Levy Surcharge</Link> are excluded. Taxing a one-off payment instead? See the <Link href="/bonus-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Bonus Tax Calculator</Link>.</p>
+              {/* T6: hub linking every /tax-on/ page */}
+              <p className="mt-2 text-sm text-warmgray">Salary not listed? <Link href="/tax-on/" className="text-eucalyptus-dark hover:underline font-medium">Tax on every salary</Link> covers {`$20,000`} to {`$500,000`}, in $1,000 steps from $40,000 to $150,000.</p>
             </section>
 
             {/* Offsets */}

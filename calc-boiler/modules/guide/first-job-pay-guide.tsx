@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, LITO, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -140,7 +140,7 @@ export default function FirstJobPayGuidePage() {
                 </div>
               </div>
               <p>
-                Note: these figures do not include the Medicare levy (2%) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. Most first-job workers earning under <strong>$22,575</strong> effectively pay zero tax after LITO. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
+                Note: these figures do not include the Medicare levy (2%) or the Low Income Tax Offset (LITO), which reduces tax for lower earners. Most first-job workers earning up to about <strong>{formatAUD(LITO.effectiveTaxFreeThreshold - 1, 0)}</strong> effectively pay zero income tax after LITO. Check the <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the full breakdown.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your First Tax Return</h3>

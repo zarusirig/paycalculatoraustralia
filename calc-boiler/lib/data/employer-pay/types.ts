@@ -23,6 +23,8 @@ export const EMPLOYER_SLUGS = [
   "mcdonalds",
   "chemist-warehouse",
   "kmart",
+  // --- T4 (23 Sep 2026) ---
+  "subway",
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];

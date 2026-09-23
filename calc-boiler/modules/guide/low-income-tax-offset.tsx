@@ -1,527 +1,264 @@
-"use client";
-
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { ChevronRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import {
+  LITO,
+  SITE_CONFIG,
+  SOURCES,
+  TAX_BRACKETS_2025_26,
+  TAX_BRACKETS_2026_27,
+  TAX_FREE_THRESHOLD,
+  formatAUD,
+  formatPercent,
+} from "@/lib/constants";
+import { SAPTO_BANDS } from "@/lib/constants/sapto";
+import { TFT_WITHHOLDING_STARTS_ABOVE } from "@/lib/constants/tax-free-threshold";
+import {
+  TAX_BRACKETS_2027_28,
+  analyseIncome,
+  litoBreakdown,
+  nilTaxIncomeOnScale,
+} from "@/lib/constants/tax-rates-reference";
+import LitoCalculator from "@/modules/calculator/lito-calculator";
+import { LITO_FAQS, LITO_MID, NIL_NOW, NIL_PREV } from "@/modules/guide/low-income-tax-offset-faqs";
+
+// =============================================================================
+// /low-income-tax-offset/ — rebuilt 23 Sep 2026 (Wave 3, T1).
+// The previous version was labelled FY2025-26 throughout, hardcoded 16% tax
+// rows, quoted a $22,575 effective threshold that stopped being true on
+// 1 July 2026, and claimed PAYG withholding passes on the whole $700 ("$26.92
+// less tax per fortnight"), which the ATO scales do not do. Every figure now
+// comes from lib/constants; the LITO formula is ATO QC105020 (quoted in
+// lib/constants/tax-rates-reference.ts).
+// =============================================================================
+
+const FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
+const FY = SITE_CONFIG.financialYear;
+const PREV = SITE_CONFIG.previousFinancialYear;
+const B = TAX_BRACKETS_2026_27;
+const m = (n: number) => formatAUD(n, n % 1 === 0 ? 0 : 2);
+const pct = (r: number) => formatPercent(r, 0);
+
+const ATO_LITO =
+  "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset";
+const ATO_RES = "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Low Income Tax Offset", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset", publisher: SOURCES.ato.name },
+  { title: "Low income tax offset (QC105020)", url: ATO_LITO, publisher: SOURCES.ato.name },
+  { title: "Tax rates – Australian resident", url: ATO_RES, publisher: SOURCES.ato.name },
+  {
+    title: "How to claim the tax-free threshold (QC103970) and multiple jobs (QC50527)",
+    url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/tax-free-threshold",
+    publisher: SOURCES.ato.name,
+  },
 ];
 
+const TABLE_INCOMES = [20_000, NIL_NOW, 25_000, 30_000, LITO.fullOffsetCeiling, 40_000, LITO.phaseOut1.end, 50_000, 55_000, 60_000, 65_000, LITO.nilOffsetIncome];
+const TH = "px-4 py-3 font-semibold text-navy";
+const TD = "px-4 py-3";
+
 export default function LowIncomeTaxOffsetPage() {
+  const authorship = getGuideAuthorship("low-income-tax-offset");
+  const perDollar1 = LITO.phaseOut1.rate * 100;
+  const perDollar2 = LITO.phaseOut2.rate * 100;
+  const rate = B[1].rate;
+  const nilNext = nilTaxIncomeOnScale(TAX_BRACKETS_2027_28);
+  const withholdStartsAnnual = TFT_WITHHOLDING_STARTS_ABOVE.weekly * 52;
+  const a40 = analyseIncome(40_000);
+
   return (
     <div className="min-h-screen flex-grow bg-white">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-
-        {/* BREADCRUMBS */}
         <nav aria-label="breadcrumb" className="mb-6">
           <ol className="flex items-center space-x-1 text-sm text-warmgray">
             <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
+            <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
+            <li><Link href="/tax-brackets/" className="hover:text-eucalyptus-dark hover:underline">Tax Brackets</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Low Income Tax Offset (LITO)</span></li>
           </ol>
         </nav>
 
-        {/* HERO HEADER */}
-        <header className="mb-10 lg:mb-16 max-w-4xl">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Low Income Tax Offset (LITO)
+        <header className="mb-10 max-w-4xl">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>
+            Low Income Tax Offset (LITO) {FY}: $700 Calculator &amp; Thresholds
           </h1>
-
-          {/* DIRECT-ANSWER BLOCK (featured snippet target) */}
-          <section aria-labelledby="lito-direct-answer" className="mb-8">
-            <p id="lito-direct-answer" className="text-lg text-navy leading-relaxed mb-6 border-l-4 border-eucalyptus pl-4">
-              The Low Income Tax Offset (LITO) for FY2025-26 is a maximum of <strong>$700</strong> for taxable incomes up to <strong>$37,500</strong>. It phases out at <strong>5 cents per dollar</strong> between $37,500 and $45,000, then <strong>1.5 cents per dollar</strong> between $45,000 and $66,667, where it reaches zero. Claim it automatically when you lodge your tax return.
-            </p>
-
-            <h2 className="text-lg font-bold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>LITO amount by taxable income (2025-26)</h2>
-            <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-              <table className="w-full text-sm text-left text-navy">
-                <thead className="bg-sandstone font-semibold text-navy">
-                  <tr>
-                    <th className="px-5 py-3">Taxable Income</th>
-                    <th className="px-5 py-3">LITO Amount (FY2025-26)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                  <tr><td className="px-5 py-3 font-semibold">$30,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$37,500</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$40,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$575</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$45,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$325</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$50,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$250</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$55,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$175</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$60,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$100</td></tr>
-                  <tr><td className="px-5 py-3 font-semibold">$66,667</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$0</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Discover how the LITO automatically slashes your tax bill by up to $700 if you earn under $66,667, and why the "real" tax-free threshold is higher than you think.
+          <p className="text-xl text-warmgray leading-relaxed mb-6 border-l-4 border-eucalyptus pl-4">
+            The low income tax offset (LITO) cuts your income tax by up to <strong>{m(LITO.maxOffset)}</strong>. You get the full {m(LITO.maxOffset)} on a taxable income of <strong>{m(LITO.fullOffsetCeiling)}</strong> or less. It then phases out: by {perDollar1}c per dollar to {m(LITO_MID)} at {m(LITO.phaseOut1.end)}, then by {perDollar2}c per dollar to <strong>nil at {m(LITO.nilOffsetIncome)}</strong>. It&rsquo;s applied automatically when you lodge, it can&rsquo;t take your tax below $0, and in {FY} it means a resident pays no income tax up to <strong>{m(NIL_NOW)}</strong>.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
 
+        <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 not-prose">
+          {[
+            { k: "Maximum LITO", v: m(LITO.maxOffset), s: `Taxable income up to ${m(LITO.fullOffsetCeiling)}` },
+            { k: `LITO at ${m(LITO.phaseOut1.end)}`, v: m(LITO_MID), s: `After ${perDollar1}c/$ phase-out` },
+            { k: "LITO cuts out at", v: m(LITO.nilOffsetIncome), s: `After ${perDollar2}c/$ phase-out` },
+            { k: "No income tax up to", v: m(NIL_NOW), s: `${FY}, with the tax-free threshold` },
+          ].map((c) => (
+            <div key={c.k} className="rounded-xl border border-sandstone-dark/20 bg-sandstone/60 p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-warmgray">{c.k}</p>
+              <p className="text-2xl font-extrabold text-navy tabular-nums" style={FONT}>{c.v}</p>
+              <p className="text-xs text-warmgray-light">{c.s}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-12"><LitoCalculator /></div>
+
         <div className="flex flex-col lg:flex-row gap-12">
+          <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
-          {/* MAIN ARTICLE CONTENT */}
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
-
-            {/* SECTION 1 */}
-            <section id="what-is">
-              <h2>What Is the Low Income Tax Offset (LITO)?</h2>
-              <p>
-                The "Low Income Tax Offset" is a non-refundable Australian tax offset that reduces income tax by up to <strong>$700</strong> for residents earning <strong>$66,667 or less</strong> in FY2025-26.
-              </p>
-              <p>
-                LITO operates as a direct dollar-for-dollar reduction of your calculated income tax liability. The Australian Taxation Office (ATO) applies it automatically when you lodge your tax return &mdash; no separate application, no special form, no eligibility test beyond your taxable income figure. Every Australian tax resident whose assessable income falls under the $66,667 cut-off receives some amount of LITO.
-              </p>
-              <p>
-                Because LITO is non-refundable, it reduces your tax bill to a minimum of <strong>$0</strong> but never generates a cash refund on its own. A taxpayer who owes $400 in income tax and qualifies for the full $700 LITO receives a $400 reduction, not a $300 payment. This distinguishes LITO from refundable offsets such as the franking credit refund available to shareholders.
-              </p>
-              <p>
-                LITO affects approximately <strong>7.2 million</strong> Australian tax returns each year, covering part-time workers, entry-level employees, retirees drawing modest superannuation pensions, and sole traders with lower assessable income. Use our <Link href="/income-tax-calculator/">Income Tax Calculator</Link> to see how LITO interacts with your marginal tax rate and total taxation for the 2025-26 financial year.
-              </p>
-
-              <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
-                <div className="flex items-start gap-4">
-                  <Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" />
-                  <div>
-                    <h3 className="text-base font-bold text-navy mb-1">Check Your LITO Calculation</h3>
-                    <p className="text-navy text-sm mb-3">Our calculator automatically detects if you are eligible for the LITO and instantly factors the $700 deduction into your take-home pay.</p>
-                    <Link href="/take-home-pay-calculator/" className="inline-flex items-center text-sm font-semibold text-eucalyptus-dark hover:text-navy hover:underline">
-                      See your exact LITO deduction <ArrowRight className="ml-1 h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
+            <section id="thresholds">
+              <h2 style={FONT}>LITO Thresholds and Formula</h2>
+              <p>LITO depends only on your taxable income for the year. These are the ATO&rsquo;s thresholds, unchanged for {FY}:</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone">
+                    <tr><th className={TH}>Taxable income</th><th className={TH}>LITO</th></tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    <tr><td className={`${TD} font-medium text-navy whitespace-nowrap`}>{m(LITO.fullOffsetCeiling)} or less</td><td className={TD}>{m(LITO.maxOffset)}</td></tr>
+                    <tr><td className={`${TD} font-medium text-navy whitespace-nowrap`}>{m(LITO.phaseOut1.start)} – {m(LITO.phaseOut1.end)}</td><td className={TD}>{m(LITO.maxOffset)} minus {perDollar1} cents for every $1 above {m(LITO.fullOffsetCeiling)}</td></tr>
+                    <tr><td className={`${TD} font-medium text-navy whitespace-nowrap`}>{m(LITO.phaseOut2.start)} – {m(LITO.nilOffsetIncome)}</td><td className={TD}>{m(LITO_MID)} minus {perDollar2} cents for every $1 above {m(LITO.phaseOut1.end)}</td></tr>
+                    <tr><td className={`${TD} font-medium text-navy whitespace-nowrap`}>Over {m(LITO.nilOffsetIncome)}</td><td className={TD}>Nil</td></tr>
+                  </tbody>
+                </table>
               </div>
+              <p>The offset comes off the tax worked out from the <Link href="/tax-brackets/">tax brackets</Link>, dollar for dollar. That makes it worth more than a deduction of the same size: a {m(LITO.maxOffset)} deduction at the {pct(rate)} rate would save {m(LITO.maxOffset * rate)}, while the offset saves the full {m(LITO.maxOffset)} (as long as you have that much tax to offset).</p>
             </section>
 
-            {/* SECTION 2 */}
-            <section id="how-calculated">
-              <h2>How Is LITO Calculated?</h2>
-              <p>
-                LITO is calculated using a two-stage phase-out formula that reduces the offset from <strong>$700 to $0</strong> as taxable income rises from $37,500 to $66,667.
-              </p>
-              <p>
-                The calculation uses two distinct phase-out rates across two income bands. The first phase-out reduces the offset at <strong>5 cents per dollar</strong> earned above $37,500, lowering the LITO from $700 to $325 by the time income reaches $45,000. The second phase-out applies a gentler rate of <strong>1.5 cents per dollar</strong> above $45,000, tapering the remaining $325 down to $0 at $66,667.
-              </p>
-
-              <h3>LITO Phase-Out Thresholds for FY2025-26</h3>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-6 py-4">Your Taxable Income</th>
-                        <th className="px-6 py-4">LITO Amount</th>
-                        <th className="px-6 py-4">Phase-Out Rate</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-6 py-4 font-semibold">$0 &ndash; $37,500</td><td className="px-6 py-4 text-eucalyptus-dark font-bold">$700 (maximum)</td><td className="px-6 py-4">No phase-out</td></tr>
-                      <tr><td className="px-6 py-4">$37,501 &ndash; $45,000</td><td className="px-6 py-4">$700 minus 5c per $1 over $37,500</td><td className="px-6 py-4">5 cents per dollar</td></tr>
-                      <tr><td className="px-6 py-4">$45,001 &ndash; $66,667</td><td className="px-6 py-4">$325 minus 1.5c per $1 over $45,000</td><td className="px-6 py-4">1.5 cents per dollar</td></tr>
-                      <tr><td className="px-6 py-4 bg-sandstone">$66,668 or more</td><td className="px-6 py-4 bg-sandstone text-warmgray-light font-semibold">$0</td><td className="px-6 py-4 bg-sandstone">Not applicable</td></tr>
-                    </tbody>
-                  </table>
-                </div>
+            <section id="lito-by-income">
+              <h2 style={FONT}>LITO by Income: How Much Tax It Saves</h2>
+              <p>Resident, {FY} rates. &ldquo;Tax after LITO&rdquo; is income tax only; the 2% <Link href="/medicare-levy/">Medicare levy</Link> is separate and isn&rsquo;t reduced by LITO.</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone">
+                    <tr>
+                      <th className={TH}>Taxable income</th>
+                      <th className={`${TH} text-right`}>Tax before LITO</th>
+                      <th className={`${TH} text-right`}>LITO</th>
+                      <th className={`${TH} text-right`}>LITO used</th>
+                      <th className={`${TH} text-right`}>Tax after LITO</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    {TABLE_INCOMES.map((inc) => {
+                      const r = litoBreakdown(inc);
+                      return (
+                        <tr key={inc}>
+                          <td className={`${TD} font-medium text-navy tabular-nums`}>{m(inc)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{m(r.taxBeforeLito)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{m(r.offset)}</td>
+                          <td className={`${TD} text-right tabular-nums`}>{m(r.offsetUsed)}</td>
+                          <td className={`${TD} text-right tabular-nums font-semibold text-navy`}>{m(r.taxAfterLito)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-
-              <h3>Step-by-Step LITO Formula</h3>
-              <ol>
-                <li>Determine your taxable income for the financial year (gross income minus allowable deductions).</li>
-                <li>If taxable income is <strong>$37,500 or less</strong>, your LITO is the full <strong>$700</strong>.</li>
-                <li>If taxable income falls between $37,501 and $45,000, calculate: $700 &minus; (taxable income &minus; $37,500) &times; 0.05.</li>
-                <li>If taxable income falls between $45,001 and $66,667, calculate: $325 &minus; (taxable income &minus; $45,000) &times; 0.015.</li>
-                <li>If taxable income exceeds $66,667, LITO equals <strong>$0</strong>.</li>
-                <li>Subtract the LITO amount from your calculated income tax. The result cannot go below $0.</li>
-              </ol>
-              <p>
-                The two-stage phase-out prevents a sharp cliff where the offset disappears overnight. A taxpayer earning $50,000 still receives a LITO of <strong>$250</strong>, softening the transition into higher income tax brackets. You can verify these calculations instantly using our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link>.
-              </p>
+              <p className="text-sm text-warmgray-light">Where &ldquo;LITO used&rdquo; is below the offset, the tax before LITO is smaller than the offset and the rest is lost: LITO can&rsquo;t be refunded.</p>
             </section>
 
-            {/* SECTION 3 */}
-            <section id="eligibility">
-              <h2>Who Is Eligible for LITO?</h2>
-              <p>
-                Every Australian resident for tax purposes with taxable income of <strong>$66,667 or less</strong> is eligible for the Low Income Tax Offset in FY2025-26.
-              </p>
-              <p>
-                Eligibility is determined solely by two criteria: tax residency status and taxable income. The ATO does not impose age restrictions, employment type requirements, or asset tests. The following groups commonly qualify:
-              </p>
-              <ul>
-                <li><strong>Part-time and casual employees</strong> earning below the $66,667 threshold</li>
-                <li><strong>Full-time workers</strong> in entry-level, retail, hospitality, and aged care roles</li>
-                <li><strong>Self-employed sole traders</strong> with net business income under $66,667</li>
-                <li><strong>Retirees</strong> receiving taxable superannuation pensions or annuities</li>
-                <li><strong>Working holiday makers</strong> who qualify as Australian residents for tax purposes</li>
-                <li><strong>Students</strong> with part-time employment income</li>
-              </ul>
-              <p>
-                Non-residents are <strong>not eligible</strong> for LITO. Temporary residents classified as non-residents for tax purposes pay tax from the first dollar with no tax-free threshold and no LITO. Learn more about non-resident taxation in our <Link href="/non-resident-tax/">Non-Resident Tax Guide</Link>.
-              </p>
-            </section>
-
-            {/* SECTION 4 */}
-            <section id="lito-amount-table">
-              <h2>LITO Amount Table by Income Level</h2>
-              <p>
-                The LITO ranges from <strong>$700 at $20,000</strong> down to <strong>$0 at $66,668</strong>, with the sharpest reduction occurring between $37,500 and $45,000.
-              </p>
-              <p>
-                The table below shows the exact LITO amount and effective tax saving at representative income levels from $20,000 to $80,000 for the 2025-26 financial year.
-              </p>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-5 py-4">Taxable Income</th>
-                        <th className="px-5 py-4">LITO Amount</th>
-                        <th className="px-5 py-4">Income Tax Before LITO</th>
-                        <th className="px-5 py-4">Income Tax After LITO</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-semibold">$20,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td><td className="px-5 py-3">$288</td><td className="px-5 py-3 font-bold">$0</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$25,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td><td className="px-5 py-3">$1,088</td><td className="px-5 py-3 font-bold">$388</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$30,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td><td className="px-5 py-3">$1,888</td><td className="px-5 py-3 font-bold">$1,188</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$37,500</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$700</td><td className="px-5 py-3">$3,088</td><td className="px-5 py-3 font-bold">$2,388</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$40,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$575</td><td className="px-5 py-3">$3,488</td><td className="px-5 py-3 font-bold">$2,913</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$45,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$325</td><td className="px-5 py-3">$4,288</td><td className="px-5 py-3 font-bold">$3,963</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$50,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$250</td><td className="px-5 py-3">$5,788</td><td className="px-5 py-3 font-bold">$5,538</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$55,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$175</td><td className="px-5 py-3">$7,288</td><td className="px-5 py-3 font-bold">$7,113</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$60,000</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$100</td><td className="px-5 py-3">$8,788</td><td className="px-5 py-3 font-bold">$8,688</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">$66,667</td><td className="px-5 py-3 text-eucalyptus-dark font-bold">$0</td><td className="px-5 py-3">$10,788</td><td className="px-5 py-3 font-bold">$10,788</td></tr>
-                      <tr><td className="px-5 py-3 bg-sandstone font-semibold">$80,000</td><td className="px-5 py-3 bg-sandstone text-warmgray-light font-semibold">$0</td><td className="px-5 py-3 bg-sandstone">$14,788</td><td className="px-5 py-3 bg-sandstone font-bold">$14,788</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <p className="text-sm text-warmgray-light mt-2 italic">
-                Note: Income tax figures use FY2025-26 tax brackets for Australian residents claiming the tax-free threshold. Medicare levy is excluded from this table. Check our <Link href="/tax-brackets/">Australian Tax Brackets</Link> page for the full rate schedule.
-              </p>
-            </section>
-
-            {/* SECTION 5 */}
-            <section id="take-home-pay">
-              <h2>How Does LITO Affect Take-Home Pay?</h2>
-              <p>
-                LITO increases take-home pay by reducing the income tax withheld from each pay cycle, adding up to <strong>$700 per year</strong> or <strong>$13.46 per week</strong> for eligible workers.
-              </p>
-              <p>
-                Your employer does not apply LITO as a separate line item on your payslip. Instead, the ATO&rsquo;s <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link> incorporate the LITO into the standard withholding amounts. When your employer withholds tax each pay cycle, the LITO reduction is already baked into the lower withholding figure.
-              </p>
-
-              <h3>Worked Example: $42,000 Annual Salary</h3>
-              <p>
-                An employee earning a gross salary of <strong>$42,000</strong> in FY2025-26 receives the following treatment:
-              </p>
-              <ol>
-                <li>Taxable income: <strong>$42,000</strong> (assuming no deductions for simplicity).</li>
-                <li>Income tax on $42,000: the first $18,200 is tax-free; the next $23,800 ($18,201 to $42,000) is taxed at 16% = <strong>$3,808</strong>.</li>
-                <li>LITO calculation: $42,000 falls between $37,501 and $45,000. LITO = $700 &minus; ($42,000 &minus; $37,500) &times; 0.05 = $700 &minus; $225 = <strong>$475</strong>.</li>
-                <li>Tax after LITO: $3,808 &minus; $475 = <strong>$3,333</strong>.</li>
-                <li>Medicare levy at 2%: $42,000 &times; 0.02 = <strong>$840</strong>.</li>
-                <li>Superannuation (SG at 12%): $42,000 &times; 0.12 = <strong>$5,040</strong> (paid by employer on top of salary).</li>
-                <li>Annual take-home pay: $42,000 &minus; $3,333 &minus; $840 = <strong>$37,827</strong>.</li>
-                <li>Weekly take-home pay: $37,827 &divide; 52 = <strong>$727.44</strong>.</li>
-              </ol>
-              <p>
-                Without LITO, this employee would pay $3,808 in income tax instead of $3,333, reducing take-home pay by <strong>$475 per year</strong> or <strong>$9.13 per week</strong>. Verify your own scenario using the <Link href="/weekly-pay-calculator/">Weekly Pay Calculator</Link>.
-              </p>
-            </section>
-
-            {/* SECTION 6 */}
-            <section id="lito-vs-sapto">
-              <h2>LITO vs SAPTO &mdash; What Is the Difference?</h2>
-              <p>
-                LITO is available to all Australian residents earning under $66,667, while the "Seniors and Pensioners Tax Offset" (SAPTO) is restricted to taxpayers who meet Age Pension age and income requirements.
-              </p>
-              <p>
-                Both offsets are non-refundable and reduce income tax to a minimum of $0. The critical difference is that SAPTO and LITO can <strong>stack together</strong>, creating an even larger effective tax-free threshold for eligible seniors. A single senior who qualifies for both receives up to $700 (LITO) plus up to $2,230 (SAPTO), for a combined maximum offset of <strong>$2,930</strong>.
-              </p>
-              <div className="not-prose my-6">
-                <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full text-sm text-left text-navy">
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th className="px-5 py-4">Feature</th>
-                        <th className="px-5 py-4">LITO</th>
-                        <th className="px-5 py-4">SAPTO</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      <tr><td className="px-5 py-3 font-semibold">Maximum amount (single)</td><td className="px-5 py-3">$700</td><td className="px-5 py-3">$2,230</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Age requirement</td><td className="px-5 py-3">None</td><td className="px-5 py-3">Age Pension age (67+)</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Income cut-off (single)</td><td className="px-5 py-3">$66,667</td><td className="px-5 py-3">$50,119</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Refundable?</td><td className="px-5 py-3">No</td><td className="px-5 py-3">No</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Application required?</td><td className="px-5 py-3">No (automatic)</td><td className="px-5 py-3">No (automatic)</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Can stack with other offsets?</td><td className="px-5 py-3">Yes (stacks with SAPTO)</td><td className="px-5 py-3">Yes (stacks with LITO)</td></tr>
-                      <tr><td className="px-5 py-3 font-semibold">Effective tax-free threshold (single)</td><td className="px-5 py-3">$22,575</td><td className="px-5 py-3">$33,089 (with LITO)</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              <p>
-                The combined effect of LITO plus SAPTO means a single Australian pensioner pays <strong>$0 income tax</strong> on the first $33,089 of taxable income. Couples where each member qualifies receive separate SAPTO amounts, each capped at $1,602. This stacking arrangement makes the Australian tax offset system one of the most generous for seniors among OECD countries.
-              </p>
-            </section>
-
-            {/* SECTION 7 */}
             <section id="effective-threshold">
-              <h2>How Does LITO Interact with the Tax-Free Threshold?</h2>
-              <p>
-                LITO raises the effective tax-free threshold from the official <strong>$18,200</strong> to <strong>$22,575</strong>, meaning no income tax is payable on the first $22,575 of earnings.
-              </p>
-              <p>
-                The official <Link href="/tax-brackets/">Australian tax brackets</Link> set the tax-free threshold at $18,200. Income between $18,201 and $45,000 is taxed at <strong>16%</strong> under the FY2025-26 rate schedule. LITO then offsets a portion of this tax, effectively extending the zero-tax zone.
-              </p>
-              <p>
-                Here is the mathematical proof:
-              </p>
+              <h2 style={FONT}>LITO and the Tax-Free Threshold: No Tax Up to {m(NIL_NOW)}</h2>
+              <p>The <Link href="/tax-free-threshold/">tax-free threshold</Link> is {m(TAX_FREE_THRESHOLD)}. Above it, tax starts at {pct(rate)}, and the full {m(LITO.maxOffset)} offset cancels that tax until it reaches {m(LITO.maxOffset)}:</p>
               <ol>
-                <li>An individual earns exactly <strong>$22,575</strong>.</li>
-                <li>The first $18,200 is tax-free.</li>
-                <li>The remaining $4,375 falls into the 16% tax bracket.</li>
-                <li>$4,375 &times; 16% = <strong>$700</strong> in raw tax owed.</li>
-                <li>The ATO applies the full $700 LITO offset because income is under $37,500.</li>
-                <li>$700 tax owed &minus; $700 LITO = <strong>$0 total tax</strong>.</li>
+                <li>{m(LITO.maxOffset)} ÷ {pct(rate)} = {m(Math.round((LITO.maxOffset / rate) * 100) / 100)} of income above {m(TAX_FREE_THRESHOLD)}.</li>
+                <li>{m(TAX_FREE_THRESHOLD)} + that amount = {m(Math.round((TAX_FREE_THRESHOLD + LITO.maxOffset / rate) * 100) / 100)}.</li>
+                <li>At {m(NIL_NOW)} the tax is {m(litoBreakdown(NIL_NOW).taxBeforeLito)}, fully covered by LITO. At {m(NIL_NOW + 1)} it is {m(litoBreakdown(NIL_NOW + 1).taxBeforeLito)}, a few cents more than the offset.</li>
               </ol>
-              <p className="text-lg font-medium text-navy border-l-4 border-eucalyptus pl-4 py-1 mt-6">
-                Because of LITO, you don&rsquo;t pay a single cent of income tax until you earn over $22,575.
-              </p>
-              <p>
-                This effective threshold changed on 1 July 2024 when the Stage 3 tax cuts reduced the lowest marginal rate from 19% to 16%. Before that date, the effective tax-free threshold was $21,884. The $691 increase benefits every Australian earning between $21,884 and $22,575 who previously owed a small amount of income tax.
-              </p>
-            </section>
-
-            {/* SECTION 8 */}
-            <section id="how-applied">
-              <h2>How Is LITO Applied During the Year?</h2>
-              <p>
-                LITO is applied incrementally through the PAYG withholding system, spreading the offset across every pay cycle rather than delivering a lump sum at tax time.
-              </p>
-              <p>
-                Your employer&rsquo;s payroll software follows the ATO&rsquo;s <Link href="/payg-withholding-tables/">PAYG Withholding Tables</Link>, which already incorporate the LITO mathematics. When you see your weekly, fortnightly, or monthly tax deducted on your payslip, the LITO discount has been distributed across your pay periods. A full-time employee receiving 26 fortnightly pays sees approximately <strong>$26.92 less tax per fortnight</strong> from the maximum LITO of $700.
-              </p>
-              <p>
-                This incremental application means most employees receive the correct net LITO benefit throughout the year. Discrepancies arise when an employee holds multiple jobs, changes income mid-year, or has other offsets. In those cases, any under-claimed LITO is reconciled as part of your annual tax return, and the ATO adjusts your refund or liability accordingly. Use our <Link href="/tax-return-calculator/">Tax Return Calculator</Link> to estimate whether you will receive a refund from LITO adjustments.
-              </p>
-            </section>
-
-            {/* CONTEXT BORDER */}
-
-            {/* SECTION 9 */}
-            <section id="changes-fy2025-26">
-              <h2>What Changed for LITO in FY2025-26?</h2>
-              <p>
-                The LITO thresholds and maximum amount of <strong>$700</strong> remain unchanged for FY2025-26, but the Stage 3 tax cuts alter how LITO interacts with the income tax brackets.
-              </p>
-              <p>
-                The Stage 3 tax reform, effective from 1 July 2024, introduced three changes that affect LITO&rsquo;s practical impact:
-              </p>
-              <ul>
-                <li>The 19% marginal rate dropped to <strong>16%</strong>, reducing raw tax on income between $18,201 and $45,000</li>
-                <li>The 32.5% marginal rate dropped to <strong>30%</strong>, reducing tax on income between $45,001 and $135,000</li>
-                <li>The $120,000 threshold for the 37% rate increased to <strong>$135,000</strong></li>
-              </ul>
-              <p>
-                These bracket changes raised the effective tax-free threshold from $21,884 (under the old 19% rate) to <strong>$22,575</strong> (under the new 16% rate). The LITO itself did not change, but taxpayers in the $18,201&ndash;$45,000 band now owe less tax before LITO is applied, meaning the offset has a larger proportional impact. A worker earning $30,000 now pays <strong>$1,188</strong> after LITO (down from $1,540 under the old 19% bracket).
-              </p>
-              <p>
-                The previous "Low and Middle Income Tax Offset" (LMITO), which provided up to $1,500 in additional relief, ended after FY2021-22 and has not been reinstated. LITO remains the sole broad-based low-income tax offset in the Australian tax system.
-              </p>
-            </section>
-
-            {/* SECTION 10 */}
-            <section id="related-resources">
-              <h2>Related Resources</h2>
-              <p>
-                LITO intersects with multiple areas of Australian taxation and take-home pay calculations. The following resources provide detailed coverage of each related topic.
-              </p>
-              <div className="not-prose my-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Link href="/take-home-pay-calculator/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Take-Home Pay Calculator</span>
-                      <span className="text-xs text-warmgray">See LITO applied to your salary instantly</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                  <Link href="/tax-brackets/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Australian Tax Brackets</span>
-                      <span className="text-xs text-warmgray">FY2025-26 marginal tax rates and thresholds</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                  <Link href="/medicare-levy/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Medicare Levy Guide</span>
-                      <span className="text-xs text-warmgray">2% levy thresholds and exemptions</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                  <Link href="/superannuation-guide/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Superannuation Guide</span>
-                      <span className="text-xs text-warmgray">SG rate, caps, and employer obligations</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                  <Link href="/salary-sacrifice-calculator/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">Salary Sacrifice Guide</span>
-                      <span className="text-xs text-warmgray">Reduce taxable income to maximise LITO</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                  <Link href="/hecs-help-calculator/" className="group flex items-center justify-between p-4 rounded-lg bg-sandstone border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                    <div>
-                      <span className="text-sm font-bold text-navy group-hover:text-eucalyptus-dark block">HECS-HELP Repayment Guide</span>
-                      <span className="text-xs text-warmgray">How study debt interacts with LITO</span>
-                    </div>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                </div>
+              <p>So the effective tax-free threshold is <strong>{m(NIL_NOW)}</strong> in {FY}. You&rsquo;ll still see <strong>{m(NIL_PREV)}</strong> quoted: that was the {PREV} figure, when the rate was {pct(TAX_BRACKETS_2025_26[1].rate)}. When the rate drops to {pct(TAX_BRACKETS_2027_28[1].rate)} on 1 July 2027 it rises to {m(nilNext)}.</p>
+              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                <table className="w-full text-sm text-left text-warmgray">
+                  <thead className="bg-sandstone"><tr><th className={TH}>Income year</th><th className={`${TH} text-right`}>Rate above {m(TAX_FREE_THRESHOLD)}</th><th className={`${TH} text-right`}>No income tax up to</th></tr></thead>
+                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    <tr><td className={TD}>{PREV}</td><td className={`${TD} text-right`}>{pct(TAX_BRACKETS_2025_26[1].rate)}</td><td className={`${TD} text-right tabular-nums`}>{m(NIL_PREV)}</td></tr>
+                    <tr><td className={`${TD} font-semibold text-navy`}>{FY}</td><td className={`${TD} text-right`}>{pct(rate)}</td><td className={`${TD} text-right tabular-nums font-semibold text-navy`}>{m(NIL_NOW)}</td></tr>
+                    <tr><td className={TD}>2027-28 (legislated)</td><td className={`${TD} text-right`}>{pct(TAX_BRACKETS_2027_28[1].rate)}</td><td className={`${TD} text-right tabular-nums`}>{m(nilNext)}</td></tr>
+                  </tbody>
+                </table>
               </div>
             </section>
 
-            {/* SECTION 11 */}
+            <section id="lito-in-your-pay">
+              <h2 style={FONT}>Is LITO in Your Pay? Only Partly</h2>
+              <p>Your employer doesn&rsquo;t show LITO on your payslip. The ATO&rsquo;s withholding formulas build in part of it, which is why, with the tax-free threshold claimed, no tax is withheld until you earn more than {m(TFT_WITHHOLDING_STARTS_ABOVE.weekly)} a week ({m(TFT_WITHHOLDING_STARTS_ABOVE.fortnightly)} a fortnight), about {m(withholdStartsAnnual)} a year. That is above {m(TAX_FREE_THRESHOLD)} but well below {m(NIL_NOW)}, so the rest of the offset reaches you when you lodge: as part of your refund, or as a smaller bill.</p>
+              <p>To see how your withholding compares with the tax you&rsquo;ll actually owe, including LITO, use the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link>.</p>
+            </section>
+
+            <section id="marginal-rate">
+              <h2 style={FONT}>How the Phase-Out Raises Your Marginal Rate</h2>
+              <p>Because LITO shrinks as you earn more, each extra dollar between {m(LITO.fullOffsetCeiling)} and {m(LITO.nilOffsetIncome)} costs more tax than the bracket rate alone. Between {m(LITO.fullOffsetCeiling)} and {m(LITO.phaseOut1.end)} you pay {pct(rate)} tax plus {perDollar1}c of lost offset, so on {m(a40.income)} the next $1,000 costs {m(a40.taxOnNext1000)} including the Medicare levy. Above {m(LITO.phaseOut1.end)} it is {pct(B[2].rate)} plus {perDollar2}c. It&rsquo;s still always worth earning more: you keep most of every extra dollar. More in <Link href="/tax-brackets/#marginal-tax-rate">marginal tax rate vs average rate</Link>.</p>
+            </section>
+
+            <section id="eligibility">
+              <h2 style={FONT}>Who Gets LITO</h2>
+              <p>The ATO says you may be eligible if you earn up to {m(LITO.nilOffsetIncome)} and you:</p>
+              <ul>
+                <li>are an Australian resident for tax purposes;</li>
+                <li>pay tax on your taxable income; and</li>
+                <li>have taxable income below the thresholds above.</li>
+              </ul>
+              <p>There is no age, job-type or asset test. Employees, sole traders and retirees with taxable income all qualify on the same basis. Foreign residents don&rsquo;t get LITO or the tax-free threshold (see <Link href="/non-resident-tax/">non-resident tax</Link>), and working holiday makers are taxed under their own rates (see <Link href="/working-holiday-tax/">working holiday tax</Link>).</p>
+              <p>Seniors and pensioners can get the separate <Link href="/sapto-calculator/">seniors and pensioners tax offset (SAPTO)</Link>, up to {m(SAPTO_BANDS.single.maxOffset)} for a single person, on top of LITO.</p>
+            </section>
+
+            <section id="what-changed">
+              <h2 style={FONT}>What Changed for LITO in {FY}</h2>
+              <p>The offset itself did not change: still {m(LITO.maxOffset)}, still the same {m(LITO.fullOffsetCeiling)}, {m(LITO.phaseOut1.end)} and {m(LITO.nilOffsetIncome)} thresholds. What changed is the tax it offsets. The second tax rate fell from {pct(TAX_BRACKETS_2025_26[1].rate)} to {pct(rate)} on 1 July 2026, so everyone below {m(LITO.nilOffsetIncome)} pays less tax before LITO is applied, and the no-tax point moved from {m(NIL_PREV)} to {m(NIL_NOW)}. The old low and middle income tax offset (LMITO) ended after 2021-22.</p>
+            </section>
+
             <section id="faq">
-              <h2>Frequently Asked Questions</h2>
+              <h2 style={FONT}>LITO FAQ</h2>
               <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="what-is" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the Low Income Tax Offset (LITO)?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The LITO is a non-refundable tax offset provided by the Australian government to lower-income earners. It directly reduces the amount of income tax you have to pay, offering a maximum reduction of $700 for those earning under $37,500.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="how-claim" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I claim the LITO?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    You don't need to apply or tick a specific box to claim it. When you lodge your tax return at the end of the financial year, the ATO automatically calculates your eligibility based on your taxable income, applies the offset to reduce your overall tax bill, and issues any resulting refund.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="threshold" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the real tax-free threshold in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    While the official, heavily marketed tax-free threshold is $18,200, the addition of the maximum $700 LITO means you can effectively earn up to $22,575 before you actually have to pay a single cent of income tax to the ATO.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lmito" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happened to LMITO (the Low and Middle Income Tax Offset)?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The LMITO was a temporary additional offset worth up to $1,500 that applied from the 2018-19 to 2021-22 financial years. It was not extended beyond FY2021-22, so LITO is now the only broad low-income tax offset available. The Stage 3 tax cuts (effective from 1 July 2024) were partially designed to compensate for the removal of LMITO by lowering the 32.5% bracket to 30% and adjusting thresholds.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="multiple-jobs" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does LITO apply if I have multiple jobs?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. LITO is calculated on your total taxable income from all sources combined, not per job. If your combined income from two or more jobs stays under $66,667, you receive the LITO. Your secondary employer typically withholds tax at a higher rate (no tax-free threshold), but the ATO reconciles LITO across all jobs when you lodge your annual return.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="refund" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can LITO generate a tax refund?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    LITO alone cannot generate a cash refund because it is non-refundable &mdash; it reduces your tax to $0 but not below. However, LITO can indirectly contribute to a refund when combined with PAYG withholding. If your employer withheld more tax during the year than your final tax liability after LITO, the ATO refunds the excess withholding.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="part-year" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is LITO pro-rated if I work part of the year?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. LITO is not pro-rated based on how many months you worked. It is calculated on your total taxable income for the full financial year. If you worked 6 months and earned $25,000 total, you receive the full $700 LITO because your taxable income is below $37,500.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="self-employed" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do self-employed people get the LITO?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Sole traders, freelancers, and contractors who are Australian residents for tax purposes receive the LITO based on their net business income (assessable income minus allowable business deductions). The offset applies identically to employment income and business income.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-pension" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does LITO apply to superannuation pension income?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Taxable superannuation pension income (from a taxed super fund, for recipients aged 60 or under preservation age) counts toward your assessable income. If your total taxable income including the pension is under $66,667, you receive the LITO. Retirees aged 67 or older often also qualify for SAPTO, which stacks with LITO for a combined offset of up to $2,930.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="salary-sacrifice" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can salary sacrifice help me get a larger LITO?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Salary sacrificing into superannuation reduces your taxable income. If your pre-sacrifice income is above $66,667 but your post-sacrifice taxable income drops below that threshold, you become eligible for the LITO. For example, salary sacrificing $10,000 from a $72,000 salary brings taxable income down to $62,000, qualifying for a LITO of approximately $145.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="non-resident" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do non-residents get LITO?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    No. Non-residents for Australian tax purposes are not eligible for the LITO, the tax-free threshold, or SAPTO. Non-residents pay tax from the first dollar at a rate of 30% on income up to $135,000. Working holiday makers on 417 and 462 visas pay a flat 15% on the first $45,000 regardless of residency status.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="lito-vs-deduction" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between a tax offset and a tax deduction?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    A tax deduction reduces your taxable income before tax is calculated, so the tax saving equals the deduction multiplied by your marginal rate. A $700 deduction at the 30% marginal rate saves $210. A tax offset (like LITO) reduces your calculated tax bill directly by the full dollar amount. A $700 offset saves exactly $700 in tax, making offsets more valuable dollar-for-dollar than deductions.
-                  </AccordionContent>
-                </AccordionItem>
+                {LITO_FAQS.map((f, i) => (
+                  <AccordionItem key={f.q} value={`faq-${i}`} className="rounded-xl border border-sandstone-dark/20 px-5">
+                    <AccordionTrigger className="text-left font-semibold text-navy">{f.q}</AccordionTrigger>
+                    <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                  </AccordionItem>
+                ))}
               </Accordion>
             </section>
 
-            <div className="mt-12 not-prose">
+            <div className="mt-12 not-prose space-y-6">
               <MethodologyDisclosure>
-                <p>Thresholds and offset rules conform to the ATO guidelines for the 2024–25 and 2025-26 income years following the implementation of the Stage 3 tax cuts (which lowered the primary bracket to 16%, adjusting the effective tax-free math up to $22,575).</p>
+                <p>LITO follows the ATO&rsquo;s published formula (QC105020). Tax before LITO uses the ATO&rsquo;s {FY} resident rates; the {PREV} and 2027-28 comparisons use the {PREV} table and the legislated 2027-28 rate. Figures are for a full-year resident with no other offsets.</p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
-              {(() => { const a = getGuideAuthorship("low-income-tax-offset"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
+              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
+              {authorship && <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />}
             </div>
-
           </article>
 
-          {/* SIDEBAR */}
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
-              <Card className="bg-sandstone border-sandstone-dark/20">
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-navy mb-3 block">Related Guides</h3>
-                  <div className="space-y-3">
-                    <Link href="/tax-brackets/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Tax Brackets Checker</span>
-                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                    </Link>
-                    <Link href="/medicare-levy/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Medicare Levy Guide</span>
-                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                    </Link>
-                    <Link href="/understanding-your-payslip/" className="group flex items-center justify-between p-3 rounded-lg bg-white border border-sandstone-dark/20 hover:border-eucalyptus/40 hover:shadow-sm transition-all">
-                      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">Read Your Payslip</span>
-                      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-eucalyptus-dark border-none text-white shadow-md">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold mb-2">Are you eligible?</h3>
-                  <p className="text-eucalyptus-light text-sm mb-4">Pop your gross wage into our calculator to see if the LITO applies to you, and how much it saves you.</p>
-                  <Link href="/take-home-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-eucalyptus-dark font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">
-                    Calculate Tax
-                  </Link>
-                </CardContent>
-              </Card>
+            <div className="sticky top-8 space-y-4 not-prose">
+              <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone p-5">
+                <p className="font-bold text-navy mb-3">Related</p>
+                <ul className="space-y-2 text-sm">
+                  {[
+                    { href: "/tax-brackets/", label: `Tax brackets ${FY}` },
+                    { href: "/tax-free-threshold/", label: "Tax-free threshold" },
+                    { href: "/tax-withheld-calculator/", label: "Tax withheld calculator" },
+                    { href: "/income-tax-calculator/", label: "Income tax calculator" },
+                    { href: "/take-home-pay-calculator/", label: "Take-home pay calculator" },
+                    { href: "/tax-return-calculator/", label: "Tax return calculator" },
+                  ].map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="flex items-center justify-between rounded-lg bg-white border border-sandstone-dark/20 px-3 py-2 text-navy hover:border-eucalyptus">
+                        {l.label}<ChevronRight className="h-4 w-4 text-warmgray-light" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </aside>
-
         </div>
       </div>
     </div>

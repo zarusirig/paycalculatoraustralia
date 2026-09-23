@@ -81,7 +81,8 @@ test("hourly is weekly / 38 to the cent for every classification", () => {
 
 test("no adult rate sits below the 2026 entry-level floor", () => {
   for (const award of ALL) {
-    for (const r of award.rates) {
+    // Nurses Award student enrolled nurses under 21 are an age-based rate (cl 15.1(b)(i)).
+    for (const r of award.rates.filter((x) => !/under 21/i.test(x.level))) {
       assert.ok(r.weekly >= AWR_2026_FLOORS.entryLevelWeekly, `${award.meta.code} ${r.level}`);
     }
   }
@@ -90,11 +91,11 @@ test("no adult rate sits below the 2026 entry-level floor", () => {
   assert.equal(findAwardRate(MANUFACTURING_AWARD, "C13 / V2").weekly, AWR_2026_FLOORS.ongoingWeekly);
 });
 
-test("every award is consolidated to 1 July 2026 and has a unique route", () => {
+test("every award is consolidated to 1 July 2026 or later and has a unique route", () => {
   const hrefs = new Set<string>();
   for (const award of ALL) {
-    assert.match(award.meta.consolidatedTo, /^1 July 2026/);
-    assert.match(award.meta.code, /^MA0000\d\d$/);
+    assert.match(award.meta.consolidatedTo, /^1 (July|August|September) 2026/);
+    assert.match(award.meta.code, /^MA000\d{3}$/);
     assert.ok(award.rates.some((r) => r.level === award.entryLevel), `${award.meta.code} entry level exists`);
     assert.ok(!hrefs.has(award.meta.href));
     hrefs.add(award.meta.href);
@@ -103,12 +104,20 @@ test("every award is consolidated to 1 July 2026 and has a unique route", () => 
 
 // --- Casual penalties --------------------------------------------------------
 
-test("additive awards: casual penalty = full-time penalty + 25%", () => {
-  for (const award of ALL.filter((a) => a.casualPenaltyBasis === "additive")) {
+test("additive rows: casual penalty = full-time penalty + 25% (tabulated exceptions must say why)", () => {
+  for (const award of ALL) {
     for (const p of award.penalties) {
+      if (p.employment) continue; // one employment type only
+      if (p.casualTabulated) {
+        assert.ok(p.note && p.note.length > 20, `${award.meta.code} ${p.label}: tabulated casual needs a note`);
+        continue;
+      }
+      if ((p.casualBasis ?? award.casualPenaltyBasis) !== "additive") continue;
       assert.equal(roundCents(p.casual - p.fullTime), 0.25, `${award.meta.code} ${p.label}`);
     }
     for (const c of award.matrix) {
+      if (c.employment || c.casualTabulated) continue;
+      if ((c.casualBasis ?? award.casualPenaltyBasis) !== "additive") continue;
       assert.equal(roundCents(c.casual - c.fullTime), 0.25, `${award.meta.code} matrix ${c.label}`);
     }
   }
@@ -251,8 +260,9 @@ test("allowances are positive, cited, and key figures are pinned", () => {
 
 // --- A–Z directory -----------------------------------------------------------
 
-test("award directory is A–Z, covers all eight award pages, and reads rates from constants", () => {
-  assert.equal(AWARD_DIRECTORY.length, 8);
+test("award directory is A–Z, covers all fourteen award pages, and reads rates from constants", () => {
+  // 8 before T4 + Restaurant, Nurses, Aged Care, Hair and Beauty, Cleaning, Road Transport.
+  assert.equal(AWARD_DIRECTORY.length, 14);
   const names = AWARD_DIRECTORY.map((a) => a.name);
   assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, "en-AU")));
   const byCode = new Map(AWARD_DIRECTORY.map((a) => [a.code, a]));

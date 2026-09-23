@@ -13,6 +13,7 @@ import {
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +21,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +34,12 @@ import {
 
 const PROFILE = STATE_PROFILES.SA;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["SA", "NSW", "VIC", "QLD", "WA", "TAS", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13d, South Australia`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — South Australia", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1987)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "SA Payroll Tax", url: "https://www.revenuesa.sa.gov.au/payroll-tax", publisher: "RevenueSA" },
+  { title: "SA payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.sa.ratesUrl, publisher: PAYROLL_TAX_STATES.sa.revenueOffice },
 ];
 
 export default function PayCalculatorSAPage() {
@@ -141,8 +140,9 @@ export default function PayCalculatorSAPage() {
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
               SA also runs a variable payroll tax rate between $1.5m and $1.7m of wages, which
-              occasionally gets mistaken for a sliding deduction on employees. It is not. The full
-              detail sits in the employer section below.
+              occasionally gets mistaken for a sliding deduction on employees. It is not. Employers can
+              see how it works on the{" "}
+              <Link href="/payroll-tax/sa/" className="text-eucalyptus-dark hover:underline">SA payroll tax</Link> page.
             </p>
           </section>
 
@@ -163,57 +163,13 @@ export default function PayCalculatorSAPage() {
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in South Australia</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              Nothing here is deducted from an employee. It is the cost of employing someone in SA.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/sa/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is SA payroll tax?</H3>
-            <p className="mb-4 text-warmgray">SA payroll tax is a state levy charged to employers at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}</strong> on total Australian wages exceeding <strong>{formatAUD(STATE_PAYROLL_TAX.SA.threshold)}</strong> per year. Employees do not pay payroll tax. It does not appear on your payslip and has zero impact on your take-home pay. RevenueSA administers the tax and offers a monthly threshold deduction so only wages above the $1.5 million annual threshold attract the {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)} rate.</p>
-            <p className="mb-4 text-warmgray">SA&apos;s $1.5 million threshold is the second-highest in Australia after Queensland&apos;s $1.3 million (which uses a lower rate). This high threshold means fewer SA businesses pay payroll tax compared to NSW or Victoria, where lower thresholds capture more employers. For a full breakdown of employer on-costs including superannuation and workers compensation, see the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.</p>
-
-            <H3>How does SA payroll tax compare to other states?</H3>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-sandstone">
-                    <th className="text-left px-4 py-3 font-semibold text-navy">State / Territory</th>
-                    <th className="text-right px-4 py-3 font-semibold text-navy">Rate</th>
-                    <th className="text-right px-4 py-3 font-semibold text-navy">Annual Threshold</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "SA";
-                    const rowClass = isHome ? "bg-eucalyptus-light/20" : i % 2 === 0 ? "bg-sandstone/30" : "";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className={`px-4 py-3 ${isHome ? "font-semibold text-navy" : "text-warmgray"}`}>{s.name}</td>
-                        <td className={`px-4 py-3 text-right text-navy ${isHome ? "font-bold" : "font-medium"}`}>{formatPercent(s.rate, 2)}</td>
-                        <td className={`px-4 py-3 text-right text-navy ${isHome ? "font-bold" : "font-medium"}`}>{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-xs text-warmgray-light mt-2">Rates shown are the standard rate for each jurisdiction for FY2025-26. Some states apply tiered or additional mental-health surcharge rates above certain wage levels.</p>
-
-            <H3>ReturnToWorkSA</H3>
-            <p className="mt-4 text-sm text-warmgray">
-              Work injury insurance in South Australia is provided through ReturnToWorkSA and funded by
-              an employer levy set by industry classification. Like payroll tax, it is never deducted
-              from an employee&apos;s wages and never appears on a payslip.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in South Australia?">
@@ -232,7 +188,7 @@ export default function PayCalculatorSAPage() {
               The Long Service Leave Act 1987 (SA) sets accrual at 1.3 weeks per completed year, which produces 13 weeks at the 10-year mark. Most other states accrue about 0.867 weeks a year and reach only 8.67 weeks at 10 years. A pro-rata payment becomes available once you complete 7 years.
             </FAQItem>
             <FAQItem value="payroll" question="Do SA employees pay payroll tax?">
-              No. Payroll tax is charged to the employer once its Australian wage bill passes {formatAUD(STATE_PAYROLL_TAX.SA.threshold)}, at {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}. It never appears as a deduction on an employee&apos;s payslip.
+              No. Payroll tax is charged to the employer once its Australian wage bill passes {formatAUD(STATE_PAYROLL_TAX.SA.threshold)}, at a rate of up to {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}. It never appears as a deduction on an employee&apos;s payslip.
             </FAQItem>
             <FAQItem value="packaging" question="Does salary packaging change my SA take-home pay?">
               Yes, and it is common in SA health and not-for-profit employment. Packaged amounts reduce your taxable income, which reduces income tax and the Medicare levy. Model it with the <Link href="/salary-packaging-guide/" className="text-eucalyptus-dark hover:underline">salary packaging guide</Link> and the <Link href="/salary-package-calculator/" className="text-eucalyptus-dark hover:underline">salary package calculator</Link>.

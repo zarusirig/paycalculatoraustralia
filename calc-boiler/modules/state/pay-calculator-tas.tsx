@@ -7,13 +7,13 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -21,10 +21,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -33,15 +34,12 @@ import {
 
 const PROFILE = STATE_PROFILES.TAS;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["TAS", "NSW", "VIC", "QLD", "WA", "SA", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13f, Tasmania`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Tasmania", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1976)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "TAS Payroll Tax", url: "https://www.sro.tas.gov.au/payroll-tax", publisher: "State Revenue Office Tasmania" },
+  { title: "TAS payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.tas.ratesUrl, publisher: PAYROLL_TAX_STATES.tas.revenueOffice },
 ];
 
 export default function PayCalculatorTASPage() {
@@ -153,59 +151,19 @@ export default function PayCalculatorTASPage() {
             <H2>Does TAS payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              Tasmania charges the lowest headline payroll tax rate in the country, which is an employer
-              saving, not a wage effect. What actually leaves your pay is set out in the{" "}
+              Tasmania&apos;s payroll tax starts at 4% (6.1% once an employer&apos;s Australian wages
+              pass $2 million), and either way it is an employer cost, not a wage effect. What actually leaves your pay is set out in the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link>.
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in Tasmania</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of this is deducted from an employee&apos;s wages.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/tas/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is TAS payroll tax?</H3>
-            <p className="mb-4 text-warmgray">Tasmania&apos;s payroll tax rate is <strong>{formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.TAS.threshold)}</strong> annual threshold, increasing to <strong>6.1%</strong> for employers with Australian wages exceeding $2,000,000.</p>
-            <p className="mb-4 text-warmgray">Payroll tax is an employer obligation and does not reduce an employee&apos;s gross or net pay. The State Revenue Office Tasmania administers the tax. Businesses with total Australian wages below the {formatAUD(STATE_PAYROLL_TAX.TAS.threshold)} threshold pay no payroll tax at all, which exempts most small businesses across Hobart, Launceston, and Devonport. Tasmania&apos;s threshold is among the lowest in Australia, meaning more employers cross it, but the base rate of {formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)} is the lowest of any state.</p>
-
-            <H3>How does TAS payroll tax compare to other states?</H3>
-            <div className="overflow-x-auto mb-4">
-              <table className="w-full text-sm border border-sandstone-dark/20 rounded-lg overflow-hidden">
-                <thead><tr className="bg-sandstone text-navy"><th className="px-4 py-3 text-left font-semibold">State / Territory</th><th className="px-4 py-3 text-right font-semibold">Base Rate</th><th className="px-4 py-3 text-right font-semibold">Annual Threshold</th></tr></thead>
-                <tbody className="text-warmgray">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "TAS";
-                    const rowClass = isHome
-                      ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
-                      : i % 2 === 0
-                      ? "border-t border-sandstone-dark/10 bg-sandstone/30"
-                      : "border-t border-sandstone-dark/10";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className="px-4 py-2">{s.name}</td>
-                        <td className={`px-4 py-2 text-right ${isHome ? "text-navy" : ""}`}>{formatPercent(s.rate, 2)}</td>
-                        <td className={`px-4 py-2 text-right ${isHome ? "text-navy" : ""}`}>{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray">Tasmania&apos;s <strong>{formatPercent(STATE_PAYROLL_TAX.TAS.rate, 0)}</strong> base rate is the lowest in Australia, though its tiered structure increases the rate to <strong>6.1%</strong> for payrolls above $2,000,000. Employers comparing operating costs across states can use our <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator NSW</Link> or <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark underline hover:text-eucalyptus">Pay Calculator Victoria</Link> pages for state-specific context.</p>
-            <p className="text-sm text-warmgray">
-              Work injury insurance in Tasmania is provided by licensed insurers and funded entirely by
-              employer premiums set by industry classification. Model total employment cost with the{" "}
-              <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in Tasmania?">

@@ -45,6 +45,23 @@ export const OCCUPATION_SLUGS = [
   "doctor",
   "teacher-aide",
   "early-childhood-teacher",
+  // T5 (wave 3) — batch 3 occupations.
+  "midwife",
+  "childcare-worker",
+  "aged-care-worker",
+  "cleaner",
+  "chef",
+  "bartender",
+  "barista",
+  "retail-worker",
+  "mechanic",
+  "hairdresser",
+  "lab-technician",
+  "pharmacy-assistant",
+  "receptionist",
+  "bookkeeper",
+  "pathology-collector",
+  "dental-hygienist",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
