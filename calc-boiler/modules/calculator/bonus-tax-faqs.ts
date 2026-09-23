@@ -24,6 +24,15 @@ const MEDICARE = formatPercent(MEDICARE_LEVY.rate, 0);
 // Worked figures come out of the engine, so they cannot contradict the
 // calculator sitting above them on the page.
 const AT_90K = calculatePayBreakdown({ grossSalary: 90_000 });
+const TOTAL_RATE_90K = (AT_90K.netIncomeTax + AT_90K.medicareLevy) / 90_000;
+// Part-time example: $30,000 + $5,000 bonus. In this range the Medicare levy
+// shade-in (10c per $1 above the low-income threshold) adds to the marginal
+// rate, so the figure comes from the engine rather than "rate + 2%".
+const PT_BASE = calculatePayBreakdown({ grossSalary: 30_000 });
+const PT_WITH = calculatePayBreakdown({ grossSalary: 35_000 });
+const PT_TAX_ON_BONUS = PT_WITH.totalDeductions - PT_BASE.totalDeductions;
+const MIDDLE_ALL_IN = formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0);
+const UPPER_ALL_IN = formatPercent(TAX_BRACKETS[3].rate + MEDICARE_LEVY.rate, 0);
 
 export interface BonusTaxFaq {
   q: string;
@@ -65,15 +74,15 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "Can I salary sacrifice my bonus into super?",
-    a: "Yes, if your employer allows it. Directing your bonus into super as a concessional contribution means it is taxed at only 15% (instead of your marginal rate). However, the contribution counts towards your $30,000 concessional cap. See our salary sacrifice guide for details.",
+    a: `Yes, if your employer allows it. Directing your bonus into super as a concessional contribution means it is taxed at only 15% (instead of your marginal rate). However, the contribution counts towards your ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap for FY${SITE_CONFIG.financialYear}, along with your employer's SG. See our salary sacrifice guide for details.`,
   },
   {
     q: "Does my employer pay super on my bonus?",
-    a: "Yes, for performance-related bonuses. Bonuses classified as \"Ordinary Time Earnings\" attract the 12% Superannuation Guarantee. A $10,000 performance bonus generates $1,200 in additional super. Sign-on bonuses, retention bonuses, and referral bonuses are generally excluded from OTE and do not attract SG.",
+    a: `Yes, for most bonuses. Performance, Christmas, sign-on and referral bonuses are qualifying earnings and attract the ${formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee, so a ${formatAUD(10_000)} performance bonus generates ${formatAUD(10_000 * SUPER_GUARANTEE.rate)} in additional super. The exception is a bonus paid solely for work performed entirely outside ordinary hours.`,
   },
   {
     q: "Why was so much tax taken from my bonus?",
-    a: "Your bonus sits on top of your regular salary, so every dollar is taxed at your highest marginal rate. A worker earning $90,000 pays an average tax rate of about 23% on total income but the bonus is taxed at 32% (30% plus 2% Medicare levy) because it falls entirely in the top bracket. Some payroll systems also annualise the pay period containing the bonus, which can produce even higher withholding that is corrected when you lodge your return.",
+    a: `Your bonus sits on top of your regular salary, so every dollar is taxed at your highest marginal rate. A worker earning ${formatAUD(90_000)} pays about ${formatPercent(TOTAL_RATE_90K)} of total income in tax and Medicare levy, but the bonus is taxed at ${MIDDLE_ALL_IN} (${formatPercent(MIDDLE.rate, 0)} plus ${MEDICARE} Medicare levy) because it falls entirely in their top bracket. Some payroll systems also annualise the pay period containing the bonus, which can produce even higher withholding that is corrected when you lodge your return.`,
   },
   {
     q: "Are commissions taxed the same as bonuses?",
@@ -81,11 +90,11 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   },
   {
     q: "What if I receive two bonuses in the same financial year?",
-    a: "Each bonus is taxed using Schedule 5 based on your year-to-date earnings at the time of payment. The second bonus sits on top of your salary plus the first bonus, so it is taxed at a potentially higher marginal rate. A worker on $120,000 who receives two $10,000 bonuses pays 32% on the first and 32% on the second (both within the $45K\u2013$135K bracket). If the second bonus pushes total income above $135,000, the portion above $135,000 is taxed at 39%.",
+    a: `Each bonus is taxed using Schedule 5 based on your year-to-date earnings at the time of payment. The second bonus sits on top of your salary plus the first bonus, so it is taxed at a potentially higher marginal rate. A worker on ${formatAUD(120_000)} who receives two ${formatAUD(10_000)} bonuses pays ${MIDDLE_ALL_IN} on the first (income reaches ${formatAUD(130_000)}). The second takes total income to ${formatAUD(140_000)}, so the part up to ${formatAUD(MIDDLE.max)} is taxed at ${MIDDLE_ALL_IN} and the part above it at ${UPPER_ALL_IN}.`,
   },
   {
     q: "How are bonuses taxed for part-time or casual workers?",
-    a: "The same way as full-time workers. The ATO does not differentiate between employment types for bonus taxation. A part-time worker earning $30,000 per year who receives a $5,000 bonus has the bonus taxed at the 16% marginal rate (plus 2% Medicare levy) because total income of $35,000 falls in the $18,201\u2013$45,000 bracket. The lower income base means part-time workers typically face a lower marginal rate on bonuses than full-time workers.",
+    a: `The same way as full-time workers. The ATO does not differentiate between employment types for bonus taxation. A part-time worker earning ${formatAUD(30_000)} per year who receives a ${formatAUD(5_000)} bonus has the bonus taxed at the ${formatPercent(SECOND.rate, 0)} marginal rate because total income of ${formatAUD(35_000)} falls in the ${formatAUD(SECOND.min)}\u2013${formatAUD(SECOND.max)} bracket; with the Medicare levy phasing in over that range, the bonus adds ${formatAUD(PT_TAX_ON_BONUS)} to their tax for the year. The lower income base means part-time workers typically face a lower marginal rate on bonuses than full-time workers.`,
   },
   {
     q: "How are bonuses taxed for non-residents?",

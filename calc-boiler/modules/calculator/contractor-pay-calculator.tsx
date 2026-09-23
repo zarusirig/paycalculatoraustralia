@@ -19,7 +19,24 @@ import {
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
+  GENERAL_INTEREST_CHARGE,
 } from "@/lib/constants";
+import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+
+// Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
+// 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
+const annualTaxAndMedicare = (income: number) =>
+  Math.max(0, Math.round(calculateIncomeTax(income, true) - calculateLITO(income))) + calculateMedicareLevy(income);
+const DAY_RATE_GROSS = 1_000 * 5 * 48;
+const DAY_RATE_NET = DAY_RATE_GROSS - annualTaxAndMedicare(DAY_RATE_GROSS);
+const TAX_ON_100K = annualTaxAndMedicare(100_000);
+const CC_CAP = SUPER_GUARANTEE.concessionalCap;
+// Saving from a full concessional contribution at $100k: marginal 30% + 2%
+// Medicare levy avoided, less 15% contributions tax (taxable income stays in
+// the 30% bracket after the contribution).
+const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -335,7 +352,7 @@ export default function ContractorPayCalculator() {
             <li><strong>Determine take-home pay:</strong> Gross income minus income tax minus Medicare levy equals your net contractor earnings</li>
           </ol>
           <p className="mt-3 text-sm text-warmgray-light">
-            BAS lodgement deadlines fall on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July. Late BAS lodgements attract penalties starting at <strong>$313 per 28-day period</strong>.
+            BAS lodgement deadlines fall on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July. Late BAS lodgements can attract a failure-to-lodge penalty of one penalty unit &mdash; <strong>{formatAUD(PENALTY_UNIT.amount)} from {PENALTY_UNIT.from}</strong> &mdash; for each {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units for a small business.
           </p>
         </section>
 
@@ -428,11 +445,11 @@ export default function ContractorPayCalculator() {
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">PAYG Instalments and Income Tax</h3>
           <p className="mb-3 text-warmgray">
-            The ATO assesses contractors on their net business income using the same progressive income tax brackets as employees. The tax-free threshold remains <strong>$18,200</strong> for FY{SITE_CONFIG.financialYear}. Contractors pay tax through quarterly PAYG instalments rather than having tax withheld each pay. The income tax brackets apply at marginal rates of <strong>0%, 16%, 30%, 37%, and 45%</strong>. Use our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the exact tax amount at any income level.
+            The ATO assesses contractors on their net business income using the same progressive income tax brackets as employees. The tax-free threshold remains <strong>$18,200</strong> for FY{SITE_CONFIG.financialYear}. Contractors pay tax through quarterly PAYG instalments rather than having tax withheld each pay. The income tax brackets apply at marginal rates of <strong>{bracketRateList()}</strong>. Use our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the exact tax amount at any income level.
           </p>
           <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Superannuation for Contractors</h3>
           <p className="text-warmgray">
-            Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>$30,000 per year</strong> reduce taxable income and are taxed at just <strong>15%</strong> inside the fund. Contractors earning above <strong>$250,000</strong> pay an additional <strong>15% Division 293 tax</strong> on super contributions. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
+            Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>{formatAUD(CC_CAP)} per year</strong> (FY{SITE_CONFIG.financialYear}) reduce taxable income and are taxed at just <strong>15%</strong> inside the fund. Contractors earning above <strong>$250,000</strong> pay an additional <strong>15% Division 293 tax</strong> on super contributions. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
           </p>
         </section>
 
@@ -440,7 +457,7 @@ export default function ContractorPayCalculator() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Take-Home by Daily Rate (FY{SITE_CONFIG.financialYear})</h2>
           <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$1,000 per day</strong> grosses approximately <strong>$240,000</strong> over 48 working weeks and takes home around <strong>$162,000</strong> after income tax and Medicare. The table below shows real take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
+            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over 48 working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and Medicare. The table below shows real take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
           </p>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
@@ -494,20 +511,20 @@ export default function ContractorPayCalculator() {
                   <th className="px-4 py-3 text-left font-semibold text-navy">Contractor Rate</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual (48 wks)</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Equivalent Salary</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Take-Home Pay</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Contractor Take-Home (after tax &amp; Medicare)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
                 {[
-                  { rate: 30, gross: 54720, salary: 42000, takeHome: 45834 },
-                  { rate: 40, gross: 72960, salary: 55000, takeHome: 58638 },
-                  { rate: 50, gross: 91200, salary: 68000, takeHome: 70648 },
-                  { rate: 60, gross: 109440, salary: 82000, takeHome: 81098 },
-                  { rate: 75, gross: 136800, salary: 102000, takeHome: 97298 },
-                  { rate: 100, gross: 182400, salary: 135000, takeHome: 123148 },
-                  { rate: 125, gross: 228000, salary: 168000, takeHome: 147148 },
-                  { rate: 150, gross: 273600, salary: 200000, takeHome: 169598 },
-                ].map((row) => (
+                  { rate: 30, salary: 42000 },
+                  { rate: 40, salary: 55000 },
+                  { rate: 50, salary: 68000 },
+                  { rate: 60, salary: 82000 },
+                  { rate: 75, salary: 102000 },
+                  { rate: 100, salary: 135000 },
+                  { rate: 125, salary: 168000 },
+                  { rate: 150, salary: 200000 },
+                ].map((r) => ({ ...r, gross: r.rate * 38 * 48 })).map((row) => ({ ...row, takeHome: row.gross - annualTaxAndMedicare(row.gross) })).map((row) => (
                   <tr key={row.rate} className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">${row.rate}/hr</td>
                     <td className="px-4 py-3 text-right text-navy">{formatAUD(row.gross)}</td>
@@ -527,23 +544,23 @@ export default function ContractorPayCalculator() {
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Are Common Contractor Tax Mistakes?</h2>
           <p className="mb-4 text-warmgray">
-            The most common contractor tax mistake is <strong>failing to set aside enough money for tax</strong>, leaving a shortfall at BAS or tax-return time. The ATO issued over <strong>$1.2 billion</strong> in penalties and interest to small businesses for late or incorrect lodgements in the 2023-24 financial year. Avoid these 5 errors.
+            The most common contractor tax mistake is <strong>failing to set aside enough money for tax</strong>, leaving a shortfall at BAS or tax-return time. Avoid these 5 errors.
           </p>
           <ol className="list-decimal space-y-3 pl-6 text-warmgray">
             <li>
-              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. Spending GST funds as personal income creates a shortfall of <strong>$9,120 per year</strong> on $100,000 of billings.
+              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO &mdash; spend it and the shortfall lands at BAS time.
             </li>
             <li>
-              <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the annual tax bill is approximately <strong>$24,187</strong> — a difficult amount to pay at once.
+              <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong> — a difficult amount to pay at once.
             </li>
             <li>
               <strong>Setting the hourly rate too low:</strong> Pricing contractor rates at the same level as employee hourly rates ignores the <strong>30–40%</strong> loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately <strong>$56–$64/hr</strong> as a contractor.
             </li>
             <li>
-              <strong>Missing legitimate deductions:</strong> Contractors overlook deductible expenses including home office costs (67 cents/hour fixed rate), vehicle logbook expenses, professional development courses, accounting software subscriptions, and professional indemnity insurance premiums.
+              <strong>Missing legitimate deductions:</strong> Contractors overlook deductible expenses including home office costs ({RETURN_2026.wfhFixedRateCents} cents per work hour under the fixed-rate method for {RETURN_2026.incomeYear}), vehicle logbook expenses, professional development courses, accounting software subscriptions, and professional indemnity insurance premiums.
             </li>
             <li>
-              <strong>Skipping voluntary super contributions:</strong> Concessional super contributions of up to <strong>$30,000/year</strong> are taxed at 15% inside the fund instead of your marginal rate. A contractor on $100,000 saves <strong>$4,500 in tax</strong> by contributing $30,000 to super versus taking it as income taxed at the 30% marginal rate.
+              <strong>Skipping voluntary super contributions:</strong> Concessional super contributions of up to <strong>{formatAUD(CC_CAP)}/year</strong> are taxed at 15% inside the fund instead of your marginal rate. A contractor on $100,000 saves about <strong>{formatAUD(CC_SAVING_100K)}</strong> by contributing {formatAUD(CC_CAP)} to super versus taking it as income taxed at the 30% marginal rate plus the 2% Medicare levy.
             </li>
           </ol>
         </section>
@@ -579,8 +596,8 @@ export default function ContractorPayCalculator() {
           <ul className="grid gap-3 sm:grid-cols-2">
             {[
               { href: "/contractor-vs-employee-calculator/", title: "Contractor vs Employee Calculator", desc: "Compare contractor rates against employee salaries with full entitlement costing" },
-              { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: "Calculate income tax at every bracket for FY2025-26 including LITO and Medicare levy" },
-              { href: "/superannuation-calculator/", title: "Superannuation Calculator", desc: "Model voluntary and compulsory super contributions at the 12% SG rate" },
+              { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: `Calculate income tax at every bracket for FY${SITE_CONFIG.financialYear} including LITO and Medicare levy` },
+              { href: "/superannuation-calculator/", title: "Superannuation Calculator", desc: `Model voluntary and compulsory super contributions at the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate` },
               { href: "/hourly-to-annual-salary-calculator/", title: "Hourly to Annual Salary Calculator", desc: "Convert any hourly rate to an annual salary with tax, super, and leave adjustments" },
               { href: "/tax-return-calculator/", title: "Tax Return Calculator", desc: "Estimate your end-of-year tax refund or liability after claiming business deductions" },
               { href: "/salary-sacrifice-calculator/", title: "Salary Sacrifice Calculator", desc: "See how redirecting pre-tax income to super or novated lease reduces your tax bill" },
@@ -615,7 +632,7 @@ export default function ContractorPayCalculator() {
               Yes. Contractors can deduct legitimate business expenses from their assessable income — including equipment, home office, vehicle, phone, software, professional development, and insurance. This calculator estimates tax on your gross income; your actual tax may be lower after claiming deductions on your tax return.
             </FAQItem>
             <FAQItem value="payg-instalments" question="How do PAYG instalments work for contractors?">
-              The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on <strong>28 October, 28 February, 28 April, and 28 July</strong>. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Missing a PAYG instalment attracts a general interest charge of approximately <strong>11.36% per annum</strong>.
+              The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on <strong>28 October, 28 February, 28 April, and 28 July</strong>. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Paying a PAYG instalment late attracts the general interest charge &mdash; <strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} a year</strong> for {GENERAL_INTEREST_CHARGE.quarter}, reset every quarter.
             </FAQItem>
             <FAQItem value="abn-tfn" question="Do I need both an ABN and a TFN as a contractor?">
               Yes. Your <strong>Tax File Number (TFN)</strong> is used for your personal income tax return. Your <strong>Australian Business Number (ABN)</strong> is required on every invoice you issue. Clients who pay contractors without a valid ABN on the invoice must withhold <strong>47%</strong> of the payment and remit it to the ATO.
