@@ -42,6 +42,9 @@ export const EMPLOYER_SLUGS = [
   "david-jones",
   "officeworks",
   // --- end H1 ---
+  // --- J7 (24 Sep 2026) ---
+  "target",
+  // --- end J7 ---
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];

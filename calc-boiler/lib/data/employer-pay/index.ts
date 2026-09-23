@@ -36,6 +36,9 @@ import { RED_ROOSTER_PAY } from "./red-rooster";
 import { DAVID_JONES_PAY } from "./david-jones";
 import { OFFICEWORKS_PAY } from "./officeworks";
 // --- end H1 ---
+// --- J7 (24 Sep 2026) ---
+import { TARGET_PAY } from "./target";
+// --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -62,6 +65,9 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "david-jones": DAVID_JONES_PAY,
   officeworks: OFFICEWORKS_PAY,
   // --- end H1 ---
+  // --- J7 (24 Sep 2026) ---
+  target: TARGET_PAY,
+  // --- end J7 ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
