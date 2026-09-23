@@ -15,6 +15,7 @@ import {
   SUPER_GUARANTEE,
   TAX_BRACKETS,
 } from "@/lib/constants";
+import { calculateSchedule5MethodB, PAY_PERIODS, SCHEDULE_5_WITHHOLDING_LIMIT } from "@/lib/constants/payg-withholding";
 
 const SECOND = TAX_BRACKETS[1];
 const MIDDLE = TAX_BRACKETS[2];
@@ -33,6 +34,26 @@ const PT_WITH = calculatePayBreakdown({ grossSalary: 35_000 });
 const PT_TAX_ON_BONUS = PT_WITH.totalDeductions - PT_BASE.totalDeductions;
 const MIDDLE_ALL_IN = formatPercent(MIDDLE.rate + MEDICARE_LEVY.rate, 0);
 const UPPER_ALL_IN = formatPercent(TAX_BRACKETS[3].rate + MEDICARE_LEVY.rate, 0);
+
+// "$5,000 bonus" figures (the most-asked People Also Ask amount on the Google
+// AU SERP for this page). Same with-minus-without method as the calculator.
+export const BONUS_5K = 5_000;
+export const BONUS_5K_SALARIES = [30_000, 60_000, 90_000, 120_000, 150_000, 200_000] as const;
+export const BONUS_5K_ROWS = BONUS_5K_SALARIES.map((salary) => {
+  const without = calculatePayBreakdown({ grossSalary: salary });
+  const withBonus = calculatePayBreakdown({ grossSalary: salary, bonus: BONUS_5K });
+  const tax = withBonus.totalDeductions - without.totalDeductions;
+  return { salary, tax, net: BONUS_5K - tax, rate: tax / BONUS_5K };
+});
+const ROW_90K = BONUS_5K_ROWS.find((r) => r.salary === 90_000)!;
+const ROW_60K = BONUS_5K_ROWS.find((r) => r.salary === 60_000)!;
+const ROW_150K = BONUS_5K_ROWS.find((r) => r.salary === 150_000)!;
+
+// Schedule 5 withholding on the same $5,000 bonus paid with a fortnightly
+// $90,000 salary (regular fortnightly pay rounded down to whole dollars).
+const FN_PERIODS = PAY_PERIODS.fortnightly;
+const FN_PAY_90K = Math.floor(90_000 / FN_PERIODS);
+const WITHHELD_5K = calculateSchedule5MethodB(FN_PAY_90K, BONUS_5K, "fortnightly");
 
 export interface BonusTaxFaq {
   q: string;
@@ -103,5 +124,13 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
   {
     q: "Does Division 293 apply if my bonus pushes income above $250,000?",
     a: "Yes. \"Division 293\" imposes an additional 15% tax on concessional super contributions when income (including super contributions) exceeds $250,000. If a bonus pushes your combined income and super above this threshold, any concessional contributions \u2014 including salary-sacrificed bonus amounts \u2014 are taxed at 30% instead of 15% inside super.",
+  },
+  {
+    q: "How much tax will I pay on a $5,000 bonus?",
+    a: `On a ${formatAUD(90_000)} salary, a ${formatAUD(BONUS_5K)} bonus adds ${formatAUD(ROW_90K.tax)} to your tax for the year, so you keep ${formatAUD(ROW_90K.net)}. On ${formatAUD(60_000)} it adds ${formatAUD(ROW_60K.tax)}, and on ${formatAUD(150_000)} it adds ${formatAUD(ROW_150K.tax)}. The rate is your marginal tax rate plus the ${MEDICARE} Medicare levy (plus the low income tax offset phasing out on lower incomes), so it depends on your total income for FY${SITE_CONFIG.financialYear}.`,
+  },
+  {
+    q: "How do I calculate the tax taken out of my bonus?",
+    a: `Payroll uses the ATO's Schedule 5 method. It divides the bonus by your pay periods (${FN_PERIODS} for fortnightly), adds that slice to one normal pay, finds the extra withholding, then multiplies it back by ${FN_PERIODS}. On ${formatAUD(FN_PAY_90K)} a fortnight, a ${formatAUD(BONUS_5K)} bonus has ${formatAUD(WITHHELD_5K.withheldFromAdditionalPayment)} withheld. Withholding is capped at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the bonus.`,
   },
 ];
