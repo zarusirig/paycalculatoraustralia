@@ -291,6 +291,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   // --- end C2/C5 ---
+  // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
+  allPages.push({ slug: "payday-super", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
+  allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end W1 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

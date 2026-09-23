@@ -271,6 +271,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "pro-rata-salary-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "casual-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end minimum wage cluster ---
+
+  // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
+  "payday-super": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "tax-return-2026": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "pension-age-australia": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end W1 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
