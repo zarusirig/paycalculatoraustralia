@@ -2,13 +2,13 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD, calculatePayBreakdown } from "@/lib/constants";
-import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, HOSPITALITY_JUNIOR_SCALE, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES, RETAIL_JUNIOR_SCALE } from "@/lib/constants/hospitality-award";
-import { JUNIOR_PHASE_IN } from "@/lib/constants/modern-awards";
+import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 
 // Every rate below comes from the award constants (1 July 2026 pay guides).
 // The old copy used a $25.44 Level 1 rate, public holiday +150%/+175% and
@@ -23,8 +23,6 @@ const TAKE_HOME_ROWS = [
   { label: "Hospitality Level 3, FT", gross: hosp("Level 3") * 52 },
   { label: "Hospitality Level 6, FT", gross: hosp("Level 6") * 52 },
 ];
-const juniorList = (scale: readonly { age: string; percentage: number }[]) =>
-  scale.map((j) => `${j.age}: ${Math.round(j.percentage * 100)}%`).join(", ");
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -204,32 +202,7 @@ export default function RetailHospitalityPayGuidePage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="casual-loading" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the casual loading rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Casual employees in both retail and hospitality receive a 25% loading on top of the base hourly rate. This loading compensates for the lack of paid annual leave, personal leave, notice of termination, and redundancy pay. A Level 1 retail casual earns {formatAUD(L1_CASUAL, 2)}/hr compared to {formatAUD(L1, 2)}/hr for a full-time employee.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="sunday-penalty" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the Sunday penalty rate in retail?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Full-time and part-time retail workers receive a 50% loading for Sunday work. For example, a Level 1 worker earning {formatAUD(L1, 2)}/hr base receives {formatAUD(L1 * RETAIL_PENALTIES.sunday, 2)}/hr on Sundays. Casual workers receive {pct(RETAIL_PENALTIES.casualSunday)} of the base rate on Sundays (the 25% casual loading plus the 50% Sunday penalty), or {formatAUD(L1 * RETAIL_PENALTIES.casualSunday, 2)}/hr at Level 1.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="minimum-shift" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum shift length?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Casual employees must be paid for at least 3 hours per shift under the General Retail Industry Award and at least 2 consecutive hours under the Hospitality Industry Award. Part-time employees also have minimum engagement provisions. An employer cannot send you home early without paying the minimum.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-conversion" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I convert from casual to permanent?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Since 26 August 2024, if you have worked for your employer for at least 6 months (12 months for a small business) and believe you no longer fit the casual definition, you can notify your employer in writing that you want to change to full-time or part-time employment. Your employer must respond within 21 days and can refuse only on grounds allowed by the Fair Work Act, such as the change requiring a substantial restructure of your role.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="junior-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do workers under 21 get paid less?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, but the scales differ. Retail (levels 1&ndash;3 only): {juniorList(RETAIL_JUNIOR_SCALE)}. Hospitality: {juniorList(HOSPITALITY_JUNIOR_SCALE)}. From {JUNIOR_PHASE_IN.commences}, retail 18 and 19-year-olds with more than 6 months&apos; service start moving towards the adult rate under {JUNIOR_PHASE_IN.principalDecision}.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="public-holiday" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the public holiday pay rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under both awards, full-time and part-time employees working on a public holiday receive {pct(RETAIL_PENALTIES.publicHoliday)} of the base rate. A Level 1 retail worker earning {formatAUD(L1, 2)}/hr receives {formatAUD(L1 * RETAIL_PENALTIES.publicHoliday, 2)}/hr on a public holiday. Casual employees receive {pct(RETAIL_PENALTIES.casualPublicHoliday)} of the base rate. Full-time employees who don&apos;t work on the public holiday are entitled to their ordinary pay for the day.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={RETAIL_HOSPITALITY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { ChevronRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { NOVATED_LEASE_GUIDE_FAQS } from "./novated-lease-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -405,69 +406,7 @@ export default function NovatedLeaseGuidePage() {
           {/* ============================================================ */}
           <section id="faqs">
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-            <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-              <AccordionItem value="what-is" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is a novated lease in simple terms?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">A novated lease is a salary packaging arrangement where your employer deducts car lease payments and running costs from your <strong>pre-tax salary</strong>. This reduces your taxable income and lowers the total cost of running a vehicle compared to paying with after-tax dollars. The car is registered in your name, and you choose the vehicle, lease term, and running cost budget.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="leave" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What happens if I leave my job?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">The lease &quot;novates&quot; to your new employer if they agree to take it on. Otherwise, you can either pay out the remaining lease, transfer it personally, or in some cases return the vehicle. Most leasing companies offer a portability guarantee, meaning the lease transfers seamlessly to a new employer that offers salary packaging. The transfer typically completes within <strong>60 to 90 days</strong> of starting new employment.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="ev" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Are EVs eligible for novated leasing?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. A battery electric or hydrogen fuel cell car first held and used on or after 1 July 2022, on which luxury car tax has never been payable, is <strong>exempt from FBT</strong> &mdash; along with its registration, insurance, servicing and charging. Plug-in hybrids stopped qualifying on <strong>1 April 2025</strong> and are only exempt under a binding arrangement that was already in place and in use before that date. An exempt car is still a reportable fringe benefit. The <Link href="/novated-lease-calculator/">novated lease calculator</Link> carries the current luxury car tax threshold.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="super" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Does a novated lease reduce my super?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">It should not. Under Payday Super, qualifying earnings include salary sacrificed amounts that would otherwise be qualifying earnings, so your employer&apos;s super should still be worked out on your pre-sacrifice salary. Check the super line on the payslip after the first lease deduction, and ask payroll which figure they are using if it moved.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="used-car" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Can I novate a used car?</AccordionTrigger>
-                <AccordionContent className="text-warmgray"><strong>Yes</strong>, most leasing providers accept used vehicles that are under 7 years old at the end of the proposed lease term. The vehicle must have a clear title, current registration, and pass a mechanical inspection. Used car novated leases deliver smaller GST savings (no GST credit on private-sale used cars) but still provide income tax savings through pre-tax deductions.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="fbt-cost" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">How much FBT do I pay on a novated lease?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Under the employee contribution method you can take it to <strong>$0</strong> by contributing the statutory taxable value from post-tax pay &mdash; 20% of the car&apos;s GST-inclusive base value for a full FBT year. Otherwise FBT is 47% of that value grossed up at 2.0802, funded from the same packaging budget. An FBT-exempt electric car needs no contribution at all. The <Link href="/novated-lease-calculator/">calculator</Link> prices both methods on your car.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="minimum-salary" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum salary for a novated lease?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">There is no legislated minimum, though providers set their own. What matters is the arithmetic: below $45,000 the marginal rate is 15c in the dollar plus the Medicare levy, so each pre-tax dollar saves little, while the post-tax employee contribution on a car that is not FBT-exempt is a fixed 20% of its price. Above $45,000 the 30c rate applies and the picture changes. Test it on the <Link href="/novated-lease-calculator/">novated lease calculator</Link>.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="rego-insurance" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Are registration and insurance included?</AccordionTrigger>
-                <AccordionContent className="text-warmgray"><strong>Yes</strong>. A fully maintained novated lease bundles registration, comprehensive insurance, fuel, scheduled servicing, tyres, and roadside assistance into the fortnightly or monthly budget. The leasing company pays these costs from the running cost pool deducted from your salary. Any surplus in the running cost account at lease end is refunded to the employee.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="salary-packaging-difference" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Is a novated lease the same as salary packaging?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">A novated lease is a <strong>type of salary packaging</strong>, but not all salary packaging involves a novated lease. Salary packaging (also called salary sacrifice) covers any arrangement where pre-tax salary is exchanged for benefits including extra superannuation, laptops, work-related expenses, or a car. A novated lease is the specific salary packaging structure used for vehicles.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="residual-balloon" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">What is the residual value and do I have to pay it?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">The residual is the amount left at the end of the lease, set as a minimum percentage of the original cost by ATO Taxation Determination TD 93/142 &mdash; 28.13% on a five-year lease, 46.88% on a three-year one. On a $40,000 car over five years that is $11,252, paid from after-tax money to own the car outright, refinanced into a new lease, or covered by trading the car in. A lease can be written above the minimum, so read the residual off your quote.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="kilometres" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Is there a kilometre limit on a novated lease?</AccordionTrigger>
-                <AccordionContent className="text-warmgray"><strong>No</strong>. Unlike an operating lease or car subscription, a novated lease has no kilometre cap. The running cost budget is set based on estimated annual kilometres (typically <strong>15,000 to 20,000 km</strong>), but exceeding the estimate does not incur penalties. Higher kilometres simply deplete the fuel and tyre budget faster, which is adjusted at the annual budget review.</AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="hecs" className="border rounded-lg px-4 bg-white">
-                <AccordionTrigger className="text-left font-semibold text-navy">Does a novated lease reduce my HECS-HELP repayment?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Not reliably, and it can raise it. Compulsory repayments are worked out on <strong>repayment income</strong> &mdash; taxable income plus your reportable fringe benefits amount. The lease cuts the first and adds to the second, and because the reported figure is grossed up it can more than replace the taxable income you removed. A full employee contribution takes the reported amount to nil; an FBT-exempt electric car still reports. The <Link href="/novated-lease-calculator/">novated lease calculator</Link> shows both figures and the repayment, and the <Link href="/hecs-help-calculator/">HECS-HELP calculator</Link> has the bands.</AccordionContent>
-              </AccordionItem>
-
-            </Accordion>
+            <FaqAccordion faqs={NOVATED_LEASE_GUIDE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
           </section>
 
           <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>This page explains the mechanics of a novated lease and does not compute a result. FBT rates, the statutory formula, the electric car exemption and the plug-in hybrid cut-off are taken from the ATO pages listed below; the minimum residual values are from Taxation Determination TD 93/142. Every figure that depends on your salary, your car or the current year&apos;s thresholds lives on the <Link href="/novated-lease-calculator/">novated lease calculator</Link>, which carries its own sources and verification date. Lease finance charges are not modelled anywhere on this site &mdash; ask your provider for the amount financed and the total of the payments. Nothing here is financial or tax advice.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />

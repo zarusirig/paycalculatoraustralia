@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { EMPLOYMENT_TYPE_GUIDE_FAQS } from "./full-time-vs-part-time-vs-casual-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -280,44 +281,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             {/* SECTION 7: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="casual-loading" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What exactly does the 25% casual loading cover?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The 25% casual loading compensates for the absence of paid annual leave (4 weeks), paid personal leave (10 days), notice of termination, and redundancy pay. It is calculated on the base rate of pay under the applicable Award or agreement. Some awards specify a different loading percentage.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="conversion" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When can a casual employee become permanent?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Since 26 August 2024, a casual employee can notify their employer in writing that they want to become permanent once they have been employed for 6 months (12 months for a small business employer with fewer than 15 employees) and believe they no longer fit the casual definition. The employer must respond within 21 days. Employers are no longer required to offer conversion.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="pt-leave" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do part-time employees get the same leave as full-time?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Part-time employees receive the same <em>types</em> of leave but calculated on a pro-rata basis. For example, a part-time employee working 20 hours per week accrues annual leave at 20/38 of the full-time rate. The same principle applies to personal/carer&apos;s leave, compassionate leave, and long-service leave.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do casual employees get superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. Since 1 July 2022, all employees &mdash; including casuals &mdash; receive the <strong>12% Super Guarantee</strong> regardless of how much they earn per month. The previous $450/month minimum earnings threshold was removed.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="financially-better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is casual or part-time better financially?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Casuals earn 25% loading but miss paid leave worth roughly 10&ndash;15% of salary when actually used. For ongoing regular work, part-time typically provides better overall value once leave, notice period, and redundancy protections are factored in. For short-term or irregular work, casual loading can make it more lucrative. Use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">Employment Type Calculator</Link> to model your specific scenario.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="fired-casual" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can a casual employee be fired without notice?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Technically, casual employment can end without notice from either party since there is no firm advance commitment. However, a casual employed on a regular and systematic basis for at least 6 months (12 months for a small business employer), with a reasonable expectation of continuing work, may be protected by unfair dismissal laws. The employer cannot simply stop offering shifts to avoid providing notice or redundancy pay if the worker has conversion rights.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={EMPLOYMENT_TYPE_GUIDE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

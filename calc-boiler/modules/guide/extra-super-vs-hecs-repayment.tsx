@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { EXTRA_SUPER_VS_HECS_FAQS } from "./extra-super-vs-hecs-repayment-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, HECS_HELP, MEDICARE_LEVY, calculateHECS, formatAUD } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, MEDICARE_LEVY, calculateHECS, formatAUD } from "@/lib/constants";
 
 // $200/month model. Both options use the same $200 of PRE-TAX salary: the old
 // table compared $200 pre-tax into super with $200 AFTER tax off HECS, which
@@ -19,7 +20,6 @@ const SUPER_NET = (0.075 - 0.007) * 0.85;
 const fv = (annual: number, rate: number, years: number) => (annual * ((1 + rate) ** years - 1)) / rate;
 const SUPER_10Y = fv(MONTHLY * 12 * 0.85, SUPER_NET, 10);
 const HECS_10Y = fv(MONTHLY * 12 * (1 - MARGINAL), HECS_HELP.indexationRate, 10);
-const CAP = SUPER_GUARANTEE.concessionalCap;
 const HECS_AT_90K = calculateHECS(90_000);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -195,38 +195,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             {/* SECTION 6: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="which-better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is it better to pay off HECS or put extra into super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    For most young workers with 20+ years to retirement, extra super contributions provide better long-term value due to the tax benefit (15% vs your marginal rate) and compound growth. However, if your HECS balance is large (&gt;$50,000) and indexation is high, paying it down faster can be worthwhile for the guaranteed return and improved cash flow.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="indexation" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How is HECS-HELP debt indexed?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    HECS-HELP debt is indexed annually on 1 June to the lower of the Consumer Price Index (CPI) or the Wage Price Index (WPI). This cap was legislated in 2024, applying from 1 June 2023, to prevent debt growing faster than wages. Recent indexation has run at about 3&ndash;4% a year or lower ({(HECS_HELP.indexationRate * 100).toFixed(1)}% on 1 June 2026). Read the full breakdown in our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Guide</Link>.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="compulsory-reduce" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do voluntary HECS repayments reduce my compulsory repayments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Voluntary repayments reduce your outstanding balance but do <strong>not</strong> change the compulsory repayment percentage applied to your income. However, if your voluntary payments bring the balance to zero, compulsory repayments cease entirely &mdash; immediately boosting your take-home pay.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super-tax" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What tax benefit do I get from extra super contributions?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrifice or personal deductible contributions are taxed at 15% inside super instead of your marginal rate. The saving per dollar: nil at the 15% bracket, 15c at 30%, 22c at 37%, or 30c at 45% (plus up to 2c from the Medicare levy). For a worker in the 37% bracket contributing $500/month, the annual tax saving is approximately <strong>$1,320</strong>.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="both" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I do both extra super and voluntary HECS payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. If you have sufficient surplus cash flow, you can split between both. A common approach is to salary sacrifice up to the concessional cap ({formatAUD(CAP)} including employer SG in FY{SITE_CONFIG.financialYear}) for the tax benefit, then direct remaining surplus to voluntary HECS repayments. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> and <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS Calculator</Link> to model your options.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={EXTRA_SUPER_VS_HECS_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

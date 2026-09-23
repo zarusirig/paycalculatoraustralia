@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SECOND_JOB_FAQS } from "./second-job-tax-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -294,32 +295,7 @@ export default function SecondJobTaxCalculatorPage() {
             {/* FAQ */}
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="space-y-3">
-                <AccordionItem value="why-more" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Why is my second job taxed more?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Your second job is not actually taxed at a higher rate. The <strong>tax-free threshold ($18,200)</strong> is only claimed on your primary job. Your second employer withholds tax from the first dollar without the threshold benefit, making each pay packet smaller. At tax time, the ATO calculates your actual liability on combined income &mdash; you often receive a refund.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tft-higher" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Should I claim the tax-free threshold on my higher-paying job?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. Always claim the threshold on the job that pays the most. This ensures the largest portion of your income benefits from the $18,200 tax-free amount, reducing the chance of a tax debt.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="refund" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Will I get a tax refund from my second job?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Possibly. The &quot;no tax-free threshold&quot; withholding rate often <strong>over-withholds</strong> tax from your second job. When you lodge your return, if total withholding exceeds your actual liability, you receive a refund. Use the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline">Tax Return Calculator</Link> to estimate your refund.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="declare" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Do I need to declare my second job to the ATO?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. All income must be reported on your tax return. Each employer reports your earnings via Single Touch Payroll (STP), so the ATO already has records of both jobs. You do not need to separately notify the ATO, but you must declare both sources when lodging your return.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="both-tft" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>What happens if I claim the tax-free threshold on both jobs?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Both employers withhold less tax, assuming you earn under $18,200 at each job. At tax time, the ATO combines your income and calculates the correct tax &mdash; you will almost certainly owe a <strong>tax debt of $2,000&ndash;$5,000</strong> or more, depending on your earnings.</p></AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                  <AccordionTrigger>Does my second employer pay superannuation?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. Both employers must pay the <strong>12% superannuation guarantee</strong> on your ordinary time earnings, regardless of whether you claim the tax-free threshold. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to check contributions from each job.</p></AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SECOND_JOB_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" contentClassName="text-warmgray" />
             </section>
 
             {/* Related calculators */}

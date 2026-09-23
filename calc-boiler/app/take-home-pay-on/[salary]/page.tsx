@@ -1,11 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from 'next';
 import { TakeHomePayOnSalary } from '@/modules/programmatic/take-home-pay-on-salary';
-import { calculatePayBreakdown, formatAUD, EMPLOYMENT, SITE_CONFIG, SUPER_GUARANTEE } from '@/lib/constants/australian-tax';
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { faqPageSchema } from "@/lib/faq";
+import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on-salary-faqs";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
-import { TAKE_HOME_SALARIES, salaryFacts } from "@/lib/data/salary-pages";
+import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 
 interface PageProps {
@@ -53,11 +55,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
   const formattedSalary = formatAUD(salaryAmount);
 
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
-  const withHecs = calculatePayBreakdown({ grossSalary: salaryAmount, includeHECS: true });
 
-  const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
-  const hourlyNet = breakdown.takeHomePay / EMPLOYMENT.hoursPerYear;
-  const sacrifice = salaryFacts(salaryAmount).sacrificeThousand;
 
   const BASE = SITE_CONFIG.baseUrl;
   const URL = `${BASE}/take-home-pay-on/${resolvedParams.salary}/`;
@@ -88,56 +86,7 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
     ]
   };
 
-  const faq: WithContext<FAQPage> = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `What is the take-home pay on ${formattedSalary} in Australia?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `On a ${formattedSalary} salary, your take-home pay is ${formatAUD(breakdown.takeHomePay)} per year after income tax of ${formatAUD(breakdown.netIncomeTax)} and Medicare levy of ${formatAUD(breakdown.medicareLevy)}. That equals ${formatAUD(breakdown.weekly)} per week or ${formatAUD(breakdown.monthly)} per month.`
-        }
-      },
-      {
-        "@type": "Question",
-        name: `How much is ${formattedSalary} per week after tax?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `A ${formattedSalary} annual salary equals ${formatAUD(breakdown.weekly)} per week after tax, ${formatAUD(breakdown.fortnightly)} per fortnight, and ${formatAUD(breakdown.monthly)} per month.`
-        }
-      },
-      {
-        "@type": "Question",
-        name: `What is the effective hourly rate on ${formattedSalary}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `Based on a standard ${EMPLOYMENT.standardWeeklyHours}-hour week (${EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year), the after-tax hourly rate on ${formattedSalary} is ${formatAUD(hourlyNet, 2)}. The effective tax rate is ${effectiveRate}%.`
-        }
-      },
-      {
-        "@type": "Question",
-        name: `How much is ${formattedSalary} after tax with a HECS debt?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: withHecs.hecsRepayment > 0
-            ? `With a HECS-HELP debt, the compulsory repayment on ${formattedSalary} is ${formatAUD(withHecs.hecsRepayment)} a year, so take-home pay falls to ${formatAUD(withHecs.takeHomePay)} (${formatAUD(withHecs.weekly)} a week) in ${SITE_CONFIG.financialYear}.`
-            : `${formattedSalary} is below the ${SITE_CONFIG.financialYear} compulsory HECS-HELP repayment threshold, so a study loan does not change take-home pay of ${formatAUD(breakdown.takeHomePay)}.`
-        }
-      },
-      {
-        "@type": "Question",
-        name: `How can I increase my take-home pay on ${formattedSalary}?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${sacrifice.netGain > 150
-            ? `Salary sacrifice to superannuation is the most direct lever on ${formattedSalary}: each $1,000 sacrificed costs ${formatAUD(sacrifice.takeHomeCost)} of take-home pay and puts ${formatAUD(sacrifice.intoSuper)} into super after contributions tax.`
-            : `On ${formattedSalary}, salary sacrifice saves little or no tax (each $1,000 costs ${formatAUD(sacrifice.takeHomeCost)} of take-home for ${formatAUD(sacrifice.intoSuper)} in super).`} Concessional contributions are capped at ${formatAUD(SUPER_GUARANTEE.concessionalCap)} a year, employer SG included. Maximising work-related deductions also reduces your taxable income.`
-        }
-      }
-    ]
-  };
+  const faq = faqPageSchema(takeHomePayOnSalaryFaqs(salaryAmount));
 
   return (
     <>

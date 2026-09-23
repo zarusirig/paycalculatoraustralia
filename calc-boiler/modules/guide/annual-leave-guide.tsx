@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { ANNUAL_LEAVE_FAQS } from "./annual-leave-guide-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -284,69 +285,7 @@ export default function AnnualLeaveGuidePage() {
             {/* ── H2 11: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="casual" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do casual employees get annual leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. Casual employees do not accrue annual leave under the National Employment Standards. They receive a <strong>25% casual loading</strong> on their hourly rate to compensate for the absence of annual leave, personal leave, and other permanent entitlements. A casual employee who converts to permanent employment begins accruing leave from the date of conversion.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="direction" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can my employer force me to take annual leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, in two circumstances. Employers can direct employees to take leave during a <strong>registered shutdown period</strong> (e.g., Christmas closure) with 28 days&apos; notice. Employers can also direct employees with an excessive balance exceeding <strong>8 weeks</strong> to take leave, provided the direction does not reduce the balance below 6 weeks and gives at least 8 weeks&apos; notice.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="cashing" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I cash out annual leave instead of taking it?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Some Awards and enterprise agreements permit cashing out, but only if the employee retains a minimum balance of <strong>4 weeks</strong> after the cash-out. The arrangement must be a genuine written agreement, and each cash-out requires a separate agreement. Not all Awards allow cashing out &mdash; check your specific Award or agreement.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="accrual-unpaid" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does annual leave accrue during unpaid leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. Annual leave does not accrue during periods of <strong>unpaid leave</strong>, including unpaid parental leave and unpaid personal leave. Leave continues to accrue during paid leave (annual, personal, long service), workers&apos; compensation, and jury duty.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="sick-on-annual" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happens if I get sick while on annual leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">An employee who falls ill or is injured during annual leave can apply to have that period re-credited as <strong>personal/carer&apos;s leave</strong> instead. The employee must provide evidence such as a medical certificate. The annual leave balance is restored, and personal leave is deducted for the sick days. This provision exists in the NES and applies to all permanent employees.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="public-holiday" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do public holidays count as annual leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. If a public holiday falls during a period of annual leave, that day is treated as a <strong>public holiday, not annual leave</strong>. The employee&apos;s annual leave balance is not reduced for that day. Australia has <strong>8 national public holidays</strong> plus additional state-specific holidays (e.g., Melbourne Cup Day in metro VIC, Royal Queensland Show in Brisbane).</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="leave-advance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I take annual leave in advance before it accrues?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes, if the employer agrees. Leave taken in advance is deducted from future accruals. If the employee resigns or is terminated before accruing enough leave to cover the advance, the employer can deduct the overpayment from the employee&apos;s final pay. The deduction must be authorised in writing and cannot reduce the final pay below zero.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="leave-loading-taxed" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is leave loading taxed?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Leave loading is classified as <strong>ordinary time earnings</strong> and is subject to PAYG withholding at the employee&apos;s marginal tax rate. It is included in assessable income for the financial year. The 12% superannuation guarantee also applies to leave loading, except where the loading is paid only to compensate for overtime you would have worked — the ATO treats that portion as not ordinary time earnings.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="part-time-accrual" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much annual leave does a part-time employee get?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Part-time employees receive <strong>4 weeks of annual leave on a pro-rata basis</strong>. An employee working 25 hours per week accrues 25 &times; 4 = <strong>100 hours</strong> of annual leave per year. The entitlement is calculated on contracted ordinary hours, not total hours including overtime.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="lsl-annual" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does annual leave continue to accrue during long service leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Annual leave accrues during any period of <strong>paid long service leave</strong>. An employee taking 8.667 weeks of long service leave accrues approximately <strong>1.33 weeks</strong> of annual leave during that period (8.667 &divide; 52 &times; 4 &times; 2 = 1.33 weeks). This is because long service leave is a period of paid leave and the NES provides for continuous accrual during paid leave.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="super-on-leave" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Does my employer pay superannuation on annual leave?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Annual leave payments are classified as <strong>ordinary time earnings (OTE)</strong>, and the employer must pay the <strong>12% superannuation guarantee</strong> on these amounts. This applies to both leave taken during employment and leave paid out on termination. The same rule applies to leave loading &mdash; super is payable on the loading component as well.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="max-balance" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is there a maximum annual leave balance?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. The NES does not impose a cap on annual leave accumulation. Leave carries over indefinitely from year to year. However, balances exceeding <strong>8 weeks (10 weeks for shift workers)</strong> are classified as &quot;excessive,&quot; and the employer can take steps to direct the employee to reduce the balance. Some enterprise agreements may include specific cap provisions.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={ANNUAL_LEAVE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

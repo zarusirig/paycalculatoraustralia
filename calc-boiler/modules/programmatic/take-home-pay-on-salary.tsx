@@ -16,6 +16,8 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { salaryFacts } from "@/lib/data/salary-pages";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on-salary-faqs";
 import { EarningsPosition, NeighbourTable, NextThousand, SalaryBandNotes, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 
 interface TakeHomePayOnSalaryProps {
@@ -304,54 +306,14 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-6">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="w-full space-y-4">
-          <AccordionItem value="item-1" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is the take-home pay on {formattedSalary} in Australia?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              On a {formattedSalary} salary, your take-home pay is <strong>{formatAUD(breakdown.takeHomePay)}</strong> per year after income tax of {formatAUD(breakdown.netIncomeTax)} and Medicare levy of {formatAUD(breakdown.medicareLevy)}. That equals <strong>{formatAUD(breakdown.weekly)}</strong> per week or <strong>{formatAUD(breakdown.monthly)}</strong> per month. This uses ATO tax rates for FY{SITE_CONFIG.financialYear}.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How much is {formattedSalary} per week after tax?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              A {formattedSalary} annual salary equals <strong>{formatAUD(breakdown.weekly)}</strong> per week after tax, <strong>{formatAUD(breakdown.fortnightly)}</strong> per fortnight, and <strong>{formatAUD(breakdown.monthly)}</strong> per month. These figures include income tax and Medicare levy deductions but exclude voluntary salary sacrifice or HECS-HELP repayments.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is the effective hourly rate on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Based on a standard {EMPLOYMENT.standardWeeklyHours}-hour week ({hoursPerYear.toLocaleString("en-AU")} hours a year), your gross hourly rate is <strong>{formatAUD(hourlyGross, 2)}</strong> and your after-tax hourly rate is <strong>{formatAUD(hourlyNet, 2)}</strong>. This means for every hour you work, you take home {formatAUD(hourlyNet, 2)} after all compulsory deductions.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-hecs" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How much is {formattedSalary} after tax with a HECS debt?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              {withHecs.hecsRepayment > 0
-                ? `With a HECS-HELP debt, the compulsory repayment on ${formattedSalary} is ${formatAUD(withHecs.hecsRepayment)} a year, so take-home pay falls to ${formatAUD(withHecs.takeHomePay)} (${formatAUD(withHecs.weekly)} a week) in ${SITE_CONFIG.financialYear}.`
-                : `${formattedSalary} is below the ${SITE_CONFIG.financialYear} compulsory HECS-HELP repayment threshold, so a study loan does not change take-home pay of ${formatAUD(breakdown.takeHomePay)}.`}
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-4" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How can I increase my take-home pay on {formattedSalary}?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              {sacrifice.netGain > 150
-                ? `Salary sacrifice to superannuation is the most direct lever on ${formattedSalary}: each $1,000 sacrificed costs ${formatAUD(sacrifice.takeHomeCost)} of take-home pay and puts ${formatAUD(sacrifice.intoSuper)} into super after contributions tax.`
-                : `On ${formattedSalary}, salary sacrifice saves little or no tax (each $1,000 costs ${formatAUD(sacrifice.takeHomeCost)} of take-home for ${formatAUD(sacrifice.intoSuper)} in super).`}{" "}Maximising work-related deductions also reduces your taxable income. Use our <a href="/salary-sacrifice-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Salary Sacrifice Calculator</a> to model exact savings.
-            </AccordionContent>
-          </AccordionItem>
+          {takeHomePayOnSalaryFaqs(salary).map((f, i) => (
+            <AccordionItem key={f.q} value={`item-${i + 1}`} className="bg-white border rounded-lg px-4 shadow-sm">
+              <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-warmgray pb-4 leading-relaxed">
+                <FaqAnswer faq={f} linkClassName="text-eucalyptus hover:text-navy transition-colors font-medium" />
+              </AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </section>
 

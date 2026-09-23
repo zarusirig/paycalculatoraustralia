@@ -6,12 +6,12 @@ import { ChevronRight, ExternalLink, Calculator, DollarSign, Briefcase } from "l
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { EMPLOYER_COST_FAQS, MULT_100K, TABLE_WORKCOVER, costRow, type CostRow, MAX_RATE_STATE, MAX_THRESHOLD_STATE, MIN_RATE_STATE, MIN_THRESHOLD_STATE } from "@/modules/guide/employer-cost-calculator-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, SUPER_GUARANTEE, MEDICARE_LEVY, calculateSuper, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
-import { FBT } from "@/lib/constants/novated-lease";
 import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -35,31 +35,9 @@ const PAYROLL_TABLE_NOTE: Partial<Record<string, string>> = {
   QLD: "4.95% above $6.5M; regional discount; mental health levy",
   WA: "Threshold diminishes to nil at $7.5M",
 };
-// Computed min/max across all 8 states/territories so superlative claims below can never go stale.
-const PAYROLL_RATE_ENTRIES = Object.entries(STATE_PAYROLL_TAX);
-const MIN_RATE_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].rate < a[1].rate ? b : a));
-const MAX_RATE_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].rate > a[1].rate ? b : a));
-const MIN_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold < a[1].threshold ? b : a));
-const MAX_THRESHOLD_STATE = PAYROLL_RATE_ENTRIES.reduce((a, b) => (b[1].threshold > a[1].threshold ? b : a));
 
-// Cost breakdown table, derived rather than typed: Victorian payroll tax (on
-// wages + super, assuming the business is above the threshold), a 1.5%
-// WorkCover premium and SG capped at the annual maximum contribution base.
-const TABLE_WORKCOVER = 0.015;
-interface CostRow { salary: number; superAmt: number; leave: number; payroll: number; workcover: number; total: number }
-const costRow = (salary: number, payrollRate = STATE_PAYROLL_TAX.VIC.rate): CostRow => {
-  const superAmt = calculateSuper(salary);
-  const leave = Math.round(salary * (4 / 52));
-  const payroll = Math.round((salary + superAmt) * payrollRate);
-  const workcover = Math.round(salary * TABLE_WORKCOVER);
-  return { salary, superAmt, leave, payroll, workcover, total: salary + superAmt + leave + payroll + workcover };
-};
 const COST_ROWS = [60_000, 80_000, 100_000, 130_000, 180_000].map((salary) => costRow(salary));
-const MULT_100K = costRow(100_000).total / 100_000;
 const MULT_100K_NO_PAYROLL = costRow(100_000, 0).total / 100_000;
-// $15,000 car benefit, type 1 gross-up (the usual case where the provider can claim GST credits).
-const CAR_BENEFIT = 15_000;
-const CAR_FBT = Math.round(CAR_BENEFIT * FBT.grossUpType1 * FBT.rate);
 // $50/hour employee: super plus paid annual (4/52) and personal (10/260) leave.
 const HOURLY_ONCOST = 50 * (1 + SUPER_GUARANTEE.rate + 4 / 52 + 10 / 260);
 
@@ -672,80 +650,7 @@ export default function EmployerCostCalculatorPage() {
               {/* H2 #11 - FAQs (EXPANDED) */}
               <section id="faq">
                 <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-                <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                  <AccordionItem value="multiplier" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">How much does an employee actually cost an employer?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      On this page&apos;s assumptions the cost is about <strong>{MULT_100K.toFixed(2)}x</strong> the base salary: for a $100,000 salary, about {formatAUD(MULT_100K * 100_000)} once superannuation (12%), annual leave provisions (7.69%), workers compensation (1.5% here; 0.3%&ndash;10% by industry), and payroll tax ({formatPercent(MIN_RATE_STATE[1].rate, 2)}&ndash;{formatPercent(MAX_RATE_STATE[1].rate, 2)}) are included. Recruitment, training, equipment and a higher-risk WorkCover rate push it higher.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="prt-explain" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">What is payroll tax and who pays it?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Payroll tax is a state government tax levied on employers when their total wage bill exceeds a state-specific annual threshold. Rates range from <strong>{formatPercent(MIN_RATE_STATE[1].rate, 2)} in {MIN_RATE_STATE[1].name} to {formatPercent(MAX_RATE_STATE[1].rate, 2)} in the {MAX_RATE_STATE[0]}</strong>. It is paid by the employer, not deducted from the employee&apos;s pay. Sole traders and small businesses below the threshold pay zero payroll tax.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="super-rate" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">What is the current superannuation rate for employers?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      The Superannuation Guarantee rate is <strong>12%</strong> for FY{SITE_CONFIG.financialYear}, unchanged since 1 July 2025. That is the legislated ceiling, reached after five consecutive 0.5 percentage point increases from 9.5% in FY2020-21. Since 1 July 2026 it is paid with each pay under Payday Super. Employers pay this on top of the employee&apos;s base salary as a contribution to their nominated super fund.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="fringe" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">Do fringe benefits increase my employment cost?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Yes. If you provide benefits like a company car, parking, or meal allowances, Fringe Benefits Tax (FBT) applies at 47%. The FBT is paid by the employer, not the employee, which can significantly increase the true cost. Because FBT is charged on the grossed-up value, a $15,000 car benefit attracts roughly {formatAUD(CAR_FBT)} in FBT at the type 1 gross-up rate ({CAR_BENEFIT.toLocaleString("en-AU")} x {FBT.grossUpType1} x 47%), making the total cost of that perk about {formatAUD(CAR_BENEFIT + CAR_FBT)} to the business. See our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Guide</Link> for FBT-exempt alternatives.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="casual-cost" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">Is a casual employee cheaper than a permanent one?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Not per hour. Casual employees receive a <strong>25% loading</strong> on their base rate to compensate for no paid leave. They also attract super (12%), payroll tax, and WorkCover costs. The loading makes casuals more expensive per hour worked, but the flexibility of not paying for sick days, annual leave, or redundancy makes them cheaper for variable, seasonal, or project-based workloads.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="super-cap" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">Is there a cap on how much super an employer pays?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Yes. From 1 July 2026 the maximum super contribution base is an annual <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> (it was $62,500 per quarter until 30 June 2026). Employers are not legally required to pay the 12% SG on earnings above this cap. For an employee earning $300,000, the employer&apos;s mandatory super contribution is capped at <strong>{formatAUD(SUPER_GUARANTEE.maxSGAnnual, 2)}</strong> per year rather than $36,000.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="small-biz-threshold" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">Do small businesses pay payroll tax?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Most small businesses do not. Payroll tax only applies when the total wage bill exceeds the state threshold. The lowest threshold is <strong>{formatAUD(MIN_THRESHOLD_STATE[1].threshold)} in {MIN_THRESHOLD_STATE[1].name}</strong>, and the highest is <strong>{formatAUD(MAX_THRESHOLD_STATE[1].threshold)} in the {MAX_THRESHOLD_STATE[0]}</strong>. A business with 8 employees averaging $100,000 each ($800,000 total wages) pays zero payroll tax in every state and territory.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="workcover-mandatory" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">Is workers compensation insurance mandatory for all employers?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Yes. Every employer in Australia must hold workers compensation insurance, regardless of business size or number of employees. Operating without coverage carries substantial state penalties, plus liability for the cost of any injury claim. Sole traders with no employees are the only exception in most states.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="leave-loading" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">What is leave loading and does every employer pay it?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Leave loading is an additional payment of <strong>17.5%</strong> on top of the employee&apos;s base pay rate during annual leave. It is not a universal entitlement under the National Employment Standards. Leave loading applies only when specified in the relevant modern award, enterprise agreement, or employment contract; most modern awards include it.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="long-service" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">How does long service leave affect employer costs?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Long service leave accrues at approximately <strong>8.67 weeks after 10 years of continuous service</strong> in most states, equivalent to an annual provision of about 1.67% of the base salary. Employers must accrue this liability on their balance sheet from the employee&apos;s start date. For a $100,000 employee, this adds approximately <strong>$1,670 per year</strong> to the total employment cost.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="contractor-risk" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">What happens if I misclassify an employee as a contractor?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      The ATO can reclassify the worker as an employee and issue back-payment orders for all unpaid superannuation (plus the SGC penalty), PAYG withholding, payroll tax, and workers compensation premiums for the entire engagement period. Penalties include the SGC administrative uplift of <strong>up to 60%</strong> of the shortfall and notional earnings, interest at the general interest charge rate compounded daily, a late payment penalty of <strong>25%</strong> that <strong>cannot be remitted</strong>, and potential prosecution for tax avoidance. Use our <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> to assess classification risk.
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="reduce-cost" className="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm">
-                    <AccordionTrigger className="text-left font-semibold text-navy">How can employers reduce total employment costs legally?</AccordionTrigger>
-                    <AccordionContent className="text-warmgray">
-                      Employers reduce costs through 5 primary strategies: (1) offering salary sacrifice arrangements that provide tax-effective benefits at lower cost, (2) maintaining strong workplace safety records, which lower experience-rated WorkCover premiums, (3) structuring the business to remain below the state payroll tax threshold, (4) using a mix of casual and part-time workers to minimise leave liability, and (5) investing in retention to reduce recruitment costs.
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+                <FaqAccordion faqs={EMPLOYER_COST_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border border-sandstone-dark/20 rounded-xl px-4 bg-white shadow-sm" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
               </section>
 
               <div className="mt-12 not-prose border-t border-sandstone-dark/20 pt-8">

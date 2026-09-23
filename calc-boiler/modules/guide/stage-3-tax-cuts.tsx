@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { STAGE_3_FAQS } from "./stage-3-tax-cuts-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -173,49 +174,7 @@ export default function Stage3TaxCutsPage() {
             {/* ───── SECTION 5: FAQs ───── */}
             <section id="faqs">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-
-                <AccordionItem value="when-start" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">When did the Stage 3 tax cuts start?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The revised Stage 3 tax cuts took effect on <strong>1 July 2024</strong>, applying from FY2024-25 onwards. If you are employed, your employer should have adjusted your PAYG withholding from your first pay in July 2024. The same rates applied in FY2025-26; from 1 July 2026 the 16% rate was cut again to 15%.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="how-much-save" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much do the Stage 3 tax cuts save me?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Every taxpayer earning above $18,200 gets a cut, starting at 3c for each dollar over $18,200: <strong>$354</strong> at $30,000, $929 at $50,000, at $100,000 you save $2,179, and at $190,000+ you save $4,529. The exact saving depends on your taxable income — use the comparison table above or our <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="automatic" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do I need to do anything to receive the tax cuts?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">No. The tax cuts are automatic. Your employer updates their payroll software to use the new PAYG withholding tables, and you receive more take-home pay each pay period. No forms to fill out, no application required.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="original-vs-revised" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Am I better or worse off under the revised plan vs the original?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Taxpayers earning under approximately <strong>$146,000</strong> are better off under the revised plan. Those earning above $146,000 receive a smaller tax cut than the original plan would have delivered. The maximum difference is at $200,000, where the original plan would have saved $9,075 compared to $4,529 under the revised plan.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="32-5-gone" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What happened to the 32.5% tax rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The 32.5% rate was <strong>abolished</strong> under both the original and revised Stage 3 plans. It was replaced by a 30% rate. Under the revised plan, the 30% rate applies from $45,001 to $135,000. The 2.5 percentage point reduction is worth up to $1,875 a year on income from $45,001 to $120,000, and income from $120,001 to $135,000 dropped from 37% to 30%.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="19-to-16" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Why was the 19% rate reduced to 16%?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">The government reduced the bottom marginal rate to deliver tax relief to <strong>all taxpayers</strong>, including those earning between $18,201 and $45,000 who would have received no benefit under the original Stage 3 plan. The 3 percentage point cut saves up to $804 per year for this group.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="more-changes" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Are there more tax changes coming?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. A further legislated cut lowered the 16% rate to 15% from 1 July 2026, with 14% legislated from 1 July 2027 — read our news coverage of the <Link href="/news/tax-cut-july-2026/">next tax cut from 1 July 2026</Link> for what it means for your pay. Check our <Link href="/tax-changes-2026-27/">Tax Changes 2026-27 Guide</Link> for the latest announced changes and our <Link href="/tax-brackets/">Tax Brackets Guide</Link> for the current rates.</AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="affect-super" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do the Stage 3 cuts affect superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Not directly. Superannuation contributions continue to be taxed at 15% in the fund. However, the Stage 3 cuts change the <strong>tax savings from salary sacrifice</strong>. At the 30% marginal rate, sacrificing $10,000 into super saves $1,500 (30% minus 15%). Under the old 32.5% rate, the same sacrifice saved $1,750. The cuts slightly reduce the tax advantage of salary sacrifice for incomes between $45,001 and $135,000.</AccordionContent>
-                </AccordionItem>
-
-              </Accordion>
+              <FaqAccordion faqs={STAGE_3_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose"><MethodologyDisclosure title="How this guide works"><p>Tax calculations use the pre-Stage 3 rates (FY2023-24: 0%, 19%, 32.5%, 37%, 45%) and the revised Stage 3 rates (FY2024-25 and FY2025-26: 0%, 16%, 30%, 37%, 45%; the 16% rate became 15% from 1 July 2026) as published by the Australian Taxation Office. Figures exclude Medicare levy, LITO, and other offsets to show the pure bracket impact. Weekly savings assume 52 weeks per year.</p></MethodologyDisclosure><SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
