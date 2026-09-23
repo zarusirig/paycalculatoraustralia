@@ -13,6 +13,9 @@ const FFIA_2026 = { L1: 27.81, L2: 29.45, L3a: 29.91, L3b: 30.27 } as const;
 
 type Ffia = typeof FFIA_2026;
 
+/** Half-up to the cent as on paper (toFixed(6) strips float noise like 69.52499…). */
+const halfUp = (v: number) => Math.round(Number((v * 100).toFixed(6))) / 100;
+
 /** Hungry Jack's Schedule B (as varied by AG2026/295): [permanent, casual] per level. */
 function hungryJacksScheduleB(a: Ffia | typeof FFIA_2025): [string, number, number][] {
   const teamLead = roundCents(a.L1 + 0.1);
@@ -116,4 +119,66 @@ test("Liquorland: Coles agreement Levels 1 and 3, adult rates at any age", () =>
     assert.ok(faqText.includes(`$${r.hourly.toFixed(2)}`), r.level);
     assert.ok(faqText.includes(`$${r.casualHourly.toFixed(2)}`), r.level);
   }
+});
+
+test("Costco: printed cl 5.1 column C (24 months) and casual = rate x 1.25", () => {
+  const costco = getEmployerPay("costco");
+  assert.ok(costco);
+  // cl 5.1.1–5.1.3, column "first full pay period 24 months after operation commences".
+  const columnC: Record<string, number> = {
+    "Service Assistant — first 980 hours": 30.02,
+    "Service Assistant — 8th step (after 6,860 hours)": 33.49,
+    "Service Clerk — first 980 hours": 31.27,
+    "Service Clerk — 8th step (after 6,860 hours)": 34.77,
+    "Supervisor (Service Assistant and Service Clerk)": 36.27,
+    "Tradesperson — first 980 hours": 36.24,
+    "Tradesperson — 8th step (after 6,860 hours)": 39.89,
+    "Tradesperson supervisor": 41.39,
+  };
+  assert.equal(costco.rates.length, Object.keys(columnC).length);
+  for (const r of costco.rates) {
+    assert.equal(r.hourly, columnC[r.level], r.level);
+    assert.equal(r.casualHourly, roundCents(r.hourly * 1.25), r.level);
+  }
+  // Printed supervisor row = Service Clerk top-out + $1.50 (cl 6.8).
+  assert.equal(roundCents(34.77 + 1.5), 36.27);
+  assert.equal(costco.juniorScale.length, 0);
+  // Column D (next rise) examples in nextIncrease.
+  for (const v of ["$30.92", "$32.21", "$37.33", "$37.32"]) assert.ok(costco.nextIncrease?.detail.includes(v), v);
+  // Worked penalty dollars for Service Assistant step 1.
+  const sa = 30.02;
+  const text = [...costco.penaltyNotes, ...costco.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.25, 1.5, 1.75, 2.75]) {
+    assert.ok(text.includes(`$${roundCents(sa * pct).toFixed(2)}`), `${pct}`);
+  }
+  // Above the Retail Award Level 4 ($29.45) at the entry step.
+  assert.ok(costco.rates[0].hourly > 29.45);
+});
+
+test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
+  const iga = getEmployerPay("iga");
+  assert.ok(iga);
+  assert.equal(iga.instrument.kind, "modern-award");
+  assert.equal(iga.instrument.reference, "MA000004");
+  const table4: [number, number][] = [
+    [1056.8, 27.81], [1081.0, 28.45], [1097.8, 28.89], [1119.1, 29.45],
+    [1165.1, 30.66], [1182.1, 31.11], [1241.4, 32.67], [1291.8, 33.99],
+  ];
+  assert.deepEqual(iga.rates.map((r) => [r.weekly, r.hourly]), table4);
+  for (const r of iga.rates) assert.equal(r.casualHourly, roundCents(r.hourly * 1.25), r.level);
+  const juniors = Object.fromEntries(juniorRates(iga).map((j) => [j.age, [j.hourly, j.casualHourly]]));
+  assert.deepEqual(juniors["Under 16"], [12.51, 15.64]);
+  assert.deepEqual(juniors["16"], [13.91, 17.39]);
+  assert.deepEqual(juniors["17"], [16.69, 20.86]);
+  for (const j of juniorRates(iga)) assert.equal(j.published, false);
+  const L1 = 27.81;
+  const text = [...iga.penaltyNotes, ...iga.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) {
+    // Half-up on paper: 27.81 x 2.5 = 69.525 → $69.53 (float gives 69.52499…).
+    assert.ok(text.includes(`$${halfUp(L1 * pct).toFixed(2)}`), `${pct}`);
+  }
+  // PR813655 phase-in dollars (weekly x % / 38).
+  assert.equal(roundCents((1056.8 * 0.75) / 38), 20.86);
+  assert.equal(roundCents((1056.8 * 0.85) / 38), 23.64);
+  assert.ok(iga.nextIncrease?.detail.includes("$20.86") && iga.nextIncrease.detail.includes("$23.64"));
 });

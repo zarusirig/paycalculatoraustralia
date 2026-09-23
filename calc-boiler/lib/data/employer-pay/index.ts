@@ -22,6 +22,8 @@ import { SUBWAY_PAY } from "./subway";
 // --- H1 (24 Sep 2026) ---
 import { HUNGRY_JACKS_PAY } from "./hungry-jacks";
 import { LIQUORLAND_PAY } from "./liquorland";
+import { COSTCO_PAY } from "./costco";
+import { IGA_PAY } from "./iga";
 // --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -35,6 +37,8 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   // --- H1 (24 Sep 2026) ---
   "hungry-jacks": HUNGRY_JACKS_PAY,
   liquorland: LIQUORLAND_PAY,
+  costco: COSTCO_PAY,
+  iga: IGA_PAY,
   // --- end H1 ---
 };
 

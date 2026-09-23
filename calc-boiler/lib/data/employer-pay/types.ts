@@ -28,6 +28,8 @@ export const EMPLOYER_SLUGS = [
   // --- H1 (24 Sep 2026) ---
   "hungry-jacks",
   "liquorland",
+  "costco",
+  "iga",
   // --- end H1 ---
 ] as const;
 

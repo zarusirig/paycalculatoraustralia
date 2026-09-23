@@ -12,6 +12,12 @@ const highest = sorted[0];
 const lowest = sorted[sorted.length - 1];
 const awardCovered = EMPLOYERS.filter((e) => e.instrument.kind === "modern-award").map((e) => e.name);
 
+// H1: "A, B and C" rather than "A and B and C" as the award-covered list grows.
+function listNames(names: string[]): string {
+  if (names.length <= 1) return names.join("");
+  return `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+}
+
 export const PAY_RATES_HUB_FAQS: { q: string; a: string }[] = [
   {
     q: "Which of these employers pays the most per hour?",
@@ -19,7 +25,7 @@ export const PAY_RATES_HUB_FAQS: { q: string; a: string }[] = [
   },
   {
     q: "Why do fast food jobs pay less than supermarket jobs?",
-    a: `${awardCovered.length > 0 ? `${awardCovered.join(" and ")} staff are paid under a modern award rather than their own enterprise agreement. ` : ""}Awards set a minimum, and each industry's award has its own rates and junior percentages. Supermarket agreements are bargained separately and must leave staff better off overall than the award.`,
+    a: `${awardCovered.length > 0 ? `${listNames(awardCovered)} staff are paid under a modern award rather than their own enterprise agreement. ` : ""}Awards set a minimum, and each industry's award has its own rates and junior percentages. Supermarket agreements are bargained separately and must leave staff better off overall than the award.`,
   },
   {
     q: "Do these rates include superannuation?",
