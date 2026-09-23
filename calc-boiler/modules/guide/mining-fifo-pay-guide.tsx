@@ -90,7 +90,7 @@ export default function MiningFIFOPayGuidePage() {
                 <li><strong>4 days on / 3 days off (4/3):</strong> Common for drive-in, drive-out (DIDO) roles closer to regional centres. Workers spend 4 days on-site and 3 days at home, working approximately 208 days per year.</li>
               </ul>
               <p>
-                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings — a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/overtime-pay-calculator/">Overtime Pay Calculator</Link> to model your specific roster and hourly rate.
+                Pay structures vary between <strong>annualised salary</strong> (a flat amount regardless of hours worked) and <strong>hourly rate plus overtime</strong>. Annualised salaries are simpler but may not compensate for extra hours. Hourly-plus-overtime arrangements can significantly increase total earnings — a 12-hour shift at time-and-a-half for overtime hours can add <strong>$20,000–$40,000</strong> per year above the base salary. Use the <Link href="/fifo-pay-calculator/">FIFO Pay Calculator</Link> to model your specific roster and hourly rate, including overtime, shift loadings and site allowances.
               </p>
             </section>
 

@@ -339,6 +339,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  for (const slug of ["fifo-pay-calculator"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F7 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

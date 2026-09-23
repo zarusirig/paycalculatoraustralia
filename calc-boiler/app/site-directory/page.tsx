@@ -166,6 +166,14 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end T2 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  {
+    title: "FIFO, Pay Periods & Payment Dates",
+    items: [
+      { href: "/fifo-pay-calculator/", label: "FIFO Pay Calculator" },
+    ],
+  },
+  // --- end F7 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

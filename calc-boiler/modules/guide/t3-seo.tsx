@@ -18,13 +18,16 @@ export interface T3JsonLdInput {
   crumbs: { name: string; path: string }[];
   faqs: Faq[];
   app?: { name: string; description: string };
+  /** datePublished; defaults to the T3 launch date. */
+  published?: string;
 }
 
 export function t3JsonLd(input: T3JsonLdInput) {
   const base = SITE_CONFIG.baseUrl;
   const url = `${base}/${input.slug}/`;
   const authorship = getGuideAuthorship(input.slug);
-  const modified = authorship?.lastReviewed ?? T3_PUBLISHED;
+  const published = input.published ?? T3_PUBLISHED;
+  const modified = authorship?.lastReviewed ?? published;
 
   const breadcrumb: WithContext<BreadcrumbList> = {
     "@context": "https://schema.org",
@@ -51,7 +54,7 @@ export function t3JsonLd(input: T3JsonLdInput) {
     headline: input.headline,
     description: input.description,
     url,
-    datePublished: T3_PUBLISHED,
+    datePublished: published,
     dateModified: modified,
     ...(authorship ? { author: authorship.author.jsonLd } : {}),
     publisher: {
