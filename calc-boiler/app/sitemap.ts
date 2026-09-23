@@ -74,6 +74,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "family-tax-benefit-calculator",
     "rent-assistance-calculator",
     // end C4
+    // W3 Centrelink wave 2 (added 2026-09-23)
+    "carer-payment-calculator",
+    "carer-allowance",
+    "centrelink-advance-payment",
+    // end W3
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",
@@ -148,6 +153,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "centrelink-income-test",
     "fringe-benefits-tax",
     "parental-leave-pay",
+    // W3 Centrelink wave 2 (added 2026-09-23)
+    "centrelink-crisis-payment",
+    "centrelink-debt",
+    "cost-of-living-payment-2026",
+    // end W3
     "zone-tax-offset",
     "sapto-calculator",
     "tax-calendar",
