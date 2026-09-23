@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import UnderstandingYourPayslipPage from "@/modules/guide/understanding-your-payslip";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { faqPageSchema } from "@/lib/faq";
+import { PAYSLIP_FAQS } from "@/modules/guide/understanding-your-payslip-faqs";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/understanding-your-payslip/`;
@@ -47,15 +49,7 @@ const article: WithContext<Article> = {
   isBasedOn: { "@type": "Legislation", name: "Fair Work Act 2009", url: "https://www.legislation.gov.au/Details/C2024C00301" },
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    { "@type": "Question", name: "What is the difference between Gross and Net Pay?", acceptedAnswer: { "@type": "Answer", text: "Gross pay is the total amount of money you earned during the pay period before any deductions (like tax or HECS) are taken out. Net pay (or take-home pay) is the final amount that actually lands in your bank account after all taxes and deductions have been subtracted." } },
-    { "@type": "Question", name: "What must be legally included on an Australian payslip?", acceptedAnswer: { "@type": "Answer", text: "Under Fair Work laws, a payslip must include the employer's name and ABN, the employee's name, pay period dates, gross and net pay amounts, any loadings or penalty rates, specific deductions (like PAYG tax), and any superannuation contributions made." } },
-    { "@type": "Question", name: "What is PAYG Withholding?", acceptedAnswer: { "@type": "Answer", text: "Pay As You Go (PAYG) withholding is the amount of income tax your employer legally deducts from your gross salary and sends directly to the ATO on your behalf. This ensures you gradually pay your income tax throughout the year rather than facing a massive bill at tax time." } },
-  ]
-};
+const faq = faqPageSchema(PAYSLIP_FAQS);
 
 export default function Page() {
   return (
