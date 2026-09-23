@@ -28,6 +28,9 @@ import {
   type TeacherPayState,
 } from "@/lib/data/teacher-pay";
 
+// W5: VIC 2026 pay rise section
+import VicPayRise2026 from "@/modules/guide/teacher-pay-vic-2026";
+
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
 /**
@@ -263,6 +266,9 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 ))}
               </div>
             )}
+
+            {/* W5 (23 Sep 2026): VIC-only proposed VGSA 2026 pay rise section */}
+            {state.slug === "vic" && <VicPayRise2026 />}
 
             {/* ── At a glance: every scale's range, linking to its full table ── */}
             {hasScales && <AtAGlance state={state} />}
