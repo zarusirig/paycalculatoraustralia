@@ -344,6 +344,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "embed", changeFrequency: "yearly" as const, priority: 0.5 });
   // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F7 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

@@ -319,6 +319,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- F8 Lever D linkable assets (24 Sep 2026) ---
   "australian-pay-report-2026": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  "fifo-pay-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "fortnights-in-a-year": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "centrelink-payment-dates": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  // --- end F7 ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

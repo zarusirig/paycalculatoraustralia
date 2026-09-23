@@ -183,6 +183,16 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  {
+    title: "FIFO, Pay Periods & Payment Dates",
+    items: [
+      { href: "/fifo-pay-calculator/", label: "FIFO Pay Calculator" },
+      { href: "/fortnights-in-a-year/", label: "How Many Fortnights in a Year (Pay Dates)" },
+      { href: "/centrelink-payment-dates/", label: "Centrelink Payment Dates" },
+    ],
+  },
+  // --- end F7 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

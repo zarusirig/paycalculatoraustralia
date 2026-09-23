@@ -361,7 +361,7 @@ export default function WeeklyPayCalculatorPage() {
                 Usually {WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a
                 financial year contains <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. Your salary is then spread over one more pay. The ATO&apos;s{" "}
                 <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link> publishes an optional extra amount you can ask your
-                employer to withhold that year so you are not short at tax time.
+                employer to withhold that year so you are not short at tax time. 2026-27 is one of those years if you&apos;re paid on a Wednesday: see <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">pay periods in 2026-27</Link>.
               </FAQItem>
               <FAQItem value="casual" question="How do casual workers calculate weekly pay?">
                 Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of <strong>25%</strong> is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.
