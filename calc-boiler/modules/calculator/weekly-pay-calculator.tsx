@@ -19,6 +19,7 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { PeriodPayTable } from "@/modules/calculator/period-pay-table";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { WEEKLY_PAY_FAQS, WEEKLY_TAX_ANSWER, WEEKLY_WITHHOLDING_ROWS } from "./weekly-pay-calculator-faqs";
@@ -86,7 +87,7 @@ export default function WeeklyPayCalculatorPage() {
             Weekly pay is your annual salary divided by <strong>52</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 52, 2)} gross
             and <strong>{formatAUD(EX.weekly, 2)} take-home</strong> every week after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2 text-sm md:text-base">Use it as a weekly tax calculator: enter your weekly pay or annual salary.</p>
+          <p className="text-warmgray mt-2 text-sm md:text-base">Use this weekly pay calculator as a weekly tax calculator: enter your weekly pay or annual salary.</p>
           <TrustBar className="mt-3" />
         </section>
 
@@ -150,6 +151,9 @@ export default function WeeklyPayCalculatorPage() {
               </div>
             </CardContent>
           </Card>
+          {/* Period-specific table directly under the calculator: the value the
+              homepage's all-periods calculator doesn't give (intent map, Sep 2026). */}
+          <PeriodPayTable period="weekly" currentSalary={salary} />
         </section>
 
         <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "incomeTaxCalculator", "fortnightlyTaxCalculator"]} />
