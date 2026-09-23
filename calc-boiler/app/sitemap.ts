@@ -63,6 +63,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "jobseeker-payment-calculator",
     "austudy-youth-allowance-calculator",
     "age-pension-income-test-calculator",
+    // C4 Centrelink family payments (added 2026-09-23)
+    "parenting-payment-calculator",
+    "family-tax-benefit-calculator",
+    "rent-assistance-calculator",
+    // end C4
     "final-pay-calculator",
     "employment-type-calculator",
     "backpay-calculator",

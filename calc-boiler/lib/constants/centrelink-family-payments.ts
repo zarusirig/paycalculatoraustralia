@@ -28,9 +28,10 @@
 //     and grandparent carers are not modelled. Annual amounts are the
 //     fortnightly rate × 365 ÷ 14, which reproduces every published income
 //     limit to within $1 (asserted in the tests).
-//   - Rent Assistance: the maximum before any income test. When the income
-//     test reduces an income support payment, Services Australia reduces the
-//     basic rate first and Rent Assistance last.
+//   - Rent Assistance: the amount before any income test. Rent Assistance is
+//     part of the payment it is paid with, so that payment's income test can
+//     reduce it too (Services Australia: cut-offs "may be higher if you get
+//     Rent Assistance"). Paid with FTB Part A only above the base rate.
 // =============================================================================
 
 export const FAMILY_PAYMENT_SOURCES = {
@@ -45,6 +46,8 @@ export const FAMILY_PAYMENT_SOURCES = {
   ftbBIncomeTest: "https://www.servicesaustralia.gov.au/income-test-for-family-tax-benefit-part-b",
   ftbEligibility: "https://www.servicesaustralia.gov.au/who-can-get-family-tax-benefit",
   rentAssistanceRates: "https://www.servicesaustralia.gov.au/how-much-rent-assistance-you-can-get",
+  rentAssistanceEligibility: "https://www.servicesaustralia.gov.au/who-can-get-rent-assistance",
+  ftbAEligibility: "https://www.servicesaustralia.gov.au/family-tax-benefit-part-eligibility",
 } as const;
 
 /** Fortnights in a year as family assistance law counts them (365 ÷ 14). */
