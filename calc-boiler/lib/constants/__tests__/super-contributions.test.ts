@@ -17,7 +17,11 @@ import { SUPER_GUARANTEE } from "../australian-tax";
 import {
   CARRY_FORWARD,
   CONCESSIONAL_CAP_BY_YEAR,
+  DIVISION_296,
+  LOW_RATE_CAP,
+  TRANSFER_BALANCE_CAP_PREVIOUS,
   annualSuperGuarantee,
+  bringForwardThresholds,
   carryForwardWindow,
   concessionalCapPosition,
   division293Estimate,
@@ -92,4 +96,22 @@ test("Division 293: ATO 'Jan' -> $750; nil at or under $250,000", () => {
   assert.equal(division293Estimate(240_000, 15_000), 750);
   assert.equal(division293Estimate(220_000, 30_000), 0);
   assert.equal(division293Estimate(300_000, 20_000), 3_000);
+});
+
+test("bring-forward thresholds derive to the ATO's 2026-27 figures", () => {
+  assert.equal(SUPER_GUARANTEE.transferBalanceCap, 2_100_000);
+  assert.equal(SUPER_GUARANTEE.nonConcessionalCap, 130_000);
+  assert.equal(SUPER_GUARANTEE.bringForwardCap, 3 * SUPER_GUARANTEE.nonConcessionalCap);
+  const t = bringForwardThresholds();
+  assert.equal(t.threeYear, 1_840_000);
+  assert.equal(t.twoYear, 1_970_000);
+  assert.equal(t.nilCap, 2_100_000);
+});
+
+test("transfer balance, low rate cap and Division 296 anchors", () => {
+  assert.equal(TRANSFER_BALANCE_CAP_PREVIOUS, 2_000_000);
+  assert.equal(LOW_RATE_CAP.amount, 260_000);
+  assert.equal(DIVISION_296.largeBalanceThreshold, 3_000_000);
+  assert.equal(DIVISION_296.veryLargeBalanceThreshold, 10_000_000);
+  assert.equal(DIVISION_296.rate + DIVISION_296.additionalRate, 0.25);
 });

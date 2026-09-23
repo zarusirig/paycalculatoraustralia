@@ -165,3 +165,54 @@ export function division293Estimate(taxableIncome: number, concessional: number)
   if (excess <= 0) return 0;
   return Math.round(Math.min(excess, Math.max(0, concessional)) * DIVISION_293.rate * 100) / 100;
 }
+
+// ---------- Non-concessional bring-forward, transfer balance cap, low rate cap, Division 296 ----------
+//
+// Sources, all ato.gov.au, read 23 September 2026 via Firecrawl:
+//   "Non-concessional contributions cap" (last updated 7 May 2026): from
+//     1 July 2026 a TSB "less than $1.84 million" allows $390,000 over 3
+//     years; "$1.84 million or above but less than $1.97 million" allows
+//     $260,000 over 2 years; "$1.97 million or above" no bring-forward; nil
+//     cap at or above the general transfer balance cap ($2.1 million from
+//     2026-27). "These limits are based on the non-concessional contributions
+//     cap being $130,000 ... and the general transfer balance cap being $2.1
+//     million" — i.e. TBC − 2 × cap and TBC − cap, which is how they are
+//     derived below.
+//   "Key superannuation rates and thresholds – contributions caps" (last
+//     updated 11 September 2026): "1 July 2025 to 30 June 2026, the general
+//     transfer balance cap was $2 million".
+//   "Key superannuation rates and thresholds – payments from super" (last
+//     updated 16 September 2026): "From 1 July 2026, the low rate cap is
+//     $260,000." "Before 1 July 2026, the low rate cap amount was indexed
+//     each year" — its table shows 2025-26 also $260,000 (2024-25 $245,000),
+//     so the cap did not move this year.
+//   "Division 296 tax on large super balances" (last updated 29 June 2026):
+//     from 1 July 2026, 15% on taxable super earnings above the large super
+//     balance threshold, an additional 10% above the very large threshold;
+//     "For the 2026–27 income year, the LSBT is $3 million and the VLSBT is
+//     $10 million"; 2026-27 assessments issue in the later half of 2027-28.
+
+/** General transfer balance cap for the previous income year (2025-26). */
+export const TRANSFER_BALANCE_CAP_PREVIOUS = 2_000_000;
+
+/** Tax-free taxable-component limit for lump sums between preservation age and 59. */
+export const LOW_RATE_CAP = { amount: 260_000, incomeYear: "2026-27", previousAmount: 260_000 } as const;
+
+export const DIVISION_296 = {
+  start: "1 July 2026",
+  largeBalanceThreshold: 3_000_000,
+  veryLargeBalanceThreshold: 10_000_000,
+  rate: 0.15,
+  additionalRate: 0.10,
+  incomeYear: "2026-27",
+} as const;
+
+/**
+ * Total-super-balance limits for the non-concessional bring-forward in the
+ * current year, derived from the cap and the general transfer balance cap.
+ */
+export function bringForwardThresholds(): { threeYear: number; twoYear: number; nilCap: number } {
+  const tbc = SUPER_GUARANTEE.transferBalanceCap;
+  const ncc = SUPER_GUARANTEE.nonConcessionalCap;
+  return { threeYear: tbc - 2 * ncc, twoYear: tbc - ncc, nilCap: tbc };
+}
