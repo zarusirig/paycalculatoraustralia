@@ -25,6 +25,7 @@ const DAY_NET =
   calculateMedicareLevy(DAY_GROSS);
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
+import { pageDateModified } from "@/lib/page-dates";
 
 export const metadata: Metadata = {
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
@@ -67,7 +68,7 @@ const webAppSchema: WithContext<WebApplication> = {
     "@type": "Organization",
     name: SITE_CONFIG.name,
   },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("contractor-pay-calculator"),
   inLanguage: "en-AU",
 };
 

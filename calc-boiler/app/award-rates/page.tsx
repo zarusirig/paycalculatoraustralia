@@ -6,6 +6,7 @@ import { SITE_CONFIG, EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import { AWARD_HUB_FAQS } from "@/modules/guide/award-rates-faqs";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/award-rates/`;
@@ -44,6 +45,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("award-rates"),
+  dateModified: pageDateModified("award-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS[GUIDE_AUTHORSHIP["award-rates"].authorId].jsonLd,

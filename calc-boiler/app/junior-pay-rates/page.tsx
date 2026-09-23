@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { ADULT_AGE, JUNIOR_RATES, NMW_ORDER } from "@/lib/constants/junior-rates";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/junior-pay-rates/`;
@@ -58,6 +59,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("junior-pay-rates"),
+  dateModified: pageDateModified("junior-pay-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

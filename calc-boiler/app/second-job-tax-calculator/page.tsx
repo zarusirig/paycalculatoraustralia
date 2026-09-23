@@ -9,6 +9,7 @@ import { SCALE_1_NO_TFT } from "@/lib/constants/payg-withholding";
 // (15% from 1 July 2026; the FAQ previously said 16%).
 const NO_TFT_START_RATE = `${Math.round((SCALE_1_NO_TFT[0].a ?? 0) * 100)}%`;
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
@@ -54,7 +55,7 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("second-job-tax-calculator"),
   inLanguage: "en-AU",
 };
 

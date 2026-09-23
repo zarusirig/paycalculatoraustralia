@@ -6,6 +6,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
 import { PAYG_HUB_FAQS } from "@/modules/guide/payg-withholding-tables-faqs";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payg-withholding-tables/`;
@@ -44,6 +45,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("payg-withholding-tables"),
+  dateModified: pageDateModified("payg-withholding-tables"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

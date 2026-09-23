@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, formatAUD } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-guide/`;
@@ -39,6 +40,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("superannuation-guide"),
+  dateModified: pageDateModified("superannuation-guide"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

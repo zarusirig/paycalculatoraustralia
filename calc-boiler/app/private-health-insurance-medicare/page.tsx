@@ -5,6 +5,7 @@ import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "sch
 import { MEDICARE_LEVY, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { MLS_INCOME_YEAR, familyBaseThreshold } from "@/lib/constants/medicare-levy-surcharge";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/private-health-insurance-medicare/`;
@@ -44,6 +45,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("private-health-insurance-medicare"),
+  dateModified: pageDateModified("private-health-insurance-medicare"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

@@ -14,6 +14,7 @@ import {
   serviceFromParts,
   type JurisdictionCode,
 } from "@/lib/constants/long-service-leave";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -96,7 +97,7 @@ export default async function Page({ params }: PageProps) {
     browserRequirements: "Requires JavaScript",
     offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
     creator: { "@type": "Organization", name: SITE_CONFIG.name },
-    dateModified: new Date().toISOString().split("T")[0],
+    dateModified: pageDateModified(`long-service-leave-calculator/${state}`),
     inLanguage: "en-AU",
   };
 

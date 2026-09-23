@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { calculateSuper, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-calculator/`;
@@ -36,7 +37,7 @@ const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.or
 
 const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", "@type": "WebApplication", name: "Superannuation Calculator Australia", url: URL, applicationCategory: "FinanceApplication", operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
+  offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: pageDateModified("superannuation-calculator"), inLanguage: "en-AU" };
 
 // Built from the same array the on-page accordion renders, so the structured
 // data cannot drift from the visible answers.

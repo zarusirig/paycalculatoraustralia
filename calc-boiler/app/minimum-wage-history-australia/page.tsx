@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-history-australia/`;
@@ -46,6 +47,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("minimum-wage-history-australia"),
+  dateModified: pageDateModified("minimum-wage-history-australia"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

@@ -5,6 +5,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schem
 import { calculatePayBreakdown, formatAUD, formatPercent, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/annual-pay-calculator/`;
@@ -55,7 +56,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("annual-pay-calculator"),
   inLanguage: "en-AU"
 };
 

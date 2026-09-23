@@ -8,6 +8,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { RETAIL_AWARD, RETAIL_RATES } from "@/lib/constants/hospitality-award";
 import { casualHourly } from "@/modules/guide/hospitality-award-faqs";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/retail-award-rates/`;
@@ -56,6 +57,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("retail-award-rates"),
+  dateModified: pageDateModified("retail-award-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

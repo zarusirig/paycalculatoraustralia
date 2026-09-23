@@ -5,6 +5,7 @@ import { HUB_FAQS } from "@/modules/payroll-tax/content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { PAYROLL_TAX_FY } from "@/lib/constants/payroll-tax";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payroll-tax/`;
@@ -32,6 +33,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("payroll-tax", "2026-09-23"),
   headline: `Payroll Tax in Australia ${PAYROLL_TAX_FY}: Rates and Thresholds by State`,
   description: DESCRIPTION,
   url: URL,

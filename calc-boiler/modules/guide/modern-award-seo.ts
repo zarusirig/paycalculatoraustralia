@@ -8,6 +8,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { MODERN_AWARDS, type ModernAwardKey } from "@/lib/constants/modern-awards";
 import { getAwardPageCopy } from "@/modules/guide/modern-award-content";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -59,6 +60,8 @@ export function buildAwardJsonLd(key: ModernAwardKey) {
   const article: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
+    datePublished: pageDatePublished(award.meta.href),
+    dateModified: pageDateModified(award.meta.href),
     headline: copy.title,
     image: `${BASE}/og-image.png`,
     description: copy.description,

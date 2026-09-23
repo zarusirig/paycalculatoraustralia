@@ -5,6 +5,7 @@ import type { Article, BreadcrumbList, FAQPage, WebPage, WithContext } from "sch
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { HOSPITALITY_PENALTIES, RETAIL_PENALTIES, RETAIL_RATES } from "@/lib/constants/hospitality-award";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
@@ -37,6 +38,8 @@ const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("overtime-penalty-rates-guide"),
+  dateModified: pageDateModified("overtime-penalty-rates-guide"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS[GUIDE_AUTHORSHIP["overtime-penalty-rates-guide"].authorId].jsonLd,

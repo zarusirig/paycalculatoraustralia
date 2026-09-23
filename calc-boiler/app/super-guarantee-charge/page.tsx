@@ -10,6 +10,7 @@ import {
   SUPER_GUARANTEE,
   SUPER_GUARANTEE_CHARGE,
 } from "@/lib/constants/australian-tax";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-charge/`;
@@ -58,6 +59,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("super-guarantee-charge"),
+  dateModified: pageDateModified("super-guarantee-charge"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

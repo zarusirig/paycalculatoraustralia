@@ -10,6 +10,7 @@ import {
   CGT_INCOME_YEAR,
   CGT_MINIMUM_OWNERSHIP_MONTHS,
 } from "@/lib/constants/capital-gains-tax";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/capital-gains-tax-calculator/`;
@@ -59,6 +60,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("capital-gains-tax-calculator"),
+  dateModified: pageDateModified("capital-gains-tax-calculator"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

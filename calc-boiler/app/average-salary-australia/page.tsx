@@ -11,6 +11,7 @@ import {
   averageSalaryDescription,
   averageSalaryTitle,
 } from "@/lib/data/average-salary";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/average-salary-australia/`;
@@ -39,6 +40,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("average-salary-australia"),
   headline: TITLE,
   description: DESCRIPTION,
   dateModified: AVERAGE_SALARY_VERIFIED_ISO,

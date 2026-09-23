@@ -11,6 +11,7 @@ import {
   ATO_SCHEDULE_1,
   ATO_TAX_TABLES_INDEX,
 } from "@/modules/tax-tables/ato-schedules";
+import { pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
@@ -49,6 +50,7 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("fortnightly-tax-table"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["james-harrington"].jsonLd,

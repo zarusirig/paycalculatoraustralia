@@ -13,6 +13,7 @@ import {
   registeredNurseRange,
 } from "@/lib/data/nursing-pay";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -92,6 +93,8 @@ export default async function Page({ params }: PageProps) {
   const article: WithContext<Article> = {
     "@context": "https://schema.org",
     "@type": "Article",
+    datePublished: pageDatePublished(`healthcare-worker-pay/${slug}`),
+    dateModified: pageDateModified(`healthcare-worker-pay/${slug}`),
     "@id": `${url}#article`,
     headline: `Nurse and midwife pay rates in ${state.name}`,
     image: `${BASE}/og-image.png`,

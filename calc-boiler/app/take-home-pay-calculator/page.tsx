@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/take-home-pay-calculator/`;
@@ -41,7 +42,7 @@ const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.or
 
 const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", "@type": "WebApplication", name: `Take Home Pay Calculator Australia ${FY}`, url: URL, applicationCategory: "FinanceApplication", operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
+  offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: pageDateModified("take-home-pay-calculator"), inLanguage: "en-AU" };
 
 const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
   { "@type": "Question", name: "How is take-home pay calculated?", acceptedAnswer: { "@type": "Answer", text: "Take-home pay is your gross salary minus income tax, Medicare levy, and any HECS repayments. Your employer deducts these through the PAYG system. Super is paid separately." } },

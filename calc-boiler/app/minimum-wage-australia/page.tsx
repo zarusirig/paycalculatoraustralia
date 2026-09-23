@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { NMW_ORDER } from "@/lib/constants/junior-rates";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-australia/`;
@@ -34,6 +35,8 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("minimum-wage-australia"),
+  dateModified: pageDateModified("minimum-wage-australia"),
   headline: MW_TITLE,
   description: MW_DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

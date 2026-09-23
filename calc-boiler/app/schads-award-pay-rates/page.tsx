@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { SCHADS_AWARD, SCHADS_SACS } from "@/lib/constants/schads-award";
+import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schads-award-pay-rates/`;
@@ -62,6 +63,8 @@ const webPage: WithContext<WebPage> = {
 const article: WithContext<Article> = {
   "@context": "https://schema.org",
   "@type": "Article",
+  datePublished: pageDatePublished("schads-award-pay-rates"),
+  dateModified: pageDateModified("schads-award-pay-rates"),
   headline: TITLE,
   description: DESCRIPTION,
   author: AUTHORS["penny-ward"].jsonLd,

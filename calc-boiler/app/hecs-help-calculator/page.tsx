@@ -4,6 +4,7 @@ import HECSHelpCalculatorPage, { type CalculatorFaq } from "@/modules/calculator
 import { JsonLd } from "@/modules/seo/json-ld";
 import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hecs-help-calculator/`;
@@ -127,7 +128,7 @@ const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", 
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU",
+  dateModified: pageDateModified("hecs-help-calculator"), inLanguage: "en-AU",
 };
 
 const faq: WithContext<FAQPage> = {
