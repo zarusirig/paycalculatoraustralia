@@ -174,6 +174,15 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end T2 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026) ---
+  {
+    title: "Data & Tools for Other Sites",
+    items: [
+      { href: "/australian-pay-report-2026/", label: "Australian Pay Report 2026 (data study)" },
+      { href: "/embed/", label: "Embed the Take-Home Pay Calculator" },
+    ],
+  },
+  // --- end F8 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */
