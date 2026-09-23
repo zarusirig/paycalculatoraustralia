@@ -91,7 +91,7 @@ export default function SalarySacrificeCalculatorPage() {
                         onChange={(e) => setSacrifice(clamp(Number(e.target.value || 0), 0, Math.min(salary, capRoom)))}
                         className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <p className="text-xs text-warmgray-light mt-1">Cap room: {formatAUD(capRoom)} (of {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap)</p>
+                    <p className="text-xs text-warmgray-light mt-1">Cap room: {formatAUD(capRoom)} (of {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap). Carry-forward or other contributions? Use the <Link href="/concessional-contributions-cap/" className="text-eucalyptus-dark hover:underline">concessional cap calculator</Link>.</p>
                   </div>
                   <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 rounded-lg shadow-md transition-all">
                     Compare Pay
@@ -372,7 +372,7 @@ export default function SalarySacrificeCalculatorPage() {
 
             <h3 className="text-lg font-semibold text-navy mb-2">How the Concessional Cap Works</h3>
             <p className="mb-3 text-warmgray">
-              Your employer&apos;s compulsory {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee counts toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $100,000 salary, your employer contributes <strong>$12,000</strong>, leaving <strong>$18,000</strong> of cap room for salary sacrifice. On a $150,000 salary, employer SG is <strong>$18,000</strong>, leaving only <strong>$12,000</strong> of cap room. Exceeding the cap results in the excess being added to your assessable income and taxed at your marginal rate, plus an interest charge.
+              Your employer&apos;s compulsory {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee counts toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $100,000 salary, your employer contributes <strong>$12,000</strong>, leaving <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)}</strong> of cap room for salary sacrifice. On a $150,000 salary, employer SG is <strong>$18,000</strong>, leaving only <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 18_000)}</strong> of cap room. Exceeding the cap results in the excess being added to your assessable income and taxed at your marginal rate, less a 15% offset.
             </p>
 
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
@@ -412,10 +412,10 @@ export default function SalarySacrificeCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are Common Salary Sacrifice Mistakes?</h2>
             <p className="mb-4 text-warmgray">
-              The most common salary sacrifice mistake is exceeding the <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> concessional cap, which triggers excess contributions tax at your marginal rate plus an interest charge.
+              The most common salary sacrifice mistake is exceeding the <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> concessional cap: the excess is added to your assessable income and taxed at your marginal rate, less a 15% offset. See the <Link href="/concessional-contributions-cap/">concessional contributions cap</Link> guide.
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray">
-              <li><strong>Exceeding the concessional cap</strong> — Forgetting that employer SG contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $120,000 salary, employer SG is $14,400, leaving only $15,600 of cap room — not the full $30,000.</li>
+              <li><strong>Exceeding the concessional cap</strong> — Forgetting that employer SG contributions count toward the {formatAUD(SUPER_GUARANTEE.concessionalCap)} cap. On a $120,000 salary, employer SG is $14,400, leaving only {formatAUD(SUPER_GUARANTEE.concessionalCap - 14_400)} of cap room, not the full {formatAUD(SUPER_GUARANTEE.concessionalCap)}.</li>
               <li><strong>Ignoring the HECS-HELP impact</strong> — Reportable super contributions are added back to &quot;repayment income&quot; when calculating HECS-HELP repayments. Salary sacrifice does not reduce your{" "}
                 <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP</Link>{" "}
                 obligation.</li>
@@ -432,7 +432,7 @@ export default function SalarySacrificeCalculatorPage() {
               The superannuation guarantee rate increased to <strong>12%</strong> from 1 July 2025, up from 11.5% in FY2024-25, reducing the available concessional cap room for salary sacrifice.
             </p>
             <p className="text-warmgray">
-              On a $100,000 salary, employer SG rose from $11,500 to <strong>$12,000</strong>, reducing cap room from $18,500 to <strong>$18,000</strong>. The concessional contribution cap remains at <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>. The Stage 3 income tax cuts from 1 July 2024 also changed the calculus: the 30% bracket now extends to $135,000 (previously $120,000), giving more employees access to the 30% vs 15% salary sacrifice benefit. Use the{" "}
+              On a $100,000 salary, employer SG rose from $11,500 to <strong>$12,000</strong>, reducing cap room under the then {formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)} cap from $18,500 to $18,000. From 1 July 2026 the cap rose to <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>, so the room on $100,000 is now <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap - 12_000)}</strong>. The Stage 3 income tax cuts from 1 July 2024 also changed the calculus: the 30% bracket now extends to $135,000 (previously $120,000), giving more employees access to the 30% vs 15% salary sacrifice benefit. Use the{" "}
               <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>{" "}
               to determine your total gross salary before modelling sacrifice scenarios.
             </p>
@@ -470,7 +470,7 @@ export default function SalarySacrificeCalculatorPage() {
                       <td className="p-3 text-navy font-medium">Super contributions</td>
                       <td className="p-3 text-navy">Exempt</td>
                       <td className="p-3 text-navy">Taxed at 15% in fund</td>
-                      <td className="p-3 text-navy">$30,000/year concessional cap</td>
+                      <td className="p-3 text-navy">{formatAUD(SUPER_GUARANTEE.concessionalCap)}/year concessional cap</td>
                     </tr>
                     <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                       <td className="p-3 text-navy font-medium">Electric vehicle (novated lease)</td>
@@ -604,7 +604,7 @@ export default function SalarySacrificeCalculatorPage() {
                       <li>Reduces your immediately available cash flow.</li>
                       <li>Super contributions are locked away until age 60.</li>
                       <li>Does not reduce calculations for HECS repayments.</li>
-                      <li>Subject to strict $30k concessional caps.</li>
+                      <li>Subject to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap.</li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -617,7 +617,7 @@ export default function SalarySacrificeCalculatorPage() {
                 <li><strong>Reduced cash flow</strong> — Every dollar sacrificed is a dollar removed from your take-home pay. Budget accordingly using a fortnightly or monthly breakdown from our <Link href="/">Pay Calculator</Link></li>
                 <li><strong>Super preservation</strong> — Salary sacrificed into super is locked until a condition of release is met, typically reaching age 60 and retiring. Early access is restricted to severe financial hardship, terminal illness, or compassionate grounds</li>
                 <li><strong>HECS-HELP is unaffected</strong> — The ATO calculates HECS repayments using &quot;Repayment Income&quot; which adds back reportable super contributions and reportable fringe benefits. Salary sacrifice does not reduce HECS obligations. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for the full repayment structure</li>
-                <li><strong>Exceeding the concessional cap</strong> — Contributions beyond $30,000 (including employer SG) are taxed at the employee&apos;s marginal rate plus an excess concessional contributions charge</li>
+                <li><strong>Exceeding the concessional cap</strong> — Contributions beyond {formatAUD(SUPER_GUARANTEE.concessionalCap)} (including employer SG, and before any carry-forward) are taxed at the employee&apos;s marginal rate less a 15% offset</li>
                 <li><strong>Impact on government benefits</strong> — Centrelink assessments may use adjusted taxable income, which includes reportable super contributions, potentially reducing eligibility for Family Tax Benefit, childcare subsidies, or other income-tested payments</li>
                 <li><strong>Employer insolvency risk</strong> — If your employer becomes insolvent before remitting salary sacrifice contributions to your super fund, those contributions may be treated as unpaid wages</li>
                 <li><strong>No retrospective changes</strong> — Once a pay period passes, the sacrifice cannot be reversed. Only future pay periods can be adjusted</li>
@@ -629,7 +629,7 @@ export default function SalarySacrificeCalculatorPage() {
                 Setting up a salary sacrifice arrangement requires a written agreement with your employer before the relevant pay period. The process takes <strong>1 to 4 weeks</strong> depending on your employer&apos;s payroll cycle and approval process.
               </p>
               <ol>
-                <li><strong>Calculate your cap space</strong> — Check your current employer SG contributions (12% of your gross salary for FY2025-26) and subtract from the $30,000 concessional cap. The result is your maximum sacrifice amount for super</li>
+                <li><strong>Calculate your cap space</strong> — Check your current employer SG contributions ({formatPercent(SUPER_GUARANTEE.rate, 0)} of your gross salary) and subtract from the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap. The result is your maximum sacrifice amount for super</li>
                 <li><strong>Determine the right amount</strong> — Model the impact on your take-home pay using the <Link href="/salary-sacrifice-calculator/">Salary Sacrifice Calculator</Link>. Ensure the reduced fortnightly pay covers rent, mortgage repayments, groceries, and other essential expenses</li>
                 <li><strong>Request the arrangement in writing</strong> — Submit a written request to your employer or HR department specifying the dollar amount per pay period, the benefit type (super, novated lease, device), and the desired start date</li>
                 <li><strong>Employer approves and adjusts payroll</strong> — Your employer confirms the arrangement and updates the payroll system. The first adjusted pay slip reflects the lower gross salary and reduced PAYG withholding</li>
