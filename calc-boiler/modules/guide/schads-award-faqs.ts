@@ -10,6 +10,7 @@
 // Nothing is typed as a literal.
 
 import { formatAUD } from "@/lib/constants";
+import { roundCents } from "@/lib/constants/modern-awards";
 import {
   SCHADS_AWARD,
   SCHADS_ALLOWANCES,
@@ -27,7 +28,7 @@ function rate(rows: readonly SchadsRate[], classification: string): SchadsRate {
 
 /** Round half up to the cent, matching how Fair Work publishes derived rates. */
 export function toCents(value: number): number {
-  return Math.round(value * 100 + Number.EPSILON) / 100;
+  return roundCents(value);
 }
 
 /** Casual rate = ordinary hourly rate plus the 25% loading (cl 10.4). */

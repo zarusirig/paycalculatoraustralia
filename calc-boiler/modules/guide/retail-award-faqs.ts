@@ -6,6 +6,7 @@
 // lib/constants/hospitality-award.ts, which carries both awards.
 
 import { formatAUD } from "@/lib/constants";
+import { JUNIOR_PHASE_IN, roundCents } from "@/lib/constants/modern-awards";
 import {
   AWR_2026_FLOORS,
   RETAIL_AWARD,
@@ -26,7 +27,7 @@ const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
 
 const STANDARD_HOURS = 38;
 const AGE_16 = RETAIL_JUNIOR_SCALE.find((b) => b.age === "16")!;
-const cents = (v: number) => Math.round(v * 100 + Number.EPSILON) / 100;
+const cents = (v: number) => roundCents(v);
 
 // Junior figures derive from the WEEKLY rate then divide by standard hours —
 // the order that reproduces Fair Work's published dollars. Applying the
@@ -79,5 +80,9 @@ export const RETAIL_FAQS: readonly RetailFaq[] = [
   {
     q: "When did the new retail rates take effect?",
     a: `From the first full pay period starting on or after ${RETAIL_AWARD.operativeFrom} — not universally 1 July. If your pay period began before that date, the previous rate lawfully applies to the whole of it and the increase starts with your next one. That is the most common reason a July payslip looks wrong when it is not.`,
+  },
+  {
+    q: "Are retail junior rates changing on 1 December 2026?",
+    a: `Yes, for 18 and 19-year-olds at levels 1 to 3 who have been employed by their employer for more than 6 months — but gradually. Determination ${JUNIOR_PHASE_IN.retail.determination} (${JUNIOR_PHASE_IN.decision}, ${JUNIOR_PHASE_IN.decidedOn}) lifts 18-year-olds from 70% to ${JUNIOR_PHASE_IN.retail.age18[0]}% and 19-year-olds from 80% to ${JUNIOR_PHASE_IN.retail.age19[0]}% from the first full pay period on or after 1 December 2026, then 5 points more each July and December until both reach the adult rate on 1 July 2029 (18) and 1 July 2028 (19). Twenty-year-olds with more than 6 months already receive the adult rate, and under-18 rates do not change.`,
   },
 ];

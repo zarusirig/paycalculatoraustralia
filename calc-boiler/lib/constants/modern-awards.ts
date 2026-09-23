@@ -853,6 +853,8 @@ export interface JuniorPhaseInSchedule {
   age20: readonly number[];
   /** Unchanged rates for 6 months or less with the employer. */
   qualifyingPeriod: { age18: number; age19: number; age20: number };
+  /** Rates today (before 1 Dec 2026) for employees with MORE than 6 months. */
+  present: { age18: number; age19: number; age20: number };
 }
 
 export const JUNIOR_PHASE_IN = {
@@ -874,6 +876,7 @@ export const JUNIOR_PHASE_IN = {
     age19: [85, 90, 95, 100, 100, 100],
     age20: [95, 100, 100, 100, 100, 100],
     qualifyingPeriod: { age18: 70, age19: 80, age20: 90 },
+    present: { age18: 70, age19: 80, age20: 90 },
   },
   retail: {
     determination: "PR813655",
@@ -889,6 +892,8 @@ export const JUNIOR_PHASE_IN = {
     age19: [85, 90, 95, 100, 100, 100],
     age20: [100, 100, 100, 100, 100, 100],
     qualifyingPeriod: { age18: 70, age19: 80, age20: 90 },
+    // Retail 20-year-olds with more than 6 months already receive 100%.
+    present: { age18: 70, age19: 80, age20: 100 },
   },
   pharmacy: {
     determination: "PR813656",
@@ -902,6 +907,7 @@ export const JUNIOR_PHASE_IN = {
     age19: [85, 95, 100, 100],
     age20: [95, 100, 100, 100],
     qualifyingPeriod: { age18: 70, age19: 80, age20: 90 },
+    present: { age18: 70, age19: 80, age20: 90 },
   },
 } as const satisfies {
   decision: string;

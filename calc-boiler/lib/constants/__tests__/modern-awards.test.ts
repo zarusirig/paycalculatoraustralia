@@ -221,6 +221,7 @@ test("phase-in agrees with junior-rates.ts JUNIOR_TRANSITION_SCHEDULES (independ
   ] as const;
   for (const [mine, theirs] of pairs) {
     assert.equal(mine.determination, theirs.determination);
+    assert.deepEqual(mine.present, theirs.present);
     assert.deepEqual([...mine.age18], theirs.rows.map((r) => r.age18));
     assert.deepEqual([...mine.age19], theirs.rows.map((r) => r.age19));
     assert.deepEqual([...mine.age20], theirs.rows.map((r) => r.age20));

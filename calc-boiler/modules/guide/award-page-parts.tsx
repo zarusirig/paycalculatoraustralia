@@ -155,10 +155,10 @@ export function JuniorPhaseInTable({
   baseLabel: string;
   caption: string;
 }) {
-  const ages: { label: string; values: readonly number[]; qualifying: number }[] = [
-    { label: "18", values: schedule.age18, qualifying: schedule.qualifyingPeriod.age18 },
-    { label: "19", values: schedule.age19, qualifying: schedule.qualifyingPeriod.age19 },
-    { label: "20", values: schedule.age20, qualifying: schedule.qualifyingPeriod.age20 },
+  const ages: { label: string; values: readonly number[]; now: number }[] = [
+    { label: "18", values: schedule.age18, now: schedule.present.age18 },
+    { label: "19", values: schedule.age19, now: schedule.present.age19 },
+    { label: "20", values: schedule.age20, now: schedule.present.age20 },
   ];
   const hourlyAt = (pct: number) => roundCents((adultWeekly * pct) / 100 / 38);
   return (
@@ -180,7 +180,7 @@ export function JuniorPhaseInTable({
               <tr key={a.label}>
                 <th scope="row" className="px-4 py-2.5 text-left font-medium">{a.label}</th>
                 <td className="px-4 py-2.5">
-                  {a.qualifying}%<span className="block text-xs text-warmgray">{formatAUD(hourlyAt(a.qualifying), 2)}</span>
+                  {a.now}%<span className="block text-xs text-warmgray">{formatAUD(hourlyAt(a.now), 2)}</span>
                 </td>
                 {a.values.map((v, i) => (
                   <td key={`${a.label}-${schedule.periods[i]}`} className="px-4 py-2.5">
