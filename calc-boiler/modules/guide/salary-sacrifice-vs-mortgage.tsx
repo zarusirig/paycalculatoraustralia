@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SALARY_SACRIFICE_VS_MORTGAGE_FAQS } from "./salary-sacrifice-vs-mortgage-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -173,38 +174,7 @@ export default function SalarySacrificeVsMortgagePage() {
             {/* SECTION 6: FAQ */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="which-better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is salary sacrifice into super better than paying off a mortgage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It depends on your marginal tax rate, mortgage rate, and time to retirement. Generally, salary sacrifice provides a better long-term outcome when your tax rate is high (37%+) and your mortgage rate is below 5&ndash;6%. Extra mortgage payments win when rates are high and you need financial flexibility.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="tax-benefit" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How much tax do I save by salary sacrificing into super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Salary sacrifice contributions are taxed at 15% inside super. If your marginal rate is 30%, you save 15 cents per dollar. At 37%, you save 22 cents. At 45%, you save 30 cents (plus the 2% Medicare Levy saving). For someone in the 37% bracket salary sacrificing $500/month, that is <strong>$1,320 per year</strong> in tax savings.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="access-super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I access salary sacrificed super to pay off my mortgage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Not until you reach preservation age (currently 60) and meet a condition of release such as retirement. There is no provision to withdraw super for mortgage payments under normal circumstances. Early access is only available in cases of severe financial hardship, terminal illness, or compassionate grounds as determined by the ATO.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="cap" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the maximum I can salary sacrifice into super?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    The concessional contributions cap is <strong>$30,000 per year</strong> for FY2025-26. This includes employer SG contributions and salary sacrifice. Unused cap amounts from the previous 5 financial years can be carried forward if your total super balance is under $500,000. Use the <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model your specific situation.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="hybrid" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Should I do both salary sacrifice and extra mortgage payments?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    A hybrid approach often works best. Salary sacrifice enough to capture the tax benefit (especially if in the 37% or 45% bracket), then direct surplus cash to mortgage repayments or an offset account. This balances the tax advantage with financial accessibility.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SALARY_SACRIFICE_VS_MORTGAGE_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

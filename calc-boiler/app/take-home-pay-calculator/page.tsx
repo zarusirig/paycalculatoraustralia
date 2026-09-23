@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import TakeHomePayCalculatorPage from "@/modules/calculator/take-home-pay-calculator";
+import { faqPageSchema } from "@/lib/faq";
+import { TAKE_HOME_PAY_FAQS } from "@/modules/calculator/take-home-pay-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -11,9 +13,6 @@ const URL = `${BASE}/take-home-pay-calculator/`;
 const FY = SITE_CONFIG.financialYear;
 // Figures from the tax engine at build time, never hardcoded.
 const at80k = calculatePayBreakdown({ grossSalary: 80_000 });
-const at50k = calculatePayBreakdown({ grossSalary: 50_000 });
-const at100k = calculatePayBreakdown({ grossSalary: 100_000 });
-const keep = (net: number, gross: number) => `${((net / gross) * 100).toFixed(1)}%`;
 
 // 8.6k impr at 0.41% CTR (pos 4.8) but DataForSEO shows this URL ranking for
 // only 4 keywords — the head terms were split between / (take home #12, after
@@ -43,12 +42,7 @@ const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", 
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
 
-const faq: WithContext<FAQPage> = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: [
-  { "@type": "Question", name: "How is take-home pay calculated?", acceptedAnswer: { "@type": "Answer", text: "Take-home pay is your gross salary minus income tax, Medicare levy, and any HECS repayments. Your employer deducts these through the PAYG system. Super is paid separately." } },
-  { "@type": "Question", name: "What percentage of my salary do I take home?", acceptedAnswer: { "@type": "Answer", text: `In ${FY}, at $50,000 you keep ${keep(at50k.takeHomePay, 50_000)} (${formatAUD(at50k.takeHomePay)}). At $100,000 you keep ${keep(at100k.takeHomePay, 100_000)} (${formatAUD(at100k.takeHomePay)}, without HECS). The percentage decreases as salary increases due to progressive tax rates.` } },
-  { "@type": "Question", name: "Is super deducted from my pay?", acceptedAnswer: { "@type": "Answer", text: `No. Your employer pays super (${Math.round(SUPER_GUARANTEE.rate * 100)}%) on top of your salary. Voluntary salary sacrifice amounts are deducted pre-tax.` } },
-  { "@type": "Question", name: "Why is my first pay smaller than expected?", acceptedAnswer: { "@type": "Answer", text: "If you haven't submitted a TFN declaration, your employer withholds at the highest rate (45% plus Medicare). Submit your TFN immediately." } },
-]};
+const faq = faqPageSchema(TAKE_HOME_PAY_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Take-Home Pay Calculator",

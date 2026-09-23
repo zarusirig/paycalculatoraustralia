@@ -216,3 +216,28 @@ export function bringForwardThresholds(): { threeYear: number; twoYear: number; 
   const ncc = SUPER_GUARANTEE.nonConcessionalCap;
   return { threeYear: tbc - 2 * ncc, twoYear: tbc - ncc, nilCap: tbc };
 }
+
+// ---------- Government super co-contribution & spouse offset ----------
+// ATO "Government contributions" (Table 25), last updated 27 April 2026:
+// 2026-27 lower threshold $49,293, higher $64,293. 50% match, $500 maximum,
+// reduced by 3.333c per $1 over the lower threshold (higher = lower + $15,000).
+export const CO_CONTRIBUTION = {
+  incomeYear: "2026-27",
+  maxEntitlement: 500,
+  matchRate: 0.5,
+  lowerThreshold: 49_293,
+  higherThreshold: 64_293,
+  /** Personal contribution needed for the maximum entitlement. */
+  contributionForMax: 1_000,
+  /** At least this share of total income must be from employment/business. */
+  eligibleIncomeShare: 0.1,
+} as const;
+
+/** Spouse contribution tax offset (ITAA 1997 s 290-230). Not indexed. */
+export const SPOUSE_OFFSET = {
+  rate: 0.18,
+  maxContribution: 3_000,
+  maxOffset: 540,
+  spouseIncomeLower: 37_000,
+  spouseIncomeCutOff: 40_000,
+} as const;

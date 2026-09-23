@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { SALARY_VS_HOURLY_FAQS } from "./salary-vs-hourly-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
@@ -294,49 +295,7 @@ export default function SalaryVsHourlyPage() {
 
             <section id="faq">
               <h2>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="better" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is salary or hourly pay better in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Neither is universally better. Salary provides income stability, guaranteed paid leave, and predictable budgeting — ideal for employees who value consistency. Hourly pay ensures compensation for every hour worked including overtime and penalty rates — better for workers in industries with regular overtime opportunities. The best choice depends on your industry, role, and financial priorities.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="convert" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">How do I convert my salary to an hourly rate?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Divide your annual salary by 52 weeks, then divide by your standard weekly hours (38 for full-time). For example: $75,000 / 52 / 38 = $37.93 per hour. Use our <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> for an instant conversion with tax and super included.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="overtime" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do salaried employees get overtime in Australia?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    It depends on the award or enterprise agreement. Many salaried employees have &quot;reasonable additional hours&quot; clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the high income threshold ($175,000 in FY2025-26) can be directed to work reasonable additional hours without extra pay under the Fair Work Act.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="casual" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Is casual hourly pay higher than salary?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Casual employees receive a <strong>25% casual loading</strong> on top of the base hourly rate, which compensates for the absence of paid leave entitlements. This means the headline hourly rate is higher, but when you account for the value of 4 weeks annual leave, 10 days personal leave, and other entitlements, the total package is typically comparable to a permanent role.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="super" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do hourly workers get superannuation?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Yes. All employees — salaried, hourly permanent, and hourly casual — receive the 12% Superannuation Guarantee from their employer on ordinary time earnings (OTE). There is no minimum earnings threshold. Super is calculated on OTE, which includes base rate, shift loadings, and casual loading, but generally excludes overtime.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="mortgage" className="border rounded-lg px-4 bg-sandstone bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Which is better for getting a mortgage?</AccordionTrigger>
-                  <AccordionContent className="text-navy">
-                    Lenders generally prefer salaried income because it is predictable and verifiable with a single letter of employment. Hourly and casual workers may need to provide 3-6 months of payslips, group certificates, or tax returns to prove consistent income. Overtime and penalty rate income is often discounted by 20-50% in lending assessments because it is not guaranteed.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={SALARY_VS_HOURLY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-sandstone bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-navy" />
             </section>
 
             <div className="mt-12 not-prose">

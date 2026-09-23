@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calculator";
+import { faqPageSchema } from "@/lib/faq";
+import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-tax-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { SCALE_1_NO_TFT } from "@/lib/constants/payg-withholding";
 
-// First coefficient of the current Schedule 1 "no tax-free threshold" scale
-// (15% from 1 July 2026; the FAQ previously said 16%).
-const NO_TFT_START_RATE = `${Math.round((SCALE_1_NO_TFT[0].a ?? 0) * 100)}%`;
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
@@ -58,32 +56,7 @@ const webAppSchema: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faqSchema: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Why is my second job taxed more?",
-      acceptedAnswer: { "@type": "Answer", text: `Your second job is taxed at a higher rate because you can only claim the tax-free threshold ($18,200) on one job. Your second employer withholds tax from the first dollar at the 'no tax-free threshold' rate, which starts at ${NO_TFT_START_RATE} in ${SITE_CONFIG.financialYear}.` },
-    },
-    {
-      "@type": "Question",
-      name: "Should I claim the tax-free threshold on my higher-paying job?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. Always claim the tax-free threshold on the job that pays more. This reduces withholding on your largest income source and minimises the chance of a tax debt at the end of the financial year." },
-    },
-    {
-      "@type": "Question",
-      name: "Will I get a tax refund from my second job?",
-      acceptedAnswer: { "@type": "Answer", text: "Possibly. The 'no tax-free threshold' withholding rate on your second job often over-withholds tax. When you lodge your tax return, the ATO calculates your actual liability on combined income — if more was withheld than owed, you receive a refund." },
-    },
-    {
-      "@type": "Question",
-      name: "Do I need to declare my second job to the ATO?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes. All income from every employer must be reported on your tax return. Each employer reports your earnings to the ATO via Single Touch Payroll, so the ATO already has your income data." },
-    },
-  ],
-};
+const faqSchema = faqPageSchema(SECOND_JOB_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Use the Second Job Tax Calculator",
