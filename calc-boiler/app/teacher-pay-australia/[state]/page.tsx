@@ -5,6 +5,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
+import { teacherStateFaqs } from "@/lib/data/teacher-pay/hub";
 import {
   TEACHER_STATE_SLUGS,
   getTeacherPayState,
@@ -114,12 +115,13 @@ export default async function Page({ params }: PageProps) {
   // Built from the same array the accordion renders, so the markup cannot drift
   // from the visible answers. A state with no verified data has no FAQs, and an
   // empty FAQPage is invalid markup — so it is omitted rather than emitted bare.
+  const faqs = teacherStateFaqs(state);
   const faq: WithContext<FAQPage> | null =
-    state.faqs.length > 0
+    faqs.length > 0
       ? {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: state.faqs.map((f) => ({
+          mainEntity: faqs.map((f) => ({
             "@type": "Question" as const,
             name: f.q,
             acceptedAnswer: { "@type": "Answer" as const, text: f.a },
