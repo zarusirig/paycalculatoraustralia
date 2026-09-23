@@ -653,3 +653,46 @@ export function assessableAfterWorkBonus(employmentIncome: number, balance: numb
   const usable = Math.min(Math.max(0, balance), WORK_BONUS.maxBalance);
   return Math.max(0, afterCredit - usable);
 }
+
+// -----------------------------------------------------------------------------
+// --- G6: Deeming rates from 20 September 2026 ---
+//
+// Services Australia "Deeming rates have increased" (published 20 September
+// 2026): "Deeming rates have increased to 1.75% and 3.75%." Services Australia
+// "Deeming" page, read 24 September 2026: the first $66,800 (single) or
+// $110,600 (couple, combined) is deemed at 1.75%, the rest at 3.75%; a couple
+// where neither gets a pension: $55,300 each. DVA "September pensions and
+// deeming rates update": 1.75% "(currently 1.25%)" and 3.75% "(currently
+// 3.25%)" from 20 September 2026, with the same $66,800 / $110,600 thresholds —
+// which gives the previous rates below. Only the rates changed.
+// -----------------------------------------------------------------------------
+
+export const DEEMING_SEPTEMBER_2026 = {
+  effectiveFrom: "20 September 2026",
+  lowerRate: 0.0175,
+  upperRate: 0.0375,
+  previousLowerRate: 0.0125,
+  previousUpperRate: 0.0325,
+  thresholds: { single: 66_800, couple: 110_600, nonPensionerCoupleEach: 55_300 },
+  sources: {
+    news: "https://www.servicesaustralia.gov.au/deeming-rates-have-increased",
+    deeming: "https://www.servicesaustralia.gov.au/deeming",
+    dva: "https://www.dva.gov.au/news/latest-stories/september-pensions-and-deeming-rates-update",
+  },
+} as const;
+
+/**
+ * Deemed income a year from financial assets. `threshold` is the single or
+ * couple (combined) lower threshold; rates default to those from 20 Sep 2026.
+ */
+export function deemedIncomeAnnual(
+  financialAssets: number,
+  threshold: number = DEEMING_SEPTEMBER_2026.thresholds.single,
+  lowerRate: number = DEEMING_SEPTEMBER_2026.lowerRate,
+  upperRate: number = DEEMING_SEPTEMBER_2026.upperRate,
+): number {
+  const a = Math.max(0, financialAssets);
+  const raw = Math.min(a, threshold) * lowerRate + Math.max(0, a - threshold) * upperRate;
+  return Math.round(raw * 100) / 100;
+}
+// --- end G6 ---

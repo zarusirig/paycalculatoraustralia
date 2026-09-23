@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, CollectionPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { getAllNews } from "@/lib/news";
+import { formatNewsDate, getAllNews, NEWS_CATEGORIES } from "@/lib/news";
 import NewsIndexPage from "@/modules/news/index-page";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -49,7 +49,16 @@ export default function Page() {
   return (
     <>
       <JsonLd code={[collection, breadcrumb]} />
-      <NewsIndexPage />
+      <NewsIndexPage
+        categories={NEWS_CATEGORIES}
+        items={getAllNews().map((a) => ({
+          slug: a.slug,
+          headline: a.headline,
+          description: a.description,
+          category: a.category,
+          dateLabel: formatNewsDate(a.datePublished),
+        }))}
+      />
     </>
   );
 }

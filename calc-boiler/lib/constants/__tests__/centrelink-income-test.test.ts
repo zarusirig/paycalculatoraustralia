@@ -393,3 +393,20 @@ test("Youth Allowance job seeker cut-offs rise with the maximum rate", () => {
   assert.ok(C.over18AtHome > J.freeArea + J.maxFortnightly.over18AtHome / 0.6);
   assert.ok(C.awayFromHome > J.freeArea + J.maxFortnightly.over18AwayFromHome / 0.6);
 });
+
+// --- G6: deeming rates from 20 September 2026 ---
+import { DEEMING_SEPTEMBER_2026, deemedIncomeAnnual } from "../centrelink-income-test";
+
+test("G6: deeming from 20 Sep 2026 — rates rose 0.5 points, thresholds split the tiers", () => {
+  const D = DEEMING_SEPTEMBER_2026;
+  assert.equal(Math.round((D.lowerRate - D.previousLowerRate) * 10000), 50);
+  assert.equal(Math.round((D.upperRate - D.previousUpperRate) * 10000), 50);
+  // Below the single threshold only the lower rate applies.
+  assert.equal(deemedIncomeAnnual(50_000), 875);
+  // $120,000 single: 66,800 x 1.75% + 53,200 x 3.75% = 1,169 + 1,995.
+  assert.equal(deemedIncomeAnnual(120_000), 3_164);
+  // Couple threshold is combined.
+  assert.equal(deemedIncomeAnnual(110_600, D.thresholds.couple), 1_935.5);
+  assert.equal(deemedIncomeAnnual(-5), 0);
+});
+// --- end G6 ---

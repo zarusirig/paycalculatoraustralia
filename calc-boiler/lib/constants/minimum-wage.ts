@@ -488,3 +488,32 @@ export function compareCasualPermanent(input: CasualComparisonInput): CasualComp
     casualSuper: roundCents(casualAnnual * SUPER_GUARANTEE.rate),
   };
 }
+
+// --- G6: Queensland State Wage Case 2026 ---
+/**
+ * Declaration of General Ruling (State Wage Case 2026) [2026] QIRC 280,
+ * B/2026/59 and B/2026/60, delivered 4 September 2026 (Hartigan DP, Pratt IC,
+ * Caddie IC), read in full on 24 September 2026. Orders: (1) wages and
+ * salaries for full-time adult employees in all state awards increase by
+ * 4.75%; (2) work-related monetary allowances (not expense-related) and service
+ * increments increase by 4.75%; (3) the Queensland minimum wage for all
+ * full-time employees is $1004.90 a week; (4) operative on and from
+ * 1 September 2026. [81]: employees under 21 under a Queensland modern award
+ * get that award's junior rates rather than the QMW. Table 4 ([30]): an
+ * estimated 383,000 Queensland workers are outside the national system; the
+ * Queensland public sector is 333,329 (99% agreement coverage, 1,898
+ * award-reliant).
+ */
+export const QLD_STATE_WAGE_CASE_2026 = {
+  citation: "[2026] QIRC 280",
+  deliveredOn: "4 September 2026",
+  operativeFrom: "1 September 2026",
+  increase: 0.0475,
+  qmwWeekly: 1_004.9,
+  qldSystemWorkers: 383_000,
+  qldPublicSector: 333_329,
+  qldPublicSectorAgreementCoverage: 0.99,
+  qldPublicSectorAwardReliant: 1_898,
+  url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf",
+} as const;
+// --- end G6 ---

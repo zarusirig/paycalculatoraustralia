@@ -212,3 +212,36 @@ export const ATC_PAY: AviationPayPage = {
     },
   ],
 };
+
+// --- G6: the agreement's "24 months" salary column (3.4%) ---
+/**
+ * Attachment 1 of the 2024-2027 agreement, "24 months" column, read on
+ * 24 September 2026 from Airservices' "Air Traffic Control Classification Base
+ * Salary 2024-2027" PDF (identical to the agreement's Attachment 1). Due
+ * 24 months after the 7 October 2024 commencement — see ATC_PAY.unverified on
+ * the exact pay period. Labels match ATC_PAY's "atc-classification" steps.
+ */
+export const ATC_24_MONTH_COLUMN = {
+  increase: 0.034,
+  dueOn: "7 October 2026",
+  sourceUrl: "https://www.airservicesaustralia.com/wp-content/uploads/2024/11/ATC_Classification_Base_Salary.pdf",
+  salaries: {
+    "Ab Initio Trainee": 64_398,
+    "Field Trainee": 92_251,
+    "Level 1": 125_564,
+    "Level 2": 140_941,
+    "Level 3": 156_315,
+    "Level 4": 169_981,
+    "Level 5": 183_648,
+    "Level 6": 199_878,
+    "Level 7": 213_544,
+    "Level 8": 227_212,
+    "Level 9": 234_898,
+    "Level 10": 243_589,
+    "SY TTCU": 260_422,
+    UTS: 266_142,
+    "CSS / SS": 266_142,
+    "SY CSS/Supervisor": 286_463,
+  } as Record<string, number>,
+} as const;
+// --- end G6 ---
