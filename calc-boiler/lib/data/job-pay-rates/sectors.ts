@@ -63,4 +63,5 @@ export const OCCUPATION_SECTOR: Readonly<Record<OccupationSlug, JobSectorId>> = 
   audiologist: "health",
   podiatrist: "health",
   dietitian: "health",
+  veterinarian: "health",
 };

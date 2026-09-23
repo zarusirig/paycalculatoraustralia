@@ -585,6 +585,17 @@ test("G3: FAQ figures agree with the shared HPSS rows they quote", () => {
   assert.equal(Math.round(32.09 * 2.5 * 100) / 100, 80.23);
 });
 
+test("G3: vet rates follow the cl 15.3 NOTE chain (annual ÷ 52 to 10c, ÷ 38) and Schedule B.2.5 casuals", () => {
+  const rows = getOccupation("veterinarian")!.tables[0].rows;
+  assert.deepEqual(rows.map((r) => r.annual), [67_582, 71_300, 77_032, 84_628, 95_593]);
+  for (const r of rows) {
+    assert.equal(cents(r.weekly / 38), cents(r.hourly), r.label);
+    assert.equal(Math.round(cents(r.hourly) * 1.25), cents(r.casualHourly!), r.label);
+  }
+  const h = headlineRow(getOccupation("veterinarian")!)!;
+  assert.deepEqual([h.label, h.hourly, h.weekly], ["Level 1A", 34.2, 1299.7]);
+});
+
 test("G3: podiatrist carries no median (JSA publishes N/A); the others carry JSA medians", () => {
   assert.equal(getOccupation("podiatrist")!.median, null);
   assert.equal(getOccupation("radiographer")!.median!.medianWeekly, 2_360);
