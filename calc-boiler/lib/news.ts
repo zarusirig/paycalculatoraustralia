@@ -657,7 +657,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum.",
     category: "Wages",
     datePublished: "2026-09-17",
-    dateModified: "2026-09-23",
+    dateModified: "2026-09-24",
     authorId: "penny-ward",
     relatedCalculators: [
       { href: "/teacher-pay-australia/vic/", label: "Victorian Teacher Pay Scale" },
@@ -668,6 +668,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "Proposed Victorian Government Schools Agreement 2026 (Schedule 1: Salary Rates)", url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615", publisher: "Victorian Department of Education" },
       { title: "Enterprise Bargaining: Overview (updated 17 September 2026)", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/overview", publisher: "Victorian Department of Education" },
+      { title: "Agreements in progress — Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026)", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress", publisher: "Fair Work Commission" },
       { title: "Enterprise Bargaining: Resources — Agreement Explanation and Approval Process FAQs", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/resources", publisher: "Victorian Department of Education" },
       { title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)", url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise", publisher: "Premier of Victoria" },
       { title: "Labor Is Giving Education Workers A Payrise (17 August 2026)", url: "https://www.premier.vic.gov.au/labor-giving-education-workers-payrise", publisher: "Premier of Victoria" },
@@ -677,7 +678,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     ],
     faq: [
       { question: "How much is the Victorian teachers pay rise?", answer: "Salaries rise by 28.3% to 32.4% over four years, depending on classification. Under Schedule 1 of the proposed Victorian Government Schools Agreement 2026, the top classroom teacher step (2-6) goes from $118,063 to $133,456 from the first pay period on or after 1 October 2026 and to $151,419 from November 2029. A graduate at 1-1 goes from $79,589 to $92,882, then $105,384. Every full-time employee also gets a $2,000 lump sum when the agreement starts." },
-      { question: "When do Victorian teachers get the pay rise?", answer: "Staff approved the agreement in a ballot announced on 17 September 2026. It now needs Fair Work Commission approval, which the government says can take up to six weeks, and starts operating seven days after approval. Schedule 1 dates the first increases from the first pay period on or after 10 August 2026 and 1 October 2026, then 1 November 2027, 2028 and 2029." },
+      { question: "When do Victorian teachers get the pay rise?", answer: "Staff approved the agreement in a ballot announced on 17 September 2026. The department lodged it with the Fair Work Commission on 23 September 2026 (AG2026/2746), and approval can take up to six weeks, the government says. It starts operating seven days after approval. Schedule 1 dates the first increases from the first pay period on or after 10 August 2026 and 1 October 2026, then 1 November 2027, 2028 and 2029." },
       { question: "Are Victorian teachers still going on strike?", answer: "No. Victorian government school staff struck statewide on 24 March and 23 July 2026. A third 24-hour strike planned for 19 August 2026 was cancelled after AEU members voted to accept the government's revised offer, and the agreement has since been approved by an all-staff ballot." },
       { question: "Does the new agreement cover education support staff?", answer: "Yes. The proposed agreement covers the executive, principal, teacher, paraprofessional and education support classes. The government says education support salaries rise by at least 28.3% over four years, and education support staff get four professional practice days a year from 2027 for the first time." },
     ],
