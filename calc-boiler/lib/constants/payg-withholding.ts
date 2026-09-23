@@ -35,6 +35,52 @@ import { LITO, MEDICARE_LEVY } from "./australian-tax";
 export const PAYG_FINANCIAL_YEAR = "2026-27";
 export const PAYG_TABLES_UPDATED = "1 July 2026";
 
+/**
+ * Financial years the engine carries full Schedule 1 coefficient sets for.
+ * The current year comes first. The tax-table pages offer these as an FY
+ * toggle so payroll staff can check a pay run from the previous year.
+ */
+export type PaygFinancialYear = "2026-27" | "2025-26";
+export const PAYG_FINANCIAL_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26"];
+export const PAYG_PREVIOUS_FINANCIAL_YEAR: PaygFinancialYear = "2025-26";
+
+export interface PaygYearInfo {
+  readonly fy: PaygFinancialYear;
+  /** Plain-English period the ATO says the schedule applies to. */
+  readonly appliesTo: string;
+  readonly schedule1Url: string;
+  readonly sampleDataUrl: string;
+  /** Whether the engine carries this year's Schedule 8 (STSL) coefficients. */
+  readonly stslSupported: boolean;
+}
+
+export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
+  "2026-27": {
+    fy: "2026-27",
+    appliesTo: "payments made from 1 July 2026",
+    schedule1Url:
+      "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld",
+    sampleDataUrl:
+      "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld/sample-data/withholding-amounts-sample-data",
+    stslSupported: true,
+  },
+  "2025-26": {
+    fy: "2025-26",
+    // The ATO did not reissue Schedule 1 on 1 July 2025: the 1 July 2024
+    // edition "applied to payments made from 1 July 2024 to 30 June 2026".
+    appliesTo: "payments made from 1 July 2024 to 30 June 2026",
+    schedule1Url:
+      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026",
+    sampleDataUrl:
+      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data",
+    // Schedule 8 changed part-way through 2025-26 (one edition for 1 July to
+    // 23 September 2025, another from 24 September 2025 to 30 June 2026), so a
+    // single 2025-26 STSL figure would be wrong for part of the year. Not
+    // carried — the pages disable the study-loan option for this year.
+    stslSupported: false,
+  },
+};
+
 // The FY2026-27 scale now lives in australian-tax.ts as the sitewide single
 // source of truth. Re-exported here so existing tax-table page imports keep
 // working.
@@ -44,6 +90,9 @@ export { TAX_BRACKETS_2026_27 } from "./australian-tax";
 // Source: ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-
 // of-formulas-for-calculating-amounts-to-be-withheld/coefficients-to-use-in-
 // formulas-for-withholding-from-weekly-payments (published 17 June 2026).
+// Re-read digit for digit on 23 September 2026: Scales 1, 2 and 3 match. The
+// engine also reproduces every Scale 1/2/3 row of the ATO's own "Withholding
+// amounts sample data" page (weekly, fortnightly and monthly) — see the tests.
 //
 // Each band applies where the weekly equivalent x is LESS THAN `lessThan`.
 // `a: null` marks a nil-withholding band.
@@ -79,6 +128,43 @@ export const SCALE_1_NO_TFT: readonly CoefficientBand[] = [
 
 /** Scale 3 — foreign residents. No tax-free threshold, no Medicare levy. */
 export const SCALE_3_FOREIGN: readonly CoefficientBand[] = [
+  { lessThan: 2_596, a: 0.3000, b: 0.3000 },
+  { lessThan: 3_653, a: 0.3700, b: 181.7308 },
+  { lessThan: Infinity, a: 0.4500, b: 474.0385 },
+] as const;
+
+// ---------- ATO Schedule 1 coefficients, 1 July 2024 to 30 June 2026 ----------
+// Used for FY2025-26 (the same edition also covered FY2024-25). Source:
+// https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/coefficients-to-use-in-formulas-for-withholding-from-weekly-payments
+// (published 17 June 2024; read 23 September 2026). Scale 1 carries a negative
+// b in the $371–$515 band — the ATO notes "This is intentional."
+
+/** Scale 2 (tax-free threshold claimed), 1 July 2024 to 30 June 2026. */
+export const SCALE_2_TFT_2025_26: readonly CoefficientBand[] = [
+  { lessThan: 361, a: null, b: 0 },
+  { lessThan: 500, a: 0.1600, b: 57.8462 },
+  { lessThan: 625, a: 0.2600, b: 107.8462 },
+  { lessThan: 721, a: 0.1800, b: 57.8462 },
+  { lessThan: 865, a: 0.1890, b: 64.3365 },
+  { lessThan: 1_282, a: 0.3227, b: 180.0385 },
+  { lessThan: 2_596, a: 0.3200, b: 176.5769 },
+  { lessThan: 3_653, a: 0.3900, b: 358.3077 },
+  { lessThan: Infinity, a: 0.4700, b: 650.6154 },
+] as const;
+
+/** Scale 1 (no tax-free threshold), 1 July 2024 to 30 June 2026. */
+export const SCALE_1_NO_TFT_2025_26: readonly CoefficientBand[] = [
+  { lessThan: 150, a: 0.1600, b: 0.1600 },
+  { lessThan: 371, a: 0.2117, b: 7.7550 },
+  { lessThan: 515, a: 0.1890, b: -0.6702 },
+  { lessThan: 932, a: 0.3227, b: 68.2367 },
+  { lessThan: 2_246, a: 0.3200, b: 65.7202 },
+  { lessThan: 3_303, a: 0.3900, b: 222.9510 },
+  { lessThan: Infinity, a: 0.4700, b: 487.2587 },
+] as const;
+
+/** Scale 3 (foreign residents), 1 July 2024 to 30 June 2026 — identical to 2026-27. */
+export const SCALE_3_FOREIGN_2025_26: readonly CoefficientBand[] = [
   { lessThan: 2_596, a: 0.3000, b: 0.3000 },
   { lessThan: 3_653, a: 0.3700, b: 181.7308 },
   { lessThan: Infinity, a: 0.4500, b: 474.0385 },
@@ -157,10 +243,17 @@ function applyScale(x: number, scale: readonly CoefficientBand[]): number {
 
 export type WithholdingScale = "tft" | "noTft" | "foreignResident";
 
-const SCALES: Record<WithholdingScale, readonly CoefficientBand[]> = {
-  tft: SCALE_2_TFT,
-  noTft: SCALE_1_NO_TFT,
-  foreignResident: SCALE_3_FOREIGN,
+const SCALES_BY_YEAR: Record<PaygFinancialYear, Record<WithholdingScale, readonly CoefficientBand[]>> = {
+  "2026-27": {
+    tft: SCALE_2_TFT,
+    noTft: SCALE_1_NO_TFT,
+    foreignResident: SCALE_3_FOREIGN,
+  },
+  "2025-26": {
+    tft: SCALE_2_TFT_2025_26,
+    noTft: SCALE_1_NO_TFT_2025_26,
+    foreignResident: SCALE_3_FOREIGN_2025_26,
+  },
 };
 
 // ---------- Schedule 8 (NAT 3539): study and training support loans ----------
@@ -225,11 +318,12 @@ export function stslForPeriod(
 export function withholdingForPeriod(
   grossPerPeriod: number,
   frequency: PayFrequency,
-  scale: WithholdingScale = "tft"
+  scale: WithholdingScale = "tft",
+  financialYear: PaygFinancialYear = PAYG_FINANCIAL_YEAR
 ): number {
   if (grossPerPeriod <= 0) return 0;
   const x = toWeeklyEquivalent(grossPerPeriod, frequency);
-  const weekly = applyScale(x, SCALES[scale]);
+  const weekly = applyScale(x, SCALES_BY_YEAR[financialYear][scale]);
   return fromWeeklyWithholding(weekly, frequency);
 }
 
@@ -252,6 +346,12 @@ export interface WithholdingOptions {
   hasSTSL?: boolean;
   /** Use the foreign-resident scale (Scale 3) — no threshold, no Medicare levy. */
   foreignResident?: boolean;
+  /**
+   * Which year's Schedule 1 coefficients to use (default: the current year).
+   * STSL is only computed where PAYG_YEAR_INFO[fy].stslSupported is true; for
+   * other years `hasSTSL` yields no component and `stslSupported` is false.
+   */
+  financialYear?: PaygFinancialYear;
 }
 
 export interface WithholdingResult {
@@ -266,6 +366,8 @@ export interface WithholdingResult {
   netPerPeriod: number;
   /** Annualised earnings the calculation is based on. */
   annualEquivalent: number;
+  /** False when STSL was requested for a year whose Schedule 8 is not carried. */
+  stslSupported: boolean;
 }
 
 /**
@@ -277,7 +379,12 @@ export function calculatePAYGWithholding(
   frequency: PayFrequency,
   options: WithholdingOptions = {}
 ): WithholdingResult {
-  const { claimsTaxFreeThreshold = true, hasSTSL = false, foreignResident = false } = options;
+  const {
+    claimsTaxFreeThreshold = true,
+    hasSTSL = false,
+    foreignResident = false,
+    financialYear = PAYG_FINANCIAL_YEAR,
+  } = options;
   const periods = PAY_PERIODS[frequency];
   const gross = Math.max(0, grossPerPeriod);
   const annual = gross * periods;
@@ -288,13 +395,14 @@ export function calculatePAYGWithholding(
       ? "tft"
       : "noTft";
 
-  const paygWithheld = withholdingForPeriod(gross, frequency, scale);
+  const paygWithheld = withholdingForPeriod(gross, frequency, scale, financialYear);
+  const yearHasStsl = PAYG_YEAR_INFO[financialYear].stslSupported;
 
   // STSL (Schedule 8, NAT 3539) uses its own coefficient table on the weekly
   // equivalent — NOT the annual repayment schedule divided back to the period.
   // Which STSL table applies depends on the same threshold/residency choice as
   // the PAYG scale above.
-  const stslWithheld = hasSTSL ? stslForPeriod(gross, frequency, scale) : 0;
+  const stslWithheld = hasSTSL && yearHasStsl ? stslForPeriod(gross, frequency, scale) : 0;
   const totalWithheld = paygWithheld + stslWithheld;
 
   return {
@@ -304,6 +412,7 @@ export function calculatePAYGWithholding(
     totalWithheld,
     netPerPeriod: Math.round((gross - totalWithheld) * 100) / 100,
     annualEquivalent: annual,
+    stslSupported: !hasSTSL || yearHasStsl,
   };
 }
 
@@ -416,6 +525,99 @@ export function buildWithholdingRows(
       netWithTFT: gross - tft.totalWithheld,
     };
   });
+}
+
+// ---------- Full stepped tax table + CSV export ----------
+// The weekly / fortnightly / monthly pages render a full HTML table in fixed
+// earnings steps and offer the same data, in whole-dollar steps, as a CSV the
+// browser generates on click. Both come from withholdingForPeriod, so they can
+// never drift from the lookup.
+
+export interface TaxTableRow {
+  gross: number;
+  /** Column 2 of the ATO table: tax-free threshold claimed (Scale 2). */
+  withTFT: number;
+  /** Column 3 of the ATO table: no tax-free threshold (Scale 1). */
+  noTFT: number;
+  /** Scale 2 plus the Schedule 8 STSL component; null where not carried. */
+  withTFTAndSTSL: number | null;
+  /** Scale 3, foreign resident. */
+  foreignResident: number;
+}
+
+export interface TaxTableRange {
+  readonly from: number;
+  readonly to: number;
+  readonly step: number;
+}
+
+/** Ranges rendered as HTML on each page — steps keep the page light. */
+export const HTML_TABLE_RANGES: Record<PayFrequency, TaxTableRange> = {
+  weekly: { from: 350, to: 4_000, step: 50 },
+  fortnightly: { from: 700, to: 8_000, step: 100 },
+  monthly: { from: 1_500, to: 17_500, step: 250 },
+};
+
+/**
+ * Ranges for the whole-dollar CSV download. Weekly and monthly use $1 steps;
+ * fortnightly uses $2 steps because the ATO's fortnightly figures only change
+ * every $2 of earnings (earnings are halved before the weekly formula).
+ */
+export const CSV_TABLE_RANGES: Record<PayFrequency, TaxTableRange> = {
+  weekly: { from: 0, to: 5_000, step: 1 },
+  fortnightly: { from: 0, to: 10_000, step: 2 },
+  monthly: { from: 0, to: 21_000, step: 1 },
+};
+
+export function buildTaxTableRows(
+  frequency: PayFrequency,
+  financialYear: PaygFinancialYear,
+  range: TaxTableRange
+): TaxTableRow[] {
+  const rows: TaxTableRow[] = [];
+  const stsl = PAYG_YEAR_INFO[financialYear].stslSupported;
+  for (let gross = range.from; gross <= range.to; gross += range.step) {
+    const withTFT = withholdingForPeriod(gross, frequency, "tft", financialYear);
+    rows.push({
+      gross,
+      withTFT,
+      noTFT: withholdingForPeriod(gross, frequency, "noTft", financialYear),
+      withTFTAndSTSL: stsl ? withTFT + stslForPeriod(gross, frequency, "tft") : null,
+      foreignResident: withholdingForPeriod(gross, frequency, "foreignResident", financialYear),
+    });
+  }
+  return rows;
+}
+
+/** CSV text for a set of rows. Plain numbers, no currency symbols. */
+export function taxTableCsv(
+  frequency: PayFrequency,
+  financialYear: PaygFinancialYear,
+  rows: readonly TaxTableRow[]
+): string {
+  const period = FREQUENCY_LABELS[frequency];
+  const hasStsl = rows.some((r) => r.withTFTAndSTSL !== null);
+  const header = [
+    `${period.charAt(0).toUpperCase()}${period.slice(1)}ly earnings ($)`,
+    "Withheld - tax-free threshold claimed ($)",
+    "Withheld - no tax-free threshold ($)",
+    ...(hasStsl ? ["Withheld - tax-free threshold + study loan ($)"] : []),
+    "Withheld - foreign resident ($)",
+  ];
+  const lines = [
+    `# PAYG withholding ${financialYear}, ${period}ly pay, computed from ATO Schedule 1 (NAT 1004): ${PAYG_YEAR_INFO[financialYear].schedule1Url}`,
+    header.join(","),
+    ...rows.map((r) =>
+      [
+        r.gross,
+        r.withTFT,
+        r.noTFT,
+        ...(hasStsl ? [r.withTFTAndSTSL ?? ""] : []),
+        r.foreignResident,
+      ].join(",")
+    ),
+  ];
+  return lines.join("\n") + "\n";
 }
 
 // Standard earnings increments shown on each tax-table page.
