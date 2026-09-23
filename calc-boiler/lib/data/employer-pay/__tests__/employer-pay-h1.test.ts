@@ -250,6 +250,41 @@ test("JB Hi-Fi: the same Retail Award figures as IGA, and FAQ dollars match", ()
   }
 });
 
+test("BWS and Dan Murphy's: Endeavour cl 4.1.1 printed rate x 1.0475 (cl 4.2.1)", () => {
+  const bws = getEmployerPay("bws");
+  const dans = getEmployerPay("dan-murphys");
+  assert.ok(bws && dans);
+  assert.equal(bws.instrument.reference, "AG2025/2853, AE531119");
+  assert.equal(dans.instrument.reference, bws.instrument.reference);
+  const printed: Record<string, number> = {
+    "Team Member": 27.26,
+    "Senior Team Member": 28.48,
+    "Duty Manager (Dan Murphy's only)": 30.07,
+  };
+  for (const e of [bws, dans]) {
+    for (const r of e.rates) {
+      assert.equal(r.hourly, halfUp(printed[r.level] * 1.0475), `${e.slug} ${r.level}`);
+      assert.equal(r.casualHourly, halfUp(r.hourly * 1.25), `${e.slug} ${r.level}`);
+    }
+    assert.equal(e.juniorScale.length, 0, "adult rates at any age");
+  }
+  assert.equal(bws.rates.length, 2, "Duty Manager is Dan Murphy's only");
+  assert.equal(dans.rates.length, 3);
+  // SDA summary: $27.26 casual $34.08 at commencement.
+  assert.equal(halfUp(27.26 * 1.25), 34.08);
+  // Preserved ex-2019 Level 2 rates (undertakings 5–7).
+  assert.equal(halfUp(27.89 * 1.0475), 29.21);
+  assert.equal(halfUp(27.5 * 1.0475), 28.81);
+  assert.ok(bws.notices.join(" ").includes("$29.21") && bws.notices.join(" ").includes("$28.81"));
+  assert.ok(dans.notices.join(" ").includes("$28.81"));
+  // Above the award levels the FWC compared at approval ([2025] FWCA 3828 [29]).
+  assert.ok(dans.rates[0].hourly > 28.45 && dans.rates[1].hourly > 29.45 && dans.rates[2].hourly > 31.11);
+  const text = [...bws.penaltyNotes, ...bws.faqs.map((f) => f.a), ...dans.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) {
+    assert.ok(text.includes(`$${halfUp(28.55 * pct).toFixed(2)}`), `${pct}`);
+  }
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);

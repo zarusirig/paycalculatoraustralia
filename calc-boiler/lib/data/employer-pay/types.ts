@@ -33,6 +33,8 @@ export const EMPLOYER_SLUGS = [
   "big-w",
   "australia-post",
   "jb-hi-fi",
+  "bws",
+  "dan-murphys",
   // --- end H1 ---
 ] as const;
 
