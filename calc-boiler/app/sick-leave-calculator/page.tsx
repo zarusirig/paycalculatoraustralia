@@ -10,13 +10,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "sick-leave-calculator";
 const TITLE = "Sick Leave Calculator Australia: Personal & Carer's Leave";
 const DESCRIPTION =
-  "How much sick leave you get: 10 days a year full-time (76 hours on a 38-hour week), pro rata part-time, 1/26 of ordinary hours. Calculate your personal/carer's leave balance. Casuals, medical certificates, payout rules — Fair Work sources.";
+  "Sick leave in Australia: 10 days a year full-time (76 hours on 38 h/week), pro rata part-time. Calculate your personal/carer's leave balance. Fair Work rules.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

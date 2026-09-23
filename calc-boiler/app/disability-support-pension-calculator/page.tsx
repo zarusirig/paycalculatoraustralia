@@ -11,7 +11,7 @@ import { DSP, DSP_RATES_21_PLUS } from "@/lib/constants/disability-support-pensi
 
 const SLUG = "disability-support-pension-calculator";
 const TITLE = "Disability Support Pension Calculator 2026 — DSP Rates";
-const DESCRIPTION = `DSP is ${formatAUD(DSP_RATES_21_PLUS.maxFortnightly.single.total, 2)} a fortnight single, ${formatAUD(DSP_RATES_21_PLUS.maxFortnightly.coupleEach.total, 2)} each for couples from ${DSP.ratesFrom}. Calculate your Disability Support Pension with the income and assets tests, the ${DSP.maxWeeklyWorkHours}-hour work rule and under-21 rates, verified at Services Australia.`;
+const DESCRIPTION = `DSP is ${formatAUD(DSP_RATES_21_PLUS.maxFortnightly.single.total, 2)} a fortnight single from ${DSP.ratesFrom}. Calculate your Disability Support Pension: income and assets tests, the ${DSP.maxWeeklyWorkHours}-hour rule, under-21 rates.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

@@ -9,13 +9,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "compassionate-leave";
 const TITLE = "Compassionate Leave Australia: 2 Days Paid Bereavement Leave";
 const DESCRIPTION =
-  "Compassionate leave is 2 days each time an immediate family or household member dies or has a life-threatening illness or injury, and after a stillbirth or miscarriage. Paid at base rate for permanent staff, unpaid for casuals. Pay calculator and Fair Work rules.";
+  "Compassionate leave is 2 days per occasion for a death or life-threatening illness in the family, stillbirth or miscarriage. Paid for permanent staff. Calculator.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

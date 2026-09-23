@@ -10,13 +10,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "ote-salary";
 const TITLE = "OTE Salary Meaning: On-Target Earnings + Calculator";
 const DESCRIPTION =
-  "OTE means on-target earnings: base salary plus commission at 100% of target. See what an OTE offer pays above and below target, the 12% super on commission, take-home pay, and why commission doesn't count for the $190,100 high income threshold.";
+  "OTE means on-target earnings: base salary plus commission at 100% of target. See pay above and below target, 12% super on commission and take-home pay.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 

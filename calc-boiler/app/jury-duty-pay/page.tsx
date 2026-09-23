@@ -9,13 +9,13 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 const SLUG = "jury-duty-pay";
 const TITLE = "Jury Duty Pay Australia: Make-Up Pay Calculator";
 const DESCRIPTION =
-  "Employers must pay full-time and part-time staff for the first 10 days of jury duty: base pay, or make-up pay (base pay minus the court payment) if they ask for evidence. Casuals are unpaid by the employer. Calculator using Fair Work's own examples.";
+  "Employers pay full-time and part-time staff for the first 10 days of jury duty: base pay, or make-up pay minus the court payment. Calculator with Fair Work examples.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
