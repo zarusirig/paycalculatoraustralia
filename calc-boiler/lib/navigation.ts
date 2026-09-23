@@ -258,6 +258,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/average-salary-australia/",
         links: [
           { href: "/average-salary-australia/", label: "Average salary Australia" },
+          { href: "/australian-pay-report-2026/", label: "Australian Pay Report 2026" },
           { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO" },
           { href: "/tech-salary-guide-australia/", label: "IT & tech" },
           { href: "/construction-trades-pay/", label: "Construction & trades" },
@@ -467,6 +468,7 @@ export const FOOTER_COLUMNS: readonly FooterColumn[] = [
       { href: "/healthcare-worker-pay/", label: "Nurse pay" },
       { href: "/adf-pay-scales/", label: "ADF pay scales" },
       { href: "/average-salary-australia/", label: "Average salary" },
+      { href: "/australian-pay-report-2026/", label: "Pay Report 2026" },
     ],
   },
   {
@@ -508,6 +510,7 @@ export const FOOTER_COMPANY: readonly MenuLink[] = [
   { href: "/about/", label: "About" },
   { href: "/contact/", label: "Contact" },
   { href: "/news/", label: "News" },
+  { href: "/embed/", label: "Embed our calculator" },
   { href: "/privacy/", label: "Privacy policy" },
   { href: "/terms/", label: "Terms of use" },
   { href: "/site-directory/", label: "Site directory" },
