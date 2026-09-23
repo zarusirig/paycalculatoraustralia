@@ -7,7 +7,7 @@ import { CCS, CCS_SOURCES } from "@/lib/constants/child-care-subsidy";
 
 const SLUG = "child-care-subsidy-calculator";
 const TITLE = "Child Care Subsidy Calculator 2026-27 — CCS % & Gap Fee";
-const DESCRIPTION = `CCS is ${CCS.standard.maxPercent}% on family income up to ${formatAUD(CCS.standard.lowerThreshold)} in ${CCS.financialYear}, falling 1% per ${formatAUD(CCS.standard.step)} to 0% at ${formatAUD(CCS.standard.cutOut)}; up to ${CCS.higher.maxPercent}% for younger siblings. Enter both parents' pay and your fees to see your subsidy, hourly caps, the ${CCS.hours.guaranteed}-hour 3 Day Guarantee and your gap fee.`;
+const DESCRIPTION = `CCS ${CCS.financialYear}: ${CCS.standard.maxPercent}% up to ${formatAUD(CCS.standard.lowerThreshold)} family income, 1% less per ${formatAUD(CCS.standard.step)} above, up to ${CCS.higher.maxPercent}% for younger siblings. Enter both parents' pay and fees for your gap fee.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

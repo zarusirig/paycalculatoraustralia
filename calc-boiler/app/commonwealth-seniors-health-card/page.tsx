@@ -7,7 +7,7 @@ import { CSHC, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test"
 
 const SLUG = "commonwealth-seniors-health-card";
 const TITLE = `Commonwealth Seniors Health Card 2026 — ${formatAUD(CSHC.incomeLimit.single)} Income Limit`;
-const DESCRIPTION = `From ${CSHC.limitsFrom} the Commonwealth Seniors Health Card income limit is ${formatAUD(CSHC.incomeLimit.single)} single and ${formatAUD(CSHC.incomeLimit.couple)} for couples, with no assets test. Check your wages and account-based pension against it, how deeming applies, and how the card compares with the Pensioner Concession Card.`;
+const DESCRIPTION = `Commonwealth Seniors Health Card income limit from 20 Sep 2026: ${formatAUD(CSHC.incomeLimit.single)} single, ${formatAUD(CSHC.incomeLimit.couple)} couple, no assets test. Check your wages and deemed super against it.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

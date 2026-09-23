@@ -7,7 +7,7 @@ import { MEANS_TEST_SOURCES, PENSION_ASSETS_TEST as AT } from "@/lib/constants/c
 
 const SLUG = "age-pension-assets-test-calculator";
 const TITLE = "Age Pension Assets Test Calculator 2026 — Limits From 20 Sep";
-const DESCRIPTION = `Full Age Pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner) or ${formatAUD(AT.fullPensionLimit.couple.homeowner)} (couple). The pension falls $3 a fortnight per $1,000 above that and stops at ${formatAUD(AT.partPensionCutOff.single.homeowner)} from ${AT.ratesFrom}. Calculate both tests with your wages and savings and see which one applies.`;
+const DESCRIPTION = `Full Age Pension with assets up to ${formatAUD(AT.fullPensionLimit.single.homeowner)} (single homeowner); $3 a fortnight less per $1,000 above, nil at ${formatAUD(AT.partPensionCutOff.single.homeowner)} from 20 Sep 2026. See which test applies.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 

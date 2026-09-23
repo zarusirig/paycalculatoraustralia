@@ -8,7 +8,7 @@ import { DEEMING, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-te
 const SLUG = "deeming-rates";
 const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 const TITLE = `Deeming Rates 2026 — ${pct(DEEMING.lowerRate)} & ${pct(DEEMING.upperRate)} + Deeming Calculator`;
-const DESCRIPTION = `Centrelink deeming rates from ${DEEMING.ratesFrom}: ${pct(DEEMING.lowerRate)} on the first ${formatAUD(DEEMING.thresholds.single)} (single) or ${formatAUD(DEEMING.thresholds.pensionerCouple)} (pensioner couple), ${pct(DEEMING.upperRate)} above. Calculate deemed income on your savings, see how it combines with your wages in the income test, and the full rate history.`;
+const DESCRIPTION = `Deeming rates from ${DEEMING.ratesFrom}: ${pct(DEEMING.lowerRate)} on the first ${formatAUD(DEEMING.thresholds.single)} (single) or ${formatAUD(DEEMING.thresholds.pensionerCouple)} (couple), ${pct(DEEMING.upperRate)} above. Calculate deemed income alongside your wages.`;
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 
