@@ -36,6 +36,20 @@ import { RED_ROOSTER_PAY } from "./red-rooster";
 import { DAVID_JONES_PAY } from "./david-jones";
 import { OFFICEWORKS_PAY } from "./officeworks";
 // --- end H1 ---
+// --- J7 (24 Sep 2026) ---
+import { TARGET_PAY } from "./target";
+import { PRICELINE_PAY } from "./priceline";
+import { REBEL_PAY } from "./rebel";
+import { HARVEY_NORMAN_PAY } from "./harvey-norman";
+import { SPOTLIGHT_PAY } from "./spotlight";
+import { ANACONDA_PAY } from "./anaconda";
+import { STARBUCKS_PAY } from "./starbucks";
+import { GUZMAN_Y_GOMEZ_PAY } from "./guzman-y-gomez";
+import { ZAMBRERO_PAY } from "./zambrero";
+import { EVENT_CINEMAS_PAY } from "./event-cinemas";
+import { QANTAS_PAY } from "./qantas";
+import { VIRGIN_AUSTRALIA_PAY } from "./virgin-australia";
+// --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -62,6 +76,20 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "david-jones": DAVID_JONES_PAY,
   officeworks: OFFICEWORKS_PAY,
   // --- end H1 ---
+  // --- J7 (24 Sep 2026) ---
+  target: TARGET_PAY,
+  priceline: PRICELINE_PAY,
+  rebel: REBEL_PAY,
+  "harvey-norman": HARVEY_NORMAN_PAY,
+  spotlight: SPOTLIGHT_PAY,
+  anaconda: ANACONDA_PAY,
+  starbucks: STARBUCKS_PAY,
+  "guzman-y-gomez": GUZMAN_Y_GOMEZ_PAY,
+  zambrero: ZAMBRERO_PAY,
+  "event-cinemas": EVENT_CINEMAS_PAY,
+  qantas: QANTAS_PAY,
+  "virgin-australia": VIRGIN_AUSTRALIA_PAY,
+  // --- end J7 ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
@@ -186,6 +214,28 @@ export function weeklyExamples(employer: EmployerPay): WeeklyExample[] {
 export function annualFullTime(hourly: number): number {
   return roundCents(hourly * STANDARD_WEEKLY_HOURS * WEEKS_PER_YEAR);
 }
+
+// --- J7 (24 Sep 2026): salaried cabin crew ---
+/** Full-time weekly hours for an employer (38 unless the instrument says otherwise). */
+export function fullTimeHours(employer: EmployerPay): number {
+  return employer.fullTimeWeeklyHours ?? STANDARD_WEEKLY_HOURS;
+}
+
+/**
+ * Full-time annual gross for a classification: the instrument's own annual
+ * salary where it sets one, otherwise hourly x full-time hours x 52.
+ */
+export function annualFor(employer: EmployerPay, row: RateRow): number {
+  if (row.annualSalary !== undefined) return row.annualSalary;
+  return roundCents(row.hourly * fullTimeHours(employer) * WEEKS_PER_YEAR);
+}
+
+/** Nearest /take-home-pay-on/N/ page for a full-time year at an annual amount. */
+export function takeHomeHrefForAnnual(annual: number): { href: string; amount: number } {
+  const amount = nearestTakeHomeAmount(annual);
+  return { href: `/take-home-pay-on/${amount}/`, amount };
+}
+// --- end J7 ---
 
 /** Nearest /take-home-pay-on/N/ page for a full-time year at this rate. */
 export function takeHomeHrefForHourly(hourly: number): { href: string; amount: number } {
