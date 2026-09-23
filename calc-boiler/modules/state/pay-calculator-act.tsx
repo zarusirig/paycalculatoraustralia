@@ -14,6 +14,7 @@ import {
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -21,10 +22,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -33,15 +35,12 @@ import {
 
 const PROFILE = STATE_PROFILES.ACT;
 
-/** Display order for the cross-state payroll tax comparison table (home territory first). */
-const PAYROLL_COMPARE_ORDER = ["ACT", "NSW", "VIC", "QLD", "WA", "SA", "TAS", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13h, Australian Capital Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Australian Capital Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1976)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "ACT Payroll Tax", url: "https://www.revenue.act.gov.au/payroll-tax", publisher: "ACT Revenue Office" },
+  { title: "ACT payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.act.ratesUrl, publisher: PAYROLL_TAX_STATES.act.revenueOffice },
 ];
 
 export default function PayCalculatorACTPage() {
@@ -163,69 +162,21 @@ export default function PayCalculatorACTPage() {
             <H2>Does ACT payroll tax come out of your pay?</H2>
             <PayrollTaxForEmployees profile={PROFILE} />
             <p className="mt-4 text-sm text-warmgray">
-              The ACT charges the highest headline payroll tax rate in the country against the highest
-              threshold, so very few Canberra employers pay it at all. Either way it is not your
+              The ACT charges the highest general payroll tax rate in the country (6.75%, rising with
+              payroll size), but only on employers with more than $1.75 million of Australian wages. Either way it is not your
               deduction — see the{" "}
               <Link href="/understanding-your-payslip/" className="text-eucalyptus-dark hover:underline">payslip guide</Link> for the
               items that genuinely are.
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in the ACT</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of this reduces an employee&apos;s take-home pay.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/act/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is ACT payroll tax?</H3>
-            <p className="mb-4 text-warmgray">ACT payroll tax is <strong>{formatPercent(STATE_PAYROLL_TAX.ACT.rate, 2)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.ACT.threshold)} annual threshold</strong>, paid exclusively by employers and administered by the ACT Revenue Office.</p>
-            <p className="mb-4 text-warmgray">The ACT threshold is among the highest in Australia, exempting the majority of small and medium businesses. Payroll tax does not reduce your take-home pay &mdash; it is an employer-only obligation. However, larger employers factor payroll tax into total employment costs, which indirectly influences salary budgets and hiring capacity.</p>
-            {STATE_PAYROLL_TAX.ACT.note && (
-              <p className="mb-4 text-sm text-warmgray-light">{STATE_PAYROLL_TAX.ACT.note}</p>
-            )}
-
-            <H3>How does ACT payroll tax compare to other states?</H3>
-            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-              <table className="w-full text-sm text-left">
-                <thead className="bg-sandstone text-navy uppercase tracking-wider text-xs">
-                  <tr><th className="px-4 py-3">State / Territory</th><th className="px-4 py-3 text-right">Rate</th><th className="px-4 py-3 text-right">Annual Threshold</th></tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10 text-warmgray">
-                  {PAYROLL_COMPARE_ORDER.map((code) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "ACT";
-                    const linkHref: Record<string, string> = {
-                      NSW: "/pay-calculator-nsw/",
-                      VIC: "/pay-calculator-vic/",
-                      QLD: "/pay-calculator-qld/",
-                    };
-                    const label = linkHref[code] ? (
-                      <Link href={linkHref[code]} className="text-eucalyptus-dark hover:underline">{code}</Link>
-                    ) : isHome ? "ACT" : code;
-                    return (
-                      <tr key={code} className={isHome ? "bg-eucalyptus-light/20" : ""}>
-                        <td className={`px-4 py-3 ${isHome ? "font-medium text-navy" : ""}`}>{label}</td>
-                        <td className={`px-4 py-3 text-right ${isHome ? "font-semibold" : ""}`}>{formatPercent(s.rate, 2)}</td>
-                        <td className={`px-4 py-3 text-right ${isHome ? "font-semibold" : ""}`}>{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-warmgray">The ACT&apos;s <strong>{formatAUD(STATE_PAYROLL_TAX.ACT.threshold)}</strong> threshold means a business with a total annual wage bill under that amount pays zero payroll tax. In contrast, a Victorian employer exceeding {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} in wages already triggers liability at {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}.</p>
-            <p className="mt-3 text-sm text-warmgray">
-              Work injury insurance in the ACT is provided by private licensed insurers and funded by
-              employer premiums. Model payroll tax, super and premiums together with the{" "}
-              <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in the ACT?">

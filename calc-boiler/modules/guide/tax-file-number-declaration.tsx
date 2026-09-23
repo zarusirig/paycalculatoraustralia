@@ -8,11 +8,14 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { TAX_FREE_THRESHOLD } from "@/lib/constants/australian-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Tax file number declaration (NAT 3092)", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number", publisher: SOURCES.ato.name },
+  // Question numbering verified 23 Sep 2026 against the ATO paper form instructions:
+  // Q1 TFN, Q2–6 personal details, Q7 basis of pay, Q8 residency, Q9 tax-free threshold, Q10 study and training loans.
+  { title: "Paper TFN declaration form for payees (NAT 3092)", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees", publisher: SOURCES.ato.name },
   { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/payg-withholding", publisher: SOURCES.ato.name },
   { title: "Tax-free threshold", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency/australian-resident-for-tax-purposes", publisher: SOURCES.ato.name },
   { title: "Study and training loan obligations", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans", publisher: SOURCES.ato.name },
@@ -79,51 +82,48 @@ export default function TaxFileNumberDeclarationPage() {
                 </p>
               </div>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Questions 2&ndash;5: Personal Details</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Questions 2&ndash;6: Personal Details</h3>
               <p>
-                Enter your name, date of birth, and address. These must match the details the ATO holds for your TFN. If you have recently changed your name (e.g., after marriage), update your details with the ATO first to avoid processing delays.
+                Enter your name, any previous family name, your address, email address and date of birth. These must match the details the ATO holds for your TFN. If you have recently changed your name (e.g., after marriage), update your details with the ATO first to avoid processing delays.
               </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 6: Tax-Free Threshold</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 7: On What Basis Are You Paid?</h3>
               <p>
-                This is the most important question on the form. The tax-free threshold means the first <strong>$18,200</strong> of your annual income is tax-free. Answering &ldquo;Yes&rdquo; tells your employer to factor this into your PAYG withholding, reducing the tax deducted from each pay.
+                Select one: full-time employment, part-time employment, casual employment, labour hire, or superannuation or annuity income stream. Check with your employer if you are not sure which applies.
+              </p>
+
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 8: Residency Status</h3>
+              <p>
+                Select whether you are an Australian resident for tax purposes, a foreign resident, or a working holiday maker. This affects your tax rates and entitlement to the tax-free threshold. Residency for tax purposes is different from visa status &mdash; you can be a tax resident even on a temporary visa if you meet the residency tests. Working holiday makers (subclass 417 and 462 visas) tick the working holiday maker box, and special tax rates apply (see our <Link href="/working-holiday-tax/">Working Holiday Tax Guide</Link>). Foreign residents do not receive the tax-free threshold and are taxed at different rates. See our <Link href="/non-resident-tax/">Non-Resident Tax Guide</Link> if you are unsure.
+              </p>
+
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 9: Tax-Free Threshold</h3>
+              <p>
+                This is the most important question on the form. The tax-free threshold means the first <strong>${TAX_FREE_THRESHOLD.toLocaleString("en-AU")}</strong> of your annual income is tax-free. Answering &ldquo;Yes&rdquo; tells your employer to factor this into your PAYG withholding, reducing the tax deducted from each pay. See our <Link href="/tax-free-threshold/">Tax-Free Threshold Guide</Link> for more detail.
               </p>
               <p>
                 <strong>Rules for claiming the tax-free threshold:</strong>
               </p>
               <ul>
                 <li><strong>One job:</strong> Claim the tax-free threshold at that job. Answer &ldquo;Yes&rdquo;.</li>
-                <li><strong>Multiple jobs:</strong> Claim the tax-free threshold at your <strong>main job only</strong> (usually the highest-paying one). Answer &ldquo;No&rdquo; at all other jobs.</li>
-                <li><strong>Pensions:</strong> If you also receive a pension or government payment, you may need to consider whether to claim the threshold at your job or with the payer.</li>
+                <li><strong>Multiple jobs:</strong> Claim the tax-free threshold at your <strong>main job only</strong> (usually the highest-paying one). Answer &ldquo;No&rdquo; at all other jobs, unless your total income from all sources will be less than the threshold.</li>
+                <li><strong>Government payments:</strong> If you receive a taxable payment such as JobSeeker, Youth Allowance or Austudy, you are likely already claiming the threshold from that payment.</li>
+                <li><strong>Foreign residents and working holiday makers:</strong> Answer &ldquo;No&rdquo; (unless you are a foreign resident receiving an Australian Government pension or allowance).</li>
               </ul>
-              <p>
-                Not sure which job to claim it on? Our <Link href="/tax-free-threshold/">tax-free threshold guide</Link> has a quick &ldquo;should I claim it on this job?&rdquo; check and shows how much each pay changes.
-              </p>
 
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 7: HECS-HELP and Other Study Loans</h3>
+              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 10: HECS-HELP and Other Study Loans</h3>
               <p>
                 Tick &ldquo;Yes&rdquo; if you have any of the following debts:
               </p>
               <ul>
-                <li>HECS-HELP (Higher Education Loan Program)</li>
-                <li>VET Student Loan</li>
-                <li>Financial Supplement debt</li>
-                <li>Student Start-up Loan (SSL)</li>
-                <li>ABSTUDY Student Start-up Loan (ABSTUDY SSL)</li>
-                <li>Trade Support Loan (TSL)</li>
+                <li>Higher Education Loan Program (HELP) debt, including HECS-HELP</li>
+                <li>VET Student Loan (VSL)</li>
+                <li>Financial Supplement (FS)</li>
+                <li>Student Start-up Loan (SSL), including ABSTUDY SSL</li>
+                <li>Australian Apprenticeship Support Loan (AASL), formerly Trade Support Loan</li>
               </ul>
               <p>
-                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory HECS repayment. If you do not declare your HECS debt here, you will likely owe a lump sum when you lodge your tax return. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for repayment thresholds and rates.
-              </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 8: Financial Supplement Debt</h3>
-              <p>
-                This applies only to the old Student Financial Supplement Scheme (SFSS). Most workers can answer &ldquo;No&rdquo; to this question. If you received a Financial Supplement loan between 1993 and 2003, answer &ldquo;Yes&rdquo;.
-              </p>
-
-              <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Question 9: Residency Status</h3>
-              <p>
-                Select whether you are an Australian resident for tax purposes. This affects your tax rates and entitlement to the tax-free threshold. Residency for tax purposes is different from visa status &mdash; you can be a tax resident even on a temporary visa if you meet the residency tests. Non-residents do not receive the tax-free threshold and are taxed at different rates. See our <Link href="/non-resident-tax/">Non-Resident Tax Guide</Link> if you are unsure.
+                When you tick &ldquo;Yes&rdquo;, your employer withholds additional amounts each pay period to cover your compulsory repayment. If you do not declare your debt here, you will likely owe a lump sum when you lodge your tax return. Once your debt is fully repaid, give your employer a withholding declaration so the extra withholding stops. See our <Link href="/hecs-help-calculator/">HECS-HELP Guide</Link> for repayment thresholds and rates.
               </p>
             </section>
 
@@ -236,7 +236,7 @@ export default function TaxFileNumberDeclarationPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="About this guide">
-                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092) and PAYG withholding guidelines. Tax rates and thresholds are for FY2025-26. The 47% penalty withholding rate comprises the 45% top marginal rate plus 2% Medicare levy. Individual circumstances may vary &mdash; contact the ATO on 13 28 61 for specific queries about your TFN declaration.</p>
+                <p>Information is sourced from the ATO&apos;s official TFN declaration form (NAT 3092) and PAYG withholding guidelines. Tax rates and thresholds are for FY{SITE_CONFIG.financialYear}. The 47% penalty withholding rate comprises the 45% top marginal rate plus 2% Medicare levy. Individual circumstances may vary &mdash; contact the ATO on 13 28 61 for specific queries about your TFN declaration.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("tax-file-number-declaration"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

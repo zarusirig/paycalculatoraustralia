@@ -29,12 +29,19 @@ export interface MatrixCol {
   fullTime: number;
   casual: number;
   appliesTo?: readonly string[];
+  /** Part-time percentage, where the award tabulates part-time separately. */
+  partTime?: number;
+  /** Column shown in one employment type's matrix only. */
+  employment?: "permanent" | "casual";
+  /** Per-column override of `basis` (e.g. Nurses shift loadings add, weekends compound). */
+  casualBasis?: "additive" | "compounded";
 }
 
 /**
  * The FWO pay-guide layout: one row per classification, one column per time
  * band, in dollars. Rendered twice — permanent (full-time and part-time) and
  * casual — so a reader can find their own cell without doing arithmetic.
+ * Awards with a part-time loading (Cleaning) render a third, part-time matrix.
  *
  * basis "additive": casual cell = hourly x casual% (casual% includes loading).
  * basis "compounded": casual cell = round(hourly x 1.25) x casual%.
@@ -50,18 +57,31 @@ export function PayGuideMatrix({
 }: {
   rows: readonly MatrixRow[];
   columns: readonly MatrixCol[];
-  employment: "permanent" | "casual";
+  employment: "permanent" | "part-time" | "casual";
   casualLoading: number;
   basis?: "additive" | "compounded";
   caption: string;
   levelHeading?: string;
 }) {
+  const cols = columns.filter(
+    (c) => !c.employment || c.employment === (employment === "casual" ? "casual" : "permanent"),
+  );
+  const colBasis = (c: MatrixCol) => c.casualBasis ?? basis;
   const cell = (r: MatrixRow, c: MatrixCol): number | null => {
     if (c.appliesTo && !c.appliesTo.includes(r.level)) return null;
     if (employment === "permanent") return roundCents(r.hourly * c.fullTime);
-    if (basis === "compounded") return roundCents(roundCents(r.hourly * (1 + casualLoading)) * c.casual);
+    if (employment === "part-time") return roundCents(r.hourly * (c.partTime ?? c.fullTime));
+    if (colBasis(c) === "compounded") return roundCents(roundCents(r.hourly * (1 + casualLoading)) * c.casual);
     return roundCents(r.hourly * c.casual);
   };
+  const headPct = (c: MatrixCol) =>
+    employment === "permanent"
+      ? pctLabel(c.fullTime)
+      : employment === "part-time"
+        ? pctLabel(c.partTime ?? c.fullTime)
+        : colBasis(c) === "compounded"
+          ? `${pctLabel(c.casual)} of casual rate`
+          : pctLabel(c.casual);
   return (
     <div className="not-prose my-6">
       <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -70,12 +90,10 @@ export function PayGuideMatrix({
           <thead className="bg-sandstone font-semibold text-navy">
             <tr>
               <th scope="col" className="px-4 py-3">{levelHeading}</th>
-              {columns.map((c) => (
+              {cols.map((c) => (
                 <th key={c.label} scope="col" className="px-4 py-3">
                   {c.label}
-                  <span className="block text-xs font-normal text-warmgray">
-                    {employment === "permanent" ? pctLabel(c.fullTime) : basis === "compounded" ? `${pctLabel(c.casual)} of casual rate` : pctLabel(c.casual)}
-                  </span>
+                  <span className="block text-xs font-normal text-warmgray">{headPct(c)}</span>
                 </th>
               ))}
             </tr>
@@ -84,7 +102,7 @@ export function PayGuideMatrix({
             {rows.map((r) => (
               <tr key={r.level}>
                 <th scope="row" className="px-4 py-2.5 text-left font-medium">{r.level}</th>
-                {columns.map((c) => {
+                {cols.map((c) => {
                   const v = cell(r, c);
                   return (
                     <td key={c.label} className="px-4 py-2.5">

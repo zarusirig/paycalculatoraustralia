@@ -7,12 +7,11 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +19,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +32,12 @@ import {
 
 const PROFILE = STATE_PROFILES.WA;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["WA", "NSW", "VIC", "QLD", "SA", "TAS", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13e, Western Australia`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Western Australia", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Overview of long service leave in WA (Long Service Leave Act 1958)", url: PROFILE.longServiceLeave.agencyUrl, publisher: "Government of Western Australia" },
-  { title: "WA Payroll Tax", url: "https://www.wa.gov.au/organisation/department-of-finance/payroll-tax", publisher: "Department of Finance WA" },
+  { title: "WA payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.wa.ratesUrl, publisher: PAYROLL_TAX_STATES.wa.revenueOffice },
 ];
 
 export default function PayCalculatorWAPage() {
@@ -175,58 +172,13 @@ export default function PayCalculatorWAPage() {
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in Western Australia</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of this is deducted from an employee. It is the cost of employing someone in WA.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/wa/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is WA payroll tax?</H3>
-            <p className="text-warmgray mb-4">WA payroll tax is a <strong>{formatPercent(STATE_PAYROLL_TAX.WA.rate, 2)} state tax</strong> levied on employers whose total Australian taxable wages exceed <strong>{formatAUD(STATE_PAYROLL_TAX.WA.threshold)} per year</strong>.</p>
-            <p className="text-warmgray mb-4">Payroll tax is an employer cost managed by the Department of Finance WA. Employees do not pay payroll tax, and it does not reduce your gross salary or take-home pay. The tax applies to the employer&apos;s total wage bill, not individual salaries. A tiered scale applies to larger employers with wages exceeding $100 million, where the rate increases to 6.5%.</p>
-
-            <H3>How does WA payroll tax compare to other states?</H3>
-            <p className="text-warmgray mb-4">WA&apos;s payroll tax threshold of {formatAUD(STATE_PAYROLL_TAX.WA.threshold)} sits in the middle range nationally. The comparison table below shows rates and thresholds across all 8 Australian states and territories.</p>
-            <div className="overflow-x-auto mb-4">
-              <table className="w-full text-sm border-collapse">
-                <thead>
-                  <tr className="bg-sandstone">
-                    <th className="text-left p-3 font-semibold text-navy border border-sandstone-dark/20">State / Territory</th>
-                    <th className="text-right p-3 font-semibold text-navy border border-sandstone-dark/20">Rate</th>
-                    <th className="text-right p-3 font-semibold text-navy border border-sandstone-dark/20">Annual Threshold</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "WA";
-                    const rowClass = isHome ? "bg-ochre/10" : i % 2 === 0 ? "bg-sandstone/50" : "";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className={`p-3 border border-sandstone-dark/20 text-warmgray ${isHome ? "font-semibold" : ""}`}>{s.name}</td>
-                        <td className={`p-3 border border-sandstone-dark/20 text-right text-navy ${isHome ? "font-bold" : ""}`}>{formatPercent(s.rate, 2)}</td>
-                        <td className={`p-3 border border-sandstone-dark/20 text-right ${isHome ? "font-bold text-navy" : "text-warmgray"}`}>{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray text-sm">WA&apos;s payroll tax rate matches the Northern Territory at <strong>{formatPercent(STATE_PAYROLL_TAX.WA.rate, 2)}</strong> but carries a lower threshold than Queensland, SA, and the NT. For employers calculating total hiring costs including payroll tax, WorkCover, and superannuation, see our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link>.</p>
-
-            <H3>WorkCover WA</H3>
-            <p className="text-warmgray">
-              WorkCover WA insurance premiums are entirely an employer expense. Premiums vary by
-              industry risk classification, ranging from 0.5% of wages in low-risk office roles to over
-              7% in underground mining. These costs do not reduce your gross salary or take-home pay.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in WA compared to other states?">

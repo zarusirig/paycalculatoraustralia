@@ -7,12 +7,11 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +19,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +32,12 @@ import {
 
 const PROFILE = STATE_PROFILES.QLD;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["QLD", "NSW", "VIC", "WA", "SA", "TAS", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13c, Queensland`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Queensland", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Industrial Relations Act 2016)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "QLD Payroll Tax", url: "https://qro.qld.gov.au/payroll-tax/", publisher: "Queensland Revenue Office" },
+  { title: "QLD payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.qld.ratesUrl, publisher: PAYROLL_TAX_STATES.qld.revenueOffice },
 ];
 
 export default function PayCalculatorQLDPage() {
@@ -154,62 +151,13 @@ export default function PayCalculatorQLDPage() {
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in Queensland</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of the figures below reduce an employee&apos;s take-home pay. They are the cost of
-              employing someone in Queensland.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/qld/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is QLD payroll tax?</H3>
-            <p className="text-warmgray mb-4">Queensland payroll tax is a state tax paid by employers on total Australian taxable wages exceeding <strong>{formatAUD(STATE_PAYROLL_TAX.QLD.threshold)} per year</strong>, at a base rate of <strong>{formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)}</strong>.</p>
-            <p className="text-warmgray mb-4">The Queensland Revenue Office (QRO) administers payroll tax. Employers with an annual wage bill above $1.3 million pay <strong>{formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)}</strong> on the amount exceeding the threshold. A higher rate of <strong>4.95%</strong> applies where total wages exceed <strong>$6.5 million</strong>. A mental health levy of <strong>0.25%</strong> applies to employers with wages above $10 million, increasing to <strong>0.5%</strong> above $100 million. Employees do not pay payroll tax. It does not reduce your gross salary or affect your take-home pay calculation.</p>
-
-            <H3>How does QLD payroll tax compare to other states?</H3>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm text-left border border-sandstone-dark/20 rounded-xl overflow-hidden">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th className="px-4 py-3 font-semibold text-navy">State / Territory</th>
-                    <th className="px-4 py-3 font-semibold text-navy text-right">Annual Threshold</th>
-                    <th className="px-4 py-3 font-semibold text-navy text-right">Base Rate</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "QLD";
-                    const rowClass = isHome ? "bg-eucalyptus/5" : i % 2 === 0 ? "bg-sandstone/30" : "";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className={`px-4 py-3 ${isHome ? "text-navy font-medium" : "text-warmgray"}`}>{s.name}</td>
-                        <td className="px-4 py-3 text-navy text-right">{formatAUD(s.threshold)}</td>
-                        <td className="px-4 py-3 text-navy text-right">{formatPercent(s.rate, 2)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray text-sm mt-3">Queensland&apos;s {formatAUD(STATE_PAYROLL_TAX.QLD.threshold)} threshold and {formatPercent(STATE_PAYROLL_TAX.QLD.rate, 2)} base rate position it as a competitive state for employers. Compared to <Link href="/pay-calculator-nsw/" className="text-eucalyptus-dark hover:underline">Pay Calculator NSW</Link> ({formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)}) and <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">Pay Calculator VIC</Link> ({formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}), Queensland offers a lower base rate, which benefits small-to-medium enterprises with wage bills just above the threshold.</p>
-
-            <H3>WorkCover Queensland</H3>
-            <ul className="mb-4 mt-4 space-y-2 text-sm text-warmgray">
-              <li><strong>WorkCover QLD:</strong> Employer-funded workplace injury insurance that provides income replacement at <strong>85%</strong> of normal weekly earnings for the first 26 weeks of incapacity</li>
-            </ul>
-            <p className="text-warmgray text-sm">
-              WorkCover Queensland insurance premiums are an employer-only expense. They do not reduce
-              your gross salary and do not affect your take-home pay or net pay after tax. Use the{" "}
-              <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to
-              model payroll tax, super and premiums together.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in Queensland compared to other states?">

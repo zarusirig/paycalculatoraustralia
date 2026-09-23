@@ -50,12 +50,18 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Annual Converter", description: "Convert between any pay frequency" },
       { href: "/contractor-pay-calculator/", label: "Contractor Pay Calculator", description: "ABN workers, freelancers & gig economy rates" },
       { href: "/employer-cost-calculator/", label: "Employer Cost Calculator", description: "True cost beyond salary" },
+      // --- T2 payroll tax cluster (23 Sep 2026) ---
+      { href: "/payroll-tax-calculator/", label: "Payroll Tax Calculator", description: "State payroll tax on 2026-27 rates, all 8 states" },
+      // --- end T2 ---
       { href: "/bonus-tax-calculator/", label: "Bonus Tax Calculator", description: "Tax on bonuses and lump sum payments" },
       { href: "/commission-tax-calculator/", label: "Commission Tax Calculator", description: "Tax on commission and Schedule 5 withholding" },
       { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator", description: "Overtime and penalty rate pay" },
       { href: "/leave-calculator/", label: "Leave Calculator", description: "Annual leave entitlements and payout" },
       { href: "/tax-return-calculator/", label: "Tax Return Calculator", description: "Estimate your tax refund" },
       { href: "/second-job-tax-calculator/", label: "Second Job Tax Calculator", description: "Tax on multiple jobs" },
+      // --- T1 wave 3 (23 Sep 2026) ---
+      { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator", description: "PAYG withheld per pay and your likely refund" },
+      // --- end T1 ---
       { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator", description: "What you keep of JobSeeker when you work" },
       { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance Calculator", description: "Student income test with current rates" },
       { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator", description: "Income test with the Work Bonus" },
@@ -148,6 +154,14 @@ export const GUIDE_CATEGORIES = [
       { href: "/security-award-rates/", label: "Security Award Rates", description: "Security officer levels 1–5" },
       { href: "/clerks-award-rates/", label: "Clerks Award Rates", description: "Clerks—Private Sector levels 1–5" },
       // --- end award cluster C3 ---
+      // --- T4: awards batch 3 (23 Sep 2026) ---
+      { href: "/restaurant-award-rates/", label: "Restaurant Award Rates", description: "Restaurants, cafés, cooks and chefs" },
+      { href: "/nurses-award-rates/", label: "Nurses Award Rates", description: "RN, EN and aged care nurse rates" },
+      { href: "/aged-care-award-rates/", label: "Aged Care Award Rates", description: "Personal care workers and support staff" },
+      { href: "/hair-and-beauty-award-rates/", label: "Hair & Beauty Award Rates", description: "Hairdressers and beauty therapists" },
+      { href: "/cleaning-award-rates/", label: "Cleaning Award Rates", description: "Full-time, part-time and casual cleaners" },
+      { href: "/road-transport-award-rates/", label: "Road Transport Award Rates", description: "Truck driver grades 1–10" },
+      // --- end T4 ---
       { href: "/junior-pay-rates/", label: "Junior Pay Rates", description: "Minimum wage by age, 16 to 20" },
       { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates by Award", description: "Weekend, evening and public holiday loadings" },
     ],
@@ -358,6 +372,9 @@ export const FOOTER_CALCULATORS = [
   { href: "/ytd-income-calculator/", label: "YTD Income Calculator" },
   { href: "/capital-gains-tax-calculator/", label: "Capital Gains Tax Calculator" },
   { href: "/work-hours-calculator/", label: "Work Hours Calculator" },
+  // --- T1 wave 3 (23 Sep 2026) ---
+  { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
+  // --- end T1 ---
 ] as const;
 
 // Footer guides — split into logical groups for multi-column layout
@@ -413,6 +430,14 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/security-award-rates/", label: "Security Award Rates" },
   { href: "/clerks-award-rates/", label: "Clerks Award Rates" },
   // --- end award cluster C3 ---
+  // --- T4: awards batch 3 (23 Sep 2026) ---
+  { href: "/restaurant-award-rates/", label: "Restaurant Award Rates" },
+  { href: "/nurses-award-rates/", label: "Nurses Award Rates" },
+  { href: "/aged-care-award-rates/", label: "Aged Care Award Rates" },
+  { href: "/hair-and-beauty-award-rates/", label: "Hair & Beauty Award Rates" },
+  { href: "/cleaning-award-rates/", label: "Cleaning Award Rates" },
+  { href: "/road-transport-award-rates/", label: "Road Transport Award Rates" },
+  // --- end T4 ---
   { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
   { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },

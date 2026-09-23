@@ -13,6 +13,11 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
 import { ADF_SERVICE_SLUGS } from "@/lib/data/adf-pay/types";
+// --- T2 payroll tax cluster (23 Sep 2026) ---
+import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
+// --- end T2 ---
+// T6 programmatic salary grid (2026-09-23)
+import { SALARY_TO_HOURLY_SALARIES, TAKE_HOME_SALARIES, TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -142,6 +147,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "security-award-rates",
     "clerks-award-rates",
     // --- end award cluster C3 ---
+    // --- T4: awards batch 3 (23 Sep 2026) ---
+    "restaurant-award-rates",
+    "nurses-award-rates",
+    "aged-care-award-rates",
+    "hair-and-beauty-award-rates",
+    "cleaning-award-rates",
+    "road-transport-award-rates",
+    // --- end T4 ---
     "junior-pay-rates",
     "employer-cost-calculator",
     "overtime-penalty-rates-guide",
@@ -195,33 +208,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug, changeFrequency: "monthly", priority: 0.8 });
   }
 
+  // --- T6: programmatic salary grid (2026-09-23) ---
+  // Hubs + every page, read from the same lists the routes' generateStaticParams
+  // use (lib/data/salary-pages), so the sitemap cannot drift from the build.
+  for (const hub of ["take-home-pay-on", "tax-on", "salary-to-hourly"]) {
+    allPages.push({ slug: hub, changeFrequency: "monthly" as const, priority: 0.6 });
+  }
   // 6. Programmatic /tax-on/ pages — priority 0.5
-  for (let salary = 30000; salary <= 200000; salary += 5000) {
-    allPages.push({
-      slug: `tax-on/${salary}`,
-      changeFrequency: "monthly",
-      priority: 0.5,
-    });
+  for (const salary of TAX_ON_SALARIES) {
+    allPages.push({ slug: `tax-on/${salary}`, changeFrequency: "monthly" as const, priority: 0.5 });
   }
-
   // 7. Programmatic /take-home-pay-on/ pages — priority 0.5
-  for (let salary = 30000; salary <= 200000; salary += 5000) {
-    allPages.push({
-      slug: `take-home-pay-on/${salary}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    });
+  for (const salary of TAKE_HOME_SALARIES) {
+    allPages.push({ slug: `take-home-pay-on/${salary}`, changeFrequency: "monthly" as const, priority: 0.5 });
   }
-
   // 8. Programmatic /salary-to-hourly/ pages — priority 0.5
-  const salaryToHourlySalaries = [30000, 40000, 45000, 50000, 55000, 60000, 65000, 70000, 75000, 80000, 85000, 90000, 95000, 100000, 110000, 120000, 130000, 140000, 150000, 200000];
-  for (const salary of salaryToHourlySalaries) {
-    allPages.push({
-      slug: `salary-to-hourly/${salary}`,
-      changeFrequency: "yearly" as const,
-      priority: 0.5,
-    });
+  for (const salary of SALARY_TO_HOURLY_SALARIES) {
+    allPages.push({ slug: `salary-to-hourly/${salary}`, changeFrequency: "yearly" as const, priority: 0.5 });
   }
+  // --- end T6 ---
 
   // 8b. Programmatic /hourly-to-salary/ pages — the reverse direction, which
   // carries more AU volume than salary→hourly (gap analysis §D1). Priority 0.5.
@@ -311,6 +316,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T2 payroll tax cluster (23 Sep 2026): calculator, hub, 8 state pages ---
+  allPages.push({ slug: "payroll-tax-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "payroll-tax", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const state of PAYROLL_TAX_STATE_CODES) {
+    allPages.push({ slug: `payroll-tax/${state}`, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end T2 ---
+  // --- T1 wave 3 tax core (23 Sep 2026) ---
+  allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  // --- end T1 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

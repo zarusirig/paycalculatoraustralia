@@ -8,8 +8,13 @@ import {
   formatPercent,
   EMPLOYMENT,
   SUPER_GUARANTEE,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
+import { WA_STATE_MINIMUM_WAGE } from "@/lib/constants/minimum-wage";
+import {
+  PAYROLL_TAX_FY,
+  PAYROLL_TAX_STATES,
+  type PayrollTaxStateCode,
+} from "@/lib/constants/payroll-tax";
 import {
   ABS_NATIONAL_AWOTE_WEEKLY,
   STATE_EMPLOYEE_SOURCES,
@@ -437,7 +442,8 @@ export function ForwardLslLinks(_props: { profile: StateEmployeeProfile }) {
 // ---------------------------------------------------------------------------
 
 export function PayrollTaxForEmployees({ profile }: { profile: StateEmployeeProfile }) {
-  const pt = STATE_PAYROLL_TAX[profile.code];
+  const code = profile.code.toLowerCase() as PayrollTaxStateCode;
+  const pt = PAYROLL_TAX_STATES[code];
   return (
     <div className="rounded-r-lg border-l-4 border-navy/30 bg-sandstone p-4">
       <p className="mb-2 font-medium text-navy">
@@ -445,12 +451,139 @@ export function PayrollTaxForEmployees({ profile }: { profile: StateEmployeeProf
       </p>
       <p className="text-sm text-navy">
         It is a cost of hiring you, not a deduction from you. Once an employer&apos;s Australian
-        wage bill passes <strong>{formatAUD(pt.threshold)}</strong> a year it starts paying{" "}
-        <strong>{formatPercent(pt.rate, 2)}</strong> to the {profile.name} revenue office on the
-        excess. That never appears on your payslip and never reduces your gross salary. If you see a
-        deduction you cannot account for, the full employer-side detail is further down this page.
+        wage bill passes <strong>{formatAUD(pt.annualThreshold)}</strong> a year it pays{" "}
+        <strong>{pt.headlineRate}</strong> to the {pt.revenueOffice} on top of wages. That never
+        appears on your payslip and never reduces your gross salary. Employers can find the rates,
+        thresholds and due dates on the{" "}
+        <Link href={`/payroll-tax/${code}/`} className="text-eucalyptus-dark hover:underline">
+          {profile.shortName} payroll tax
+        </Link>{" "}
+        page.
       </p>
     </div>
+  );
+}
+
+// T2 (23 Sep 2026): the employer-side payroll tax detail that used to sit at the
+// bottom of each /pay-calculator-<state>/ page moved to /payroll-tax/<state>/.
+// This box is the pointer that replaced it.
+export function EmployerPayrollTaxLink({ profile }: { profile: StateEmployeeProfile }) {
+  const code = profile.code.toLowerCase() as PayrollTaxStateCode;
+  const pt = PAYROLL_TAX_STATES[code];
+  return (
+    <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6">
+      <h2 className="mb-2 text-lg font-semibold text-navy">
+        Employer? {profile.shortName} payroll tax is on its own page
+      </h2>
+      <p className="mb-3 text-sm text-warmgray">
+        {pt.name} payroll tax for {PAYROLL_TAX_FY}: {pt.headlineRate} above a{" "}
+        {formatAUD(pt.annualThreshold)} threshold, administered by the {pt.revenueOffice}. The
+        rates, phase-outs, registration rules, due dates and a calculator set to{" "}
+        {profile.shortName} are on the payroll tax page.
+      </p>
+      <div className="flex flex-wrap gap-2 text-sm">
+        <Link
+          href={`/payroll-tax/${code}/`}
+          className="inline-block rounded-full bg-eucalyptus-dark px-4 py-2 font-medium text-white hover:bg-navy"
+        >
+          {profile.shortName} payroll tax {PAYROLL_TAX_FY}
+        </Link>
+        <Link
+          href="/payroll-tax-calculator/"
+          className="inline-block rounded-full border border-sandstone-dark/30 bg-white px-4 py-2 text-navy hover:border-eucalyptus hover:text-eucalyptus-dark"
+        >
+          Payroll tax calculator
+        </Link>
+        <Link
+          href="/employer-cost-calculator/"
+          className="inline-block rounded-full border border-sandstone-dark/30 bg-white px-4 py-2 text-navy hover:border-eucalyptus hover:text-eucalyptus-dark"
+        >
+          Employer cost calculator
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// State pay facts for employees (T2 intent fix, 23 Sep 2026)
+// ---------------------------------------------------------------------------
+
+// Built spokes, mirrored from lib/data/public-service-pay (JURISDICTIONS) and
+// lib/data/nursing-pay (NURSING_PAY_STATES). Hard-coded so this client bundle
+// does not pull in every pay table; update both lists when a state is added.
+const PUBLIC_SERVICE_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa"];
+const NURSE_PAY_BUILT: readonly string[] = ["nsw", "vic", "qld", "wa", "sa", "tas"];
+
+export function StatePayFacts({ profile }: { profile: StateEmployeeProfile }) {
+  const code = profile.code.toLowerCase() as PayrollTaxStateCode;
+  const pt = PAYROLL_TAX_STATES[code];
+  const lsl = profile.longServiceLeave;
+  const stateOnly = profile.publicHolidays2026.filter((h) => h.stateSpecific).length;
+  const link = "text-eucalyptus-dark hover:underline";
+  return (
+    <section>
+      <H2>{profile.shortName} pay at a glance</H2>
+      <ul className="space-y-3 text-warmgray">
+        <li>
+          <strong className="text-navy">Minimum wage:</strong> the national minimum wage is{" "}
+          {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour ({formatAUD(EMPLOYMENT.minimumWageWeekly, 2)}{" "}
+          for a 38-hour week) from 1 July 2026; most jobs pay an award rate above it — see the{" "}
+          <Link href="/minimum-wage-australia/" className={link}>minimum wage guide</Link>.
+          {code === "wa" && (
+            <>
+              {" "}Employees of WA sole traders, partnerships and other non-company employers are in the
+              state system instead, where the WA State Minimum Wage is{" "}
+              <strong className="text-navy">{formatAUD(WA_STATE_MINIMUM_WAGE.hourly, 2)} an hour</strong>{" "}
+              ({formatAUD(WA_STATE_MINIMUM_WAGE.weekly, 2)} a week) from {WA_STATE_MINIMUM_WAGE.operativeFrom}.
+            </>
+          )}
+        </li>
+        <li>
+          <strong className="text-navy">Public holidays:</strong> {profile.publicHolidays2026.length} in 2026,{" "}
+          {stateOnly} of them {profile.shortName}-only. Working one usually attracts{" "}
+          {formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMin, 0)}–
+          {formatPercent(EMPLOYMENT.penaltyRates.publicHolidayMax, 0)} of your base rate under an award
+          (table above).
+        </li>
+        <li>
+          <strong className="text-navy">Long service leave:</strong> {lsl.weeksAtEntitlement.toFixed(2)} weeks
+          after {lsl.takeAfterYears} years under the {lsl.act} —{" "}
+          <Link href={profile.lslCalculatorPath} className={link}>
+            {profile.shortName} long service leave calculator
+          </Link>
+          .
+        </li>
+        <li>
+          <strong className="text-navy">Government jobs:</strong>{" "}
+          {PUBLIC_SERVICE_BUILT.includes(code) ? (
+            <Link href={`/public-service-pay-scales/${code}/`} className={link}>
+              {profile.shortName} public service pay scales
+            </Link>
+          ) : (
+            <Link href="/public-service-pay-scales/" className={link}>public service pay scales</Link>
+          )}
+          ,{" "}
+          <Link href={`/teacher-pay-australia/${code}/`} className={link}>
+            {profile.shortName} teacher pay
+          </Link>
+          {NURSE_PAY_BUILT.includes(code) && (
+            <>
+              {" "}and{" "}
+              <Link href={`/healthcare-worker-pay/${code}/`} className={link}>
+                {profile.shortName} nurse pay rates
+              </Link>
+            </>
+          )}
+          .
+        </li>
+        <li>
+          <strong className="text-navy">Workers compensation:</strong> if you are injured at work, the{" "}
+          {profile.shortName} scheme ({pt.workersComp}) covers weekly payments and medical costs. Your
+          employer pays the premium; nothing is deducted from your pay for it.
+        </li>
+      </ul>
+    </section>
   );
 }
 

@@ -41,6 +41,13 @@ const COVERS: Record<string, string> = {
   manufacturing: "Metal, engineering and manufacturing workers and tradespeople",
   security: "Security officers and guards",
   clerks: "Office, administration and call-centre staff",
+  // --- T4 awards batch 3 ---
+  restaurant: "Restaurants, cafés, reception centres and roadhouses",
+  nurses: "Nursing assistants, enrolled and registered nurses",
+  "aged-care": "Personal care and support staff in residential aged care",
+  "hair-and-beauty": "Hairdressers, barbers and beauty therapists",
+  cleaning: "Commercial cleaners and trolley collectors",
+  "road-transport": "Truck, forklift and delivery drivers, couriers and loaders",
 };
 
 const modern: AwardDirectoryEntry[] = Object.values(MODERN_AWARDS).map((a) => {
