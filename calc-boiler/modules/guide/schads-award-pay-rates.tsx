@@ -21,6 +21,16 @@ import {
   type SchadsRate,
 } from "@/lib/constants/schads-award";
 import { SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-faqs";
+import { toCents } from "@/modules/guide/hospitality-award-faqs";
+import { AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
+
+/** Weekend and public holiday multipliers; casual figures include the loading. */
+const SCHADS_MATRIX = [
+  { label: "Mon–Fri", fullTime: 1, casual: 1 + SCHADS_AWARD.casualLoading },
+  { label: "Saturday", fullTime: SCHADS_PENALTIES.saturday, casual: SCHADS_PENALTIES.casualSaturday },
+  { label: "Sunday", fullTime: SCHADS_PENALTIES.sunday, casual: SCHADS_PENALTIES.casualSunday },
+  { label: "Public holiday", fullTime: SCHADS_PENALTIES.publicHoliday, casual: SCHADS_PENALTIES.casualPublicHoliday },
+] as const;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${SCHADS_AWARD.name} (${SCHADS_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary", publisher: SOURCES.fwo.name },
@@ -105,6 +115,10 @@ export default function SchadsAwardPayRatesPage() {
               <strong>Direct answer:</strong> Social and community services rates run from <strong>{formatAUD(L1.weekly, 2)}</strong> a week ({formatAUD(L1.hourly, 2)}/hr) at Level 1 pay point 1 to <strong>{formatAUD(L8.weekly, 2)}</strong> a week ({formatAUD(L8.hourly, 2)}/hr) at Level 8 pay point 3. The widely quoted Level 4 rate is <strong>{formatAUD(L4.weekly, 2)}</strong> a week, or {formatAUD(L4.hourly, 2)} an hour &mdash; not the {formatAUD(CLAUSE_15_LEVEL_4, 2)} printed in clause 15, which omits the Equal Remuneration Order.
             </p>
           </div>
+          <div className="mb-6 flex flex-wrap items-center gap-3">
+            <PrintButton label="Print the 2026 pay guide / save as PDF" />
+            <a href="#pay-guide" className="text-sm font-medium text-eucalyptus-dark hover:underline">Jump to the full pay guide table</a>
+          </div>
           <TrustBar className="!max-w-none" />
         </header>
 
@@ -170,6 +184,40 @@ export default function SchadsAwardPayRatesPage() {
               <RateTable rows={SCHADS_HOME_CARE_AGED} caption="SCHADS home care aged care pay rates" />
             </section>
 
+            <section id="pay-guide">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Pay Guide 2026: Every Pay Point, Every Day</h2>
+              <p>
+                The printable version: every classification&rsquo;s hourly rate on a weekday, Saturday, Sunday and public holiday, for permanent and casual employees, from the first full pay period on or after {SCHADS_AWARD.operativeFrom}. Use the print button above to save it as a PDF. Shift loadings (afternoon {PCT(SCHADS_PENALTIES.afternoonShiftLoading)}, night {PCT(SCHADS_PENALTIES.nightShiftLoading)}) are covered under <a href="#penalty-rates">penalty rates</a>.
+              </p>
+              {[
+                { title: "Social and community services (Schedule B)", rows: SCHADS_SACS },
+                { title: "Home care — disability (Schedule E)", rows: SCHADS_HOME_CARE_DISABILITY },
+                { title: "Home care — aged care (Schedule F)", rows: SCHADS_HOME_CARE_AGED },
+              ].map((s) => (
+                <div key={s.title}>
+                  <h3>{s.title} &mdash; full-time and part-time</h3>
+                  <PayGuideMatrix
+                    rows={s.rows.map((r) => ({ level: r.classification, hourly: r.hourly }))}
+                    columns={SCHADS_MATRIX}
+                    employment="permanent"
+                    casualLoading={SCHADS_AWARD.casualLoading}
+                    caption={`SCHADS ${s.title} full-time and part-time hourly rates by day`}
+                  />
+                  <h3>{s.title} &mdash; casual</h3>
+                  <PayGuideMatrix
+                    rows={s.rows.map((r) => ({ level: r.classification, hourly: r.hourly }))}
+                    columns={SCHADS_MATRIX}
+                    employment="casual"
+                    casualLoading={SCHADS_AWARD.casualLoading}
+                    caption={`SCHADS ${s.title} casual hourly rates by day`}
+                  />
+                </div>
+              ))}
+              <p className="text-sm text-warmgray">
+                Percentages from award clauses 26, 29 and 34 applied to each hourly rate and rounded to the cent; casual percentages already include the {PCT(SCHADS_AWARD.casualLoading)} loading. Public holiday is &ldquo;{SCHADS_AWARD.publicHolidayAwardWording}&rdquo; in the award&rsquo;s own words.
+              </p>
+            </section>
+
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Penalty Rates</h2>
               <p>
@@ -197,20 +245,20 @@ export default function SchadsAwardPayRatesPage() {
                           <th scope="row" className="px-5 py-3 text-left font-medium">{row.label}</th>
                           <td className="px-5 py-3 font-medium">{PCT(row.perm)}</td>
                           <td className="px-5 py-3 font-medium">{PCT(row.cas)}</td>
-                          <td className="px-5 py-3">{formatAUD(L4.hourly * row.perm, 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(L4.hourly * row.perm), 2)}</td>
                         </tr>
                       ))}
                       <tr>
                         <th scope="row" className="px-5 py-3 text-left font-medium">Afternoon shift loading</th>
                         <td className="px-5 py-3 font-medium">+{PCT(SCHADS_PENALTIES.afternoonShiftLoading)}</td>
                         <td className="px-5 py-3 text-warmgray">&mdash;</td>
-                        <td className="px-5 py-3">{formatAUD(L4.hourly * (1 + SCHADS_PENALTIES.afternoonShiftLoading), 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L4.hourly * (1 + SCHADS_PENALTIES.afternoonShiftLoading)), 2)}</td>
                       </tr>
                       <tr>
                         <th scope="row" className="px-5 py-3 text-left font-medium">Night shift loading</th>
                         <td className="px-5 py-3 font-medium">+{PCT(SCHADS_PENALTIES.nightShiftLoading)}</td>
                         <td className="px-5 py-3 text-warmgray">&mdash;</td>
-                        <td className="px-5 py-3">{formatAUD(L4.hourly * (1 + SCHADS_PENALTIES.nightShiftLoading), 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(toCents(L4.hourly * (1 + SCHADS_PENALTIES.nightShiftLoading)), 2)}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -272,6 +320,13 @@ export default function SchadsAwardPayRatesPage() {
               <p>
                 The sleepover allowance pays for the sleepover itself. <strong>If you are woken and required to work, those hours are paid separately</strong> at the rate applying at that time &mdash; the allowance does not buy the employer any working time.
               </p>
+            </section>
+
+            <section id="take-home">
+              <TakeHomeLinks
+                rows={SCHADS_SACS.map((r) => ({ level: r.classification, hourly: r.hourly }))}
+                heading="What does a SCHADS rate take home?"
+              />
             </section>
 
             <section id="no-junior-rates">
@@ -372,21 +427,8 @@ export default function SchadsAwardPayRatesPage() {
             <div className="sticky top-8 space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates</h2>
-                  <div className="space-y-3">
-                    {[
-                      { href: "/hospitality-award-rates/", label: "Hospitality Award Rates" },
-                      { href: "/retail-award-rates/", label: "Retail Award Rates" },
-                      { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
-                      { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
-                      { href: "/award-rates/", label: "All Award Rates" },
-                    ].map((l) => (
-                      <Link key={l.href} href={l.href} className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-3 transition-all hover:border-eucalyptus/40 hover:shadow-sm">
-                        <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{l.label}</span>
-                        <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                      </Link>
-                    ))}
-                  </div>
+                  <h2 className="mb-3 font-bold text-navy">Award Pay Rates A–Z</h2>
+                  <AwardDirectorySidebar currentHref="/schads-award-pay-rates/" />
                 </CardContent>
               </Card>
 
