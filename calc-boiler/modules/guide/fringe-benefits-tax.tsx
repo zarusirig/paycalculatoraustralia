@@ -6,7 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
+import { FBT_CAPS, capFaceValue } from "@/lib/constants/novated-lease";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [{ title: "Fringe benefits tax", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name }, { title: "FBT rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds", publisher: SOURCES.ato.name }, { title: "Types of fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name }];
@@ -176,7 +177,7 @@ export default function FringeBenefitsTaxPage() {
             </ul>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Capped Exemptions for NFP Employers</h3>
-            <p>Not-for-profit organisations, public hospitals, and charities receive capped FBT exemptions. Public benevolent institutions (PBIs) and health promotion charities have a grossed-up cap of <strong>$30,000</strong> per employee per FBT year. Public and not-for-profit hospitals receive a cap of <strong>$17,000</strong>. Benefits within the cap are exempt; benefits exceeding the cap attract FBT at the standard 47% rate.</p>
+            <p>Not-for-profit organisations, public hospitals, and charities receive capped FBT exemptions. Public benevolent institutions (PBIs) and health promotion charities have a grossed-up cap of <strong>{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)}</strong> per employee per FBT year (about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} of GST-free benefits such as rent). Public and not-for-profit hospitals and public ambulance services receive a cap of <strong>{formatAUD(FBT_CAPS.hospitalAndAmbulance)}</strong> (about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}). A separate <strong>{formatAUD(FBT_CAPS.salaryPackagedEntertainment)}</strong> grossed-up cap applies to salary-packaged meal entertainment and entertainment facility leasing. Benefits within the caps are exempt; benefits exceeding them attract FBT at the standard 47% rate. Rebatable employers get a 47% rebate, not an exemption, on up to {formatAUD(FBT_CAPS.rebatableEmployer)} per employee.</p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Reduction Through Employee Contributions</h3>
             <p>Employees can make after-tax (post-tax) contributions toward the cost of a fringe benefit. Each dollar contributed reduces the taxable value of the benefit by one dollar. This is the most common strategy for reducing FBT on car fringe benefits and novated leases.</p>
@@ -306,7 +307,7 @@ export default function FringeBenefitsTaxPage() {
               </AccordionItem>
               <AccordionItem value="nfp-cap" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">Do not-for-profit employees get FBT concessions?</AccordionTrigger>
-                <AccordionContent className="text-warmgray">Yes. Public benevolent institutions (PBIs) and health promotion charities receive a grossed-up FBT exemption cap of <strong>$30,000</strong> per employee per FBT year. Public and not-for-profit hospitals have a cap of <strong>$17,000</strong>. Benefits within these caps are FBT-exempt. Benefits exceeding the cap attract FBT at the standard 47% rate.</AccordionContent>
+                <AccordionContent className="text-warmgray">Yes. Public benevolent institutions (PBIs) and health promotion charities receive a grossed-up FBT exemption cap of <strong>{formatAUD(FBT_CAPS.pbiAndHealthPromotionCharity)}</strong> per employee per FBT year, about {formatAUD(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity))} of GST-free benefits. Public and not-for-profit hospitals and public ambulance services have a cap of <strong>{formatAUD(FBT_CAPS.hospitalAndAmbulance)}</strong>, about {formatAUD(capFaceValue(FBT_CAPS.hospitalAndAmbulance))}. Salary-packaged meal entertainment has its own separate {formatAUD(FBT_CAPS.salaryPackagedEntertainment)} grossed-up cap. Benefits within these caps are FBT-exempt. Benefits exceeding the cap attract FBT at the standard 47% rate.</AccordionContent>
               </AccordionItem>
               <AccordionItem value="car-methods" className="border rounded-lg px-4 bg-white">
                 <AccordionTrigger className="text-left font-semibold text-navy">What is the difference between the statutory formula and operating cost method?</AccordionTrigger>

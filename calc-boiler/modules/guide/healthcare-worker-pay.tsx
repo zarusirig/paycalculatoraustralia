@@ -28,7 +28,7 @@ import { DOCTOR } from "@/lib/data/job-pay-rates/doctor";
 import { PHYSIOTHERAPIST } from "@/lib/data/job-pay-rates/physiotherapist";
 import { PHARMACIST } from "@/lib/data/job-pay-rates/pharmacist";
 import { DISABILITY_SUPPORT_WORKER } from "@/lib/data/job-pay-rates/disability-support-worker";
-import { FBT } from "@/lib/constants/novated-lease";
+import { FBT, FBT_CAPS, capFaceValue, salaryPackagingBenefit } from "@/lib/constants/novated-lease";
 
 const STATES = NURSING_PAY_STATES.map((slug) => NURSING_PAY_BY_STATE[slug]).filter(
   (s): s is NonNullable<typeof s> => Boolean(s),
@@ -98,17 +98,15 @@ const AGED_CARE_QUALIFIED = AGED_CARE_DIRECT_CARE[2];
 const AGED_CARE_LOW = AGED_CARE_DIRECT_CARE[0];
 const AGED_CARE_HIGH = AGED_CARE_DIRECT_CARE[AGED_CARE_DIRECT_CARE.length - 1];
 
-// FBT-exempt caps are GROSSED-UP values (ATO "FBT-exempt organisations",
-// capping thresholds; FBT guide 6.5 for the separate $5,000 entertainment cap).
-// Dividing by the type 2 gross-up rate gives the GST-free expenses (rent,
-// mortgage) each cap covers.
-const CAP_HOSPITAL_GROSSED_UP = 17_000;
-const CAP_PBI_GROSSED_UP = 30_000;
-const CAP_ENTERTAINMENT_GROSSED_UP = 5_000;
-const toExpenses = (grossedUp: number) => Math.round(grossedUp / FBT.grossUpType2);
-const CAP_HOSPITAL = toExpenses(CAP_HOSPITAL_GROSSED_UP);
-const CAP_PBI = toExpenses(CAP_PBI_GROSSED_UP);
-const CAP_ENTERTAINMENT = toExpenses(CAP_ENTERTAINMENT_GROSSED_UP);
+// FBT-exempt caps are GROSSED-UP values (FBT_CAPS, sourced in
+// lib/constants/novated-lease.ts). capFaceValue divides by the type 2 gross-up
+// rate to give the GST-free expenses (rent, mortgage) each cap covers.
+const CAP_HOSPITAL_GROSSED_UP = FBT_CAPS.hospitalAndAmbulance;
+const CAP_PBI_GROSSED_UP = FBT_CAPS.pbiAndHealthPromotionCharity;
+const CAP_ENTERTAINMENT_GROSSED_UP = FBT_CAPS.salaryPackagedEntertainment;
+const CAP_HOSPITAL = capFaceValue(CAP_HOSPITAL_GROSSED_UP);
+const CAP_PBI = capFaceValue(CAP_PBI_GROSSED_UP);
+const CAP_ENTERTAINMENT = capFaceValue(CAP_ENTERTAINMENT_GROSSED_UP);
 const PACKAGE_SALARY = 85_000;
 const PACKAGED = CAP_HOSPITAL + CAP_ENTERTAINMENT;
 
@@ -142,7 +140,7 @@ function afterTax(gross: number): number {
 }
 
 /** Extra spendable income from packaging: packaged expenses are paid pre-tax. */
-const PACKAGING_BENEFIT = afterTax(PACKAGE_SALARY - PACKAGED) + PACKAGED - afterTax(PACKAGE_SALARY);
+const PACKAGING_BENEFIT = salaryPackagingBenefit(PACKAGE_SALARY, PACKAGED);
 
 export default function HealthcareWorkerPayPage() {
   return (

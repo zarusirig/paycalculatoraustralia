@@ -19,17 +19,21 @@ import { calculateHECS, calculatePayBreakdown } from "../australian-tax";
 import {
   EV_EXEMPTION,
   FBT,
+  FBT_CAPS,
+  FBT_CAPS_SOURCES,
   FBT_COST_PER_DOLLAR,
   LUXURY_CAR_TAX,
   NOVATED_LEASE_SOURCES,
   NOVATED_LEASE_UNVERIFIED,
   RESIDUAL_MINIMUM_PCT,
   calculateNovatedLease,
+  capFaceValue,
   ecmBreakEvenMarginalRate,
   fbtPayable,
   isFbtExempt,
   minimumResidual,
   reportableFringeBenefitsAmount,
+  salaryPackagingBenefit,
   statutoryTaxableValue,
   type NovatedLeaseInputs,
 } from "../novated-lease";
@@ -356,4 +360,37 @@ test("FBT year is not the income year", () => {
   assert.equal(FBT.grossUpType1, 2.0802);
   assert.equal(FBT.grossUpType2, 1.8868);
   assert.equal(FBT.statutoryRate, 0.2);
+});
+
+// ---------- FBT exemption caps (salary packaging) ----------
+// ATO "Fringe benefits tax - rates and thresholds" Table 5 and FBT guide 6.3/6.5.
+
+test("FBT exemption caps are the ATO's grossed-up figures, not face values", () => {
+  assert.equal(FBT_CAPS.pbiAndHealthPromotionCharity, 30_000);
+  assert.equal(FBT_CAPS.hospitalAndAmbulance, 17_000);
+  assert.equal(FBT_CAPS.rebatableEmployer, 30_000);
+  assert.equal(FBT_CAPS.salaryPackagedEntertainment, 5_000);
+  assert.equal(FBT_CAPS_SOURCES.verifiedOn, "23 September 2026");
+  for (const [key, value] of Object.entries(FBT_CAPS_SOURCES)) {
+    if (key === "verifiedOn") continue;
+    assert.ok(value.startsWith("https://www.ato.gov.au/"), `${key} must cite ato.gov.au`);
+  }
+});
+
+test("face values: $30,000 -> $15,900, $17,000 -> $9,010, $5,000 -> $2,650 (type 2) or $2,404 (type 1)", () => {
+  // 30,000 / 1.8868 = 15,899.94; 17,000 / 1.8868 = 9,009.96;
+  // 5,000 / 1.8868 = 2,649.99; 5,000 / 2.0802 = 2,403.62.
+  assert.equal(capFaceValue(FBT_CAPS.pbiAndHealthPromotionCharity), 15_900);
+  assert.equal(capFaceValue(FBT_CAPS.hospitalAndAmbulance), 9_010);
+  assert.equal(capFaceValue(FBT_CAPS.salaryPackagedEntertainment), 2_650);
+  assert.equal(capFaceValue(FBT_CAPS.salaryPackagedEntertainment, FBT.grossUpType1), 2_404);
+});
+
+test("packaging benefit at $80,000: PBI cap worth $5,126, hospital cap $2,883 (FY2026-27)", () => {
+  // Without packaging: tax 4,020 + 30% x 35,000 = 14,520, Medicare 1,600 -> 16,120.
+  // PBI, taxable 64,100: tax 9,750 less LITO 38.50 = 9,712 (rounded), Medicare 1,282 -> 10,994.
+  assert.equal(salaryPackagingBenefit(80_000, 15_900), 16_120 - 10_994);
+  // Hospital, taxable 70,990: tax 11,817 (no LITO above $66,667), Medicare 1,420 -> 13,237.
+  assert.equal(salaryPackagingBenefit(80_000, 9_010), 16_120 - 13_237);
+  assert.equal(salaryPackagingBenefit(80_000, 0), 0);
 });
