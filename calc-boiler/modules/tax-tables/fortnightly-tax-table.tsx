@@ -102,7 +102,7 @@ export default function FortnightlyTaxTablePage() {
                 Every figure is computed from the ATO Schedule 1 coefficients and reproduces the ATO&apos;s published
                 sample amounts exactly &mdash; including the property that every fortnightly amount is an even number of
                 dollars.{" "}
-                <Link href="/fortnightly-pay-calculator/">Calculate your exact fortnightly pay here.</Link>
+                To skip the lookup, the <Link href="/fortnightly-pay-calculator/">fortnightly tax calculator</Link> works out your exact fortnightly pay.
               </p>
             </section>
 

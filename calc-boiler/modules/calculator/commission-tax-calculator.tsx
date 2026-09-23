@@ -294,7 +294,7 @@ export default function CommissionTaxCalculatorPage() {
           <section>
             <h2 style={FONT} className={H2}>Commission, HECS-HELP and the Medicare Levy Surcharge</h2>
             <p className={P}>
-              Commission counts toward repayment income, so a good year can lift a <Link href="/hecs-help-calculator/" className={LINK}>HECS-HELP repayment</Link> into a higher band (the threshold is {formatAUD(HECS_HELP.minimumThreshold)} in {SITE_CONFIG.financialYear}); tick the study-loan box above to include the STSL component in both figures. It also counts toward income for the <Link href="/medicare-levy/" className={LINK}>Medicare levy surcharge</Link> if you have no private hospital cover.
+              Commission counts toward repayment income, so a good year can lift a <Link href="/hecs-help-calculator/" className={LINK}>HECS-HELP repayment</Link> into a higher band (the threshold is {formatAUD(HECS_HELP.minimumThreshold)} in {SITE_CONFIG.financialYear}); tick the study-loan box above to include the STSL component in both figures. It also counts toward income for the <Link href="/medicare-levy-surcharge-calculator/" className={LINK}>Medicare levy surcharge</Link> if you have no private hospital cover.
             </p>
           </section>
 

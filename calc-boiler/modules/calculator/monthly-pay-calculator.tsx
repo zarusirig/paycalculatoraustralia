@@ -20,6 +20,7 @@ import {
   TAX_BRACKETS,
 } from "@/lib/constants";
 import { FIRST_TAXED_BRACKET, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { HeadTermLinks } from "@/modules/calculator/head-term-ui";
 
 // Answer-first lead, computed from the tax engine.
 const LEAD = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
@@ -115,6 +116,7 @@ export default function MonthlyPayCalculatorPage() {
             </CardContent>
           </Card>
         </section>
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["salaryCalculator", "netPayCalculator", "salaryAfterTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
