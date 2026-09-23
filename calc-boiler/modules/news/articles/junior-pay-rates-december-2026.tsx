@@ -94,7 +94,7 @@ export default function JuniorPayRatesDecember2026() {
       <p>
         Retail 20-year-olds with more than six months&apos; service already get {retail.present.age20}%, so in retail
         only 18 and 19-year-olds move, and only at retail employee levels 1 to 3. Pharmacy follows a separate
-        schedule agreed with the Pharmacy Guild for pharmacy assistants levels 1 and 2 — a five-point first step in December 2026, then ten-point steps each 1 July —
+        schedule agreed with the Pharmacy Guild for pharmacy assistants levels 1 and 2 — a five-point first step in December 2026, then steps of up to ten points each 1 July to 2029 —
         which the Commission adopted by consent.
       </p>
 
