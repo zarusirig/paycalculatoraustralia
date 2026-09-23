@@ -8,7 +8,6 @@ import { MEDICARE_LEVY, formatAUD, formatPercent } from "@/lib/constants";
 import {
   MEDICARE_LEVY_INCOME_YEAR,
   MEDICARE_LEVY_SENIORS,
-  MLS_CHILD_INCREMENT,
   MLS_INCOME_YEAR,
   calculateMedicareLevyDetailed,
   familyLowerThreshold,
@@ -73,19 +72,7 @@ export const MEDICARE_LEVY_FAQS: readonly MedicareLevyFaq[] = [
   },
   {
     q: "Is the Medicare levy the same as the Medicare levy surcharge?",
-    a: `No, and they are charged for different reasons. The Medicare levy is ${RATE} and almost every Australian resident pays it. The Medicare levy surcharge is an extra 1%, 1.25% or 1.5% charged only to higher earners who do not hold private patient hospital cover — above ${MLS_BASE} for singles and ${MLS_FAMILY_BASE} for families in ${MLS_INCOME_YEAR}. You can owe both at once. Buying hospital cover removes the surcharge and changes the levy by nothing at all.`,
-  },
-  {
-    q: "How is the Medicare levy surcharge calculated?",
-    a: `Work out your income for surcharge purposes, find your tier, and multiply your WHOLE income by that tier's rate — it is not charged only on the excess. For ${MLS_INCOME_YEAR} singles: nil up to ${MLS_BASE}, 1% from ${formatAUD(MEDICARE_LEVY.surcharge.tier1.min)}, 1.25% from ${formatAUD(MEDICARE_LEVY.surcharge.tier2.min)} and 1.5% from ${formatAUD(MEDICARE_LEVY.surcharge.tier3.min)}. On ${formatAUD(110_000)} without hospital cover that is ${formatAUD(110_000 * MEDICARE_LEVY.surcharge.tier1.rate)} on top of the ${RATE} levy. It applies only for the days you had no private patient hospital cover.`,
-  },
-  {
-    q: "How do I avoid the Medicare levy surcharge?",
-    a: `Hold a compliant private patient hospital policy for the whole income year. Extras-only cover does not count — it must include hospital treatment. The surcharge is worked out day by day, so a policy that starts in October still leaves you liable for July to September. Nothing removes the ${RATE} levy itself; the surcharge is the only part hospital cover touches.`,
-  },
-  {
-    q: "What income counts for the Medicare levy surcharge?",
-    a: `Income for surcharge purposes is wider than taxable income. It adds reportable fringe benefits, total net investment losses including negative gearing, and reportable super contributions. That is why salary sacrificing into super does not get you under the threshold — the sacrificed amount is added straight back. If you have a spouse, the tier is decided on your combined income, and the family threshold rises by ${formatAUD(MLS_CHILD_INCREMENT)} for each dependent child after the first.`,
+    a: `No, and they are charged for different reasons. The Medicare levy is ${RATE} and almost every Australian resident pays it. The Medicare levy surcharge is an extra 1%, 1.25% or 1.5% charged only to higher earners who do not hold private patient hospital cover — above ${MLS_BASE} for singles and ${MLS_FAMILY_BASE} for families in ${MLS_INCOME_YEAR}. You can owe both at once. Buying hospital cover removes the surcharge and changes the levy by nothing at all. Our Medicare levy surcharge calculator works out the surcharge separately.`,
   },
   {
     q: "Who is exempt from the Medicare levy?",
