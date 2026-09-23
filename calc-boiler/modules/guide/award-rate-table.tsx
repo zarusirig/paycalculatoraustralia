@@ -15,11 +15,14 @@ export function AwardRateTable({
   casualLoading,
   caption,
   levelHeading = "Classification level",
+  partTimeLoading,
 }: {
   rows: readonly AwardRate[];
   casualLoading: number;
   caption: string;
   levelHeading?: string;
+  /** Adds a part-time hourly column where the award pays part-timers a loading (Cleaning: 15%). */
+  partTimeLoading?: number;
 }) {
   const loadingLabel = `${(casualLoading * 100).toFixed(0)}%`;
   return (
@@ -31,7 +34,10 @@ export function AwardRateTable({
             <tr>
               <th scope="col" className="px-5 py-4">{levelHeading}</th>
               <th scope="col" className="px-5 py-4">Weekly (38 hrs)</th>
-              <th scope="col" className="px-5 py-4">Hourly</th>
+              <th scope="col" className="px-5 py-4">{partTimeLoading !== undefined ? "Full-time hourly" : "Hourly"}</th>
+              {partTimeLoading !== undefined && (
+                <th scope="col" className="px-5 py-4">Part-time hourly (+{(partTimeLoading * 100).toFixed(0)}%)</th>
+              )}
               <th scope="col" className="px-5 py-4">Casual hourly (+{loadingLabel})</th>
             </tr>
           </thead>
@@ -41,6 +47,9 @@ export function AwardRateTable({
                 <th scope="row" className="px-5 py-3 text-left font-medium">{r.level}</th>
                 <td className="px-5 py-3">{formatAUD(r.weekly, 2)}</td>
                 <td className="px-5 py-3 font-medium">{formatAUD(r.hourly, 2)}</td>
+                {partTimeLoading !== undefined && (
+                  <td className="px-5 py-3">{formatAUD(toCents(r.hourly * (1 + partTimeLoading)), 2)}</td>
+                )}
                 <td className="px-5 py-3">{formatAUD(toCents(r.hourly * (1 + casualLoading)), 2)}</td>
               </tr>
             ))}
@@ -66,6 +75,8 @@ export function JuniorScaleTable({
   caption,
   adultLabel,
   casualLoading,
+  adultHourly,
+  weeklyRoundTo,
 }: {
   scale: readonly { age: string; percentage: number }[];
   adultWeekly: number;
@@ -74,7 +85,19 @@ export function JuniorScaleTable({
   adultLabel: string;
   /** When set, adds a casual hourly column (rounded junior hourly + loading). */
   casualLoading?: number;
+  /**
+   * When set, the percentage is applied to this adult HOURLY rate instead of
+   * the weekly rate — for awards that say so in terms (Road Transport cl 17.3).
+   * The weekly column is then the junior hourly rate x standard hours.
+   */
+  adultHourly?: number;
+  /** Round the junior weekly rate to this step before dividing (Restaurant: $0.10). */
+  weeklyRoundTo?: number;
 }) {
+  const weeklyFor = (pct: number) => {
+    const raw = adultWeekly * pct;
+    return weeklyRoundTo ? Number((Math.round(Number((raw / weeklyRoundTo).toFixed(6))) * weeklyRoundTo).toFixed(2)) : raw;
+  };
   return (
     <div className="not-prose my-6">
       <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -93,8 +116,12 @@ export function JuniorScaleTable({
           </thead>
           <tbody className="divide-y divide-sandstone-dark/20 bg-white">
             {scale.map((band) => {
-              const weekly = toCents(adultWeekly * band.percentage);
-              const hourly = toCents((adultWeekly * band.percentage) / standardWeeklyHours);
+              const hourly =
+                adultHourly !== undefined
+                  ? toCents(adultHourly * band.percentage)
+                  : toCents(weeklyFor(band.percentage) / standardWeeklyHours);
+              const weekly =
+                adultHourly !== undefined ? toCents(hourly * standardWeeklyHours) : toCents(weeklyFor(band.percentage));
               return (
                 <tr key={band.age}>
                   <th scope="row" className="px-5 py-3 text-left font-medium">{band.age}</th>
