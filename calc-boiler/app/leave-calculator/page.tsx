@@ -11,7 +11,7 @@ const URL = `${BASE}/leave-calculator/`;
 
 // Derived once so the title, description, JSON-LD and rendered page can never
 // disagree. Leads with the leave-loading intent without dropping the payout one.
-const TITLE = `Annual Leave & Leave Loading Calculator (17.5%) ${SITE_CONFIG.financialYear}`;
+const TITLE = `Annual Leave Calculator & Payout Calculator ${SITE_CONFIG.financialYear}`;
 const DESCRIPTION = `Work out your annual leave payout and 17.5% leave loading. Who gets loading, the 4-week formula, and tax on lump-sum payouts — FY${SITE_CONFIG.financialYear} rates.`;
 
 export const metadata: Metadata = {

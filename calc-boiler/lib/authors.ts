@@ -300,6 +300,15 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "pension-age-australia": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   // --- end W1 ---
 
+  // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
+  "time-in-lieu": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "leave-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "enterprise-agreement": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "travel-allowance": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "cents-per-km": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "gross-vs-net-pay": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "centrelink-working-credit-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end T3 ---
   // --- T2 payroll tax cluster (23 Sep 2026): "payroll-tax" covers the hub and all 8 state pages ---
   "payroll-tax-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "payroll-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
