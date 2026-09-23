@@ -16,6 +16,8 @@ import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTIONS as PUBLIC_SERVICE_JURISDICTIONS } from "@/lib/data/public-service-pay";
 import { formatAUD } from "@/lib/constants";
+// C1 employer pay rates (2026-09-23)
+import { EMPLOYERS } from "@/lib/data/employer-pay";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
@@ -107,6 +109,15 @@ const payScaleGroups: Group[] = [
       label: `Nurse Pay Rates ${up(c)}`,
     })),
   },
+  // --- C1: employer pay-rate pages, 2026-09-23 ---
+  {
+    title: "Pay Rates by Employer",
+    items: [
+      { href: "/pay-rates/", label: "Pay Rates by Employer" },
+      ...EMPLOYERS.map((e) => ({ href: `/pay-rates/${e.slug}/`, label: `${e.name} Pay Rates` })),
+    ],
+  },
+  // --- end C1 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */
