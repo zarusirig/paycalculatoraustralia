@@ -29,6 +29,18 @@ import {
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
 import { AllowanceTable, AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { HOSPITALITY_FAQS, casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+
+// Google AU "related searches" for "hospitality award rates" and "hospitality
+// award" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Hospitality award rates by age", href: "/junior-pay-rates/" },
+  { label: "Hospitality award rates casual", href: "/casual-loading-calculator/" },
+  { label: "Hospitality penalty rates", href: "/overtime-penalty-rates-guide/" },
+  { label: "Hospitality pay after tax", href: "/take-home-pay-calculator/" },
+  { label: "Fast food award rates", href: "/fast-food-award-rates/" },
+  { label: "Award rates by industry", href: "/award-rates/" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary", publisher: SOURCES.fwo.name },
@@ -395,6 +407,10 @@ export default function HospitalityAwardRatesPage() {
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; your award rate after tax</li>
               </ul>
             </section>
+
+            <div className="not-prose my-8">
+              <RelatedSearches items={RELATED_SEARCHES} />
+            </div>
 
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>

@@ -17,6 +17,7 @@ import {
   type AwardRate,
 } from "@/lib/constants/hospitality-award";
 import { roundCents } from "@/lib/constants/modern-awards";
+import { NMW_DECISION } from "@/lib/constants/minimum-wage";
 
 export function findRate(rows: readonly AwardRate[], level: string): AwardRate {
   const found = rows.find((r) => r.level === level);
@@ -51,6 +52,20 @@ export interface HospitalityFaq {
 }
 
 export const HOSPITALITY_FAQS: readonly HospitalityFaq[] = [
+  // People Also Ask (Google AU, Sept 2026) for "hospitality award rates" and
+  // "hospitality award": see docs/seo/2026-09-24-paa-optimisation.md.
+  {
+    q: "How much do hospitality workers get paid per hour?",
+    a: `Under the Hospitality Award the minimum for a Level 1 worker is ${formatAUD(L1.hourly, 2)} an hour, or ${formatAUD(casualHourly(L1.hourly, HOSPITALITY_AWARD.casualLoading), 2)} as a casual, from ${HOSPITALITY_AWARD.operativeFrom}. Rates rise with the classification to ${formatAUD(L6.hourly, 2)} at Level 6. Evenings, weekends and public holidays pay more, and workers under 20 can be paid a junior percentage.`,
+  },
+  {
+    q: "What does the hospitality award mean?",
+    a: `The ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code}) is the modern award that sets minimum pay and conditions for hospitality employers and their staff. It covers hotels, motels, resorts and other accommodation, taverns and wine bars, caterers, casinos, and restaurants or nightclubs connected to those businesses. Registered clubs and standalone restaurants have their own awards.`,
+  },
+  {
+    q: "How much did hospitality award rates increase in 2026?",
+    a: `Most rates rose ${(AWR_2026_FLOORS.increase * 100).toFixed(2)}% from the first full pay period on or after ${HOSPITALITY_AWARD.operativeFrom}, under the ${NMW_DECISION.name}. The introductory rate and Level 1 were instead lifted to the new floors of ${formatAUD(AWR_2026_FLOORS.entryLevelWeekly, 2)} and ${formatAUD(AWR_2026_FLOORS.ongoingWeekly, 2)} a week. The next increase is due from ${NMW_DECISION.nextReviewOperativeFrom} after the ${NMW_DECISION.nextReview}.`,
+  },
   {
     q: "What are the hospitality award rates for 2026-27?",
     a: `Under the ${HOSPITALITY_AWARD.name} (${HOSPITALITY_AWARD.code}), adult rates run from ${formatAUD(INTRO.hourly, 2)} an hour (${formatAUD(INTRO.weekly, 2)} a week) at the introductory level to ${formatAUD(L6.hourly, 2)} an hour (${formatAUD(L6.weekly, 2)} a week) at Level 6. Level 1, the standard entry classification, is ${formatAUD(L1.hourly, 2)} an hour. Rates apply from the first full pay period starting on or after ${HOSPITALITY_AWARD.operativeFrom}.`,
