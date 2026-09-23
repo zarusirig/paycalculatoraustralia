@@ -92,3 +92,28 @@ test("Hungry Jack's: penalty and FAQ dollars match the Level 1 formula", () => {
     assert.ok(faqText.includes(v), v);
   }
 });
+
+test("Liquorland: Coles agreement Levels 1 and 3, adult rates at any age", () => {
+  const liquor = getEmployerPay("liquorland");
+  const coles = getEmployerPay("coles");
+  assert.ok(liquor && coles);
+  assert.equal(liquor.instrument.reference, coles.instrument.reference);
+  const colesByLevel = new Map(coles.rates.map((r) => [r.level, r]));
+  assert.deepEqual(liquor.rates.map((r) => r.level), ["Level 1", "Level 3"]);
+  for (const r of liquor.rates) {
+    const c = colesByLevel.get(r.level);
+    assert.ok(c);
+    assert.equal(r.hourly, c.hourly);
+    assert.equal(r.casualHourly, c.casualHourly);
+  }
+  // Appendix A3 (junior rates) is Coles Supermarkets only.
+  assert.equal(liquor.juniorScale.length, 0);
+  assert.equal(juniorRates(liquor).length, 0);
+  // Legacy 2014 Liquor Agreement rates (A4.3.3(b)) are all overtaken in 2026.
+  for (const r of liquor.rates) assert.ok(r.hourly > 27.93);
+  const faqText = liquor.faqs.map((f) => f.a).join(" ");
+  for (const r of liquor.rates) {
+    assert.ok(faqText.includes(`$${r.hourly.toFixed(2)}`), r.level);
+    assert.ok(faqText.includes(`$${r.casualHourly.toFixed(2)}`), r.level);
+  }
+});
