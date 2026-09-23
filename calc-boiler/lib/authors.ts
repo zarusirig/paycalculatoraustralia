@@ -239,6 +239,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "schads-award-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
   "hospitality-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
   "retail-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
+  // --- Award cluster C3 (Sep 2026): additional per-award rate pages ---
+  "fast-food-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "pharmacy-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "manufacturing-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "security-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "clerks-award-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end award cluster C3 ---
   "junior-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-28" },
 
   // Wave 13 Expansion — Payslip Tools (tax-table slugs registered above)

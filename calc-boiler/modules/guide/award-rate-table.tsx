@@ -65,12 +65,15 @@ export function JuniorScaleTable({
   standardWeeklyHours,
   caption,
   adultLabel,
+  casualLoading,
 }: {
   scale: readonly { age: string; percentage: number }[];
   adultWeekly: number;
   standardWeeklyHours: number;
   caption: string;
   adultLabel: string;
+  /** When set, adds a casual hourly column (rounded junior hourly + loading). */
+  casualLoading?: number;
 }) {
   return (
     <div className="not-prose my-6">
@@ -83,6 +86,9 @@ export function JuniorScaleTable({
               <th scope="col" className="px-5 py-4">% of adult rate</th>
               <th scope="col" className="px-5 py-4">Weekly on {adultLabel}</th>
               <th scope="col" className="px-5 py-4">Hourly</th>
+              {casualLoading !== undefined && (
+                <th scope="col" className="px-5 py-4">Casual hourly (+{(casualLoading * 100).toFixed(0)}%)</th>
+              )}
             </tr>
           </thead>
           <tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -95,6 +101,10 @@ export function JuniorScaleTable({
                   <td className="px-5 py-3">{(band.percentage * 100).toFixed((band.percentage * 100) % 1 === 0 ? 0 : 1)}%</td>
                   <td className="px-5 py-3">{formatAUD(weekly, 2)}</td>
                   <td className="px-5 py-3 font-medium">{formatAUD(hourly, 2)}</td>
+                  {casualLoading !== undefined && (
+                    // The ROUNDED junior hourly plus the loading — the order Fair Work uses.
+                    <td className="px-5 py-3">{formatAUD(toCents(hourly * (1 + casualLoading)), 2)}</td>
+                  )}
                 </tr>
               );
             })}
