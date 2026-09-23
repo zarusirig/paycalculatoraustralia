@@ -40,7 +40,7 @@ export default function EmployerPayHubPage() {
             Pay Rates by Employer 2026 — Coles, Woolworths, Bunnings, McDonald&rsquo;s &amp; More
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
-            What Australia&rsquo;s biggest retail and fast food employers pay per hour, read from each
+            What Australia&rsquo;s biggest retail, fast food and other large employers pay per hour, read from each
             one&rsquo;s enterprise agreement or, where staff are award-covered, the modern award. Every
             employer page lists rates by level and by age, penalty rates and weekly pay.
           </p>
