@@ -22,6 +22,8 @@ import {
   type PaySchedule,
 } from "@/lib/data/public-service-pay";
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
+// J6: each APS level section links to its own grade page.
+import { apsGradeHrefForLabel } from "@/lib/data/public-service-pay/aps-grades";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
@@ -83,7 +85,7 @@ function bandRows(band: ClassificationBand): { label: string; salary: number }[]
       ];
 }
 
-function LevelSectionBlock({ section }: { section: LevelSection }) {
+function LevelSectionBlock({ section, detailHref }: { section: LevelSection; detailHref?: string }) {
   const isSurvey = section.schedule.basis === "survey";
   const only = section.bands.length === 1 ? section.bands[0] : null;
   const rows = section.bands.flatMap((band) =>
@@ -148,6 +150,13 @@ function LevelSectionBlock({ section }: { section: LevelSection }) {
           .
         </p>
       ))}
+      {detailHref ? (
+        <p className="text-base">
+          <Link href={detailHref} className="font-semibold text-eucalyptus-dark hover:underline">
+            {section.label} salary by agency, pay points and take-home pay
+          </Link>
+        </p>
+      ) : null}
     </section>
   );
 }
@@ -175,7 +184,11 @@ function LevelGuideSection({ jurisdiction }: { jurisdiction: Jurisdiction }) {
         </ul>
       </nav>
       {sections.map((section) => (
-        <LevelSectionBlock key={section.id} section={section} />
+        <LevelSectionBlock
+          key={section.id}
+          section={section}
+          detailHref={jurisdiction.slug === "aps" ? apsGradeHrefForLabel(section.label) : undefined}
+        />
       ))}
     </div>
   );

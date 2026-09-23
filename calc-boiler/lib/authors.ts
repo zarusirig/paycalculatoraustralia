@@ -351,6 +351,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- end G3 ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   "centrelink-payment-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/aps-3": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/aps-4": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/aps-5": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/aps-6": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/el1": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "public-service-pay-scales/aps/el2": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end J6 ---
 };
 

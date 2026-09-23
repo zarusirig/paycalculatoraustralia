@@ -259,6 +259,8 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         links: [
           { href: "/public-service-pay-scales/", label: "Public service pay scales" },
           { href: "/public-service-pay-scales/aps/", label: "APS pay scales" },
+          { href: "/public-service-pay-scales/aps/aps-6/", label: "APS 6 salary" }, // J6
+          { href: "/public-service-pay-scales/aps/el1/", label: "EL1 salary" }, // J6
           { href: "/public-service-pay-scales/vic/", label: "VPS pay scales" },
           { href: "/teacher-pay-australia/", label: "Teacher pay" },
           { href: "/teacher-pay-australia/qld/", label: "QLD teacher pay" },
@@ -842,6 +844,17 @@ export const GUIDE_CATEGORIES = [
     title: "Centrelink Rates",
     guides: [
       { href: "/centrelink-payment-rates/", label: "Centrelink Payment Rates", description: "Every payment's rate from 20 September 2026" },
+    ],
+  },
+  {
+    title: "APS Salary by Level",
+    guides: [
+      { href: "/public-service-pay-scales/aps/aps-3/", label: "APS 3 Salary", description: "APS 3 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-4/", label: "APS 4 Salary", description: "APS 4 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-5/", label: "APS 5 Salary", description: "APS 5 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/aps-6/", label: "APS 6 Salary", description: "APS 6 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/el1/", label: "EL1 Salary", description: "EL1 pay by agency and after tax" },
+      { href: "/public-service-pay-scales/aps/el2/", label: "EL2 Salary", description: "EL2 pay by agency and after tax" },
     ],
   },
   // --- end J6 ---

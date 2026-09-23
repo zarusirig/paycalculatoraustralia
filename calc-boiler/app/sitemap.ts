@@ -9,6 +9,7 @@ import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { EMPLOYER_SLUGS } from "@/lib/data/employer-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
+import { APS_GRADE_SLUGS } from "@/lib/data/public-service-pay/aps-grades"; // J6
 import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
@@ -351,6 +352,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- end G3 ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   allPages.push({ slug: "centrelink-payment-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const grade of APS_GRADE_SLUGS) {
+    allPages.push({ slug: `public-service-pay-scales/aps/${grade}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
   // --- end J6 ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
