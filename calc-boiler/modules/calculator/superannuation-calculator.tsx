@@ -53,8 +53,13 @@ export default function SuperannuationCalculatorPage() {
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-gray-400" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Superannuation Calculator</span></li>
           </ol></nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Superannuation Calculator Australia — Employer SG at 12% ({SITE_CONFIG.financialYear})</h1>
-          <p className="text-lg text-warmgray">Calculate your superannuation contribution at the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation Guarantee rate. See how much your employer pays and your total package value.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Superannuation Calculator Australia — How Much Super Your Employer Pays ({SITE_CONFIG.financialYear})</h1>
+          <p className="text-lg text-navy">
+            Your employer pays <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} super</strong> on top of your salary. On <strong>$80,000</strong> that is{" "}
+            <strong>{formatAUD(calculateSuper(80_000))} a year</strong> ({formatAUD(annualToWeekly(calculateSuper(80_000)), 2)} a week), paid with every pay from{" "}
+            {SUPER_GUARANTEE.paydaySuperStart} under Payday Super.
+          </p>
+          <p className="text-warmgray mt-2">Enter your salary to see your employer super, total package and concessional cap space.</p>
           <TrustBar className="mt-4" />
         </section>
 

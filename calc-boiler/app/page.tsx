@@ -21,8 +21,13 @@ const BD80 = calculatePayBreakdown({ grossSalary: 80_000 });
 
 // No brand suffix: the root layout title template is "%s" (see app/layout.tsx).
 // Year in the title is the challenger pattern winning this SERP (emumoney).
-const TITLE = `Pay Calculator Australia ${FY} — Salary & Take-Home Pay`;
-const DESCRIPTION = `Work out take-home pay from any salary, hourly or casual wage for FY${FY} — after tax, Medicare, HECS and 12% super. On $80,000 you keep ${formatAUD(BD80.takeHomePay)} a year.`;
+// Sep 2026 (plan §3, Lever A): 28k impr at 0.67% CTR, pos 7.7. Added "Tax" —
+// GSC/DataForSEO demand is "pay calculator", "pay calculator australia",
+// "salary calculator australia", "salary take home calculator" and tax-calc
+// variants — and moved the $80k answer to the front of the description.
+// Previous: "Pay Calculator Australia ${FY} — Salary & Take-Home Pay".
+const TITLE = `Pay Calculator Australia ${FY} — Salary, Tax & Take-Home Pay`;
+const DESCRIPTION = `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Work out take-home pay from any salary, hourly or casual wage after tax, Medicare, HECS and 12% super.`;
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -18,7 +18,41 @@ import {
   LITO,
   SOURCES,
   SITE_CONFIG,
+  TAX_BRACKETS,
+  TAX_BRACKETS_2025_26,
+  TAX_FREE_THRESHOLD,
+  calculateLITO,
+  calculateMedicareSurcharge,
 } from "@/lib/constants";
+import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+
+// Every worked figure on this page is computed from the tax engine. The copy
+// had frozen at FY2025-26 values (16% first bracket, "$63,612 on $80,000",
+// 2023-24 MLS tiers) under a FY2026-27 heading.
+const EX80 = calculatePayBreakdown({ grossSalary: 80_000 });
+const EX80_HECS = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: true });
+const EX90 = calculatePayBreakdown({ grossSalary: 90_000 });
+const EX40 = calculatePayBreakdown({ grossSalary: 40_000 });
+const EX100 = calculatePayBreakdown({ grossSalary: 100_000 });
+const EX150 = calculatePayBreakdown({ grossSalary: 150_000 });
+const CASUAL_GROSS = 30 * 25 * 52; // $30/hr × 25 hrs × 52 weeks
+const EX_CASUAL = calculatePayBreakdown({ grossSalary: CASUAL_GROSS });
+const B1 = TAX_BRACKETS[1];
+const B2 = TAX_BRACKETS[2];
+const B1_SPAN = B1.max - TAX_FREE_THRESHOLD;
+const B1_TAX = B1_SPAN * B1.rate;
+const B2_SPAN_80K = 80_000 - B1.max;
+const B2_TAX_80K = B2_SPAN_80K * B2.rate;
+const pct0 = (r: number) => `${Math.round(r * 100)}%`;
+const keep = (b: { takeHomePay: number }, gross: number) => `${((b.takeHomePay / gross) * 100).toFixed(1)}%`;
+const MLS_150K = calculateMedicareSurcharge(150_000, false);
+const MLS_FROM = MEDICARE_LEVY.surcharge.tier1.min;
+const LITO_60K = calculateLITO(60_000);
+// Salary sacrifice $10,000 on $100,000: income tax + Medicare saved, less 15%
+// contributions tax paid inside the fund.
+const SACRIFICE_SAVING =
+  EX100.netIncomeTax + EX100.medicareLevy - (EX90.netIncomeTax + EX90.medicareLevy) - 10_000 * 0.15;
+const FIRST_BRACKET_CUT_SAVING = Math.round(B1_SPAN * (TAX_BRACKETS_2025_26[1].rate - B1.rate));
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -51,8 +85,9 @@ export default function TakeHomePayCalculatorPage() {
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-gray-400" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Take-Home Pay Calculator</span></li>
           </ol></nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Calculator Australia — Net Pay After Tax &amp; Super</h1>
-          <p className="text-lg text-warmgray">Work out exactly what you take home after income tax, Medicare levy, HECS-HELP repayments, and super — the amount that actually hits your bank account.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take-Home Pay Calculator Australia {SITE_CONFIG.financialYear} — Pay After Tax</h1>
+          <p className="text-lg text-navy">On <strong>$80,000</strong> you take home <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight, {formatAUD(EX80.weekly)} a week) after income tax and Medicare in FY{SITE_CONFIG.financialYear}.</p>
+          <p className="text-warmgray mt-2">Enter your salary to work out exactly what hits your bank account, with HECS-HELP and super if they apply.</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -131,13 +166,13 @@ export default function TakeHomePayCalculatorPage() {
             <p className="text-warmgray mb-3">A full-time employee earning <strong>$80,000</strong> gross in FY{SITE_CONFIG.financialYear} receives the following net pay after tax:</p>
             <ol className="list-decimal pl-6 space-y-2 text-warmgray mb-4">
               <li><strong>Gross salary:</strong> $80,000</li>
-              <li><strong>Income tax:</strong> The first $18,200 is tax-free. The next $26,800 (from $18,201 to $45,000) is taxed at 16%, producing $4,288. The remaining $35,000 (from $45,001 to $80,000) is taxed at 30%, producing $10,500. Total income tax = <strong>$14,788</strong>.</li>
-              <li><strong>LITO offset:</strong> At $80,000, taxable income exceeds the $66,667 phase-out ceiling, so the &quot;Low Income Tax Offset&quot; is <strong>$0</strong>.</li>
-              <li><strong>Medicare levy:</strong> 2% of $80,000 = <strong>$1,600</strong>.</li>
-              <li><strong>Total deductions:</strong> $14,788 + $1,600 = <strong>$16,388</strong>.</li>
-              <li><strong>Take-home pay:</strong> $80,000 &minus; $16,388 = <strong>$63,612 per year</strong> ($1,223.31 per week).</li>
+              <li><strong>Income tax:</strong> The first {formatAUD(TAX_FREE_THRESHOLD)} is tax-free. The next {formatAUD(B1_SPAN)} (from {formatAUD(B1.min)} to {formatAUD(B1.max)}) is taxed at {pct0(B1.rate)}, producing {formatAUD(B1_TAX)}. The remaining {formatAUD(B2_SPAN_80K)} (from {formatAUD(B2.min)} to $80,000) is taxed at {pct0(B2.rate)}, producing {formatAUD(B2_TAX_80K)}. Total income tax = <strong>{formatAUD(EX80.netIncomeTax)}</strong>.</li>
+              <li><strong>LITO offset:</strong> At $80,000, taxable income exceeds the {formatAUD(LITO.nilOffsetIncome)} phase-out ceiling, so the &quot;Low Income Tax Offset&quot; is <strong>$0</strong>.</li>
+              <li><strong>Medicare levy:</strong> 2% of $80,000 = <strong>{formatAUD(EX80.medicareLevy)}</strong>.</li>
+              <li><strong>Total deductions:</strong> {formatAUD(EX80.netIncomeTax)} + {formatAUD(EX80.medicareLevy)} = <strong>{formatAUD(EX80.totalDeductions)}</strong>.</li>
+              <li><strong>Take-home pay:</strong> $80,000 &minus; {formatAUD(EX80.totalDeductions)} = <strong>{formatAUD(EX80.takeHomePay)} per year</strong> ({formatAUD(EX80.weekly, 2)} per week).</li>
             </ol>
-            <p className="text-warmgray">Your employer also contributes <strong>$9,600</strong> in superannuation (12% SG rate) on top of your salary, bringing the total remuneration package to <strong>$89,600</strong>. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model different SG scenarios.</p>
+            <p className="text-warmgray">Your employer also contributes <strong>{formatAUD(EX80.superContribution)}</strong> in superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate) on top of your salary, bringing the total remuneration package to <strong>{formatAUD(EX80.totalPackage)}</strong>. Use our <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to model different SG scenarios.</p>
           </section>
 
           {/* ---- WHAT DEDUCTIONS REDUCE YOUR TAKE-HOME PAY? ---- */}
@@ -157,47 +192,47 @@ export default function TakeHomePayCalculatorPage() {
                 <tbody className="divide-y divide-gray-100">
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">Income Tax</td>
-                    <td className="px-4 py-3 text-warmgray">Progressive brackets: 0%, 16%, 30%, 37%, 45%</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$14,788</td>
+                    <td className="px-4 py-3 text-warmgray">Progressive brackets: {bracketRateList()}</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(EX80.netIncomeTax)}</td>
                     <td className="px-4 py-3 text-warmgray">All residents above $18,200</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">Medicare Levy</td>
                     <td className="px-4 py-3 text-warmgray">Flat 2% of taxable income</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$1,600</td>
-                    <td className="px-4 py-3 text-warmgray">All residents above $27,222</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(EX80.medicareLevy)}</td>
+                    <td className="px-4 py-3 text-warmgray">Singles above {formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} (2025-26 threshold, the latest published)</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">Medicare Levy Surcharge</td>
                     <td className="px-4 py-3 text-warmgray">1%&ndash;1.5% if no private health insurance</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$0 (below $93,001 threshold)</td>
-                    <td className="px-4 py-3 text-warmgray">Singles earning $93,001+ without PHI</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">$0 (below {formatAUD(MLS_FROM)} threshold)</td>
+                    <td className="px-4 py-3 text-warmgray">Singles earning {formatAUD(MLS_FROM)}+ without PHI</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">HECS-HELP Repayment</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal: 15% on income above $69,528</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$1,950 (if debt exists)</td>
-                    <td className="px-4 py-3 text-warmgray">Graduates with study loan above $69,528</td>
+                    <td className="px-4 py-3 text-warmgray">Marginal: {pct0(HECS_HELP.bands[1].marginalRate)} on income above {formatAUD(HECS_HELP.minimumThreshold)}</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(EX80_HECS.hecsRepayment)} (if debt exists)</td>
+                    <td className="px-4 py-3 text-warmgray">Graduates with study loan above {formatAUD(HECS_HELP.minimumThreshold)}</td>
                   </tr>
                   <tr className="bg-sandstone/50">
                     <td className="px-4 py-3 font-medium text-navy">Superannuation (SG)</td>
-                    <td className="px-4 py-3 text-warmgray">12% of ordinary time earnings</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$9,600 (employer-paid)</td>
+                    <td className="px-4 py-3 text-warmgray">{formatPercent(SUPER_GUARANTEE.rate, 0)} of qualifying earnings</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(EX80.superContribution)} (employer-paid)</td>
                     <td className="px-4 py-3 text-warmgray">Employer pays on top &mdash; does NOT reduce take-home</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray mb-4">The largest deduction is income tax, calculated using Australia&apos;s <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">progressive tax brackets</Link>. The &quot;Low Income Tax Offset&quot; (LITO) reduces tax for incomes below $66,667, providing up to <strong>$700</strong> in savings. The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> is a flat 2% that funds Australia&apos;s public healthcare system.</p>
+            <p className="text-warmgray mb-4">The largest deduction is income tax, calculated using Australia&apos;s <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">progressive tax brackets</Link>. The &quot;Low Income Tax Offset&quot; (LITO) reduces tax for incomes below {formatAUD(LITO.nilOffsetIncome)}, providing up to <strong>{formatAUD(LITO.maxOffset)}</strong> in savings. The <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline">Medicare levy</Link> is a flat 2% that funds Australia&apos;s public healthcare system.</p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">How Does the Tax-Free Threshold Affect Net Pay?</h3>
-            <p className="text-warmgray">Every Australian tax resident claiming the tax-free threshold pays <strong>$0</strong> income tax on the first $18,200 of annual earnings. This threshold saves <strong>$2,912</strong> compared to the non-resident rate (16% from dollar one). Employees who hold multiple jobs should claim the threshold on only one position &mdash; claiming it on two jobs results in under-withholding and a tax bill at lodgment. Non-residents forfeit the threshold entirely and pay 30% from the first dollar earned, producing a significantly lower after-tax income on the same gross salary.</p>
+            <p className="text-warmgray">Every Australian tax resident claiming the tax-free threshold pays <strong>$0</strong> income tax on the first $18,200 of annual earnings. That threshold is worth <strong>{formatAUD(TAX_FREE_THRESHOLD * B1.rate)}</strong> a year: the tax the first {formatAUD(TAX_FREE_THRESHOLD)} would otherwise attract at the {pct0(B1.rate)} rate. Employees who hold multiple jobs should claim the threshold on only one position &mdash; claiming it on two jobs results in under-withholding and a tax bill at lodgment. Non-residents forfeit the threshold entirely and pay 30% from the first dollar earned, producing a significantly lower after-tax income on the same gross salary.</p>
           </section>
 
           {/* ---- TAKE-HOME PAY TABLE BY SALARY LEVEL ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Take-Home Pay at Every Salary Level?</h2>
-            <p className="mb-4 text-warmgray">An Australian resident earning <strong>$80,000</strong> takes home <strong>$63,612</strong> per year after income tax and Medicare levy in FY{SITE_CONFIG.financialYear}. The table below shows take-home pay, weekly pay, and effective tax rates at 7 common salary levels:</p>
+            <p className="mb-4 text-warmgray">An Australian resident earning <strong>$80,000</strong> takes home <strong>{formatAUD(EX80.takeHomePay)}</strong> per year after income tax and Medicare levy in FY{SITE_CONFIG.financialYear}. The table below shows take-home pay, weekly pay, and effective tax rates at 7 common salary levels:</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
@@ -235,7 +270,7 @@ export default function TakeHomePayCalculatorPage() {
             </p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Take-Home Pay on Part-Time and Casual Hours</h3>
-            <p className="text-warmgray">Part-time and casual employees use the same income tax brackets as full-time workers &mdash; the ATO does not distinguish by employment type. A part-time worker earning <strong>$40,000</strong> per year takes home <strong>$36,287</strong>, identical to a full-time employee on the same gross salary. Casual employees receive a 25% loading in lieu of leave entitlements, which increases gross pay but also increases taxable income. A casual worker paid $30 per hour for 25 hours per week earns $39,000 gross and takes home approximately <strong>$35,353</strong> after taxation and the Medicare levy.</p>
+            <p className="text-warmgray">Part-time and casual employees use the same income tax brackets as full-time workers &mdash; the ATO does not distinguish by employment type. A part-time worker earning <strong>$40,000</strong> per year takes home <strong>{formatAUD(EX40.takeHomePay)}</strong>, identical to a full-time employee on the same gross salary. Casual employees receive a 25% loading in lieu of leave entitlements, which increases gross pay but also increases taxable income. A casual worker paid $30 per hour for 25 hours per week earns {formatAUD(CASUAL_GROSS)} gross and takes home <strong>{formatAUD(EX_CASUAL.takeHomePay)}</strong> after taxation and the Medicare levy.</p>
           </section>
 
           {/* ---- WHO USES THIS CALCULATOR? ---- */}
@@ -245,9 +280,9 @@ export default function TakeHomePayCalculatorPage() {
             <ul className="space-y-3 text-warmgray">
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">1.</span><span><strong>Job seekers comparing offers</strong> &mdash; A $90,000 offer at one company and a $95,000 package at another produce different take-home amounts depending on whether super is included. Enter both figures to compare net pay directly.</span></li>
               <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">2.</span><span><strong>Employees budgeting monthly expenses</strong> &mdash; Rent, groceries, and loan repayments require a precise monthly income figure. The calculator converts your annual take-home into weekly, fortnightly, and monthly amounts.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong> &mdash; Compulsory repayments begin at $69,528 under the new marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">4.</span><span><strong>Workers considering a pay rise</strong> &mdash; A $10,000 raise does not equal $10,000 more take-home. On $80,000, an extra $10,000 adds only <strong>$6,800</strong> after the 30% marginal rate and 2% Medicare levy. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for side-by-side comparisons.</span></li>
-              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">5.</span><span><strong>Employers explaining total remuneration</strong> &mdash; HR teams use net pay breakdowns to show candidates the full value of a salary package, including the employer&apos;s 12% super contribution and any salary sacrifice arrangements.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">3.</span><span><strong>Graduates with HECS-HELP debt</strong> &mdash; Compulsory repayments begin above {formatAUD(HECS_HELP.minimumThreshold)} under the marginal system. Toggling the HECS option shows the exact reduction in your after-tax income.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">4.</span><span><strong>Workers considering a pay rise</strong> &mdash; A $10,000 raise does not equal $10,000 more take-home. On $80,000, an extra $10,000 adds only <strong>{formatAUD(EX90.takeHomePay - EX80.takeHomePay)}</strong> after the {pct0(B2.rate)} marginal rate and 2% Medicare levy. Use our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">Pay Rise Calculator</Link> for side-by-side comparisons.</span></li>
+              <li className="flex gap-2"><span className="text-eucalyptus-dark font-bold">5.</span><span><strong>Employers explaining total remuneration</strong> &mdash; HR teams use net pay breakdowns to show candidates the full value of a salary package, including the employer&apos;s {formatPercent(SUPER_GUARANTEE.rate, 0)} super contribution and any salary sacrifice arrangements.</span></li>
             </ul>
           </section>
 
@@ -273,7 +308,7 @@ export default function TakeHomePayCalculatorPage() {
                   <tr>
                     <td className="px-4 py-3 text-warmgray">Example on $100,000</td>
                     <td className="px-4 py-3 font-medium text-navy">$100,000</td>
-                    <td className="px-4 py-3 font-medium text-eucalyptus-dark">$77,212</td>
+                    <td className="px-4 py-3 font-medium text-eucalyptus-dark">{formatAUD(EX100.takeHomePay)}</td>
                   </tr>
                   <tr>
                     <td className="px-4 py-3 text-warmgray">Includes income tax?</td>
@@ -301,43 +336,51 @@ export default function TakeHomePayCalculatorPage() {
             <p className="text-warmgray">To convert a gross salary to its take-home equivalent, use the calculator above. To work in the opposite direction &mdash; entering a desired net figure and finding the gross salary required &mdash; use our <Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline">Gross Pay Calculator</Link>.</p>
           </section>
 
-          {/* ---- WHAT CHANGED IN FY2025-26? ---- */}
+          {/* ---- WHAT CHANGED THIS FINANCIAL YEAR? ---- */}
+          {/* Values come from constants, but WHICH changes are listed is
+              FY2026-27-specific (15% rate, Payday Super). Rewrite each 1 July. */}
           <section>
-            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Take-Home Pay in FY2025-26?</h2>
-            <p className="text-warmgray mb-4">Three legislative changes affect take-home pay calculations in the 2025-26 financial year: a higher super guarantee rate, a reformed HECS repayment system, and the continued application of Stage 3 tax cuts.</p>
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Changed for Take-Home Pay in FY{SITE_CONFIG.financialYear}?</h2>
+            <p className="text-warmgray mb-4">Four changes from {SITE_CONFIG.financialYearStart} affect take-home pay: a lower first tax rate, a higher HECS-HELP repayment threshold, Payday Super, and a higher concessional contributions cap.</p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 mb-4">
               <table className="w-full text-sm">
                 <thead className="bg-sandstone">
                   <tr>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Change</th>
-                    <th className="px-4 py-3 text-left font-semibold text-navy">FY2024-25</th>
-                    <th className="px-4 py-3 text-left font-semibold text-navy">FY2025-26</th>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">FY{SITE_CONFIG.previousFinancialYear}</th>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">FY{SITE_CONFIG.financialYear}</th>
                     <th className="px-4 py-3 text-left font-semibold text-navy">Impact on Take-Home</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
                   <tr>
-                    <td className="px-4 py-3 font-medium text-navy">Super Guarantee Rate</td>
-                    <td className="px-4 py-3 text-warmgray">11.5%</td>
-                    <td className="px-4 py-3 text-warmgray">12%</td>
-                    <td className="px-4 py-3 text-warmgray">No direct impact (employer-paid), but increases total package by <strong>$400</strong> on $80,000</td>
+                    <td className="px-4 py-3 font-medium text-navy">Tax rate, {formatAUD(B1.min)}&ndash;{formatAUD(B1.max)}</td>
+                    <td className="px-4 py-3 text-warmgray">{pct0(TAX_BRACKETS_2025_26[1].rate)}</td>
+                    <td className="px-4 py-3 text-warmgray">{pct0(B1.rate)}</td>
+                    <td className="px-4 py-3 text-warmgray">Up to <strong>{formatAUD(FIRST_BRACKET_CUT_SAVING)}</strong> a year more for anyone earning {formatAUD(B1.max)} or more</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-medium text-navy">HECS-HELP System</td>
-                    <td className="px-4 py-3 text-warmgray">Tiered % of total income (threshold $69,528)</td>
-                    <td className="px-4 py-3 text-warmgray">Marginal system (threshold $69,528, 15% marginal rate)</td>
-                    <td className="px-4 py-3 text-warmgray">Graduates near old thresholds keep <strong>$1,000&ndash;$3,000</strong> more</td>
+                    <td className="px-4 py-3 font-medium text-navy">HECS-HELP repayment threshold</td>
+                    <td className="px-4 py-3 text-warmgray">{formatAUD(HECS_HELP.previousThreshold)}</td>
+                    <td className="px-4 py-3 text-warmgray">{formatAUD(HECS_HELP.minimumThreshold)}</td>
+                    <td className="px-4 py-3 text-warmgray">Indexed threshold; repayments still apply only to income above it</td>
                   </tr>
                   <tr>
-                    <td className="px-4 py-3 font-medium text-navy">Income Tax Brackets (Stage 3)</td>
-                    <td className="px-4 py-3 text-warmgray">16% bracket to $45K; 30% to $135K</td>
-                    <td className="px-4 py-3 text-warmgray">Same (applied from 1 July 2024)</td>
-                    <td className="px-4 py-3 text-warmgray">Ongoing savings of <strong>$804&ndash;$4,529</strong> vs pre-Stage 3 rates</td>
+                    <td className="px-4 py-3 font-medium text-navy">Super payment timing</td>
+                    <td className="px-4 py-3 text-warmgray">Quarterly</td>
+                    <td className="px-4 py-3 text-warmgray">Every payday (Payday Super)</td>
+                    <td className="px-4 py-3 text-warmgray">No change to take-home; SG stays {formatPercent(SUPER_GUARANTEE.rate, 0)}, paid on top</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-navy">Concessional contributions cap</td>
+                    <td className="px-4 py-3 text-warmgray">{formatAUD(SUPER_GUARANTEE.concessionalCapPrevious)}</td>
+                    <td className="px-4 py-3 text-warmgray">{formatAUD(SUPER_GUARANTEE.concessionalCap)}</td>
+                    <td className="px-4 py-3 text-warmgray">More room to salary sacrifice before extra tax applies</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p className="text-warmgray">The HECS reform is the most significant change for graduates. Under the old system, crossing the $69,528 threshold triggered a repayment on total income. The new marginal system taxes only the portion above $69,528 at 15%, eliminating sudden &quot;cliff&quot; repayment jumps. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to compare your repayment under both systems.</p>
+            <p className="text-warmgray">HECS-HELP has used a marginal system since FY2025-26: only income above the threshold is repaid, at {pct0(HECS_HELP.bands[1].marginalRate)} in the first band, so there is no &quot;cliff&quot; where crossing the threshold triggers a repayment on your whole income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to see your repayment.</p>
           </section>
 
           {/* ---- COMMON TAKE-HOME PAY MISTAKES ---- */}
@@ -345,11 +388,11 @@ export default function TakeHomePayCalculatorPage() {
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Take-Home Pay Mistakes?</h2>
             <p className="text-warmgray mb-4">Five errors cause Australian employees to miscalculate their net pay after tax, leading to budget shortfalls or incorrect salary expectations.</p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
-              <li><strong>Confusing marginal rate with effective rate.</strong> An employee on $80,000 pays a 30% marginal rate on the top portion of income, but the effective rate across their entire salary is only <strong>20.5%</strong>. Assuming 30% of the full $80,000 goes to tax overestimates the deduction by <strong>$7,612</strong>.</li>
-              <li><strong>Treating super as a take-home deduction.</strong> The 12% superannuation guarantee is paid by the employer on top of your gross salary. It does not reduce your take-home pay unless your contract specifies a &quot;total package inclusive of super&quot; arrangement.</li>
-              <li><strong>Ignoring the LITO offset.</strong> Incomes below $66,667 receive a &quot;Low Income Tax Offset&quot; of up to $700 that directly reduces tax payable. Omitting LITO from manual calculations overstates tax at $60,000 by <strong>$325</strong>.</li>
-              <li><strong>Using old HECS-HELP thresholds.</strong> The repayment threshold rose from $54,435 to $67,000 when the marginal system launched in FY2025-26, and again to $69,528 for FY2026-27. Using old thresholds overstates repayments for graduates earning between $54,435 and $69,528.</li>
-              <li><strong>Forgetting the Medicare Levy Surcharge.</strong> Singles earning above $93,001 without private health insurance pay an additional 1%&ndash;1.5% surcharge. On $150,000 without cover, the &quot;Medicare Levy Surcharge&quot; adds <strong>$2,250</strong> in deductions beyond the standard 2% levy.</li>
+              <li><strong>Confusing marginal rate with effective rate.</strong> An employee on $80,000 pays a 30% marginal rate on the top portion of income, but the effective rate (income tax plus Medicare) across their entire salary is only <strong>{formatPercent(EX80.effectiveTaxRate)}</strong>. Assuming 30% of the full $80,000 goes to tax overestimates the deduction by <strong>{formatAUD(80_000 * 0.3 - EX80.totalDeductions)}</strong>.</li>
+              <li><strong>Treating super as a take-home deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee is paid by the employer on top of your gross salary. It does not reduce your take-home pay unless your contract specifies a &quot;total package inclusive of super&quot; arrangement.</li>
+              <li><strong>Ignoring the LITO offset.</strong> Incomes below {formatAUD(LITO.nilOffsetIncome)} receive a &quot;Low Income Tax Offset&quot; of up to {formatAUD(LITO.maxOffset)} that directly reduces tax payable. Omitting LITO from manual calculations overstates tax at $60,000 by <strong>{formatAUD(LITO_60K)}</strong> (and by the full {formatAUD(LITO.maxOffset)} at {formatAUD(LITO.fullOffsetCeiling)} or less).</li>
+              <li><strong>Using old HECS-HELP thresholds.</strong> The repayment threshold rose from $54,435 to {formatAUD(HECS_HELP.previousThreshold)} when the marginal system launched in FY2025-26, and again to {formatAUD(HECS_HELP.minimumThreshold)} for FY{SITE_CONFIG.financialYear}. Using old thresholds overstates repayments for graduates earning between $54,435 and {formatAUD(HECS_HELP.minimumThreshold)}.</li>
+              <li><strong>Forgetting the Medicare Levy Surcharge.</strong> Singles earning {formatAUD(MLS_FROM)} or more without private health insurance pay an additional 1%&ndash;1.5% surcharge. On $150,000 without cover, the &quot;Medicare Levy Surcharge&quot; adds <strong>{formatAUD(MLS_150K)}</strong> in deductions beyond the standard 2% levy.</li>
             </ol>
           </section>
 
@@ -359,14 +402,14 @@ export default function TakeHomePayCalculatorPage() {
             <p className="text-warmgray mb-4">Two strategies legally reduce your taxable income and increase your after-tax pay: salary sacrifice and work-related deductions.</p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Salary Sacrifice Into Super</h3>
-            <p className="text-warmgray mb-3">Redirecting part of your pre-tax salary into superannuation reduces your assessable income. On $100,000, sacrificing $10,000 into super saves approximately <strong>$1,500</strong> in income tax because that $10,000 is taxed at 15% inside super instead of your 30% marginal rate. The concessional contribution cap for FY2025-26 is <strong>$30,000</strong> (including employer SG).</p>
+            <p className="text-warmgray mb-3">Redirecting part of your pre-tax salary into superannuation reduces your assessable income. On $100,000, sacrificing $10,000 into super saves <strong>{formatAUD(SACRIFICE_SAVING)}</strong> in tax overall, because that $10,000 is taxed at 15% inside super instead of your {pct0(B2.rate)} marginal rate plus the 2% Medicare levy. The concessional contribution cap for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> (including employer SG).</p>
             <p className="text-sm text-warmgray-light mb-4"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Claim Work-Related Tax Deductions</h3>
-            <p className="text-warmgray mb-3">Tax deductions reduce your taxable income at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. Common deductions include work-from-home expenses ($0.67 per hour fixed rate), uniforms and protective clothing, tools and equipment, and professional development courses. A $2,000 deduction at the 30% marginal rate reduces your tax by <strong>$600</strong>.</p>
+            <p className="text-warmgray mb-3">Tax deductions reduce your taxable income at your <Link href="/tax-brackets/" className="text-eucalyptus-dark hover:underline">marginal tax rate</Link>. Common deductions include work-from-home expenses (using the ATO fixed rate per hour), uniforms and protective clothing, tools and equipment, and professional development courses. A $2,000 deduction at the 30% marginal rate reduces your tax by <strong>$600</strong>.</p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Obtain Private Health Insurance</h3>
-            <p className="text-warmgray mb-4">Singles earning above $93,001 avoid the &quot;Medicare Levy Surcharge&quot; (1%&ndash;1.5%) by holding private hospital cover. On a $150,000 salary, the surcharge costs <strong>$2,250 per year</strong> &mdash; often more than a basic hospital policy. Obtaining cover increases your disposable salary by eliminating this surcharge.</p>
+            <p className="text-warmgray mb-4">Singles earning {formatAUD(MLS_FROM)} or more avoid the &quot;Medicare Levy Surcharge&quot; (1%&ndash;1.5%) by holding private hospital cover. On a $150,000 salary, the surcharge costs <strong>{formatAUD(MLS_150K)} per year</strong> &mdash; often more than a basic hospital policy. Obtaining cover increases your disposable salary by eliminating this surcharge.</p>
 
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">
@@ -381,7 +424,7 @@ export default function TakeHomePayCalculatorPage() {
                 <tbody className="divide-y divide-gray-100">
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">Salary sacrifice $10K into super</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$1,500</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(SACRIFICE_SAVING)}</td>
                     <td className="px-4 py-3 text-warmgray">No (funds go to super)</td>
                     <td className="px-4 py-3 text-warmgray">Low &mdash; employer sets up</td>
                   </tr>
@@ -393,7 +436,7 @@ export default function TakeHomePayCalculatorPage() {
                   </tr>
                   <tr>
                     <td className="px-4 py-3 font-medium text-navy">Private health insurance (avoiding MLS)</td>
-                    <td className="px-4 py-3 text-right font-medium text-navy">$1,000</td>
+                    <td className="px-4 py-3 text-right font-medium text-navy">{formatAUD(calculateMedicareSurcharge(100_000, false))} on $100K ({formatAUD(MLS_150K)} on $150K)</td>
                     <td className="px-4 py-3 text-warmgray">Net effect depends on premium cost</td>
                     <td className="px-4 py-3 text-warmgray">Low &mdash; buy a policy</td>
                   </tr>
@@ -409,7 +452,7 @@ export default function TakeHomePayCalculatorPage() {
             <ul className="space-y-2 text-warmgray">
               <li><Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Income Tax Calculator</Link> &mdash; See a bracket-by-bracket breakdown of your income tax, including marginal and effective rates.</li>
               <li><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Salary Sacrifice Calculator</Link> &mdash; Compare take-home pay with and without pre-tax super contributions.</li>
-              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> &mdash; Calculate your compulsory student loan repayment under the FY2025-26 marginal system.</li>
+              <li><Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS-HELP Calculator</Link> &mdash; Calculate your compulsory student loan repayment under the FY{SITE_CONFIG.financialYear} marginal system.</li>
               <li><Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> &mdash; Model your employer SG contributions, salary sacrifice top-ups, and projected super balance.</li>
               <li><Link href="/gross-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Gross Pay Calculator</Link> &mdash; Reverse-calculate the gross salary required to achieve a target take-home amount.</li>
             </ul>
@@ -425,7 +468,7 @@ export default function TakeHomePayCalculatorPage() {
               <li>Add Medicare surcharge if applicable.</li>
               <li>Calculate HECS marginal repayment if opted in.</li>
               <li>Take-home = Gross &minus; all deductions.</li>
-              <li>Super (12%) is calculated separately &mdash; employer-paid.</li>
+              <li>Super ({formatPercent(SUPER_GUARANTEE.rate, 0)}) is calculated separately &mdash; employer-paid.</li>
             </ol>
           </MethodologyDisclosure>
 
@@ -437,25 +480,25 @@ export default function TakeHomePayCalculatorPage() {
                 Take-home pay equals your gross salary minus income tax, the 2% Medicare levy, and any HECS-HELP repayments. Your employer withholds these amounts each pay cycle through the PAYG system and remits them to the ATO. Superannuation is paid separately by your employer and does not reduce your take-home.
               </FAQItem>
               <FAQItem value="percentage" question="What percentage of my salary do I actually take home?">
-                The percentage varies by income level. At $40,000, you retain <strong>90.7%</strong> ($36,287). At $80,000, you retain <strong>79.5%</strong> ($63,612). At $150,000, you retain <strong>73.4%</strong> ($110,162). The percentage decreases as income rises because Australia&apos;s progressive tax brackets apply higher marginal rates to each additional dollar earned.
+                The percentage varies by income level. At $40,000, you retain <strong>{keep(EX40, 40_000)}</strong> ({formatAUD(EX40.takeHomePay)}). At $80,000, you retain <strong>{keep(EX80, 80_000)}</strong> ({formatAUD(EX80.takeHomePay)}). At $150,000, you retain <strong>{keep(EX150, 150_000)}</strong> ({formatAUD(EX150.takeHomePay)}). The percentage decreases as income rises because Australia&apos;s progressive tax brackets apply higher marginal rates to each additional dollar earned.
               </FAQItem>
               <FAQItem value="super" question="Is superannuation deducted from my take-home pay?">
-                No. Your employer pays the 12% superannuation guarantee on top of your gross salary. It does not reduce the amount deposited into your bank account. If you voluntarily <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> additional amounts into super, those pre-tax contributions reduce your taxable income and take-home pay.
+                No. Your employer pays the {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee on top of your gross salary. It does not reduce the amount deposited into your bank account. If you voluntarily <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">salary sacrifice</Link> additional amounts into super, those pre-tax contributions reduce your taxable income and take-home pay.
               </FAQItem>
               <FAQItem value="100k-take-home" question="How much take-home pay do I get on $100,000?">
-                On a $100,000 salary in FY{SITE_CONFIG.financialYear}, you take home <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).takeHomePay)}</strong> per year (<strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).weekly, 2)}</strong> per week). Total deductions are {formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).totalDeductions)}, comprising $20,788 in income tax and $2,000 in Medicare levy. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a bracket-by-bracket view.
+                On a $100,000 salary in FY{SITE_CONFIG.financialYear}, you take home <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).takeHomePay)}</strong> per year (<strong>{formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).weekly, 2)}</strong> per week). Total deductions are {formatAUD(calculatePayBreakdown({ grossSalary: 100000 }).totalDeductions)}, comprising {formatAUD(EX100.netIncomeTax)} in income tax and {formatAUD(EX100.medicareLevy)} in Medicare levy. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a bracket-by-bracket view.
               </FAQItem>
               <FAQItem value="first-pay" question="Why is my first pay smaller than expected?">
                 If you have not submitted a Tax File Number (TFN) declaration to your employer, PAYG withholding applies at the highest marginal rate of 45% plus the 2% Medicare levy. Submit your TFN declaration immediately to ensure the correct tax rate applies from your next pay cycle.
               </FAQItem>
               <FAQItem value="hecs-impact" question="How much does HECS-HELP reduce my take-home pay?">
-                HECS-HELP repayments begin at $69,528 under the FY2025-26 marginal system. On $80,000, the compulsory repayment is <strong>$1,950</strong> per year ($37.50 per week), reducing take-home from $63,612 to <strong>$61,662</strong>. The marginal rate of 15% applies only to income above $69,528, not your entire salary.
+                HECS-HELP repayments begin above {formatAUD(HECS_HELP.minimumThreshold)} under the FY{SITE_CONFIG.financialYear} marginal system. On $80,000, the compulsory repayment is <strong>{formatAUD(EX80_HECS.hecsRepayment)}</strong> per year ({formatAUD(EX80_HECS.hecsRepayment / 52, 2)} per week), reducing take-home from {formatAUD(EX80.takeHomePay)} to <strong>{formatAUD(EX80_HECS.takeHomePay)}</strong>. The marginal rate of {pct0(HECS_HELP.bands[1].marginalRate)} applies only to income above {formatAUD(HECS_HELP.minimumThreshold)}, not your entire salary.
               </FAQItem>
               <FAQItem value="salary-sacrifice-tax" question="Does salary sacrifice increase take-home pay?">
-                Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing $10,000 saves approximately <strong>$1,500</strong> in tax. The trade-off is that super funds are locked until preservation age (60 for most Australians).
+                Salary sacrifice reduces your taxable income and total income tax, but the sacrificed amount goes into super rather than your bank account. The net effect is a lower take-home pay combined with higher retirement savings. On $100,000, sacrificing $10,000 saves <strong>{formatAUD(SACRIFICE_SAVING)}</strong> in tax overall. The trade-off is that super funds are locked until preservation age (60 for most Australians).
               </FAQItem>
               <FAQItem value="medicare-surcharge" question="Do I pay the Medicare Levy Surcharge?">
-                The &quot;Medicare Levy Surcharge&quot; (MLS) applies to singles earning above $93,001 who do not hold private hospital insurance. The surcharge is <strong>1%</strong> for incomes between $93,001 and $108,000, <strong>1.25%</strong> for $108,001 to $144,000, and <strong>1.5%</strong> for incomes above $144,000. Holding private hospital cover eliminates the MLS entirely.
+                The &quot;Medicare Levy Surcharge&quot; (MLS) applies to singles earning {formatAUD(MLS_FROM)} or more who do not hold private hospital insurance. In FY{SITE_CONFIG.financialYear} the surcharge is <strong>1%</strong> for incomes between {formatAUD(MEDICARE_LEVY.surcharge.tier1.min)} and {formatAUD(MEDICARE_LEVY.surcharge.tier1.max)}, <strong>1.25%</strong> for {formatAUD(MEDICARE_LEVY.surcharge.tier2.min)} to {formatAUD(MEDICARE_LEVY.surcharge.tier2.max)}, and <strong>1.5%</strong> for incomes above {formatAUD(MEDICARE_LEVY.surcharge.tier3.min - 1)}. Holding private hospital cover eliminates the MLS entirely.
               </FAQItem>
             </Accordion>
           </section>

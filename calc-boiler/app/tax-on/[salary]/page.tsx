@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { TaxOnSalary } from '@/modules/programmatic/tax-on-salary';
-import { calculatePayBreakdown, formatAUD, HECS_HELP, SITE_CONFIG } from '@/lib/constants/australian-tax';
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from '@/lib/constants/australian-tax';
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
@@ -24,20 +24,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const salaryAmount = parseInt(resolvedParams.salary, 10);
   const formattedSalary = formatAUD(salaryAmount);
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salaryAmount,
-    includeHECS: salaryAmount >= HECS_HELP.minimumThreshold
-  });
-
-  const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
+  // No HECS in these figures: "tax on $60,000" is asked for someone without a
+  // study loan. The loan case is covered in the page body.
+  const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
+  const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
+  const totalRate = ((totalTax / salaryAmount) * 100).toFixed(1);
 
   return {
-    // Leads with the answer, not the tool. Against an AI Overview that has
-    // already stated a number, only a listing showing the number competes.
-    // Deliberately drops "Take-Home Pay" — that phrase belongs to
-    // /take-home-pay-on/, and carrying it here made the two families compete.
-    title: `Tax on ${formattedSalary} in Australia — ${formatAUD(breakdown.netIncomeTax)} Income Tax (${effectiveRate}%)`,
-    description: `On a ${formattedSalary} salary, you pay ${formatAUD(breakdown.netIncomeTax)} in income tax (${effectiveRate}% effective rate). Your take-home pay is ${formatAUD(breakdown.takeHomePay)}/year or ${formatAUD(breakdown.weekly)}/week. Full ${SITE_CONFIG.financialYear} breakdown.`,
+    // Leads with the answer, in GSC phrasing ("tax on 60000 australia"). Only a
+    // listing showing the number competes with an AI Overview that already
+    // states one. Deliberately drops "Take-Home Pay"/"After Tax" — those belong
+    // to /take-home-pay-on/. FY label from SITE_CONFIG rolls over each 1 July.
+    title: `Tax on ${formattedSalary} in Australia: ${formatAUD(breakdown.netIncomeTax)} Income Tax (${SITE_CONFIG.financialYear})`,
+    description: `Tax on ${formattedSalary} in ${SITE_CONFIG.financialYear} is ${formatAUD(breakdown.netIncomeTax)} income tax plus ${formatAUD(breakdown.medicareLevy)} Medicare levy: ${formatAUD(totalTax)} in total (${totalRate}% of salary), leaving ${formatAUD(breakdown.takeHomePay)} take-home a year.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`,
     },
@@ -49,12 +48,9 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
   const salaryAmount = parseInt(resolvedParams.salary, 10);
   const formattedSalary = formatAUD(salaryAmount);
 
-  const breakdown = calculatePayBreakdown({
-    grossSalary: salaryAmount,
-    includeHECS: salaryAmount >= HECS_HELP.minimumThreshold
-  });
-
-  const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
+  const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
+  const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
+  const totalRate = ((totalTax / salaryAmount) * 100).toFixed(1);
   const marginalRate = (breakdown.marginalTaxRate * 100).toFixed(1);
 
   const BASE = SITE_CONFIG.baseUrl;
@@ -94,7 +90,7 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
         name: `How much tax do I pay on ${formattedSalary}?`,
         acceptedAnswer: {
           "@type": "Answer",
-          text: `On ${formattedSalary}, you pay ${formatAUD(breakdown.netIncomeTax)} in income tax (${effectiveRate}% effective rate) plus ${formatAUD(breakdown.medicareLevy)} in Medicare levy. Your take-home pay is ${formatAUD(breakdown.takeHomePay)} per year or ${formatAUD(breakdown.weekly)} per week.`
+          text: `On ${formattedSalary} in ${SITE_CONFIG.financialYear}, you pay ${formatAUD(breakdown.netIncomeTax)} in income tax plus ${formatAUD(breakdown.medicareLevy)} in Medicare levy, ${formatAUD(totalTax)} in total (${totalRate}% of salary). Your take-home pay is ${formatAUD(breakdown.takeHomePay)} per year or ${formatAUD(breakdown.weekly)} per week.`
         }
       },
       {
@@ -118,7 +114,7 @@ export default async function TaxOnSalaryPage({ params }: PageProps) {
             Tax on {formattedSalary} in Australia
           </h1>
           <p className="text-xl text-warmgray max-w-2xl mx-auto mb-8">
-            Complete pay breakdown, income tax, Medicare levy, and take-home pay for a {formattedSalary} salary in {SITE_CONFIG.financialYear}.
+            <strong className="text-navy">{formatAUD(breakdown.netIncomeTax)} income tax</strong> plus {formatAUD(breakdown.medicareLevy)} Medicare levy on a {formattedSalary} salary in {SITE_CONFIG.financialYear}: {formatAUD(totalTax)} in total ({totalRate}% of salary), leaving {formatAUD(breakdown.takeHomePay)} take-home.
           </p>
         </div>
       </section>

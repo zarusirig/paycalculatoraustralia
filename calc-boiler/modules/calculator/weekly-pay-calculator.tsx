@@ -14,9 +14,20 @@ import {
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
+  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
+import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+
+// Worked-example figures, computed from the tax engine so the copy rolls over
+// with the constants (it had frozen at FY2025-26 16%-bracket numbers).
+const EX = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+const EX_70K = calculatePayBreakdown({ grossSalary: 70_000, includeHECS: false, hasPrivateHealth: true });
+const EX_180K = calculatePayBreakdown({ grossSalary: 180_000, includeHECS: false, hasPrivateHealth: true });
+const EX_WEEKLY_GAP = 80_000 / 52 - EX.weekly;
+const MLS = MEDICARE_LEVY.surcharge;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -48,8 +59,12 @@ export default function WeeklyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Weekly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Weekly Pay Calculator Australia — Take-Home Pay Per Week</h1>
-          <p className="text-lg text-warmgray">Enter your annual salary to see exactly what you take home every week after tax, super, and Medicare. Updated for FY2025-26.</p>
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Weekly Pay Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-lg text-navy">
+            Weekly pay is your annual salary divided by <strong>52</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 52, 2)} gross
+            and <strong>{formatAUD(EX.weekly, 2)} take-home</strong> every week after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
+          </p>
+          <p className="text-warmgray mt-2">Enter your salary below for your own weekly tax, super and net pay.</p>
           <TrustBar className="mt-4" />
         </section>
 
@@ -120,7 +135,7 @@ export default function WeeklyPayCalculatorPage() {
             </p>
             <ol className="list-decimal pl-5 space-y-2 text-warmgray mb-4">
               <li><strong>Gross weekly pay:</strong> Divide your annual salary by 52. An <strong>$80,000</strong> salary produces gross weekly pay of <strong>$1,538.46</strong>.</li>
-              <li><strong>Income tax:</strong> Apply the FY2025-26 income tax brackets to your annual salary, then divide the total tax by 52. At $80,000, annual income tax is approximately <strong>$14,788</strong>, or <strong>$284.38</strong> per week.</li>
+              <li><strong>Income tax:</strong> Apply the FY{SITE_CONFIG.financialYear} income tax brackets to your annual salary, then divide the total tax by 52. At $80,000, annual income tax is <strong>{formatAUD(EX.netIncomeTax)}</strong>, or <strong>{formatAUD(EX.netIncomeTax / 52, 2)}</strong> per week.</li>
               <li><strong>Medicare levy:</strong> Calculate <strong>2%</strong> of your gross weekly pay. At $80,000, the Medicare levy costs <strong>$30.77</strong> per week.</li>
               <li><strong>HECS-HELP:</strong> If you carry a student loan and earn above the minimum repayment threshold of <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>, the repayment amount is withheld proportionally each week.</li>
             </ol>
@@ -132,7 +147,7 @@ export default function WeeklyPayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Weekly Pay Table by Annual Salary</h2>
             <p className="text-warmgray mb-4">
-              An Australian resident earning <strong>$70,000</strong> per year takes home approximately <strong>$1,117</strong> per week after tax and Medicare in FY2025-26.
+              An Australian resident earning <strong>$70,000</strong> per year takes home <strong>{formatAUD(EX_70K.weekly)}</strong> per week after tax and Medicare in FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="text-warmgray mb-4">
               The table below shows weekly gross pay, weekly tax withheld, and weekly take-home pay at 6 common salary levels. All figures assume an Australian resident claiming the tax-free threshold with no HECS-HELP debt and no salary sacrifice arrangements.
@@ -158,7 +173,7 @@ export default function WeeklyPayCalculatorPage() {
               </table>
             </div>
             <p className="text-warmgray text-sm mt-3">
-              Higher earners face steeper marginal rates. A worker on <strong>$180,000</strong> pays over <strong>30%</strong> more of each additional dollar in tax compared to someone earning $70,000. For a complete breakdown of income tax brackets, visit our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
+              Higher earners face steeper marginal rates. A worker on <strong>$180,000</strong> loses <strong>{formatPercent(EX_180K.marginalTaxRate, 0)}</strong> of each additional dollar to income tax and Medicare, against {formatPercent(EX_70K.marginalTaxRate, 0)} for someone earning $70,000. For a complete breakdown of income tax brackets, visit our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>.
             </p>
           </section>
 
@@ -235,17 +250,17 @@ export default function WeeklyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax</h3>
             <p className="text-warmgray mb-4">
-              PAYG withholding is the largest weekly deduction for most Australian workers. The FY2025-26 tax brackets apply marginal rates of <strong>16%</strong>, <strong>30%</strong>, <strong>37%</strong>, and <strong>45%</strong> to income above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The "Low Income Tax Offset" reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
+              PAYG withholding is the largest weekly deduction for most Australian workers. The FY{SITE_CONFIG.financialYear} tax brackets apply marginal rates of {bracketRateList()}, starting above the tax-free threshold. Your employer withholds 1/52nd of your estimated annual tax each week. The "Low Income Tax Offset" reduces tax by up to <strong>$700</strong> for incomes below <strong>$66,667</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
             <p className="text-warmgray mb-4">
-              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Australians earning below the low-income threshold of <strong>$27,222</strong> receive a reduction or full exemption. The "Medicare Levy Surcharge" (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: those earning between $93,001 and $108,000 pay <strong>1%</strong>, between $108,001 and $144,000 pay <strong>1.25%</strong>, and above $144,000 pay <strong>1.5%</strong>.
+              The Medicare levy is <strong>2%</strong> of your taxable income, withheld weekly. Under the 2025-26 thresholds (the latest the ATO has published), singles with taxable income up to <strong>{formatAUD(MEDICARE_LEVY.lowIncomeThreshold)}</strong> pay no levy, and it phases in up to {formatAUD(MEDICARE_LEVY.shadeInThreshold)}. The "Medicare Levy Surcharge" (MLS) adds an additional <strong>1% to 1.5%</strong> for high earners without private hospital cover: in {SITE_CONFIG.financialYear}, singles earning between {formatAUD(MLS.tier1.min)} and {formatAUD(MLS.tier1.max)} pay <strong>1%</strong>, between {formatAUD(MLS.tier2.min)} and {formatAUD(MLS.tier2.max)} pay <strong>1.25%</strong>, and above {formatAUD(MLS.tier3.min - 1)} pay <strong>1.5%</strong>.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
             <p className="text-warmgray mb-4">
-              HECS-HELP repayments are withheld weekly when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY2025-26 system uses marginal repayment rates: <strong>15 cents</strong> per dollar between $69,529 and $125,000, and <strong>17 cents</strong> per dollar between $125,001 and $179,285. Above $179,285, the repayment rate is <strong>10%</strong> of total repayment income. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to see your exact weekly repayment.
+              HECS-HELP repayments are withheld weekly when your repayment income exceeds <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong> per year. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to see your exact weekly repayment.
             </p>
           </section>
 
@@ -257,9 +272,9 @@ export default function WeeklyPayCalculatorPage() {
             <ul className="list-disc pl-5 space-y-2 text-warmgray">
               <li><strong>Dividing by 48 instead of 52:</strong> Full-time employees receive 4 weeks of paid annual leave. The salary already covers 52 weeks, so dividing by 52 is correct for calculating gross weekly pay.</li>
               <li><strong>Subtracting super from take-home pay:</strong> The super guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid by your employer on top of your salary. It does not reduce your weekly take-home amount unless you make voluntary salary sacrifice contributions.</li>
-              <li><strong>Using the wrong financial year rates:</strong> Tax brackets, LITO thresholds, and HECS repayment rates change at the start of each financial year on 1 July. Calculations using the previous year&apos;s rates produce incorrect weekly figures. This Australian tax calculator uses the current FY2025-26 rates.</li>
-              <li><strong>Ignoring the Medicare levy:</strong> Excluding the 2% Medicare levy understates total deductions by approximately <strong>$30.77</strong> per week on an $80,000 salary.</li>
-              <li><strong>Confusing gross and net pay:</strong> Job advertisements quote gross (pre-tax) salaries. The actual weekly amount deposited into your bank account is the net pay after all deductions. At $80,000 gross, the difference between gross and net weekly pay is over <strong>$300</strong>.</li>
+              <li><strong>Using the wrong financial year rates:</strong> Tax brackets, LITO thresholds, and HECS repayment rates change at the start of each financial year on 1 July. Calculations using the previous year&apos;s rates produce incorrect weekly figures. This Australian tax calculator uses the current FY{SITE_CONFIG.financialYear} rates.</li>
+              <li><strong>Ignoring the Medicare levy:</strong> Excluding the 2% Medicare levy understates total deductions by <strong>{formatAUD(EX.medicareLevy / 52, 2)}</strong> per week on an $80,000 salary.</li>
+              <li><strong>Confusing gross and net pay:</strong> Job advertisements quote gross (pre-tax) salaries. The actual weekly amount deposited into your bank account is the net pay after all deductions. At $80,000 gross, the difference between gross and net weekly pay is <strong>{formatAUD(EX_WEEKLY_GAP)}</strong>.</li>
             </ul>
           </section>
 
@@ -306,19 +321,25 @@ export default function WeeklyPayCalculatorPage() {
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Frequently Asked Questions</h2>
             <Accordion type="multiple" className="space-y-3">
               <FAQItem value="how" question="How is weekly pay calculated in Australia?">
-                Weekly pay is calculated by dividing your gross annual salary by 52 weeks, then subtracting PAYG income tax, the Medicare levy (2%), and any HECS-HELP repayments. An employee earning $80,000 per year receives gross weekly pay of <strong>$1,538.46</strong>. After approximately $284 in income tax and $31 in Medicare levy, the weekly take-home pay is roughly <strong>$1,223</strong>.
+                Weekly pay is calculated by dividing your gross annual salary by 52 weeks, then subtracting PAYG income tax, the Medicare levy (2%), and any HECS-HELP repayments. An employee earning $80,000 per year receives gross weekly pay of <strong>$1,538.46</strong>. After {formatAUD(EX.netIncomeTax / 52, 2)} in income tax and {formatAUD(EX.medicareLevy / 52, 2)} in Medicare levy, the weekly take-home pay is <strong>{formatAUD(EX.weekly, 2)}</strong> in FY{SITE_CONFIG.financialYear}.
               </FAQItem>
               <FAQItem value="super" question="Is superannuation deducted from my weekly pay?">
                 No. Your employer pays the super guarantee of {formatPercent(SUPER_GUARANTEE.rate, 0)} on top of your salary. This amount does not reduce your weekly take-home pay. The only exception is voluntary salary sacrifice contributions, where you choose to redirect part of your pre-tax salary into super to reduce your taxable income.
               </FAQItem>
               <FAQItem value="change" question="Why did my weekly pay change on 1 July?">
-                Weekly pay changes at the start of each financial year (1 July) because updated PAYG withholding tables take effect. For FY2025-26, changes to income tax brackets, the LITO phase-out thresholds, and HECS-HELP repayment rates all affect the amount your employer withholds from each weekly payment.
+                Weekly pay changes at the start of each financial year (1 July) because updated PAYG withholding tables take effect. For FY{SITE_CONFIG.financialYear}, changes to income tax brackets and HECS-HELP repayment thresholds affect the amount your employer withholds from each weekly payment.
               </FAQItem>
               <FAQItem value="gross-vs-net" question="What is the difference between gross weekly pay and net weekly pay?">
-                Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an $80,000 salary, gross weekly pay is <strong>$1,538</strong> and net weekly pay is approximately <strong>$1,223</strong> — a difference of <strong>$315</strong> per week.
+                Gross weekly pay is your annual salary divided by 52 before any deductions. Net weekly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS-HELP repayments are withheld. On an $80,000 salary, gross weekly pay is <strong>{formatAUD(80_000 / 52)}</strong> and net weekly pay is <strong>{formatAUD(EX.weekly)}</strong> — a difference of <strong>{formatAUD(EX_WEEKLY_GAP)}</strong> per week.
               </FAQItem>
               <FAQItem value="52-weeks" question="Why do we divide by 52 and not 48?">
                 Full-time employees in Australia receive 4 weeks of paid annual leave and 10 days of paid personal leave per year. These paid leave entitlements are included in the annual salary, which covers all 52 weeks. Dividing by 48 would overstate weekly pay by approximately 8.3%.
+              </FAQItem>
+              <FAQItem value="53-pays" question="Are there 52 or 53 weekly pays in a year?">
+                Usually {WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a
+                financial year contains <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. Your salary is then spread over one more pay. The ATO&apos;s{" "}
+                <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link> publishes an optional extra amount you can ask your
+                employer to withhold that year so you are not short at tax time.
               </FAQItem>
               <FAQItem value="casual" question="How do casual workers calculate weekly pay?">
                 Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of <strong>25%</strong> is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.
@@ -327,7 +348,7 @@ export default function WeeklyPayCalculatorPage() {
                 Earning <strong>$350</strong> per week is equivalent to <strong>$18,200</strong> per year, which is the tax-free threshold. If your total annual income from all sources stays at or below $18,200, no income tax is payable. However, if you hold multiple jobs and your combined income exceeds the threshold, tax applies on the combined total. Only one employer can apply the tax-free threshold — your second job is taxed from the first dollar.
               </FAQItem>
               <FAQItem value="budget" question="How should I budget on weekly pay?">
-                Financial advisors typically recommend the 50/30/20 rule: allocate <strong>50%</strong> of your after-tax weekly pay to needs (rent, groceries, transport), <strong>30%</strong> to wants (dining out, entertainment), and <strong>20%</strong> to savings and debt repayment. On a net weekly income of $1,223 (from an $80,000 salary), that equals $612 for needs, $367 for wants, and $244 for savings.
+                Financial advisors typically recommend the 50/30/20 rule: allocate <strong>50%</strong> of your after-tax weekly pay to needs (rent, groceries, transport), <strong>30%</strong> to wants (dining out, entertainment), and <strong>20%</strong> to savings and debt repayment. On a net weekly income of {formatAUD(EX.weekly)} (from an $80,000 salary), that equals {formatAUD(EX.weekly * 0.5)} for needs, {formatAUD(EX.weekly * 0.3)} for wants, and {formatAUD(EX.weekly * 0.2)} for savings.
               </FAQItem>
             </Accordion>
           </section>
