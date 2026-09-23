@@ -2,8 +2,9 @@
 import Link from "next/link";
 import { ChevronRight, ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FaqAccordion from "@/components/common/faq-accordion";
+import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
@@ -187,32 +188,7 @@ export default function RetailHospitalityPayGuidePage() {
             {/* ── Section 6: FAQs ── */}
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
-              <Accordion type="multiple" className="not-prose mt-6 space-y-3">
-                <AccordionItem value="casual-loading" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the casual loading rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Casual employees in both retail and hospitality receive a 25% loading on top of the base hourly rate. This loading compensates for the lack of paid annual leave, personal leave, notice of termination, and redundancy pay. A Level 1 retail casual earns $31.80/hr compared to $25.44/hr for a full-time employee.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="sunday-penalty" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the Sunday penalty rate in retail?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Full-time and part-time retail workers receive a 50% loading for Sunday work. For example, a Level 1 worker earning $25.44/hr base receives $38.16/hr on Sundays. Casual workers receive Sunday penalties calculated on their casual rate (base + 25% loading), effectively earning around $47.70/hr for Sunday work.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="minimum-shift" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the minimum shift length?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Under both the General Retail Industry Award and the Hospitality Industry Award, casual employees must be engaged for a minimum of 3 hours per shift. Part-time employees also have minimum engagement provisions. An employer cannot send you home after 1 or 2 hours without paying for the full 3-hour minimum.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="casual-conversion" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Can I convert from casual to permanent?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. If you have been employed as a casual for 12 months and have worked a regular pattern of hours for at least the last 6 months, you can request conversion to full-time or part-time employment. Your employer must offer conversion unless they have reasonable business grounds to refuse, such as significant changes to your hours being foreseeable.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="junior-rates" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">Do workers under 21 get paid less?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Both the retail and hospitality awards specify junior rates as a percentage of the adult base rate. Workers under 16 receive 45% of the adult rate, increasing to 50% at 16, 60% at 17, 70% at 18, 80% at 19, and 90% at 20. Full adult rates apply from age 21.</AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="public-holiday" className="border rounded-lg px-4 bg-white">
-                  <AccordionTrigger className="text-left font-semibold text-navy">What is the public holiday pay rate?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Full-time and part-time employees working on a public holiday receive a 150% loading (2.5 times the base rate). A Level 1 retail worker earning $25.44/hr receives $63.60/hr on a public holiday. Casual employees receive 175% loading on the base rate. Full-time employees who don&apos;t work on the public holiday are entitled to their ordinary pay for the day.</AccordionContent>
-                </AccordionItem>
-              </Accordion>
+              <FaqAccordion faqs={RETAIL_HOSPITALITY_FAQS} className="not-prose mt-6 space-y-3" itemClassName="border rounded-lg px-4 bg-white" triggerClassName="text-left font-semibold text-navy" contentClassName="text-warmgray" />
             </section>
 
             <div className="mt-12 not-prose">

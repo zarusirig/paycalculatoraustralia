@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import PayCalculatorVICPage from "@/modules/state/pay-calculator-vic";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
+import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
+import { faqPageSchema } from "@/lib/faq";
+import { VIC_FAQS } from "@/modules/state/pay-calculator-vic-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -53,44 +55,7 @@ const webAppSchema: WithContext<WebApplication> = {
   inLanguage: "en-AU",
 };
 
-const faq: WithContext<FAQPage> = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is income tax different in Victoria compared to other states?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. Personal income tax in Australia is levied by the federal government through the ATO. The income tax brackets, Medicare levy and HECS-HELP repayment thresholds are identical in Victoria, New South Wales, Queensland and every other state and territory.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Which public holidays are unique to Victoria?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Victoria gazettes Labour Day in March, the Friday before the AFL Grand Final in September and Melbourne Cup Day in November — none of which are national. Some regional areas hold the Melbourne Cup holiday on a different date. Working one attracts public holiday penalty rates under most awards.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "When do I get long service leave in Victoria?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "After 7 years of continuous service with one employer, under the Long Service Leave Act 2018. Leave accrues at one week for every 60 weeks of service. Past 7 years the accrued balance is paid out however the employment ends, including resignation.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Do employees pay the Mental Health and Wellbeing Surcharge?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No. The Mental Health and Wellbeing Surcharge is paid exclusively by employers whose national payroll exceeds $10 million. It does not reduce your personal salary or affect your take-home pay calculation.",
-      },
-    },
-  ],
-};
+const faq = faqPageSchema(VIC_FAQS);
 
 const howToSchema = calculatorHowTo({
   name: "How to Calculate Take-Home Pay in Victoria",
