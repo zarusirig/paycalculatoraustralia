@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   ZONE_AREA_RATES,
   ZONE_OFFSET_INCOME_YEAR,
@@ -455,7 +455,7 @@ export default function ZoneTaxOffsetCalculator() {
                 {result.remoteAreaAllowanceApplied > 0 && (
                   <Row
                     label="Less remote area allowance"
-                    value={`−${formatAUD(result.remoteAreaAllowanceApplied)}`}
+                    value={formatNegAUD(result.remoteAreaAllowanceApplied, 0, "−")}
                   />
                 )}
                 <div className="border-t border-sandstone-dark/20 pt-3" />

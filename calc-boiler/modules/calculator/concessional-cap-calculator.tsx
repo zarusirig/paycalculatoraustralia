@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { SITE_CONFIG, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SUPER_GUARANTEE, calculatePayBreakdown, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   CARRY_FORWARD,
   CONTRIBUTIONS_TAX_RATE,
@@ -115,8 +115,8 @@ export default function ConcessionalCapCalculator() {
               <dl className="divide-y divide-sandstone-dark/20 rounded-xl border border-sandstone-dark/20 bg-white px-5 py-2">
                 <Row label="Income tax and Medicare levy saved" value={formatAUD(effect.taxSaved)} />
                 <Row label="Take-home pay falls by" value={formatAUD(effect.takeHomeDrop)} />
-                <Row label={`15% contributions tax in the fund`} value={`−${formatAUD(effect.contributionsTax)}`} muted />
-                {effect.extraDiv293 > 0 && <Row label="Extra Division 293 tax (estimate)" value={`−${formatAUD(effect.extraDiv293)}`} muted />}
+                <Row label={`15% contributions tax in the fund`} value={formatNegAUD(effect.contributionsTax, 0, "−")} muted />
+                {effect.extraDiv293 > 0 && <Row label="Extra Division 293 tax (estimate)" value={formatNegAUD(effect.extraDiv293, 0, "−")} muted />}
                 <Row label="Added to your super after tax" value={formatAUD(effect.netToSuper - effect.extraDiv293)} />
                 <Row label="Net gain vs taking it as pay" value={formatAUD(effect.gain)} bold />
               </dl>

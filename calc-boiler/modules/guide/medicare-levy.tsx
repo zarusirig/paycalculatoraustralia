@@ -7,7 +7,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { MEDICARE_LEVY, SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   LEVY_EXEMPTION_CATEGORIES,
   MEDICARE_LEVY_INCOME_YEAR,
@@ -158,7 +158,7 @@ export default function MedicareLevyPage() {
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Levy at {RATE} of {formatAUD(49_700)}</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(ASHTON.fullRateLevy, 2)}</td></tr>
               <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">After the seniors low-income reduction ({SHADE} of the amount over {formatAUD(MEDICARE_LEVY_SENIORS.singleThreshold)})</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(ASHTON.levyAfterIndividualReduction, 2)}</td></tr>
-              <tr><td className="px-5 py-3">Less the family reduction on family income of {formatAUD(ASHTON.familyIncome)}</td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(ASHTON.familyReduction, 2)}</td></tr>
+              <tr><td className="px-5 py-3">Less the family reduction on family income of {formatAUD(ASHTON.familyIncome)}</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(ASHTON.familyReduction, 2, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Medicare levy payable</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(ASHTON.levy, 2)}</td></tr>
             </tbody></table></div></div>
           </section>

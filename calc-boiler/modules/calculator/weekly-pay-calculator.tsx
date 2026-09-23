@@ -11,6 +11,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
@@ -19,6 +20,7 @@ import {
   SITE_CONFIG,
 } from "@/lib/constants";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { PeriodPayTable } from "@/modules/calculator/period-pay-table";
 import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { WEEKLY_PAY_FAQS, WEEKLY_TAX_ANSWER, WEEKLY_WITHHOLDING_ROWS } from "./weekly-pay-calculator-faqs";
@@ -86,7 +88,7 @@ export default function WeeklyPayCalculatorPage() {
             Weekly pay is your annual salary divided by <strong>52</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 52, 2)} gross
             and <strong>{formatAUD(EX.weekly, 2)} take-home</strong> every week after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2 text-sm md:text-base">Use it as a weekly tax calculator: enter your weekly pay or annual salary.</p>
+          <p className="text-warmgray mt-2 text-sm md:text-base">Use this weekly pay calculator as a weekly tax calculator: enter your weekly pay or annual salary.</p>
           <TrustBar className="mt-3" />
         </section>
 
@@ -131,10 +133,10 @@ export default function WeeklyPayCalculatorPage() {
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Weekly Pay" value={formatAUD(salary / 52, 2)} bold />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(result.netIncomeTax / 52, 2)}`} />
-                      <Row label="Medicare Levy" value={`-${formatAUD(result.medicareLevy / 52, 2)}`} />
-                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={`-${formatAUD(result.medicareSurcharge / 52, 2)}`} />}
-                      {includeHECS && <Row label="HECS Repayment" value={`-${formatAUD(result.hecsRepayment / 52, 2)}`} />}
+                      <Row label="Income Tax" value={formatNegAUD(result.netIncomeTax / 52, 2)} />
+                      <Row label="Medicare Levy" value={formatNegAUD(result.medicareLevy / 52, 2)} />
+                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={formatNegAUD(result.medicareSurcharge / 52, 2)} />}
+                      {includeHECS && <Row label="HECS Repayment" value={formatNegAUD(result.hecsRepayment / 52, 2)} />}
                       <div className="border-t border-sandstone-dark/20" />
                       <div className="flex justify-between items-baseline pt-2 pb-2">
                         <span className="font-bold text-navy">Weekly Take-Home</span>
@@ -150,6 +152,9 @@ export default function WeeklyPayCalculatorPage() {
               </div>
             </CardContent>
           </Card>
+          {/* Period-specific table directly under the calculator: the value the
+              homepage's all-periods calculator doesn't give (intent map, Sep 2026). */}
+          <PeriodPayTable period="weekly" currentSalary={salary} />
         </section>
 
         <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "incomeTaxCalculator", "fortnightlyTaxCalculator"]} />

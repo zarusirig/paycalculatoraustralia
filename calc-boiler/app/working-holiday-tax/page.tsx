@@ -3,7 +3,6 @@ import WorkingHolidayTaxPage from "@/modules/guide/working-holiday-tax";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { WORKING_HOLIDAY_TAX_FAQS } from "@/modules/guide/working-holiday-tax-faqs";
 import { withPageEnd } from "@/components/common/content-slots";

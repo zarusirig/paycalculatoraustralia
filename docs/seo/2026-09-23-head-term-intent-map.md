@@ -117,3 +117,33 @@ Defaults stay at $80,000 annual everywhere, so the hero answer and the calculato
 4. **`/pay-calculator-{state}/`** pages should link to `/` with "pay calculator Australia" (the nav/footer agent owns the site-wide links).
 5. **Existing lint errors** in `weekly-pay-calculator.tsx`, `gross-pay-calculator.tsx` (unescaped `"` in body copy) and `fortnightly-pay-calculator.tsx` (a `useMemo` with `[]` deps that React Compiler can't preserve). These were all present on `main` before this change. None of them is in code this change touched.
 6. **Measure:** re-pull the 13 SERPs and GSC page and query data about 4 Nov 2026, and apply the review rule in §3.
+
+## 7. Follow-up (24 Sep 2026): weekly/fortnightly pay calculator and "vps salary"
+
+**Live SERP baseline** (DataForSEO `/v3/serp/google/organic/live/regular`, location 2036, depth 20, pulled 24 Sep 2026; organic `rank_group`):
+
+| Query | Our best URL | Target URL | Target position | Top of SERP |
+|---|---|---|---|---|
+| fortnightly pay calculator | `/` **#15** | `/fortnightly-pay-calculator/` | not in top 20 | paycalculator.com.au/ #1, ATO tax-withheld #2, industrysuper #3, pnbank, moneysmart, emumoney |
+| weekly pay calculator | `/` **#19** | `/weekly-pay-calculator/` | not in top 20 | paycalculator.com.au/ #1, wagecalculator/ #2, ATO tax-withheld #3, industrysuper, bcu, emumoney |
+| vps salary | `/public-service-pay-scales/` **#13** | `/public-service-pay-scales/vic/` | **#17** | cpsuvic.org #1–2, vic.gov.au, remuneration tribunal, reddit, seek, wagecalculator /vic #7 |
+
+Both pay-calculator SERPs are served homepage-style all-in-one calculators (no dedicated weekly/fortnightly page in the top 10 except the ATO withholding tool), so the dedicated pages have to earn it on period-specific value plus internal links. Google was still showing our old homepage title ("Salary & Take-Home Pay") and the hub's old "APS, VPS and QLD" title, so §4 was not yet re-crawled when this was pulled.
+
+**What changed**
+
+- **Homepage** (`modules/home/templates/home-calculator.tsx`): directly under the live take-home strip (the "/ fortnight" and "/ week" figures) a line now links "fortnightly pay calculator" and "weekly pay calculator" (exact-match, from new `HEAD_TERM_PRIMARY.fortnightlyPayCalculator` / `.weeklyPayCalculator`). These are the first in-content links to those URLs on `/`. Homepage copy checked: no unlinked "weekly/fortnightly pay calculator" phrasing; title/H1 untouched.
+- **`/weekly-pay-calculator/`, `/fortnightly-pay-calculator/`** (titles and H1 unchanged): intro now reads "Use this weekly/fortnightly pay calculator as a weekly/fortnightly tax calculator". New `PeriodPayTable` (`modules/calculator/period-pay-table.tsx`) directly under the calculator: gross, tax + Medicare and take-home **per week / per fortnight** at $50k–$150k (engine-computed, row highlights the entered salary, salaries link to `/take-home-pay-on/N/`), plus the 52/53 and 26/27 pays-a-year note from `ato-schedules.ts`.
+- **Internal links** (`lib/related-links.ts`, "What to check next" cards; card title is the exact-match anchor "Weekly Pay Calculator" / "Fortnightly Pay Calculator", blurb carries "weekly/fortnightly tax calculator"). Pages linking to `/weekly-pay-calculator/` went from **2 → 26**; to `/fortnightly-pay-calculator/` from 152 → 176. New sources: weekly/fortnightly/monthly tax tables, PAYG withholding tables, tax-withheld calculator, fortnights-in-a-year (new entry), payday-super, gross-vs-net, the `/tax-on/` and `/salary-to-hourly/` hubs, monthly/annual/gross/hourly-to-annual/YTD/work-hours calculators, the 8 state pay calculators, and weekly ↔ fortnightly.
+- **"vps salary"**: the hub's intro no longer names the Victorian Public Service or quotes VPS figures; its three Victoria mentions (intro, "Victoria (VPS)" bullet, Schedule C sentence) link to `/public-service-pay-scales/vic/` with the anchor **"VPS salary 2026"**. Meta description says "Victoria" instead of "VPS". Hub title and H1 already had no VPS term. The VIC FAQ answer on the hub (APS vs VPS comparison) was left as is.
+
+**Re-check around 4 Nov 2026** (same endpoint and settings, ≤ $0.01 each):
+
+| Query | Baseline 24 Sep | Success looks like |
+|---|---|---|
+| fortnightly pay calculator | `/` #15, target not in top 20 | `/fortnightly-pay-calculator/` in top 20 (ideally above `/`) |
+| weekly pay calculator | `/` #19, target not in top 20 | `/weekly-pay-calculator/` in top 20 |
+| fortnightly tax calculator / weekly tax calculator | see §1 (#34 / —) | target URLs in top 20 |
+| vps salary | hub #13, `/vic/` #17 | `/vic/` above the hub |
+
+If the dedicated pages still don't appear while `/` holds, the SERP is purely homepage-intent: stop pushing the pay anchors and keep these pages on the "… tax calculator" and "fortnights in a year" terms they can win.

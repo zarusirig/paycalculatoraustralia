@@ -3,7 +3,6 @@ import WorkFromHomeDeductionsPage from "@/modules/guide/work-from-home-deduction
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { WFH_FAQS } from "@/modules/guide/work-from-home-deductions-faqs";
 import { withPageEnd } from "@/components/common/content-slots";

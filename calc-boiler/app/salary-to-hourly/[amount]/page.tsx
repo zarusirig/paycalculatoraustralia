@@ -7,6 +7,8 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
+import { faqPageSchema } from "@/lib/faq";
+import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
@@ -88,9 +90,12 @@ async function SalaryToHourlyPage({ params }: PageProps) {
     ]
   };
 
+  // Same array the accordion renders, so markup and page cannot drift.
+  const faq = faqPageSchema(salaryToHourlyFaqs(salaryAmount));
+
   return (
     <>
-      <JsonLd code={[webAppSchema, breadcrumb, ORGANIZATION_SCHEMA]} />
+      <JsonLd code={[webAppSchema, breadcrumb, faq, ORGANIZATION_SCHEMA]} />
 
       <section className="bg-sandstone/30 pt-16 pb-12 border-b border-sandstone-dark/20">
         <div className="container px-4 md:px-6 max-w-4xl mx-auto text-center">

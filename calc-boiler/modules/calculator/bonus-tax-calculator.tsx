@@ -12,6 +12,7 @@ import {
   bonusTaxSplit,
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   TAX_BRACKETS,
   TAX_BRACKETS_2025_26,
@@ -90,7 +91,6 @@ export default function BonusTaxCalculatorPage() {
       marginalRate = bracket.rate;
     }
   }
-  const marginalPlusMedicare = marginalRate + MEDICARE_LEVY.rate;
 
   return (
     <div className="min-h-screen flex-grow">
@@ -164,10 +164,10 @@ export default function BonusTaxCalculatorPage() {
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Gross Bonus" value={formatAUD(bonusAmount)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label={`Income Tax (${formatPercent(marginalRate, 0)} marginal rate)`} value={`-${formatAUD(split.incomeTax)}`} />
-                      <Row label={`Medicare Levy (${formatPercent(MEDICARE_LEVY.rate, 0)})`} value={`-${formatAUD(split.medicare)}`} />
+                      <Row label={`Income Tax (${formatPercent(marginalRate, 0)} marginal rate)`} value={formatNegAUD(split.incomeTax)} />
+                      <Row label={`Medicare Levy (${formatPercent(MEDICARE_LEVY.rate, 0)})`} value={formatNegAUD(split.medicare)} />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
-                      <Row label="Total Tax on Bonus" value={`-${formatAUD(taxOnBonus)}`} />
+                      <Row label="Total Tax on Bonus" value={formatNegAUD(taxOnBonus)} />
                       <Row label={`Effective Rate on Bonus`} value={formatPercent(effectiveBonusTaxRate)} />
                       <div className="border-t border-sandstone-dark/20 pt-3" />
                       <Row label="Net Bonus (Take-Home)" value={formatAUD(netBonus)} bold highlight />
@@ -367,7 +367,7 @@ export default function BonusTaxCalculatorPage() {
                         <td className="px-4 py-3 text-navy">{formatAUD(salary)}</td>
                         <td className="px-4 py-3 text-right text-navy">{formatAUD(bonus)}</td>
                         <td className="px-4 py-3 text-right text-warmgray">{formatPercent(mr + MEDICARE_LEVY.rate, 0)}</td>
-                        <td className="px-4 py-3 text-right text-ochre">-{formatAUD(tax)}</td>
+                        <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(tax)}</td>
                         <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(bonus - tax)}</td>
                       </tr>
                     );

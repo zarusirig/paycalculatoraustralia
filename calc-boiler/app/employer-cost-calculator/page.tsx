@@ -5,7 +5,7 @@ import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { EMPLOYER_COST_FAQS } from "@/modules/guide/employer-cost-calculator-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 

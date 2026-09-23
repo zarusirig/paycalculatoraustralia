@@ -3,7 +3,6 @@ import NewJobChecklistPage from "@/modules/guide/new-job-checklist";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { NEW_JOB_FAQS } from "@/modules/guide/new-job-checklist-faqs";
 import { withPageEnd } from "@/components/common/content-slots";

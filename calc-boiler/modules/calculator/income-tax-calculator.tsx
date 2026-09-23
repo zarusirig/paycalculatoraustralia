@@ -10,6 +10,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SITE_CONFIG,
   TAX_BRACKETS,
@@ -154,14 +155,14 @@ export default function IncomeTaxCalculatorPage({ children }: { children: React.
                       <div className="space-y-3">
                         <div className="flex justify-between"><span className="text-warmgray">Gross Income</span><span className="font-bold text-navy">{formatAUD(salary)}</span></div>
                         <div className="border-t border-sandstone-dark/20" />
-                        <div className="flex justify-between"><span className="text-warmgray">Income Tax</span><span className="font-medium text-navy">-{formatAUD(result.rawTax)}</span></div>
+                        <div className="flex justify-between"><span className="text-warmgray">Income Tax</span><span className="font-medium text-navy">{formatNegAUD(result.rawTax)}</span></div>
                         {result.litoOffset > 0 && (
                           <div className="flex justify-between pl-4"><span className="text-warmgray-light text-sm">LITO Offset</span><span className="text-sm text-eucalyptus">+{formatAUD(result.litoOffset)}</span></div>
                         )}
-                        <div className="flex justify-between"><span className="text-warmgray">Net Income Tax</span><span className="font-bold text-navy">-{formatAUD(result.netTax)}</span></div>
-                        <div className="flex justify-between"><span className="text-warmgray">Medicare Levy (2%)</span><span className="font-medium text-navy">-{formatAUD(result.medicare)}</span></div>
+                        <div className="flex justify-between"><span className="text-warmgray">Net Income Tax</span><span className="font-bold text-navy">{formatNegAUD(result.netTax)}</span></div>
+                        <div className="flex justify-between"><span className="text-warmgray">Medicare Levy (2%)</span><span className="font-medium text-navy">{formatNegAUD(result.medicare)}</span></div>
                         <div className="border-t border-sandstone-dark/20" />
-                        <div className="flex justify-between"><span className="font-semibold text-navy">Total Tax</span><span className="text-xl font-bold text-ochre">-{formatAUD(result.totalTax)}</span></div>
+                        <div className="flex justify-between"><span className="font-semibold text-navy">Total Tax</span><span className="text-xl font-bold text-ochre">{formatNegAUD(result.totalTax)}</span></div>
                         <div className="flex justify-between"><span className="font-semibold text-navy">Take-Home Pay</span><span className="text-xl font-bold text-eucalyptus-dark">{formatAUD(result.takeHome)}</span></div>
                         <div className="flex gap-4 mt-2 text-xs text-warmgray-light">
                           <span>Effective rate: <strong className="text-navy">{formatPercent(result.effectiveRate)}</strong></span>

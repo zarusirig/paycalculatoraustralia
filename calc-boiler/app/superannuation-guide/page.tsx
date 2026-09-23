@@ -5,7 +5,7 @@ import { SUPERANNUATION_GUIDE_FAQS } from "@/modules/guide/superannuation-guide-
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 

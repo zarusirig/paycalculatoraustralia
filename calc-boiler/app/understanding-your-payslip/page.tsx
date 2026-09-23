@@ -3,7 +3,7 @@ import UnderstandingYourPayslipPage from "@/modules/guide/understanding-your-pay
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_FAQS } from "@/modules/guide/understanding-your-payslip-faqs";

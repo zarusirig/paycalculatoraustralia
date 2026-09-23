@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   ABSENCE_RULE,
   CGT_AFFORDABLE_HOUSING,
@@ -166,18 +166,18 @@ export default function CapitalGainsTaxPage() {
             <p>The ATO&rsquo;s own example. Rhi buys an investment property for {formatAUD(500_000)} and sells it five years later for {formatAUD(600_000)}:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Capital proceeds</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI.capitalProceeds)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Cost base — {formatAUD(500_000)} purchase, {formatAUD(15_000)} stamp duty, {formatAUD(1_200)} conveyancing, {formatAUD(1_300)} conveyancing on sale, {formatAUD(12_500)} agent&rsquo;s commission</td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(RHI.costBase)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Cost base — {formatAUD(500_000)} purchase, {formatAUD(15_000)} stamp duty, {formatAUD(1_200)} conveyancing, {formatAUD(1_300)} conveyancing on sale, {formatAUD(12_500)} agent&rsquo;s commission</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI.costBase, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-medium">Capital gain</td><td className="px-5 py-3 text-right font-medium tabular-nums">{formatAUD(RHI.grossGain)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(RHI.discountAmount)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI.discountAmount, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-bold">Net capital gain reported</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(RHI.netCapitalGain)}</td></tr>
             </tbody></table></div></div>
 
             <p>Now add a second asset. In the same year Rhi also sells shares that cost {formatAUD(10_000)} for {formatAUD(5_500)}, a capital loss of {formatAUD(4_500)}:</p>
             <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><tbody className="divide-y divide-sandstone-dark/20 bg-white">
               <tr><td className="px-5 py-3">Capital gain on the property</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI_WITH_LOSS.grossGain)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Capital loss on the shares — applied <em>first</em></td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(RHI_WITH_LOSS.lossesApplied)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">Capital loss on the shares — applied <em>first</em></td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI_WITH_LOSS.lossesApplied, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3">Gain after losses</td><td className="px-5 py-3 text-right tabular-nums">{formatAUD(RHI_WITH_LOSS.gainAfterLosses)}</td></tr>
-              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">−{formatAUD(RHI_WITH_LOSS.discountAmount)}</td></tr>
+              <tr className="bg-eucalyptus-light/30"><td className="px-5 py-3">{formatPercent(CGT_DISCOUNT_RATES.individual, 0)} CGT discount</td><td className="px-5 py-3 text-right tabular-nums">{formatNegAUD(RHI_WITH_LOSS.discountAmount, 0, "−")}</td></tr>
               <tr><td className="px-5 py-3 font-bold">Net capital gain reported</td><td className="px-5 py-3 text-right font-bold tabular-nums">{formatAUD(RHI_WITH_LOSS.netCapitalGain)}</td></tr>
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Discount first, then losses, would give {formatAUD(RHI.netCapitalGain - 4_500)} — understating the gain by {formatAUD(RHI_WITH_LOSS.netCapitalGain - (RHI.netCapitalGain - 4_500))}.</p></div>
           </section>

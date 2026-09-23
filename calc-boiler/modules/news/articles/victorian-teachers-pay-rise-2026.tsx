@@ -47,6 +47,17 @@ export default function VictorianTeachersPayRise2026() {
         to {formatAUD(topEnd)} by November 2029.
       </p>
 
+      <p className="text-sm text-warmgray">
+        <strong>Update, {VIC_2026_AGREEMENT.fwcCheckedOn}:</strong> the Department of Education lodged
+        the agreement with the Fair Work Commission for approval on {VIC_2026_AGREEMENT.fwcLodged} (matter{" "}
+        {VIC_2026_AGREEMENT.fwcMatter}). The Commission&apos;s{" "}
+        <a href={VIC_2026_AGREEMENT.fwcProgressUrl} rel="noopener noreferrer" target="_blank">
+          agreements in progress
+        </a>{" "}
+        list showed it at {VIC_2026_AGREEMENT.fwcStage} on {VIC_2026_AGREEMENT.fwcCheckedOn}. It is not yet
+        approved, so the VGSA 2022 rates are still what is paid.
+      </p>
+
       <NewsKeyFacts
         title="Key figures (proposed VGSA 2026)"
         rows={[
@@ -61,9 +72,9 @@ export default function VictorianTeachersPayRise2026() {
 
       <h2>What happens next</h2>
       <p>
-        The ballot was the Fair Work Act&apos;s employee vote. The department must lodge the agreement with
-        the Fair Work Commission within 14 days of the ballots closing, and the government says approval
-        can take up to six weeks. The agreement starts operating on the seventh day after the Commission
+        The ballot was the Fair Work Act&apos;s employee vote. The department lodged the agreement with the
+        Fair Work Commission on {VIC_2026_AGREEMENT.fwcLodged}, and the government says approval can take
+        up to six weeks. The agreement starts operating on the seventh day after the Commission
         approves it, and runs to a nominal expiry date of {VIC_2026_AGREEMENT.nominalExpiry}.
       </p>
       <p>

@@ -11,6 +11,7 @@ import {
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   HECS_HELP,
   LITO,
@@ -268,7 +269,7 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
                           <td className="px-4 py-3 font-medium text-navy">{formatAUD(s)}</td>
                           <td className="px-4 py-3 text-right text-warmgray">{formatAUD(oldTax)}</td>
                           <td className="px-4 py-3 text-right text-navy">{formatAUD(newTax)}</td>
-                          <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">−{formatAUD(oldTax - newTax)}</td>
+                          <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatNegAUD(oldTax - newTax, 0, "−")}</td>
                         </tr>
                       );
                     })}

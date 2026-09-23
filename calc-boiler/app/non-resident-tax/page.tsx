@@ -3,7 +3,6 @@ import NonResidentTaxPage from "@/modules/guide/non-resident-tax";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { NON_RESIDENT_FAQS } from "@/modules/guide/non-resident-tax-faqs";
 import { withPageEnd } from "@/components/common/content-slots";

@@ -6,7 +6,7 @@ import { NON_RESIDENT_FAQS } from "./non-resident-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import AuthorBox from "@/components/common/author-box";
@@ -116,7 +116,7 @@ export default function NonResidentTaxPage() {
               <div className="not-prose my-6"><div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm"><table className="w-full text-sm text-left text-warmgray"><thead className="bg-sandstone font-semibold text-navy"><tr><th className="px-5 py-3">Component</th><th className="px-5 py-3 text-right">Resident</th><th className="px-5 py-3 text-right">Non-Resident</th></tr></thead><tbody className="divide-y divide-sandstone-dark/20 bg-white">
                 <tr><td className="px-5 py-3">Gross Income</td><td className="px-5 py-3 text-right">$90,000</td><td className="px-5 py-3 text-right">$90,000</td></tr>
                 <tr><td className="px-5 py-3">Income Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TAX_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
-                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">{LITO_90K > 0 ? `-${formatAUD(LITO_90K)}` : "$0 (fully phased out)"}</td><td className="px-5 py-3 text-right">$0</td></tr>
+                <tr><td className="px-5 py-3">LITO</td><td className="px-5 py-3 text-right">{LITO_90K > 0 ? formatNegAUD(LITO_90K) : "$0 (fully phased out)"}</td><td className="px-5 py-3 text-right">$0</td></tr>
                 <tr><td className="px-5 py-3">Medicare Levy (2%)</td><td className="px-5 py-3 text-right">{formatAUD(MEDICARE_90K)}</td><td className="px-5 py-3 text-right">$0</td></tr>
                 <tr className="font-bold"><td className="px-5 py-3">Total Tax</td><td className="px-5 py-3 text-right">{formatAUD(RES_TOTAL_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAX_90K)}</td></tr>
                 <tr className="font-bold bg-sandstone/50"><td className="px-5 py-3">Take-Home Pay</td><td className="px-5 py-3 text-right text-eucalyptus-dark">{formatAUD(RES_TAKE_HOME_90K)}</td><td className="px-5 py-3 text-right text-red-600">{formatAUD(NR_TAKE_HOME_90K)}</td></tr>

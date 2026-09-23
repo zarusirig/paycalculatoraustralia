@@ -12,6 +12,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
@@ -165,12 +166,12 @@ export default function GrossPayCalculatorPage() {
                         <div className="text-right text-navy font-bold">{formatAUD(requiredGross / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="text-warmgray">Income Tax</div>
-                        <div className="text-right text-ochre hidden sm:block">-{formatAUD(finalBreakdown.netIncomeTax)}</div>
-                        <div className="text-right text-ochre">-{formatAUD(finalBreakdown.netIncomeTax / PERIOD_MULTIPLIERS[period])}</div>
+                        <div className="text-right text-ochre hidden sm:block">{formatNegAUD(finalBreakdown.netIncomeTax)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(finalBreakdown.netIncomeTax / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="text-warmgray">Medicare Levy</div>
-                        <div className="text-right text-ochre hidden sm:block">-{formatAUD(finalBreakdown.medicareLevy)}</div>
-                        <div className="text-right text-ochre">-{formatAUD(finalBreakdown.medicareLevy / PERIOD_MULTIPLIERS[period])}</div>
+                        <div className="text-right text-ochre hidden sm:block">{formatNegAUD(finalBreakdown.medicareLevy)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(finalBreakdown.medicareLevy / PERIOD_MULTIPLIERS[period])}</div>
 
                         <div className="border-t border-sandstone-dark/20 pt-2 font-bold text-navy">Net Take-Home</div>
                         <div className="border-t border-sandstone-dark/20 pt-2 text-right font-bold text-eucalyptus-dark hidden sm:block">{formatAUD(finalBreakdown.takeHomePay)}</div>
@@ -281,7 +282,7 @@ export default function GrossPayCalculatorPage() {
             </p>
             <ul className="list-disc pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Salary negotiators</strong> — employees entering a new role or requesting a pay rise who need to translate living expenses into a gross salary figure. A worker who spends $1,200 per week on rent, bills, and essentials needs a gross salary of at least <strong>{formatAUD(Math.round(GROSS_FOR_1200_WK))}</strong> to cover those costs after tax.</li>
-              <li><strong>Job seekers comparing offers</strong> — candidates who receive offers quoted as a "Total Remuneration Package" (gross plus super) and need to convert that figure to weekly take-home pay. A $100,000 TRP translates to a base salary of <strong>{formatAUD(TRP_BASE)}</strong> and net weekly pay of <strong>{formatAUD(EX_TRP.weekly)}</strong>.</li>
+              <li><strong>Job seekers comparing offers</strong> — candidates who receive offers quoted as a &quot;Total Remuneration Package&quot; (gross plus super) and need to convert that figure to weekly take-home pay. A $100,000 TRP translates to a base salary of <strong>{formatAUD(TRP_BASE)}</strong> and net weekly pay of <strong>{formatAUD(EX_TRP.weekly)}</strong>.</li>
               <li><strong>Budgeters and mortgage applicants</strong> — individuals who know their monthly expenses and need to determine the minimum gross income required. Lenders assess borrowing capacity on gross salary, so converting net targets to gross figures is essential for pre-approval applications.</li>
             </ul>
             <p className="text-warmgray">
@@ -354,7 +355,7 @@ export default function GrossPayCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Most Common Gross Pay Mistakes?</h2>
             <p className="mb-4 text-warmgray">
-              The most common gross pay mistake is confusing a "Total Remuneration Package" with base salary, which overstates gross pay by <strong>{formatAUD(100_000 - TRP_BASE)}</strong> on a $100,000 package. Avoid these 5 errors:
+              The most common gross pay mistake is confusing a &quot;Total Remuneration Package&quot; with base salary, which overstates gross pay by <strong>{formatAUD(100_000 - TRP_BASE)}</strong> on a $100,000 package. Avoid these 5 errors:
             </p>
             <ol className="list-decimal pl-6 space-y-3 text-warmgray mb-4">
               <li><strong>Treating TRP as base salary</strong> — a $100,000 TRP includes {SG_PCT} super, so the actual base salary is only <strong>{formatAUD(TRP_BASE)}</strong>. Assuming the full $100,000 is your gross pay inflates your expected take-home by <strong>{formatAUD(EX_100K.weekly - EX_TRP.weekly)} per week</strong>.</li>

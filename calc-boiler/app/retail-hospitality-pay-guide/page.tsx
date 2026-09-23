@@ -5,7 +5,6 @@ import { faqPageSchema } from "@/lib/faq";
 import { RETAIL_HOSPITALITY_FAQS } from "@/modules/guide/retail-hospitality-pay-guide-faqs";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS } from "@/lib/authors";
 import { withPageEnd } from "@/components/common/content-slots";
 const BASE = SITE_CONFIG.baseUrl; const URL = `${BASE}/retail-hospitality-pay-guide/`;
 const TITLE = "Retail & Hospitality Pay — Award Rates, Penalties & Loading";

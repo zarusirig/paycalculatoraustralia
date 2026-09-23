@@ -3,7 +3,6 @@ import TechSalaryGuideAustraliaPage from "@/modules/guide/tech-salary-guide-aust
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
-import { AUTHORS } from "@/lib/authors";
 import { faqPageSchema } from "@/lib/faq";
 import { TECH_SALARY_FAQS } from "@/modules/guide/tech-salary-guide-australia-faqs";
 import { withPageEnd } from "@/components/common/content-slots";

@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   EMPLOYMENT,
   SUPER_GUARANTEE,
@@ -194,19 +195,19 @@ export default function StateTakeHomeCalculator({
               </div>
               <div className="space-y-2.5 p-5 text-sm">
                 <Row label="Gross salary" value={formatAUD(result.grossSalary)} bold />
-                <Row label="Income tax" value={`-${formatAUD(result.incomeTax)}`} />
+                <Row label="Income tax" value={formatNegAUD(result.incomeTax)} />
                 {result.litoOffset > 0 && (
                   <Row label="Low income tax offset" value={`+${formatAUD(result.litoOffset)}`} sub />
                 )}
-                <Row label="Medicare levy" value={`-${formatAUD(result.medicareLevy)}`} />
+                <Row label="Medicare levy" value={formatNegAUD(result.medicareLevy)} />
                 {result.medicareSurcharge > 0 && (
                   <Row
                     label="Medicare levy surcharge"
-                    value={`-${formatAUD(result.medicareSurcharge)}`}
+                    value={formatNegAUD(result.medicareSurcharge)}
                   />
                 )}
                 {includeHECS && (
-                  <Row label="HECS-HELP repayment" value={`-${formatAUD(result.hecsRepayment)}`} />
+                  <Row label="HECS-HELP repayment" value={formatNegAUD(result.hecsRepayment)} />
                 )}
                 <div className="border-t border-sandstone-dark/20 pt-2.5">
                   <Row label="Take-home pay" value={formatAUD(result.takeHomePay)} bold />

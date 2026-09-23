@@ -1,7 +1,13 @@
 "use client";
 
 import FaqAccordion from "@/components/common/faq-accordion";
-import { BILLABLE_WEEKS, CONTRACTOR_PAY_FAQS, CONTRACTOR_RATE_ANSWER, DAY_RATE_GROSS, DAY_RATE_NET, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
+import { BILLABLE_WEEKS, CONTRACTOR_PAY_FAQS, CONTRACTOR_RATE_ANSWER, CONTRACTOR_SALARY_ANSWER, DAY_RATE_GROSS, DAY_RATE_NET, SALARY_EXAMPLE, SALARY_EXAMPLE_RATE, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
+import {
+  DEFAULT_CONTRACTOR_ASSUMPTIONS as CA,
+  WEEKDAY_PUBLIC_HOLIDAYS_2026,
+  WORKING_DAYS_PER_YEAR,
+  contractorRateToEquivalentSalary,
+} from "@/lib/constants/contractor-rate";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
@@ -13,11 +19,10 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
-  calculateHECS,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
-  MEDICARE_LEVY,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
@@ -34,6 +39,9 @@ const CC_CAP = SUPER_GUARANTEE.concessionalCap;
 // Medicare levy avoided, less 15% contributions tax (taxable income stays in
 // the 30% bracket after the contribution).
 const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
+
+/** Contract hourly rates shown in the rate-to-salary table. */
+const SALARY_TABLE_RATES = [30, 40, 50, 60, 75, 100, 125, 150] as const;
 
 // Google AU "related searches" for "contractor pay calculator" and "contractor
 // rate calculator australia" (Sept 2026), each pointed at the page that answers it.
@@ -492,7 +500,7 @@ export default function ContractorPayCalculator() {
                     <tr key={dailyRate} className="hover:bg-sandstone">
                       <td className="px-4 py-3 font-medium text-navy">${dailyRate}/day</td>
                       <td className="px-4 py-3 text-right text-navy">{formatAUD(gross)}</td>
-                      <td className="px-4 py-3 text-right text-ochre">-{formatAUD(totalTax)}</td>
+                      <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(totalTax)}</td>
                       <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(takeHome)}</td>
                       <td className="px-4 py-3 text-right text-navy">{formatAUD(netPerDay)}</td>
                     </tr>
@@ -515,46 +523,53 @@ export default function ContractorPayCalculator() {
           </div>
         </section>
 
-        {/* What Hourly Rate Equals a Salary? */}
-        <section>
+        {/* PAA: "How do I convert a contractor rate to a salary?" — every figure from contractorRateToEquivalentSalary() */}
+        <section id="contractor-rate-to-salary">
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Contractor Hourly Rate Equals a Salary?</h2>
-          <p className="mb-4 text-warmgray">
-            A contractor hourly rate of <strong>$50</strong> produces gross annual income of <strong>$91,200</strong> (at 38 hours/week, 48 weeks/year), but the equivalent employee salary is approximately <strong>$65,000–$70,000</strong> once leave, super, and insurance are factored in. The conversion table below maps common contractor rates to their equivalent employee salaries for FY{SITE_CONFIG.financialYear}.
-          </p>
+          <p className="mb-4 text-warmgray">{CONTRACTOR_SALARY_ANSWER.a}</p>
+          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Worked Example: {formatAUD(SALARY_EXAMPLE_RATE)} an Hour</h3>
+          <ol className="mb-6 list-decimal space-y-1 pl-5 text-warmgray">
+            <li><strong>Billable time:</strong> {WORKING_DAYS_PER_YEAR} weekdays &minus; {CA.annualLeaveDays} annual leave &minus; {CA.personalLeaveDays} sick days &minus; {CA.publicHolidayDays} public holidays &minus; {CA.downtimeDays} days between contracts = {SALARY_EXAMPLE.billableDays} days &times; {CA.hoursPerDay} hours = {SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hours.</li>
+            <li><strong>Billed income:</strong> {SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hours &times; {formatAUD(SALARY_EXAMPLE_RATE)} = {formatAUD(SALARY_EXAMPLE.billedIncome)} (excluding GST).</li>
+            <li><strong>Less costs an employer would carry:</strong> {formatAUD(SALARY_EXAMPLE.insurance)} insurance + {formatAUD(SALARY_EXAMPLE.admin)} accounting and admin leaves {formatAUD(SALARY_EXAMPLE.packageValue)}. That is the whole package: salary plus super.</li>
+            <li><strong>Take out super:</strong> {formatAUD(SALARY_EXAMPLE.packageValue)} &divide; {(1 + SUPER_GUARANTEE.rate).toFixed(2)} = <strong>{formatAUD(SALARY_EXAMPLE.equivalentSalary)} salary</strong>, plus {formatAUD(SALARY_EXAMPLE.superSelfFunded)} super ({formatPercent(SUPER_GUARANTEE.rate, 0)}).</li>
+            <li><strong>Check:</strong> {formatAUD(SALARY_EXAMPLE.leaveValue)} of that salary is pay for the {CA.annualLeaveDays + CA.personalLeaveDays + CA.publicHolidayDays} days of leave and public holidays an employee is paid for without working. As a contractor you fund those days out of the hours you bill. The salary works out to {formatAUD(SALARY_EXAMPLE.employeeHourly, 2)} an hour over {EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} paid hours, so the contract rate is {(SALARY_EXAMPLE_RATE / SALARY_EXAMPLE.employeeHourly).toFixed(2)} times the employee rate.</li>
+          </ol>
           <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
             <table className="w-full text-sm">
               <thead className="bg-sandstone">
                 <tr>
                   <th className="px-4 py-3 text-left font-semibold text-navy">Contractor Rate</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual (48 wks)</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Billed a Year ({SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hrs)</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Super, Insurance &amp; Admin You Fund</th>
                   <th className="px-4 py-3 text-right font-semibold text-navy">Equivalent Salary</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Contractor Take-Home (after tax &amp; Medicare)</th>
+                  <th className="px-4 py-3 text-right font-semibold text-navy">Equivalent Employee Hourly Rate</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-sandstone-dark/10">
-                {[
-                  { rate: 30, salary: 42000 },
-                  { rate: 40, salary: 55000 },
-                  { rate: 50, salary: 68000 },
-                  { rate: 60, salary: 82000 },
-                  { rate: 75, salary: 102000 },
-                  { rate: 100, salary: 135000 },
-                  { rate: 125, salary: 168000 },
-                  { rate: 150, salary: 200000 },
-                ].map((r) => ({ ...r, gross: r.rate * 38 * 48 })).map((row) => ({ ...row, takeHome: row.gross - annualTaxAndMedicare(row.gross) })).map((row) => (
+                {SALARY_TABLE_RATES.map((rate) => contractorRateToEquivalentSalary(rate, "hour")).map((row) => (
                   <tr key={row.rate} className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">${row.rate}/hr</td>
-                    <td className="px-4 py-3 text-right text-navy">{formatAUD(row.gross)}</td>
-                    <td className="px-4 py-3 text-right text-navy">~{formatAUD(row.salary)}</td>
-                    <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">~{formatAUD(row.takeHome)}</td>
+                    <td className="px-4 py-3 text-right text-navy">{formatAUD(row.billedIncome)}</td>
+                    <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(row.superSelfFunded + row.insurance + row.admin)}</td>
+                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(row.equivalentSalary)}</td>
+                    <td className="px-4 py-3 text-right text-navy">{formatAUD(row.employeeHourly, 2)}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-sm text-warmgray-light">
-            Equivalent salary assumes 4 weeks annual leave, 10 days sick leave, {formatPercent(SUPER_GUARANTEE.rate, 0)} employer super, and $1,500/yr in insurance costs paid by the employer. Actual take-home pay varies based on deductions claimed. Use the <Link href="/annual-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link> for a precise salary-based breakdown.
-          </p>
+          <div className="mt-3 text-sm text-warmgray-light">
+            <p className="mb-1 font-medium">Assumptions behind every figure in this section:</p>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>{WORKING_DAYS_PER_YEAR} weekdays a year ({EMPLOYMENT.weeksPerYear} weeks &times; 5). Not billed: {CA.annualLeaveDays} days&apos; annual leave ({EMPLOYMENT.annualLeaveWeeks} weeks, the NES minimum), {CA.personalLeaveDays} days&apos; sick and carer&apos;s leave (NES), {CA.publicHolidayDays} weekday public holidays (the states and territories have {WEEKDAY_PUBLIC_HOLIDAYS_2026.min} to {WEEKDAY_PUBLIC_HOLIDAYS_2026.max} in 2026) and {CA.downtimeDays} days between contracts (our assumption; use your own).</li>
+              <li>{CA.hoursPerDay} billed hours a day ({EMPLOYMENT.standardWeeklyHours}-hour week). Rates exclude GST.</li>
+              <li>Insurance of {formatAUD(CA.insurancePerYear)} a year and accounting and admin of {formatAUD(CA.adminPerYear)} a year. These are round planning figures, not quotes: replace them with your own premiums and fees.</li>
+              <li>Super at the {formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee rate on the salary, capped at the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base for FY{SITE_CONFIG.financialYear}.</li>
+              <li>Not included: leave loading, workers&apos; compensation, income protection, long service leave and income tax (both sides pay the same tax rates on the same taxable income).</li>
+            </ul>
+            <p className="mt-2">This section uses {SALARY_EXAMPLE.billableDays} billable days. The take-home table above uses {BILLABLE_WEEKS} weeks and deducts only tax. Use the <Link href="/annual-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link> to see the take-home pay on the equivalent salary.</p>
+          </div>
         </section>
 
         {/* Common Contractor Tax Mistakes */}
