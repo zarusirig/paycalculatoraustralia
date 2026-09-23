@@ -57,7 +57,6 @@ const MLS = L("/medicare-levy-surcharge-calculator/", "Medicare Levy Surcharge C
 const PAYG_TABLES = L("/payg-withholding-tables/", "PAYG Withholding Tables", "The ATO weekly, fortnightly and monthly tax tables.");
 const TAKE_HOME_HUB = L("/take-home-pay-on/", "Take-Home Pay on Every Salary", "Net pay tables from $20,000 to $500,000.");
 const TAX_ON_HUB = L("/tax-on/", "Tax on Every Salary", "Income tax, Medicare and your marginal rate at each salary.");
-const HOURLY_HUB = L("/salary-to-hourly/", "Salary to Hourly Rates", "Every annual salary converted to an hourly rate.");
 const WEEKLY_PAY = L("/weekly-pay-calculator/", "Weekly Pay Calculator", "Your pay after tax, week by week.");
 const FORTNIGHTLY_PAY = L("/fortnightly-pay-calculator/", "Fortnightly Pay Calculator", "Net pay for a fortnightly pay cycle.");
 const PAY_RISE = L("/pay-rise-calculator/", "Pay Rise Calculator", "What a raise actually adds to each pay.");
@@ -288,11 +287,13 @@ const CLUSTERS: Cluster[] = [
   },
   {
     match: (p) => /^\/salary-to-hourly\/\d+\/$/.test(p),
-    links: [OVERTIME, L("/salary-vs-hourly/", "Salary vs Hourly Pay", "Which suits you, and what each leaves out."), L("/casual-loading-calculator/", "Casual Loading Calculator", "What a 25% loading adds to an hourly rate."), TAKE_HOME_HUB],
+    // Keeps the two head-term tax pages linked from the ~300 hourly/salary
+    // conversion pages (they were there via DEFAULT_LINKS before this pass).
+    links: [OVERTIME, L("/salary-vs-hourly/", "Salary vs Hourly Pay", "Which suits you, and what each leaves out."), INCOME_TAX, TAX_BRACKETS],
   },
   {
     match: (p) => p.startsWith("/hourly-to-salary/"),
-    links: [MIN_WAGE, L("/casual-loading-calculator/", "Casual Loading Calculator", "What a 25% loading adds to an hourly rate."), WEEKLY_PAY, HOURLY_HUB],
+    links: [MIN_WAGE, L("/casual-loading-calculator/", "Casual Loading Calculator", "What a 25% loading adds to an hourly rate."), INCOME_TAX, TAX_BRACKETS],
   },
   // --- Payroll tax state pages ↔ employer cost ↔ state pay pages ---
   {
