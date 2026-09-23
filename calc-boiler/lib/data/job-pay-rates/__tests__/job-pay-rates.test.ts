@@ -372,3 +372,12 @@ test("W4: early childhood teacher — long day care is 4% above preschool, casua
   assert.equal(Math.round(pre.weekly * 1.04 * 10) / 10, h.weekly);
   assert.equal(pre.casualHourly, 47.88);
 });
+
+test("W4: a metaTitle override still states the headline hourly rate", () => {
+  for (const occ of OCCUPATIONS) {
+    if (!occ.metaTitle) continue;
+    const r = headlineRow(occ);
+    assert.ok(r, occ.slug);
+    assert.ok(occ.metaTitle.includes(`$${r.hourly.toFixed(2)}`), `${occ.slug}: ${occ.metaTitle}`);
+  }
+});

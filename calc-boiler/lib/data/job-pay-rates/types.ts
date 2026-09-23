@@ -175,4 +175,10 @@ export interface Occupation {
   verifiedOn: string;
   /** Related pages on this site. */
   related: { href: string; label: string }[];
+  /**
+   * Optional <title> override, for pages where the headline award rate is not
+   * the job title's own minimum (e.g. lawyer: the award covers law graduates,
+   * admitted lawyers are award-free).
+   */
+  metaTitle?: string;
 }

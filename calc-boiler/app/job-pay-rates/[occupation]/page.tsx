@@ -32,6 +32,7 @@ function money(n: number) {
 
 /** Title leads with the answer: the hourly minimum, or the median for award-free jobs. */
 function titleFor(occ: Occupation): string {
+  if (occ.metaTitle) return occ.metaTitle;
   const r = headlineRow(occ);
   if (r) return `${occ.name} Pay Rates Australia 2026 — ${money(r.hourly)}/hr Award Minimum`;
   if (occ.median) return `${occ.name} Pay Rates Australia 2026 — No Award, ${formatAUD(occ.median.medianWeekly)}/wk Median`;
