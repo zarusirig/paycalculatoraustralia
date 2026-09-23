@@ -19,7 +19,7 @@
 // =============================================================================
 
 import { SUPER_GUARANTEE } from "./australian-tax";
-import { calculatePAYGWithholding, type PayFrequency, type WithholdingOptions } from "./payg-withholding";
+import { PAY_PERIODS, calculatePAYGWithholding, type PayFrequency, type WithholdingOptions } from "./payg-withholding";
 
 export interface PayslipInput {
   gross: number;
@@ -39,7 +39,11 @@ export interface Payslip {
   stslWithheld: number;
   postTaxDeductions: number;
   net: number;
-  /** Employer super guarantee on the gross (before sacrifice), paid on top. */
+  /**
+   * Employer super guarantee on the gross (before sacrifice), paid on top,
+   * capped at the annual maximum contribution base spread evenly across the
+   * year's pay periods (SUPER_GUARANTEE.maxContributionBaseAnnual).
+   */
   employerSuper: number;
   /** (gross − net) ÷ gross. */
   deductionRate: number;
@@ -65,7 +69,7 @@ export function payslipFromGross(input: PayslipInput): Payslip {
     stslWithheld: w.stslWithheld,
     postTaxDeductions: post,
     net,
-    employerSuper: cents(gross * SUPER_GUARANTEE.rate),
+    employerSuper: cents(Math.min(gross, SUPER_GUARANTEE.maxContributionBaseAnnual / PAY_PERIODS[input.frequency]) * SUPER_GUARANTEE.rate),
     deductionRate: gross > 0 ? (gross - net) / gross : 0,
   };
 }

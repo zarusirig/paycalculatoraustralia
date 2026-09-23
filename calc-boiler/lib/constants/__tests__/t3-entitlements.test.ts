@@ -236,6 +236,8 @@ test("gross vs net: ATO fortnightly example ($989.80 → $40 withheld)", () => {
   assert.equal(s.paygWithheld, 40);
   assert.equal(s.net, 949.8);
   assert.equal(s.employerSuper, 118.78);
+  // SG stops at the annual maximum contribution base, spread per fortnight.
+  assert.equal(payslipFromGross({ gross: 20_000, frequency: "fortnightly" }).employerSuper, 1_249.98);
 });
 
 test("gross vs net: net → gross inverts gross → net", () => {
