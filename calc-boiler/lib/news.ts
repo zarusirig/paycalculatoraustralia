@@ -13,6 +13,7 @@ import {
   SCHADS_SCHEDULE_E_INCREASE,
 } from "@/lib/constants/schads-award";
 import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
+import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -690,6 +691,12 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const hpGradNew = HPSS_OCT_2026_LEVEL_1[7][0].weekly;
   const hpGradOld = HPSS_TABLES.flatMap((t) => t.rows).find((r) => r.label === "Level 1 pay point 2")?.weekly ?? NaN;
 
+
+  const JP = PENDING_JUNIOR_CHANGE;
+  const jFF = JUNIOR_TRANSITION_SCHEDULES.fastFood;
+  const jRetail = JUNIOR_TRANSITION_SCHEDULES.retail;
+  const jPh = JUNIOR_TRANSITION_SCHEDULES.pharmacy;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -775,6 +782,35 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "Will my pay go down under the new structure?", answer: "No. Clause J.4.3 of the award keeps an employee who was classified on 30 September 2026 on their old minimum rate if it is higher than the rate for their new classification." },
         { question: "Are there more increases after October 2026?", answer: `Yes. October 2026 is the first of five stages. Further increases apply from ${HP.laterStages.slice(0, -1).join(", ")} and ${HP.laterStages[HP.laterStages.length - 1]}, as set in ${HP.structureDecision}.` },
         { question: "What is the new graduate rate for an AQF Level 7 health professional?", answer: `AQF Level 7 in the 1st year is ${m(hpGradNew)} a week full-time (${m(HPSS_OCT_2026_LEVEL_1[7][0].hourly)} an hour), rising to ${m(HPSS_OCT_2026_LEVEL_1[7][3].weekly)} from the 7th year.` },
+      ],
+    },
+    {
+      slug: "junior-pay-rates-december-2026",
+      headline: `Junior Pay Rates Rise From ${JP.earliestStart}: 18 to 20-Year-Olds in Retail, Fast Food and Pharmacy Move Toward the Adult Rate`,
+      title: `Junior Pay Rates 1 December 2026: New % for 18–20-Year-Olds`,
+      description: `The Fair Work Commission's ${JP.implementationDecision} (${JP.implementationDecidedOn}) phases 18 to 20-year-olds with more than 6 months' service to the adult rate. Fast food: 18-year-olds go from ${jFF.present.age18}% to ${jFF.rows[0].age18}% on ${jFF.rows[0].effective}, 100% by ${jFF.rows[jFF.rows.length - 1].effective}. Full timetable for retail, fast food and pharmacy.`,
+      category: "Wages",
+      datePublished: "2026-08-26",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/junior-pay-rates/", label: "Junior Pay Rates Guide" },
+        { href: "/fast-food-award-rates/", label: "Fast Food Award Rates" },
+        { href: "/casual-loading-calculator/", label: "Casual Loading Calculator" },
+      ],
+      relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
+      sources: [
+        { title: `Implementation decision ${JP.implementationDecision} (${JP.implementationDecidedOn}), AM2024/24`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb222.pdf", publisher: "Fair Work Commission" },
+        { title: `Determination ${jRetail.determination} — ${jRetail.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jRetail.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jFF.determination} — ${jFF.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jFF.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Determination ${jPh.determination} — ${jPh.award}`, url: `https://www.fwc.gov.au/documents/awardsandorders/pdf/${jPh.determination.toLowerCase()}.pdf`, publisher: "Fair Work Commission" },
+        { title: `Principal decision ${JP.decision} (${JP.decidedOn})`, url: "https://www.fwc.gov.au/documents/decisionssigned/pdf/2026fwcfb75.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: "When do junior pay rates change in 2026?", answer: `From the first full pay period starting on or after ${JP.earliestStart}, for employees aged 18 to 20 under the General Retail, Fast Food and Pharmacy Industry Awards who have ${JP.serviceQualifier}. Further steps follow until ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Do 18-year-olds get the full adult wage from December 2026?", answer: `No. It is a phase-in. Under the Fast Food Award an 18-year-old with more than 6 months' service goes from ${jFF.present.age18}% to ${jFF.rows[0].age18}% of the adult rate on ${jFF.rows[0].effective}, then rises five percentage points each July and December until reaching 100% on ${jFF.rows[jFF.rows.length - 1].effective}.` },
+        { question: "Who does not get the junior pay increase?", answer: "Employees under 18, employees aged 18 to 20 with 6 months' service or less with their employer, and workers under awards other than the General Retail, Fast Food and Pharmacy Industry Awards. In retail, only employee levels 1 to 3 have junior rates, and 20-year-olds with more than 6 months' service already get the adult rate." },
+        { question: "Is the pharmacy junior rate schedule different?", answer: `Yes. Pharmacy assistants levels 1 and 2 follow a schedule agreed with the Pharmacy Guild — a five-point first step, then ten-point steps each 1 July: ${jPh.rows.map((r) => `${r.age18}% / ${r.age19}% / ${r.age20}% from ${r.effective}`).join("; ")} (ages 18 / 19 / 20).` },
       ],
     },
   ];

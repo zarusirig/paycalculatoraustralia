@@ -29,6 +29,7 @@ import VictorianTeachersPayRise2026 from "./victorian-teachers-pay-rise-2026";
 import AgePensionIncreaseSeptember2026 from "./age-pension-increase-september-2026";
 import SchadsHomeCareDisabilityPayRiseDecember2026 from "./schads-home-care-disability-pay-rise-december-2026";
 import HealthProfessionalsAwardChangesOctober2026 from "./health-professionals-award-changes-october-2026";
+import JuniorPayRatesDecember2026 from "./junior-pay-rates-december-2026";
 // --- end G6 ---
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
@@ -63,5 +64,6 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "age-pension-increase-september-2026": AgePensionIncreaseSeptember2026,
   "schads-home-care-disability-pay-rise-december-2026": SchadsHomeCareDisabilityPayRiseDecember2026,
   "health-professionals-award-changes-october-2026": HealthProfessionalsAwardChangesOctober2026,
+  "junior-pay-rates-december-2026": JuniorPayRatesDecember2026,
   // --- end G6 ---
 };
