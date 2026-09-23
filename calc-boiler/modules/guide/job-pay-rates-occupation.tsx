@@ -13,6 +13,7 @@ import {
   afterTax,
   annualFromWeekly,
   headlineRow,
+  rowAnnual,
   isExactTakeHomeAmount,
   nearestTakeHomeAmount,
   takeHomeHref,
@@ -44,6 +45,11 @@ function TakeHomeLink({ annual }: { annual: number }) {
   );
 }
 
+/** A casual rate, or a dash where the award sets none for the classification. */
+function casualCell(n: number | null): string {
+  return n === null ? "—" : money(n);
+}
+
 function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?: string }) {
   return (
     <div className="not-prose my-8">
@@ -72,16 +78,21 @@ function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?
                 </th>
                 <td className="px-4 py-3 text-right font-semibold text-navy">{money(row.hourly)}</td>
                 <td className="px-4 py-3 text-right">{money(row.weekly)}</td>
-                <td className="px-4 py-3 text-right">{formatAUD(annualFromWeekly(row.weekly))}</td>
-                <td className="px-4 py-3 text-right">{money(row.casualHourly)}</td>
+                <td className="px-4 py-3 text-right">{formatAUD(rowAnnual(row))}</td>
+                <td className="px-4 py-3 text-right">{casualCell(row.casualHourly)}</td>
               </tr>
             );
           })}
         </tbody>
       </TableShell>
       <p className="mt-2 text-xs text-warmgray">
-        Annual is the weekly rate × 52, before tax and before superannuation. Casual hourly includes the 25% casual
-        loading.
+        {table.rows.some((r) => r.annual !== undefined)
+          ? "Annual is the award's own full-time annual salary"
+          : "Annual is the weekly rate × 52"}
+        , before tax and before superannuation.{" "}
+        {table.rows.some((r) => r.casualHourly === null)
+          ? "A dash means the award sets no casual rate for that classification."
+          : "Casual hourly includes the 25% casual loading."}
       </p>
     </div>
   );
@@ -89,7 +100,7 @@ function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?
 
 export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) {
   const headline = headlineRow(occ);
-  const headlineAnnual = headline ? annualFromWeekly(headline.weekly) : null;
+  const headlineAnnual = headline ? rowAnnual(headline) : null;
   const medianAnnual = occ.median ? annualFromWeekly(occ.median.medianWeekly) : null;
   const afterTaxBase = headlineAnnual ?? medianAnnual;
   const net = afterTaxBase !== null ? afterTax(afterTaxBase) : null;
@@ -117,9 +128,17 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               The award minimum for {occ.headline.why} is{" "}
               <strong className="text-navy">{money(headline.hourly)} an hour</strong> —{" "}
               {money(headline.weekly)} a week or {formatAUD(headlineAnnual)} a year full-time — under the{" "}
-              {occ.award.name} [{occ.award.code}], from {JOB_PAY_RATES_FROM}. A casual on the same classification
-              earns at least {money(headline.casualHourly)} an hour
-              {net ? <>, and a full-timer takes home about {formatAUD(net.netWeekly, 0)} a week after tax</> : null}.
+              {occ.award.name} [{occ.award.code}], from {JOB_PAY_RATES_FROM}.
+              {headline.casualHourly !== null ? (
+                <> A casual on the same classification earns at least {money(headline.casualHourly)} an hour</>
+              ) : null}
+              {net ? (
+                <>
+                  {headline.casualHourly !== null ? ", and a" : " A"} full-timer takes home about{" "}
+                  {formatAUD(net.netWeekly, 0)} a week after tax
+                </>
+              ) : null}
+              .
             </p>
           ) : occ.median && medianAnnual !== null ? (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
@@ -372,10 +391,12 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                           <dt className="text-warmgray">Award minimum</dt>
                           <dd className="font-semibold text-navy">{money(headline.hourly)}/hr</dd>
                         </div>
-                        <div className="flex items-baseline justify-between gap-3">
-                          <dt className="text-warmgray">Casual minimum</dt>
-                          <dd className="font-semibold text-navy">{money(headline.casualHourly)}/hr</dd>
-                        </div>
+                        {headline.casualHourly !== null && (
+                          <div className="flex items-baseline justify-between gap-3">
+                            <dt className="text-warmgray">Casual minimum</dt>
+                            <dd className="font-semibold text-navy">{money(headline.casualHourly)}/hr</dd>
+                          </div>
+                        )}
                       </>
                     )}
                     {occ.median && (

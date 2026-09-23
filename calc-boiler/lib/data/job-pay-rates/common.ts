@@ -75,3 +75,24 @@ export function rowFromModernAward(
     ...(note ? { note } : {}),
   };
 }
+
+// ---------------------------------------------------------------------------
+// W4 (wave 2) helpers for awards that publish no casual column or no hourly
+// figure for an all-purpose rate. All arithmetic is in integer cents, rounded
+// half-up, which is how the Fair Work Commission rounds its own schedules.
+// ---------------------------------------------------------------------------
+
+/** Round a dollar amount half-up to the cent. */
+export function toCents(dollars: number): number {
+  return Math.round(dollars * 100 + 1e-7) / 100;
+}
+
+/** Hourly rate plus the 25% casual loading, computed on the rounded hourly rate. */
+export function casualFromHourly(hourly: number): number {
+  return Math.round(Math.round(hourly * 100) * 1.25 + 1e-7) / 100;
+}
+
+/** A 38-hour weekly rate as an hourly rate, to the cent. */
+export function hourlyFromWeekly(weekly: number): number {
+  return toCents(weekly / 38);
+}

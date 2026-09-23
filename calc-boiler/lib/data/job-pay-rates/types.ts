@@ -30,6 +30,12 @@ export const OCCUPATION_SLUGS = [
   "bus-driver",
   "medical-receptionist",
   "security-guard",
+  // W4 (wave 2) — batch 2 occupations.
+  "occupational-therapist",
+  "physiotherapist",
+  "psychologist",
+  "social-worker",
+  "nurse",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
@@ -56,8 +62,18 @@ export interface RateRow {
   weekly: number;
   /** Minimum hourly rate. */
   hourly: number;
-  /** Casual ordinary hourly rate (hourly + 25% casual loading). */
-  casualHourly: number;
+  /**
+   * Casual ordinary hourly rate (hourly + 25% casual loading). Null when the
+   * award provides no casual rate for the classification (e.g. apprentices
+   * under the Electrical award, whose Schedule B has no casual table).
+   */
+  casualHourly: number | null;
+  /**
+   * The award's own full-time annual salary, for awards that set rates as an
+   * annual wage (Professional Employees, Medical Practitioners, Teachers).
+   * When absent, the annual figure is weekly x 52.
+   */
+  annual?: number;
   /** Short gloss the award itself supports, e.g. an indicative role. */
   note?: string;
 }
@@ -69,6 +85,11 @@ export interface RateTable {
   /** One or two sentences: who the table covers and where the figures come from. */
   intro: string;
   rows: RateRow[];
+  /**
+   * Set when the table lawfully sits below the National Minimum Wage — only
+   * apprentice and trainee rates, which the NMW order does not bind. States why.
+   */
+  belowMinimumWage?: string;
 }
 
 /** One penalty-rate line, as a percentage of the minimum hourly rate. */

@@ -15,10 +15,15 @@ import { DENTAL_ASSISTANT } from "./dental-assistant";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { ELECTRICIAN } from "./electrician";
 import { MEDICAL_RECEPTIONIST } from "./medical-receptionist";
+import { NURSE } from "./nurse";
+import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
 import { PHARMACIST } from "./pharmacist";
+import { PHYSIOTHERAPIST } from "./physiotherapist";
 import { PROPERTY_MANAGER } from "./property-manager";
+import { PSYCHOLOGIST } from "./psychologist";
 import { REAL_ESTATE_AGENT } from "./real-estate-agent";
 import { SECURITY_GUARD } from "./security-guard";
+import { SOCIAL_WORKER } from "./social-worker";
 import { TRUCK_DRIVER } from "./truck-driver";
 import type { Occupation, OccupationSlug, RateRow } from "./types";
 import { OCCUPATION_SLUGS } from "./types";
@@ -35,6 +40,12 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   "bus-driver": BUS_DRIVER,
   "medical-receptionist": MEDICAL_RECEPTIONIST,
   "security-guard": SECURITY_GUARD,
+  // W4 (wave 2)
+  "occupational-therapist": OCCUPATIONAL_THERAPIST,
+  physiotherapist: PHYSIOTHERAPIST,
+  psychologist: PSYCHOLOGIST,
+  "social-worker": SOCIAL_WORKER,
+  nurse: NURSE,
 };
 
 /** Every occupation, in the order the hub lists them. */
@@ -58,6 +69,11 @@ export function headlineRow(occ: Occupation): RateRow | null {
     throw new Error(`headlineRow: ${occ.slug} points at ${tableId} / ${label}, which does not exist`);
   }
   return row;
+}
+
+/** A row's full-time annual figure: the award's published annual salary when it sets one, else weekly x 52. */
+export function rowAnnual(row: RateRow): number {
+  return row.annual ?? annualFromWeekly(row.weekly);
 }
 
 /** Full-time annual equivalent of a weekly rate: 52 weeks, rounded to the dollar. */

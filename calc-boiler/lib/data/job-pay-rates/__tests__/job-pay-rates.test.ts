@@ -58,6 +58,7 @@ test("casual rate is the hourly rate plus 25%, to the cent", () => {
   for (const occ of OCCUPATIONS) {
     for (const table of occ.tables) {
       for (const row of table.rows) {
+        if (row.casualHourly === null) continue; // the award sets no casual rate (asserted separately)
         const derived = cents(row.hourly) * 1.25;
         assert.ok(
           Math.abs(derived - cents(row.casualHourly)) <= 1,
@@ -71,6 +72,7 @@ test("casual rate is the hourly rate plus 25%, to the cent", () => {
 test("rates sit at or above the National Minimum Wage", () => {
   for (const occ of OCCUPATIONS) {
     for (const table of occ.tables) {
+      if (table.belowMinimumWage) continue; // apprentice/trainee tables — asserted separately
       for (const row of table.rows) {
         assert.ok(row.weekly >= EMPLOYMENT.minimumWageWeekly, `${occ.slug} / ${row.label}`);
         assert.ok(row.hourly >= EMPLOYMENT.minimumWageHourly, `${occ.slug} / ${row.label}`);
@@ -225,4 +227,48 @@ test("annual and after-tax figures link to a take-home page that exists", () => 
 test("annualFromWeekly uses 52 weeks", () => {
   assert.equal(annualFromWeekly(1586.3), 82_488);
   assert.equal(annualFromWeekly(1102), 57_304);
+});
+
+// ---------------------------------------------------------------------------
+// W4 (wave 2) occupations — spot checks against the consolidated award text
+// read 23 September 2026.
+// ---------------------------------------------------------------------------
+
+test("W4: HPSS health professional rates match cl 17.2 and Schedule C.2.3", () => {
+  // [label, weekly, hourly, casual] exactly as the award prints them.
+  const published: [string, number, number, number][] = [
+    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
+    ["Level 1 pay point 3", 1273.4, 33.51, 41.89],
+    ["Level 1 pay point 4", 1317.2, 34.66, 43.33],
+    ["Level 2 pay point 1", 1493.9, 39.31, 49.14],
+    ["Level 4 pay point 4", 2705.1, 71.19, 88.99],
+  ];
+  for (const slug of ["occupational-therapist", "physiotherapist", "psychologist"]) {
+    for (const [label, weekly, hourly, casual] of published) {
+      const r = row(slug, label);
+      assert.deepEqual([r.weekly, r.hourly, r.casualHourly], [weekly, hourly, casual], `${slug} ${label}`);
+    }
+    assert.equal(getOccupation(slug)!.award!.code, "MA000027");
+  }
+  assert.equal(headlineRow(getOccupation("occupational-therapist")!)!.hourly, 33.51); // 4-year degree entry
+  assert.equal(headlineRow(getOccupation("psychologist")!)!.hourly, 34.66); // masters entry
+});
+
+test("W4: social worker rates are the SCHADS constants, headline is the 4-year graduate entry", () => {
+  const sw = getOccupation("social-worker")!;
+  for (const r of sw.tables[0].rows) {
+    const source = SCHADS_SACS.find((s) => s.classification === r.label);
+    assert.ok(source, r.label);
+    assert.equal(r.weekly, source.weekly);
+  }
+  const h = headlineRow(sw)!;
+  assert.equal(h.label, "Level 3 pay point 4");
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1649.97, 43.42, 54.28]);
+});
+
+test("W4: nurse rates are the Nurses Award constants and match Schedule B casual rates", () => {
+  const h = headlineRow(getOccupation("nurse")!)!;
+  assert.deepEqual([h.weekly, h.hourly, h.casualHourly], [1219.5, 32.09, 40.11]); // Schedule B.1.3(c)
+  assert.equal(row("nurse", "Nursing assistant — 1st year").casualHourly, 34.56); // Schedule B.1.1(c)
+  assert.equal(row("nurse", "Aged care RN level 1 — First year at this level").hourly, 41.36);
 });
