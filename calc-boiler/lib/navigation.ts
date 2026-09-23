@@ -234,6 +234,21 @@ export const GUIDE_CATEGORIES = [
     ],
   },
   // --- end W1 ---
+  // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
+  // GUIDE_CATEGORIES also feeds /site-directory/, so no separate entry there.
+  {
+    title: "Payslip Lines & Entitlements",
+    guides: [
+      { href: "/gross-vs-net-pay/", label: "Gross vs Net Pay", description: "What comes out between gross and net" },
+      { href: "/leave-loading-calculator/", label: "Leave Loading Calculator", description: "17.5% or penalties, whichever is higher" },
+      { href: "/time-in-lieu/", label: "Time in Lieu (TOIL)", description: "Time off instead of overtime pay" },
+      { href: "/enterprise-agreement/", label: "Enterprise Agreements", description: "What an EBA is and how to find yours" },
+      { href: "/travel-allowance/", label: "Travel Allowance 2026-27", description: "ATO reasonable amounts (TD 2026/4)" },
+      { href: "/cents-per-km/", label: "Cents per km", description: "91c ATO rate and car allowances" },
+      { href: "/centrelink-working-credit-calculator/", label: "Working Credit Calculator", description: "Keep more Centrelink when you start work" },
+    ],
+  },
+  // --- end T3 ---
 ] as const;
 
 export const STATE_CATEGORIES = [

@@ -311,6 +311,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
+  for (const slug of [
+    "time-in-lieu",
+    "leave-loading-calculator",
+    "enterprise-agreement",
+    "travel-allowance",
+    "cents-per-km",
+    "gross-vs-net-pay",
+    "centrelink-working-credit-calculator",
+  ]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end T3 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];
