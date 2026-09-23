@@ -162,6 +162,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/age-pension-income-test-calculator/", label: "Age Pension income test" },
           // H3 Centrelink wave 3 (added 2026-09-24)
           { href: "/age-pension-assets-test-calculator/", label: "Age Pension assets test" },
+          { href: "/deeming-rates/", label: "Deeming rates" },
           // end H3
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
@@ -608,6 +609,7 @@ export const CALCULATOR_CATEGORIES = [
       // end W3
       // H3 Centrelink wave 3 (added 2026-09-24)
       { href: "/age-pension-assets-test-calculator/", label: "Age Pension Assets Test Calculator", description: "Assets limits, the taper and which test applies" },
+      { href: "/deeming-rates/", label: "Deeming Rates & Calculator", description: "1.75% and 3.75% from 20 September 2026" },
       // end H3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
