@@ -19,6 +19,9 @@ import { MCDONALDS_PAY } from "./mcdonalds";
 import { CHEMIST_WAREHOUSE_PAY } from "./chemist-warehouse";
 import { KMART_PAY } from "./kmart";
 import { SUBWAY_PAY } from "./subway";
+// --- H1 (24 Sep 2026) ---
+import { HUNGRY_JACKS_PAY } from "./hungry-jacks";
+// --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -28,6 +31,9 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "chemist-warehouse": CHEMIST_WAREHOUSE_PAY,
   kmart: KMART_PAY,
   subway: SUBWAY_PAY,
+  // --- H1 (24 Sep 2026) ---
+  "hungry-jacks": HUNGRY_JACKS_PAY,
+  // --- end H1 ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
@@ -112,7 +118,10 @@ export function juniorRates(employer: EmployerPay): JuniorRow[] {
       age: band.age,
       percentage: band.percentage,
       hourly,
-      casualHourly: roundCents(hourly * (1 + employer.casualLoading)),
+      // H1: some instruments apply the junior % to the adult casual rate.
+      casualHourly: employer.juniorCasualFromAdultCasual
+        ? roundCents(entry.casualHourly * band.percentage)
+        : roundCents(hourly * (1 + employer.casualLoading)),
       published: false,
     };
   });

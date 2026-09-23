@@ -189,6 +189,8 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                   </tbody>
                 </table>
               </div>
+              {/* H1: instruments whose casual rate is not base + loading */}
+              {e.casualRateNote && <p className="text-sm">{e.casualRateNote}</p>}
             </section>
 
             {juniors.length > 0 && (

@@ -25,6 +25,9 @@ export const EMPLOYER_SLUGS = [
   "kmart",
   // --- T4 (23 Sep 2026) ---
   "subway",
+  // --- H1 (24 Sep 2026) ---
+  "hungry-jacks",
+  // --- end H1 ---
 ] as const;
 
 export type EmployerSlug = (typeof EMPLOYER_SLUGS)[number];
@@ -148,4 +151,19 @@ export interface EmployerPay {
   awardLabel?: string;
   sources: EmployerPaySource[];
   faqs: EmployerPayFaq[];
+  // --- H1 (24 Sep 2026): instruments whose casual rate is not base x (1 + loading) ---
+  /**
+   * Set ONLY when the instrument's casual rate is not the permanent base rate
+   * plus `casualLoading` (e.g. Hungry Jack's Schedule B pays casuals the award
+   * rate x 125.25% while permanent staff get the award rate x 100.75%). The
+   * note is shown under the adult rate table, the generic loading test is
+   * skipped, and the employer's own test re-derives every casual figure.
+   */
+  casualRateNote?: string;
+  /**
+   * When true, derived junior casual rates are the junior percentage applied
+   * to the adult casual rate for rates[0], not the junior base plus the loading.
+   */
+  juniorCasualFromAdultCasual?: boolean;
+  // --- end H1 ---
 }
