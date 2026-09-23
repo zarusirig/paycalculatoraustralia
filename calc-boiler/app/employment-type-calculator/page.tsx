@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmploymentTypeCalculatorPage from "@/modules/calculator/employment-type-calculator";
+import EmploymentTypeCalculatorContent from "@/modules/calculator/employment-type-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -70,7 +71,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <EmploymentTypeCalculatorPage />
+      <EmploymentTypeCalculatorPage>
+        <EmploymentTypeCalculatorContent />
+      </EmploymentTypeCalculatorPage>
     </>
   );
 }

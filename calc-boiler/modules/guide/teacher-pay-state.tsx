@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator, AlertTriangle, Info, Printer } from "lucide-react";
+import { ChevronRight, ArrowRight, Calculator, AlertTriangle, Info } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
@@ -30,6 +28,7 @@ import {
 
 // W5: VIC 2026 pay rise section
 import VicPayRise2026 from "@/modules/guide/teacher-pay-vic-2026";
+import TeacherPayPrintButton from "@/modules/guide/teacher-pay-print-button";
 import { teacherStateFaqs } from "@/lib/data/teacher-pay/hub";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { JURISDICTION_SLUGS } from "@/lib/data/public-service-pay";
@@ -168,14 +167,7 @@ function AtAGlance({ state }: { state: TeacherPayState }) {
           </tbody>
         </table>
       </div>
-      <button
-        type="button"
-        onClick={() => window.print()}
-        className="not-prose inline-flex items-center gap-2 rounded-lg border border-sandstone-dark/30 bg-white px-4 py-2 text-sm font-semibold text-navy transition-colors hover:border-eucalyptus hover:text-eucalyptus-dark print:hidden"
-      >
-        <Printer className="h-4 w-4" aria-hidden="true" />
-        Print or save the {state.code} pay scale as a PDF
-      </button>
+      <TeacherPayPrintButton stateCode={state.code} />
     </section>
   );
 }

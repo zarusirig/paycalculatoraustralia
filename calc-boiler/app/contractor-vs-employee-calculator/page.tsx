@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContractorVsEmployeeCalculatorPage from "@/modules/calculator/contractor-vs-employee-calculator";
+import ContractorVsEmployeeCalculatorContent from "@/modules/calculator/contractor-vs-employee-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -69,7 +70,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <ContractorVsEmployeeCalculatorPage />
+      <ContractorVsEmployeeCalculatorPage>
+        <ContractorVsEmployeeCalculatorContent />
+      </ContractorVsEmployeeCalculatorPage>
     </>
   );
 }

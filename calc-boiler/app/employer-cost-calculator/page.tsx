@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmployerCostCalculatorPage from "@/modules/guide/employer-cost-calculator";
+import EmployerCostCalculatorContent, { EmployerCostCalculatorSidebar } from "@/modules/guide/employer-cost-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -59,7 +60,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
-      <EmployerCostCalculatorPage />
+      <EmployerCostCalculatorPage sidebar={<EmployerCostCalculatorSidebar />}>
+        <EmployerCostCalculatorContent />
+      </EmployerCostCalculatorPage>
     </>
   );
 }
