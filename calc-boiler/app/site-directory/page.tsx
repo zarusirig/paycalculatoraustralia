@@ -16,6 +16,7 @@ import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTIONS as PUBLIC_SERVICE_JURISDICTIONS } from "@/lib/data/public-service-pay";
 import { formatAUD } from "@/lib/constants";
+import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/site-directory/`;
@@ -107,6 +108,18 @@ const payScaleGroups: Group[] = [
       label: `Nurse Pay Rates ${up(c)}`,
     })),
   },
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  {
+    title: "Minimum Wage by Age",
+    items: [
+      { href: "/junior-pay-rates/", label: "Minimum Wage by Age (all ages)" },
+      ...MIN_WAGE_AGES.map((a) => ({
+        href: `/minimum-wage-by-age/${a}/`,
+        label: `Minimum Wage for a ${a} Year Old`,
+      })),
+    ],
+  },
+  // --- end minimum wage cluster ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */

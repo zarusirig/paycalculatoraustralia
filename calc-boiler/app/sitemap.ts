@@ -7,6 +7,7 @@ import { JURISDICTION_CODES } from "@/lib/constants/long-service-leave";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { NURSING_PAY_STATES } from "@/lib/data/nursing-pay";
 import { JURISDICTION_SLUGS as PUBLIC_SERVICE_SLUGS } from "@/lib/data/public-service-pay";
+import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -246,6 +247,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     });
   }
+
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  // Current-rate hub, age spokes (list shared with generateStaticParams),
+  // and the pro-rata and casual loading calculators.
+  allPages.push({ slug: "minimum-wage-australia", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const age of MIN_WAGE_AGES) {
+    allPages.push({ slug: `minimum-wage-by-age/${age}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  allPages.push({ slug: "pro-rata-salary-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "casual-loading-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  // --- end minimum wage cluster ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

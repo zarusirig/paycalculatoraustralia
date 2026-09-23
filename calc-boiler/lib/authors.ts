@@ -220,7 +220,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "salary-vs-hourly": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-12" },
   "employee-vs-sole-trader-vs-company": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-13" },
   "full-time-vs-part-time-vs-casual": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-14" },
-  "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-16" },
+  "minimum-wage-history-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "mining-fifo-pay-guide": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-15" },
   "healthcare-worker-pay": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
   "teacher-pay-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-08-28" },
@@ -245,6 +245,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "stsl-on-payslip": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "payslip-generator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "ytd-income-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
+
+  // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
+  "minimum-wage-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "minimum-wage-by-age": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "pro-rata-salary-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "casual-loading-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end minimum wage cluster ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */
