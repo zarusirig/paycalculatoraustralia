@@ -15,6 +15,16 @@ import {
 import { HPSS_OCT_2026, HPSS_OCT_2026_LEVEL_1, HPSS_TABLES } from "@/lib/data/job-pay-rates/health-professionals-common";
 import { JUNIOR_TRANSITION_SCHEDULES, PENDING_JUNIOR_CHANGE } from "@/lib/constants/junior-rates";
 import { QLD_STATE_WAGE_CASE_2026 } from "@/lib/constants/minimum-wage";
+import { GENERAL_INTEREST_CHARGE } from "@/lib/constants/australian-tax";
+import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
+import {
+  FTL_MAX_INDIVIDUAL,
+  PENALTY_UNIT,
+  RETURN_DATES_2026,
+  TAX_CALENDAR_SOURCES,
+  formatIso,
+  weekdayOf,
+} from "@/lib/constants/tax-calendar-2026-27";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -702,6 +712,9 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const QS = QLD_STATE_WAGE_CASE_2026;
   const qPct = `${(QS.increase * 100).toFixed(2)}%`;
 
+
+  const gicNext = `${(GENERAL_INTEREST_CHARGE.nextQuarter.annualRate * 100).toFixed(2)}%`;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -843,6 +856,38 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "What is the Queensland minimum wage from 1 September 2026?", answer: `${m(QS.qmwWeekly)} a week for full-time employees — the same as the national minimum wage. Employees under 21 covered by a Queensland modern award get that award's junior rates instead.` },
         { question: "Who does the Queensland State Wage Case apply to?", answer: `Employees under Queensland state awards — chiefly the state public sector and local government, which sit outside the national Fair Work system. The decision's agreed statistics estimate about ${QS.qldSystemWorkers.toLocaleString("en-AU")} such workers, ${QS.qldPublicSector.toLocaleString("en-AU")} of them in the Queensland public sector.` },
         { question: `Do Queensland public servants on a certified agreement get the ${qPct}?`, answer: "Not directly — their agreement sets their pay. But the award is the floor, so where an agreement rate has fallen below the new award rate, the award rate must be paid." },
+      ],
+    },
+    {
+      slug: "tax-return-deadline-october-2026",
+      headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
+      title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
+      description: `Your ${RETURN_2026.incomeYear} tax return is due ${RETURN_2026.selfLodgeDueDate} if you lodge it yourself — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so the ATO's next-business-day rule gives you until ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late lodgment penalties are $${PENALTY_UNIT.amount} per 28 days (max $${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}), and the general interest charge rises to ${gicNext} from 1 October.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
+        { href: "/tax-return-2026/", label: "2026 Tax Return Guide" },
+        { href: "/tax-calendar/", label: "Tax Calendar 2026-27" },
+      ],
+      relatedArticles: ["tax-time-2026-whats-new", "hecs-marginal-repayment-first-tax-time", "1000-dollar-instant-tax-deduction"],
+      sources: [
+        { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: "Australian Taxation Office" },
+        { title: "Lodge your tax return with a registered tax agent", url: RETURN_2026_SOURCES.taxAgent, publisher: "Australian Taxation Office" },
+        { title: "Due dates for tax returns: individuals and trusts (registered agent lodgment program)", url: RETURN_2026_SOURCES.agentProgram, publisher: "Australian Taxation Office" },
+        { title: "Lodgment and payment dates on weekends or public holidays", url: TAX_CALENDAR_SOURCES.weekends, publisher: "Australian Taxation Office" },
+        { title: "Failure to lodge on time penalty", url: TAX_CALENDAR_SOURCES.failureToLodge, publisher: "Australian Taxation Office" },
+        { title: "Penalty units", url: TAX_CALENDAR_SOURCES.penaltyUnits, publisher: "Australian Taxation Office" },
+        { title: "General interest charge (GIC) rates (updated 4 September 2026)", url: GENERAL_INTEREST_CHARGE.sourceUrl, publisher: "Australian Taxation Office" },
+        { title: "General interest charge", url: "https://www.ato.gov.au/individuals-and-families/paying-the-ato/interest-and-penalties/interest-we-charge/general-interest-charge", publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day — ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
+        { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
+        { question: "What is the ATO general interest charge rate for October to December 2026?", answer: `${gicNext} a year (a daily rate of ${GENERAL_INTEREST_CHARGE.nextQuarter.dailyRatePercent}%), up from ${(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}% for ${GENERAL_INTEREST_CHARGE.quarter}. GIC compounds daily on overdue tax, and GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
+        { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
       ],
     },
   ];
