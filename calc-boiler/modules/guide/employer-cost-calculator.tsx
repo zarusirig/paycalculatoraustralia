@@ -11,6 +11,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, STATE_PAYROLL_TAX, formatAUD, formatPercent } from "@/lib/constants";
+import { calculatePayrollTax } from "@/lib/constants/payroll-tax"; // T2
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -25,10 +26,13 @@ const SOURCES_LIST: SourceLink[] = [
 const PAYROLL_TABLE_ORDER = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
 // Structural notes not modelled in STATE_PAYROLL_TAX (surcharges/discounts, not the core rate or threshold).
 const PAYROLL_TABLE_NOTE: Partial<Record<string, string>> = {
-  NSW: "Phases out above threshold",
-  VIC: "Mental health surcharge adds 0.5% above $10M",
-  QLD: "Discount for regional employers",
-  WA: "Tiered: 6.5% above $100M",
+  // T2 (23 Sep 2026): corrected against the revenue offices. NSW has no
+  // phase-out; VIC's two surcharges total 1% (2% above $100m); WA is a flat
+  // 5.5% with a threshold that diminishes to nil at $7.5m.
+  NSW: "No phase-out or surcharge",
+  VIC: "Threshold phases out $3M–$5M; surcharges 1% above $10M",
+  QLD: "4.95% above $6.5M; regional discount; mental health levy",
+  WA: "Threshold diminishes to nil at $7.5M",
 };
 // Computed min/max across all 8 states/territories so superlative claims below can never go stale.
 const PAYROLL_RATE_ENTRIES = Object.entries(STATE_PAYROLL_TAX);
@@ -447,7 +451,7 @@ export default function EmployerCostCalculatorPage() {
                   </table>
                 </div>
                 <p>
-                  A business with 20 employees averaging $90,000 each has a total wage bill of $1,800,000. In Victoria, this exceeds the {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold by {formatAUD(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold)}, generating a payroll tax liability of <strong>{formatAUD((1_800_000 - STATE_PAYROLL_TAX.VIC.threshold) * STATE_PAYROLL_TAX.VIC.rate)}</strong> ({(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold).toLocaleString("en-AU")} x {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}). The same business operating in South Australia sits above the {formatAUD(STATE_PAYROLL_TAX.SA.threshold)} threshold by only {formatAUD(1_800_000 - STATE_PAYROLL_TAX.SA.threshold)}, producing a liability of just <strong>{formatAUD((1_800_000 - STATE_PAYROLL_TAX.SA.threshold) * STATE_PAYROLL_TAX.SA.rate)}</strong> ({(1_800_000 - STATE_PAYROLL_TAX.SA.threshold).toLocaleString("en-AU")} x {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)}).
+                  A business with 20 employees averaging $90,000 each has a total wage bill of $1,800,000. In Victoria, this exceeds the {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)} threshold by {formatAUD(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold)}, generating a payroll tax liability of <strong>{formatAUD((1_800_000 - STATE_PAYROLL_TAX.VIC.threshold) * STATE_PAYROLL_TAX.VIC.rate)}</strong> ({(1_800_000 - STATE_PAYROLL_TAX.VIC.threshold).toLocaleString("en-AU")} x {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}). The same business operating in South Australia pays <strong>{formatAUD(calculatePayrollTax({ state: "sa", stateWages: 1_800_000 }).total)}</strong>: once wages pass {formatAUD(STATE_PAYROLL_TAX.SA.threshold)}, SA deducts a fixed $600,000 rather than the whole threshold, so the {formatPercent(STATE_PAYROLL_TAX.SA.rate, 2)} applies to $1,200,000. Compare every state on the <Link href="/payroll-tax-calculator/">payroll tax calculator</Link>.
                 </p>
               </section>
 

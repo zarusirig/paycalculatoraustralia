@@ -26,7 +26,8 @@
 //
 // ALLOWANCES: PR813674 (ppc 1 September 2026) inserted a TEMPORARY vehicle
 // allowance of $1.05/km for 1 Sep 2026 – 28 Feb 2027 (cl 20.7(aa)); the $1.01
-// rate in schads-award.ts applies outside that window. The sleepover allowance
+// rate applies outside that window. Both come from SCHADS_VEHICLE_ALLOWANCE in
+// schads-award.ts, so this page and /schads-award-pay-rates/ cannot disagree. The sleepover allowance
 // is still 4.9% of the standard rate (cl 25.7(d)).
 
 import {
@@ -34,6 +35,7 @@ import {
   SCHADS_HOME_CARE_DISABILITY,
   SCHADS_PENALTIES,
   SCHADS_SACS,
+  SCHADS_VEHICLE_ALLOWANCE,
   type SchadsRate,
 } from "../../constants/schads-award";
 import {
@@ -139,8 +141,8 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     { name: "Broken shift allowance", amount: "$21.81 (one break) or $28.87 (two breaks)", note: "Per broken shift." },
     {
       name: "Vehicle allowance",
-      amount: "$1.05 per km (1 Sep 2026 – 28 Feb 2027)",
-      note: "When you are required and authorised to use your own car for work. A temporary rate under cl 20.7(aa) (PR813674); the ordinary rate of $1.01 per km applies again from 1 March 2027.",
+      amount: `$${SCHADS_VEHICLE_ALLOWANCE.temporaryPerKm.toFixed(2)} per km (1 Sep 2026 – 28 Feb 2027)`,
+      note: `When you are required and authorised to use your own car for work. A temporary rate under cl ${SCHADS_VEHICLE_ALLOWANCE.clause} (${SCHADS_VEHICLE_ALLOWANCE.determination}), from the first full pay period starting on or after ${SCHADS_VEHICLE_ALLOWANCE.temporaryFromLabel}; the ordinary rate of $${SCHADS_VEHICLE_ALLOWANCE.ordinaryPerKm.toFixed(2)} per km applies again from ${SCHADS_VEHICLE_ALLOWANCE.ordinaryResumesLabel}.`,
     },
   ],
   median: MEDIAN,

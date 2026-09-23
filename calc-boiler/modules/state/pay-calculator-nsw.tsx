@@ -7,12 +7,11 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
-  STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +19,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +32,12 @@ import {
 
 const PROFILE = STATE_PROFILES.NSW;
 
-/** Display order for the cross-state payroll tax comparison table (home state first). */
-const PAYROLL_COMPARE_ORDER = ["NSW", "VIC", "QLD", "WA", "SA", "TAS", "ACT", "NT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13a, New South Wales`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — New South Wales", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1955)", url: PROFILE.longServiceLeave.agencyUrl, publisher: PROFILE.longServiceLeave.agency },
-  { title: "NSW Payroll Tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax", publisher: "Revenue NSW" },
+  { title: "NSW payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.nsw.ratesUrl, publisher: PAYROLL_TAX_STATES.nsw.revenueOffice },
 ];
 
 export default function PayCalculatorNSWPage() {
@@ -160,64 +157,13 @@ export default function PayCalculatorNSWPage() {
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in New South Wales</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of this changes an employee&apos;s net pay. It is the cost of employing someone in
-              NSW.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/nsw/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is NSW payroll tax?</H3>
-            <p className="text-warmgray mb-4">NSW payroll tax is a state tax that employers pay at a rate of <strong>{formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)}</strong> on total annual wages exceeding the <strong>{formatAUD(STATE_PAYROLL_TAX.NSW.threshold)}</strong> threshold, administered by Revenue NSW.</p>
-            <p className="text-warmgray mb-4">Payroll tax is strictly an employer cost. It does not reduce employee take-home pay or appear on payslips. Employers with wage bills below the {formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} annual threshold pay no payroll tax at all, which exempts most small businesses. The tax applies to wages, superannuation contributions, fringe benefits, and contractor payments in many cases.</p>
-
-            <H3>How does NSW payroll tax compare to other states?</H3>
-            <p className="text-warmgray mb-4">NSW has a mid-range payroll tax rate compared to other Australian states and territories. Queensland and Western Australia offer higher thresholds, while the ACT has the highest headline rate.</p>
-            <div className="overflow-x-auto mb-4">
-              <table className="w-full text-sm border border-sandstone-dark/20 rounded-xl overflow-hidden">
-                <thead>
-                  <tr className="bg-sandstone text-navy">
-                    <th className="text-left px-4 py-3 font-semibold">State / Territory</th>
-                    <th className="text-right px-4 py-3 font-semibold">Rate</th>
-                    <th className="text-right px-4 py-3 font-semibold">Annual Threshold</th>
-                  </tr>
-                </thead>
-                <tbody className="text-warmgray">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "NSW";
-                    const rowClass = isHome
-                      ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
-                      : i % 2 === 0
-                      ? "border-t border-sandstone-dark/10 bg-sandstone/30"
-                      : "border-t border-sandstone-dark/10";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className={`px-4 py-2.5 ${isHome ? "text-navy" : ""}`}>{s.name}</td>
-                        <td className="text-right px-4 py-2.5">{formatPercent(s.rate, 2)}</td>
-                        <td className="text-right px-4 py-2.5">{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray">Employers expanding into NSW from Victoria face a higher threshold ({formatAUD(STATE_PAYROLL_TAX.NSW.threshold)} vs {formatAUD(STATE_PAYROLL_TAX.VIC.threshold)}) but a higher rate ({formatPercent(STATE_PAYROLL_TAX.NSW.rate, 2)} vs {formatPercent(STATE_PAYROLL_TAX.VIC.rate, 2)}). Use the <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to model total employment costs including payroll tax, superannuation, and workers compensation premiums.</p>
-
-            <H3>Workers compensation (iCare)</H3>
-            <p className="text-warmgray">
-              Both payroll tax and workers compensation (iCare in NSW) are employer expenses. These
-              costs do not appear on your payslip and do not reduce your gross salary or take-home pay.
-              Employers factor these on-costs into total hiring budgets, which indirectly influences
-              salary offers.
-            </p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in NSW compared to other states?">

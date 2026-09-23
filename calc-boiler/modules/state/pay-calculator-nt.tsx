@@ -7,12 +7,12 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
-  formatPercent,
   SOURCES,
   SITE_CONFIG,
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
+import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
 import {
   AbsEarningsTable,
@@ -20,10 +20,11 @@ import {
   FAQSection,
   ForwardLslLinks,
   H2,
-  H3,
   LongServiceLeaveBlock,
   OtherStatesNav,
+  EmployerPayrollTaxLink,
   PayrollTaxForEmployees,
+  StatePayFacts,
   PenaltyRateNote,
   PublicHolidayTable,
   WorkedExample,
@@ -32,15 +33,12 @@ import {
 
 const PROFILE = STATE_PROFILES.NT;
 
-/** Display order for the cross-state payroll tax comparison table (home territory first). */
-const PAYROLL_COMPARE_ORDER = ["NT", "NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT"] as const;
-
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
   { title: `Average Weekly Earnings, Australia (${STATE_EMPLOYEE_SOURCES.absReferencePeriod}) — Table 13g, Northern Territory`, url: STATE_EMPLOYEE_SOURCES.absAwe, publisher: SOURCES.abs.name },
   { title: "2026 public holidays — Northern Territory", url: STATE_EMPLOYEE_SOURCES.fwoPublicHolidays, publisher: SOURCES.fwo.name },
   { title: "Long service leave (Long Service Leave Act 1981)", url: PROFILE.longServiceLeave.agencyUrl, publisher: "NT Government" },
-  { title: "NT Payroll Tax", url: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax", publisher: "NT Treasury" },
+  { title: "NT payroll tax rates and thresholds (employers)", url: PAYROLL_TAX_STATES.nt.ratesUrl, publisher: PAYROLL_TAX_STATES.nt.revenueOffice },
 ];
 
 export default function PayCalculatorNTPage() {
@@ -173,51 +171,13 @@ export default function PayCalculatorNTPage() {
             </p>
           </section>
 
+          <StatePayFacts profile={PROFILE} />
+
           <OtherStatesNav profile={PROFILE} />
 
-          {/* ================================================================= */}
-          {/* EMPLOYER SECTION — demoted below the employee content, figures    */}
-          {/* preserved exactly as previously published.                        */}
-          {/* ================================================================= */}
-          <section className="rounded-2xl border border-sandstone-dark/20 bg-white p-6 md:p-8">
-            <H2>For employers: payroll tax and premiums in the Northern Territory</H2>
-            <p className="mb-6 text-sm text-warmgray-light">
-              None of this is deducted from an employee&apos;s pay.
-            </p>
+          {/* T2: employer payroll tax detail moved to /payroll-tax/nt/ */}
+          <EmployerPayrollTaxLink profile={PROFILE} />
 
-            <H3>What is NT payroll tax?</H3>
-            <p className="mb-4 text-warmgray">NT payroll tax is <strong>{formatPercent(STATE_PAYROLL_TAX.NT.rate, 1)}</strong> on taxable wages above a <strong>{formatAUD(STATE_PAYROLL_TAX.NT.threshold)} annual threshold</strong>, payable by the employer only and not deducted from employee take-home pay.</p>
-            <p className="mb-4 text-warmgray">The Northern Territory offers one of Australia&apos;s highest payroll tax thresholds, meaning small-to-medium businesses with total annual wages below {formatAUD(STATE_PAYROLL_TAX.NT.threshold)} pay no payroll tax at all. Employers with interstate operations must register and apportion wages across jurisdictions. Exempt categories include wages paid to apprentices during the first 2 years of a training contract, Commonwealth Government wages, and certain Indigenous community organisations.</p>
-            {STATE_PAYROLL_TAX.NT.note && (
-              <p className="mb-4 text-sm text-warmgray-light">{STATE_PAYROLL_TAX.NT.note}</p>
-            )}
-
-            <H3>How does NT payroll tax compare to other states?</H3>
-            <div className="overflow-x-auto mb-4">
-              <table className="w-full text-sm border border-sandstone-dark/20 rounded-lg overflow-hidden">
-                <thead><tr className="bg-sandstone text-navy"><th className="text-left px-4 py-3 font-semibold">State / Territory</th><th className="text-right px-4 py-3 font-semibold">Rate</th><th className="text-right px-4 py-3 font-semibold">Annual Threshold</th></tr></thead>
-                <tbody className="text-warmgray">
-                  {PAYROLL_COMPARE_ORDER.map((code, i) => {
-                    const s = STATE_PAYROLL_TAX[code];
-                    const isHome = code === "NT";
-                    const rowClass = isHome
-                      ? "border-t border-sandstone-dark/10 bg-eucalyptus-light/20 font-medium"
-                      : i % 2 === 0
-                      ? "border-t border-sandstone-dark/10 bg-sandstone/30"
-                      : "border-t border-sandstone-dark/10";
-                    return (
-                      <tr key={code} className={rowClass}>
-                        <td className="px-4 py-2">{s.name}</td>
-                        <td className="text-right px-4 py-2">{formatPercent(s.rate, 2)}</td>
-                        <td className="text-right px-4 py-2">{formatAUD(s.threshold)}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-warmgray">The NT&apos;s <strong>{formatAUD(STATE_PAYROLL_TAX.NT.threshold)}</strong> threshold is the highest outside the ACT. Use our <Link href="/employer-cost-calculator/" className="text-eucalyptus-dark hover:underline">Employer Cost Calculator</Link> to see the total cost of employing staff including payroll tax, superannuation, and workers&apos; compensation.</p>
-          </section>
 
           <FAQSection>
             <FAQItem value="federal" question="Is income tax different in the Northern Territory?">
@@ -239,7 +199,7 @@ export default function PayCalculatorNTPage() {
               No. NT long service leave is paid at your usual rate of pay, which excludes overtime, penalties, and district and site allowances. If a large part of your income comes from allowances, your leave pay will be noticeably lower than your normal fortnightly pay.
             </FAQItem>
             <FAQItem value="payroll" question="Do NT employees pay payroll tax?">
-              No. It is charged to employers whose Australian wages exceed {formatAUD(STATE_PAYROLL_TAX.NT.threshold)} — the highest threshold outside the ACT — and it never appears on an employee&apos;s payslip.
+              No. It is charged to employers whose Australian wages exceed {formatAUD(STATE_PAYROLL_TAX.NT.threshold)} — the highest threshold in Australia — and it never appears on an employee&apos;s payslip.
             </FAQItem>
           </FAQSection>
 
