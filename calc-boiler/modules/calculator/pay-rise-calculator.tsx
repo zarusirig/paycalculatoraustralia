@@ -17,9 +17,10 @@ import {
   HECS_HELP,
   MEDICARE_LEVY,
   TAX_BRACKETS,
-  calculateMedicareSurcharge,
 } from "@/lib/constants";
-import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
+import { CPI_ANNUAL, PAY_RISE_FAQS, RAISE_BASE, RAISE_ROWS, WPI_ANNUAL } from "@/modules/calculator/pay-rise-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 
 // Worked figures computed from the tax engine. The copy had frozen at FY2025-26
 // values (16% first bracket, 2023-24 MLS tiers, $30,000 cap) under a FY2026-27
@@ -31,25 +32,25 @@ const keptPerDollar = (gross: number) => (net(gross + 1_000) - net(gross)) / 1_0
 const pct0 = (r: number) => `${Math.round(r * 100)}%`;
 const RAISE_10K_ON_80K = raiseNet(80_000, 10_000);
 const RAISE_9K_ON_90K = raiseNet(90_000, 9_000);
-const RAISE_5K_ON_80K = raiseNet(80_000, 5_000);
-const RAISE_5K_ON_150K = raiseNet(150_000, 5_000);
 const EX80 = calculatePayBreakdown({ grossSalary: 80_000 });
 const EX90 = calculatePayBreakdown({ grossSalary: 90_000 });
-const HECS_65_TO_70 =
-  calculatePayBreakdown({ grossSalary: 70_000, includeHECS: true }).hecsRepayment -
-  calculatePayBreakdown({ grossSalary: 65_000, includeHECS: true }).hecsRepayment;
-const MLS = MEDICARE_LEVY.surcharge;
-const MLS_110K = calculateMedicareSurcharge(110_000, false);
 const TRP_110K_BASE = Math.round(110_000 / (1 + SUPER_GUARANTEE.rate));
 const B2 = TAX_BRACKETS[2];
-const B3 = TAX_BRACKETS[3];
-// ABS Wage Price Index, June quarter 2026 (released 19 Aug 2026): 3.2% over
-// the year, seasonally adjusted. ABS Average Weekly Earnings, May 2026:
-// full-time adult ordinary time earnings $2,083.70 a week (seasonally adjusted).
-const WPI_ANNUAL = 0.032;
-// ABS media release "CPI rose 3.8% in the year to June 2026" (quarterly CPI).
-const CPI_ANNUAL = 0.038;
+// WPI and CPI now live in pay-rise-faqs.ts so the FAQ answers and this copy
+// share one figure. ABS Average Weekly Earnings, May 2026: full-time adult
+// ordinary time earnings $2,083.70 a week (seasonally adjusted).
 const AWOTE_ANNUAL = Math.round(2_083.7 * 52);
+
+// Google AU "related searches" for "pay rise calculator" and "salary increase
+// calculator" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Pay calculator after tax", href: "/take-home-pay-calculator/" },
+  { label: "Pay calculator hourly rate", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Back pay on a backdated pay rise", href: "/backpay-calculator/" },
+  { label: "Minimum wage increase 2026", href: "/minimum-wage-australia/" },
+  { label: "Average salary in Australia", href: "/average-salary-australia/" },
+  { label: "Casual pay calculator", href: "/casual-loading-calculator/" },
+];
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -239,6 +240,40 @@ export default function PayRiseCalculatorPage() {
             </div>
           </section>
 
+          {/* PAA: "How do I calculate my pay raise?" — formula + compact table */}
+          <section id="calculate-pay-rise">
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Do I Calculate My Pay Rise?</h2>
+            <p className="mb-4 text-warmgray">{PAY_RISE_FAQS[0].a}</p>
+            <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-lg mx-auto rounded-r-lg mb-4">
+              Pay rise % = (New salary &minus; Old salary) &divide; Old salary &times; 100
+            </div>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <caption className="sr-only">Percentage pay rises on {formatAUD(RAISE_BASE)}, FY{SITE_CONFIG.financialYear}</caption>
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Rise on {formatAUD(RAISE_BASE)}</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">New salary</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Extra before tax</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Extra after tax</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Per week</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {RAISE_ROWS.map((r) => (
+                    <tr key={r.rate}>
+                      <td className="px-4 py-3 text-navy font-medium">{Math.round(r.rate * 10_000) / 100}%</td>
+                      <td className="px-4 py-3 text-right text-navy">{formatAUD(r.newSalary)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.extra)}</td>
+                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(r.afterTax)}</td>
+                      <td className="px-4 py-3 text-right text-warmgray">{formatAUD(r.weekly, 2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Does the Pay Rise Impact Table Show?</h2>
             <p className="mb-4 text-warmgray">
@@ -422,41 +457,23 @@ export default function PayRiseCalculatorPage() {
             </ul>
           </MethodologyDisclosure>
 
+          <RelatedSearches items={RELATED_SEARCHES} />
+
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>
+            {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
+                The same array feeds the FAQPage JSON-LD in the route file. */}
+            <div className="sr-only">
+              <h3>Pay rise questions and answers</h3>
+              {PAY_RISE_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+            </div>
             <Accordion type="multiple" className="space-y-3">
-              <AccordionItem value="tax" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Why is my pay rise taxed so highly?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Your pay rise is taxed at your &quot;marginal tax rate&quot;, which is the highest tax bracket your income falls into. This is often much higher than your average tax rate, meaning a larger percentage of your <em>extra</em> pay goes to the ATO. Between {formatAUD(B2.min)} and {formatAUD(B2.max)}, your marginal rate is <strong>{pct0(B2.rate)}</strong> plus 2% Medicare levy, totalling <strong>{pct0(B2.rate + MEDICARE_LEVY.rate)}</strong>. Between {formatAUD(B3.min)} and {formatAUD(B3.max)}, the combined marginal rate rises to <strong>{pct0(B3.rate + MEDICARE_LEVY.rate)}</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="super" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does my employer pay extra super on my pay rise?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Under the &quot;Superannuation Guarantee&quot;, your employer pays <strong>{pct0(SUPER_GUARANTEE.rate)}</strong> super on your qualifying earnings for FY{SITE_CONFIG.financialYear}. A $10,000 base pay rise generates an extra <strong>{formatAUD(10_000 * SUPER_GUARANTEE.rate)}</strong> deposited into your super fund per year. Under Payday Super the &quot;maximum super contribution base&quot; is an annual {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="bracket" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can a pay rise push me into a higher tax bracket and leave me worse off?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">No. This is the most common tax myth in Australia. Progressive taxation means only the portion of income <em>above</em> each threshold is taxed at the higher rate. A pay rise that crosses from $134,000 to $136,000 applies the 37% rate only to the <strong>$1,000 above $135,000</strong>, not to the entire salary. You always take home more money after a pay rise.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="sacrifice" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Can salary sacrifice boost my pay rise benefit?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. Salary sacrificing part of your pay rise into super before tax avoids the marginal rate on that portion. Inside your super fund, contributions are taxed at only <strong>15%</strong> (or <strong>30%</strong> for earners above $250,000 under &quot;Division 293&quot; tax). Sacrificing $5,000 of a $10,000 pay rise saves roughly <strong>$850 to $1,600</strong> in tax depending on your bracket, while boosting retirement savings. The concessional contributions cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong> for FY{SITE_CONFIG.financialYear}. Use our <Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline">Salary Sacrifice Calculator</Link> to model the benefit.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How does a pay rise affect my HECS-HELP repayments?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">A pay rise increases your repayment income, which determines HECS-HELP obligations. The repayment threshold for FY{SITE_CONFIG.financialYear} is <strong>{formatAUD(HECS_HELP.minimumThreshold)}</strong>. Below this threshold, no repayment is required. Above it, you repay {hecsBandsSentence()}. A pay rise from $65,000 to $70,000 triggers a HECS repayment of <strong>{formatAUD(HECS_65_TO_70)} per year</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="weekly" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>How much extra per week is a $5,000 pay rise?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The net weekly increase from a $5,000 pay rise depends on your current salary and marginal tax rate. On an $80,000 salary ({pct0(B2.rate + MEDICARE_LEVY.rate)} combined marginal rate), a $5,000 raise yields <strong>{formatAUD(RAISE_5K_ON_80K)}</strong> extra after tax, or <strong>{formatAUD(RAISE_5K_ON_80K / 52, 2)} per week</strong>. On a $150,000 salary ({pct0(B3.rate + MEDICARE_LEVY.rate)} combined marginal rate), the same $5,000 raise yields <strong>{formatAUD(RAISE_5K_ON_150K)}</strong> after tax, or <strong>{formatAUD(RAISE_5K_ON_150K / 52, 2)} per week</strong>.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="mls" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Does a pay rise affect the Medicare Levy Surcharge?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes, if you do not hold private hospital cover. The &quot;Medicare Levy Surcharge&quot; applies to singles earning <strong>{formatAUD(MLS.tier1.min)}</strong> or more in FY{SITE_CONFIG.financialYear}. A pay rise crossing this threshold triggers an additional <strong>1.0%</strong> surcharge on total income ({formatAUD(MLS.tier1.min)}-{formatAUD(MLS.tier1.max)}), increasing to <strong>1.25%</strong> ({formatAUD(MLS.tier2.min)}-{formatAUD(MLS.tier2.max)}) and <strong>1.5%</strong> (above {formatAUD(MLS.tier3.min - 1)}). On a $110,000 salary without private health insurance, the MLS adds <strong>{formatAUD(MLS_110K)} per year</strong> in additional deductions.</p></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="stage3" className="rounded-xl border border-sandstone-dark/20 px-5">
-                <AccordionTrigger>Did the Stage 3 tax cuts change how pay rises are taxed?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">Yes. The Stage 3 tax cuts, effective 1 July 2024, reduced the first bracket rate from <strong>19% to 16%</strong> (and it fell again to <strong>{pct0(TAX_BRACKETS[1].rate)}</strong> from 1 July 2026) and expanded the 30% bracket ceiling from $120,000 to <strong>$135,000</strong>. Employees earning between $120,001 and $135,000 now keep more of a pay rise because their marginal rate dropped from <strong>37% to 30%</strong>. A $10,000 raise for someone on $125,000 now yields <strong>$700 more</strong> in take-home pay compared to pre-Stage 3 rates.</p></AccordionContent>
-              </AccordionItem>
+              {PAY_RISE_FAQS.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="rounded-xl border border-sandstone-dark/20 px-5">
+                  <AccordionTrigger>{f.q}</AccordionTrigger>
+                  <AccordionContent><p className="text-warmgray">{f.a}</p></AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </section>
 

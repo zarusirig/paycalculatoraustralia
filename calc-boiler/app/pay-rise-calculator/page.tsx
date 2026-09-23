@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import PayRiseCalculatorPage from "@/modules/calculator/pay-rise-calculator";
+import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -67,32 +68,12 @@ const webApp: WithContext<WebApplication> = {
 const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Why is my pay rise taxed so highly?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Your pay rise is taxed at your \"marginal tax rate\", which is the highest tax bracket your income falls into. This is often much higher than your average tax rate, meaning a larger percentage of your extra pay goes to the ATO.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Does my employer pay extra super on my pay rise?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: `Yes. Under the Superannuation Guarantee, your employer must pay ${Math.round(SUPER_GUARANTEE.rate * 100)}% super on your qualifying earnings. So a $10,000 pay rise also means an extra ${formatAUD(10_000 * SUPER_GUARANTEE.rate)} deposited into your super fund.`,
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can a pay rise push me into a higher tax bracket and leave me worse off?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No! Only the portion of your income above the threshold is taxed at the higher rate. You will never end up with less take-home pay simply because a pay rise pushed you into a new tax bracket.",
-      },
-    },
-  ],
+  // Same array as the on-page accordion, so the two cannot drift.
+  mainEntity: PAY_RISE_FAQS.map((f) => ({
+    "@type": "Question" as const,
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer" as const, text: f.a },
+  })),
 };
 
 const howToSchema = calculatorHowTo({
