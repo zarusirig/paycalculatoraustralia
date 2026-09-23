@@ -13,6 +13,8 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { salaryFacts, SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { AWE_HEADLINE, AWE_RELEASE, annualise } from "@/lib/data/average-salary";
 import { NeighbourTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
 
 interface SalaryToHourlyProps {
   salary: number;
@@ -290,44 +292,14 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
       <section>
         <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-bold text-navy mb-6">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="w-full space-y-4">
-          <AccordionItem value="item-1" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How much is {formattedSalary} per hour in Australia?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              A {formattedSalary} annual salary equals <strong>{formatAUD(grossHourly, 2)} per hour</strong> before tax, based on a standard {HOURS_PER_WEEK}-hour work week and {WEEKS_PER_YEAR} weeks per year ({HOURS_PER_YEAR.toLocaleString("en-AU")} working hours). After income tax and Medicare levy, the effective hourly rate is <strong>{formatAUD(netHourly, 2)}</strong>.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-2" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              How do you convert {formattedSalary} salary to hourly rate?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              Divide the annual salary by the total working hours per year. With a {HOURS_PER_WEEK}-hour week: {formattedSalary} / ({HOURS_PER_WEEK} hours x {WEEKS_PER_YEAR} weeks) = {formattedSalary} / {HOURS_PER_YEAR.toLocaleString("en-AU")} hours = <strong>{formatAUD(grossHourly, 2)}/hour</strong>.
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-3" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              Is {formatAUD(grossHourly, 2)}/hour above or below average in Australia?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              {hourlyVsAverage >= 1
-                ? `At ${formatAUD(grossHourly, 2)}/hour, you earn ${((hourlyVsAverage - 1) * 100).toFixed(0)}% above the average full-time hourly rate of ${formatAUD(averageHourly, 2)}/hour (based on ABS Average Weekly Earnings). Your rate is also ${hourlyVsMinimum.toFixed(1)}x the national minimum wage of $${MINIMUM_WAGE_HOURLY.toFixed(2)}/hour.`
-                : `At ${formatAUD(grossHourly, 2)}/hour, you earn ${((1 - hourlyVsAverage) * 100).toFixed(0)}% below the average full-time hourly rate of ${formatAUD(averageHourly, 2)}/hour (based on ABS Average Weekly Earnings). ${belowMinimum ? `It is also below the national minimum wage of $${MINIMUM_WAGE_HOURLY.toFixed(2)}/hour, so as a full-time salary it is less than an adult employee must be paid (junior, apprentice and supported wages aside).` : `Your rate is ${hourlyVsMinimum.toFixed(1)}x the national minimum wage of $${MINIMUM_WAGE_HOURLY.toFixed(2)}/hour.`}`
-              }
-            </AccordionContent>
-          </AccordionItem>
-
-          <AccordionItem value="item-4" className="bg-white border rounded-lg px-4 shadow-sm">
-            <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">
-              What is {formattedSalary} per day before and after tax?
-            </AccordionTrigger>
-            <AccordionContent className="text-warmgray pb-4 leading-relaxed">
-              On a {formattedSalary} salary working a standard 7.6-hour day, you earn <strong>{formatAUD(grossDaily, 2)} per day</strong> before tax and <strong>{formatAUD(netDaily, 2)} per day</strong> after tax. This is based on 260 working days per year (52 weeks x 5 days).
-            </AccordionContent>
-          </AccordionItem>
+          {salaryToHourlyFaqs(salary).map((f, i) => (
+            <AccordionItem key={f.q} value={`item-${i + 1}`} className="bg-white border rounded-lg px-4 shadow-sm">
+              <AccordionTrigger className="text-left font-semibold text-navy py-4 hover:no-underline">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-warmgray pb-4 leading-relaxed">
+                <FaqAnswer faq={f} linkClassName="text-eucalyptus hover:text-navy transition-colors font-medium" />
+              </AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </section>
 
