@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AnnualPayCalculatorPage from "@/modules/calculator/annual-pay-calculator";
+import AnnualPayCalculatorContent from "@/modules/calculator/annual-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -71,7 +72,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AnnualPayCalculatorPage />
+      <AnnualPayCalculatorPage>
+        <AnnualPayCalculatorContent />
+      </AnnualPayCalculatorPage>
     </>
   );
 }

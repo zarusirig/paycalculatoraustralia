@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MonthlyPayCalculatorPage from "@/modules/calculator/monthly-pay-calculator";
+import MonthlyPayCalculatorContent, { MonthlyPayCalculatorIntro } from "@/modules/calculator/monthly-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
@@ -65,7 +66,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <MonthlyPayCalculatorPage />
+      <MonthlyPayCalculatorPage intro={<MonthlyPayCalculatorIntro />}>
+        <MonthlyPayCalculatorContent />
+      </MonthlyPayCalculatorPage>
     </>
   );
 }

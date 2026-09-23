@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BonusTaxCalculatorPage from "@/modules/calculator/bonus-tax-calculator";
+import BonusTaxCalculatorContent from "@/modules/calculator/bonus-tax-calculator-content";
 import { BONUS_TAX_FAQS } from "@/modules/calculator/bonus-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -78,7 +79,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <BonusTaxCalculatorPage />
+      <BonusTaxCalculatorPage>
+        <BonusTaxCalculatorContent />
+      </BonusTaxCalculatorPage>
     </>
   );
 }

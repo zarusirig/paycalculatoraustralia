@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GrossPayCalculatorPage from "@/modules/calculator/gross-pay-calculator";
+import GrossPayCalculatorContent from "@/modules/calculator/gross-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -81,7 +82,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <GrossPayCalculatorPage />
+      <GrossPayCalculatorPage>
+        <GrossPayCalculatorContent />
+      </GrossPayCalculatorPage>
     </>
   );
 }

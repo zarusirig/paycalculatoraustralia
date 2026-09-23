@@ -1,64 +1,18 @@
 "use client";
 
-import FaqAccordion from "@/components/common/faq-accordion";
-import { BILLABLE_WEEKS, CONTRACTOR_PAY_FAQS, CONTRACTOR_RATE_ANSWER, CONTRACTOR_SALARY_ANSWER, DAY_RATE_GROSS, DAY_RATE_NET, SALARY_EXAMPLE, SALARY_EXAMPLE_RATE, annualTaxAndMedicare } from "@/modules/calculator/contractor-pay-calculator-faqs";
-import {
-  DEFAULT_CONTRACTOR_ASSUMPTIONS as CA,
-  WEEKDAY_PUBLIC_HOLIDAYS_2026,
-  WORKING_DAYS_PER_YEAR,
-  contractorRateToEquivalentSalary,
-} from "@/lib/constants/contractor-rate";
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
-import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
   formatAUD,
-  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
-  EMPLOYMENT,
-  SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
-import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
-import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
-
-// Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
-// 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
-const TAX_ON_100K = annualTaxAndMedicare(100_000);
-const CC_CAP = SUPER_GUARANTEE.concessionalCap;
-// Saving from a full concessional contribution at $100k: marginal 30% + 2%
-// Medicare levy avoided, less 15% contributions tax (taxable income stays in
-// the 30% bracket after the contribution).
-const CC_SAVING_100K = annualTaxAndMedicare(100_000) - annualTaxAndMedicare(100_000 - CC_CAP) - Math.round(CC_CAP * 0.15);
-
-/** Contract hourly rates shown in the rate-to-salary table. */
-const SALARY_TABLE_RATES = [30, 40, 50, 60, 75, 100, 125, 150] as const;
-
-// Google AU "related searches" for "contractor pay calculator" and "contractor
-// rate calculator australia" (Sept 2026), each pointed at the page that answers it.
-const RELATED_SEARCHES: readonly RelatedSearch[] = [
-  { label: "Contractor vs employee calculator", href: "/contractor-vs-employee-calculator/" },
-  { label: "ABN vs company vs employee", href: "/employee-vs-sole-trader-vs-company/" },
-  { label: "Hourly rate to salary calculator", href: "/hourly-to-annual-salary-calculator/" },
-  { label: "Salary to hourly rate calculator", href: "/salary-to-hourly/" },
-  { label: "Construction and trades pay", href: "/construction-trades-pay/" },
-  { label: "Gig economy pay guide", href: "/gig-economy-pay-guide/" },
-];
-
-const SOURCES_LIST: SourceLink[] = [
-  { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
-  { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
-  { title: "GST registration", url: "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst", publisher: SOURCES.ato.name },
-];
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -134,7 +88,13 @@ function calculateContractorPay(
   };
 }
 
-export default function ContractorPayCalculator() {
+/**
+ * The interactive part of /contractor-pay-calculator/: hero and calculator
+ * card. The long-form content below the hero is a server component
+ * (contractor-pay-calculator-content.tsx) passed in as `children`, so it is
+ * not part of this client bundle.
+ */
+export default function ContractorPayCalculator({ children }: { children: React.ReactNode }) {
   const [hourlyRate, setHourlyRate] = useState(50);
   const [hoursPerWeek, setHoursPerWeek] = useState(38);
   const [weeksPerYear, setWeeksPerYear] = useState(48);
@@ -301,359 +261,7 @@ export default function ContractorPayCalculator() {
         </div>
       </section>
 
-      {/* Content sections */}
-      <div className="mx-auto max-w-4xl space-y-16 px-4 py-16 sm:px-6 lg:px-8">
-        {/* Key Features */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Pay Calculator Key Features</h2>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {[
-              "Accurate take-home pay for ABN workers, freelancers, consultants and gig-economy roles",
-              "Calculate hourly, daily, weekly, fortnightly and monthly contractor income",
-              "GST integration — shows income with and without GST (10%) for sole traders",
-              `Super choice options — calculate contractor super contributions at ${formatPercent(SUPER_GUARANTEE.rate, 0)}`,
-              "ATO-compliant tax estimate based on marginal tax rates and Medicare levy",
-              "Real net pay after tax, GST, Medicare and optional super contributions",
-            ].map((text, i) => (
-              <li key={i} className="flex items-start gap-2 rounded-lg border border-sandstone-dark/20 bg-white p-4 text-sm text-navy shadow-sm">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-eucalyptus-light/40 text-xs font-bold text-eucalyptus-dark">✓</span>
-                {text}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Understanding Results */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Understanding Your Contractor Results</h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <ResultCard title="Income" desc="Gross contractor earnings based on your hourly rate, hours per week, and working weeks per year." />
-            <ResultCard title="Tax" desc="Estimated using ATO progressive brackets applicable to contractors, including the 2% Medicare levy." />
-            <ResultCard title="GST" desc="If registered for GST, 10% is added to your invoices. GST collected isn't your income — you remit it to the ATO." />
-            <ResultCard title="Superannuation" desc={`Voluntary or employer-provided super shown separately. The default rate is ${formatPercent(SUPER_GUARANTEE.rate, 0)} from July 2025.`} />
-            <ResultCard title="Net Pay" desc="Final contractor take-home pay after tax, Medicare, and contributions. This is what you actually keep." />
-            <ResultCard title="Working Weeks" desc="Contractors typically work 46-48 weeks per year (52 minus holidays). Adjust this to match your situation." />
-          </div>
-
-          <MethodologyDisclosure className="mt-4">
-            <ol className="list-decimal space-y-1 pl-4">
-              <li>Gross annual income = hourly rate × hours/week × weeks/year</li>
-              <li>If GST is included, strip 10% (÷ 1.1) to find income before GST</li>
-              <li>If super is included, strip {formatPercent(SUPER_GUARANTEE.rate, 0)} (÷ 1.12) to find base salary</li>
-              <li>Apply ATO resident tax brackets to taxable income</li>
-              <li>Apply LITO offset where eligible</li>
-              <li>Add 2% Medicare levy</li>
-              <li>Take-home = taxable income − income tax − Medicare levy</li>
-            </ol>
-          </MethodologyDisclosure>
-        </section>
-
-        {/* How Is Contractor Pay Calculated? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">How Is Contractor Pay Calculated in Australia?</h2>
-          <p className="mb-3 text-warmgray">
-            Contractor pay is calculated by multiplying your hourly rate by hours worked, then subtracting income tax, the <strong>2% Medicare levy</strong>, and any GST obligations to arrive at net take-home pay. Unlike employees who receive a payslip with deductions already removed, ABN contractors invoice clients for their gross amount and manage taxation independently through the PAYG instalment system.
-          </p>
-          <p className="mb-4 text-warmgray">
-            The Australian Tax Office requires every contractor operating under an ABN to lodge a tax return. Contractors earning above <strong>$75,000 per year</strong> in gross business turnover must register for GST and remit <strong>10%</strong> of invoiced amounts quarterly via a Business Activity Statement (BAS). Use our <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to see the exact marginal rates applied to each income bracket for FY{SITE_CONFIG.financialYear}.
-          </p>
-          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Step-by-Step Contractor Pay Calculation</h3>
-          <ol className="list-decimal space-y-2 pl-6 text-warmgray">
-            <li><strong>Calculate gross annual income:</strong> Hourly rate ($50) × hours per week (38) × working weeks per year (48) = <strong>$91,200</strong></li>
-            <li><strong>Strip GST if included:</strong> $91,200 ÷ 1.1 = <strong>$82,909</strong> (the remaining $8,291 is GST you owe the ATO)</li>
-            <li><strong>Set aside superannuation:</strong> $82,909 × {formatPercent(SUPER_GUARANTEE.rate, 0)} = <strong>$9,949</strong> contributed to your super fund</li>
-            <li><strong>Calculate income tax:</strong> Apply ATO progressive marginal tax brackets to your taxable income of $82,909</li>
-            <li><strong>Apply LITO:</strong> Subtract the Low Income Tax Offset if your taxable income falls below $66,667</li>
-            <li><strong>Add Medicare levy:</strong> $82,909 × 2% = <strong>$1,658</strong></li>
-            <li><strong>Determine take-home pay:</strong> Gross income minus income tax minus Medicare levy equals your net contractor earnings</li>
-          </ol>
-          <p className="mt-3 text-sm text-warmgray-light">
-            BAS lodgement deadlines fall on the 28th of the month following each quarter: 28 October, 28 February, 28 April, and 28 July. Late BAS lodgements can attract a failure-to-lodge penalty of one penalty unit &mdash; <strong>{formatAUD(PENALTY_UNIT.amount)} from {PENALTY_UNIT.from}</strong> &mdash; for each {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units for a small business.
-          </p>
-        </section>
-
-        {/* Contractor vs Employee Take-Home Pay */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">How Does Contractor Take-Home Pay Compare to Employee Pay?</h2>
-          <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$50/hour</strong> earns a higher gross figure than an equivalent employee but loses access to paid leave, employer super, and workers&apos; compensation insurance. The table below compares identical gross earnings of $91,200 for a contractor versus an employee for FY{SITE_CONFIG.financialYear}.
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-navy">Component</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Contractor (ABN)</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Employee (PAYG)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                <tr>
-                  <td className="px-4 py-3 text-navy">Gross Annual Income</td>
-                  <td className="px-4 py-3 text-right text-navy">$91,200</td>
-                  <td className="px-4 py-3 text-right text-navy">$91,200</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-navy">Paid Leave (4 weeks)</td>
-                  <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$7,015 (included)</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-navy">Superannuation ({formatPercent(SUPER_GUARANTEE.rate, 0)})</td>
-                  <td className="px-4 py-3 text-right text-ochre">Self-funded</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$10,944 (employer-paid)</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-navy">Workers&apos; Comp Insurance</td>
-                  <td className="px-4 py-3 text-right text-ochre">$800–$2,500/yr</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">Employer-covered</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-navy">GST Administration</td>
-                  <td className="px-4 py-3 text-right text-ochre">Quarterly BAS</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">N/A</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-3 text-navy">Sick Leave (10 days)</td>
-                  <td className="px-4 py-3 text-right text-ochre">$0 (unpaid)</td>
-                  <td className="px-4 py-3 text-right text-eucalyptus-dark">$3,508 (included)</td>
-                </tr>
-                <tr className="bg-eucalyptus-light/30">
-                  <td className="px-4 py-3 font-bold text-navy">True Cost Difference</td>
-                  <td className="px-4 py-3 text-right font-bold text-navy">—</td>
-                  <td className="px-4 py-3 text-right font-bold text-eucalyptus-dark">+$22,267 in benefits</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">
-            To match an employee on $91,200, a contractor needs to charge approximately <strong>$65–$70/hour</strong> (not $50/hour) to cover lost entitlements. Use our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a personalised side-by-side comparison.
-          </p>
-        </section>
-
-        {/* Who Uses This Calculator? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Who Uses This Contractor Pay Calculator?</h2>
-          <p className="mb-4 text-warmgray">
-            Over <strong>1 million</strong> independent contractors operate in Australia across construction, IT, healthcare, creative industries, and transport. This Australian tax calculator serves 5 primary user groups.
-          </p>
-          <ul className="list-disc space-y-2 pl-6 text-warmgray">
-            <li><strong>Freelancers and sole traders</strong> — graphic designers, copywriters, and web developers who invoice multiple clients and need to estimate quarterly tax obligations before each BAS lodgement</li>
-            <li><strong>IT contractors</strong> — software engineers, data analysts, and project managers on 6–12 month contracts who compare contractor rates against permanent salary offers</li>
-            <li><strong>Construction and trades contractors</strong> — electricians, plumbers, and builders operating under an ABN who calculate net pay after GST, insurance, and tool expenses</li>
-            <li><strong>Gig-economy workers</strong> — rideshare drivers, delivery riders, and platform workers who need to set aside tax from irregular income streams</li>
-            <li><strong>Business owners evaluating hiring costs</strong> — companies comparing the total cost of engaging a contractor versus hiring a permanent employee on a salary</li>
-          </ul>
-          <p className="mt-3 text-sm text-warmgray-light">
-            Employees looking to convert their salary into an equivalent contractor hourly rate use this calculator alongside the <Link href="/hourly-to-annual-salary-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Hourly to Annual Salary Calculator</Link> to model both scenarios.
-          </p>
-        </section>
-
-        {/* What Tax Obligations Do Contractors Have? */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Tax Obligations Do Contractors Have?</h2>
-          <p className="mb-4 text-warmgray">
-            Australian contractors have <strong>3 core tax obligations</strong>: income tax through PAYG instalments, GST registration and lodgement above the $75,000 threshold, and optional (but recommended) superannuation contributions at {formatPercent(SUPER_GUARANTEE.rate, 0)} of assessable income.
-          </p>
-          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">GST Registration and BAS Lodgement</h3>
-          <p className="mb-3 text-warmgray">
-            Contractors with annual turnover exceeding <strong>$75,000</strong> must register for GST. Once registered, you charge an additional <strong>10%</strong> on every invoice, collect it from clients, and remit it to the ATO via quarterly BAS returns. Taxi drivers, rideshare operators, and Uber drivers must register for GST regardless of turnover. Voluntary GST registration below $75,000 allows you to claim input tax credits on business purchases, which benefits contractors with significant equipment or supply costs.
-          </p>
-          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">PAYG Instalments and Income Tax</h3>
-          <p className="mb-3 text-warmgray">
-            The ATO assesses contractors on their net business income using the same progressive income tax brackets as employees. The tax-free threshold remains <strong>$18,200</strong> for FY{SITE_CONFIG.financialYear}. Contractors pay tax through quarterly PAYG instalments rather than having tax withheld each pay. The income tax brackets apply at marginal rates of <strong>{bracketRateList()}</strong>. Use our <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link> to see the exact tax amount at any income level.
-          </p>
-          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Superannuation for Contractors</h3>
-          <p className="text-warmgray">
-            Sole-trader contractors are not legally required to pay themselves super, but concessional contributions of up to <strong>{formatAUD(CC_CAP)} per year</strong> (FY{SITE_CONFIG.financialYear}) reduce taxable income and are taxed at just <strong>15%</strong> inside the fund. Contractors earning above <strong>$250,000</strong> pay an additional <strong>15% Division 293 tax</strong> on super contributions. If a hiring business pays you primarily for your labour (not to achieve a result), that business must pay super on your behalf at the SG rate of {formatPercent(SUPER_GUARANTEE.rate, 0)}. Check entitlements with our <Link href="/superannuation-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>.
-          </p>
-        </section>
-
-        {/* Take-home by daily rate */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Contractor Take-Home by Daily Rate (FY{SITE_CONFIG.financialYear})</h2>
-          <p className="mb-4 text-warmgray">
-            A contractor charging <strong>$1,000 per day</strong> grosses <strong>{formatAUD(DAY_RATE_GROSS)}</strong> over 48 working weeks and takes home around <strong>{formatAUD(Math.round(DAY_RATE_NET / 1_000) * 1_000)}</strong> after income tax and Medicare. The table below shows real take-home pay at 6 common contractor day rates, assuming 5 working days per week over 48 weeks and excluding GST.
-          </p>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-navy">Daily Rate</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Gross Annual (48 wks × 5 days)</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Income Tax + Medicare</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Annual Take-Home</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Net Per Day</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {[500, 750, 1000, 1200, 1500, 2000].map((dailyRate) => {
-                  const gross = dailyRate * 5 * 48;
-                  const tax = calculateIncomeTax(gross, true);
-                  const lito = calculateLITO(gross);
-                  const netTax = Math.max(0, Math.round(tax - lito));
-                  const medicare = calculateMedicareLevy(gross);
-                  const totalTax = netTax + medicare;
-                  const takeHome = gross - totalTax;
-                  const netPerDay = takeHome / (5 * 48);
-                  return (
-                    <tr key={dailyRate} className="hover:bg-sandstone">
-                      <td className="px-4 py-3 font-medium text-navy">${dailyRate}/day</td>
-                      <td className="px-4 py-3 text-right text-navy">{formatAUD(gross)}</td>
-                      <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(totalTax)}</td>
-                      <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(takeHome)}</td>
-                      <td className="px-4 py-3 text-right text-navy">{formatAUD(netPerDay)}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-3 text-sm text-warmgray-light">
-            Figures exclude GST (you remit any GST collected to the ATO). Super is self-funded — contractors choosing to pay themselves the {formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate should set aside that amount from the annual take-home shown above.
-          </p>
-        </section>
-
-        {/* PAA: "What rate should I charge as a contractor?" */}
-        <section id="contractor-rate">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Rate Should I Charge as a Contractor?</h2>
-          <p className="mb-4 text-warmgray">{CONTRACTOR_RATE_ANSWER.a}</p>
-          <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-xl mx-auto rounded-r-lg">
-            Minimum hourly rate = Target salary &times; (1 + {formatPercent(SUPER_GUARANTEE.rate, 0)} super) &divide; ({EMPLOYMENT.standardWeeklyHours} hours &times; {BILLABLE_WEEKS} weeks)
-          </div>
-        </section>
-
-        {/* PAA: "How do I convert a contractor rate to a salary?" — every figure from contractorRateToEquivalentSalary() */}
-        <section id="contractor-rate-to-salary">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Contractor Hourly Rate Equals a Salary?</h2>
-          <p className="mb-4 text-warmgray">{CONTRACTOR_SALARY_ANSWER.a}</p>
-          <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-3 mt-6 text-xl font-semibold text-navy">Worked Example: {formatAUD(SALARY_EXAMPLE_RATE)} an Hour</h3>
-          <ol className="mb-6 list-decimal space-y-1 pl-5 text-warmgray">
-            <li><strong>Billable time:</strong> {WORKING_DAYS_PER_YEAR} weekdays &minus; {CA.annualLeaveDays} annual leave &minus; {CA.personalLeaveDays} sick days &minus; {CA.publicHolidayDays} public holidays &minus; {CA.downtimeDays} days between contracts = {SALARY_EXAMPLE.billableDays} days &times; {CA.hoursPerDay} hours = {SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hours.</li>
-            <li><strong>Billed income:</strong> {SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hours &times; {formatAUD(SALARY_EXAMPLE_RATE)} = {formatAUD(SALARY_EXAMPLE.billedIncome)} (excluding GST).</li>
-            <li><strong>Less costs an employer would carry:</strong> {formatAUD(SALARY_EXAMPLE.insurance)} insurance + {formatAUD(SALARY_EXAMPLE.admin)} accounting and admin leaves {formatAUD(SALARY_EXAMPLE.packageValue)}. That is the whole package: salary plus super.</li>
-            <li><strong>Take out super:</strong> {formatAUD(SALARY_EXAMPLE.packageValue)} &divide; {(1 + SUPER_GUARANTEE.rate).toFixed(2)} = <strong>{formatAUD(SALARY_EXAMPLE.equivalentSalary)} salary</strong>, plus {formatAUD(SALARY_EXAMPLE.superSelfFunded)} super ({formatPercent(SUPER_GUARANTEE.rate, 0)}).</li>
-            <li><strong>Check:</strong> {formatAUD(SALARY_EXAMPLE.leaveValue)} of that salary is pay for the {CA.annualLeaveDays + CA.personalLeaveDays + CA.publicHolidayDays} days of leave and public holidays an employee is paid for without working. As a contractor you fund those days out of the hours you bill. The salary works out to {formatAUD(SALARY_EXAMPLE.employeeHourly, 2)} an hour over {EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} paid hours, so the contract rate is {(SALARY_EXAMPLE_RATE / SALARY_EXAMPLE.employeeHourly).toFixed(2)} times the employee rate.</li>
-          </ol>
-          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
-            <table className="w-full text-sm">
-              <thead className="bg-sandstone">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold text-navy">Contractor Rate</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Billed a Year ({SALARY_EXAMPLE.billableHours.toLocaleString("en-AU")} hrs)</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Super, Insurance &amp; Admin You Fund</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Equivalent Salary</th>
-                  <th className="px-4 py-3 text-right font-semibold text-navy">Equivalent Employee Hourly Rate</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {SALARY_TABLE_RATES.map((rate) => contractorRateToEquivalentSalary(rate, "hour")).map((row) => (
-                  <tr key={row.rate} className="hover:bg-sandstone">
-                    <td className="px-4 py-3 font-medium text-navy">${row.rate}/hr</td>
-                    <td className="px-4 py-3 text-right text-navy">{formatAUD(row.billedIncome)}</td>
-                    <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(row.superSelfFunded + row.insurance + row.admin)}</td>
-                    <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(row.equivalentSalary)}</td>
-                    <td className="px-4 py-3 text-right text-navy">{formatAUD(row.employeeHourly, 2)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="mt-3 text-sm text-warmgray-light">
-            <p className="mb-1 font-medium">Assumptions behind every figure in this section:</p>
-            <ul className="list-disc space-y-1 pl-5">
-              <li>{WORKING_DAYS_PER_YEAR} weekdays a year ({EMPLOYMENT.weeksPerYear} weeks &times; 5). Not billed: {CA.annualLeaveDays} days&apos; annual leave ({EMPLOYMENT.annualLeaveWeeks} weeks, the NES minimum), {CA.personalLeaveDays} days&apos; sick and carer&apos;s leave (NES), {CA.publicHolidayDays} weekday public holidays (the states and territories have {WEEKDAY_PUBLIC_HOLIDAYS_2026.min} to {WEEKDAY_PUBLIC_HOLIDAYS_2026.max} in 2026) and {CA.downtimeDays} days between contracts (our assumption; use your own).</li>
-              <li>{CA.hoursPerDay} billed hours a day ({EMPLOYMENT.standardWeeklyHours}-hour week). Rates exclude GST.</li>
-              <li>Insurance of {formatAUD(CA.insurancePerYear)} a year and accounting and admin of {formatAUD(CA.adminPerYear)} a year. These are round planning figures, not quotes: replace them with your own premiums and fees.</li>
-              <li>Super at the {formatPercent(SUPER_GUARANTEE.rate, 0)} Super Guarantee rate on the salary, capped at the {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base for FY{SITE_CONFIG.financialYear}.</li>
-              <li>Not included: leave loading, workers&apos; compensation, income protection, long service leave and income tax (both sides pay the same tax rates on the same taxable income).</li>
-            </ul>
-            <p className="mt-2">This section uses {SALARY_EXAMPLE.billableDays} billable days. The take-home table above uses {BILLABLE_WEEKS} weeks and deducts only tax. Use the <Link href="/annual-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Annual Pay Calculator</Link> to see the take-home pay on the equivalent salary.</p>
-          </div>
-        </section>
-
-        {/* Common Contractor Tax Mistakes */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Are Common Contractor Tax Mistakes?</h2>
-          <p className="mb-4 text-warmgray">
-            The most common contractor tax mistake is <strong>failing to set aside enough money for tax</strong>, leaving a shortfall at BAS or tax-return time. Avoid these 5 errors.
-          </p>
-          <ol className="list-decimal space-y-3 pl-6 text-warmgray">
-            <li>
-              <strong>Not separating GST from income:</strong> The 10% GST collected on invoices belongs to the ATO, not to you. On <strong>$100,000</strong> of GST-inclusive billings, <strong>$9,091</strong> is GST owed to the ATO &mdash; spend it and the shortfall lands at BAS time.
-            </li>
-            <li>
-              <strong>Ignoring PAYG instalments:</strong> Contractors who skip quarterly PAYG instalments face a single lump-sum tax bill. On $100,000 of taxable income, the FY{SITE_CONFIG.financialYear} bill for income tax and the Medicare levy is <strong>{formatAUD(TAX_ON_100K)}</strong> — a difficult amount to pay at once.
-            </li>
-            <li>
-              <strong>Setting the hourly rate too low:</strong> Pricing contractor rates at the same level as employee hourly rates ignores the <strong>30–40%</strong> loading needed to cover super, leave, insurance, and admin costs. A $40/hr employee rate requires approximately <strong>$56–$64/hr</strong> as a contractor.
-            </li>
-            <li>
-              <strong>Missing legitimate deductions:</strong> Contractors overlook deductible expenses including home office costs ({RETURN_2026.wfhFixedRateCents} cents per work hour under the fixed-rate method for {RETURN_2026.incomeYear}), vehicle logbook expenses, professional development courses, accounting software subscriptions, and professional indemnity insurance premiums.
-            </li>
-            <li>
-              <strong>Skipping voluntary super contributions:</strong> Concessional super contributions of up to <strong>{formatAUD(CC_CAP)}/year</strong> are taxed at 15% inside the fund instead of your marginal rate. A contractor on $100,000 saves about <strong>{formatAUD(CC_SAVING_100K)}</strong> by contributing {formatAUD(CC_CAP)} to super versus taking it as income taxed at the 30% marginal rate plus the 2% Medicare levy.
-            </li>
-          </ol>
-        </section>
-
-        {/* Contractor vs Employee link */}
-        <section className="rounded-xl border-2 border-eucalyptus/30 bg-eucalyptus-light/40 p-6">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-2 text-xl font-bold text-navy">Contractor vs Employee: Compare Side-by-Side</h2>
-          <p className="mb-4 text-warmgray">
-            Not sure whether you&apos;re better off as a contractor or employee? Our comparison calculator shows you the real difference after tax, super, GST, and insurance.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/contractor-vs-employee-calculator/"
-              className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-navy"
-            >
-              Compare Contractor vs Employee →
-            </Link>
-            <Link
-              href="/contractor-vs-employee-calculator/"
-              className="inline-flex items-center gap-2 rounded-lg border border-eucalyptus/40 px-5 py-2.5 text-sm font-medium text-eucalyptus-dark transition-all hover:bg-eucalyptus-light/40"
-            >
-              Read the Guide
-            </Link>
-          </div>
-        </section>
-
-        {/* Related Calculators */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Related Australian Tax Calculators</h2>
-          <p className="mb-4 text-warmgray">
-            Contractor pay calculations intersect with income tax brackets, superannuation, salary sacrifice, and hourly-to-annual conversions. These 5 calculators cover the most common related scenarios.
-          </p>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {[
-              { href: "/contractor-vs-employee-calculator/", title: "Contractor vs Employee Calculator", desc: "Compare contractor rates against employee salaries with full entitlement costing" },
-              { href: "/income-tax-calculator/", title: "Income Tax Calculator", desc: `Calculate income tax at every bracket for FY${SITE_CONFIG.financialYear} including LITO and Medicare levy` },
-              { href: "/superannuation-calculator/", title: "Superannuation Calculator", desc: `Model voluntary and compulsory super contributions at the ${formatPercent(SUPER_GUARANTEE.rate, 0)} SG rate` },
-              { href: "/hourly-to-annual-salary-calculator/", title: "Hourly to Annual Salary Calculator", desc: "Convert any hourly rate to an annual salary with tax, super, and leave adjustments" },
-              { href: "/tax-return-calculator/", title: "Tax Return Calculator", desc: "Estimate your end-of-year tax refund or liability after claiming business deductions" },
-              { href: "/salary-sacrifice-calculator/", title: "Salary Sacrifice Calculator", desc: "See how redirecting pre-tax income to super or novated lease reduces your tax bill" },
-            ].map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="flex flex-col rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm transition-all hover:border-eucalyptus/40 hover:shadow-md">
-                  <span className="font-semibold text-eucalyptus-dark">{item.title}</span>
-                  <span className="mt-1 text-sm text-warmgray">{item.desc}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <RelatedSearches items={RELATED_SEARCHES} />
-
-        {/* FAQ */}
-        <section>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Frequently Asked Questions</h2>
-          <FaqAccordion faqs={CONTRACTOR_PAY_FAQS} className="space-y-3" itemClassName="rounded-xl border border-sandstone-dark/20 px-5" triggerClassName="text-left text-base font-medium text-navy" contentClassName="leading-relaxed text-warmgray" />
-        </section>
-
-        <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
-      </div>
+      {children}
     </div>
   );
 }
@@ -708,14 +316,5 @@ function SummaryRow({
       <td className={`px-2 py-1.5 text-right sm:px-3 ${cellClass}`}>{fmt(monthly)}</td>
       <td className={`px-2 py-1.5 text-right sm:px-3 ${cellClass}`}>{fmt(annual)}</td>
     </tr>
-  );
-}
-
-function ResultCard({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5 shadow-sm">
-      <h3 className="mb-2 font-semibold text-navy">{title}</h3>
-      <p className="text-sm leading-relaxed text-warmgray">{desc}</p>
-    </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HourlyToAnnualCalculatorPage from "@/modules/calculator/hourly-to-annual-salary-calculator";
+import HourlyToAnnualSalaryCalculatorContent from "@/modules/calculator/hourly-to-annual-salary-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
@@ -83,7 +84,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <HourlyToAnnualCalculatorPage />
+      <HourlyToAnnualCalculatorPage>
+        <HourlyToAnnualSalaryCalculatorContent />
+      </HourlyToAnnualCalculatorPage>
     </>
   );
 }

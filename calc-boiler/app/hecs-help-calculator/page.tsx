@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import HECSHelpCalculatorPage, { type CalculatorFaq } from "@/modules/calculator/hecs-help-calculator";
+import HECSHelpCalculatorContent from "@/modules/calculator/hecs-help-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
@@ -167,7 +168,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <HECSHelpCalculatorPage faqs={FAQS} />
+      <HECSHelpCalculatorPage>
+        <HECSHelpCalculatorContent faqs={FAQS} />
+      </HECSHelpCalculatorPage>
     </>
   );
 }

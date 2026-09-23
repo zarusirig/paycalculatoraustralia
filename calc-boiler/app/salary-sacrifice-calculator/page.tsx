@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SalarySacrificeCalculatorPage from "@/modules/calculator/salary-sacrifice-calculator";
+import SalarySacrificeCalculatorContent from "@/modules/calculator/salary-sacrifice-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { SALARY_SACRIFICE_FAQS } from "@/modules/calculator/salary-sacrifice-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -69,7 +70,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SalarySacrificeCalculatorPage />
+      <SalarySacrificeCalculatorPage>
+        <SalarySacrificeCalculatorContent />
+      </SalarySacrificeCalculatorPage>
     </>
   );
 }

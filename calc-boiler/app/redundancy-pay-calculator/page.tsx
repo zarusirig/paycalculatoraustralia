@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RedundancyPayCalculatorPage from "@/modules/calculator/redundancy-pay-calculator";
+import RedundancyPayCalculatorContent from "@/modules/calculator/redundancy-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
@@ -81,7 +82,9 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <RedundancyPayCalculatorPage faqs={REDUNDANCY_FAQS} />
+      <RedundancyPayCalculatorPage>
+        <RedundancyPayCalculatorContent faqs={REDUNDANCY_FAQS} />
+      </RedundancyPayCalculatorPage>
     </>
   );
 }

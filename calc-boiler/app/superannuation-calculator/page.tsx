@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import SuperannuationCalculatorPage from "@/modules/calculator/superannuation-calculator";
+import SuperannuationCalculatorContent, {
+  SuperannuationCalculatorIntro,
+  SuperannuationCalculatorMiddle,
+} from "@/modules/calculator/superannuation-calculator-content";
 import { SUPERANNUATION_FAQS } from "@/modules/calculator/superannuation-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -58,7 +62,7 @@ const howToSchema = calculatorHowTo({
 });
 
 function Page() {
-  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage /></>);
+  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage intro={<SuperannuationCalculatorIntro />} middle={<SuperannuationCalculatorMiddle />}><SuperannuationCalculatorContent /></SuperannuationCalculatorPage></>);
 }
 
 export default withPageEnd(Page, "/superannuation-calculator/");

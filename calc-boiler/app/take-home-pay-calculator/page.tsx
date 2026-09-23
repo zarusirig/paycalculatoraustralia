@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TakeHomePayCalculatorPage from "@/modules/calculator/take-home-pay-calculator";
+import TakeHomePayCalculatorContent from "@/modules/calculator/take-home-pay-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { TAKE_HOME_PAY_FAQS } from "@/modules/calculator/take-home-pay-calculator-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -54,7 +55,7 @@ const howToSchema = calculatorHowTo({
 });
 
 function Page() {
-  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><TakeHomePayCalculatorPage /></>);
+  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><TakeHomePayCalculatorPage><TakeHomePayCalculatorContent /></TakeHomePayCalculatorPage></>);
 }
 
 export default withPageEnd(Page, "/take-home-pay-calculator/");

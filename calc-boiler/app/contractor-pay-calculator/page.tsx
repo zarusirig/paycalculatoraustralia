@@ -1,4 +1,5 @@
 import ContractorPayCalculator from "@/modules/calculator/contractor-pay-calculator";
+import ContractorPayCalculatorContent from "@/modules/calculator/contractor-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type {
   BreadcrumbList,
@@ -93,7 +94,9 @@ function ContractorPayCalculatorPage() {
       <JsonLd
         code={[webAppSchema, breadcrumbSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]}
       />
-      <ContractorPayCalculator />
+      <ContractorPayCalculator>
+        <ContractorPayCalculatorContent />
+      </ContractorPayCalculator>
     </>
   );
 }
