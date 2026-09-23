@@ -85,7 +85,7 @@ const faq: WithContext<FAQPage> = {
       name: "What is the payroll tax rate in SA, and do employees pay it?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "SA payroll tax is 4.95% on wages above a $1,500,000 threshold. It is an employer cost, charged to the business rather than the employee, and it never appears as a deduction on a payslip.",
+        text: "SA payroll tax applies once Australian wages pass $1,500,000: a variable rate from 0% to 4.95% on payrolls between $1.5 million and $1.7 million, then 4.95%. It is an employer cost, charged to the business rather than the employee, and it never appears as a deduction on a payslip.",
       },
     },
   ],

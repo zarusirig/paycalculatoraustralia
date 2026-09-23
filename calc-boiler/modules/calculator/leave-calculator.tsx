@@ -219,7 +219,7 @@ export default function LeaveCalculatorPage() {
               Australian employees are entitled to <strong>7 distinct types of leave</strong> under the National Employment Standards, enterprise agreements, and state legislation.
             </p>
             <p className="mb-4 text-warmgray">
-              The table below summarises the 3 leave types with cash value on termination: annual leave, personal/carer&apos;s leave, and long service leave. Entitlements vary between full-time, part-time, and shift workers. Superannuation at the employer SG rate of <strong>12%</strong> is not payable on annual leave loading or leave payouts in most cases.
+              The table below summarises the 3 leave types with cash value on termination: annual leave, personal/carer&apos;s leave, and long service leave. Entitlements vary between full-time, part-time, and shift workers. Super at the 12% SG rate is paid on annual leave taken during employment and on leave loading (unless the award loading only compensates for lost overtime), but not on unused annual leave or long service leave paid out on termination. See the <Link href="/leave-loading-calculator/">leave loading calculator</Link> for award-by-award loading rules.
             </p>
             <div className="overflow-x-auto mb-4">
               <table className="min-w-full border border-sandstone-dark/20 text-sm">

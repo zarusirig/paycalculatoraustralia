@@ -21,6 +21,10 @@ import {
 } from "@/lib/constants";
 import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
+
+const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
+const PERIOD_PRESETS = [2_000, 3_000, 4_000, 5_000] as const;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -32,7 +36,12 @@ const SOURCES_LIST: SourceLink[] = [
 ];
 
 export default function FortnightlyPayCalculatorPage() {
-  const [salary, setSalary] = useState(80_000);
+  // "fortnightly tax calculator" searchers know their fortnightly pay, not their salary
+  // (the ATO tax withheld calculator and paycalculator.com.au both take a
+  // fortnightly amount), so fortnightly entry is offered alongside annual salary.
+  const [period, setPeriod] = useState<EntryPeriod>("annual");
+  const [amount, setAmount] = useState(80_000);
+  const salary = Math.round(amount * PERIODS_PER_YEAR[period]);
   const [includeHECS, setIncludeHECS] = useState(false);
 
   const result = useMemo(
@@ -52,7 +61,8 @@ export default function FortnightlyPayCalculatorPage() {
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -60,34 +70,42 @@ export default function FortnightlyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Fortnightly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Fortnightly Pay Calculator Australia {SITE_CONFIG.financialYear}</h1>
-          <p className="text-lg text-navy">
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2">Fortnightly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-base md:text-lg text-navy">
             Fortnightly pay is your annual salary divided by <strong>26</strong>. On <strong>$80,000</strong> that is{" "}
             {formatAUD(80_000 / 26, 2)} gross and <strong>{formatAUD(lead.fortnightly, 2)} take-home</strong> every fortnight after
             income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2">
-            Enter your salary below for your own fortnightly tax, super and net pay.
-          </p>
-          <TrustBar className="mt-4" />
+          <p className="text-warmgray mt-2 text-sm md:text-base">Use it as a fortnightly tax calculator: enter your fortnightly pay or annual salary.</p>
+          <TrustBar className="mt-3" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-6 text-center">Calculate Your Fortnightly Take-Home Pay</h2>
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Fortnightly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                  <PeriodToggle periods={["fortnightly", "annual"]} value={period} label="I'm entering my gross"
+                    onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
                   <div>
-                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross Annual Salary</label>
+                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">{period === "annual" ? "Gross annual salary" : "Gross fortnightly pay (before tax)"}</label>
                     <div className="flex items-center"><span className="text-warmgray-light mr-2">$</span>
-                      <input type="number" id="salary" min={0} max={500000} step={1000} value={salary}
-                        onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 500000))}
-                        className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
+                      <input type="number" id="salary" min={0} max={period === "annual" ? 500000 : Math.round(500000 / 26)} step={period === "annual" ? 1000 : 1} value={amount}
+                        onChange={(e) => setAmount(clamp(Number(e.target.value || 0), 0, period === "annual" ? 500000 : Math.round(500000 / 26)))}
+                        className="block w-full rounded-md border-sandstone-dark/30 text-lg font-semibold shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    {period === "annual" && (
+                      <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    )}
+                    <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
+                    {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
+                    <p className="mt-3 rounded-lg bg-eucalyptus-light/40 px-3 py-2 text-sm text-navy md:hidden" aria-hidden="true">
+                      Tax: <strong className="text-ochre">{formatAUD((result.netIncomeTax + result.medicareLevy) / 26, 2)}</strong>/fortnight · take-home <strong className="text-eucalyptus-dark">{formatAUD(result.fortnightly, 2)}</strong>
+                    </p>
+                    <p className="mt-1 text-xs text-warmgray-light">{period === "annual" ? `= ${formatAUD(salary / 26, 2)} gross a fortnight` : `= ${formatAUD(salary)} a year`}</p>
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeHECS} onChange={(e) => setIncludeHECS(e.target.checked)}
@@ -124,6 +142,8 @@ export default function FortnightlyPayCalculatorPage() {
           </Card>
         </section>
 
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "incomeTaxCalculator", "weeklyTaxCalculator"]} />
+
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
@@ -143,7 +163,8 @@ export default function FortnightlyPayCalculatorPage() {
               falls inside the same financial year. Your salary does not rise that year; it is spread over one more pay, and the
               ATO&apos;s tax tables (which assume {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays) publish an optional extra amount you can
               ask your employer to withhold so you do not end up short at tax time. The{" "}
-              <Link href="/fortnightly-tax-table/#27-pays" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts.
+              <Link href="/fortnightly-tax-table/#27-pays" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts. To check whether your pay cycle has 27 pay days in 2026-27 and see every pay date, use the{" "}
+              <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">fortnights in a year pay date calculator</Link>.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">

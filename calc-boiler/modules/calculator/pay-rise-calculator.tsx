@@ -43,6 +43,13 @@ const MLS_110K = calculateMedicareSurcharge(110_000, false);
 const TRP_110K_BASE = Math.round(110_000 / (1 + SUPER_GUARANTEE.rate));
 const B2 = TAX_BRACKETS[2];
 const B3 = TAX_BRACKETS[3];
+// ABS Wage Price Index, June quarter 2026 (released 19 Aug 2026): 3.2% over
+// the year, seasonally adjusted. ABS Average Weekly Earnings, May 2026:
+// full-time adult ordinary time earnings $2,083.70 a week (seasonally adjusted).
+const WPI_ANNUAL = 0.032;
+// ABS media release "CPI rose 3.8% in the year to June 2026" (quarterly CPI).
+const CPI_ANNUAL = 0.038;
+const AWOTE_ANNUAL = Math.round(2_083.7 * 52);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -220,7 +227,7 @@ export default function PayRiseCalculatorPage() {
               A pay rise increases your take-home pay by <strong>less than the gross amount</strong> because the additional income is taxed at your marginal tax rate, not your average tax rate.
             </p>
             <p className="text-warmgray mb-4">
-              Australia&apos;s progressive income tax system applies higher rates to each additional dollar earned above a threshold. An employee on $80,000 has an average tax rate of roughly 22%, but the marginal rate on every extra dollar is <strong>30% plus 2% Medicare levy</strong>. That means for every $1,000 of gross pay rise, only <strong>$680</strong> reaches the bank account. The remaining $320 goes to the ATO as income tax and Medicare.
+              Australia&apos;s progressive income tax system applies higher rates to each additional dollar earned above a threshold. An employee on $80,000 has an average tax rate of about {((EX80.netIncomeTax + EX80.medicareLevy) / 80_000 * 100).toFixed(0)}% (income tax plus Medicare levy), but the marginal rate on every extra dollar is <strong>{pct0(B2.rate)} plus 2% Medicare levy</strong>. That means for every $1,000 of gross pay rise, only <strong>{formatAUD(Math.round(keptPerDollar(80_000) * 1_000))}</strong> reaches the bank account. The remaining {formatAUD(1_000 - Math.round(keptPerDollar(80_000) * 1_000))} goes to the ATO as income tax and Medicare.
             </p>
             <p className="text-warmgray mb-4">
               This pay rise calculator computes your exact before-and-after take-home pay for FY{SITE_CONFIG.financialYear} using the current Australian tax brackets. Enter your current base salary and the raise amount to see the net benefit broken down by week, fortnight, and year. For a full breakdown of your current pay, use our <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>.
@@ -329,15 +336,15 @@ export default function PayRiseCalculatorPage() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is the Average Pay Rise in Australia?</h2>
             <p className="mb-4 text-warmgray">
-              The average annual wage increase in Australia is <strong>3.5% to 4.0%</strong> as of late 2025, according to the Australian Bureau of Statistics Wage Price Index. This translates to roughly <strong>$3,430</strong> on the national average full-time salary of $98,000.
+              Wages rose <strong>{(WPI_ANNUAL * 100).toFixed(1)}%</strong> over the year to the June quarter 2026, according to the Australian Bureau of Statistics Wage Price Index. On average full-time adult ordinary time earnings of about {formatAUD(AWOTE_ANNUAL)} a year (ABS, May 2026), that is roughly <strong>{formatAUD(Math.round(AWOTE_ANNUAL * WPI_ANNUAL))}</strong> before tax.
             </p>
             <p className="text-warmgray mb-4">
-              Pay rises vary significantly by industry, role seniority, and location. The mining sector leads with average increases of <strong>5.2%</strong>, followed by technology at <strong>4.8%</strong>, and healthcare at <strong>4.1%</strong>. Retail and hospitality typically see smaller increases of <strong>2.5% to 3.0%</strong>. These figures represent base salary adjustments and exclude bonuses, overtime, and superannuation increases.
+              Pay rises vary significantly by industry, role seniority, and location. Award-covered workers received the Fair Work Commission&apos;s annual increase from 1 July, while agreement and contract rises depend on the employer. The ABS publishes wage growth by industry and sector in each Wage Price Index release.
             </p>
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does Inflation Affect a Pay Rise?</h3>
             <p className="text-warmgray mb-4">
-              A pay rise below the inflation rate results in a <strong>real wage decrease</strong>. With CPI running at approximately <strong>2.8%</strong> in early 2026, a 3% nominal pay rise delivers only <strong>0.2% real growth</strong> in purchasing power. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to compare your current and proposed salary in after-tax terms, then adjust for inflation to assess whether the offer genuinely improves your financial position.
+              A pay rise below the inflation rate results in a <strong>real wage decrease</strong>. With the CPI up <strong>{(CPI_ANNUAL * 100).toFixed(1)}%</strong> over the year to June 2026 (ABS), a 3% nominal pay rise is a real <strong>cut</strong> of about {((CPI_ANNUAL - 0.03) * 100).toFixed(1)}% in purchasing power &mdash; and the {(WPI_ANNUAL * 100).toFixed(1)}% average wage rise also trailed inflation. Use our <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> to compare your current and proposed salary in after-tax terms, then adjust for inflation to assess whether the offer genuinely improves your financial position.
             </p>
           </section>
 

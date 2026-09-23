@@ -320,6 +320,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "tax-return-2026", changeFrequency: "weekly" as const, priority: 0.8 });
   allPages.push({ slug: "pension-age-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end W1 ---
+  // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
+  for (const slug of [
+    "time-in-lieu",
+    "leave-loading-calculator",
+    "enterprise-agreement",
+    "travel-allowance",
+    "cents-per-km",
+    "gross-vs-net-pay",
+    "centrelink-working-credit-calculator",
+  ]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end T3 ---
   // --- T2 payroll tax cluster (23 Sep 2026): calculator, hub, 8 state pages ---
   allPages.push({ slug: "payroll-tax-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "payroll-tax", changeFrequency: "monthly" as const, priority: 0.8 });
@@ -344,6 +357,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: path.replace(/^\/|\/$/g, ""), changeFrequency: "monthly" as const, priority: 0.8 });
   }
   // --- end F5 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026): data study + embed instructions.
+  // /embed/take-home-pay/ is deliberately absent: it is noindex (widget document).
+  allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "embed", changeFrequency: "yearly" as const, priority: 0.5 });
+  // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F7 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

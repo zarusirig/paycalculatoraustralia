@@ -16,6 +16,7 @@ import {
   formatPercent,
   SOURCES,
   SITE_CONFIG,
+  SUPER_GUARANTEE,
 } from "@/lib/constants";
 
 function clamp(n: number, min: number, max: number) {
@@ -109,7 +110,7 @@ export default function FinalPayCalculatorPage() {
               </nav>
               <div className="flex justify-between items-start mb-4 mt-4">
                 <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                  Final Pay Calculator Australia 2025-26
+                  Final Pay Calculator Australia {SITE_CONFIG.financialYear}
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
@@ -221,7 +222,7 @@ export default function FinalPayCalculatorPage() {
           <div className="max-w-4xl mx-auto space-y-10">
             <section>
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Final Pay Calculated in Australia?</h2>
-              <p className="mb-4 text-warmgray">Your final pay when leaving a job comprises <strong>5 separate components</strong>, each calculated independently. Under the Fair Work Act, your employer must pay all outstanding entitlements within <strong>7 days</strong> of your employment ending or on the next regular pay day.</p>
+              <p className="mb-4 text-warmgray">Your final pay when leaving a job comprises <strong>5 separate components</strong>, each calculated independently. Most awards require your employer to pay all outstanding entitlements within <strong>7 days</strong> after your last day; where your award or agreement is silent, the Fair Work Act&apos;s general pay rules apply.</p>
               <ol className="list-decimal pl-6 space-y-3 text-warmgray">
                 <li><strong>Outstanding wages.</strong> Any hours worked but not yet paid, including the final pay period up to your last day.</li>
                 <li><strong>Unused annual leave.</strong> Calculated as (annual salary / 260) x unused leave days. Most awards require <strong>17.5% leave loading</strong> on the payout.</li>
@@ -276,11 +277,11 @@ export default function FinalPayCalculatorPage() {
               <Accordion type="multiple" className="space-y-3">
                 <AccordionItem value="when-paid" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>When must my employer pay my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Under the Fair Work Act, your employer must pay all outstanding entitlements within <strong>7 days</strong> of your employment ending, or on the next regular pay day &mdash; whichever comes first.</p></AccordionContent>
+                  <AccordionContent><p className="text-warmgray">Most awards require final pay within <strong>7 days</strong> after your last day of employment. Check your award or enterprise agreement; if it has no rule, the Fair Work Act requires pay at least monthly, and payment in lieu of notice has its own timing rules.</p></AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="leave-loading" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>Is leave loading included in my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes, if your award or enterprise agreement provides for annual leave loading (typically <strong>17.5%</strong>), it must be paid on your unused annual leave balance when employment ends. Check your specific award for the applicable rate.</p></AccordionContent>
+                  <AccordionContent><p className="text-warmgray">Yes, if you would have received annual leave loading (typically <strong>17.5%</strong>) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends &mdash; the Fair Work Ombudsman says this applies even where the award, agreement or contract says it is not payable on termination.</p></AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="lsl" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>When do I get long service leave in my final pay?</AccordionTrigger>
@@ -292,7 +293,7 @@ export default function FinalPayCalculatorPage() {
                 </AccordionItem>
                 <AccordionItem value="super-final" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>Does my employer pay super on my final pay?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Employers must pay the <strong>12% SG</strong> on ordinary time earnings up to your last day. Super is <strong>not</strong> payable on unused leave payouts, redundancy payments, or payment in lieu of notice. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to verify.</p></AccordionContent>
+                  <AccordionContent><p className="text-warmgray">Employers must pay the <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} SG</strong> on ordinary time earnings up to your last day, and on any <strong>payment in lieu of notice</strong> &mdash; the ATO treats it as ordinary time earnings for every termination reason. Super is <strong>not</strong> payable on unused leave payouts (including leave loading) or genuine redundancy payments. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link> to verify.</p></AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="dispute" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>What if my employer does not pay my final entitlements?</AccordionTrigger>
