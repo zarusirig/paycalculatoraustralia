@@ -104,6 +104,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         links: [
           { href: "/take-home-pay-calculator/", label: "Take-home pay" },
           { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay" },
+          { href: "/fortnights-in-a-year/", label: "Fortnights in a year" },
           { href: "/weekly-pay-calculator/", label: "Weekly pay" },
           { href: "/monthly-pay-calculator/", label: "Monthly pay" },
           { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to annual salary" },
@@ -164,6 +165,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/parenting-payment-calculator/", label: "Parenting Payment" },
           { href: "/parental-leave-pay/", label: "Paid Parental Leave" },
           { href: "/centrelink-working-credit-calculator/", label: "Working Credit" },
+          { href: "/centrelink-payment-dates/", label: "Payment dates" },
         ],
       },
       {
@@ -260,6 +262,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/average-salary-australia/", label: "Average salary Australia" },
           { href: "/australian-pay-report-2026/", label: "Australian Pay Report 2026" },
           { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO" },
+          { href: "/fifo-pay-calculator/", label: "FIFO pay calculator" },
           { href: "/tech-salary-guide-australia/", label: "IT & tech" },
           { href: "/construction-trades-pay/", label: "Construction & trades" },
           { href: "/retail-hospitality-pay-guide/", label: "Retail & hospitality" },
