@@ -26,6 +26,14 @@ import {
   weekdayOf,
 } from "@/lib/constants/tax-calendar-2026-27";
 import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import {
+  AWARD_TRANSPORT_CHANGE_DATE,
+  CENTS_PER_KM_SOURCES,
+  CPK_KM_CAP,
+  CURRENT_CPK_RATE,
+  CURRENT_CPK_YEAR,
+} from "@/lib/constants/cents-per-km";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -722,6 +730,9 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
   const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
 
+
+  const atExtra = `$${withholdingForPeriod(1_300 + 22, "weekly") - withholdingForPeriod(1_300, "weekly")}`;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -923,6 +934,33 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "How much does a Level 1 air traffic controller earn from October 2026?", answer: `${w(atcL1)} a year base salary, up from ${w(atcL1Now)}. Controllers then progress one level a year to Level 10, which pays ${w(atcL10)} from ${ATC_24_MONTH_COLUMN.dueOn}. Penalty rates, overtime and allowances are paid on top.` },
         { question: "What do trainee air traffic controllers earn?", answer: `An ab initio trainee is paid ${w(ATC_24_MONTH_COLUMN.salaries["Ab Initio Trainee"])} and a field trainee ${w(ATC_24_MONTH_COLUMN.salaries["Field Trainee"])} under the agreement's "24 months" column from ${ATC_24_MONTH_COLUMN.dueOn}.` },
         { question: "Is this the last pay rise under the current agreement?", answer: "Yes. It is the third and final salary column. The agreement reaches its nominal expiry date on 7 October 2027, and salaries after that depend on a replacement agreement." },
+      ],
+    },
+    {
+      slug: "award-transport-payments-withholding-october-2026",
+      headline: `Tax Now Withheld From Award Transport Payments From ${AWARD_TRANSPORT_CHANGE_DATE}: What It Does to Your Pay`,
+      title: `Award Transport Payments: Withholding Starts ${AWARD_TRANSPORT_CHANGE_DATE}`,
+      description: `From ${AWARD_TRANSPORT_CHANGE_DATE} employers must withhold PAYG from award transport payments (fares and travel allowances previously varied to nil) and stop reporting them as a separate STP category. On a $22-a-week allowance, a $1,300-a-week worker has about ${atExtra} more withheld each week.`,
+      category: "Tax",
+      datePublished: "2026-09-24",
+      dateModified: "2026-09-24",
+      authorId: "james-harrington",
+      relatedCalculators: [
+        { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
+        { href: "/cents-per-km/", label: "Cents per km Guide" },
+        { href: "/travel-allowance/", label: "Travel Allowance Guide" },
+      ],
+      relatedArticles: ["tax-cut-july-2026", "payday-super-employees-payslip"],
+      sources: [
+        { title: "Changes to award transport payments (published 26 August 2026, QC66099)", url: CENTS_PER_KM_SOURCES.atoAwardTransportChanges, publisher: "Australian Taxation Office" },
+        { title: "Withholding for allowances (QC51680)", url: CENTS_PER_KM_SOURCES.atoWithholdingForAllowances, publisher: "Australian Taxation Office" },
+        { title: "Cents per kilometre method", url: CENTS_PER_KM_SOURCES.atoMethod, publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "What changes for award transport payments on 1 October 2026?", answer: `For amounts previously treated as award transport payments and paid on or after ${AWARD_TRANSPORT_CHANGE_DATE}, employers must withhold PAYG and no longer identify them separately in Single Touch Payroll. The Treasury Laws Amendment (Tax Reform No. 1) Act 2026, which received royal assent on 26 June 2026, repealed the provisions that set withholding on these payments to nil.` },
+        { question: "Will my take-home pay go down?", answer: `Slightly, if you receive an award transport payment. The allowance is now included in the pay your employer withholds from. On the FY2026-27 weekly tax table, a $22 weekly allowance for someone earning $1,300 a week adds about ${atExtra} of withholding a week. Withholding is a prepayment; your final tax is worked out in your return.` },
+        { question: "Does this affect cents per kilometre car allowances?", answer: `No. A cents-per-km car allowance paid at or below the ATO rate (${Math.round(CURRENT_CPK_RATE * 100)}c for ${CURRENT_CPK_YEAR}) for up to ${CPK_KM_CAP.toLocaleString("en-AU")} business kilometres still has no withholding, under the ATO's withholding for allowances rules.` },
+        { question: "How do employers change their STP reporting?", answer: "The ATO allows a cutover method (report new amounts under the allowance's normal category from the first payment on or after 1 October 2026) or a zeroing-out method (an STP update event moving the year-to-date amount, available until 31 December 2026). Award transport payments (allowance type AD) cannot be reported for payments made on or after 1 July 2027." },
       ],
     },
   ];

@@ -33,6 +33,7 @@ import JuniorPayRatesDecember2026 from "./junior-pay-rates-december-2026";
 import QueenslandStateWageCase2026 from "./queensland-state-wage-case-2026";
 import TaxReturnDeadlineOctober2026 from "./tax-return-deadline-october-2026";
 import AirTrafficControllerPayRiseOctober2026 from "./air-traffic-controller-pay-rise-october-2026";
+import AwardTransportPaymentsWithholdingOctober2026 from "./award-transport-payments-withholding-october-2026";
 // --- end G6 ---
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
@@ -71,5 +72,6 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "queensland-state-wage-case-2026": QueenslandStateWageCase2026,
   "tax-return-deadline-october-2026": TaxReturnDeadlineOctober2026,
   "air-traffic-controller-pay-rise-october-2026": AirTrafficControllerPayRiseOctober2026,
+  "award-transport-payments-withholding-october-2026": AwardTransportPaymentsWithholdingOctober2026,
   // --- end G6 ---
 };
