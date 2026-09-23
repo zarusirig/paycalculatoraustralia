@@ -318,6 +318,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- end T1 ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
+  "fortnights-in-a-year": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-24" },
   // --- end F7 ---
 };
 

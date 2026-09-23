@@ -6,7 +6,7 @@
 // which are ATO look-up values re-used from modules/tax-tables/ato-schedules.ts
 // (read at ato.gov.au/tax-rates-and-codes/tax-table-fortnightly and
 // .../tax-table-weekly, "When there are 27 [53] pays in a financial year";
-// fortnightly bands re-read 24 September 2026, unchanged).
+// both re-read 24 September 2026, unchanged).
 //
 // The ATO's rule is about pay DAYS falling in the financial year (1 July to
 // 30 June), not the periods the pay covers. A 365-day year is 52 weeks and

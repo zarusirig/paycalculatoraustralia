@@ -171,6 +171,7 @@ const payScaleGroups: Group[] = [
     title: "FIFO, Pay Periods & Payment Dates",
     items: [
       { href: "/fifo-pay-calculator/", label: "FIFO Pay Calculator" },
+      { href: "/fortnights-in-a-year/", label: "How Many Fortnights in a Year (Pay Dates)" },
     ],
   },
   // --- end F7 ---
