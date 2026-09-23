@@ -220,6 +220,39 @@ test("Qantas: Part G weekly salaries from 1 Jan 2026, single-time hourly = annua
   }
 });
 
+test("Virgin Australia: Nov 2025 salaries (award protection 3.5% on CC1/CC2/SC1), Base Hourly Rate = salary / 52 / 36", () => {
+  const v = get("virgin-australia");
+  assert.equal(v.instrument.reference, "AG2024/723, AE523884");
+  assert.equal(v.fullTimeWeeklyHours, 36);
+  // Schedule A Part 1: Nov 2024 salaries for the protected levels, printed Nov 2025 for the rest.
+  const nov2024 = { CC1: 54344, CC2: 56434, SC1: 58524 };
+  const awr2025 = 1.035; // 2025 Annual Wage Review: greater than the printed 3%, under the 4% cap.
+  const expected = [
+    halfUp(nov2024.CC1 * awr2025),
+    halfUp(nov2024.CC2 * awr2025),
+    halfUp(nov2024.SC1 * awr2025),
+    65664, 69995, 72162, 75142, 84955,
+  ];
+  assert.deepEqual(v.rates.map((r) => r.annualSalary), expected);
+  // The printed Nov 2024 hourly table reproduces with salary / 1,872.
+  assert.equal(halfUp(54344 / 1872), 29.03);
+  assert.equal(halfUp(56434 / 1872), 30.15);
+  for (const r of v.rates) assert.equal(r.hourly, halfUp((r.annualSalary ?? 0) / 52 / 36), r.level);
+  assert.deepEqual(v.rates.map((r) => r.hourly), [30.05, 31.2, 32.36, 35.08, 37.39, 38.55, 40.14, 45.38]);
+  // Casual: CC rate + 25% only.
+  assert.equal(v.rates[0].casualHourly, halfUp(30.05 * 1.25));
+  for (const r of v.rates.slice(1)) assert.deepEqual([r.noCasual, r.casualHourly], [true, 0], r.level);
+  // Award floor: CC1 weekly below the award's full-time weekly rate; every hourly above.
+  assert.equal(halfUp(expected[0] / 52), 1081.65);
+  assert.ok(1081.65 < CABIN_CREW_AWARD_2026.weekly && halfUp(expected[1] / 52) > CABIN_CREW_AWARD_2026.weekly);
+  for (const r of v.rates) assert.ok(r.hourly > CABIN_CREW_AWARD_2026.hourly);
+  assert.equal(halfUp(CABIN_CREW_AWARD_2026.weekly * 52), 57064.8);
+  const text = pageText(v);
+  for (const v2 of ["$56,246.04", "$1,081.65", "$1,097.40", "$57,064.80", "$30.05", "$37.56", "$45.38", "$60,572.34", "$28.88"]) {
+    assert.ok(text.includes(v2), v2);
+  }
+});
+
 test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed exactly", () => {
   const r = get("rebel");
   assert.equal(r.instrument.reference, "AG2024/952, AE524487");
@@ -244,5 +277,14 @@ test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed
   const text = pageText(r);
   for (const v of ["$28.20", "$35.25", "$28.83", "$30.39", "$14.10", "$17.62", "$16.92", "$21.15", "$19.74", "$22.56", "$20.86", "$23.64", "$35.18", "$42.39", "$64.01", "$37.07", "$44.67", "$67.46"]) {
     assert.ok(text.includes(v), v);
+  }
+});
+
+test("noCasual rows: never the entry level, casual stored as 0, and only with a casual note", () => {
+  for (const slug of ["qantas", "virgin-australia", "target", "priceline", "rebel"]) {
+    const e = get(slug);
+    assert.ok(!e.rates[0].noCasual, slug);
+    for (const r of e.rates) if (r.noCasual) assert.equal(r.casualHourly, 0, `${slug} ${r.level}`);
+    if (e.rates.some((r) => r.noCasual)) assert.ok(e.casualRateNote, slug);
   }
 });

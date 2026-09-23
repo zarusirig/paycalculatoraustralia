@@ -42,18 +42,19 @@ export const EMPLOYER_SLUGS = [
   "david-jones",
   "officeworks",
   // --- end H1 ---
-  // --- J7 (24 Sep 2026) ---
+  // --- J7 (24 Sep 2026), by search demand ---
+  "qantas",
+  "virgin-australia",
+  "harvey-norman",
   "target",
   "priceline",
-  "rebel",
-  "harvey-norman",
-  "spotlight",
-  "anaconda",
-  "starbucks",
-  "guzman-y-gomez",
-  "zambrero",
   "event-cinemas",
-  "qantas",
+  "spotlight",
+  "starbucks",
+  "zambrero",
+  "anaconda",
+  "guzman-y-gomez",
+  "rebel",
   // --- end J7 ---
 ] as const;
 

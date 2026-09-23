@@ -48,6 +48,7 @@ import { GUZMAN_Y_GOMEZ_PAY } from "./guzman-y-gomez";
 import { ZAMBRERO_PAY } from "./zambrero";
 import { EVENT_CINEMAS_PAY } from "./event-cinemas";
 import { QANTAS_PAY } from "./qantas";
+import { VIRGIN_AUSTRALIA_PAY } from "./virgin-australia";
 // --- end J7 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -87,6 +88,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   zambrero: ZAMBRERO_PAY,
   "event-cinemas": EVENT_CINEMAS_PAY,
   qantas: QANTAS_PAY,
+  "virgin-australia": VIRGIN_AUSTRALIA_PAY,
   // --- end J7 ---
 };
 
