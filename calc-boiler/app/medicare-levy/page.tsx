@@ -48,6 +48,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
@@ -101,7 +102,7 @@ const article: WithContext<Article> = {
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,
-    logo: { "@type": "ImageObject", url: `${BASE}/logo.png` },
+    logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
   },
   mainEntityOfPage: URL,
   inLanguage: "en-AU",

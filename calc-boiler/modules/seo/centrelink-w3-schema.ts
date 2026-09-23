@@ -15,7 +15,7 @@ export function w3Metadata(slug: string, title: string, description: string): Me
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }

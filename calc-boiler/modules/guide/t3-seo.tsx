@@ -49,6 +49,7 @@ export function t3JsonLd(input: T3JsonLdInput) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: input.headline,
+    image: `${base}/og-image.png`,
     description: input.description,
     url,
     datePublished: T3_PUBLISHED,
@@ -57,7 +58,7 @@ export function t3JsonLd(input: T3JsonLdInput) {
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
-      logo: { "@type": "ImageObject", url: `${base}/logo.png` },
+      logo: { "@type": "ImageObject", url: `${base}/icon-512.png` },
     },
     mainEntityOfPage: url,
     inLanguage: "en-AU",

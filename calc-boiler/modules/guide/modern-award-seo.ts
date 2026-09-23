@@ -26,6 +26,7 @@ export function buildAwardMetadata(key: ModernAwardKey): Metadata {
       siteName: SITE_CONFIG.name,
       type: "article",
       locale: "en_AU",
+      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title: copy.title, description: copy.description },
   };
@@ -59,12 +60,13 @@ export function buildAwardJsonLd(key: ModernAwardKey) {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: copy.title,
+    image: `${BASE}/og-image.png`,
     description: copy.description,
     author: AUTHORS["penny-ward"].jsonLd,
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
-      logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` },
+      logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     isBasedOn: {
