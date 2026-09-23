@@ -19,6 +19,8 @@ import {
   TAX_BRACKETS,
   MEDICARE_LEVY,
 } from "@/lib/constants";
+import { FORTNIGHTLY_EXTRA_PAY, WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
+import { bracketRatesSentence, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -38,6 +40,9 @@ export default function FortnightlyPayCalculatorPage() {
     [salary, includeHECS]
   );
 
+  // Answer-first lead: the default salary's take-home every fortnight.
+  const lead = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, hasPrivateHealth: true });
+
   const workedExample = useMemo(
     () => calculatePayBreakdown({ grossSalary: 85_000, includeHECS: false, hasPrivateHealth: true }),
     []
@@ -55,9 +60,14 @@ export default function FortnightlyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Fortnightly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Fortnightly Pay Calculator Australia 2025-26</h1>
-          <p className="text-lg text-warmgray">
-            Convert any salary or hourly rate to your fortnightly take-home pay. See exact tax, super, and the net amount paid every 2 weeks using FY2025-26 Australian rates.
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Fortnightly Pay Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-lg text-navy">
+            Fortnightly pay is your annual salary divided by <strong>26</strong>. On <strong>$80,000</strong> that is{" "}
+            {formatAUD(80_000 / 26, 2)} gross and <strong>{formatAUD(lead.fortnightly, 2)} take-home</strong> every fortnight after
+            income tax and Medicare in FY{SITE_CONFIG.financialYear}.
+          </p>
+          <p className="text-warmgray mt-2">
+            Enter your salary below for your own fortnightly tax, super and net pay.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -117,6 +127,54 @@ export default function FortnightlyPayCalculatorPage() {
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {/* --- HOW MANY FORTNIGHTS IN A YEAR? --- */}
+          {/* Targets "fortnights in a year" (2.4k/mo, KD 0; we ranked 69) and
+              "if i get paid fortnightly how many paychecks in a year". The
+              27-pay figures are the ATO's (ato-schedules.ts cites the page). */}
+          <section id="fortnights-in-a-year">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Many Fortnights Are in a Year?</h2>
+            <p className="text-navy mb-4">
+              There are <strong>26 fortnights in a year</strong> (52 weeks &divide; 2), so most people paid fortnightly get 26 pays.
+              Occasionally a financial year has <strong>{FORTNIGHTLY_EXTRA_PAY.extraPayCount} fortnightly pay days</strong>.
+            </p>
+            <p className="text-warmgray mb-4">
+              26 fortnights cover 364 days (26 &times; 14), one day short of a normal year and two short of a leap year. That gap moves
+              your pay day a day or two later each year, and about every 11 to 12 years a {FORTNIGHTLY_EXTRA_PAY.extraPayCount}th pay day
+              falls inside the same financial year. Your salary does not rise that year; it is spread over one more pay, and the
+              ATO&apos;s tax tables (which assume {FORTNIGHTLY_EXTRA_PAY.standardPayCount} pays) publish an optional extra amount you can
+              ask your employer to withhold so you do not end up short at tax time. The{" "}
+              <Link href="/fortnightly-tax-table/" className="text-eucalyptus-dark hover:underline">fortnightly tax table</Link> page lists those amounts.
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Pay cycle</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Pays in a normal year</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Pays in an extra-pay year</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  <tr className="bg-eucalyptus-light/40">
+                    <td className="px-4 py-3 font-medium text-navy">Fortnightly</td>
+                    <td className="px-4 py-3 text-right font-bold text-navy">{FORTNIGHTLY_EXTRA_PAY.standardPayCount}</td>
+                    <td className="px-4 py-3 text-right text-warmgray">{FORTNIGHTLY_EXTRA_PAY.extraPayCount}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-navy">Weekly</td>
+                    <td className="px-4 py-3 text-right font-bold text-navy">{WEEKLY_EXTRA_PAY.standardPayCount}</td>
+                    <td className="px-4 py-3 text-right text-warmgray">{WEEKLY_EXTRA_PAY.extraPayCount}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 font-medium text-navy">Monthly</td>
+                    <td className="px-4 py-3 text-right font-bold text-navy">12</td>
+                    <td className="px-4 py-3 text-right text-warmgray">Always 12</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
           {/* --- HOW IS FORTNIGHTLY PAY CALCULATED? --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Fortnightly Pay Calculated?</h2>
@@ -146,7 +204,7 @@ export default function FortnightlyPayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Is the Fortnightly Pay for Each Annual Salary?</h2>
             <p className="text-warmgray mb-4">
-              Fortnightly take-home pay ranges from <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 50_000, includeHECS: false, hasPrivateHealth: true }).fortnightly, 2)}</strong> on a $50,000 salary to <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 200_000, includeHECS: false, hasPrivateHealth: true }).fortnightly, 2)}</strong> on a $200,000 salary after tax and Medicare for FY2025-26.
+              Fortnightly take-home pay ranges from <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 50_000, includeHECS: false, hasPrivateHealth: true }).fortnightly, 2)}</strong> on a $50,000 salary to <strong>{formatAUD(calculatePayBreakdown({ grossSalary: 200_000, includeHECS: false, hasPrivateHealth: true }).fortnightly, 2)}</strong> on a $200,000 salary after tax and Medicare for FY{SITE_CONFIG.financialYear}.
             </p>
             <p className="text-warmgray mb-4">
               The table below shows fortnightly gross pay, fortnightly tax withheld, and fortnightly after-tax income at 8 common salary levels. All figures assume an Australian resident claiming the tax-free threshold, no HECS-HELP debt, and private health insurance held. Use the <Link href="/income-tax-calculator/" className="text-eucalyptus-dark hover:underline">Income Tax Calculator</Link> for a full annual breakdown at your exact salary.
@@ -256,7 +314,7 @@ export default function FortnightlyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">PAYG Income Tax Withholding</h3>
             <p className="text-warmgray mb-4">
-              Employers withhold income tax from each fortnightly pay using the ATO&apos;s PAYG fortnightly tax table. The withholding amount reflects the FY2025-26 marginal tax rates: <strong>0%</strong> on the first $18,200, <strong>16%</strong> from $18,201 to $45,000, <strong>30%</strong> from $45,001 to $135,000, <strong>37%</strong> from $135,001 to $190,000, and <strong>45%</strong> above $190,000. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>$700</strong> for incomes below $66,667.
+              Employers withhold income tax from each fortnightly pay using the ATO&apos;s PAYG fortnightly tax table. The withholding amount reflects the FY{SITE_CONFIG.financialYear} marginal tax rates: {bracketRatesSentence()}. The &quot;Low Income Tax Offset&quot; reduces tax by up to <strong>$700</strong> for incomes below $66,667.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">Medicare Levy and Surcharge</h3>
@@ -266,7 +324,7 @@ export default function FortnightlyPayCalculatorPage() {
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3 mt-6">HECS-HELP Repayments</h3>
             <p className="text-warmgray mb-4">
-              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY2025-26 system uses marginal rates: <strong>15%</strong> on income between $69,529 and $125,000, <strong>17%</strong> on income between $125,001 and $179,285, and <strong>10%</strong> of total income above $179,285. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
+              HECS-HELP repayments are withheld from fortnightly pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)}. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. Use our <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline">HECS-HELP Calculator</Link> to estimate your fortnightly repayment.
             </p>
 
             <p className="text-warmgray mb-4">
@@ -281,7 +339,7 @@ export default function FortnightlyPayCalculatorPage() {
               The most common mistake is dividing the annual salary by <strong>24</strong> instead of <strong>26</strong>, which overstates each fortnightly paycheck by approximately 8.3%.
             </p>
             <ol className="list-decimal pl-5 space-y-3 text-warmgray mb-4">
-              <li><strong>Dividing by 24 instead of 26.</strong> A year contains 26 fortnights (52 weeks / 2), not 24. Dividing $85,000 by 24 produces $3,541.67 per fortnight, which is <strong>$277.25 more</strong> than the correct gross of {formatAUD(85_000 / 26, 2)}.</li>
+              <li><strong>Dividing by 24 instead of 26.</strong> A year contains 26 fortnights (52 weeks / 2), not 24. Dividing $85,000 by 24 produces {formatAUD(85_000 / 24, 2)} per fortnight, which is <strong>{formatAUD(85_000 / 24 - 85_000 / 26, 2)} more</strong> than the correct gross of {formatAUD(85_000 / 26, 2)}.</li>
               <li><strong>Treating super as a deduction.</strong> The {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee is paid by the employer on top of gross salary. It does not reduce fortnightly take-home pay unless your contract specifies a &quot;total package inclusive of super.&quot;</li>
               <li><strong>Ignoring the tax-free threshold.</strong> The first $18,200 of annual income is tax-free. Employees who do not claim this threshold on their Tax File Number Declaration have a higher PAYG withholding rate applied to every fortnightly pay.</li>
               <li><strong>Forgetting the 27th pay period.</strong> Every 11 to 12 years, the calendar creates 27 fortnightly pay days in a single financial year. This affects PAYG withholding calculations and can cause a small tax shortfall or surplus at year-end.</li>
@@ -295,7 +353,7 @@ export default function FortnightlyPayCalculatorPage() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Related Calculators</h2>
             <p className="text-warmgray mb-4">
-              Use these Australian tax calculators alongside the fortnightly pay calculator to get a complete picture of your income, deductions, and take-home pay for FY2025-26.
+              Use these Australian tax calculators alongside the fortnightly pay calculator to get a complete picture of your income, deductions, and take-home pay for FY{SITE_CONFIG.financialYear}.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <Link href="/weekly-pay-calculator/" className="block p-4 border border-sandstone-dark/20 rounded-lg text-center hover:border-eucalyptus hover:bg-eucalyptus-light/40 transition-colors">
@@ -349,7 +407,7 @@ export default function FortnightlyPayCalculatorPage() {
                 The PAYG system withholds the estimated correct amount of tax regardless of pay frequency. Refunds commonly occur when employees claim work-related deductions, work part of the year, or have income that fluctuates between fortnights. Lodge your tax return after 30 June to reconcile the actual tax owed against total PAYG withheld during the financial year.
               </FAQItem>
               <FAQItem value="hecs" question="How does HECS-HELP affect fortnightly take-home pay?">
-                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY2025-26 marginal repayment rate starts at 15% on income above $69,528, increasing to 17% above $125,000 and 10% of total income above $179,285. The repayment is divided across 26 fortnights by the employer.
+                HECS-HELP repayments reduce fortnightly take-home pay once repayment income exceeds {formatAUD(HECS_HELP.minimumThreshold)} per year. The FY{SITE_CONFIG.financialYear} marginal system charges {hecsBandsSentence()}. The repayment is divided across 26 fortnights by the employer.
               </FAQItem>
               <FAQItem value="gross-net" question="What is the difference between gross fortnightly pay and net fortnightly pay?">
                 Gross fortnightly pay is your annual salary divided by 26 before any deductions. Net fortnightly pay (also called take-home pay) is the amount deposited into your bank account after PAYG tax, Medicare levy, and any HECS repayments are withheld. On an $85,000 salary, gross fortnightly pay is {formatAUD(85_000 / 26, 2)} and net fortnightly pay is <strong>{formatAUD(workedExample.fortnightly, 2)}</strong>.

@@ -2,20 +2,34 @@ import type { Metadata } from "next";
 import HourlyToAnnualCalculatorPage from "@/modules/calculator/hourly-to-annual-salary-calculator";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { calculatePayBreakdown, EMPLOYMENT, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hourly-to-annual-salary-calculator/`;
 
+// Answer-first figures, computed from the tax engine at build time. HEADLINE_RATE
+// must match the module's lead (a "use client" module can't export it here).
+const HOURS = EMPLOYMENT.hoursPerYear; // 38 × 52 = 1,976
+const HOURS_LABEL = HOURS.toLocaleString("en-AU");
+const FY = SITE_CONFIG.financialYear;
+const HEADLINE_RATE = 30;
+const annualAt = (rate: number) => rate * HOURS;
+const netAt = (rate: number) => calculatePayBreakdown({ grossSalary: annualAt(rate) }).takeHomePay;
+
+// GSC: "hourly rate to annual salary" (323 impr), "hourly to annual salary",
+// "hourly to annual salary calculator" (12% CTR). DataForSEO: "how many hours
+// in a year" 12.1k/mo, KD 4 — answered in the description and on the page.
+const TITLE = `Hourly to Annual Salary Calculator Australia: $${HEADLINE_RATE}/hr = ${formatAUD(annualAt(HEADLINE_RATE))}`;
+const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours a year), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
+
 export const metadata: Metadata = {
-  title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
-  description:
-    "Convert any hourly rate to an annual salary in 1 second. See gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — Australian rates FY2026-27.",
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: {
-    title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
-    description: "Convert any hourly rate to an annual salary in 1 second. Gross, take-home after tax, plus weekly/fortnightly/monthly breakdowns — FY2026-27.",
+    title: TITLE,
+    description: DESCRIPTION,
     url: URL,
     siteName: SITE_CONFIG.name,
     type: "website",
@@ -23,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hourly to Annual Salary Calculator Australia — $X/hr = $? per year",
-    description: "Convert any hourly rate to an annual salary instantly — gross and take-home after tax, FY2026-27.",
+    title: TITLE,
+    description: `Any hourly rate to an annual salary, before and after tax, ${FY}.`,
   },
 };
 
@@ -60,7 +74,7 @@ const faq: WithContext<FAQPage> = {
       name: "$40 an hour is how much a year in Australia?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "$40/hr full-time (38h/week, 52 weeks) = $79,040 gross per year, approximately $63,547 after tax (FY2026-27).",
+        text: `$40/hr full-time (${EMPLOYMENT.standardWeeklyHours}h/week, ${EMPLOYMENT.weeksPerYear} weeks) = ${formatAUD(annualAt(40))} gross per year, ${formatAUD(netAt(40))} after tax (FY${FY}).`,
       },
     },
     {
@@ -68,7 +82,7 @@ const faq: WithContext<FAQPage> = {
       name: "$25 an hour is how much per year?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "$25/hr = $49,400 gross per year, approximately $42,815 after tax.",
+        text: `$25/hr = ${formatAUD(annualAt(25))} gross per year, ${formatAUD(netAt(25))} after tax (FY${FY}).`,
       },
     },
     {
@@ -76,7 +90,15 @@ const faq: WithContext<FAQPage> = {
       name: "$50 an hour is how much per year?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "$50/hr = $98,800 gross per year, approximately $75,597 after tax.",
+        text: `$50/hr = ${formatAUD(annualAt(50))} gross per year, ${formatAUD(netAt(50))} after tax (FY${FY}).`,
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How many working hours are in a year in Australia?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: `A full-time employee is paid for ${HOURS_LABEL} hours a year: ${EMPLOYMENT.standardWeeklyHours} ordinary hours a week × ${EMPLOYMENT.weeksPerYear} weeks. A 40-hour week is ${(40 * EMPLOYMENT.weeksPerYear).toLocaleString("en-AU")} hours and a 37.5-hour week is ${(37.5 * EMPLOYMENT.weeksPerYear).toLocaleString("en-AU")}. A calendar year has 8,760 hours in total (8,784 in a leap year).`,
       },
     },
     {

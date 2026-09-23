@@ -13,10 +13,24 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  EMPLOYMENT,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
+  TAX_BRACKETS,
 } from "@/lib/constants";
+
+// ── "How many hours in a year" ──────────────────────────────────────────────
+// Pure arithmetic on EMPLOYMENT (38-hour NES week, 52 weeks, 4 weeks' annual
+// leave), so nothing here can drift from the salary↔hourly conversions.
+// Targets "how many hours in a year" (12.1k/mo, KD 4; we ranked 48–62).
+const HOURS_IN_YEAR = 365 * 24; // 8,760
+const HOURS_IN_LEAP_YEAR = 366 * 24; // 8,784
+const WORK_WEEK_OPTIONS = [35, 37.5, EMPLOYMENT.standardWeeklyHours, 40] as const;
+const HOURS_WORKED_EXCL_LEAVE =
+  EMPLOYMENT.standardWeeklyHours * (EMPLOYMENT.weeksPerYear - EMPLOYMENT.annualLeaveWeeks);
+/** Example rate for the answer-first lead. Keep in step with HEADLINE_RATE in app/hourly-to-annual-salary-calculator/page.tsx (a "use client" module cannot export values to a server page). */
+const HEADLINE_RATE = 30;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -37,6 +51,9 @@ export default function HourlyToAnnualCalculatorPage() {
 
   const breakdown = useMemo(() => calculatePayBreakdown({ grossSalary: annualGross }), [annualGross]);
 
+  const headlineAnnual = HEADLINE_RATE * EMPLOYMENT.hoursPerYear;
+  const headlineNet = calculatePayBreakdown({ grossSalary: headlineAnnual }).takeHomePay;
+
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
@@ -52,9 +69,14 @@ export default function HourlyToAnnualCalculatorPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Hourly to Annual Salary Calculator
           </h1>
-          <p className="text-lg text-warmgray">
-            Convert your hourly wage directly to an annual gross salary. See exactly how much you earn
-            and what you take home after ATO income tax and Medicare for FY{SITE_CONFIG.financialYear}.
+          <p className="text-lg text-navy">
+            Multiply your hourly rate by <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}</strong> ({EMPLOYMENT.standardWeeklyHours} hours &times; {EMPLOYMENT.weeksPerYear} weeks).
+            ${HEADLINE_RATE} an hour is <strong>{formatAUD(headlineAnnual)} a year</strong> before tax and{" "}
+            {formatAUD(headlineNet)} after tax in FY{SITE_CONFIG.financialYear}.
+          </p>
+          <p className="text-warmgray mt-2">
+            Enter your own rate and hours below to see your annual salary and what you take home after ATO
+            income tax and Medicare.
           </p>
           <TrustBar className="mt-4" />
         </section>
@@ -171,6 +193,50 @@ export default function HourlyToAnnualCalculatorPage() {
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+
+          {/* H2: How Many Hours in a Year? */}
+          <section id="hours-in-a-year">
+            <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Many Working Hours Are in a Year?</h2>
+            <p className="mb-4 text-navy">
+              A full-time Australian employee is paid for <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours a year</strong>:{" "}
+              {EMPLOYMENT.standardWeeklyHours} ordinary hours a week under the National Employment Standards &times; {EMPLOYMENT.weeksPerYear} weeks.
+              A calendar year has {HOURS_IN_YEAR.toLocaleString("en-AU")} hours in total ({HOURS_IN_LEAP_YEAR.toLocaleString("en-AU")} in a leap year).
+            </p>
+            <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm mb-4">
+              <table className="w-full text-sm">
+                <thead className="bg-sandstone">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-semibold text-navy">Hours a week</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">Paid hours a year</th>
+                    <th className="px-4 py-3 text-right font-semibold text-navy">${HEADLINE_RATE}/hr as a salary</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {WORK_WEEK_OPTIONS.map((hours) => {
+                    const standard = hours === EMPLOYMENT.standardWeeklyHours;
+                    const yearly = hours * EMPLOYMENT.weeksPerYear;
+                    return (
+                      <tr key={hours} className={standard ? "bg-eucalyptus-light/40" : "hover:bg-sandstone/50"}>
+                        <td className="px-4 py-2.5 font-medium text-navy">
+                          {hours} &times; {EMPLOYMENT.weeksPerYear}
+                          {standard && <span className="ml-2 text-xs text-eucalyptus-dark">NES full time</span>}
+                        </td>
+                        <td className="px-4 py-2.5 text-right font-bold text-navy">{yearly.toLocaleString("en-AU")}</td>
+                        <td className="px-4 py-2.5 text-right text-warmgray">{formatAUD(HEADLINE_RATE * yearly)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-warmgray">
+              Those are <em>paid</em> hours, which is what salary conversions use: annual leave and public holidays are paid,
+              so they stay in. Hours actually at work are lower. Taking out {EMPLOYMENT.annualLeaveWeeks} weeks of annual leave leaves{" "}
+              <strong>{HOURS_WORKED_EXCL_LEAVE.toLocaleString("en-AU")} hours</strong> on a {EMPLOYMENT.standardWeeklyHours}-hour week,
+              before public holidays and personal leave. For a timesheet total, use the{" "}
+              <Link href="/work-hours-calculator/" className="text-eucalyptus-dark underline hover:text-navy">Work Hours Calculator</Link>.
+            </p>
+          </section>
 
           {/* H2: How Do You Convert Hourly Rate to Annual Salary? */}
           <section>
@@ -522,7 +588,7 @@ export default function HourlyToAnnualCalculatorPage() {
               </AccordionItem>
               <AccordionItem value="tax-threshold" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>At what hourly rate do I start paying income tax?</AccordionTrigger>
-                <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> per year. At 38 hours per week, you start paying income tax at an hourly rate above <strong>$9.21/hr</strong>. Every dollar of assessable income above $18,200 is taxed at the applicable marginal rate, starting at 16% for income between $18,201 and $45,000 in FY{SITE_CONFIG.financialYear}.</p></AccordionContent>
+                <AccordionContent><p className="text-warmgray">The tax-free threshold is <strong>$18,200</strong> per year. At 38 hours per week, you start paying income tax at an hourly rate above <strong>$9.21/hr</strong>. Every dollar of assessable income above $18,200 is taxed at the applicable marginal rate, starting at {Math.round(TAX_BRACKETS[1].rate * 100)}% for income between {formatAUD(TAX_BRACKETS[1].min)} and {formatAUD(TAX_BRACKETS[1].max)} in FY{SITE_CONFIG.financialYear}.</p></AccordionContent>
               </AccordionItem>
               <AccordionItem value="hecs" className="rounded-xl border border-sandstone-dark/20 px-5">
                 <AccordionTrigger>Does my HECS-HELP debt affect this conversion?</AccordionTrigger>
