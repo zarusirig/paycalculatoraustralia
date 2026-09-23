@@ -456,6 +456,41 @@ test("T5: chef, bartender and barista headline rows", () => {
   assert.equal(getOccupation("barista")!.award!.code, "MA000119");
 });
 
+test("T5: mechanic — Vehicle award cl 16.2 and the pay guide's casual daytime rate", () => {
+  checkPublished("mechanic", [
+    ["R6 — Tradesperson Level I (motor mechanic)", 1119.1, 29.45, 36.81],
+    ["R7 — Tradesperson Level II (master technician)", 1224.4, 32.22, 40.28],
+    ["R5 — Vehicle RS&R industry employee Level 5", 1088.2, 28.64, 35.8],
+  ]);
+});
+
+test("T5: hairdresser — Table 4 levels and the cl 18.6 graduate rate (92.5% of the standard rate)", () => {
+  checkPublished("hairdresser", [
+    ["Level 3", 1119.1, 29.45, 36.81],
+    ["Level 5", 1174.0, 30.89, 38.61],
+    ["Hairdressing graduate — first 12 months", 1035.17, 27.24, null],
+  ]);
+  assert.equal(Math.round(1119.1 * 0.925 * 100) / 100, 1035.17);
+});
+
+test("T5: lab technician — HPSS level 1 shared rows, support services lab assistant, Manufacturing C9–C5", () => {
+  checkPublished("lab-technician", [
+    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
+    ["Support Services level 1 — laboratory assistant", 1024.7, 26.97, 33.71],
+    ["Support Services level 3 — laboratory assistant", 1106.2, 29.11, 36.39],
+    ["C9 — Laboratory Technician Level I", 1154.3, 30.38, 37.98],
+    ["C5 — Laboratory Technician Level V", 1309.5, 34.46, 43.08],
+  ]);
+});
+
+test("T5: pharmacy assistant reads the shared Pharmacy Award constants", () => {
+  checkPublished("pharmacy-assistant", [
+    ["Pharmacy assistant level 1", 1056.8, 27.81, 34.76],
+    ["Pharmacy assistant level 4", 1165.1, 30.66, 38.33],
+  ]);
+  assert.equal(getOccupation("pharmacy-assistant")!.penalties, getOccupation("pharmacist")!.penalties);
+});
+
 test("T5: retail worker reads the shared retail constants", () => {
   const rows = getOccupation("retail-worker")!.tables[0].rows;
   assert.equal(rows.length, RETAIL_RATES.length);

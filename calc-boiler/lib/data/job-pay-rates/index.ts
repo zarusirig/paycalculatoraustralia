@@ -26,12 +26,16 @@ import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
 import { ELECTRICIAN } from "./electrician";
 import { ENGINEER } from "./engineer";
+import { HAIRDRESSER } from "./hairdresser";
+import { LAB_TECHNICIAN } from "./lab-technician";
 import { LAWYER } from "./lawyer";
+import { MECHANIC } from "./mechanic";
 import { MEDICAL_RECEPTIONIST } from "./medical-receptionist";
 import { MIDWIFE } from "./midwife";
 import { NURSE } from "./nurse";
 import { OCCUPATIONAL_THERAPIST } from "./occupational-therapist";
 import { PHARMACIST } from "./pharmacist";
+import { PHARMACY_ASSISTANT } from "./pharmacy-assistant";
 import { PHYSIOTHERAPIST } from "./physiotherapist";
 import { PLUMBER } from "./plumber";
 import { PROPERTY_MANAGER } from "./property-manager";
@@ -81,6 +85,10 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   bartender: BARTENDER,
   barista: BARISTA,
   "retail-worker": RETAIL_WORKER,
+  mechanic: MECHANIC,
+  hairdresser: HAIRDRESSER,
+  "lab-technician": LAB_TECHNICIAN,
+  "pharmacy-assistant": PHARMACY_ASSISTANT,
 };
 
 /** Every occupation, in the order the hub lists them. */
