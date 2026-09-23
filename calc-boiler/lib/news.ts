@@ -7,6 +7,11 @@ import {
   MARCH_2026,
   SEPTEMBER_2026,
 } from "@/lib/constants/centrelink-income-test";
+import {
+  SCHADS_HOME_CARE_DISABILITY,
+  SCHADS_HOME_CARE_DISABILITY_DEC_2026,
+  SCHADS_SCHEDULE_E_INCREASE,
+} from "@/lib/constants/schads-award";
 // --- end G6 ---
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
@@ -674,6 +679,11 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const apRise = m(apSep.single.total - apMar.single.total);
   const apCoupleRise = m(apSep.coupleCombined.total - apMar.coupleCombined.total);
 
+  const SE = SCHADS_SCHEDULE_E_INCREASE;
+  const sePct = `${Math.round(SE.interimIncrease * 100)}%`;
+  const seL3Now = SCHADS_HOME_CARE_DISABILITY.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+  const seL3Dec = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 3 pay point 1")?.weekly ?? NaN;
+
   return [
     {
       slug: "age-pension-increase-september-2026",
@@ -702,6 +712,35 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { question: "What are the new deeming rates from 20 September 2026?", answer: `Deeming rates rose from ${p(D.previousLowerRate)} to ${p(D.lowerRate)} on the first ${w(D.thresholds.single)} of a single person's financial assets (${w(D.thresholds.couple)} combined for a couple), and from ${p(D.previousUpperRate)} to ${p(D.upperRate)} on anything above that.` },
         { question: "What is the JobSeeker rate from 20 September 2026?", answer: `A single person with no children can get up to ${m(jsSep.single)} a fortnight, up from ${m(jsMar.single)}. The partnered rate is ${m(jsSep.partnered)} each, and the rate for a single parent or someone aged 55 or over after nine months on payment is ${m(jsSep.singleWithChildren)}.` },
         { question: "Do I need to do anything to get the pension increase?", answer: "No. Services Australia applies the new rates and deeming rates automatically. Your next payment amount shows in your Centrelink online account or the Express Plus Centrelink app." },
+      ],
+    },
+    {
+      slug: "schads-home-care-disability-pay-rise-december-2026",
+      headline: `Home Care Disability Workers Get a ${sePct} Pay Rise From ${SE.operativeFrom} Under the SCHADS Award`,
+      title: `SCHADS ${sePct} Pay Rise: Home Care Disability Rates From 1 Dec 2026`,
+      description: `The Fair Work Commission confirmed a ${sePct} interim increase for SCHADS Schedule E home care disability employees on ${SE.decidedOn}, deferred from ${SE.deferredFrom} to ${SE.operativeFrom}. Level 3 (Cert III) goes from ${m(seL3Now)} to ${m(seL3Dec)} a week. New rates, who is covered and why it was delayed.`,
+      category: "Wages",
+      datePublished: "2026-09-11",
+      dateModified: "2026-09-24",
+      authorId: "penny-ward",
+      relatedCalculators: [
+        { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
+        { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+        { href: "/weekly-pay-calculator/", label: "Weekly Pay Calculator" },
+      ],
+      relatedArticles: ["award-wage-increase-2026-industries", "minimum-wage-increase-july-2026"],
+      sources: [
+        { title: `Gender-based undervaluation — priority awards review, SCHADS Award: Decision ${SE.decision} (${SE.decidedOn})`, url: SE.decisionUrl, publisher: "Fair Work Commission" },
+        { title: `Determination ${SE.determination} — Schedule E interim increase`, url: SE.determinationUrl, publisher: "Fair Work Commission" },
+        { title: "Gender-based undervaluation – priority awards review", url: SE.reviewUrl, publisher: "Fair Work Commission" },
+        { title: "Changes to the Social, Community, Home Care and Disability Services Award (21 September 2026)", url: SE.fwoUrl, publisher: "Fair Work Ombudsman" },
+        { title: "Vehicle allowance determination PR813674", url: "https://www.fwc.gov.au/documents/awardsandorders/pdf/pr813674.pdf", publisher: "Fair Work Commission" },
+      ],
+      faq: [
+        { question: `When does the SCHADS ${sePct} pay rise start?`, answer: `From the first full pay period starting on or after ${SE.operativeFrom}. The Fair Work Commission had proposed ${SE.deferredFrom}, but deferred it in ${SE.decision} because the Commonwealth had not committed to funding the increase.` },
+        { question: "Who gets the SCHADS home care disability pay rise?", answer: "Employees classified under Schedule E of the SCHADS Award — home care employees doing disability care, meaning domestic assistance or home maintenance for a person with disability in the home care sector. Disability support workers in the social and community services stream (Schedule B) are not part of this increase." },
+        { question: `Is the increase exactly ${sePct} for everyone?`, answer: `Almost. Every Schedule E rate rises ${sePct} except Level 4 pay point 2 (${(SE.exceptions["Level 4 pay point 2"] * 100).toFixed(2)}%) and Level 5 pay point 2 (${(SE.exceptions["Level 5 pay point 2"] * 100).toFixed(2)}%), whose full remaining increase is smaller than ${sePct}.` },
+        { question: "Is there another SCHADS pay rise after December 2026?", answer: `Yes. The remaining increase — ${SE.remainderRange} — applies from ${SE.remainderFrom}, when a new classification structure replaces Schedules B, C, E and F of the award, adjusted for the 2027 Annual Wage Review.` },
       ],
     },
   ];
