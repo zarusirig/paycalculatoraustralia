@@ -25,6 +25,7 @@ import {
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
+import { AmountPresets, convertPeriod, HeadTermLinks, PERIOD_NOUN, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -94,8 +95,20 @@ const EX = (() => {
 const LADDER = [30_000, 40_000, 45_000, 50_000, 60_000, 70_000, 80_000, 90_000, 100_000, 120_000, 150_000, 200_000];
 const COMPARISON_SALARIES = [30_000, 45_000, 60_000, 80_000, 100_000, 150_000];
 
+const PRESETS: Record<EntryPeriod, readonly number[]> = {
+  annual: [45_000, 80_000, 120_000, 190_000],
+  monthly: [4_000, 6_000, 8_000, 10_000],
+  fortnightly: [2_000, 3_000, 4_000, 5_000],
+  weekly: [1_000, 1_500, 2_000, 2_500],
+};
+const MAX_BY_PERIOD: Record<EntryPeriod, number> = { annual: 500_000, monthly: 45_000, fortnightly: 20_000, weekly: 10_000 };
+
 export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: string; a: string }[] }) {
-  const [salary, setSalary] = useState(80_000);
+  // moneysmart (#1 for "income tax calculator") takes income in the period the
+  // user knows; salary below is always the annualised figure the engine needs.
+  const [period, setPeriod] = useState<EntryPeriod>("annual");
+  const [amount, setAmount] = useState(80_000);
+  const salary = Math.round(amount * PERIODS_PER_YEAR[period]);
 
   const result = useMemo(() => {
     const rawTax = calculateIncomeTax(salary);
@@ -129,8 +142,9 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="space-y-12">
-          {/* HERO */}
-          <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12">
+          {/* HERO — compact so the calculator is above the fold (intent map, Sep 2026).
+              The 5-bracket summary box moved directly under the calculator. */}
+          <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8">
             <div className="max-w-4xl mx-auto">
               <nav aria-label="breadcrumb">
                 <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -140,20 +154,13 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
                 </ol>
               </nav>
 
-              <div className="flex justify-between items-start mb-4 mt-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                  Income Tax Calculator Australia {FY}
-                </h1>
-              </div>
-              <p className="text-xl text-warmgray">
-                Work out exactly how much income tax you pay on any salary using the official ATO rates for FY{FY} — including the new {NEW_RATE} bracket that started on 1 July 2026 and the Low Income Tax Offset (LITO).
+              <h1 className="mt-3 mb-2 text-2xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                Income Tax Calculator Australia {FY} — Simple Tax Calculator
+              </h1>
+              <p className="text-base md:text-lg text-warmgray">
+                Work out exactly how much income tax you pay on any annual, monthly, fortnightly or weekly income using the official ATO rates for FY{FY} — including the new {NEW_RATE} bracket that started on 1 July 2026 and the Low Income Tax Offset (LITO).
               </p>
-              <div className="mt-6 bg-white/70 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
-                <p className="text-base leading-relaxed">
-                  <strong className="text-navy">Australian income tax for FY{FY} uses 5 brackets:</strong> 0% up to {formatAUD(TAX_FREE_THRESHOLD)}, {NEW_RATE} to {formatAUD(TAX_BRACKETS[1].max)}, {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, and {formatPercent(TAX_BRACKETS[4].rate, 0)} above. Most workers also pay the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Lodging your {PREV_FY} return? The old {OLD_RATE} rate applied — see the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link>.
-                </p>
-              </div>
-              <TrustBar className="mt-4" />
+              <TrustBar className="mt-3" />
             </div>
           </section>
 
@@ -164,23 +171,33 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Input */}
                   <div className="space-y-6">
-                    <form onSubmit={(e) => e.preventDefault()}>
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                      <PeriodToggle periods={["annual", "monthly", "fortnightly", "weekly"]} value={period} label="Income frequency"
+                        onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
                       <div>
                         <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">
-                          Gross Annual Salary
+                          Taxable income (per {PERIOD_NOUN[period]}, before tax)
                         </label>
                         <div className="flex items-center">
                           <span className="text-warmgray-light mr-2">$</span>
                           <input
                             type="number" id="salary" name="salary"
-                            min={0} max={500000} step={1000}
-                            className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20 sm:text-sm"
-                            value={salary}
-                            onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 500000))}
+                            min={0} max={MAX_BY_PERIOD[period]} step={period === "annual" ? 1000 : 1}
+                            className="block w-full rounded-md border-sandstone-dark/30 text-lg font-semibold shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20"
+                            value={amount}
+                            onChange={(e) => setAmount(clamp(Number(e.target.value || 0), 0, MAX_BY_PERIOD[period]))}
                           />
                         </div>
-                        <input type="range" min={0} max={300000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
-                          value={clamp(salary, 0, 300000)} onChange={(e) => setSalary(Number(e.target.value))} />
+                        {period === "annual" && (
+                          <input type="range" min={0} max={300000} step={5000} className="mt-2 w-full accent-eucalyptus" aria-hidden="true"
+                            value={clamp(amount, 0, 300000)} onChange={(e) => setAmount(Number(e.target.value))} />
+                        )}
+                        <AmountPresets values={PRESETS[period]} current={amount} onPick={setAmount} />
+                        {period !== "annual" && <p className="mt-1 text-xs text-warmgray-light">= {formatAUD(salary)} a year</p>}
+                        {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
+                        <p className="mt-3 rounded-lg bg-eucalyptus-light/40 px-3 py-2 text-sm text-navy md:hidden" aria-hidden="true">
+                          Tax: <strong className="text-ochre">{formatAUD(result.totalTax)}</strong> a year · take-home <strong className="text-eucalyptus-dark">{formatAUD(result.takeHome)}</strong>
+                        </p>
                       </div>
                       <div className="pt-4">
                         <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-200">
@@ -193,7 +210,13 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
                   {/* Results */}
                   <Card className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
                     <CardContent className="p-6">
-                      <h2 className="text-xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Breakdown</h2>
+                      <h2 className="text-xl font-semibold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Breakdown</h2>
+                      {/* Headline answer first (moneysmart: "The estimated tax on your taxable income is …"). */}
+                      <div className="mb-4 rounded-xl bg-white p-4 text-center shadow-sm">
+                        <p className="text-xs text-warmgray-light">Estimated tax on {formatAUD(salary)} a year</p>
+                        <p className="text-3xl font-extrabold text-ochre">{formatAUD(result.totalTax)}</p>
+                        <p className="text-xs text-warmgray">income tax + Medicare · {period === "annual" ? `${formatAUD(result.totalTax / 52)} per week` : `${formatAUD(result.totalTax / PERIODS_PER_YEAR[period])} per ${PERIOD_NOUN[period]}`}</p>
+                      </div>
                       <div className="space-y-3">
                         <div className="flex justify-between"><span className="text-warmgray">Gross Income</span><span className="font-bold text-navy">{formatAUD(salary)}</span></div>
                         <div className="border-t border-sandstone-dark/20" />
@@ -260,6 +283,15 @@ export default function IncomeTaxCalculatorPage({ faqs }: { faqs: readonly { q: 
               </CardContent>
             </Card>
           </section>
+
+          <div className="max-w-4xl mx-auto -mt-6 space-y-4">
+            <HeadTermLinks terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
+              <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
+                <p className="text-base leading-relaxed">
+                  <strong className="text-navy">Australian income tax for FY{FY} uses 5 brackets:</strong> 0% up to {formatAUD(TAX_FREE_THRESHOLD)}, {NEW_RATE} to {formatAUD(TAX_BRACKETS[1].max)}, {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, and {formatPercent(TAX_BRACKETS[4].rate, 0)} above. Most workers also pay the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Lodging your {PREV_FY} return? The old {OLD_RATE} rate applied — see the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link>.
+                </p>
+              </div>
+          </div>
 
           {/* CONTENT SECTIONS */}
           <div className="max-w-4xl mx-auto space-y-10">

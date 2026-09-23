@@ -289,7 +289,7 @@ export default function EmploymentTypeCalculatorPage() {
                 </AccordionItem>
                 <AccordionItem value="casual-super" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>Do casual workers get superannuation?</AccordionTrigger>
-                  <AccordionContent><p className="text-warmgray">Yes. All employees, including casuals, receive the <strong>12% superannuation guarantee</strong>. Super is calculated on the casual employee&apos;s ordinary time earnings, which includes the 25% casual loading.</p></AccordionContent>
+                  <AccordionContent><p className="text-warmgray">Yes. Casuals receive the <strong>{formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation guarantee</strong> like other employees (if they are under 18, only in weeks they work more than 30 hours). Super is calculated on the casual employee&apos;s ordinary time earnings, which includes the 25% casual loading.</p></AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="pt-vs-casual" className="rounded-xl border border-sandstone-dark/20 px-5">
                   <AccordionTrigger>What is the difference between part-time and casual?</AccordionTrigger>

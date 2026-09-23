@@ -60,12 +60,12 @@ const faqSchema: WithContext<FAQPage> = {
     {
       "@type": "Question",
       name: "When must my employer pay my final pay?",
-      acceptedAnswer: { "@type": "Answer", text: "Under the Fair Work Act, your employer must pay your final pay within 7 days of your employment ending or on the next scheduled pay day, whichever comes first. This includes outstanding wages, accrued leave, and any notice period pay." },
+      acceptedAnswer: { "@type": "Answer", text: "Most awards require your employer to pay your final pay within 7 days after your last day of employment. If your award or agreement has no rule, the Fair Work Act's general pay rules apply. Final pay includes outstanding wages, accrued leave, and any notice period pay." },
     },
     {
       "@type": "Question",
       name: "Is leave loading included in my final pay?",
-      acceptedAnswer: { "@type": "Answer", text: "Yes, if your award or agreement provides for annual leave loading (typically 17.5%), it must be paid on your unused annual leave balance when employment ends." },
+      acceptedAnswer: { "@type": "Answer", text: "Yes, if you would have received annual leave loading (typically 17.5%) when taking leave during employment, it must be paid on your unused annual leave balance when employment ends, even if the award, agreement or contract says otherwise." },
     },
     {
       "@type": "Question",

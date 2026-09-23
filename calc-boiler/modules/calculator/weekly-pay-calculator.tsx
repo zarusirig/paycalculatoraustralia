@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants";
 import { WEEKLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { bracketRateList, hecsBandsSentence } from "@/modules/calculator/fy-rate-copy";
+import { AmountPresets, convertPeriod, HeadTermLinks, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
 // Worked-example figures, computed from the tax engine so the copy rolls over
 // with the constants (it had frozen at FY2025-26 16%-bracket numbers).
@@ -28,6 +29,9 @@ const EX_70K = calculatePayBreakdown({ grossSalary: 70_000, includeHECS: false, 
 const EX_180K = calculatePayBreakdown({ grossSalary: 180_000, includeHECS: false, hasPrivateHealth: true });
 const EX_WEEKLY_GAP = 80_000 / 52 - EX.weekly;
 const MLS = MEDICARE_LEVY.surcharge;
+
+const ANNUAL_PRESETS = [50_000, 75_000, 100_000, 150_000] as const;
+const PERIOD_PRESETS = [1_000, 1_500, 2_000, 2_500] as const;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -39,7 +43,12 @@ const SOURCES_LIST: SourceLink[] = [
 ];
 
 export default function WeeklyPayCalculatorPage() {
-  const [salary, setSalary] = useState(80_000);
+  // "weekly tax calculator" searchers know their weekly pay, not their salary
+  // (the ATO tax withheld calculator and paycalculator.com.au both take a
+  // weekly amount), so weekly entry is offered alongside annual salary.
+  const [period, setPeriod] = useState<EntryPeriod>("annual");
+  const [amount, setAmount] = useState(80_000);
+  const salary = Math.round(amount * PERIODS_PER_YEAR[period]);
   const [includeHECS, setIncludeHECS] = useState(false);
 
   const result = useMemo(
@@ -51,7 +60,8 @@ export default function WeeklyPayCalculatorPage() {
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
         {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -59,31 +69,41 @@ export default function WeeklyPayCalculatorPage() {
               <li><span className="font-medium text-navy" aria-current="page">Weekly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Weekly Pay Calculator Australia {SITE_CONFIG.financialYear}</h1>
-          <p className="text-lg text-navy">
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2">Weekly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <p className="text-base md:text-lg text-navy">
             Weekly pay is your annual salary divided by <strong>52</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 52, 2)} gross
             and <strong>{formatAUD(EX.weekly, 2)} take-home</strong> every week after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2">Enter your salary below for your own weekly tax, super and net pay.</p>
-          <TrustBar className="mt-4" />
+          <p className="text-warmgray mt-2 text-sm md:text-base">Use it as a weekly tax calculator: enter your weekly pay or annual salary.</p>
+          <TrustBar className="mt-3" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-6 text-center">Calculate Your Weekly Take-Home Pay</h2>
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Weekly Tax &amp; Take-Home Pay</h2>
           <Card className="shadow-md">
             <CardContent className="p-6 md:p-8">
               <div className="grid md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                  <PeriodToggle periods={["weekly", "annual"]} value={period} label="I'm entering my gross"
+                    onChange={(p) => { setAmount(convertPeriod(amount, period, p)); setPeriod(p); }} />
                   <div>
-                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">Gross Annual Salary</label>
+                    <label htmlFor="salary" className="block text-sm font-medium text-navy mb-1">{period === "annual" ? "Gross annual salary" : "Gross weekly pay (before tax)"}</label>
                     <div className="flex items-center"><span className="text-warmgray-light mr-2">$</span>
-                      <input type="number" id="salary" min={0} max={500000} step={1000} value={salary}
-                        onChange={(e) => setSalary(clamp(Number(e.target.value || 0), 0, 500000))}
-                        className="block w-full rounded-md border-sandstone-dark/30 shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
+                      <input type="number" id="salary" min={0} max={period === "annual" ? 500000 : Math.round(500000 / 52)} step={period === "annual" ? 1000 : 1} value={amount}
+                        onChange={(e) => setAmount(clamp(Number(e.target.value || 0), 0, period === "annual" ? 500000 : Math.round(500000 / 52)))}
+                        className="block w-full rounded-md border-sandstone-dark/30 text-lg font-semibold shadow-sm focus:border-eucalyptus focus:ring-eucalyptus/20" />
                     </div>
-                    <input type="range" min={0} max={300000} step={5000} value={clamp(salary, 0, 300000)}
-                      onChange={(e) => setSalary(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    {period === "annual" && (
+                      <input type="range" min={0} max={300000} step={5000} value={clamp(amount, 0, 300000)}
+                        onChange={(e) => setAmount(Number(e.target.value))} className="mt-2 w-full accent-eucalyptus" aria-hidden="true" />
+                    )}
+                    <AmountPresets values={period === "annual" ? ANNUAL_PRESETS : PERIOD_PRESETS} current={amount} onPick={setAmount} />
+                    {/* Mobile: the result card stacks below the form, so surface the answer here too. */}
+                    <p className="mt-3 rounded-lg bg-eucalyptus-light/40 px-3 py-2 text-sm text-navy md:hidden" aria-hidden="true">
+                      Tax: <strong className="text-ochre">{formatAUD((result.netIncomeTax + result.medicareLevy) / 52, 2)}</strong>/week · take-home <strong className="text-eucalyptus-dark">{formatAUD(result.weekly, 2)}</strong>
+                    </p>
+                    <p className="mt-1 text-xs text-warmgray-light">{period === "annual" ? `= ${formatAUD(salary / 52, 2)} gross a week` : `= ${formatAUD(salary)} a year`}</p>
                   </div>
                   <label className="flex cursor-pointer items-center gap-2 text-sm">
                     <input type="checkbox" checked={includeHECS} onChange={(e) => setIncludeHECS(e.target.checked)}
@@ -119,6 +139,8 @@ export default function WeeklyPayCalculatorPage() {
             </CardContent>
           </Card>
         </section>
+
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "incomeTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
@@ -339,7 +361,7 @@ export default function WeeklyPayCalculatorPage() {
                 Usually {WEEKLY_EXTRA_PAY.standardPayCount}. Fifty-two weeks cover 364 days, so pay day drifts a day or two later each year, and every few years a
                 financial year contains <strong>{WEEKLY_EXTRA_PAY.extraPayCount} weekly pay days</strong>. Your salary is then spread over one more pay. The ATO&apos;s{" "}
                 <Link href="/weekly-tax-table/" className="text-eucalyptus-dark hover:underline">weekly tax table</Link> publishes an optional extra amount you can ask your
-                employer to withhold that year so you are not short at tax time.
+                employer to withhold that year so you are not short at tax time. 2026-27 is one of those years if you&apos;re paid on a Wednesday: see <Link href="/fortnights-in-a-year/" className="text-eucalyptus-dark hover:underline">pay periods in 2026-27</Link>.
               </FAQItem>
               <FAQItem value="casual" question="How do casual workers calculate weekly pay?">
                 Casual workers multiply their hourly rate by the number of hours worked in the week. A casual loading of <strong>25%</strong> is already included in the hourly rate under most Modern Awards. Weekly PAYG tax is then calculated based on the annualised equivalent of that weekly gross amount. Casual income varies week to week, so the tax withheld each pay period also fluctuates.

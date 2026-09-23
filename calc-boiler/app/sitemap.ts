@@ -332,6 +332,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026): data study + embed instructions.
+  // /embed/take-home-pay/ is deliberately absent: it is noindex (widget document).
+  allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "embed", changeFrequency: "yearly" as const, priority: 0.5 });
+  // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end F7 ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "site-directory"];

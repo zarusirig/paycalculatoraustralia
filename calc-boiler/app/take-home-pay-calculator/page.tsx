@@ -15,28 +15,31 @@ const at50k = calculatePayBreakdown({ grossSalary: 50_000 });
 const at100k = calculatePayBreakdown({ grossSalary: 100_000 });
 const keep = (net: number, gross: number) => `${((net / gross) * 100).toFixed(1)}%`;
 
-// 8.6k impr at 0.41% CTR (pos 4.8). DataForSEO: "take home pay calculator
-// after tax", "take home pay calculator ato", "take home pay after salary
-// sacrifice calculator". Title adds the FY and "After Tax"; description leads
-// with the $80k answer.
-// Previous: "Take-Home Pay Calculator Australia — Net Pay After Tax & Super".
-const TITLE = `Take-Home Pay Calculator Australia ${FY}: Pay After Tax`;
-const DESCRIPTION = `On $80,000 you take home ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. See your net pay after income tax, Medicare, HECS-HELP and salary sacrifice, using ATO rates.`;
+// 8.6k impr at 0.41% CTR (pos 4.8) but DataForSEO shows this URL ranking for
+// only 4 keywords — the head terms were split between / (take home #12, after
+// tax income #18-44), /gross-pay-calculator/ (net pay #40) and
+// /monthly-pay-calculator/ (net pay calculator australia #42). Head-term intent
+// map (docs/seo/2026-09-23-head-term-intent-map.md) makes this URL the ONE
+// primary for "take home pay calculator", "net pay calculator" and "after tax
+// income calculator"; the other pages now link here with those exact anchors.
+// Previous: "Take-Home Pay Calculator Australia ${FY}: Pay After Tax".
+const TITLE = `Take Home Pay Calculator Australia ${FY}: Net Pay After Tax`;
+const DESCRIPTION = `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator — enter weekly, fortnightly, monthly or annual pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
   openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
-  twitter: { card: "summary_large_image", title: TITLE, description: "Net pay after tax, Medicare, HECS & super." },
+  twitter: { card: "summary_large_image", title: TITLE, description: "Net pay and after tax income — tax, Medicare, HECS & super." },
 };
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
   { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
-  { "@type": "ListItem", position: 2, name: "Take-Home Pay Calculator", item: URL },
+  { "@type": "ListItem", position: 2, name: "Take Home Pay Calculator", item: URL },
 ]};
 
-const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", "@type": "WebApplication", name: "Take-Home Pay Calculator Australia", url: URL, applicationCategory: "FinanceApplication", operatingSystem: "Web",
+const webApp: WithContext<WebApplication> = { "@context": "https://schema.org", "@type": "WebApplication", name: `Take Home Pay Calculator Australia ${FY}`, url: URL, applicationCategory: "FinanceApplication", operatingSystem: "Web",
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" }, creator: { "@type": "Organization", name: SITE_CONFIG.name }, dateModified: new Date().toISOString().split("T")[0], inLanguage: "en-AU" };
 

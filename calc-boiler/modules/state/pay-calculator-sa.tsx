@@ -31,6 +31,7 @@ import {
   WorkedExample,
   typicalSalary,
 } from "./state-sections";
+import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 
 const PROFILE = STATE_PROFILES.SA;
 
@@ -153,7 +154,7 @@ export default function PayCalculatorSAPage() {
               calculator above cannot apply it for you because it depends on your exact locality.
             </p>
             <ul className="mb-4 space-y-2 text-sm text-warmgray">
-              <li><strong>Zone Tax Offset:</strong> Federal tax offset for SA residents in designated remote zones including Coober Pedy (Zone A &mdash; up to <strong>$1,173</strong>) and Woomera, Leigh Creek, and parts of the APY Lands (special area &mdash; up to <strong>$1,423</strong>).</li>
+              <li><strong>Zone Tax Offset:</strong> Federal tax offset for SA residents in designated remote zones Coober Pedy, Roxby Downs, Leigh Creek and most APY Lands communities are <em>special areas</em> ({formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount)} fixed amount plus {Math.round(ZONE_AREA_RATES.specialArea.basePercentage * 100)}% of any dependant base amount), while Woomera and most of the state are ordinary Zone B ({formatAUD(ZONE_AREA_RATES.zoneB.fixedAmount)} plus {Math.round(ZONE_AREA_RATES.zoneB.basePercentage * 100)}%). Amounts are for the {ZONE_OFFSET_INCOME_YEAR} income year.</li>
             </ul>
             <p className="text-sm text-warmgray">
               It reduces the tax you owe rather than your taxable income, and you claim it in your

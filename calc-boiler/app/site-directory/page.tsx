@@ -8,6 +8,13 @@ import {
   GUIDE_CATEGORIES,
   STATE_CATEGORIES,
   TAX_ON_SALARY_CATEGORIES,
+  FOOTER_CALCULATORS,
+  FOOTER_GUIDES_TAX,
+  FOOTER_GUIDES_SUPER_PAY,
+  FOOTER_GUIDES_EMPLOYMENT,
+  FOOTER_STATES_AND_LEGAL,
+  FOOTER_NEWS,
+  MEGA_MENU,
 } from "@/lib/navigation";
 import { ALL_RATES, hourlyRateSlug } from "@/modules/programmatic/hourly-to-salary";
 import { getAllNews } from "@/lib/news";
@@ -54,11 +61,12 @@ type Item = { href: string; label: string; description?: string };
 type Group = { title: string; items: readonly Item[] };
 
 /**
- * The site's mega menu lives in a client component inside a framer-motion
- * AnimatePresence, so none of its links reach the rendered HTML — around 40
- * guide links, all 35 /tax-on/ links and every state link were undiscoverable
- * by crawlers. This page is the server-rendered counterpart: one hub linking
- * everything, built from the same navigation data so it cannot drift.
+ * Until Sep 2026 the mega menu lived in a client component inside a
+ * framer-motion AnimatePresence, so none of its links reached the rendered
+ * HTML. The header is now server-rendered with every menu link in the HTML,
+ * but it is curated (hubs + popular leaves). This page stays the complete
+ * index: one hub linking everything, built from the same navigation data so
+ * it cannot drift.
  */
 /**
  * The programmatic clusters below were the site's real orphan problem. Measured
@@ -166,6 +174,25 @@ const payScaleGroups: Group[] = [
     ],
   },
   // --- end T2 ---
+  // --- F8 Lever D linkable assets (24 Sep 2026) ---
+  {
+    title: "Data & Tools for Other Sites",
+    items: [
+      { href: "/australian-pay-report-2026/", label: "Australian Pay Report 2026 (data study)" },
+      { href: "/embed/", label: "Embed the Take-Home Pay Calculator" },
+    ],
+  },
+  // --- end F8 ---
+  // --- F7 remaining planned nodes (24 Sep 2026) ---
+  {
+    title: "FIFO, Pay Periods & Payment Dates",
+    items: [
+      { href: "/fifo-pay-calculator/", label: "FIFO Pay Calculator" },
+      { href: "/fortnights-in-a-year/", label: "How Many Fortnights in a Year (Pay Dates)" },
+      { href: "/centrelink-payment-dates/", label: "Centrelink Payment Dates" },
+    ],
+  },
+  // --- end F7 ---
 ];
 
 /** Split a long flat list into evenly sized, readable columns. */
@@ -221,7 +248,7 @@ const salaryHubGroups: Group[] = [
 ];
 // --- end T6 ---
 
-const SECTIONS: { heading: string; groups: readonly Group[] }[] = [
+const BASE_SECTIONS: { heading: string; groups: readonly Group[] }[] = [
   { heading: "Salary Tables", groups: salaryHubGroups }, // T6
   {
     heading: "Calculators",
@@ -260,6 +287,37 @@ const SECTIONS: { heading: string; groups: readonly Group[] }[] = [
     groups: newsGroups,
   },
 ];
+
+// The header and footer now show a curated subset, and the older per-column
+// footer lists (still maintained in lib/navigation.ts) no longer render
+// anywhere else. Anything in them or in the menu that the sections above do
+// not already list goes here, so no page loses its last sitewide link.
+const listed = new Set(BASE_SECTIONS.flatMap((s) => s.groups.flatMap((g) => g.items.map((i) => i.href))));
+const extraItems: Item[] = [];
+for (const item of [
+  ...FOOTER_CALCULATORS,
+  ...FOOTER_GUIDES_TAX,
+  ...FOOTER_GUIDES_SUPER_PAY,
+  ...FOOTER_GUIDES_EMPLOYMENT,
+  ...FOOTER_STATES_AND_LEGAL,
+  ...FOOTER_NEWS,
+  ...MEGA_MENU.flatMap((m) => [...m.featured, ...m.groups.flatMap((g) => g.links)]),
+]) {
+  if (!listed.has(item.href)) {
+    listed.add(item.href);
+    extraItems.push({ href: item.href, label: item.label });
+  }
+}
+
+const SECTIONS: { heading: string; groups: readonly Group[] }[] = extraItems.length
+  ? [
+      ...BASE_SECTIONS,
+      {
+        heading: "More Guides & Tools",
+        groups: chunk(extraItems, 3).map((col, i) => ({ title: `More ${i + 1}`, items: col })),
+      },
+    ]
+  : BASE_SECTIONS;
 
 export default function Page() {
   const total = SECTIONS.reduce(

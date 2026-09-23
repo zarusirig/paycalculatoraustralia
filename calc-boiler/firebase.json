@@ -205,6 +205,21 @@
           { "key": "Cache-Control", "value": "public, max-age=3600" },
           { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
         ]
+      },
+      {
+        "regex": "^/embed/take-home-pay(/.*)?$",
+        "headers": [
+          { "key": "Content-Security-Policy", "value": "frame-ancestors *" },
+          { "key": "X-Robots-Tag", "value": "noindex" }
+        ]
+      },
+      {
+        "source": "/australian-pay-report-2026/data/**",
+        "headers": [
+          { "key": "Content-Type", "value": "text/csv; charset=utf-8" },
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+          { "key": "Cache-Control", "value": "public, max-age=0, s-maxage=3600, must-revalidate" }
+        ]
       }
     ],
     "cleanUrls": true,
