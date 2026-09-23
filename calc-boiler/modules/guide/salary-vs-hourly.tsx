@@ -317,7 +317,7 @@ export default function SalaryVsHourlyPage() {
                 <AccordionItem value="overtime" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do salaried employees get overtime in Australia?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    It depends on the award or enterprise agreement. Many salaried employees have &quot;reasonable additional hours&quot; clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the high income threshold ($175,000 in FY2025-26) can be directed to work reasonable additional hours without extra pay under the Fair Work Act.
+                    It depends on the award or enterprise agreement. Many salaried employees have &quot;reasonable additional hours&quot; clauses, meaning overtime is not separately compensated. However, some awards require overtime payments for salaried workers who exceed standard hours. Employees earning above the high income threshold ($190,100 from 1 July 2026, per the Fair Work Commission; it is indexed each 1 July) can be directed to work reasonable additional hours without extra pay under the Fair Work Act.
                   </AccordionContent>
                 </AccordionItem>
 
