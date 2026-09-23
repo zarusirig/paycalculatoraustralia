@@ -387,7 +387,7 @@ export default function HomePageTemplate() {
               className="mb-3 text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
-              Australian Pay Calculator {FY} — Salary, Wage &amp; Take-Home Pay
+              Pay Calculator Australia {FY} — Salary, Tax &amp; Take-Home Pay
             </h1>
             <p className="mx-auto mb-5 max-w-2xl text-lg text-sandstone-dark/60">
               Australia&apos;s free pay calculator and salary calculator for FY{FY}. Enter an annual salary or an hourly, daily, weekly, fortnightly or monthly wage — with casual loading if it applies — and see your exact take-home pay after ATO income tax, the Medicare levy, HECS-HELP repayments and {formatPercent(SUPER_GUARANTEE.rate, 0)} superannuation. Every figure uses the current FY{FY} rates, so the number you see is the number that lands in your bank account.
