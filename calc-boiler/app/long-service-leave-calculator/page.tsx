@@ -7,12 +7,13 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/long-service-leave-calculator/`;
-const TITLE = "Long Service Leave Calculator Australia — NSW, VIC, QLD & All States";
+const TITLE = "Long Service Leave Calculator Australia — NSW, VIC, QLD & More";
 const DESCRIPTION =
-  "Work out your long service leave: weeks accrued, what you can take now, what is paid out if you resign, and the tax on it. Every state and territory Act compared — 8.667 weeks at 10 years in NSW, QLD, WA and Tasmania, 13 weeks in SA and the NT, 7-year qualifying periods in Victoria and the ACT.";
+  "Work out your long service leave: weeks accrued, what you can take, what's paid out if you resign and the tax on it, with every state and territory Act compared.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -49,7 +50,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("long-service-leave-calculator"),
   inLanguage: "en-AU",
 };
 

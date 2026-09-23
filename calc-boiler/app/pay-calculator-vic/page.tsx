@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-vic/`;
@@ -11,7 +12,7 @@ const URL = `${BASE}/pay-calculator-vic/`;
 export const metadata: Metadata = {
   title: "Pay Calculator VIC — Your Take-Home Pay in Victoria",
   description:
-    "Work out your take-home pay in Victoria. A free salary and wage calculator on current ATO rates, plus Victorian public holidays, penalty rates and long service leave.",
+    "Work out your take-home pay in Victoria: a salary and wage calculator on current ATO rates, plus VIC public holidays, penalty rates and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Pay Calculator VIC — Your Take-Home Pay in Victoria",
@@ -49,7 +50,7 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("pay-calculator-vic"),
   inLanguage: "en-AU",
 };
 

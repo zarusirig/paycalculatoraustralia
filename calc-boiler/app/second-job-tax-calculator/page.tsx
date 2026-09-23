@@ -9,6 +9,7 @@ import { SCALE_1_NO_TFT } from "@/lib/constants/payg-withholding";
 // (15% from 1 July 2026; the FAQ previously said 16%).
 const NO_TFT_START_RATE = `${Math.round((SCALE_1_NO_TFT[0].a ?? 0) * 100)}%`;
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
@@ -16,7 +17,7 @@ const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 export const metadata: Metadata = {
   title: "Second Job Tax Calculator Australia — Tax on Two Jobs",
   description:
-    "Calculate how much tax you pay on a second job in Australia. See why your second job is taxed higher, PAYG withholding without the tax-free threshold, and your combined take-home pay.",
+    "Calculate how much tax you pay on a second job in Australia: why it's taxed higher, PAYG withholding without the tax-free threshold, and combined take-home pay.",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2026-27)",
@@ -54,7 +55,7 @@ const webAppSchema: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("second-job-tax-calculator"),
   inLanguage: "en-AU",
 };
 

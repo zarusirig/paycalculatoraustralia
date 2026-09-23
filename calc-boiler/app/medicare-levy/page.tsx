@@ -35,7 +35,7 @@ const UPPER = formatAUD(MEDICARE_LEVY.shadeInThreshold);
 // to /medicare-levy-surcharge-calculator/. This page owns the 2% levy and keeps
 // only a short surcharge summary that links there.
 const TITLE = `Medicare Levy Calculator: ${RATE} Levy, Low-Income & Family Thresholds`;
-const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy with the low-income shade-in between ${LOWER} and ${UPPER}, family and seniors thresholds, and exemptions. The ${MLS_INCOME_YEAR} surcharge has its own calculator.`;
+const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy, the low-income shade-in from ${LOWER} to ${UPPER}, and exemptions. The ${MLS_INCOME_YEAR} surcharge has its own calculator.`;
 
 export const metadata: Metadata = {
   title: TITLE,

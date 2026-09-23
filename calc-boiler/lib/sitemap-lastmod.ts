@@ -14,6 +14,9 @@
  * The page's visible "last reviewed" date (lib/authors.ts GUIDE_AUTHORSHIP) is
  * also honoured when it is later than the last commit.
  *
+ * Commits whose subject carries NO_LASTMOD_MARKER ("[no-lastmod]") are
+ * metadata-only (titles, og tags, JSON-LD dates) and are not counted.
+ *
  * Fallbacks: if git is unavailable or the clone is shallow (every file would
  * report the shallow tip's date), or a file has no history yet (uncommitted),
  * the build date is used for that page.
@@ -27,7 +30,16 @@ const APP = path.join(ROOT, "app");
 const SOURCE_EXT = [".tsx", ".ts", ".json", ".md", ".mdx"];
 const FOLLOW_PREFIXES = ["modules/", "lib/data/"];
 
+/**
+ * Commits whose subject contains this marker don't count as content changes
+ * (title/description trims, og:image, JSON-LD date plumbing). They still count
+ * for a file's first-commit (datePublished) date.
+ */
+export const NO_LASTMOD_MARKER = "[no-lastmod]";
+
 let gitIndex: Map<string, number> | null | undefined;
+/** path -> oldest commit time (ms) touching it, for datePublished. */
+let firstCommit: Map<string, number> | null = null;
 
 /** path (relative to calc-boiler/) -> latest commit time (ms). null if git unusable. */
 function loadGitIndex(): Map<string, number> | null {
@@ -44,19 +56,32 @@ function loadGitIndex(): Map<string, number> | null {
     }
     const log = execFileSync(
       "git",
-      ["log", "--format=%x00%cI", "--name-only", "--no-renames", "--relative", "--", "app", "modules", "lib/data"],
+      ["log", "--format=%x00%cI%x00%s", "--name-only", "--no-renames", "--relative", "--", "app", "modules", "lib/data"],
       { cwd: ROOT, encoding: "utf8", maxBuffer: 256 * 1024 * 1024 },
     );
     const index = new Map<string, number>();
+    const first = new Map<string, number>();
+    const skippedOnly = new Map<string, number>();
     let current = 0;
+    let skip = false;
     for (const line of log.split("\n")) {
       if (line.startsWith("\0")) {
-        current = Date.parse(line.slice(1));
-      } else if (line && !index.has(line)) {
-        index.set(line, current); // log is newest-first: first sighting wins
+        const [, date, subject = ""] = line.split("\0");
+        current = Date.parse(date);
+        skip = subject.includes(NO_LASTMOD_MARKER);
+      } else if (line) {
+        first.set(line, current); // log is newest-first: last sighting is the first commit
+        if (skip) {
+          if (!index.has(line)) skippedOnly.set(line, current);
+        } else if (!index.has(line)) {
+          index.set(line, current); // log is newest-first: first sighting wins
+        }
       }
     }
+    // A file touched only by marked commits still has a history: use its oldest one.
+    for (const [file, t] of skippedOnly) if (!index.has(file)) index.set(file, first.get(file) ?? t);
     gitIndex = index;
+    firstCommit = first;
   } catch {
     console.warn("[sitemap] git unavailable: lastmod falls back to build date");
     gitIndex = null;
@@ -175,6 +200,19 @@ export function lastModifiedForSlug(slug: string, buildDate: Date, reviewed?: st
     if (!Number.isNaN(r) && r > t) t = r;
   }
   return new Date(Math.min(t, buildDate.getTime()));
+}
+
+/**
+ * First-publication date for a slug: the oldest commit of its route's page
+ * file. Null when git is unusable or the file is uncommitted (callers then
+ * omit datePublished rather than invent one).
+ */
+export function publishedForSlug(slug: string): Date | null {
+  const dir = routeDirForSlug(slug);
+  if (!dir || !loadGitIndex() || !firstCommit) return null;
+  const page = fs.existsSync(path.join(dir, "page.tsx")) ? "page.tsx" : "page.ts";
+  const t = firstCommit.get(path.relative(ROOT, path.join(dir, page)));
+  return t === undefined ? null : new Date(t);
 }
 
 /** True if the slug maps to a real app/ route (guards the sitemap against 404s). */

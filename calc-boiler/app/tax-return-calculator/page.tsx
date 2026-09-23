@@ -7,6 +7,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { RETURN_YEARS } from "@/lib/constants/tax-return-estimator";
 import { TAX_RETURN_CALCULATOR_FAQS } from "@/modules/calculator/tax-return-calculator-faqs";
+import { pageDateModified } from "@/lib/page-dates";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-calculator/`;
@@ -56,7 +57,7 @@ const webApp: WithContext<WebApplication> = {
   browserRequirements: "Requires JavaScript",
   offers: { "@type": "Offer", price: "0", priceCurrency: "AUD" },
   creator: { "@type": "Organization", name: SITE_CONFIG.name },
-  dateModified: new Date().toISOString().split("T")[0],
+  dateModified: pageDateModified("tax-return-calculator"),
   inLanguage: "en-AU",
 };
 
