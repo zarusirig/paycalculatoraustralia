@@ -67,3 +67,50 @@ test("Target: cl 19.1 — CSA = Retail Award Level 1 + 5c, Team Leader = 112% of
   assert.equal(money(GRIA_DEC_2026_18), "$20.86");
   assert.equal(money(GRIA_DEC_2026_19), "$23.64");
 });
+
+test("Priceline: printed cl 18.1 / Appendix A dollars and the agreement's multipliers", () => {
+  const p = get("priceline");
+  assert.equal(p.instrument.reference, "AG2026/2365, AE534063");
+  const [re, ssa] = p.rates;
+  assert.equal(re.hourly, 29.57);
+  // cl 19.1: Specialist = 105% of Retail Employee.
+  assert.equal(halfUp(re.hourly * 1.05), ssa.hourly);
+  // Appendix A printed dollars, re-derived from the printed percentages.
+  const printed: [number, number, number][] = [
+    // [multiplier, Retail Employee, Specialist]
+    [1.25, 36.96, 38.81],
+    [1.11, 32.82, 34.47],
+    [1.18, 34.89, 36.64],
+    [1.415, 41.84, 43.94],
+    [2.41, 71.26, 74.83],
+    [2.6, 76.88, 80.73],
+  ];
+  for (const [m, a, b] of printed) {
+    assert.equal(halfUp(re.hourly * m), a, `RE ${m}`);
+    assert.equal(halfUp(ssa.hourly * m), b, `SSA ${m}`);
+  }
+  assert.equal(re.casualHourly, 36.96);
+  assert.equal(ssa.casualHourly, 38.81);
+  // Sunday: 179% is below the dollar floor, so the floor applies.
+  assert.equal(halfUp(re.hourly * 1.79), 52.93);
+  assert.ok(halfUp(ssa.hourly * 1.79) < 55.72);
+  const juniors = Object.fromEntries(juniorRates(p).map((j) => [j.age, [j.hourly, j.casualHourly, j.published]]));
+  assert.deepEqual(juniors["16 and younger"], [14.79, 18.49, false]);
+  assert.deepEqual(juniors["17"], [17.74, 22.18, false]);
+  assert.deepEqual(juniors["18"], [20.7, 25.88, false]);
+  assert.deepEqual(juniors["19"], [23.66, 29.58, false]);
+  for (const band of p.juniorScale) {
+    const j = juniorRates(p).find((r) => r.age === band.age);
+    assert.ok(j);
+    assert.equal(j.hourly, halfUp(29.57 * band.percentage), band.age);
+    assert.equal(j.casualHourly, halfUp(j.hourly * 1.25), band.age);
+  }
+  // Dec 2026 step in the agreement's own table (cl 26.1), and above the award phase-in.
+  assert.equal(halfUp(29.57 * 0.75), 22.18);
+  assert.equal(halfUp(29.57 * 0.85), 25.13);
+  assert.ok(22.18 > GRIA_DEC_2026_18 && 25.13 > GRIA_DEC_2026_19);
+  const text = pageText(p) + p.penalties.map((r) => `${r.permanent} ${r.note ?? ""}`).join(" ");
+  for (const v of ["$29.57", "$36.96", "$31.05", "$38.81", "$34.89", "$41.84", "$53.07", "$55.72", "$52.93", "$71.26", "$76.88", "$32.82", "$14.79", "$18.49", "$17.74", "$22.18", "$25.13"]) {
+    assert.ok(text.includes(v), v);
+  }
+});

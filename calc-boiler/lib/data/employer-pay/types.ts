@@ -44,6 +44,7 @@ export const EMPLOYER_SLUGS = [
   // --- end H1 ---
   // --- J7 (24 Sep 2026) ---
   "target",
+  "priceline",
   // --- end J7 ---
 ] as const;
 
