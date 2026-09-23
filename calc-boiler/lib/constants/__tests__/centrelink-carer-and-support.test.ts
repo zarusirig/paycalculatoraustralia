@@ -34,6 +34,9 @@ import {
   PPL_ENTITLEMENT,
   PPL_INCOME_TEST,
   PPL_RATES,
+  financialYearOf,
+  pplBlockGross,
+  pplDaysByFinancialYear,
   pplEntitlementFor,
   pplGross,
   pplMeetsIncomeTest,
@@ -171,6 +174,22 @@ test("PPL income test: individual first, then family", () => {
   assert.deepEqual(pplMeetsIncomeTest("2025-26", 190_000, 190_000), { meets: true, via: "family" });
   assert.deepEqual(pplMeetsIncomeTest("2025-26", 200_000, 190_000), { meets: false, via: null });
   assert.deepEqual(pplMeetsIncomeTest("2025-26", 386_525), { meets: true, via: "family" });
+});
+
+test("PPL block split across financial years", () => {
+  assert.equal(financialYearOf("2026-06-30"), "2025-26");
+  assert.equal(financialYearOf("2026-07-01"), "2026-27");
+  // Mon 5 Oct 2026, 130 weekdays = 26 weeks, all in 2026-27.
+  assert.deepEqual(pplDaysByFinancialYear("2026-10-05", 130), { "2026-27": 130 });
+  // Mon 1 Jun 2026: 22 weekdays in June 2026, rest in 2026-27.
+  assert.deepEqual(pplDaysByFinancialYear("2026-06-01", 120), { "2025-26": 22, "2026-27": 98 });
+  const b = pplBlockGross("2026-06-01", 120);
+  assert.equal(b.gross, Math.round((22 * 189.62 + 98 * 200.94) * 100) / 100);
+  assert.equal(b.unpublishedDays, 0);
+  // A block starting in 2027 runs past 1 July 2027 (rate not yet published).
+  assert.ok(pplBlockGross("2027-03-01", 130).unpublishedDays > 0);
+  // Weekend start skips to Monday.
+  assert.deepEqual(pplDaysByFinancialYear("2026-10-03", 5), { "2026-27": 5 });
 });
 
 test("PPL split: reserved days are lost if the partner doesn't use them", () => {

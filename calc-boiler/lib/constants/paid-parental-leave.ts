@@ -126,6 +126,57 @@ export function pplSuperEstimate(grossPpl: number): number {
   return Math.round(Math.max(0, grossPpl) * PPL_RULES.superRate * 100) / 100;
 }
 
+/** Australian financial year label ("2026-27") for an ISO date. */
+export function financialYearOf(iso: string): string {
+  const y = Number(iso.slice(0, 4));
+  const m = Number(iso.slice(5, 7));
+  const start = m >= 7 ? y : y - 1;
+  return `${start}-${String((start + 1) % 100).padStart(2, "0")}`;
+}
+
+/**
+ * Lay a continuous block of weekday PPL days from a start date (Mon–Fri, the
+ * way a 5-day week is counted) and count how many fall in each financial year.
+ * Pure: UTC date arithmetic on ISO strings, no clock.
+ */
+export function pplDaysByFinancialYear(startISO: string, days: number): Record<string, number> {
+  const out: Record<string, number> = {};
+  const d = new Date(`${startISO.slice(0, 10)}T00:00:00Z`);
+  let left = Math.max(0, Math.round(days));
+  let guard = 0;
+  while (left > 0 && guard < 5_000) {
+    const dow = d.getUTCDay();
+    if (dow !== 0 && dow !== 6) {
+      const fy = financialYearOf(d.toISOString().slice(0, 10));
+      out[fy] = (out[fy] ?? 0) + 1;
+      left -= 1;
+    }
+    d.setUTCDate(d.getUTCDate() + 1);
+    guard += 1;
+  }
+  return out;
+}
+
+/**
+ * Gross PPL for a block, each day at the rate for the financial year it falls
+ * in. Days in a year whose rate isn't published yet are priced at the latest
+ * published rate and reported back as `unpublishedDays`.
+ */
+export function pplBlockGross(startISO: string, days: number): { gross: number; byYear: Record<string, number>; unpublishedDays: number } {
+  const byYear = pplDaysByFinancialYear(startISO, days);
+  let gross = 0;
+  let unpublishedDays = 0;
+  for (const [fy, n] of Object.entries(byYear)) {
+    const rate = (PPL_RATES as Record<string, { daily: number }>)[fy];
+    if (rate) gross += n * rate.daily;
+    else {
+      unpublishedDays += n;
+      gross += n * PPL_RATES[PPL_CURRENT_FY].daily;
+    }
+  }
+  return { gross: Math.round(gross * 100) / 100, byYear, unpublishedDays };
+}
+
 /**
  * Split a family's days between the claimant and a partner. The partner's
  * reserved days can only be used by the partner; if the partner takes fewer,
