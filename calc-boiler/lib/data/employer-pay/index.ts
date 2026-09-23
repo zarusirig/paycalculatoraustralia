@@ -30,6 +30,7 @@ import { JB_HI_FI_PAY } from "./jb-hi-fi";
 import { BWS_PAY } from "./bws";
 import { DAN_MURPHYS_PAY } from "./dan-murphys";
 import { HOYTS_PAY } from "./hoyts";
+import { KFC_PAY } from "./kfc";
 // --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -51,6 +52,7 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   bws: BWS_PAY,
   "dan-murphys": DAN_MURPHYS_PAY,
   hoyts: HOYTS_PAY,
+  kfc: KFC_PAY,
   // --- end H1 ---
 };
 
@@ -129,6 +131,17 @@ export function juniorRates(employer: EmployerPay): JuniorRow[] {
         hourly: published.hourly,
         casualHourly: published.casualHourly,
         published: true,
+      };
+    }
+    // H1: employer-specific derived dollars (still labelled as our arithmetic).
+    const derived = employer.derivedJuniorRates?.find((d) => d.age === band.age);
+    if (derived) {
+      return {
+        age: band.age,
+        percentage: band.percentage,
+        hourly: derived.hourly,
+        casualHourly: derived.casualHourly,
+        published: false,
       };
     }
     const hourly = deriveJuniorHourly(entry, band.percentage);

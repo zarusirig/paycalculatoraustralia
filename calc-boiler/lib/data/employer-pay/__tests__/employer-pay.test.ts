@@ -142,6 +142,9 @@ test("junior rows prefer published dollars and mark derived ones", () => {
       assert.equal(row.published, Boolean(pub));
       if (pub) {
         assert.equal(row.hourly, pub.hourly);
+      } else if (e.derivedJuniorRates?.some((d) => d.age === row.age)) {
+        // H1: employer-specific derivation, re-derived in employer-pay-h1.test.ts.
+        assert.equal(row.hourly, e.derivedJuniorRates.find((d) => d.age === row.age)?.hourly);
       } else if (e.juniorCasualFromAdultCasual) {
         // H1: junior % applied to the adult casual rate.
         assert.equal(row.casualHourly, roundCents(entryRate(e).casualHourly * row.percentage));

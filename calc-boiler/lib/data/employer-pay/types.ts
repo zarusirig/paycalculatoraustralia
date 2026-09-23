@@ -36,6 +36,7 @@ export const EMPLOYER_SLUGS = [
   "bws",
   "dan-murphys",
   "hoyts",
+  "kfc",
   // --- end H1 ---
 ] as const;
 
@@ -180,5 +181,12 @@ export interface EmployerPay {
    * with publishedJuniorRates covering every band.
    */
   juniorBaseLabel?: string;
+  /**
+   * Junior dollars WE worked out where the plain percentage-of-rates[0] rule is
+   * not the whole story (e.g. KFC's undertaking that every casual gets at least
+   * the award rate + 1c). Shown as derived, never as published; the employer's
+   * own test must re-derive every figure.
+   */
+  derivedJuniorRates?: PublishedJuniorRate[];
   // --- end H1 ---
 }

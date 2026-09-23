@@ -321,6 +321,41 @@ test("Hoyts: cinema award cl 13.4 weekly / 38, casual x 1.25, juniors are % of L
   assert.ok(hoyts.penaltyNotes.join(" ").includes("$58.50"));
 });
 
+test("KFC: award weekly x 1.005 to 10c (permanent), (award hourly + 1c) x 1.25 (casual)", () => {
+  const kfc = getEmployerPay("kfc");
+  assert.ok(kfc);
+  const to10c = (v: number) => Math.round(Number((v * 10).toFixed(6))) / 10;
+  const awardWeekly = [1056.8, 1119.1];
+  kfc.rates.forEach((r, i) => {
+    const weekly = to10c(awardWeekly[i] * 1.005);
+    assert.equal(r.weekly, weekly, r.level);
+    assert.equal(r.hourly, halfUp(weekly / 38), r.level);
+    assert.equal(r.casualHourly, halfUp((awardWeekly[i] / 38 + 0.01) * 1.25), r.level);
+    // Above the award (s 206; decision [64]).
+    assert.ok(r.hourly > halfUp(awardWeekly[i] / 38));
+    assert.ok(r.casualHourly > halfUp((awardWeekly[i] / 38) * 1.25));
+  });
+  // cl 5.4.2 literal reading disclosed.
+  assert.equal(halfUp(kfc.rates[0].hourly * 1.25), 34.94);
+  assert.ok(kfc.casualRateNote?.includes("$34.94"));
+  // Juniors: FT = % x KFC weekly / 38; casual = max(% x casual formula, award junior casual + 1c).
+  const casualBase = (1056.8 / 38 + 0.01) * 1.25;
+  const awardJuniorCasual: Record<string, number> = {
+    "15 and under": 13.9, "16": 17.39, "17": 20.86, "18": 24.34, "19": 27.81, "20": 31.29, "21 and over": 34.76,
+  };
+  for (const row of juniorRates(kfc)) {
+    assert.equal(row.published, false, "derived, labelled as ours");
+    assert.equal(row.hourly, halfUp((1062.1 * row.percentage) / 38), row.age);
+    const expectedCasual = Math.max(halfUp(casualBase * row.percentage), halfUp(awardJuniorCasual[row.age] + 0.01));
+    assert.equal(row.casualHourly, expectedCasual, row.age);
+  }
+  const text = [...kfc.penaltyNotes, ...kfc.faqs.map((f) => f.a)].join(" ");
+  for (const pct of [1.1, 1.15, 1.25, 2.25]) {
+    assert.ok(text.includes(`$${halfUp(27.95 * pct).toFixed(2)}`), `${pct}`);
+  }
+  assert.match(kfc.instrument.nominalExpiry ?? "", /passed/);
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);
