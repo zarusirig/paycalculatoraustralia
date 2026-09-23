@@ -39,7 +39,7 @@ export const SGC_FAQS: readonly SgcFaq[] = [
   },
   {
     q: "Do I still need to lodge a super guarantee charge statement?",
-    a: `Not for paydays from ${SUPER_GUARANTEE.paydaySuperStart} — the ATO now calculates the charge and issues a notice of assessment, and there is no statement to lodge. But the old obligation is still live for the June 2026 quarter and earlier. If you missed the ${L.finalQuarterSGDue} due date for that final quarter, you must lodge a super guarantee charge statement and pay the charge by ${L.finalQuarterStatementDue}. That is the last one there will ever be.`,
+    a: `Not for paydays from ${SUPER_GUARANTEE.paydaySuperStart} — the ATO now calculates the charge and issues a notice of assessment, and there is no statement to lodge. But the old obligation is still live for the June 2026 quarter and earlier. If you missed the ${L.finalQuarterSGDue} due date for that final quarter, the super guarantee charge statement and payment were due by ${L.finalQuarterStatementDue}, the last one there will ever be. If it is still outstanding, lodge it now: the charge keeps growing and late statements can attract penalties.`,
   },
   {
     q: "When does super have to be paid under Payday Super?",

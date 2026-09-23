@@ -8,6 +8,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD, MEDICARE_LEVY } from "@/lib/constants";
 import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
+import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 const SOURCES_LIST: SourceLink[] = [{ title: "Fringe benefits tax", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name }, { title: "FBT rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds", publisher: SOURCES.ato.name }, { title: "Types of fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name }];
@@ -252,7 +253,7 @@ export default function FringeBenefitsTaxPage() {
                 </tbody>
               </table>
             </div>
-            <p>Late lodgement or payment of FBT attracts a failure-to-lodge penalty starting at <strong>$313 per 28-day period</strong> (1 penalty unit), up to a maximum of 5 penalty units. Interest on late payment is calculated at the general interest charge rate published by the ATO. For a full timeline of Australian tax obligations across the financial year, see our <Link href="/tax-calendar/">Tax Calendar</Link>.</p>
+            <p>Late lodgement of an FBT return attracts a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)} per 28-day period</strong> (1 penalty unit from {PENALTY_UNIT.from}), up to a maximum of 5 penalty units, multiplied for medium and large withholders. Interest on late payment is calculated at the general interest charge rate published by the ATO. For a full timeline of Australian tax obligations across the financial year, see our <Link href="/tax-calendar/">Tax Calendar</Link>.</p>
           </section>
 
           {/* ===== SECTION 11 ===== */}

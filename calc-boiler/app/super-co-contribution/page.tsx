@@ -54,7 +54,7 @@ const faq: WithContext<FAQPage> = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
-    { "@type": "Question", name: "How much is the government super co-contribution?", acceptedAnswer: { "@type": "Answer", text: "The government matches 50 cents for every $1.00 of eligible personal (non-concessional) super contributions you make, up to a maximum of $500 per financial year. To receive the full $500, you need to contribute $1,000 of after-tax money and earn $43,445 or less." } },
+    { "@type": "Question", name: "How much is the government super co-contribution?", acceptedAnswer: { "@type": "Answer", text: "The government matches 50 cents for every $1.00 of eligible personal (non-concessional) super contributions you make, up to a maximum of $500 per financial year. To receive the full $500 in 2026-27, you need to contribute $1,000 of after-tax money and have total income of $49,293 or less; it phases out to nil at $64,293." } },
     { "@type": "Question", name: "Do I need to apply for the super co-contribution?", acceptedAnswer: { "@type": "Answer", text: "No. The ATO automatically determines your eligibility after you lodge your income tax return. If eligible, the co-contribution is paid directly into your super fund, usually within 60 days of your tax return being processed." } },
     { "@type": "Question", name: "What is the spouse super contribution tax offset?", acceptedAnswer: { "@type": "Answer", text: "If you contribute to your spouse's super fund and their income is below $40,000, you may claim a tax offset of up to $540. The maximum offset applies when you contribute $3,000 or more and your spouse earns $37,000 or less. The offset phases out completely at $40,000 spouse income." } },
   ]
