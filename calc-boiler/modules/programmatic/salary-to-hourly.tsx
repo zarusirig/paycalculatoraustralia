@@ -2,6 +2,7 @@ import React from "react";
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   SITE_CONFIG,
   EMPLOYMENT,
 } from "@/lib/constants/australian-tax";
@@ -175,13 +176,13 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
                   <td className="px-6 py-4">Income Tax</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax / HOURS_PER_YEAR, 2)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.netIncomeTax)}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax / HOURS_PER_YEAR, 2, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.netIncomeTax, 0, "−")}</td>
                 </tr>
                 <tr className="hover:bg-sandstone/30 transition-colors text-ochre">
                   <td className="px-6 py-4">Medicare Levy</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy / HOURS_PER_YEAR, 2)}</td>
-                  <td className="px-6 py-4 text-right">−{formatAUD(breakdown.medicareLevy)}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy / HOURS_PER_YEAR, 2, "−")}</td>
+                  <td className="px-6 py-4 text-right">{formatNegAUD(breakdown.medicareLevy, 0, "−")}</td>
                 </tr>
                 <tr className="bg-eucalyptus-dark text-white font-bold">
                   <td className="px-6 py-5">Net Take-Home</td>

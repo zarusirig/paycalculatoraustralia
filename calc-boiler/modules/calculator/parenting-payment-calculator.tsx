@@ -10,7 +10,7 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   FAMILY_PAYMENT_SOURCES,
   PARENTING_PAYMENT,
@@ -145,13 +145,13 @@ export default function ParentingPaymentCalculatorPage() {
                     <div className="p-5 space-y-3 text-sm">
                       <Row label={`Maximum rate (from ${PP.ratesFrom})`} value={formatAUD(result.max, 2)} bold />
                       {status === "single" ? (
-                        <Row label={`40c per $1 over ${formatAUD(ppsFreeArea(children), 2)}`} value={`-${formatAUD(result.ownReduction, 2)}`} />
+                        <Row label={`40c per $1 over ${formatAUD(ppsFreeArea(children), 2)}`} value={formatNegAUD(result.ownReduction, 2)} />
                       ) : partnerType === "pension" ? (
-                        <Row label={`Combined income: 25c over ${formatAUD(PT.combined.freeArea)}, 30c over ${formatAUD(PT.combined.band1End)}`} value={`-${formatAUD(result.ownReduction, 2)}`} />
+                        <Row label={`Combined income: 25c over ${formatAUD(PT.combined.freeArea)}, 30c over ${formatAUD(PT.combined.band1End)}`} value={formatNegAUD(result.ownReduction, 2)} />
                       ) : (
                         <>
-                          <Row label={`Your income: 50c ${formatAUD(PT.freeArea)}–${formatAUD(PT.band1End)}, 60c above`} value={`-${formatAUD(result.ownReduction, 2)}`} />
-                          <Row label={`Partner: 60c per $1 over ${formatAUD(PT.partnerIncomeFreeArea, 2)}`} value={`-${formatAUD(result.partnerReduction, 2)}`} />
+                          <Row label={`Your income: 50c ${formatAUD(PT.freeArea)}–${formatAUD(PT.band1End)}, 60c above`} value={formatNegAUD(result.ownReduction, 2)} />
+                          <Row label={`Partner: 60c per $1 over ${formatAUD(PT.partnerIncomeFreeArea, 2)}`} value={formatNegAUD(result.partnerReduction, 2)} />
                         </>
                       )}
                       <div className="border-t border-sandstone-dark/20 pt-3" />
@@ -223,7 +223,7 @@ export default function ParentingPaymentCalculatorPage() {
                 <thead className="bg-sandstone"><tr><th scope="col" className={TH}>Fortnightly wages</th><th scope="col" className={TH + " text-right"}>Reduction</th><th scope="col" className={TH + " text-right"}>Parenting Payment</th><th scope="col" className={TH + " text-right"}>Wages + payment</th></tr></thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
                   {TABLE_INCOMES.map((inc, i) => { const pay = ppsFortnightly(inc, 1); return (
-                    <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}><td className={TD + " font-medium"}>{formatAUD(inc)}</td><td className={TD + " text-right"}>-{formatAUD(Math.min(S.maxFortnightly, ppsReduction(inc, 1)), 2)}</td><td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td><td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td></tr>
+                    <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}><td className={TD + " font-medium"}>{formatAUD(inc)}</td><td className={TD + " text-right"}>{formatNegAUD(Math.min(S.maxFortnightly, ppsReduction(inc, 1)), 2)}</td><td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td><td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td></tr>
                   ); })}
                 </tbody>
               </table>

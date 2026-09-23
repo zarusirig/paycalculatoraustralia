@@ -14,6 +14,7 @@ import {
   calculateLITO,
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   MEDICARE_LEVY,
   SUPER_GUARANTEE,
@@ -151,8 +152,8 @@ export default function ContractorVsEmployeeCalculatorPage() {
                   </div>
                   <CardContent className="p-5 text-sm space-y-3">
                     <Row label="Gross Salary" value={formatAUD(grossRate)} bold />
-                    <Row label="Income Tax" value={`-${formatAUD(employeeBreakdown.netIncomeTax)}`} />
-                    <Row label="Medicare Levy" value={`-${formatAUD(employeeBreakdown.medicareLevy)}`} />
+                    <Row label="Income Tax" value={formatNegAUD(employeeBreakdown.netIncomeTax)} />
+                    <Row label="Medicare Levy" value={formatNegAUD(employeeBreakdown.medicareLevy)} />
                     <Row label="Business Expenses" value="$0" />
                     <div className="border-t border-sandstone-dark/20 pt-2" />
                     <Row label="Net Take-Home Cash" value={formatAUD(employeeBreakdown.takeHomePay)} bold green />
@@ -173,12 +174,12 @@ export default function ContractorVsEmployeeCalculatorPage() {
                   </div>
                   <CardContent className="p-5 text-sm space-y-3">
                     <Row label="Gross Income (ex GST)" value={formatAUD(grossRate)} bold />
-                    <Row label="Business Expenses" value={`-${formatAUD(contractorExpenses)}`} />
-                    <Row label="Self-Funded Super" value={fundSuper ? `-${formatAUD(contractorSuper)}` : "$0"} />
+                    <Row label="Business Expenses" value={formatNegAUD(contractorExpenses)} />
+                    <Row label="Self-Funded Super" value={fundSuper ? formatNegAUD(contractorSuper) : "$0"} />
                     <Row label="Taxable Income" value={formatAUD(contractorTaxable)} />
                     <div className="border-t border-eucalyptus/30 pt-2" />
-                    <Row label="Income Tax" value={`-${formatAUD(contractorTaxBreakdown.netIncomeTax)}`} />
-                    <Row label="Medicare Levy" value={`-${formatAUD(contractorTaxBreakdown.medicareLevy)}`} />
+                    <Row label="Income Tax" value={formatNegAUD(contractorTaxBreakdown.netIncomeTax)} />
+                    <Row label="Medicare Levy" value={formatNegAUD(contractorTaxBreakdown.medicareLevy)} />
                     <div className="border-t border-eucalyptus/30 pt-2" />
                     <Row label="Net Take-Home Cash" value={formatAUD(contractorNetCash)} bold green />
                     <div className="border-t border-eucalyptus/30 pt-2" />
@@ -378,7 +379,7 @@ export default function ContractorVsEmployeeCalculatorPage() {
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Self-Funded Super ({SG_PCT})</td>
                     <td className="px-4 py-3 text-right text-gray-700">$0 (employer pays)</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_SUPER)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatNegAUD(EX_SUPER)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Taxable Income</td>
@@ -387,13 +388,13 @@ export default function ContractorVsEmployeeCalculatorPage() {
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Income Tax</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_EMP_TAX)}</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_CON_TAX)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatNegAUD(EX_EMP_TAX)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatNegAUD(EX_CON_TAX)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50">
                     <td className="px-4 py-3 text-navy font-medium">Medicare Levy (2%)</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_EMP_MEDICARE)}</td>
-                    <td className="px-4 py-3 text-right text-gray-700">-{formatAUD(EX_CON_MEDICARE)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatNegAUD(EX_EMP_MEDICARE)}</td>
+                    <td className="px-4 py-3 text-right text-gray-700">{formatNegAUD(EX_CON_MEDICARE)}</td>
                   </tr>
                   <tr className="hover:bg-sandstone/50 bg-eucalyptus-light/20">
                     <td className="px-4 py-3 text-navy font-bold">Net Take-Home Cash</td>

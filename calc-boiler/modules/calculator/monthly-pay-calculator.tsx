@@ -12,6 +12,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   HECS_HELP,
@@ -97,10 +98,10 @@ export default function MonthlyPayCalculatorPage() {
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Monthly Pay" value={formatAUD(salary / 12, 2)} bold />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(result.netIncomeTax / 12, 2)}`} />
-                      <Row label="Medicare Levy" value={`-${formatAUD(result.medicareLevy / 12, 2)}`} />
-                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={`-${formatAUD(result.medicareSurcharge / 12, 2)}`} />}
-                      {includeHECS && <Row label="HECS Repayment" value={`-${formatAUD(result.hecsRepayment / 12, 2)}`} />}
+                      <Row label="Income Tax" value={formatNegAUD(result.netIncomeTax / 12, 2)} />
+                      <Row label="Medicare Levy" value={formatNegAUD(result.medicareLevy / 12, 2)} />
+                      {result.medicareSurcharge > 0 && <Row label="Medicare Surcharge" value={formatNegAUD(result.medicareSurcharge / 12, 2)} />}
+                      {includeHECS && <Row label="HECS Repayment" value={formatNegAUD(result.hecsRepayment / 12, 2)} />}
                       <div className="border-t border-sandstone-dark/20" />
                       <div className="flex justify-between items-baseline pt-2 pb-2">
                         <span className="font-bold text-navy">Monthly Take-Home</span>

@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   AGE_PENSION_INCOME_TEST,
   WORK_BONUS,
@@ -127,13 +127,13 @@ export default function CarerPaymentCalculatorPage() {
                     <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20"><h3 className="font-semibold text-navy text-sm uppercase tracking-wider">How the income test applied</h3></div>
                     <div className="p-5 space-y-3 text-sm">
                       <Row label="Your pay" value={formatAUD(employment, 2)} />
-                      {agePensionAge && <Row label={`Work Bonus (first ${formatAUD(WORK_BONUS.fortnightlyCredit)}, then balance)`} value={`-${formatAUD(result.workBonusSaved, 2)}`} />}
+                      {agePensionAge && <Row label={`Work Bonus (first ${formatAUD(WORK_BONUS.fortnightlyCredit)}, then balance)`} value={formatNegAUD(result.workBonusSaved, 2)} />}
                       {situation === "couple" && <Row label="Partner's income" value={formatAUD(partnerIncome, 2)} />}
                       <Row label="Other income" value={formatAUD(otherIncome, 2)} />
                       <Row label={situation === "couple" ? "Combined assessable income" : "Assessable income"} value={formatAUD(result.assessable, 2)} bold />
                       <div className="border-t border-sandstone-dark/10 pt-3" />
                       <Row label="Maximum rate (from 20 Sep 2026)" value={formatAUD(result.max, 2)} />
-                      <Row label={`${situation === "couple" ? "25c" : "50c"} per $1 over ${formatAUD(IT[situation].freeArea)}${situation === "couple" ? " (combined)" : ""}`} value={`-${formatAUD(result.reduction, 2)}`} />
+                      <Row label={`${situation === "couple" ? "25c" : "50c"} per $1 over ${formatAUD(IT[situation].freeArea)}${situation === "couple" ? " (combined)" : ""}`} value={formatNegAUD(result.reduction, 2)} />
                       <Row label="Carer Payment" value={formatAUD(result.pay, 2)} bold highlight />
                       <Row label="Cut-off" value={situation === "single" ? formatAUD(R.publishedCutOff.single, 2) : `${formatAUD(R.publishedCutOff.coupleCombined, 2)} combined`} />
                     </div>
@@ -187,7 +187,7 @@ export default function CarerPaymentCalculatorPage() {
                     return (
                       <tr key={inc} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                         <td className={TD + " font-medium"}>{formatAUD(inc, 2)}</td>
-                        <td className={TD + " text-right"}>-{formatAUD(pensionReduction(inc, "single"), 2)}</td>
+                        <td className={TD + " text-right"}>{formatNegAUD(pensionReduction(inc, "single"), 2)}</td>
                         <td className={TD + " text-right font-bold"}>{formatAUD(pay, 2)}</td>
                         <td className={TD + " text-right"}>{formatAUD(pay + inc, 2)}</td>
                       </tr>

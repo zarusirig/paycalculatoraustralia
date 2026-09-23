@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatAUD } from "@/lib/constants";
+import { formatAUD, formatNegAUD } from "@/lib/constants";
 import {
   PAYROLL_TAX_FY,
   PAYROLL_TAX_STATE_CODES,
@@ -182,7 +182,7 @@ export default function PayrollTaxCalculator({
               <div className="space-y-3 p-5 text-sm">
                 <Row label={`${info.abbr} taxable wages`} value={formatAUD(r.stateWages)} />
                 {interstate && <Row label={`${info.abbr} share of Australian wages`} value={pctTrim(r.share, 1)} muted />}
-                <Row label="Less threshold / deduction" value={`−${formatAUD(r.deduction)}`} />
+                <Row label="Less threshold / deduction" value={formatNegAUD(r.deduction, 0, "−")} />
                 <Row label="Wages taxed" value={formatAUD(r.taxableWages)} />
                 <Row
                   label={state === "tas" && r.rate === 0.061 ? "Rates (4% band, then 6.1%)" : "Rate"}

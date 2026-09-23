@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import { formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { formatAUD, formatNegAUD, SITE_CONFIG } from "@/lib/constants";
 import {
   ADVANCE_LIMITS,
   ADVANCE_RULES,
@@ -89,7 +89,7 @@ export default function CentrelinkAdvancePaymentPage() {
                   </div>
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
                     <Row label="Advance paid to you" value={formatAUD(r.amount, 2)} />
-                    <Row label={`Repayment (÷ ${ADVANCE_RULES.repaymentFortnights})`} value={`-${formatAUD(r.repay, 2)}`} />
+                    <Row label={`Repayment (÷ ${ADVANCE_RULES.repaymentFortnights})`} value={formatNegAUD(r.repay, 2)} />
                     <Row label="Your usual payment" value={formatAUD(payment, 2)} />
                     <Row label="Paid to you each fortnight while repaying" value={formatAUD(r.net, 2)} bold highlight />
                     <Row label={`Repaid over ${ADVANCE_RULES.repaymentFortnights} fortnights (about 6 months)`} value={formatAUD(r.totalRepaid, 2)} />

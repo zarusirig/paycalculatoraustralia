@@ -12,6 +12,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   SOURCES,
@@ -126,8 +127,8 @@ export default function SalarySacrificeCalculatorPage() {
                     <div className="space-y-2 text-sm">
                       <Row label="Gross Salary" value={formatAUD(salary)} bold />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(without.netIncomeTax)}`} />
-                      <Row label="Medicare" value={`-${formatAUD(without.medicareLevy)}`} />
+                      <Row label="Income Tax" value={formatNegAUD(without.netIncomeTax)} />
+                      <Row label="Medicare" value={formatNegAUD(without.medicareLevy)} />
                       <div className="border-t border-sandstone-dark/20" />
                       <Row label="Take-Home" value={formatAUD(without.takeHomePay)} bold green />
                       <div className="border-t border-sandstone-dark/20" />
@@ -143,11 +144,11 @@ export default function SalarySacrificeCalculatorPage() {
                     <h3 className="text-sm font-semibold text-eucalyptus-dark uppercase tracking-wider mb-3">With Sacrifice</h3>
                     <div className="space-y-2 text-sm">
                       <Row label="Gross Salary" value={formatAUD(salary)} bold />
-                      <Row label="Sacrifice" value={`-${formatAUD(sacrifice)}`} highlight />
+                      <Row label="Sacrifice" value={formatNegAUD(sacrifice)} highlight />
                       <Row label="Taxable Income" value={formatAUD(salary - sacrifice)} />
                       <div className="border-t border-sandstone-dark/20" />
-                      <Row label="Income Tax" value={`-${formatAUD(withSac.netIncomeTax)}`} />
-                      <Row label="Medicare" value={`-${formatAUD(withSac.medicareLevy)}`} />
+                      <Row label="Income Tax" value={formatNegAUD(withSac.netIncomeTax)} />
+                      <Row label="Medicare" value={formatNegAUD(withSac.medicareLevy)} />
                       <div className="border-t border-sandstone-dark/20" />
                       <Row label="Take-Home" value={formatAUD(withSac.takeHomePay)} bold green />
                       <div className="border-t border-sandstone-dark/20" />
@@ -170,7 +171,7 @@ export default function SalarySacrificeCalculatorPage() {
                   <div className="text-sm text-warmgray">Extra Super</div>
                 </div>
                 <div className="bg-sandstone/50 rounded-lg p-4">
-                  <div className="text-2xl font-bold text-ochre">-{formatAUD(takeHomeReduction)}</div>
+                  <div className="text-2xl font-bold text-ochre">{formatNegAUD(takeHomeReduction)}</div>
                   <div className="text-sm text-warmgray">Take-Home Reduction</div>
                 </div>
               </div>
@@ -232,7 +233,7 @@ export default function SalarySacrificeCalculatorPage() {
                         <tr className="hover:bg-sandstone">
                           <td className="px-4 py-3 text-navy">Salary Sacrifice</td>
                           <td className="px-4 py-3 text-right text-navy">{formatAUD(0)}</td>
-                          <td className="px-4 py-3 text-right text-eucalyptus-dark font-medium">-{formatAUD(10_000)}</td>
+                          <td className="px-4 py-3 text-right text-eucalyptus-dark font-medium">{formatNegAUD(10_000)}</td>
                         </tr>
                         <tr className="hover:bg-sandstone">
                           <td className="px-4 py-3 text-navy">Taxable Income</td>
@@ -241,13 +242,13 @@ export default function SalarySacrificeCalculatorPage() {
                         </tr>
                         <tr className="hover:bg-sandstone">
                           <td className="px-4 py-3 text-navy">Income Tax</td>
-                          <td className="px-4 py-3 text-right text-navy">-{formatAUD(w.netIncomeTax)}</td>
-                          <td className="px-4 py-3 text-right text-navy">-{formatAUD(ws.netIncomeTax)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatNegAUD(w.netIncomeTax)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatNegAUD(ws.netIncomeTax)}</td>
                         </tr>
                         <tr className="hover:bg-sandstone">
                           <td className="px-4 py-3 text-navy">Medicare Levy</td>
-                          <td className="px-4 py-3 text-right text-navy">-{formatAUD(w.medicareLevy)}</td>
-                          <td className="px-4 py-3 text-right text-navy">-{formatAUD(ws.medicareLevy)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatNegAUD(w.medicareLevy)}</td>
+                          <td className="px-4 py-3 text-right text-navy">{formatNegAUD(ws.medicareLevy)}</td>
                         </tr>
                         <tr className="hover:bg-sandstone bg-sandstone/50">
                           <td className="px-4 py-3 font-semibold text-navy">Take-Home Pay</td>
@@ -373,7 +374,7 @@ export default function SalarySacrificeCalculatorPage() {
                         <td className="px-4 py-3 font-medium text-navy">{formatAUD(s!)}</td>
                         <td className="px-4 py-3 text-right text-navy">{formatAUD(sac!)}</td>
                         <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(saved)}</td>
-                        <td className="px-4 py-3 text-right text-navy">-{formatAUD(drop)}</td>
+                        <td className="px-4 py-3 text-right text-navy">{formatNegAUD(drop)}</td>
                         <td className="px-4 py-3 text-right font-medium text-eucalyptus-dark">{formatAUD(saved)}</td>
                       </tr>
                     );

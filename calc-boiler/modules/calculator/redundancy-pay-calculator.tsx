@@ -9,7 +9,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { NOTICE_PERIODS, SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants";
+import { NOTICE_PERIODS, SITE_CONFIG, SOURCES, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import {
   ETP_RATES,
   GENUINE_REDUNDANCY_AGE_LIMIT,
@@ -209,7 +209,7 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
                     <Row label={genuine ? `Tax-free limit (${Y})` : "Tax-free limit"} value={genuine ? formatAUD(r.tax.taxFreeLimit) : "Nil — not genuine"} />
                     <Row label="Tax-free part" value={formatAUD(r.tax.taxFree, 2)} green />
                     <Row label="Taxable ETP part" value={formatAUD(r.tax.etpTaxable, 2)} />
-                    <Row label={`Tax on ETP (${pct(r.tax.rateWithinCap)}${r.tax.etpAboveCap > 0 ? ` / ${pct(ETP_RATES.aboveCap)} over cap` : ""})`} value={`−${formatAUD(r.tax.tax, 2)}`} />
+                    <Row label={`Tax on ETP (${pct(r.tax.rateWithinCap)}${r.tax.etpAboveCap > 0 ? ` / ${pct(ETP_RATES.aboveCap)} over cap` : ""})`} value={formatNegAUD(r.tax.tax, 2, "−")} />
                     <div className="border-t border-sandstone-dark/20 pt-3" />
                     <Row label="Take-home redundancy pay" value={formatAUD(r.tax.net, 2)} bold highlight />
                   </div>
@@ -337,7 +337,7 @@ export default function RedundancyPayCalculatorPage({ faqs }: { faqs: readonly R
                   <tr><td className={TD}>Package ({EX2.years} × {EX2.weeksPerYear} = {EX2_WEEKS} weeks × {formatAUD(EX2_WEEKLY, 2)})</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_WEEKLY * EX2_WEEKS, 2)}</td></tr>
                   <tr><td className={TD}>Tax-free limit ({formatAUD(REDUNDANCY_TAX.taxFreeBase)} + {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} × {EX2.years})</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_TAX.taxFreeLimit)}</td></tr>
                   <tr><td className={TD}>Taxable ETP part</td><td className={TD + " text-right tabular-nums"}>{formatAUD(EX2_TAX.etpTaxable, 2)}</td></tr>
-                  <tr><td className={TD}>Tax at {pct(EX2_TAX.rateWithinCap)} (under {PRESERVATION_AGE})</td><td className={TD + " text-right tabular-nums"}>−{formatAUD(EX2_TAX.tax, 2)}</td></tr>
+                  <tr><td className={TD}>Tax at {pct(EX2_TAX.rateWithinCap)} (under {PRESERVATION_AGE})</td><td className={TD + " text-right tabular-nums"}>{formatNegAUD(EX2_TAX.tax, 2, "−")}</td></tr>
                   <tr className="bg-sandstone/50"><td className={TD + " font-medium"}>Take-home</td><td className={TD + " text-right font-bold tabular-nums"}>{formatAUD(EX2_TAX.net, 2)}</td></tr>
                 </tbody>
               </table>

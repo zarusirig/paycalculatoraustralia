@@ -10,6 +10,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatNegAUD,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
@@ -276,10 +277,10 @@ export default function YTDIncomeCalculatorPage() {
                         <div className="text-right text-navy font-bold">{formatAUD(projectedAnnual)}</div>
 
                         <div className="text-warmgray">Income Tax</div>
-                        <div className="text-right text-ochre">-{formatAUD(breakdown.netIncomeTax)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(breakdown.netIncomeTax)}</div>
 
                         <div className="text-warmgray">Medicare Levy</div>
-                        <div className="text-right text-ochre">-{formatAUD(breakdown.medicareLevy)}</div>
+                        <div className="text-right text-ochre">{formatNegAUD(breakdown.medicareLevy)}</div>
 
                         <div className="border-t border-sandstone-dark/20 pt-2 font-bold text-navy">Net Take-Home</div>
                         <div className="border-t border-sandstone-dark/20 pt-2 text-right font-extrabold text-eucalyptus-dark bg-eucalyptus-light/30 px-2 rounded">{formatAUD(breakdown.takeHomePay)}</div>

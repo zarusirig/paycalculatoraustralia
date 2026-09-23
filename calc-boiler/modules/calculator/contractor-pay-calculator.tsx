@@ -21,6 +21,7 @@ import {
   calculateMedicareLevy,
   calculateHECS,
   formatAUD,
+  formatNegAUD,
   formatPercent,
   SUPER_GUARANTEE,
   MEDICARE_LEVY,
@@ -501,7 +502,7 @@ export default function ContractorPayCalculator() {
                     <tr key={dailyRate} className="hover:bg-sandstone">
                       <td className="px-4 py-3 font-medium text-navy">${dailyRate}/day</td>
                       <td className="px-4 py-3 text-right text-navy">{formatAUD(gross)}</td>
-                      <td className="px-4 py-3 text-right text-ochre">-{formatAUD(totalTax)}</td>
+                      <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(totalTax)}</td>
                       <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(takeHome)}</td>
                       <td className="px-4 py-3 text-right text-navy">{formatAUD(netPerDay)}</td>
                     </tr>
@@ -552,7 +553,7 @@ export default function ContractorPayCalculator() {
                   <tr key={row.rate} className="hover:bg-sandstone">
                     <td className="px-4 py-3 font-medium text-navy">${row.rate}/hr</td>
                     <td className="px-4 py-3 text-right text-navy">{formatAUD(row.billedIncome)}</td>
-                    <td className="px-4 py-3 text-right text-ochre">-{formatAUD(row.superSelfFunded + row.insurance + row.admin)}</td>
+                    <td className="px-4 py-3 text-right text-ochre">{formatNegAUD(row.superSelfFunded + row.insurance + row.admin)}</td>
                     <td className="px-4 py-3 text-right font-semibold text-eucalyptus-dark">{formatAUD(row.equivalentSalary)}</td>
                     <td className="px-4 py-3 text-right text-navy">{formatAUD(row.employeeHourly, 2)}</td>
                   </tr>
