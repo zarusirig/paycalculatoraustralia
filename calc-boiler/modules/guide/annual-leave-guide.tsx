@@ -317,7 +317,7 @@ export default function AnnualLeaveGuidePage() {
 
                 <AccordionItem value="leave-loading-taxed" className="border rounded-lg px-4 bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Is leave loading taxed?</AccordionTrigger>
-                  <AccordionContent className="text-warmgray">Yes. Leave loading is classified as <strong>ordinary time earnings</strong> and is subject to PAYG withholding at the employee&apos;s marginal tax rate. It is included in assessable income for the financial year. The 12% superannuation guarantee also applies to leave loading payments, as they form part of ordinary time earnings.</AccordionContent>
+                  <AccordionContent className="text-warmgray">Yes. Leave loading is classified as <strong>ordinary time earnings</strong> and is subject to PAYG withholding at the employee&apos;s marginal tax rate. It is included in assessable income for the financial year. The 12% superannuation guarantee also applies to leave loading, except where the loading is paid only to compensate for overtime you would have worked — the ATO treats that portion as not ordinary time earnings.</AccordionContent>
                 </AccordionItem>
 
                 <AccordionItem value="part-time-accrual" className="border rounded-lg px-4 bg-white">
