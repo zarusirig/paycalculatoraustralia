@@ -410,6 +410,29 @@ test("David Jones: cl 8.2(c) Retail Award level + cents from 1 July 2026", () =>
   assert.equal(halfUp(27.98 * 2.25), 62.96);
 });
 
+test("Officeworks: cl 10.1 July 2024 rate x (AWR + 0.25%) for 2025 and 2026", () => {
+  const ow = getEmployerPay("officeworks");
+  assert.ok(ow);
+  const printed2024 = [26.16, 27.46, 28.76];
+  ow.rates.forEach((r, i) => {
+    const r2025 = halfUp(printed2024[i] * 1.0375);
+    const r2026 = halfUp(r2025 * 1.05);
+    assert.equal(r.hourly, r2026, r.level);
+    assert.equal(halfUp(printed2024[i] * 1.0375 * 1.05), r2026, "same result unrounded");
+    assert.equal(r.casualHourly, halfUp(r.hourly * 1.25), r.level);
+  });
+  const juniors = Object.fromEntries(juniorRates(ow).map((j) => [j.age, j.hourly]));
+  assert.equal(juniors["Under 18"], 17.1);
+  assert.equal(juniors["18"], 19.95);
+  // Dec 2026 award phase-in overtakes the 18-year-old rate.
+  assert.ok(halfUp((1056.8 * 0.75) / 38) > juniors["18"]);
+  const text = [...ow.penaltyNotes, ...ow.faqs.map((f) => f.a), ...ow.notices].join(" ");
+  for (const pct of [1.25, 1.5, 1.75, 2.5]) {
+    assert.ok(text.includes(`$${halfUp(28.5 * pct).toFixed(2)}`), `${pct}`);
+  }
+  for (const v of ["$17.10", "$19.95", "$20.86", "$29.91", "$31.33"]) assert.ok(text.includes(v), v);
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);
