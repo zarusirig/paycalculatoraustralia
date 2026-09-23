@@ -356,6 +356,34 @@ test("KFC: award weekly x 1.005 to 10c (permanent), (award hourly + 1c) x 1.25 (
   assert.match(kfc.instrument.nominalExpiry ?? "", /passed/);
 });
 
+test("Domino's and Red Rooster pay the Fast Food Award: same figures as McDonald's", () => {
+  const mcd = getEmployerPay("mcdonalds");
+  assert.ok(mcd);
+  for (const slug of ["dominos", "red-rooster"]) {
+    const e = getEmployerPay(slug);
+    assert.ok(e, slug);
+    assert.equal(e.instrument.kind, "modern-award");
+    assert.equal(e.instrument.reference, "MA000003");
+    assert.deepEqual(
+      e.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+      mcd.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    );
+    assert.deepEqual(e.publishedJuniorRates, mcd.publishedJuniorRates);
+    assert.deepEqual(e.penalties.map((p) => [p.permanent, p.casual]), mcd.penalties.map((p) => [p.permanent, p.casual]));
+    const text = e.faqs.map((f) => f.a).join(" ");
+    for (const v of ["$27.81", "$34.76", "$29.45", "$11.12", "$13.91", "$16.69", "$34.76", "$62.57"]) {
+      assert.ok(text.includes(v), `${slug} ${v}`);
+    }
+    // L1 x 125% and x 225% (award cl 21 Table 6).
+    assert.equal(halfUp(27.81 * 1.25), 34.76);
+    assert.equal(halfUp(27.81 * 2.25), 62.57);
+  }
+  // PR813654 L1 phase-in dollars quoted on the Red Rooster page.
+  for (const [pct, v] of [[0.75, 20.86], [0.85, 23.64], [0.95, 26.42]] as const) {
+    assert.equal(halfUp((1056.8 * pct) / 38), v);
+  }
+});
+
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
   const iga = getEmployerPay("iga");
   assert.ok(iga);

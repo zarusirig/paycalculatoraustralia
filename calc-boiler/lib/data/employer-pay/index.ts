@@ -31,6 +31,8 @@ import { BWS_PAY } from "./bws";
 import { DAN_MURPHYS_PAY } from "./dan-murphys";
 import { HOYTS_PAY } from "./hoyts";
 import { KFC_PAY } from "./kfc";
+import { DOMINOS_PAY } from "./dominos";
+import { RED_ROOSTER_PAY } from "./red-rooster";
 // --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
@@ -53,6 +55,8 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "dan-murphys": DAN_MURPHYS_PAY,
   hoyts: HOYTS_PAY,
   kfc: KFC_PAY,
+  dominos: DOMINOS_PAY,
+  "red-rooster": RED_ROOSTER_PAY,
   // --- end H1 ---
 };
 
