@@ -11,19 +11,29 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
-  calculateHECS,
   formatAUD,
   formatPercent,
   SUPER_GUARANTEE,
-  MEDICARE_LEVY,
   EMPLOYMENT,
   SOURCES,
   SITE_CONFIG,
-  GENERAL_INTEREST_CHARGE,
 } from "@/lib/constants";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { bracketRateList } from "@/modules/calculator/fy-rate-copy";
+import { BILLABLE_WEEKS, CONTRACTOR_FAQS } from "@/modules/calculator/contractor-pay-faqs";
+import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+
+// Google AU "related searches" for "contractor pay calculator" and "contractor
+// rate calculator australia" (Sept 2026), each pointed at the page that answers it.
+const RELATED_SEARCHES: readonly RelatedSearch[] = [
+  { label: "Contractor vs employee calculator", href: "/contractor-vs-employee-calculator/" },
+  { label: "ABN vs company vs employee", href: "/employee-vs-sole-trader-vs-company/" },
+  { label: "Hourly rate to salary calculator", href: "/hourly-to-annual-salary-calculator/" },
+  { label: "Salary to hourly rate calculator", href: "/salary-to-hourly/" },
+  { label: "Construction and trades pay", href: "/construction-trades-pay/" },
+  { label: "Gig economy pay guide", href: "/gig-economy-pay-guide/" },
+];
 
 // Derived figures (previously hand-typed FY2025-26 values: $313 penalty unit,
 // 16% bracket, $30,000 concessional cap, 67c WFH rate, $24,187 tax on $100k).
@@ -498,6 +508,15 @@ export default function ContractorPayCalculator() {
           </p>
         </section>
 
+        {/* PAA: "What rate should I charge as a contractor?" */}
+        <section id="contractor-rate">
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Rate Should I Charge as a Contractor?</h2>
+          <p className="mb-4 text-warmgray">{CONTRACTOR_FAQS.find((f) => f.q === "What rate should I charge as a contractor?")!.a}</p>
+          <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus p-4 text-navy font-medium font-mono text-sm max-w-xl mx-auto rounded-r-lg">
+            Minimum hourly rate = Target salary &times; (1 + {formatPercent(SUPER_GUARANTEE.rate, 0)} super) &divide; ({EMPLOYMENT.standardWeeklyHours} hours &times; {BILLABLE_WEEKS} weeks)
+          </div>
+        </section>
+
         {/* What Hourly Rate Equals a Salary? */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">What Contractor Hourly Rate Equals a Salary?</h2>
@@ -612,34 +631,21 @@ export default function ContractorPayCalculator() {
           </ul>
         </section>
 
+        <RelatedSearches items={RELATED_SEARCHES} />
+
         {/* FAQ */}
         <section>
           <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="mb-4 text-2xl font-bold text-navy">Frequently Asked Questions</h2>
+          {/* Radix unmounts closed answers; this mirror keeps them in the HTML.
+              The same array feeds the FAQPage JSON-LD in the route file. */}
+          <div className="sr-only">
+            <h3>Contractor pay questions and answers</h3>
+            {CONTRACTOR_FAQS.map((f) => (<div key={f.q}><h4>{f.q}</h4><p>{f.a}</p></div>))}
+          </div>
           <Accordion type="multiple" className="space-y-3">
-            <FAQItem value="what-contractor" question="What is a contractor for tax purposes?">
-              A contractor (also called an independent contractor or ABN worker) operates their own business and invoices clients for work performed. Unlike employees, contractors handle their own tax, super, and insurance. The ATO uses a multi-factor test to determine if someone is genuinely a contractor — see our <Link href="/contractor-vs-employee-calculator/" className="font-medium text-eucalyptus-dark hover:underline">contractor vs employee guide</Link>.
-            </FAQItem>
-            <FAQItem value="gst" question="Do I need to charge GST as a contractor?">
-              If your ABN business income exceeds <strong>$75,000 per year</strong>, you must register for GST and charge 10% on your invoices. The GST you collect is remitted to the ATO quarterly — it&apos;s not your income. If you&apos;re under $75,000, GST registration is optional.
-            </FAQItem>
-            <FAQItem value="super-contractor" question="Do contractors need to pay super?">
-              If you&apos;re an independent contractor working under your own ABN, super is optional (but recommended). However, if a business hires you primarily for your labour (rather than achieving a specific result), they may be required to pay super on your behalf. Use the &quot;Includes Super&quot; toggle to model either scenario.
-            </FAQItem>
-            <FAQItem value="hourly-rate" question="How do I calculate my contractor hourly rate?">
-              Your contractor rate should cover the benefits you lose compared to employment: super ({formatPercent(SUPER_GUARANTEE.rate, 0)}), annual leave (4 weeks), sick leave, public holidays, insurance, and admin time. A common rule of thumb: multiply an equivalent employee hourly rate by 1.4-1.6 to get your contractor rate.
-            </FAQItem>
-            <FAQItem value="deductions" question="Can contractors claim business deductions?">
-              Yes. Contractors can deduct legitimate business expenses from their assessable income — including equipment, home office, vehicle, phone, software, professional development, and insurance. This calculator estimates tax on your gross income; your actual tax may be lower after claiming deductions on your tax return.
-            </FAQItem>
-            <FAQItem value="payg-instalments" question="How do PAYG instalments work for contractors?">
-              The ATO calculates your quarterly PAYG instalment amount based on your most recent tax return. Instalments are due on <strong>28 October, 28 February, 28 April, and 28 July</strong>. You can choose the instalment amount method (ATO-calculated) or the instalment rate method (percentage of income). Paying a PAYG instalment late attracts the general interest charge &mdash; <strong>{formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} a year</strong> for {GENERAL_INTEREST_CHARGE.quarter}, reset every quarter.
-            </FAQItem>
-            <FAQItem value="abn-tfn" question="Do I need both an ABN and a TFN as a contractor?">
-              Yes. Your <strong>Tax File Number (TFN)</strong> is used for your personal income tax return. Your <strong>Australian Business Number (ABN)</strong> is required on every invoice you issue. Clients who pay contractors without a valid ABN on the invoice must withhold <strong>47%</strong> of the payment and remit it to the ATO.
-            </FAQItem>
-            <FAQItem value="contractor-insurance" question="What insurance do contractors need in Australia?">
-              Most contractors carry 3 types of insurance: <strong>public liability</strong> ($5–$20 million cover, costing $300–$1,200/year), <strong>professional indemnity</strong> (required for consultants, accountants, and IT professionals, costing $400–$2,000/year), and <strong>income protection</strong> (replaces up to 75% of income during illness or injury). Workers&apos; compensation is compulsory in some states for contractors who employ others.
-            </FAQItem>
+            {CONTRACTOR_FAQS.map((f) => (
+              <FAQItem key={f.q} value={f.q} question={f.q}>{f.a}</FAQItem>
+            ))}
           </Accordion>
         </section>
 
