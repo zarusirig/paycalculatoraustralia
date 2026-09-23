@@ -139,6 +139,30 @@ test("Retail Award employers (Harvey Norman, Spotlight, Anaconda): same figures 
   }
 });
 
+test("Fast Food Award employers (Starbucks, GYG, Zambrero): same figures as Subway", () => {
+  const subway = get("subway");
+  for (const slug of ["starbucks", "guzman-y-gomez", "zambrero"]) {
+    const e = get(slug);
+    assert.equal(e.instrument.kind, "modern-award", slug);
+    assert.equal(e.instrument.reference, "MA000003", slug);
+    assert.deepEqual(
+      e.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+      subway.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    );
+    assert.deepEqual(e.publishedJuniorRates, subway.publishedJuniorRates);
+    assert.deepEqual(e.penalties, subway.penalties);
+    assert.deepEqual(e.overtime, subway.overtime);
+    const text = e.faqs.map((f) => f.a).join(" ");
+    for (const v of ["$27.81", "$34.76", "$29.45", "$11.12", "$13.91", "$16.69", "$62.57"]) assert.ok(text.includes(v), `${slug} ${v}`);
+    // PR813654 Level 1 phase-in dollars in the next-increase note.
+    for (const pct of [0.75, 0.85, 0.95]) {
+      assert.ok(e.nextIncrease?.detail.includes(money((1056.8 * pct) / 38)), `${slug} ${pct}`);
+    }
+  }
+  assert.equal(halfUp(27.81 * 1.25), 34.76);
+  assert.equal(halfUp(27.81 * 2.25), 62.57);
+});
+
 test("Rebel: Super Retail Group Appendix A cl 304 (from 5 July 2026) transcribed exactly", () => {
   const r = get("rebel");
   assert.equal(r.instrument.reference, "AG2024/952, AE524487");
