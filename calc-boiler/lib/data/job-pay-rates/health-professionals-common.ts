@@ -122,10 +122,13 @@ export interface HpssOccupationInput {
   headlineLabel: string;
   why: string;
   coverage: string[];
-  median: MedianEarnings;
+  /** Null where JSA publishes no median for the unit group (e.g. podiatrists: "N/A"). */
+  median: MedianEarnings | null;
   notices: string[];
   faqs: OccupationFaq[];
   related: { href: string; label: string }[];
+  /** Optional <title> override (G3: "salary" wording for "{job} salary" searches). Must still state the headline hourly rate. */
+  metaTitle?: string;
 }
 
 export function hpssOccupation(input: HpssOccupationInput): Occupation {
@@ -149,9 +152,10 @@ export function hpssOccupation(input: HpssOccupationInput): Occupation {
       { title: HPSS_SOURCE_TITLE, publisher: "Fair Work Commission", url: HPSS_AWARD.url },
       FWO_PAY_GUIDES,
       ANNUAL_WAGE_REVIEW_2026,
-      jsaSource(input.median),
+      ...(input.median ? [jsaSource(input.median)] : []),
     ],
     verifiedOn: JOB_PAY_VERIFIED_ON,
     related: input.related,
+    ...(input.metaTitle ? { metaTitle: input.metaTitle } : {}),
   };
 }

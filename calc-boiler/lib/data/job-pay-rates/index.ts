@@ -23,6 +23,13 @@ import { CLEANER } from "./cleaner";
 import { CRANE_OPERATOR } from "./crane-operator";
 import { DENTAL_ASSISTANT } from "./dental-assistant";
 import { DENTAL_HYGIENIST } from "./dental-hygienist";
+// G3 (wave 4)
+import { AUDIOLOGIST } from "./audiologist";
+import { DIETITIAN } from "./dietitian";
+import { PODIATRIST } from "./podiatrist";
+import { RADIOGRAPHER } from "./radiographer";
+import { SONOGRAPHER } from "./sonographer";
+import { SPEECH_PATHOLOGIST } from "./speech-pathologist";
 import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
@@ -97,6 +104,13 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   bookkeeper: BOOKKEEPER,
   "pathology-collector": PATHOLOGY_COLLECTOR,
   "dental-hygienist": DENTAL_HYGIENIST,
+  // G3 (wave 4)
+  radiographer: RADIOGRAPHER,
+  sonographer: SONOGRAPHER,
+  "speech-pathologist": SPEECH_PATHOLOGIST,
+  audiologist: AUDIOLOGIST,
+  podiatrist: PODIATRIST,
+  dietitian: DIETITIAN,
 };
 
 /** Every occupation, in the order the hub lists them. */

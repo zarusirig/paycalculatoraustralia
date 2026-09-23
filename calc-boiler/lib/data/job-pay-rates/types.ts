@@ -62,6 +62,13 @@ export const OCCUPATION_SLUGS = [
   "bookkeeper",
   "pathology-collector",
   "dental-hygienist",
+  // G3 (wave 4) — allied health on the HPSS award.
+  "radiographer",
+  "sonographer",
+  "speech-pathologist",
+  "audiologist",
+  "podiatrist",
+  "dietitian",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
