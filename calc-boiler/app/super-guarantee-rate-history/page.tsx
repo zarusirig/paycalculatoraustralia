@@ -6,6 +6,7 @@ import { SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
 import { SG_RATE_FAQS } from "@/modules/guide/super-guarantee-rate-faqs";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-rate-history/`;
@@ -64,7 +65,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -72,3 +73,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/super-guarantee-rate-history/");

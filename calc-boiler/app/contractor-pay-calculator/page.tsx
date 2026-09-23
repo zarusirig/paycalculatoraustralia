@@ -12,6 +12,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import type { Metadata } from "next";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 export const metadata: Metadata = {
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
@@ -86,7 +87,7 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function ContractorPayCalculatorPage() {
+function ContractorPayCalculatorPage() {
   return (
     <>
       <JsonLd
@@ -96,3 +97,5 @@ export default function ContractorPayCalculatorPage() {
     </>
   );
 }
+
+export default withPageEnd(ContractorPayCalculatorPage, "/contractor-pay-calculator/");

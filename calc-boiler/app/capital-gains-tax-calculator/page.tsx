@@ -11,6 +11,7 @@ import {
   CGT_MINIMUM_OWNERSHIP_MONTHS,
 } from "@/lib/constants/capital-gains-tax";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/capital-gains-tax-calculator/`;
@@ -83,7 +84,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -91,3 +92,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/capital-gains-tax-calculator/");

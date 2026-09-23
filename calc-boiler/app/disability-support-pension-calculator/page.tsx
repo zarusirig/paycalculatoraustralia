@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { DSP, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "disability-support-pension-calculator";
 const R = DSP.rates21Plus.maxFortnightly;
@@ -12,7 +13,7 @@ const DESCRIPTION = `DSP is ${formatAUD(R.single.total, 2)} a fortnight single a
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Disability Support Pension Calculator", description: DESCRIPTION, faqs: DSP_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
@@ -20,3 +21,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/disability-support-pension-calculator/");

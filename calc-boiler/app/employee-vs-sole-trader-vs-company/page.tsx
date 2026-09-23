@@ -7,6 +7,7 @@ import { SOLE_TRADER_COMPANY_FAQS } from "@/modules/guide/employee-vs-sole-trade
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employee-vs-sole-trader-vs-company/`;
@@ -53,7 +54,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(SOLE_TRADER_COMPANY_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -61,3 +62,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/employee-vs-sole-trader-vs-company/");

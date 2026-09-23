@@ -8,6 +8,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schem
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/long-service-leave-calculator/`;
@@ -95,7 +96,7 @@ const howToSchema = calculatorHowTo({
   ],
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
@@ -103,3 +104,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/long-service-leave-calculator/");

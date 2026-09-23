@@ -7,6 +7,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-calculator-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rise-calculator/`;
@@ -76,7 +77,7 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
@@ -84,3 +85,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/pay-rise-calculator/");

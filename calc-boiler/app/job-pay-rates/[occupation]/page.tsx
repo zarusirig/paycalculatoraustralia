@@ -12,6 +12,7 @@ import {
   type Occupation,
 } from "@/lib/data/job-pay-rates";
 import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -94,7 +95,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { occupation } = await params;
   const occ = getOccupation(occupation);
   if (!occ) notFound();
@@ -142,3 +143,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/job-pay-rates/[occupation]/");

@@ -4,6 +4,7 @@ import {
   publicHolidayStateMetadata,
   publicHolidayStateParams,
 } from "@/modules/guide/public-holiday-routes";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{ state: string }>;
@@ -21,7 +22,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return publicHolidayStateMetadata(state);
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state } = await params;
   return <PublicHolidayStateRoute slug={state} />;
 }
+
+export default withPageEnd(Page, "/public-holiday-pay/[state]/");

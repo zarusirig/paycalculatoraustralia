@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import JuryDutyPayPage from "@/modules/guide/jury-duty-pay";
 import { JURY_DUTY_PAY_FAQS } from "@/modules/guide/jury-duty-pay-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // G3 (wave 4, 24 Sep 2026). Targets: jury duty pay 1.3k (KD 0), community
 // service leave 390 (DataForSEO, AU).
@@ -30,7 +31,7 @@ const jsonLd = t3JsonLd({
   published: "2026-09-24",
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -38,3 +39,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/jury-duty-pay/");

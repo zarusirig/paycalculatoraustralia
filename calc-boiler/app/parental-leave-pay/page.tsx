@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schem
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { PPL_CURRENT_FY, PPL_ENTITLEMENT, PPL_RATES, PPL_SOURCES } from "@/lib/constants/paid-parental-leave";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // W3 (23 Sep 2026): retargeted from "Parental Leave Pay Guide" to
 // "Paid Parental Leave" (14.8k) / "paid parental leave australia" (6.6k) /
@@ -56,7 +57,7 @@ const faq: WithContext<FAQPage> = {
   mainEntity: PPL_FAQS.map((f) => ({ "@type": "Question" as const, name: f.q, acceptedAnswer: { "@type": "Answer" as const, text: f.a } })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA as unknown as WithContext<WebApplication>]} />
@@ -64,3 +65,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/parental-leave-pay/");

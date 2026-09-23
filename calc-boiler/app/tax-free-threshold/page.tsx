@@ -6,6 +6,7 @@ import type { Article, BreadcrumbList, FAQPage, WebPage, WithContext } from "sch
 import { SITE_CONFIG, TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
 import { TFT_PER_PERIOD, effectiveNilTaxIncome } from "@/lib/constants/tax-free-threshold";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-free-threshold/`;
@@ -74,7 +75,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -82,3 +83,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-free-threshold/");

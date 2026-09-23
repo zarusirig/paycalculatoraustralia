@@ -13,6 +13,7 @@ import {
   isPayrollTaxStateCode,
 } from "@/lib/constants/payroll-tax";
 import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state } = await params;
   if (!isPayrollTaxStateCode(state)) notFound();
   const s = PAYROLL_TAX_STATES[state];
@@ -98,3 +99,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/payroll-tax/[state]/");

@@ -3,6 +3,7 @@ import WorkingCreditPage from "@/modules/guide/working-credit";
 import { WORKING_CREDIT_FAQS } from "@/modules/guide/working-credit-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { WORKING_CREDIT } from "@/lib/constants/working-credit";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "centrelink-working-credit-calculator";
 const TITLE = "Centrelink Working Credit Calculator (2026)";
@@ -26,7 +27,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Centrelink Working Credit Calculator", description: "Builds a Working Credit balance from fortnightly income and projects how the credits offset employment income and keep JobSeeker Payment paying." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -34,3 +35,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/centrelink-working-credit-calculator/");

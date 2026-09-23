@@ -7,6 +7,7 @@ import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_FAQS } from "@/modules/guide/understanding-your-payslip-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/understanding-your-payslip/`;
@@ -54,7 +55,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(PAYSLIP_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -62,3 +63,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/understanding-your-payslip/");

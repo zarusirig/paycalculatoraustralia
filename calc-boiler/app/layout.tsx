@@ -5,7 +5,6 @@ import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
 import AdsterraBanner from "@/components/common/adsterra-banner";
-import { WhatsNext } from "@/components/common/content-slots";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
 import EngagementTracking from "@/components/common/engagement-tracking";
 
@@ -137,15 +136,11 @@ export default function RootLayout({
 
         <main id="main-content">{children}</main>
 
-        {/* 300x250 directly after the article, immediately before the
-            related-links block. The reader has finished the content and is
-            looking for what comes next, so this position is genuinely viewed
-            rather than scrolled past. Shown on every breakpoint — on mobile it
-            replaces the old second 320x50, which was the lowest-CPM unit in the
-            account. */}
-        <AdsterraBanner slot="rectangle" />
-
-        <WhatsNext />
+        {/* The 300x250 rectangle and "What to check next" used to render here.
+            They are now rendered by each page through withPageEnd()
+            (components/common/content-slots.tsx), still directly after the
+            article and in the same order, so the related-links table can stay
+            on the server instead of shipping in this layout's client chunk. */}
 
         {/* Bottom banner — desktop only. Mobile already has two units above and
             a third would push ad density past the point of diminishing returns. */}

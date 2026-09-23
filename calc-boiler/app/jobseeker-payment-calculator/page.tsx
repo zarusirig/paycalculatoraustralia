@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schem
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
@@ -64,7 +65,7 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
@@ -72,3 +73,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/jobseeker-payment-calculator/");

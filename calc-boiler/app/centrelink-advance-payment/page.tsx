@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { ADVANCE_LIMITS, CARER_SUPPORT_SOURCES } from "@/lib/constants/centrelink-carer-and-support";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "centrelink-advance-payment";
 const TITLE = "Centrelink Advance Payment 2026 — Amounts & Repayment Calculator";
@@ -11,7 +12,7 @@ const DESCRIPTION = `Centrelink advance payment: ${formatAUD(250)} to ${formatAU
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Centrelink Advance Payment Calculator", description: DESCRIPTION, faqs: ADVANCE_FAQS, calculator: true, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
@@ -19,3 +20,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/centrelink-advance-payment/");

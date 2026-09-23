@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, ItemList, WebPage, WithContext } from "sc
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { EMPLOYERS } from "@/lib/data/employer-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rates/`;
@@ -62,7 +63,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, itemList, faq, ORGANIZATION_SCHEMA]} />
@@ -70,3 +71,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/pay-rates/");

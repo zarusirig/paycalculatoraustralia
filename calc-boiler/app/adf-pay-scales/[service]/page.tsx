@@ -14,6 +14,7 @@ import {
   type AdfService,
 } from "@/lib/data/adf-pay";
 import { fitDescription, fitTitle } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { service } = await params;
   const s = getAdfService(service);
   if (!s) notFound();
@@ -109,3 +110,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/adf-pay-scales/[service]/");

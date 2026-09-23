@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import { ShieldCheck, Database, RefreshCw, ExternalLink } from "lucide-react";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/about/`;
@@ -45,7 +46,7 @@ const webPage: WithContext<WebPage> = {
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 
-export default function AboutPage() {
+function AboutPage() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage]} />
@@ -332,3 +333,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+export default withPageEnd(AboutPage, "/about/");

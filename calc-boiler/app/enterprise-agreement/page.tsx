@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import EnterpriseAgreementPage from "@/modules/guide/enterprise-agreement";
 import { ENTERPRISE_AGREEMENT_FAQS } from "@/modules/guide/enterprise-agreement-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "enterprise-agreement";
 const TITLE = "Enterprise Agreement (EBA) Search: How to Find Yours";
@@ -26,7 +27,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Enterprise Agreement vs Award Rate Checker", description: "Compares an enterprise agreement base hourly rate with the modern award base rate for the same classification from 1 July 2026." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -34,3 +35,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/enterprise-agreement/");

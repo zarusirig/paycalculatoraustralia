@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-2026/`;
@@ -79,7 +80,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, article, webApp, faq]} />
@@ -87,3 +88,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-return-2026/");

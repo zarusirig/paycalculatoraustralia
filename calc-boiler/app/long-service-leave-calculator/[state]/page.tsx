@@ -16,6 +16,7 @@ import {
 } from "@/lib/constants/long-service-leave";
 import { pageDateModified } from "@/lib/page-dates";
 import { fitDescription } from "@/lib/seo-title";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -67,7 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state } = await params;
   const code = resolve(state);
   if (!code) notFound();
@@ -155,3 +156,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/long-service-leave-calculator/[state]/");

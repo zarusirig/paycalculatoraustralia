@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "sch
 import { SITE_CONFIG, HECS_HELP, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-changes-2026-27/`;
@@ -60,7 +61,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -68,3 +69,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/tax-changes-2026-27/");

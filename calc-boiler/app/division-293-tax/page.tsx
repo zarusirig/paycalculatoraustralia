@@ -7,6 +7,7 @@ import { DIVISION_293_FAQS } from "@/modules/guide/division-293-tax-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/division-293-tax/`;
@@ -53,7 +54,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(DIVISION_293_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -61,3 +62,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/division-293-tax/");

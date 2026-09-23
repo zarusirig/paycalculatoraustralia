@@ -7,6 +7,7 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/take-home-pay-calculator/`;
@@ -52,6 +53,8 @@ const howToSchema = calculatorHowTo({
   steps: PAY_CALCULATOR_STEPS,
 });
 
-export default function Page() {
+function Page() {
   return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><TakeHomePayCalculatorPage /></>);
 }
+
+export default withPageEnd(Page, "/take-home-pay-calculator/");

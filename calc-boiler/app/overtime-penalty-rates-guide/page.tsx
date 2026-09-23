@@ -8,6 +8,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 import { faqPageSchema } from "@/lib/faq";
 import { PENALTY_RATES_FAQS } from "@/modules/guide/overtime-penalty-rates-guide-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
@@ -41,6 +42,8 @@ const article: WithContext<Article> = {
   isBasedOn: { "@type": "Legislation", name: "Fair Work Act 2009", url: "https://www.legislation.gov.au/Details/C2024C00301" },
 };
 
-export default function Page() {
+function Page() {
   return (<><JsonLd code={[breadcrumb, webPage, article, faq]} /><OvertimePenaltyRatesGuidePage /></>);
 }
+
+export default withPageEnd(Page, "/overtime-penalty-rates-guide/");

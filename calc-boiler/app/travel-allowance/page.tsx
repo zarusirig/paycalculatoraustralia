@@ -4,6 +4,7 @@ import { TRAVEL_ALLOWANCE_FAQS } from "@/modules/guide/travel-allowance-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { OVERTIME_MEAL_REASONABLE, PUBLISHED_DAILY_TOTALS, TD_2026_4 } from "@/lib/constants/travel-allowance";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "travel-allowance";
 const TITLE = `Travel Allowance ${TD_2026_4.incomeYear}: ATO Reasonable Amounts + Calculator`;
@@ -27,7 +28,7 @@ const jsonLd = t3JsonLd({
   app: { name: "ATO Reasonable Travel Allowance Calculator", description: `Daily and trip reasonable amounts for accommodation, meals and incidentals under ${TD_2026_4.id}, by salary band and destination, and the part of an allowance subject to withholding.` },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -35,3 +36,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/travel-allowance/");

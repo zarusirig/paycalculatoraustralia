@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { Mail, MessageSquare, Bug } from "lucide-react";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contact/`;
@@ -45,7 +46,7 @@ const webPage: WithContext<WebPage> = {
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 
-export default function ContactPage() {
+function ContactPage() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage]} />
@@ -245,3 +246,5 @@ export default function ContactPage() {
     </>
   );
 }
+
+export default withPageEnd(ContactPage, "/contact/");

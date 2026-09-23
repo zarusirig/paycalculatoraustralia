@@ -9,6 +9,7 @@ import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 interface PageProps {
   params: Promise<{
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
+async function TakeHomePayOnSalaryPage({ params }: PageProps) {
   const resolvedParams = await params;
   const salaryAmount = parseInt(resolvedParams.salary, 10);
   const formattedSalary = formatAUD(salaryAmount);
@@ -120,3 +121,5 @@ export default async function TakeHomePayOnSalaryPage({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(TakeHomePayOnSalaryPage, "/take-home-pay-on/[salary]/");

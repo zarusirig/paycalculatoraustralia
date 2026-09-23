@@ -7,6 +7,7 @@ import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-vs-hourly/`;
@@ -53,7 +54,7 @@ const article: WithContext<Article> = {
 
 const faq = faqPageSchema(SALARY_VS_HOURLY_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
@@ -61,3 +62,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/salary-vs-hourly/");

@@ -5,6 +5,7 @@ import type { BreadcrumbList, FAQPage, ItemList, WithContext } from "schema-dts"
 import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTIONS, PUBLIC_SERVICE_PAY_FAQS } from "@/lib/data/public-service-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/public-service-pay-scales/`;
@@ -61,7 +62,7 @@ const itemList: WithContext<ItemList> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, faq, itemList, ORGANIZATION_SCHEMA]} />
@@ -69,3 +70,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/public-service-pay-scales/");

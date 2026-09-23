@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WebPage, WithContext } fr
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { CASUAL_LOADING, STANDARD_WEEKLY_HOURS } from "@/lib/constants/work-hours";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/work-hours-calculator/`;
@@ -88,7 +89,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, webApp, faq]} />
@@ -96,3 +97,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/work-hours-calculator/");

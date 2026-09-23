@@ -5,6 +5,7 @@ import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { faqPageSchema } from "@/lib/faq";
 import { NOVATED_LEASE_GUIDE_FAQS } from "@/modules/guide/novated-lease-guide-faqs";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-guide/`;
@@ -44,7 +45,7 @@ const webPage: WithContext<WebPage> = {
 // compete for the same result.
 const faq = faqPageSchema(NOVATED_LEASE_GUIDE_FAQS);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webPage, faq]} />
@@ -52,3 +53,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/novated-lease-guide/");

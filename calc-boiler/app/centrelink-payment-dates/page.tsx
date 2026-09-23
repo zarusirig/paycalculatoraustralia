@@ -3,6 +3,7 @@ import CentrelinkPaymentDatesPage from "@/modules/guide/centrelink-payment-dates
 import { CENTRELINK_DATES_FAQS } from "@/modules/guide/centrelink-payment-dates-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { CHRISTMAS_2026_27_PUBLISHED } from "@/lib/constants/centrelink-payment-dates";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // DataForSEO AU, 24 Sep 2026: "centrelink christmas payment dates" 14,800/mo
 // (almost all in December: 165,000 in Dec 2025), "centrelink reporting dates"
@@ -38,7 +39,7 @@ const jsonLd = t3JsonLd({
   app: { name: "Centrelink Payment Date Tool", description: "Lists your next 12 fortnightly Centrelink payment or reporting dates from one known date and flags those on public holidays or over Christmas." },
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -46,3 +47,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/centrelink-payment-dates/");

@@ -37,6 +37,7 @@ import { STATE_PUBLIC_HOLIDAYS, statePath } from "@/lib/data/public-holidays";
 // --- end G4 ---
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
+import { withPageEnd } from "@/components/common/content-slots";
 // --- end T2 ---
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -356,7 +357,7 @@ const SECTIONS: { heading: string; groups: readonly Group[] }[] = extraItems.len
     ]
   : BASE_SECTIONS;
 
-export default function Page() {
+function Page() {
   const total = SECTIONS.reduce(
     (sum, s) => sum + s.groups.reduce((g, group) => g + group.items.length, 0),
     0
@@ -460,3 +461,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/site-directory/");

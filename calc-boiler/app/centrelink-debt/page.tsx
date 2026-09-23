@@ -3,6 +3,7 @@ import { DEBT_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { CARER_SUPPORT_SOURCES, RESOLUTION_SCHEME } from "@/lib/constants/centrelink-carer-and-support";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "centrelink-debt";
 const TITLE = "Centrelink Debt 2026 — Overpayment Refunds & Apportionment Scheme";
@@ -10,7 +11,7 @@ const DESCRIPTION = `Centrelink debt: Income Apportionment Resolution Scheme ref
 
 export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Centrelink Debt", description: DESCRIPTION, faqs: DEBT_FAQS, calculator: false, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
@@ -18,3 +19,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/centrelink-debt/");

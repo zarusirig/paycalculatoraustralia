@@ -7,6 +7,7 @@ import type { Article, BreadcrumbList, Dataset, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { REPORT, REPORT_CSV_FILES, maxTaxCutGain, reportCsvHref, suggestedCitation } from "@/lib/data/pay-report";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const cut = maxTaxCutGain();
@@ -83,7 +84,7 @@ const dataset: WithContext<Dataset> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, article, dataset]} />
@@ -91,3 +92,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/australian-pay-report-2026/");

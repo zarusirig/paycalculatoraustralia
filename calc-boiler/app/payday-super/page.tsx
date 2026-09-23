@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE } from "@/lib/constants/australian-tax";
 import { PAYDAY_SUPER_LAW, PAYDAY_SUPER_SOURCES } from "@/lib/constants/payday-super";
+import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payday-super/`;
@@ -84,7 +85,7 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, article, webApp, faq]} />
@@ -92,3 +93,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/payday-super/");

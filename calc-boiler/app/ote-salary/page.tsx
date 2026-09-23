@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import OteSalaryPage from "@/modules/guide/ote-salary";
 import { OTE_SALARY_FAQS } from "@/modules/guide/ote-salary-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // G3 (wave 4, 24 Sep 2026). Targets: ote meaning salary 3.6k, ote definition
 // salary 3.6k, what is ote 1.3k, what does ote mean in salary 720, ote salary
@@ -31,7 +32,7 @@ const jsonLd = t3JsonLd({
   published: "2026-09-24",
 });
 
-export default function Page() {
+function Page() {
   return (
     <>
       {jsonLd}
@@ -39,3 +40,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/ote-salary/");
