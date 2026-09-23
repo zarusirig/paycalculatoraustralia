@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import TrainDriverSalaryPage from "@/modules/guide/train-driver-salary";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { TRAIN_DRIVER_FAQS } from "@/lib/data/train-driver-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // J6 (wave 4, 24 Sep 2026). Targets (DataForSEO AU): train driver salary 1.6k,
 // sydney trains driver salary 320, train driver salary nsw 320.
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
-export default function Page() {
+function Page() {
   return (
     <>
       {t3JsonLd({
@@ -36,3 +37,5 @@ export default function Page() {
     </>
   );
 }
+
+export default withPageEnd(Page, "/train-driver-salary/");

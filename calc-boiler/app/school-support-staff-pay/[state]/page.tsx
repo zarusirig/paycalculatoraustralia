@@ -4,6 +4,7 @@ import { SchoolSupportStatePage } from "@/modules/guide/school-support-pay";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { SITE_CONFIG } from "@/lib/constants";
 import { SCHOOL_SUPPORT_SLUGS, getSchoolSupportState } from "@/lib/data/school-support-pay";
+import { withPageEnd } from "@/components/common/content-slots";
 
 // J6 (wave 4, 24 Sep 2026): one page per state with verified current rates.
 // Targets (DataForSEO AU): slso pay rate nsw 480, sso pay rate 480,
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+async function Page({ params }: PageProps) {
   const { state: slug } = await params;
   const state = getSchoolSupportState(slug);
   if (!state) notFound();
@@ -56,3 +57,5 @@ export default async function Page({ params }: PageProps) {
     </>
   );
 }
+
+export default withPageEnd(Page, "/school-support-staff-pay/[state]/");
