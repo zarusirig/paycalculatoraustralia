@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // No HECS in the headline: "$110k after tax" is asked for someone without a
   // study loan, which is what the ATO and every other AU pay site answer.
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
+  const withHecs = calculatePayBreakdown({ grossSalary: salaryAmount, includeHECS: true });
   const shortSalary = `$${(salaryAmount / 1000).toLocaleString("en-AU")}k`;
 
   return {
