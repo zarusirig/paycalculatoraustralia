@@ -19,6 +19,23 @@ import { MCDONALDS_PAY } from "./mcdonalds";
 import { CHEMIST_WAREHOUSE_PAY } from "./chemist-warehouse";
 import { KMART_PAY } from "./kmart";
 import { SUBWAY_PAY } from "./subway";
+// --- H1 (24 Sep 2026) ---
+import { HUNGRY_JACKS_PAY } from "./hungry-jacks";
+import { LIQUORLAND_PAY } from "./liquorland";
+import { COSTCO_PAY } from "./costco";
+import { IGA_PAY } from "./iga";
+import { BIG_W_PAY } from "./big-w";
+import { AUSTRALIA_POST_PAY } from "./australia-post";
+import { JB_HI_FI_PAY } from "./jb-hi-fi";
+import { BWS_PAY } from "./bws";
+import { DAN_MURPHYS_PAY } from "./dan-murphys";
+import { HOYTS_PAY } from "./hoyts";
+import { KFC_PAY } from "./kfc";
+import { DOMINOS_PAY } from "./dominos";
+import { RED_ROOSTER_PAY } from "./red-rooster";
+import { DAVID_JONES_PAY } from "./david-jones";
+import { OFFICEWORKS_PAY } from "./officeworks";
+// --- end H1 ---
 
 export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> = {
   coles: COLES_PAY,
@@ -28,6 +45,23 @@ export const EMPLOYER_PAY_BY_SLUG: Readonly<Record<EmployerSlug, EmployerPay>> =
   "chemist-warehouse": CHEMIST_WAREHOUSE_PAY,
   kmart: KMART_PAY,
   subway: SUBWAY_PAY,
+  // --- H1 (24 Sep 2026) ---
+  "hungry-jacks": HUNGRY_JACKS_PAY,
+  liquorland: LIQUORLAND_PAY,
+  costco: COSTCO_PAY,
+  iga: IGA_PAY,
+  "big-w": BIG_W_PAY,
+  "australia-post": AUSTRALIA_POST_PAY,
+  "jb-hi-fi": JB_HI_FI_PAY,
+  bws: BWS_PAY,
+  "dan-murphys": DAN_MURPHYS_PAY,
+  hoyts: HOYTS_PAY,
+  kfc: KFC_PAY,
+  dominos: DOMINOS_PAY,
+  "red-rooster": RED_ROOSTER_PAY,
+  "david-jones": DAVID_JONES_PAY,
+  officeworks: OFFICEWORKS_PAY,
+  // --- end H1 ---
 };
 
 /** Every employer, in the order the hub lists them (by search demand). */
@@ -107,12 +141,26 @@ export function juniorRates(employer: EmployerPay): JuniorRow[] {
         published: true,
       };
     }
+    // H1: employer-specific derived dollars (still labelled as our arithmetic).
+    const derived = employer.derivedJuniorRates?.find((d) => d.age === band.age);
+    if (derived) {
+      return {
+        age: band.age,
+        percentage: band.percentage,
+        hourly: derived.hourly,
+        casualHourly: derived.casualHourly,
+        published: false,
+      };
+    }
     const hourly = deriveJuniorHourly(entry, band.percentage);
     return {
       age: band.age,
       percentage: band.percentage,
       hourly,
-      casualHourly: roundCents(hourly * (1 + employer.casualLoading)),
+      // H1: some instruments apply the junior % to the adult casual rate.
+      casualHourly: employer.juniorCasualFromAdultCasual
+        ? roundCents(entry.casualHourly * band.percentage)
+        : roundCents(hourly * (1 + employer.casualLoading)),
       published: false,
     };
   });
