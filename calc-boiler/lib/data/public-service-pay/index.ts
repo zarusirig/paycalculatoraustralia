@@ -237,11 +237,11 @@ export const PUBLIC_SERVICE_PAY_FAQS: readonly PayFaq[] = [
   },
   {
     q: "How do APS levels compare with VPS grades and Queensland AO levels?",
-    a: "They are different classification systems and there is no official mapping between them, so we do not publish one. What can be compared is money: the median APS 6 base salary of $108,092 sits near VPS pay point 4.1.4 ($107,681) and Queensland's AO5/2 award rate ($107,721), while the median EL 1 of $135,701 sits between VPS 5.2.4 ($139,100) and Queensland's AO7/2 award rate ($136,837).",
+    a: "They are different classification systems and there is no official mapping between them, so we do not publish one. What can be compared is money: the median APS 6 base salary of $108,092 sits near VPS pay point 4.1.4 ($107,681) and Queensland's AO5/1 award rate from 1 September 2026 ($109,704), while the median EL 1 of $135,701 sits between Queensland's AO6/4 award rate ($134,019) and VPS 5.2.4 ($139,100).",
   },
   {
     q: "How often do public service pay rates change?",
-    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
+    a: "On dates fixed by the relevant agreement. APS agencies moved on the first full pay period after 1 March in 2024, 2025 and 2026; Victorian Public Service rates move on 1 May each year to 2027; Queensland award rates move on 1 September when the state wage case decides (4.75% from 1 September 2026); NSW Crown Employees rates moved 3% from the first full pay period on or after 1 July 2026; WA rates moved on 13 June 2026; and South Australian salaried rates moved from the first full pay period on or after 1 July 2026. Between those dates, movement within a band comes from increments, not from a service-wide rise.",
   },
   {
     q: "Do public servants get more superannuation?",

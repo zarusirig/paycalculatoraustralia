@@ -213,11 +213,12 @@ test("findBand answers the bare classification queries", () => {
 
   const po4 = findBand("po4");
   assert.equal(po4?.jurisdiction.slug, "qld");
-  assert.equal(po4?.schedule.id, "award-2025", "the award floor wins over the agency example");
-  assert.equal(po4?.band.min, 118_966);
+  assert.equal(po4?.schedule.id, "award-2026", "the award floor wins over the agency example");
+  assert.equal(po4?.band.min, 124_627, "1 September 2026 award rate after the 4.75% State Wage Case");
 
   assert.equal(findBand("vps3")?.band.code, "VPS 3.1");
-  assert.equal(findBand("ao3")?.band.max, 85_833);
+  assert.equal(findBand("ao3")?.band.max, 89_903);
+  assert.equal(findBand("oo4", "qld")?.schedule.id, "award-2026", "OO award rates now published");
   assert.equal(findBand("nothing-like-this"), undefined);
   assert.equal(findBand(""), undefined);
 });

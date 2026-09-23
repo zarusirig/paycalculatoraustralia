@@ -77,7 +77,8 @@ export default function PublicServicePayScalesPage() {
             1&ndash;7 with value ranges and progression steps, paying{" "}
             <strong className="text-navy">$56,677 to $263,771</strong> from 1 May 2026; Queensland
             runs AO, PO, TO and OO streams, with an AO3 on{" "}
-            <strong className="text-navy">$77,354 to $85,833</strong> under the state award. NSW pays a
+            <strong className="text-navy">$81,032 to $89,903</strong> under the state award from 1
+            September 2026. NSW pays a
             Clerk Grade 5 <strong className="text-navy">$102,936 to $106,182</strong> from July 2026, WA a
             Level 5 <strong className="text-navy">$108,848 to $118,961</strong> from 13 June 2026, and
             South Australia an ASO-4 <strong className="text-navy">$82,212 to $86,180</strong> from July
@@ -266,13 +267,13 @@ export default function PublicServicePayScalesPage() {
               <ul>
                 <li>
                   The median APS 6 base salary of <strong>$108,092</strong> sits close to VPS pay
-                  point 4.1.4 (<strong>$107,681</strong>) and Queensland&rsquo;s AO5/2 award rate (
-                  <strong>$107,721</strong>).
+                  point 4.1.4 (<strong>$107,681</strong>) and Queensland&rsquo;s AO5/1 award rate from 1
+                  September 2026 (<strong>$109,704</strong>).
                 </li>
                 <li>
-                  The median EL 1 base salary of <strong>$135,701</strong> sits between VPS 5.2.4 (
-                  <strong>$139,100</strong>) and Queensland&rsquo;s AO7/2 award rate (
-                  <strong>$136,837</strong>).
+                  The median EL 1 base salary of <strong>$135,701</strong> sits between
+                  Queensland&rsquo;s AO6/4 award rate (<strong>$134,019</strong>) and VPS 5.2.4 (
+                  <strong>$139,100</strong>).
                 </li>
                 <li>
                   The top of the published VPS structure, <strong>$263,771</strong> at 7.3.5, is
