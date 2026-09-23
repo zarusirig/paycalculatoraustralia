@@ -35,6 +35,10 @@
 //  - WFH fixed rate (updated 8 Jun 2026): "2024–25 and 2025–26: use 70 cents
 //    per work hour".
 //    https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method
+//  - Cents per kilometre method (updated 12 Aug 2026; verified 23 Sep 2026):
+//    "2026-27: use 91 cents per kilometre" / "2024–25 and 2025–26: use 88
+//    cents per kilometre"; maximum 5,000 work-related km per car.
+//    https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/cars-transport-and-travel/motor-vehicle-and-car-expenses/expenses-for-a-car-you-own-or-lease/cents-per-kilometre-method
 //  - Study loans what's new (updated 30 Jun 2026): the 20% reduction for all
 //    debts that existed on 1 June 2025 is fully processed; from 2025-26
 //    compulsory repayments apply only above $67,000 and only on the income
@@ -66,6 +70,9 @@ export const RETURN_2026 = {
   onlineProcessingBusinessDays: 12,
   paperRefundBusinessDays: 50,
   wfhFixedRateCents: 70,
+  carCentsPerKm: 88,
+  carCentsPerKmNextYear: 91,
+  carMaxKm: 5_000,
   helpReductionPercent: 20,
   helpReductionDebtsAsAt: "1 June 2025",
 } as const;
@@ -83,6 +90,8 @@ export const RETURN_2026_SOURCES = {
     "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method",
   studyLoans:
     "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans/study-and-training-loans-what-s-new",
+  carCentsPerKm:
+    "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/cars-transport-and-travel/motor-vehicle-and-car-expenses/expenses-for-a-car-you-own-or-lease/cents-per-kilometre-method",
   mls:
     "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates",
   rates: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents",

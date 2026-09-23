@@ -184,7 +184,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "schedule-5-tax-table": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-01" },
   "bonus-tax-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-09" },
   "tax-refund-guide": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-06" },
-  "tax-calendar": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-11" },
+  "tax-calendar": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "fringe-benefits-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-04" },
   "working-holiday-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-03" },
   "non-resident-tax": { authorId: "james-harrington", reviewerId: "garth-mcgregor", lastReviewed: "2026-03-02" },

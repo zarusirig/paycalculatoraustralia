@@ -161,6 +161,16 @@ export default function TaxReturn2026Page() {
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <section className="not-prose mb-10">
               <RefundEstimator2026 />
+              <Link
+                href="/tax-return-calculator/"
+                className="mt-4 flex items-center justify-between gap-4 rounded-xl border-2 border-eucalyptus bg-eucalyptus-light/30 p-5 transition-shadow hover:shadow-md"
+              >
+                <span>
+                  <span className="block font-semibold text-navy">Need the full breakdown? Use the tax return calculator</span>
+                  <span className="block text-sm text-warmgray">It defaults to the {R.incomeYear} rates this return is assessed on, and switches to 2026-27 when you want to plan next year.</span>
+                </span>
+                <ChevronRight className="h-5 w-5 flex-shrink-0 text-eucalyptus-dark" aria-hidden="true" />
+              </Link>
             </section>
 
             <section id="deadlines">
@@ -224,7 +234,7 @@ export default function TaxReturn2026Page() {
               <div className="not-prose my-6 flex items-start gap-3 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
                 <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ochre" aria-hidden="true" />
                 <p className="text-sm leading-relaxed text-navy">
-                  <strong>Don&rsquo;t use a 2026-27 calculator for this return.</strong> The second tax rate fell from {pct(oldRate)} to {pct(newRate)} on 1 July 2026. That cut applies to pay from July 2026 onwards, not to this return. A current-year calculator will show up to $268 less tax than your 2026 return. For pay you are earning now, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">income tax calculator</Link> or see the <Link href="/tax-changes-2026-27/" className="font-medium text-eucalyptus-dark hover:underline">2026-27 tax changes</Link>.
+                  <strong>Don&rsquo;t use a 2026-27 calculator for this return.</strong> The second tax rate fell from {pct(oldRate)} to {pct(newRate)} on 1 July 2026. That cut applies to pay from July 2026 onwards, not to this return. A current-year calculator will show up to $268 less tax than your 2026 return. Our <Link href="/tax-return-calculator/" className="font-medium text-eucalyptus-dark hover:underline">tax return calculator</Link> uses the {R.incomeYear} rates by default. For pay you are earning now, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">income tax calculator</Link> or see the <Link href="/tax-changes-2026-27/" className="font-medium text-eucalyptus-dark hover:underline">2026-27 tax changes</Link>.
                 </p>
               </div>
             </section>
@@ -315,6 +325,7 @@ export default function TaxReturn2026Page() {
                 <CardContent className="p-6">
                   <h2 className="mb-2 text-lg font-bold">Related guides</h2>
                   <ul className="space-y-2 text-sm">
+                    <li><Link href="/tax-return-calculator/" className="text-white underline hover:text-eucalyptus-light">Tax return calculator ({R.incomeYear})</Link></li>
                     <li><Link href="/tax-refund-guide/" className="text-white underline hover:text-eucalyptus-light">Tax refund guide</Link></li>
                     <li><Link href="/tax-calendar/" className="text-white underline hover:text-eucalyptus-light">Tax calendar</Link></li>
                     <li><Link href="/tax-deductions-guide/" className="text-white underline hover:text-eucalyptus-light">Tax deductions guide</Link></li>
