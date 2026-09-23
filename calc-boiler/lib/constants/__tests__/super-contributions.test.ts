@@ -13,7 +13,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { SUPER_GUARANTEE } from "../australian-tax";
+import { SUPER_GUARANTEE, calculateSuper, calculatePayBreakdown } from "../australian-tax";
 import {
   CARRY_FORWARD,
   CONCESSIONAL_CAP_BY_YEAR,
@@ -114,4 +114,18 @@ test("transfer balance, low rate cap and Division 296 anchors", () => {
   assert.equal(DIVISION_296.largeBalanceThreshold, 3_000_000);
   assert.equal(DIVISION_296.veryLargeBalanceThreshold, 10_000_000);
   assert.equal(DIVISION_296.rate + DIVISION_296.additionalRate, 0.25);
+});
+
+// SG stops at the annual maximum contribution base (engine-level cap).
+test("calculateSuper caps SG at the maximum contribution base", () => {
+  const maxSG = Math.round(SUPER_GUARANTEE.maxContributionBaseAnnual * SUPER_GUARANTEE.rate);
+  assert.equal(calculateSuper(100_000), 12_000);
+  assert.equal(calculateSuper(SUPER_GUARANTEE.maxContributionBaseAnnual), maxSG);
+  assert.equal(calculateSuper(500_000), maxSG);
+});
+
+test("super-inclusive packages above the base carry only capped SG", () => {
+  const maxSG = Math.round(SUPER_GUARANTEE.maxContributionBaseAnnual * SUPER_GUARANTEE.rate);
+  const b = calculatePayBreakdown({ grossSalary: 400_000, superIncluded: true } as Parameters<typeof calculatePayBreakdown>[0]);
+  assert.equal(b.grossSalary + maxSG, 400_000);
 });

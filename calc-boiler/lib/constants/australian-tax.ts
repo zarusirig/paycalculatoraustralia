@@ -621,7 +621,9 @@ export function calculateHECS(income: number): number {
  */
 export function calculateSuper(income: number): number {
   if (income <= 0) return 0;
-  return Math.round(income * SUPER_GUARANTEE.rate);
+  // SG is only compulsory up to the maximum contribution base (annual from
+  // 1 July 2026): above it the employer's minimum stays at maxSGAnnual.
+  return Math.round(Math.min(income, SUPER_GUARANTEE.maxContributionBaseAnnual) * SUPER_GUARANTEE.rate);
 }
 
 /**
@@ -685,8 +687,12 @@ export function calculatePayBreakdown(inputs: CalculatorInputs): PayBreakdown {
   } = inputs;
 
   // Step 1: Handle super-inclusive salary
+  // A super-inclusive package above the maximum contribution base carries only
+  // the capped SG, so the split switches from ÷1.12 to package − maxSG.
   const baseSalary = superIncluded
-    ? Math.round(rawGrossSalary / (1 + SUPER_GUARANTEE.rate))
+    ? rawGrossSalary / (1 + SUPER_GUARANTEE.rate) > SUPER_GUARANTEE.maxContributionBaseAnnual
+      ? Math.round(rawGrossSalary - SUPER_GUARANTEE.maxContributionBaseAnnual * SUPER_GUARANTEE.rate)
+      : Math.round(rawGrossSalary / (1 + SUPER_GUARANTEE.rate))
     : rawGrossSalary;
 
   // Step 2: Handle pro-rata / part-time
