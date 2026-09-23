@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`,
     },
+    // og:url + image: without an openGraph object these pages emitted no
+    // og:url. og:title/description are filled from title/description.
+    openGraph: { url: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
   };
 }
 

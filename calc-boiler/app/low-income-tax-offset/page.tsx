@@ -54,7 +54,7 @@ const article: WithContext<Article> = {
   datePublished: "2025-07-01",
   dateModified: GUIDE_AUTHORSHIP["low-income-tax-offset"].lastReviewed,
   author: AUTHORS["james-harrington"].jsonLd,
-  publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/logo.png` } },
+  publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: URL,
   inLanguage: "en-AU",
 };

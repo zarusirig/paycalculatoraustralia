@@ -6,13 +6,12 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
-      {
-        "regex": "/tax-on-([0-9]+)/?",
-        "destination": "/tax-on/:1/index.html"
-      }
-    ],
     "redirects": [
+      {
+        "regex": "^/tax-on-(?P<salary>[0-9]+)/?$",
+        "destination": "/tax-on/:salary/",
+        "type": 301
+      },
       {
         "source": "/tax-on/40,000-salary/",
         "destination": "/tax-on/40000/",

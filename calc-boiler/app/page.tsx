@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
@@ -53,7 +54,7 @@ const organizationSchema: WithContext<Organization> = {
   "@type": "Organization",
   name: SITE_CONFIG.name,
   url: SITE_CONFIG.baseUrl,
-  logo: `${SITE_CONFIG.baseUrl}/logo.png`,
+  logo: `${SITE_CONFIG.baseUrl}/icon-512.png`,
   description: `Free Australian pay calculator with income tax, super, Medicare levy & HECS. Updated for FY${FY}.`,
   contactPoint: {
     "@type": "ContactPoint",
@@ -76,16 +77,11 @@ const websiteSchema: WithContext<WebSite> = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: SITE_CONFIG.name,
-  url: SITE_CONFIG.baseUrl,
+  url: `${SITE_CONFIG.baseUrl}/`,
   description: `Free Australian pay & salary calculator. Calculate take-home pay, income tax, super, Medicare & HECS for FY${FY}.`,
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_CONFIG.baseUrl}/?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  } as unknown as WebSite["potentialAction"],
+  // No SearchAction: the site has no search results page (/?q= just renders
+  // the homepage, and robots.txt disallows /*?*), and Google retired the
+  // sitelinks search box in Nov 2024.
 };
 
 const webAppSchema: WithContext<WebApplication> = {
@@ -117,7 +113,7 @@ const breadcrumbSchema: WithContext<BreadcrumbList> = {
       "@type": "ListItem",
       position: 1,
       name: "Pay Calculator",
-      item: SITE_CONFIG.baseUrl,
+      item: `${SITE_CONFIG.baseUrl}/`,
     },
   ],
 };

@@ -51,6 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: SITE_CONFIG.name,
       type: "website",
       locale: "en_AU",
+      images: ["/og-image.png"],
     },
   };
 }
@@ -93,37 +94,31 @@ export default async function HourlyToSalaryPage({ params }: PageProps) {
     ],
   };
 
-  // Answer text in structured data as well as on the page — this family is the
-  // one the gap analysis found had no FAQPage markup at all.
+  // One list feeds both the visible FAQ section and the FAQPage markup, so the
+  // two cannot drift. (Before, the markup's questions appeared nowhere on the
+  // page, which Google's structured-data policy treats as hidden content.)
+  const faqItems = [
+    {
+      q: `${formatAUD(rate, 2)} an hour is how much a year?`,
+      a: `${formatAUD(rate, 2)} an hour is ${formatAUD(gross)} a year before tax, based on ${hours} hours a week over ${EMPLOYMENT.weeksPerYear} weeks. After income tax and the Medicare levy that is ${formatAUD(net)} a year.`,
+    },
+    {
+      q: `${formatAUD(rate, 2)} an hour is how much a week?`,
+      a: `On a ${hours}-hour week, ${formatAUD(rate, 2)} an hour is ${formatAUD(rate * hours, 2)} a week before tax.`,
+    },
+    {
+      q: `How much is ${formatAUD(rate, 2)} an hour after tax?`,
+      a: `${formatAUD(net)} a year, which works out to about ${formatAUD(net / EMPLOYMENT.hoursPerYear, 2)} an hour in the hand once income tax and the Medicare levy come out.`,
+    },
+  ];
   const faq: WithContext<FAQPage> = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: `${formatAUD(rate, 2)} an hour is how much a year?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${formatAUD(rate, 2)} an hour is ${formatAUD(gross)} a year before tax, based on ${hours} hours a week over ${EMPLOYMENT.weeksPerYear} weeks. After income tax and the Medicare levy that is ${formatAUD(net)} a year.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `${formatAUD(rate, 2)} an hour is how much a week?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `On a ${hours}-hour week, ${formatAUD(rate, 2)} an hour is ${formatAUD(rate * hours, 2)} a week before tax.`,
-        },
-      },
-      {
-        "@type": "Question",
-        name: `How much is ${formatAUD(rate, 2)} an hour after tax?`,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: `${formatAUD(net)} a year, which works out to about ${formatAUD(net / EMPLOYMENT.hoursPerYear, 2)} an hour in the hand once income tax and the Medicare levy come out.`,
-        },
-      },
-    ],
+    mainEntity: faqItems.map(({ q, a }) => ({
+      "@type": "Question" as const,
+      name: q,
+      acceptedAnswer: { "@type": "Answer" as const, text: a },
+    })),
   };
 
   return (
@@ -169,6 +164,24 @@ export default async function HourlyToSalaryPage({ params }: PageProps) {
 
       <div className="container px-4 md:px-6 py-12 pb-24">
         <HourlyToSalary rate={rate} />
+
+        <section aria-labelledby="hourly-faq-heading" className="max-w-4xl mx-auto mt-16">
+          <h2
+            id="hourly-faq-heading"
+            className="text-2xl font-bold text-navy mb-6"
+            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+          >
+            Quick Answers
+          </h2>
+          <dl className="space-y-5">
+            {faqItems.map(({ q, a }) => (
+              <div key={q}>
+                <dt className="font-semibold text-navy">{q}</dt>
+                <dd className="mt-1 text-warmgray leading-relaxed">{a}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
       </div>
     </>
   );

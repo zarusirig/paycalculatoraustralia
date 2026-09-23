@@ -63,6 +63,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: SITE_CONFIG.name,
       type: "article",
       locale: "en_AU",
+      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title, description },
   };
@@ -93,6 +94,7 @@ export default async function Page({ params }: PageProps) {
     "@type": "Article",
     "@id": `${url}#article`,
     headline: `Nurse and midwife pay rates in ${state.name}`,
+    image: `${BASE}/og-image.png`,
     description: range
       ? `Registered nurse and midwife pay in ${state.name} runs from ${formatAUD(range.entry)} to ${formatAUD(
           range.top,

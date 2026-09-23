@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
@@ -61,7 +62,7 @@ const article: WithContext<Article> = {
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,
-    logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` },
+    logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
   },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   isBasedOn: {

@@ -157,6 +157,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",

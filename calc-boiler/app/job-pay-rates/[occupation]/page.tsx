@@ -34,7 +34,17 @@ function money(n: number) {
 function titleFor(occ: Occupation): string {
   if (occ.metaTitle) return occ.metaTitle;
   const r = headlineRow(occ);
-  if (r) return `${occ.name} Pay Rates Australia 2026 — ${money(r.hourly)}/hr Award Minimum`;
+  if (r) {
+    // Long occupation names pushed 16 of these titles past ~65 characters,
+    // where Google cuts them mid-figure. Keep the fullest form that fits.
+    const hourly = `${money(r.hourly)}/hr`;
+    const forms = [
+      `${occ.name} Pay Rates Australia 2026 — ${hourly} Award Minimum`,
+      `${occ.name} Pay Rates Australia 2026 — ${hourly} Minimum`,
+      `${occ.name} Pay Rates 2026 — ${hourly} Award Minimum`,
+    ];
+    return forms.find((t) => t.length <= 65) ?? forms[forms.length - 1];
+  }
   if (occ.median) return `${occ.name} Pay Rates Australia 2026 — No Award, ${formatAUD(occ.median.medianWeekly)}/wk Median`;
   return occupationHeading(occ);
 }
@@ -58,7 +68,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
     twitter: { card: "summary_large_image", title, description },
   };
 }

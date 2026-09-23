@@ -388,10 +388,12 @@ export default function HomePageTemplate() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Hero Copy — centered above calculator on all screens */}
+          {/* initial={false}: render the hero (H1 + intro = the LCP element) at
+              its final state in the static HTML. With opacity: 0 it stayed
+              invisible until React hydrated, which held LCP to ~4s on mobile. */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="mb-6 text-center sm:mb-8"
           >
             {/* Head-term intent map (Sep 2026): this URL is the one primary for
@@ -412,9 +414,8 @@ export default function HomePageTemplate() {
 
           {/* Calculator — centered, elevated */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="mx-auto max-w-3xl"
           >
             <Card className="border-0 bg-white shadow-2xl">
