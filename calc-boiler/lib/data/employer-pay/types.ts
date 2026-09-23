@@ -35,6 +35,7 @@ export const EMPLOYER_SLUGS = [
   "jb-hi-fi",
   "bws",
   "dan-murphys",
+  "hoyts",
   // --- end H1 ---
 ] as const;
 
@@ -173,5 +174,11 @@ export interface EmployerPay {
    * to the adult casual rate for rates[0], not the junior base plus the loading.
    */
   juniorCasualFromAdultCasual?: boolean;
+  /**
+   * Label for the adult rate juniors are a percentage of, when it is not
+   * rates[0] (e.g. cinema juniors are a % of Cinema Worker Level 4). Only valid
+   * with publishedJuniorRates covering every band.
+   */
+  juniorBaseLabel?: string;
   // --- end H1 ---
 }

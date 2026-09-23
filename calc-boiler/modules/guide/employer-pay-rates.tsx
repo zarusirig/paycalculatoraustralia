@@ -197,7 +197,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
               <section id="junior-rates">
                 <h2 style={HEADING_FONT}>{e.name} pay rates by age (junior rates)</h2>
                 <p>
-                  Junior employees are paid a set percentage of the adult {entry.level} rate for their age. {e.juniorNote}
+                  Junior employees are paid a set percentage of the adult {e.juniorBaseLabel ?? entry.level} rate for their age. {e.juniorNote}
                 </p>
                 <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                   <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">

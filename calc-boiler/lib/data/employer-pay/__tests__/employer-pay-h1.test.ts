@@ -5,7 +5,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { getEmployerPay, juniorRates, roundCents } from "../index";
+import { getEmployerPay, juniorRates, roundCents, type PublishedJuniorRate } from "../index";
 
 /** Fast Food Industry Award MA000003 hourly rates, cl 15.1 (varied PR799284). */
 const FFIA_2025 = { L1: 26.55, L2: 28.12, L3a: 28.55, L3b: 28.9 } as const;
@@ -283,6 +283,42 @@ test("BWS and Dan Murphy's: Endeavour cl 4.1.1 printed rate x 1.0475 (cl 4.2.1)"
   for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) {
     assert.ok(text.includes(`$${halfUp(28.55 * pct).toFixed(2)}`), `${pct}`);
   }
+});
+
+test("Hoyts: cinema award cl 13.4 weekly / 38, casual x 1.25, juniors are % of Level 4", () => {
+  const hoyts = getEmployerPay("hoyts");
+  assert.ok(hoyts);
+  assert.equal(hoyts.instrument.reference, "MA000091");
+  // cl 13.4: base weekly + 8% penalty averaging = minimum weekly.
+  const base: [number, number][] = [
+    [1004.9, 80.39], [1029.1, 82.33], [1062.9, 85.03], [1119.1, 89.53],
+    [1189.4, 95.15], [1221.1, 97.69], [1255.4, 100.43],
+  ];
+  hoyts.rates.forEach((r, i) => {
+    const [b, avg] = base[i];
+    assert.equal(roundCents(b * 0.08), avg, r.level);
+    assert.equal(r.weekly, roundCents(b + avg), r.level);
+    assert.equal(r.hourly, halfUp((r.weekly ?? 0) / 38), r.level);
+    assert.equal(r.casualHourly, halfUp(r.hourly * 1.25), r.level);
+  });
+  // FWO pay guide junior dollars = % of Level 4 hourly ($31.81), casual = junior x 1.25.
+  const L4 = hoyts.rates.find((r) => r.level === "Cinema Worker Level 4");
+  assert.ok(L4);
+  assert.equal(hoyts.juniorBaseLabel, L4.level);
+  const published: PublishedJuniorRate[] = hoyts.publishedJuniorRates ?? [];
+  for (const band of hoyts.juniorScale) {
+    const pub: PublishedJuniorRate | undefined = published.find((p) => p.age === band.age);
+    assert.ok(pub, band.age);
+    if (band.percentage === 1) {
+      assert.equal(pub.hourly, hoyts.rates[0].hourly);
+      continue;
+    }
+    assert.equal(pub.hourly, halfUp(L4.hourly * band.percentage), band.age);
+    assert.equal(pub.casualHourly, halfUp(pub.hourly * 1.25), band.age);
+  }
+  // Level 2 at 200% (early morning / public holiday) = $58.50.
+  assert.equal(halfUp(29.25 * 2), 58.5);
+  assert.ok(hoyts.penaltyNotes.join(" ").includes("$58.50"));
 });
 
 test("IGA: Retail Award 1 July 2026 Table 4, derived juniors and penalty dollars", () => {
