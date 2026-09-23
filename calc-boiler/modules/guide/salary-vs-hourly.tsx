@@ -241,7 +241,7 @@ export default function SalaryVsHourlyPage() {
                         <td className="p-3 text-navy text-right">$5,852 (perm) / $0 (casual)</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10">
-                        <td className="p-3 text-navy font-medium">Super (12% on OTE)</td>
+                        <td className="p-3 text-navy font-medium">Super (12% on qualifying earnings)</td>
                         <td className="p-3 text-navy text-right">$9,000</td>
                         <td className="p-3 text-navy text-right">$9,129</td>
                       </tr>
@@ -331,7 +331,7 @@ export default function SalaryVsHourlyPage() {
                 <AccordionItem value="super" className="border rounded-lg px-4 bg-sandstone bg-white">
                   <AccordionTrigger className="text-left font-semibold text-navy">Do hourly workers get superannuation?</AccordionTrigger>
                   <AccordionContent className="text-navy">
-                    Yes. All employees — salaried, hourly permanent, and hourly casual — receive the 12% Superannuation Guarantee from their employer on ordinary time earnings (OTE). There is no minimum earnings threshold. Super is calculated on OTE, which includes base rate, shift loadings, and casual loading, but generally excludes overtime.
+                    Yes. All employees — salaried, hourly permanent, and hourly casual — receive the 12% Superannuation Guarantee from their employer on qualifying earnings, which for most people means ordinary time earnings (OTE). There is no minimum earnings threshold. Super is calculated on OTE, which includes base rate, shift loadings, and casual loading, but generally excludes overtime.
                   </AccordionContent>
                 </AccordionItem>
 
