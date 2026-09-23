@@ -119,7 +119,7 @@ export default function CentsPerKmPage() {
                 `${formatAUD(a.amount, 2)}/km`,
                 a.clause,
               ])}
-              caption="Award rates from the first full pay period on or after 1 July 2026, as published on our award pages."
+              caption="Current award rates as published on our award pages, transcribed from each award's text; any note in brackets says when a rate changes."
             />
             <p>
               <strong>Award transport payments change on {AWARD_TRANSPORT_CHANGE_DATE}.</strong> Transport allowances paid under an industrial instrument that was in force on 29 October 1986 used to have withholding varied to nil. A 2026 law change repealed those rules, so from {AWARD_TRANSPORT_CHANGE_DATE} employers must withhold from them (<a href={CENTS_PER_KM_SOURCES.atoAwardTransportChanges} target="_blank" rel="noopener noreferrer">ATO</a>). The cents per km rules in the table above are unchanged.
