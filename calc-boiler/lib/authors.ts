@@ -260,6 +260,11 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "payslip-generator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
   "ytd-income-calculator": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-07-02" },
 
+  // --- C2/C5 occupation pay rates + ADF pay scales (23 Sep 2026) ---
+  "job-pay-rates": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  "adf-pay-scales": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
+  // --- end C2/C5 ---
+
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
   "minimum-wage-australia": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
   "minimum-wage-by-age": { authorId: "penny-ward", reviewerId: "garth-mcgregor", lastReviewed: "2026-09-23" },
