@@ -37,8 +37,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const j = LSL_JURISDICTIONS[code];
   const url = `${BASE}/long-service-leave-calculator/${code}/`;
 
-  const title = `Long Service Leave Calculator ${j.abbr} — ${j.weeksAtQualifying} Weeks After ${j.takeAfterYears} Years`;
-  const description = `How much long service leave you get ${j.inName}: ${j.weeksAtQualifying} weeks at ${j.takeAfterYears} years under the ${j.act}, accruing ${j.weeksPerYear.toFixed(4)} weeks a year. Pro-rata from ${j.proRataFromYears} years, what a resignation pays, casual and part-time rules, cashing out, and the tax on a payout.`;
+  // "8.67", not "8.6667": the published precision stays in the body copy
+  // and the engine; the title only needs to read cleanly.
+  const w = Number(j.weeksAtQualifying.toFixed(2));
+  const title = `Long Service Leave Calculator ${j.abbr} — ${w} Weeks After ${j.takeAfterYears} Years`;
+  const description = `${j.name} long service leave calculator: ${w} weeks at ${j.takeAfterYears} years under the ${j.act}, accruing ${j.weeksPerYear.toFixed(4)} weeks a year. Pro-rata from ${j.proRataFromYears} years, what a resignation pays, casual and part-time rules, cashing out, and the tax on a payout.`;
 
   return {
     title,

@@ -409,46 +409,27 @@ export function LongServiceLeaveBlock({ profile }: { profile: StateEmployeeProfi
         </Link>
         . Source: {lsl.agency}, read {STATE_EMPLOYEE_SOURCES.verifiedOn}.
       </p>
+      <p className="text-sm text-warmgray mt-2">
+        Work out your own balance and payout with the{" "}
+        <Link href={profile.lslCalculatorPath} className="text-eucalyptus-dark hover:underline font-medium">
+          {profile.shortName} long service leave calculator
+        </Link>
+        .
+      </p>
     </>
   );
 }
 
 /**
- * Forward links into the /long-service-leave-calculator/ cluster being built in
- * parallel. These routes DO NOT EXIST YET — they are listed in the G6 manifest
- * under `forwardLinks` and must be verified before this ships.
+ * Formerly a "Coming soon: {state} long service leave calculator" box. The
+ * /long-service-leave-calculator/{state}/ spokes shipped on 2026-08-28, so the
+ * box told readers a live page did not exist. The link now sits in
+ * LongServiceLeaveBlock (all 8 states); this renders nothing and is kept only
+ * so the state pages that import it need no edit.
  */
-export function ForwardLslLinks({ profile }: { profile: StateEmployeeProfile }) {
-  return (
-    <div
-      className="mt-4 rounded-r-lg border-l-4 border-sandstone-dark/40 bg-sandstone/60 p-4"
-      data-forward-links="long-service-leave-calculator"
-    >
-      <p className="mb-2 text-sm font-medium text-navy">
-        Coming soon: {profile.shortName} long service leave calculator
-      </p>
-      <p className="text-sm text-warmgray">
-        We are building a calculator for each state&apos;s long service leave rules. The{" "}
-        <Link href={profile.lslCalculatorPath} className="text-eucalyptus-dark hover:underline">
-          {profile.name} long service leave calculator
-        </Link>{" "}
-        will work out your accrued weeks and what they are worth after tax. Until it lands, use{" "}
-        <Link href="/leave-calculator/" className="text-eucalyptus-dark hover:underline">
-          the leave calculator
-        </Link>{" "}
-        or go straight to{" "}
-        <a
-          href={profile.longServiceLeave.agencyUrl}
-          target="_blank"
-          rel="noreferrer noopener"
-          className="text-eucalyptus-dark hover:underline"
-        >
-          {profile.longServiceLeave.agency}
-        </a>
-        .
-      </p>
-    </div>
-  );
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function ForwardLslLinks(_props: { profile: StateEmployeeProfile }) {
+  return null;
 }
 
 // ---------------------------------------------------------------------------

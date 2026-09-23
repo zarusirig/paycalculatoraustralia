@@ -132,7 +132,10 @@ export default function LongServiceLeaveCalculator({
                   ))}
                 </select>
                 <p className="text-xs text-warmgray-light mt-1">
-                  {j.act}. Qualifying period {j.takeAfterYears} years, {j.weeksAtQualifying} weeks.
+                  {j.act}. Qualifying period {j.takeAfterYears} years, {Number(j.weeksAtQualifying.toFixed(2))} weeks.{" "}
+                  <Link href={`/long-service-leave-calculator/${code}/`} className={LINK}>
+                    {j.abbr} long service leave rules &rarr;
+                  </Link>
                 </p>
               </div>
             )}
