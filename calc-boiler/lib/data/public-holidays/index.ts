@@ -6,6 +6,7 @@ import { pctLabel } from "./calc";
 import { formatHolidayDate } from "./dates";
 import type { HolidayYear, PhStateSlug, PhYear, PublicHolidayDate, StatePublicHolidays } from "./types";
 import { NSW_PUBLIC_HOLIDAYS } from "./states/nsw";
+import { VIC_PUBLIC_HOLIDAYS } from "./states/vic";
 
 export * from "./types";
 export { PUBLIC_HOLIDAY_AWARD_RATES, getAwardPublicHolidayRate, publicHolidayRateRange } from "./award-rates";
@@ -16,7 +17,7 @@ export const PH_HUB_PATH = "/public-holiday-pay/";
 export const PH_VERIFIED_ON = "24 September 2026";
 
 /** Built state pages, in the site's usual state order. */
-export const STATE_PUBLIC_HOLIDAYS: readonly StatePublicHolidays[] = [NSW_PUBLIC_HOLIDAYS];
+export const STATE_PUBLIC_HOLIDAYS: readonly StatePublicHolidays[] = [NSW_PUBLIC_HOLIDAYS, VIC_PUBLIC_HOLIDAYS];
 
 export function getStatePublicHolidays(slug: string): StatePublicHolidays | undefined {
   return STATE_PUBLIC_HOLIDAYS.find((s) => s.slug === slug);
