@@ -165,6 +165,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/deeming-rates/", label: "Deeming rates" },
           { href: "/disability-support-pension-calculator/", label: "Disability Support Pension" },
           { href: "/child-care-subsidy-calculator/", label: "Child Care Subsidy" },
+          { href: "/commonwealth-seniors-health-card/", label: "Seniors Health Card" },
           // end H3
           { href: "/austudy-youth-allowance-calculator/", label: "Austudy & Youth Allowance" },
           { href: "/family-tax-benefit-calculator/", label: "Family Tax Benefit" },
@@ -614,6 +615,7 @@ export const CALCULATOR_CATEGORIES = [
       { href: "/deeming-rates/", label: "Deeming Rates & Calculator", description: "1.75% and 3.75% from 20 September 2026" },
       { href: "/disability-support-pension-calculator/", label: "Disability Support Pension Calculator", description: "DSP rates, income test and the 29-hour rule" },
       { href: "/child-care-subsidy-calculator/", label: "Child Care Subsidy Calculator", description: "CCS % on family income, caps and the gap fee" },
+      { href: "/commonwealth-seniors-health-card/", label: "Commonwealth Seniors Health Card", description: "Income limit, deeming and an eligibility check" },
       // end H3
       { href: "/final-pay-calculator/", label: "Final Pay Calculator", description: "End of employment payout" },
       { href: "/employment-type-calculator/", label: "Employment Type Calculator", description: "Compare FT vs PT vs casual" },
