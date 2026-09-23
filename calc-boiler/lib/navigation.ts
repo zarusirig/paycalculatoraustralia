@@ -154,6 +154,14 @@ export const GUIDE_CATEGORIES = [
       { href: "/security-award-rates/", label: "Security Award Rates", description: "Security officer levels 1–5" },
       { href: "/clerks-award-rates/", label: "Clerks Award Rates", description: "Clerks—Private Sector levels 1–5" },
       // --- end award cluster C3 ---
+      // --- T4: awards batch 3 (23 Sep 2026) ---
+      { href: "/restaurant-award-rates/", label: "Restaurant Award Rates", description: "Restaurants, cafés, cooks and chefs" },
+      { href: "/nurses-award-rates/", label: "Nurses Award Rates", description: "RN, EN and aged care nurse rates" },
+      { href: "/aged-care-award-rates/", label: "Aged Care Award Rates", description: "Personal care workers and support staff" },
+      { href: "/hair-and-beauty-award-rates/", label: "Hair & Beauty Award Rates", description: "Hairdressers and beauty therapists" },
+      { href: "/cleaning-award-rates/", label: "Cleaning Award Rates", description: "Full-time, part-time and casual cleaners" },
+      { href: "/road-transport-award-rates/", label: "Road Transport Award Rates", description: "Truck driver grades 1–10" },
+      // --- end T4 ---
       { href: "/junior-pay-rates/", label: "Junior Pay Rates", description: "Minimum wage by age, 16 to 20" },
       { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates by Award", description: "Weekend, evening and public holiday loadings" },
     ],
@@ -422,6 +430,14 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/security-award-rates/", label: "Security Award Rates" },
   { href: "/clerks-award-rates/", label: "Clerks Award Rates" },
   // --- end award cluster C3 ---
+  // --- T4: awards batch 3 (23 Sep 2026) ---
+  { href: "/restaurant-award-rates/", label: "Restaurant Award Rates" },
+  { href: "/nurses-award-rates/", label: "Nurses Award Rates" },
+  { href: "/aged-care-award-rates/", label: "Aged Care Award Rates" },
+  { href: "/hair-and-beauty-award-rates/", label: "Hair & Beauty Award Rates" },
+  { href: "/cleaning-award-rates/", label: "Cleaning Award Rates" },
+  { href: "/road-transport-award-rates/", label: "Road Transport Award Rates" },
+  // --- end T4 ---
   { href: "/junior-pay-rates/", label: "Junior Pay Rates" },
   { href: "/overtime-penalty-rates-guide/", label: "Penalty Rates" },
   { href: "/annual-leave-guide/", label: "Annual Leave Guide" },

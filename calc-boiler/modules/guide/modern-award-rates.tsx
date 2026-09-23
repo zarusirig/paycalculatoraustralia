@@ -24,6 +24,7 @@ import {
   findAwardRate,
   roundCents,
   type ModernAwardKey,
+  type PenaltyRow,
 } from "@/lib/constants/modern-awards";
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
 import {
@@ -57,6 +58,25 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
 
   const penaltyDollar = (mult: number, casual: boolean) =>
     casual && compounded ? roundCents(casualEntry * mult) : roundCents(entry.hourly * mult);
+  const partTimeLoading = meta.partTimeLoading;
+  const hasPartTime = award.penalties.some((p) => p.partTime !== undefined);
+  // A penalty row limited to some classifications is priced on the entry
+  // level if it is one of them, otherwise on the first classification it covers.
+  const rowBase = (p: PenaltyRow) =>
+    p.appliesTo && !p.appliesTo.includes(entry.level) ? findAwardRate(award, p.appliesTo[0]) : entry;
+  const rowDollar = (p: PenaltyRow, col: "fullTime" | "partTime" | "casual") => {
+    const base = rowBase(p);
+    const flat = p.flatPerHour ?? 0;
+    if (col === "casual") {
+      const basis = p.casualBasis ?? award.casualPenaltyBasis;
+      const v = basis === "compounded" ? roundCents(base.hourly * (1 + loading)) * p.casual : base.hourly * p.casual;
+      return roundCents(v + flat);
+    }
+    const mult = col === "partTime" ? (p.partTime ?? p.fullTime) : p.fullTime;
+    return roundCents(base.hourly * mult + flat);
+  };
+  const rowPct = (v: number, p: PenaltyRow) => `${pct(v)}${p.flatPerHour ? ` + ${formatAUD(p.flatPerHour, 2)}/hr` : ""}`;
+  const juniorHourlyBasis = award.junior?.basis === "hourly";
 
   const sources: SourceLink[] = [
     { title: `Consolidated award text — ${meta.name} (${meta.code})`, url: meta.awardTextUrl, publisher: SOURCES.fwc.name },
@@ -101,16 +121,24 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <section id="rates">
               <h2 style={H2}>{meta.shortName} Pay Rates by Level</h2>
-              <p>
-                Adult minimum rates for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification &mdash; the difference is hours, not rate. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
-              </p>
+              {partTimeLoading !== undefined ? (
+                <p>
+                  Adult minimum rates under the {meta.name}. Unusually, this award pays part-time employees more per hour than full-timers: a {pct(partTimeLoading)} part-time allowance on every ordinary hour ({meta.partTimeLoadingClause}). The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
+                </p>
+              ) : (
+                <p>
+                  Adult minimum rates for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification &mdash; the difference is hours, not rate. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
+                </p>
+              )}
               <AwardRateTable
                 rows={award.rates}
                 casualLoading={loading}
+                partTimeLoading={partTimeLoading}
                 caption={`${meta.shortName} adult pay rates from ${meta.operativeFrom}`}
               />
               <p className="text-sm text-warmgray">
-                Weekly rates are the award&rsquo;s minimum weekly rate for a full-time employee ({award.ratesClause}); hourly is the weekly rate divided by {meta.standardWeeklyHours}.
+                {meta.hourlyDerivation ??
+                  `Weekly rates are the award’s minimum weekly rate for a full-time employee (${award.ratesClause}); hourly is the weekly rate divided by ${meta.standardWeeklyHours}.`}
               </p>
               {award.classificationNotes.length > 0 && (
                 <>
@@ -138,20 +166,45 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               </section>
             )}
 
+            {copy.related && (
+              <section id="related-pay">
+                <h2 style={H2}>{copy.related.heading}</h2>
+                {copy.related.body.map((para) => (<p key={para}>{para}</p>))}
+                <ul>
+                  {copy.related.links.map((l) => (
+                    <li key={l.href}><Link href={l.href}>{l.label}</Link>{l.note ? <> &mdash; {l.note}</> : null}</li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
             <section id="pay-guide">
               <h2 style={H2}>{meta.shortName} Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</h2>
               <p>
                 The hourly rate for each classification at each penalty band, in the layout of the Fair Work pay guide. Find your level, then the day you worked.
               </p>
-              <h3>Full-time and part-time</h3>
+              <h3>{partTimeLoading !== undefined ? "Full-time" : "Full-time and part-time"}</h3>
               <PayGuideMatrix
                 rows={award.rates}
                 columns={award.matrix}
                 employment="permanent"
                 casualLoading={loading}
                 basis={award.casualPenaltyBasis}
-                caption={`${meta.shortName} full-time and part-time hourly rates by day`}
+                caption={`${meta.shortName} ${partTimeLoading !== undefined ? "full-time" : "full-time and part-time"} hourly rates by day`}
               />
+              {partTimeLoading !== undefined && (
+                <>
+                  <h3>Part-time</h3>
+                  <PayGuideMatrix
+                    rows={award.rates}
+                    columns={award.matrix}
+                    employment="part-time"
+                    casualLoading={loading}
+                    basis={award.casualPenaltyBasis}
+                    caption={`${meta.shortName} part-time hourly rates by day`}
+                  />
+                </>
+              )}
               <h3>Casual</h3>
               <PayGuideMatrix
                 rows={award.rates}
@@ -162,9 +215,11 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                 caption={`${meta.shortName} casual hourly rates by day`}
               />
               <p className="text-sm text-warmgray">
-                {compounded
-                  ? `Casual figures apply each percentage to the casual ordinary hourly rate (the minimum rate plus ${pct(loading)}), as this award requires.`
-                  : `Casual figures are the award's casual percentages, which already include the ${pct(loading)} loading.`}{" "}
+                {award.casualRuleSummary
+                  ? "Casual columns marked “of casual rate” apply the percentage to the casual hourly rate; the others are a percentage of the minimum rate that already includes the loading."
+                  : compounded
+                    ? `Casual figures apply each percentage to the casual ordinary hourly rate (the minimum rate plus ${pct(loading)}), as this award requires.`
+                    : `Casual figures are the award's casual percentages, which already include the ${pct(loading)} loading where it applies.`}{" "}
                 Figures are rounded to the cent. A dash means the column does not apply to that classification.
               </p>
             </section>
@@ -178,22 +233,42 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
                         <th scope="col" className="px-5 py-4">When worked</th>
-                        <th scope="col" className="px-5 py-4">Full-time / part-time</th>
+                        <th scope="col" className="px-5 py-4">{hasPartTime ? "Full-time" : "Full-time / part-time"}</th>
                         <th scope="col" className="px-5 py-4">$ on {award.entryLevel}</th>
+                        {hasPartTime && <th scope="col" className="px-5 py-4">Part-time</th>}
+                        {hasPartTime && <th scope="col" className="px-5 py-4">$ part-time</th>}
                         <th scope="col" className="px-5 py-4">Casual</th>
                         <th scope="col" className="px-5 py-4">$ casual</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      {award.penalties.map((p) => (
-                        <tr key={p.label}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">{p.label}</th>
-                          <td className="px-5 py-3 font-medium">{pct(p.fullTime)}</td>
-                          <td className="px-5 py-3">{formatAUD(penaltyDollar(p.fullTime, false), 2)}</td>
-                          <td className="px-5 py-3 font-medium">{pct(p.casual)}{compounded && <span className="block text-xs font-normal text-warmgray">of casual rate</span>}</td>
-                          <td className="px-5 py-3">{formatAUD(penaltyDollar(p.casual, true), 2)}</td>
-                        </tr>
-                      ))}
+                      {award.penalties.map((p) => {
+                        const permanent = p.employment !== "casual";
+                        const casualCol = p.employment !== "permanent";
+                        const other = rowBase(p) !== entry ? <span className="block text-xs font-normal text-warmgray">on {rowBase(p).level}</span> : null;
+                        const dash = <span className="text-warmgray-light" aria-label="not applicable">&ndash;</span>;
+                        return (
+                          <tr key={p.label}>
+                            <th scope="row" className="px-5 py-3 text-left font-medium">
+                              {p.label}
+                              {p.note && <span className="mt-1 block text-xs font-normal text-warmgray">{p.note}</span>}
+                            </th>
+                            <td className="px-5 py-3 font-medium">{permanent ? rowPct(p.fullTime, p) : dash}</td>
+                            <td className="px-5 py-3">{permanent ? <>{formatAUD(rowDollar(p, "fullTime"), 2)}{other}</> : dash}</td>
+                            {hasPartTime && <td className="px-5 py-3 font-medium">{permanent ? rowPct(p.partTime ?? p.fullTime, p) : dash}</td>}
+                            {hasPartTime && <td className="px-5 py-3">{permanent ? formatAUD(rowDollar(p, "partTime"), 2) : dash}</td>}
+                            <td className="px-5 py-3 font-medium">
+                              {casualCol ? (
+                                <>
+                                  {rowPct(p.casual, p)}
+                                  {(p.casualBasis ?? award.casualPenaltyBasis) === "compounded" && <span className="block text-xs font-normal text-warmgray">of casual rate</span>}
+                                </>
+                              ) : dash}
+                            </td>
+                            <td className="px-5 py-3">{casualCol ? <>{formatAUD(rowDollar(p, "casual"), 2)}{other}</> : dash}</td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -222,9 +297,13 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                           <th scope="row" className="px-5 py-3 text-left font-medium">{o.label}</th>
                           <td className="px-5 py-3 font-medium">{pct(o.fullTime)}</td>
                           <td className="px-5 py-3">{formatAUD(roundCents(entry.hourly * o.fullTime), 2)}</td>
-                          {o.casual !== null && (
+                          {award.overtime.some((x) => x.casual !== null) && (
                             <td className="px-5 py-3">
-                              {pct(o.casual)}{compounded ? " of casual rate" : ""} &middot; {formatAUD(penaltyDollar(o.casual, true), 2)}
+                              {o.casual !== null ? (
+                                <>{pct(o.casual)}{compounded ? " of casual rate" : ""} &middot; {formatAUD(penaltyDollar(o.casual, true), 2)}</>
+                              ) : (
+                                <span className="text-warmgray-light" aria-label="not applicable">&ndash;</span>
+                              )}
                             </td>
                           )}
                         </tr>
@@ -242,11 +321,23 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               {award.junior ? (
                 <>
                   <p>
-                    Junior rates are a percentage of {award.junior.baseLevel ? <>the <strong>{award.junior.baseLevel}</strong> rate</> : <>the adult rate for the classification</>} ({award.junior.clause}), and apply to {award.junior.appliesTo}. The dollar columns apply the percentage to {juniorBase.level} ({formatAUD(juniorBase.weekly, 2)} a week) and divide by {meta.standardWeeklyHours}. The full adult rate applies from age {award.junior.adultAge}.
+                    Junior rates are a percentage of {award.junior.baseLevel ? <>the <strong>{award.junior.baseLevel}</strong> rate</> : <>the adult rate for the classification</>} ({award.junior.clause}), and apply to {award.junior.appliesTo}.{" "}
+                    {juniorHourlyBasis ? (
+                      <>This award applies the percentage to the adult <strong>hourly</strong> rate, so the dollar columns are the percentage of {juniorBase.level} ({formatAUD(juniorBase.hourly, 2)} an hour).</>
+                    ) : (
+                      <>
+                        The dollar columns apply the percentage to {juniorBase.level} ({formatAUD(juniorBase.weekly, 2)} a week)
+                        {award.junior.weeklyRoundTo ? <>, round the weekly figure to the nearest {formatAUD(award.junior.weeklyRoundTo, 2)} as the award requires,</> : null}{" "}
+                        and divide by {meta.standardWeeklyHours}.
+                      </>
+                    )}{" "}
+                    The full adult rate applies from age {award.junior.adultAge}.
                   </p>
                   <JuniorScaleTable
                     scale={award.junior.scale}
                     adultWeekly={juniorBase.weekly}
+                    adultHourly={juniorHourlyBasis ? juniorBase.hourly : undefined}
+                    weeklyRoundTo={award.junior.weeklyRoundTo}
                     standardWeeklyHours={meta.standardWeeklyHours}
                     caption={`${meta.shortName} junior rates`}
                     adultLabel={juniorBase.level}
@@ -338,7 +429,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                   Every figure comes from one constants file transcribed on {meta.verifiedOn} from the Fair Work Commission&rsquo;s consolidated {meta.code} award text, which incorporates all amendments up to and including {meta.consolidatedTo}. Clause numbers are cited against each table. Hourly is the published weekly rate divided by {meta.standardWeeklyHours}; derived dollar figures are rounded half up to the cent.
                 </p>
                 <p>
-                  Automated tests pin the published rates, check every hourly rate against its weekly rate, and assert the rules this award is most often modelled wrongly on{compounded ? " — including that casual penalties compound on the casual rate" : " — including that casual penalties add the loading rather than multiplying by it"}. Parts of the award we have not verified are listed as gaps rather than estimated.
+                  Automated tests pin the published rates, check every hourly rate against its weekly rate, and assert the rules this award is most often modelled wrongly on{award.casualRuleSummary ? " — including which casual penalties add the loading and which compound on the casual rate" : compounded ? " — including that casual penalties compound on the casual rate" : " — including that casual penalties add the loading rather than multiplying by it"}. Parts of the award we have not verified are listed as gaps rather than estimated.
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sources} lastVerified={meta.verifiedOn} />

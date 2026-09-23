@@ -283,3 +283,23 @@ test("award-covered employers match the 1 July 2026 award tables", () => {
     }
   }
 });
+
+// --- T4 (23 Sep 2026): Subway — Fast Food Award, same figures as McDonald's ---
+test("Subway pays the Fast Food Award: identical rates, juniors and penalties to McDonald's", () => {
+  const subway = getEmployerPay("subway");
+  const mcd = getEmployerPay("mcdonalds");
+  assert.ok(subway && mcd);
+  assert.equal(subway.instrument.kind, "modern-award");
+  assert.equal(subway.instrument.reference, "MA000003");
+  assert.deepEqual(
+    subway.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+    mcd.rates.map((r) => [r.weekly, r.hourly, r.casualHourly]),
+  );
+  assert.deepEqual(subway.publishedJuniorRates, mcd.publishedJuniorRates);
+  assert.deepEqual(
+    subway.penalties.map((p) => [p.permanent, p.casual]),
+    mcd.penalties.map((p) => [p.permanent, p.casual]),
+  );
+  assert.equal(subway.awardHref, "/fast-food-award-rates/");
+});
+// --- end T4 ---
