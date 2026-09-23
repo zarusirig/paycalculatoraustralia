@@ -12,8 +12,11 @@ import { nearestTakeHomeAmount, takeHomeHref, isExactTakeHomeAmount } from "../t
 import { ACCOUNTANT } from "./accountant";
 import { AGED_CARE_WORKER } from "./aged-care-worker";
 import { APPRENTICE_ELECTRICIAN } from "./apprentice-electrician";
+import { BARISTA } from "./barista";
+import { BARTENDER } from "./bartender";
 import { BUS_DRIVER } from "./bus-driver";
 import { CARPENTER } from "./carpenter";
+import { CHEF } from "./chef";
 import { CHILDCARE_WORKER } from "./childcare-worker";
 import { CLEANER } from "./cleaner";
 import { CRANE_OPERATOR } from "./crane-operator";
@@ -34,6 +37,7 @@ import { PLUMBER } from "./plumber";
 import { PROPERTY_MANAGER } from "./property-manager";
 import { PSYCHOLOGIST } from "./psychologist";
 import { REAL_ESTATE_AGENT } from "./real-estate-agent";
+import { RETAIL_WORKER } from "./retail-worker";
 import { SECURITY_GUARD } from "./security-guard";
 import { SOCIAL_WORKER } from "./social-worker";
 import { TEACHER_AIDE } from "./teacher-aide";
@@ -73,6 +77,10 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   "childcare-worker": CHILDCARE_WORKER,
   "aged-care-worker": AGED_CARE_WORKER,
   cleaner: CLEANER,
+  chef: CHEF,
+  bartender: BARTENDER,
+  barista: BARISTA,
+  "retail-worker": RETAIL_WORKER,
 };
 
 /** Every occupation, in the order the hub lists them. */

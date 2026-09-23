@@ -17,6 +17,8 @@ import { REAL_ESTATE_ROWS } from "../real-estate-common";
 import { dailyHireHourly } from "../building-construction-common";
 import { SCHADS_SACS } from "../../../constants/schads-award";
 import { EMPLOYMENT } from "../../../constants/australian-tax";
+import { HOSPITALITY_RATES, RETAIL_RATES } from "../../../constants/hospitality-award";
+import { RESTAURANT_TABLE_3 } from "../hospitality-common";
 
 const cents = (x: number) => Math.round(x * 100);
 
@@ -430,4 +432,35 @@ test("T5: cleaner — Table 2 rates; pay guide casual and part-time (15% allowan
   ]);
   const l1 = row("cleaner", "Cleaning Services Employee Level 1");
   assert.equal(Math.round(cents(l1.hourly) * 1.15) / 100, 31.14); // cl 10.2 part-time allowance
+});
+
+test("T5: Restaurant Award Table 3 is the same dollars as the Hospitality Award at every level", () => {
+  for (const r of RESTAURANT_TABLE_3) {
+    const h = HOSPITALITY_RATES.find((x) => x.level === r.level);
+    assert.ok(h, r.level);
+    assert.deepEqual([r.weekly, r.hourly], [h.weekly, h.hourly], r.level);
+  }
+});
+
+test("T5: chef, bartender and barista headline rows", () => {
+  checkPublished("chef", [
+    ["Cook grade 3 (tradesperson) — commis chef", 1119.1, 29.45, 36.81],
+    ["Cook grade 5 (tradesperson) — chef de partie", 1221.1, 32.13, 40.16],
+    ["Restaurant — Cook grade 3 (tradesperson)", 1119.1, 29.45, 36.81],
+  ]);
+  checkPublished("bartender", [["Food and beverage attendant grade 2", 1029.1, 27.08, 33.85]]);
+  checkPublished("barista", [
+    ["Food and beverage attendant grade 2", 1029.1, 27.08, 33.85],
+    ["Fast Food Level 1", 1056.8, 27.81, 34.76],
+  ]);
+  assert.equal(getOccupation("barista")!.award!.code, "MA000119");
+});
+
+test("T5: retail worker reads the shared retail constants", () => {
+  const rows = getOccupation("retail-worker")!.tables[0].rows;
+  assert.equal(rows.length, RETAIL_RATES.length);
+  checkPublished("retail-worker", [
+    ["Retail Employee Level 1", 1056.8, 27.81, 34.76],
+    ["Retail Employee Level 8", 1291.8, 33.99, 42.49],
+  ]);
 });
