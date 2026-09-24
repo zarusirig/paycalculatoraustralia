@@ -1,0 +1,5404 @@
+{
+ "level": "technical",
+ "author": "seo-brain decide.mts (Jev jev-1.13.0 judgments + code policy)",
+ "createdAt": "2026-09-24T21:48:04.450Z",
+ "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+ "decisions": [
+  {
+   "id": "ctr-public-service-pay-scales-vic-1",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.70); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 200,
+     "impressions": 19832,
+     "ctr": 0.0101,
+     "position": 6.78
+    },
+    "keywords": [
+     {
+      "kw": "vps",
+      "vol": 5400,
+      "kd": 35,
+      "intent": "commercial",
+      "pos": 94
+     },
+     {
+      "kw": "vps pay grades",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "vps pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 12
+     },
+     {
+      "kw": "vps salaries",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "vps salary",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "vps",
+    "vps pay grades",
+    "vps pay rates",
+    "vps salaries",
+    "vps salary"
+   ],
+   "kind": "no_action",
+   "route": "/public-service-pay-scales/vic/"
+  },
+  {
+   "id": "ctr-tax-on-40000-2",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.69); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 26,
+     "impressions": 4047,
+     "ctr": 0.0064,
+     "position": 5.4
+    },
+    "keywords": [
+     {
+      "kw": "tax on 40 000 australia",
+      "vol": 320,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 12
+     },
+     {
+      "kw": "tax on 40000 australia",
+      "vol": 320,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 4
+     },
+     {
+      "kw": "tax 40000",
+      "vol": 170,
+      "kd": 12,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax for 40000",
+      "vol": 170,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 5
+     },
+     {
+      "kw": "tax on 40000",
+      "vol": 170,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 5
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax on 40 000 australia",
+    "tax on 40000 australia",
+    "tax 40000",
+    "tax for 40000",
+    "tax on 40000"
+   ],
+   "kind": "no_action",
+   "route": "/tax-on/40000/"
+  },
+  {
+   "id": "ctr-zone-tax-offset-3",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.69); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 21,
+     "impressions": 4300,
+     "ctr": 0.0049,
+     "position": 7.32
+    },
+    "keywords": [
+     {
+      "kw": "tax zone offset",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "zone tax offset",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "zone offset calculator",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "zone tax offset calculator",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "zone offset",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 12
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax zone offset",
+    "zone tax offset",
+    "zone offset calculator",
+    "zone tax offset calculator",
+    "zone offset"
+   ],
+   "kind": "no_action",
+   "route": "/zone-tax-offset/"
+  },
+  {
+   "id": "ctr-hourly-to-salary-32-4",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.93); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 7,
+     "impressions": 2109,
+     "ctr": 0.0033,
+     "position": 5.53
+    },
+    "keywords": [
+     {
+      "kw": "32 dollars an hour is how much a year",
+      "vol": 50,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     }
+    ]
+   },
+   "targetQueries": [
+    "32 dollars an hour is how much a year"
+   ],
+   "kind": "no_action",
+   "route": "/hourly-to-salary/32/"
+  },
+  {
+   "id": "ctr-salary-to-hourly-50000-5",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.91); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 10,
+     "impressions": 1665,
+     "ctr": 0.006,
+     "position": 4.51
+    },
+    "keywords": [
+     {
+      "kw": "50 000 a year is how much an hour",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 8
+     },
+     {
+      "kw": "50000 a year is how much an hour",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 2
+     },
+     {
+      "kw": "50k a year is how much an hour",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     }
+    ]
+   },
+   "targetQueries": [
+    "50 000 a year is how much an hour",
+    "50000 a year is how much an hour",
+    "50k a year is how much an hour"
+   ],
+   "kind": "no_action",
+   "route": "/salary-to-hourly/50000/"
+  },
+  {
+   "id": "ctr-hourly-to-salary-55-6",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.94); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 3,
+     "impressions": 2690,
+     "ctr": 0.0011,
+     "position": 6.58
+    },
+    "keywords": [
+     {
+      "kw": "55 an hour is how much a year",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 24
+     }
+    ]
+   },
+   "targetQueries": [
+    "55 an hour is how much a year"
+   ],
+   "kind": "no_action",
+   "route": "/hourly-to-salary/55/"
+  },
+  {
+   "id": "ctr-leave-calculator-7",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.75); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5932,
+     "ctr": 0.0083,
+     "position": 9.82
+    },
+    "keywords": [
+     {
+      "kw": "annual leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 71
+     },
+     {
+      "kw": "annual leave calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "annual.leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     },
+     {
+      "kw": "calculate leave",
+      "vol": 1600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     },
+     {
+      "kw": "leave calculation",
+      "vol": 1600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ]
+   },
+   "targetQueries": [
+    "annual leave calculation",
+    "annual leave calculator",
+    "annual.leave calculation",
+    "calculate leave",
+    "leave calculation"
+   ],
+   "kind": "no_action",
+   "route": "/leave-calculator/"
+  },
+  {
+   "id": "ctr-award-rates-8",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.82); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 41,
+     "impressions": 8689,
+     "ctr": 0.004699999999999999,
+     "position": 12.32
+    },
+    "keywords": [
+     {
+      "kw": "pay rates",
+      "vol": 2900,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 33
+     },
+     {
+      "kw": "rates of pay",
+      "vol": 2900,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "award pay rates",
+      "vol": 1900,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 24
+     },
+     {
+      "kw": "award rates",
+      "vol": 1900,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "award wage rates",
+      "vol": 1900,
+      "kd": 16,
+      "intent": "commercial",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay rates",
+    "rates of pay",
+    "award pay rates",
+    "award rates",
+    "award wage rates"
+   ],
+   "kind": "no_action",
+   "route": "/award-rates/"
+  },
+  {
+   "id": "ctr-monthly-pay-calculator-9",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.67); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 7535,
+     "ctr": 0.0031,
+     "position": 8.29
+    },
+    "keywords": [
+     {
+      "kw": "au pay calculator",
+      "vol": 40500,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 38
+     },
+     {
+      "kw": "aus salary calculator",
+      "vol": 40500,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 42
+     },
+     {
+      "kw": "net wage calculator",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 45
+     },
+     {
+      "kw": "pay after tax calculator",
+      "vol": 6600,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 44
+     },
+     {
+      "kw": "salary after tax calculator",
+      "vol": 6600,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 71
+     }
+    ]
+   },
+   "targetQueries": [
+    "au pay calculator",
+    "aus salary calculator",
+    "net wage calculator",
+    "pay after tax calculator",
+    "salary after tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/monthly-pay-calculator/"
+  },
+  {
+   "id": "ctr-teacher-pay-australia-wa-10",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.75); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 8,
+     "impressions": 2175,
+     "ctr": 0.0037,
+     "position": 8.8
+    },
+    "keywords": [
+     {
+      "kw": "teacher salaries wa",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "teacher salary wa",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 48
+     },
+     {
+      "kw": "teacher salary western australia",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 51
+     },
+     {
+      "kw": "teacher wages wa",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "teachers salary wa",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 48
+     }
+    ]
+   },
+   "targetQueries": [
+    "teacher salaries wa",
+    "teacher salary wa",
+    "teacher salary western australia",
+    "teacher wages wa",
+    "teachers salary wa"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/wa/"
+  },
+  {
+   "id": "ctr-hourly-to-salary-38-11",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.92); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 3,
+     "impressions": 1505,
+     "ctr": 0.002,
+     "position": 6.94
+    },
+    "keywords": [
+     {
+      "kw": "38 dollars an hour is how much a year",
+      "vol": 50,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ]
+   },
+   "targetQueries": [
+    "38 dollars an hour is how much a year"
+   ],
+   "kind": "no_action",
+   "route": "/hourly-to-salary/38/"
+  },
+  {
+   "id": "ctr-teacher-pay-australia-qld-12",
+   "level": "ctr",
+   "priority": 10,
+   "confidence": 0.7,
+   "rationale": "Title and description already match the top queries (min recognised 0.80); the CTR gap is likely SERP features rather than the snippet. Revisit after position data refreshes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 313,
+     "impressions": 18202,
+     "ctr": 0.0172,
+     "position": 7.29
+    },
+    "keywords": [
+     {
+      "kw": "queensland teachers pay rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "qld teacher pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "qld teacher salary",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 23
+     },
+     {
+      "kw": "qld teachers pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "queensland teacher pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     }
+    ]
+   },
+   "targetQueries": [
+    "queensland teachers pay rate",
+    "qld teacher pay",
+    "qld teacher salary",
+    "qld teachers pay",
+    "queensland teacher pay"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/qld/"
+  },
+  {
+   "id": "striking-teacher-pay-australia-qld-13",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.70). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 313,
+     "impressions": 18202,
+     "ctr": 0.0172,
+     "position": 7.29
+    },
+    "keywords": [
+     {
+      "kw": "queensland teachers pay rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "qld teacher pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "qld teacher salary",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 23
+     },
+     {
+      "kw": "qld teachers pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "queensland teacher pay",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "teacher pay queensland",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 31
+     }
+    ]
+   },
+   "targetQueries": [
+    "queensland teachers pay rate",
+    "teacher salaries qld",
+    "teachers salaries queensland",
+    "teachers salary qld",
+    "teaching salary qld",
+    "teaching salary queensland"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/qld/"
+  },
+  {
+   "id": "striking-public-service-pay-scales-vic-14",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.80). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 200,
+     "impressions": 19832,
+     "ctr": 0.0101,
+     "position": 6.78
+    },
+    "keywords": [
+     {
+      "kw": "vps",
+      "vol": 5400,
+      "kd": 35,
+      "intent": "commercial",
+      "pos": 94
+     },
+     {
+      "kw": "vps pay grades",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "vps pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 12
+     },
+     {
+      "kw": "vps salaries",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "vps salary",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "vps salary rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     }
+    ]
+   },
+   "targetQueries": [
+    "vps pay grades",
+    "vps pay rates",
+    "vps salaries",
+    "vps salary",
+    "vps salary rates",
+    "vps pay scale"
+   ],
+   "kind": "no_action",
+   "route": "/public-service-pay-scales/vic/"
+  },
+  {
+   "id": "striking-hourly-to-annual-salary-calculator-15",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.59). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "how many hour in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 62
+     },
+     {
+      "kw": "how many hr in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 48
+     },
+     {
+      "kw": "salary rate calculator",
+      "vol": 9900,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "calculating pay rate",
+      "vol": 2400,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 32
+     },
+     {
+      "kw": "annual income calculator",
+      "vol": 1900,
+      "kd": 24,
+      "intent": "informational",
+      "pos": 41
+     },
+     {
+      "kw": "annual wage calculator",
+      "vol": 1900,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 26
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculate annual salary",
+    "hour to year",
+    "yearly salary calculator",
+    "salary to hourly rate calculator australia",
+    "hourly rate to annual salary",
+    "annual salary to hourly rate"
+   ],
+   "kind": "no_action",
+   "route": "/hourly-to-annual-salary-calculator/"
+  },
+  {
+   "id": "striking-tax-on-80000-16",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.54). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "80000 after tax australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 80000 australia",
+      "vol": 720,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "80000 12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "80000/12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 24
+     },
+     {
+      "kw": "80k after tax australia",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 12
+     },
+     {
+      "kw": "tax 80000",
+      "vol": 260,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "80000 after tax australia",
+    "tax on 80000 australia",
+    "80000 12",
+    "80k after tax australia",
+    "tax 80000",
+    "tax for 80000"
+   ],
+   "kind": "no_action",
+   "route": "/tax-on/80000/"
+  },
+  {
+   "id": "striking-teacher-pay-australia-nsw-17",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.76). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 27,
+     "impressions": 1517,
+     "ctr": 0.0178,
+     "position": 8.27
+    },
+    "keywords": [
+     {
+      "kw": "teacher salary in nsw",
+      "vol": 4400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "nsw teacher pay scale",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     },
+     {
+      "kw": "nsw teachers pay scale",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "nsw teaching pay scale",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "teacher pay scale nsw",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "teachers pay scale nsw",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     }
+    ]
+   },
+   "targetQueries": [
+    "nsw teacher pay rates",
+    "nsw teachers pay",
+    "nsw teachers pay rates",
+    "teacher pay nsw",
+    "teacher pay rates nsw",
+    "teachers pay nsw"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/nsw/"
+  },
+  {
+   "id": "striking-leave-calculator-18",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.58). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5932,
+     "ctr": 0.0083,
+     "position": 9.82
+    },
+    "keywords": [
+     {
+      "kw": "annual leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 71
+     },
+     {
+      "kw": "annual leave calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "annual.leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     },
+     {
+      "kw": "calculate leave",
+      "vol": 1600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     },
+     {
+      "kw": "leave calculation",
+      "vol": 1600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "leave calculator",
+      "vol": 1600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 45
+     }
+    ]
+   },
+   "targetQueries": [
+    "annual leave payment calculator",
+    "calculate annual leave payout",
+    "annual leave payout calculator",
+    "calculating annual leave payout"
+   ],
+   "kind": "no_action",
+   "route": "/leave-calculator/"
+  },
+  {
+   "id": "striking-teacher-pay-australia-sa-19",
+   "level": "striking",
+   "priority": 10,
+   "confidence": 0.6,
+   "rationale": "Headings, opening and format already cover the striking-distance keywords (min heading coverage 0.84). Movement here needs links or authority, not on-page changes.",
+   "evidence": {
+    "gsc": {
+     "clicks": 2,
+     "impressions": 754,
+     "ctr": 0.0027,
+     "position": 8.49
+    },
+    "keywords": [
+     {
+      "kw": "sa teacher salary",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "sa teachers salary",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 44
+     },
+     {
+      "kw": "south australian teachers salary",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 24
+     },
+     {
+      "kw": "teacher pay rates south australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 19
+     },
+     {
+      "kw": "teacher salary south australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 24
+     },
+     {
+      "kw": "teachers salary sa",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     }
+    ]
+   },
+   "targetQueries": [
+    "teacher pay rates south australia",
+    "teachers salary sa"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/sa/"
+  },
+  {
+   "id": "cannibal-fortnightly-tax-table-20",
+   "level": "cannibal",
+   "priority": 5,
+   "confidence": 0.6599999999999999,
+   "rationale": "Jev judged /fortnightly-tax-table/ and /weekly-tax-table/ complementary (same-intent p=0.34): one is a tool, the other a reference, or they answer different questions. Keep both and cross-link.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "tax tables fortnightly"
+   ],
+   "kind": "no_action",
+   "route": "/fortnightly-tax-table/"
+  },
+  {
+   "id": "cannibal-fortnightly-tax-table-21",
+   "level": "cannibal",
+   "priority": 5,
+   "confidence": 0.69,
+   "rationale": "Jev judged /fortnightly-tax-table/ and /monthly-tax-table/ complementary (same-intent p=0.31): one is a tool, the other a reference, or they answer different questions. Keep both and cross-link.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "tax tables fortnightly"
+   ],
+   "kind": "no_action",
+   "route": "/fortnightly-tax-table/"
+  },
+  {
+   "id": "cannibal-home-22",
+   "level": "cannibal",
+   "priority": 25.585,
+   "confidence": 0.4,
+   "rationale": "Different purpose but the titles and openings blur it (same-intent p=0.60). Sharpen the loser's title/opening so each page names its own job; keep both URLs.",
+   "evidence": {
+    "keywords": [],
+    "note": "titles: Pay Calculator Australia 2026-27 — Salary Calculator After Tax | Annual Salary After Tax Calculator Australia 2026-27"
+   },
+   "targetQueries": [
+    "australia salary calculator",
+    "tax withheld calculator",
+    "withholdings tax calculator",
+    "salary take home calculator"
+   ],
+   "kind": "consolidate",
+   "keepRoute": "/",
+   "loserRoutes": [
+    "/annual-pay-calculator/"
+   ],
+   "method": "differentiate"
+  },
+  {
+   "id": "cannibal-monthly-tax-table-23",
+   "level": "cannibal",
+   "priority": 5,
+   "confidence": 0.6599999999999999,
+   "rationale": "Jev judged /monthly-tax-table/ and /weekly-tax-table/ complementary (same-intent p=0.34): one is a tool, the other a reference, or they answer different questions. Keep both and cross-link.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "tax table 2026",
+    "monthly tax table",
+    "tax monthly table",
+    "tax table monthly"
+   ],
+   "kind": "no_action",
+   "route": "/monthly-tax-table/"
+  },
+  {
+   "id": "cannibal-annual-leave-guide-24",
+   "level": "cannibal",
+   "priority": 5,
+   "confidence": 0.8,
+   "rationale": "Jev judged /annual-leave-guide/ and /leave-calculator/ complementary (same-intent p=0.20): one is a tool, the other a reference, or they answer different questions. Keep both and cross-link.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "how much annual leave per year",
+    "accrual rate for annual leave",
+    "how much leave accrued per month",
+    "annual leave calculation"
+   ],
+   "kind": "no_action",
+   "route": "/annual-leave-guide/"
+  },
+  {
+   "id": "cannibal-employment-type-calculator-25",
+   "level": "cannibal",
+   "priority": 13.5,
+   "confidence": 0.62,
+   "rationale": "Different purpose but the titles and openings blur it (same-intent p=0.38). Sharpen the loser's title/opening so each page names its own job; keep both URLs.",
+   "evidence": {
+    "keywords": [],
+    "note": "titles: Part-Time vs Full-Time vs Casual Pay Calculator | Full-Time vs Part-Time vs Casual — Complete Comparison"
+   },
+   "targetQueries": [
+    "contract to salary calculator",
+    "part time pay",
+    "part time job pay rate",
+    "part time salary"
+   ],
+   "kind": "consolidate",
+   "keepRoute": "/employment-type-calculator/",
+   "loserRoutes": [
+    "/full-time-vs-part-time-vs-casual/"
+   ],
+   "method": "differentiate"
+  },
+  {
+   "id": "links-fortnightly-tax-table-26",
+   "level": "links",
+   "priority": 69,
+   "confidence": 0.69,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /fortnightly-tax-table/ next (Jev p=0.69); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 13 contextual inlinks and 12,590 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "Fortnightly Tax Table 2026-27 (ATO NAT 1006 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/fortnightly-tax-table/",
+   "anchor": "fortnightly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-tax-table-27",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /teacher-pay-australia/qld/ plausibly wants /fortnightly-tax-table/ next (Jev p=0.58); /teacher-pay-australia/qld/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 13 contextual inlinks and 12,590 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "Fortnightly Tax Table 2026-27 (ATO NAT 1006 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/teacher-pay-australia/qld/",
+   "toRoute": "/fortnightly-tax-table/",
+   "anchor": "fortnightly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-award-rates-28",
+   "level": "links",
+   "priority": 67,
+   "confidence": 0.67,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /award-rates/ next (Jev p=0.67); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 415 contextual inlinks and 8,689 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 41,
+     "impressions": 8689,
+     "ctr": 0.004699999999999999,
+     "position": 12.32
+    },
+    "keywords": [
+     {
+      "kw": "pay rates",
+      "vol": 2900,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 33
+     },
+     {
+      "kw": "rates of pay",
+      "vol": 2900,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "award pay rates",
+      "vol": 1900,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 24
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay rates",
+    "rates of pay",
+    "award pay rates",
+    "Award Rates 2026-27 : Pay Rates for Every Major Modern Award, A–Z"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/award-rates/",
+   "anchor": "award pay rates",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-payg-withholding-tables-29",
+   "level": "links",
+   "priority": 68,
+   "confidence": 0.68,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /payg-withholding-tables/ next (Jev p=0.68); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 160 contextual inlinks and 3,141 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026",
+    "weekly tax table 2026",
+    "australian tax table fortnightly",
+    "PAYG Withholding Tax Tables 2026-27 : Which ATO Table to Use"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/payg-withholding-tables/",
+   "anchor": "weekly tax table 2026",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-payg-withholding-tables-30",
+   "level": "links",
+   "priority": 62,
+   "confidence": 0.62,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /payg-withholding-tables/ next (Jev p=0.62); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 160 contextual inlinks and 3,141 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026",
+    "weekly tax table 2026",
+    "australian tax table fortnightly",
+    "PAYG Withholding Tax Tables 2026-27 : Which ATO Table to Use"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/payg-withholding-tables/",
+   "anchor": "weekly tax table 2026",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hourly-to-annual-salary-calculator-31",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /tax-brackets/ plausibly wants /hourly-to-annual-salary-calculator/ next (Jev p=0.58); /tax-brackets/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 326 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "how many hour in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 62
+     },
+     {
+      "kw": "how many hr in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 48
+     },
+     {
+      "kw": "salary rate calculator",
+      "vol": 9900,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 29
+     }
+    ]
+   },
+   "targetQueries": [
+    "how many hour in a year",
+    "how many hr in a year",
+    "salary rate calculator",
+    "Hourly to Annual Salary Calculator"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-brackets/",
+   "toRoute": "/hourly-to-annual-salary-calculator/",
+   "anchor": "Hourly to Annual Salary Calculator",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-pay-calculator-32",
+   "level": "links",
+   "priority": 67,
+   "confidence": 0.67,
+   "rationale": "A reader of /contractor-vs-employee-calculator/ plausibly wants /fortnightly-pay-calculator/ next (Jev p=0.67); /contractor-vs-employee-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 201 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly",
+      "vol": 12100,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 6
+     },
+     {
+      "kw": "fortnightly tax calculator",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "tax calculator fortnightly",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly",
+    "fortnightly tax calculator",
+    "tax calculator fortnightly",
+    "Fortnightly Pay & Tax Calculator Australia 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/contractor-vs-employee-calculator/",
+   "toRoute": "/fortnightly-pay-calculator/",
+   "anchor": "Fortnightly Pay & Tax Calculator Australia 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-pay-calculator-33",
+   "level": "links",
+   "priority": 63,
+   "confidence": 0.63,
+   "rationale": "A reader of /average-salary-australia/ plausibly wants /fortnightly-pay-calculator/ next (Jev p=0.63); /average-salary-australia/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 201 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly",
+      "vol": 12100,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 6
+     },
+     {
+      "kw": "fortnightly tax calculator",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "tax calculator fortnightly",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly",
+    "fortnightly tax calculator",
+    "tax calculator fortnightly",
+    "Fortnightly Pay & Tax Calculator Australia 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/average-salary-australia/",
+   "toRoute": "/fortnightly-pay-calculator/",
+   "anchor": "Fortnightly Pay & Tax Calculator Australia 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hospitality-award-rates-34",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /backpay-calculator/ plausibly wants /hospitality-award-rates/ next (Jev p=0.65); /backpay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 54 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "hospitality award",
+    "award wage for hospitality",
+    "hospitality award rates",
+    "Hospitality Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/backpay-calculator/",
+   "toRoute": "/hospitality-award-rates/",
+   "anchor": "Hospitality Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hospitality-award-rates-35",
+   "level": "links",
+   "priority": 59,
+   "confidence": 0.59,
+   "rationale": "A reader of /employment-type-calculator/ plausibly wants /hospitality-award-rates/ next (Jev p=0.59); /employment-type-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 54 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "hospitality award",
+    "award wage for hospitality",
+    "hospitality award rates",
+    "Hospitality Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/employment-type-calculator/",
+   "toRoute": "/hospitality-award-rates/",
+   "anchor": "Hospitality Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-80000-36",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /tax-on/80000/ next (Jev p=0.65); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "80000 after tax australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 80000 australia",
+      "vol": 720,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "80000 12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     }
+    ]
+   },
+   "targetQueries": [
+    "80000 after tax australia",
+    "tax on 80000 australia",
+    "80000 12",
+    "Tax on $80,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/tax-on/80000/",
+   "anchor": "Tax on $80,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-80000-37",
+   "level": "links",
+   "priority": 59,
+   "confidence": 0.59,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/80000/ next (Jev p=0.59); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "80000 after tax australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 80000 australia",
+      "vol": 720,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "80000 12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     }
+    ]
+   },
+   "targetQueries": [
+    "80000 after tax australia",
+    "tax on 80000 australia",
+    "80000 12",
+    "Tax on $80,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/80000/",
+   "anchor": "Tax on $80,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-monthly-tax-table-38",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /teacher-pay-australia/qld/ plausibly wants /monthly-tax-table/ next (Jev p=0.57); /teacher-pay-australia/qld/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 9 contextual inlinks and 2,838 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 29,
+     "impressions": 2838,
+     "ctr": 0.0102,
+     "position": 10.21
+    },
+    "keywords": [
+     {
+      "kw": "tax table 2026",
+      "vol": 6600,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "monthly tax table",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "tax monthly table",
+      "vol": 2400,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 21
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax table 2026",
+    "monthly tax table",
+    "tax monthly table",
+    "Monthly Tax Table 2026-27 (ATO NAT 1007 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/teacher-pay-australia/qld/",
+   "toRoute": "/monthly-tax-table/",
+   "anchor": "monthly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-39",
+   "level": "links",
+   "priority": 80,
+   "confidence": 0.8,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /pay-rise-calculator/ next (Jev p=0.80); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia — How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-40",
+   "level": "links",
+   "priority": 73,
+   "confidence": 0.73,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /pay-rise-calculator/ next (Jev p=0.73); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia — How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-41",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /stage-3-tax-cuts/ plausibly wants /pay-rise-calculator/ next (Jev p=0.65); /stage-3-tax-cuts/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia — How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/stage-3-tax-cuts/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-qld-42",
+   "level": "links",
+   "priority": 55,
+   "confidence": 0.55,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /pay-calculator-qld/ next (Jev p=0.55); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 21 contextual inlinks and 2,442 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 14,
+     "impressions": 2442,
+     "ctr": 0.005699999999999999,
+     "position": 9.74
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator qld",
+      "vol": 1900,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator queensland",
+      "vol": 1900,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "salary calculator qld",
+      "vol": 1900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 33
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator qld",
+    "pay calculator queensland",
+    "salary calculator qld",
+    "Pay Calculator QLD: Your Take-Home Pay in Queensland"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/pay-calculator-qld/",
+   "anchor": "pay calculator qld",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-qld-43",
+   "level": "links",
+   "priority": 55,
+   "confidence": 0.55,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /pay-calculator-qld/ next (Jev p=0.55); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 21 contextual inlinks and 2,442 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 14,
+     "impressions": 2442,
+     "ctr": 0.005699999999999999,
+     "position": 9.74
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator qld",
+      "vol": 1900,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator queensland",
+      "vol": 1900,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "salary calculator qld",
+      "vol": 1900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 33
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator qld",
+    "pay calculator queensland",
+    "salary calculator qld",
+    "Pay Calculator QLD: Your Take-Home Pay in Queensland"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/pay-calculator-qld/",
+   "anchor": "pay calculator qld",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-retail-award-rates-44",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /employment-type-calculator/ plausibly wants /retail-award-rates/ next (Jev p=0.65); /employment-type-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 74 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ]
+   },
+   "targetQueries": [
+    "retail award rate",
+    "retail industry award rates",
+    "pay rate for retail",
+    "Retail Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/employment-type-calculator/",
+   "toRoute": "/retail-award-rates/",
+   "anchor": "Retail Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-retail-award-rates-45",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /full-time-vs-part-time-vs-casual/ plausibly wants /retail-award-rates/ next (Jev p=0.58); /full-time-vs-part-time-vs-casual/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 74 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ]
+   },
+   "targetQueries": [
+    "retail award rate",
+    "retail industry award rates",
+    "pay rate for retail",
+    "Retail Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/full-time-vs-part-time-vs-casual/",
+   "toRoute": "/retail-award-rates/",
+   "anchor": "Retail Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-leave-calculator-46",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /retail-hospitality-pay-guide/ plausibly wants /leave-calculator/ next (Jev p=0.58); /retail-hospitality-pay-guide/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 23 contextual inlinks and 5,932 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5932,
+     "ctr": 0.0083,
+     "position": 9.82
+    },
+    "keywords": [
+     {
+      "kw": "annual leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 71
+     },
+     {
+      "kw": "annual leave calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "annual.leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     }
+    ]
+   },
+   "targetQueries": [
+    "annual leave calculation",
+    "annual leave calculator",
+    "annual.leave calculation",
+    "Annual Leave & Leave Loading Calculator (17.5%) — 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/retail-hospitality-pay-guide/",
+   "toRoute": "/leave-calculator/",
+   "anchor": "annual leave calculator",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-90000-47",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/90000/ next (Jev p=0.65); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 7 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 7,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "90000 after tax australia",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "tax on 90000 australia",
+      "vol": 480,
+      "kd": 18,
+      "intent": "transactional",
+      "pos": 15
+     },
+     {
+      "kw": "90000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "90000 after tax australia",
+    "tax on 90000 australia",
+    "90000/12",
+    "Tax on $90,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/90000/",
+   "anchor": "Tax on $90,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-vic-48",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /salary-sacrifice-calculator/ plausibly wants /pay-calculator-vic/ next (Jev p=0.58); /salary-sacrifice-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 20 contextual inlinks and 1,000 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1000,
+     "ctr": 0.006,
+     "position": 10.44
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator vic",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "vic salary calculator",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator victoria",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 27
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator vic",
+    "vic salary calculator",
+    "pay calculator victoria",
+    "Pay Calculator VIC: Your Take-Home Pay in Victoria"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/salary-sacrifice-calculator/",
+   "toRoute": "/pay-calculator-vic/",
+   "anchor": "pay calculator vic",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-vic-49",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /healthcare-worker-pay/vic/ plausibly wants /pay-calculator-vic/ next (Jev p=0.57); /healthcare-worker-pay/vic/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 20 contextual inlinks and 1,000 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1000,
+     "ctr": 0.006,
+     "position": 10.44
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator vic",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "vic salary calculator",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator victoria",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 27
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator vic",
+    "vic salary calculator",
+    "pay calculator victoria",
+    "Pay Calculator VIC: Your Take-Home Pay in Victoria"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/healthcare-worker-pay/vic/",
+   "toRoute": "/pay-calculator-vic/",
+   "anchor": "pay calculator vic",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-50000-50",
+   "level": "links",
+   "priority": 73,
+   "confidence": 0.73,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/50000/ next (Jev p=0.73); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "tax on 50000 australia",
+      "vol": 480,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "tax 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "tax for 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax on 50000 australia",
+    "tax 50000",
+    "tax for 50000",
+    "Tax on $50,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/50000/",
+   "anchor": "Tax on $50,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-50000-51",
+   "level": "links",
+   "priority": 68,
+   "confidence": 0.68,
+   "rationale": "A reader of /low-income-tax-offset/ plausibly wants /tax-on/50000/ next (Jev p=0.68); /low-income-tax-offset/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "tax on 50000 australia",
+      "vol": 480,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "tax 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "tax for 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax on 50000 australia",
+    "tax 50000",
+    "tax for 50000",
+    "Tax on $50,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/low-income-tax-offset/",
+   "toRoute": "/tax-on/50000/",
+   "anchor": "Tax on $50,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-take-home-pay-on-100000-52",
+   "level": "links",
+   "priority": 63,
+   "confidence": 0.63,
+   "rationale": "A reader of /stage-3-tax-cuts/ plausibly wants /take-home-pay-on/100000/ next (Jev p=0.63); /stage-3-tax-cuts/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 49 contextual inlinks and 14 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 14,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "100k after tax australia",
+      "vol": 720,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "tax on 100000",
+      "vol": 390,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "100 000 after tax",
+      "vol": 260,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 51
+     }
+    ]
+   },
+   "targetQueries": [
+    "100k after tax australia",
+    "tax on 100000",
+    "100 000 after tax",
+    "$100,000 After Tax in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/stage-3-tax-cuts/",
+   "toRoute": "/take-home-pay-on/100000/",
+   "anchor": "$100,000 After Tax in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-53",
+   "level": "links",
+   "priority": 85,
+   "confidence": 0.85,
+   "rationale": "A reader of /tax-brackets/ plausibly wants /tax-on/75000/ next (Jev p=0.85); /tax-brackets/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-brackets/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-54",
+   "level": "links",
+   "priority": 81,
+   "confidence": 0.81,
+   "rationale": "A reader of /income-tax-calculator/ plausibly wants /tax-on/75000/ next (Jev p=0.81); /income-tax-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/income-tax-calculator/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-55",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /low-income-tax-offset/ plausibly wants /tax-on/75000/ next (Jev p=0.57); /low-income-tax-offset/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/low-income-tax-offset/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "schema-payg-withholding-tables-56",
+   "level": "schema",
+   "priority": 15.705,
+   "confidence": 0.95,
+   "rationale": "Page has Answer, Article, BreadcrumbList, EducationalOccupationalCredential, FAQPage, ImageObject, Legislation, ListItem, Organization, Person, Question, WebPage; the tax-table template elsewhere on the site carries Dataset. Consistent structured data across a template is a crawl-side fix with no content risk.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026"
+   ],
+   "kind": "add_schema",
+   "scope": "/payg-withholding-tables/",
+   "schemaType": "Dataset",
+   "requiredFields": [
+    "name",
+    "description",
+    "temporalCoverage",
+    "creator",
+    "license",
+    "distribution"
+   ]
+  },
+  {
+   "id": "schema-tax-calendar-57",
+   "level": "schema",
+   "priority": 2.585,
+   "confidence": 0.95,
+   "rationale": "Page has BreadcrumbList, ListItem, Organization, WebPage; the guide template elsewhere on the site carries FAQPage. Consistent structured data across a template is a crawl-side fix with no content risk.",
+   "evidence": {
+    "gsc": {
+     "clicks": 2,
+     "impressions": 517,
+     "ctr": 0.0039000000000000003,
+     "position": 28.53
+    },
+    "keywords": [
+     {
+      "kw": "tax week",
+      "vol": 1000,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 51
+     },
+     {
+      "kw": "tax weekend",
+      "vol": 1000,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "taxes year",
+      "vol": 1000,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 55
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax week"
+   ],
+   "kind": "add_schema",
+   "scope": "/tax-calendar/",
+   "schemaType": "FAQPage",
+   "requiredFields": [
+    "mainEntity[].name",
+    "mainEntity[].acceptedAnswer.text (must match visible FAQ)"
+   ]
+  },
+  {
+   "id": "expansion-annual-pay-calculator-58",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.73,
+   "rationale": "\"tax and calculator\" (135000/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.73). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax and calculator",
+      "vol": 135000,
+      "kd": 9,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax and calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-income-tax-calculator-59",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"tax income estimator\" (49500/mo) is already the subject of /income-tax-calculator/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax income estimator",
+      "vol": 49500,
+      "kd": 24,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax income estimator"
+   ],
+   "kind": "no_action",
+   "route": "/income-tax-calculator/"
+  },
+  {
+   "id": "expansion-income-tax-calculator-60",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"income tax calculator\" (49500/mo) is already the subject of /income-tax-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "income tax calculator",
+      "vol": 49500,
+      "kd": 10,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "income tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/income-tax-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-61",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.75,
+   "rationale": "\"calculate tax\" (135000/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.75). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculate tax",
+      "vol": 135000,
+      "kd": 8,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculate tax"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-62",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.93,
+   "rationale": "\"salary calculator\" (60500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.93). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "salary calculator",
+      "vol": 60500,
+      "kd": 14,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "salary calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-63",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.74,
+   "rationale": "\"taxation calculator australia\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.74). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "taxation calculator australia",
+      "vol": 40500,
+      "kd": 6,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "taxation calculator australia"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-64",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.84,
+   "rationale": "\"australia tax calculator\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.84). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "australia tax calculator",
+      "vol": 40500,
+      "kd": 8,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "australia tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-65",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.9,
+   "rationale": "\"aus tax calculator\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.90). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "aus tax calculator",
+      "vol": 40500,
+      "kd": 15,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "aus tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-66",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.89,
+   "rationale": "\"tax calculator australia\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.89). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax calculator australia",
+      "vol": 40500,
+      "kd": 15,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax calculator australia"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-67",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.89,
+   "rationale": "\"australian tax calculator\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.89). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "australian tax calculator",
+      "vol": 40500,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "australian tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-68",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.75,
+   "rationale": "\"australia taxation calculator\" (40500/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.75). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "australia taxation calculator",
+      "vol": 40500,
+      "kd": 24,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "australia taxation calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-average-salary-australia-69",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"average yearly salary australia\" (27100/mo) is already the subject of /average-salary-australia/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "average yearly salary australia",
+      "vol": 27100,
+      "kd": 6,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "average yearly salary australia"
+   ],
+   "kind": "no_action",
+   "route": "/average-salary-australia/"
+  },
+  {
+   "id": "expansion-tax-withheld-calculator-70",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"tax withholding estimator\" (27100/mo) is already the subject of /tax-withheld-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax withholding estimator",
+      "vol": 27100,
+      "kd": 11,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax withholding estimator"
+   ],
+   "kind": "no_action",
+   "route": "/tax-withheld-calculator/"
+  },
+  {
+   "id": "expansion-site-71",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.5900000000000001,
+   "rationale": "\"payment of wages\" fails the contextual border (in-scope 0.91, links-to-calculator 0.41, payslip-check 0.48; all must be ≥ 0.7). Volume 27100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "payment of wages"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-austudy-youth-allowance-calculator-72",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"youth allowance\" (22200/mo) is already the subject of /austudy-youth-allowance-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "youth allowance",
+      "vol": 22200,
+      "kd": 3,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "youth allowance"
+   ],
+   "kind": "no_action",
+   "route": "/austudy-youth-allowance-calculator/"
+  },
+  {
+   "id": "expansion-tax-withheld-calculator-73",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"withholding tax calculator\" (27100/mo) is already the subject of /tax-withheld-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "withholding tax calculator",
+      "vol": 27100,
+      "kd": 10,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "withholding tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/tax-withheld-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-74",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.85,
+   "rationale": "\"tax calculator\" (135000/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.85). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax calculator",
+      "vol": 135000,
+      "kd": 12,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-tax-withheld-calculator-75",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"withholding tax calculation\" (27100/mo) is already the subject of /tax-withheld-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "withholding tax calculation",
+      "vol": 27100,
+      "kd": 25,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "withholding tax calculation"
+   ],
+   "kind": "no_action",
+   "route": "/tax-withheld-calculator/"
+  },
+  {
+   "id": "expansion-weekly-pay-calculator-76",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.64,
+   "rationale": "\"weekly tax calculator\" (18100/mo) is already the subject of /weekly-pay-calculator/ (Jev p=0.64). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "weekly tax calculator",
+      "vol": 18100,
+      "kd": 9,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "weekly tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/weekly-pay-calculator/"
+  },
+  {
+   "id": "expansion-centrelink-payment-dates-77",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"centrelink christmas payment dates\" (14800/mo) is already the subject of /centrelink-payment-dates/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "centrelink christmas payment dates",
+      "vol": 14800,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "centrelink christmas payment dates"
+   ],
+   "kind": "no_action",
+   "route": "/centrelink-payment-dates/"
+  },
+  {
+   "id": "expansion-jobseeker-payment-calculator-78",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"jobseeker payment\" (14800/mo) is already the subject of /jobseeker-payment-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "jobseeker payment",
+      "vol": 14800,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "jobseeker payment"
+   ],
+   "kind": "no_action",
+   "route": "/jobseeker-payment-calculator/"
+  },
+  {
+   "id": "expansion-jobseeker-payment-calculator-79",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"jobseeker's payment\" (14800/mo) is already the subject of /jobseeker-payment-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "jobseeker's payment",
+      "vol": 14800,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "jobseeker's payment"
+   ],
+   "kind": "no_action",
+   "route": "/jobseeker-payment-calculator/"
+  },
+  {
+   "id": "expansion-centrelink-payment-rates-80",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.8,
+   "rationale": "\"increase in centrelink payments\" (14800/mo) is already the subject of /centrelink-payment-rates/ (Jev p=0.80). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "increase in centrelink payments",
+      "vol": 14800,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "increase in centrelink payments"
+   ],
+   "kind": "no_action",
+   "route": "/centrelink-payment-rates/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-81",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"take home pay cal\" (14800/mo) is already the subject of /take-home-pay-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "take home pay cal",
+      "vol": 14800,
+      "kd": 4,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "take home pay cal"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-austudy-youth-allowance-calculator-82",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.96,
+   "rationale": "\"centrelink youth allowance\" (14800/mo) is already the subject of /austudy-youth-allowance-calculator/ (Jev p=0.96). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "centrelink youth allowance",
+      "vol": 14800,
+      "kd": 1,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "centrelink youth allowance"
+   ],
+   "kind": "no_action",
+   "route": "/austudy-youth-allowance-calculator/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-83",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"take home pay calculator\" (14800/mo) is already the subject of /take-home-pay-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "take home pay calculator",
+      "vol": 14800,
+      "kd": 4,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "take home pay calculator"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-austudy-youth-allowance-calculator-84",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"youth allowance centrelink\" (14800/mo) is already the subject of /austudy-youth-allowance-calculator/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "youth allowance centrelink",
+      "vol": 14800,
+      "kd": 2,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "youth allowance centrelink"
+   ],
+   "kind": "no_action",
+   "route": "/austudy-youth-allowance-calculator/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-85",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"calculate take home salary\" (14800/mo) is already the subject of /take-home-pay-calculator/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculate take home salary",
+      "vol": 14800,
+      "kd": 1,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculate take home salary"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-centrelink-payment-rates-86",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.88,
+   "rationale": "\"centrelink payments increase\" (14800/mo) is already the subject of /centrelink-payment-rates/ (Jev p=0.88). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "centrelink payments increase",
+      "vol": 14800,
+      "kd": 2,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "centrelink payments increase"
+   ],
+   "kind": "no_action",
+   "route": "/centrelink-payment-rates/"
+  },
+  {
+   "id": "expansion-income-tax-calculator-87",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"australian income tax calculator\" (14800/mo) is already the subject of /income-tax-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "australian income tax calculator",
+      "vol": 14800,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "australian income tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/income-tax-calculator/"
+  },
+  {
+   "id": "expansion-annual-pay-calculator-88",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.75,
+   "rationale": "\"basic tax calculator\" (14800/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.75). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "basic tax calculator",
+      "vol": 14800,
+      "kd": 12,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "basic tax calculator"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-income-tax-calculator-89",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"income tax calculator australia\" (14800/mo) is already the subject of /income-tax-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "income tax calculator australia",
+      "vol": 14800,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "income tax calculator australia"
+   ],
+   "kind": "no_action",
+   "route": "/income-tax-calculator/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-90",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"pay rates victorian teachers\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "pay rates victorian teachers",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay rates victorian teachers"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-91",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"salary teacher victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "salary teacher victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "salary teacher victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-92",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"paycheck calculator take home\" (14800/mo) is already the subject of /take-home-pay-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "paycheck calculator take home",
+      "vol": 14800,
+      "kd": 12,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "paycheck calculator take home"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-93",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teacher pay rates victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teacher pay rates victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teacher pay rates victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-94",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teacher salary victoria australia\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teacher salary victoria australia",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teacher salary victoria australia"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-95",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teachers wages victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teachers wages victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teachers wages victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-96",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teachers salary victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teachers salary victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teachers salary victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-97",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teacher wages victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teacher wages victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teacher wages victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-98",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teaching salary vic\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teaching salary vic",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teaching salary vic"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-99",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teaching wages victoria\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teaching wages victoria",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teaching wages victoria"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-100",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teaching victoria salary\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teaching victoria salary",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teaching victoria salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-101",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"vic teacher pay\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "vic teacher pay",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "vic teacher pay"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-102",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"vic teacher salary\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "vic teacher salary",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "vic teacher salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-103",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"victorian teachers salary\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "victorian teachers salary",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "victorian teachers salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-104",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"victorian teacher salary\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "victorian teacher salary",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "victorian teacher salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-105",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"family tax benefit a calculator\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "family tax benefit a calculator",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "family tax benefit a calculator"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-106",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"family tax benefit calculator\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "family tax benefit calculator",
+      "vol": 9900,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "family tax benefit calculator"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-site-107",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.5800000000000001,
+   "rationale": "\"smartasset paycheck calculator\" fails the contextual border (in-scope 0.88, links-to-calculator 0.73, payslip-check 0.42; all must be ≥ 0.7). Volume 12100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "smartasset paycheck calculator"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-108",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"teachers victoria salary\" (9900/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "teachers victoria salary",
+      "vol": 9900,
+      "kd": 1,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "teachers victoria salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-site-109",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.6699999999999999,
+   "rationale": "\"centrelink one off payment 2025\" fails the contextual border (in-scope 0.93, links-to-calculator 0.57, payslip-check 0.33; all must be ≥ 0.7). Volume 12100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink one off payment 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-110",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.7,
+   "rationale": "\"centrelink one-off payment 2025\" fails the contextual border (in-scope 0.94, links-to-calculator 0.57, payslip-check 0.30; all must be ≥ 0.7). Volume 12100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink one-off payment 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-111",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.41000000000000003,
+   "rationale": "\"paycheck calculator smartasset\" fails the contextual border (in-scope 0.86, links-to-calculator 0.80, payslip-check 0.59; all must be ≥ 0.7). Volume 12100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "paycheck calculator smartasset"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-australian-pay-report-2026-112",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.63,
+   "rationale": "\"what is the minimum wage in australia\" (12100/mo) is already the subject of /australian-pay-report-2026/ (Jev p=0.63). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "what is the minimum wage in australia",
+      "vol": 12100,
+      "kd": 23,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "what is the minimum wage in australia"
+   ],
+   "kind": "no_action",
+   "route": "/australian-pay-report-2026/"
+  },
+  {
+   "id": "expansion-site-113",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.6599999999999999,
+   "rationale": "\"centrelink one-off payments 2025\" fails the contextual border (in-scope 0.94, links-to-calculator 0.59, payslip-check 0.34; all must be ≥ 0.7). Volume 12100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink one-off payments 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-114",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.89,
+   "rationale": "\"family tax payment calculator\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=0.89). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "family tax payment calculator",
+      "vol": 9900,
+      "kd": 8,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "family tax payment calculator"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-115",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"estimate family tax benefit\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "estimate family tax benefit",
+      "vol": 9900,
+      "kd": 8,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "estimate family tax benefit"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-116",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"calculate family tax benefit\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculate family tax benefit",
+      "vol": 9900,
+      "kd": 2,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculate family tax benefit"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-site-117",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.6799999999999999,
+   "rationale": "\"centrelink payment increases 2025\" fails the contextual border (in-scope 0.94, links-to-calculator 0.73, payslip-check 0.32; all must be ≥ 0.7). Volume 8100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink payment increases 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-parenting-payment-calculator-118",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"parenting payment single\" (8100/mo) is already the subject of /parenting-payment-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "parenting payment single",
+      "vol": 8100,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "parenting payment single"
+   ],
+   "kind": "no_action",
+   "route": "/parenting-payment-calculator/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-119",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"vic teachers salary\" (8100/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "vic teachers salary",
+      "vol": 8100,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "vic teachers salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-centrelink-payment-rates-120",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.64,
+   "rationale": "\"centrelink payments increase 2025\" (8100/mo) is already the subject of /centrelink-payment-rates/ (Jev p=0.64). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "centrelink payments increase 2025",
+      "vol": 8100,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "centrelink payments increase 2025"
+   ],
+   "kind": "no_action",
+   "route": "/centrelink-payment-rates/"
+  },
+  {
+   "id": "expansion-teacher-pay-australia-vic-121",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"vic teaching salary\" (8100/mo) is already the subject of /teacher-pay-australia/vic/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "vic teaching salary",
+      "vol": 8100,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "vic teaching salary"
+   ],
+   "kind": "no_action",
+   "route": "/teacher-pay-australia/vic/"
+  },
+  {
+   "id": "expansion-site-122",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.9299999999999999,
+   "rationale": "\"fuel tax credit calculator\" fails the contextual border (in-scope 0.07, links-to-calculator 0.43, payslip-check 0.19; all must be ≥ 0.7). Volume 8100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fuel tax credit calculator"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-123",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.84,
+   "rationale": "\"family tax a calculator\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=0.84). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "family tax a calculator",
+      "vol": 9900,
+      "kd": 8,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "family tax a calculator"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-124",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"calculator family tax benefit\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculator family tax benefit",
+      "vol": 9900,
+      "kd": 22,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator family tax benefit"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-payg-withholding-tables-125",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.97,
+   "rationale": "\"tax tables\" (9900/mo) is already the subject of /payg-withholding-tables/ (Jev p=0.97). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax tables",
+      "vol": 9900,
+      "kd": 23,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax tables"
+   ],
+   "kind": "no_action",
+   "route": "/payg-withholding-tables/"
+  },
+  {
+   "id": "expansion-site-126",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.9299999999999999,
+   "rationale": "\"tax fuel credit calculator\" fails the contextual border (in-scope 0.07, links-to-calculator 0.41, payslip-check 0.22; all must be ≥ 0.7). Volume 8100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "tax fuel credit calculator"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-127",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.6799999999999999,
+   "rationale": "\"centrelink payment increase 2025\" fails the contextual border (in-scope 0.94, links-to-calculator 0.71, payslip-check 0.32; all must be ≥ 0.7). Volume 8100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink payment increase 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-annual-pay-calculator-128",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.83,
+   "rationale": "\"how much tax should i be paying\" (8100/mo) is already the subject of /annual-pay-calculator/ (Jev p=0.83). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "how much tax should i be paying",
+      "vol": 8100,
+      "kd": 11,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "how much tax should i be paying"
+   ],
+   "kind": "no_action",
+   "route": "/annual-pay-calculator/"
+  },
+  {
+   "id": "expansion-site-129",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.49,
+   "rationale": "\"centrelink $380 $1550 deposit\" fails the contextual border (in-scope 0.95, links-to-calculator 0.70, payslip-check 0.51; all must be ≥ 0.7). Volume 8100/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink $380 $1550 deposit"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-income-tax-calculator-130",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"how much tax will i pay\" (8100/mo) is already the subject of /income-tax-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "how much tax will i pay",
+      "vol": 8100,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "how much tax will i pay"
+   ],
+   "kind": "no_action",
+   "route": "/income-tax-calculator/"
+  },
+  {
+   "id": "expansion-parenting-payment-calculator-131",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"parenting payment\" (6600/mo) is already the subject of /parenting-payment-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "parenting payment",
+      "vol": 6600,
+      "kd": 3,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "parenting payment"
+   ],
+   "kind": "no_action",
+   "route": "/parenting-payment-calculator/"
+  },
+  {
+   "id": "expansion-site-132",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.73,
+   "rationale": "\"centrelink bonus payments 2025 when will it be paid\" fails the contextual border (in-scope 0.93, links-to-calculator 0.54, payslip-check 0.27; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink bonus payments 2025 when will it be paid"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-fast-food-award-rates-133",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"fast food award\" (8100/mo) is already the subject of /fast-food-award-rates/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "fast food award",
+      "vol": 8100,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "fast food award"
+   ],
+   "kind": "no_action",
+   "route": "/fast-food-award-rates/"
+  },
+  {
+   "id": "expansion-jobseeker-payment-calculator-134",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.95,
+   "rationale": "\"jobseeker allowance\" (6600/mo) is already the subject of /jobseeker-payment-calculator/ (Jev p=0.95). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "jobseeker allowance",
+      "vol": 6600,
+      "kd": 7,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "jobseeker allowance"
+   ],
+   "kind": "no_action",
+   "route": "/jobseeker-payment-calculator/"
+  },
+  {
+   "id": "expansion-tax-return-calculator-135",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.85,
+   "rationale": "\"tax refund estimate\" (6600/mo) is already the subject of /tax-return-calculator/ (Jev p=0.85). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "tax refund estimate",
+      "vol": 6600,
+      "kd": 7,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax refund estimate"
+   ],
+   "kind": "no_action",
+   "route": "/tax-return-calculator/"
+  },
+  {
+   "id": "expansion-hecs-help-calculator-136",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"hecs repayment calculator\" (6600/mo) is already the subject of /hecs-help-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "hecs repayment calculator",
+      "vol": 6600,
+      "kd": 1,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "hecs repayment calculator"
+   ],
+   "kind": "no_action",
+   "route": "/hecs-help-calculator/"
+  },
+  {
+   "id": "expansion-site-137",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.63,
+   "rationale": "\"centrelink bonus payment 2025\" fails the contextual border (in-scope 0.92, links-to-calculator 0.61, payslip-check 0.37; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink bonus payment 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-138",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.86,
+   "rationale": "\"ato foreign exchange rates\" fails the contextual border (in-scope 0.14, links-to-calculator 0.24, payslip-check 0.45; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "ato foreign exchange rates"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-139",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.73,
+   "rationale": "\"centrelink bonus payment 2025 when will it be paid\" fails the contextual border (in-scope 0.94, links-to-calculator 0.55, payslip-check 0.27; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink bonus payment 2025 when will it be paid"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-family-tax-benefit-calculator-140",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"calculator for family tax benefit\" (9900/mo) is already the subject of /family-tax-benefit-calculator/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculator for family tax benefit",
+      "vol": 9900,
+      "kd": 2,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for family tax benefit"
+   ],
+   "kind": "no_action",
+   "route": "/family-tax-benefit-calculator/"
+  },
+  {
+   "id": "expansion-site-141",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.96,
+   "rationale": "\"land tax in new south wales\" fails the contextual border (in-scope 0.04, links-to-calculator 0.51, payslip-check 0.11; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "land tax in new south wales"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-142",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.79,
+   "rationale": "\"fx rate ato\" fails the contextual border (in-scope 0.21, links-to-calculator 0.25, payslip-check 0.37; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fx rate ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-143",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.81,
+   "rationale": "\"fx rates ato\" fails the contextual border (in-scope 0.19, links-to-calculator 0.28, payslip-check 0.40; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fx rates ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-144",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.9,
+   "rationale": "\"exchange rates ato\" fails the contextual border (in-scope 0.10, links-to-calculator 0.19, payslip-check 0.20; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "exchange rates ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-145",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.87,
+   "rationale": "\"ato exchange rates\" fails the contextual border (in-scope 0.13, links-to-calculator 0.18, payslip-check 0.27; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "ato exchange rates"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-146",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.84,
+   "rationale": "\"forex rates ato\" fails the contextual border (in-scope 0.16, links-to-calculator 0.27, payslip-check 0.39; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "forex rates ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-147",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.84,
+   "rationale": "\"calculate earnings after tax\" (6600/mo) is already the subject of /take-home-pay-calculator/ (Jev p=0.84). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "calculate earnings after tax",
+      "vol": 6600,
+      "kd": 13,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculate earnings after tax"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-site-148",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.55,
+   "rationale": "\"centrelink bonus payments 2025\" fails the contextual border (in-scope 0.92, links-to-calculator 0.63, payslip-check 0.45; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "centrelink bonus payments 2025"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-149",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.84,
+   "rationale": "\"foreign exchange rates ato\" fails the contextual border (in-scope 0.16, links-to-calculator 0.26, payslip-check 0.34; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "foreign exchange rates ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-150",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.81,
+   "rationale": "\"forex rate ato\" fails the contextual border (in-scope 0.19, links-to-calculator 0.25, payslip-check 0.35; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "forex rate ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-151",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.81,
+   "rationale": "\"foreign exchange rate ato\" fails the contextual border (in-scope 0.19, links-to-calculator 0.23, payslip-check 0.34; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "foreign exchange rate ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-152",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.86,
+   "rationale": "\"exchange rate ato\" fails the contextual border (in-scope 0.14, links-to-calculator 0.17, payslip-check 0.21; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "exchange rate ato"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-site-153",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.83,
+   "rationale": "\"ato foreign exchange rate\" fails the contextual border (in-scope 0.17, links-to-calculator 0.23, payslip-check 0.38; all must be ≥ 0.7). Volume 6600/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "ato foreign exchange rate"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-hospitality-award-rates-154",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"award for hospitality\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "award for hospitality",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "award for hospitality"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "expansion-site-155",
+   "level": "expansion",
+   "priority": 1,
+   "confidence": 0.6599999999999999,
+   "rationale": "\"job seekers allowance\" fails the contextual border (in-scope 0.83, links-to-calculator 0.67, payslip-check 0.34; all must be ≥ 0.7). Volume 5400/mo is not a reason to drift outside the topical border.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "job seekers allowance"
+   ],
+   "kind": "no_action",
+   "route": null
+  },
+  {
+   "id": "expansion-long-service-leave-calculator-qld-156",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"long service leave qld\" (5400/mo) is already the subject of /long-service-leave-calculator/qld/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "long service leave qld",
+      "vol": 5400,
+      "kd": 3,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "long service leave qld"
+   ],
+   "kind": "no_action",
+   "route": "/long-service-leave-calculator/qld/"
+  },
+  {
+   "id": "expansion-tax-bracket-history-157",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.83,
+   "rationale": "\"marginal rate\" (6600/mo) is already the subject of /tax-bracket-history/ (Jev p=0.83). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "marginal rate",
+      "vol": 6600,
+      "kd": 21,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "marginal rate"
+   ],
+   "kind": "no_action",
+   "route": "/tax-bracket-history/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-158",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.94,
+   "rationale": "\"salary take home pay calculator australia\" (5400/mo) is already the subject of /take-home-pay-calculator/ (Jev p=0.94). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "salary take home pay calculator australia",
+      "vol": 5400,
+      "kd": 4,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "salary take home pay calculator australia"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-take-home-pay-calculator-159",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 1,
+   "rationale": "\"take home pay calculator australia\" (5400/mo) is already the subject of /take-home-pay-calculator/ (Jev p=1.00). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "take home pay calculator australia",
+      "vol": 5400,
+      "kd": 5,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "take home pay calculator australia"
+   ],
+   "kind": "no_action",
+   "route": "/take-home-pay-calculator/"
+  },
+  {
+   "id": "expansion-hospitality-award-rates-160",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"award hospitality\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "award hospitality",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "award hospitality"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "expansion-hospitality-award-rates-161",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"award for hospitality industry\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "award for hospitality industry",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "award for hospitality industry"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "expansion-hospitality-award-rates-162",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"award hospitality industry\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "award hospitality industry",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "award hospitality industry"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "expansion-hospitality-award-rates-163",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.98,
+   "rationale": "\"hospitality industry awards\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=0.98). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "hospitality industry awards",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "hospitality industry awards"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "expansion-hospitality-award-rates-164",
+   "level": "expansion",
+   "priority": 5,
+   "confidence": 0.99,
+   "rationale": "\"awards hospitality\" (5400/mo) is already the subject of /hospitality-award-rates/ (Jev p=0.99). We do not rank for it yet, so this is a striking-distance/links problem for that page, not a new page.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "awards hospitality",
+      "vol": 5400,
+      "kd": 0,
+      "intent": null,
+      "pos": 100
+     }
+    ]
+   },
+   "targetQueries": [
+    "awards hospitality"
+   ],
+   "kind": "no_action",
+   "route": "/hospitality-award-rates/"
+  },
+  {
+   "id": "technical-home-165",
+   "level": "technical",
+   "priority": 82.25333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "australia salary calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on / to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-fortnightly-pay-calculator-166",
+   "level": "technical",
+   "priority": 54.403333333333336,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /fortnightly-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fortnightly"
+   ],
+   "kind": "technical_fix",
+   "scope": "/fortnightly-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /fortnightly-pay-calculator/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-annual-pay-calculator-167",
+   "level": "technical",
+   "priority": 25.563333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /annual-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "salary calculator adp"
+   ],
+   "kind": "technical_fix",
+   "scope": "/annual-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /annual-pay-calculator/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-weekly-pay-calculator-168",
+   "level": "technical",
+   "priority": 8.57,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /weekly-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "weekly pay calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/weekly-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /weekly-pay-calculator/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-income-tax-calculator-169",
+   "level": "technical",
+   "priority": 5.156666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /income-tax-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "ato tax rates 2025-26"
+   ],
+   "kind": "technical_fix",
+   "scope": "/income-tax-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /income-tax-calculator/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-take-home-pay-calculator-170",
+   "level": "technical",
+   "priority": 0.8866666666666667,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /take-home-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "take home pay after salary sacrifice calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/take-home-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /take-home-pay-calculator/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-site-directory-171",
+   "level": "technical",
+   "priority": 0.5833333333333334,
+   "confidence": 1,
+   "rationale": "Collector found orphan on /site-directory/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "how to calculate taxes for payroll"
+   ],
+   "kind": "technical_fix",
+   "scope": "/site-directory/",
+   "issue": "orphan",
+   "fix": "/site-directory/ has no contextual inlinks. Add it to the related-links cluster of its hub and at least two sibling pages."
+  },
+  {
+   "id": "technical-public-holiday-pay-172",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-173",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-act-174",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/act/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/act/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/act/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-act-175",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/act/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/act/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/act/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-nsw-176",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/nsw/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nsw/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/nsw/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-nsw-177",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/nsw/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nsw/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/nsw/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-qld-178",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/qld/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/qld/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/qld/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-qld-179",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/qld/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/qld/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/qld/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-tas-180",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/tas/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/tas/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/tas/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-tas-181",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/tas/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/tas/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/tas/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-vic-182",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/vic/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/vic/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/vic/ to ≤65 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-vic-183",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/vic/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/vic/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/vic/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-nt-184",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/nt/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nt/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/nt/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-sa-185",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/sa/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/sa/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/sa/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-wa-186",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/wa/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/wa/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/wa/ to ≤165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  }
+ ]
+}

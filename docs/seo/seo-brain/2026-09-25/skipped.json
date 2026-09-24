@@ -1,0 +1,226 @@
+[
+ {
+  "id": "ctr-tax-brackets-1",
+  "why": "only 39 recoverable clicks"
+ },
+ {
+  "id": "ctr-understanding-your-payslip-1",
+  "why": "only 36 recoverable clicks"
+ },
+ {
+  "id": "ctr-hourly-to-salary-34-1",
+  "why": "only 34 recoverable clicks"
+ },
+ {
+  "id": "ctr-pay-calculator-qld-1",
+  "why": "only 34 recoverable clicks"
+ },
+ {
+  "id": "ctr-tax-on-145000-1",
+  "why": "only 34 recoverable clicks"
+ },
+ {
+  "id": "ctr-payg-withholding-tables-1",
+  "why": "only 30 recoverable clicks"
+ },
+ {
+  "id": "ctr-salary-to-hourly-45000-1",
+  "why": "only 30 recoverable clicks"
+ },
+ {
+  "id": "ctr-weekly-tax-table-1",
+  "why": "only 32 recoverable clicks"
+ },
+ {
+  "id": "ctr-teacher-pay-australia-tas-1",
+  "why": "only 26 recoverable clicks"
+ },
+ {
+  "id": "ctr-hourly-to-salary-25-1",
+  "why": "only 23 recoverable clicks"
+ },
+ {
+  "id": "ctr-monthly-tax-table-1",
+  "why": "only 23 recoverable clicks"
+ },
+ {
+  "id": "ctr-tax-on-185000-1",
+  "why": "only 22 recoverable clicks"
+ },
+ {
+  "id": "ctr-construction-trades-pay-1",
+  "why": "only 22 recoverable clicks"
+ },
+ {
+  "id": "ctr-teacher-pay-australia-act-1",
+  "why": "only 22 recoverable clicks"
+ },
+ {
+  "id": "ctr-hourly-to-salary-47-1",
+  "why": "only 25 recoverable clicks"
+ },
+ {
+  "id": "ctr-contractor-vs-employee-calculator-1",
+  "why": "only 20 recoverable clicks"
+ },
+ {
+  "id": "ctr-overtime-penalty-rates-guide-1",
+  "why": "only 19 recoverable clicks"
+ },
+ {
+  "id": "ctr-salary-to-hourly-30000-1",
+  "why": "only 19 recoverable clicks"
+ },
+ {
+  "id": "ctr-healthcare-worker-pay-qld-1",
+  "why": "only 17 recoverable clicks"
+ },
+ {
+  "id": "ctr-teacher-pay-australia-sa-1",
+  "why": "only 16 recoverable clicks"
+ },
+ {
+  "id": "ctr-news-new-minimum-wage-take-home-pay-1",
+  "why": "only 18 recoverable clicks"
+ },
+ {
+  "id": "ctr-income-tax-calculator-1",
+  "why": "only 14 recoverable clicks"
+ },
+ {
+  "id": "ctr-healthcare-worker-pay-1",
+  "why": "only 12 recoverable clicks"
+ },
+ {
+  "id": "ctr-tax-on-175000-1",
+  "why": "only 11 recoverable clicks"
+ },
+ {
+  "id": "ctr-pay-calculator-vic-1",
+  "why": "only 12 recoverable clicks"
+ },
+ {
+  "id": "ctr-parental-leave-pay-1",
+  "why": "only 10 recoverable clicks"
+ },
+ {
+  "id": "ctr-healthcare-worker-pay-sa-1",
+  "why": "only 10 recoverable clicks"
+ },
+ {
+  "id": "ctr-pay-calculator-act-1",
+  "why": "only 10 recoverable clicks"
+ },
+ {
+  "id": "ctr-pay-calculator-wa-1",
+  "why": "only 10 recoverable clicks"
+ },
+ {
+  "id": "ctr-non-resident-tax-1",
+  "why": "only 8 recoverable clicks"
+ },
+ {
+  "id": "ctr-fringe-benefits-tax-1",
+  "why": "only 4 recoverable clicks"
+ },
+ {
+  "id": "ctr-employee-vs-sole-trader-vs-company-1",
+  "why": "only 4 recoverable clicks"
+ },
+ {
+  "id": "ctr-notice-of-assessment-1",
+  "why": "only 4 recoverable clicks"
+ },
+ {
+  "id": "ctr-tax-file-number-declaration-1",
+  "why": "only 4 recoverable clicks"
+ },
+ {
+  "id": "ctr-salary-vs-hourly-1",
+  "why": "only 3 recoverable clicks"
+ },
+ {
+  "id": "ctr-annual-leave-guide-1",
+  "why": "only 3 recoverable clicks"
+ },
+ {
+  "id": "ctr-super-co-contribution-1",
+  "why": "only 0 recoverable clicks"
+ },
+ {
+  "id": "striking-salary-to-hourly-70000-1",
+  "why": "gain 143 below 150"
+ },
+ {
+  "id": "striking-junior-pay-rates-1",
+  "why": "gain 138 below 150"
+ },
+ {
+  "id": "striking-pay-calculator-vic-1",
+  "why": "gain 142 below 150"
+ },
+ {
+  "id": "striking-overtime-pay-calculator-1",
+  "why": "gain 132 below 150"
+ },
+ {
+  "id": "striking-tax-on-50000-1",
+  "why": "gain 126 below 150"
+ },
+ {
+  "id": "striking-healthcare-worker-pay-nsw-1",
+  "why": "gain 121 below 150"
+ },
+ {
+  "id": "striking-take-home-pay-on-100000-1",
+  "why": "gain 126 below 150"
+ },
+ {
+  "id": "striking-tax-on-75000-1",
+  "why": "gain 118 below 150"
+ },
+ {
+  "id": "striking-tax-on-70000-1",
+  "why": "gain 112 below 150"
+ },
+ {
+  "id": "striking-public-service-pay-scales-aps-1",
+  "why": "gain 106 below 150"
+ },
+ {
+  "id": "striking-tax-on-150000-1",
+  "why": "gain 98 below 150"
+ },
+ {
+  "id": "striking-salary-to-hourly-65000-1",
+  "why": "gain 93 below 150"
+ },
+ {
+  "id": "striking-salary-to-hourly-60000-1",
+  "why": "gain 91 below 150"
+ },
+ {
+  "id": "striking-super-guarantee-rate-history-1",
+  "why": "gain 83 below 150"
+ },
+ {
+  "id": "striking-schedule-5-tax-table-1",
+  "why": "gain 81 below 150"
+ },
+ {
+  "id": "striking-salary-to-hourly-80000-1",
+  "why": "gain 115 below 150"
+ },
+ {
+  "id": "striking-pay-calculator-nsw-1",
+  "why": "gain 69 below 150"
+ },
+ {
+  "id": "striking-teacher-pay-australia-tas-1",
+  "why": "gain 84 below 150"
+ },
+ {
+  "id": "striking-tax-on-60000-1",
+  "why": "gain 65 below 150"
+ }
+]

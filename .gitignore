@@ -30,3 +30,7 @@ next-env.d.ts
 curl_output.html
 .playwright-mcp/
 .claude/worktrees/
+
+# seo-brain Jev response cache and run logs
+docs/seo/seo-brain/.cache/
+docs/seo/seo-brain/**/judge.log
