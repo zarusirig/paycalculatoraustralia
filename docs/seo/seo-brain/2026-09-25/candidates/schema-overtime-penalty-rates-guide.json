@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-overtime-penalty-rates-guide",
+  "kind": "citation_lead",
+  "route": "/overtime-penalty-rates-guide/",
+  "candidates": [
+    {
+      "lead": "Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually 1.5 times for the first 2–3 hours beyond 38 ordinary hours a week [[EMPLOYMENT.standardWeeklyHours]] and double time after that, with 2.5 times for overtime on a public holiday under most awards. On a $30 base, 3 hours at time-and-a-half is $135. Rates current from 1 July 2026.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    },
+    {
+      "lead": "Penalty rates are higher hourly rates awards require for work on weekends, public holidays, evenings and overtime, set by the Fair Work Commission. From 1 July 2026 a General Retail Award level 1 worker on $27.81 an hour [[RETAIL_L1.hourly]] is paid $34.76 on Saturday (1.25x) and $41.71 on Sunday (1.5x) [[RETAIL_PENALTIES]]; overtime is 1.5x then 2x for permanent staff under most awards.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    },
+    {
+      "lead": "Overtime rates and penalty rates are separate loadings: overtime compensates for hours beyond 38 a week or 7.6 a day [[EMPLOYMENT.standardWeeklyHours]], penalty rates for when the work occurs. Typical award multipliers for 2026-27 are 1.5x for the first 2–3 overtime hours, 2x after, 2.5x on a public holiday, and 1.25x–1.5x for retail weekends [[RETAIL_PENALTIES]]. All loadings are taxed as ordinary income.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-retail-hospitality-pay-guide",
+  "kind": "citation_lead",
+  "route": "/retail-hospitality-pay-guide/",
+  "candidates": [
+    {
+      "lead": "Retail and hospitality pay in Australia is set by two federal awards that apply in every state, including Queensland: the General Retail Industry Award (MA000004) and the Hospitality Industry (General) Award (MA000009). From 1 July 2026 the adult level 1 rate is $27.81 an hour in retail [[RETAIL_RATES]] and $26.44 in hospitality [[HOSPITALITY_RATES]], with casuals adding a 25% loading [[CASUAL_LOADING]].",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    },
+    {
+      "lead": "The hospitality award rate is the same in Queensland as in every other state, because the Hospitality Industry (General) Award 2020 (MA000009) is federal: its adult level 1 rate is $26.44 an hour from 1 July 2026 [[HOSPITALITY_RATES]], or $33.05 for a casual. Retail workers are covered by the General Retail Industry Award (MA000004), where level 1 is $27.81 an hour [[RETAIL_RATES]]. Both add weekend penalties.",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    },
+    {
+      "lead": "Retail and hospitality workers are paid under two modern awards, MA000004 (retail) and MA000009 (hospitality), which set minimum rates, casual loading and penalties nationally, so a Queensland cafe pays the same award rate as one in NSW. For 2026-27 the adult entry rates are $27.81 an hour in retail and $26.44 in hospitality [[RETAIL_RATES]] [[HOSPITALITY_RATES]], plus a 25% casual loading [[CASUAL_LOADING]].",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    }
+  ]
+}

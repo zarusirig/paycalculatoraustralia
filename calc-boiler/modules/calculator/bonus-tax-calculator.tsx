@@ -12,7 +12,13 @@ import {
   formatPercent,
   TAX_BRACKETS,
   MEDICARE_LEVY,
+  SITE_CONFIG,
 } from "@/lib/constants";
+
+// Opening-paragraph example, computed by the same engine as the calculator.
+const LEAD_BASE = 90_000;
+const LEAD_BONUS = 10_000;
+const LEAD_SPLIT = bonusTaxSplit(LEAD_BASE, LEAD_BONUS);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -61,8 +67,11 @@ export default function BonusTaxCalculatorPage({ children }: { children: React.R
             Bonus Tax Calculator Australia
           </h1>
           <p className="text-lg text-warmgray">
-            Work out the extra tax you&apos;ll actually owe on a bonus or commission payment for the year.
-            See the marginal tax rate applied to your lump sum and your actual take-home bonus.
+            Tax on a bonus in Australia is the difference between the annual tax on salary alone and the annual tax on
+            salary plus bonus, worked out on the {SITE_CONFIG.financialYear} scale; there is no flat bonus tax. For an
+            employee on {formatAUD(LEAD_BASE)} receiving {formatAUD(LEAD_BONUS)}, that difference is{" "}
+            {formatAUD(Math.round(LEAD_SPLIT.total))}, so {formatAUD(Math.round(LEAD_SPLIT.net))} of the bonus is kept.
+            Employers withhold from bonus payments using ATO Schedule 5, and any over-withholding is refunded at tax time.
           </p>
           <TrustBar className="mt-4" />
         </section>

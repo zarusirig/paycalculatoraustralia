@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-novated-lease-guide",
+  "kind": "citation_lead",
+  "route": "/novated-lease-guide/",
+  "candidates": [
+    {
+      "lead": "A novated lease is a three-way agreement between an employee, their employer and a finance company under which the employer pays the car's lease and running costs out of the employee's salary. Each pay is split into a pre-tax deduction, which lowers taxable income, and a post-tax employee contribution that offsets fringe benefits tax, otherwise 47% [[FBT.rate]] on 20% of the car's value [[FBT.statutoryRate]].",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/cars-and-fbt/car-leasing-and-fbt"
+    },
+    {
+      "lead": "A novated lease works by novation: the employee signs a finance lease, the employer takes over the payments under a novation deed, and a salary packaging agreement deducts the lease and running-cost budget from gross pay. The pre-tax portion is not taxed as salary, and a post-tax employee contribution equal to the taxable value cancels the fringe benefit that would otherwise be taxed at the 47% FBT rate [[FBT.rate]].",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/cars-and-fbt/car-leasing-and-fbt"
+    },
+    {
+      "lead": "Under a novated lease the car stays in the employee's name while the employer remits lease payments and bundled running costs (fuel, registration, insurance, servicing, tyres) from the employee's pay. FBT on private use is valued at 20% of the base value [[FBT.statutoryRate]] and taxed at 47% [[FBT.rate]], unless cancelled by an employee contribution or the electric car exemption [[LUXURY_CAR_TAX]].",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/cars-and-fbt/car-leasing-and-fbt"
+    }
+  ]
+}

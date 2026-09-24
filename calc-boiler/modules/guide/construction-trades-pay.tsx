@@ -8,6 +8,13 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { INDUSTRY_ALLOWANCE, CARPENTER_TOOL_ALLOWANCE, MULTISTOREY_ALLOWANCE } from "@/lib/data/job-pay-rates/building-construction-common";
+import { APPRENTICE_ELECTRICIAN as APPRENTICE_ELECTRICIAN_AWARD } from "@/lib/data/job-pay-rates/apprentice-electrician";
+
+// Opening paragraph: apprentice minimums under MA000025 Schedule B.4, rendered from the data.
+const listOf = (xs: readonly string[]) => `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`;
+const APPRENTICE_PCTS = listOf(APPRENTICE_ELECTRICIAN.map((r) => `${Math.round(r.pct * 100)}%`));
+const APPRENTICE_HOURLY = listOf(APPRENTICE_ELECTRICIAN.map((r) => formatAUD(r.hourly, 2)));
+const ADULT_APPRENTICE_Y1 = APPRENTICE_ELECTRICIAN_AWARD.tables.find((t) => t.id === "adult")!.rows[0];
 
 const TRADE_TAKE_HOME = [
   { role: "Painter", gross: 75_000 },
@@ -43,7 +50,7 @@ export default function ConstructionTradesPayPage() {
             Construction &amp; Trades Pay Guide — Rates, Overtime &amp; Apprentice Wages
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Construction and trades workers are among Australia&apos;s highest-paid blue-collar employees, with qualified tradies earning $65,000 to $120,000+ depending on trade, experience, and overtime. This guide covers qualified trade rates, apprentice pay scales, site allowances, overtime provisions, and how to calculate your real take-home pay.
+            Apprenticeship rates of pay are a percentage of the qualified tradesperson&apos;s award rate that steps up each year of the apprenticeship. Under the Electrical award from {APPRENTICE_ELECTRICIAN_AWARD.award?.consolidatedTo ?? SITE_CONFIG.financialYearStart} the minimums for a Year 12 completer are {APPRENTICE_PCTS}, or {APPRENTICE_HOURLY} an hour; adult apprentices get at least {formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)} an hour in first year. This guide also covers qualified trade rates, site allowances, overtime provisions and take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

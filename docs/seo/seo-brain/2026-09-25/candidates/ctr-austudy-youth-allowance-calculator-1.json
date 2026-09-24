@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-austudy-youth-allowance-calculator-1",
+ "kind": "title_description",
+ "route": "/austudy-youth-allowance-calculator/",
+ "candidates": [
+  {
+   "title": "Youth Allowance Calculator 2026: Rates, Austudy, Income Test",
+   "description": "Austudy pays up to $677.20 a fortnight; Youth Allowance $482.40 at home or $677.20 away (18+). Enter your wages: $539 free area, 50c to $646, then 60c.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90–$854.20"
+  },
+  {
+   "title": "Youth Allowance and Austudy Calculator 2026 — How Much You Get",
+   "description": "How much is Austudy? Up to $677.20 a fortnight in 2026; Youth Allowance up to $482.40 at home or $677.20 away. Earn $539 a fortnight before it reduces.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90–$854.20"
+  },
+  {
+   "title": "Youth Allowance Calculator 2026: How Much Austudy Pays",
+   "description": "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight) with the student income test: $539 free area, 50c per dollar to $646, then 60c. See what you keep.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90–$854.20"
+  },
+  {
+   "title": "Youth Allowance Estimator and Calculator 2026 — Income Test",
+   "description": "Youth Allowance pays up to $482.40 a fortnight at home or $677.20 away; Austudy up to $677.20. Estimate your payment after wages: $539 free area, then 50c and 60c.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90–$854.20"
+  }
+ ]
+}

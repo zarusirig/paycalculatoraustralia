@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-schads-award-pay-rates-1",
+ "kind": "title_description",
+ "route": "/schads-award-pay-rates/",
+ "candidates": [
+  {
+   "title": "SCHADS Award Pay Rates 2026-27 (MA000100): Every Level, Pay Point",
+   "description": "Every SCHADS classification rate from 1 July 2026, Level 1 $27.55/hr to Level 8 $71.19/hr. Level 4 is $1,774.74 a week with the Equal Remuneration Order applied.",
+   "figureSource": "SCHADS_SACS[0].hourly $27.55, Level 8 pay point 3 $71.19/hr, Level 4 pay point 1 weekly $1,774.74 / hourly $46.70; SCHADS_AWARD.operativeFrom 1 July 2026"
+  },
+  {
+   "title": "SCHADS Award Rates 2026-27 (MA000100) — Level 1 to 8 Pay Table",
+   "description": "SCHADS award pay rates from 1 July 2026: Level 1 $27.55 an hour up to Level 8 $71.19. Level 4 is $46.70 an hour or $1,774.74 a week, ERO included.",
+   "figureSource": "SCHADS_SACS[0].hourly $27.55, Level 8 pay point 3 $71.19/hr, Level 4 pay point 1 weekly $1,774.74 / hourly $46.70; SCHADS_AWARD.operativeFrom 1 July 2026"
+  },
+  {
+   "title": "SCHADS Award Pay Rates 2026-27: Level 1–8 Hourly and Weekly Rates",
+   "description": "Current SCHADS award rates: Level 1 $27.55/hr to Level 8 $71.19/hr from 1 July 2026, with Level 4 at $1,774.74 a week ($46.70/hr) under the Equal Remuneration Order.",
+   "figureSource": "SCHADS_SACS[0].hourly $27.55, Level 8 pay point 3 $71.19/hr, Level 4 pay point 1 weekly $1,774.74 / hourly $46.70; SCHADS_AWARD.operativeFrom 1 July 2026"
+  },
+  {
+   "title": "SCHADS Award Pay Rates Table 2026-27 — Levels and Pay Points",
+   "description": "Every SCHADS classification rate from 1 July 2026, Level 1 $27.55/hr to Level 8 $71.19/hr. Level 4 is $1,774.74 a week with the Equal Remuneration Order applied.",
+   "figureSource": "SCHADS_SACS[0].hourly $27.55, Level 8 pay point 3 $71.19/hr, Level 4 pay point 1 weekly $1,774.74 / hourly $46.70; SCHADS_AWARD.operativeFrom 1 July 2026"
+  }
+ ]
+}

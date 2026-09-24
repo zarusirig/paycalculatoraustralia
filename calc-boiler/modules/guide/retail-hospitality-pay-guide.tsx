@@ -26,6 +26,9 @@ const TAKE_HOME_ROWS = [
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
+const HOSP_L1 = HOSPITALITY_RATES.find((r) => r.level === "Level 1")!;
+const RETAIL_L1 = RETAIL_RATES.find((r) => r.level === "Level 1")!;
+
 const SOURCES_LIST: SourceLink[] = [
   { title: "General Retail Industry Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
   { title: "Hospitality Industry Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
@@ -51,7 +54,7 @@ export default function RetailHospitalityPayGuidePage() {
             Retail &amp; Hospitality Pay Guide — Award Rates, Penalties &amp; Your Rights
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Retail and hospitality are two of Australia&apos;s largest employing industries. Both industries are governed by Modern Awards that set minimum pay rates, casual loading, penalty rates, and working conditions. This guide covers the General Retail Industry Award (MA000004) and the Hospitality Industry Award (MA000009) in detail.
+            The hospitality award rate is the same in Queensland as in every other state, because the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code})</a> is federal: its adult level 1 rate is {formatAUD(HOSP_L1.hourly, 2)} an hour from {HOSPITALITY_AWARD.operativeFrom}, or {formatAUD(HOSP_L1.hourly * (1 + HOSPITALITY_AWARD.casualLoading), 2)} for a casual. Retail workers are covered by the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}), where level 1 is {formatAUD(RETAIL_L1.hourly, 2)} an hour. Both add weekend penalties, and this guide covers the two awards in detail.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

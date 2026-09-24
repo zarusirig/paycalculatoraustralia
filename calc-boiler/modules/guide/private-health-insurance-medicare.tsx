@@ -66,7 +66,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
             Private Health Insurance &amp; Medicare — When PHI Saves You Money
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Should you get private hospital cover to avoid the Medicare levy surcharge? How the surcharge and the private health insurance rebate interact, how to find the premium at which cover pays for itself, and lifetime health cover loading. To work out your own surcharge, use the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link>.
+            Private health insurance does not remove the {formatMlsRate(MEDICARE_LEVY.rate)} Medicare levy, which every resident taxpayer above the low-income threshold pays; it only exempts the holder from the Medicare levy surcharge. The surcharge for {MLS_INCOME_YEAR} is {formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}, {formatMlsRate(MEDICARE_LEVY.surcharge.tier2.rate)} or {formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)} of income for singles earning over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} or families over {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} who have no eligible hospital cover. To work out your own surcharge, use the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

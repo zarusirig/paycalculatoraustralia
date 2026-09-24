@@ -7,10 +7,17 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import {
   formatAUD,
+  formatPercent,
   EMPLOYMENT,
   SITE_CONFIG,
 } from "@/lib/constants";
 import { LEAVE_LOADING_RATE } from "./leave-calculator-faqs";
+
+// NES accrual per ordinary week: 4 weeks x 38 hours / 52 weeks = 2.923 hours.
+const ACCRUAL_HOURS_PER_WEEK = (
+  (EMPLOYMENT.annualLeaveWeeks * EMPLOYMENT.standardWeeklyHours) / EMPLOYMENT.weeksPerYear
+).toFixed(3);
+const LEAD_LOADING_PCT = formatPercent(LEAVE_LOADING_RATE, 1);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -59,7 +66,11 @@ export default function LeaveCalculatorPage({ children }: { children: React.Reac
             Annual Leave &amp; Leave Loading Calculator (17.5%) — {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
-            Work out your 17.5% annual leave loading and what your leave payout is actually worth. Calculate pro-rata accrual, leave loading, and the tax on lump-sum payouts using FY{SITE_CONFIG.financialYear} Australian rates.
+            An annual leave calculation is {EMPLOYMENT.annualLeaveWeeks} weeks of paid leave per year of continuous
+            full-time service under the NES, accrued at {ACCRUAL_HOURS_PER_WEEK} hours per {EMPLOYMENT.standardWeeklyHours}-hour
+            week and pro rata for part-time hours. Casuals accrue none and receive a {formatPercent(EMPLOYMENT.casualLoading, 0)}{" "}
+            loading instead. The calculator applies {SITE_CONFIG.financialYear} rates and adds {LEAD_LOADING_PCT} leave
+            loading where it applies, including the tax on lump-sum payouts.
           </p>
           <TrustBar className="mt-4" />
         </section>

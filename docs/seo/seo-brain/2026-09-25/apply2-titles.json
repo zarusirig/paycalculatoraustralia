@@ -1,0 +1,1266 @@
+{
+ "level": "ctr",
+ "author": "seo-brain rank.mts (agent candidates \u2192 Jev selection \u2192 code gates)",
+ "createdAt": "2026-09-24T22:18:05.356Z",
+ "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+ "decisions": [
+  {
+   "id": "ctr-annual-pay-calculator-1",
+   "level": "ctr",
+   "priority": 20.5,
+   "confidence": 0.27,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"salary calculator adp\" (confidence 0.27). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 12,
+     "impressions": 7669,
+     "ctr": 0.0016,
+     "position": 10.45
+    },
+    "keywords": [
+     {
+      "kw": "salary calculator adp",
+      "vol": 8100,
+      "kd": 36,
+      "intent": "informational",
+      "pos": 53
+     },
+     {
+      "kw": "pay after tax",
+      "vol": 2900,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "salary after tax",
+      "vol": 2900,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 44
+     }
+    ]
+   },
+   "targetQueries": [
+    "salary calculator adp",
+    "pay after tax",
+    "salary after tax"
+   ],
+   "kind": "rewrite_description",
+   "route": "/annual-pay-calculator/",
+   "current": "A $80,000 salary is $63,880 a year after tax in 2026-27. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.",
+   "proposed": "$80,000 a year is $63,880 after tax in 2026-27; $100,000 is $77,480. Annual salary after tax calculator: yearly gross to take-home after tax, Medicare levy and HECS.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 \u2192 $77,480"
+  },
+  {
+   "id": "ctr-centrelink-income-test-2",
+   "level": "ctr",
+   "priority": 24,
+   "confidence": 0.75,
+   "rationale": "Jev chose this among 4 candidates for \"jobseeker payment calculator\" (recognised p=0.75/0.70/0.73 for jobseeker payment calculator / job seeker calculator / jobseeker calculator; natural 0.61, honest promise 0.89). Findings that triggered the rewrite: title not recognised for: \"jobseeker payment calculator\" (1300/mo, p=0.31), \"job seeker calculator\" (480/mo, p=0.30), \"jobseeker calculator\" (480/mo, p=0.28), \"centrelink earnings calculator\" (390/mo, p=0.51), \"centrelink online estimator\" (390/mo, p=0.40); title promises a guide; searchers want a calculator (\"jobseeker payment calculator\"), calculator (\"job seeker calculator\"), calculator (\"jobse",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     },
+     {
+      "kw": "centrelink earnings calculator",
+      "vol": 390,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "centrelink online estimator",
+      "vol": 390,
+      "kd": 6,
+      "intent": "navigational",
+      "pos": 9
+     }
+    ],
+    "note": "candidates: Centrelink Income Test 2026: Free Areas, Tapers & Calculators | Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension | Centrelink Income Test 2026 \u2014 Estimate Your Payment After Wages | Centrelink Earnings Test 2026: How Much You Can Earn on Payments"
+   },
+   "targetQueries": [
+    "jobseeker payment calculator",
+    "job seeker calculator",
+    "jobseeker calculator"
+   ],
+   "kind": "rewrite_title",
+   "route": "/centrelink-income-test/",
+   "current": "Centrelink Income Test \u2014 How Income Affects Your Payment",
+   "proposed": "Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension",
+   "keepTokens": []
+  },
+  {
+   "id": "ctr-centrelink-income-test-3",
+   "level": "ctr",
+   "priority": 20,
+   "confidence": 0.8,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"jobseeker payment calculator\" (confidence 0.80). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     }
+    ]
+   },
+   "targetQueries": [
+    "jobseeker payment calculator",
+    "job seeker calculator",
+    "jobseeker calculator"
+   ],
+   "kind": "rewrite_description",
+   "route": "/centrelink-income-test/",
+   "current": "Centrelink income test explained: free areas, tapers and cut-offs for JobSeeker, FTB, Age Pension, DSP and CCS, plus the assets test and deeming, from 20 Sep 2026.",
+   "proposed": "JobSeeker income test: $150 free area, 50c per dollar to $256, then 60c. How income affects each Centrelink payment from 20 Sep 2026, with calculators.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  },
+  {
+   "id": "ctr-employment-type-calculator-4",
+   "level": "ctr",
+   "priority": 9.166666666666666,
+   "confidence": 0.36,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"contract to salary calculator\" (confidence 0.36). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 62,
+     "impressions": 4119,
+     "ctr": 0.0151,
+     "position": 7.59
+    },
+    "keywords": [
+     {
+      "kw": "contract to salary calculator",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 80
+     },
+     {
+      "kw": "part time pay",
+      "vol": 320,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "part time job pay rate",
+      "vol": 260,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "contract to salary calculator",
+    "part time pay",
+    "part time job pay rate"
+   ],
+   "kind": "rewrite_description",
+   "route": "/employment-type-calculator/",
+   "current": "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
+   "proposed": "Part-time salary from your hourly rate and hours: $35 an hour over 38 hours is $69,160 a year, $56,509 after tax. Casual loading lifts the same rate to $43.75.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  },
+  {
+   "id": "ctr-fortnightly-tax-table-5",
+   "level": "ctr",
+   "priority": 35.166666666666664,
+   "confidence": 0.69,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"fortnightly tax table\" (confidence 0.69). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly"
+   ],
+   "kind": "rewrite_description",
+   "route": "/fortnightly-tax-table/",
+   "current": "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.",
+   "proposed": "ATO fortnightly tax table 2026-27 (NAT 1006), $700 to $8,000 in $100 steps: on $2,000 a fortnight, $276 is withheld with the threshold, $498 without. STSL and CSV.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed \u2192 $276 withheld, $1,724 take-home; not claimed \u2192 $498"
+  },
+  {
+   "id": "ctr-medicare-levy-6",
+   "level": "ctr",
+   "priority": 8.6,
+   "confidence": 0.44,
+   "rationale": "Jev chose this among 4 candidates for \"medicare levy calculator\" (recognised p=0.88/0.31/0.72 for medicare levy calculator / medicare levy surcharge calculator / ato medicare levy calculator; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: title not recognised for: \"medicare levy surcharge calculator\" (2900/mo, p=0.22), \"medicare levy calculator 2026\" (210/mo, p=0.45), \"medicare surcharge calculator\" (210/mo, p=0.24)",
+   "evidence": {
+    "gsc": {
+     "clicks": 7,
+     "impressions": 2898,
+     "ctr": 0.0024,
+     "position": 10.59
+    },
+    "keywords": [
+     {
+      "kw": "medicare levy calculator",
+      "vol": 4400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "medicare levy surcharge calculator",
+      "vol": 2900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "ato medicare levy calculator",
+      "vol": 210,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 58
+     },
+     {
+      "kw": "medicare levy calculator 2026",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "medicare surcharge calculator",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 23
+     }
+    ],
+    "note": "candidates: Medicare Levy Calculator: 2% Levy, Low-Income Limits, Exemptions | Medicare Levy Calculator (ATO Rates): 2% Levy and Thresholds | Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits | Medicare Levy Calculator \u2014 How Much Is the 2% Levy on My Income?"
+   },
+   "targetQueries": [
+    "medicare levy calculator",
+    "medicare levy surcharge calculator",
+    "ato medicare levy calculator"
+   ],
+   "kind": "rewrite_title",
+   "route": "/medicare-levy/",
+   "current": "Medicare Levy Calculator: 2% Levy, Low-Income & Family Thresholds",
+   "proposed": "Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits",
+   "keepTokens": [
+    "medicare",
+    "levy",
+    "calculator"
+   ]
+  },
+  {
+   "id": "ctr-public-service-pay-scales-7",
+   "level": "ctr",
+   "priority": 49.8,
+   "confidence": 0.56,
+   "rationale": "Jev chose this among 4 candidates for \"aps 4 salary\" (recognised p=0.75/0.71/0.32 for aps 4 salary / australian public service levels / vps 6 pay; natural 0.71, honest promise 0.91). Findings that triggered the rewrite: title not recognised for: \"vps 6 pay\" (590/mo, p=0.43), \"vps 6 salary\" (590/mo, p=0.41); title promises a table; searchers want a guide (\"australian public service levels\"), figure (\"vps 6 salary\"); description gives no concrete answer for \"aps 4 salary\" (p=0.08)",
+   "evidence": {
+    "gsc": {
+     "clicks": 77,
+     "impressions": 10976,
+     "ctr": 0.006999999999999999,
+     "position": 7.38
+    },
+    "keywords": [
+     {
+      "kw": "aps 4 salary",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "australian public service levels",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "vps 6 pay",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "vps 6 salary",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "aps pay scale",
+      "vol": 480,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 8
+     }
+    ],
+    "note": "candidates: Public Service Pay Scales 2026: APS 1\u20136, EL 1\u20132 and Every State | Australian Public Service Levels & Pay Scales 2026 \u2014 APS, States | Public Service Pay Scales 2026: APS Level Salaries and All States | Public Service Pay Scale Guide 2026 \u2014 APS Levels 1 to SES, States"
+   },
+   "targetQueries": [
+    "aps 4 salary",
+    "australian public service levels",
+    "vps 6 pay"
+   ],
+   "kind": "rewrite_title",
+   "route": "/public-service-pay-scales/",
+   "current": "Public Service Pay Scales 2026 \u2014 APS, States & Territories",
+   "proposed": "Public Service Pay Scales 2026: APS Level Salaries and All States",
+   "keepTokens": [
+    "public",
+    "service",
+    "scale"
+   ]
+  },
+  {
+   "id": "ctr-public-service-pay-scales-8",
+   "level": "ctr",
+   "priority": 41.5,
+   "confidence": 0.38,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"aps 4 salary\" (confidence 0.38). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 77,
+     "impressions": 10976,
+     "ctr": 0.006999999999999999,
+     "position": 7.38
+    },
+    "keywords": [
+     {
+      "kw": "aps 4 salary",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "australian public service levels",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "vps 6 pay",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     }
+    ]
+   },
+   "targetQueries": [
+    "aps 4 salary",
+    "australian public service levels",
+    "vps 6 pay"
+   ],
+   "kind": "rewrite_description",
+   "route": "/public-service-pay-scales/",
+   "current": "What every public service level pays in 2026: APS, Victoria, QLD AO, NSW Clerk, WA, SA ASO, TAS Band, ACT ASO and NT AO rates, each with source and take-home pay.",
+   "proposed": "APS 4 salary: $82,906 median at 31 Dec 2025; 90% of APS 6 staff earn $97,316 to $115,199. Pay scale tables for the APS and all 8 state and territory services.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  },
+  {
+   "id": "ctr-salary-sacrifice-calculator-9",
+   "level": "ctr",
+   "priority": 25.8,
+   "confidence": 0.8,
+   "rationale": "Jev chose this among 4 candidates for \"tax calculator with salary sacrifice\" (recognised p=0.84/0.76/0.78 for tax calculator with salary sacrifice / salary sacrifice pay calculator / pay calculator with salary sacrifice; natural 0.68, honest promise 0.90). Findings that triggered the rewrite: title not recognised for: \"fortnightly salary sacrifice calculator\" (40/mo, p=0.50), \"how to calculate salary sacrifice\" (40/mo, p=0.59); title reads generic (p=0.72); description gives no concrete answer for \"tax calculator with salary sacrifice\" (p=0.12)",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 3407,
+     "ctr": 0.0068000000000000005,
+     "position": 5.54
+    },
+    "keywords": [
+     {
+      "kw": "tax calculator with salary sacrifice",
+      "vol": 110,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "salary sacrifice pay calculator",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "pay calculator with salary sacrifice",
+      "vol": 70,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 35
+     },
+     {
+      "kw": "fortnightly salary sacrifice calculator",
+      "vol": 40,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 61
+     },
+     {
+      "kw": "how to calculate salary sacrifice",
+      "vol": 40,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 81
+     }
+    ],
+    "note": "candidates: Salary Sacrifice Calculator 2026-27: Tax Saved, Take-Home, Super | Pay Calculator With Salary Sacrifice: Your Tax Saving (2026-27) | Salary Sacrifice Calculator: How Much Tax You Save (2026-27) | Salary Sacrifice Tax Calculator 2026-27 \u2014 Pay Before and After"
+   },
+   "targetQueries": [
+    "tax calculator with salary sacrifice",
+    "salary sacrifice pay calculator",
+    "pay calculator with salary sacrifice"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-sacrifice-calculator/",
+   "current": "Salary Sacrifice Calculator \u2014 How Much Will You Save?",
+   "proposed": "Salary Sacrifice Tax Calculator 2026-27 \u2014 Pay Before and After",
+   "keepTokens": [
+    "calculator",
+    "salary",
+    "sacrifice"
+   ]
+  },
+  {
+   "id": "ctr-salary-sacrifice-calculator-10",
+   "level": "ctr",
+   "priority": 21.5,
+   "confidence": 0.21,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"tax calculator with salary sacrifice\" (confidence 0.21). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 3407,
+     "ctr": 0.0068000000000000005,
+     "position": 5.54
+    },
+    "keywords": [
+     {
+      "kw": "tax calculator with salary sacrifice",
+      "vol": 110,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "salary sacrifice pay calculator",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "pay calculator with salary sacrifice",
+      "vol": 70,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 35
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax calculator with salary sacrifice",
+    "salary sacrifice pay calculator",
+    "pay calculator with salary sacrifice"
+   ],
+   "kind": "rewrite_description",
+   "route": "/salary-sacrifice-calculator/",
+   "current": "Compare take-home pay before and after salary sacrifice. See your tax savings, super boost & actual benefit. Free Australian calculator updated for FY2026-27.",
+   "proposed": "On $100,000, salary sacrificing $10,000 to super saves $3,200 tax in 2026-27 and cuts take-home by $6,800. Compare pay before and after, plus how it is calculated.",
+   "figureSource": "modules/calculator/salary-sacrifice-calculator defaults ($100,000 salary, $10,000 sacrifice) through calculatePayBreakdown: tax saved $3,200, take-home $77,480 \u2192 $70,680, super +$10,000"
+  },
+  {
+   "id": "ctr-salary-to-hourly-120000-11",
+   "level": "ctr",
+   "priority": 39.8,
+   "confidence": 0.67,
+   "rationale": "Jev chose this among 4 candidates for \"120k a year is how much an hour\" (recognised p=0.90/0.14 for 120k a year is how much an hour / tax on 120k; natural 0.65, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 120k\" (90/mo, p=0.20)",
+   "evidence": {
+    "gsc": {
+     "clicks": 27,
+     "impressions": 3430,
+     "ctr": 0.0079,
+     "position": 4.2
+    },
+    "keywords": [
+     {
+      "kw": "120k a year is how much an hour",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 120k",
+      "vol": 90,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 54
+     }
+    ],
+    "note": "candidates: $120,000 a Year Is How Much an Hour? $60.73, or $2,308 a Week | $120,000 a Year Is How Much an Hour, Week and Month? $60.73/hr | $120,000 a Year Is How Much an Hour? $60.73 ($2,308 a Week) | $120k a Year Is How Much an Hour in Australia? $60.73 Before Tax"
+   },
+   "targetQueries": [
+    "120k a year is how much an hour",
+    "tax on 120k"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/120000/",
+   "current": "$120,000 a Year Is How Much an Hour? $60.73 in Australia",
+   "proposed": "$120k a Year Is How Much an Hour in Australia? $60.73 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-55000-12",
+   "level": "ctr",
+   "priority": 16.8,
+   "confidence": 0.52,
+   "rationale": "Jev chose this among 4 candidates for \"55000 a year is how much an hour\" (recognised p=0.90/0.29/0.17 for 55000 a year is how much an hour / 55000/52 / tax on 55000; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"55000/52\" (110/mo, p=0.32), \"tax on 55000\" (90/mo, p=0.20)",
+   "evidence": {
+    "gsc": {
+     "clicks": 13,
+     "impressions": 1628,
+     "ctr": 0.008,
+     "position": 4.51
+    },
+    "keywords": [
+     {
+      "kw": "55000 a year is how much an hour",
+      "vol": 110,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "55000/52",
+      "vol": 110,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "tax on 55000",
+      "vol": 90,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 11
+     }
+    ],
+    "note": "candidates: $55,000 a Year Is How Much an Hour? $27.83, or $1,058 a Week | $55,000 a Year Is How Much an Hour, Week and Month? $27.83/hr | $55,000 a Year Is How Much an Hour? $27.83 ($1,058 a Week) | $55k a Year Is How Much an Hour in Australia? $27.83 Before Tax"
+   },
+   "targetQueries": [
+    "55000 a year is how much an hour",
+    "55000/52",
+    "tax on 55000"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/55000/",
+   "current": "$55,000 a Year Is How Much an Hour? $27.83 in Australia",
+   "proposed": "$55k a Year Is How Much an Hour in Australia? $27.83 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-65000-13",
+   "level": "ctr",
+   "priority": 57.4,
+   "confidence": 0.29,
+   "rationale": "Jev chose this among 4 candidates for \"65 000 a year is how much an hour\" (recognised p=0.89/0.89/0.48 for 65 000 a year is how much an hour / 65000 a year is how much an hour / 65000 after tax australia; natural 0.67, honest promise 0.93). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"65000 after tax australia\" (260/mo, p=0.37), \"65000/12\" (210/mo, p=0.19)",
+   "evidence": {
+    "gsc": {
+     "clicks": 35,
+     "impressions": 5492,
+     "ctr": 0.0064,
+     "position": 4.57
+    },
+    "keywords": [
+     {
+      "kw": "65 000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "65000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 5
+     },
+     {
+      "kw": "65000 after tax australia",
+      "vol": 260,
+      "kd": 9,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "65k a year is how much an hour",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "65000/12",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 86
+     }
+    ],
+    "note": "candidates: $65,000 a Year Is How Much an Hour? $32.89, or $1,250 a Week | $65,000 a Year Is How Much an Hour, Week and Month? $32.89/hr | $65,000 a Year Is How Much an Hour? $32.89 ($1,250 a Week) | $65k a Year Is How Much an Hour in Australia? $32.89 Before Tax"
+   },
+   "targetQueries": [
+    "65 000 a year is how much an hour",
+    "65000 a year is how much an hour",
+    "65000 after tax australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/65000/",
+   "current": "$65,000 a Year Is How Much an Hour? $32.89 in Australia",
+   "proposed": "$65k a Year Is How Much an Hour in Australia? $32.89 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-75000-14",
+   "level": "ctr",
+   "priority": 82.6,
+   "confidence": 0.39,
+   "rationale": "Jev chose this among 4 candidates for \"75 000 a year is how much an hour\" (recognised p=0.88/0.90/0.32 for 75 000 a year is how much an hour / 75000 a year is how much an hour / 75000/52; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"75000/52\" (260/mo, p=0.34), \"75k after tax australia\" (260/mo, p=0.42), \"how much is 70k a year hourly\" (90/mo, p=0.13)",
+   "evidence": {
+    "gsc": {
+     "clicks": 73,
+     "impressions": 5340,
+     "ctr": 0.0137,
+     "position": 3.3
+    },
+    "keywords": [
+     {
+      "kw": "75 000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "75000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 3
+     },
+     {
+      "kw": "75000/52",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     },
+     {
+      "kw": "75k after tax australia",
+      "vol": 260,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is 70k a year hourly",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     }
+    ],
+    "note": "candidates: $75,000 a Year Is How Much an Hour? $37.96, or $1,442 a Week | $75,000 a Year Is How Much an Hour, Week and Month? $37.96/hr | $75,000 a Year Is How Much an Hour? $37.96 ($1,442 a Week) | $75k a Year Is How Much an Hour in Australia? $37.96 Before Tax"
+   },
+   "targetQueries": [
+    "75 000 a year is how much an hour",
+    "75000 a year is how much an hour",
+    "75000/52"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/75000/",
+   "current": "$75,000 a Year Is How Much an Hour? $37.96 in Australia",
+   "proposed": "$75k a Year Is How Much an Hour in Australia? $37.96 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-schads-award-pay-rates-15",
+   "level": "ctr",
+   "priority": 12.6,
+   "confidence": 0.19,
+   "rationale": "Jev chose this among 4 candidates for \"schads\" (recognised p=0.63/0.52/0.88 for schads / schads award 2025 / schads award pay rates; natural 0.69, honest promise 0.93). Findings that triggered the rewrite: title not recognised for: \"schads award 2025\" (3600/mo, p=0.21)",
+   "evidence": {
+    "gsc": {
+     "clicks": 60,
+     "impressions": 6224,
+     "ctr": 0.0096,
+     "position": 9.77
+    },
+    "keywords": [
+     {
+      "kw": "schads",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 82
+     },
+     {
+      "kw": "schads award 2025",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 36
+     },
+     {
+      "kw": "schads award pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "schads level 4",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "schads level 5",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ],
+    "note": "candidates: SCHADS Award Pay Rates 2026-27 (MA000100): Every Level, Pay Point | SCHADS Award Rates 2026-27 (MA000100) \u2014 Level 1 to 8 Pay Table | SCHADS Award Pay Rates 2026-27: Level 1\u20138 Hourly and Weekly Rates | SCHADS Award Pay Rates Table 2026-27 \u2014 Levels and Pay Points"
+   },
+   "targetQueries": [
+    "schads",
+    "schads award 2025",
+    "schads award pay rates"
+   ],
+   "kind": "rewrite_title",
+   "route": "/schads-award-pay-rates/",
+   "current": "SCHADS Award Pay Rates 2026-27 (MA000100) \u2014 Levels, Pay Points",
+   "proposed": "SCHADS Award Pay Rates 2026-27 (MA000100): Every Level, Pay Point",
+   "keepTokens": [
+    "schads",
+    "award",
+    "rates",
+    "level"
+   ]
+  },
+  {
+   "id": "ctr-schedule-5-tax-table-16",
+   "level": "ctr",
+   "priority": 15.166666666666666,
+   "confidence": 0.22,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"payg on schedule 5\" (confidence 0.22). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 35,
+     "impressions": 4700,
+     "ctr": 0.0074,
+     "position": 7.86
+    },
+    "keywords": [
+     {
+      "kw": "payg on schedule 5",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "payg schedule 5",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "ato schedule 5",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     }
+    ]
+   },
+   "targetQueries": [
+    "payg on schedule 5",
+    "payg schedule 5",
+    "ato schedule 5"
+   ],
+   "kind": "rewrite_description",
+   "route": "/schedule-5-tax-table/",
+   "current": "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner.",
+   "proposed": "PAYG on Schedule 5: a $5,000 bonus on $2,000 a fortnight has $1,612 withheld (32.2%), leaving $3,388, in 2026-27. NAT 3348 methods A and B, 47% cap and reckoner.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus \u2192 $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  },
+  {
+   "id": "ctr-stsl-on-payslip-17",
+   "level": "ctr",
+   "priority": 11.2,
+   "confidence": 0.18,
+   "rationale": "Jev chose this among 4 candidates for \"stsl on payslip\" (recognised p=0.88/0.91/0.86 for stsl on payslip / what is stsl on payslip / what is stsl; natural 0.78, honest promise 0.89). Findings that triggered the rewrite: title reads generic (p=0.64)",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2053,
+     "ctr": 0.0029,
+     "position": 7.33
+    },
+    "keywords": [
+     {
+      "kw": "stsl on payslip",
+      "vol": 720,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 21
+     },
+     {
+      "kw": "what is stsl on payslip",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "what is stsl",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "stsl component meaning",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "stsl meaning",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     }
+    ],
+    "note": "candidates: What Is STSL on Your Payslip? Study Loan Tax Above $69,528 | STSL on Your Payslip: What It Means and Why It Started (2026-27) | What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27) | What Is STSL on Your Payslip? Study Loan Deduction (2026-27)"
+   },
+   "targetQueries": [
+    "stsl on payslip",
+    "what is stsl on payslip",
+    "what is stsl"
+   ],
+   "kind": "rewrite_title",
+   "route": "/stsl-on-payslip/",
+   "current": "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)",
+   "proposed": "What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27)",
+   "keepTokens": [
+    "stsl",
+    "payslip",
+    "what"
+   ]
+  },
+  {
+   "id": "ctr-stsl-on-payslip-18",
+   "level": "ctr",
+   "priority": 9.333333333333334,
+   "confidence": 0.58,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"stsl on payslip\" (confidence 0.58). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2053,
+     "ctr": 0.0029,
+     "position": 7.33
+    },
+    "keywords": [
+     {
+      "kw": "stsl on payslip",
+      "vol": 720,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 21
+     },
+     {
+      "kw": "what is stsl on payslip",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "what is stsl",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ]
+   },
+   "targetQueries": [
+    "stsl on payslip",
+    "what is stsl on payslip",
+    "what is stsl"
+   ],
+   "kind": "rewrite_description",
+   "route": "/stsl-on-payslip/",
+   "current": "STSL on your payslip stands for Study and Training Support Loans \u2014 the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.",
+   "proposed": "STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above $69,528 a year ($1,337 a week) in 2026-27.",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  },
+  {
+   "id": "ctr-austudy-youth-allowance-calculator-19",
+   "level": "ctr",
+   "priority": 8.666666666666666,
+   "confidence": 0.45,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"youth allowance calculator\" (confidence 0.45). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 19,
+     "impressions": 3160,
+     "ctr": 0.006,
+     "position": 8.9
+    },
+    "keywords": [
+     {
+      "kw": "youth allowance calculator",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "youth allowance estimator",
+      "vol": 2400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is austudy",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 20
+     }
+    ]
+   },
+   "targetQueries": [
+    "youth allowance calculator",
+    "youth allowance estimator",
+    "how much is austudy"
+   ],
+   "kind": "rewrite_description",
+   "route": "/austudy-youth-allowance-calculator/",
+   "current": "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c.",
+   "proposed": "Austudy pays up to $677.20 a fortnight; Youth Allowance $482.40 at home or $677.20 away (18+). Enter your wages: $539 free area, 50c to $646, then 60c.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90\u2013$854.20"
+  },
+  {
+   "id": "ctr-tax-on-45000-20",
+   "level": "ctr",
+   "priority": 11.8,
+   "confidence": 0.16,
+   "rationale": "Jev chose this among 4 candidates for \"tax on 45000 australia\" (recognised p=0.89/0.73/0.87 for tax on 45000 australia / tax on 45000 / tax on $45000 australia; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 44000 australia\" (90/mo, p=0.14), \"tax on 47000 australia\" (90/mo, p=0.15)",
+   "evidence": {
+    "gsc": {
+     "clicks": 5,
+     "impressions": 2318,
+     "ctr": 0.0022,
+     "position": 7.73
+    },
+    "keywords": [
+     {
+      "kw": "tax on 45000 australia",
+      "vol": 320,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "tax on 45000",
+      "vol": 170,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "tax on $45000 australia",
+      "vol": 110,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "tax on 44000 australia",
+      "vol": 90,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 64
+     },
+     {
+      "kw": "tax on 47000 australia",
+      "vol": 90,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 60
+     }
+    ],
+    "note": "candidates: Tax on $45,000 in Australia 2026-27: $3,695 Tax + $900 Medicare | How Much Tax on $45,000 in Australia? $4,595 in 2026-27 | Tax on $45,000 in Australia (2026-27): $3,695 Tax Plus Medicare | Tax on a $45,000 Salary in Australia (2026-27): $3,695 Income Tax"
+   },
+   "targetQueries": [
+    "tax on 45000 australia",
+    "tax on 45000",
+    "tax on $45000 australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/45000/",
+   "current": "Tax on $45,000 in Australia: $3,695 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $45,000 in Australia? $4,595 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  },
+  {
+   "id": "ctr-tax-on-35000-24",
+   "level": "ctr",
+   "priority": 16.8,
+   "confidence": 0.29,
+   "rationale": "Jev chose this among 4 candidates for \"tax on 35000 australia\" (recognised p=0.89/0.20/0.73 for tax on 35000 australia / tax on 36000 australia / tax 35000; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 36000 australia\" (110/mo, p=0.12), \"tax on 37000 australia\" (90/mo, p=0.12), \"tax on 38000 australia\" (90/mo, p=0.10)",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 2466,
+     "ctr": 0.008100000000000001,
+     "position": 5.8
+    },
+    "keywords": [
+     {
+      "kw": "tax on 35000 australia",
+      "vol": 170,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 5
+     },
+     {
+      "kw": "tax on 36000 australia",
+      "vol": 110,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 23
+     },
+     {
+      "kw": "tax 35000",
+      "vol": 90,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "tax on 37000 australia",
+      "vol": 90,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 59
+     },
+     {
+      "kw": "tax on 38000 australia",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 44
+     }
+    ],
+    "note": "candidates: Tax on $35,000 in Australia 2026-27: $1,820 Tax + $699 Medicare | How Much Tax on $35,000 in Australia? $2,519 in 2026-27 | Tax on $35,000 in Australia (2026-27): $1,820 Tax Plus Medicare | Tax on a $35,000 Salary in Australia (2026-27): $1,820 Income Tax"
+   },
+   "targetQueries": [
+    "tax on 35000 australia",
+    "tax on 36000 australia",
+    "tax 35000"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/35000/",
+   "current": "Tax on $35,000 in Australia: $1,820 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $35,000 in Australia? $2,519 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  },
+  {
+   "id": "ctr-tax-on-55000-25",
+   "level": "ctr",
+   "priority": 18.8,
+   "confidence": 0.64,
+   "rationale": "Jev chose this among 4 candidates for \"55000 after tax australia\" (recognised p=0.83/0.20/0.15 for 55000 after tax australia / 60k after tax / tax on 53000 australia; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page; title not recognised for: \"60k after tax\" (90/mo, p=0.14), \"tax on 53000 australia\" (90/mo, p=0.14), \"tax on 54000 australia\" (90/mo, p=0.17), \"tax on 57000 australia",
+   "evidence": {
+    "gsc": {
+     "clicks": 16,
+     "impressions": 2684,
+     "ctr": 0.006,
+     "position": 5.89
+    },
+    "keywords": [
+     {
+      "kw": "55000 after tax australia",
+      "vol": 90,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 39
+     },
+     {
+      "kw": "60k after tax",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 73
+     },
+     {
+      "kw": "tax on 53000 australia",
+      "vol": 90,
+      "kd": 24,
+      "intent": "informational",
+      "pos": 35
+     },
+     {
+      "kw": "tax on 54000 australia",
+      "vol": 90,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 61
+     },
+     {
+      "kw": "tax on 57000 australia",
+      "vol": 70,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 31
+     }
+    ],
+    "note": "candidates: Tax on $55,000 in Australia 2026-27: $6,845 Tax + $1,100 Medicare | How Much Tax on $55,000 in Australia? $7,945 in 2026-27 | Tax on $55,000 in Australia (2026-27): $6,845 Tax Plus Medicare | Tax on a $55,000 Salary in Australia (2026-27): $6,845 Income Tax"
+   },
+   "targetQueries": [
+    "55000 after tax australia",
+    "60k after tax",
+    "tax on 53000 australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/55000/",
+   "current": "Tax on $55,000 in Australia: $6,845 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $55,000 in Australia? $7,945 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  }
+ ]
+}

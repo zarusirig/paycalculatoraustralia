@@ -135,7 +135,7 @@ export default function MinimumWageAustraliaPage() {
             <section id="award-minimums">
               <h2 style={H2}>Award Minimums vs the National Minimum Wage</h2>
               <p>
-                Most employees are not paid under the National Minimum Wage at all but under a modern award, which sets a minimum for each classification. Award rates rose {(NMW_DECISION.awardIncrease * 100).toFixed(2)}% from {NMW_DECISION.operativeFrom}, with two floors: the lowest adult award rate for ongoing employment is {money(NMW.hourly)} (the same as the National Minimum Wage), and an entry-level rate for no more than the first six months must be at least {money(NMW_DECISION.entryLevelHourly)}.
+                Most employees are not paid under the National Minimum Wage at all but under a modern award, which sets a minimum for each classification. Award rates rose {(NMW_DECISION.awardIncrease * 100).toFixed(2)}% from {NMW_DECISION.operativeFrom}, with two floors: the lowest adult award rate for ongoing employment is {money(NMW.hourly)} (the same as the National Minimum Wage), and an entry-level rate for no more than the first six months must be at least {money(NMW_DECISION.entryLevelHourly)}. The Fair Work Ombudsman&rsquo;s Pay and Conditions Tool applies these award rates by classification, day and employment type; our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide explains how it works.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">

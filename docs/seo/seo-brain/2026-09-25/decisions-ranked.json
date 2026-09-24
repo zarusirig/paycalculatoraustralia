@@ -1,0 +1,3406 @@
+{
+ "level": "ctr",
+ "author": "seo-brain rank.mts (agent candidates → Jev selection → code gates)",
+ "createdAt": "2026-09-24T22:18:05.356Z",
+ "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+ "decisions": [
+  {
+   "id": "ctr-annual-pay-calculator-1",
+   "level": "ctr",
+   "priority": 20.5,
+   "confidence": 0.27,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"salary calculator adp\" (confidence 0.27). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 12,
+     "impressions": 7669,
+     "ctr": 0.0016,
+     "position": 10.45
+    },
+    "keywords": [
+     {
+      "kw": "salary calculator adp",
+      "vol": 8100,
+      "kd": 36,
+      "intent": "informational",
+      "pos": 53
+     },
+     {
+      "kw": "pay after tax",
+      "vol": 2900,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "salary after tax",
+      "vol": 2900,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 44
+     }
+    ]
+   },
+   "targetQueries": [
+    "salary calculator adp",
+    "pay after tax",
+    "salary after tax"
+   ],
+   "kind": "rewrite_description",
+   "route": "/annual-pay-calculator/",
+   "current": "A $80,000 salary is $63,880 a year after tax in 2026-27. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.",
+   "proposed": "$80,000 a year is $63,880 after tax in 2026-27; $100,000 is $77,480. Annual salary after tax calculator: yearly gross to take-home after tax, Medicare levy and HECS.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 → $77,480"
+  },
+  {
+   "id": "ctr-centrelink-income-test-2",
+   "level": "ctr",
+   "priority": 24,
+   "confidence": 0.75,
+   "rationale": "Jev chose this among 4 candidates for \"jobseeker payment calculator\" (recognised p=0.75/0.70/0.73 for jobseeker payment calculator / job seeker calculator / jobseeker calculator; natural 0.61, honest promise 0.89). Findings that triggered the rewrite: title not recognised for: \"jobseeker payment calculator\" (1300/mo, p=0.31), \"job seeker calculator\" (480/mo, p=0.30), \"jobseeker calculator\" (480/mo, p=0.28), \"centrelink earnings calculator\" (390/mo, p=0.51), \"centrelink online estimator\" (390/mo, p=0.40); title promises a guide; searchers want a calculator (\"jobseeker payment calculator\"), calculator (\"job seeker calculator\"), calculator (\"jobse",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     },
+     {
+      "kw": "centrelink earnings calculator",
+      "vol": 390,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "centrelink online estimator",
+      "vol": 390,
+      "kd": 6,
+      "intent": "navigational",
+      "pos": 9
+     }
+    ],
+    "note": "candidates: Centrelink Income Test 2026: Free Areas, Tapers & Calculators | Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension | Centrelink Income Test 2026 — Estimate Your Payment After Wages | Centrelink Earnings Test 2026: How Much You Can Earn on Payments"
+   },
+   "targetQueries": [
+    "jobseeker payment calculator",
+    "job seeker calculator",
+    "jobseeker calculator"
+   ],
+   "kind": "rewrite_title",
+   "route": "/centrelink-income-test/",
+   "current": "Centrelink Income Test — How Income Affects Your Payment",
+   "proposed": "Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension",
+   "keepTokens": []
+  },
+  {
+   "id": "ctr-centrelink-income-test-3",
+   "level": "ctr",
+   "priority": 20,
+   "confidence": 0.8,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"jobseeker payment calculator\" (confidence 0.80). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     }
+    ]
+   },
+   "targetQueries": [
+    "jobseeker payment calculator",
+    "job seeker calculator",
+    "jobseeker calculator"
+   ],
+   "kind": "rewrite_description",
+   "route": "/centrelink-income-test/",
+   "current": "Centrelink income test explained: free areas, tapers and cut-offs for JobSeeker, FTB, Age Pension, DSP and CCS, plus the assets test and deeming, from 20 Sep 2026.",
+   "proposed": "JobSeeker income test: $150 free area, 50c per dollar to $256, then 60c. How income affects each Centrelink payment from 20 Sep 2026, with calculators.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  },
+  {
+   "id": "ctr-employment-type-calculator-4",
+   "level": "ctr",
+   "priority": 9.166666666666666,
+   "confidence": 0.36,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"contract to salary calculator\" (confidence 0.36). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 62,
+     "impressions": 4119,
+     "ctr": 0.0151,
+     "position": 7.59
+    },
+    "keywords": [
+     {
+      "kw": "contract to salary calculator",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 80
+     },
+     {
+      "kw": "part time pay",
+      "vol": 320,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "part time job pay rate",
+      "vol": 260,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "contract to salary calculator",
+    "part time pay",
+    "part time job pay rate"
+   ],
+   "kind": "rewrite_description",
+   "route": "/employment-type-calculator/",
+   "current": "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
+   "proposed": "Part-time salary from your hourly rate and hours: $35 an hour over 38 hours is $69,160 a year, $56,509 after tax. Casual loading lifts the same rate to $43.75.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  },
+  {
+   "id": "ctr-fortnightly-tax-table-5",
+   "level": "ctr",
+   "priority": 35.166666666666664,
+   "confidence": 0.69,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"fortnightly tax table\" (confidence 0.69). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly"
+   ],
+   "kind": "rewrite_description",
+   "route": "/fortnightly-tax-table/",
+   "current": "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.",
+   "proposed": "ATO fortnightly tax table 2026-27 (NAT 1006), $700 to $8,000 in $100 steps: on $2,000 a fortnight, $276 is withheld with the threshold, $498 without. STSL and CSV.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed → $276 withheld, $1,724 take-home; not claimed → $498"
+  },
+  {
+   "id": "ctr-medicare-levy-6",
+   "level": "ctr",
+   "priority": 8.6,
+   "confidence": 0.44,
+   "rationale": "Jev chose this among 4 candidates for \"medicare levy calculator\" (recognised p=0.88/0.31/0.72 for medicare levy calculator / medicare levy surcharge calculator / ato medicare levy calculator; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: title not recognised for: \"medicare levy surcharge calculator\" (2900/mo, p=0.22), \"medicare levy calculator 2026\" (210/mo, p=0.45), \"medicare surcharge calculator\" (210/mo, p=0.24)",
+   "evidence": {
+    "gsc": {
+     "clicks": 7,
+     "impressions": 2898,
+     "ctr": 0.0024,
+     "position": 10.59
+    },
+    "keywords": [
+     {
+      "kw": "medicare levy calculator",
+      "vol": 4400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "medicare levy surcharge calculator",
+      "vol": 2900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "ato medicare levy calculator",
+      "vol": 210,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 58
+     },
+     {
+      "kw": "medicare levy calculator 2026",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "medicare surcharge calculator",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 23
+     }
+    ],
+    "note": "candidates: Medicare Levy Calculator: 2% Levy, Low-Income Limits, Exemptions | Medicare Levy Calculator (ATO Rates): 2% Levy and Thresholds | Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits | Medicare Levy Calculator — How Much Is the 2% Levy on My Income?"
+   },
+   "targetQueries": [
+    "medicare levy calculator",
+    "medicare levy surcharge calculator",
+    "ato medicare levy calculator"
+   ],
+   "kind": "rewrite_title",
+   "route": "/medicare-levy/",
+   "current": "Medicare Levy Calculator: 2% Levy, Low-Income & Family Thresholds",
+   "proposed": "Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits",
+   "keepTokens": [
+    "medicare",
+    "levy",
+    "calculator"
+   ]
+  },
+  {
+   "id": "ctr-public-service-pay-scales-7",
+   "level": "ctr",
+   "priority": 49.8,
+   "confidence": 0.56,
+   "rationale": "Jev chose this among 4 candidates for \"aps 4 salary\" (recognised p=0.75/0.71/0.32 for aps 4 salary / australian public service levels / vps 6 pay; natural 0.71, honest promise 0.91). Findings that triggered the rewrite: title not recognised for: \"vps 6 pay\" (590/mo, p=0.43), \"vps 6 salary\" (590/mo, p=0.41); title promises a table; searchers want a guide (\"australian public service levels\"), figure (\"vps 6 salary\"); description gives no concrete answer for \"aps 4 salary\" (p=0.08)",
+   "evidence": {
+    "gsc": {
+     "clicks": 77,
+     "impressions": 10976,
+     "ctr": 0.006999999999999999,
+     "position": 7.38
+    },
+    "keywords": [
+     {
+      "kw": "aps 4 salary",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "australian public service levels",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "vps 6 pay",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "vps 6 salary",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "aps pay scale",
+      "vol": 480,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 8
+     }
+    ],
+    "note": "candidates: Public Service Pay Scales 2026: APS 1–6, EL 1–2 and Every State | Australian Public Service Levels & Pay Scales 2026 — APS, States | Public Service Pay Scales 2026: APS Level Salaries and All States | Public Service Pay Scale Guide 2026 — APS Levels 1 to SES, States"
+   },
+   "targetQueries": [
+    "aps 4 salary",
+    "australian public service levels",
+    "vps 6 pay"
+   ],
+   "kind": "rewrite_title",
+   "route": "/public-service-pay-scales/",
+   "current": "Public Service Pay Scales 2026 — APS, States & Territories",
+   "proposed": "Public Service Pay Scales 2026: APS Level Salaries and All States",
+   "keepTokens": [
+    "public",
+    "service",
+    "scale"
+   ]
+  },
+  {
+   "id": "ctr-public-service-pay-scales-8",
+   "level": "ctr",
+   "priority": 41.5,
+   "confidence": 0.38,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"aps 4 salary\" (confidence 0.38). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 77,
+     "impressions": 10976,
+     "ctr": 0.006999999999999999,
+     "position": 7.38
+    },
+    "keywords": [
+     {
+      "kw": "aps 4 salary",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "australian public service levels",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "vps 6 pay",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     }
+    ]
+   },
+   "targetQueries": [
+    "aps 4 salary",
+    "australian public service levels",
+    "vps 6 pay"
+   ],
+   "kind": "rewrite_description",
+   "route": "/public-service-pay-scales/",
+   "current": "What every public service level pays in 2026: APS, Victoria, QLD AO, NSW Clerk, WA, SA ASO, TAS Band, ACT ASO and NT AO rates, each with source and take-home pay.",
+   "proposed": "APS 4 salary: $82,906 median at 31 Dec 2025; 90% of APS 6 staff earn $97,316 to $115,199. Pay scale tables for the APS and all 8 state and territory services.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  },
+  {
+   "id": "ctr-salary-sacrifice-calculator-9",
+   "level": "ctr",
+   "priority": 25.8,
+   "confidence": 0.8,
+   "rationale": "Jev chose this among 4 candidates for \"tax calculator with salary sacrifice\" (recognised p=0.84/0.76/0.78 for tax calculator with salary sacrifice / salary sacrifice pay calculator / pay calculator with salary sacrifice; natural 0.68, honest promise 0.90). Findings that triggered the rewrite: title not recognised for: \"fortnightly salary sacrifice calculator\" (40/mo, p=0.50), \"how to calculate salary sacrifice\" (40/mo, p=0.59); title reads generic (p=0.72); description gives no concrete answer for \"tax calculator with salary sacrifice\" (p=0.12)",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 3407,
+     "ctr": 0.0068000000000000005,
+     "position": 5.54
+    },
+    "keywords": [
+     {
+      "kw": "tax calculator with salary sacrifice",
+      "vol": 110,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "salary sacrifice pay calculator",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "pay calculator with salary sacrifice",
+      "vol": 70,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 35
+     },
+     {
+      "kw": "fortnightly salary sacrifice calculator",
+      "vol": 40,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 61
+     },
+     {
+      "kw": "how to calculate salary sacrifice",
+      "vol": 40,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 81
+     }
+    ],
+    "note": "candidates: Salary Sacrifice Calculator 2026-27: Tax Saved, Take-Home, Super | Pay Calculator With Salary Sacrifice: Your Tax Saving (2026-27) | Salary Sacrifice Calculator: How Much Tax You Save (2026-27) | Salary Sacrifice Tax Calculator 2026-27 — Pay Before and After"
+   },
+   "targetQueries": [
+    "tax calculator with salary sacrifice",
+    "salary sacrifice pay calculator",
+    "pay calculator with salary sacrifice"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-sacrifice-calculator/",
+   "current": "Salary Sacrifice Calculator — How Much Will You Save?",
+   "proposed": "Salary Sacrifice Tax Calculator 2026-27 — Pay Before and After",
+   "keepTokens": [
+    "calculator",
+    "salary",
+    "sacrifice"
+   ]
+  },
+  {
+   "id": "ctr-salary-sacrifice-calculator-10",
+   "level": "ctr",
+   "priority": 21.5,
+   "confidence": 0.21,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"tax calculator with salary sacrifice\" (confidence 0.21). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 3407,
+     "ctr": 0.0068000000000000005,
+     "position": 5.54
+    },
+    "keywords": [
+     {
+      "kw": "tax calculator with salary sacrifice",
+      "vol": 110,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "salary sacrifice pay calculator",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "pay calculator with salary sacrifice",
+      "vol": 70,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 35
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax calculator with salary sacrifice",
+    "salary sacrifice pay calculator",
+    "pay calculator with salary sacrifice"
+   ],
+   "kind": "rewrite_description",
+   "route": "/salary-sacrifice-calculator/",
+   "current": "Compare take-home pay before and after salary sacrifice. See your tax savings, super boost & actual benefit. Free Australian calculator updated for FY2026-27.",
+   "proposed": "On $100,000, salary sacrificing $10,000 to super saves $3,200 tax in 2026-27 and cuts take-home by $6,800. Compare pay before and after, plus how it is calculated.",
+   "figureSource": "modules/calculator/salary-sacrifice-calculator defaults ($100,000 salary, $10,000 sacrifice) through calculatePayBreakdown: tax saved $3,200, take-home $77,480 → $70,680, super +$10,000"
+  },
+  {
+   "id": "ctr-salary-to-hourly-120000-11",
+   "level": "ctr",
+   "priority": 39.8,
+   "confidence": 0.67,
+   "rationale": "Jev chose this among 4 candidates for \"120k a year is how much an hour\" (recognised p=0.90/0.14 for 120k a year is how much an hour / tax on 120k; natural 0.65, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 120k\" (90/mo, p=0.20)",
+   "evidence": {
+    "gsc": {
+     "clicks": 27,
+     "impressions": 3430,
+     "ctr": 0.0079,
+     "position": 4.2
+    },
+    "keywords": [
+     {
+      "kw": "120k a year is how much an hour",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 120k",
+      "vol": 90,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 54
+     }
+    ],
+    "note": "candidates: $120,000 a Year Is How Much an Hour? $60.73, or $2,308 a Week | $120,000 a Year Is How Much an Hour, Week and Month? $60.73/hr | $120,000 a Year Is How Much an Hour? $60.73 ($2,308 a Week) | $120k a Year Is How Much an Hour in Australia? $60.73 Before Tax"
+   },
+   "targetQueries": [
+    "120k a year is how much an hour",
+    "tax on 120k"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/120000/",
+   "current": "$120,000 a Year Is How Much an Hour? $60.73 in Australia",
+   "proposed": "$120k a Year Is How Much an Hour in Australia? $60.73 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-55000-12",
+   "level": "ctr",
+   "priority": 16.8,
+   "confidence": 0.52,
+   "rationale": "Jev chose this among 4 candidates for \"55000 a year is how much an hour\" (recognised p=0.90/0.29/0.17 for 55000 a year is how much an hour / 55000/52 / tax on 55000; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"55000/52\" (110/mo, p=0.32), \"tax on 55000\" (90/mo, p=0.20)",
+   "evidence": {
+    "gsc": {
+     "clicks": 13,
+     "impressions": 1628,
+     "ctr": 0.008,
+     "position": 4.51
+    },
+    "keywords": [
+     {
+      "kw": "55000 a year is how much an hour",
+      "vol": 110,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "55000/52",
+      "vol": 110,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "tax on 55000",
+      "vol": 90,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 11
+     }
+    ],
+    "note": "candidates: $55,000 a Year Is How Much an Hour? $27.83, or $1,058 a Week | $55,000 a Year Is How Much an Hour, Week and Month? $27.83/hr | $55,000 a Year Is How Much an Hour? $27.83 ($1,058 a Week) | $55k a Year Is How Much an Hour in Australia? $27.83 Before Tax"
+   },
+   "targetQueries": [
+    "55000 a year is how much an hour",
+    "55000/52",
+    "tax on 55000"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/55000/",
+   "current": "$55,000 a Year Is How Much an Hour? $27.83 in Australia",
+   "proposed": "$55k a Year Is How Much an Hour in Australia? $27.83 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-65000-13",
+   "level": "ctr",
+   "priority": 57.4,
+   "confidence": 0.29,
+   "rationale": "Jev chose this among 4 candidates for \"65 000 a year is how much an hour\" (recognised p=0.89/0.89/0.48 for 65 000 a year is how much an hour / 65000 a year is how much an hour / 65000 after tax australia; natural 0.67, honest promise 0.93). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"65000 after tax australia\" (260/mo, p=0.37), \"65000/12\" (210/mo, p=0.19)",
+   "evidence": {
+    "gsc": {
+     "clicks": 35,
+     "impressions": 5492,
+     "ctr": 0.0064,
+     "position": 4.57
+    },
+    "keywords": [
+     {
+      "kw": "65 000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "65000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 5
+     },
+     {
+      "kw": "65000 after tax australia",
+      "vol": 260,
+      "kd": 9,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "65k a year is how much an hour",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "65000/12",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 86
+     }
+    ],
+    "note": "candidates: $65,000 a Year Is How Much an Hour? $32.89, or $1,250 a Week | $65,000 a Year Is How Much an Hour, Week and Month? $32.89/hr | $65,000 a Year Is How Much an Hour? $32.89 ($1,250 a Week) | $65k a Year Is How Much an Hour in Australia? $32.89 Before Tax"
+   },
+   "targetQueries": [
+    "65 000 a year is how much an hour",
+    "65000 a year is how much an hour",
+    "65000 after tax australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/65000/",
+   "current": "$65,000 a Year Is How Much an Hour? $32.89 in Australia",
+   "proposed": "$65k a Year Is How Much an Hour in Australia? $32.89 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-salary-to-hourly-75000-14",
+   "level": "ctr",
+   "priority": 82.6,
+   "confidence": 0.39,
+   "rationale": "Jev chose this among 4 candidates for \"75 000 a year is how much an hour\" (recognised p=0.88/0.90/0.32 for 75 000 a year is how much an hour / 75000 a year is how much an hour / 75000/52; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"75000/52\" (260/mo, p=0.34), \"75k after tax australia\" (260/mo, p=0.42), \"how much is 70k a year hourly\" (90/mo, p=0.13)",
+   "evidence": {
+    "gsc": {
+     "clicks": 73,
+     "impressions": 5340,
+     "ctr": 0.0137,
+     "position": 3.3
+    },
+    "keywords": [
+     {
+      "kw": "75 000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "75000 a year is how much an hour",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 3
+     },
+     {
+      "kw": "75000/52",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     },
+     {
+      "kw": "75k after tax australia",
+      "vol": 260,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is 70k a year hourly",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 34
+     }
+    ],
+    "note": "candidates: $75,000 a Year Is How Much an Hour? $37.96, or $1,442 a Week | $75,000 a Year Is How Much an Hour, Week and Month? $37.96/hr | $75,000 a Year Is How Much an Hour? $37.96 ($1,442 a Week) | $75k a Year Is How Much an Hour in Australia? $37.96 Before Tax"
+   },
+   "targetQueries": [
+    "75 000 a year is how much an hour",
+    "75000 a year is how much an hour",
+    "75000/52"
+   ],
+   "kind": "rewrite_title",
+   "route": "/salary-to-hourly/75000/",
+   "current": "$75,000 a Year Is How Much an Hour? $37.96 in Australia",
+   "proposed": "$75k a Year Is How Much an Hour in Australia? $37.96 Before Tax",
+   "keepTokens": [
+    "year",
+    "much",
+    "hour"
+   ]
+  },
+  {
+   "id": "ctr-schads-award-pay-rates-15",
+   "level": "ctr",
+   "priority": 12.6,
+   "confidence": 0.19,
+   "rationale": "Jev chose this among 4 candidates for \"schads\" (recognised p=0.63/0.52/0.88 for schads / schads award 2025 / schads award pay rates; natural 0.69, honest promise 0.93). Findings that triggered the rewrite: title not recognised for: \"schads award 2025\" (3600/mo, p=0.21)",
+   "evidence": {
+    "gsc": {
+     "clicks": 60,
+     "impressions": 6224,
+     "ctr": 0.0096,
+     "position": 9.77
+    },
+    "keywords": [
+     {
+      "kw": "schads",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 82
+     },
+     {
+      "kw": "schads award 2025",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 36
+     },
+     {
+      "kw": "schads award pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "schads level 4",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "schads level 5",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ],
+    "note": "candidates: SCHADS Award Pay Rates 2026-27 (MA000100): Every Level, Pay Point | SCHADS Award Rates 2026-27 (MA000100) — Level 1 to 8 Pay Table | SCHADS Award Pay Rates 2026-27: Level 1–8 Hourly and Weekly Rates | SCHADS Award Pay Rates Table 2026-27 — Levels and Pay Points"
+   },
+   "targetQueries": [
+    "schads",
+    "schads award 2025",
+    "schads award pay rates"
+   ],
+   "kind": "rewrite_title",
+   "route": "/schads-award-pay-rates/",
+   "current": "SCHADS Award Pay Rates 2026-27 (MA000100) — Levels, Pay Points",
+   "proposed": "SCHADS Award Pay Rates 2026-27 (MA000100): Every Level, Pay Point",
+   "keepTokens": [
+    "schads",
+    "award",
+    "rates",
+    "level"
+   ]
+  },
+  {
+   "id": "ctr-schedule-5-tax-table-16",
+   "level": "ctr",
+   "priority": 15.166666666666666,
+   "confidence": 0.22,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"payg on schedule 5\" (confidence 0.22). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 35,
+     "impressions": 4700,
+     "ctr": 0.0074,
+     "position": 7.86
+    },
+    "keywords": [
+     {
+      "kw": "payg on schedule 5",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "payg schedule 5",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "ato schedule 5",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     }
+    ]
+   },
+   "targetQueries": [
+    "payg on schedule 5",
+    "payg schedule 5",
+    "ato schedule 5"
+   ],
+   "kind": "rewrite_description",
+   "route": "/schedule-5-tax-table/",
+   "current": "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner.",
+   "proposed": "PAYG on Schedule 5: a $5,000 bonus on $2,000 a fortnight has $1,612 withheld (32.2%), leaving $3,388, in 2026-27. NAT 3348 methods A and B, 47% cap and reckoner.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus → $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  },
+  {
+   "id": "ctr-stsl-on-payslip-17",
+   "level": "ctr",
+   "priority": 11.2,
+   "confidence": 0.18,
+   "rationale": "Jev chose this among 4 candidates for \"stsl on payslip\" (recognised p=0.88/0.91/0.86 for stsl on payslip / what is stsl on payslip / what is stsl; natural 0.78, honest promise 0.89). Findings that triggered the rewrite: title reads generic (p=0.64)",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2053,
+     "ctr": 0.0029,
+     "position": 7.33
+    },
+    "keywords": [
+     {
+      "kw": "stsl on payslip",
+      "vol": 720,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 21
+     },
+     {
+      "kw": "what is stsl on payslip",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "what is stsl",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "stsl component meaning",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "stsl meaning",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     }
+    ],
+    "note": "candidates: What Is STSL on Your Payslip? Study Loan Tax Above $69,528 | STSL on Your Payslip: What It Means and Why It Started (2026-27) | What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27) | What Is STSL on Your Payslip? Study Loan Deduction (2026-27)"
+   },
+   "targetQueries": [
+    "stsl on payslip",
+    "what is stsl on payslip",
+    "what is stsl"
+   ],
+   "kind": "rewrite_title",
+   "route": "/stsl-on-payslip/",
+   "current": "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)",
+   "proposed": "What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27)",
+   "keepTokens": [
+    "stsl",
+    "payslip",
+    "what"
+   ]
+  },
+  {
+   "id": "ctr-stsl-on-payslip-18",
+   "level": "ctr",
+   "priority": 9.333333333333334,
+   "confidence": 0.58,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"stsl on payslip\" (confidence 0.58). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2053,
+     "ctr": 0.0029,
+     "position": 7.33
+    },
+    "keywords": [
+     {
+      "kw": "stsl on payslip",
+      "vol": 720,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 21
+     },
+     {
+      "kw": "what is stsl on payslip",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "what is stsl",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ]
+   },
+   "targetQueries": [
+    "stsl on payslip",
+    "what is stsl on payslip",
+    "what is stsl"
+   ],
+   "kind": "rewrite_description",
+   "route": "/stsl-on-payslip/",
+   "current": "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.",
+   "proposed": "STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above $69,528 a year ($1,337 a week) in 2026-27.",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  },
+  {
+   "id": "ctr-austudy-youth-allowance-calculator-19",
+   "level": "ctr",
+   "priority": 8.666666666666666,
+   "confidence": 0.45,
+   "rationale": "Jev chose this description among 4 candidates as the most concrete answer for \"youth allowance calculator\" (confidence 0.45). Figures must be rendered from constants at build time, never typed.",
+   "evidence": {
+    "gsc": {
+     "clicks": 19,
+     "impressions": 3160,
+     "ctr": 0.006,
+     "position": 8.9
+    },
+    "keywords": [
+     {
+      "kw": "youth allowance calculator",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "youth allowance estimator",
+      "vol": 2400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is austudy",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 20
+     }
+    ]
+   },
+   "targetQueries": [
+    "youth allowance calculator",
+    "youth allowance estimator",
+    "how much is austudy"
+   ],
+   "kind": "rewrite_description",
+   "route": "/austudy-youth-allowance-calculator/",
+   "current": "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c.",
+   "proposed": "Austudy pays up to $677.20 a fortnight; Youth Allowance $482.40 at home or $677.20 away (18+). Enter your wages: $539 free area, 50c to $646, then 60c.",
+   "figureSource": "lib/constants/centrelink-income-test student rates from 1 Jan 2026: YA 18+ at home $482.40, away $677.20, Austudy $677.20; free area $539, 50c to $646, then 60c; max range $418.90–$854.20"
+  },
+  {
+   "id": "ctr-tax-on-45000-20",
+   "level": "ctr",
+   "priority": 11.8,
+   "confidence": 0.16,
+   "rationale": "Jev chose this among 4 candidates for \"tax on 45000 australia\" (recognised p=0.89/0.73/0.87 for tax on 45000 australia / tax on 45000 / tax on $45000 australia; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 44000 australia\" (90/mo, p=0.14), \"tax on 47000 australia\" (90/mo, p=0.15)",
+   "evidence": {
+    "gsc": {
+     "clicks": 5,
+     "impressions": 2318,
+     "ctr": 0.0022,
+     "position": 7.73
+    },
+    "keywords": [
+     {
+      "kw": "tax on 45000 australia",
+      "vol": 320,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "tax on 45000",
+      "vol": 170,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "tax on $45000 australia",
+      "vol": 110,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "tax on 44000 australia",
+      "vol": 90,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 64
+     },
+     {
+      "kw": "tax on 47000 australia",
+      "vol": 90,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 60
+     }
+    ],
+    "note": "candidates: Tax on $45,000 in Australia 2026-27: $3,695 Tax + $900 Medicare | How Much Tax on $45,000 in Australia? $4,595 in 2026-27 | Tax on $45,000 in Australia (2026-27): $3,695 Tax Plus Medicare | Tax on a $45,000 Salary in Australia (2026-27): $3,695 Income Tax"
+   },
+   "targetQueries": [
+    "tax on 45000 australia",
+    "tax on 45000",
+    "tax on $45000 australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/45000/",
+   "current": "Tax on $45,000 in Australia: $3,695 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $45,000 in Australia? $4,595 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  },
+  {
+   "id": "schema-bonus-tax-calculator-21",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.27,
+   "rationale": "Current opening scored 0.21/3 as a quotable answer for \"bonus pay\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.96, no advice/hype p=0.14). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 4,
+     "impressions": 17,
+     "ctr": 0.2353,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "bonus pay",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 57
+     },
+     {
+      "kw": "bonus payable",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 65
+     },
+     {
+      "kw": "bonus payments",
+      "vol": 1300,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 57
+     }
+    ],
+    "note": "was: Work out the extra tax you'll actually owe on a bonus or commission payment for the year. See the marginal tax rate applied to your lump sum and your actual take-home bonus."
+   },
+   "targetQueries": [
+    "bonus pay"
+   ],
+   "kind": "citation_lead",
+   "route": "/bonus-tax-calculator/",
+   "proposedLead": "Tax on a bonus in Australia is the difference between the annual tax on salary alone and the annual tax on salary plus bonus, worked out on the 2026-27 scale; there is no flat bonus tax. For an employee on $90,000 receiving $10,000, that difference is $3,200, so $6,800 of the bonus is kept [[bonusTaxSplit]]. Employers withhold from bonus payments using ATO Schedule 5, and any over-withholding is refunded at tax time.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+  },
+  {
+   "id": "schema-centrelink-income-test-22",
+   "level": "schema",
+   "priority": 51.38,
+   "confidence": 0.39,
+   "rationale": "Current opening scored 0.39/3 as a quotable answer for \"jobseeker payment calculator\"; Jev picked this candidate (citable 2.87/3, defines-subject 0.94, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     }
+    ],
+    "note": "was: How your income affects Centrelink payments like JobSeeker, Parenting Payment, Family Tax Benefit, Youth Allowance and Age Pension. Understand income thresholds, taper rates, and how to estimate your "
+   },
+   "targetQueries": [
+    "jobseeker payment calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/centrelink-income-test/",
+   "proposedLead": "The Centrelink income test reduces an income-support payment by a set number of cents for each dollar earned above a free area. For JobSeeker Payment, income up to $150 a fortnight [[JOBSEEKER_INCOME_TEST.freeArea]] has no effect, each dollar to $256 cuts the payment by 50 cents and each dollar above $256 by 60 cents; the single rate of $824.90 from 20 September 2026 [[JOBSEEKER_RATES]] reaches $0 at $1,557.17.",
+   "addPrimarySource": "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment"
+  },
+  {
+   "id": "schema-commission-tax-calculator-23",
+   "level": "schema",
+   "priority": 7.22,
+   "confidence": 0.94,
+   "rationale": "Current opening scored 0.56/3 as a quotable answer for \"Commission Tax Calculator Australia\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.95, no advice/hype p=0.23). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 27,
+     "impressions": 1282,
+     "ctr": 0.021099999999999997,
+     "position": 5.89
+    },
+    "keywords": [],
+    "note": "was: Two numbers people confuse: the tax a commission adds to your year, and the amount your employer withholds from the commission pay under ATO Schedule 5. This calculator shows both for 2026-27 , and th"
+   },
+   "targetQueries": [
+    "Commission Tax Calculator Australia"
+   ],
+   "kind": "citation_lead",
+   "route": "/commission-tax-calculator/",
+   "proposedLead": "A commission tax calculator separates two figures: the tax a commission adds to the year's assessment, and the PAYG amount the employer withholds from the commission pay under ATO Schedule 5. Both use the 2026-27 rates; for example, $5,000 of commission on an $80,000 salary adds $1,600 of tax and Medicare levy for the year [[bonusTaxSplit]], and any difference from the withheld amount is settled as a refund or bill.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+  },
+  {
+   "id": "ctr-tax-on-35000-24",
+   "level": "ctr",
+   "priority": 16.8,
+   "confidence": 0.29,
+   "rationale": "Jev chose this among 4 candidates for \"tax on 35000 australia\" (recognised p=0.89/0.20/0.73 for tax on 35000 australia / tax on 36000 australia / tax 35000; natural 0.67, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"tax on 36000 australia\" (110/mo, p=0.12), \"tax on 37000 australia\" (90/mo, p=0.12), \"tax on 38000 australia\" (90/mo, p=0.10)",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 2466,
+     "ctr": 0.008100000000000001,
+     "position": 5.8
+    },
+    "keywords": [
+     {
+      "kw": "tax on 35000 australia",
+      "vol": 170,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 5
+     },
+     {
+      "kw": "tax on 36000 australia",
+      "vol": 110,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 23
+     },
+     {
+      "kw": "tax 35000",
+      "vol": 90,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 7
+     },
+     {
+      "kw": "tax on 37000 australia",
+      "vol": 90,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 59
+     },
+     {
+      "kw": "tax on 38000 australia",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 44
+     }
+    ],
+    "note": "candidates: Tax on $35,000 in Australia 2026-27: $1,820 Tax + $699 Medicare | How Much Tax on $35,000 in Australia? $2,519 in 2026-27 | Tax on $35,000 in Australia (2026-27): $1,820 Tax Plus Medicare | Tax on a $35,000 Salary in Australia (2026-27): $1,820 Income Tax"
+   },
+   "targetQueries": [
+    "tax on 35000 australia",
+    "tax on 36000 australia",
+    "tax 35000"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/35000/",
+   "current": "Tax on $35,000 in Australia: $1,820 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $35,000 in Australia? $2,519 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  },
+  {
+   "id": "ctr-tax-on-55000-25",
+   "level": "ctr",
+   "priority": 18.8,
+   "confidence": 0.64,
+   "rationale": "Jev chose this among 4 candidates for \"55000 after tax australia\" (recognised p=0.83/0.20/0.15 for 55000 after tax australia / 60k after tax / tax on 53000 australia; natural 0.63, honest promise 0.92). Findings that triggered the rewrite: TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ — prefer a cross-link with that anchor over retitling this page; title not recognised for: \"60k after tax\" (90/mo, p=0.14), \"tax on 53000 australia\" (90/mo, p=0.14), \"tax on 54000 australia\" (90/mo, p=0.17), \"tax on 57000 australia",
+   "evidence": {
+    "gsc": {
+     "clicks": 16,
+     "impressions": 2684,
+     "ctr": 0.006,
+     "position": 5.89
+    },
+    "keywords": [
+     {
+      "kw": "55000 after tax australia",
+      "vol": 90,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 39
+     },
+     {
+      "kw": "60k after tax",
+      "vol": 90,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 73
+     },
+     {
+      "kw": "tax on 53000 australia",
+      "vol": 90,
+      "kd": 24,
+      "intent": "informational",
+      "pos": 35
+     },
+     {
+      "kw": "tax on 54000 australia",
+      "vol": 90,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 61
+     },
+     {
+      "kw": "tax on 57000 australia",
+      "vol": 70,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 31
+     }
+    ],
+    "note": "candidates: Tax on $55,000 in Australia 2026-27: $6,845 Tax + $1,100 Medicare | How Much Tax on $55,000 in Australia? $7,945 in 2026-27 | Tax on $55,000 in Australia (2026-27): $6,845 Tax Plus Medicare | Tax on a $55,000 Salary in Australia (2026-27): $6,845 Income Tax"
+   },
+   "targetQueries": [
+    "55000 after tax australia",
+    "60k after tax",
+    "tax on 53000 australia"
+   ],
+   "kind": "rewrite_title",
+   "route": "/tax-on/55000/",
+   "current": "Tax on $55,000 in Australia: $6,845 Income Tax (2026-27)",
+   "proposed": "How Much Tax on $55,000 in Australia? $7,945 in 2026-27",
+   "keepTokens": [
+    "australia"
+   ]
+  },
+  {
+   "id": "schema-austudy-youth-allowance-calculator-26",
+   "level": "schema",
+   "priority": 11.8,
+   "confidence": 0.47,
+   "rationale": "Current opening scored 1.98/3 as a quotable answer for \"youth allowance calculator\"; Jev picked this candidate (citable 2.94/3, defines-subject 0.93, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 19,
+     "impressions": 3160,
+     "ctr": 0.006,
+     "position": 8.9
+    },
+    "keywords": [
+     {
+      "kw": "youth allowance calculator",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "youth allowance estimator",
+      "vol": 2400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is austudy",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 20
+     }
+    ],
+    "note": "was: Youth Allowance pays up to $482.40 a fortnight if you're 18 or older and live at home, and $677.20 if you live away from home; Austudy (25 and over) pays up to $677.20 . Students can earn $539 a fortn"
+   },
+   "targetQueries": [
+    "youth allowance calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/austudy-youth-allowance-calculator/",
+   "proposedLead": "A youth allowance calculation applies the student personal income test to the maximum fortnightly rate: income up to $539 is free, the payment falls 50 cents per dollar from $539 to $646, then by $53.50 plus 60 cents per dollar above $646 [[STUDENT_INCOME_TEST]]. On the 1 January 2026 rates, a student living away from home starts at $677.20 and reaches $0 at $1,697.17 [[YOUTH_ALLOWANCE_STUDENT.publishedCutOff]].",
+   "addPrimarySource": "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get"
+  },
+  {
+   "id": "schema-construction-trades-pay-27",
+   "level": "schema",
+   "priority": 15.3,
+   "confidence": 0.84,
+   "rationale": "Current opening scored 0.63/3 as a quotable answer for \"apprenticeship rates of pay\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.84, no advice/hype p=0.06). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2160,
+     "ctr": 0.0028000000000000004,
+     "position": 12.05
+    },
+    "keywords": [
+     {
+      "kw": "apprenticeship rates of pay",
+      "vol": 1000,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 33
+     },
+     {
+      "kw": "apprentice carpenter wages",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 46
+     },
+     {
+      "kw": "apprentice wages",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 35
+     }
+    ],
+    "note": "was: Construction and trades workers are among Australia's highest-paid blue-collar employees, with qualified tradies earning $65,000 to $120,000+ depending on trade, experience, and overtime. This guide c"
+   },
+   "targetQueries": [
+    "apprenticeship rates of pay"
+   ],
+   "kind": "citation_lead",
+   "route": "/construction-trades-pay/",
+   "proposedLead": "Apprenticeship rates of pay are a percentage of the qualified tradesperson's award rate that steps up each year of the apprenticeship. Under the Electrical award from 1 July 2026 the minimums for a Year 12 completer are 55%, 65%, 70% and 82%, or $17.97, $21.13, $22.71 and $26.50 an hour [[APPRENTICE_ELECTRICIAN]]; adult apprentices aged 21 and over get at least 80% ($25.87 an hour) in first year.",
+   "addPrimarySource": "https://services.fairwork.gov.au/find-my-award"
+  },
+  {
+   "id": "schema-healthcare-worker-pay-nsw-28",
+   "level": "schema",
+   "priority": 25.86,
+   "confidence": 0.16,
+   "rationale": "Current opening scored 1.05/3 as a quotable answer for \"nurse salaries\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.90, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 29,
+     "impressions": 3636,
+     "ctr": 0.008,
+     "position": 12.99
+    },
+    "keywords": [
+     {
+      "kw": "nurse salaries",
+      "vol": 3600,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 77
+     },
+     {
+      "kw": "nurses salaries",
+      "vol": 3600,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 76
+     },
+     {
+      "kw": "nurses salary",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 77
+     }
+    ],
+    "note": "was: NSW nurses and midwives in the public health system are paid under a state award made by the Industrial Relations Commission of New South Wales, not under a Fair Work agreement. The award runs registe"
+   },
+   "targetQueries": [
+    "nurse salaries"
+   ],
+   "kind": "citation_lead",
+   "route": "/healthcare-worker-pay/nsw/",
+   "proposedLead": "NSW nurse salaries are weekly award rates, published by NSW Health, multiplied by 52. On the rates in force from 1 July 2026, registered nurses and midwives earn $81,468 to $114,379 a year across Years 1 to 8 [[registeredNurseRange]], clinical nurse consultants from $143,083, and enrolled nurses $74,755 to $83,715 [[NURSING_PAY_BY_STATE.nsw]]. Every pay point is listed below.",
+   "addPrimarySource": "https://www.health.nsw.gov.au/careers/conditions/Awards/nurses.PDF"
+  },
+  {
+   "id": "schema-gross-pay-calculator-29",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.33,
+   "rationale": "Current opening scored 2.74/3 as a quotable answer for \"estimating net pay\"; Jev picked this candidate (citable 2.82/3, defines-subject 0.96, no advice/hype p=0.11). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 10,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "estimating net pay",
+      "vol": 6600,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "net income calculator",
+      "vol": 6600,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 54
+     },
+     {
+      "kw": "net pay calculator",
+      "vol": 5400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 40
+     }
+    ],
+    "note": "was: To take home $1,500 a week you need a gross salary of $100,763 a year in FY 2026-27 , before 12% super."
+   },
+   "targetQueries": [
+    "estimating net pay"
+   ],
+   "kind": "citation_lead",
+   "route": "/gross-pay-calculator/",
+   "proposedLead": "A gross pay calculator reverses the usual net pay estimate: it starts from a target take-home amount and finds the annual gross salary that produces it under the 2026-27 tax brackets [[TAX_BRACKETS_2026_27]] and the 2% Medicare levy [[MEDICARE_LEVY.rate]]. A $1,500 weekly net target needs $100,763 gross a year [[grossFromNet]], about $1,938 a week before tax. Employer super of 12% is paid on top of that gross figure.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+  },
+  {
+   "id": "schema-healthcare-worker-pay-qld-30",
+   "level": "schema",
+   "priority": 14.219999999999999,
+   "confidence": 0.48,
+   "rationale": "Current opening scored 0.56/3 as a quotable answer for \"nurse income\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.91, no advice/hype p=0.06). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1982,
+     "ctr": 0.003,
+     "position": 13.11
+    },
+    "keywords": [
+     {
+      "kw": "nurse income",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "nurse wage qld",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "nurse wages qld",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 27
+     }
+    ],
+    "note": "was: Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse gr"
+   },
+   "targetQueries": [
+    "nurse income"
+   ],
+   "kind": "citation_lead",
+   "route": "/healthcare-worker-pay/qld/",
+   "proposedLead": "Queensland Health nurse pay is set by the Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025 and published per annum, per fortnight and per hour for every pay point. On the rates effective 1 April 2026, a registered nurse or midwife (Nurse Grade 5) earns $83,872 to $112,607 a year [[registeredNurseRange]], from $42.30 an hour, before shift penalties.",
+   "addPrimarySource": "https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing"
+  },
+  {
+   "id": "schema-fringe-benefits-tax-31",
+   "level": "schema",
+   "priority": 11.85,
+   "confidence": 0.66,
+   "rationale": "Current opening scored 0.41/3 as a quotable answer for \"fbt year\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.75, no advice/hype p=0.04). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 4,
+     "impressions": 1595,
+     "ctr": 0.0025,
+     "position": 24.04
+    },
+    "keywords": [
+     {
+      "kw": "fbt year",
+      "vol": 1600,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 47
+     },
+     {
+      "kw": "fringe benefit tax year",
+      "vol": 1600,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 59
+     },
+     {
+      "kw": "fringe benefits tax calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 41
+     }
+    ],
+    "note": "was: What FBT is, how the Australian tax system calculates fringe benefits, which benefits are exempt, current FBT rates and thresholds, and how reportable fringe benefits affect your take-home pay and tax"
+   },
+   "targetQueries": [
+    "fbt year"
+   ],
+   "kind": "citation_lead",
+   "route": "/fringe-benefits-tax/",
+   "proposedLead": "The FBT year runs from 1 April to 31 March [[FBT.yearStart]], not the 1 July to 30 June income year, and fringe benefits tax is paid by employers, not employees, on non-cash benefits. The rate for the FBT year ending 31 March 2026 is 47% [[FBT.rate]], applied to the taxable value grossed up by 2.0802 (Type 1, GST-creditable) or 1.8868 (Type 2) [[FBT.grossUpType1]]. Returns are due 21 May, or 25 June via a tax agent.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds"
+  },
+  {
+   "id": "schema-healthcare-worker-pay-sa-32",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.63,
+   "rationale": "Current opening scored 1.66/3 as a quotable answer for \"nurse salary south australia\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.85, no advice/hype p=0.04). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 3,
+     "impressions": 781,
+     "ctr": 0.0038,
+     "position": 11.01
+    },
+    "keywords": [
+     {
+      "kw": "nurse salary south australia",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 47
+     },
+     {
+      "kw": "nurses pay rates sa",
+      "vol": 480,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 33
+     },
+     {
+      "kw": "nursing pay rates sa",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 30
+     }
+    ],
+    "note": "was: South Australian public sector nurses and midwives are paid under the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025. The figures"
+   },
+   "targetQueries": [
+    "nurse salary south australia"
+   ],
+   "kind": "citation_lead",
+   "route": "/healthcare-worker-pay/sa/",
+   "proposedLead": "A registered nurse's salary in South Australia on SA Health's public sector scale runs from $74,831 a year at the first increment to $102,103 at the ninth [[SA_NURSING_PAY]], as printed in the Nursing/Midwifery (SA Public Sector) Enterprise Agreement 2022 from 1 January 2025. Those base figures exclude shift and weekend loadings; current pay is 4% higher after the January 2026 administrative increase.",
+   "addPrimarySource": "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/about+us/about+sa+health/our+workforce/enterprise+bargaining/nursing+and+midwifery+enterprise+agreement"
+  },
+  {
+   "id": "schema-healthcare-worker-pay-vic-33",
+   "level": "schema",
+   "priority": 23.15,
+   "confidence": 0.77,
+   "rationale": "Current opening scored 0.86/3 as a quotable answer for \"nurse salary\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.89, no advice/hype p=0.04). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 29,
+     "impressions": 3175,
+     "ctr": 0.0091,
+     "position": 11.48
+    },
+    "keywords": [
+     {
+      "kw": "nurse salary",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 77
+     },
+     {
+      "kw": "nursing salary",
+      "vol": 3600,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 76
+     },
+     {
+      "kw": "salary nurse",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 78
+     }
+    ],
+    "note": "was: Victorian public health nurses and midwives are covered by a single interest employer agreement approved by the Fair Work Commission — federal, unlike the NSW and Queensland state instruments. Victori"
+   },
+   "targetQueries": [
+    "nurse salary"
+   ],
+   "kind": "citation_lead",
+   "route": "/healthcare-worker-pay/vic/",
+   "proposedLead": "A Victorian public sector nurse's salary is set by the Nurses and Midwives (Victorian Public Sector) Single Interest Employer Agreement 2024-2028, approved by the Fair Work Commission. On the rates effective from 11 May 2026, a Registered Nurse Grade 2 earns $84,188 a year at Year 1 and $107,510 at Year 8 [[registeredNurseRange]], from $42.61 an hour; a further 1.06% rise applies from 30 November 2026.",
+   "addPrimarySource": "https://www.fwc.gov.au/document-view/agreements/nurses-and-midwives-victorian-public-sector-single-interest-employer"
+  },
+  {
+   "id": "schema-healthcare-worker-pay-34",
+   "level": "schema",
+   "priority": 6.639999999999999,
+   "confidence": 0.73,
+   "rationale": "Current opening scored 0.34/3 as a quotable answer for \"nurse pay calculator\"; Jev picked this candidate (citable 2.94/3, defines-subject 0.85, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 11,
+     "impressions": 1004,
+     "ctr": 0.011000000000000001,
+     "position": 8.86
+    },
+    "keywords": [
+     {
+      "kw": "nurse pay calculator",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 47
+     },
+     {
+      "kw": "nurse paycheck calculator",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "nurse salary calculator",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 62
+     }
+    ],
+    "note": "was: Healthcare is one of Australia's largest employers. From registered nurses to specialists, pay varies widely based on classification, experience, shift patterns, and whether you work in the public or "
+   },
+   "targetQueries": [
+    "nurse pay calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/healthcare-worker-pay/",
+   "proposedLead": "A nurse's pay in Australia depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from $74,831 a year in SA to $84,188 in Victoria, and the top of the base scale from $102,103 to $115,682 [[registeredNurseRange]], before shift penalties. The Nurses Award 2020 floor is $32.09 an hour from 1 July 2026 [[NURSES_AWARD]].",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000034.html"
+  },
+  {
+   "id": "schema-final-pay-calculator-35",
+   "level": "schema",
+   "priority": 9.02,
+   "confidence": 0.08,
+   "rationale": "Current opening scored 0.40/3 as a quotable answer for \"calculate termination pay\"; Jev picked this candidate (citable 2.89/3, defines-subject 0.94, no advice/hype p=0.08). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 31,
+     "impressions": 1302,
+     "ctr": 0.023799999999999998,
+     "position": 8.04
+    },
+    "keywords": [
+     {
+      "kw": "calculate termination pay",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 59
+     },
+     {
+      "kw": "termination pay calculation",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     },
+     {
+      "kw": "calculate final pay",
+      "vol": 170,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 38
+     }
+    ],
+    "note": "was: Calculate your total final pay when leaving a job. Includes unused annual leave payout with loading, notice period pay, long service leave, and estimated tax on your final payment."
+   },
+   "targetQueries": [
+    "calculate termination pay"
+   ],
+   "kind": "citation_lead",
+   "route": "/final-pay-calculator/",
+   "proposedLead": "Termination pay (final pay) in Australia is the sum of outstanding wages, unused annual leave, any notice paid in lieu, long service leave and, if the role is made redundant, redundancy pay. Unused annual leave is paid at (annual salary ÷ 260) × leave days, plus 17.5% leave loading [[COMMON_LEAVE_LOADING]] where the award requires it, taxed at the marginal rate in 2026-27; most awards require payment within 7 days.",
+   "addPrimarySource": "https://www.fairwork.gov.au/ending-employment/final-pay"
+  },
+  {
+   "id": "schema-fortnightly-tax-table-36",
+   "level": "schema",
+   "priority": 100,
+   "confidence": 0.51,
+   "rationale": "Current opening scored 2.35/3 as a quotable answer for \"fortnightly tax table\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.90, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ],
+    "note": "was: Enter your fortnightly earnings to see the tax withheld under the ATO fortnightly tax table. For 2026-27 , $2,000 a fortnight with the tax-free threshold claimed has $276 withheld ( $1,724 take-home)."
+   },
+   "targetQueries": [
+    "fortnightly tax table"
+   ],
+   "kind": "citation_lead",
+   "route": "/fortnightly-tax-table/",
+   "proposedLead": "The fortnightly tax table (ATO NAT 1006) sets the PAYG amount an employer withholds from each fortnight's pay in 2026-27. For $2,000 a fortnight with the tax-free threshold claimed, $276 is withheld [[calculatePAYGWithholding]], leaving $1,724 take-home. The table below lists the amount to withhold in $100 steps, with and without the threshold.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly"
+  },
+  {
+   "id": "schema-income-tax-calculator-37",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.82,
+   "rationale": "Current opening scored 1.09/3 as a quotable answer for \"ato tax rates 2025-26\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.82, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 8,
+     "impressions": 1167,
+     "ctr": 0.0069,
+     "position": 9.95
+    },
+    "keywords": [
+     {
+      "kw": "ato tax rates 2025-26",
+      "vol": 1000,
+      "kd": 32,
+      "intent": "informational",
+      "pos": 87
+     },
+     {
+      "kw": "tax rates australia 2026-27",
+      "vol": 880,
+      "kd": 32,
+      "intent": "commercial",
+      "pos": 90
+     },
+     {
+      "kw": "income tax calculator 2026",
+      "vol": 480,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 64
+     }
+    ],
+    "note": "was: Work out exactly how much income tax you pay on any annual, monthly, fortnightly or weekly income using the official ATO rates for FY 2026-27 — including the new 15% bracket that started on 1 July 202"
+   },
+   "targetQueries": [
+    "ato tax rates 2025-26"
+   ],
+   "kind": "citation_lead",
+   "route": "/income-tax-calculator/",
+   "proposedLead": "The ATO tax rates for 2025-26 were 0% to $18,200, 16% to $45,000, 30% to $135,000, 37% to $190,000 and 45% above [[TAX_BRACKETS_2025_26]]; from 1 July 2026 the 16% bracket became 15% [[TAX_BRACKETS_2026_27]], with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the 2% Medicare levy and subtracts up to $700 of Low Income Tax Offset [[LITO.maxOffset]].",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+  },
+  {
+   "id": "schema-leave-calculator-38",
+   "level": "schema",
+   "priority": 49.72,
+   "confidence": 0.56,
+   "rationale": "Current opening scored 0.96/3 as a quotable answer for \"annual leave calculation\"; Jev picked this candidate (citable 2.94/3, defines-subject 0.91, no advice/hype p=0.13). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5932,
+     "ctr": 0.0083,
+     "position": 9.82
+    },
+    "keywords": [
+     {
+      "kw": "annual leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 71
+     },
+     {
+      "kw": "annual leave calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "annual.leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     }
+    ],
+    "note": "was: Work out your 17.5% annual leave loading and what your leave payout is actually worth. Calculate pro-rata accrual, leave loading, and the tax on lump-sum payouts using FY 2026-27 Australian rates."
+   },
+   "targetQueries": [
+    "annual leave calculation"
+   ],
+   "kind": "citation_lead",
+   "route": "/leave-calculator/",
+   "proposedLead": "An annual leave calculation is 4 weeks of paid leave per year of continuous full-time service under the NES [[EMPLOYMENT.annualLeaveWeeks]], accrued at 2.923 hours per 38-hour week and pro rata for part-time hours. Casuals accrue none and receive a 25% loading instead [[EMPLOYMENT.casualLoading]]. The calculator applies 2026-27 rates and adds 17.5% leave loading [[COMMON_LEAVE_LOADING]] where it applies.",
+   "addPrimarySource": "https://www.fairwork.gov.au/leave/annual-leave"
+  },
+  {
+   "id": "schema-medicare-levy-39",
+   "level": "schema",
+   "priority": 9.379999999999999,
+   "confidence": 0.47,
+   "rationale": "Current opening scored 1.96/3 as a quotable answer for \"medicare levy calculator\"; Jev picked this candidate (citable 2.96/3, defines-subject 0.94, no advice/hype p=0.08). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 7,
+     "impressions": 2898,
+     "ctr": 0.0024,
+     "position": 10.59
+    },
+    "keywords": [
+     {
+      "kw": "medicare levy calculator",
+      "vol": 4400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "medicare levy surcharge calculator",
+      "vol": 2900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 29
+     },
+     {
+      "kw": "ato medicare levy calculator",
+      "vol": 210,
+      "kd": 28,
+      "intent": "informational",
+      "pos": 58
+     }
+    ],
+    "note": "was: The Medicare levy is 2% of your taxable income — but not from the first dollar. Below $28,011 you pay nothing, and between $28,011 and $35,013 you pay 10% of the excess instead. Work out your exact le"
+   },
+   "targetQueries": [
+    "medicare levy calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/medicare-levy/",
+   "proposedLead": "A Medicare levy calculation has three bands: no levy at or under $28,011 of taxable income, a shade-in of 10% of the amount over $28,011 up to $35,013, and 2% of the whole income above $35,013 [[MEDICARE_LEVY]]. Families get a higher threshold of $47,238 plus $4,338 per dependent child [[MEDICARE_LEVY.familyThreshold]]. These are the 2025-26 thresholds, the latest the ATO has published.",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
+  },
+  {
+   "id": "schema-non-resident-tax-40",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.65,
+   "rationale": "Current opening scored 1.37/3 as a quotable answer for \"non resident tax rate\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.90, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1102,
+     "ctr": 0.0054,
+     "position": 12.36
+    },
+    "keywords": [
+     {
+      "kw": "non resident tax rate",
+      "vol": 1000,
+      "kd": 27,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "non resident tax rates",
+      "vol": 1000,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 36
+     },
+     {
+      "kw": "non-resident tax rates",
+      "vol": 1000,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 36
+     }
+    ],
+    "note": "was: Tax rates for foreign residents working in Australia: no tax-free threshold, no LITO, and different brackets. See a side-by-side comparison with resident rates."
+   },
+   "targetQueries": [
+    "non resident tax rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/non-resident-tax/",
+   "proposedLead": "The non-resident tax rate in Australia is 30% on every dollar of Australian-sourced income up to $135,000, then 37% to $190,000 and 45% above, for 2026-27 [[NON_RESIDENT_TAX_BRACKETS]]. Unlike residents, foreign residents get no $18,200 tax-free threshold [[TAX_FREE_THRESHOLD]] and no 15% bracket, but they are not charged the 2% Medicare levy. The rates were unchanged by the 1 July 2026 resident tax cut.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents"
+  },
+  {
+   "id": "schema-hospitality-award-rates-41",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.22,
+   "rationale": "Current opening scored 1.01/3 as a quotable answer for \"hospitality award\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.69, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ],
+    "note": "was: Every classification rate under the Hospitality Industry (General) Award 2020 ( MA000009 ) — cafes, restaurants, pubs, clubs and hotels — operative from 1 July 2026 ."
+   },
+   "targetQueries": [
+    "hospitality award"
+   ],
+   "kind": "citation_lead",
+   "route": "/hospitality-award-rates/",
+   "proposedLead": "The hospitality award is the Hospitality Industry (General) Award 2020 (MA000009), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For 2026-27 its adult minimums are $25.74 an hour at introductory level, $26.44 at level 1 and $32.13 at level 6 [[HOSPITALITY_RATES]], operative from the first full pay period on or after 1 July 2026. Evening and night work add a flat cash amount.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000009.html"
+  },
+  {
+   "id": "schema-junior-pay-rates-42",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.53,
+   "rationale": "Current opening scored 0.31/3 as a quotable answer for \"minimum wages for 18 year olds in australia\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.62, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "minimum wages for 18 year olds in australia",
+      "vol": 1600,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 31
+     },
+     {
+      "kw": "what is minimum wage in australia for 15 year olds",
+      "vol": 880,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "youth worker pay rate",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     }
+    ],
+    "note": "was: What under- 21 s must legally be paid in Australia, for the National Minimum Wage and for the awards that cover most young workers."
+   },
+   "targetQueries": [
+    "minimum wages for 18 year olds in australia"
+   ],
+   "kind": "citation_lead",
+   "route": "/junior-pay-rates/",
+   "proposedLead": "The minimum wage for an 18-year-old in Australia with no award is $18.06 an hour from 1 July 2026, or $22.58 an hour as a casual [[FWO_PUBLISHED_JUNIOR_RATES]], which is 68.3% of the $26.44 National Minimum Wage [[NMW.hourly]]. Junior rates apply to workers under 21 [[ADULT_AGE]]; in retail, fast food and hospitality a different percentage applies to that award's own base rate.",
+   "addPrimarySource": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates"
+  },
+  {
+   "id": "schema-minimum-wage-history-australia-43",
+   "level": "schema",
+   "priority": 31.450000000000003,
+   "confidence": 0.55,
+   "rationale": "Current opening scored 0.19/3 as a quotable answer for \"minimum wage rate australia\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.84, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 65,
+     "impressions": 3335,
+     "ctr": 0.0195,
+     "position": 9.95
+    },
+    "keywords": [
+     {
+      "kw": "minimum wage rate australia",
+      "vol": 49500,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 96
+     },
+     {
+      "kw": "australian minimum wage annual",
+      "vol": 1900,
+      "kd": 27,
+      "intent": "informational",
+      "pos": 28
+     },
+     {
+      "kw": "minimum wage australia annual",
+      "vol": 1900,
+      "kd": 26,
+      "intent": "informational",
+      "pos": 57
+     }
+    ],
+    "note": "was: The National Minimum Wage for each financial year since 2010-11 , the size of every Annual Wage Review increase, and what drove the big years."
+   },
+   "targetQueries": [
+    "minimum wage rate australia"
+   ],
+   "kind": "citation_lead",
+   "route": "/minimum-wage-history-australia/",
+   "proposedLead": "The National Minimum Wage is the pay floor for adults aged 21 and over not covered by an award or agreement, reset each year by the Fair Work Commission's Annual Wage Review. From 1 July 2026 it is $26.44 an hour, or $1,004.90 for a 38-hour week [[NMW]], a 6.0% rise. The rate has increased every year since 2010-11, when it was $15.00 an hour [[NMW_HISTORY]].",
+   "addPrimarySource": "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions"
+  },
+  {
+   "id": "schema-long-service-leave-calculator-44",
+   "level": "schema",
+   "priority": 6.98,
+   "confidence": 0.62,
+   "rationale": "Current opening scored 0.24/3 as a quotable answer for \"long service leave calculator\"; Jev picked this candidate (citable 2.87/3, defines-subject 0.97, no advice/hype p=0.10). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 9,
+     "impressions": 938,
+     "ctr": 0.0096,
+     "position": 26.49
+    },
+    "keywords": [
+     {
+      "kw": "long service leave calculator",
+      "vol": 6600,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 61
+     },
+     {
+      "kw": "long service leave calculator nsw",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 55
+     },
+     {
+      "kw": "long service leave nsw calculator",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 57
+     }
+    ],
+    "note": "was: Enter your start date and your ordinary weekly pay to see how many weeks of long service leave you have accrued, what you could take now, what would be paid out if the job ended today, and the tax on "
+   },
+   "targetQueries": [
+    "long service leave calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/long-service-leave-calculator/",
+   "proposedLead": "A long service leave calculator works out accrued weeks from a start date and ordinary weekly pay under the state or territory Act that covers the job. The rate is 0.8667 weeks a year in six jurisdictions and 1.3 weeks a year in SA and the NT [[LSL_JURISDICTIONS]]; the qualifying period is 10 years everywhere except Victoria and the ACT, where it is 7 years. Rules were verified against each Act on 28 August 2026.",
+   "addPrimarySource": "https://www.fairwork.gov.au/leave/long-service-leave"
+  },
+  {
+   "id": "schema-mining-fifo-pay-guide-45",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.52,
+   "rationale": "Current opening scored 1.95/3 as a quotable answer for \"fifo jobs pay\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.78, no advice/hype p=0.10). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "fifo jobs pay",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "fifo salary",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 23
+     },
+     {
+      "kw": "fly in fly out salary",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 24
+     }
+    ],
+    "note": "was: Australia's mining sector is one of the highest-paying industries in the country. FIFO (fly-in, fly-out) workers earn between $100,000 and $200,000+ depending on role, roster structure, and allowances"
+   },
+   "targetQueries": [
+    "fifo jobs pay"
+   ],
+   "kind": "citation_lead",
+   "route": "/mining-fifo-pay-guide/",
+   "proposedLead": "FIFO (fly-in, fly-out) jobs pay a base salary plus roster loadings and allowances: the ABS puts average full-time ordinary earnings in mining at $3,224.20 a week, about $167,658 a year (May 2026) [[AWE_BY_INDUSTRY]], against a national average of $108,352 [[AWE_HEADLINE]]. FIFO packages for 2026-27 typically fall between $100,000 and $200,000+ depending on role and roster, taxed on the normal ATO scale.",
+   "addPrimarySource": "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release"
+  },
+  {
+   "id": "schema-notice-of-assessment-46",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.28,
+   "rationale": "Current opening scored 0.93/3 as a quotable answer for \"notice of assessment\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.93, no advice/hype p=0.10). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 2,
+     "impressions": 798,
+     "ctr": 0.0025,
+     "position": 17.03
+    },
+    "keywords": [
+     {
+      "kw": "notice of assessment",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 46
+     },
+     {
+      "kw": "notice of assessment ato",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 40
+     },
+     {
+      "kw": "ato notice of assessment",
+      "vol": 1900,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 37
+     }
+    ],
+    "note": "was: Your Notice of Assessment is the ATO's official statement of your tax calculation. Here's how to read each line, understand what the numbers mean, and what to do if something doesn't look right."
+   },
+   "targetQueries": [
+    "notice of assessment"
+   ],
+   "kind": "citation_lead",
+   "route": "/notice-of-assessment/",
+   "proposedLead": "A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the 2025-26 return, most online lodgements are assessed within 2 weeks [[RETURN_2026.onlineRefundTypical]] and paper returns within 50 business days [[RETURN_2026.paperRefundBusinessDays]].",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return"
+  },
+  {
+   "id": "schema-overtime-pay-calculator-47",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.74,
+   "rationale": "Current opening scored 0.17/3 as a quotable answer for \"over time rate\"; Jev picked this candidate (citable 2.85/3, defines-subject 0.74, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "over time rate",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 38
+     },
+     {
+      "kw": "overtime rates",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 72
+     },
+     {
+      "kw": "calculate overtime",
+      "vol": 390,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 23
+     }
+    ],
+    "note": "was: Calculate your overtime, weekend, and public holiday pay. Enter your base hourly rate, select the penalty multiplier, and see your gross and net overtime earnings after tax."
+   },
+   "targetQueries": [
+    "over time rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/overtime-pay-calculator/",
+   "proposedLead": "The overtime rate in Australia is a multiple of the ordinary hourly rate set by the award or agreement covering the job, most commonly 1.5x for the first two or three hours and 2.0x after that [[PENALTY_TYPES]]; there is no single national overtime rate. Overtime applies beyond 38 ordinary hours a week for full-time staff [[EMPLOYMENT.standardWeeklyHours]] and is taxed at the 2026-27 marginal rates.",
+   "addPrimarySource": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+  },
+  {
+   "id": "schema-parental-leave-pay-48",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.38,
+   "rationale": "Current opening scored 2.97/3 as a quotable answer for \"how much is paid parental leave\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.76, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 1,
+     "impressions": 804,
+     "ctr": 0.0012,
+     "position": 11.7
+    },
+    "keywords": [
+     {
+      "kw": "how much is paid parental leave",
+      "vol": 1600,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 46
+     },
+     {
+      "kw": "parental pay calculator",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 55
+     },
+     {
+      "kw": "parental leave pay 2025",
+      "vol": 390,
+      "kd": 9,
+      "intent": "informational",
+      "pos": 34
+     }
+    ],
+    "note": "was: For a child born or adopted from 1 July 2026 , the government's Paid Parental Leave scheme pays your family up to 130 days ( 26 weeks) of Parental Leave Pay at $200.94 a day ( $1,004.70 a week) before"
+   },
+   "targetQueries": [
+    "how much is paid parental leave"
+   ],
+   "kind": "citation_lead",
+   "route": "/parental-leave-pay/",
+   "proposedLead": "Paid parental leave in Australia is $200.94 a day, or $1,004.70 a week, for 2026-27 [[PPL_RATES]], paid for up to 130 days (26 weeks) for a child born or adopted on or after 1 July 2026 [[PPL_ENTITLEMENT]]. That is the National Minimum Wage rate, taxed as income, with 20 of the days reserved for a partner and a 12% superannuation contribution paid by the ATO [[PPL_RULES.superRate]].",
+   "addPrimarySource": "https://www.servicesaustralia.gov.au/how-much-parental-leave-pay-you-can-get"
+  },
+  {
+   "id": "schema-pay-calculator-vic-49",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.61,
+   "rationale": "Current opening scored 1.07/3 as a quotable answer for \"pay calculator vic\"; Jev picked this candidate (citable 2.85/3, defines-subject 0.94, no advice/hype p=0.10). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1000,
+     "ctr": 0.006,
+     "position": 10.44
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator vic",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "vic salary calculator",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator victoria",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 27
+     }
+    ],
+    "note": "was: Put your salary in and see what actually lands in your account. This wage calculator uses the ATO's 2026-27 rates, then covers the three things that really are different in Victoria: the public holida"
+   },
+   "targetQueries": [
+    "pay calculator vic"
+   ],
+   "kind": "citation_lead",
+   "route": "/pay-calculator-vic/",
+   "proposedLead": "Take-home pay in Victoria is gross salary less federal income tax and the 2% Medicare levy on the ATO 2026-27 rates, with 12% super [[SUPER_GUARANTEE.rate]] paid by the employer on top. State rules sit outside the tax sum: Victorian long service leave is roughly 6.1 weeks after 7 years [[STATE_PROFILES.VIC.longServiceLeave]], and payroll tax of 4.85% above $1,000,000 is paid by employers, not deducted from wages.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+  },
+  {
+   "id": "schema-pay-calculator-nsw-50",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.79,
+   "rationale": "Current opening scored 0.78/3 as a quotable answer for \"pay calculator nsw\"; Jev picked this candidate (citable 2.91/3, defines-subject 0.95, no advice/hype p=0.10). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator nsw",
+      "vol": 5400,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 24
+     },
+     {
+      "kw": "wage calculator nsw",
+      "vol": 5400,
+      "kd": 39,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "salary calculator nsw",
+      "vol": 720,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 23
+     }
+    ],
+    "note": "was: A salary calculator for the 4 million people who work in NSW. Enter your gross pay and see the net figure that should appear on your next payslip, using ATO 2026-27 rates — then check the NSW-only thi"
+   },
+   "targetQueries": [
+    "pay calculator nsw"
+   ],
+   "kind": "citation_lead",
+   "route": "/pay-calculator-nsw/",
+   "proposedLead": "Take-home pay in New South Wales is gross salary less federal income tax and the 2% Medicare levy on the ATO 2026-27 rates, with 12% super [[SUPER_GUARANTEE.rate]] paid by the employer on top. NSW-specific rules sit outside the tax sum: long service leave of 8.67 weeks after 10 years [[STATE_PROFILES.NSW.longServiceLeave]], and payroll tax of 5.45% above $1,200,000 paid by employers, not deducted from wages.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+  },
+  {
+   "id": "schema-retail-award-rates-51",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.54,
+   "rationale": "Current opening scored 0.59/3 as a quotable answer for \"retail award rate\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.68, no advice/hype p=0.06). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ],
+    "note": "was: Every classification rate under the General Retail Industry Award 2020 ( MA000004 ) — shops, supermarkets and retail chains — operative from 1 July 2026 ."
+   },
+   "targetQueries": [
+    "retail award rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/retail-award-rates/",
+   "proposedLead": "The retail award rate for 2026-27 is $27.81 an hour at retail employee level 1, where most shop assistants sit, rising through eight levels to $33.99 an hour at level 8 [[RETAIL_RATES]]. These are the adult minimums under the General Retail Industry Award 2020 (MA000004) from the first full pay period on or after 1 July 2026 [[RETAIL_AWARD.operativeFrom]]; a level 1 casual earns $34.76 an hour, or $48.67 on a Sunday.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000004.html"
+  },
+  {
+   "id": "schema-pay-calculator-wa-52",
+   "level": "schema",
+   "priority": 8.24,
+   "confidence": 0.21,
+   "rationale": "Current opening scored 0.75/3 as a quotable answer for \"aus pay calculator\"; Jev picked this candidate (citable 2.89/3, defines-subject 0.94, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 8,
+     "impressions": 1574,
+     "ctr": 0.0051,
+     "position": 13.37
+    },
+    "keywords": [
+     {
+      "kw": "aus pay calculator",
+      "vol": 22200,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "pay finder",
+      "vol": 2900,
+      "kd": 34,
+      "intent": "navigational",
+      "pos": 70
+     },
+     {
+      "kw": "pay calculator wa",
+      "vol": 1300,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 27
+     }
+    ],
+    "note": "was: WA has the highest full-time earnings of any state. This salary calculator turns that gross figure into the net one using ATO 2026-27 rates — and then covers what is genuinely different in WA: your ow"
+   },
+   "targetQueries": [
+    "aus pay calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/pay-calculator-wa/",
+   "proposedLead": "Take-home pay in Western Australia is gross salary less federal income tax and the 2% Medicare levy, worked out on the ATO 2026-27 rates that apply in every state. Employer super of 12% [[SUPER_GUARANTEE.rate]] is paid on top, and HECS-HELP repayments start at $69,528 [[HECS_HELP.minimumThreshold]]. The average WA full-time adult earns $2,227.40 a week [[STATE_PROFILES.WA.awote.personsFullTime]] (ABS, May 2026).",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+  },
+  {
+   "id": "schema-private-health-insurance-medicare-53",
+   "level": "schema",
+   "priority": 11.25,
+   "confidence": 0.64,
+   "rationale": "Current opening scored 0.16/3 as a quotable answer for \"do you pay medicare levy if you have private health\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.67, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 1,
+     "impressions": 1285,
+     "ctr": 0.0008,
+     "position": 60.84
+    },
+    "keywords": [
+     {
+      "kw": "do you pay medicare levy if you have private health",
+      "vol": 480,
+      "kd": 12,
+      "intent": "informational",
+      "pos": 68
+     },
+     {
+      "kw": "private health insurance for tax",
+      "vol": 260,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 73
+     },
+     {
+      "kw": "private health insurance rebate calculator",
+      "vol": 260,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 58
+     }
+    ],
+    "note": "was: Should you get private hospital cover to avoid the Medicare levy surcharge? How the surcharge and the private health insurance rebate interact, how to find the premium at which cover pays for itself, "
+   },
+   "targetQueries": [
+    "do you pay medicare levy if you have private health"
+   ],
+   "kind": "citation_lead",
+   "route": "/private-health-insurance-medicare/",
+   "proposedLead": "Private health insurance does not remove the 2% Medicare levy [[MEDICARE_LEVY.rate]], which every resident taxpayer above the low-income threshold pays; it only exempts the holder from the Medicare levy surcharge. The surcharge for 2026-27 [[MLS_INCOME_YEAR]] is 1%, 1.25% or 1.5% of income for singles earning over $105,000 or families over $210,000 [[MEDICARE_LEVY.surcharge]] who have no eligible hospital cover.",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge"
+  },
+  {
+   "id": "schema-redundancy-pay-calculator-54",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.67,
+   "rationale": "Current opening scored 2.32/3 as a quotable answer for \"redundancy calculator\"; Jev picked this candidate (citable 2.90/3, defines-subject 0.96, no advice/hype p=0.08). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 5,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "redundancy calculator",
+      "vol": 5400,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 57
+     },
+     {
+      "kw": "redundancy pay calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "redundancy payment calculation table",
+      "vol": 5400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 25
+     }
+    ],
+    "note": "was: Enter your base salary and completed years of service to see your National Employment Standards redundancy pay, the 2026-27 tax-free limit of $13,598 plus $6,801 per year, and what you take home. The "
+   },
+   "targetQueries": [
+    "redundancy calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/redundancy-pay-calculator/",
+   "proposedLead": "A redundancy calculator applies the National Employment Standards scale, weeks of base pay by completed years of continuous service, 4 weeks at 1 year rising to 16 weeks at 9 years and 12 weeks from 10 years [[NES_REDUNDANCY_SCALE]], then the 2026-27 tax-free limit of $13,598 plus $6,801 per year [[REDUNDANCY_TAX_2026_27]]. Amounts above the limit are taxed as an employment termination payment [[ETP_RATES]].",
+   "addPrimarySource": "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements"
+  },
+  {
+   "id": "schema-retail-hospitality-pay-guide-55",
+   "level": "schema",
+   "priority": 2.79,
+   "confidence": 0.64,
+   "rationale": "Current opening scored 0.39/3 as a quotable answer for \"hospitality award rate qld\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.64, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 3,
+     "impressions": 669,
+     "ctr": 0.0045000000000000005,
+     "position": 19.93
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award rate qld",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "hospitality pay rate",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "hospitality pay rates",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     }
+    ],
+    "note": "was: Retail and hospitality are two of Australia's largest employing industries. Both industries are governed by Modern Awards that set minimum pay rates, casual loading, penalty rates, and working conditi"
+   },
+   "targetQueries": [
+    "hospitality award rate qld"
+   ],
+   "kind": "citation_lead",
+   "route": "/retail-hospitality-pay-guide/",
+   "proposedLead": "The hospitality award rate is the same in Queensland as in every other state, because the Hospitality Industry (General) Award 2020 (MA000009) is federal: its adult level 1 rate is $26.44 an hour from 1 July 2026 [[HOSPITALITY_RATES]], or $33.05 for a casual. Retail workers are covered by the General Retail Industry Award (MA000004), where level 1 is $27.81 an hour [[RETAIL_RATES]]. Both add weekend penalties.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000009.html"
+  },
+  {
+   "id": "schema-salary-sacrifice-calculator-56",
+   "level": "schema",
+   "priority": 31.47,
+   "confidence": 0.12,
+   "rationale": "Current opening scored 0.26/3 as a quotable answer for \"tax calculator with salary sacrifice\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.93, no advice/hype p=0.14). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 23,
+     "impressions": 3407,
+     "ctr": 0.0068000000000000005,
+     "position": 5.54
+    },
+    "keywords": [
+     {
+      "kw": "tax calculator with salary sacrifice",
+      "vol": 110,
+      "kd": 33,
+      "intent": "informational",
+      "pos": 67
+     },
+     {
+      "kw": "salary sacrifice pay calculator",
+      "vol": 90,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "pay calculator with salary sacrifice",
+      "vol": 70,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 35
+     }
+    ],
+    "note": "was: Compare your take-home pay before and after salary sacrifice. See the exact tax savings, super boost, and net benefit of sacrificing part of your pre-tax salary into superannuation for FY 2026-27 ."
+   },
+   "targetQueries": [
+    "tax calculator with salary sacrifice"
+   ],
+   "kind": "citation_lead",
+   "route": "/salary-sacrifice-calculator/",
+   "proposedLead": "Tax with salary sacrifice is calculated on taxable income after the sacrificed amount is removed: $100,000 with $10,000 sacrificed is taxed as $90,000, and the $10,000 goes to super less 15% contributions tax [[CONTRIBUTIONS_TAX_RATE]]. For 2026-27 that leaves take-home pay $6,800 lower while $10,000 is contributed, a net tax saving of $3,200 [[calculatePayBreakdown]]. The calculator shows both pays side by side.",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super"
+  },
+  {
+   "id": "schema-sapto-calculator-57",
+   "level": "schema",
+   "priority": 10.440000000000001,
+   "confidence": 0.29,
+   "rationale": "Current opening scored 1.94/3 as a quotable answer for \"sapto\"; Jev picked this candidate (citable 2.97/3, defines-subject 0.91, no advice/hype p=0.06). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 34,
+     "impressions": 2984,
+     "ctr": 0.011399999999999999,
+     "position": 11.58
+    },
+    "keywords": [
+     {
+      "kw": "sapto",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "sapto eligibility",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "seniors and pensioners tax offset",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 35
+     }
+    ],
+    "note": "was: The seniors and pensioners tax offset (SAPTO) is worth up to $2,230 if you are single and $1,602 for each partner of a couple. Work out your exact entitlement below, including the half-of-combined-inc"
+   },
+   "targetQueries": [
+    "sapto"
+   ],
+   "kind": "citation_lead",
+   "route": "/sapto-calculator/",
+   "proposedLead": "SAPTO, the seniors and pensioners tax offset, is a non-refundable offset for people who receive an Australian Government pension or allowance or who qualify for the Age Pension without claiming it. For 2025-26 [[SAPTO_INCOME_YEAR]] the maximum is $2,230 single and $1,602 for each partner of a couple [[SAPTO_BANDS]], reducing by 12.5 cents per dollar of rebate income above $34,919 or $30,994 [[SAPTO_REDUCTION_RATE]].",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/seniors-and-pensioners-tax-offset"
+  },
+  {
+   "id": "schema-schads-award-pay-rates-58",
+   "level": "schema",
+   "priority": 55.040000000000006,
+   "confidence": 0.54,
+   "rationale": "Current opening scored 0.72/3 as a quotable answer for \"schads\"; Jev picked this candidate (citable 2.91/3, defines-subject 0.64, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 60,
+     "impressions": 6224,
+     "ctr": 0.0096,
+     "position": 9.77
+    },
+    "keywords": [
+     {
+      "kw": "schads",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 82
+     },
+     {
+      "kw": "schads award 2025",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 36
+     },
+     {
+      "kw": "schads award pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     }
+    ],
+    "note": "was: Every current classification rate under the Social, Community, Home Care and Disability Services Industry Award 2010 ( MA000100 ) — social and community services, home care and disability support — op"
+   },
+   "targetQueries": [
+    "schads"
+   ],
+   "kind": "citation_lead",
+   "route": "/schads-award-pay-rates/",
+   "proposedLead": "SCHADS is the short name for the Social, Community, Home Care and Disability Services Industry Award 2010 (MA000100). Its 2026-27 rates apply from 1 July 2026: Level 1 pay point 1 is $27.55 an hour and Level 8 pay point 3 is $71.19 an hour [[SCHADS_SACS]], with casuals paid 25% more [[schadsCasualHourly]]. Every pay point in the social and community services and home care streams is listed below.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000100.html"
+  },
+  {
+   "id": "schema-schedule-5-tax-table-59",
+   "level": "schema",
+   "priority": 32.9,
+   "confidence": 0.41,
+   "rationale": "Current opening scored 1.41/3 as a quotable answer for \"payg on schedule 5\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.94, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 35,
+     "impressions": 4700,
+     "ctr": 0.0074,
+     "position": 7.86
+    },
+    "keywords": [
+     {
+      "kw": "payg on schedule 5",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "payg schedule 5",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "ato schedule 5",
+      "vol": 70,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 10
+     }
+    ],
+    "note": "was: Schedule 5 — published by the ATO as NAT 3348 — is the tax table employers use to withhold PAYG from bonuses, commissions and back payments. Instead of taxing the lump sum like a normal pay, it spread"
+   },
+   "targetQueries": [
+    "payg on schedule 5"
+   ],
+   "kind": "citation_lead",
+   "route": "/schedule-5-tax-table/",
+   "proposedLead": "The Schedule 5 tax table is the ATO schedule (NAT 3348) employers use to withhold PAYG from bonuses, commissions and back pay in 2026-27. There is no flat bonus tax rate: the payment is spread across 26 fortnights or 52 weeks so withholding tracks the employee's marginal rate, with a 47% ceiling [[SCHEDULE_5_WITHHOLDING_LIMIT]]. On $2,000 a fortnight, a $1,000 bonus attracts $312 [[calculateSchedule5MethodB]].",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+  },
+  {
+   "id": "schema-second-job-tax-calculator-60",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.31,
+   "rationale": "Current opening scored 0.79/3 as a quotable answer for \"2nd job tax rate\"; Jev picked this candidate (citable 2.85/3, defines-subject 0.90, no advice/hype p=0.16). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "2nd job tax rate",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 8
+     },
+     {
+      "kw": "second job tax rate",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "second job tax rates",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 8
+     }
+    ],
+    "note": "was: Calculate the tax impact of working two jobs. See why your second job appears to be taxed more, how PAYG withholding works without the tax-free threshold, and your estimated refund at tax time."
+   },
+   "targetQueries": [
+    "2nd job tax rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/second-job-tax-calculator/",
+   "proposedLead": "There is no separate tax rate for a second job in Australia: income from both jobs is added together and taxed once at the 2026-27 marginal rates. What differs is withholding, because the second employer uses the ATO's no-tax-free-threshold scale [[SCALE_1_NO_TFT]], which takes $180 (18.0%) from a $1,000 fortnight [[withholdingForPeriod]] instead of applying the $18,200 threshold twice. Over-withholding is refunded.",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+  },
+  {
+   "id": "schema-stsl-on-payslip-61",
+   "level": "schema",
+   "priority": 9.030000000000001,
+   "confidence": 0.44,
+   "rationale": "Current opening scored 1.15/3 as a quotable answer for \"stsl on payslip\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.95, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 2053,
+     "ctr": 0.0029,
+     "position": 7.33
+    },
+    "keywords": [
+     {
+      "kw": "stsl on payslip",
+      "vol": 720,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 21
+     },
+     {
+      "kw": "what is stsl on payslip",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "what is stsl",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 25
+     }
+    ],
+    "note": "was: STSL stands for Study and Training Support Loans . On your payslip, STSL is the extra tax your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Stud"
+   },
+   "targetQueries": [
+    "stsl on payslip"
+   ],
+   "kind": "citation_lead",
+   "route": "/stsl-on-payslip/",
+   "proposedLead": "STSL on a payslip stands for Study and Training Support Loans: the extra PAYG amount an employer withholds each pay toward the compulsory repayment of a HECS-HELP, FEE-HELP, VET Student Loan or other government study loan. For 2026-27 withholding starts once earnings pass $69,528 a year [[HECS_HELP.minimumThreshold]], about $1,337 a week or $2,674 a fortnight, at 15 cents per dollar above the threshold [[HECS_HELP]].",
+   "addPrimarySource": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds"
+  },
+  {
+   "id": "schema-superannuation-guide-62",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.86,
+   "rationale": "Current opening scored 2.11/3 as a quotable answer for \"superannuation rate\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.86, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 3,
+     "impressions": 1660,
+     "ctr": 0.0018,
+     "position": 43.22
+    },
+    "keywords": [
+     {
+      "kw": "superannuation rate",
+      "vol": 12100,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 81
+     },
+     {
+      "kw": "super rate australia",
+      "vol": 2400,
+      "kd": 8,
+      "intent": "commercial",
+      "pos": 75
+     },
+     {
+      "kw": "superannuation percentage in australia",
+      "vol": 2400,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 46
+     }
+    ],
+    "note": "was: Everything you need to know about the mandatory 12% retirement system, Payday Super, contribution caps, and how super affects your take-home pay."
+   },
+   "targetQueries": [
+    "superannuation rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/superannuation-guide/",
+   "proposedLead": "The superannuation rate for 2026-27 is 12% [[SUPER_GUARANTEE.rate]], the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to $270,830 a year [[SUPER_GUARANTEE.maxContributionBaseAnnual]]. Under Payday Super, in force since 1 July 2026, it is due within 7 business days of each pay rather than quarterly. Contributions are taxed at 15% in the fund.",
+   "addPrimarySource": "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay"
+  },
+  {
+   "id": "schema-ytd-income-calculator-63",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.71,
+   "rationale": "Current opening scored 2.31/3 as a quotable answer for \"year to date calculator\"; Jev picked this candidate (citable 2.61/3, defines-subject 0.95, no advice/hype p=0.11). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 4
+    },
+    "keywords": [
+     {
+      "kw": "year to date calculator",
+      "vol": 2900,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 45
+     },
+     {
+      "kw": "year-to date calculator",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 38
+     },
+     {
+      "kw": "ytd calculator",
+      "vol": 2900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 51
+     }
+    ],
+    "note": "was: Year to date (YTD) income is everything you have earned since 1 July, the start of the Australian financial year, up to your latest payslip. Use this YTD calculator to add up your year-to-date gross p"
+   },
+   "targetQueries": [
+    "year to date calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/ytd-income-calculator/",
+   "proposedLead": "A year to date calculator adds up gross pay from 1 July to the latest payslip, or converts that YTD figure into a projected annual salary: projected income = (YTD gross / pays received) x pays per year, with 52 weekly, 26 fortnightly or 12 monthly pays in the 2026-27 financial year [[PAY_PERIODS]]. Tax on the projected figure follows the ATO 2026-27 scale [[calculatePayBreakdown]].",
+   "addPrimarySource": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+  },
+  {
+   "id": "schema-tax-calendar-64",
+   "level": "schema",
+   "priority": 3.87,
+   "confidence": 0.63,
+   "rationale": "Current opening scored 0.13/3 as a quotable answer for \"tax week\"; Jev picked this candidate (citable 2.91/3, defines-subject 0.63, no advice/hype p=0.08). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 2,
+     "impressions": 517,
+     "ctr": 0.0039000000000000003,
+     "position": 28.53
+    },
+    "keywords": [
+     {
+      "kw": "tax week",
+      "vol": 1000,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 51
+     },
+     {
+      "kw": "tax weekend",
+      "vol": 1000,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "taxes year",
+      "vol": 1000,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 55
+     }
+    ],
+    "note": "was: Every key tax date from 1 July 2026 to 30 June 2027 : when your 2025-26 tax return is due, quarterly BAS and PAYG instalments, STP finalisation, and how super deadlines work now that Payday Super has "
+   },
+   "targetQueries": [
+    "tax week"
+   ],
+   "kind": "citation_lead",
+   "route": "/tax-calendar/",
+   "proposedLead": "A tax week in Australia is one of the 52 weeks of the financial year, which for 2026-27 runs from 1 July 2026 to 30 June 2027 [[CALENDAR_YEAR]]. Within that year the 2025-26 tax return is due 31 October 2026, accepted on 2 November 2026 as the next business day [[RETURN_DATES_2026.selfLodge]], or 15 May 2027 for most tax agent clients [[RETURN_2026]]; super is due within 7 business days of each payday.",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+  },
+  {
+   "id": "schema-overtime-penalty-rates-guide-65",
+   "level": "schema",
+   "priority": 12.09,
+   "confidence": 0.71,
+   "rationale": "Current opening scored 0.47/3 as a quotable answer for \"overtime pay rates\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.82, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 5,
+     "impressions": 1679,
+     "ctr": 0.003,
+     "position": 11.63
+    },
+    "keywords": [
+     {
+      "kw": "overtime pay rates",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 64
+     },
+     {
+      "kw": "sunday pay rate",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 43
+     },
+     {
+      "kw": "overtime pay in australia",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 66
+     }
+    ],
+    "note": "was: What you must be paid for working weekends, public holidays, evenings and overtime — the multipliers by award, how casual penalties differ, and how the loadings are taxed. Rates current from 1 July 20"
+   },
+   "targetQueries": [
+    "overtime pay rates"
+   ],
+   "kind": "citation_lead",
+   "route": "/overtime-penalty-rates-guide/",
+   "proposedLead": "Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually 1.5 times for the first 2–3 hours beyond 38 ordinary hours a week [[EMPLOYMENT.standardWeeklyHours]] and double time after that, with 2.5 times for overtime on a public holiday under most awards. On a $30 base, 3 hours at time-and-a-half is $135. Rates current from 1 July 2026.",
+   "addPrimarySource": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+  },
+  {
+   "id": "schema-understanding-your-payslip-66",
+   "level": "schema",
+   "priority": 18.169999999999998,
+   "confidence": 0.61,
+   "rationale": "Current opening scored 0.03/3 as a quotable answer for \"ytd in payslip\"; Jev picked this candidate (citable 2.84/3, defines-subject 0.61, no advice/hype p=0.26). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 9,
+     "impressions": 1847,
+     "ctr": 0.0049,
+     "position": 8.42
+    },
+    "keywords": [
+     {
+      "kw": "ytd in payslip",
+      "vol": 480,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 47
+     },
+     {
+      "kw": "ytd payslip",
+      "vol": 480,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 46
+     },
+     {
+      "kw": "other previous earnings on payslip",
+      "vol": 110,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 45
+     }
+    ],
+    "note": "was: Your payslip is a legally binding document. Learn how to decode Gross Pay, Net Pay, PAYG, Super limits, and spot accidental underpayments from your employer."
+   },
+   "targetQueries": [
+    "ytd in payslip"
+   ],
+   "kind": "citation_lead",
+   "route": "/understanding-your-payslip/",
+   "proposedLead": "YTD on a payslip stands for year-to-date: the running total of gross pay, PAYG tax withheld and superannuation since 1 July, the start of the Australian financial year. At 30 June the YTD gross must match the income statement in myGov. Payslips are compulsory under the Fair Work Act, with penalties of $21,840 for individuals and $109,200 for companies at $364 a penalty unit from 1 July 2026 [[PENALTY_UNIT]].",
+   "addPrimarySource": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+  },
+  {
+   "id": "schema-zone-tax-offset-67",
+   "level": "schema",
+   "priority": 23.1,
+   "confidence": 0.23,
+   "rationale": "Current opening scored 1.99/3 as a quotable answer for \"tax zone offset\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.91, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 21,
+     "impressions": 4300,
+     "ctr": 0.0049,
+     "position": 7.32
+    },
+    "keywords": [
+     {
+      "kw": "tax zone offset",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "zone tax offset",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 26
+     },
+     {
+      "kw": "zone offset calculator",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     }
+    ],
+    "note": "was: The zone tax offset is a tax rebate for Australians whose usual place of residence is in a remote or isolated area. The fixed amount is $338 in Zone A, $57 in Zone B and $1,173 in a special area, plus"
+   },
+   "targetQueries": [
+    "tax zone offset"
+   ],
+   "kind": "citation_lead",
+   "route": "/zone-tax-offset/",
+   "proposedLead": "The zone tax offset is a non-refundable tax offset for Australian residents whose usual home is in a remote area (Zone A or Zone B) for 183 days or more in an income year [[ZONE_QUALIFYING_DAYS]]. For 2025-26 the fixed amount is $338 in Zone A, $57 in Zone B and $1,173 in a special area [[ZONE_AREA_RATES]], plus 50% (Zone A) or 20% (Zone B) of any dependant base amount, claimed at question T4.",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-or-overseas-forces-tax-offsets/zone-tax-offset"
+  },
+  {
+   "id": "schema-tax-return-calculator-68",
+   "level": "schema",
+   "priority": 3.59,
+   "confidence": 0.51,
+   "rationale": "Current opening scored 1.03/3 as a quotable answer for \"estimate tax return\"; Jev picked this candidate (citable 2.98/3, defines-subject 0.93, no advice/hype p=0.08). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 10,
+     "impressions": 1389,
+     "ctr": 0.0072,
+     "position": 15.03
+    },
+    "keywords": [
+     {
+      "kw": "estimate tax return",
+      "vol": 6600,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 89
+     },
+     {
+      "kw": "taxes withheld",
+      "vol": 6600,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 44
+     },
+     {
+      "kw": "how much tax should i get back",
+      "vol": 1300,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 51
+     }
+    ],
+    "note": "was: Estimate your refund or tax bill for the 2025-26 return you lodge now, due 31 October 2026 if you lodge it yourself. It uses the 2025-26 tax rates your return is actually assessed on. Switch to 2026-2"
+   },
+   "targetQueries": [
+    "estimate tax return"
+   ],
+   "kind": "citation_lead",
+   "route": "/tax-return-calculator/",
+   "proposedLead": "An estimated tax return is the difference between the PAYG tax withheld from 1 July 2025 to 30 June 2026 and the tax owed on the 2025-26 scale: $18,200 tax-free, then 16% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2025_26]], plus the 2% Medicare levy. More withheld than owed is a refund; less is a bill. The return is due 31 October 2026 if self-lodged, or 15 May 2027 through most tax agents [[RETURN_2026]].",
+   "addPrimarySource": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+  },
+  {
+   "id": "schema-tech-salary-guide-australia-69",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.38,
+   "rationale": "Current opening scored 1.79/3 as a quotable answer for \"it pay rates\"; Jev picked this candidate (citable 2.82/3, defines-subject 0.88, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 5,
+     "impressions": 660,
+     "ctr": 0.0076,
+     "position": 13.2
+    },
+    "keywords": [
+     {
+      "kw": "it pay rates",
+      "vol": 210,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "it australia salary",
+      "vol": 170,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "it in australia salary",
+      "vol": 170,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 37
+     }
+    ],
+    "note": "was: Australia's tech sector offers some of the highest salaries in the economy, with senior developers and engineers earning $130,000–$200,000+. This guide covers average tech salaries by role, contractor"
+   },
+   "targetQueries": [
+    "it pay rates"
+   ],
+   "kind": "citation_lead",
+   "route": "/tech-salary-guide-australia/",
+   "proposedLead": "IT and tech workers in Australia are paid a market base salary with no modern award floor for most roles: a mid-level developer around $110,000, a senior developer $130,000 to $170,000, and a senior contractor $900 to $1,100 a day, or $207,000 to $253,000 over 230 billable days. Net pay follows the ATO 2026-27 brackets [[calculatePayBreakdown]], and permanent staff receive 12% super on top [[SUPER_GUARANTEE.rate]].",
+   "addPrimarySource": "https://www.hays.com.au/salary-guide"
+  }
+ ]
+}

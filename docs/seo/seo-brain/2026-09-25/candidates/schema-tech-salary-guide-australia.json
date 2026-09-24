@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-tech-salary-guide-australia",
+  "kind": "citation_lead",
+  "route": "/tech-salary-guide-australia/",
+  "candidates": [
+    {
+      "lead": "IT pay rates in Australia are set by the market rather than an award: senior developers earn $130,000 to $170,000 and lead or principal engineers $160,000 to $200,000 in base salary, while contractor day rates run about 30% to 50% above the permanent equivalent. Take-home pay on a $150,000 tech salary is worked out on the ATO 2026-27 scale [[calculatePayBreakdown]] with 12% super paid on top [[SUPER_GUARANTEE.rate]].",
+      "source": "https://www.hays.com.au/salary-guide"
+    },
+    {
+      "lead": "A tech salary in Australia is a base salary before equity, bonus and super, and it ranges from $80,000 to $110,000 for a QA engineer to $160,000 to $200,000 for a lead or principal engineer in 2025-26 market data. On the ATO 2026-27 scale a $150,000 salary sits in the 37% bracket above $135,000 [[TAX_BRACKETS_2026_27]], and 12% super [[SUPER_GUARANTEE.rate]] is paid on top by the employer.",
+      "source": "https://www.hays.com.au/salary-guide"
+    },
+    {
+      "lead": "IT and tech workers in Australia are paid a market base salary with no modern award floor for most roles: a mid-level developer around $110,000, a senior developer $130,000 to $170,000, and a senior contractor $900 to $1,100 a day, or $207,000 to $253,000 over 230 billable days. Net pay follows the ATO 2026-27 brackets [[calculatePayBreakdown]], and permanent staff receive 12% super on top [[SUPER_GUARANTEE.rate]].",
+      "source": "https://www.hays.com.au/salary-guide"
+    }
+  ]
+}

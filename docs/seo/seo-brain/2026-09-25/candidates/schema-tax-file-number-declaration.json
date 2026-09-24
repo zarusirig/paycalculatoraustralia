@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-tax-file-number-declaration",
+  "kind": "citation_lead",
+  "route": "/tax-file-number-declaration/",
+  "candidates": [
+    {
+      "lead": "A tax file number declaration (ATO form NAT 3092) is the form a new employee gives an employer so the right PAYG tax is withheld: it records the TFN, whether the tax-free threshold is claimed and any study or training loan. It must be provided within 28 days of starting work; without it, the employer withholds 47% [[NO_TFN_RATES.resident]] of every dollar in 2026-27.",
+      "source": "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees"
+    },
+    {
+      "lead": "The tax file number declaration form is ATO form NAT 3092, completed on paper or through an employer's payroll system when a job starts. It tells the employer the employee's TFN, whether to apply the $18,200 tax-free threshold [[TAX_FREE_THRESHOLD]] and whether a HECS-HELP debt exists. An employee who does not provide one within 28 days is taxed at 47% [[NO_TFN_RATES.resident]] from the first dollar.",
+      "source": "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees"
+    },
+    {
+      "lead": "A TFN declaration is the ATO form (NAT 3092) that sets how much tax an employer withholds from each pay in 2026-27. Claiming the tax-free threshold on it means the first $18,200 a year is withheld at 0% [[TAX_FREE_THRESHOLD]]; not claiming it, as on a second job, means withholding from the first dollar. With no TFN supplied the rate is 47% [[NO_TFN_RATES.resident]].",
+      "source": "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees"
+    }
+  ]
+}

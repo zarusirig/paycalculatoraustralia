@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-leave-calculator",
+  "kind": "citation_lead",
+  "route": "/leave-calculator/",
+  "candidates": [
+    {
+      "lead": "Annual leave in Australia accrues at 4 weeks (152 hours) a year for a full-time employee under the National Employment Standards [[EMPLOYMENT.annualLeaveWeeks]], progressively from the first day of work. Leave loading, where an award or agreement provides it, adds 17.5% of base pay [[COMMON_LEAVE_LOADING]] to each week taken or paid out; on $80,000 a year that is $269 a week and $1,077 for four weeks in 2026-27.",
+      "source": "https://www.fairwork.gov.au/leave/annual-leave"
+    },
+    {
+      "lead": "Annual leave loading is an extra 17.5% of base weekly pay [[COMMON_LEAVE_LOADING]] paid on top of the ordinary rate for each week of annual leave taken or paid out, where an award, agreement or contract provides it. For 2026-27, an employee on $80,000 a year has weekly pay of $1,538, loading of $269 a week and $1,077 across the 4 weeks of NES annual leave.",
+      "source": "https://www.fairwork.gov.au/leave/annual-leave"
+    },
+    {
+      "lead": "An annual leave calculation is 4 weeks of paid leave per year of continuous full-time service under the NES [[EMPLOYMENT.annualLeaveWeeks]], accrued at 2.923 hours per 38-hour week and pro rata for part-time hours. Casuals accrue none and receive a 25% loading instead [[EMPLOYMENT.casualLoading]]. The calculator applies 2026-27 rates and adds 17.5% leave loading [[COMMON_LEAVE_LOADING]] where it applies.",
+      "source": "https://www.fairwork.gov.au/leave/annual-leave"
+    }
+  ]
+}

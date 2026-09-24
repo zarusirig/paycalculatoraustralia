@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-mining-fifo-pay-guide",
+  "kind": "citation_lead",
+  "route": "/mining-fifo-pay-guide/",
+  "candidates": [
+    {
+      "lead": "FIFO (fly-in, fly-out) jobs pay a base salary plus roster loadings and allowances: the ABS puts average full-time ordinary earnings in mining at $3,224.20 a week, about $167,658 a year (May 2026) [[AWE_BY_INDUSTRY]], against a national average of $108,352 [[AWE_HEADLINE]]. FIFO packages for 2026-27 typically fall between $100,000 and $200,000+ depending on role and roster, taxed on the normal ATO scale.",
+      "source": "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release"
+    },
+    {
+      "lead": "Mining is Australia's highest-paying industry by average earnings: full-time ordinary time earnings in mining are $3,224.20 a week, about $167,658 a year [[AWE_BY_INDUSTRY]], against $108,352 across all industries [[AWE_HEADLINE]] (ABS, May 2026). FIFO pay adds site allowances and roster loadings to that base, and workers in remote zones can also claim the ATO zone tax offset [[ZONE_AREA_RATES]] for 2026-27.",
+      "source": "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release"
+    },
+    {
+      "lead": "FIFO pay is the total package a fly-in, fly-out mining worker earns: base salary, roster and site loadings, and allowances such as living away from home allowance. On ABS figures the average mining full-time worker earns $167,658 a year [[AWE_BY_INDUSTRY]], roughly 55% above the $108,352 national average [[AWE_HEADLINE]] (May 2026). Tax follows the ATO 2026-27 scale, with 12% super on top [[SUPER_GUARANTEE.rate]].",
+      "source": "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release"
+    }
+  ]
+}

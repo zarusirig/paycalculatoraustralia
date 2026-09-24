@@ -76,6 +76,15 @@ export default function AustudyYouthAllowanceCalculatorContent() {
   const authorship = getGuideAuthorship("austudy-youth-allowance-calculator");
   return (
     <>
+      <section id="how-to-use">
+        <h2 style={FONT} className={H2}>How to Use This Youth Allowance Estimator</h2>
+        <p className={P}><strong>What to enter.</strong> Your gross wages per fortnight (before tax), whether you are a student or Australian Apprentice or a job seeker, and whether you live at home or away from home. Those answers set the maximum rate the estimate starts from: {formatAUD(YA.maxFortnightly.over18AtHome, 2)} at home from 18, {formatAUD(YA.maxFortnightly.awayFromHome, 2)} away from home, {formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)} for Austudy (25 and over) and {formatAUD(YJ.maxFortnightly.over18AwayFromHome, 2)} for a job seeker of 18 or more living away from home.</p>
+        <p className={P}><strong>How the estimate is produced.</strong> The calculator applies the student personal income test to that maximum: nothing comes off the first {formatAUD(T.freeArea)} a fortnight, {Math.round(T.taper1 * 100)} cents per dollar comes off between {formatAUD(T.freeArea)} and {formatAUD(T.band1End)}, and {formatAUD(T.band1Reduction, 2)} plus {Math.round(T.taper2 * 100)} cents per dollar comes off above {formatAUD(T.band1End)}, as set out in the <a href={CENTRELINK_SOURCES.youthAllowanceIncomeTest} target="_blank" rel="noopener noreferrer" className={LINK}>Services Australia personal income test</a>.</p>
+        <p className={P}><strong>What it does not model.</strong> The parental income test for dependants, which can reduce the payment before your own income is counted. An existing <a href="#income-bank" className={LINK}>Income Bank</a> balance, which delays the taper in a high-earning fortnight. Rent Assistance, which is paid on top of the rate shown. Partner income, which has its own test.</p>
+        <p className={P}><strong>How it compares with the Services Australia finder.</strong> The <a href="https://www.servicesaustralia.gov.au/payment-and-service-finder" target="_blank" rel="noopener noreferrer" className={LINK}>Payment and Service Finder</a> checks eligibility across every payment from your answers; this page shows the income-test arithmetic for one payment so you can check the fortnightly amount on your statement.</p>
+        <p className={P}><strong>When the figures change.</strong> Student rates index on {AUSTUDY.indexedOn}; the rates here apply from {AUSTUDY.ratesFrom} and the constants behind the calculator are re-verified at each indexation (last verified {CENTRELINK_SOURCES.verifiedOn}). The output is an estimate, not a statement that you are eligible.</p>
+      </section>
+
       <section>
         <h2 style={FONT} className={H2}>How Much Is Youth Allowance? Rates by Circumstance</h2>
         <p className={P}>Maximum fortnightly rates before any income test. The same rates apply to students, Australian Apprentices and job seekers in the same situation; they index on {YOUTH_ALLOWANCE_STUDENT.indexedOn} (the job seeker principal carer rate on 20 March and 20 September).</p>
@@ -166,7 +175,7 @@ export default function AustudyYouthAllowanceCalculatorContent() {
         </div>
       </section>
 
-      <section>
+      <section id="income-bank">
         <h2 style={FONT} className={H2}>Income Bank, and the 12-Fortnight Rule</h2>
         <p className={P}>In fortnights when you earn under {formatAUD(T.freeArea)}, the unused free area goes into your Income Bank. When a later fortnight is higher — exam-break shifts, a summer job — Services Australia draws on those credits before applying the taper, so the reduction above may not happen straight away. Once the Income Bank is empty the table applies in full. If income holds your payment at $0 for {T.cancelAfterZeroFortnights} fortnights in a row, the payment is cancelled and you must reapply.</p>
       </section>

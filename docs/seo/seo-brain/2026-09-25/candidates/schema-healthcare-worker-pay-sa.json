@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-healthcare-worker-pay-sa",
+  "kind": "citation_lead",
+  "route": "/healthcare-worker-pay/sa/",
+  "candidates": [
+    {
+      "lead": "SA nurse pay rates are set by the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, whose last printed column applies from 1 January 2025. On that scale a Registered Nurse/Midwife Level 1 earns $74,831 a year at the 1st increment and $102,103 at the 9th [[SA_NURSING_PAY]]; a 4% administrative increase has applied since January 2026, with 2% more due in October 2026.",
+      "source": "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/about+us/about+sa+health/our+workforce/enterprise+bargaining/nursing+and+midwifery+enterprise+agreement"
+    },
+    {
+      "lead": "A registered nurse's salary in South Australia on SA Health's public sector scale runs from $74,831 a year at the first increment to $102,103 at the ninth [[SA_NURSING_PAY]], as printed in the Nursing/Midwifery (SA Public Sector) Enterprise Agreement 2022 from 1 January 2025. Those base figures exclude shift and weekend loadings; current pay is 4% higher after the January 2026 administrative increase.",
+      "source": "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/about+us/about+sa+health/our+workforce/enterprise+bargaining/nursing+and+midwifery+enterprise+agreement"
+    },
+    {
+      "lead": "SA Health pay scales for nurses and midwives come from the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025; a proposed 2026 replacement was rejected at ballot in July 2026. The published Registered Nurse Level 1 scale is $74,831 to $102,103 a year [[SA_NURSING_PAY]], plus a 4% administrative increase from January 2026.",
+      "source": "https://www.sahealth.sa.gov.au/wps/wcm/connect/public+content/sa+health+internet/about+us/about+sa+health/our+workforce/enterprise+bargaining/nursing+and+midwifery+enterprise+agreement"
+    }
+  ]
+}

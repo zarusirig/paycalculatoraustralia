@@ -64,7 +64,7 @@ export default function ParentalLeavePayPage({ children }: { children: ReactNode
           </nav>
           <h1 style={FONT} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">Paid Parental Leave Calculator 2026 — 26 Weeks, Pay and Super</h1>
           <p className="text-lg text-warmgray">
-            For a child born or adopted from {NOW.label}, the government&apos;s Paid Parental Leave scheme pays your family up to <strong>{NOW.days} days ({NOW.weeks} weeks)</strong> of Parental Leave Pay at <strong>{formatAUD(RATE.daily, 2)} a day ({formatAUD(RATE.weekly, 2)} a week)</strong> before tax, with {NOW.reservedForPartner} days reserved for a partner and a {Math.round(PPL_RULES.superRate * 100)}% super contribution from the ATO. Work out your days, your pay and whether you meet the income test.
+            Paid Parental Leave in Australia is <strong>{formatAUD(RATE.daily, 2)} a day, or {formatAUD(RATE.weekly, 2)} a week</strong>, for {PPL_CURRENT_FY}, paid for up to <strong>{NOW.days} days ({NOW.weeks} weeks)</strong> for a child born or adopted on or after {NOW.label}. The rate is based on the National Minimum Wage and is taxed as income, with {NOW.reservedForPartner} of the days reserved for a partner and a {Math.round(PPL_RULES.superRate * 100)}% superannuation contribution paid by the ATO. Work out your days, your pay and whether you meet the income test.
           </p>
           <TrustBar className="mt-4" />
         </section>

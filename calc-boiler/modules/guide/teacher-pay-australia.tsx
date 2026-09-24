@@ -7,7 +7,9 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { formatAUD } from "@/lib/constants";
+import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { EE_MEDIAN_BY_INDUSTRY, EE_RELEASE, EEH_RELEASE, annualise } from "@/lib/data/average-salary";
+import { VIC_2026_AGREEMENT } from "@/lib/data/teacher-pay/vic-2026-agreement";
 import {
   TEACHER_PAY_STATES,
   graduateSalary,
@@ -42,6 +44,16 @@ export default function TeacherPayAustraliaPage() {
     publisher: s.employer,
   }));
   const latestVerified = TEACHER_PAY_STATES.reduce((a, b) => (Date.parse(b.verifiedOn) > Date.parse(a.verifiedOn) ? b : a)).verifiedOn;
+
+  // "Average teacher salary": no state publishes one, so the section shows the
+  // unweighted midpoint of the published state figures and the ABS industry median.
+  const mid = (key: "graduate" | "top") => Math.round(rows.reduce((s, r) => s + r[key], 0) / rows.length);
+  const graduateMid = mid("graduate");
+  const topMid = mid("top");
+  const eduWeekly = EE_MEDIAN_BY_INDUSTRY.find((r) => r.label === "Education & training")?.weekly ?? 0;
+  const eduAnnual = annualise(eduWeekly);
+  const graduateTakeHome = Math.round(calculatePayBreakdown({ grossSalary: graduateMid }).takeHomePay);
+  const topTakeHome = Math.round(calculatePayBreakdown({ grossSalary: topMid }).takeHomePay);
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -199,6 +211,45 @@ export default function TeacherPayAustraliaPage() {
               <p>
                 For how teacher pay sits against other jobs, see{" "}
                 <Link href="/average-salary-australia/">average salary in Australia</Link>.
+              </p>
+            </section>
+
+            <section id="average-teacher-salary">
+              <h2 style={HEADING_FONT}>What Is the Average Australian Teacher Salary?</h2>
+              <p>
+                No state publishes an average teacher salary. What is published is each state&rsquo;s scale, and across the{" "}
+                {rows.length} states and territories on this page a qualified graduate starts on between{" "}
+                <SalaryLink salary={lowestGraduate.graduate} /> ({lowestGraduate.state.code}) and{" "}
+                <SalaryLink salary={highestGraduate.graduate} /> ({highestGraduate.state.code}), while the top of the
+                classroom scale runs from <SalaryLink salary={lowestTop.top} /> ({lowestTop.state.code}) to{" "}
+                <SalaryLink salary={highestTop.top} /> ({highestTop.state.code}).
+              </p>
+              <p>
+                The unweighted midpoint of the {rows.length} graduate rates is <strong>{formatAUD(graduateMid)}</strong>, and of
+                the {rows.length} top-of-scale rates <strong>{formatAUD(topMid)}</strong>. These are simple averages of the
+                published state figures, not an ABS average: they are not weighted by how many teachers each state
+                employs or where on the scale they sit.
+              </p>
+              <p>
+                The closest ABS benchmark is median weekly earnings in Education and training: {formatAUD(eduWeekly)} a
+                week, or {formatAUD(eduAnnual)} a year, in the{" "}
+                <a href={EE_RELEASE.url} target="_blank" rel="noopener noreferrer">{EE_RELEASE.title}, {EE_RELEASE.referencePeriod}</a> release
+                (the ABS{" "}
+                <a href={EEH_RELEASE.url} target="_blank" rel="noopener noreferrer">{EEH_RELEASE.title}, {EEH_RELEASE.referencePeriod}</a> survey
+                gives the same industry split by hours). That figure covers every employee in the industry, from teacher
+                aides to university staff, not classroom teachers only.
+              </p>
+              <p>
+                After tax, the graduate midpoint of {formatAUD(graduateMid)} leaves {formatAUD(graduateTakeHome)} a year and
+                the top-of-scale midpoint of {formatAUD(topMid)} leaves {formatAUD(topTakeHome)}, on the{" "}
+                {SITE_CONFIG.financialYear} resident rates with the Medicare levy and no HECS repayment; the{" "}
+                <Link href="/tax-on/">tax on every salary</Link> tables give the figure at each step of a scale.
+              </p>
+              <p>
+                The range is wide because each state bargains its own agreement: Victoria&rsquo;s proposed{" "}
+                {VIC_2026_AGREEMENT.name} carries rises of {VIC_2026_AGREEMENT.headlineRiseOverFourYears} over four
+                years, and the Northern Territory pays remote loadings on top of its scale. For the all-occupations
+                figure see <Link href="/average-salary-australia/">average salary in Australia</Link>.
               </p>
             </section>
 

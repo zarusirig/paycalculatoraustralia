@@ -9,11 +9,16 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
+  EMPLOYMENT,
   formatAUD,
   formatNegAUD,
   formatPercent,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { COMMON_LEAVE_LOADING } from "@/lib/constants/leave-loading";
+
+/** Working days in a year on the site's 52-week convention, 5 days a week. */
+const WORKING_DAYS_PER_YEAR = EMPLOYMENT.weeksPerYear * 5;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -109,7 +114,7 @@ export default function FinalPayCalculatorPage({ children }: { children: React.R
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
-                Calculate your total final pay when leaving a job. Includes unused annual leave payout with loading, notice period pay, long service leave, and estimated tax on your final payment.
+                Termination pay (final pay) in Australia is the sum of outstanding wages, unused annual leave, any notice paid in lieu, long service leave and, if the role is made redundant, redundancy pay. Unused annual leave is paid at (annual salary &divide; {WORKING_DAYS_PER_YEAR}) &times; leave days, plus {formatPercent(COMMON_LEAVE_LOADING, 1)} leave loading where the award requires it, taxed at the marginal rate in {SITE_CONFIG.financialYear}.
               </p>
               <TrustBar className="mt-4" />
             </div>

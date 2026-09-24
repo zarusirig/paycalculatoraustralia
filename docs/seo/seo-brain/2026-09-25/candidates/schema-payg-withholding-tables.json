@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-payg-withholding-tables",
+  "kind": "citation_lead",
+  "route": "/payg-withholding-tables/",
+  "candidates": [
+    {
+      "lead": "PAYG withholding tables are the ATO schedules that tell employers how much income tax to deduct from each weekly, fortnightly or monthly pay, reissued for 2026-27 from 1 July 2026 with the 15% rate on $18,201–$45,000 [[SECOND_BRACKET_RATE]]. Under the fortnightly table, $3,000 a fortnight with the tax-free threshold claimed has $598 withheld [[calculatePAYGWithholding]]; the weekly table takes $299 from $1,500.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    },
+    {
+      "lead": "The ATO publishes one PAYG withholding tax table per pay cycle for 2026-27: the weekly table (NAT 1005), the fortnightly table (NAT 1006) and the monthly table (NAT 1007) [[ATO_WEEKLY]], each with a tax-free-threshold column and a no-threshold column, plus Schedule 5 (NAT 3348) for bonuses and back pay. The tables apply to payments made from 1 July 2026 [[PAYG_FINANCIAL_YEAR]] and build in the 2% Medicare levy.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    },
+    {
+      "lead": "A PAYG withholding table is a lookup schedule of the tax to withhold at each gross pay amount, derived from the Schedule 1 coefficient formula. Which 2026-27 table applies depends on the pay cycle and the TFN declaration: $1,500 a week has $299 withheld with the tax-free threshold claimed and $409 without it [[calculatePAYGWithholding]]. Each table below has a lookup and a CSV download.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-tax-on-45000-1",
+ "kind": "title_description",
+ "route": "/tax-on/45000/",
+ "candidates": [
+  {
+   "title": "Tax on $45,000 in Australia 2026-27: $3,695 Tax + $900 Medicare",
+   "description": "Tax on $45,000 in 2026-27 is $3,695 income tax plus $900 Medicare levy: $4,595 in total (10.2% of salary), leaving $40,405 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "How Much Tax on $45,000 in Australia? $4,595 in 2026-27",
+   "description": "Tax on $45,000 in 2026-27 is $4,595 in total: $3,695 income tax plus $900 Medicare levy, 10.2% of salary, leaving $40,405 a year. Weekly and fortnightly tax too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on $45,000 in Australia (2026-27): $3,695 Tax Plus Medicare",
+   "description": "Tax on $45,000 in 2026-27 is $3,695 income tax plus $900 Medicare levy: $4,595 in total (10.2% of salary), leaving $40,405 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on a $45,000 Salary in Australia (2026-27): $3,695 Income Tax",
+   "description": "On a $45,000 salary in 2026-27 you pay $3,695 income tax and $900 Medicare levy, $4,595 in total (10.2%), leaving $40,405 a year. HECS and weekly figures too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  }
+ ]
+}

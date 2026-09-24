@@ -67,9 +67,11 @@ export default function FortnightlyTaxTablePage() {
             Fortnightly Tax Table {PAYG_FINANCIAL_YEAR} (ATO {ATO_FORTNIGHTLY.nat})
           </h1>
           <p className="text-lg md:text-xl text-warmgray leading-relaxed mb-5">
-            Enter your fortnightly earnings to see the tax withheld under the ATO fortnightly tax table. For {PAYG_FINANCIAL_YEAR},{" "}
-            {formatAUD(2_000)} a fortnight with the tax-free threshold claimed has <strong>{formatAUD(example2000.totalWithheld)}</strong>{" "}
-            withheld ({formatAUD(example2000.netPerPeriod)} take-home).
+            The fortnightly tax table (ATO {ATO_FORTNIGHTLY.nat}) sets the PAYG amount an employer withholds from each
+            fortnight&apos;s pay in {PAYG_FINANCIAL_YEAR}. For {formatAUD(2_000)} a fortnight with the tax-free threshold
+            claimed, <strong>{formatAUD(example2000.totalWithheld)}</strong> is withheld, leaving{" "}
+            {formatAUD(example2000.netPerPeriod)} take-home. The table below lists the amount to withhold at each
+            earnings step, with and without the threshold.
           </p>
           <TaxTableLookupWidget frequency="fortnightly" defaultGross={2_000} />
           <p className="text-sm font-semibold text-eucalyptus-dark mt-5 mb-4">

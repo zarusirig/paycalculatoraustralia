@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-gross-pay-calculator",
+  "kind": "citation_lead",
+  "route": "/gross-pay-calculator/",
+  "candidates": [
+    {
+      "lead": "Gross pay is salary before tax and deductions; net pay is what remains after income tax and the Medicare levy. Working backwards from a net target to a gross salary uses the ATO 2026-27 scale: to take home $1,500 a week, a gross salary of $100,763 a year is needed [[grossFromNet]], from which $20,749 income tax and $2,015 Medicare levy are deducted, before 12% super on top [[SUPER_GUARANTEE.rate]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "A gross pay calculator reverses the usual net pay estimate: it starts from a target take-home amount and finds the annual gross salary that produces it under the 2026-27 tax brackets [[TAX_BRACKETS_2026_27]] and the 2% Medicare levy [[MEDICARE_LEVY.rate]]. A $1,500 weekly net target needs $100,763 gross a year [[grossFromNet]], about $1,938 a week before tax. Employer super of 12% is paid on top of that gross figure.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Estimating net pay from gross, or gross from net, uses the same ATO 2026-27 rules: the first $18,200 is tax-free [[TAX_FREE_THRESHOLD]], then 15% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2026_27]], plus a 2% Medicare levy. Net to gross runs the sum in reverse, so $77,999 a year in hand ($1,500 a week) requires $100,763 gross [[grossFromNet]]. Super at 12% [[SUPER_GUARANTEE.rate]] sits outside both figures.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

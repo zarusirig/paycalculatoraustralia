@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-ytd-income-calculator",
+  "kind": "citation_lead",
+  "route": "/ytd-income-calculator/",
+  "candidates": [
+    {
+      "lead": "Year to date (YTD) income is the running total of everything earned since 1 July, the start of the Australian financial year, up to the latest payslip. Annualising divides the YTD gross by the pays received and multiplies by pays per year, 52 weekly, 26 fortnightly or 12 monthly [[PAY_PERIODS]], so $39,000 YTD after 26 weekly pays projects to $78,000 for 2026-27.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    },
+    {
+      "lead": "A year to date calculator adds up gross pay from 1 July to the latest payslip, or converts that YTD figure into a projected annual salary: projected income = (YTD gross / pays received) x pays per year, with 52 weekly, 26 fortnightly or 12 monthly pays in the 2026-27 financial year [[PAY_PERIODS]]. Tax on the projected figure follows the ATO 2026-27 scale [[calculatePayBreakdown]].",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    },
+    {
+      "lead": "YTD on an Australian payslip means year to date: the cumulative gross pay, tax withheld and super since 1 July, resetting to zero each financial year. A YTD calculator either sums the pays received or annualises them, so $1,500 a week after 26 weekly pays is $39,000 YTD and $78,000 projected for 2026-27 [[PAY_PERIODS]]; lenders and Centrelink use the annualised figure.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    }
+  ]
+}

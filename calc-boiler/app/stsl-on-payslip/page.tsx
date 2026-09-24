@@ -4,15 +4,22 @@ import { faqPageSchema } from "@/lib/faq";
 import { STSL_FAQS } from "@/modules/guide/stsl-on-payslip-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { HECS_HELP, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/stsl-on-payslip/`;
-const TITLE = "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)";
-const DESCRIPTION = "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.";
+const FY = SITE_CONFIG.financialYear;
+// Previous: "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)"
+// seo-brain 25 Sep 2026 (Jev-ranked): keep tokens stsl/payslip/what; "what does STSL mean" is the
+// query form, and HECS-HELP names what is withheld.
+const TITLE = `What Does STSL Mean on a Payslip? HECS-HELP Withholding (${FY})`;
+// Previous: "STSL on your payslip stands for Study and Training Support Loans — the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it."
+// seo-brain 25 Sep 2026 (Jev-ranked): threshold from HECS_HELP.minimumThreshold; the weekly figure is
+// the same /52 rounding the page body renders.
+const DESCRIPTION = `STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above ${formatAUD(HECS_HELP.minimumThreshold)} a year (${formatAUD(Math.round(HECS_HELP.minimumThreshold / 52))} a week) in ${FY}.`;
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-commission-tax-calculator",
+  "kind": "citation_lead",
+  "route": "/commission-tax-calculator/",
+  "candidates": [
+    {
+      "lead": "Commission is taxed as ordinary income in Australia: it is added to salary and taxed at the marginal rate under the 2026-27 brackets, so there is no separate commission tax rate. On an $80,000 salary a $5,000 commission adds $1,600 to the year's tax, 32.0% of the commission including the 2% Medicare levy [[bonusTaxSplit]]. The employer withholds from the commission pay under ATO Schedule 5.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "Tax on commission in Australia is the extra income tax the payment adds to the year, worked out at the marginal rate on the 2026-27 scale because commission is ordinary income. A $5,000 commission on top of an $80,000 salary costs $1,600 in tax and Medicare levy, 32.0% of it [[bonusTaxSplit]]. Employer withholding on the commission pay follows ATO Schedule 5 and is reconciled at tax time.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "A commission tax calculator separates two figures: the tax a commission adds to the year's assessment, and the PAYG amount the employer withholds from the commission pay under ATO Schedule 5. Both use the 2026-27 rates; for example, $5,000 of commission on an $80,000 salary adds $1,600 of tax and Medicare levy for the year [[bonusTaxSplit]], and any difference from the withheld amount is settled as a refund or bill.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    }
+  ]
+}

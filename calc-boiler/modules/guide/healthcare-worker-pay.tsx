@@ -96,7 +96,7 @@ export default function HealthcareWorkerPayPage() {
             Healthcare Worker Pay Guide — Salaries, Penalties &amp; Salary Packaging
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Healthcare is one of Australia&apos;s largest employers. From registered nurses to specialists, pay varies widely based on classification, experience, shift patterns, and whether you work in the public or private sector. This guide covers salaries, penalty rates, and the powerful salary packaging benefits available to public hospital employees.
+            A nurse&apos;s pay in Australia depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. This guide also covers doctors, allied health, penalty rates and salary packaging for public hospital employees.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import { formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
 import { MEDICARE_LEVY } from "@/lib/constants/australian-tax";
-import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+import { RETURN_2026, RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
 import {
   DEFAULT_RETURN_YEAR,
   RETURN_YEARS,
@@ -71,9 +71,14 @@ export default function TaxReturnCalculatorPage({ children }: { children: React.
             Tax Return Calculator {THIS.returnName}: Estimate Your {THIS.incomeYear} Refund
           </h1>
           <p className="text-lg text-warmgray">
-            Estimate your refund or tax bill for the {THIS.incomeYear} return you lodge now, due{" "}
-            <strong>{R.selfLodgeDueDate}</strong> if you lodge it yourself. It uses the {THIS.incomeYear} tax rates your
-            return is actually assessed on. Switch to {NEXT.incomeYear} to plan next year&rsquo;s return.
+            An estimated tax return is the difference between the PAYG tax withheld from {THIS.incomeYearStart} to{" "}
+            {THIS.incomeYearEnd} and the tax owed on the {THIS.incomeYear} scale: {formatAUD(THIS.brackets[0].max)}{" "}
+            tax-free, then {pct(THIS.brackets[1].rate)} to {formatAUD(THIS.brackets[1].max)} and{" "}
+            {pct(THIS.brackets[2].rate)} to {formatAUD(THIS.brackets[2].max)}, plus the {pct(MEDICARE_LEVY.rate)} Medicare
+            levy. More withheld than owed is a refund; less is a bill. The return is due{" "}
+            <strong>{R.selfLodgeDueDate}</strong> if self-lodged through{" "}
+            <a href={RETURN_2026_SOURCES.myTax} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">myTax</a>,
+            or {R.agentDueDateMostPeople} through most tax agents. Switch to {NEXT.incomeYear} to plan next year&rsquo;s return.
           </p>
           <TrustBar className="mt-4" />
         </section>

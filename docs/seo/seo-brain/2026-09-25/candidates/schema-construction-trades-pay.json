@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-construction-trades-pay",
+  "kind": "citation_lead",
+  "route": "/construction-trades-pay/",
+  "candidates": [
+    {
+      "lead": "Construction and trades pay in Australia is set by modern awards such as the Building and Construction General On-site Award and the Electrical award, with apprentices paid a rising percentage of the qualified trade rate. For 2026-27 a first-year apprentice electrician who finished Year 12 receives 55% of the trade rate, $17.97 an hour or $35,509 a year [[APPRENTICE_ELECTRICIAN]], rising to 65% ($21.13) in year 2.",
+      "source": "https://services.fairwork.gov.au/find-my-award"
+    },
+    {
+      "lead": "Apprenticeship rates of pay are a percentage of the qualified tradesperson's award rate that steps up each year of the apprenticeship. Under the Electrical award from 1 July 2026 the minimums for a Year 12 completer are 55%, 65%, 70% and 82%, or $17.97, $21.13, $22.71 and $26.50 an hour [[APPRENTICE_ELECTRICIAN]]; adult apprentices aged 21 and over get at least 80% ($25.87 an hour) in first year.",
+      "source": "https://services.fairwork.gov.au/find-my-award"
+    },
+    {
+      "lead": "Trades pay covers qualified rates, apprentice percentages, site allowances and overtime under the construction awards. Qualified tradies typically earn $65,000 to $120,000 a year depending on trade and overtime, while a first-year apprentice electrician on the 2026-27 award minimum earns $35,509 ($17.97 an hour) [[APPRENTICE_ELECTRICIAN]]. The guide lists each rate with its take-home pay [[calculatePayBreakdown]].",
+      "source": "https://services.fairwork.gov.au/find-my-award"
+    }
+  ]
+}

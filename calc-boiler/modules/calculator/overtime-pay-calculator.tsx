@@ -72,8 +72,12 @@ export default function OvertimePayCalculatorPage({ children }: { children: Reac
             Overtime &amp; Penalty Rate Calculator {FY}
           </h1>
           <p className="text-lg text-warmgray">
-            Calculate your overtime, weekend, and public holiday pay. Enter your base hourly rate,
-            select the penalty multiplier, and see your gross and net overtime earnings after tax.
+            The overtime rate in Australia is a multiple of the ordinary hourly rate set by the award or
+            agreement covering the job, most commonly {PENALTY_TYPES[0].value.toFixed(1)}x for the first two
+            or three hours and {PENALTY_TYPES[1].value.toFixed(1)}x after that; there is no single national
+            overtime rate. Overtime applies beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week for
+            full-time staff and is taxed at the {FY} marginal rates. Enter your base hourly rate and the
+            penalty multiplier to see gross and net overtime earnings after tax.
           </p>
           <TrustBar className="mt-4" />
         </section>

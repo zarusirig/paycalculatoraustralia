@@ -146,6 +146,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "understanding-your-payslip",
     "stsl-on-payslip",
     "award-rates",
+    "fair-work-pay-calculator",
     "schads-award-pay-rates",
     "hospitality-award-rates",
     "retail-award-rates",

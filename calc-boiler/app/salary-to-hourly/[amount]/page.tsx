@@ -10,6 +10,7 @@ import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { fitTitle } from "@/lib/seo-title";
 
 interface PageProps {
   params: Promise<{
@@ -35,12 +36,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const breakdown = calculatePayBreakdown({ grossSalary: salaryAmount });
   const netHourly = breakdown.takeHomePay / HOURS_PER_YEAR;
+  // "$120k" for round thousands (the GSC phrasing), "$75,500" otherwise —
+  // "$75.5k" would read as an error in a title.
+  const kSalary = salaryAmount % 1_000 === 0 ? `$${(salaryAmount / 1_000).toLocaleString("en-AU")}k` : formattedSalary;
 
   return {
     // Answer-first, in the GSC phrasing ("80000 a year is how much an hour",
     // "80k a year is how much an hour"). Hourly figures from the tax engine
     // and EMPLOYMENT.hoursPerYear, never hardcoded.
-    title: `${formattedSalary} a Year Is How Much an Hour? ${formatAUD(grossHourly, 2)} in Australia`,
+    // Previous: "$120,000 a Year Is How Much an Hour? $60.73 in Australia"
+    // seo-brain 25 Sep 2026 (Jev-ranked): "$Nk" form, "in Australia" inside the question,
+    // "Before Tax" after the figure. Keep tokens year/much/hour survive in
+    // every form; the $500,000 slug is exactly 65 characters.
+    title: fitTitle(
+      `${kSalary} a Year Is How Much an Hour in Australia? ${formatAUD(grossHourly, 2)} Before Tax`,
+      `${kSalary} a Year Is How Much an Hour? ${formatAUD(grossHourly, 2)} Before Tax`,
+    ),
     description: `$${(salaryAmount / 1000).toLocaleString("en-AU")}k a year is ${formatAUD(grossHourly, 2)} an hour before tax on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${HOURS_PER_YEAR.toLocaleString("en-AU")} hours a year), or ${formatAUD(netHourly, 2)} an hour after tax in ${SITE_CONFIG.financialYear}. Weekly, fortnightly and monthly pay too.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/salary-to-hourly/${resolvedParams.amount}/`,

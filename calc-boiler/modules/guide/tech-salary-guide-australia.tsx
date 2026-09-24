@@ -44,7 +44,7 @@ export default function TechSalaryGuideAustraliaPage() {
             IT &amp; Tech Salary Guide — What Tech Workers Earn in Australia
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Australia&apos;s tech sector offers some of the highest salaries in the economy, with senior developers and engineers earning $130,000–$200,000+. This guide covers average tech salaries by role, contractor vs permanent comparisons, city-by-city variations, and how to maximise your take-home pay through salary packaging and structure.
+            IT and tech workers in Australia are paid a market base salary with no modern award floor for most roles, so pay is set by the employer or the contract rather than a Fair Work minimum. Net pay follows the ATO {SITE_CONFIG.financialYear} brackets: on a {formatAUD(110_000)} base, take-home is {formatAUD(EX110.takeHomePay)} a year after income tax and the Medicare levy, and permanent staff receive {Math.round(SUPER_GUARANTEE.rate * 100)}% super on top. This guide covers salaries by role, contractor versus permanent pay, city-by-city variations and salary packaging.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

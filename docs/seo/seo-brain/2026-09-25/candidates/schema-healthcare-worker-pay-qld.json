@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-healthcare-worker-pay-qld",
+  "kind": "citation_lead",
+  "route": "/healthcare-worker-pay/qld/",
+  "candidates": [
+    {
+      "lead": "Queensland Health nurse pay is set by the Nurses and Midwives (Queensland Health and Department of Education) Certified Agreement (EB12) 2025 and published per annum, per fortnight and per hour for every pay point. On the rates effective 1 April 2026, a registered nurse or midwife (Nurse Grade 5) earns $83,872 to $112,607 a year [[registeredNurseRange]], from $42.30 an hour, before shift penalties.",
+      "source": "https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing"
+    },
+    {
+      "lead": "A Queensland nurse's income under EB12 depends on nurse grade rather than years of service: a registered nurse or midwife is Nurse Grade 5, a clinical nurse Grade 6 and a nurse unit manager or clinical nurse consultant Grade 7. From 1 April 2026, Grade 5 pays $83,872 at re-entry and $112,607 at pay point 7 [[registeredNurseRange]]; the next increases are due 1 April 2027 and 1 December 2027.",
+      "source": "https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing"
+    },
+    {
+      "lead": "QLD nurse pay rates 2026 are the Queensland Health wage schedule under EB12, effective 1 April 2026. Enrolled nurses (Grade 3) start at $38.11 an hour, registered nurses and midwives (Grade 5) at $42.30 and clinical nurses (Grade 6 Band 1) at $57.76 [[NURSING_PAY_BY_STATE.qld]]; the Grade 5 scale tops out at $112,607 a year [[registeredNurseRange]]. Every pay point is tabled below.",
+      "source": "https://www.health.qld.gov.au/hrpolicies/wage-rates/nursing"
+    }
+  ]
+}

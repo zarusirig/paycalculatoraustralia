@@ -13,7 +13,9 @@ import {
   SCHADS_ALLOWANCES,
   SCHADS_HOME_CARE_AGED,
   SCHADS_HOME_CARE_DISABILITY,
+  SCHADS_HOME_CARE_DISABILITY_DEC_2026,
   SCHADS_PENALTIES,
+  SCHADS_SCHEDULE_E_INCREASE,
   SCHADS_SACS,
   SCHADS_UNVERIFIED,
   SCHADS_VEHICLE_ALLOWANCE,
@@ -25,6 +27,19 @@ import { SCHADS_FAQS, schadsCasualHourly } from "@/modules/guide/schads-award-fa
 import { toCents } from "@/modules/guide/hospitality-award-faqs";
 import { AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
+import { WEEKS_PER_YEAR } from "@/lib/data/average-salary";
+
+/** Schedule B Levels 2 to 5, the classifications most support and case workers sit in. */
+const LEVELS_2_TO_5 = SCHADS_SACS.filter((r) => /^Level [2-5] /.test(r.classification));
+const annualOf = (weekly: number) => toCents(weekly * WEEKS_PER_YEAR);
+/** One-line Schedule B descriptors, as summarised in the Fair Work Ombudsman award summary. */
+const LEVEL_DESCRIPTORS: readonly { level: string; role: string }[] = [
+  { level: "Level 2", role: "entry-level support workers, working under direction with limited discretion" },
+  { level: "Level 3", role: "experienced support workers and workers with a relevant qualification, working with some independence" },
+  { level: "Level 4", role: "case workers, team leaders and workers with a degree or substantial experience" },
+  { level: "Level 5", role: "coordinators and specialists who supervise staff or programs" },
+];
+const DEC_2026_L1 = SCHADS_HOME_CARE_DISABILITY_DEC_2026[0];
 
 /** Weekend and public holiday multipliers; casual figures include the loading. */
 const SCHADS_MATRIX = [
@@ -115,7 +130,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             SCHADS Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Every current classification rate under the {SCHADS_AWARD.name} ({SCHADS_AWARD.code}) &mdash; social and community services, home care and disability support &mdash; operative from {SCHADS_AWARD.operativeFrom}.
+            SCHADS is the short name for the <a href={SCHADS_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{SCHADS_AWARD.name}</a> ({SCHADS_AWARD.code}). Its {SITE_CONFIG.financialYear} rates apply from {SCHADS_AWARD.operativeFrom}: Level 1 pay point 1 is {formatAUD(L1.hourly, 2)} an hour and Level 8 pay point 3 is {formatAUD(L8.hourly, 2)} an hour, with casuals paid {PCT(SCHADS_AWARD.casualLoading)} more ({formatAUD(schadsCasualHourly(L1.hourly), 2)} at Level 1 pay point 1). Every pay point in the social and community services and home care streams is listed below.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -396,6 +411,50 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; convert your award rate to net pay after tax</li>
                 <li><Link href="/backpay-calculator/">Backpay Calculator</Link> &mdash; what you are owed if you have been underpaid</li>
               </ul>
+            </section>
+
+            <section id="levels-2-to-5-annual">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>SCHADS Level 2, 3, 4 and 5 Salary: Annual Pay by Pay Point</h2>
+              <p>
+                Schedule B weekly rates from {SCHADS_AWARD.operativeFrom}, annualised at {WEEKS_PER_YEAR} weeks. The annual figure is the award minimum for a {SCHADS_AWARD.standardWeeklyHours}-hour week; the casual column adds the {PCT(SCHADS_AWARD.casualLoading)} loading to the hourly rate.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[34rem] text-left text-sm text-navy">
+                    <caption className="sr-only">SCHADS Levels 2 to 5 weekly, annual and casual hourly rates by pay point</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-5 py-4">Classification</th>
+                        <th scope="col" className="px-5 py-4">Weekly</th>
+                        <th scope="col" className="px-5 py-4">Annual ({WEEKS_PER_YEAR} weeks)</th>
+                        <th scope="col" className="px-5 py-4">Casual hourly</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {LEVELS_2_TO_5.map((r) => (
+                        <tr key={r.classification}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{r.classification}</th>
+                          <td className="px-5 py-3">{formatAUD(r.weekly, 2)}</td>
+                          <td className="px-5 py-3 font-medium">{formatAUD(annualOf(r.weekly))}</td>
+                          <td className="px-5 py-3">{formatAUD(schadsCasualHourly(r.hourly), 2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <ul>
+                {LEVEL_DESCRIPTORS.map((d) => (<li key={d.level}><strong>{d.level}</strong>: {d.role}.</li>))}
+              </ul>
+              <p>
+                Those descriptors summarise Schedule B as set out in the <a href="https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary" target="_blank" rel="noopener noreferrer">Fair Work Ombudsman award summary</a>; the level is set by the work performed and the qualification held, not by job title. Many employers pay above these minimums under an enterprise agreement, and the Levels 2 to 5 figures include the Equal Remuneration Order uplift explained in <a href="#equal-remuneration-order">Read this before you compare your payslip</a>.
+              </p>
+              <p>
+                Home care is classified differently: the Schedule E home care levels are not the Schedule B levels above, and Schedule E disability rates rise from {SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (Level 1 pay point 1 to {formatAUD(DEC_2026_L1.weekly, 2)} a week). See <a href="#home-care-rates">Home Care Pay Rates (Schedules E and F)</a>.
+              </p>
+              <p>
+                To turn an annual figure into take-home pay &mdash; for example {formatAUD(annualOf(L4.weekly))} a year at Level 4 pay point 1 &mdash; use the <Link href="/tax-on/">tax on every salary</Link> tables or the <a href="#take-home">take-home links</a> on this page.
+              </p>
             </section>
 
             <section id="faq">

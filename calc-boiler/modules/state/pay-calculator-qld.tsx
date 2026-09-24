@@ -4,10 +4,16 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
+  calculatePayBreakdown,
+  EMPLOYMENT,
   formatAUD,
+  hourlyToAnnual,
   SOURCES,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { NMW, QLD_STATE_WAGE_CASE_2026 } from "@/lib/constants/minimum-wage";
+import { HOSPITALITY_RATES, RETAIL_RATES } from "@/lib/constants/hospitality-award";
+import { findRate } from "@/modules/guide/hospitality-award-faqs";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
@@ -31,6 +37,17 @@ import {
 } from "./state-sections";
 
 const PROFILE = STATE_PROFILES.QLD;
+
+// Hourly rate -> annual (38 h x 52) -> fortnightly take-home, all from the
+// engine: the national minimum wage and two award-typical rates.
+const HOURLY_ROWS = [
+  { label: "National minimum wage", hourly: NMW.hourly },
+  { label: "Retail award level 1", hourly: findRate(RETAIL_RATES, "Level 1").hourly },
+  { label: "Hospitality award level 2", hourly: findRate(HOSPITALITY_RATES, "Level 2").hourly },
+].map((r) => {
+  const annual = hourlyToAnnual(r.hourly, EMPLOYMENT.standardWeeklyHours);
+  return { ...r, annual, fortnightly: calculatePayBreakdown({ grossSalary: annual }).fortnightly };
+});
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -74,6 +91,53 @@ export default function PayCalculatorQLDPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <section>
+            <H2>Queensland Wage Calculator: From an Hourly Rate to Take-Home Pay</H2>
+            <p className="mb-4 text-warmgray">
+              The calculator above takes an annual salary. If you know an hourly rate, annualise it first:
+              hourly rate &times; hours a week &times; {EMPLOYMENT.weeksPerYear} weeks. On the national minimum
+              wage of {formatAUD(NMW.hourly, 2)} an hour, a {EMPLOYMENT.standardWeeklyHours}-hour week is{" "}
+              {formatAUD(hourlyToAnnual(NMW.hourly, EMPLOYMENT.standardWeeklyHours))} a year ({EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours).
+              Casuals multiply the base rate by {(1 + EMPLOYMENT.casualLoading).toFixed(2)} before annualising:{" "}
+              {formatAUD(NMW.casualHourly, 2)} an hour, or {formatAUD(hourlyToAnnual(NMW.casualHourly, EMPLOYMENT.standardWeeklyHours))} a year at {EMPLOYMENT.standardWeeklyHours} hours.
+            </p>
+            <div className="mb-4 overflow-x-auto">
+              <table className="w-full overflow-hidden rounded-lg border border-sandstone-dark/20 text-sm">
+                <caption className="sr-only">Hourly rate to annual salary and fortnightly take-home pay, Queensland</caption>
+                <thead>
+                  <tr className="bg-navy text-white">
+                    <th className="px-4 py-3 text-left font-semibold">Hourly rate</th>
+                    <th className="px-4 py-3 text-right font-semibold">Annual ({EMPLOYMENT.standardWeeklyHours} hours a week)</th>
+                    <th className="px-4 py-3 text-right font-semibold">Fortnightly take-home</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/10">
+                  {HOURLY_ROWS.map((r) => (
+                    <tr key={r.label}>
+                      <td className="px-4 py-3 text-navy">{r.label}: {formatAUD(r.hourly, 2)}</td>
+                      <td className="px-4 py-3 text-right tabular-nums text-navy">{formatAUD(r.annual)}</td>
+                      <td className="px-4 py-3 text-right tabular-nums font-semibold text-navy">{formatAUD(r.fortnightly)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mb-4 text-sm text-warmgray">
+              Take-home uses the {SITE_CONFIG.financialYear} resident rates with the Medicare levy and no HECS. The
+              Queensland-specific floor: state and local government employees are in the Queensland state system,
+              whose minimum wage is {formatAUD(QLD_STATE_WAGE_CASE_2026.qmwWeekly, 2)} a week from{" "}
+              {QLD_STATE_WAGE_CASE_2026.operativeFrom} ({QLD_STATE_WAGE_CASE_2026.citation},{" "}
+              <a href={QLD_STATE_WAGE_CASE_2026.url} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">QIRC decision</a>).
+              Everyone else in Queensland is on the national minimum wage of {formatAUD(NMW.weekly, 2)} a week (<a href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">Fair Work Ombudsman</a>).
+            </p>
+            <p className="text-sm text-warmgray">
+              For other hours-per-week patterns use the{" "}
+              <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">hourly to annual salary calculator</Link>;
+              the full rate, history and junior percentages are on the{" "}
+              <Link href="/minimum-wage-australia/" className="text-eucalyptus-dark hover:underline">minimum wage Australia</Link> page.
+            </p>
+          </section>
+
           <section>
             <H2>How much of a Queensland salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-pay-calculator-nsw",
+  "kind": "citation_lead",
+  "route": "/pay-calculator-nsw/",
+  "candidates": [
+    {
+      "lead": "A NSW pay calculator turns a gross salary into net pay using the federal ATO 2026-27 scale: $18,200 tax-free [[TAX_FREE_THRESHOLD]], 15% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy, because income tax is identical in every state. Full-time adults in NSW earn $2,108.80 a week, about $109,658 a year [[STATE_PROFILES.NSW.awote.personsFullTime]] (ABS, May 2026).",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Take-home pay in New South Wales is gross salary less federal income tax and the 2% Medicare levy on the ATO 2026-27 rates, with 12% super [[SUPER_GUARANTEE.rate]] paid by the employer on top. NSW-specific rules sit outside the tax sum: long service leave of 8.67 weeks after 10 years [[STATE_PROFILES.NSW.longServiceLeave]], and payroll tax of 5.45% above $1,200,000 paid by employers, not deducted from wages.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Pay in NSW is taxed on the federal ATO 2026-27 scale, so a NSW salary keeps the same net amount as the same salary anywhere in Australia: the first $18,200 is tax-free [[TAX_FREE_THRESHOLD]] and HECS-HELP repayments start at $69,528 [[HECS_HELP.minimumThreshold]]. A full-time NSW adult earns $2,108.80 a week [[STATE_PROFILES.NSW.awote.personsFullTime]] (ABS, May 2026); the calculator shows the net each pay.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

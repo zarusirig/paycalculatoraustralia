@@ -6,8 +6,8 @@ import { FBT_FAQS } from "./fringe-benefits-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, formatAUD, MEDICARE_LEVY } from "@/lib/constants";
-import { FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
+import { SITE_CONFIG, SOURCES, formatAUD, formatPercent, MEDICARE_LEVY } from "@/lib/constants";
+import { FBT, FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/novated-lease";
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
@@ -19,12 +19,9 @@ export default function FringeBenefitsTaxPage() {
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Fringe Benefits Tax</span></li></ol></nav>
       <header className="mb-10 max-w-4xl">
         <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Fringe Benefits Tax (FBT) Guide Australia FY2025-26</h1>
-        <p className="text-xl text-warmgray leading-relaxed mb-6">What FBT is, how the Australian tax system calculates fringe benefits, which benefits are exempt, current FBT rates and thresholds, and how reportable fringe benefits affect your take-home pay and tax return.</p>
-        <div className="mb-6 bg-eucalyptus-light/40 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
-          <p className="text-base leading-relaxed">
-            <strong className="text-navy">Fringe Benefits Tax (FBT) in Australia is paid by employers</strong> on non-cash benefits given to employees. The FBT rate for FY2025-26 is <strong className="text-navy">47%</strong> (matching the top marginal rate). Type 1 gross-up factor (GST-creditable benefits) is <strong className="text-navy">2.0802</strong>; Type 2 (no GST) is <strong className="text-navy">1.8868</strong>. FBT runs from <strong className="text-navy">1 April to 31 March</strong>, not the standard financial year.
-          </p>
-        </div>
+        <p className="text-xl text-warmgray leading-relaxed mb-6">
+          The FBT year runs from {FBT.yearStart} to {FBT.yearEnd}, not the 1 July to 30 June income year, and fringe benefits tax is paid by employers, not employees, on non-cash benefits. The FBT rate is <strong className="text-navy">{formatPercent(FBT.rate, 0)}</strong>, applied to the taxable value grossed up by <strong className="text-navy">{FBT.grossUpType1}</strong> (Type 1, GST-creditable) or <strong className="text-navy">{FBT.grossUpType2}</strong> (Type 2). This guide covers which benefits are exempt, the caps and thresholds, and how reportable fringe benefits affect take-home pay and the tax return.
+        </p>
         <TrustBar className="!max-w-none" />
       </header>
       <div className="flex flex-col lg:flex-row gap-12">

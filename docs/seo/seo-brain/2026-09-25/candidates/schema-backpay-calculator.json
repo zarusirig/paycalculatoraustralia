@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-backpay-calculator",
+  "kind": "citation_lead",
+  "route": "/backpay-calculator/",
+  "candidates": [
+    {
+      "lead": "Back pay is the difference between what an employee should have been paid under their award or agreement and what they were actually paid, multiplied by the hours worked in the underpayment period, plus 12% superannuation [[SUPER_GUARANTEE.rate]] on the shortfall. Paid $26.44 an hour [[NMW.hourly]] instead of $30.00, the gap is $3.56 an hour plus $0.43 in super. Under the Fair Work Act, claims can go back 6 years.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages"
+    },
+    {
+      "lead": "Backpay is worked out as (correct hourly rate − actual hourly rate) × total hours worked, the formula the Fair Work Ombudsman applies to underpayment claims, plus unpaid 12% super guarantee [[SUPER_GUARANTEE.rate]] and leave accrued at the wrong rate. A lump-sum back payment is withheld under ATO Schedule 5 in 2026-27 rather than taxed as a single pay. Underpayments can be recovered for up to 6 years (312 weeks).",
+      "source": "https://www.fairwork.gov.au/pay-and-wages"
+    },
+    {
+      "lead": "A backdated pay rise or an underpayment is corrected with back pay: the hourly shortfall times the hours worked, and 12% super [[SUPER_GUARANTEE.rate]] on that amount. Wages below the award rate, missed penalty rates, unpaid overtime and a missing 25% casual loading [[EMPLOYMENT.casualLoading]] are the common causes. The 2026-27 calculator applies Fair Work minimums and ATO Schedule 5 tax to the lump sum.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages"
+    }
+  ]
+}

@@ -9,8 +9,14 @@ import { SITE_CONFIG, SOURCES, formatAUD, formatPercent } from "@/lib/constants"
 import {
   calculateSchedule5MethodB,
   NO_TFN_RATES,
+  PAY_PERIODS,
   PAYG_TABLES_UPDATED,
 } from "@/lib/constants/payg-withholding";
+
+// Lead example, from the same Method B engine as the widget below.
+const LEAD_REGULAR = 2_000;
+const LEAD_BONUS = 1_000;
+const LEAD_WITHHELD = calculateSchedule5MethodB(LEAD_REGULAR, LEAD_BONUS, "fortnightly").withheldFromAdditionalPayment;
 import Schedule5Table from "./schedule-5-table";
 import AtoDownloads from "./ato-downloads";
 import TaxTableFaqSection from "./faq-section";
@@ -60,9 +66,11 @@ export default function Schedule5TaxTablePage() {
             Schedule 5 Tax Table 2026-27 (ATO NAT 3348) — PAYG on Bonuses, Commissions &amp; Back Payments
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-3">
-            Schedule 5 &mdash; published by the ATO as <strong>{ATO_SCHEDULE_5.nat}</strong> &mdash; is the tax table employers use
-            to withhold PAYG from bonuses, commissions and back payments. Instead of taxing the lump sum like a normal pay, it
-            spreads the payment across the year&apos;s pay periods so withholding matches your real marginal rate.
+            The Schedule 5 tax table is the ATO schedule (<strong>{ATO_SCHEDULE_5.nat}</strong>) employers use to withhold
+            PAYG from bonuses, commissions and back pay in {SITE_CONFIG.financialYear}. There is no flat bonus tax rate: the
+            payment is spread across {PAY_PERIODS.fortnightly} fortnights or {PAY_PERIODS.weekly} weeks so withholding tracks
+            the employee&apos;s marginal rate, with a {formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} ceiling. On{" "}
+            {formatAUD(LEAD_REGULAR)} a fortnight, a {formatAUD(LEAD_BONUS)} bonus attracts {formatAUD(LEAD_WITHHELD)}.
           </p>
           <p className="text-sm font-semibold text-eucalyptus-dark mb-6">
             {ATO_SCHEDULE_5.nat} published {ATO_SCHEDULE_5.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; FY2026-27 rates

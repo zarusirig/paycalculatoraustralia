@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-tax-calendar",
+  "kind": "citation_lead",
+  "route": "/tax-calendar/",
+  "candidates": [
+    {
+      "lead": "The Australian tax calendar for 2026-27 runs from 1 July 2026 to 30 June 2027 [[CALENDAR_YEAR]]. The 2025-26 individual tax return is due 31 October 2026 for self-lodgers [[RETURN_2026.selfLodgeDueDate]], which falls on a weekend, so the ATO accepts 2 November 2026 [[RETURN_DATES_2026.selfLodge]]; quarterly BAS and PAYG instalments are due 28 October, 28 February, 28 April and 28 July [[QUARTERS_2026_27]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+    },
+    {
+      "lead": "A tax week in Australia is one of the 52 weeks of the financial year, which for 2026-27 runs from 1 July 2026 to 30 June 2027 [[CALENDAR_YEAR]]. Within that year the 2025-26 tax return is due 31 October 2026, accepted on 2 November 2026 as the next business day [[RETURN_DATES_2026.selfLodge]], or 15 May 2027 for most tax agent clients [[RETURN_2026]]; super is due within 7 business days of each payday.",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+    },
+    {
+      "lead": "Key tax dates for 2026-27 are set by the ATO: the income year runs 1 July 2026 to 30 June 2027 [[CALENDAR_YEAR]], STP finalisation is due 14 July, quarterly BAS and PAYG instalments fall on the 28th of October, February, April and July [[QUARTERS_2026_27]], and the self-lodged 2025-26 return is due 31 October 2026 [[RETURN_2026.selfLodgeDueDate]]. A due date on a weekend moves to the next business day.",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/preparing-lodging-and-paying/business-activity-statements-bas/due-dates-for-lodging-and-paying-your-bas"
+    }
+  ]
+}

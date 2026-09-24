@@ -13,8 +13,13 @@ import {
   formatNegAUD,
   formatPercent,
   SITE_CONFIG,
+  TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+
+// Lead example: what the no-tax-free-threshold scale takes from a $1,000 fortnight.
+const LEAD_FORTNIGHT = 1_000;
+const LEAD_NO_TFT = withholdingForPeriod(LEAD_FORTNIGHT, "fortnightly", "noTft");
 
 /**
  * Annual PAYG withheld on a second job paid fortnightly with the tax-free
@@ -103,7 +108,11 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
                 </h1>
               </div>
               <p className="text-xl text-warmgray">
-                Calculate the tax impact of working two jobs. See why your second job appears to be taxed more, how PAYG withholding works without the tax-free threshold, and your estimated refund at tax time.
+                There is no separate tax rate for a second job in Australia: income from both jobs is added together and
+                taxed once at the {SITE_CONFIG.financialYear} marginal rates. What differs is withholding, because the
+                second employer uses the ATO&apos;s no-tax-free-threshold scale, which takes {formatAUD(LEAD_NO_TFT)} (
+                {formatPercent(LEAD_NO_TFT / LEAD_FORTNIGHT)}) from a {formatAUD(LEAD_FORTNIGHT)} fortnight instead of
+                applying the {formatAUD(TAX_FREE_THRESHOLD)} threshold twice. Over-withholding is refunded at tax time.
               </p>
               <TrustBar className="mt-4" />
             </div>

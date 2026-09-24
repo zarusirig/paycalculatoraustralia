@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-superannuation-guide",
+  "kind": "citation_lead",
+  "route": "/superannuation-guide/",
+  "candidates": [
+    {
+      "lead": "Superannuation is Australia's compulsory retirement saving system: for 2026-27 every employer pays 12% of an employee's qualifying earnings [[SUPER_GUARANTEE.rate]] into a super fund, and since 1 July 2026 must pay it each payday under Payday Super. The concessional cap is $32,500 [[SUPER_GUARANTEE.concessionalCap]] and the non-concessional cap $130,000; contributions are taxed at 15% in the fund.",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay"
+    },
+    {
+      "lead": "The superannuation rate for 2026-27 is 12% [[SUPER_GUARANTEE.rate]], the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to $270,830 a year [[SUPER_GUARANTEE.maxContributionBaseAnnual]]. Under Payday Super, in force since 1 July 2026, it is due within 7 business days of each pay rather than quarterly. Contributions are taxed at 15% in the fund.",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay"
+    },
+    {
+      "lead": "Super in Australia is a compulsory employer contribution of 12% of qualifying earnings for 2026-27 [[SUPER_GUARANTEE.rate]], up from 11.5% in 2024-25 [[SG_RATE_HISTORY]], invested in a complying fund until retirement. On an $85,000 salary that is $10,200 a year on top of wages. Contributions up to the $32,500 concessional cap [[SUPER_GUARANTEE.concessionalCap]] are taxed at 15% in the fund.",
+      "source": "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay"
+    }
+  ]
+}

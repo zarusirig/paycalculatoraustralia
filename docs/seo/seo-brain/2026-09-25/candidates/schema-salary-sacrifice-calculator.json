@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-salary-sacrifice-calculator",
+  "kind": "citation_lead",
+  "route": "/salary-sacrifice-calculator/",
+  "candidates": [
+    {
+      "lead": "Salary sacrifice redirects part of pre-tax salary into superannuation, so income tax is worked out on the reduced amount and the contribution is taxed at 15% inside the fund [[CONTRIBUTIONS_TAX_RATE]] instead of the marginal rate. On $100,000 in 2026-27, sacrificing $10,000 lowers take-home pay by $6,800 and saves $3,200 in tax [[calculatePayBreakdown]], within the $32,500 concessional cap [[SUPER_GUARANTEE]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super"
+    },
+    {
+      "lead": "A salary sacrifice arrangement is an agreement to have an employer pay part of gross salary into super before PAYG withholding is applied. The tax saving equals the gap between the marginal rate (30%, 37% or 45%) and the 15% contributions tax [[CONTRIBUTIONS_TAX_RATE]]. For 2026-27 the concessional cap, which includes the 12% super guarantee, is $32,500 [[SUPER_GUARANTEE.concessionalCap]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super"
+    },
+    {
+      "lead": "Tax with salary sacrifice is calculated on taxable income after the sacrificed amount is removed: $100,000 with $10,000 sacrificed is taxed as $90,000, and the $10,000 goes to super less 15% contributions tax [[CONTRIBUTIONS_TAX_RATE]]. For 2026-27 that leaves take-home pay $6,800 lower while $10,000 is contributed, a net tax saving of $3,200 [[calculatePayBreakdown]]. The calculator shows both pays side by side.",
+      "source": "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-superannuation-calculator-1",
+ "kind": "title_description",
+ "route": "/superannuation-calculator/",
+ "candidates": [
+  {
+   "title": "Super Calculator 2026-27: Employer Super and Extra Contributions",
+   "description": "Your employer pays 12% super on top of salary: $9,600 a year on $80,000, paid with every pay from 1 July 2026. Total package and $32,500 cap space for 2026-27.",
+   "figureSource": "SUPER_GUARANTEE.rate, calculateSuper(80_000) (and /52 for weekly), SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE.concessionalCap"
+  },
+  {
+   "title": "Super Guarantee Calculator 2026-27 — 12% SG on Your Salary",
+   "description": "Calculate super on your salary: 12% SG is $9,600 a year on $80,000 ($184.62 a week), paid every pay from 1 July 2026. Extra contribution room under the $32,500 cap.",
+   "figureSource": "SUPER_GUARANTEE.rate, calculateSuper(80_000) (and /52 for weekly), SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE.concessionalCap"
+  },
+  {
+   "title": "Super Calculator 2026-27: How Much SG Your Employer Pays",
+   "description": "12% employer super on $80,000 is $9,600 a year, paid each payday from 1 July 2026. Any salary: your SG, total package and extra super room under the $32,500 cap.",
+   "figureSource": "SUPER_GUARANTEE.rate, calculateSuper(80_000) (and /52 for weekly), SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE.concessionalCap"
+  },
+  {
+   "title": "Calculate Super on Salary: SG Calculator for 2026-27",
+   "description": "Your employer pays 12% super on top of salary: $9,600 a year on $80,000, paid with every pay from 1 July 2026. Total package and $32,500 cap space for 2026-27.",
+   "figureSource": "SUPER_GUARANTEE.rate, calculateSuper(80_000) (and /52 for weekly), SUPER_GUARANTEE.paydaySuperStart, SUPER_GUARANTEE.concessionalCap"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-schads-award-pay-rates",
+  "kind": "citation_lead",
+  "route": "/schads-award-pay-rates/",
+  "candidates": [
+    {
+      "lead": "The SCHADS award (Social, Community, Home Care and Disability Services Industry Award 2010, MA000100) sets minimum pay for social and community services, home care and disability support work. From 1 July 2026, SACS rates run from $1,046.90 a week ($27.55/hr) at Level 1 pay point 1 to $2,705.27 a week ($71.19/hr) at Level 8 pay point 3 [[SCHADS_SACS]], Equal Remuneration Order included.",
+      "source": "https://awards.fairwork.gov.au/MA000100.html"
+    },
+    {
+      "lead": "SCHADS award pay rates 2026-27 are the minimum weekly and hourly rates under MA000100 for social and community services, home care and disability support, operative from 1 July 2026. The Level 4 pay point 1 rate is $1,774.74 a week, or $46.70 an hour [[SCHADS_SACS]], once the Equal Remuneration Order is applied; clause 15 alone prints $1,344.50 [[CLAUSE_15_LEVEL_4]].",
+      "source": "https://awards.fairwork.gov.au/MA000100.html"
+    },
+    {
+      "lead": "SCHADS is the short name for the Social, Community, Home Care and Disability Services Industry Award 2010 (MA000100). Its 2026-27 rates apply from 1 July 2026: Level 1 pay point 1 is $27.55 an hour and Level 8 pay point 3 is $71.19 an hour [[SCHADS_SACS]], with casuals paid 25% more [[schadsCasualHourly]]. Every pay point in the social and community services and home care streams is listed below.",
+      "source": "https://awards.fairwork.gov.au/MA000100.html"
+    }
+  ]
+}

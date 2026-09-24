@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-tax-return-calculator",
+  "kind": "citation_lead",
+  "route": "/tax-return-calculator/",
+  "candidates": [
+    {
+      "lead": "A tax return calculator estimates the refund or bill on the 2025-26 return by comparing the tax withheld from pay with the tax owed on the year's income, assessed on the 2025-26 rates (a 16% second bracket [[TAX_BRACKETS_2025_26]] and a 2% Medicare levy). The self-lodged return is due 31 October 2026 [[RETURN_2026.selfLodgeDueDate]] and most online refunds issue within 2 weeks [[RETURN_2026.onlineRefundTypical]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+    },
+    {
+      "lead": "An estimated tax return is the difference between the PAYG tax withheld from 1 July 2025 to 30 June 2026 and the tax owed on the 2025-26 scale: $18,200 tax-free, then 16% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2025_26]], plus the 2% Medicare levy. More withheld than owed is a refund; less is a bill. The return is due 31 October 2026 if self-lodged, or 15 May 2027 through most tax agents [[RETURN_2026]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+    },
+    {
+      "lead": "A tax refund estimate for 2026 covers the 2025-26 income year: tax withheld minus tax assessed on taxable income after deductions, using the 2025-26 brackets [[TAX_BRACKETS_2025_26]] and the $700 Low Income Tax Offset [[LITO.maxOffset]]. Online returns are typically processed within 12 business days [[RETURN_2026]]; the self-lodgement deadline is 31 October 2026 [[RETURN_2026.selfLodgeDueDate]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return/lodge-your-tax-return-online-with-mytax"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-junior-pay-rates",
+  "kind": "citation_lead",
+  "route": "/junior-pay-rates/",
+  "candidates": [
+    {
+      "lead": "The minimum wage by age is a percentage of the adult rate: where no award applies, junior rates for 2026-27 run from $9.73 an hour under 16 to $25.84 at 20 [[FWO_PUBLISHED_JUNIOR_RATES]], reaching the full $26.44 National Minimum Wage at 21 [[NMW.hourly]]. An 18-year-old's award-free rate is $18.06 an hour, or $22.58 as a casual, from 1 July 2026. Most young workers are covered by an award instead.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates"
+    },
+    {
+      "lead": "The minimum wage for an 18-year-old in Australia with no award is $18.06 an hour from 1 July 2026, or $22.58 an hour as a casual [[FWO_PUBLISHED_JUNIOR_RATES]], which is 68.3% of the $26.44 National Minimum Wage [[NMW.hourly]]. Junior rates apply to workers under 21 [[ADULT_AGE]]; in retail, fast food and hospitality a different percentage applies to that award's own base rate.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates"
+    },
+    {
+      "lead": "Junior pay rates are the legal minimum for employees under 21, set as a percentage of the adult rate that rises with each birthday. For award-free work in 2026-27 the Fair Work Ombudsman publishes $9.73 an hour under 16, $12.51 at 16, $15.29 at 17, $18.06 at 18, $21.82 at 19 and $25.84 at 20 [[FWO_PUBLISHED_JUNIOR_RATES]], with the adult $26.44 [[NMW.hourly]] at 21. Casuals add 25% [[CASUAL_LOADING]].",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates"
+    }
+  ]
+}

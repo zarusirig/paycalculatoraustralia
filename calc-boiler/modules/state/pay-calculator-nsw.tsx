@@ -5,8 +5,11 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatPercent,
+  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  SUPER_GUARANTEE,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
@@ -60,10 +63,13 @@ export default function PayCalculatorNSWPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">NSW</span>
           </div>
           <p className="text-lg text-warmgray">
-            A salary calculator for the 4 million people who work in NSW. Enter your gross pay and see
-            the net figure that should appear on your next payslip, using ATO{" "}
-            {SITE_CONFIG.financialYear} rates — then check the NSW-only things underneath: the public
-            holiday calendar, long service leave after 10 years, and who really pays payroll tax.
+            Take-home pay in New South Wales is gross salary less federal income tax and the{" "}
+            {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on the ATO {SITE_CONFIG.financialYear} rates,
+            with {formatPercent(SUPER_GUARANTEE.rate, 0)} super paid by the employer on top. NSW-specific
+            rules sit outside the tax sum: long service leave of{" "}
+            {PROFILE.longServiceLeave.weeksAtEntitlement} weeks after {PROFILE.longServiceLeave.takeAfterYears}{" "}
+            years, and payroll tax of {PAYROLL_TAX_STATES.nsw.headlineRate} above{" "}
+            {formatAUD(PAYROLL_TAX_STATES.nsw.annualThreshold)} paid by employers, not deducted from wages.
           </p>
           <TrustBar className="mt-4" />
         </section>

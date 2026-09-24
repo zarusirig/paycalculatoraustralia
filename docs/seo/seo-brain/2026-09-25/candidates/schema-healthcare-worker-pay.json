@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-healthcare-worker-pay",
+  "kind": "citation_lead",
+  "route": "/healthcare-worker-pay/",
+  "candidates": [
+    {
+      "lead": "Healthcare worker pay in Australia is set by state enterprise agreements for public-sector nurses and midwives, and by federal awards such as the Nurses Award 2020 (MA000034) for private hospitals, GP clinics and aged care. Across the eight state scales a registered nurse's entry step runs from $74,831 in SA to $84,188 in Victoria [[registeredNurseRange]]; the award minimum is $1,219.50 a week from 1 July 2026.",
+      "source": "https://awards.fairwork.gov.au/MA000034.html"
+    },
+    {
+      "lead": "A nurse's pay in Australia depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from $74,831 a year in SA to $84,188 in Victoria, and the top of the base scale from $102,103 to $115,682 [[registeredNurseRange]], before shift penalties. The Nurses Award 2020 floor is $32.09 an hour from 1 July 2026 [[NURSES_AWARD]].",
+      "source": "https://awards.fairwork.gov.au/MA000034.html"
+    },
+    {
+      "lead": "Healthcare pay covers nurses, midwives, doctors, allied health and aged care workers, each on a different scale: state enterprise agreements in public hospitals and federal awards elsewhere. A registered nurse starts between $74,831 (SA) and $84,188 (VIC) a year on the 2026 state scales [[registeredNurseRange]]; the Nurses Award 2020 (MA000034) minimum is $1,219.50 a week from 1 July 2026 [[NURSES_AWARD]].",
+      "source": "https://awards.fairwork.gov.au/MA000034.html"
+    }
+  ]
+}

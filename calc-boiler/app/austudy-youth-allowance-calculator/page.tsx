@@ -4,7 +4,8 @@ import AustudyYouthAllowanceCalculatorContent from "@/modules/calculator/austudy
 import { STUDENT_FAQS } from "@/modules/calculator/austudy-youth-allowance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
+import { AUSTUDY, STUDENT_INCOME_TEST, YOUTH_ALLOWANCE_STUDENT } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -12,7 +13,12 @@ import { withPageEnd } from "@/components/common/content-slots";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/austudy-youth-allowance-calculator/`;
 const TITLE = "Youth Allowance Calculator 2026 — Rates, Eligibility, Income Test";
-const DESCRIPTION = "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c.";
+// Previous: "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c."
+// seo-brain 25 Sep 2026 (Jev-ranked): the rates most searched (Austudy single, YA 18+ at home /
+// away) from the 1 Jan 2026 constants; the income test from STUDENT_INCOME_TEST.
+const YA = YOUTH_ALLOWANCE_STUDENT.maxFortnightly;
+const STUDENT_TEST = STUDENT_INCOME_TEST;
+const DESCRIPTION = `Austudy pays up to ${formatAUD(AUSTUDY.maxFortnightly.singleNoChildren, 2)} a fortnight; Youth Allowance ${formatAUD(YA.over18AtHome, 2)} at home or ${formatAUD(YA.awayFromHome, 2)} away (18+). Enter your wages: ${formatAUD(STUDENT_TEST.freeArea)} free area, ${Math.round(STUDENT_TEST.taper1 * 100)}c to ${formatAUD(STUDENT_TEST.band1End)}, then ${Math.round(STUDENT_TEST.taper2 * 100)}c.`;
 
 export const metadata: Metadata = {
   title: TITLE,

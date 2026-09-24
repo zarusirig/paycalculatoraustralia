@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-pay-calculator-tas",
+  "kind": "citation_lead",
+  "route": "/pay-calculator-tas/",
+  "candidates": [
+    {
+      "lead": "A Tasmanian pay calculator converts gross salary to net pay on the federal ATO 2026-27 scale: $18,200 tax-free [[TAX_FREE_THRESHOLD]], 15% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. Tasmanian payroll tax is a separate employer tax of 4% on wages above $1.25 million and 6.1% above $2 million [[TAS_PAYROLL_TAX]]; it never comes out of an employee's pay.",
+      "source": "https://www.sro.tas.gov.au/payroll-tax/rates-thresholds"
+    },
+    {
+      "lead": "Take-home pay in Tasmania is gross salary less federal income tax and the 2% Medicare levy on the ATO 2026-27 rates, which are identical in every state; 12% super [[SUPER_GUARANTEE.rate]] is paid on top. Full-time adults in Tasmania earn $1,846.30 a week, about $96,008 a year [[STATE_PROFILES.TAS.awote.personsFullTime]], the lowest of any state or territory (ABS, May 2026).",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Payroll tax in Tasmania is paid by employers, not employees: for 2026-27 it is 4% on Australian wages between $1.25 million and $2 million and 6.1% above $2 million [[TAS_PAYROLL_TAX]], and it never reduces a payslip. An employee's net pay in Tasmania is worked out on the federal ATO 2026-27 scale, with the first $18,200 tax-free [[TAX_FREE_THRESHOLD]] and a 2% Medicare levy [[MEDICARE_LEVY.rate]].",
+      "source": "https://www.sro.tas.gov.au/payroll-tax/rates-thresholds"
+    }
+  ]
+}

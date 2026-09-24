@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-schedule-5-tax-table-1",
+ "kind": "title_description",
+ "route": "/schedule-5-tax-table/",
+ "candidates": [
+  {
+   "title": "Schedule 5 Tax Table 2026-27 (NAT 3348) — Bonus PAYG",
+   "description": "PAYG on Schedule 5: a $5,000 bonus on $2,000 a fortnight has $1,612 withheld (32.2%), leaving $3,388, in 2026-27. NAT 3348 methods A and B, 47% cap and reckoner.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus → $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  },
+  {
+   "title": "Schedule 5 Tax Table 2026-27 (NAT 3348) — Bonus PAYG",
+   "description": "Schedule 5 (ATO NAT 3348) withholds PAYG on bonuses, commissions and back pay by spreading them over the year: $1,612 on a $5,000 bonus at $2,000 a fortnight.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus → $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  },
+  {
+   "title": "Schedule 5 Tax Table 2026-27 (NAT 3348) — Bonus PAYG",
+   "description": "ATO Schedule 5 for 2026-27: PAYG on bonuses and back pay. A $5,000 bonus at $2,000 a fortnight has $1,612 withheld, 32.2% effective, capped at 47%. Full table.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus → $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  },
+  {
+   "title": "Schedule 5 Tax Table 2026-27 (NAT 3348) — PAYG on Bonuses",
+   "description": "PAYG on Schedule 5 payments in 2026-27: $1,612 is withheld from a $5,000 bonus for someone on $2,000 a fortnight (32.2%). Methods A, B(i), B(ii) and the 47% cap.",
+   "figureSource": "SCHEDULE_5_BONUS_ROWS / ATO_SCHEDULE_5 apportionment at $2,000 a fortnight: $5,000 bonus → $1,612 withheld (32.2%), $3,388 in pocket; SCHEDULE_5_WITHHOLDING_LIMIT 47%"
+  }
+ ]
+}

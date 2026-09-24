@@ -1,0 +1,816 @@
+{
+ "level": "striking",
+ "author": "claude-fable-5-1 (section agent)",
+ "createdAt": "2026-09-24T22:11:15.756704Z",
+ "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+ "decisions": [
+  {
+   "id": "striking-payg-withholding-tables-1",
+   "level": "striking",
+   "priority": 88,
+   "confidence": 0.8,
+   "rationale": "Jev finds no heading for 'fortnightly tax table 2026' (6,600/mo, #12, headingCovers 0.40), 'weekly tax table 2026' (5,400/mo, #16, 0.36) or 'australian tax table fortnightly' (1,900/mo, 0.48); all six keywords want a table (needsTable true). The hub's opening already says 'pick yours below' (openingAnswers 0.64-0.68) but the pick list carries no figures. A short sample-row table per pay cycle, headed with the literal 'weekly, fortnightly and monthly tax tables', gives the hub a table to rank on and hands the click to the three full-table pages.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     },
+     {
+      "kw": "payg table",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "navigational",
+      "pos": 13
+     },
+     {
+      "kw": "payg tables",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 12
+     },
+     {
+      "kw": "ato tax tables 2026",
+      "vol": 880,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026",
+    "weekly tax table 2026",
+    "australian tax table fortnightly",
+    "payg table",
+    "payg tables",
+    "ato tax tables 2026"
+   ],
+   "kind": "add_section",
+   "route": "/payg-withholding-tables/",
+   "heading": "Weekly, Fortnightly and Monthly Tax Tables 2026-27: Sample Rows",
+   "placement": "after_intro",
+   "outline": [
+    "Three compact tables (5-6 rows each) built with buildTaxTableRows() over a short slice of WEEKLY_TABLE_AMOUNTS, FORTNIGHTLY_TABLE_AMOUNTS and MONTHLY_TABLE_AMOUNTS (lib/constants/payg-withholding.ts); columns: earnings, withheld with tax-free threshold (SCALE_2_TFT), withheld without (SCALE_1_NO_TFT)",
+    "Label each table with its ATO schedule number (NAT 1005 weekly, NAT 1006 fortnightly, NAT 1007 monthly) and the year from PAYG_FINANCIAL_YEAR; state the tables were last updated on PAYG_TABLES_UPDATED",
+    "Under each table one link to the full page with the exact anchor 'weekly tax table 2026-27' -> /weekly-tax-table/, 'fortnightly tax table 2026-27' -> /fortnightly-tax-table/, 'monthly tax table 2026-27' -> /monthly-tax-table/ (render the year from PAYG_FINANCIAL_YEAR, never typed)",
+    "One sentence per table on why the fortnightly figure is not weekly x 2 and the monthly figure is not weekly x 52/12 (the ATO monthly formula uses x 3/13 weeks), citing the ATO tax tables overview",
+    "No STSL or Medicare-variation columns here; point to the STSL column on the full-table pages",
+    "Word budget covers captions only; figures are rendered by the engine at build time"
+   ],
+   "sources": [
+    "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview",
+    "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly"
+   ],
+   "wordBudget": 320
+  },
+  {
+   "id": "striking-award-rates-1",
+   "level": "striking",
+   "priority": 78,
+   "confidence": 0.8,
+   "rationale": "Jev finds no heading for 'award rates in nsw' (880/mo, #19, headingCovers 0.45), 'award wage rates nsw' (0.50), 'award wages nsw' (880/mo, #15, 0.41) and 'award pay rates qld' (0.54); openingAnswers is 0.48-0.59. The hub never says that modern award rates are national, so a state-qualified searcher has nothing to land on. A short section that answers the state question literally (same rate in NSW, QLD and VIC; the WA and QLD state-system exceptions) closes the gap without a new page and links out to the state pay calculators.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "award rates in nsw",
+      "vol": 880,
+      "kd": 15,
+      "intent": "commercial",
+      "pos": 19
+     },
+     {
+      "kw": "award wage rates nsw",
+      "vol": 880,
+      "kd": 15,
+      "intent": "commercial",
+      "pos": 19
+     },
+     {
+      "kw": "award wages nsw",
+      "vol": 880,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 15
+     },
+     {
+      "kw": "award pay rates qld",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "australia pay rates",
+      "vol": 1000,
+      "kd": 30,
+      "intent": "informational",
+      "pos": 19
+     }
+    ]
+   },
+   "targetQueries": [
+    "award rates in nsw",
+    "award wage rates nsw",
+    "award wages nsw",
+    "award pay rates qld",
+    "australia pay rates"
+   ],
+   "kind": "add_section",
+   "route": "/award-rates/",
+   "heading": "Award Rates in NSW, QLD, Victoria and Other States: Is There a Difference?",
+   "placement": "before_faq",
+   "outline": [
+    "State the rule first: modern award rates are set nationally by the Fair Work Commission, so a Retail Award Level 1 rate is the same in NSW, Queensland, Victoria, SA, Tasmania, the ACT and the NT; cite the FWO minimum wages page and name the awards from AWARD_DIRECTORY (lib/constants/award-directory.ts)",
+    "Exception 1, Western Australia: sole traders, partnerships and other unincorporated WA employers sit in the WA state system with its own minimum wage; render WA_STATE_MINIMUM_WAGE.weekly / .hourly / .operativeFrom (lib/constants/minimum-wage.ts) and link the wa.gov.au announcement",
+    "Exception 2, Queensland: state and local government employees are covered by the Queensland state system; render QLD_STATE_WAGE_CASE_2026.qmwWeekly, .increase and .operativeFrom (lib/constants/minimum-wage.ts) and cite the QIRC decision",
+    "What does differ by state: public holidays (HOLIDAYS_2026_27, lib/constants) change which days attract public-holiday penalty rates, and long service leave is state law; one sentence each with links to /pay-calculator-nsw/, /pay-calculator-qld/ and /pay-calculator-vic/",
+    "Close with the national minimum wage as the floor under every award (NMW.hourly from lib/constants/minimum-wage.ts) and a link to /minimum-wage-australia/",
+    "YMYL: no 'best state' framing; state the mechanism only"
+   ],
+   "sources": [
+    "https://www.fairwork.gov.au/pay-and-wages/minimum-wages",
+    "https://www.wa.gov.au/government/announcements/wa-award-and-minimum-rates-of-pay-increase-1-july-2026",
+    "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf"
+   ],
+   "wordBudget": 300
+  },
+  {
+   "id": "striking-austudy-youth-allowance-calculator-1",
+   "level": "striking",
+   "priority": 72,
+   "confidence": 0.7,
+   "rationale": "Jev finds no heading for 'youth allowance estimator' (2,400/mo, #18, headingCovers 0.43) and flags 'searchers want a calculator; page is a centrelink' for 'youth allowance calculator' (2,400/mo, #20, 0.52). The second flag is a partial false positive: the page opens with the 'How Much Do You Keep When You Work?' calculator built on studentFortnightly(). What is missing is any heading that names the tool as an estimator/calculator and tells the searcher what to enter and what it does not model. A how-to-use section, placed directly under the calculator, supplies the literal 'youth allowance estimator' heading and sets expectations against Services Australia's own finder.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "youth allowance estimator",
+      "vol": 2400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "youth allowance calculator",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "austudy calculator",
+      "vol": 480,
+      "kd": 20,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "centrelink calculator youth allowance",
+      "vol": 390,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 15
+     }
+    ]
+   },
+   "targetQueries": [
+    "youth allowance estimator",
+    "youth allowance calculator",
+    "austudy calculator",
+    "centrelink calculator youth allowance"
+   ],
+   "kind": "add_section",
+   "route": "/austudy-youth-allowance-calculator/",
+   "heading": "How to Use This Youth Allowance Estimator",
+   "placement": "after_calculator",
+   "outline": [
+    "What to enter: gross wages per fortnight (before tax), whether you are a student/Australian Apprentice or a job seeker, and whether you live at home or away, because the maximum rate comes from YOUTH_ALLOWANCE_STUDENT / YOUTH_ALLOWANCE_JOBSEEKER / AUSTUDY (lib/constants/centrelink-income-test.ts)",
+    "How the estimate is produced: studentFortnightly() applies STUDENT_INCOME_TEST (free area, 50-cent and 60-cent tapers) to the fortnightly wage; render the free-area and taper figures from the constant, never typed",
+    "What the estimator does not model: the parental income test for dependants, an existing income bank balance, Rent Assistance, and partner income; one sentence each, with a link to the 'Income Bank, and the 12-Fortnight Rule' section",
+    "How it compares with the Services Australia Payment and Service Finder: the finder checks eligibility across all payments from your answers; this page shows the income-test arithmetic for one payment so you can check the fortnightly amount on your statement",
+    "When the figures change: rates indexed from AUSTUDY.ratesFrom; say the constants are re-verified at each indexation",
+    "YMYL: label the output an estimate; no statement that a person is eligible"
+   ],
+   "sources": [
+    "https://www.servicesaustralia.gov.au/what-personal-income-test-for-youth-allowance-for-students-and-australian-apprentices",
+    "https://www.servicesaustralia.gov.au/payment-and-service-finder"
+   ],
+   "wordBudget": 260
+  },
+  {
+   "id": "striking-hospitality-award-rates-1",
+   "level": "striking",
+   "priority": 62,
+   "confidence": 0.8,
+   "rationale": "Jev finds no heading for 'level 2 hospitality pay rate casual' (480/mo, #16, headingCovers 0.48, openingAnswers 0.13) or 'level 1 hospitality pay rate casual' (390/mo, #15, 0.49, 0.16). The page has a full casual table inside 'Hospitality Pay Guide 2026-27: Every Level, Every Day' and a classification list, but no heading names the level-plus-casual combination the searcher types, and the level's duties sit in a different section from its rate. A level-specific section that puts the L1 and L2 casual base, weekend and public-holiday figures beside the duties answers both queries literally. 'hospitality award rates' (3,600/mo) already has headingCovers 0.90 and is a citation_lead matter (wo-citation_lead-b.json).",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "level 2 hospitality pay rate casual",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     },
+     {
+      "kw": "level 1 hospitality pay rate casual",
+      "vol": 390,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     },
+     {
+      "kw": "pay rate for hospitality",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 19
+     }
+    ]
+   },
+   "targetQueries": [
+    "level 2 hospitality pay rate casual",
+    "level 1 hospitality pay rate casual",
+    "pay rate for hospitality"
+   ],
+   "kind": "add_section",
+   "route": "/hospitality-award-rates/",
+   "heading": "Hospitality Level 1 and Level 2 Casual Pay Rates: What Each Level Does",
+   "placement": "before_faq",
+   "outline": [
+    "Two-row table (Level 1, Level 2) from HOSPITALITY_RATES (lib/constants/hospitality-award.ts): full-time hourly, casual hourly (hourly x (1 + CASUAL_LOADING)), casual Saturday, casual Sunday and casual public holiday, each derived from HOSPITALITY_PENALTIES percentages",
+    "Under the table, the duties for each level from HOSPITALITY_CLASSIFICATIONS (Level 1: introductory / food and beverage attendant grade 1, kitchen attendant grade 1; Level 2: food and beverage attendant grade 2, cook grade 1) so a reader can confirm they are on the right level",
+    "One sentence on when a casual at Level 1 moves to Level 2 (the classification descriptor, not time served), citing the FWO award summary",
+    "Juniors: state that the casual figures above are adult rates and that a junior casual is the percentage in HOSPITALITY_JUNIOR_SCALE of the adult casual rate; link to the 'Hospitality Junior Rates' section",
+    "Close with a link to /tax-on/ or the take-home matrix so the casual hourly figure can be turned into a fortnightly take-home amount",
+    "All figures rendered from constants at build; operative date from HOSPITALITY_AWARD"
+   ],
+   "sources": [
+    "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary",
+    "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews"
+   ],
+   "wordBudget": 280
+  },
+  {
+   "id": "striking-centrelink-income-test-1",
+   "level": "striking",
+   "priority": 58,
+   "confidence": 0.75,
+   "rationale": "Jev finds no heading for 'centrelink online estimator' (390/mo, #9, headingCovers 0.44); it is navigational intent (DataForSEO intent 'navigational') for Services Australia's Payment and Service Finder, so a single FAQ that names the official tool and says how this page differs is the proportionate fix. The 'jobseeker payment calculator' keywords (1,300/mo and 390/mo) are owned by /jobseeker-payment-calculator/, which already has 'How Much JobSeeker Do You Keep?' and ranks for JobSeeker queries; the 'page is a centrelink' flag is therefore a different-page case, not a section on this hub. openingAnswers 0.28 for that query is in wo-citation_lead-a.json.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "centrelink online estimator",
+      "vol": 390,
+      "kd": 6,
+      "intent": "navigational",
+      "pos": 9
+     },
+     {
+      "kw": "centrelink earnings calculator",
+      "vol": 390,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "income calculator centrelink",
+      "vol": 390,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "centrelink online estimator",
+    "centrelink earnings calculator",
+    "income calculator centrelink"
+   ],
+   "kind": "add_faq",
+   "route": "/centrelink-income-test/",
+   "question": "Where is the Centrelink online estimator, and how is it different from this page?",
+   "answerOutline": "Name the Services Australia Payment and Service Finder (link) as the official online estimator: it asks about your situation and lists payments you may get, with an estimate. This page's 'Work Out Your Own Payment' tool applies one payment's income test (JOBSEEKER_INCOME_TEST or STUDENT_INCOME_TEST, lib/constants/centrelink-income-test.ts) to fortnightly earnings so you can check the taper on a statement. Send JobSeeker searchers to /jobseeker-payment-calculator/. Label both as estimates.",
+   "sources": [
+    "https://www.servicesaustralia.gov.au/payment-and-service-finder"
+   ]
+  },
+  {
+   "id": "striking-pay-calculator-qld-1",
+   "level": "striking",
+   "priority": 56,
+   "confidence": 0.7,
+   "rationale": "Jev finds no heading for 'wage calculator qld' (480/mo, #15, headingCovers 0.41) and flags 'searchers want a calculator; page is a guide' for 'pay calculator qld' (1,900/mo, #20, 0.59). The second flag is a partial false positive: the page opens with StateTakeHomeCalculator and the lead already says 'this wage calculator returns the net figure' (openingAnswers 0.68-0.71). What the page lacks is a heading that literally says 'wage calculator' and hourly/casual entry guidance, since the calculator takes an annual salary. A short section under the calculator that converts an hourly or casual wage to the annual figure to enter, and states the Queensland state-system minimum, fits the page's existing QLD-specific structure.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "wage calculator qld",
+      "vol": 480,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 15
+     },
+     {
+      "kw": "pay calculator qld",
+      "vol": 1900,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 20
+     }
+    ]
+   },
+   "targetQueries": [
+    "wage calculator qld",
+    "pay calculator qld"
+   ],
+   "kind": "add_section",
+   "route": "/pay-calculator-qld/",
+   "heading": "Queensland Wage Calculator: From an Hourly Rate to Take-Home Pay",
+   "placement": "after_calculator",
+   "outline": [
+    "How to use the calculator above with an hourly wage: annual = hourly x hours per week x 52 via hourlyToAnnual() (lib/constants/australian-tax.ts, EMPLOYMENT.hoursPerYear / STANDARD_WEEKLY_HOURS); one worked line at NMW.hourly from lib/constants/minimum-wage.ts",
+    "Casuals: multiply the base hourly rate by (1 + CASUAL_LOADING) before annualising; render NMW.casualHourly as the example",
+    "Three-row table (hourly rate -> annual -> fortnightly take-home) computed with calculatePayBreakdown() at NMW.hourly, and two award-typical rates read from RETAIL_RATES Level 1 and HOSPITALITY_RATES Level 2 (lib/constants/hospitality-award.ts)",
+    "Queensland-specific floor: state and local government employees are in the Queensland state system, whose minimum wage is QLD_STATE_WAGE_CASE_2026.qmwWeekly from .operativeFrom (lib/constants/minimum-wage.ts); everyone else in QLD is on the national minimum wage (NMW.weekly); cite the QIRC decision",
+    "Links: /hourly-to-annual-salary-calculator/ for other hours-per-week patterns and /minimum-wage-australia/ for the full minimum wage page",
+    "YMYL: no advice on which employment type to choose; state the arithmetic only"
+   ],
+   "sources": [
+    "https://www.fairwork.gov.au/pay-and-wages/minimum-wages",
+    "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf"
+   ],
+   "wordBudget": 280
+  },
+  {
+   "id": "striking-teacher-pay-australia-1",
+   "level": "striking",
+   "priority": 54,
+   "confidence": 0.75,
+   "rationale": "Jev finds no heading for 'average australian teacher salary' (880/mo, #19, headingCovers 0.47, openingAnswers 0.29) and 'teacher yearly income' (210/mo, 0.70). The hub gives graduate and top-of-scale figures by state but never states an average or median, so the 'average' query has nothing to land on. A section that answers the question honestly (no single average; the published scale range plus the ABS Education and training median from lib/data/average-salary) fits the hub's 'every figure read from the state's own agreement' stance. 'teachers salaries in australia' (1,300/mo) already has headingCovers 0.88.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "average australian teacher salary",
+      "vol": 880,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 19
+     },
+     {
+      "kw": "teacher yearly income",
+      "vol": 210,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "teachers salaries in australia",
+      "vol": 1300,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 18
+     }
+    ]
+   },
+   "targetQueries": [
+    "average australian teacher salary",
+    "teacher yearly income",
+    "teachers salaries in australia"
+   ],
+   "kind": "add_section",
+   "route": "/teacher-pay-australia/",
+   "heading": "What Is the Average Australian Teacher Salary?",
+   "placement": "before_faq",
+   "outline": [
+    "Open by stating that no state publishes an average; then give the published range: lowest graduate (lowestPublishedSalary / graduateSalary) to highest top-of-classroom-scale (highestPublishedSalary / topOfClassroomScale) across TEACHER_PAY_BY_STATE (lib/data/teacher-pay), rendered by state",
+    "Midpoint of the eight states' graduate rates and of the eight top-of-scale rates, computed from teacherHubRows() (lib/data/teacher-pay/hub.ts), labelled as an unweighted midpoint, not an ABS average",
+    "The ABS benchmark: Education and training median weekly earnings from EE_MEDIAN_BY_INDUSTRY (lib/data/average-salary/index.ts), annualised with annualise() and dated by EE_RELEASE; note it covers all education employees, not classroom teachers only",
+    "Teacher yearly income after tax: take-home on the graduate midpoint and the top-of-scale midpoint via calculatePayBreakdown() (lib/constants/australian-tax.ts), linking to /tax-on/ for the exact amounts",
+    "One sentence on why the range is wide (state agreements, VIC_2026_AGREEMENT increases, NT remote loadings) with a link to /average-salary-australia/ for the all-occupations figure",
+    "Cite the ABS Employee Earnings and Hours May 2025 release and each state agreement already in the page's sources"
+   ],
+   "sources": [
+    "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2025"
+   ],
+   "wordBudget": 280
+  },
+  {
+   "id": "striking-schads-award-pay-rates-1",
+   "level": "striking",
+   "priority": 60,
+   "confidence": 0.8,
+   "rationale": "Jev finds no heading for 'schads level 4 salary' (390/mo, #17, headingCovers 0.47, openingAnswers 0.17), 'schads level 5 salary' (320/mo, #20, 0.42), 'schads award level 2 pay rate' (260/mo, 0.46) and 'schads level 3 salary' (210/mo, 0.43). The page's Schedule B table is per pay point in weekly and hourly terms; nothing is headed by level and nothing gives an annual salary, which is what 'level N salary' asks for. A level-by-level annual table (weekly x 52 from SCHADS_SACS) with the classification descriptor answers all four literally. 'schads award 2026 pay rates' already has headingCovers 0.87-0.90.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "schads level 4 salary",
+      "vol": 390,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "schads level 5 salary",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "schads award level 2 pay rate",
+      "vol": 260,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "schads level 3 salary",
+      "vol": 210,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 17
+     }
+    ]
+   },
+   "targetQueries": [
+    "schads level 4 salary",
+    "schads level 5 salary",
+    "schads award level 2 pay rate",
+    "schads level 3 salary"
+   ],
+   "kind": "add_section",
+   "route": "/schads-award-pay-rates/",
+   "heading": "SCHADS Level 2, 3, 4 and 5 Salary: Annual Pay by Pay Point",
+   "placement": "before_faq",
+   "outline": [
+    "Table for Levels 2-5 from SCHADS_SACS (lib/constants/schads-award.ts, parsed from SCHADS_SACS_RAW): each pay point's weekly rate, annual salary (weekly x WEEKS_PER_YEAR), and casual hourly (hourly x (1 + CASUAL_LOADING)); operative date from SCHADS_AWARD",
+    "One-line classification descriptor per level (Schedule B: Level 2 entry-level support worker, Level 3 experienced support / qualified worker, Level 4 case worker / team leader, Level 5 coordinator / specialist) citing the FWO award summary, so a reader can match role to level",
+    "State that the annual figure is the award minimum for a 38-hour week and that many employers pay above it under enterprise agreements; link to the 'Read this before you compare your payslip' section",
+    "Home care note: Schedule E home care levels differ from Schedule B; point to the 'Home Care Pay Rates (Schedules E and F)' section and mention SCHADS_HOME_CARE_DISABILITY_DEC_2026 for the December 2026 change",
+    "Close with a link to /tax-on/ (or the page's take-home matrix) so a Level 4 pay point 1 annual figure can be turned into take-home pay",
+    "All figures rendered from constants; never type a rate"
+   ],
+   "sources": [
+    "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary",
+    "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews"
+   ],
+   "wordBudget": 320
+  },
+  {
+   "id": "striking-retail-award-rates-1",
+   "level": "striking",
+   "priority": 52,
+   "confidence": 0.8,
+   "rationale": "Jev finds no heading for 'retail minimum wage' (390/mo, #18, headingCovers 0.42) or 'retail minimum wage australia' (320/mo, #20, 0.47); openingAnswers 0.30-0.36. The page shows every Retail Award rate but never frames Level 1 as the retail minimum or compares it with the national minimum wage, which is the searcher's mental model. A short comparison section with the literal phrase 'retail minimum wage' answers it and ties into the existing junior and casual sections. 'retail casual rates' / 'retail award rate casual' already have headingCovers 0.76-0.80.",
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "retail minimum wage",
+      "vol": 390,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "retail minimum wage australia",
+      "vol": 320,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "award rates retail nsw",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 19
+     }
+    ]
+   },
+   "targetQueries": [
+    "retail minimum wage",
+    "retail minimum wage australia",
+    "award rates retail nsw"
+   ],
+   "kind": "add_section",
+   "route": "/retail-award-rates/",
+   "heading": "Retail Minimum Wage in Australia: Level 1 vs the National Minimum Wage",
+   "placement": "before_faq",
+   "outline": [
+    "Direct answer: the retail minimum wage is the Retail Award Level 1 adult rate from RETAIL_RATES (lib/constants/hospitality-award.ts), weekly and hourly, operative from RETAIL_AWARD.operativeFrom; place it beside NMW.weekly / NMW.hourly (lib/constants/minimum-wage.ts) in a two-row table",
+    "Explain the gap: award minimums sit above the national minimum wage floor and the Annual Wage Review AWR_2026_FLOORS.increase lifted both; cite the FWC annual wage review page",
+    "Casual retail minimum: Level 1 hourly x (1 + CASUAL_LOADING), rendered, with a pointer to the casual table in 'Retail Pay Guide 2026-27: Every Level, Every Day'",
+    "Junior retail minimum: percentages from RETAIL_JUNIOR_SCALE applied to Level 1, with the note that junior rates stop at Level 3 (RETAIL_JUNIOR_LEVEL_RESTRICTION) and a link to /junior-pay-rates/",
+    "State question in one sentence: the same Level 1 rate applies in NSW, QLD, VIC and every other state because the award is national (link /award-rates/); WA unincorporated employers are the exception",
+    "Close with a take-home link so the weekly minimum can be seen after tax"
+   ],
+   "sources": [
+    "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000004-summary",
+    "https://www.fairwork.gov.au/pay-and-wages/minimum-wages",
+    "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews"
+   ],
+   "wordBudget": 260
+  },
+  {
+   "id": "expansion-fair-work-pay-calculator-13",
+   "kind": "new_page",
+   "level": "expansion",
+   "route": "/fair-work-pay-calculator/",
+   "title": "Fair Work Pay Calculator (PACT) 2026-27 \u2014 How It Works & Rates",
+   "template": "guide",
+   "priority": 55,
+   "confidence": 0.7,
+   "rationale": "Genuinely uncovered: no route mentions PACT or the Fair Work pay calculator; /award-rates/ ranks #27 for 'fair work pay rates' but does not explain the tool. Live AU SERP (Firecrawl, 25 Sep): calculate.fairwork.gov.au holds 5 of the top 10 (navigational), yet a third-party explainer (sprintlaw) sits at #6, so an explainer can rank; the competitor URL paycalculator.com.au is a salary-tax form with nothing about awards. Border: rule 1 holds (links to /award-rates/, /overtime-pay-calculator/, /casual-loading-calculator/, EA award floor checker); rule 2: pay calculation > award minimum rates > the FWO tool = 2 degrees; rule 3: the reader checks award base rate, casual loading and penalty rate against their next payslip. Ours differs from PACT by showing 2026-27 award figures inline from lib/constants (no 8-step wizard), sourced to FWO pay guides, plus a plain map of what PACT asks.",
+   "border": {
+    "linksToCalculator": true,
+    "degreesFromCentralEntity": 2,
+    "helpsCheckNextPayslip": true
+   },
+   "outline": [
+    "What the Fair Work pay calculator (PACT) is: the FWO Pay and Conditions Tool, its four calculators (pay, shift, leave, notice and redundancy), what it covers and what it does not (enterprise agreements, above-award pay)",
+    "Step-by-step: what PACT asks (award, classification, employment type, age, hours, day and time worked) and where to find each answer on your contract or payslip",
+    "2026-27 award base rates by level for the 14 covered awards, rendered from MODERN_AWARDS, RETAIL_RATES and HOSPITALITY_RATES in lib/constants (never typed)",
+    "National minimum wage and junior percentages for readers not covered by an award, from NMW_ORDER, JUNIOR_BANDS and JUNIOR_RATES in lib/constants/junior-rates.ts",
+    "Casual loading and penalty rates PACT adds on top of the base rate, from CASUAL_LOADING (0.25) and each award's PenaltyRow data, with a worked week",
+    "Interactive check: pick your award and level, enter your payslip hourly rate, see the gap (reuse of the EaAwardFloorChecker component), then link to /backpay-calculator/ if underpaid",
+    "From award gross to take-home: link the result into calculatePayBreakdown via /take-home-pay-calculator/ so the reader sees tax and super on the award rate",
+    "FAQ: is the Fair Work calculator accurate, what if my agreement pays more, how often rates change (1 July each year, FWC annual wage review), what to do if underpaid",
+    "Sources: FWO PACT, FWO pay guides, FWC annual wage review decision"
+   ],
+   "sources": [
+    "https://calculate.fairwork.gov.au/",
+    "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/pay-guides"
+   ],
+   "inlinksFrom": [
+    "/award-rates/",
+    "/minimum-wage-australia/",
+    "/overtime-penalty-rates-guide/",
+    "/backpay-calculator/",
+    "/retail-award-rates/"
+   ],
+   "evidence": {
+    "keywords": [
+     {
+      "kw": "fair work pay calculator",
+      "vol": 6600,
+      "kd": 17,
+      "intent": null,
+      "pos": 100
+     }
+    ],
+    "note": "SERP: calculate.fairwork.gov.au x5, fairwork.gov.au/pay-and-wages, sprintlaw explainer #6; /award-rates/ ranks #27 for 'fair work pay rates'"
+   },
+   "targetQueries": [
+    "fair work pay calculator"
+   ]
+  },
+  {
+   "id": "schema-centrelink-income-test-22",
+   "level": "schema",
+   "priority": 51.38,
+   "confidence": 0.39,
+   "rationale": "Current opening scored 0.39/3 as a quotable answer for \"jobseeker payment calculator\"; Jev picked this candidate (citable 2.87/3, defines-subject 0.94, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5528,
+     "ctr": 0.0089,
+     "position": 7.23
+    },
+    "keywords": [
+     {
+      "kw": "jobseeker payment calculator",
+      "vol": 1300,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 11
+     },
+     {
+      "kw": "job seeker calculator",
+      "vol": 480,
+      "kd": 8,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "jobseeker calculator",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 15
+     }
+    ],
+    "note": "was: How your income affects Centrelink payments like JobSeeker, Parenting Payment, Family Tax Benefit, Youth Allowance and Age Pension. Understand income thresholds, taper rates, and how to estimate your "
+   },
+   "targetQueries": [
+    "jobseeker payment calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/centrelink-income-test/",
+   "proposedLead": "The Centrelink income test reduces an income-support payment by a set number of cents for each dollar earned above a free area. For JobSeeker Payment, income up to $150 a fortnight [[JOBSEEKER_INCOME_TEST.freeArea]] has no effect, each dollar to $256 cuts the payment by 50 cents and each dollar above $256 by 60 cents; the single rate of $824.90 from 20 September 2026 [[JOBSEEKER_RATES]] reaches $0 at $1,557.17.",
+   "addPrimarySource": "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment"
+  },
+  {
+   "id": "schema-austudy-youth-allowance-calculator-26",
+   "level": "schema",
+   "priority": 11.8,
+   "confidence": 0.47,
+   "rationale": "Current opening scored 1.98/3 as a quotable answer for \"youth allowance calculator\"; Jev picked this candidate (citable 2.94/3, defines-subject 0.93, no advice/hype p=0.09). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 19,
+     "impressions": 3160,
+     "ctr": 0.006,
+     "position": 8.9
+    },
+    "keywords": [
+     {
+      "kw": "youth allowance calculator",
+      "vol": 2400,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "youth allowance estimator",
+      "vol": 2400,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "how much is austudy",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 20
+     }
+    ],
+    "note": "was: Youth Allowance pays up to $482.40 a fortnight if you're 18 or older and live at home, and $677.20 if you live away from home; Austudy (25 and over) pays up to $677.20 . Students can earn $539 a fortn"
+   },
+   "targetQueries": [
+    "youth allowance calculator"
+   ],
+   "kind": "citation_lead",
+   "route": "/austudy-youth-allowance-calculator/",
+   "proposedLead": "A youth allowance calculation applies the student personal income test to the maximum fortnightly rate: income up to $539 is free, the payment falls 50 cents per dollar from $539 to $646, then by $53.50 plus 60 cents per dollar above $646 [[STUDENT_INCOME_TEST]]. On the 1 January 2026 rates, a student living away from home starts at $677.20 and reaches $0 at $1,697.17 [[YOUTH_ALLOWANCE_STUDENT.publishedCutOff]].",
+   "addPrimarySource": "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get"
+  },
+  {
+   "id": "schema-hospitality-award-rates-41",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.22,
+   "rationale": "Current opening scored 1.01/3 as a quotable answer for \"hospitality award\"; Jev picked this candidate (citable 2.99/3, defines-subject 0.69, no advice/hype p=0.05). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ],
+    "note": "was: Every classification rate under the Hospitality Industry (General) Award 2020 ( MA000009 ) \u2014 cafes, restaurants, pubs, clubs and hotels \u2014 operative from 1 July 2026 ."
+   },
+   "targetQueries": [
+    "hospitality award"
+   ],
+   "kind": "citation_lead",
+   "route": "/hospitality-award-rates/",
+   "proposedLead": "The hospitality award is the Hospitality Industry (General) Award 2020 (MA000009), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For 2026-27 its adult minimums are $25.74 an hour at introductory level, $26.44 at level 1 and $32.13 at level 6 [[HOSPITALITY_RATES]], operative from the first full pay period on or after 1 July 2026. Evening and night work add a flat cash amount.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000009.html"
+  },
+  {
+   "id": "schema-retail-award-rates-51",
+   "level": "schema",
+   "priority": 1,
+   "confidence": 0.54,
+   "rationale": "Current opening scored 0.59/3 as a quotable answer for \"retail award rate\"; Jev picked this candidate (citable 3.00/3, defines-subject 0.68, no advice/hype p=0.06). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ],
+    "note": "was: Every classification rate under the General Retail Industry Award 2020 ( MA000004 ) \u2014 shops, supermarkets and retail chains \u2014 operative from 1 July 2026 ."
+   },
+   "targetQueries": [
+    "retail award rate"
+   ],
+   "kind": "citation_lead",
+   "route": "/retail-award-rates/",
+   "proposedLead": "The retail award rate for 2026-27 is $27.81 an hour at retail employee level 1, where most shop assistants sit, rising through eight levels to $33.99 an hour at level 8 [[RETAIL_RATES]]. These are the adult minimums under the General Retail Industry Award 2020 (MA000004) from the first full pay period on or after 1 July 2026 [[RETAIL_AWARD.operativeFrom]]; a level 1 casual earns $34.76 an hour, or $48.67 on a Sunday.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000004.html"
+  },
+  {
+   "id": "schema-schads-award-pay-rates-58",
+   "level": "schema",
+   "priority": 55.040000000000006,
+   "confidence": 0.54,
+   "rationale": "Current opening scored 0.72/3 as a quotable answer for \"schads\"; Jev picked this candidate (citable 2.91/3, defines-subject 0.64, no advice/hype p=0.07). Figures in [[CONSTANT]] placeholders must be rendered from lib/constants.",
+   "evidence": {
+    "gsc": {
+     "clicks": 60,
+     "impressions": 6224,
+     "ctr": 0.0096,
+     "position": 9.77
+    },
+    "keywords": [
+     {
+      "kw": "schads",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 82
+     },
+     {
+      "kw": "schads award 2025",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 36
+     },
+     {
+      "kw": "schads award pay rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     }
+    ],
+    "note": "was: Every current classification rate under the Social, Community, Home Care and Disability Services Industry Award 2010 ( MA000100 ) \u2014 social and community services, home care and disability support \u2014 op"
+   },
+   "targetQueries": [
+    "schads"
+   ],
+   "kind": "citation_lead",
+   "route": "/schads-award-pay-rates/",
+   "proposedLead": "SCHADS is the short name for the Social, Community, Home Care and Disability Services Industry Award 2010 (MA000100). Its 2026-27 rates apply from 1 July 2026: Level 1 pay point 1 is $27.55 an hour and Level 8 pay point 3 is $71.19 an hour [[SCHADS_SACS]], with casuals paid 25% more [[schadsCasualHourly]]. Every pay point in the social and community services and home care streams is listed below.",
+   "addPrimarySource": "https://awards.fairwork.gov.au/MA000100.html"
+  }
+ ]
+}

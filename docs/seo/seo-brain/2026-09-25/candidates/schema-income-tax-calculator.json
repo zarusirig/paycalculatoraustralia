@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-income-tax-calculator",
+  "kind": "citation_lead",
+  "route": "/income-tax-calculator/",
+  "candidates": [
+    {
+      "lead": "Income tax in Australia is worked out on the ATO's resident scale: for 2026-27 the first $18,200 is tax-free, then 15% applies to $45,000, 30% to $135,000, 37% to $190,000 and 45% above [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. The 15% rate replaced the 16% rate of 2025-26 on 1 July 2026 [[TAX_BRACKETS_2025_26]]. On $80,000 the tax and Medicare levy come to $16,120 a year [[calculatePayBreakdown]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "The ATO tax rates for 2025-26 were 0% to $18,200, 16% to $45,000, 30% to $135,000, 37% to $190,000 and 45% above [[TAX_BRACKETS_2025_26]]; from 1 July 2026 the 16% bracket became 15% [[TAX_BRACKETS_2026_27]], with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the 2% Medicare levy and subtracts up to $700 of Low Income Tax Offset [[LITO.maxOffset]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "An income tax calculator applies the ATO's marginal brackets to taxable income: for 2026-27 nothing on the first $18,200, 15 cents in the dollar to $45,000, 30 cents to $135,000, 37 cents to $190,000 and 45 cents above [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. On $80,000 that is $16,120 of tax and levy, leaving $63,880 [[calculatePayBreakdown]]. The 2025-26 scale had a 16% second bracket.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

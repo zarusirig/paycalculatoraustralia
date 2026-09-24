@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-long-service-leave-calculator",
+  "kind": "citation_lead",
+  "route": "/long-service-leave-calculator/",
+  "candidates": [
+    {
+      "lead": "Long service leave is paid leave earned after a qualifying period of continuous service with one employer, set by each state or territory's own Act rather than federal law. NSW, Queensland, WA and Tasmania pay 8.67 weeks after 10 years [[LSL_JURISDICTIONS]]; Victoria and the ACT pay about 6.07 weeks after 7 years; SA and the NT pay 13 weeks after 10 years. The calculator applies the rule for the state selected.",
+      "source": "https://www.fairwork.gov.au/leave/long-service-leave"
+    },
+    {
+      "lead": "A long service leave calculator works out accrued weeks from a start date and ordinary weekly pay under the state or territory Act that covers the job. The rate is 0.8667 weeks a year in six jurisdictions and 1.3 weeks a year in SA and the NT [[LSL_JURISDICTIONS]]; the qualifying period is 10 years everywhere except Victoria and the ACT, where it is 7 years. Rules were verified against each Act on 28 August 2026.",
+      "source": "https://www.fairwork.gov.au/leave/long-service-leave"
+    },
+    {
+      "lead": "Long service leave in Australia is a state entitlement: after 10 years of continuous service an employee in NSW, Queensland, WA or Tasmania is owed 8.67 weeks of paid leave, in SA or the NT 13 weeks, while Victoria and the ACT pay about 6.07 weeks at 7 years [[LSL_JURISDICTIONS]]. A payout on termination is taxed under the ATO's unused long service leave rules. This calculator covers all eight jurisdictions.",
+      "source": "https://www.fairwork.gov.au/leave/long-service-leave"
+    }
+  ]
+}

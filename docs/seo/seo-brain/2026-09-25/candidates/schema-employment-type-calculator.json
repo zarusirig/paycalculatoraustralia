@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-employment-type-calculator",
+  "kind": "citation_lead",
+  "route": "/employment-type-calculator/",
+  "candidates": [
+    {
+      "lead": "Full-time, part-time and casual employment differ in how entitlements are paid: full-time and part-time employees accrue 4 weeks of annual leave and 10 days of personal leave a year [[EMPLOYMENT]], while casuals receive a 25% loading [[EMPLOYMENT.casualLoading]] instead. At $35 an hour for 38 hours a week in 2026-27, a casual is paid $43.75 an hour, or $86,450 a year against $69,160 permanent.",
+      "source": "https://www.fairwork.gov.au/employment-conditions/types-of-employees/casual-employees"
+    },
+    {
+      "lead": "The casual loading is 25% added to the base hourly rate [[EMPLOYMENT.casualLoading]] in place of paid annual leave, personal leave and notice. On $35 an hour, a casual earns $43.75 an hour and $86,450 over a 38-hour year, against $69,160 for a full-timer whose 4 weeks of leave are worth $5,320; superannuation of 12% [[SUPER_GUARANTEE.rate]] is paid on all three types in 2026-27.",
+      "source": "https://www.fairwork.gov.au/employment-conditions/types-of-employees/casual-employees"
+    },
+    {
+      "lead": "A full-time employee works 38 ordinary hours a week [[EMPLOYMENT.standardWeeklyHours]], a part-time employee fewer hours with the same entitlements pro rata, and a casual has no guaranteed hours or paid leave but a 25% loading [[EMPLOYMENT.casualLoading]]. The comparison below values leave, 12% superannuation [[SUPER_GUARANTEE.rate]] and the loading side by side at 2026-27 rates.",
+      "source": "https://www.fairwork.gov.au/employment-conditions/types-of-employees/casual-employees"
+    }
+  ]
+}

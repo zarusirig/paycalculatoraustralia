@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-centrelink-income-test-1",
+ "kind": "title_description",
+ "route": "/centrelink-income-test/",
+ "candidates": [
+  {
+   "title": "Centrelink Income Test 2026: Free Areas, Tapers & Calculators",
+   "description": "JobSeeker keeps the first $150 a fortnight, then loses 50c per dollar to $256 and 60c above. Free areas and cut-offs for every payment from 20 Sep 2026.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  },
+  {
+   "title": "Centrelink Income Test Calculator Guide: JobSeeker, FTB, Pension",
+   "description": "JobSeeker income test: $150 free area, 50c per dollar to $256, then 60c. How income affects each Centrelink payment from 20 Sep 2026, with calculators.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  },
+  {
+   "title": "Centrelink Income Test 2026 — Estimate Your Payment After Wages",
+   "description": "On JobSeeker you keep the first $150 a fortnight; earnings above reduce the payment by 50c then 60c per dollar. Tapers and cut-offs for every payment.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  },
+  {
+   "title": "Centrelink Earnings Test 2026: How Much You Can Earn on Payments",
+   "description": "JobSeeker: earn $150 a fortnight before the payment reduces, then 50c per dollar to $256 and 60c above. Free areas for FTB, Age Pension and DSP from 20 Sep 2026.",
+   "figureSource": "lib/constants/centrelink-income-test (JobSeeker free area $150, 50c to $256 then 60c; rates from 20 Sep 2026)"
+  }
+ ]
+}

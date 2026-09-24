@@ -27,11 +27,13 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 // Previous: "Annual Salary Calculator Australia — Yearly Take-Home Pay" (no FY,
 // description hardcoded FY2026-27).
 const TITLE = `Annual Salary After Tax Calculator Australia ${FY}`;
-// fitDescription: fuller form first; the shorter form keeps the figure, the FY
-// and "salary after tax calculator".
+const at100k = calculatePayBreakdown({ grossSalary: 100_000, includeHECS: false, hasPrivateHealth: true });
+// Previous: "A $80,000 salary is $63,880 a year after tax in 2026-27. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS."
+// seo-brain 25 Sep 2026 (Jev-ranked): two engine figures answer "salary after tax" outright.
+// fitDescription: fuller form first; the shorter form keeps both figures and the FY.
 const DESCRIPTION = fitDescription(
-  `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.`,
-  `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: any yearly gross salary to annual take-home after tax, Medicare and HECS.`,
+  `$80,000 a year is ${formatAUD(at80k.takeHomePay)} after tax in ${FY}; $100,000 is ${formatAUD(at100k.takeHomePay)}. Annual salary after tax calculator: yearly gross to take-home after tax, Medicare levy and HECS.`,
+  `$80,000 a year is ${formatAUD(at80k.takeHomePay)} after tax in ${FY}; $100,000 is ${formatAUD(at100k.takeHomePay)}. Salary after tax calculator: yearly gross to take-home after tax, Medicare and HECS.`,
 );
 
 export const metadata: Metadata = {

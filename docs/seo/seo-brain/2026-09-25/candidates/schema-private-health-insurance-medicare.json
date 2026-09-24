@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-private-health-insurance-medicare",
+  "kind": "citation_lead",
+  "route": "/private-health-insurance-medicare/",
+  "candidates": [
+    {
+      "lead": "Private health insurance does not remove the 2% Medicare levy [[MEDICARE_LEVY.rate]], which every resident taxpayer above the low-income threshold pays; it only exempts the holder from the Medicare levy surcharge. The surcharge for 2026-27 [[MLS_INCOME_YEAR]] is 1%, 1.25% or 1.5% of income for singles earning over $105,000 or families over $210,000 [[MEDICARE_LEVY.surcharge]] who have no eligible hospital cover.",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge"
+    },
+    {
+      "lead": "The Medicare levy surcharge (MLS) is an extra tax of 1% to 1.5% charged on top of the standard 2% Medicare levy when income for MLS purposes exceeds $105,000 for a single or $210,000 for a family in 2026-27 [[MEDICARE_LEVY.surcharge]] and no private hospital cover is held. Eligible cover avoids the surcharge but not the levy; the family threshold rises $1,500 per extra dependent child [[MLS_CHILD_INCREMENT]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge"
+    },
+    {
+      "lead": "Whether private hospital cover pays for itself depends on the surcharge it avoids: 1% of income in Tier 1 ($105,001–$123,000 single), 1.25% in Tier 2 ($123,001–$164,000) and 1.5% in Tier 3 ($164,001 and over) for 2026-27 [[MEDICARE_LEVY.surcharge]], with family thresholds double. The 2% Medicare levy [[MEDICARE_LEVY.rate]] is payable with or without cover. Rebate tiers and lifetime health cover loading are below.",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge"
+    }
+  ]
+}

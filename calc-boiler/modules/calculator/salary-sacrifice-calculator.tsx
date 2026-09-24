@@ -9,9 +9,20 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
+  formatPercent,
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+
+// Lead example: $100,000 with $10,000 sacrificed, from the same engine the
+// calculator uses, so the figures cannot drift from the results below.
+const LEAD_SALARY = 100_000;
+const LEAD_SACRIFICE = 10_000;
+const LEAD_BEFORE = calculatePayBreakdown({ grossSalary: LEAD_SALARY });
+const LEAD_AFTER = calculatePayBreakdown({ grossSalary: LEAD_SALARY, salarySacrifice: LEAD_SACRIFICE });
+const LEAD_TAKE_HOME_DROP = LEAD_BEFORE.takeHomePay - LEAD_AFTER.takeHomePay;
+const LEAD_TAX_SAVING = LEAD_BEFORE.totalDeductions - LEAD_AFTER.totalDeductions;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -54,8 +65,13 @@ export default function SalarySacrificeCalculatorPage({ children }: { children: 
             Salary Sacrifice Calculator — How Much Will You Save?
           </h1>
           <p className="text-lg text-warmgray">
-            Compare your take-home pay before and after salary sacrifice. See the exact tax savings, super boost,
-            and net benefit of sacrificing part of your pre-tax salary into superannuation for FY{SITE_CONFIG.financialYear}.
+            Tax with salary sacrifice is calculated on taxable income after the sacrificed amount is removed:{" "}
+            {formatAUD(LEAD_SALARY)} with {formatAUD(LEAD_SACRIFICE)} sacrificed is taxed as{" "}
+            {formatAUD(LEAD_SALARY - LEAD_SACRIFICE)}, and the {formatAUD(LEAD_SACRIFICE)} goes to super less{" "}
+            {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. For FY{SITE_CONFIG.financialYear} that
+            leaves take-home pay {formatAUD(LEAD_TAKE_HOME_DROP)} lower while {formatAUD(LEAD_SACRIFICE)} is
+            contributed, a saving of {formatAUD(LEAD_TAX_SAVING)} in income tax and Medicare levy. The calculator
+            shows both pays side by side.
           </p>
           <TrustBar className="mt-4" />
         </section>

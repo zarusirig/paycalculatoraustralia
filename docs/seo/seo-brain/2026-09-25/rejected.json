@@ -1,0 +1,62 @@
+[
+ {
+  "orderId": "ctr-annual-pay-calculator-1",
+  "why": "winning title failed gates {\"natural\":0.55,\"promise\":0.94,\"recognisedTop\":0.3}"
+ },
+ {
+  "orderId": "ctr-employment-type-calculator-1",
+  "why": "winning title failed gates {\"natural\":0.54,\"promise\":0.93,\"recognisedTop\":0.29}"
+ },
+ {
+  "orderId": "ctr-salary-to-hourly-130000-1",
+  "why": "winning title failed gates {\"natural\":0.66,\"promise\":0.92,\"recognisedTop\":0.54}"
+ },
+ {
+  "orderId": "ctr-salary-to-hourly-140000-1",
+  "why": "winning title failed gates {\"natural\":0.66,\"promise\":0.92,\"recognisedTop\":0.47}"
+ },
+ {
+  "orderId": "ctr-salary-to-hourly-95000-1",
+  "why": "winning title failed gates {\"natural\":0.64,\"promise\":0.94,\"recognisedTop\":0.5}"
+ },
+ {
+  "orderId": "ctr-austudy-youth-allowance-calculator-1",
+  "why": "winning title failed gates {\"natural\":0.57,\"promise\":0.92,\"recognisedTop\":0.9}"
+ },
+ {
+  "orderId": "ctr-superannuation-calculator-1",
+  "why": "winning title failed gates {\"natural\":0.5,\"promise\":0.9,\"recognisedTop\":0.89}"
+ },
+ {
+  "orderId": "schema-employment-type-calculator",
+  "why": "winning lead failed gates {\"citable\":1.77,\"defines\":0.82,\"claims\":0.19}"
+ },
+ {
+  "orderId": "schema-backpay-calculator",
+  "why": "winning lead failed gates {\"citable\":1.16,\"defines\":0.96,\"claims\":0.13}"
+ },
+ {
+  "orderId": "schema-pay-calculator-tas",
+  "why": "winning lead failed gates {\"citable\":3,\"defines\":0.48,\"claims\":0.08}"
+ },
+ {
+  "orderId": "schema-pay-calculator-qld",
+  "why": "winning lead failed gates {\"citable\":1.8,\"defines\":0.94,\"claims\":0.12}"
+ },
+ {
+  "orderId": "schema-novated-lease-guide",
+  "why": "winning lead failed gates {\"citable\":1.99,\"defines\":0.9,\"claims\":0.08}"
+ },
+ {
+  "orderId": "schema-payg-withholding-tables",
+  "why": "winning lead failed gates {\"citable\":2.09,\"defines\":0.84,\"claims\":0.06}"
+ },
+ {
+  "orderId": "schema-tax-file-number-declaration",
+  "why": "winning lead failed gates {\"citable\":2.19,\"defines\":0.9,\"claims\":0.11}"
+ },
+ {
+  "orderId": "schema-tax-bracket-history",
+  "why": "winning lead failed gates {\"citable\":3,\"defines\":0.51,\"claims\":0.03}"
+ }
+]

@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-tax-on-55000-1",
+ "kind": "title_description",
+ "route": "/tax-on/55000/",
+ "candidates": [
+  {
+   "title": "Tax on $55,000 in Australia 2026-27: $6,845 Tax + $1,100 Medicare",
+   "description": "Tax on $55,000 in 2026-27 is $6,845 income tax plus $1,100 Medicare levy: $7,945 in total (14.4% of salary), leaving $47,055 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "How Much Tax on $55,000 in Australia? $7,945 in 2026-27",
+   "description": "Tax on $55,000 in 2026-27 is $7,945 in total: $6,845 income tax plus $1,100 Medicare levy, 14.4% of salary, leaving $47,055 a year. Weekly and fortnightly tax too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on $55,000 in Australia (2026-27): $6,845 Tax Plus Medicare",
+   "description": "Tax on $55,000 in 2026-27 is $6,845 income tax plus $1,100 Medicare levy: $7,945 in total (14.4% of salary), leaving $47,055 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on a $55,000 Salary in Australia (2026-27): $6,845 Income Tax",
+   "description": "On a $55,000 salary in 2026-27 you pay $6,845 income tax and $1,100 Medicare levy, $7,945 in total (14.4%), leaving $47,055 a year. HECS and weekly figures too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  }
+ ]
+}

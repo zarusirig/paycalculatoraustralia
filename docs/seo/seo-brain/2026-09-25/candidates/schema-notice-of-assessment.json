@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-notice-of-assessment",
+  "kind": "citation_lead",
+  "route": "/notice-of-assessment/",
+  "candidates": [
+    {
+      "lead": "A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the 2025-26 return, most online lodgements are assessed within 2 weeks [[RETURN_2026.onlineRefundTypical]] and paper returns within 50 business days [[RETURN_2026.paperRefundBusinessDays]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return"
+    },
+    {
+      "lead": "The notice of assessment is the ATO's formal statement of a person's tax position for a financial year, issued for every return lodged through myTax, a tax agent or on paper. It shows taxable income, tax assessed on the 2025-26 scale [[TAX_BRACKETS_2025_26]], the 2% Medicare levy, any HECS-HELP repayment and the refund or debt. Online returns are typically processed within 12 business days [[RETURN_2026]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return"
+    },
+    {
+      "lead": "A notice of assessment is issued by the ATO once a tax return has been processed and is the official record of the assessment: income, deductions, tax payable, credits and the balance. It arrives in the myGov inbox, usually within 2 weeks of an online lodgement for the 2025-26 return [[RETURN_2026.onlineRefundTypical]]. Objections must be lodged within 2 years for most individuals, and NOAs are kept for 5 years.",
+      "source": "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return"
+    }
+  ]
+}

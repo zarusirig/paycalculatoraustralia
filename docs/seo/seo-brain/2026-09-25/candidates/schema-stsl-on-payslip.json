@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-stsl-on-payslip",
+  "kind": "citation_lead",
+  "route": "/stsl-on-payslip/",
+  "candidates": [
+    {
+      "lead": "STSL on a payslip stands for Study and Training Support Loans: the extra PAYG amount an employer withholds each pay toward the compulsory repayment of a HECS-HELP, FEE-HELP, VET Student Loan or other government study loan. For 2026-27 withholding starts once earnings pass $69,528 a year [[HECS_HELP.minimumThreshold]], about $1,337 a week or $2,674 a fortnight, at 15 cents per dollar above the threshold [[HECS_HELP]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds"
+    },
+    {
+      "lead": "STSL is the ATO's label for all study and training support loans (HECS-HELP, FEE-HELP, VET Student Loans, SA-HELP, SSL and Australian Apprenticeship Support Loans), and the STSL line on a payslip is the withholding taken toward the annual compulsory repayment. It appears only when a study loan was declared on the TFN declaration and pay exceeds the 2026-27 threshold of $69,528 a year [[HECS_HELP.minimumThreshold]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds"
+    },
+    {
+      "lead": "The STSL deduction is worked out by payroll from the ATO's STSL component tables, which add a repayment amount on top of normal PAYG for each pay period above the threshold. Under the 2026-27 marginal system, repayments are 15% of repayment income over $69,528, 17% over $129,717, and 10% of total income from $186,051 [[HECS_HELP]]. Withheld amounts are credited against the HELP debt when the return is assessed.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds"
+    }
+  ]
+}

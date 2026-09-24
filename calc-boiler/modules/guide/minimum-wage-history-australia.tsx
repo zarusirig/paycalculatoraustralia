@@ -7,8 +7,8 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { NMW_ORDER } from "@/lib/constants/junior-rates";
-import { NMW_DECISION, NMW_HISTORY } from "@/lib/constants/minimum-wage";
+import { ADULT_AGE, NMW_ORDER } from "@/lib/constants/junior-rates";
+import { NMW, NMW_DECISION, NMW_HISTORY, formatIncrease } from "@/lib/constants/minimum-wage";
 import {
   HISTORY_FAQS,
   HISTORY_FIRST,
@@ -53,7 +53,7 @@ export default function MinimumWageHistoryPage() {
             Australian Minimum Wage History: Every Increase Since 2010
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The National Minimum Wage for each financial year since {HISTORY_FIRST.fy}, the size of every Annual Wage Review increase, and what drove the big years.
+            The National Minimum Wage is the pay floor for adults aged {ADULT_AGE} and over not covered by an award or agreement, reset each year by the Fair Work Commission&apos;s Annual Wage Review. From {HISTORY_LAST.operativeFrom} it is {money(NMW.hourly)} an hour, or {money(NMW.weekly)} for a {NMW.hoursPerWeek}-hour week, a {formatIncrease(NMW.increase)} rise. The rate has increased every year since {HISTORY_FIRST.fy}, when it was {money(HISTORY_FIRST.hourly)} an hour; every increase and what drove the big years is below.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">

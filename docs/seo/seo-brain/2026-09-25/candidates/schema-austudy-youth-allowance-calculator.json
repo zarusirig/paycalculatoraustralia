@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-austudy-youth-allowance-calculator",
+  "kind": "citation_lead",
+  "route": "/austudy-youth-allowance-calculator/",
+  "candidates": [
+    {
+      "lead": "Youth Allowance is the Centrelink payment for full-time students, Australian Apprentices and job seekers aged 16 to 24; Austudy covers students aged 25 and over. From 1 January 2026 the maximum is $482.40 a fortnight for a single 18-or-over living at home and $677.20 away from home or on Austudy [[YOUTH_ALLOWANCE_STUDENT.maxFortnightly]]; income over $539 a fortnight reduces it [[STUDENT_INCOME_TEST.freeArea]].",
+      "source": "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get"
+    },
+    {
+      "lead": "A youth allowance calculation applies the student personal income test to the maximum fortnightly rate: income up to $539 is free, the payment falls 50 cents per dollar from $539 to $646, then by $53.50 plus 60 cents per dollar above $646 [[STUDENT_INCOME_TEST]]. On the 1 January 2026 rates, a student living away from home starts at $677.20 and reaches $0 at $1,697.17 [[YOUTH_ALLOWANCE_STUDENT.publishedCutOff]].",
+      "source": "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get"
+    },
+    {
+      "lead": "Youth Allowance and Austudy rates are set by Services Australia and indexed on 1 January [[YOUTH_ALLOWANCE_STUDENT.indexedOn]]: from 1 January 2026, $418.90 a fortnight for a single under 18 at home, $482.40 at 18 or older at home, $677.20 away from home or on Austudy, and $854.20 with children [[YOUTH_ALLOWANCE_STUDENT.maxFortnightly]]. Income over $539 a fortnight reduces the payment.",
+      "source": "https://www.servicesaustralia.gov.au/how-much-youth-allowance-for-students-and-apprentices-you-can-get"
+    }
+  ]
+}

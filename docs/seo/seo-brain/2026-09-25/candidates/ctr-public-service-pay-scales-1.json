@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-public-service-pay-scales-1",
+ "kind": "title_description",
+ "route": "/public-service-pay-scales/",
+ "candidates": [
+  {
+   "title": "Public Service Pay Scales 2026: APS 1–6, EL 1–2 and Every State",
+   "description": "APS 4 median salary is $82,906 and APS 6 $108,092 (31 Dec 2025). Every public service level and pay scale for 2026: APS, VIC, QLD, NSW, WA, SA, TAS, ACT and NT.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  },
+  {
+   "title": "Australian Public Service Levels & Pay Scales 2026 — APS, States",
+   "description": "What each APS level pays in 2026: APS 4 median $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701. Plus every state and territory public service pay scale.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  },
+  {
+   "title": "Public Service Pay Scales 2026: APS Level Salaries and All States",
+   "description": "APS 4 salary: $82,906 median at 31 Dec 2025; 90% of APS 6 staff earn $97,316 to $115,199. Pay scale tables for the APS and all 8 state and territory services.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  },
+  {
+   "title": "Public Service Pay Scale Guide 2026 — APS Levels 1 to SES, States",
+   "description": "APS 4 median salary $82,906, APS 6 $108,092, EL 1 $135,701 (31 Dec 2025). A guide to every public service level and pay scale, APS and all 8 states.",
+   "figureSource": "lib/data/public-service-pay JURISDICTIONS (APS medians at 31 Dec 2025: APS 4 $82,906, APS 5 $92,324, APS 6 $108,092, EL 1 $135,701; state ranges as rendered)"
+  }
+ ]
+}

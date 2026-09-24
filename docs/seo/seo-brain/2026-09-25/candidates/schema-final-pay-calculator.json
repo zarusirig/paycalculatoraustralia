@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-final-pay-calculator",
+  "kind": "citation_lead",
+  "route": "/final-pay-calculator/",
+  "candidates": [
+    {
+      "lead": "Termination pay (final pay) in Australia is the sum of outstanding wages, unused annual leave, any notice paid in lieu, long service leave and, if the role is made redundant, redundancy pay. Unused annual leave is paid at (annual salary ÷ 260) × leave days, plus 17.5% leave loading [[COMMON_LEAVE_LOADING]] where the award requires it, taxed at the marginal rate in 2026-27; most awards require payment within 7 days.",
+      "source": "https://www.fairwork.gov.au/ending-employment/final-pay"
+    },
+    {
+      "lead": "Final pay is calculated component by component under the National Employment Standards: wages to the last day; accrued annual leave with any 17.5% loading [[COMMON_LEAVE_LOADING]]; NES notice of 1 week (under 1 year's service) to 4 weeks (5 years or more), plus a week for employees over 45 with 2 years' service; long service leave, typically 8.67 weeks per 10 years after 7 years; and redundancy pay of 4 to 16 weeks.",
+      "source": "https://www.fairwork.gov.au/ending-employment/final-pay"
+    },
+    {
+      "lead": "To calculate termination pay, the annual salary is divided by 260 working days to price each unused annual leave day, multiplied by 1.175 where 17.5% leave loading applies [[COMMON_LEAVE_LOADING]], then notice weeks at the weekly rate and long service leave at (years ÷ 10) × 8.67 weeks are added. Leave accrued after 17 August 1993 is taxed at the marginal rate, earlier leave at up to 32%. 2026-27 ATO rates apply.",
+      "source": "https://www.fairwork.gov.au/ending-employment/final-pay"
+    }
+  ]
+}

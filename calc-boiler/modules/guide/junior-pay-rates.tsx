@@ -12,6 +12,7 @@ import {
   ADULT_AGE,
   AWARD_JUNIOR_SCALES,
   CASUAL_LOADING,
+  FWO_PUBLISHED_JUNIOR_RATES,
   JUNIOR_BANDS_SOURCE,
   JUNIOR_RATES,
   MINIMUM_WORKING_AGE,
@@ -47,6 +48,9 @@ const U16 = byAge("Under 16");
 const JUNIOR_ONLY = JUNIOR_RATES.filter((r) => r.percentage < 1);
 
 const pct1 = (v: number) => `${(v * 100).toFixed(1)}%`;
+// Opening paragraph: the Fair Work-published 18-year-old figures and their NMW percentage.
+const FWO_18 = FWO_PUBLISHED_JUNIOR_RATES.find((r) => r.age === "18")!;
+const A18 = byAge("18");
 
 export default function JuniorPayRatesPage() {
   return (
@@ -68,7 +72,7 @@ export default function JuniorPayRatesPage() {
             Minimum Wage by Age {SITE_CONFIG.financialYear}: Junior Pay Rates for 14 to 20 Year Olds
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            What under-{ADULT_AGE}s must legally be paid in Australia, for the National Minimum Wage and for the awards that cover most young workers.
+            The minimum wage for an 18-year-old in Australia with no award is {formatAUD(FWO_18.hourly, 2)} an hour from {SITE_CONFIG.financialYearStart}, or {formatAUD(FWO_18.casualHourly, 2)} an hour as a casual, which is {pct1(A18.percentage)} of the {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} National Minimum Wage. Junior rates apply to workers under {ADULT_AGE}; in retail, fast food and hospitality a different percentage applies to that award&apos;s own base rate.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">

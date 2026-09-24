@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-healthcare-worker-pay-vic",
+  "kind": "citation_lead",
+  "route": "/healthcare-worker-pay/vic/",
+  "candidates": [
+    {
+      "lead": "A Victorian public sector nurse's salary is set by the Nurses and Midwives (Victorian Public Sector) Single Interest Employer Agreement 2024-2028, approved by the Fair Work Commission. On the rates effective from 11 May 2026, a Registered Nurse Grade 2 earns $84,188 a year at Year 1 and $107,510 at Year 8 [[registeredNurseRange]], from $42.61 an hour; a further 1.06% rise applies from 30 November 2026.",
+      "source": "https://www.fwc.gov.au/document-view/agreements/nurses-and-midwives-victorian-public-sector-single-interest-employer"
+    },
+    {
+      "lead": "VIC nurse pay rates run a registered nurse from Grade 2 Year 1 to Year 8, with midwives on their own codes at the same money. From the first full pay period on or after 11 May 2026 the Grade 2 scale pays $84,188 to $107,510 a year [[registeredNurseRange]]; Enrolled Nurse Level 1 starts at $33.99 an hour and a Clinical Nurse Specialist at $56.62 [[NURSING_PAY_BY_STATE.vic]].",
+      "source": "https://www.fwc.gov.au/document-view/agreements/nurses-and-midwives-victorian-public-sector-single-interest-employer"
+    },
+    {
+      "lead": "Nurse salary in Victoria's public health services is a weekly rate multiplied by 52, under the 2024-2028 single interest employer agreement approved by the Fair Work Commission. A graduate Registered Nurse Grade 2 Year 1 earns $84,188 in 2026, rising to $107,510 at Year 8 [[registeredNurseRange]]; the next scheduled increase is 1.06% from 30 November 2026 [[NURSING_PAY_BY_STATE.vic]].",
+      "source": "https://www.fwc.gov.au/document-view/agreements/nurses-and-midwives-victorian-public-sector-single-interest-employer"
+    }
+  ]
+}

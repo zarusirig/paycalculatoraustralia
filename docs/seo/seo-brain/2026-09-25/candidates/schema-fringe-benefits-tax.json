@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-fringe-benefits-tax",
+  "kind": "citation_lead",
+  "route": "/fringe-benefits-tax/",
+  "candidates": [
+    {
+      "lead": "The FBT year runs from 1 April to 31 March [[FBT.yearStart]], not the 1 July to 30 June income year, and fringe benefits tax is paid by employers, not employees, on non-cash benefits. The rate for the FBT year ending 31 March 2026 is 47% [[FBT.rate]], applied to the taxable value grossed up by 2.0802 (Type 1, GST-creditable) or 1.8868 (Type 2) [[FBT.grossUpType1]]. Returns are due 21 May, or 25 June via a tax agent.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds"
+    },
+    {
+      "lead": "Fringe benefits tax (FBT) is a 47% tax [[FBT.rate]] employers pay on the grossed-up taxable value of non-cash benefits such as company cars, paid health insurance and low-interest loans. FBT is assessed by FBT year, 1 April to 31 March [[FBT.yearStart]]; a $1,000 Type 1 benefit grosses up to $2,080.20 at 2.0802 [[FBT.grossUpType1]] and attracts $977.69 of FBT.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds"
+    },
+    {
+      "lead": "FBT is worked out as taxable value × gross-up factor × 47% [[FBT.rate]], where the factor is 2.0802 when the employer claims a GST credit and 1.8868 when it cannot [[FBT.grossUpType2]]. The FBT year ending 31 March 2026 covers benefits provided from 1 April 2025 [[FBT.yearStart]]; reportable amounts over $2,000 [[FBT.reportableThreshold]] appear on the employee's income statement and affect income-tested measures.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds"
+    }
+  ]
+}

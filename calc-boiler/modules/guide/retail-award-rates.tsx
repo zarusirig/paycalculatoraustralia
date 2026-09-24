@@ -11,6 +11,7 @@ import { SITE_CONFIG, SOURCES, EMPLOYMENT, formatAUD } from "@/lib/constants";
 import {
   AWARD_DETERMINATIONS,
   AWARD_UNVERIFIED,
+  AWR_2026_FLOORS,
   HOSPITALITY_PENALTIES,
   RETAIL_AWARD,
   RETAIL_JUNIOR_LEVEL_RESTRICTION,
@@ -21,6 +22,7 @@ import {
   RETAIL_ALLOWANCES,
 } from "@/lib/constants/hospitality-award";
 import { JUNIOR_PHASE_IN } from "@/lib/constants/modern-awards";
+import { NMW } from "@/lib/constants/minimum-wage";
 import { AwardRateTable, JuniorScaleTable } from "@/modules/guide/award-rate-table";
 import { AllowanceTable, AwardDirectorySidebar, JuniorPhaseInTable, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { casualHourly, findRate, toCents } from "@/modules/guide/hospitality-award-faqs";
@@ -37,6 +39,14 @@ const L1 = findRate(RETAIL_RATES, "Level 1");
 const L8 = findRate(RETAIL_RATES, "Level 8");
 const LOADING = RETAIL_AWARD.casualLoading;
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
+/** Junior hourly: the age percentage applied to the level 1 weekly rate, then divided by 38 (the order Fair Work uses). */
+const juniorHourly = (age: string) => {
+  const band = RETAIL_JUNIOR_SCALE.find((b) => b.age === age);
+  if (!band) throw new Error(`retail junior band ${age} missing`);
+  return { pct: band.percentage, hourly: toCents((L1.weekly * band.percentage) / EMPLOYMENT.standardWeeklyHours) };
+};
+const JUNIOR_16 = juniorHourly("16");
+const JUNIOR_18 = juniorHourly("18");
 
 const MATRIX_ROWS = RETAIL_RATES.map((r) => ({ level: r.level, hourly: r.hourly }));
 /** Non-shiftworker penalties; casual percentages already include the loading. */
@@ -71,7 +81,7 @@ export default function RetailAwardRatesPage() {
             Retail Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Every classification rate under the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}) &mdash; shops, supermarkets and retail chains &mdash; operative from {RETAIL_AWARD.operativeFrom}.
+            The retail award rate for {SITE_CONFIG.financialYear} is {formatAUD(L1.hourly, 2)} an hour at retail employee level 1, where most shop assistants sit, rising through eight levels to {formatAUD(L8.hourly, 2)} an hour at level 8. These are the adult minimums under the <a href={RETAIL_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{RETAIL_AWARD.name}</a> ({RETAIL_AWARD.code}) from the first full pay period on or after {RETAIL_AWARD.operativeFrom}; a level 1 casual earns {formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour, or {formatAUD(toCents(L1.hourly * RETAIL_PENALTIES.casualSunday), 2)} on a Sunday.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -299,7 +309,7 @@ export default function RetailAwardRatesPage() {
                 Rates apply <strong>from the first full pay period starting on or after {RETAIL_AWARD.operativeFrom}</strong> &mdash; not universally 1 July. If your pay period began before that date, the previous rate lawfully covers the whole of it. The Annual Wage Review 2026 was given effect for this award by determination {AWARD_DETERMINATIONS.retail}.
               </p>
               <p>
-                If you have been paid below these rates, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed, and underpayment can be recovered for up to six years.
+                The Fair Work Ombudsman&rsquo;s Pay and Conditions Tool returns these same level 1 to 8 minimums for any day and employment type; our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide explains what it asks. If you have been paid below these rates, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed, and underpayment can be recovered for up to six years.
               </p>
             </section>
 
@@ -313,6 +323,51 @@ export default function RetailAwardRatesPage() {
                 <li><Link href="/retail-hospitality-pay-guide/">Working in Retail &amp; Hospitality</Link> &mdash; rights, rosters and take-home pay</li>
                 <li><Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> &mdash; your award rate after tax</li>
               </ul>
+            </section>
+
+            <section id="retail-minimum-wage">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Retail Minimum Wage in Australia: Level 1 vs the National Minimum Wage</h2>
+              <p>
+                The retail minimum wage is the level 1 adult rate of the {RETAIL_AWARD.name}: <strong>{formatAUD(L1.weekly, 2)} a week, or {formatAUD(L1.hourly, 2)} an hour</strong>, from {RETAIL_AWARD.operativeFrom}. It sits above the national minimum wage of {formatAUD(NMW.weekly, 2)} a week ({formatAUD(NMW.hourly, 2)} an hour), which applies only to employees no award covers.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[30rem] text-left text-sm text-navy">
+                    <caption className="sr-only">Retail award level 1 compared with the national minimum wage</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-5 py-4">Minimum</th>
+                        <th scope="col" className="px-5 py-4">Weekly (38 hours)</th>
+                        <th scope="col" className="px-5 py-4">Hourly</th>
+                        <th scope="col" className="px-5 py-4">Casual hourly</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      <tr>
+                        <th scope="row" className="px-5 py-3 text-left font-medium">Retail award level 1</th>
+                        <td className="px-5 py-3">{formatAUD(L1.weekly, 2)}</td>
+                        <td className="px-5 py-3 font-medium">{formatAUD(L1.hourly, 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(casualHourly(L1.hourly, LOADING), 2)}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row" className="px-5 py-3 text-left font-medium">National minimum wage</th>
+                        <td className="px-5 py-3">{formatAUD(NMW.weekly, 2)}</td>
+                        <td className="px-5 py-3 font-medium">{formatAUD(NMW.hourly, 2)}</td>
+                        <td className="px-5 py-3">{formatAUD(NMW.casualHourly, 2)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p>
+                Award minimums sit above the national floor because each award sets its own classification rates. The Fair Work Commission&rsquo;s <a href="https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews" target="_blank" rel="noopener noreferrer">Annual Wage Review 2026</a> lifted the national minimum wage and award rates by {(AWR_2026_FLOORS.increase * 100).toFixed(2)}% from 1 July 2026, so the gap of {formatAUD(toCents(L1.hourly - NMW.hourly), 2)} an hour carried over from the previous year.
+              </p>
+              <p>
+                A level 1 casual is paid {formatAUD(casualHourly(L1.hourly, LOADING), 2)} an hour, the base rate plus the {pct(LOADING)} loading; the casual rate for every level and day is in <a href="#pay-guide">Retail Pay Guide {SITE_CONFIG.financialYear}: Every Level, Every Day</a>. Juniors are paid a percentage of the level 1 rate: {pct(JUNIOR_16.pct)} at 16 ({formatAUD(JUNIOR_16.hourly, 2)} an hour) and {pct(JUNIOR_18.pct)} at 18 ({formatAUD(JUNIOR_18.hourly, 2)}). Junior rates stop at level 3, so a junior classified at level 4 or above gets the full adult rate; the full scale is in our <Link href="/junior-pay-rates/">junior pay rates</Link> guide.
+              </p>
+              <p>
+                The same level 1 rate applies in NSW, Queensland, Victoria and every other state, because the award is national (see <Link href="/award-rates/">award rates</Link>); the one exception is unincorporated employers in Western Australia, which sit in the WA state system. To see the weekly minimum after tax, use the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
+              </p>
             </section>
 
             <section id="faq">

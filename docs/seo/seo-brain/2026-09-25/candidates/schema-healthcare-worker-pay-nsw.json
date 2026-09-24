@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-healthcare-worker-pay-nsw",
+  "kind": "citation_lead",
+  "route": "/healthcare-worker-pay/nsw/",
+  "candidates": [
+    {
+      "lead": "NSW nurse pay rates are set by the Public Health System Nurses' and Midwives' (State) Award 2025, made by the Industrial Relations Commission of New South Wales rather than under a Fair Work agreement. From 1 July 2026 a registered nurse or midwife earns $81,468 a year at 1st year and $114,379 at the 8th-year top step [[registeredNurseRange]], from $41.23 an hour, before shift penalties.",
+      "source": "https://www.health.nsw.gov.au/careers/conditions/Awards/nurses.PDF"
+    },
+    {
+      "lead": "A registered nurse's salary in NSW Health runs up an eight-year ladder under the state award: $81,468 a year at Year 1 rising to $114,379 at Year 8 and thereafter [[registeredNurseRange]], on rates effective 1 July 2026 with the next change scheduled for 1 July 2027. Enrolled nurses start at $37.83 an hour and clinical nurse specialists at $60.24 [[NURSING_PAY_BY_STATE.nsw]].",
+      "source": "https://www.health.nsw.gov.au/careers/conditions/Awards/nurses.PDF"
+    },
+    {
+      "lead": "NSW nurse salaries are weekly award rates, published by NSW Health, multiplied by 52. On the rates in force from 1 July 2026, registered nurses and midwives earn $81,468 to $114,379 a year across Years 1 to 8 [[registeredNurseRange]], clinical nurse consultants from $143,083, and enrolled nurses $74,755 to $83,715 [[NURSING_PAY_BY_STATE.nsw]]. Every pay point is listed below.",
+      "source": "https://www.health.nsw.gov.au/careers/conditions/Awards/nurses.PDF"
+    }
+  ]
+}

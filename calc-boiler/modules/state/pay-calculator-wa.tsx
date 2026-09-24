@@ -5,8 +5,12 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatPercent,
+  HECS_HELP,
+  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  SUPER_GUARANTEE,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
@@ -60,10 +64,12 @@ export default function PayCalculatorWAPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">WA</span>
           </div>
           <p className="text-lg text-warmgray">
-            WA has the highest full-time earnings of any state. This salary calculator turns that gross
-            figure into the net one using ATO {SITE_CONFIG.financialYear} rates — and then covers what
-            is genuinely different in WA: your own state industrial system, WA Day, and long service
-            leave that pays out from 7 years.
+            Take-home pay in Western Australia is gross salary less federal income tax and the{" "}
+            {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy, worked out on the ATO{" "}
+            {SITE_CONFIG.financialYear} rates that apply in every state. Employer super of{" "}
+            {formatPercent(SUPER_GUARANTEE.rate, 0)} is paid on top, and HECS-HELP repayments start at{" "}
+            {formatAUD(HECS_HELP.minimumThreshold)}. The average WA full-time adult earns{" "}
+            {formatAUD(PROFILE.awote.personsFullTime, 2)} a week (ABS, {STATE_EMPLOYEE_SOURCES.absReferencePeriod}).
           </p>
           <TrustBar className="mt-4" />
         </section>

@@ -10,6 +10,7 @@ import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { fitTitle } from "@/lib/seo-title";
 
 interface PageProps {
   params: Promise<{
@@ -38,7 +39,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     // listing showing the number competes with an AI Overview that already
     // states one. Deliberately drops "Take-Home Pay"/"After Tax" — those belong
     // to /take-home-pay-on/. FY label from SITE_CONFIG rolls over each 1 July.
-    title: `Tax on ${formattedSalary} in Australia: ${formatAUD(breakdown.netIncomeTax)} Income Tax (${SITE_CONFIG.financialYear})`,
+    // Previous: "Tax on $45,000 in Australia: $3,695 Income Tax (2026-27)"
+    // seo-brain 25 Sep 2026 (Jev-ranked): question form in the GSC phrasing; the figure is
+    // totalTax (income tax plus Medicare levy), the number the hero and the
+    // description already lead with. Keep token: australia.
+    title: fitTitle(
+      `How Much Tax on ${formattedSalary} in Australia? ${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}`,
+      `Tax on ${formattedSalary} in Australia? ${formatAUD(totalTax)} in ${SITE_CONFIG.financialYear}`,
+    ),
     description: `Tax on ${formattedSalary} in ${SITE_CONFIG.financialYear} is ${formatAUD(breakdown.netIncomeTax)} income tax plus ${formatAUD(breakdown.medicareLevy)} Medicare levy: ${formatAUD(totalTax)} in total (${totalRate}% of salary), leaving ${formatAUD(breakdown.takeHomePay)} take-home a year.`,
     alternates: {
       canonical: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`,

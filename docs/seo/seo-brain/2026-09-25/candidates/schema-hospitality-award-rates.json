@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-hospitality-award-rates",
+  "kind": "citation_lead",
+  "route": "/hospitality-award-rates/",
+  "candidates": [
+    {
+      "lead": "The Hospitality Award (Hospitality Industry (General) Award 2020, MA000009) sets minimum pay for cafes, restaurants, pubs, clubs and hotels. From 1 July 2026 adult rates run from $25.74 an hour at introductory level to $32.13 at level 6 [[HOSPITALITY_RATES]]; level 1, the entry classification for food and beverage attendants and kitchen hands, is $26.44 an hour, or $33.05 as a casual with the 25% loading.",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    },
+    {
+      "lead": "The hospitality award is the Hospitality Industry (General) Award 2020 (MA000009), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For 2026-27 its adult minimums are $25.74 an hour at introductory level, $26.44 at level 1 and $32.13 at level 6 [[HOSPITALITY_RATES]], operative from the first full pay period on or after 1 July 2026. Evening and night work add a flat cash amount.",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    },
+    {
+      "lead": "Hospitality award pay rates are the legal minimum wages for each classification under MA000009, with hourly rates equal to the weekly rate divided by 38 ordinary hours. From 1 July 2026, level 1 pays $1,004.90 a week or $26.44 an hour and level 6 $1,221.10 a week or $32.13 an hour [[HOSPITALITY_RATES]]; casuals receive a 25% loading on the ordinary rate [[HOSPITALITY_AWARD.casualLoading]] but not on overtime.",
+      "source": "https://awards.fairwork.gov.au/MA000009.html"
+    }
+  ]
+}

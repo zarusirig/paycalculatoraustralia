@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-pay-calculator-vic",
+  "kind": "citation_lead",
+  "route": "/pay-calculator-vic/",
+  "candidates": [
+    {
+      "lead": "A Victorian pay calculator turns a gross salary into net pay using the federal ATO 2026-27 scale: $18,200 tax-free [[TAX_FREE_THRESHOLD]], 15% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy, because income tax is identical in every state. Full-time adults in Victoria earn $2,041.10 a week, about $106,137 a year [[STATE_PROFILES.VIC.awote.personsFullTime]] (ABS, May 2026).",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Take-home pay in Victoria is gross salary less federal income tax and the 2% Medicare levy on the ATO 2026-27 rates, with 12% super [[SUPER_GUARANTEE.rate]] paid by the employer on top. State rules sit outside the tax sum: Victorian long service leave is roughly 6.1 weeks after 7 years [[STATE_PROFILES.VIC.longServiceLeave]], and payroll tax of 4.85% above $1,000,000 is paid by employers, not deducted from wages.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Pay in Victoria is taxed on the federal ATO 2026-27 scale, so a VIC salary keeps the same net amount as the same salary anywhere in Australia: the first $18,200 is tax-free [[TAX_FREE_THRESHOLD]] and HECS-HELP repayments start at $69,528 [[HECS_HELP.minimumThreshold]]. A full-time Victorian adult earns $2,041.10 a week [[STATE_PROFILES.VIC.awote.personsFullTime]] (ABS, May 2026); this page shows the net.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

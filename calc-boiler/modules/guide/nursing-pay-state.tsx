@@ -25,6 +25,7 @@ import {
   scaleSummaries,
   scalesInFamily,
   takeHomeHref,
+  WEEKS_PER_YEAR,
 } from "@/lib/data/nursing-pay";
 import {
   NURSES_AWARD,
@@ -32,11 +33,86 @@ import {
   NURSES_AWARD_PENALTIES,
 } from "@/lib/data/nursing-pay/nurses-award-2020";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
-import type { NursingStateData, PayPoint, PayScale } from "@/lib/data/nursing-pay/types";
+import type { NursingStateData, NursingStateSlug, PayPoint, PayScale } from "@/lib/data/nursing-pay/types";
 
 const AWARD_RN1 = NURSES_AWARD_GENERAL.find((s) => s.classification === "Registered nurse — level 1")!;
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+
+/** Lowest and highest annual on a scale, or null if nothing is priced. */
+function scaleRange(scale: PayScale | undefined): { entry: number; top: number } | null {
+  if (!scale) return null;
+  const priced = scale.points.map(annualFor).filter((a): a is number => a !== null);
+  if (priced.length === 0) return null;
+  return { entry: Math.min(...priced), top: Math.max(...priced) };
+}
+
+/**
+ * Quotable opening paragraphs (seo-brain 2026-09-25, citation_lead). Only the
+ * states listed here change; every other state keeps its data-file intro.
+ * Every figure is rendered from the state's own scale data.
+ */
+const STATE_LEADS: Partial<Record<NursingStateSlug, (state: NursingStateData) => React.ReactNode>> = {
+  nsw: (state) => {
+    const rn = registeredNurseRange(state);
+    const en = scaleRange(scalesInFamily(state, "enrolled")[0]);
+    const cnc = scaleRange(state.scales.find((s) => s.classification.includes("Consultant")));
+    const primary = state.instruments[0];
+    return (
+      <>
+        NSW nurse salaries are weekly award rates, published by NSW Health, multiplied by {WEEKS_PER_YEAR}. On the
+        rates in force from {primary.effectiveFrom}, registered nurses and midwives earn{" "}
+        {rn ? `${formatAUD(rn.entry)} to ${formatAUD(rn.top)} a year across ${rn.entryLabel} to ${rn.topLabel}` : "the base scale"}
+        {cnc ? `, clinical nurse consultants from ${formatAUD(cnc.entry)}` : ""}
+        {en ? `, and enrolled nurses ${formatAUD(en.entry)} to ${formatAUD(en.top)}` : ""}. Every pay point is listed
+        below.
+      </>
+    );
+  },
+  qld: (state) => {
+    const rn = registeredNurseRange(state);
+    const base = state.scales.find((s) => s.family === "registered");
+    const hourly = base?.points.map((p) => hourlyFor(p, state)).find((h): h is number => h !== null);
+    const primary = state.instruments[0];
+    return (
+      <>
+        Queensland Health nurse pay is set by the {primary.name} and published per annum, per fortnight and per hour for
+        every pay point. On the rates effective {primary.effectiveFrom}, a registered nurse or midwife
+        {base ? ` (${base.gradeCode})` : ""} earns{" "}
+        {rn ? `${formatAUD(rn.entry)} to ${formatAUD(rn.top)} a year` : "the published scale"}
+        {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}, before shift penalties.
+      </>
+    );
+  },
+  sa: (state) => {
+    const rn = registeredNurseRange(state);
+    const primary = state.instruments[0];
+    return (
+      <>
+        A registered nurse&apos;s salary in South Australia on SA Health&apos;s public sector scale runs from{" "}
+        {rn ? `${formatAUD(rn.entry)} a year at the ${rn.entryLabel} to ${formatAUD(rn.top)} at the ${rn.topLabel}` : "the published scale"}
+        , as printed in the {primary.name} from the {primary.effectiveFrom}. Those base figures exclude shift and weekend
+        loadings, and the SA Government has since paid an administrative increase that SA Health has not yet published as
+        dollar rates.
+      </>
+    );
+  },
+  vic: (state) => {
+    const rn = registeredNurseRange(state);
+    const base = state.scales.find((s) => s.family === "registered");
+    const hourly = base?.points.map((p) => hourlyFor(p, state)).find((h): h is number => h !== null);
+    const primary = state.instruments[0];
+    return (
+      <>
+        A Victorian public sector nurse&apos;s salary is set by the {primary.name}, approved by the {primary.tribunal}. On
+        the rates effective from the {primary.effectiveFrom}, a {base?.classification ?? "registered nurse"} earns{" "}
+        {rn ? `${formatAUD(rn.entry)} a year at ${rn.entryLabel} and ${formatAUD(rn.top)} at ${rn.topLabel}` : "the published scale"}
+        {hourly ? `, from ${formatAUD(hourly, 2)} an hour` : ""}
+        {primary.nextIncrease ? `; the next increase is the ${primary.nextIncrease}` : ""}.
+      </>
+    );
+  },
+};
 
 export default function NursingPayStatePage({ state }: { state: NursingStateData }) {
   const primary = state.instruments[0];
@@ -93,7 +169,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
             {nursingPageH1(state)}
           </h1>
-          <p className="mb-6 text-xl leading-relaxed text-warmgray">{state.intro}</p>
+          <p className="mb-6 text-xl leading-relaxed text-warmgray">{STATE_LEADS[state.slug]?.(state) ?? state.intro}</p>
           <p className="mb-6 rounded-lg border border-eucalyptus/30 bg-eucalyptus-light/20 p-4 text-sm text-navy">
             <strong>Rates on this page:</strong> {primary.name}, effective {primary.effectiveFrom}
             {primary.nextIncrease ? `. Next scheduled change: ${primary.nextIncrease}` : ""}. Every figure was read

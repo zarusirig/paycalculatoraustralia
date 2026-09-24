@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-tax-on-35000-1",
+ "kind": "title_description",
+ "route": "/tax-on/35000/",
+ "candidates": [
+  {
+   "title": "Tax on $35,000 in Australia 2026-27: $1,820 Tax + $699 Medicare",
+   "description": "Tax on $35,000 in 2026-27 is $1,820 income tax plus $699 Medicare levy: $2,519 in total (7.2% of salary), leaving $32,481 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "How Much Tax on $35,000 in Australia? $2,519 in 2026-27",
+   "description": "Tax on $35,000 in 2026-27 is $2,519 in total: $1,820 income tax plus $699 Medicare levy, 7.2% of salary, leaving $32,481 a year. Weekly and fortnightly tax too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on $35,000 in Australia (2026-27): $1,820 Tax Plus Medicare",
+   "description": "Tax on $35,000 in 2026-27 is $1,820 income tax plus $699 Medicare levy: $2,519 in total (7.2% of salary), leaving $32,481 take-home a year.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  },
+  {
+   "title": "Tax on a $35,000 Salary in Australia (2026-27): $1,820 Income Tax",
+   "description": "On a $35,000 salary in 2026-27 you pay $1,820 income tax and $699 Medicare levy, $2,519 in total (7.2%), leaving $32,481 a year. HECS and weekly figures too.",
+   "figureSource": "tax-on template: calculatePayBreakdown({grossSalary}).netIncomeTax / .medicareLevy / .takeHomePay; totalRate = (netIncomeTax+medicareLevy)/salary"
+  }
+ ]
+}

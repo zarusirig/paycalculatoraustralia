@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-non-resident-tax",
+  "kind": "citation_lead",
+  "route": "/non-resident-tax/",
+  "candidates": [
+    {
+      "lead": "Non-resident tax rates are the income tax scale the ATO applies to foreign residents for tax purposes. For 2026-27 there is no tax-free threshold: 30% applies from the first dollar to $135,000, 37% to $190,000 and 45% above [[NON_RESIDENT_TAX_BRACKETS]]. Foreign residents do not pay the 2% Medicare levy and cannot claim the $700 Low Income Tax Offset [[LITO.maxOffset]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents"
+    },
+    {
+      "lead": "The non-resident tax rate in Australia is 30% on every dollar of Australian-sourced income up to $135,000, then 37% to $190,000 and 45% above, for 2026-27 [[NON_RESIDENT_TAX_BRACKETS]]. Unlike residents, foreign residents get no $18,200 tax-free threshold [[TAX_FREE_THRESHOLD]] and no 15% bracket, but they are not charged the 2% Medicare levy. The rates were unchanged by the 1 July 2026 resident tax cut.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents"
+    },
+    {
+      "lead": "Non-resident tax is the set of Australian income tax rates for people the ATO classifies as foreign residents, applied only to Australian-sourced income. For 2026-27 the lowest rate is 30% from the first dollar, against 0% and 15% for residents below $45,000 [[NON_RESIDENT_TAX_BRACKETS]] [[TAX_BRACKETS_2026_27]]. Working holiday makers on 417 and 462 visas are taxed on a separate scale.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-foreign-residents"
+    }
+  ]
+}

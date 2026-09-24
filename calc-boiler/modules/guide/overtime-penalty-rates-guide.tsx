@@ -12,9 +12,11 @@ import { getGuideAuthorship } from "@/lib/authors";
 import {
   AWR_2026_FLOORS,
   HOSPITALITY_AWARD,
+  HOSPITALITY_OVERTIME,
   HOSPITALITY_PENALTIES,
   HOSPITALITY_RATES,
   RETAIL_AWARD,
+  RETAIL_OVERTIME,
   RETAIL_PENALTIES,
   RETAIL_RATES,
 } from "@/lib/constants/hospitality-award";
@@ -97,7 +99,7 @@ export default function OvertimePenaltyRatesGuidePage() {
         </nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates Australia &mdash; Weekend, Public Holiday &amp; Overtime Loadings</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">What you must be paid for working weekends, public holidays, evenings and overtime &mdash; the multipliers by award, how casual penalties differ, and how the loadings are taxed. Rates current from {AWR_EFFECTIVE}.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually {HOSPITALITY_OVERTIME.weekdayFirst2Hours} times for the first two or three hours beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week and double time ({HOSPITALITY_OVERTIME.weekdayAfter2Hours.toFixed(1)} times) after that, with {RETAIL_OVERTIME.publicHoliday} times for overtime on a public holiday under awards such as retail. On a {formatAUD(30)} base, 3 hours at time-and-a-half is {formatAUD(30 * RETAIL_OVERTIME.weekdayFirst3Hours * 3)}. This guide covers the multipliers by award, how casual penalties differ and how the loadings are taxed. Rates current from {AWR_EFFECTIVE}.</p>
           <TrustBar className="!max-w-none" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
@@ -145,7 +147,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             {/* ───────── SECTION 3: Penalty Rates Table by Award Type ───────── */}
             <section id="penalty-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Are the Penalty Rates by Award Type?</h2>
-              <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each links to a full classification-by-classification breakdown.</p>
+              <p>Penalty rates vary across Australia&apos;s modern awards. The three tables below are derived from verified award data and are regression-tested against the Fair Work pay guides. Each links to a full classification-by-classification breakdown. To price your own roster under any award, the Fair Work Ombudsman&apos;s tool applies the same percentages; see our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide.</p>
 
               <h3>Retail &mdash; General Retail Industry Award ({RETAIL_AWARD.code})</h3>
               <PenaltyTable

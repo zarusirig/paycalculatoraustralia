@@ -5,8 +5,11 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import {
   formatAUD,
+  formatPercent,
+  MEDICARE_LEVY,
   SOURCES,
   SITE_CONFIG,
+  SUPER_GUARANTEE,
 } from "@/lib/constants";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
@@ -60,10 +63,14 @@ export default function PayCalculatorVICPage() {
             <span className="rounded-full bg-eucalyptus-dark px-3 py-1 text-xs font-bold text-white shadow-sm">VIC</span>
           </div>
           <p className="text-lg text-warmgray">
-            Put your salary in and see what actually lands in your account. This wage calculator uses
-            the ATO&apos;s {SITE_CONFIG.financialYear} rates, then covers the three things that really
-            are different in Victoria: the public holidays that trigger penalty rates, long service
-            leave after 7 years, and the payroll tax your employer pays.
+            Take-home pay in Victoria is gross salary less federal income tax and the{" "}
+            {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy on the ATO {SITE_CONFIG.financialYear} rates,
+            with {formatPercent(SUPER_GUARANTEE.rate, 0)} super paid by the employer on top. State rules sit
+            outside the tax sum: Victorian long service leave is roughly{" "}
+            {PROFILE.longServiceLeave.weeksAtEntitlement.toFixed(1)} weeks after{" "}
+            {PROFILE.longServiceLeave.takeAfterYears} years, and payroll tax of{" "}
+            {PAYROLL_TAX_STATES.vic.headlineRate} above {formatAUD(PAYROLL_TAX_STATES.vic.annualThreshold)} is
+            paid by employers, not deducted from wages.
           </p>
           <TrustBar className="mt-4" />
         </section>

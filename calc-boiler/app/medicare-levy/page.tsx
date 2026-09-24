@@ -29,13 +29,16 @@ const UPPER = formatAUD(MEDICARE_LEVY.shadeInThreshold);
 
 // Retitled in place (23 Sep 2026) rather than moved to /medicare-levy-calculator/:
 // that URL already 301s here, and a move would touch ~20 files other
-// workstreams own. No year in the title: the levy thresholds are the ATO's
-// latest (2025-26, they lag a year).
+// workstreams own. The thresholds themselves stay unlabelled in the title:
+// they are the ATO's latest (2025-26, they lag a year).
 //
 // Intent split (W2, 23 Sep 2026): "Medicare levy surcharge" queries now belong
 // to /medicare-levy-surcharge-calculator/. This page owns the 2% levy and keeps
 // only a short surcharge summary that links there.
-const TITLE = `Medicare Levy Calculator: ${RATE} Levy, Low-Income & Family Thresholds`;
+// Previous: "Medicare Levy Calculator: 2% Levy, Low-Income & Family Thresholds"
+// seo-brain 25 Sep 2026 (Jev-ranked): keep tokens medicare/levy/calculator; the year is the
+// FY start year from SITE_CONFIG so it rolls over with the site.
+const TITLE = `Medicare Levy Calculator ${SITE_CONFIG.financialYear.slice(0, 4)}: ${RATE} Levy, Low-Income, Family Limits`;
 const DESCRIPTION = `Free Medicare levy calculator: the ${RATE} levy, the low-income shade-in from ${LOWER} to ${UPPER}, and exemptions. The ${MLS_INCOME_YEAR} surcharge has its own calculator.`;
 
 export const metadata: Metadata = {

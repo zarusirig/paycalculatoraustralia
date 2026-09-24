@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-minimum-wage-history-australia",
+  "kind": "citation_lead",
+  "route": "/minimum-wage-history-australia/",
+  "candidates": [
+    {
+      "lead": "The National Minimum Wage is the pay floor for adults aged 21 and over not covered by an award or agreement, reset each year by the Fair Work Commission's Annual Wage Review. From 1 July 2026 it is $26.44 an hour, or $1,004.90 for a 38-hour week [[NMW]], a 6.0% rise. The rate has increased every year since 2010-11, when it was $15.00 an hour [[NMW_HISTORY]].",
+      "source": "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions"
+    },
+    {
+      "lead": "Australia's minimum wage rate rose from $15.00 an hour on 1 July 2010 to $26.44 an hour from 1 July 2026 [[NMW_HISTORY]], an increase of 76.3% [[TOTAL_GROWTH]] over 16 Annual Wage Reviews. The largest single rise was 8.6% in 2023-24 [[HISTORY_LARGEST]] and the 2026-27 increase is 6.0%. The table lists every year's hourly and weekly rate and the size of each increase.",
+      "source": "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions"
+    },
+    {
+      "lead": "Minimum wage history in Australia is the sequence of National Minimum Wage rates set by each Annual Wage Review since 2010. Each new rate applies from the first full pay period on or after 1 July; the 2026-27 rate is $26.44 an hour and $1,004.90 a week [[NMW]], up from $24.95 and $948.00 in 2025-26 [[NMW.previousHourly]].",
+      "source": "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions"
+    }
+  ]
+}

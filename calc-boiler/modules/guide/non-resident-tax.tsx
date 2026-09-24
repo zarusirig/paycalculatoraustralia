@@ -6,7 +6,10 @@ import { NON_RESIDENT_FAQS } from "./non-resident-tax-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, MEDICARE_LEVY, NON_RESIDENT_TAX_BRACKETS, TAX_BRACKETS, SECOND_BRACKET_RATE, TAX_FREE_THRESHOLD, SUPER_GUARANTEE, calculateIncomeTax, calculateLITO, calculateMedicareLevy, formatAUD, formatNegAUD, formatPercent } from "@/lib/constants";
+
+// Opening paragraph, rendered from the non-resident scale.
+const NR = NON_RESIDENT_TAX_BRACKETS;
 import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import AuthorBox from "@/components/common/author-box";
@@ -42,7 +45,9 @@ export default function NonResidentTaxPage() {
         <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Non-Resident Tax</span></li></ol></nav>
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Non-Resident Tax Rates Australia {SITE_CONFIG.financialYear}</h1>
-          <p className="text-xl text-warmgray leading-relaxed mb-6">Tax rates for foreign residents working in Australia: no tax-free threshold, no LITO, and different brackets. See a side-by-side comparison with resident rates.</p>
+          <p className="text-xl text-warmgray leading-relaxed mb-6">
+            The non-resident tax rate in Australia is {formatPercent(NR[0].rate, 0)} on every dollar of Australian-sourced income up to {formatAUD(NR[0].max)}, then {formatPercent(NR[1].rate, 0)} to {formatAUD(NR[1].max)} and {formatPercent(NR[2].rate, 0)} above, for {SITE_CONFIG.financialYear}. Unlike residents, foreign residents get no {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold and no {formatPercent(SECOND_BRACKET_RATE, 0)} bracket, but they are not charged the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy. The rates were unchanged by the {SITE_CONFIG.financialYearStart} resident tax cut; a side-by-side comparison with resident rates is below.
+          </p>
           <TrustBar className="!max-w-none" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">

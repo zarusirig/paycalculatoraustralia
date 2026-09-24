@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-centrelink-income-test",
+  "kind": "citation_lead",
+  "route": "/centrelink-income-test/",
+  "candidates": [
+    {
+      "lead": "The Centrelink income test reduces an income-support payment by a set number of cents for each dollar earned above a free area. For JobSeeker Payment, income up to $150 a fortnight [[JOBSEEKER_INCOME_TEST.freeArea]] has no effect, each dollar to $256 cuts the payment by 50 cents and each dollar above $256 by 60 cents; the single rate of $824.90 from 20 September 2026 [[JOBSEEKER_RATES]] reaches $0 at $1,557.17.",
+      "source": "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment"
+    },
+    {
+      "lead": "Centrelink's income test is the formula Services Australia uses to taper JobSeeker, Youth Allowance, Parenting Payment, Family Tax Benefit and the Age Pension as assessable income rises. JobSeeker loses 50c per dollar between $150 and $256 a fortnight and 60c above that [[JOBSEEKER_INCOME_TEST]]; the single Age Pension loses 50c per dollar over $226. Free areas, tapers and cut-offs at 20 September 2026 are below.",
+      "source": "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment"
+    },
+    {
+      "lead": "A Centrelink income test sets how much of a payment remains once fortnightly income passes the free area. From 20 September 2026 a single JobSeeker recipient with no children receives up to $824.90 a fortnight [[JOBSEEKER_RATES]], keeps the full rate on income to $150, and reaches the $1,557.17 cut-off [[JOBSEEKER_RATES.publishedCutOff]] under the 50c/60c taper. Each payment on this page links to its own calculator.",
+      "source": "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment"
+    }
+  ]
+}

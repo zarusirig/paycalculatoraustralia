@@ -41,6 +41,18 @@ import {
 
 const REVIEWED_ON = "2026-08-28";
 
+// Opening paragraph, derived from the jurisdiction table so it cannot drift.
+const LSL_ALL = JURISDICTION_CODES.map((code) => LSL_JURISDICTIONS[code]);
+const rateLabel = (weeksPerYear: number) => String(parseFloat(weeksPerYear.toFixed(4)));
+const modeOf = (xs: number[]) =>
+  [...new Set(xs)].sort((a, b) => xs.filter((x) => x === b).length - xs.filter((x) => x === a).length)[0];
+const LSL_COMMON_RATE = rateLabel(modeOf(LSL_ALL.map((j) => parseFloat(rateLabel(j.weeksPerYear)))));
+const LSL_COMMON_RATE_COUNT = LSL_ALL.filter((j) => rateLabel(j.weeksPerYear) === LSL_COMMON_RATE).length;
+const LSL_OTHER_RATE = LSL_ALL.filter((j) => rateLabel(j.weeksPerYear) !== LSL_COMMON_RATE);
+const LSL_COMMON_YEARS = modeOf(LSL_ALL.map((j) => j.takeAfterYears));
+const LSL_OTHER_YEARS = LSL_ALL.filter((j) => j.takeAfterYears !== LSL_COMMON_YEARS);
+const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
 function authorship(slug: string) {
   return (
     getGuideAuthorship(slug) ?? {
@@ -105,10 +117,18 @@ export function LongServiceLeaveHub() {
             Long Service Leave Calculator Australia — All 8 States and Territories
           </h1>
           <p className="text-lg text-warmgray">
-            Enter your start date and your ordinary weekly pay to see how many weeks of long service
-            leave you have accrued, what you could take now, what would be paid out if the job ended
-            today, and the tax on it. Every rule below comes from the state or territory&apos;s own
-            Act, verified {LSL_SOURCES.verifiedOn}.
+            A long service leave calculator works out accrued weeks from a start date and ordinary weekly pay under
+            the state or territory Act that covers the job. The rate is {LSL_COMMON_RATE} weeks a year in{" "}
+            {LSL_COMMON_RATE_COUNT} jurisdictions
+            {LSL_OTHER_RATE.length
+              ? ` and ${rateLabel(LSL_OTHER_RATE[0].weeksPerYear)} weeks a year in ${joinNames(LSL_OTHER_RATE.map((j) => j.abbr))}`
+              : ""}
+            ; the qualifying period is {LSL_COMMON_YEARS} years everywhere
+            {LSL_OTHER_YEARS.length
+              ? ` except ${joinNames(LSL_OTHER_YEARS.map((j) => j.inName.replace(/^in /, "")))}, where it is ${LSL_OTHER_YEARS[0].takeAfterYears} years`
+              : ""}
+            . Rules were verified against each Act on {LSL_SOURCES.verifiedOn}; enter your details to see what has
+            accrued, what could be taken now, what would be paid out today, and the tax on it.
           </p>
           <TrustBar className="mt-4" />
           {/* State spokes, linked with descriptive anchors above the fold. Until

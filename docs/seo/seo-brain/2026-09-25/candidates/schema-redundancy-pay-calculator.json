@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-redundancy-pay-calculator",
+  "kind": "citation_lead",
+  "route": "/redundancy-pay-calculator/",
+  "candidates": [
+    {
+      "lead": "Redundancy pay is the severance an employer owes under the National Employment Standards when a job is made redundant: from 4 weeks' base pay after 1 year of service to 16 weeks after 9 years, then 12 weeks at 10 years or more [[NES_REDUNDANCY_SCALE]]. For 2026-27 a genuine redundancy payment is tax-free up to $13,598 plus $6,801 per completed year of service [[REDUNDANCY_TAX_2026_27]].",
+      "source": "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements"
+    },
+    {
+      "lead": "A redundancy calculator applies the National Employment Standards scale, weeks of base pay by completed years of continuous service, 4 weeks at 1 year rising to 16 weeks at 9 years and 12 weeks from 10 years [[NES_REDUNDANCY_SCALE]], then the 2026-27 tax-free limit of $13,598 plus $6,801 per year [[REDUNDANCY_TAX_2026_27]]. Amounts above the limit are taxed as an employment termination payment [[ETP_RATES]].",
+      "source": "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements"
+    },
+    {
+      "lead": "Redundancy pay in Australia is worked out on completed years of continuous service at the base rate for ordinary hours, on a National Employment Standards scale from 4 weeks to 16 weeks [[NES_REDUNDANCY_SCALE]] that applies identically in every state and territory. In 2026-27 the first $13,598 plus $6,801 per year of service is tax-free [[REDUNDANCY_TAX_2026_27]]; small businesses under 15 staff are generally exempt.",
+      "source": "https://www.fairwork.gov.au/ending-employment/redundancy/redundancy-pay-and-entitlements"
+    }
+  ]
+}

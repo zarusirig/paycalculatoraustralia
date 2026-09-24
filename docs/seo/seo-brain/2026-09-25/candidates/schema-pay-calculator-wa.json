@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-pay-calculator-wa",
+  "kind": "citation_lead",
+  "route": "/pay-calculator-wa/",
+  "candidates": [
+    {
+      "lead": "A WA pay calculator works out take-home pay from gross salary on the federal ATO 2026-27 scale: $18,200 tax-free [[TAX_FREE_THRESHOLD]], 15% to $45,000 and 30% to $135,000 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. Income tax is the same in every state; full-time adults in WA earn $2,227.40 a week, about $115,825 a year [[STATE_PROFILES.WA.awote.personsFullTime]], the highest of any state (ABS, May 2026).",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Take-home pay in Western Australia is gross salary less federal income tax and the 2% Medicare levy, worked out on the ATO 2026-27 rates that apply in every state. Employer super of 12% [[SUPER_GUARANTEE.rate]] is paid on top, and HECS-HELP repayments start at $69,528 [[HECS_HELP.minimumThreshold]]. The average WA full-time adult earns $2,227.40 a week [[STATE_PROFILES.WA.awote.personsFullTime]] (ABS, May 2026).",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Pay in Western Australia is taxed on the federal ATO 2026-27 scale, so a WA salary keeps the same net amount as anywhere in Australia: the first $18,200 is tax-free [[TAX_FREE_THRESHOLD]], then 15% applies to $45,000 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. What differs in WA is state law: long service leave paid out from 7 years' service [[STATE_PROFILES.WA.longServiceLeave]] and a state award system.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

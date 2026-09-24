@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-fortnightly-tax-table-1",
+ "kind": "title_description",
+ "route": "/fortnightly-tax-table/",
+ "candidates": [
+  {
+   "title": "Fortnightly Tax Table 2026-27 (ATO NAT 1006) — PAYG Calculator",
+   "description": "Fortnightly tax table 2026-27: $2,000 a fortnight has $276 withheld with the tax-free threshold ($1,724 take-home), $498 without. Full NAT 1006 table, STSL and CSV.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed → $276 withheld, $1,724 take-home; not claimed → $498"
+  },
+  {
+   "title": "Fortnightly Tax Table 2026-27 (ATO NAT 1006) — PAYG Calculator",
+   "description": "ATO fortnightly tax table 2026-27 (NAT 1006), $700 to $8,000 in $100 steps: on $2,000 a fortnight, $276 is withheld with the threshold, $498 without. STSL and CSV.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed → $276 withheld, $1,724 take-home; not claimed → $498"
+  },
+  {
+   "title": "Fortnightly Tax Table 2026-27 (ATO NAT 1006) — PAYG Calculator",
+   "description": "PAYG fortnightly tax table 2026-27: $2,000 a fortnight is $276 tax withheld ($1,724 take-home) with the tax-free threshold. Every $100 row of NAT 1006 and a lookup.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed → $276 withheld, $1,724 take-home; not claimed → $498"
+  },
+  {
+   "title": "Fortnightly Tax Table 2026-27 (ATO NAT 1006) — Table, PAYG Lookup",
+   "description": "Fortnightly tax table 2026-27: $276 is withheld from $2,000 a fortnight with the tax-free threshold ($1,724 take-home). Full NAT 1006 table, with or without it.",
+   "figureSource": "calculatePAYGWithholding (modules/tax-tables, ATO_SCHEDULE_1 / NAT 1006): $2,000 fortnight, threshold claimed → $276 withheld, $1,724 take-home; not claimed → $498"
+  }
+ ]
+}

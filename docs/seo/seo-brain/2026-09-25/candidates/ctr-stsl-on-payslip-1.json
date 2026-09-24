@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-stsl-on-payslip-1",
+ "kind": "title_description",
+ "route": "/stsl-on-payslip/",
+ "candidates": [
+  {
+   "title": "What Is STSL on Your Payslip? Study Loan Tax Above $69,528",
+   "description": "STSL on your payslip means Study and Training Support Loans: extra tax withheld for HECS-HELP once you earn over $69,528 a year ($1,337 a week) in 2026-27.",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  },
+  {
+   "title": "STSL on Your Payslip: What It Means and Why It Started (2026-27)",
+   "description": "STSL stands for Study and Training Support Loans: the HECS-HELP repayment withheld from each pay once you earn over $69,528 a year in 2026-27 ($2,674 a fortnight).",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  },
+  {
+   "title": "What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27)",
+   "description": "STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above $69,528 a year ($1,337 a week) in 2026-27.",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  },
+  {
+   "title": "What Is STSL on Your Payslip? Study Loan Deduction (2026-27)",
+   "description": "STSL on your payslip stands for Study and Training Support Loans, the extra tax withheld for your HECS-HELP repayment above $69,528 a year in 2026-27.",
+   "figureSource": "HECS/STSL repayment minimumThreshold 69_528 (lib/constants/australian-tax.ts); weekly $1,337 / fortnightly $2,674 as rendered on the page"
+  }
+ ]
+}

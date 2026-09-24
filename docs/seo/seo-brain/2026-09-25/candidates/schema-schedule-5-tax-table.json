@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-schedule-5-tax-table",
+  "kind": "citation_lead",
+  "route": "/schedule-5-tax-table/",
+  "candidates": [
+    {
+      "lead": "Schedule 5 (ATO NAT 3348) is the PAYG withholding table for back payments, commissions, bonuses and similar lump sums, applying to payments made from 1 July 2026. Rather than taxing the lump sum as one pay, it apportions the payment across the year's pay periods so withholding follows the marginal rate. For a worker on $2,000 a fortnight, a $1,000 bonus has $312 withheld [[calculateSchedule5MethodB]], or 31.2%.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "PAYG on Schedule 5 is worked out by dividing the additional payment by the number of pay periods in the year, adding that slice to a normal pay, and multiplying the difference between the two Schedule 1 amounts by the number of periods. Total withholding is capped at 47% of the payment [[SCHEDULE_5_WITHHOLDING_LIMIT]]. NAT 3348 for 2026-27 applies from 1 July 2026.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "The Schedule 5 tax table is the ATO schedule (NAT 3348) employers use to withhold PAYG from bonuses, commissions and back pay in 2026-27. There is no flat bonus tax rate: the payment is spread across 26 fortnights or 52 weeks so withholding tracks the employee's marginal rate, with a 47% ceiling [[SCHEDULE_5_WITHHOLDING_LIMIT]]. On $2,000 a fortnight, a $1,000 bonus attracts $312 [[calculateSchedule5MethodB]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-overtime-pay-calculator",
+  "kind": "citation_lead",
+  "route": "/overtime-pay-calculator/",
+  "candidates": [
+    {
+      "lead": "Overtime pay is worked out as base hourly rate x penalty multiplier x overtime hours, with the multiplier set by the award or agreement: typically time-and-a-half (1.5x) for the first hours and double time (2.0x) after that [[PENALTY_TYPES]], and 2.0x to 2.5x on public holidays [[EMPLOYMENT.penaltyRates]]. Full-time overtime starts after 38 ordinary hours a week and is taxed at the 2026-27 marginal rate.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    },
+    {
+      "lead": "The overtime rate in Australia is a multiple of the ordinary hourly rate set by the award or agreement covering the job, most commonly 1.5x for the first two or three hours and 2.0x after that [[PENALTY_TYPES]]; there is no single national overtime rate. Overtime applies beyond 38 ordinary hours a week for full-time staff [[EMPLOYMENT.standardWeeklyHours]] and is taxed at the 2026-27 marginal rates.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    },
+    {
+      "lead": "An overtime and penalty rate calculator multiplies a base hourly rate by the award multiplier and the hours worked: time-and-a-half is 1.5x, double time 2.0x, double-time-and-a-half 2.5x [[PENALTY_TYPES]], and Saturday penalties run from 1.25x to 1.5x [[EMPLOYMENT.penaltyRates]]. The gross result is taxed at the 2026-27 marginal bracket, 30% between $45,001 and $135,000, to give net overtime pay.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates"
+    }
+  ]
+}

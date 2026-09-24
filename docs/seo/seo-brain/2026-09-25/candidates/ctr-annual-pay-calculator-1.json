@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-annual-pay-calculator-1",
+ "kind": "title_description",
+ "route": "/annual-pay-calculator/",
+ "candidates": [
+  {
+   "title": "Salary After Tax Calculator Australia 2026-27: Annual Take-Home",
+   "description": "A $80,000 salary is $63,880 a year after tax in 2026-27 ($14,520 income tax + $1,600 Medicare levy). Enter any annual salary for take-home after tax and HECS.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 → $77,480"
+  },
+  {
+   "title": "Annual Salary After Tax Calculator 2026-27 — Pay After Tax a Year",
+   "description": "$80,000 a year is $63,880 after tax in 2026-27; $100,000 is $77,480. Annual salary after tax calculator: yearly gross to take-home after tax, Medicare levy and HECS.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 → $77,480"
+  },
+  {
+   "title": "Salary After Tax Calculator 2026-27: Annual Income to Take-Home",
+   "description": "A $80,000 annual income is $63,880 after tax in 2026-27 ($14,520 tax, $1,600 Medicare levy). Any yearly salary to annual pay after tax, Medicare, HECS and super.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 → $77,480"
+  },
+  {
+   "title": "Annual Salary After Tax Calculator Australia 2026-27: Yearly Pay",
+   "description": "A $80,000 salary is $63,880 a year after tax in 2026-27. Salary after tax calculator: any yearly gross salary to annual take-home after income tax and HECS.",
+   "figureSource": "calculatePayBreakdown({grossSalary: 80_000, includeHECS:false, hasPrivateHealth:true}): takeHomePay $63,880, netIncomeTax $14,520, medicareLevy $1,600; $100,000 → $77,480"
+  }
+ ]
+}

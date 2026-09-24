@@ -10,12 +10,14 @@ import {
   AWR_2026_FLOORS,
   HOSPITALITY_AWARD,
   HOSPITALITY_PENALTIES,
+  RETAIL_AWARD,
   RETAIL_OVERTIME,
   RETAIL_PENALTIES,
   RETAIL_RATES,
 } from "@/lib/constants/hospitality-award";
 import { SCHADS_SACS } from "@/lib/constants/schads-award";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
+import { NMW, QLD_STATE_WAGE_CASE_2026, WA_STATE_MINIMUM_WAGE } from "@/lib/constants/minimum-wage";
 import { FAST_FOOD_AWARD, MANUFACTURING_AWARD, PHARMACY_AWARD, SECURITY_AWARD, roundCents } from "@/lib/constants/modern-awards";
 import { AWARD_HUB_FAQS } from "@/modules/guide/award-rates-faqs";
 import AuthorBox from "@/components/common/author-box";
@@ -267,6 +269,9 @@ export default function AwardRatesGuidePage() {
                 <li>Check your classification rate in the A–Z table above, or in the award&apos;s pay guide.</li>
               </ol>
               <p>
+                To price a particular day, shift or employment type, run the award, level and hours through the Fair Work Ombudsman&apos;s Pay and Conditions Tool; our <Link href="/fair-work-pay-calculator/">Fair Work pay calculator</Link> guide explains what it asks and the rates behind it.
+              </p>
+              <p>
                 If no award covers you, you are award-free: the National Employment Standards and the national minimum wage still apply. To check what is on your payslip, read <Link href="/understanding-your-payslip/">understanding your payslip</Link>.
               </p>
               <div className="not-prose mt-6">
@@ -295,6 +300,25 @@ export default function AwardRatesGuidePage() {
                 <li><Link href="/weekly-pay-calculator/">Weekly pay calculator</Link> &mdash; a mixed roster of shifts.</li>
                 <li><Link href="/backpay-calculator/">Backpay calculator</Link> &mdash; what is owed if you were underpaid.</li>
               </ul>
+            </section>
+
+            <section id="award-rates-by-state">
+              <h2>Award Rates in NSW, QLD, Victoria and Other States: Is There a Difference?</h2>
+              <p>
+                No. Modern award rates are set nationally by the Fair Work Commission, so the {RETAIL_AWARD.name} level 1 rate of {formatAUD(R1.hourly, 2)} an hour is the same in NSW, Queensland, Victoria, South Australia, Tasmania, the ACT and the Northern Territory, and the same holds for all {AWARD_DIRECTORY.length} awards in the <a href="#award-rates-a-z">A&ndash;Z above</a> (<a href="https://www.fairwork.gov.au/pay-and-wages/minimum-wages" target="_blank" rel="noopener noreferrer">Fair Work Ombudsman, minimum wages</a>). Two groups of employees sit outside the national system.
+              </p>
+              <p>
+                <strong>Western Australia.</strong> Sole traders, partnerships and other unincorporated WA employers are in the WA state system, which has its own minimum wage of {formatAUD(WA_STATE_MINIMUM_WAGE.weekly, 2)} a week ({formatAUD(WA_STATE_MINIMUM_WAGE.hourly, 2)} an hour) from {WA_STATE_MINIMUM_WAGE.operativeFrom} (<a href={WA_STATE_MINIMUM_WAGE.url} target="_blank" rel="noopener noreferrer">wa.gov.au</a>). Incorporated WA employers are in the national system and pay the modern award rates.
+              </p>
+              <p>
+                <strong>Queensland.</strong> State and local government employees are covered by the Queensland state system. Its minimum wage is {formatAUD(QLD_STATE_WAGE_CASE_2026.qmwWeekly, 2)} a week from {QLD_STATE_WAGE_CASE_2026.operativeFrom}, after the {(QLD_STATE_WAGE_CASE_2026.increase * 100).toFixed(2)}% increase in the {QLD_STATE_WAGE_CASE_2026.citation} decision (<a href={QLD_STATE_WAGE_CASE_2026.url} target="_blank" rel="noopener noreferrer">QIRC</a>). Queensland private-sector employees are on the national awards.
+              </p>
+              <p>
+                What does differ by state is the calendar around the rate. Each state declares its own public holidays, so which days attract public-holiday penalty rates depends on where you work: see the <Link href="/pay-calculator-nsw/">NSW</Link>, <Link href="/pay-calculator-qld/">Queensland</Link> and <Link href="/pay-calculator-vic/">Victoria</Link> pay pages. Long service leave is state law, with a different accrual in each jurisdiction (<Link href="/long-service-leave-calculator/">long service leave calculator</Link>).
+              </p>
+              <p>
+                Under every award sits the national minimum wage of {formatAUD(NMW.hourly, 2)} an hour, the floor for employees no award covers; see <Link href="/minimum-wage-australia/">minimum wage Australia</Link>.
+              </p>
             </section>
 
             <section id="faq">

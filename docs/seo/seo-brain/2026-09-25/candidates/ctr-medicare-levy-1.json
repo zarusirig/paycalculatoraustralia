@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-medicare-levy-1",
+ "kind": "title_description",
+ "route": "/medicare-levy/",
+ "candidates": [
+  {
+   "title": "Medicare Levy Calculator: 2% Levy, Low-Income Limits, Exemptions",
+   "description": "Medicare levy calculator: 2% of taxable income, so $1,500 on $75,000. Nothing below $28,011, a shade-in to $35,013, plus family and seniors thresholds.",
+   "figureSource": "MEDICARE_LEVY.rate 2%, lowIncomeThreshold $28,011, shadeInThreshold $35,013; single(75_000).levy $1,500 (modules/guide/medicare-levy)"
+  },
+  {
+   "title": "Medicare Levy Calculator (ATO Rates): 2% Levy and Thresholds",
+   "description": "Work out your Medicare levy at ATO rates: 2% of taxable income ($1,500 on $75,000), nil below $28,011 and 10% of the excess to $35,013. Family and seniors limits.",
+   "figureSource": "MEDICARE_LEVY.rate 2%, lowIncomeThreshold $28,011, shadeInThreshold $35,013; single(75_000).levy $1,500 (modules/guide/medicare-levy)"
+  },
+  {
+   "title": "Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits",
+   "description": "Free Medicare levy calculator: the 2% levy, the low-income shade-in from $28,011 to $35,013, and exemptions. The 2026-27 surcharge has its own calculator.",
+   "figureSource": "MEDICARE_LEVY.rate 2%, lowIncomeThreshold $28,011, shadeInThreshold $35,013; single(75_000).levy $1,500 (modules/guide/medicare-levy)"
+  },
+  {
+   "title": "Medicare Levy Calculator — How Much Is the 2% Levy on My Income?",
+   "description": "The Medicare levy is 2% of taxable income: $1,500 on $75,000. You pay nothing below $28,011 and a reduced amount to $35,013. Family, seniors and exemption rules.",
+   "figureSource": "MEDICARE_LEVY.rate 2%, lowIncomeThreshold $28,011, shadeInThreshold $35,013; single(75_000).levy $1,500 (modules/guide/medicare-levy)"
+  }
+ ]
+}

@@ -50,7 +50,7 @@ export default function UnderstandingYourPayslipPage() {
             Understanding Your Payslip
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Your payslip is a legally binding document. Learn how to decode Gross Pay, Net Pay, PAYG, Super limits, and spot accidental underpayments from your employer.
+            YTD on a payslip stands for year-to-date: the running total of gross pay, PAYG tax withheld and superannuation since 1 July, the start of the Australian financial year. At 30 June the YTD gross must match the income statement in myGov. Payslips are compulsory under the Fair Work Act, with penalties of up to {formatAUD(PAYSLIP_PENALTY_INDIVIDUAL)} for individuals and {formatAUD(PAYSLIP_PENALTY_COMPANY)} for companies at {formatAUD(PENALTY_UNIT.amount)} a penalty unit from {PENALTY_UNIT.from}. This guide decodes gross pay, net pay, PAYG and super so you can spot an underpayment.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

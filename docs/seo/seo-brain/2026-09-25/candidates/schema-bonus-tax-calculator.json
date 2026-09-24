@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-bonus-tax-calculator",
+  "kind": "citation_lead",
+  "route": "/bonus-tax-calculator/",
+  "candidates": [
+    {
+      "lead": "A bonus is taxed as ordinary income in Australia: it is added to the year's salary and taxed at the marginal rate under the 2026-27 brackets, with no separate bonus tax rate. On a $90,000 salary a $10,000 bonus attracts $3,000 income tax at 30% plus $200 Medicare levy, $3,200 in total, leaving $6,800 [[bonusTaxSplit]]. The employer withholds from the bonus payment under ATO Schedule 5.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "Bonus pay is ordinary income under Australian tax law, so the tax on a bonus is the extra income tax it adds to the year at the marginal rate: 30% between $45,001 and $135,000 and 37% to $190,000 for 2026-27 [[TAX_BRACKETS_2026_27]], plus the 2% Medicare levy. A $10,000 bonus on a $90,000 salary costs $3,200 in tax and levy, 32.0% of it [[bonusTaxSplit]], with withholding on the payment itself set by ATO Schedule 5.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    },
+    {
+      "lead": "Tax on a bonus in Australia is the difference between the annual tax on salary alone and the annual tax on salary plus bonus, worked out on the 2026-27 scale; there is no flat bonus tax. For an employee on $90,000 receiving $10,000, that difference is $3,200, so $6,800 of the bonus is kept [[bonusTaxSplit]]. Employers withhold from bonus payments using ATO Schedule 5, and any over-withholding is refunded at tax time.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments"
+    }
+  ]
+}

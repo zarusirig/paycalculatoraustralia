@@ -12,8 +12,11 @@ import {
   formatAUD,
   formatNegAUD,
   formatPercent,
+  LITO,
+  MEDICARE_LEVY,
   SITE_CONFIG,
   TAX_BRACKETS,
+  TAX_BRACKETS_2025_26,
 } from "@/lib/constants";
 import { AmountPresets, convertPeriod, PERIOD_NOUN, PERIODS_PER_YEAR, PeriodToggle, type EntryPeriod } from "@/modules/calculator/head-term-ui";
 
@@ -23,6 +26,16 @@ function clamp(n: number, min: number, max: number) {
 
 const FY = SITE_CONFIG.financialYear; // "2026-27"
 const NEW_RATE = formatPercent(TAX_BRACKETS[1].rate, 0); // 15%
+const OLD_RATE = formatPercent(TAX_BRACKETS_2025_26[1].rate, 0); // 16%
+const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
+/** "0% to $18,200, 16% to $45,000, … and 45% above", rendered from a bracket scale. */
+function scaleSentence(brackets: typeof TAX_BRACKETS): string {
+  const parts = brackets.map((b, i) =>
+    i === brackets.length - 1 ? `${formatPercent(b.rate, 0)} above` : `${formatPercent(b.rate, 0)} to ${formatAUD(b.max)}`,
+  );
+  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+const OLD_SCALE = scaleSentence(TAX_BRACKETS_2025_26);
 
 const PRESETS: Record<EntryPeriod, readonly number[]> = {
   annual: [45_000, 80_000, 120_000, 190_000],
@@ -93,7 +106,7 @@ export default function IncomeTaxCalculatorPage({ children }: { children: React.
                 Income Tax Calculator Australia {FY} — Simple Tax Calculator
               </h1>
               <p className="text-base md:text-lg text-warmgray">
-                Work out exactly how much income tax you pay on any annual, monthly, fortnightly or weekly income using the official ATO rates for FY{FY} — including the new {NEW_RATE} bracket that started on 1 July 2026 and the Low Income Tax Offset (LITO).
+                The ATO tax rates for {SITE_CONFIG.previousFinancialYear} were {OLD_SCALE}; from {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}, with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the {MEDICARE_PCT} Medicare levy and subtracts up to {formatAUD(LITO.maxOffset)} of Low Income Tax Offset (LITO). Enter any annual, monthly, fortnightly or weekly income for FY{FY}.
               </p>
               <TrustBar className="mt-3" />
             </div>

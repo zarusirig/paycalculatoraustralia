@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-zone-tax-offset",
+  "kind": "citation_lead",
+  "route": "/zone-tax-offset/",
+  "candidates": [
+    {
+      "lead": "The zone tax offset is a non-refundable tax offset for Australian residents whose usual home is in a remote area (Zone A or Zone B) for 183 days or more in an income year [[ZONE_QUALIFYING_DAYS]]. For 2025-26 the fixed amount is $338 in Zone A, $57 in Zone B and $1,173 in a special area [[ZONE_AREA_RATES]], plus 50% (Zone A) or 20% (Zone B) of any dependant base amount, claimed at question T4.",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-or-overseas-forces-tax-offsets/zone-tax-offset"
+    },
+    {
+      "lead": "A tax zone offset is worked out as a fixed amount for the zone plus a percentage of the dependant base amount, and it reduces tax payable to no less than zero. In the 2025-26 income year [[ZONE_OFFSET_INCOME_YEAR]] the fixed amounts are $338 (Zone A), $57 (Zone B) and $1,173 (special area) [[ZONE_AREA_RATES]]; a special-area amount replaces, rather than adds to, the zone amount.",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-or-overseas-forces-tax-offsets/zone-tax-offset"
+    },
+    {
+      "lead": "The zone tax offset (the remote area tax rebate) is a fixed offset the ATO allows residents of prescribed remote areas, including Darwin, Alice Springs, Mount Isa and Broken Hill, after 183 days' residence [[ZONE_QUALIFYING_DAYS]]. With no dependants the maximum is $1,173 for a special area, $338 for Zone A and $57 for Zone B [[ZONE_AREA_RATES]], at the 2025-26 rates claimed in the 2026 tax return.",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/zone-or-overseas-forces-tax-offsets/zone-tax-offset"
+    }
+  ]
+}

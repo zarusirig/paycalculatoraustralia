@@ -7,7 +7,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, SG_RATE_HISTORY, QUALIFYING_EARNINGS, MEDICARE_LEVY, calculateIncomeTax, formatAUD, formatPercent } from "@/lib/constants";
-import { CARRY_FORWARD, DIVISION_293, DIVISION_296, LOW_RATE_CAP, TRANSFER_BALANCE_CAP_PREVIOUS, bringForwardThresholds } from "@/lib/constants/super-contributions";
+import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE, DIVISION_293, DIVISION_296, LOW_RATE_CAP, TRANSFER_BALANCE_CAP_PREVIOUS, bringForwardThresholds } from "@/lib/constants/super-contributions";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -66,7 +66,7 @@ export default function SuperannuationGuidePage() {
             Superannuation Guide — How Super Works in Australia ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Everything you need to know about the mandatory {formatPercent(SUPER_GUARANTEE.rate, 0)} retirement system, Payday Super, contribution caps, and how super affects your take-home pay.
+            The superannuation rate for {SITE_CONFIG.financialYear} is {formatPercent(SUPER_GUARANTEE.rate, 0)}, the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year. Under Payday Super, in force since {SUPER_GUARANTEE.paydaySuperStart}, it is due within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of each pay rather than quarterly. Contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in the fund. This guide covers the caps and how super affects your take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

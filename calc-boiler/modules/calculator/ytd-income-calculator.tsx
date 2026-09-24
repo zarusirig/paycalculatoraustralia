@@ -9,17 +9,15 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
+  SITE_CONFIG,
 } from "@/lib/constants";
+import { PAY_PERIODS } from "@/lib/constants/payg-withholding";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
-const PERIOD_MULTIPLIERS = {
-  weekly: 52,
-  fortnightly: 26,
-  monthly: 12,
-} as const;
+const PERIOD_MULTIPLIERS = PAY_PERIODS;
 
 type Frequency = keyof typeof PERIOD_MULTIPLIERS;
 type Mode = "ytd" | "annualise";
@@ -102,9 +100,11 @@ export default function YTDIncomeCalculatorPage({ children }: { children: React.
             YTD Calculator — Year to Date Income Australia
           </h1>
           <p className="text-lg text-warmgray">
-            Year to date (YTD) income is everything you have earned since 1 July, the start of the Australian
-            financial year, up to your latest payslip. Use this YTD calculator to add up your year-to-date gross
-            pay, or annualise a YTD figure into a projected annual salary and tax estimate.
+            A year to date calculator adds up gross pay from 1 July to the latest payslip, or converts that YTD
+            figure into a projected annual salary: projected income = (YTD gross &divide; pays received) &times; pays
+            per year, with {PERIOD_MULTIPLIERS.weekly} weekly, {PERIOD_MULTIPLIERS.fortnightly} fortnightly or{" "}
+            {PERIOD_MULTIPLIERS.monthly} monthly pays in the {SITE_CONFIG.financialYear} financial year. Tax on the
+            projected figure follows the ATO {SITE_CONFIG.financialYear} scale.
           </p>
           <p className="text-sm text-warmgray mt-3">Updated: July 2026.</p>
           <TrustBar className="mt-4" />

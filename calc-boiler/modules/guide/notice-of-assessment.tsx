@@ -52,7 +52,7 @@ export default function NoticeOfAssessmentPage() {
             Notice of Assessment — Understanding Your ATO Tax Assessment
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Your Notice of Assessment is the ATO&apos;s official statement of your tax calculation. Here&apos;s how to read each line, understand what the numbers mean, and what to do if something doesn&apos;t look right.
+            A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the {RETURN_2026.incomeYear} return, most online lodgements are assessed within {RETURN_2026.onlineRefundTypical} and paper returns within {RETURN_2026.paperRefundBusinessDays} business days. This guide explains each line and what to do if something looks wrong.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

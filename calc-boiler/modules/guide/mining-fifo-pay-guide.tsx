@@ -12,8 +12,11 @@ import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-t
 
 // National average and mining AWOTE come from the ABS figures in
 // lib/data/average-salary (the old "$98,000" was a years-old figure).
+const MINING_WEEKLY = AWE_BY_INDUSTRY.find((r) => r.label === "Mining")?.weekly ?? 0;
 const NATIONAL_AVG = annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly);
-const MINING_AVG = annualise(AWE_BY_INDUSTRY.find((r) => r.label === "Mining")?.weekly ?? 0);
+const MINING_AVG = annualise(MINING_WEEKLY);
+const ABS_AWE_LATEST =
+  "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia/latest-release";
 // $150,000 example from the FY2026-27 engine (old copy: $38,717 tax, which
 // matched neither 2025-26 nor 2026-27 rates).
 const EX = calculatePayBreakdown({ grossSalary: 150_000 });
@@ -46,7 +49,9 @@ export default function MiningFIFOPayGuidePage() {
             Mining &amp; FIFO Pay Guide — Salaries, Rosters &amp; Take-Home Pay
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Australia&apos;s mining sector is one of the highest-paying industries in the country. FIFO (fly-in, fly-out) workers earn between $100,000 and $200,000+ depending on role, roster structure, and allowances. This guide breaks down mining salaries, FIFO rosters, allowances, tax considerations, and how to calculate your real take-home pay.
+            FIFO (fly-in, fly-out) jobs pay a base salary plus roster loadings and allowances: the ABS puts{" "}
+            <a href={ABS_AWE_LATEST} target="_blank" rel="noopener" className="text-eucalyptus-dark hover:underline">average full-time ordinary earnings</a>{" "}
+            in mining at {formatAUD(MINING_WEEKLY, 2)} a week, about {formatAUD(MINING_AVG)} a year ({AWE_RELEASE.referencePeriod}), against a national average of {formatAUD(NATIONAL_AVG)}. FIFO packages for {SITE_CONFIG.financialYear} vary with role and roster and are taxed on the normal ATO scale; this guide covers mining salaries, rosters, allowances and take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
         </header>

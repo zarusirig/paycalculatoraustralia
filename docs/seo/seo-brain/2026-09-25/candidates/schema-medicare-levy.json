@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-medicare-levy",
+  "kind": "citation_lead",
+  "route": "/medicare-levy/",
+  "candidates": [
+    {
+      "lead": "The Medicare levy is 2% of taxable income [[MEDICARE_LEVY.rate]], charged on top of income tax to fund Medicare. It is not payable at or below $28,011 [[MEDICARE_LEVY.lowIncomeThreshold]], is 10% of the excess between $28,011 and $35,013 [[MEDICARE_LEVY.shadeInThreshold]], and is the full 2% above that; on $29,000 the levy is $98.90 [[calculateMedicareLevy]]. Thresholds are the ATO's 2025-26 figures.",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
+    },
+    {
+      "lead": "A Medicare levy calculation has three bands: no levy at or under $28,011 of taxable income, a shade-in of 10% of the amount over $28,011 up to $35,013, and 2% of the whole income above $35,013 [[MEDICARE_LEVY]]. Families get a higher threshold of $47,238 plus $4,338 per dependent child [[MEDICARE_LEVY.familyThreshold]]. These are the 2025-26 thresholds, the latest the ATO has published.",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
+    },
+    {
+      "lead": "The Medicare levy is a 2% charge on taxable income [[MEDICARE_LEVY.rate]], separate from income tax and from the 1%–1.5% Medicare levy surcharge on higher earners without hospital cover [[MEDICARE_LEVY.surcharge]]. Low-income earners pay less: nothing to $28,011 and 10 cents per dollar of the excess to $35,013 [[MEDICARE_LEVY.lowIncomeThreshold]] for 2025-26, so $32,000 carries $398.90 [[calculateMedicareLevy]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy"
+    }
+  ]
+}

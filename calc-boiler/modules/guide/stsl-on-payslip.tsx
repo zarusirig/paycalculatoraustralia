@@ -6,7 +6,7 @@ import { STSL_FAQS } from "./stsl-on-payslip-faqs";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SOURCES, HECS_HELP, formatAUD, calculatePayBreakdown, calculateHECS } from "@/lib/constants";
+import { SITE_CONFIG, SOURCES, HECS_HELP, formatAUD, calculatePayBreakdown, calculateHECS } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -51,7 +51,7 @@ export default function STSLOnPayslipPage() {
             What Is STSL on Your Payslip?
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-2">
-            STSL stands for <strong>Study and Training Support Loans</strong>. On your payslip, STSL is the extra tax your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Student Loan, or other study loan. It only applies once your income passes the repayment threshold.
+            STSL on a payslip stands for <strong>Study and Training Support Loans</strong>: the extra PAYG amount an employer withholds each pay toward the compulsory repayment of a HECS-HELP, FEE-HELP, VET Student Loan or other government study loan. For {SITE_CONFIG.financialYear} withholding starts once earnings pass {formatAUD(STSL_THRESHOLD_2026_27)} a year, about {formatAUD(STSL_THRESHOLD_2026_27 / 52)} a week or {formatAUD(STSL_THRESHOLD_2026_27 / 26)} a fortnight, at {Math.round(BAND_15.marginalRate * 100)} cents per dollar above the threshold.
           </p>
           <p className="text-sm text-warmgray-light mb-6">Updated: 2 July 2026 — reflects FY2026-27 thresholds.</p>
           <TrustBar className="!max-w-none" />

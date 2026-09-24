@@ -34,7 +34,7 @@ const outDir = join(root, "out");
 if (!files.length) { console.error("usage: verify.mts <decisions.json>…"); process.exit(2); }
 
 const decode = (s: string) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
-const strip = (h: string) => decode(h.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+const strip = (h: string) => decode(h.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").replace(/\s+([:;,.?!)])/g, "$1").replace(/\(\s+/g, "(").trim();
 const cache = new Map<string, string | null>();
 const html = (route: string) => { if (!cache.has(route)) { const f = join(outDir, route === "/" ? "index.html" : route.slice(1) + "index.html"); cache.set(route, existsSync(f) ? readFileSync(f, "utf8") : null); } return cache.get(route)!; };
 const main = (h: string) => { const s = h.search(/<main[\s>]/); const e = h.indexOf("</main>"); return s >= 0 && e > s ? h.slice(s, e) : h; };

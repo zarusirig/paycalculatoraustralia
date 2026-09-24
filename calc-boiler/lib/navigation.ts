@@ -215,6 +215,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/nurses-award-rates/", label: "Nurses" },
           { href: "/clerks-award-rates/", label: "Clerks" },
           { href: "/overtime-penalty-rates-guide/", label: "Penalty rates" },
+          { href: "/fair-work-pay-calculator/", label: "Fair Work pay calculator" },
         ],
       },
       {
@@ -698,6 +699,7 @@ export const GUIDE_CATEGORIES = [
     title: "Award Pay Rates",
     guides: [
       { href: "/award-rates/", label: "Award Rates Hub", description: "How modern awards set minimum pay" },
+      { href: "/fair-work-pay-calculator/", label: "Fair Work Pay Calculator", description: "What PACT asks and the award rates behind it" },
       { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates", description: "Social, community, home care & disability" },
       { href: "/hospitality-award-rates/", label: "Hospitality Award Rates", description: "Cafes, restaurants, pubs & hotels" },
       { href: "/retail-award-rates/", label: "Retail Award Rates", description: "General Retail Industry Award levels 1–8" },

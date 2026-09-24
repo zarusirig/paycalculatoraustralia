@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-pay-calculator-qld",
+  "kind": "citation_lead",
+  "route": "/pay-calculator-qld/",
+  "candidates": [
+    {
+      "lead": "Take-home pay in Queensland is worked out with federal ATO 2026-27 rates and the 2% Medicare levy; Queensland has no state income tax, so the same salary nets the same amount in Brisbane as in Perth. On the state's average full-time wage of $106,064 [[STATE_PROFILES.QLD.awote]], income tax is $22,339 and the Medicare levy $2,121, leaving $81,604 a year or $3,138.62 a fortnight [[calculatePayBreakdown]].",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "A pay calculator for QLD applies the same deductions as every other state — income tax at the 2026-27 resident rates, the 2% Medicare levy [[MEDICARE_LEVY.rate]] and any HECS-HELP repayment above $69,528 [[HECS_HELP.minimumThreshold]] — because there is no Queensland income tax. State-specific are the public holiday calendar, long service leave under the Industrial Relations Act, and payroll tax, which employers pay.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "lead": "Queensland pay is gross salary less federal income tax and the Medicare levy, with 12% superannuation [[SUPER_GUARANTEE.rate]] paid by the employer on top. The average Queensland full-time adult earned $2,039.70 a week in May 2026 ([[STATE_PROFILES.QLD.awote]], ABS), or $106,064 a year, which takes home $81,604 under 2026-27 rates [[calculatePayBreakdown]], an effective tax rate of 23.1%.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    }
+  ]
+}

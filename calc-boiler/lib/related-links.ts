@@ -94,6 +94,7 @@ const CHEMIST_WAREHOUSE = employer("chemist-warehouse", "Chemist Warehouse", "Ph
  */
 const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/award-rates/": [JOBS_HUB, EMPLOYERS_HUB, MIN_WAGE, JUNIOR, PENALTY_GUIDE, EA],
+  "/fair-work-pay-calculator/": [AWARD_RATES, MIN_WAGE, JUNIOR, PENALTY_GUIDE, EA, L("/backpay-calculator/", "Backpay Calculator", "What you are owed if you have been paid under the award.")],
   "/retail-award-rates/": [job("retail-worker", "Retail Worker", "Retail award levels as hourly, weekly and annual pay."), COLES, WOOLWORTHS, KMART, JUNIOR, PENALTY_GUIDE],
   "/fast-food-award-rates/": [MCDONALDS, SUBWAY, job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), L("/minimum-wage-by-age/15/", "Minimum Wage for 15 Year Olds", "The junior percentage most first jobs start on."), JUNIOR, PENALTY_GUIDE],
   "/pharmacy-award-rates/": [job("pharmacy-assistant", "Pharmacy Assistant", "Pharmacy assistant levels 1 to 4, hourly and annual."), job("pharmacist", "Pharmacist", "Pharmacist pay from intern to manager."), CHEMIST_WAREHOUSE, JUNIOR, PENALTY_GUIDE, TOIL],

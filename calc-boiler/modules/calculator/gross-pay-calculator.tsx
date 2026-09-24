@@ -9,6 +9,8 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
+  formatPercent,
+  MEDICARE_LEVY,
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
@@ -17,6 +19,8 @@ import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-ui";
 
 const LEAD_GROSS = findGrossForNet(1_500 * 52);
 const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
+const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
+const LEAD_NET_WEEKLY = 1_500;
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -65,9 +69,12 @@ export default function GrossPayCalculatorPage({ children }: { children: React.R
             Gross Pay Calculator Australia — Net to Gross ({SITE_CONFIG.financialYear})
           </h1>
           <p className="text-lg text-navy">
-            To take home <strong>$1,500 a week</strong> you need a gross salary of{" "}
-            <strong>{formatAUD(Math.round(LEAD_GROSS))} a year</strong> in FY{SITE_CONFIG.financialYear}, before{" "}
-            {SG_PCT} super.
+            A gross pay calculator reverses the usual net pay estimate: it starts from a target take-home amount and finds
+            the annual gross salary that produces it under the {SITE_CONFIG.financialYear} tax brackets and the{" "}
+            {MEDICARE_PCT} Medicare levy. A <strong>{formatAUD(LEAD_NET_WEEKLY)} weekly</strong> net target needs{" "}
+            <strong>{formatAUD(Math.round(LEAD_GROSS))} gross a year</strong>, about{" "}
+            {formatAUD(Math.round(LEAD_GROSS / 52))} a week before tax. Employer super of {SG_PCT} is paid on top of that
+            gross figure.
           </p>
           <p className="text-warmgray mt-2">
             Enter your own target take-home pay to find the annual gross salary you need to negotiate. Going the other way, from salary to take-home? Use the{" "}

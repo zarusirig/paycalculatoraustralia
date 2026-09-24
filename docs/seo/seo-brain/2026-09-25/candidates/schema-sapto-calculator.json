@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-sapto-calculator",
+  "kind": "citation_lead",
+  "route": "/sapto-calculator/",
+  "candidates": [
+    {
+      "lead": "SAPTO, the seniors and pensioners tax offset, is a non-refundable offset for people who receive an Australian Government pension or allowance or who qualify for the Age Pension without claiming it. For 2025-26 [[SAPTO_INCOME_YEAR]] the maximum is $2,230 single and $1,602 for each partner of a couple [[SAPTO_BANDS]], reducing by 12.5 cents per dollar of rebate income above $34,919 or $30,994 [[SAPTO_REDUCTION_RATE]].",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/seniors-and-pensioners-tax-offset"
+    },
+    {
+      "lead": "The seniors and pensioners tax offset (SAPTO) is worked out from rebate income: the full $2,230 (single) or $1,602 (each partner) applies up to the shading-out threshold of $34,919 or $30,994, then falls by 12.5 cents per dollar until it cuts out at $52,759 single or $43,810 per partner [[SAPTO_BANDS]]. These are the ATO's 2025-26 figures [[SAPTO_INCOME_YEAR]]; the maximums are unchanged for 2026-27.",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/seniors-and-pensioners-tax-offset"
+    },
+    {
+      "lead": "SAPTO is an ATO tax offset that can reduce a senior's or pensioner's income tax to zero but cannot produce a refund. Eligibility needs both a payment condition and an income condition; the offset is $2,230 single, $1,602 each partner of a couple and $2,040 each partner of an illness-separated couple for 2025-26 [[SAPTO_BANDS]]. Anyone entitled to at least $1 of SAPTO also gets a higher Medicare levy threshold.",
+      "source": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/seniors-and-pensioners-tax-offset"
+    }
+  ]
+}

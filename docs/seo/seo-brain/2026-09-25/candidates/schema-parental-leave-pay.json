@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-parental-leave-pay",
+  "kind": "citation_lead",
+  "route": "/parental-leave-pay/",
+  "candidates": [
+    {
+      "lead": "Paid Parental Leave is the government's Parental Leave Pay: for a child born or adopted from 1 July 2026 a family can receive up to 130 days (26 weeks) [[PPL_ENTITLEMENT]] at $200.94 a day, $1,004.70 a week [[PPL_RATES]], before tax. 20 days are reserved for a partner, and the ATO adds a 12% super contribution [[PPL_RULES.superRate]]. The calculator on this page lays out the days and pay.",
+      "source": "https://www.servicesaustralia.gov.au/how-much-parental-leave-pay-you-can-get"
+    },
+    {
+      "lead": "Paid parental leave in Australia is $200.94 a day, or $1,004.70 a week, for 2026-27 [[PPL_RATES]], paid for up to 130 days (26 weeks) for a child born or adopted on or after 1 July 2026 [[PPL_ENTITLEMENT]]. That is the National Minimum Wage rate, taxed as income, with 20 of the days reserved for a partner and a 12% superannuation contribution paid by the ATO [[PPL_RULES.superRate]].",
+      "source": "https://www.servicesaustralia.gov.au/how-much-parental-leave-pay-you-can-get"
+    },
+    {
+      "lead": "Parental Leave Pay is a Services Australia payment of $200.94 a weekday before tax for 2026-27 [[PPL_RATES]], for up to 130 days per family for births or adoptions from 1 July 2026, up from 120 days in 2025-26 [[PPL_ENTITLEMENT]]. Days can be taken within 2 years of the birth, 20 are reserved for the partner, and super at 12% is added [[PPL_RULES.superRate]]. Over 26 weeks the gross total is $26,122.20 [[pplGross]].",
+      "source": "https://www.servicesaustralia.gov.au/how-much-parental-leave-pay-you-can-get"
+    }
+  ]
+}

@@ -19,7 +19,9 @@ const L1 = SCHADS_SACS[0];
 const L4 = SCHADS_SACS.find((r) => r.classification === "Level 4 pay point 1")!;
 const L8 = SCHADS_SACS[SCHADS_SACS.length - 1];
 
-const TITLE = `SCHADS Award Pay Rates ${SITE_CONFIG.financialYear} (${SCHADS_AWARD.code}) — Levels, Pay Points`;
+// Previous: "SCHADS Award Pay Rates 2026-27 (MA000100) — Levels, Pay Points"
+// seo-brain 25 Sep 2026 (Jev-ranked): keep tokens schads/award/rates/level.
+const TITLE = `SCHADS Award Pay Rates ${SITE_CONFIG.financialYear} (${SCHADS_AWARD.code}): Every Level, Pay Point`;
 // The ERO is attributed to Level 4 specifically, not to the whole range —
 // its tables begin at Level 2 and Level 1 receives no uplift. An earlier
 // draft read "Level 1 … to Level 8, with the Equal Remuneration Order

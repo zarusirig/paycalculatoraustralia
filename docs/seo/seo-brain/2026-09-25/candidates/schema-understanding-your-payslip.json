@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-understanding-your-payslip",
+  "kind": "citation_lead",
+  "route": "/understanding-your-payslip/",
+  "candidates": [
+    {
+      "lead": "A payslip is the written record an employer must give every employee each pay cycle under the Fair Work Act 2009, showing how the pay was calculated, taxed and paid. It must carry 14 items set by Fair Work Regulation 3.46; from 1 July 2026 a missing payslip can cost $21,840 per breach for an individual and $109,200 for a company [[PENALTY_UNIT]]. YTD on a payslip means the cumulative totals since 1 July.",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    },
+    {
+      "lead": "YTD on a payslip stands for year-to-date: the running total of gross pay, PAYG tax withheld and superannuation since 1 July, the start of the Australian financial year. At 30 June the YTD gross must match the income statement in myGov. Payslips are compulsory under the Fair Work Act, with penalties of $21,840 for individuals and $109,200 for companies at $364 a penalty unit from 1 July 2026 [[PENALTY_UNIT]].",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    },
+    {
+      "lead": "An Australian payslip lists gross pay, PAYG withholding (income tax plus the 2% Medicare levy), superannuation at 12% [[SUPER_GUARANTEE.rate]], any deductions and the net amount paid, with year-to-date (YTD) totals since 1 July alongside. Fair Work Regulation 3.46 requires 14 mandatory items, and penalties from 1 July 2026 reach $21,840 per breach for individuals and $109,200 for companies [[PENALTY_UNIT]].",
+      "source": "https://www.fairwork.gov.au/pay-and-wages/paying-wages/pay-slips"
+    }
+  ]
+}

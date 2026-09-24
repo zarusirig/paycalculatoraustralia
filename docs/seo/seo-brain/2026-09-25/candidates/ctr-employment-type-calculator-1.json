@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-employment-type-calculator-1",
+ "kind": "title_description",
+ "route": "/employment-type-calculator/",
+ "candidates": [
+  {
+   "title": "Part-Time Pay Calculator: Part-Time vs Full-Time vs Casual Pay",
+   "description": "Part-time pay at $35 an hour: 38 hours a week is $69,160 a year ($56,509 after tax); as a casual it pays $43.75 an hour with 25% loading. Compare pay and leave.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  },
+  {
+   "title": "Part-Time vs Full-Time vs Casual Pay Calculator — Rate and Salary",
+   "description": "$35 an hour part-time is $69,160 a year at 38 hours a week, or $56,509 take-home in 2026-27; casual with 25% loading is $43.75 an hour. Compare salary and leave.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  },
+  {
+   "title": "Part-Time Salary Calculator: Pay Rate vs Full-Time and Casual",
+   "description": "Part-time salary from your hourly rate and hours: $35 an hour over 38 hours is $69,160 a year, $56,509 after tax. Casual loading lifts the same rate to $43.75.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  },
+  {
+   "title": "Part-Time Pay Rate Calculator: Permanent Part-Time vs Casual Pay",
+   "description": "Permanent part-time pay at $35 an hour is $69,160 a year for 38 hours a week ($56,509 take-home). Casual pays $43.75 with 25% loading but no leave.",
+   "figureSource": "modules/calculator/employment-type-calculator defaults ($35/hr, 38 h/wk): annual $69,160, casual $43.75/hr ($86,450), take-home $56,509 via calculatePayBreakdown, 25% casual loading"
+  }
+ ]
+}

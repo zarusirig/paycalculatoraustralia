@@ -72,10 +72,14 @@ export default function RedundancyPayCalculatorPage({ children }: { children: Re
             Redundancy Pay Calculator Australia {Y}
           </h1>
           <p className="text-lg text-warmgray">
-            Enter your base salary and completed years of service to see your National Employment
-            Standards redundancy pay, the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
-            {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, and what you take home. The same rules
-            apply in NSW, Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
+            A redundancy calculator applies the National Employment Standards scale, weeks of base pay by
+            completed years of continuous service, {nesRedundancyWeeks(1)} weeks at 1 year rising to{" "}
+            {nesRedundancyWeeks(9)} weeks at 9 years and {nesRedundancyWeeks(10)} weeks from 10 years, then
+            the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
+            {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per completed year. Amounts above the limit are taxed
+            as an employment termination payment at {formatPercent(ETP_RATES.atOrOverPreservationAge, 0)} or{" "}
+            {formatPercent(ETP_RATES.underPreservationAge, 0)} depending on age. The same rules apply in NSW,
+            Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
           </p>
           <TrustBar className="mt-4" />
         </section>

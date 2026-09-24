@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import FortnightlyTaxTablePage from "@/modules/tax-tables/fortnightly-tax-table";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
-import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
+import { HTML_TABLE_RANGES, PAYG_FINANCIAL_YEAR, calculatePAYGWithholding } from "@/lib/constants/payg-withholding";
 import { FORTNIGHTLY_TAX_TABLE_FAQS } from "@/modules/tax-tables/fortnightly-tax-table-faqs";
 import {
   ATO_FORTNIGHTLY,
@@ -17,8 +17,14 @@ import { withPageEnd } from "@/components/common/content-slots";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
 const TITLE = `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006) — PAYG Calculator`;
+// Previous: "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV."
+// seo-brain 25 Sep 2026 (Jev-ranked): the HTML table's range from HTML_TABLE_RANGES and the
+// $2,000 worked example from the Schedule 1 engine (same call the page body makes).
+const TABLE_RANGE = HTML_TABLE_RANGES.fortnightly;
+const at2000 = calculatePAYGWithholding(2_000, "fortnightly");
+const at2000NoTft = calculatePAYGWithholding(2_000, "fortnightly", { claimsTaxFreeThreshold: false });
 const DESCRIPTION =
-  `Fortnightly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.`;
+  `ATO fortnightly tax table ${PAYG_FINANCIAL_YEAR} (${ATO_FORTNIGHTLY.nat}), ${formatAUD(TABLE_RANGE.from)} to ${formatAUD(TABLE_RANGE.to)} in ${formatAUD(TABLE_RANGE.step)} steps: on ${formatAUD(2_000)} a fortnight, ${formatAUD(at2000.totalWithheld)} is withheld with the threshold, ${formatAUD(at2000NoTft.totalWithheld)} without. STSL and CSV.`;
 const MODIFIED = "2026-09-23";
 
 export const metadata: Metadata = {

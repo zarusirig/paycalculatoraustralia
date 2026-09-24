@@ -8,11 +8,16 @@ import { SITE_CONFIG, SOURCES, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
+  buildTaxTableRows,
   calculatePAYGWithholding,
   withholdingForPeriod,
+  FORTNIGHTLY_TABLE_AMOUNTS,
+  MONTHLY_TABLE_AMOUNTS,
   PAYG_FINANCIAL_YEAR,
   PAYG_TABLES_UPDATED,
+  WEEKLY_TABLE_AMOUNTS,
   type PayFrequency,
+  type TaxTableRow,
 } from "@/lib/constants/payg-withholding";
 import TaxTableFaqSection from "@/modules/tax-tables/faq-section";
 import { PAYG_HUB_FAQS } from "./payg-withholding-tables-faqs";
@@ -43,6 +48,42 @@ const GLANCE: { frequency: PayFrequency; label: string; href: string; gross: num
 ];
 
 const example1500 = calculatePAYGWithholding(1_500, "weekly");
+
+// Sample rows for the hub: a short slice of each table's standard earnings
+// steps, computed by the same buildTaxTableRows() the full-table pages use
+// (column 2 = Scale 2, tax-free threshold claimed; column 3 = Scale 1, not
+// claimed). STSL and Medicare-variation columns live on the full pages.
+function sampleRows(frequency: PayFrequency, amounts: readonly number[], pick: readonly number[]): TaxTableRow[] {
+  return amounts
+    .filter((a) => pick.includes(a))
+    .map((a) => buildTaxTableRows(frequency, PAYG_FINANCIAL_YEAR, { from: a, to: a, step: 1 })[0]);
+}
+const SAMPLE_TABLES: { frequency: PayFrequency; label: string; nat: string; href: string; note: string; rows: TaxTableRow[] }[] = [
+  {
+    frequency: "weekly",
+    label: "Weekly",
+    nat: "NAT 1005",
+    href: "/weekly-tax-table/",
+    note: "The weekly table is the base: the ATO's Schedule 1 coefficients are written for weekly earnings, and the fortnightly and monthly tables are derived from it.",
+    rows: sampleRows("weekly", WEEKLY_TABLE_AMOUNTS, [500, 800, 1_000, 1_200, 1_500, 2_000]),
+  },
+  {
+    frequency: "fortnightly",
+    label: "Fortnightly",
+    nat: "NAT 1006",
+    href: "/fortnightly-tax-table/",
+    note: "A fortnightly figure is not the weekly figure times two: the ATO halves fortnightly earnings, ignores the cents, applies the weekly coefficients, rounds to the dollar and then doubles, so it can differ by a dollar or two from twice the matching weekly row.",
+    rows: sampleRows("fortnightly", FORTNIGHTLY_TABLE_AMOUNTS, [1_000, 1_600, 2_000, 2_400, 3_000, 4_000]),
+  },
+  {
+    frequency: "monthly",
+    label: "Monthly",
+    nat: "NAT 1007",
+    href: "/monthly-tax-table/",
+    note: "A monthly figure is not the weekly figure times 52/12: the ATO converts monthly earnings to a weekly amount by multiplying by 3 and dividing by 13 (the weeks in a quarter), applies the weekly formula, then converts back the same way.",
+    rows: sampleRows("monthly", MONTHLY_TABLE_AMOUNTS, [2_000, 3_500, 4_500, 5_000, 6_500, 8_000]),
+  },
+];
 
 export default function PAYGTablesGuidePage() {
   return (
@@ -91,6 +132,47 @@ export default function PAYGTablesGuidePage() {
 
           {/* MAIN ARTICLE CONTENT */}
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+
+            <section id="sample-tax-table-rows">
+              <h2>Weekly, Fortnightly and Monthly Tax Tables {PAYG_FINANCIAL_YEAR}: Sample Rows</h2>
+              <p>
+                A few rows from each ATO table for {PAYG_FINANCIAL_YEAR}, for an Australian resident. The tables were last updated on {PAYG_TABLES_UPDATED}. Column 2 is the amount withheld when the tax-free threshold is claimed; column 3 when it is not. The study and training support loan (STSL) column is on each full-table page. Method: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview" target="_blank" rel="noopener noreferrer">ATO tax tables overview</a>.
+              </p>
+              {SAMPLE_TABLES.map((t) => (
+                <div key={t.frequency}>
+                  <h3>{t.label} tax table ({t.nat}), {PAYG_FINANCIAL_YEAR}</h3>
+                  <div className="not-prose my-4">
+                    <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                      <table className="w-full text-sm text-left text-navy">
+                        <caption className="sr-only">Sample rows from the {t.label.toLowerCase()} tax table {PAYG_FINANCIAL_YEAR} ({t.nat})</caption>
+                        <thead className="bg-sandstone font-semibold text-navy">
+                          <tr>
+                            <th scope="col" className="px-4 py-3">{t.label} earnings</th>
+                            <th scope="col" className="px-4 py-3">Withheld, tax-free threshold claimed</th>
+                            <th scope="col" className="px-4 py-3">Withheld, no tax-free threshold</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                          {t.rows.map((r) => (
+                            <tr key={r.gross}>
+                              <th scope="row" className="px-4 py-3 font-semibold">{formatAUD(r.gross)}</th>
+                              <td className="px-4 py-3">{formatAUD(r.withTFT)}</td>
+                              <td className="px-4 py-3">{formatAUD(r.noTFT)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <p className="text-sm text-warmgray">
+                    {t.note} Full table: <Link href={t.href} className="font-semibold text-eucalyptus-dark hover:text-navy hover:underline">{t.label.toLowerCase()} tax table {PAYG_FINANCIAL_YEAR}</Link>.
+                  </p>
+                </div>
+              ))}
+              <p className="text-sm text-warmgray-light">
+                Fortnightly method as stated on the <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly" target="_blank" rel="noopener noreferrer">ATO fortnightly tax table</a> page.
+              </p>
+            </section>
 
             <section id="what-are-payg-withholding-tables">
               <h2>What Are PAYG Withholding Tables?</h2>

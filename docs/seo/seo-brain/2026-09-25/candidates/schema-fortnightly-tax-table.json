@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-fortnightly-tax-table",
+  "kind": "citation_lead",
+  "route": "/fortnightly-tax-table/",
+  "candidates": [
+    {
+      "lead": "The fortnightly tax table (ATO NAT 1006) sets the PAYG amount an employer withholds from each fortnight's pay in 2026-27. For $2,000 a fortnight with the tax-free threshold claimed, $276 is withheld [[calculatePAYGWithholding]], leaving $1,724 take-home. The table below lists the amount to withhold in $100 steps, with and without the threshold.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly"
+    },
+    {
+      "lead": "The ATO fortnightly tax table (NAT 1006) is the schedule of PAYG withholding amounts for employees paid every two weeks, applying to payments made from 1 July 2026 [[PAYG_FINANCIAL_YEAR]]. A $2,000 fortnight with the tax-free threshold claimed has $276 withheld [[calculatePAYGWithholding]]; without the threshold the amount is higher. Both NAT 1006 columns are reproduced below.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly"
+    },
+    {
+      "lead": "Fortnightly tax table 2026-27: the ATO's NAT 1006 schedule gives the tax to withhold from fortnightly earnings, worked out from the Schedule 1 formula with cents ignored. On $2,000 a fortnight the withholding is $276 with the tax-free threshold claimed [[calculatePAYGWithholding]], and it already includes the 2% Medicare levy with its low-income shading.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-table-fortnightly"
+    }
+  ]
+}

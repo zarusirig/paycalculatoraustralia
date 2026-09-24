@@ -1,0 +1,27 @@
+{
+ "orderId": "ctr-salary-to-hourly-120000-1",
+ "kind": "title_description",
+ "route": "/salary-to-hourly/120000/",
+ "candidates": [
+  {
+   "title": "$120,000 a Year Is How Much an Hour? $60.73, or $2,308 a Week",
+   "description": "$120k a year is $60.73 an hour before tax on a 38-hour week, $2,308 a week, $4,615 a fortnight or $10,000 a month; $46.09 an hour after tax in 2026-27.",
+   "figureSource": "salary-to-hourly template: grossHourly = salary / EMPLOYMENT.hoursPerYear; netHourly = calculatePayBreakdown({grossSalary}).takeHomePay / hoursPerYear; weekly = salary/52, fortnightly = salary/26, monthly = salary/12 (rows already rendered on the page)"
+  },
+  {
+   "title": "$120,000 a Year Is How Much an Hour, Week and Month? $60.73/hr",
+   "description": "$120k a year is $60.73 an hour before tax (1,976 hours a year), $2,308 a week, $4,615 a fortnight and $10,000 a month. After tax it is $46.09 an hour in 2026-27.",
+   "figureSource": "salary-to-hourly template: grossHourly = salary / EMPLOYMENT.hoursPerYear; netHourly = calculatePayBreakdown({grossSalary}).takeHomePay / hoursPerYear; weekly = salary/52, fortnightly = salary/26, monthly = salary/12 (rows already rendered on the page)"
+  },
+  {
+   "title": "$120,000 a Year Is How Much an Hour? $60.73 ($2,308 a Week)",
+   "description": "$120k a year is $60.73 an hour before tax on a 38-hour week (1,976 hours a year), or $46.09 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+   "figureSource": "salary-to-hourly template: grossHourly = salary / EMPLOYMENT.hoursPerYear; netHourly = calculatePayBreakdown({grossSalary}).takeHomePay / hoursPerYear; weekly = salary/52, fortnightly = salary/26, monthly = salary/12 (rows already rendered on the page)"
+  },
+  {
+   "title": "$120k a Year Is How Much an Hour in Australia? $60.73 Before Tax",
+   "description": "$120k a year is $60.73 an hour before tax, $2,308 a week or $4,615 a fortnight. After tax in 2026-27 it is $46.09 an hour, or $1,752 a week.",
+   "figureSource": "salary-to-hourly template: grossHourly = salary / EMPLOYMENT.hoursPerYear; netHourly = calculatePayBreakdown({grossSalary}).takeHomePay / hoursPerYear; weekly = salary/52, fortnightly = salary/26, monthly = salary/12 (rows already rendered on the page)"
+  }
+ ]
+}

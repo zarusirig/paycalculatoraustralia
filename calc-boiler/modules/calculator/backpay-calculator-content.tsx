@@ -48,7 +48,7 @@ export default function BackpayCalculatorContent() {
                 <li><strong>Unpaid leave accrual:</strong> Annual leave accrues on ordinary hours. Underpayment means your leave balance was also underpaid when you took or cashed out leave.</li>
                 <li><strong>Interest:</strong> In some cases, the Fair Work Ombudsman or courts may award interest on unpaid wages, particularly for prolonged underpayments.</li>
               </ul>
-              <p className="mt-4 text-warmgray">Check the correct rate for your role using the <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Award Rates</Link> page, which lists minimum pay rates by industry classification.</p>
+              <p className="mt-4 text-warmgray">Check the correct rate for your role using the <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Award Rates</Link> page, which lists minimum pay rates by industry classification, or run your award, level and hours through the <Link href="/fair-work-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Fair Work pay calculator</Link>.</p>
             </section>
 
             <section>

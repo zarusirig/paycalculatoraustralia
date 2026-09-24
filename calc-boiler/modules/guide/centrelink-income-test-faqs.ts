@@ -4,19 +4,25 @@
 // tapers and Working Credit limits come from lib/constants.
 
 import { formatAUD } from "@/lib/constants";
-import { AGE_PENSION_INCOME_TEST, JOBSEEKER_INCOME_TEST } from "@/lib/constants/centrelink-income-test";
+import { AGE_PENSION_INCOME_TEST, JOBSEEKER_INCOME_TEST, STUDENT_INCOME_TEST } from "@/lib/constants/centrelink-income-test";
 import { WORKING_CREDIT } from "@/lib/constants/working-credit";
 import { DEEMING } from "@/lib/constants/centrelink-means-test"; // H3
 import type { FaqItem } from "@/lib/faq";
 
 const JS = JOBSEEKER_INCOME_TEST;
 const AP = AGE_PENSION_INCOME_TEST;
+const ST = STUDENT_INCOME_TEST;
 const cents = (r: number) => `${Math.round(r * 100)} cents`;
 
 export const CENTRELINK_INCOME_TEST_FAQS: readonly FaqItem[] = [
   {
     q: "What is the Centrelink income test?",
     a: `The income test works out how much your Centrelink payment is reduced by the income you earn. Income up to a free area does not affect your payment; above it, the payment reduces by a set amount per dollar. For JobSeeker Payment the free area is ${formatAUD(JS.freeArea)} a fortnight, with a ${cents(JS.taper1)} reduction per dollar up to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above that. For a single Age Pensioner the reduction is ${cents(AP.single.taper)} per dollar above ${formatAUD(AP.single.freeArea)} a fortnight.`,
+  },
+  {
+    q: "Where is the Centrelink online estimator, and how is it different from this page?",
+    a: `Services Australia's official online estimator is the Payment and Service Finder: it asks about your situation, lists the payments you may be able to get and gives an estimate of each. The Work Out Your Own Payment tools on this page do something narrower: each applies one payment's income test to your fortnightly earnings, so you can check the taper on a statement. For JobSeeker Payment that is the ${formatAUD(JS.freeArea)} free area, ${cents(JS.taper1)} per dollar to ${formatAUD(JS.band1End)} and ${cents(JS.taper2)} per dollar above it, worked through in the JobSeeker payment calculator; for students and Australian Apprentices it is the ${formatAUD(ST.freeArea)} free area, ${cents(ST.taper1)} per dollar to ${formatAUD(ST.band1End)} and ${cents(ST.taper2)} per dollar above it. Both the finder and this page give estimates, not a decision on a claim.`,
+    links: { "Payment and Service Finder": "https://www.servicesaustralia.gov.au/payment-and-service-finder", "JobSeeker payment calculator": "/jobseeker-payment-calculator/" },
   },
   {
     q: "What is Working Credit?",

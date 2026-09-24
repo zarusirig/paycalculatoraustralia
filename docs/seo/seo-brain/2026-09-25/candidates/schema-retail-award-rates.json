@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-retail-award-rates",
+  "kind": "citation_lead",
+  "route": "/retail-award-rates/",
+  "candidates": [
+    {
+      "lead": "The Retail Award (General Retail Industry Award 2020, MA000004) sets the minimum pay for shop, supermarket and retail chain employees. From 1 July 2026 the adult full-time rate runs from $27.81 an hour ($1,056.80 a week) at level 1 to $33.99 at level 8 [[RETAIL_RATES]]; casuals add a 25% loading [[RETAIL_AWARD.casualLoading]], so a level 1 casual earns $34.76 an hour.",
+      "source": "https://awards.fairwork.gov.au/MA000004.html"
+    },
+    {
+      "lead": "The retail award rate for 2026-27 is $27.81 an hour at retail employee level 1, where most shop assistants sit, rising through eight levels to $33.99 an hour at level 8 [[RETAIL_RATES]]. These are the adult minimums under the General Retail Industry Award 2020 (MA000004) from the first full pay period on or after 1 July 2026 [[RETAIL_AWARD.operativeFrom]]; a level 1 casual earns $34.76 an hour, or $48.67 on a Sunday.",
+      "source": "https://awards.fairwork.gov.au/MA000004.html"
+    },
+    {
+      "lead": "Retail award pay rates are the legal minimum hourly and weekly wages for each classification under the General Retail Industry Award 2020 (MA000004), which covers shops, supermarkets and retail chains nationally. For 2026-27, level 1 pays $1,056.80 a week or $27.81 an hour and level 8 $1,291.80 a week or $33.99 an hour [[RETAIL_RATES]], with hourly rates equal to the weekly rate divided by 38 ordinary hours.",
+      "source": "https://awards.fairwork.gov.au/MA000004.html"
+    }
+  ]
+}

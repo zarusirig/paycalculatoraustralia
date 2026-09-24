@@ -49,7 +49,12 @@ const SOURCES_LIST: SourceLink[] = [
 
 const INTRO = findRate(HOSPITALITY_RATES, "Introductory");
 const L1 = findRate(HOSPITALITY_RATES, "Level 1");
+const L2 = findRate(HOSPITALITY_RATES, "Level 2");
 const L6 = findRate(HOSPITALITY_RATES, "Level 6");
+/** The two entry levels most casuals are classified at. */
+const ENTRY_LEVELS = [L1, L2] as const;
+const dutiesFor = (level: string) => HOSPITALITY_CLASSIFICATIONS.filter((c) => c.level === level).map((c) => c.title.toLowerCase()).join(", ");
+const juniorPct = (age: string) => HOSPITALITY_JUNIOR_SCALE.find((b) => b.age === age)?.percentage ?? 1;
 
 const LOADING = HOSPITALITY_AWARD.casualLoading;
 const pct = (v: number) => `${(v * 100).toFixed((v * 100) % 1 === 0 ? 0 : 1)}%`;
@@ -86,7 +91,7 @@ export default function HospitalityAwardRatesPage() {
             Hospitality Award Pay Rates {SITE_CONFIG.financialYear}
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
-            Every classification rate under the {HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code}) &mdash; cafes, restaurants, pubs, clubs and hotels &mdash; operative from {HOSPITALITY_AWARD.operativeFrom}.
+            The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
@@ -410,6 +415,52 @@ export default function HospitalityAwardRatesPage() {
             <div className="not-prose my-8">
               <RelatedSearches items={RELATED_SEARCHES} />
             </div>
+
+            <section id="level-1-level-2-casual">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Hospitality Level 1 and Level 2 Casual Pay Rates: What Each Level Does</h2>
+              <p>
+                Most casual hospitality jobs are classified at Level 1 or Level 2. Rates apply from {HOSPITALITY_AWARD.operativeFrom}. The casual hourly column adds the {pct(LOADING)} loading; the Saturday, Sunday and public holiday columns apply the award&rsquo;s casual percentages ({pct(HOSPITALITY_PENALTIES.casualSaturday)}, {pct(HOSPITALITY_PENALTIES.casualSunday)} and {pct(HOSPITALITY_PENALTIES.casualPublicHoliday)}), which already include that loading.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[38rem] text-left text-sm text-navy">
+                    <caption className="sr-only">Hospitality Level 1 and Level 2 full-time and casual hourly rates by day</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-5 py-4">Level</th>
+                        <th scope="col" className="px-5 py-4">Full-time hourly</th>
+                        <th scope="col" className="px-5 py-4">Casual hourly</th>
+                        <th scope="col" className="px-5 py-4">Casual Saturday</th>
+                        <th scope="col" className="px-5 py-4">Casual Sunday</th>
+                        <th scope="col" className="px-5 py-4">Casual public holiday</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {ENTRY_LEVELS.map((r) => (
+                        <tr key={r.level}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">{r.level}</th>
+                          <td className="px-5 py-3">{formatAUD(r.hourly, 2)}</td>
+                          <td className="px-5 py-3 font-medium">{formatAUD(casualHourly(r.hourly, LOADING), 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualSaturday), 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualSunday), 2)}</td>
+                          <td className="px-5 py-3">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualPublicHoliday), 2)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <ul>
+                <li><strong>Level 1</strong> covers the {dutiesFor("Level 1")} classifications: serving, clearing, basic food preparation and kitchen cleaning under direction. The introductory level ({formatAUD(INTRO.hourly, 2)} an hour) is for a new entrant who has not yet shown the Level 1 competencies, for up to three months while that training is done.</li>
+                <li><strong>Level 2</strong> covers the {dutiesFor("Level 2")} classifications: taking orders and serving alcohol, cooking breakfasts or snacks, and general kitchen duties without close supervision.</li>
+              </ul>
+              <p>
+                A casual moves from Level 1 to Level 2 when the work they do matches the Level 2 classification descriptor in the award&rsquo;s classification schedule, not after a set period of service. The <a href="https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000009-summary" target="_blank" rel="noopener noreferrer">Fair Work Ombudsman award summary</a> lists the duties for each grade.
+              </p>
+              <p>
+                The figures above are adult rates. A junior casual is paid the age percentage in the <a href="#junior-rates">Hospitality Junior Rates</a> table of the adult casual rate, from {pct(juniorPct("Under 17"))} under 17 to {pct(juniorPct("19"))} at 19, unless a trade qualification or liquor service work requires the adult rate. To turn a casual hourly rate into a fortnightly take-home amount, use the <Link href="/tax-on/">tax on every salary</Link> tables or the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
+              </p>
+            </section>
 
             <section id="faq">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Frequently Asked Questions</h2>

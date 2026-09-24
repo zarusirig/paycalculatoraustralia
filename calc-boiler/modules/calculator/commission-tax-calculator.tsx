@@ -41,6 +41,11 @@ function annualTaxOn(base: number, commission: number, includeHECS = false) {
 
 const FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
 
+// Opening-paragraph example, from the same annual-liability engine as the calculator.
+const LEAD_BASE = 80_000;
+const LEAD_COMMISSION = 5_000;
+const LEAD_TAX = annualTaxOn(LEAD_BASE, LEAD_COMMISSION);
+
 /**
  * The static long-form content lives in commission-tax-calculator-content.tsx
  * (a server component) and is passed in as `children`, so it is not part of
@@ -86,9 +91,11 @@ export default function CommissionTaxCalculatorPage({ children }: { children: Re
             Commission Tax Calculator Australia
           </h1>
           <p className="text-lg text-warmgray">
-            Two numbers people confuse: the tax a commission adds to your year, and the amount your employer
-            withholds from the commission pay under ATO Schedule 5. This calculator shows both for {SITE_CONFIG.financialYear},
-            and the refund or bill that settles the gap.
+            A commission tax calculator separates two figures: the tax a commission adds to the year&apos;s assessment,
+            and the PAYG amount the employer withholds from the commission pay under ATO Schedule 5. Both use the{" "}
+            {SITE_CONFIG.financialYear} rates; for example, {formatAUD(LEAD_COMMISSION)} of commission on an{" "}
+            {formatAUD(LEAD_BASE)} salary adds {formatAUD(Math.round(LEAD_TAX))} of tax and Medicare levy for the year,
+            and any difference from the withheld amount is settled as a refund or bill.
           </p>
           <TrustBar className="mt-4" />
         </section>

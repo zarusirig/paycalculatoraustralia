@@ -1,0 +1,19 @@
+{
+  "orderId": "schema-second-job-tax-calculator",
+  "kind": "citation_lead",
+  "route": "/second-job-tax-calculator/",
+  "candidates": [
+    {
+      "lead": "There is no separate tax rate for a second job in Australia: income from both jobs is added together and taxed once at the 2026-27 marginal rates. What differs is withholding, because the second employer uses the ATO's no-tax-free-threshold scale [[SCALE_1_NO_TFT]], which takes $180 (18.0%) from a $1,000 fortnight [[withholdingForPeriod]] instead of applying the $18,200 threshold twice. Over-withholding is refunded.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    },
+    {
+      "lead": "The 2nd job tax rate is the same marginal rate as the first job, because the ATO assesses total income for the year on one scale: 15% to $45,000 and 30% to $135,000 for 2026-27 [[TAX_BRACKETS_2026_27]]. The second employer withholds without the tax-free threshold, starting at about 15% of each pay and reaching 24.9% on a $2,000 fortnight [[withholdingForPeriod]], which is why a second job appears to be taxed more.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    },
+    {
+      "lead": "A second job tax calculator estimates the combined tax on two incomes for 2026-27 and the withholding from each: the first job claims the $18,200 tax-free threshold [[TAX_FREE_THRESHOLD]], the second is withheld on the ATO's no-threshold scale [[SCALE_1_NO_TFT]], for example $82 from a $500 fortnight and $336 from $1,500 [[withholdingForPeriod]]. Total withholding less the tax actually owed is the refund or bill.",
+      "source": "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview"
+    }
+  ]
+}
