@@ -127,7 +127,7 @@ export default function Stage3TaxCutsPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Middle-Income Earners ($45,001 – $135,000)</h3>
               <p>
-                This group benefits from the 16% rate cut <strong>plus</strong> the reduction in the second bracket from 32.5% to 30%. For someone earning $90,000, the combined saving is <strong>$1,929 per year</strong> ($37.10 per week). The 30% bracket also extends to $135,000 (up from $120,000), providing additional savings for those earning $120,001-$135,000 who previously paid 37%.
+                This group benefits from the 16% rate cut <strong>plus</strong> the reduction in the second bracket from 32.5% to 30%. For someone earning $90,000, the combined saving is <strong>$1,929 per year</strong> ($37.10 per week). The 30% bracket also extends to $135,000 (up from $120,000), providing additional savings for those earning $120,001-$135,000 who previously paid 37%. To see what that leaves in hand partway up this band, see <Link href="/take-home-pay-on/100000/">$100,000 After Tax in Australia</Link>.
               </p>
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>High-Income Earners ($135,001 – $190,000)</h3>
@@ -137,7 +137,7 @@ export default function Stage3TaxCutsPage() {
 
               <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Very High-Income Earners ($190,001+)</h3>
               <p>
-                The top tax rate of 45% now applies from $190,001 (moved from $180,001). This provides a <strong>$4,529</strong> annual saving compared to the pre-Stage 3 rates. Under the original plan, the 45% rate would not have applied until $200,001, providing a larger benefit. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your exact take-home amount under the current rates.
+                The top tax rate of 45% now applies from $190,001 (moved from $180,001). This provides a <strong>$4,529</strong> annual saving compared to the pre-Stage 3 rates. Under the original plan, the 45% rate would not have applied until $200,001, providing a larger benefit. Use our <Link href="/take-home-pay-calculator/">Take-Home Pay Calculator</Link> to see your exact take-home amount under the current rates, or the <Link href="/pay-rise-calculator/">calculator for a salary increase</Link> to see how much of a raise the lower rates let you keep.
               </p>
             </section>
 

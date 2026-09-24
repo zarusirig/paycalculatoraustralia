@@ -4,6 +4,7 @@ import WeeklyPayCalculatorContent from "@/modules/calculator/weekly-pay-calculat
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
@@ -26,7 +27,12 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 // description leads with a real after-tax figure.
 // Previous: "Weekly Pay Calculator Australia ${FY}: Take-Home Pay".
 const TITLE = `Weekly Pay & Tax Calculator Australia ${FY}: Take-Home Pay`;
-const DESCRIPTION = `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Weekly tax calculator: enter your weekly pay or salary for weekly tax, Medicare, super and take-home pay.`;
+// fitDescription: fuller form first; the shorter form keeps the figure, the FY
+// and "weekly tax calculator".
+const DESCRIPTION = fitDescription(
+  `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Weekly tax calculator: enter your weekly pay or salary for weekly tax, Medicare, super and take-home pay.`,
+  `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Weekly tax calculator: enter weekly pay or salary for tax, Medicare, super and take-home pay.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,

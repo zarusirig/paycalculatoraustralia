@@ -1,0 +1,314 @@
+[
+ {
+  "kind": "new_page",
+  "id": "expansion-site-7",
+  "keyword": "taxable income calculator",
+  "vol": 49500,
+  "kd": 11,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.95,
+   "linksToCalculator": 0.82,
+   "payslipCheck": 0.88
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 4406
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-9",
+  "keyword": "australia tax estimate",
+  "vol": 40500,
+  "kd": 25,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.87,
+   "linksToCalculator": 0.85,
+   "payslipCheck": 0.75
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/tax-return-calculator/",
+   "/tax-return-2026/",
+   "/tax-withheld-calculator/",
+   "/fortnightly-tax-table/",
+   "/tax-brackets/",
+   "/annual-pay-calculator/"
+  ],
+  "priority": 3038
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-20",
+  "keyword": "aus wage calculator",
+  "vol": 22200,
+  "kd": 6,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.87,
+   "payslipCheck": 0.91
+  },
+  "jurisdictionSpecific": 0.04,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 2087
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-22",
+  "keyword": "australia payment calculator",
+  "vol": 22200,
+  "kd": 8,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.85,
+   "linksToCalculator": 0.85,
+   "payslipCheck": 0.86
+  },
+  "jurisdictionSpecific": 0.03,
+  "nearestRoutes": [
+   "/jobseeker-payment-calculator/",
+   "/carer-payment-calculator/",
+   "/centrelink-advance-payment/",
+   "/parenting-payment-calculator/",
+   "/superannuation-calculator/",
+   "/fortnightly-tax-table/"
+  ],
+  "priority": 2042
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-21",
+  "keyword": "australia pay calculator",
+  "vol": 22200,
+  "kd": 11,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.98,
+   "linksToCalculator": 0.87,
+   "payslipCheck": 0.93
+  },
+  "jurisdictionSpecific": 0.03,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 1976
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-23",
+  "keyword": "australia wage calculator",
+  "vol": 22200,
+  "kd": 16,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.87,
+   "payslipCheck": 0.91
+  },
+  "jurisdictionSpecific": 0.04,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 1865
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-24",
+  "keyword": "payg calculator",
+  "vol": 22200,
+  "kd": 24,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.86,
+   "payslipCheck": 0.93
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/fortnightly-tax-table/",
+   "/weekly-tax-table/",
+   "/monthly-tax-table/",
+   "/tax-withheld-calculator/",
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/"
+  ],
+  "priority": 1687
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-27",
+  "keyword": "take home pay to salary calculator",
+  "vol": 14800,
+  "kd": 1,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.85,
+   "payslipCheck": 0.89
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/take-home-pay-calculator/",
+   "/contractor-pay-calculator/",
+   "/pay-rise-calculator/",
+   "/take-home-pay-on/",
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/"
+  ],
+  "priority": 1465
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-32",
+  "keyword": "taxable income calculator australia",
+  "vol": 14800,
+  "kd": 11,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.96,
+   "linksToCalculator": 0.85,
+   "payslipCheck": 0.88
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 1317
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-49",
+  "keyword": "wage calculator",
+  "vol": 9900,
+  "kd": 12,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.85,
+   "payslipCheck": 0.92
+  },
+  "jurisdictionSpecific": 0.03,
+  "nearestRoutes": [
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/",
+   "/salary-sacrifice-calculator/",
+   "/austudy-youth-allowance-calculator/"
+  ],
+  "priority": 871
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-87",
+  "keyword": "calculate wages after tax",
+  "vol": 6600,
+  "kd": 7,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.98,
+   "linksToCalculator": 0.88,
+   "payslipCheck": 0.94
+  },
+  "jurisdictionSpecific": 0.02,
+  "nearestRoutes": [
+   "/annual-pay-calculator/",
+   "/",
+   "/take-home-pay-calculator/",
+   "/pro-rata-salary-calculator/",
+   "/fortnightly-tax-table/",
+   "/weekly-tax-table/"
+  ],
+  "priority": 614
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-89",
+  "keyword": "salary",
+  "vol": 6600,
+  "kd": 17,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.98,
+   "linksToCalculator": 0.77,
+   "payslipCheck": 0.71
+  },
+  "jurisdictionSpecific": 0.03,
+  "nearestRoutes": [
+   "/public-service-pay-scales/vic/",
+   "/teacher-pay-australia/qld/",
+   "/superannuation-calculator/",
+   "/tax-brackets/",
+   "/public-service-pay-scales/",
+   "/award-rates/"
+  ],
+  "priority": 548
+ },
+ {
+  "kind": "new_page",
+  "id": "expansion-site-90",
+  "keyword": "fair work pay calculator",
+  "vol": 6600,
+  "kd": 17,
+  "wants": "calculator",
+  "competitorUrl": "https://paycalculator.com.au/",
+  "border": {
+   "inScope": 0.97,
+   "linksToCalculator": 0.86,
+   "payslipCheck": 0.91
+  },
+  "jurisdictionSpecific": 0.05,
+  "nearestRoutes": [
+   "/carer-payment-calculator/",
+   "/disability-support-pension-calculator/",
+   "/superannuation-calculator/",
+   "/annual-pay-calculator/",
+   "/monthly-pay-calculator/",
+   "/employment-type-calculator/"
+  ],
+  "priority": 548
+ }
+]

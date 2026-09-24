@@ -22,6 +22,7 @@ import {
   type StatePublicHolidays,
 } from "@/lib/data/public-holidays";
 import { PH_HUB_TITLE, hubFaqs } from "@/lib/data/public-holidays/hub";
+import { fitDescription, fitTitle } from "@/lib/seo-title";
 import PublicHolidayHub from "./public-holiday-hub";
 import PublicHolidayStatePage from "./public-holiday-state";
 
@@ -48,21 +49,27 @@ function dateModified(): string | undefined {
 // Hub
 // ---------------------------------------------------------------------------
 
+// <title> and description are fitted (lib/seo-title): the H1 keeps the full
+// PH_HUB_TITLE; the shorter <title> form keeps "Public Holiday Pay Rates" first.
+const HUB_TITLE = fitTitle(PH_HUB_TITLE, "Public Holiday Pay Rates 2026 — Penalty Rates & Calculator");
+
 function hubDescription(): string {
   const r = publicHolidayRateRange();
-  return `Public holiday pay rates for 14 modern awards: ${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} for permanent staff, ${pctLabel(
-    r.casualMin,
-  )}–${pctLabel(r.casualMax)} for casuals. Pay for not working, refusing a shift, substitute days, and a calculator. Dates for every state.`;
+  const rates = `${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} for permanent staff, ${pctLabel(r.casualMin)}–${pctLabel(r.casualMax)} for casuals`;
+  return fitDescription(
+    `Public holiday pay rates for 14 modern awards: ${rates}. Pay for not working, refusing a shift, substitute days, and a calculator. Dates for every state.`,
+    `Public holiday pay rates for 14 modern awards: ${rates}. Pay for not working, substitute days and a calculator.`,
+  );
 }
 
 export function publicHolidayHubMetadata(): Metadata {
   const description = hubDescription();
   return {
-    title: PH_HUB_TITLE,
+    title: HUB_TITLE,
     description,
     alternates: { canonical: HUB_URL },
-    openGraph: { title: PH_HUB_TITLE, description, url: HUB_URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
-    twitter: { card: "summary_large_image", title: PH_HUB_TITLE, description },
+    openGraph: { title: HUB_TITLE, description, url: HUB_URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    twitter: { card: "summary_large_image", title: HUB_TITLE, description },
   };
 }
 
@@ -103,19 +110,26 @@ export function publicHolidayStateParams() {
   return STATE_PUBLIC_HOLIDAYS.map((s) => ({ state: s.slug }));
 }
 
+/** <title>: the H1 (stateHeading) in full when it fits, else the ":" form. */
+function stateTitle(s: StatePublicHolidays): string {
+  return fitTitle(stateHeading(s), `${s.code} Public Holidays 2026 & 2027: Dates + Public Holiday Pay Rates`);
+}
+
 function stateDescription(s: StatePublicHolidays): string {
   const n26 = statewideDays(yearOf(s, 2026)!).length;
   const n27 = statewideDays(yearOf(s, 2027)!).length;
   const r = publicHolidayRateRange();
-  return `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027 from the ${s.sources[0].publisher}, plus what you're paid: ${pctLabel(
-    r.permanentMin,
-  )}–${pctLabel(r.permanentMax)} under the main awards, base pay if you don't work. Public holiday pay calculator included.`;
+  const rates = `${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} under the main awards`;
+  return fitDescription(
+    `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027 from the ${s.sources[0].publisher}, plus what you're paid: ${rates}, base pay if you don't work. Public holiday pay calculator included.`,
+    `All ${n26} ${s.code} public holidays for 2026 and ${n27} for 2027, plus public holiday pay: ${rates}, base pay if you do not work. Calculator included.`,
+  );
 }
 
 export function publicHolidayStateMetadata(slug: string): Metadata {
   const s = getStatePublicHolidays(slug);
   if (!s) return {};
-  const title = stateHeading(s);
+  const title = stateTitle(s);
   const description = stateDescription(s);
   const url = `${BASE}${statePath(s.slug)}`;
   return {

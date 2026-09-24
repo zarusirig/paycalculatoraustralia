@@ -7,6 +7,7 @@ import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
+import { EMPLOYMENT } from "@/lib/constants/australian-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 
@@ -34,10 +35,10 @@ export default function FullTimeVsPartTimeVsCasualPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Full-Time vs Part-Time vs Casual &mdash; The Complete Comparison
+            Full-Time vs Part-Time vs Casual: Entitlements Compared
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            Choosing the right employment type affects your pay, leave, job security, and flexibility. This guide breaks down the key differences between full-time, part-time, and casual employment under Australian law so you can make an informed decision.
+            This guide compares the entitlements of full-time, part-time and casual employment in Australia: paid leave, the {Math.round(EMPLOYMENT.casualLoading * 100)}% casual loading, notice periods, redundancy pay, super and casual conversion rights, as they stand under the Fair Work Act and the modern awards. It explains what each employment type gives up and gets in return; to put dollar figures on the comparison for your own rate and hours, use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">part-time vs full-time vs casual pay calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -191,7 +192,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
                 <li><strong>Casual conversion right:</strong> After 6 months of employment (12 months with a small business employer), a casual who believes they no longer fit the casual definition can notify their employer in writing that they want to become full-time or part-time. Since 26 August 2024 employers are no longer required to offer conversion.</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Workers who prioritise flexibility over stability &mdash; students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation.
+                <strong>Best for:</strong> Workers who prioritise flexibility over stability &mdash; students, those between jobs, or anyone who wants the freedom to accept or decline shifts without obligation. For what the loading is worth in dollars in the largest casual workforce, see the <Link href="/retail-award-rates/">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link>.
               </p>
             </section>
 

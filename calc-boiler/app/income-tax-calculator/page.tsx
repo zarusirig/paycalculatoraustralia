@@ -17,6 +17,7 @@ import {
   TAX_BRACKETS_2025_26,
   TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -147,7 +148,12 @@ const FAQS: readonly { q: string; a: string }[] = [
 // australia" verbatim.
 // Previous: "Income Tax Calculator Australia ${FY} — ATO Tax Brackets".
 const TITLE = `Income Tax Calculator Australia ${FY} — Simple Tax Calculator`;
-const DESCRIPTION = `Tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)} plus ${formatAUD(S80.medicare)} Medicare in FY${FY}. Simple tax calculator for Australia: enter annual, monthly, fortnightly or weekly income for tax by ATO bracket, LITO and take-home pay.`;
+// fitDescription: fuller form first; the shorter form keeps the $80k answer,
+// the FY and "simple tax calculator".
+const DESCRIPTION = fitDescription(
+  `Tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)} plus ${formatAUD(S80.medicare)} Medicare in FY${FY}. Simple tax calculator for Australia: enter annual, monthly, fortnightly or weekly income for tax by ATO bracket, LITO and take-home pay.`,
+  `Tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)} plus ${formatAUD(S80.medicare)} Medicare in FY${FY}. Simple tax calculator: annual, monthly, fortnightly or weekly income for ATO tax and take-home pay.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -15,7 +15,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ask, choice, noul, pool, report, score } from "./jev.mts";
+import { ask, choice, noul, num as n, pool, report, score, type Question } from "./jev.mts";
 import { Decision, DecisionBatch, DESCRIPTION_MAX, SiteSignals, TITLE_MAX, type Decision as D } from "./schema.mts";
 import type { WorkOrder } from "./decide.mts";
 
@@ -36,7 +36,6 @@ const decisions: D[] = [];
 const rejected: { orderId: string; why: string }[] = [];
 let seq = 0;
 const slug = (r: string) => r.replace(/^\/|\/$/g, "").replace(/\//g, "-") || "home";
-const n = (x: any) => (typeof x?.noul === "number" ? x.noul : typeof x?.score === "number" ? x.score : NaN);
 
 await pool(files, 6, async (f) => {
   const c = JSON.parse(readFileSync(join(inDir, f), "utf8"));
@@ -59,7 +58,7 @@ await pool(files, 6, async (f) => {
     if (!live.length) { rejected.push({ orderId: c.orderId, why: `all candidates failed code gates: ${cands.map((x) => x.ok.join(",")).join(" | ")}` }); return; }
     const queries = order.queries.slice(0, 3).map((q) => q.query);
     const state = { current_title: order.currentTitle, queries, candidates: live.map((x) => ({ title: x.title, description: x.description })) };
-    const qs: Record<string, any> = {
+    const qs: Record<string, Question> = {
       best_title: choice("Which candidate's `title` would a searcher of `queries[0]` be most likely to click, given it must honestly describe the page and read as current?", Object.fromEntries(live.map((x, k) => [`c${k}`, x.title]))),
       best_description: choice("Which candidate's `description` gives the most concrete, useful answer for a searcher of `queries[0]`?", Object.fromEntries(live.map((x, k) => [`c${k}`, x.description]))),
     };
@@ -86,7 +85,7 @@ await pool(files, 6, async (f) => {
     const cands = (c.candidates as { lead: string; source?: string }[]).filter((x) => x.lead.length >= 60 && x.lead.length <= 420);
     if (!cands.length) { rejected.push({ orderId: c.orderId, why: "no candidate within 60–420 chars" }); return; }
     const state = { h1: order.h1, top_query: order.topQuery, current_opening: order.currentLead, candidates: cands.map((x) => x.lead) };
-    const qs: Record<string, any> = { best: choice("Which of `candidates` is the best self-contained opening an AI assistant could quote as the answer for `top_query`?", Object.fromEntries(cands.map((x, k) => [`c${k}`, x.lead]))) };
+    const qs: Record<string, Question> = { best: choice("Which of `candidates` is the best self-contained opening an AI assistant could quote as the answer for `top_query`?", Object.fromEntries(cands.map((x, k) => [`c${k}`, x.lead]))) };
     cands.forEach((_, k) => {
       qs[`c${k}_citable`] = score(`How well does \`candidates[${k}]\` work as a self-contained answer for \`top_query\`?`, ["No direct answer", "Answers in general terms, no figure or date", "Concrete figure or rule but no financial year or date", "Direct answer with a concrete figure and the financial year or date"]);
       qs[`c${k}_defines`] = noul(`Does \`candidates[${k}]\` state what the subject of \`h1\` is or how it is worked out in its first sentence?`);

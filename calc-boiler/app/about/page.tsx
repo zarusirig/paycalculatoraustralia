@@ -283,6 +283,13 @@ function AboutPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 leading-relaxed text-warmgray">
+              Every calculator and guide is listed on the{" "}
+              <Link href="/site-directory/" className="text-eucalyptus hover:underline">
+                site directory
+              </Link>
+              .
+            </p>
           </section>
 
           {/* Contact */}

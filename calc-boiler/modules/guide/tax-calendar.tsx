@@ -32,6 +32,8 @@ import {
   type CalendarEvent,
 } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
+import { FaqAnswer } from "@/components/common/faq-accordion";
+import { TAX_CALENDAR_FAQS } from "./tax-calendar-faqs";
 import { getGuideAuthorship } from "@/lib/authors";
 
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
@@ -252,53 +254,15 @@ export default function TaxCalendarPage() {
             </ul>
           </section>
 
-          {/* ===== SECTION 12: FAQs ===== */}
+          {/* ===== SECTION 12: FAQs (TAX_CALENDAR_FAQS also feeds the FAQPage JSON-LD) ===== */}
           <section><h2 style={H}>Frequently Asked Questions</h2>
             <div className="space-y-6">
-              <div>
-                <h3 style={H}>When does the Australian financial year start and end?</h3>
-                <p>The Australian financial (income) year runs from <strong>1 July to 30 June</strong>. {Y.incomeYear} started on {Y.start} and ends on {Y.end}. The return you lodge in 2026 is for {R.incomeYear}, which ended on {R.incomeYearEnd}.</p>
-              </div>
-              <div>
-                <h3 style={H}>When is the {R.incomeYear} tax return due?</h3>
-                <p>If you lodge it yourself, by <strong>{R.selfLodgeDueDate}</strong>{self.effectiveIso !== self.iso && <> — it falls on a weekend, so the ATO accepts it on {formatIso(self.effectiveIso, "long")}</>}. With a registered tax agent, most people have until <strong>{R.agentDueDateMostPeople}</strong> if they are on the agent&rsquo;s list by {R.selfLodgeDueDate}.</p>
-              </div>
-              <div>
-                <h3 style={H}>Can I lodge my tax return before 14 July?</h3>
-                <p>Yes, you can lodge from <strong>1 July</strong>, but it is safer to wait until your income statement shows as &quot;tax ready&quot;. Employers have until 14 July to finalise it, and the ATO has most other pre-fill data by {R.prefillReady}.</p>
-              </div>
-              <div>
-                <h3 style={H}>What is the penalty for not lodging a tax return?</h3>
-                <p>The ATO can charge a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)} for every {PENALTY_UNIT.ftlDaysPerUnit} days or part of that</strong> the return is overdue, up to <strong>{formatAUD(FTL_MAX_INDIVIDUAL)}</strong> ({PENALTY_UNIT.ftlMaxUnits} penalty units) for an individual. The ATO usually writes to you first.</p>
-              </div>
-              <div>
-                <h3 style={H}>When are quarterly BAS due in {Y.incomeYear}?</h3>
-                <p>Quarterly BAS is due on <strong>{q.map((row) => formatIso(row.iso, "long")).join(", ")}</strong>.{q[1].effectiveIso !== q[1].iso && <> The quarter 2 date falls on a Sunday and the next day is a public holiday in WA, so you can lodge and pay on {formatIso(q[1].effectiveIso, "long")}.</>} Monthly BAS is due on the 21st of the following month. Lodging online may give you 2 extra weeks for quarters 1, 3 and 4.</p>
-              </div>
-              <div>
-                <h3 style={H}>Are there still quarterly super due dates?</h3>
-                <p>No. The last quarterly payment was due {SGC.legacy.finalQuarterSGDue}, for April to June 2026. Since {SUPER_GUARANTEE.paydaySuperStart}, super must reach the fund within {SGC.current.businessDaysToPay} business days of each payday under <Link href="/payday-super/">Payday Super</Link>.</p>
-              </div>
-              <div>
-                <h3 style={H}>What happens if my employer pays super late?</h3>
-                <p>They are liable for the <strong>Super Guarantee Charge</strong>. From {SUPER_GUARANTEE.paydaySuperStart}, it is made up of the shortfall, notional earnings at the general interest charge rate compounded daily, an administrative uplift of up to {pct(SGC.current.administrativeUpliftMax)}, and a choice loading where it applies. The charge is now tax-deductible. For earnings paid up to 30 June 2026 the old quarterly rules still apply.</p>
-              </div>
-              <div>
-                <h3 style={H}>How long does the ATO take to process a tax refund?</h3>
-                <p>The ATO says most myTax returns are processed in <strong>{R.onlineProcessingBusinessDays} business days</strong> and most refunds are issued within <strong>{R.onlineRefundTypical}</strong>. For paper returns, most refunds are issued within <strong>{R.paperRefundBusinessDays} business days</strong>. It takes longer if the ATO needs to check your return.</p>
-              </div>
-              <div>
-                <h3 style={H}>Do PAYG instalments reduce my end-of-year tax bill?</h3>
-                <p>Yes. PAYG instalments are <strong>prepayments of your expected tax</strong>. They are credited against your final assessment, so you usually get a smaller bill, or a refund, when you lodge.</p>
-              </div>
-              <div>
-                <h3 style={H}>What is the maximum super contribution base for {Y.incomeYear}?</h3>
-                <p>It is <strong>{formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}</strong> for the year. Under Payday Super it became an annual figure instead of a quarterly one. Employers don&rsquo;t have to pay SG on qualifying earnings above it, so the most SG owed for one employee is {formatAUD(SUPER_GUARANTEE.maxSGAnnual, 2)}.</p>
-              </div>
-              <div>
-                <h3 style={H}>What is the concessional super contributions cap for {Y.incomeYear}?</h3>
-                <p>The concessional (before-tax) cap is <strong>{formatAUD(SUPER_GUARANTEE.concessionalCap)}</strong>. It includes employer SG, salary sacrifice and personal contributions you claim a deduction for. Contributions above the cap are added to your income and taxed at your marginal rate.</p>
-              </div>
+              {TAX_CALENDAR_FAQS.map((f) => (
+                <div key={f.q}>
+                  <h3 style={H}>{f.q}</h3>
+                  <p><FaqAnswer faq={f} /></p>
+                </div>
+              ))}
             </div>
           </section>
 

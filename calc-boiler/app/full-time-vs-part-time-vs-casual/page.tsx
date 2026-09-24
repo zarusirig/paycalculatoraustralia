@@ -5,14 +5,20 @@ import type { BreadcrumbList, WebPage, Article, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { EMPLOYMENT_TYPE_GUIDE_FAQS } from "@/modules/guide/full-time-vs-part-time-vs-casual-faqs";
 import { SITE_CONFIG } from "@/lib/constants";
+import { EMPLOYMENT } from "@/lib/constants/australian-tax";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/full-time-vs-part-time-vs-casual/`;
-const TITLE = "Full-Time vs Part-Time vs Casual — Complete Comparison";
-const DESCRIPTION = "Full-time vs part-time vs casual: leave entitlements, notice periods, the 25% casual loading, casual conversion and which type suits your situation.";
+// Cannibal fix (seo-brain 2026-09-25, cannibal-employment-type-calculator-25):
+// this URL is the explainer of entitlements; /employment-type-calculator/ is the
+// pay tool ("Part-Time vs Full-Time vs Casual Pay Calculator"). The title names
+// the job so the two no longer blur. Tokens Full-Time / Part-Time / Casual kept.
+// Previous: "Full-Time vs Part-Time vs Casual — Complete Comparison".
+const TITLE = "Full-Time vs Part-Time vs Casual: Entitlements Compared";
+const DESCRIPTION = `Full-time vs part-time vs casual entitlements compared: paid leave, notice, redundancy, super, the ${Math.round(EMPLOYMENT.casualLoading * 100)}% casual loading and casual conversion under the Fair Work Act.`;
 
 export const metadata: Metadata = {
   title: TITLE,

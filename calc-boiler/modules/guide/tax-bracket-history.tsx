@@ -281,6 +281,9 @@ export default function TaxBracketHistoryPage() {
               <p>
                 The Stage 3 tax cuts delivered a <strong>$1,679 annual saving</strong> at $80,000 income, and the cut to 15% from 1 July 2026 adds a further $268. Run your own calculation using the <Link href="/income-tax-calculator/">Income Tax Calculator</Link>.
               </p>
+              <p>
+                For the current year&apos;s full breakdown at this and nearby salaries, including Medicare and the offsets excluded above, see <Link href="/tax-on/80000/">Tax on $80,000 in Australia</Link>, <Link href="/tax-on/90000/">Tax on $90,000 in Australia</Link> and <Link href="/tax-on/50000/">Tax on $50,000 in Australia</Link>.
+              </p>
             </section>
 
             {/* SECTION 5: FAQ */}

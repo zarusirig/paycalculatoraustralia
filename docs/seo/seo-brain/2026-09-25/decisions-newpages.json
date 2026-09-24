@@ -1,0 +1,338 @@
+{
+  "level": "expansion",
+  "author": "claude-fable-5.1 expansion agent (new_page work order)",
+  "createdAt": "2026-09-25T08:10:00.000Z",
+  "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+  "decisions": [
+    {
+      "id": "expansion-taxable-income-calculator-1",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/income-tax-calculator/",
+      "priority": 90,
+      "confidence": 0.85,
+      "rationale": "Covered by /income-tax-calculator/. Verified with a live AU search (Firecrawl, 25 Sep 2026): the SERP for 'taxable income calculator australia' is the same result set as 'income tax calculator' (ATO simple tax calculator, Moneysmart income tax calculator, paycalculator.com.au, BCU/Bank Australia/Beyond Bank income tax calculator pages, H&R Block). Google treats the two as one intent, and docs/seo/2026-09-23-head-term-intent-map.md already makes /income-tax-calculator/ the single primary URL for that intent. A second URL would split it. The competitor page (paycalculator.com.au/) is an all-in-one salary form with no assessable-income-minus-deductions step, so there is no distinct page kind to copy. Fix is ranking and internal links for /income-tax-calculator/ (currently positions 50-94); an optional deductions input on that page belongs in a striking/add_section decision, not a new route.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "taxable income calculator",
+            "vol": 49500,
+            "kd": 11,
+            "intent": null,
+            "pos": 100
+          }
+        ],
+        "note": "unowned.best = paycalculator.com.au; SERP identical to income tax calculator head term"
+      },
+      "targetQueries": [
+        "taxable income calculator"
+      ]
+    },
+    {
+      "id": "expansion-taxable-income-calculator-australia-2",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/income-tax-calculator/",
+      "priority": 50,
+      "confidence": 0.85,
+      "rationale": "Same verdict as 'taxable income calculator': covered by /income-tax-calculator/. The live AU SERP for this exact query (ATO simple tax calculator #1, Moneysmart #2, paycalculator.com.au #3, bank income-tax-calculator pages) is the 'income tax calculator' SERP, which the head-term intent map assigns to /income-tax-calculator/ as sole primary. Creating /taxable-income-calculator/ would cannibalise a page that already fails to rank for its own head terms. The fix is links and ranking for the existing page; the '2026-27 Simple Tax Calculator' title already carries the intent.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "taxable income calculator australia",
+            "vol": 14800,
+            "kd": 11,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "taxable income calculator australia"
+      ]
+    },
+    {
+      "id": "expansion-australia-tax-estimate-3",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/income-tax-calculator/",
+      "priority": 80,
+      "confidence": 0.75,
+      "rationale": "Covered. 'australia tax estimate' is the tax-payable-estimate intent that /income-tax-calculator/ (Income Tax Calculator Australia 2026-27 — Simple Tax Calculator) answers; its headline result is 'Estimated tax on $X a year'. The refund flavour of the same phrase is already owned by /tax-return-calculator/ (Estimate Your 2025-26 Refund). Neither needs a third route; the work is ranking and inlinks for /income-tax-calculator/, which is the page the head-term intent map designates for the 'tax calculator australia' cluster.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "australia tax estimate",
+            "vol": 40500,
+            "kd": 25,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "australia tax estimate"
+      ]
+    },
+    {
+      "id": "expansion-aus-wage-calculator-4",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/",
+      "priority": 60,
+      "confidence": 0.9,
+      "rationale": "Covered by the home page. 'aus wage calculator' is a variant of the pay/salary/wage calculator head term; docs/seo/2026-09-23-head-term-intent-map.md assigns pay calculator / salary calculator / wage calculator to '/' (Pay Calculator Australia 2026-27 — Salary Calculator After Tax), and the live SERPs for that cluster are won by homepage calculators (paycalculator.com.au/, wagecalculator.com.au/). Lexical retrieval missed it because the home title says 'pay' and 'salary', not 'wage'. Fix is ranking/links for '/', not a new route.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "aus wage calculator",
+            "vol": 22200,
+            "kd": 6,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "aus wage calculator"
+      ]
+    },
+    {
+      "id": "expansion-australia-payment-calculator-5",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/",
+      "priority": 60,
+      "confidence": 0.7,
+      "rationale": "Covered by the home page. 'australia payment calculator' is a loosely-worded form of 'australia pay calculator' (same volume, same competitor URL paycalculator.com.au/, same KD band); the lexical neighbours it pulled (Centrelink 'payment' calculators) are a false match on the token 'payment'. The head-term intent map makes '/' the primary for the pay-calculator cluster. No new page; ranking and inlinks for '/' with the 'pay calculator Australia' anchor.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "australia payment calculator",
+            "vol": 22200,
+            "kd": 8,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "australia payment calculator"
+      ]
+    },
+    {
+      "id": "expansion-australia-pay-calculator-6",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/",
+      "priority": 60,
+      "confidence": 0.95,
+      "rationale": "Covered by the home page, explicitly: the head-term intent map lists 'pay calculator australia / pay calculator' with primary URL '/' and '/' is already in the live top 20 (#13-14) for those terms. 'australia pay calculator' is a word-order variant. Fix is ranking and internal links to '/' with the exact anchor 'pay calculator Australia', which the map already prescribes for the state and monthly pages.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "australia pay calculator",
+            "vol": 22200,
+            "kd": 11,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "australia pay calculator"
+      ]
+    },
+    {
+      "id": "expansion-australia-wage-calculator-7",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/",
+      "priority": 60,
+      "confidence": 0.9,
+      "rationale": "Covered by the home page. 'australia wage calculator' belongs to the salary/pay/wage calculator cluster the head-term intent map assigns to '/'; the SERP winners are all-in-one homepage calculators (wagecalculator.com.au/ ranks on its homepage for exactly this). A separate /wage-calculator/ would duplicate the home calculator and split the cluster. Fix is ranking/links for '/'; a 'wage' token in home copy or description is a ctr-level decision, not a new page.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "australia wage calculator",
+            "vol": 22200,
+            "kd": 16,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "australia wage calculator"
+      ]
+    },
+    {
+      "id": "expansion-payg-calculator-8",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/tax-withheld-calculator/",
+      "priority": 60,
+      "confidence": 0.9,
+      "rationale": "Covered by /tax-withheld-calculator/ (Tax Withheld Calculator 2026-27: ATO PAYG Withholding Estimator). A 'payg calculator' is a PAYG withholding estimator, which is what that page is; the weekly/fortnightly/monthly tax-table pages also carry 'PAYG Calculator' in their titles. Retrieval missed it lexically because the route slug says 'withheld'. The page has no ranked keywords yet, so the fix is inlinks (tax tables, income tax calculator, payslip pages) with the anchor 'PAYG calculator' and a 'payg calculator' mention in the H1/opening, not a new route.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "payg calculator",
+            "vol": 22200,
+            "kd": 24,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "payg calculator"
+      ]
+    },
+    {
+      "id": "expansion-take-home-pay-to-salary-calculator-9",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/gross-pay-calculator/",
+      "priority": 50,
+      "confidence": 0.9,
+      "rationale": "Covered by /gross-pay-calculator/ (Net to Gross Pay Calculator Australia 2026-27 (Reverse Tax)). 'take home pay to salary calculator' asks for the reverse calculation, net to gross, which is exactly that page; it already ranks for net income calculator (#54), net pay calculator (#40) and net wages calculator australia (#41). KD 1 with 14,800 searches makes this the cheapest win in the batch: add 'take home pay to salary' phrasing to the opening and link it from /take-home-pay-calculator/ and '/'. No new route.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "take home pay to salary calculator",
+            "vol": 14800,
+            "kd": 1,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "take home pay to salary calculator"
+      ]
+    },
+    {
+      "id": "expansion-wage-calculator-10",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/",
+      "priority": 40,
+      "confidence": 0.9,
+      "rationale": "Covered by the home page per the head-term intent map ('wage calculator' / 'australia pay calculator' belong to '/'). The SERP is the homepage-calculator set (paycalculator.com.au/, wagecalculator.com.au/); a dedicated /wage-calculator/ would be a duplicate of the home tool and cannibalise the cluster the site is trying to consolidate onto '/'. Fix is ranking and inlinks for '/'.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "wage calculator",
+            "vol": 9900,
+            "kd": 12,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "wage calculator"
+      ]
+    },
+    {
+      "id": "expansion-calculate-wages-after-tax-11",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": "/take-home-pay-calculator/",
+      "priority": 30,
+      "confidence": 0.85,
+      "rationale": "Covered by /take-home-pay-calculator/ (Take Home Pay Calculator Australia 2026-27: Net Pay After Tax). 'calculate wages after tax' is the after-tax-income intent the head-term intent map assigns to that page (net pay / after tax income calculator), and it already ranks for 'take home pay calculator after tax' (#78). The page's new period toggle accepts weekly and fortnightly wages, so the 'wages' wording is served. Fix is inlinks with an 'after tax' anchor, not a new route.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "calculate wages after tax",
+            "vol": 6600,
+            "kd": 7,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "calculate wages after tax"
+      ]
+    },
+    {
+      "id": "expansion-salary-12",
+      "kind": "no_action",
+      "level": "expansion",
+      "route": null,
+      "priority": 10,
+      "confidence": 0.8,
+      "rationale": "No page. The single token 'salary' has no discernible search intent (definition, a specific job's salary, a calculator, or news), so no page can be written to answer it and rule 3 (the real-money test) cannot be shown to hold for a page whose subject is undefined. Volume is only 6,600 and paycalculator.com.au takes it incidentally with its homepage. The site's nearest coverage is '/' and /average-salary-australia/; neither needs changing for this term.",
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "salary",
+            "vol": 6600,
+            "kd": 17,
+            "intent": null,
+            "pos": 100
+          }
+        ]
+      },
+      "targetQueries": [
+        "salary"
+      ]
+    },
+    {
+      "id": "expansion-fair-work-pay-calculator-13",
+      "kind": "new_page",
+      "level": "expansion",
+      "route": "/fair-work-pay-calculator/",
+      "title": "Fair Work Pay Calculator (PACT) 2026-27 — How It Works & Rates",
+      "template": "guide",
+      "priority": 55,
+      "confidence": 0.7,
+      "rationale": "Genuinely uncovered: no route mentions PACT or the Fair Work pay calculator; /award-rates/ ranks #27 for 'fair work pay rates' but does not explain the tool. Live AU SERP (Firecrawl, 25 Sep): calculate.fairwork.gov.au holds 5 of the top 10 (navigational), yet a third-party explainer (sprintlaw) sits at #6, so an explainer can rank; the competitor URL paycalculator.com.au is a salary-tax form with nothing about awards. Border: rule 1 holds (links to /award-rates/, /overtime-pay-calculator/, /casual-loading-calculator/, EA award floor checker); rule 2: pay calculation > award minimum rates > the FWO tool = 2 degrees; rule 3: the reader checks award base rate, casual loading and penalty rate against their next payslip. Ours differs from PACT by showing 2026-27 award figures inline from lib/constants (no 8-step wizard), sourced to FWO pay guides, plus a plain map of what PACT asks.",
+      "border": {
+        "linksToCalculator": true,
+        "degreesFromCentralEntity": 2,
+        "helpsCheckNextPayslip": true
+      },
+      "outline": [
+        "What the Fair Work pay calculator (PACT) is: the FWO Pay and Conditions Tool, its four calculators (pay, shift, leave, notice and redundancy), what it covers and what it does not (enterprise agreements, above-award pay)",
+        "Step-by-step: what PACT asks (award, classification, employment type, age, hours, day and time worked) and where to find each answer on your contract or payslip",
+        "2026-27 award base rates by level for the 14 covered awards, rendered from MODERN_AWARDS, RETAIL_RATES and HOSPITALITY_RATES in lib/constants (never typed)",
+        "National minimum wage and junior percentages for readers not covered by an award, from NMW_ORDER, JUNIOR_BANDS and JUNIOR_RATES in lib/constants/junior-rates.ts",
+        "Casual loading and penalty rates PACT adds on top of the base rate, from CASUAL_LOADING (0.25) and each award's PenaltyRow data, with a worked week",
+        "Interactive check: pick your award and level, enter your payslip hourly rate, see the gap (reuse of the EaAwardFloorChecker component), then link to /backpay-calculator/ if underpaid",
+        "From award gross to take-home: link the result into calculatePayBreakdown via /take-home-pay-calculator/ so the reader sees tax and super on the award rate",
+        "FAQ: is the Fair Work calculator accurate, what if my agreement pays more, how often rates change (1 July each year, FWC annual wage review), what to do if underpaid",
+        "Sources: FWO PACT, FWO pay guides, FWC annual wage review decision"
+      ],
+      "sources": [
+        "https://calculate.fairwork.gov.au/",
+        "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/pay-guides"
+      ],
+      "inlinksFrom": [
+        "/award-rates/",
+        "/minimum-wage-australia/",
+        "/overtime-penalty-rates-guide/",
+        "/backpay-calculator/",
+        "/retail-award-rates/"
+      ],
+      "evidence": {
+        "keywords": [
+          {
+            "kw": "fair work pay calculator",
+            "vol": 6600,
+            "kd": 17,
+            "intent": null,
+            "pos": 100
+          }
+        ],
+        "note": "SERP: calculate.fairwork.gov.au x5, fairwork.gov.au/pay-and-wages, sprintlaw explainer #6; /award-rates/ ranks #27 for 'fair work pay rates'"
+      },
+      "targetQueries": [
+        "fair work pay calculator"
+      ]
+    }
+  ]
+}

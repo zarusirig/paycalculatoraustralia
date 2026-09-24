@@ -11,6 +11,7 @@ import type {
 } from "schema-dts";
 import { HOME_FAQS } from "@/modules/home/home-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEndUsing } from "@/components/common/page-end";
 import HomeLink from "@/modules/home/templates/home-link";
@@ -35,7 +36,12 @@ const BD80 = calculatePayBreakdown({ grossSalary: 80_000 });
 // /income-tax-calculator/ — so "Tax" and "Take-Home" leave this title.
 // Previous: "Pay Calculator Australia ${FY} — Salary, Tax & Take-Home Pay".
 const TITLE = `Pay Calculator Australia ${FY} — Salary Calculator After Tax`;
-const DESCRIPTION = `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Free Australian pay and salary calculator for any salary, hourly or casual wage — after tax, Medicare, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`;
+// fitDescription: fuller form first; the shorter form keeps the $80k figure,
+// the FY and every head-term token (pay calculator, salary calculator).
+const DESCRIPTION = fitDescription(
+  `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Free Australian pay and salary calculator for any salary, hourly or casual wage — after tax, Medicare, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
+  `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Pay and salary calculator for any salary, hourly or casual wage after tax, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,

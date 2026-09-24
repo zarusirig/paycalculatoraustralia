@@ -67,7 +67,7 @@ export default function EmploymentTypeCalculatorContent() {
           <li><strong>Notice period:</strong> 1-5 weeks guaranteed = varies</li>
           <li><strong>Redundancy pay:</strong> 4-16 weeks after 1+ years = varies</li>
         </ul>
-        <p className="mt-4 text-warmgray">The combined value of leave alone (annual + personal + public holidays) is approximately <strong>14.6%</strong> of annual earnings &mdash; meaning the 25% casual loading only provides a <strong>~10% premium</strong> over permanent employment once leave is accounted for. For long-term employment, permanent roles generally offer better total value.</p>
+        <p className="mt-4 text-warmgray">The combined value of leave alone (annual + personal + public holidays) is approximately <strong>14.6%</strong> of annual earnings &mdash; meaning the 25% casual loading only provides a <strong>~10% premium</strong> over permanent employment once leave is accounted for. For long-term employment, permanent roles generally offer better total value. The loading and the weekend penalties it stacks on are set by your award: see the <Link href="/retail-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Retail Award Pay Rates {SITE_CONFIG.financialYear}</Link> and the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link> for the two awards that cover most casuals.</p>
       </section>
 
       <section>

@@ -1,0 +1,1761 @@
+[
+ {
+  "kind": "section",
+  "id": "striking-fortnightly-tax-table-1",
+  "route": "/fortnightly-tax-table/",
+  "priority": 5468,
+  "keywords": [
+   {
+    "kw": "payg fortnightly tax tables",
+    "vol": 27100,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.89,
+    "openingAnswers": 0.31
+   },
+   {
+    "kw": "tax tables fortnightly",
+    "vol": 27100,
+    "pos": 15,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.88,
+    "openingAnswers": 0.34
+   },
+   {
+    "kw": "ato fortnightly tax table",
+    "vol": 1900,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.94,
+    "openingAnswers": 0.31
+   },
+   {
+    "kw": "ato tax schedule fortnightly",
+    "vol": 1900,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.72,
+    "openingAnswers": 0.31
+   },
+   {
+    "kw": "fortnightly tax table pdf",
+    "vol": 590,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.83,
+    "openingAnswers": 0.14
+   },
+   {
+    "kw": "fortnightly tax table 2026 pdf free download",
+    "vol": 390,
+    "pos": 13,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.69,
+    "openingAnswers": 0.18
+   }
+  ],
+  "existingHeadings": [
+   "Full Fortnightly Tax Table 2026-27 \u2014 With and Without the Tax-Free Threshold",
+   "How to Read the Fortnightly Tax Table",
+   "Why Every Fortnightly Amount Is an Even Number of Dollars",
+   "\"With Tax-Free Threshold\" vs \"Without\" \u2014 What the Columns Mean",
+   "What the STSL Column Adds",
+   "Fortnightly Tax Table for Foreign Residents",
+   "What to Do If the Employee Has No TFN",
+   "The 27-Pay Year Problem",
+   "When to Use the Fortnightly Tax Table",
+   "How Much Tax Is Withheld From Your Fortnightly Pay?",
+   "What Changed in the Fortnightly Tax Table for 2026-27?",
+   "Official ATO Fortnightly Tax Table PDF and Spreadsheet",
+   "Related Tax Tables and Calculators",
+   "Fortnightly Tax Table \u2014 Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"payg fortnightly tax tables\", \"tax tables fortnightly\", \"ato fortnightly tax table\", \"ato tax schedule fortnightly\", \"fortnightly tax table pdf\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-payg-withholding-tables-1",
+  "route": "/payg-withholding-tables/",
+  "priority": 2359,
+  "keywords": [
+   {
+    "kw": "fortnightly tax table 2026",
+    "vol": 6600,
+    "pos": 12,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.4,
+    "openingAnswers": 0.64
+   },
+   {
+    "kw": "weekly tax table 2026",
+    "vol": 5400,
+    "pos": 16,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.36,
+    "openingAnswers": 0.67
+   },
+   {
+    "kw": "australian tax table fortnightly",
+    "vol": 1900,
+    "pos": 16,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.48,
+    "openingAnswers": 0.64
+   },
+   {
+    "kw": "payg table",
+    "vol": 1300,
+    "pos": 13,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.65,
+    "openingAnswers": 0.66
+   },
+   {
+    "kw": "payg tables",
+    "vol": 1300,
+    "pos": 12,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.63,
+    "openingAnswers": 0.68
+   },
+   {
+    "kw": "ato tax tables 2026",
+    "vol": 880,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.61,
+    "openingAnswers": 0.65
+   }
+  ],
+  "existingHeadings": [
+   "What Are PAYG Withholding Tables?",
+   "How Does PAYG Withholding Work?",
+   "PAYG Withholding at a Glance, 2026-27",
+   "What Schedules Exist in the PAYG System?",
+   "How Do You Use the PAYG Tax Tables?",
+   "PAYG Withholding vs PAYG Instalments \u2014 What Is the Difference?",
+   "How Do TFN Declarations and Withholding Variations Affect Your Tax?",
+   "What Changed in the PAYG Withholding Tables for FY2026-27?",
+   "How Do You Convert Net Pay Back to Gross Salary?",
+   "Related Resources",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"fortnightly tax table 2026\" (6600/mo, #12), \"weekly tax table 2026\" (5400/mo, #16), \"australian tax table fortnightly\" (1900/mo, #16)"
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-healthcare-worker-pay-qld-1",
+  "route": "/healthcare-worker-pay/qld/",
+  "priority": 2050,
+  "keywords": [
+   {
+    "kw": "nursing wage rates qld",
+    "vol": 2900,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.9,
+    "openingAnswers": 0.26
+   },
+   {
+    "kw": "qld nursing pay rates",
+    "vol": 2900,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.89,
+    "openingAnswers": 0.27
+   },
+   {
+    "kw": "queensland nurse pay rates",
+    "vol": 2900,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.91,
+    "openingAnswers": 0.24
+   },
+   {
+    "kw": "queensland nurses pay rates",
+    "vol": 2900,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.84,
+    "openingAnswers": 0.24
+   },
+   {
+    "kw": "pay rate qld health",
+    "vol": 1900,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.64,
+    "openingAnswers": 0.24
+   },
+   {
+    "kw": "qld health pay rates",
+    "vol": 1900,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.69,
+    "openingAnswers": 0.3
+   }
+  ],
+  "existingHeadings": [
+   "QLD nurse pay rates 2026 at a glance",
+   "What a registered nurse earns in Queensland",
+   "What makes QLD different",
+   "Queensland Health nursing and midwifery pay scales",
+   "Which agreement covers you",
+   "Nurses Award 2020 vs the QLD agreement",
+   "Shift penalties and weekend loadings in Queensland",
+   "Moving up a step, and what each step is worth",
+   "Salary packaging, and why it changes your take-home but not your grade",
+   "What this page does not show",
+   "Nurse pay in the other states",
+   "Frequently asked questions",
+   "Sources & References",
+   "Nurse pay by state",
+   "Check your pay",
+   "Is your payslip right?",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"nursing wage rates qld\", \"qld nursing pay rates\", \"queensland nurse pay rates\", \"queensland nurses pay rates\", \"pay rate qld health\", \"qld health pay rates\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-award-rates-1",
+  "route": "/award-rates/",
+  "priority": 1312,
+  "keywords": [
+   {
+    "kw": "award wages rates",
+    "vol": 1900,
+    "pos": 8,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.87,
+    "openingAnswers": 0.76
+   },
+   {
+    "kw": "australia pay rates",
+    "vol": 1000,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.66,
+    "openingAnswers": 0.75
+   },
+   {
+    "kw": "award pay rates qld",
+    "vol": 880,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.54,
+    "openingAnswers": 0.59
+   },
+   {
+    "kw": "award rates in nsw",
+    "vol": 880,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.45,
+    "openingAnswers": 0.59
+   },
+   {
+    "kw": "award wage rates nsw",
+    "vol": 880,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.5,
+    "openingAnswers": 0.5
+   },
+   {
+    "kw": "award wages nsw",
+    "vol": 880,
+    "pos": 15,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.41,
+    "openingAnswers": 0.48
+   }
+  ],
+  "existingHeadings": [
+   "Award Rates A\u2013Z",
+   "What Are Award Rates in Australia?",
+   "How Are Award Rates Set Each Year?",
+   "National Minimum Wage vs Award Rates",
+   "How Do Penalty Rates Work?",
+   "How Is Award Pay Calculated? A Worked Week",
+   "Award Rate or Enterprise Agreement?",
+   "How Do You Find Your Award?",
+   "What Changed for 2026-27 ?",
+   "Related Guides",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "Award Rate Tables",
+   "Check your take-home pay",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"award rates in nsw\" (880/mo, #19), \"award wages nsw\" (880/mo, #15)",
+   "opening paragraph does not answer: \"award wages nsw\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-monthly-tax-table-1",
+  "route": "/monthly-tax-table/",
+  "priority": 1113,
+  "keywords": [
+   {
+    "kw": "tax table 2026",
+    "vol": 6600,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.87,
+    "openingAnswers": 0.36
+   },
+   {
+    "kw": "tax table monthly",
+    "vol": 2400,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.94,
+    "openingAnswers": 0.46
+   },
+   {
+    "kw": "tax tables monthly",
+    "vol": 2400,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.86,
+    "openingAnswers": 0.32
+   },
+   {
+    "kw": "monthly tax table 2026 pdf",
+    "vol": 260,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.81,
+    "openingAnswers": 0.19
+   },
+   {
+    "kw": "monthly tax table ato",
+    "vol": 210,
+    "pos": 16,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.88,
+    "openingAnswers": 0.37
+   }
+  ],
+  "existingHeadings": [
+   "Full Monthly Tax Table 2026-27 \u2014 With and Without the Tax-Free Threshold",
+   "How to Read the Monthly Tax Table",
+   "Why Monthly Withholding Is Not the Weekly Amount Times Four",
+   "\"With Tax-Free Threshold\" vs \"Without\" \u2014 What the Columns Mean",
+   "What the STSL Column Adds",
+   "Monthly Tax Table for Foreign Residents",
+   "What to Do If the Employee Has No TFN",
+   "Monthly Payroll Never Has an Extra-Pay Year",
+   "When to Use the Monthly Tax Table",
+   "How Much Tax Is Withheld From Your Monthly Salary?",
+   "What Changed in the Monthly Tax Table for 2026-27?",
+   "Official ATO Monthly Tax Table PDF and Spreadsheet",
+   "Related Tax Tables and Calculators",
+   "Monthly Tax Table \u2014 Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"tax table 2026\", \"tax table monthly\", \"tax tables monthly\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-fortnightly-pay-calculator-1",
+  "route": "/fortnightly-pay-calculator/",
+  "priority": 845,
+  "keywords": [
+   {
+    "kw": "fortnightly",
+    "vol": 12100,
+    "pos": 6,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.92,
+    "openingAnswers": 0.76
+   },
+   {
+    "kw": "fortnight in a year",
+    "vol": 590,
+    "pos": 6,
+    "wants": "figure",
+    "needsTable": false,
+    "headingCovers": 0.93,
+    "openingAnswers": 0.12
+   },
+   {
+    "kw": "fortnight payment",
+    "vol": 390,
+    "pos": 8,
+    "wants": "calculator",
+    "needsTable": false,
+    "headingCovers": 0.62,
+    "openingAnswers": 0.61
+   },
+   {
+    "kw": "fortnightly pay",
+    "vol": 390,
+    "pos": 4,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.89,
+    "openingAnswers": 0.77
+   },
+   {
+    "kw": "fortnightly payment",
+    "vol": 390,
+    "pos": 7,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.71,
+    "openingAnswers": 0.64
+   },
+   {
+    "kw": "fortnight calculator",
+    "vol": 210,
+    "pos": 9,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.65,
+    "openingAnswers": 0.54
+   }
+  ],
+  "existingHeadings": [
+   "Calculate Your Fortnightly Tax & Take-Home Pay",
+   "How Many Fortnights Are in a Year?",
+   "How Is Fortnightly Pay Calculated?",
+   "How Much Tax Is Taken Out Each Fortnight?",
+   "What Is the Fortnightly Pay for Each Annual Salary?",
+   "Who Uses a Fortnightly Pay Calculator?",
+   "How Does Fortnightly Pay Compare to Weekly and Monthly Pay?",
+   "What Deductions Apply to Fortnightly Pay?",
+   "What Are Common Mistakes When Calculating Fortnightly Pay?",
+   "Related Calculators",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"fortnight in a year\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-austudy-youth-allowance-calculator-1",
+  "route": "/austudy-youth-allowance-calculator/",
+  "priority": 839,
+  "keywords": [
+   {
+    "kw": "youth allowance calculator",
+    "vol": 2400,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.52,
+    "openingAnswers": 0.61
+   },
+   {
+    "kw": "youth allowance estimator",
+    "vol": 2400,
+    "pos": 18,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.43,
+    "openingAnswers": 0.6
+   },
+   {
+    "kw": "how much is austudy",
+    "vol": 880,
+    "pos": 20,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.78,
+    "openingAnswers": 0.7
+   },
+   {
+    "kw": "how much is austudy payment",
+    "vol": 720,
+    "pos": 19,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.71,
+    "openingAnswers": 0.72
+   },
+   {
+    "kw": "austudy calculator",
+    "vol": 480,
+    "pos": 13,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.58,
+    "openingAnswers": 0.55
+   },
+   {
+    "kw": "centrelink calculator youth allowance",
+    "vol": 390,
+    "pos": 15,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.58,
+    "openingAnswers": 0.65
+   }
+  ],
+  "existingHeadings": [
+   "How Much Do You Keep When You Work?",
+   "How Much Is Youth Allowance? Rates by Circumstance",
+   "Youth Allowance Eligibility",
+   "The Student Personal Income Test",
+   "Maximum Rates and Cut-Offs From 1 January 2026",
+   "Austudy at Different Incomes (Single, No Children)",
+   "Income Bank, and the 12-Fortnight Rule",
+   "Related Calculators and Guides",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"youth allowance estimator\" (2400/mo, #18)",
+   "searchers want a calculator; page is a centrelink: \"youth allowance calculator\", \"youth allowance estimator\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-bonus-tax-calculator-1",
+  "route": "/bonus-tax-calculator/",
+  "priority": 818,
+  "keywords": [
+   {
+    "kw": "bonus pay tax calculator",
+    "vol": 1000,
+    "pos": 5,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.78,
+    "openingAnswers": 0.54
+   },
+   {
+    "kw": "bonuses tax calculator",
+    "vol": 1000,
+    "pos": 4,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.71,
+    "openingAnswers": 0.51
+   },
+   {
+    "kw": "calculate tax on bonus",
+    "vol": 1000,
+    "pos": 5,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.85,
+    "openingAnswers": 0.47
+   },
+   {
+    "kw": "tax bonus calculator",
+    "vol": 1000,
+    "pos": 5,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.54
+   },
+   {
+    "kw": "tax bonus payment calculator",
+    "vol": 1000,
+    "pos": 4,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.64,
+    "openingAnswers": 0.52
+   },
+   {
+    "kw": "tax calculation on bonus",
+    "vol": 1000,
+    "pos": 12,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.78,
+    "openingAnswers": 0.49
+   }
+  ],
+  "existingHeadings": [
+   "How Much Tax on Your Bonus?",
+   "How Is Bonus Tax Calculated in Australia?",
+   "Bonus Tax vs Employer Withholding \u2014 What's the Difference?",
+   "What Tax Rate Applies to Bonuses in Australia?",
+   "Who Uses This Bonus Tax Calculator?",
+   "How Does Bonus Tax Compare to Regular Income Tax?",
+   "How Much Tax Do You Pay on Common Bonus Amounts?",
+   "How Much Tax Will I Pay on a $5,000 Bonus?",
+   "What Changed for Bonus Tax in FY 2026-27 ?",
+   "What Are Common Bonus Tax Mistakes?",
+   "Is There a Difference Between Commission Tax and Bonus Tax?",
+   "Do You Get Tax Back on Bonuses?",
+   "How to Reduce Tax on Your Bonus",
+   "Is Superannuation Paid on Bonuses?",
+   "What Is Lump Sum E (Back Pay From Earlier Years)?",
+   "Which Related Calculators Help with Bonus Planning?",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"calculate tax on bonus\", \"tax calculation on bonus\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-hecs-help-calculator-1",
+  "route": "/hecs-help-calculator/",
+  "priority": 774,
+  "keywords": [
+   {
+    "kw": "hecs pay calculator",
+    "vol": 6600,
+    "pos": 15,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.37
+   },
+   {
+    "kw": "hecs tax calculator",
+    "vol": 390,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.51,
+    "openingAnswers": 0.34
+   },
+   {
+    "kw": "help repayment calculator",
+    "vol": 390,
+    "pos": 19,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.66,
+    "openingAnswers": 0.4
+   },
+   {
+    "kw": "tax calculator hecs",
+    "vol": 390,
+    "pos": 13,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.68,
+    "openingAnswers": 0.32
+   },
+   {
+    "kw": "tax hecs calculator",
+    "vol": 390,
+    "pos": 16,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.63,
+    "openingAnswers": 0.31
+   },
+   {
+    "kw": "how much hecs do i pay",
+    "vol": 320,
+    "pos": 19,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.77,
+    "openingAnswers": 0.34
+   }
+  ],
+  "existingHeadings": [
+   "Your HECS Repayment ( 2026-27 )",
+   "HECS Repayment Rates 2026-27",
+   "Every Study and Training Loan This Covers",
+   "How Are HECS Repayments Calculated?",
+   "How Does HECS Affect Your Take-Home Pay?",
+   "Why Your Payslip Deduction Differs From Your Actual Repayment",
+   "Indexation and Voluntary Repayments",
+   "Dates That Matter",
+   "Common HECS Mistakes",
+   "Related Calculators and Guides",
+   "Related searches",
+   "Frequently Asked Questions",
+   "See your full pay breakdown",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"hecs pay calculator\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-second-job-tax-calculator-1",
+  "route": "/second-job-tax-calculator/",
+  "priority": 706,
+  "keywords": [
+   {
+    "kw": "2nd job tax rate",
+    "vol": 590,
+    "pos": 8,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.85,
+    "openingAnswers": 0.33
+   },
+   {
+    "kw": "second job tax rate",
+    "vol": 590,
+    "pos": 14,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.85,
+    "openingAnswers": 0.29
+   },
+   {
+    "kw": "second job tax rates",
+    "vol": 590,
+    "pos": 8,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.81,
+    "openingAnswers": 0.3
+   },
+   {
+    "kw": "tax rate for second job",
+    "vol": 590,
+    "pos": 13,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.85,
+    "openingAnswers": 0.27
+   },
+   {
+    "kw": "tax rate on second job",
+    "vol": 590,
+    "pos": 19,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.89,
+    "openingAnswers": 0.3
+   },
+   {
+    "kw": "tax rate second job",
+    "vol": 590,
+    "pos": 14,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.87,
+    "openingAnswers": 0.31
+   }
+  ],
+  "existingHeadings": [
+   "Calculate Tax on Two Jobs",
+   "Why Is My Second Job Taxed More?",
+   "What Is the Tax Rate on a Second Job?",
+   "The Tax-Free Threshold Explained",
+   "How to Optimise Tax Across Two Jobs",
+   "Second Job Tax Comparison Table",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Related Calculators",
+   "See Your Full Pay Breakdown",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"2nd job tax rate\", \"second job tax rate\", \"second job tax rates\", \"tax rate for second job\", \"tax rate on second job\", \"tax rate second job\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-public-service-pay-scales-1",
+  "route": "/public-service-pay-scales/",
+  "priority": 452,
+  "keywords": [
+   {
+    "kw": "vps 6 pay",
+    "vol": 590,
+    "pos": 11,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.34,
+    "openingAnswers": 0.15
+   },
+   {
+    "kw": "vps 6 salary",
+    "vol": 590,
+    "pos": 11,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.5,
+    "openingAnswers": 0.15
+   },
+   {
+    "kw": "aps pay scale",
+    "vol": 480,
+    "pos": 8,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.83,
+    "openingAnswers": 0.34
+   },
+   {
+    "kw": "aps pay scales",
+    "vol": 480,
+    "pos": 14,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.82,
+    "openingAnswers": 0.28
+   },
+   {
+    "kw": "aps salaries",
+    "vol": 480,
+    "pos": 12,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.71,
+    "openingAnswers": 0.3
+   },
+   {
+    "kw": "aps salary",
+    "vol": 480,
+    "pos": 10,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.76,
+    "openingAnswers": 0.37
+   }
+  ],
+  "existingHeadings": [
+   "Pay scales by service",
+   "How the classification systems work",
+   "Why there is no single APS salary",
+   "Comparing levels across services",
+   "What a band is worth after tax",
+   "Take-home pay by state and territory",
+   "Public service pay questions",
+   "Sources & References",
+   "Jump to a service",
+   "Check your own pay",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"vps 6 pay\" (590/mo, #11)",
+   "opening paragraph does not answer: \"vps 6 pay\", \"vps 6 salary\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-hospitality-award-rates-1",
+  "route": "/hospitality-award-rates/",
+  "priority": 432,
+  "keywords": [
+   {
+    "kw": "hospitality award rates",
+    "vol": 3600,
+    "pos": 14,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.9,
+    "openingAnswers": 0.47
+   },
+   {
+    "kw": "level 2 hospitality pay rate casual",
+    "vol": 480,
+    "pos": 16,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.48,
+    "openingAnswers": 0.13
+   },
+   {
+    "kw": "level 1 hospitality pay rate casual",
+    "vol": 390,
+    "pos": 15,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.49,
+    "openingAnswers": 0.16
+   },
+   {
+    "kw": "pay rate for hospitality",
+    "vol": 320,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.75,
+    "openingAnswers": 0.29
+   }
+  ],
+  "existingHeadings": [
+   "Hospitality Award Pay Rates",
+   "The 4.75 % increase was not applied to every rate",
+   "Hospitality Pay Guide 2026-27 : Every Level, Every Day",
+   "Which Level Am I? Hospitality Classifications",
+   "Hospitality Penalty Rates",
+   "Hospitality Overtime Rates",
+   "Hospitality Junior Rates",
+   "Hospitality Allowances",
+   "What This Page Does Not Cover",
+   "When These Rates Took Effect",
+   "Related Guides",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "Award Pay Rates A\u2013Z",
+   "Check your take-home pay",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"level 2 hospitality pay rate casual\" (480/mo, #16), \"level 1 hospitality pay rate casual\" (390/mo, #15)",
+   "opening paragraph does not answer: \"hospitality award rates\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-home-1",
+  "route": "/",
+  "priority": 411,
+  "keywords": [
+   {
+    "kw": "payroll calculation table",
+    "vol": 590,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.42,
+    "openingAnswers": 0.4
+   },
+   {
+    "kw": "annual pay calculator",
+    "vol": 320,
+    "pos": 13,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.48,
+    "openingAnswers": 0.71
+   },
+   {
+    "kw": "australia minimum wage after tax",
+    "vol": 320,
+    "pos": 16,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.33,
+    "openingAnswers": 0.43
+   },
+   {
+    "kw": "australia monthly salary calculator",
+    "vol": 320,
+    "pos": 14,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.54,
+    "openingAnswers": 0.77
+   },
+   {
+    "kw": "australian minimum wage after tax",
+    "vol": 320,
+    "pos": 16,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.41,
+    "openingAnswers": 0.42
+   },
+   {
+    "kw": "minimum wage after tax australia",
+    "vol": 320,
+    "pos": 15,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.4,
+    "openingAnswers": 0.46
+   }
+  ],
+  "existingHeadings": [
+   "Your Pay Breakdown",
+   "What Changed in Your Pay on 1 July 2026?",
+   "How Is Take-Home Pay Calculated?",
+   "Hourly, Casual & Shift Pay",
+   "Take-Home Pay on Common Salaries in FY 2026-27",
+   "What Comes Out of Your Pay?",
+   "How Is Superannuation Calculated?",
+   "How Do HECS-HELP Repayments Affect Take-Home Pay?",
+   "Which Pay Calculator Should You Use?",
+   "Pay Calculator by State",
+   "What Are the Most Common Pay Calculation Mistakes?",
+   "Frequently Asked Questions",
+   "Guides and Resources",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"payroll calculation table\" (590/mo, #19), \"annual pay calculator\" (320/mo, #13), \"australia minimum wage after tax\" (320/mo, #16), \"australian minimum wage after tax\" (320/mo, #16), \"minimum wage after tax australia\" (320/mo, #15)",
+   "opening paragraph does not answer: \"payroll calculation table\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-centrelink-income-test-1",
+  "route": "/centrelink-income-test/",
+  "priority": 357,
+  "keywords": [
+   {
+    "kw": "jobseeker payment calculator",
+    "vol": 1300,
+    "pos": 11,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.61,
+    "openingAnswers": 0.28
+   },
+   {
+    "kw": "jobseeker calculator",
+    "vol": 480,
+    "pos": 15,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.52,
+    "openingAnswers": 0.32
+   },
+   {
+    "kw": "centrelink earnings calculator",
+    "vol": 390,
+    "pos": 9,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.5,
+    "openingAnswers": 0.34
+   },
+   {
+    "kw": "centrelink online estimator",
+    "vol": 390,
+    "pos": 9,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.44,
+    "openingAnswers": 0.33
+   },
+   {
+    "kw": "income calculator centrelink",
+    "vol": 390,
+    "pos": 14,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.53,
+    "openingAnswers": 0.39
+   },
+   {
+    "kw": "jobseeker payment calculator australia",
+    "vol": 390,
+    "pos": 11,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.54,
+    "openingAnswers": 0.38
+   }
+  ],
+  "existingHeadings": [
+   "What Is the Centrelink Income Test?",
+   "Work Out Your Own Payment",
+   "How Does the Income Test Work?",
+   "Current Income Test Thresholds and Rates",
+   "Parenting Payment, Family Tax Benefit and Rent Assistance",
+   "What Counts as Assessable Income for Centrelink?",
+   "How Does the Assets Test Interact with the Income Test?",
+   "How Much JobSeeker Do You Keep with Part-Time Work?",
+   "How Do You Report Income to Centrelink?",
+   "Current Maximum Rates and Indexation Dates",
+   "How Does Working Credit Help You Keep More of Your Payment?",
+   "Related Resources",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"centrelink online estimator\" (390/mo, #9)",
+   "opening paragraph does not answer: \"jobseeker payment calculator\"",
+   "searchers want a calculator; page is a centrelink: \"jobseeker payment calculator\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-sapto-calculator-1",
+  "route": "/sapto-calculator/",
+  "priority": 277,
+  "keywords": [
+   {
+    "kw": "sapto",
+    "vol": 2400,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.94,
+    "openingAnswers": 0.51
+   },
+   {
+    "kw": "sapto calculator",
+    "vol": 590,
+    "pos": 12,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.95,
+    "openingAnswers": 0.39
+   }
+  ],
+  "existingHeadings": [
+   "SAPTO Calculator",
+   "SAPTO Eligibility Checker",
+   "What Is SAPTO?",
+   "SAPTO Rates and Thresholds",
+   "Worked Example: $39,000 Rebate Income, Single",
+   "How SAPTO Works for Couples",
+   "What Counts as Rebate Income?",
+   "Who Qualifies for SAPTO?",
+   "Transferring Unused SAPTO to a Spouse",
+   "Related Calculators",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"sapto calculator\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-mining-fifo-pay-guide-1",
+  "route": "/mining-fifo-pay-guide/",
+  "priority": 266,
+  "keywords": [
+   {
+    "kw": "fifo pay calculator",
+    "vol": 320,
+    "pos": 8,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.32,
+    "openingAnswers": 0.19
+   },
+   {
+    "kw": "fifo salary calculator",
+    "vol": 320,
+    "pos": 8,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.33,
+    "openingAnswers": 0.23
+   },
+   {
+    "kw": "australia mining wage",
+    "vol": 260,
+    "pos": 18,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.64,
+    "openingAnswers": 0.47
+   },
+   {
+    "kw": "miners salary australia",
+    "vol": 260,
+    "pos": 19,
+    "wants": "guide",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.45
+   },
+   {
+    "kw": "mining australia salary",
+    "vol": 260,
+    "pos": 20,
+    "wants": "guide",
+    "needsTable": true,
+    "headingCovers": 0.76,
+    "openingAnswers": 0.5
+   },
+   {
+    "kw": "mining in australia salary",
+    "vol": 260,
+    "pos": 20,
+    "wants": "guide",
+    "needsTable": true,
+    "headingCovers": 0.76,
+    "openingAnswers": 0.5
+   }
+  ],
+  "existingHeadings": [
+   "Average Mining Salaries by Role",
+   "How FIFO Rosters Affect Pay",
+   "FIFO Allowances",
+   "Tax for Mining & FIFO Workers",
+   "Take-Home Pay on a Mining Salary",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"fifo pay calculator\" (320/mo, #8), \"fifo salary calculator\" (320/mo, #8)"
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-pay-calculator-qld-1",
+  "route": "/pay-calculator-qld/",
+  "priority": 222,
+  "keywords": [
+   {
+    "kw": "pay calculator qld",
+    "vol": 1900,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.59,
+    "openingAnswers": 0.71
+   },
+   {
+    "kw": "wage calculator qld",
+    "vol": 480,
+    "pos": 15,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.41,
+    "openingAnswers": 0.68
+   }
+  ],
+  "existingHeadings": [
+   "What comes out",
+   "How much of a Queensland salary do you actually keep?",
+   "Is your Queensland salary normal? What the ABS says",
+   "Queensland public holidays and what they do to your pay",
+   "Long service leave in Queensland",
+   "Does QLD payroll tax come out of your pay?",
+   "QLD pay at a glance",
+   "Pay calculators for other states",
+   "Employer? QLD payroll tax is on its own page",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"wage calculator qld\" (480/mo, #15)",
+   "searchers want a calculator; page is a guide: \"pay calculator qld\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-teacher-pay-australia-1",
+  "route": "/teacher-pay-australia/",
+  "priority": 222,
+  "keywords": [
+   {
+    "kw": "teachers salaries in australia",
+    "vol": 1300,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.88,
+    "openingAnswers": 0.53
+   },
+   {
+    "kw": "average australian teacher salary",
+    "vol": 880,
+    "pos": 19,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.47,
+    "openingAnswers": 0.29
+   },
+   {
+    "kw": "teacher yearly income",
+    "vol": 210,
+    "pos": 18,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.7,
+    "openingAnswers": 0.3
+   }
+  ],
+  "existingHeadings": [
+   "Teacher salary by state, 2026",
+   "Full pay scale for your state",
+   "Teacher career stages and pay",
+   "Teacher salary after tax",
+   "Teacher salary questions",
+   "Sources & References",
+   "Teacher pay by state",
+   "Related calculators",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"average australian teacher salary\" (880/mo, #19)",
+   "opening paragraph does not answer: \"average australian teacher salary\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-pay-rise-calculator-1",
+  "route": "/pay-rise-calculator/",
+  "priority": 220,
+  "keywords": [
+   {
+    "kw": "increase salary calculator",
+    "vol": 720,
+    "pos": 16,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.65,
+    "openingAnswers": 0.51
+   },
+   {
+    "kw": "raise salary calculator",
+    "vol": 720,
+    "pos": 17,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.6,
+    "openingAnswers": 0.56
+   },
+   {
+    "kw": "salary calculator raise",
+    "vol": 720,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.52,
+    "openingAnswers": 0.49
+   },
+   {
+    "kw": "pay raise",
+    "vol": 210,
+    "pos": 19,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.81,
+    "openingAnswers": 0.61
+   }
+  ],
+  "existingHeadings": [
+   "See Your Pay Before and After a Rise",
+   "How Does a Pay Rise Affect Take-Home Pay?",
+   "How Do I Calculate My Pay Rise?",
+   "What Does the Pay Rise Impact Table Show?",
+   "Why Doesn't a 10% Pay Rise Give 10% More Take-Home Pay?",
+   "What Is the Average Pay Rise in Australia?",
+   "Who Uses This Calculator?",
+   "How to Negotiate a Pay Rise",
+   "What Are Common Mistakes When Calculating a Pay Rise?",
+   "Which Related Calculators Help with Pay Rise Planning?",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Understand the Tax Brackets",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "opening paragraph does not answer: \"salary calculator raise\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-schads-award-pay-rates-1",
+  "route": "/schads-award-pay-rates/",
+  "priority": 207,
+  "keywords": [
+   {
+    "kw": "schads award 2026 pay rates",
+    "vol": 720,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.87,
+    "openingAnswers": 0.61
+   },
+   {
+    "kw": "schads level 4 salary",
+    "vol": 390,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.47,
+    "openingAnswers": 0.17
+   },
+   {
+    "kw": "schads award pay rates 2026",
+    "vol": 320,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.9,
+    "openingAnswers": 0.6
+   },
+   {
+    "kw": "schads level 5 salary",
+    "vol": 320,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.42,
+    "openingAnswers": 0.23
+   },
+   {
+    "kw": "schads award level 2 pay rate",
+    "vol": 260,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.46,
+    "openingAnswers": 0.24
+   },
+   {
+    "kw": "schads level 3 salary",
+    "vol": 210,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.43,
+    "openingAnswers": 0.18
+   }
+  ],
+  "existingHeadings": [
+   "Read this before you compare your payslip",
+   "Social and Community Services Pay Rates (Schedule B)",
+   "Home Care Pay Rates (Schedules E and F)",
+   "SCHADS Pay Guide 2026: Every Pay Point, Every Day",
+   "SCHADS Penalty Rates",
+   "SCHADS Allowances",
+   "Does SCHADS Have Junior Rates?",
+   "What This Page Does Not Cover",
+   "When These Rates Took Effect",
+   "Related Guides",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "Award Pay Rates A\u2013Z",
+   "What you actually take home",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"schads level 4 salary\" (390/mo, #17), \"schads level 5 salary\" (320/mo, #20), \"schads award level 2 pay rate\" (260/mo, #20), \"schads level 3 salary\" (210/mo, #17)"
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-redundancy-pay-calculator-1",
+  "route": "/redundancy-pay-calculator/",
+  "priority": 201,
+  "keywords": [
+   {
+    "kw": "redundancy calculator nsw",
+    "vol": 1300,
+    "pos": 18,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.69,
+    "openingAnswers": 0.64
+   },
+   {
+    "kw": "fair work redundancy calculator",
+    "vol": 390,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.66,
+    "openingAnswers": 0.62
+   },
+   {
+    "kw": "90000/52",
+    "vol": 260,
+    "pos": 18,
+    "wants": "calculator",
+    "needsTable": false,
+    "headingCovers": 0.39,
+    "openingAnswers": 0.27
+   },
+   {
+    "kw": "redundancy pay calculator nsw",
+    "vol": 210,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.63
+   }
+  ],
+  "existingHeadings": [
+   "Calculate Your Redundancy Pay",
+   "Redundancy Pay Table: Weeks by Years of Service",
+   "How Is Redundancy Pay Calculated? Two Worked Examples",
+   "How Is Redundancy Pay Taxed in 2026-27 ?",
+   "Redundancy Calculator for QLD, NSW, VIC, WA and Every State",
+   "Notice and Other Final Pay on Redundancy",
+   "Small Businesses, Casuals and Centrelink",
+   "Related Calculators",
+   "Related searches",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"90000/52\" (260/mo, #18)"
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-zone-tax-offset-1",
+  "route": "/zone-tax-offset/",
+  "priority": 186,
+  "keywords": [
+   {
+    "kw": "tax zone offset",
+    "vol": 590,
+    "pos": 18,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.89,
+    "openingAnswers": 0.73
+   },
+   {
+    "kw": "zone offset calculator",
+    "vol": 320,
+    "pos": 7,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.46
+   },
+   {
+    "kw": "zone tax offset calculator",
+    "vol": 320,
+    "pos": 9,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.9,
+    "openingAnswers": 0.41
+   },
+   {
+    "kw": "zone offset",
+    "vol": 260,
+    "pos": 12,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.81,
+    "openingAnswers": 0.68
+   },
+   {
+    "kw": "zone offsets",
+    "vol": 260,
+    "pos": 20,
+    "wants": "calculator",
+    "needsTable": true,
+    "headingCovers": 0.59,
+    "openingAnswers": 0.64
+   },
+   {
+    "kw": "ato zone list",
+    "vol": 210,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.76,
+    "openingAnswers": 0.14
+   }
+  ],
+  "existingHeadings": [
+   "Zone Tax Offset Calculator",
+   "What Is the Zone Tax Offset?",
+   "How Much Is the Zone Tax Offset?",
+   "Who Is Eligible for the Zone Tax Offset?",
+   "How Do You Claim the Zone Tax Offset?",
+   "What If You Lived in More Than One Zone?",
+   "How Does the Zone Tax Offset Affect Take-Home Pay?",
+   "Can FIFO Workers Claim the Zone Tax Offset?",
+   "Which Towns Are in Each Zone?",
+   "How Does the Zone Tax Offset Interact with Other Offsets?",
+   "What Records Do You Need?",
+   "Related Resources",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "searchers want a calculator; page is a guide: \"tax zone offset\""
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-retail-award-rates-1",
+  "route": "/retail-award-rates/",
+  "priority": 167,
+  "keywords": [
+   {
+    "kw": "retail minimum wage",
+    "vol": 390,
+    "pos": 18,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.42,
+    "openingAnswers": 0.36
+   },
+   {
+    "kw": "award rates retail nsw",
+    "vol": 320,
+    "pos": 19,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.5,
+    "openingAnswers": 0.37
+   },
+   {
+    "kw": "retail award pay rates 2024",
+    "vol": 320,
+    "pos": 17,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.63,
+    "openingAnswers": 0.25
+   },
+   {
+    "kw": "retail minimum wage australia",
+    "vol": 320,
+    "pos": 20,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.47,
+    "openingAnswers": 0.3
+   },
+   {
+    "kw": "retail casual rates",
+    "vol": 260,
+    "pos": 14,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.8,
+    "openingAnswers": 0.33
+   },
+   {
+    "kw": "retail award rate casual",
+    "vol": 210,
+    "pos": 12,
+    "wants": "table",
+    "needsTable": true,
+    "headingCovers": 0.76,
+    "openingAnswers": 0.32
+   }
+  ],
+  "existingHeadings": [
+   "Retail Award Pay Rates",
+   "Retail Pay Guide 2026-27 : Every Level, Every Day",
+   "Retail Penalty Rates",
+   "Retail Overtime Rates",
+   "Retail Junior Rates",
+   "Retail Allowances",
+   "What This Page Does Not Cover",
+   "When These Rates Took Effect",
+   "Related Guides",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "Award Pay Rates A\u2013Z",
+   "Check your take-home pay",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"retail minimum wage\" (390/mo, #18), \"retail minimum wage australia\" (320/mo, #20)"
+  ]
+ },
+ {
+  "kind": "section",
+  "id": "striking-tax-on-90000-1",
+  "route": "/tax-on/90000/",
+  "priority": 153,
+  "keywords": [
+   {
+    "kw": "90000 after tax australia",
+    "vol": 880,
+    "pos": 17,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.84,
+    "openingAnswers": 0.91
+   },
+   {
+    "kw": "tax on 90000 australia",
+    "vol": 480,
+    "pos": 15,
+    "wants": "figure",
+    "needsTable": true,
+    "headingCovers": 0.91,
+    "openingAnswers": 0.93
+   },
+   {
+    "kw": "90000/12",
+    "vol": 320,
+    "pos": 13,
+    "wants": "figure",
+    "needsTable": false,
+    "headingCovers": 0.38,
+    "openingAnswers": 0.23
+   }
+  ],
+  "existingHeadings": [
+   "How Much Tax Do You Pay on $90,000 ?",
+   "What Is the Take-Home Pay Breakdown at $90,000 ?",
+   "What Tax Bracket Does $90,000 Fall Into?",
+   "How Does $90,000 Compare to Other Salary Levels?",
+   "Tax on the Next $1,000 Above $90,000",
+   "What Deductions Apply at This Income Level?",
+   "If You Have a HECS Debt on $90,000",
+   "Which Calculators Help You Plan Around $90,000 ?",
+   "Frequently Asked Questions",
+   "Sources & References",
+   "What to check next"
+  ],
+  "findings": [
+   "no heading addresses: \"90000/12\" (320/mo, #13)"
+  ]
+ }
+]

@@ -164,6 +164,7 @@ export default function LowIncomeTaxOffsetPage() {
                 </table>
               </div>
               <p className="text-sm text-warmgray-light">Where &ldquo;LITO used&rdquo; is below the offset, the tax before LITO is smaller than the offset and the rest is lost: LITO can&rsquo;t be refunded.</p>
+              <p>For the full picture at a single salary, including the Medicare levy, see <Link href="/tax-on/50000/">Tax on $50,000 in Australia</Link>, where LITO is still partly in play, and <Link href="/tax-on/75000/">Tax on $75,000 in Australia</Link>, above the point where it has fully phased out.</p>
             </section>
 
             <section id="effective-threshold">

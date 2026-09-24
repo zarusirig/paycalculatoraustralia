@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function NewMinimumWageTakeHomePay() {
   return (
@@ -70,7 +71,9 @@ export default function NewMinimumWageTakeHomePay() {
       <p>
         Withholding is worked out by annualising each pay period first, so weekly and fortnightly
         withholding land on slightly different totals than a straight division of the annual tax
-        figure once you account for rounding. On a $52,254.80 annual income, the Low Income Tax
+        figure once you account for rounding — the ATO publishes the exact amounts in its{" "}
+        <Link href="/payg-withholding-tables/">weekly tax table {SITE_CONFIG.financialYear}</Link> and{" "}
+        <Link href="/fortnightly-tax-table/">fortnightly tax table</Link>. On a $52,254.80 annual income, the Low Income Tax
         Offset trims about $216 off the tax bill and the Medicare levy is shaded rather than
         charged in full, because earnings sit close to the low-income threshold. Together these
         keep the effective tax rate on minimum-wage earnings well under 15%.
@@ -88,7 +91,8 @@ export default function NewMinimumWageTakeHomePay() {
       <p>
         Casual employees on the minimum wage receive a 25% casual loading on top of the base rate,
         taking their minimum hourly rate to $33.05 from 1 July 2026 — paid to compensate for
-        missing out on paid leave. Part-time workers are simply paid $26.44 for each hour rostered;
+        missing out on paid leave. Many casuals are also covered by a modern award whose{" "}
+        <Link href="/award-rates/">award pay rates</Link> sit above the national minimum. Part-time workers are simply paid $26.44 for each hour rostered;
         there&apos;s no separate part-time rate, so a 20-hour week comes to $528.80 gross. Use our{" "}
         <Link href="/weekly-pay-calculator/">weekly pay calculator</Link> to work out gross and
         net pay for your own hours.

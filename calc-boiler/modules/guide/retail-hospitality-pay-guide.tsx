@@ -7,6 +7,7 @@ import { RETAIL_HOSPITALITY_FAQS } from "./retail-hospitality-pay-guide-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { SITE_CONFIG, SOURCES, formatAUD, calculatePayBreakdown } from "@/lib/constants";
+import { EMPLOYMENT } from "@/lib/constants/australian-tax";
 import { HOSPITALITY_AWARD, HOSPITALITY_RATES, HOSPITALITY_PENALTIES, RETAIL_AWARD, RETAIL_RATES, RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 
 // Every rate below comes from the award constants (1 July 2026 pay guides).
@@ -154,6 +155,7 @@ export default function RetailHospitalityPayGuidePage() {
                 <li><strong>Roster change notice:</strong> Employers must provide at least <strong>7 days&apos; notice</strong> of any roster change under the retail award. The hospitality award also requires 7 days&apos; notice, but allows changes with shorter notice by mutual agreement or in genuine emergencies.</li>
                 <li><strong>Casual conversion:</strong> Since 26 August 2024, a casual employee who has worked for their employer for at least <strong>6 months</strong> (12 months for a small business employer) and believes they no longer fit the casual definition can notify their employer in writing that they want to change to full-time or part-time employment. The employer must respond in writing within 21 days and can refuse only on the grounds set out in the Fair Work Act.</li>
                 <li><strong>Breaks:</strong> Under the retail award, a shift of more than 4 hours earns a 10-minute paid rest break, and more than 5 hours adds an unpaid meal break of at least 30 minutes. The hospitality award uses a different table: an elective unpaid meal break for shifts over 5 hours, a compulsory 30-minute unpaid meal break over 6 hours, and a 20-minute paid rest break over 8 hours.</li>
+                <li><strong>Paid leave:</strong> Full-time and part-time staff accrue {EMPLOYMENT.annualLeaveWeeks} weeks of annual leave a year (pro rata for part-time) plus {EMPLOYMENT.personalLeaveDays} days of personal leave; casuals get the loading instead. Check what you have built up with the <Link href="/leave-calculator/">annual leave calculator</Link>.</li>
               </ul>
               <div className="bg-eucalyptus-light/40 border-l-4 border-eucalyptus p-5 rounded-r-xl not-prose my-8">
                 <div>

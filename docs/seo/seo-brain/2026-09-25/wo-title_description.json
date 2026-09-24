@@ -1,0 +1,1142 @@
+[
+ {
+  "kind": "title_description",
+  "id": "ctr-superannuation-calculator-1",
+  "route": "/superannuation-calculator/",
+  "priority": 529,
+  "currentTitle": "Super Calculator 2026-27: How Much Super Your Employer Pays",
+  "currentDescription": "Your employer pays 12% super on top of salary: $9,600 a year on $80,000, paid with every pay from 1 July 2026. Total package and $32,500 cap space for 2026-27.",
+  "queries": [
+   {
+    "query": "calculate super on salary",
+    "vol": 480,
+    "pos": 36,
+    "wants": "calculator",
+    "recognised": 0.8
+   },
+   {
+    "query": "extra super contribution calculator",
+    "vol": 320,
+    "pos": 80,
+    "wants": "calculator",
+    "recognised": 0.43
+   },
+   {
+    "query": "s g calculator",
+    "vol": 210,
+    "pos": 39,
+    "wants": "calculator",
+    "recognised": 0.54
+   },
+   {
+    "query": "sg calculator",
+    "vol": 210,
+    "pos": 80,
+    "wants": "calculator",
+    "recognised": 0.73
+   },
+   {
+    "query": "calculating superannuation guarantee",
+    "vol": 170,
+    "pos": 59,
+    "wants": "calculator",
+    "recognised": 0.75
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"extra super contribution calculator\" (320/mo, p=0.43), \"s g calculator\" (210/mo, p=0.54)"
+  ],
+  "keepTokens": [
+   "super",
+   "calculator"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-75000-1",
+  "route": "/salary-to-hourly/75000/",
+  "priority": 413,
+  "currentTitle": "$75,000 a Year Is How Much an Hour? $37.96 in Australia",
+  "currentDescription": "$75k a year is $37.96 an hour before tax on a 38-hour week (1,976 hours a year), or $30.61 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "75 000 a year is how much an hour",
+    "vol": 320,
+    "pos": 7,
+    "wants": "figure",
+    "recognised": 0.93
+   },
+   {
+    "query": "75000 a year is how much an hour",
+    "vol": 320,
+    "pos": 3,
+    "wants": "figure",
+    "recognised": 0.93
+   },
+   {
+    "query": "75000/52",
+    "vol": 260,
+    "pos": 28,
+    "wants": "figure",
+    "recognised": 0.34
+   },
+   {
+    "query": "75k after tax australia",
+    "vol": 260,
+    "pos": 18,
+    "wants": "figure",
+    "recognised": 0.42
+   },
+   {
+    "query": "how much is 70k a year hourly",
+    "vol": 90,
+    "pos": 34,
+    "wants": "figure",
+    "recognised": 0.13
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"75000/52\" (260/mo, p=0.34), \"75k after tax australia\" (260/mo, p=0.42), \"how much is 70k a year hourly\" (90/mo, p=0.13)"
+  ],
+  "keepTokens": [
+   "year",
+   "much",
+   "hour"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-65000-1",
+  "route": "/salary-to-hourly/65000/",
+  "priority": 287,
+  "currentTitle": "$65,000 a Year Is How Much an Hour? $32.89 in Australia",
+  "currentDescription": "$65k a year is $32.89 an hour before tax on a 38-hour week (1,976 hours a year), or $27.18 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "65 000 a year is how much an hour",
+    "vol": 320,
+    "pos": 14,
+    "wants": "figure",
+    "recognised": 0.9
+   },
+   {
+    "query": "65000 a year is how much an hour",
+    "vol": 320,
+    "pos": 5,
+    "wants": "figure",
+    "recognised": 0.94
+   },
+   {
+    "query": "65000 after tax australia",
+    "vol": 260,
+    "pos": 17,
+    "wants": "figure",
+    "recognised": 0.37
+   },
+   {
+    "query": "65k a year is how much an hour",
+    "vol": 260,
+    "pos": 20,
+    "wants": "figure",
+    "recognised": 0.9
+   },
+   {
+    "query": "65000/12",
+    "vol": 210,
+    "pos": 86,
+    "wants": "figure",
+    "recognised": 0.19
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"65000 after tax australia\" (260/mo, p=0.37), \"65000/12\" (210/mo, p=0.19)"
+  ],
+  "keepTokens": [
+   "year",
+   "much",
+   "hour"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-public-service-pay-scales-1",
+  "route": "/public-service-pay-scales/",
+  "priority": 249,
+  "currentTitle": "Public Service Pay Scales 2026 \u2014 APS, States & Territories",
+  "currentDescription": "What every public service level pays in 2026: APS, Victoria, QLD AO, NSW Clerk, WA, SA ASO, TAS Band, ACT ASO and NT AO rates, each with source and take-home pay.",
+  "queries": [
+   {
+    "query": "aps 4 salary",
+    "vol": 1000,
+    "pos": 34,
+    "wants": "table",
+    "recognised": 0.64
+   },
+   {
+    "query": "australian public service levels",
+    "vol": 880,
+    "pos": 29,
+    "wants": "guide",
+    "recognised": 0.65
+   },
+   {
+    "query": "vps 6 pay",
+    "vol": 590,
+    "pos": 11,
+    "wants": "table",
+    "recognised": 0.43
+   },
+   {
+    "query": "vps 6 salary",
+    "vol": 590,
+    "pos": 11,
+    "wants": "figure",
+    "recognised": 0.41
+   },
+   {
+    "query": "aps pay scale",
+    "vol": 480,
+    "pos": 8,
+    "wants": "table",
+    "recognised": 0.77
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"vps 6 pay\" (590/mo, p=0.43), \"vps 6 salary\" (590/mo, p=0.41)",
+   "title promises a table; searchers want a guide (\"australian public service levels\"), figure (\"vps 6 salary\")",
+   "description gives no concrete answer for \"aps 4 salary\" (p=0.08)"
+  ],
+  "keepTokens": [
+   "public",
+   "service",
+   "scale"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-fortnightly-tax-table-1",
+  "route": "/fortnightly-tax-table/",
+  "priority": 211,
+  "currentTitle": "Fortnightly Tax Table 2026-27 (ATO NAT 1006) \u2014 PAYG Calculator",
+  "currentDescription": "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.",
+  "queries": [
+   {
+    "query": "fortnightly tax table",
+    "vol": 27100,
+    "pos": 21,
+    "wants": "table",
+    "recognised": 0.91
+   },
+   {
+    "query": "payg fortnightly tax tables",
+    "vol": 27100,
+    "pos": 18,
+    "wants": "table",
+    "recognised": 0.87
+   },
+   {
+    "query": "tax table fortnightly",
+    "vol": 27100,
+    "pos": 28,
+    "wants": "table",
+    "recognised": 0.88
+   },
+   {
+    "query": "tax tables fortnightly",
+    "vol": 27100,
+    "pos": 15,
+    "wants": "table",
+    "recognised": 0.85
+   },
+   {
+    "query": "tax timetable fortnightly",
+    "vol": 27100,
+    "pos": 32,
+    "wants": "table",
+    "recognised": 0.76
+   }
+  ],
+  "findings": [
+   "description gives no concrete answer for \"fortnightly tax table\" (p=0.16)"
+  ],
+  "keepTokens": [
+   "fortnightly",
+   "table",
+   "payg"
+  ],
+  "needTitle": false,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-120000-1",
+  "route": "/salary-to-hourly/120000/",
+  "priority": 199,
+  "currentTitle": "$120,000 a Year Is How Much an Hour? $60.73 in Australia",
+  "currentDescription": "$120k a year is $60.73 an hour before tax on a 38-hour week (1,976 hours a year), or $46.09 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "120k a year is how much an hour",
+    "vol": 90,
+    "pos": 13,
+    "wants": "figure",
+    "recognised": 0.94
+   },
+   {
+    "query": "tax on 120k",
+    "vol": 90,
+    "pos": 54,
+    "wants": "figure",
+    "recognised": 0.2
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"tax on 120k\" (90/mo, p=0.20)"
+  ],
+  "keepTokens": [
+   "year",
+   "much",
+   "hour"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-95000-1",
+  "route": "/salary-to-hourly/95000/",
+  "priority": 137,
+  "currentTitle": "$95,000 a Year Is How Much an Hour? $48.08 in Australia",
+  "currentDescription": "$95k a year is $48.08 an hour before tax on a 38-hour week (1,976 hours a year), or $37.49 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "95k after tax australia",
+    "vol": 210,
+    "pos": 15,
+    "wants": "figure",
+    "recognised": 0.37
+   },
+   {
+    "query": "95000/52",
+    "vol": 110,
+    "pos": 11,
+    "wants": "figure",
+    "recognised": 0.29
+   },
+   {
+    "query": "95 000 a year is how much an hour",
+    "vol": 90,
+    "pos": 7,
+    "wants": "figure",
+    "recognised": 0.94
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"95k after tax australia\" (210/mo, p=0.37), \"95000/52\" (110/mo, p=0.29)"
+  ],
+  "keepTokens": [
+   "year",
+   "much",
+   "hour"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-sacrifice-calculator-1",
+  "route": "/salary-sacrifice-calculator/",
+  "priority": 129,
+  "currentTitle": "Salary Sacrifice Calculator \u2014 How Much Will You Save?",
+  "currentDescription": "Compare take-home pay before and after salary sacrifice. See your tax savings, super boost & actual benefit. Free Australian calculator updated for FY2026-27.",
+  "queries": [
+   {
+    "query": "tax calculator with salary sacrifice",
+    "vol": 110,
+    "pos": 67,
+    "wants": "calculator",
+    "recognised": 0.82
+   },
+   {
+    "query": "salary sacrifice pay calculator",
+    "vol": 90,
+    "pos": 34,
+    "wants": "calculator",
+    "recognised": 0.83
+   },
+   {
+    "query": "pay calculator with salary sacrifice",
+    "vol": 70,
+    "pos": 35,
+    "wants": "calculator",
+    "recognised": 0.78
+   },
+   {
+    "query": "fortnightly salary sacrifice calculator",
+    "vol": 40,
+    "pos": 61,
+    "wants": "calculator",
+    "recognised": 0.5
+   },
+   {
+    "query": "how to calculate salary sacrifice",
+    "vol": 40,
+    "pos": 81,
+    "wants": "guide",
+    "recognised": 0.59
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"fortnightly salary sacrifice calculator\" (40/mo, p=0.50), \"how to calculate salary sacrifice\" (40/mo, p=0.59)",
+   "title reads generic (p=0.72)",
+   "description gives no concrete answer for \"tax calculator with salary sacrifice\" (p=0.12)"
+  ],
+  "keepTokens": [
+   "calculator",
+   "salary",
+   "sacrifice"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-annual-pay-calculator-1",
+  "route": "/annual-pay-calculator/",
+  "priority": 123,
+  "currentTitle": "Annual Salary After Tax Calculator Australia 2026-27",
+  "currentDescription": "A $80,000 salary is $63,880 a year after tax in 2026-27. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.",
+  "queries": [
+   {
+    "query": "salary calculator adp",
+    "vol": 8100,
+    "pos": 53,
+    "wants": "calculator",
+    "recognised": 0.3
+   },
+   {
+    "query": "pay after tax",
+    "vol": 2900,
+    "pos": 49,
+    "wants": "calculator",
+    "recognised": 0.81
+   },
+   {
+    "query": "salary after tax",
+    "vol": 2900,
+    "pos": 44,
+    "wants": "calculator",
+    "recognised": 0.88
+   },
+   {
+    "query": "annual earning calculator",
+    "vol": 1900,
+    "pos": 33,
+    "wants": "calculator",
+    "recognised": 0.62
+   },
+   {
+    "query": "annual income",
+    "vol": 480,
+    "pos": 47,
+    "wants": "calculator",
+    "recognised": 0.35
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"salary calculator adp\" (8100/mo, p=0.30), \"annual income\" (480/mo, p=0.35)",
+   "description is 185 chars; Google truncates ~155\u2013165"
+  ],
+  "keepTokens": [
+   "after",
+   "salary",
+   "annual",
+   "calculator"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-centrelink-income-test-1",
+  "route": "/centrelink-income-test/",
+  "priority": 120,
+  "currentTitle": "Centrelink Income Test \u2014 How Income Affects Your Payment",
+  "currentDescription": "Centrelink income test explained: free areas, tapers and cut-offs for JobSeeker, FTB, Age Pension, DSP and CCS, plus the assets test and deeming, from 20 Sep 2026.",
+  "queries": [
+   {
+    "query": "jobseeker payment calculator",
+    "vol": 1300,
+    "pos": 11,
+    "wants": "calculator",
+    "recognised": 0.31
+   },
+   {
+    "query": "job seeker calculator",
+    "vol": 480,
+    "pos": 37,
+    "wants": "calculator",
+    "recognised": 0.3
+   },
+   {
+    "query": "jobseeker calculator",
+    "vol": 480,
+    "pos": 15,
+    "wants": "calculator",
+    "recognised": 0.28
+   },
+   {
+    "query": "centrelink earnings calculator",
+    "vol": 390,
+    "pos": 9,
+    "wants": "calculator",
+    "recognised": 0.51
+   },
+   {
+    "query": "centrelink online estimator",
+    "vol": 390,
+    "pos": 9,
+    "wants": "calculator",
+    "recognised": 0.4
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"jobseeker payment calculator\" (1300/mo, p=0.31), \"job seeker calculator\" (480/mo, p=0.30), \"jobseeker calculator\" (480/mo, p=0.28), \"centrelink earnings calculator\" (390/mo, p=0.51), \"centrelink online estimator\" (390/mo, p=0.40)",
+   "title promises a guide; searchers want a calculator (\"jobseeker payment calculator\"), calculator (\"job seeker calculator\"), calculator (\"jobseeker calculator\"), calculator (\"centrelink earnings calculator\"), calculator (\"centrelink online estimator\")",
+   "title reads generic (p=0.80)",
+   "description gives no concrete answer for \"jobseeker payment calculator\" (p=0.10)"
+  ],
+  "keepTokens": [],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-130000-1",
+  "route": "/salary-to-hourly/130000/",
+  "priority": 115,
+  "currentTitle": "$130,000 a Year Is How Much an Hour? $65.79 in Australia",
+  "currentDescription": "$130k a year is $65.79 an hour before tax on a 38-hour week (1,976 hours a year), or $49.53 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "130 000 after tax australia",
+    "vol": 210,
+    "pos": 19,
+    "wants": "figure",
+    "recognised": 0.38
+   },
+   {
+    "query": "130000 after tax australia",
+    "vol": 210,
+    "pos": 14,
+    "wants": "figure",
+    "recognised": 0.38
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"130 000 after tax australia\" (210/mo, p=0.38), \"130000 after tax australia\" (210/mo, p=0.38)"
+  ],
+  "keepTokens": [],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-140000-1",
+  "route": "/salary-to-hourly/140000/",
+  "priority": 101,
+  "currentTitle": "$140,000 a Year Is How Much an Hour? $70.85 in Australia",
+  "currentDescription": "$140k a year is $70.85 an hour before tax on a 38-hour week (1,976 hours a year), or $52.80 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "140 000 after tax australia",
+    "vol": 170,
+    "pos": 18,
+    "wants": "figure",
+    "recognised": 0.41
+   },
+   {
+    "query": "140k after tax",
+    "vol": 110,
+    "pos": 14,
+    "wants": "figure",
+    "recognised": 0.36
+   },
+   {
+    "query": "140000/52",
+    "vol": 90,
+    "pos": 6,
+    "wants": "figure",
+    "recognised": 0.34
+   },
+   {
+    "query": "140000 aud after tax",
+    "vol": 50,
+    "pos": 18,
+    "wants": "figure",
+    "recognised": 0.38
+   },
+   {
+    "query": "140k salary after tax australia",
+    "vol": 50,
+    "pos": 15,
+    "wants": "figure",
+    "recognised": 0.4
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"140 000 after tax australia\" (170/mo, p=0.41), \"140k after tax\" (110/mo, p=0.36), \"140000/52\" (90/mo, p=0.34), \"140000 aud after tax\" (50/mo, p=0.38), \"140k salary after tax australia\" (50/mo, p=0.40)"
+  ],
+  "keepTokens": [],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-tax-on-55000-1",
+  "route": "/tax-on/55000/",
+  "priority": 94,
+  "currentTitle": "Tax on $55,000 in Australia: $6,845 Income Tax (2026-27)",
+  "currentDescription": "Tax on $55,000 in 2026-27 is $6,845 income tax plus $1,100 Medicare levy: $7,945 in total (14.4% of salary), leaving $47,055 take-home a year.",
+  "queries": [
+   {
+    "query": "55000 after tax australia",
+    "vol": 90,
+    "pos": 39,
+    "wants": "figure",
+    "recognised": 0.81
+   },
+   {
+    "query": "60k after tax",
+    "vol": 90,
+    "pos": 73,
+    "wants": "figure",
+    "recognised": 0.14
+   },
+   {
+    "query": "tax on 53000 australia",
+    "vol": 90,
+    "pos": 35,
+    "wants": "figure",
+    "recognised": 0.14
+   },
+   {
+    "query": "tax on 54000 australia",
+    "vol": 90,
+    "pos": 61,
+    "wants": "figure",
+    "recognised": 0.17
+   },
+   {
+    "query": "tax on 57000 australia",
+    "vol": 70,
+    "pos": 31,
+    "wants": "figure",
+    "recognised": 0.18
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"60k after tax\" (90/mo, p=0.14), \"tax on 53000 australia\" (90/mo, p=0.14), \"tax on 54000 australia\" (90/mo, p=0.17), \"tax on 57000 australia\" (70/mo, p=0.18)"
+  ],
+  "keepTokens": [
+   "australia"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-schedule-5-tax-table-1",
+  "route": "/schedule-5-tax-table/",
+  "priority": 91,
+  "currentTitle": "Schedule 5 Tax Table 2026-27 (NAT 3348) \u2014 Bonus PAYG",
+  "currentDescription": "ATO Schedule 5 (NAT 3348) for 2026-27: how PAYG is withheld from bonuses, commissions and back pay. Methods A, B(i) and B(ii) step by step and a ready reckoner.",
+  "queries": [
+   {
+    "query": "payg on schedule 5",
+    "vol": 720,
+    "pos": 9,
+    "wants": "table",
+    "recognised": 0.89
+   },
+   {
+    "query": "payg schedule 5",
+    "vol": 320,
+    "pos": 9,
+    "wants": "table",
+    "recognised": 0.9
+   },
+   {
+    "query": "ato schedule 5",
+    "vol": 70,
+    "pos": 10,
+    "wants": "guide",
+    "recognised": 0.82
+   },
+   {
+    "query": "what is payg schedule 5",
+    "vol": 50,
+    "pos": 10,
+    "wants": "guide",
+    "recognised": 0.8
+   },
+   {
+    "query": "schedule 5 payg",
+    "vol": 40,
+    "pos": 8,
+    "wants": "table",
+    "recognised": 0.88
+   }
+  ],
+  "findings": [
+   "description gives no concrete answer for \"payg on schedule 5\" (p=0.18)"
+  ],
+  "keepTokens": [
+   "payg",
+   "schedule"
+  ],
+  "needTitle": false,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-salary-to-hourly-55000-1",
+  "route": "/salary-to-hourly/55000/",
+  "priority": 84,
+  "currentTitle": "$55,000 a Year Is How Much an Hour? $27.83 in Australia",
+  "currentDescription": "$55k a year is $27.83 an hour before tax on a 38-hour week (1,976 hours a year), or $23.81 an hour after tax in 2026-27. Weekly, fortnightly and monthly pay too.",
+  "queries": [
+   {
+    "query": "55000 a year is how much an hour",
+    "vol": 110,
+    "pos": 10,
+    "wants": "figure",
+    "recognised": 0.95
+   },
+   {
+    "query": "55000/52",
+    "vol": 110,
+    "pos": 26,
+    "wants": "figure",
+    "recognised": 0.32
+   },
+   {
+    "query": "tax on 55000",
+    "vol": 90,
+    "pos": 11,
+    "wants": "figure",
+    "recognised": 0.2
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the salary-to-hourly template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"55000/52\" (110/mo, p=0.32), \"tax on 55000\" (90/mo, p=0.20)"
+  ],
+  "keepTokens": [
+   "year",
+   "much",
+   "hour"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-tax-on-35000-1",
+  "route": "/tax-on/35000/",
+  "priority": 84,
+  "currentTitle": "Tax on $35,000 in Australia: $1,820 Income Tax (2026-27)",
+  "currentDescription": "Tax on $35,000 in 2026-27 is $1,820 income tax plus $699 Medicare levy: $2,519 in total (7.2% of salary), leaving $32,481 take-home a year.",
+  "queries": [
+   {
+    "query": "tax on 35000 australia",
+    "vol": 170,
+    "pos": 5,
+    "wants": "figure",
+    "recognised": 0.95
+   },
+   {
+    "query": "tax on 36000 australia",
+    "vol": 110,
+    "pos": 23,
+    "wants": "figure",
+    "recognised": 0.12
+   },
+   {
+    "query": "tax 35000",
+    "vol": 90,
+    "pos": 7,
+    "wants": "figure",
+    "recognised": 0.7
+   },
+   {
+    "query": "tax on 37000 australia",
+    "vol": 90,
+    "pos": 59,
+    "wants": "figure",
+    "recognised": 0.12
+   },
+   {
+    "query": "tax on 38000 australia",
+    "vol": 90,
+    "pos": 44,
+    "wants": "figure",
+    "recognised": 0.1
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"tax on 36000 australia\" (110/mo, p=0.12), \"tax on 37000 australia\" (90/mo, p=0.12), \"tax on 38000 australia\" (90/mo, p=0.10)"
+  ],
+  "keepTokens": [
+   "australia"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-schads-award-pay-rates-1",
+  "route": "/schads-award-pay-rates/",
+  "priority": 63,
+  "currentTitle": "SCHADS Award Pay Rates 2026-27 (MA000100) \u2014 Levels, Pay Points",
+  "currentDescription": "Every SCHADS classification rate from 1 July 2026, Level 1 $27.55/hr to Level 8 $71.19/hr. Level 4 is $1,774.74 a week with the Equal Remuneration Order applied.",
+  "queries": [
+   {
+    "query": "schads",
+    "vol": 3600,
+    "pos": 82,
+    "wants": "table",
+    "recognised": 0.76
+   },
+   {
+    "query": "schads award 2025",
+    "vol": 3600,
+    "pos": 36,
+    "wants": "table",
+    "recognised": 0.21
+   },
+   {
+    "query": "schads award pay rates",
+    "vol": 3600,
+    "pos": 22,
+    "wants": "table",
+    "recognised": 0.91
+   },
+   {
+    "query": "schads level 4",
+    "vol": 1300,
+    "pos": 27,
+    "wants": "table",
+    "recognised": 0.73
+   },
+   {
+    "query": "schads level 5",
+    "vol": 1300,
+    "pos": 25,
+    "wants": "table",
+    "recognised": 0.68
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"schads award 2025\" (3600/mo, p=0.21)"
+  ],
+  "keepTokens": [
+   "schads",
+   "award",
+   "rates",
+   "level"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-tax-on-45000-1",
+  "route": "/tax-on/45000/",
+  "priority": 59,
+  "currentTitle": "Tax on $45,000 in Australia: $3,695 Income Tax (2026-27)",
+  "currentDescription": "Tax on $45,000 in 2026-27 is $3,695 income tax plus $900 Medicare levy: $4,595 in total (10.2% of salary), leaving $40,405 take-home a year.",
+  "queries": [
+   {
+    "query": "tax on 45000 australia",
+    "vol": 320,
+    "pos": 20,
+    "wants": "figure",
+    "recognised": 0.9
+   },
+   {
+    "query": "tax on 45000",
+    "vol": 170,
+    "pos": 7,
+    "wants": "figure",
+    "recognised": 0.64
+   },
+   {
+    "query": "tax on $45000 australia",
+    "vol": 110,
+    "pos": 21,
+    "wants": "figure",
+    "recognised": 0.93
+   },
+   {
+    "query": "tax on 44000 australia",
+    "vol": 90,
+    "pos": 64,
+    "wants": "figure",
+    "recognised": 0.14
+   },
+   {
+    "query": "tax on 47000 australia",
+    "vol": 90,
+    "pos": 60,
+    "wants": "figure",
+    "recognised": 0.15
+   }
+  ],
+  "findings": [
+   "TEMPLATE PAGE: the title comes from the tax-on template; change the template once (all pages), never one slug. Queries like \"N after tax\" belong to /take-home-pay-on/N/ \u2014 prefer a cross-link with that anchor over retitling this page",
+   "title not recognised for: \"tax on 44000 australia\" (90/mo, p=0.14), \"tax on 47000 australia\" (90/mo, p=0.15)"
+  ],
+  "keepTokens": [
+   "australia"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-stsl-on-payslip-1",
+  "route": "/stsl-on-payslip/",
+  "priority": 56,
+  "currentTitle": "What Is STSL on Your Payslip? STSL Tax Explained (2026-27)",
+  "currentDescription": "STSL on your payslip stands for Study and Training Support Loans \u2014 the extra tax withheld for your HECS-HELP repayment. How it's calculated and how to stop it.",
+  "queries": [
+   {
+    "query": "stsl on payslip",
+    "vol": 720,
+    "pos": 21,
+    "wants": "guide",
+    "recognised": 0.89
+   },
+   {
+    "query": "what is stsl on payslip",
+    "vol": 590,
+    "pos": 22,
+    "wants": "guide",
+    "recognised": 0.91
+   },
+   {
+    "query": "what is stsl",
+    "vol": 480,
+    "pos": 25,
+    "wants": "guide",
+    "recognised": 0.83
+   },
+   {
+    "query": "stsl component meaning",
+    "vol": 320,
+    "pos": 25,
+    "wants": "guide",
+    "recognised": 0.75
+   },
+   {
+    "query": "stsl meaning",
+    "vol": 320,
+    "pos": 27,
+    "wants": "guide",
+    "recognised": 0.82
+   }
+  ],
+  "findings": [
+   "title reads generic (p=0.64)"
+  ],
+  "keepTokens": [
+   "stsl",
+   "payslip",
+   "what"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-employment-type-calculator-1",
+  "route": "/employment-type-calculator/",
+  "priority": 55,
+  "currentTitle": "Part-Time vs Full-Time vs Casual Pay Calculator",
+  "currentDescription": "Compare take-home pay and entitlements for full-time, part-time and casual work in Australia, including leave, super and casual loading.",
+  "queries": [
+   {
+    "query": "contract to salary calculator",
+    "vol": 590,
+    "pos": 80,
+    "wants": "calculator",
+    "recognised": 0.15
+   },
+   {
+    "query": "part time pay",
+    "vol": 320,
+    "pos": 34,
+    "wants": "calculator",
+    "recognised": 0.65
+   },
+   {
+    "query": "part time job pay rate",
+    "vol": 260,
+    "pos": 36,
+    "wants": "figure",
+    "recognised": 0.51
+   },
+   {
+    "query": "part time salary",
+    "vol": 260,
+    "pos": 28,
+    "wants": "calculator",
+    "recognised": 0.51
+   },
+   {
+    "query": "pay rate for permanent part time",
+    "vol": 260,
+    "pos": 28,
+    "wants": "figure",
+    "recognised": 0.44
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"contract to salary calculator\" (590/mo, p=0.15), \"part time job pay rate\" (260/mo, p=0.51), \"part time salary\" (260/mo, p=0.51), \"pay rate for permanent part time\" (260/mo, p=0.44)",
+   "description gives no concrete answer for \"contract to salary calculator\" (p=0.06)"
+  ],
+  "keepTokens": [
+   "part",
+   "time"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-austudy-youth-allowance-calculator-1",
+  "route": "/austudy-youth-allowance-calculator/",
+  "priority": 52,
+  "currentTitle": "Youth Allowance Calculator 2026 \u2014 Rates, Eligibility, Income Test",
+  "currentDescription": "Youth Allowance and Austudy rates ($418.90 to $854.20 a fortnight), eligibility and the student income test: $539 free area, 50c to $646, then 60c.",
+  "queries": [
+   {
+    "query": "youth allowance calculator",
+    "vol": 2400,
+    "pos": 20,
+    "wants": "calculator",
+    "recognised": 0.88
+   },
+   {
+    "query": "youth allowance estimator",
+    "vol": 2400,
+    "pos": 18,
+    "wants": "calculator",
+    "recognised": 0.73
+   },
+   {
+    "query": "how much is austudy",
+    "vol": 880,
+    "pos": 20,
+    "wants": "figure",
+    "recognised": 0.67
+   },
+   {
+    "query": "how much is austudy payment",
+    "vol": 720,
+    "pos": 19,
+    "wants": "figure",
+    "recognised": 0.65
+   },
+   {
+    "query": "austudy calculator",
+    "vol": 480,
+    "pos": 13,
+    "wants": "calculator",
+    "recognised": 0.64
+   }
+  ],
+  "findings": [
+   "title promises a calculator; searchers want a figure (\"how much is austudy\"), figure (\"how much is austudy payment\")"
+  ],
+  "keepTokens": [
+   "youth",
+   "allowance",
+   "calculator"
+  ],
+  "needTitle": true,
+  "needDescription": true
+ },
+ {
+  "kind": "title_description",
+  "id": "ctr-medicare-levy-1",
+  "route": "/medicare-levy/",
+  "priority": 43,
+  "currentTitle": "Medicare Levy Calculator: 2% Levy, Low-Income & Family Thresholds",
+  "currentDescription": "Free Medicare levy calculator: the 2% levy, the low-income shade-in from $28,011 to $35,013, and exemptions. The 2026-27 surcharge has its own calculator.",
+  "queries": [
+   {
+    "query": "medicare levy calculator",
+    "vol": 4400,
+    "pos": 26,
+    "wants": "calculator",
+    "recognised": 0.91
+   },
+   {
+    "query": "medicare levy surcharge calculator",
+    "vol": 2900,
+    "pos": 29,
+    "wants": "calculator",
+    "recognised": 0.22
+   },
+   {
+    "query": "ato medicare levy calculator",
+    "vol": 210,
+    "pos": 58,
+    "wants": "calculator",
+    "recognised": 0.76
+   },
+   {
+    "query": "medicare levy calculator 2026",
+    "vol": 210,
+    "pos": 25,
+    "wants": "calculator",
+    "recognised": 0.45
+   },
+   {
+    "query": "medicare surcharge calculator",
+    "vol": 210,
+    "pos": 23,
+    "wants": "calculator",
+    "recognised": 0.24
+   }
+  ],
+  "findings": [
+   "title not recognised for: \"medicare levy surcharge calculator\" (2900/mo, p=0.22), \"medicare levy calculator 2026\" (210/mo, p=0.45), \"medicare surcharge calculator\" (210/mo, p=0.24)"
+  ],
+  "keepTokens": [
+   "medicare",
+   "levy",
+   "calculator"
+  ],
+  "needTitle": true,
+  "needDescription": false
+ }
+]

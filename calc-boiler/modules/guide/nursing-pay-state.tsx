@@ -438,7 +438,9 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
                 deduction applied correctly. The mechanics, caps and eligibility are in the{" "}
                 <Link href="/salary-packaging-guide/">salary packaging guide</Link>; the{" "}
                 <Link href="/salary-sacrifice-calculator/">salary sacrifice calculator</Link> shows the effect on a
-                specific salary.
+                specific salary, and the state{" "}
+                <Link href={`/pay-calculator-${state.slug}/`}>pay calculator {state.slug}</Link> shows the
+                take-home figure on any {state.shortName} salary before packaging.
               </p>
             </section>
 

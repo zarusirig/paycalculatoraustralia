@@ -1,0 +1,1998 @@
+{
+ "level": "technical",
+ "author": "seo-brain decide.mts (Jev jev-1.13.0 judgments + code policy)",
+ "createdAt": "2026-09-24T21:48:04.450Z",
+ "signalsGeneratedAt": "2026-09-24T21:39:17.943Z",
+ "decisions": [
+  {
+   "id": "cannibal-home-22",
+   "level": "cannibal",
+   "priority": 25.585,
+   "confidence": 0.4,
+   "rationale": "Different purpose but the titles and openings blur it (same-intent p=0.60). Sharpen the loser's title/opening so each page names its own job; keep both URLs.",
+   "evidence": {
+    "keywords": [],
+    "note": "titles: Pay Calculator Australia 2026-27 \u2014 Salary Calculator After Tax | Annual Salary After Tax Calculator Australia 2026-27"
+   },
+   "targetQueries": [
+    "australia salary calculator",
+    "tax withheld calculator",
+    "withholdings tax calculator",
+    "salary take home calculator"
+   ],
+   "kind": "consolidate",
+   "keepRoute": "/",
+   "loserRoutes": [
+    "/annual-pay-calculator/"
+   ],
+   "method": "differentiate"
+  },
+  {
+   "id": "cannibal-employment-type-calculator-25",
+   "level": "cannibal",
+   "priority": 13.5,
+   "confidence": 0.62,
+   "rationale": "Different purpose but the titles and openings blur it (same-intent p=0.38). Sharpen the loser's title/opening so each page names its own job; keep both URLs.",
+   "evidence": {
+    "keywords": [],
+    "note": "titles: Part-Time vs Full-Time vs Casual Pay Calculator | Full-Time vs Part-Time vs Casual \u2014 Complete Comparison"
+   },
+   "targetQueries": [
+    "contract to salary calculator",
+    "part time pay",
+    "part time job pay rate",
+    "part time salary"
+   ],
+   "kind": "consolidate",
+   "keepRoute": "/employment-type-calculator/",
+   "loserRoutes": [
+    "/full-time-vs-part-time-vs-casual/"
+   ],
+   "method": "differentiate"
+  },
+  {
+   "id": "links-fortnightly-tax-table-26",
+   "level": "links",
+   "priority": 69,
+   "confidence": 0.69,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /fortnightly-tax-table/ next (Jev p=0.69); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 13 contextual inlinks and 12,590 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "Fortnightly Tax Table 2026-27 (ATO NAT 1006 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/fortnightly-tax-table/",
+   "anchor": "fortnightly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-tax-table-27",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /teacher-pay-australia/qld/ plausibly wants /fortnightly-tax-table/ next (Jev p=0.58); /teacher-pay-australia/qld/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 13 contextual inlinks and 12,590 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 42,
+     "impressions": 12590,
+     "ctr": 0.0033,
+     "position": 9.66
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "payg fortnightly tax tables",
+      "vol": 27100,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "tax table fortnightly",
+      "vol": 27100,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table",
+    "payg fortnightly tax tables",
+    "tax table fortnightly",
+    "Fortnightly Tax Table 2026-27 (ATO NAT 1006 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/teacher-pay-australia/qld/",
+   "toRoute": "/fortnightly-tax-table/",
+   "anchor": "fortnightly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-award-rates-28",
+   "level": "links",
+   "priority": 67,
+   "confidence": 0.67,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /award-rates/ next (Jev p=0.67); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 415 contextual inlinks and 8,689 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 41,
+     "impressions": 8689,
+     "ctr": 0.004699999999999999,
+     "position": 12.32
+    },
+    "keywords": [
+     {
+      "kw": "pay rates",
+      "vol": 2900,
+      "kd": 21,
+      "intent": "informational",
+      "pos": 33
+     },
+     {
+      "kw": "rates of pay",
+      "vol": 2900,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 37
+     },
+     {
+      "kw": "award pay rates",
+      "vol": 1900,
+      "kd": 16,
+      "intent": "informational",
+      "pos": 24
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay rates",
+    "rates of pay",
+    "award pay rates",
+    "Award Rates 2026-27 : Pay Rates for Every Major Modern Award, A\u2013Z"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/award-rates/",
+   "anchor": "award pay rates",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-payg-withholding-tables-29",
+   "level": "links",
+   "priority": 68,
+   "confidence": 0.68,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /payg-withholding-tables/ next (Jev p=0.68); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 160 contextual inlinks and 3,141 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026",
+    "weekly tax table 2026",
+    "australian tax table fortnightly",
+    "PAYG Withholding Tax Tables 2026-27 : Which ATO Table to Use"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/payg-withholding-tables/",
+   "anchor": "weekly tax table 2026",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-payg-withholding-tables-30",
+   "level": "links",
+   "priority": 62,
+   "confidence": 0.62,
+   "rationale": "A reader of /news/new-minimum-wage-take-home-pay/ plausibly wants /payg-withholding-tables/ next (Jev p=0.62); /news/new-minimum-wage-take-home-pay/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 160 contextual inlinks and 3,141 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026",
+    "weekly tax table 2026",
+    "australian tax table fortnightly",
+    "PAYG Withholding Tax Tables 2026-27 : Which ATO Table to Use"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/news/new-minimum-wage-take-home-pay/",
+   "toRoute": "/payg-withholding-tables/",
+   "anchor": "weekly tax table 2026",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hourly-to-annual-salary-calculator-31",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /tax-brackets/ plausibly wants /hourly-to-annual-salary-calculator/ next (Jev p=0.58); /tax-brackets/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 326 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "how many hour in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 62
+     },
+     {
+      "kw": "how many hr in a year",
+      "vol": 12100,
+      "kd": 4,
+      "intent": "informational",
+      "pos": 48
+     },
+     {
+      "kw": "salary rate calculator",
+      "vol": 9900,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 29
+     }
+    ]
+   },
+   "targetQueries": [
+    "how many hour in a year",
+    "how many hr in a year",
+    "salary rate calculator",
+    "Hourly to Annual Salary Calculator"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-brackets/",
+   "toRoute": "/hourly-to-annual-salary-calculator/",
+   "anchor": "Hourly to Annual Salary Calculator",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-pay-calculator-32",
+   "level": "links",
+   "priority": 67,
+   "confidence": 0.67,
+   "rationale": "A reader of /contractor-vs-employee-calculator/ plausibly wants /fortnightly-pay-calculator/ next (Jev p=0.67); /contractor-vs-employee-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 201 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly",
+      "vol": 12100,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 6
+     },
+     {
+      "kw": "fortnightly tax calculator",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "tax calculator fortnightly",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly",
+    "fortnightly tax calculator",
+    "tax calculator fortnightly",
+    "Fortnightly Pay & Tax Calculator Australia 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/contractor-vs-employee-calculator/",
+   "toRoute": "/fortnightly-pay-calculator/",
+   "anchor": "Fortnightly Pay & Tax Calculator Australia 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-fortnightly-pay-calculator-33",
+   "level": "links",
+   "priority": 63,
+   "confidence": 0.63,
+   "rationale": "A reader of /average-salary-australia/ plausibly wants /fortnightly-pay-calculator/ next (Jev p=0.63); /average-salary-australia/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 201 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly",
+      "vol": 12100,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 6
+     },
+     {
+      "kw": "fortnightly tax calculator",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "tax calculator fortnightly",
+      "vol": 5400,
+      "kd": 23,
+      "intent": "informational",
+      "pos": 36
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly",
+    "fortnightly tax calculator",
+    "tax calculator fortnightly",
+    "Fortnightly Pay & Tax Calculator Australia 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/average-salary-australia/",
+   "toRoute": "/fortnightly-pay-calculator/",
+   "anchor": "Fortnightly Pay & Tax Calculator Australia 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hospitality-award-rates-34",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /backpay-calculator/ plausibly wants /hospitality-award-rates/ next (Jev p=0.65); /backpay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 54 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "hospitality award",
+    "award wage for hospitality",
+    "hospitality award rates",
+    "Hospitality Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/backpay-calculator/",
+   "toRoute": "/hospitality-award-rates/",
+   "anchor": "Hospitality Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-hospitality-award-rates-35",
+   "level": "links",
+   "priority": 59,
+   "confidence": 0.59,
+   "rationale": "A reader of /employment-type-calculator/ plausibly wants /hospitality-award-rates/ next (Jev p=0.59); /employment-type-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 54 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "hospitality award",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 56
+     },
+     {
+      "kw": "award wage for hospitality",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "commercial",
+      "pos": 24
+     },
+     {
+      "kw": "hospitality award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 14
+     }
+    ]
+   },
+   "targetQueries": [
+    "hospitality award",
+    "award wage for hospitality",
+    "hospitality award rates",
+    "Hospitality Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/employment-type-calculator/",
+   "toRoute": "/hospitality-award-rates/",
+   "anchor": "Hospitality Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-80000-36",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /tax-on/80000/ next (Jev p=0.65); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "80000 after tax australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 80000 australia",
+      "vol": 720,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "80000 12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     }
+    ]
+   },
+   "targetQueries": [
+    "80000 after tax australia",
+    "tax on 80000 australia",
+    "80000 12",
+    "Tax on $80,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/tax-on/80000/",
+   "anchor": "Tax on $80,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-80000-37",
+   "level": "links",
+   "priority": 59,
+   "confidence": 0.59,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/80000/ next (Jev p=0.59); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "80000 after tax australia",
+      "vol": 880,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "tax on 80000 australia",
+      "vol": 720,
+      "kd": 11,
+      "intent": "informational",
+      "pos": 13
+     },
+     {
+      "kw": "80000 12",
+      "vol": 480,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 7
+     }
+    ]
+   },
+   "targetQueries": [
+    "80000 after tax australia",
+    "tax on 80000 australia",
+    "80000 12",
+    "Tax on $80,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/80000/",
+   "anchor": "Tax on $80,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-monthly-tax-table-38",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /teacher-pay-australia/qld/ plausibly wants /monthly-tax-table/ next (Jev p=0.57); /teacher-pay-australia/qld/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 9 contextual inlinks and 2,838 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 29,
+     "impressions": 2838,
+     "ctr": 0.0102,
+     "position": 10.21
+    },
+    "keywords": [
+     {
+      "kw": "tax table 2026",
+      "vol": 6600,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "monthly tax table",
+      "vol": 2400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 21
+     },
+     {
+      "kw": "tax monthly table",
+      "vol": 2400,
+      "kd": 1,
+      "intent": "informational",
+      "pos": 21
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax table 2026",
+    "monthly tax table",
+    "tax monthly table",
+    "Monthly Tax Table 2026-27 (ATO NAT 1007 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/teacher-pay-australia/qld/",
+   "toRoute": "/monthly-tax-table/",
+   "anchor": "monthly tax table",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-39",
+   "level": "links",
+   "priority": 80,
+   "confidence": 0.8,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /pay-rise-calculator/ next (Jev p=0.80); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia \u2014 How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-40",
+   "level": "links",
+   "priority": 73,
+   "confidence": 0.73,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /pay-rise-calculator/ next (Jev p=0.73); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia \u2014 How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-rise-calculator-41",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /stage-3-tax-cuts/ plausibly wants /pay-rise-calculator/ next (Jev p=0.65); /stage-3-tax-cuts/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 186 contextual inlinks and 2 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 2,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "calculator for salary increase",
+      "vol": 720,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 22
+     },
+     {
+      "kw": "income increase calculator",
+      "vol": 720,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 27
+     },
+     {
+      "kw": "increase in pay calculator",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 28
+     }
+    ]
+   },
+   "targetQueries": [
+    "calculator for salary increase",
+    "income increase calculator",
+    "increase in pay calculator",
+    "Pay Rise Calculator Australia \u2014 How Much Extra Will You Take Home? ( 2026-27 )"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/stage-3-tax-cuts/",
+   "toRoute": "/pay-rise-calculator/",
+   "anchor": "calculator for salary increase",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-qld-42",
+   "level": "links",
+   "priority": 55,
+   "confidence": 0.55,
+   "rationale": "A reader of /annual-pay-calculator/ plausibly wants /pay-calculator-qld/ next (Jev p=0.55); /annual-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 21 contextual inlinks and 2,442 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 14,
+     "impressions": 2442,
+     "ctr": 0.005699999999999999,
+     "position": 9.74
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator qld",
+      "vol": 1900,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator queensland",
+      "vol": 1900,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "salary calculator qld",
+      "vol": 1900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 33
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator qld",
+    "pay calculator queensland",
+    "salary calculator qld",
+    "Pay Calculator QLD: Your Take-Home Pay in Queensland"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/annual-pay-calculator/",
+   "toRoute": "/pay-calculator-qld/",
+   "anchor": "pay calculator qld",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-qld-43",
+   "level": "links",
+   "priority": 55,
+   "confidence": 0.55,
+   "rationale": "A reader of /monthly-pay-calculator/ plausibly wants /pay-calculator-qld/ next (Jev p=0.55); /monthly-pay-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 21 contextual inlinks and 2,442 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 14,
+     "impressions": 2442,
+     "ctr": 0.005699999999999999,
+     "position": 9.74
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator qld",
+      "vol": 1900,
+      "kd": 38,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator queensland",
+      "vol": 1900,
+      "kd": 15,
+      "intent": "informational",
+      "pos": 34
+     },
+     {
+      "kw": "salary calculator qld",
+      "vol": 1900,
+      "kd": 10,
+      "intent": "informational",
+      "pos": 33
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator qld",
+    "pay calculator queensland",
+    "salary calculator qld",
+    "Pay Calculator QLD: Your Take-Home Pay in Queensland"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/monthly-pay-calculator/",
+   "toRoute": "/pay-calculator-qld/",
+   "anchor": "pay calculator qld",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-retail-award-rates-44",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /employment-type-calculator/ plausibly wants /retail-award-rates/ next (Jev p=0.65); /employment-type-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 74 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ]
+   },
+   "targetQueries": [
+    "retail award rate",
+    "retail industry award rates",
+    "pay rate for retail",
+    "Retail Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/employment-type-calculator/",
+   "toRoute": "/retail-award-rates/",
+   "anchor": "Retail Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-retail-award-rates-45",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /full-time-vs-part-time-vs-casual/ plausibly wants /retail-award-rates/ next (Jev p=0.58); /full-time-vs-part-time-vs-casual/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 74 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "retail award rate",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "retail industry award rates",
+      "vol": 3600,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 50
+     },
+     {
+      "kw": "pay rate for retail",
+      "vol": 590,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 54
+     }
+    ]
+   },
+   "targetQueries": [
+    "retail award rate",
+    "retail industry award rates",
+    "pay rate for retail",
+    "Retail Award Pay Rates 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/full-time-vs-part-time-vs-casual/",
+   "toRoute": "/retail-award-rates/",
+   "anchor": "Retail Award Pay Rates 2026-27",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-leave-calculator-46",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /retail-hospitality-pay-guide/ plausibly wants /leave-calculator/ next (Jev p=0.58); /retail-hospitality-pay-guide/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 23 contextual inlinks and 5,932 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 49,
+     "impressions": 5932,
+     "ctr": 0.0083,
+     "position": 9.82
+    },
+    "keywords": [
+     {
+      "kw": "annual leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 71
+     },
+     {
+      "kw": "annual leave calculator",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 49
+     },
+     {
+      "kw": "annual.leave calculation",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 70
+     }
+    ]
+   },
+   "targetQueries": [
+    "annual leave calculation",
+    "annual leave calculator",
+    "annual.leave calculation",
+    "Annual Leave & Leave Loading Calculator (17.5%) \u2014 2026-27"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/retail-hospitality-pay-guide/",
+   "toRoute": "/leave-calculator/",
+   "anchor": "annual leave calculator",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-90000-47",
+   "level": "links",
+   "priority": 65,
+   "confidence": 0.65,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/90000/ next (Jev p=0.65); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 7 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 7,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "90000 after tax australia",
+      "vol": 880,
+      "kd": 6,
+      "intent": "informational",
+      "pos": 17
+     },
+     {
+      "kw": "tax on 90000 australia",
+      "vol": 480,
+      "kd": 18,
+      "intent": "transactional",
+      "pos": 15
+     },
+     {
+      "kw": "90000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "90000 after tax australia",
+    "tax on 90000 australia",
+    "90000/12",
+    "Tax on $90,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/90000/",
+   "anchor": "Tax on $90,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-vic-48",
+   "level": "links",
+   "priority": 58,
+   "confidence": 0.58,
+   "rationale": "A reader of /salary-sacrifice-calculator/ plausibly wants /pay-calculator-vic/ next (Jev p=0.58); /salary-sacrifice-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 20 contextual inlinks and 1,000 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1000,
+     "ctr": 0.006,
+     "position": 10.44
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator vic",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "vic salary calculator",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator victoria",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 27
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator vic",
+    "vic salary calculator",
+    "pay calculator victoria",
+    "Pay Calculator VIC: Your Take-Home Pay in Victoria"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/salary-sacrifice-calculator/",
+   "toRoute": "/pay-calculator-vic/",
+   "anchor": "pay calculator vic",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-pay-calculator-vic-49",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /healthcare-worker-pay/vic/ plausibly wants /pay-calculator-vic/ next (Jev p=0.57); /healthcare-worker-pay/vic/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 20 contextual inlinks and 1,000 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 6,
+     "impressions": 1000,
+     "ctr": 0.006,
+     "position": 10.44
+    },
+    "keywords": [
+     {
+      "kw": "pay calculator vic",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 30
+     },
+     {
+      "kw": "vic salary calculator",
+      "vol": 1300,
+      "kd": 17,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "pay calculator victoria",
+      "vol": 880,
+      "kd": 19,
+      "intent": "informational",
+      "pos": 27
+     }
+    ]
+   },
+   "targetQueries": [
+    "pay calculator vic",
+    "vic salary calculator",
+    "pay calculator victoria",
+    "Pay Calculator VIC: Your Take-Home Pay in Victoria"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/healthcare-worker-pay/vic/",
+   "toRoute": "/pay-calculator-vic/",
+   "anchor": "pay calculator vic",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-50000-50",
+   "level": "links",
+   "priority": 73,
+   "confidence": 0.73,
+   "rationale": "A reader of /tax-bracket-history/ plausibly wants /tax-on/50000/ next (Jev p=0.73); /tax-bracket-history/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "tax on 50000 australia",
+      "vol": 480,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "tax 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "tax for 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax on 50000 australia",
+    "tax 50000",
+    "tax for 50000",
+    "Tax on $50,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-bracket-history/",
+   "toRoute": "/tax-on/50000/",
+   "anchor": "Tax on $50,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-50000-51",
+   "level": "links",
+   "priority": 68,
+   "confidence": 0.68,
+   "rationale": "A reader of /low-income-tax-offset/ plausibly wants /tax-on/50000/ next (Jev p=0.68); /low-income-tax-offset/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 17 contextual inlinks and 1 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 1,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "tax on 50000 australia",
+      "vol": 480,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "tax 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 14
+     },
+     {
+      "kw": "tax for 50000",
+      "vol": 210,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 13
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax on 50000 australia",
+    "tax 50000",
+    "tax for 50000",
+    "Tax on $50,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/low-income-tax-offset/",
+   "toRoute": "/tax-on/50000/",
+   "anchor": "Tax on $50,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-take-home-pay-on-100000-52",
+   "level": "links",
+   "priority": 63,
+   "confidence": 0.63,
+   "rationale": "A reader of /stage-3-tax-cuts/ plausibly wants /take-home-pay-on/100000/ next (Jev p=0.63); /stage-3-tax-cuts/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 49 contextual inlinks and 14 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 14,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "100k after tax australia",
+      "vol": 720,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 20
+     },
+     {
+      "kw": "tax on 100000",
+      "vol": 390,
+      "kd": 3,
+      "intent": "informational",
+      "pos": 18
+     },
+     {
+      "kw": "100 000 after tax",
+      "vol": 260,
+      "kd": 7,
+      "intent": "informational",
+      "pos": 51
+     }
+    ]
+   },
+   "targetQueries": [
+    "100k after tax australia",
+    "tax on 100000",
+    "100 000 after tax",
+    "$100,000 After Tax in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/stage-3-tax-cuts/",
+   "toRoute": "/take-home-pay-on/100000/",
+   "anchor": "$100,000 After Tax in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-53",
+   "level": "links",
+   "priority": 85,
+   "confidence": 0.85,
+   "rationale": "A reader of /tax-brackets/ plausibly wants /tax-on/75000/ next (Jev p=0.85); /tax-brackets/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/tax-brackets/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-54",
+   "level": "links",
+   "priority": 81,
+   "confidence": 0.81,
+   "rationale": "A reader of /income-tax-calculator/ plausibly wants /tax-on/75000/ next (Jev p=0.81); /income-tax-calculator/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/income-tax-calculator/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "links-tax-on-75000-55",
+   "level": "links",
+   "priority": 57,
+   "confidence": 0.57,
+   "rationale": "A reader of /low-income-tax-offset/ plausibly wants /tax-on/75000/ next (Jev p=0.57); /low-income-tax-offset/ does not yet link there in its content. Anchor chosen by Jev among the target's H1 and top queries. Target has 14 contextual inlinks and 6 impr/28d.",
+   "evidence": {
+    "gsc": {
+     "clicks": 0,
+     "impressions": 6,
+     "ctr": 0,
+     "position": 1
+    },
+    "keywords": [
+     {
+      "kw": "75000 after tax australia",
+      "vol": 720,
+      "kd": 2,
+      "intent": "informational",
+      "pos": 10
+     },
+     {
+      "kw": "tax on 75000 australia",
+      "vol": 390,
+      "kd": 13,
+      "intent": "informational",
+      "pos": 9
+     },
+     {
+      "kw": "75000/12",
+      "vol": 320,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "75000 after tax australia",
+    "tax on 75000 australia",
+    "75000/12",
+    "Tax on $75,000 in Australia"
+   ],
+   "kind": "add_internal_link",
+   "fromRoute": "/low-income-tax-offset/",
+   "toRoute": "/tax-on/75000/",
+   "anchor": "Tax on $75,000 in Australia",
+   "placement": "in_content"
+  },
+  {
+   "id": "schema-payg-withholding-tables-56",
+   "level": "schema",
+   "priority": 15.705,
+   "confidence": 0.95,
+   "rationale": "Page has Answer, Article, BreadcrumbList, EducationalOccupationalCredential, FAQPage, ImageObject, Legislation, ListItem, Organization, Person, Question, WebPage; the tax-table template elsewhere on the site carries Dataset. Consistent structured data across a template is a crawl-side fix with no content risk.",
+   "evidence": {
+    "gsc": {
+     "clicks": 20,
+     "impressions": 3141,
+     "ctr": 0.0064,
+     "position": 10.97
+    },
+    "keywords": [
+     {
+      "kw": "fortnightly tax table 2026",
+      "vol": 6600,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 12
+     },
+     {
+      "kw": "weekly tax table 2026",
+      "vol": 5400,
+      "kd": 0,
+      "intent": "transactional",
+      "pos": 16
+     },
+     {
+      "kw": "australian tax table fortnightly",
+      "vol": 1900,
+      "kd": 0,
+      "intent": "informational",
+      "pos": 16
+     }
+    ]
+   },
+   "targetQueries": [
+    "fortnightly tax table 2026"
+   ],
+   "kind": "add_schema",
+   "scope": "/payg-withholding-tables/",
+   "schemaType": "Dataset",
+   "requiredFields": [
+    "name",
+    "description",
+    "temporalCoverage",
+    "creator",
+    "license",
+    "distribution"
+   ]
+  },
+  {
+   "id": "schema-tax-calendar-57",
+   "level": "schema",
+   "priority": 2.585,
+   "confidence": 0.95,
+   "rationale": "Page has BreadcrumbList, ListItem, Organization, WebPage; the guide template elsewhere on the site carries FAQPage. Consistent structured data across a template is a crawl-side fix with no content risk.",
+   "evidence": {
+    "gsc": {
+     "clicks": 2,
+     "impressions": 517,
+     "ctr": 0.0039000000000000003,
+     "position": 28.53
+    },
+    "keywords": [
+     {
+      "kw": "tax week",
+      "vol": 1000,
+      "kd": 5,
+      "intent": "informational",
+      "pos": 51
+     },
+     {
+      "kw": "tax weekend",
+      "vol": 1000,
+      "kd": 14,
+      "intent": "informational",
+      "pos": 25
+     },
+     {
+      "kw": "taxes year",
+      "vol": 1000,
+      "kd": 25,
+      "intent": "informational",
+      "pos": 55
+     }
+    ]
+   },
+   "targetQueries": [
+    "tax week"
+   ],
+   "kind": "add_schema",
+   "scope": "/tax-calendar/",
+   "schemaType": "FAQPage",
+   "requiredFields": [
+    "mainEntity[].name",
+    "mainEntity[].acceptedAnswer.text (must match visible FAQ)"
+   ]
+  },
+  {
+   "id": "technical-home-165",
+   "level": "technical",
+   "priority": 82.25333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "australia salary calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on / to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-fortnightly-pay-calculator-166",
+   "level": "technical",
+   "priority": 54.403333333333336,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /fortnightly-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "fortnightly"
+   ],
+   "kind": "technical_fix",
+   "scope": "/fortnightly-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /fortnightly-pay-calculator/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-annual-pay-calculator-167",
+   "level": "technical",
+   "priority": 25.563333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /annual-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "salary calculator adp"
+   ],
+   "kind": "technical_fix",
+   "scope": "/annual-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /annual-pay-calculator/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-weekly-pay-calculator-168",
+   "level": "technical",
+   "priority": 8.57,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /weekly-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "weekly pay calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/weekly-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /weekly-pay-calculator/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-income-tax-calculator-169",
+   "level": "technical",
+   "priority": 5.156666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /income-tax-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "ato tax rates 2025-26"
+   ],
+   "kind": "technical_fix",
+   "scope": "/income-tax-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /income-tax-calculator/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-take-home-pay-calculator-170",
+   "level": "technical",
+   "priority": 0.8866666666666667,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /take-home-pay-calculator/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "take home pay after salary sacrifice calculator"
+   ],
+   "kind": "technical_fix",
+   "scope": "/take-home-pay-calculator/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /take-home-pay-calculator/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-site-directory-171",
+   "level": "technical",
+   "priority": 0.5833333333333334,
+   "confidence": 1,
+   "rationale": "Collector found orphan on /site-directory/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "how to calculate taxes for payroll"
+   ],
+   "kind": "technical_fix",
+   "scope": "/site-directory/",
+   "issue": "orphan",
+   "fix": "/site-directory/ has no contextual inlinks. Add it to the related-links cluster of its hub and at least two sibling pages."
+  },
+  {
+   "id": "technical-public-holiday-pay-172",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-173",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-act-174",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/act/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/act/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/act/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-act-175",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/act/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/act/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/act/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-nsw-176",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/nsw/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nsw/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/nsw/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-nsw-177",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/nsw/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nsw/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/nsw/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-qld-178",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/qld/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/qld/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/qld/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-qld-179",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/qld/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/qld/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/qld/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-tas-180",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/tas/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/tas/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/tas/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-tas-181",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/tas/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/tas/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/tas/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-vic-182",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_title on /public-holiday-pay/vic/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/vic/",
+   "issue": "long_title",
+   "fix": "Shorten the <title> on /public-holiday-pay/vic/ to \u226465 characters with fitTitle() forms; keep the head term first."
+  },
+  {
+   "id": "technical-public-holiday-pay-vic-183",
+   "level": "technical",
+   "priority": 0.3333333333333333,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/vic/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/vic/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/vic/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-nt-184",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/nt/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/nt/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/nt/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-sa-185",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/sa/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/sa/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/sa/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  },
+  {
+   "id": "technical-public-holiday-pay-wa-186",
+   "level": "technical",
+   "priority": 0.16666666666666666,
+   "confidence": 1,
+   "rationale": "Collector found long_description on /public-holiday-pay/wa/; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.",
+   "evidence": {
+    "keywords": []
+   },
+   "targetQueries": [
+    "site hygiene"
+   ],
+   "kind": "technical_fix",
+   "scope": "/public-holiday-pay/wa/",
+   "issue": "long_description",
+   "fix": "Trim the meta description on /public-holiday-pay/wa/ to \u2264165 characters, keeping the leading figure and the FY. Use fitDescription() forms so the cut is at a sentence end."
+  }
+ ]
+}

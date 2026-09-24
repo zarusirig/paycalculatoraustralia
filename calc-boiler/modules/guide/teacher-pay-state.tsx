@@ -432,6 +432,11 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 <Link href="/hecs-help-calculator/">HECS repayment calculator</Link> shows what
                 comes out at your income.
               </p>
+              <p>
+                To check the PAYG amount on a single payslip, look up your gross pay in the ATO{" "}
+                <Link href="/fortnightly-tax-table/">fortnightly tax table</Link> or, if your school
+                pays monthly, the <Link href="/monthly-tax-table/">monthly tax table</Link>.
+              </p>
               <div className="not-prose my-8">
                 <Link
                   href="/take-home-pay-calculator/"

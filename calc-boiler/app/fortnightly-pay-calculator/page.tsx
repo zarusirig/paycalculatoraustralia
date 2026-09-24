@@ -6,6 +6,7 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { FORTNIGHTLY_FAQS } from "@/modules/calculator/fortnightly-pay-calculator-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
@@ -29,7 +30,12 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 // "fortnightly tax table" terms.
 // Previous: "Fortnightly Pay Calculator Australia ${FY}: Take-Home Pay".
 const TITLE = `Fortnightly Pay & Tax Calculator Australia ${FY}: Take-Home Pay`;
-const DESCRIPTION = `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, sometimes ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`;
+// fitDescription: fuller form first; the shorter form keeps the figure, the FY
+// and "fortnightly tax calculator".
+const DESCRIPTION = fitDescription(
+  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, sometimes ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`,
+  `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, or ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,

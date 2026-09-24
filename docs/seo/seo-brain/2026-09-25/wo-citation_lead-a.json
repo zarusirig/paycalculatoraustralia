@@ -1,0 +1,356 @@
+[
+ {
+  "kind": "citation_lead",
+  "id": "schema-fortnightly-tax-table",
+  "route": "/fortnightly-tax-table/",
+  "priority": 102.4,
+  "h1": "Fortnightly Tax Table 2026-27 (ATO NAT 1006 )",
+  "currentLead": "Enter your fortnightly earnings to see the tax withheld under the ATO fortnightly tax table. For 2026-27 , $2,000 a fortnight with the tax-free threshold claimed has $276 withheld ( $1,724 take-home).",
+  "topQuery": "fortnightly tax table",
+  "citable": 2.35,
+  "findings": [
+   "opening scores 2.35/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-schads-award-pay-rates",
+  "route": "/schads-award-pay-rates/",
+  "priority": 55.040000000000006,
+  "h1": "SCHADS Award Pay Rates 2026-27",
+  "currentLead": "Every current classification rate under the Social, Community, Home Care and Disability Services Industry Award 2010 ( MA000100 ) \u2014 social and community services, home care and disability support \u2014 operative from 1 July 2026 .",
+  "topQuery": "schads",
+  "citable": 0.72,
+  "findings": [
+   "opening scores 0.72/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-centrelink-income-test",
+  "route": "/centrelink-income-test/",
+  "priority": 51.38,
+  "h1": "Centrelink Income Test Guide",
+  "currentLead": "How your income affects Centrelink payments like JobSeeker, Parenting Payment, Family Tax Benefit, Youth Allowance and Age Pension. Understand income thresholds, taper rates, and how to estimate your entitlement.",
+  "topQuery": "jobseeker payment calculator",
+  "citable": 0.39,
+  "findings": [
+   "opening scores 0.39/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-leave-calculator",
+  "route": "/leave-calculator/",
+  "priority": 49.72,
+  "h1": "Annual Leave & Leave Loading Calculator (17.5%) \u2014 2026-27",
+  "currentLead": "Work out your 17.5% annual leave loading and what your leave payout is actually worth. Calculate pro-rata accrual, leave loading, and the tax on lump-sum payouts using FY 2026-27 Australian rates.",
+  "topQuery": "annual leave calculation",
+  "citable": 0.96,
+  "findings": [
+   "opening scores 0.96/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-employment-type-calculator",
+  "route": "/employment-type-calculator/",
+  "priority": 40.489999999999995,
+  "h1": "Part-Time vs Full-Time vs Casual Calculator",
+  "currentLead": "Compare take-home pay and total entitlements across full-time, part-time, and casual employment. See the real value of leave, super, and casual loading side by side.",
+  "topQuery": "contract to salary calculator",
+  "citable": 0.07,
+  "findings": [
+   "opening scores 0.07/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-schedule-5-tax-table",
+  "route": "/schedule-5-tax-table/",
+  "priority": 32.9,
+  "h1": "Schedule 5 Tax Table 2026-27 (ATO NAT 3348) \u2014 PAYG on Bonuses, Commissions & Back Payments",
+  "currentLead": "Schedule 5 \u2014 published by the ATO as NAT 3348 \u2014 is the tax table employers use to withhold PAYG from bonuses, commissions and back payments. Instead of taxing the lump sum like a normal pay, it spreads the payment across the year's pay periods so withholding matches your real marginal rate.",
+  "topQuery": "payg on schedule 5",
+  "citable": 1.41,
+  "findings": [
+   "opening scores 1.41/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-salary-sacrifice-calculator",
+  "route": "/salary-sacrifice-calculator/",
+  "priority": 31.47,
+  "h1": "Salary Sacrifice Calculator \u2014 How Much Will You Save?",
+  "currentLead": "Compare your take-home pay before and after salary sacrifice. See the exact tax savings, super boost, and net benefit of sacrificing part of your pre-tax salary into superannuation for FY 2026-27 .",
+  "topQuery": "tax calculator with salary sacrifice",
+  "citable": 0.26,
+  "findings": [
+   "opening scores 0.26/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-minimum-wage-history-australia",
+  "route": "/minimum-wage-history-australia/",
+  "priority": 31.450000000000003,
+  "h1": "Australian Minimum Wage History: Every Increase Since 2010",
+  "currentLead": "The National Minimum Wage for each financial year since 2010-11 , the size of every Annual Wage Review increase, and what drove the big years.",
+  "topQuery": "minimum wage rate australia",
+  "citable": 0.19,
+  "findings": [
+   "opening scores 0.19/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-payg-withholding-tables",
+  "route": "/payg-withholding-tables/",
+  "priority": 27.509999999999998,
+  "h1": "PAYG Withholding Tax Tables 2026-27 : Which ATO Table to Use",
+  "currentLead": "The ATO publishes a separate tax table for each pay cycle. Pick yours below for the full 2026-27 table, an instant lookup and a CSV download \u2014 or read on for how the PAYG withholding schedules fit together.",
+  "topQuery": "fortnightly tax table 2026",
+  "citable": 0.39,
+  "findings": [
+   "opening scores 0.39/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-healthcare-worker-pay-nsw",
+  "route": "/healthcare-worker-pay/nsw/",
+  "priority": 25.86,
+  "h1": "NSW Nurse Pay Rates 2026 \u2014 NSW Health Registered Nurse & Midwife Salary",
+  "currentLead": "NSW nurses and midwives in the public health system are paid under a state award made by the Industrial Relations Commission of New South Wales, not under a Fair Work agreement. The award runs registered nurses and midwives up an eight-year ladder, then into clinical nurse specialist, clinical nurse consultant and nurs",
+  "topQuery": "nurse salaries",
+  "citable": 1.05,
+  "findings": [
+   "opening scores 1.05/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-healthcare-worker-pay-vic",
+  "route": "/healthcare-worker-pay/vic/",
+  "priority": 23.15,
+  "h1": "VIC Nurse Pay Rates 2026 \u2014 Victorian Public Sector Nurses Salary & Wages",
+  "currentLead": "Victorian public health nurses and midwives are covered by a single interest employer agreement approved by the Fair Work Commission \u2014 federal, unlike the NSW and Queensland state instruments. Victoria runs registered nurses on a Grade 2 Year 1 to Year 8 ladder and gives midwives their own classification codes at the s",
+  "topQuery": "nurse salary",
+  "citable": 0.86,
+  "findings": [
+   "opening scores 0.86/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-zone-tax-offset",
+  "route": "/zone-tax-offset/",
+  "priority": 23.1,
+  "h1": "Zone Tax Offset Calculator \u2014 Remote Area Tax Rebate",
+  "currentLead": "The zone tax offset is a tax rebate for Australians whose usual place of residence is in a remote or isolated area. The fixed amount is $338 in Zone A, $57 in Zone B and $1,173 in a special area, plus a share of any dependant base amount. Work out your exact entitlement below.",
+  "topQuery": "tax zone offset",
+  "citable": 1.99,
+  "findings": [
+   "opening scores 1.99/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-understanding-your-payslip",
+  "route": "/understanding-your-payslip/",
+  "priority": 18.169999999999998,
+  "h1": "Understanding Your Payslip",
+  "currentLead": "Your payslip is a legally binding document. Learn how to decode Gross Pay, Net Pay, PAYG, Super limits, and spot accidental underpayments from your employer.",
+  "topQuery": "ytd in payslip",
+  "citable": 0.03,
+  "findings": [
+   "opening scores 0.03/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-backpay-calculator",
+  "route": "/backpay-calculator/",
+  "priority": 18.07,
+  "h1": "Backpay Calculator Australia \u2014 Underpayment Calculator",
+  "currentLead": "Calculate how much you are owed in backpay. Enter your correct rate, actual rate paid, hours, and period to see the total underpayment including unpaid super and leave entitlements.",
+  "topQuery": "pay raise calculator",
+  "citable": 0.23,
+  "findings": [
+   "opening scores 0.23/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-pay-calculator-qld",
+  "route": "/pay-calculator-qld/",
+  "priority": 16.720000000000002,
+  "h1": "Pay Calculator QLD: Your Take-Home Pay in Queensland",
+  "currentLead": "Type in your gross salary and this wage calculator returns the net figure using ATO 2026-27 rates. Below it, the parts of your pay that really are Queensland-specific: a public holiday calendar with two part-days and a Brisbane-only show day, long service leave under the Industrial Relations Act, and payroll tax you do",
+  "topQuery": "pay calculator qld",
+  "citable": 0.77,
+  "findings": [
+   "opening scores 0.77/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-construction-trades-pay",
+  "route": "/construction-trades-pay/",
+  "priority": 15.3,
+  "h1": "Construction & Trades Pay Guide \u2014 Rates, Overtime & Apprentice Wages",
+  "currentLead": "Construction and trades workers are among Australia's highest-paid blue-collar employees, with qualified tradies earning $65,000 to $120,000+ depending on trade, experience, and overtime. This guide covers qualified trade rates, apprentice pay scales, site allowances, overtime provisions, and how to calculate your real",
+  "topQuery": "apprenticeship rates of pay",
+  "citable": 0.63,
+  "findings": [
+   "opening scores 0.63/3 as a quotable answer",
+   "opening does not define the subject first (p=0.46)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-healthcare-worker-pay-qld",
+  "route": "/healthcare-worker-pay/qld/",
+  "priority": 14.219999999999999,
+  "h1": "QLD Nurse Pay Rates 2026 \u2014 Queensland Health Nursing Wages (EB12)",
+  "currentLead": "Queensland Health publishes its own nursing wage schedule, and it is the clearest of any state: per annum, per fortnight, per hour and casual per hour for every pay point. Queensland uses NG (nurse grade) numbering rather than years of service \u2014 a registered nurse or midwife is Nurse Grade 5, a clinical nurse is Grade ",
+  "topQuery": "nurse income",
+  "citable": 0.56,
+  "findings": [
+   "opening scores 0.56/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-overtime-penalty-rates-guide",
+  "route": "/overtime-penalty-rates-guide/",
+  "priority": 12.09,
+  "h1": "Penalty Rates Australia \u2014 Weekend, Public Holiday & Overtime Loadings",
+  "currentLead": "What you must be paid for working weekends, public holidays, evenings and overtime \u2014 the multipliers by award, how casual penalties differ, and how the loadings are taxed. Rates current from 1 July 2026 .",
+  "topQuery": "overtime pay rates",
+  "citable": 0.47,
+  "findings": [
+   "opening scores 0.47/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-tax-bracket-history",
+  "route": "/tax-bracket-history/",
+  "priority": 11.91,
+  "h1": "Tax Bracket History \u2014 Australian Income Tax Rates 2020 to 2026",
+  "currentLead": "How have Australian tax brackets evolved over the past six financial years? This page tracks every rate and threshold change from FY2020-21 through FY2025-26, including the landmark Stage 3 tax cuts that reshaped the system from 1 July 2024.",
+  "topQuery": "tax bracket 2023",
+  "citable": 0.21,
+  "findings": [
+   "opening scores 0.21/3 as a quotable answer",
+   "opening does not define the subject first (p=0.29)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-fringe-benefits-tax",
+  "route": "/fringe-benefits-tax/",
+  "priority": 11.85,
+  "h1": "Fringe Benefits Tax (FBT) Guide Australia FY2025-26",
+  "currentLead": "What FBT is, how the Australian tax system calculates fringe benefits, which benefits are exempt, current FBT rates and thresholds, and how reportable fringe benefits affect your take-home pay and tax return.",
+  "topQuery": "fbt year",
+  "citable": 0.41,
+  "findings": [
+   "opening scores 0.41/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-austudy-youth-allowance-calculator",
+  "route": "/austudy-youth-allowance-calculator/",
+  "priority": 11.8,
+  "h1": "Youth Allowance and Austudy Calculator \u2014 Rates, Eligibility and Income Test",
+  "currentLead": "Youth Allowance pays up to $482.40 a fortnight if you're 18 or older and live at home, and $677.20 if you live away from home; Austudy (25 and over) pays up to $677.20 . Students can earn $539 a fortnight before the payment reduces \u2014 50 cents in the dollar to $646 , then $53.50 plus 60 cents. Enter your wages to see wh",
+  "topQuery": "youth allowance calculator",
+  "citable": 1.98,
+  "findings": [
+   "opening scores 1.98/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-private-health-insurance-medicare",
+  "route": "/private-health-insurance-medicare/",
+  "priority": 11.25,
+  "h1": "Private Health Insurance & Medicare \u2014 When PHI Saves You Money",
+  "currentLead": "Should you get private hospital cover to avoid the Medicare levy surcharge? How the surcharge and the private health insurance rebate interact, how to find the premium at which cover pays for itself, and lifetime health cover loading. To work out your own surcharge, use the Medicare levy surcharge calculator .",
+  "topQuery": "do you pay medicare levy if you have private health",
+  "citable": 0.16,
+  "findings": [
+   "opening scores 0.16/3 as a quotable answer",
+   "opening does not define the subject first (p=0.30)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-sapto-calculator",
+  "route": "/sapto-calculator/",
+  "priority": 10.440000000000001,
+  "h1": "SAPTO Calculator & Eligibility Checker Seniors and Pensioners Tax Offset",
+  "currentLead": "The seniors and pensioners tax offset (SAPTO) is worth up to $2,230 if you are single and $1,602 for each partner of a couple. Work out your exact entitlement below, including the half-of-combined-income test that catches most couples out, or check whether you qualify at all with the eligibility checker .",
+  "topQuery": "sapto",
+  "citable": 1.94,
+  "findings": [
+   "opening scores 1.94/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-novated-lease-guide",
+  "route": "/novated-lease-guide/",
+  "priority": 10.4,
+  "h1": "How a Novated Lease Works",
+  "currentLead": "The three-way agreement, what sits in the running-cost budget, how the employee contribution cancels the FBT, what happens if you leave your job, and what you owe at the end. This page explains the mechanics; the numbers for your own salary and car are on the calculator.",
+  "topQuery": "how novated lease work",
+  "citable": 0.3,
+  "findings": [
+   "opening scores 0.30/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-medicare-levy",
+  "route": "/medicare-levy/",
+  "priority": 9.379999999999999,
+  "h1": "Medicare Levy Calculator The 2% Levy, Low-Income and Family Thresholds",
+  "currentLead": "The Medicare levy is 2% of your taxable income \u2014 but not from the first dollar. Below $28,011 you pay nothing, and between $28,011 and $35,013 you pay 10% of the excess instead. Work out your exact levy below, including the family and seniors thresholds. For the separate surcharge on higher earners without hospital cov",
+  "topQuery": "medicare levy calculator",
+  "citable": 1.96,
+  "findings": [
+   "opening scores 1.96/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-stsl-on-payslip",
+  "route": "/stsl-on-payslip/",
+  "priority": 9.030000000000001,
+  "h1": "What Is STSL on Your Payslip?",
+  "currentLead": "STSL stands for Study and Training Support Loans . On your payslip, STSL is the extra tax your employer withholds each pay cycle to cover the compulsory repayment of your HECS-HELP, FEE-HELP, VET Student Loan, or other study loan. It only applies once your income passes the repayment threshold.",
+  "topQuery": "stsl on payslip",
+  "citable": 1.15,
+  "findings": [
+   "opening scores 1.15/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-final-pay-calculator",
+  "route": "/final-pay-calculator/",
+  "priority": 9.02,
+  "h1": "Final Pay Calculator Australia 2026-27",
+  "currentLead": "Calculate your total final pay when leaving a job. Includes unused annual leave payout with loading, notice period pay, long service leave, and estimated tax on your final payment.",
+  "topQuery": "calculate termination pay",
+  "citable": 0.4,
+  "findings": [
+   "opening scores 0.40/3 as a quotable answer"
+  ]
+ }
+]

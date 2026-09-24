@@ -95,6 +95,7 @@ export function MonthlyPayCalculatorIntro() {
               <li><strong>Budget planners</strong> matching rent, utilities, groceries, and loan repayments against a single monthly deposit.</li>
               <li><strong>Payroll officers</strong> cross-checking PAYG withholding amounts against the ATO monthly tax table.</li>
               <li><strong>Expatriates and new migrants</strong> estimating Australian take-home pay before relocating.</li>
+              <li><strong>Queensland workers</strong> who want state-specific context, such as QLD payroll tax and public-sector pay scales, can use the <Link href="/pay-calculator-qld/" className="text-eucalyptus-dark hover:underline">pay calculator qld</Link> page alongside this one.</li>
             </ul>
           </section>
     </>
@@ -108,7 +109,7 @@ export default function MonthlyPayCalculatorContent() {
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">What Deductions Apply to Monthly Pay?</h2>
             <p className="text-warmgray mb-4">
-              Four deductions reduce monthly gross pay to net pay: PAYG income tax, the Medicare levy, the &quot;Medicare Levy Surcharge&quot; (if applicable), and HECS-HELP repayments. Superannuation is paid by the employer on top of salary and does not reduce your take-home pay.
+              Four deductions reduce monthly gross pay to net pay: PAYG income tax, the Medicare levy, the &quot;Medicare Levy Surcharge&quot; (if applicable), and HECS-HELP repayments. Superannuation is paid by the employer on top of salary and does not reduce your take-home pay. Employers withhold PAYG from the ATO tables for their pay cycle: the <Link href="/payg-withholding-tables/" className="text-eucalyptus-dark hover:underline">weekly tax table {SITE_CONFIG.financialYear}</Link>, and its fortnightly and monthly equivalents, all sit on one page.
             </p>
 
             <h3 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-3">FY{SITE_CONFIG.financialYear} Income Tax Brackets</h3>
@@ -155,6 +156,7 @@ export default function MonthlyPayCalculatorContent() {
               <li><strong>Ignoring LITO:</strong> The &quot;Low Income Tax Offset&quot; reduces tax payable by up to <strong>$700</strong> for incomes under {formatAUD(66667)}. Omitting it overstates monthly tax on salaries between {formatAUD(18200)} and {formatAUD(66667)}.</li>
               <li><strong>Forgetting HECS-HELP:</strong> Employees with a study debt above {formatAUD(HECS_HELP.minimumThreshold)} have a compulsory repayment withheld each pay period. The marginal repayment starts at <strong>15%</strong> of every dollar above the threshold.</li>
               <li><strong>Applying the wrong financial year rates:</strong> Brackets change most years. In FY{SITE_CONFIG.financialYear} the first taxed bracket is {FIRST_RATE} up to {formatAUD(FIRST_TAXED_BRACKET.max)}, and the 30% bracket extends to {formatAUD(135000)} under the Stage 3 tax cuts. A calculator still using an earlier year&apos;s rates will get your monthly tax wrong.</li>
+              <li><strong>Assuming a raise flows straight through:</strong> Part of any increase goes to tax at your marginal rate. Our <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows what a raise actually adds to each monthly pay.</li>
             </ol>
           </section>
 

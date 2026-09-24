@@ -6,6 +6,7 @@ import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { faqPageSchema } from "@/lib/faq";
 import { ANNUAL_PAY_FAQS } from "@/modules/calculator/annual-pay-calculator-faqs";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -26,7 +27,12 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 // Previous: "Annual Salary Calculator Australia — Yearly Take-Home Pay" (no FY,
 // description hardcoded FY2026-27).
 const TITLE = `Annual Salary After Tax Calculator Australia ${FY}`;
-const DESCRIPTION = `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.`;
+// fitDescription: fuller form first; the shorter form keeps the figure, the FY
+// and "salary after tax calculator".
+const DESCRIPTION = fitDescription(
+  `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: convert any yearly gross salary into annual take-home pay after income tax, Medicare levy and HECS.`,
+  `A $80,000 salary is ${formatAUD(at80k.takeHomePay)} a year after tax in ${FY}. Salary after tax calculator: any yearly gross salary to annual take-home after tax, Medicare and HECS.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,

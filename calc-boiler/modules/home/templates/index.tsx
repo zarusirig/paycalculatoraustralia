@@ -490,6 +490,13 @@ export default function HomePageTemplate() {
             <CalcLink href="/annual-pay-calculator/" title="Annual Pay Calculator" desc="Full-year gross to net breakdown" />
             <CalcLink href="/employment-type-calculator/" title="Employment Type Calculator" desc="Compare full-time, part-time and casual pay" />
           </div>
+          <p className="mt-4 text-sm text-warmgray">
+            Looking for something else? The{" "}
+            <Link href="/site-directory/" className="font-medium text-eucalyptus-dark hover:underline">
+              site directory
+            </Link>{" "}
+            lists every calculator and guide on the site.
+          </p>
         </section>
 
         {/* ===== 9. PAY CALCULATOR BY STATE ===== */}

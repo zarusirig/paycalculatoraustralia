@@ -75,7 +75,7 @@ export default function BackpayCalculatorContent() {
               <p className="mb-4 text-warmgray">The Fair Work Ombudsman identifies <strong>5 common underpayment types</strong> in Australian workplaces:</p>
               <ul className="list-disc pl-6 space-y-2 text-warmgray">
                 <li><strong>Below-award base rates:</strong> Paying less than the minimum hourly rate for the employee&apos;s classification level.</li>
-                <li><strong>Missing penalty rates:</strong> Not paying weekend, public holiday, or overtime loadings as required by the award.</li>
+                <li><strong>Missing penalty rates:</strong> Not paying weekend, public holiday, or overtime loadings as required by the award. Cafes, pubs and restaurants are the most common source of these claims; check the <Link href="/hospitality-award-rates/" className="text-eucalyptus-dark hover:underline font-medium">Hospitality Award Pay Rates {SITE_CONFIG.financialYear}</Link> if that is your industry.</li>
                 <li><strong>Unpaid overtime:</strong> Requiring employees to work before or after shifts without recording or paying the hours.</li>
                 <li><strong>Incorrect casual loading:</strong> Paying casual employees without the required 25% casual loading on top of the base rate.</li>
                 <li><strong>Super shortfall:</strong> Not paying the 12% superannuation guarantee on all ordinary time earnings. Use the <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Superannuation Calculator</Link> to verify your employer&apos;s contributions.</li>

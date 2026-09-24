@@ -341,7 +341,7 @@ export default function TaxBracketsGuidePage() {
 
             <section id="tax-on-salary">
               <h2 style={FONT}>Tax on Common Salaries</h2>
-              <p>Income tax plus Medicare levy for {FY}. Each link opens the full breakdown for that salary, with weekly, fortnightly and monthly figures.</p>
+              <p>Income tax plus Medicare levy for {FY}. Each link opens the full breakdown for that salary, with weekly, fortnightly and monthly figures. Between the round numbers, <Link href="/tax-on/75000/">Tax on $75,000 in Australia</Link> covers the most-searched mid-scale salary. If you are paid by the hour, the <Link href="/hourly-to-annual-salary-calculator/">Hourly to Annual Salary Calculator</Link> turns your rate into the annual figure to look up here.</p>
               <ul className="not-prose grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm">
                 {TAX_ON_LINKS.map((inc) => {
                   const a = analyseIncome(inc);

@@ -200,6 +200,9 @@ export default function SalarySacrificeCalculatorContent() {
           <li><strong>Employees approaching retirement</strong> (aged 50+) who want to accelerate super growth before accessing their balance at preservation age</li>
           <li><strong>High-income earners</strong> above $135,000 in the 37% or 45% income tax brackets, where the tax saving per dollar sacrificed is largest</li>
           <li><strong>HR and payroll professionals</strong> advising staff on salary packaging options and concessional contribution limits</li>
+          <li><strong>Victorian public-sector and health workers</strong> who salary package through their employer and want to see the result against state-specific pay: the{" "}
+            <Link href="/pay-calculator-vic/" className="text-eucalyptus-dark hover:underline">pay calculator vic</Link>{" "}
+            page covers Victoria</li>
           <li><strong>Financial planners</strong> modelling salary sacrifice scenarios for clients alongside the{" "}
             <Link href="/superannuation-calculator/" className="text-eucalyptus-dark hover:underline">Superannuation Calculator</Link>{" "}
             to project long-term super balances</li>

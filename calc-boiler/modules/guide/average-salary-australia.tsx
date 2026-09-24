@@ -207,7 +207,8 @@ export default function AverageSalaryAustraliaPage() {
               <p className="text-sm">
                 Take-home assumes an Australian resident for the full year, no HECS/HELP debt and no Medicare levy surcharge, after income
                 tax, the low income tax offset and the 2% Medicare levy. Super is paid on top. Use the{" "}
-                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your own situation, or browse{" "}
+                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> for your own situation (or the{" "}
+                <Link href="/fortnightly-pay-calculator/">Fortnightly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</Link> if you are paid fortnightly), or browse{" "}
                 <Link href="/take-home-pay-on/">take-home pay on every salary</Link> and{" "}
                 <Link href="/salary-to-hourly/">every salary as an hourly rate</Link>.
               </p>

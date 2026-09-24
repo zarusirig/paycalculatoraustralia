@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import PAYGTablesGuidePage from "@/modules/guide/payg-withholding-tables";
 import { JsonLd } from "@/modules/seo/json-ld";
-import type { BreadcrumbList, FAQPage, WebPage, Article, WithContext } from "schema-dts";
+import type { BreadcrumbList, Dataset, FAQPage, WebPage, Article, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { PAYG_FINANCIAL_YEAR } from "@/lib/constants/payg-withholding";
 import { PAYG_HUB_FAQS } from "@/modules/guide/payg-withholding-tables-faqs";
+import { ATO_FORTNIGHTLY, ATO_MONTHLY, ATO_SCHEDULE_5, ATO_TAX_TABLES_INDEX, ATO_WEEKLY } from "@/modules/tax-tables/ato-schedules";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 
@@ -66,10 +67,34 @@ const faq: WithContext<FAQPage> = {
   })),
 };
 
+// Dataset mirrors the per-table pages (/weekly-tax-table/ etc.) so the whole
+// tax-table template carries the same structured data. The hub indexes the
+// ATO's own NAT documents (three pay-period tables + Schedule 5), so the
+// creator is the ATO and each distribution points at the ATO page and PDF.
+const ATO_DOCS = [ATO_WEEKLY, ATO_FORTNIGHTLY, ATO_MONTHLY, ATO_SCHEDULE_5];
+const dataset: WithContext<Dataset> = {
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  name: `ATO PAYG withholding tax tables ${PAYG_FINANCIAL_YEAR} (${ATO_DOCS.map((d) => d.nat).join(", ")})`,
+  description: `The ATO PAYG withholding tax tables for the Australian ${PAYG_FINANCIAL_YEAR} financial year: ${ATO_WEEKLY.title.toLowerCase()} (${ATO_WEEKLY.nat}), ${ATO_FORTNIGHTLY.title.toLowerCase()} (${ATO_FORTNIGHTLY.nat}), ${ATO_MONTHLY.title.toLowerCase()} (${ATO_MONTHLY.nat}) and Schedule 5 for back payments, commissions and bonuses (${ATO_SCHEDULE_5.nat}). Amounts to withhold with and without the tax-free threshold, plus study and training support loan components.`,
+  url: URL,
+  keywords: ["PAYG withholding tables", "weekly tax table", "fortnightly tax table", "monthly tax table", `${PAYG_FINANCIAL_YEAR} tax tables`, "Australia"],
+  temporalCoverage: "2026-07-01/2027-06-30",
+  spatialCoverage: { "@type": "Country", name: "Australia" },
+  creator: { "@type": "Organization", name: "Australian Taxation Office", url: "https://www.ato.gov.au/" },
+  includedInDataCatalog: { "@type": "DataCatalog", name: "ATO tax tables", url: ATO_TAX_TABLES_INDEX },
+  license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+  distribution: ATO_DOCS.flatMap((d) => [
+    { "@type": "DataDownload" as const, name: `${d.title} (${d.nat})`, encodingFormat: "text/html", contentUrl: d.pageUrl },
+    ...(d.pdfUrl ? [{ "@type": "DataDownload" as const, name: `${d.title} (${d.nat}) PDF`, encodingFormat: "application/pdf", contentUrl: d.pdfUrl }] : []),
+  ]),
+  dateModified: pageDateModified("payg-withholding-tables"),
+};
+
 function Page() {
   return (
     <>
-      <JsonLd code={[breadcrumb, webPage, article, faq]} />
+      <JsonLd code={[breadcrumb, webPage, article, faq, dataset]} />
       <PAYGTablesGuidePage />
     </>
   );

@@ -13,7 +13,8 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
-import { Decision, DecisionBatch, Level, Route, SiteSignals, type Decision as D, type Opportunity, type PageSignals } from "./schema.mts";
+import { Decision, DecisionBatch, Route, SiteSignals, type Decision as D, type Opportunity, type PageSignals } from "./schema.mts";
+import { num as n, type AnswerMap } from "./jev.mts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, "../../..");
@@ -23,7 +24,7 @@ const dir = resolve(repo, typeof args.dir === "string" ? args.dir : join(base, r
 
 const site = SiteSignals.parse(JSON.parse(readFileSync(join(dir, "signals.json"), "utf8")));
 const opps: Opportunity[] = JSON.parse(readFileSync(join(dir, "opportunities.json"), "utf8"));
-const J: Record<string, { level: string; route?: string; answers: Record<string, any>; [k: string]: unknown }> = JSON.parse(readFileSync(join(dir, "judgments.json"), "utf8"));
+const J: Record<string, { level: string; route?: string; answers: AnswerMap; [k: string]: unknown }> = JSON.parse(readFileSync(join(dir, "judgments.json"), "utf8"));
 const byRoute = new Map(site.pages.map((p) => [p.route, p]));
 const oppById = new Map(opps.map((o) => [o.id, o]));
 
@@ -56,7 +57,6 @@ export type WorkOrder = z.infer<typeof WorkOrder>;
 const decisions: D[] = [];
 const orders: WorkOrder[] = [];
 const skipped: { id: string; why: string }[] = [];
-const n = (x: any) => (typeof x?.noul === "number" ? x.noul : typeof x?.score === "number" ? x.score : NaN);
 const slug = (r: string) => r.replace(/^\/|\/$/g, "").replace(/\//g, "-") || "home";
 let seq = 0;
 const nid = (level: string, r: string) => `${level}-${slug(r)}-${++seq}`;
@@ -146,7 +146,7 @@ for (const [id, j] of Object.entries(J).filter(([, j]) => j.level === "schema"))
   const so = opps.find((o) => o.level === "schema" && o.route === route);
   for (const m of ((so?.facts.missingSchema as string[]) ?? [])) {
     if (!["FAQPage", "BreadcrumbList", "Dataset", "Article"].includes(m)) continue;
-    decisions.push({ kind: "add_schema", id: nid("schema", route), level: "schema", priority: Math.min(100, (p.gsc?.impressions ?? 0) / 200), confidence: 0.95, rationale: `Page has ${p.schemaTypes.join(", ") || "no JSON-LD"}; the ${p.template} template elsewhere on the site carries ${m}. Consistent structured data across a template is a crawl-side fix with no content risk.`, evidence: { gsc: p.gsc, keywords: p.ranked.slice(0, 3) }, targetQueries: [p.ranked[0]?.kw ?? p.h1], scope: route, schemaType: m as any, requiredFields: m === "FAQPage" ? ["mainEntity[].name", "mainEntity[].acceptedAnswer.text (must match visible FAQ)"] : m === "Dataset" ? ["name", "description", "temporalCoverage", "creator", "license", "distribution"] : m === "Article" ? ["headline", "datePublished", "dateModified", "author", "publisher"] : ["itemListElement"] });
+    decisions.push({ kind: "add_schema", id: nid("schema", route), level: "schema", priority: Math.min(100, (p.gsc?.impressions ?? 0) / 200), confidence: 0.95, rationale: `Page has ${p.schemaTypes.join(", ") || "no JSON-LD"}; the ${p.template} template elsewhere on the site carries ${m}. Consistent structured data across a template is a crawl-side fix with no content risk.`, evidence: { gsc: p.gsc, keywords: p.ranked.slice(0, 3) }, targetQueries: [p.ranked[0]?.kw ?? p.h1], scope: route, schemaType: m as "FAQPage" | "BreadcrumbList" | "Dataset" | "Article", requiredFields: m === "FAQPage" ? ["mainEntity[].name", "mainEntity[].acceptedAnswer.text (must match visible FAQ)"] : m === "Dataset" ? ["name", "description", "temporalCoverage", "creator", "license", "distribution"] : m === "Article" ? ["headline", "datePublished", "dateModified", "author", "publisher"] : ["itemListElement"] });
   }
 }
 
@@ -180,7 +180,7 @@ for (const o of opps.filter((o) => o.level === "technical")) {
       : issue === "no_h2" ? `${scope} has no H2. Add a heading per section so passages can rank on their own.`
       : issue === "missing_og_image" ? `${scope} has no og:image. Add images: ["/og-image.png"] to openGraph.`
       : `${scope}: ${issue}`;
-    decisions.push({ kind: "technical_fix", id: nid("technical", o.route ?? "site"), level: "technical", priority: Math.min(100, o.score / 300), confidence: 1, rationale: `Collector found ${issue} on ${scope}; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.`, evidence: { keywords: [] }, targetQueries: [byRoute.get(o.route ?? "")?.ranked[0]?.kw ?? "site hygiene"], scope: scope as any, issue: (["missing_og_image", "thin_page", "no_h2", "no_schema", "noindex_in_sitemap", "orphan", "slow_template", "duplicate_title", "duplicate_description", "long_title", "long_description", "missing_primary_source"].includes(issue) ? issue : "other") as any, fix });
+    decisions.push({ kind: "technical_fix", id: nid("technical", o.route ?? "site"), level: "technical", priority: Math.min(100, o.score / 300), confidence: 1, rationale: `Collector found ${issue} on ${scope}; this is a deterministic check (scripts/check-meta.mjs warns on it) with no judgment involved. Fixing it cannot lose rankings and removes a truncation or duplication signal.`, evidence: { keywords: [] }, targetQueries: [byRoute.get(o.route ?? "")?.ranked[0]?.kw ?? "site hygiene"], scope: scope as "*" | `/${string}`, issue: (["missing_og_image", "thin_page", "no_h2", "no_schema", "noindex_in_sitemap", "orphan", "slow_template", "duplicate_title", "duplicate_description", "long_title", "long_description", "missing_primary_source"].includes(issue) ? issue : "other") as "other", fix });
   }
 }
 

@@ -10,7 +10,7 @@
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ask, choice, noul, pool, report, score } from "./jev.mts";
+import { ask, choice, noul, pool, report, score, type Question } from "./jev.mts";
 import { SiteSignals, type Opportunity, type PageSignals } from "./schema.mts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -51,7 +51,7 @@ if (levels.has("ctr")) {
     const queries = p.ranked.slice(0, 5).map((k) => ({ query: k.kw, position_bucket: k.pos <= 3 ? "top 3" : k.pos <= 10 ? "page 1" : "page 2+", volume_bucket: k.vol >= 5000 ? "very high" : k.vol >= 1000 ? "high" : "medium" }));
     if (!queries.length) return;
     const state = { page: promises(p.title, p.h1), description: p.description, queries };
-    const qs: Record<string, ReturnType<typeof noul> | ReturnType<typeof choice> | ReturnType<typeof score>> = {
+    const qs: Record<string, Question> = {
       title_promises: choice("Which kind of page does `page.title` promise?", PAGE_KINDS),
       description_answers: noul("Does `description` state a concrete figure or direct answer that a searcher of `queries[0].query` would want to see before clicking?"),
       description_reads_current: noul("Does `description` name the financial year or a date that makes it read as up to date?"),
@@ -72,7 +72,7 @@ if (levels.has("striking")) {
     const p = byRoute.get(o.route!)!;
     const kws = (o.facts.keywords as string[]).slice(0, 6).map((s) => { const [kw, vol, , pos] = s.split("|"); return { kw, vol: Number(vol), pos: Number(pos) }; });
     const state = { page: { title: p.title, h1: p.h1, headings: p.h2s.slice(0, 16), has_table: p.tableCount > 0, has_faq: p.faqCount > 0, opening: p.lead }, keywords: kws.map((k) => k.kw) };
-    const qs: Record<string, ReturnType<typeof noul> | ReturnType<typeof choice>> = {};
+    const qs: Record<string, Question> = {};
     kws.forEach((_, i) => {
       qs[`k${i}_wants`] = choice(`Which kind of page does a searcher of \`keywords[${i}]\` want?`, PAGE_KINDS);
       qs[`k${i}_heading_covers`] = noul(`Does one of \`page.headings\` directly address \`keywords[${i}]\` (same subject, not merely a related topic)?`);
@@ -92,7 +92,7 @@ if (levels.has("cannibal")) {
     const a = byRoute.get(ra)!, b = byRoute.get(rb)!;
     const kws = [...(o.facts.kwA as string[]), ...(o.facts.kwB as string[])].map((s) => s.split("|")[0]).filter((v, i, arr) => arr.indexOf(v) === i).slice(0, 4);
     const state = { page_a: { route: ra, title: a.title, h1: a.h1, opening: a.lead, headings: a.h2s.slice(0, 8) }, page_b: { route: rb, title: b.title, h1: b.h1, opening: b.lead, headings: b.h2s.slice(0, 8) }, queries: kws };
-    const qs: Record<string, ReturnType<typeof noul> | ReturnType<typeof choice>> = {
+    const qs: Record<string, Question> = {
       same_intent: noul("Do `page_a` and `page_b` serve the same searcher need, such that a search engine would struggle to pick one over the other?", { true: "both pages answer the same question in the same format", false: "they answer different questions or one is a tool and the other a reference" }),
       distinct_purpose: choice("How do `page_a` and `page_b` relate?", { duplicate: "same purpose and content type; one should absorb the other", overlap: "different purpose but the titles/openings blur the difference; sharpen wording", complementary: "clearly different jobs; keep both and cross-link" }),
     };
@@ -117,7 +117,7 @@ if (levels.has("links")) {
     if (!cands.length) return;
     const anchors = [...new Set([t.h1, ...t.ranked.slice(0, 3).map((k) => k.kw)])].filter((a) => a && a.length <= 70).slice(0, 4);
     const state = { target: { title: t.title, h1: t.h1, opening: t.lead }, anchors, sources: cands.map((c) => ({ title: c.s.title, h1: c.s.h1, opening: c.s.lead.slice(0, 200) })) };
-    const qs: Record<string, ReturnType<typeof noul> | ReturnType<typeof choice>> = {
+    const qs: Record<string, Question> = {
       anchor: choice("Which of `anchors` reads as the most natural link text for a sentence that sends a reader to `target`?", Object.fromEntries(anchors.map((a, i) => [`a${i}`, a]))),
     };
     cands.forEach((_, i) => { qs[`s${i}_needs`] = noul(`Would a reader who came for \`sources[${i}]\` plausibly want \`target\` as their next page?`, { true: "the target answers a natural follow-up question from the source page", false: "the pages are only loosely related; the link would be filler" }); });

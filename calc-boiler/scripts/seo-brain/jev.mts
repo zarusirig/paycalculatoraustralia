@@ -15,7 +15,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { TypeSafeClient, choice, noul, score, type Questions, type SystemOneResult } from "@typesafe-ai/sdk";
+import { TypeSafeClient, choice, noul, score, type Questions } from "@typesafe-ai/sdk";
 
 export { choice, noul, score };
 
@@ -41,18 +41,24 @@ export const usage = { requests: 0, cached: 0, inputTokens: 0, outputTokens: 0 }
 export const costUsd = () => (usage.inputTokens / 1e6) * 0.042;
 
 type JsonValue = string | number | boolean | null | JsonValue[] | { [k: string]: JsonValue };
+/** One answer as the API returns it; which fields are set depends on the question type. */
+export type Answer = { type: "noul" | "choice" | "score"; noul?: number; choice?: string; score?: number; confidence?: number; probabilities?: Record<string, number>; legend?: Record<string, string> };
+export type AnswerMap = Record<string, Answer>;
+export type Question = ReturnType<typeof noul> | ReturnType<typeof choice> | ReturnType<typeof score>;
+/** Numeric value of a noul or score answer (NaN for a choice). */
+export const num = (a: Answer | undefined): number => (typeof a?.noul === "number" ? a.noul : typeof a?.score === "number" ? a.score : NaN);
 
-export async function ask<Q extends Questions>(state: JsonValue, questions: Q): Promise<SystemOneResult<Q>["answers"]> {
+export async function ask<Q extends Questions>(state: JsonValue, questions: Q): Promise<AnswerMap> {
   const key = createHash("sha256").update(JSON.stringify({ m: MODEL, state, questions })).digest("hex").slice(0, 40);
   const file = join(cacheDir, key + ".json");
-  if (existsSync(file)) { usage.cached++; return JSON.parse(readFileSync(file, "utf8")).answers; }
+  if (existsSync(file)) { usage.cached++; return JSON.parse(readFileSync(file, "utf8")).answers as AnswerMap; }
   const res = await getClient().systemOne({ state: state as never, questions });
   usage.requests++;
   usage.inputTokens += res.usage?.input_tokens ?? 0;
   usage.outputTokens += res.usage?.output_tokens ?? 0;
   mkdirSync(cacheDir, { recursive: true });
   writeFileSync(file, JSON.stringify({ model: res.model, state, questions, answers: res.answers, usage: res.usage }));
-  return res.answers;
+  return res.answers as unknown as AnswerMap;
 }
 
 /** Run `fn` over `items` with at most `limit` in flight. Preserves order. */

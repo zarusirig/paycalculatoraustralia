@@ -55,7 +55,7 @@ export default function AnnualPayCalculatorPage({ children }: { children: React.
           </nav>
           <h1 className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Salary After Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
           <p className="text-base md:text-lg text-navy">A gross salary of <strong>$80,000</strong> is <strong>{formatAUD(QA80.takeHomePay)} a year after tax</strong> in FY{SITE_CONFIG.financialYear} ({formatAUD(QA80.netIncomeTax)} income tax + {formatAUD(QA80.medicareLevy)} Medicare levy). At $100,000 it is {formatAUD(QA100.takeHomePay)}; at $120,000, {formatAUD(QA120.takeHomePay)}.</p>
-          <p className="text-warmgray mt-2">Enter any yearly salary for your annual take-home pay after income tax, Medicare, HECS-HELP and super.</p>
+          <p className="text-warmgray mt-2">This is the salary after tax calculator for a yearly figure: enter your annual gross salary and it returns your annual take-home pay after income tax, Medicare, HECS-HELP and super, then splits it into monthly, fortnightly and weekly pay. Paid hourly, casually or per shift instead? The general <Link href="/" className="text-eucalyptus-dark hover:underline">pay calculator</Link> takes any pay type.</p>
           <TrustBar className="mt-3" />
         </section>
 

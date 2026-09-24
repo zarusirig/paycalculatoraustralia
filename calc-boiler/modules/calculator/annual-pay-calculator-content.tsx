@@ -118,6 +118,7 @@ export default function AnnualPayCalculatorContent() {
               <li><strong>HR professionals and payroll managers</strong> running annual salary projections for staff budgeting, hiring forecasts, and remuneration benchmarking.</li>
               <li><strong>Freelancers and contractors</strong> estimating the equivalent annual salary they need to match an employee&apos;s take-home pay, accounting for the absence of employer-paid super and leave entitlements.</li>
               <li><strong>Tax return preparers</strong> cross-checking PAYG withholding summaries against estimated annual taxation before lodging with the ATO.</li>
+              <li><strong>Queensland employees</strong> who also want QLD payroll tax, public-sector pay scales and state context: the <Link href="/pay-calculator-qld/" className="text-eucalyptus-dark hover:underline">pay calculator qld</Link> page sits alongside this one.</li>
             </ul>
             <p className="text-warmgray mt-4">
               Contractors comparing employee-equivalent salaries can also use the <Link href="/contractor-vs-employee-calculator/" className="text-eucalyptus-dark hover:underline">Contractor vs Employee Calculator</Link> for a side-by-side breakdown.
@@ -205,6 +206,7 @@ export default function AnnualPayCalculatorContent() {
               <li><strong>Forgetting the Medicare levy.</strong> The <strong>2%</strong> Medicare levy adds $1,000 in deductions for every $50,000 of taxable income. This is separate from income tax and is not optional for most Australian residents.</li>
               <li><strong>Ignoring the LITO offset.</strong> Taxpayers earning up to <strong>{formatAUD(LITO.nilOffsetIncome)}</strong> receive the &quot;Low Income Tax Offset&quot; of up to {formatAUD(LITO.maxOffset)}, which reduces total tax owed. Omitting this offset overstates the annual tax calculation.</li>
               <li><strong>Using calendar-year figures instead of financial-year figures.</strong> The Australian financial year runs from 1 July to 30 June. Tax brackets, super rates, and HECS thresholds all reset at 1 July, not 1 January.</li>
+              <li><strong>Assuming a raise flows straight through.</strong> Every extra dollar is taxed at your marginal rate, so a raise never adds its full amount to take-home pay. The <Link href="/pay-rise-calculator/" className="text-eucalyptus-dark hover:underline">calculator for a salary increase</Link> shows the after-tax value of a raise.</li>
             </ol>
           </section>
 
@@ -212,7 +214,7 @@ export default function AnnualPayCalculatorContent() {
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much Is Annual Take-Home Pay at Different Salary Levels?</h2>
             <p className="text-warmgray mb-4">
-              Annual take-home pay ranges from <strong>{formatAUD(net(50_000).takeHomePay)}</strong> at a $50,000 salary to <strong>{formatAUD(net(180_000).takeHomePay)}</strong> at $180,000, reflecting Australia&apos;s progressive tax system for FY{FY}.
+              Annual take-home pay ranges from <strong>{formatAUD(net(50_000).takeHomePay)}</strong> at a $50,000 salary to <strong>{formatAUD(net(180_000).takeHomePay)}</strong> at $180,000, reflecting Australia&apos;s progressive tax system for FY{FY}. For a worked breakdown at the most-searched salary, see <Link href="/tax-on/80000/" className="text-eucalyptus-dark hover:underline">Tax on $80,000 in Australia</Link>.
             </p>
             <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
               <table className="w-full text-sm">

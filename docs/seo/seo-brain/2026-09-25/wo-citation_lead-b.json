@@ -1,0 +1,372 @@
+[
+ {
+  "kind": "citation_lead",
+  "id": "schema-pay-calculator-wa",
+  "route": "/pay-calculator-wa/",
+  "priority": 8.24,
+  "h1": "Pay Calculator WA: Your Take-Home Pay in Western Australia",
+  "currentLead": "WA has the highest full-time earnings of any state. This salary calculator turns that gross figure into the net one using ATO 2026-27 rates \u2014 and then covers what is genuinely different in WA: your own state industrial system, WA Day, and long service leave that pays out from 7 years.",
+  "topQuery": "aus pay calculator",
+  "citable": 0.75,
+  "findings": [
+   "opening scores 0.75/3 as a quotable answer",
+   "opening does not define the subject first (p=0.12)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-commission-tax-calculator",
+  "route": "/commission-tax-calculator/",
+  "priority": 7.22,
+  "h1": "Commission Tax Calculator Australia",
+  "currentLead": "Two numbers people confuse: the tax a commission adds to your year, and the amount your employer withholds from the commission pay under ATO Schedule 5. This calculator shows both for 2026-27 , and the refund or bill that settles the gap.",
+  "topQuery": "Commission Tax Calculator Australia",
+  "citable": 0.56,
+  "findings": [
+   "opening scores 0.56/3 as a quotable answer",
+   "opening does not define the subject first (p=0.43)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-long-service-leave-calculator",
+  "route": "/long-service-leave-calculator/",
+  "priority": 6.98,
+  "h1": "Long Service Leave Calculator Australia \u2014 All 8 States and Territories",
+  "currentLead": "Enter your start date and your ordinary weekly pay to see how many weeks of long service leave you have accrued, what you could take now, what would be paid out if the job ended today, and the tax on it. Every rule below comes from the state or territory's own Act, verified 28 August 2026 .",
+  "topQuery": "long service leave calculator",
+  "citable": 0.24,
+  "findings": [
+   "opening scores 0.24/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-healthcare-worker-pay",
+  "route": "/healthcare-worker-pay/",
+  "priority": 6.639999999999999,
+  "h1": "Healthcare Worker Pay Guide \u2014 Salaries, Penalties & Salary Packaging",
+  "currentLead": "Healthcare is one of Australia's largest employers. From registered nurses to specialists, pay varies widely based on classification, experience, shift patterns, and whether you work in the public or private sector. This guide covers salaries, penalty rates, and the powerful salary packaging benefits available to publi",
+  "topQuery": "nurse pay calculator",
+  "citable": 0.34,
+  "findings": [
+   "opening scores 0.34/3 as a quotable answer",
+   "opening does not define the subject first (p=0.25)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-pay-calculator-tas",
+  "route": "/pay-calculator-tas/",
+  "priority": 4.3,
+  "h1": "Pay Calculator TAS: Your Take-Home Pay in Tasmania",
+  "currentLead": "Tasmanian wages are the lowest in the country, which makes the after-tax number matter more, not less. This salary calculator applies ATO 2026-27 rates, and the rest of the page covers the Tasmanian specifics: a holiday calendar that changes depending on which end of the state you work in, and long service leave under ",
+  "topQuery": "payroll tax tasmania",
+  "citable": 0.05,
+  "findings": [
+   "opening scores 0.05/3 as a quotable answer",
+   "opening does not define the subject first (p=0.12)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-tax-calendar",
+  "route": "/tax-calendar/",
+  "priority": 3.87,
+  "h1": "Australian Tax Calendar 2026-27",
+  "currentLead": "Every key tax date from 1 July 2026 to 30 June 2027 : when your 2025-26 tax return is due, quarterly BAS and PAYG instalments, STP finalisation, and how super deadlines work now that Payday Super has replaced quarterly super payments. Where a due date falls on a weekend or public holiday, we show the next business day ",
+  "topQuery": "tax week",
+  "citable": 0.13,
+  "findings": [
+   "opening scores 0.13/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-tax-file-number-declaration",
+  "route": "/tax-file-number-declaration/",
+  "priority": 3.8699999999999997,
+  "h1": "Tax File Number Declaration \u2014 How to Complete It Correctly",
+  "currentLead": "Every new job requires a TFN declaration. Getting it wrong can mean too much or too little tax withheld from your pay. Here's a step-by-step guide to filling it in correctly and avoiding costly mistakes.",
+  "topQuery": "tax file number declaration form",
+  "citable": 0.26,
+  "findings": [
+   "opening scores 0.26/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-tax-return-calculator",
+  "route": "/tax-return-calculator/",
+  "priority": 3.59,
+  "h1": "Tax Return Calculator 2026 : Estimate Your 2025-26 Refund",
+  "currentLead": "Estimate your refund or tax bill for the 2025-26 return you lodge now, due 31 October 2026 if you lodge it yourself. It uses the 2025-26 tax rates your return is actually assessed on. Switch to 2026-27 to plan next year\u2019s return.",
+  "topQuery": "estimate tax return",
+  "citable": 1.03,
+  "findings": [
+   "opening scores 1.03/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-retail-hospitality-pay-guide",
+  "route": "/retail-hospitality-pay-guide/",
+  "priority": 2.79,
+  "h1": "Retail & Hospitality Pay Guide \u2014 Award Rates, Penalties & Your Rights",
+  "currentLead": "Retail and hospitality are two of Australia's largest employing industries. Both industries are governed by Modern Awards that set minimum pay rates, casual loading, penalty rates, and working conditions. This guide covers the General Retail Industry Award (MA000004) and the Hospitality Industry Award (MA000009) in det",
+  "topQuery": "hospitality award rate qld",
+  "citable": 0.39,
+  "findings": [
+   "opening scores 0.39/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-income-tax-calculator",
+  "route": "/income-tax-calculator/",
+  "priority": 0.7699999999999996,
+  "h1": "Income Tax Calculator Australia 2026-27 \u2014 Simple Tax Calculator",
+  "currentLead": "Work out exactly how much income tax you pay on any annual, monthly, fortnightly or weekly income using the official ATO rates for FY 2026-27 \u2014 including the new 15% bracket that started on 1 July 2026 and the Low Income Tax Offset (LITO).",
+  "topQuery": "ato tax rates 2025-26",
+  "citable": 1.09,
+  "findings": [
+   "opening scores 1.09/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-pay-calculator-vic",
+  "route": "/pay-calculator-vic/",
+  "priority": -0.7000000000000011,
+  "h1": "Pay Calculator VIC: Your Take-Home Pay in Victoria",
+  "currentLead": "Put your salary in and see what actually lands in your account. This wage calculator uses the ATO's 2026-27 rates, then covers the three things that really are different in Victoria: the public holidays that trigger penalty rates, long service leave after 7 years, and the payroll tax your employer pays.",
+  "topQuery": "pay calculator vic",
+  "citable": 1.07,
+  "findings": [
+   "opening scores 1.07/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-notice-of-assessment",
+  "route": "/notice-of-assessment/",
+  "priority": -1.3200000000000003,
+  "h1": "Notice of Assessment \u2014 Understanding Your ATO Tax Assessment",
+  "currentLead": "Your Notice of Assessment is the ATO's official statement of your tax calculation. Here's how to read each line, understand what the numbers mean, and what to do if something doesn't look right.",
+  "topQuery": "notice of assessment",
+  "citable": 0.93,
+  "findings": [
+   "opening scores 0.93/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-overtime-pay-calculator",
+  "route": "/overtime-pay-calculator/",
+  "priority": -1.6800000000000002,
+  "h1": "Overtime & Penalty Rate Calculator 2026-27",
+  "currentLead": "Calculate your overtime, weekend, and public holiday pay. Enter your base hourly rate, select the penalty multiplier, and see your gross and net overtime earnings after tax.",
+  "topQuery": "over time rate",
+  "citable": 0.17,
+  "findings": [
+   "opening scores 0.17/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-bonus-tax-calculator",
+  "route": "/bonus-tax-calculator/",
+  "priority": -1.9300000000000002,
+  "h1": "Bonus Tax Calculator Australia",
+  "currentLead": "Work out the extra tax you'll actually owe on a bonus or commission payment for the year. See the marginal tax rate applied to your lump sum and your actual take-home bonus.",
+  "topQuery": "bonus pay",
+  "citable": 0.21,
+  "findings": [
+   "opening scores 0.21/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-non-resident-tax",
+  "route": "/non-resident-tax/",
+  "priority": -2.6800000000000015,
+  "h1": "Non-Resident Tax Rates Australia 2026-27",
+  "currentLead": "Tax rates for foreign residents working in Australia: no tax-free threshold, no LITO, and different brackets. See a side-by-side comparison with resident rates.",
+  "topQuery": "non resident tax rate",
+  "citable": 1.37,
+  "findings": [
+   "opening scores 1.37/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-junior-pay-rates",
+  "route": "/junior-pay-rates/",
+  "priority": -3.08,
+  "h1": "Minimum Wage by Age 2026-27 : Junior Pay Rates for 14 to 20 Year Olds",
+  "currentLead": "What under- 21 s must legally be paid in Australia, for the National Minimum Wage and for the awards that cover most young workers.",
+  "topQuery": "minimum wages for 18 year olds in australia",
+  "citable": 0.31,
+  "findings": [
+   "opening scores 0.31/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-superannuation-guide",
+  "route": "/superannuation-guide/",
+  "priority": -4.4999999999999964,
+  "h1": "Superannuation Guide \u2014 How Super Works in Australia ( 2026-27 )",
+  "currentLead": "Everything you need to know about the mandatory 12% retirement system, Payday Super, contribution caps, and how super affects your take-home pay.",
+  "topQuery": "superannuation rate",
+  "citable": 2.11,
+  "findings": [
+   "opening scores 2.11/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-retail-award-rates",
+  "route": "/retail-award-rates/",
+  "priority": -5.89,
+  "h1": "Retail Award Pay Rates 2026-27",
+  "currentLead": "Every classification rate under the General Retail Industry Award 2020 ( MA000004 ) \u2014 shops, supermarkets and retail chains \u2014 operative from 1 July 2026 .",
+  "topQuery": "retail award rate",
+  "citable": 0.59,
+  "findings": [
+   "opening scores 0.59/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-pay-calculator-nsw",
+  "route": "/pay-calculator-nsw/",
+  "priority": -7.780000000000001,
+  "h1": "Pay Calculator NSW: Your Take-Home Pay in New South Wales",
+  "currentLead": "A salary calculator for the 4 million people who work in NSW. Enter your gross pay and see the net figure that should appear on your next payslip, using ATO 2026-27 rates \u2014 then check the NSW-only things underneath: the public holiday calendar, long service leave after 10 years, and who really pays payroll tax.",
+  "topQuery": "pay calculator nsw",
+  "citable": 0.78,
+  "findings": [
+   "opening scores 0.78/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-second-job-tax-calculator",
+  "route": "/second-job-tax-calculator/",
+  "priority": -7.890000000000001,
+  "h1": "Second Job Tax Calculator Australia 2026-27",
+  "currentLead": "Calculate the tax impact of working two jobs. See why your second job appears to be taxed more, how PAYG withholding works without the tax-free threshold, and your estimated refund at tax time.",
+  "topQuery": "2nd job tax rate",
+  "citable": 0.79,
+  "findings": [
+   "opening scores 0.79/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-healthcare-worker-pay-sa",
+  "route": "/healthcare-worker-pay/sa/",
+  "priority": -8.79,
+  "h1": "SA Nurse & Midwife Pay Rates 2026 \u2014 SA Health Pay Scales",
+  "currentLead": "South Australian public sector nurses and midwives are paid under the Nursing/Midwifery (South Australian Public Sector) Enterprise Agreement 2022, which nominally expired on 31 July 2025. The figures below are its last published column, from 1 January 2025. Since then the SA Government has paid a 4% administrative inc",
+  "topQuery": "nurse salary south australia",
+  "citable": 1.66,
+  "findings": [
+   "opening scores 1.66/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-hospitality-award-rates",
+  "route": "/hospitality-award-rates/",
+  "priority": -10.09,
+  "h1": "Hospitality Award Pay Rates 2026-27",
+  "currentLead": "Every classification rate under the Hospitality Industry (General) Award 2020 ( MA000009 ) \u2014 cafes, restaurants, pubs, clubs and hotels \u2014 operative from 1 July 2026 .",
+  "topQuery": "hospitality award",
+  "citable": 1.01,
+  "findings": [
+   "opening scores 1.01/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-tech-salary-guide-australia",
+  "route": "/tech-salary-guide-australia/",
+  "priority": -11.299999999999999,
+  "h1": "IT & Tech Salary Guide \u2014 What Tech Workers Earn in Australia",
+  "currentLead": "Australia's tech sector offers some of the highest salaries in the economy, with senior developers and engineers earning $130,000\u2013$200,000+. This guide covers average tech salaries by role, contractor vs permanent comparisons, city-by-city variations, and how to maximise your take-home pay through salary packaging and ",
+  "topQuery": "it pay rates",
+  "citable": 1.79,
+  "findings": [
+   "opening scores 1.79/3 as a quotable answer",
+   "opening does not define the subject first (p=0.37)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-mining-fifo-pay-guide",
+  "route": "/mining-fifo-pay-guide/",
+  "priority": -19.49,
+  "h1": "Mining & FIFO Pay Guide \u2014 Salaries, Rosters & Take-Home Pay",
+  "currentLead": "Australia's mining sector is one of the highest-paying industries in the country. FIFO (fly-in, fly-out) workers earn between $100,000 and $200,000+ depending on role, roster structure, and allowances. This guide breaks down mining salaries, FIFO rosters, allowances, tax considerations, and how to calculate your real t",
+  "topQuery": "fifo jobs pay",
+  "citable": 1.95,
+  "findings": [
+   "opening scores 1.95/3 as a quotable answer",
+   "opening does not define the subject first (p=0.41)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-parental-leave-pay",
+  "route": "/parental-leave-pay/",
+  "priority": -21.660000000000004,
+  "h1": "Paid Parental Leave Calculator 2026 \u2014 26 Weeks, Pay and Super",
+  "currentLead": "For a child born or adopted from 1 July 2026 , the government's Paid Parental Leave scheme pays your family up to 130 days ( 26 weeks) of Parental Leave Pay at $200.94 a day ( $1,004.70 a week) before tax, with 20 days reserved for a partner and a 12 % super contribution from the ATO. Work out your days, your pay and w",
+  "topQuery": "how much is paid parental leave",
+  "citable": 2.97,
+  "findings": [
+   "opening does not define the subject first (p=0.33)"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-ytd-income-calculator",
+  "route": "/ytd-income-calculator/",
+  "priority": -23.080000000000002,
+  "h1": "YTD Calculator \u2014 Year to Date Income Australia",
+  "currentLead": "Year to date (YTD) income is everything you have earned since 1 July, the start of the Australian financial year, up to your latest payslip. Use this YTD calculator to add up your year-to-date gross pay, or annualise a YTD figure into a projected annual salary and tax estimate.",
+  "topQuery": "year to date calculator",
+  "citable": 2.31,
+  "findings": [
+   "opening scores 2.31/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-redundancy-pay-calculator",
+  "route": "/redundancy-pay-calculator/",
+  "priority": -23.15,
+  "h1": "Redundancy Pay Calculator Australia 2026-27",
+  "currentLead": "Enter your base salary and completed years of service to see your National Employment Standards redundancy pay, the 2026-27 tax-free limit of $13,598 plus $6,801 per year, and what you take home. The same rules apply in NSW, Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.",
+  "topQuery": "redundancy calculator",
+  "citable": 2.32,
+  "findings": [
+   "opening scores 2.32/3 as a quotable answer"
+  ]
+ },
+ {
+  "kind": "citation_lead",
+  "id": "schema-gross-pay-calculator",
+  "route": "/gross-pay-calculator/",
+  "priority": -27.3,
+  "h1": "Gross Pay Calculator Australia \u2014 Net to Gross ( 2026-27 )",
+  "currentLead": "To take home $1,500 a week you need a gross salary of $100,763 a year in FY 2026-27 , before 12% super.",
+  "topQuery": "estimating net pay",
+  "citable": 2.74,
+  "findings": [
+   "opening does not define the subject first (p=0.49)"
+  ]
+ }
+]

@@ -6,6 +6,7 @@ import { TAKE_HOME_PAY_FAQS } from "@/modules/calculator/take-home-pay-calculato
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
+import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
@@ -26,7 +27,12 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000 });
 // income calculator"; the other pages now link here with those exact anchors.
 // Previous: "Take-Home Pay Calculator Australia ${FY}: Pay After Tax".
 const TITLE = `Take Home Pay Calculator Australia ${FY}: Net Pay After Tax`;
-const DESCRIPTION = `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator — enter weekly, fortnightly, monthly or annual pay.`;
+// fitDescription: fuller form first; the shorter form keeps the figure, the FY,
+// "take home pay", "net pay" and "after tax income calculator".
+const DESCRIPTION = fitDescription(
+  `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator — enter weekly, fortnightly, monthly or annual pay.`,
+  `On $80,000 your net pay is ${formatAUD(at80k.takeHomePay)} a year (${formatAUD(at80k.fortnightly)} a fortnight) in ${FY}. Take home pay and after tax income calculator for weekly, fortnightly or annual pay.`,
+);
 
 export const metadata: Metadata = {
   title: TITLE,
