@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { WhatsNext } from "@/components/common/page-end";
+import NativeBanner from "@/components/common/native-banner";
 
 /**
  * "What to check next", rendered directly under a calculator instead of (or as
@@ -24,5 +25,11 @@ import { WhatsNext } from "@/components/common/page-end";
  *     {children}
  */
 export default function WhatsNextInline({ route }: { route: string }) {
-  return <WhatsNext path={route} Link={Link} placement="inline" />;
+  // Our own next steps first, then the one native ad unit for the page.
+  return (
+    <>
+      <WhatsNext path={route} Link={Link} placement="inline" />
+      <NativeBanner className="pb-10" />
+    </>
+  );
 }

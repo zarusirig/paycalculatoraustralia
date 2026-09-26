@@ -77,3 +77,23 @@ the baseline for the next change (the Popunder test).
 $50/day. Baseline $15.29/day (28 days to 25 Sep 2026). At about 2 cents per
 visitor that needs ~2,600 visitors/day; new ad units add a few dollars a day
 at most, so traffic is the main lever.
+
+## Current test: Popunder + Native Banner (deployed 26 Sep 2026)
+
+Both units were provisioned but Inactive until 26 Sep 2026, so they had never
+earned anything. Baseline is `2026-09-26-adsterra-28d.md`.
+
+| Unit | Who sees it | When | Where |
+|---|---|---|---|
+| Popunder_1 (29439534) | Desktop only (wide screen + mouse) | After scrolling past the calculator, or 45s; max once per 24h per browser | `components/common/deferred-popunder.tsx` |
+| NativeBanner_1 (29439535) | Everyone | In page flow | Under "What to check next" on 52 calculator pages, and after the homepage calculator |
+
+Balance rules: no pop-up of any kind on phones except the existing Social
+Bar; no ad above the calculator answer except the existing top banner; our own
+links always come before a native ad; one unit of each kind per page.
+
+Judge on 3 Oct and 10 Oct 2026 with
+`node scripts/adsterra-report.mjs --days 7 --compare` (from calc-boiler).
+Keep the popunder only if it adds at least $2/day AND GA4 pages per session
+and `next_step_click` do not fall. Keep the native banner if it adds any
+revenue without a drop in `next_step_click` from the inline block.

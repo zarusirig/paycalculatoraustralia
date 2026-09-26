@@ -6,6 +6,7 @@ import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
 import AdsterraBanner from "@/components/common/adsterra-banner";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
+import DeferredPopunder from "@/components/common/deferred-popunder";
 import EngagementTracking from "@/components/common/engagement-tracking";
 
 export const viewport: Viewport = {
@@ -162,6 +163,10 @@ export default function RootLayout({
             45s or used a calculator. This is the one change here that costs
             impressions — see the component for the dial. */}
         <DeferredSocialBar />
+
+        {/* Adsterra popunder: desktop only, after the visitor has their answer,
+            at most once per 24h. See the component for the guardrails. */}
+        <DeferredPopunder />
 
         {/* GA4 */}
         <Script

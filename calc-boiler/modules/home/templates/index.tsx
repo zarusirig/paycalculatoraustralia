@@ -26,6 +26,7 @@ import {
   STATE_PAYROLL_TAX,
 } from "@/lib/constants";
 import HomeCalculator from "./home-calculator";
+import HomeNativeBanner from "./home-native-banner";
 import { SourceBadge } from "./source-badge";
 
 const FY = SITE_CONFIG.financialYear;
@@ -153,6 +154,9 @@ export default function HomePageTemplate() {
           </div>
         </div>
       </section>
+
+      {/* One native ad unit, after the calculator and its quick links. */}
+      <HomeNativeBanner className="pt-10" />
 
       {/* ═══ CONTENT SECTIONS ═══ */}
       <div className="mx-auto max-w-4xl space-y-20 px-4 py-20 sm:px-6 lg:px-8">
