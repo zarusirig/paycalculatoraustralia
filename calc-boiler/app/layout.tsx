@@ -97,6 +97,13 @@ export default function RootLayout({
         </a>
         <Navbar />
 
+        {/* The header is `position: fixed` (64px, h-16) and nothing else in
+            the document reserves that space. Until this spacer existed, the
+            top-of-page ad below doubled as the spacer and the header covered
+            its first ~26px on desktop and ~40px of the 50px mobile unit —
+            an impression that was paid for but never fully visible. */}
+        <div aria-hidden="true" className="h-16" />
+
         {/* Sticky vertical rails — wide desktop only.
             Gated at 1700px rather than `xl` (1280px). The content column is
             max-w-7xl = 1280px centred, and each 160px rail plus its offset needs
