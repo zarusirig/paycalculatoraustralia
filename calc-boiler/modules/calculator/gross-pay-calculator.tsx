@@ -41,7 +41,7 @@ type Period = keyof typeof PERIOD_MULTIPLIERS;
  * (gross-pay-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function GrossPayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function GrossPayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [targetNet, setTargetNet] = useState(1500);
   const [period, setPeriod] = useState<Period>("weekly");
 
@@ -185,6 +185,7 @@ export default function GrossPayCalculatorPage({ children }: { children: React.R
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

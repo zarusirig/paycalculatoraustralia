@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SalaryPackageCalculatorPage from "@/modules/calculator/salary-package-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import SalaryPackageCalculatorContent from "@/modules/calculator/salary-package-calculator-content";
 import { SALARY_PACKAGE_FAQS } from "@/modules/calculator/salary-package-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -66,7 +67,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SalaryPackageCalculatorPage><SalaryPackageCalculatorContent /></SalaryPackageCalculatorPage>
+      <SalaryPackageCalculatorPage afterCalculator={<WhatsNextInline route="/salary-package-calculator/" />}><SalaryPackageCalculatorContent /></SalaryPackageCalculatorPage>
     </>
   );
 }

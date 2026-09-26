@@ -28,7 +28,7 @@ function clamp(n: number, min: number, max: number) {
  * server component (fortnightly-pay-calculator-content.tsx) passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function FortnightlyPayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function FortnightlyPayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   // "fortnightly tax calculator" searchers know their fortnightly pay, not their salary
   // (the ATO tax withheld calculator and paycalculator.com.au both take a
   // fortnightly amount), so fortnightly entry is offered alongside annual salary.
@@ -138,6 +138,7 @@ export default function FortnightlyPayCalculatorPage({ children }: { children: R
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

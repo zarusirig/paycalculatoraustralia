@@ -48,7 +48,7 @@ const SITUATION_LABEL: Record<AssetsSituation, string> = {
  * (age-pension-assets-test-calculator-content.tsx) and passed in as
  * `children`, so it is not part of this client bundle.
  */
-export default function AgePensionAssetsTestCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function AgePensionAssetsTestCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [situation, setSituation] = useState<AssetsSituation>("single");
   const [home, setHome] = useState<Homeownership>("homeowner");
   const [financial, setFinancial] = useState(250_000);
@@ -174,6 +174,7 @@ export default function AgePensionAssetsTestCalculatorPage({ children }: { child
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

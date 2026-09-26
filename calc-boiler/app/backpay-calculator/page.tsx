@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BackpayCalculatorPage from "@/modules/calculator/backpay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import BackpayCalculatorContent from "@/modules/calculator/backpay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -71,7 +72,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <BackpayCalculatorPage>
+      <BackpayCalculatorPage afterCalculator={<WhatsNextInline route="/backpay-calculator/" />}>
         <BackpayCalculatorContent />
       </BackpayCalculatorPage>
     </>

@@ -35,7 +35,7 @@ const CP = CARER_PAYMENT;
  * card. The static long-form content is server-rendered
  * (carer-payment-calculator-content.tsx) and passed in as `children`.
  */
-export default function CarerPaymentCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function CarerPaymentCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [situation, setSituation] = useState<PensionSituation>("single");
   const [employment, setEmployment] = useState(500);
   const [partnerIncome, setPartnerIncome] = useState(0);
@@ -135,6 +135,7 @@ export default function CarerPaymentCalculatorPage({ children }: { children: Rea
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

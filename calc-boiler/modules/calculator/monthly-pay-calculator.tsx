@@ -27,7 +27,7 @@ function clamp(n: number, min: number, max: number) {
  * static article sections are server components (monthly-pay-calculator-content.tsx)
  * passed in as `intro` and `children`, so they are not part of the client bundle.
  */
-export default function MonthlyPayCalculatorPage({ intro, children }: { intro: React.ReactNode; children: React.ReactNode }) {
+export default function MonthlyPayCalculatorPage({ intro, children, afterCalculator }: { intro: React.ReactNode; children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [salary, setSalary] = useState(80_000);
   const [includeHECS, setIncludeHECS] = useState(false);
 
@@ -158,6 +158,7 @@ export default function MonthlyPayCalculatorPage({ intro, children }: { intro: R
             </p>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

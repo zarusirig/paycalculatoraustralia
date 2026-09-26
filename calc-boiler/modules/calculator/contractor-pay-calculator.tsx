@@ -94,7 +94,7 @@ function calculateContractorPay(
  * (contractor-pay-calculator-content.tsx) passed in as `children`, so it is
  * not part of this client bundle.
  */
-export default function ContractorPayCalculator({ children }: { children: React.ReactNode }) {
+export default function ContractorPayCalculator({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [hourlyRate, setHourlyRate] = useState(50);
   const [hoursPerWeek, setHoursPerWeek] = useState(38);
   const [weeksPerYear, setWeeksPerYear] = useState(48);
@@ -261,6 +261,7 @@ export default function ContractorPayCalculator({ children }: { children: React.
         </div>
       </section>
 
+      {afterCalculator}
       {children}
     </div>
   );

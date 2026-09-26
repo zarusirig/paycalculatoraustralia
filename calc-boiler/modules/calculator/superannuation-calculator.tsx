@@ -29,10 +29,12 @@ export default function SuperannuationCalculatorPage({
   intro,
   middle,
   children,
+  afterCalculator,
 }: {
   intro: React.ReactNode;
   middle: React.ReactNode;
   children: React.ReactNode;
+  afterCalculator?: React.ReactNode;
 }) {
   const [salary, setSalary] = useState(80_000);
 
@@ -141,6 +143,7 @@ export default function SuperannuationCalculatorPage({
             <p className="text-sm text-warmgray-light"><Link href="/salary-sacrifice-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Compare your pay before and after salary sacrifice</Link></p>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

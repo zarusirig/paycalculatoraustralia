@@ -56,7 +56,7 @@ const SEP = AGE_PENSION_RATES[SEPTEMBER_2026];
  * (age-pension-income-test-calculator-content.tsx) and passed in as
  * `children`, so it is not part of this client bundle.
  */
-export default function AgePensionIncomeTestCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function AgePensionIncomeTestCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [situation, setSituation] = useState<PensionSituation>("single");
   const [employment, setEmployment] = useState(600);
   const [partnerEmployment, setPartnerEmployment] = useState(0);
@@ -225,6 +225,7 @@ export default function AgePensionIncomeTestCalculatorPage({ children }: { child
             </p>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

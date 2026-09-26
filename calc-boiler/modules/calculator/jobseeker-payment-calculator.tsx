@@ -86,7 +86,7 @@ const PARTNER_LABELS: Record<PartnerAge, string> = {
  * long-form content is server-rendered (jobseeker-payment-calculator-content.tsx)
  * and passed in as `children`, so it is not part of this client bundle.
  */
-export default function JobseekerPaymentCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function JobseekerPaymentCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [situation, setSituation] = useState<Situation>("single");
   const [income, setIncome] = useState(600);
   const [partnerIncome, setPartnerIncome] = useState(0);
@@ -241,6 +241,7 @@ export default function JobseekerPaymentCalculatorPage({ children }: { children:
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

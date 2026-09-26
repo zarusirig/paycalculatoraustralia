@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FinalPayCalculatorPage from "@/modules/calculator/final-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import FinalPayCalculatorContent from "@/modules/calculator/final-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -71,7 +72,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <FinalPayCalculatorPage><FinalPayCalculatorContent /></FinalPayCalculatorPage>
+      <FinalPayCalculatorPage afterCalculator={<WhatsNextInline route="/final-pay-calculator/" />}><FinalPayCalculatorContent /></FinalPayCalculatorPage>
     </>
   );
 }

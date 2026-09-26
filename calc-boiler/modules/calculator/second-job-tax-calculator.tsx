@@ -41,7 +41,7 @@ function clamp(n: number, min: number, max: number) {
  * static long-form content (second-job-tax-calculator-content.tsx) is passed in
  * as `children`, so it is not part of the client bundle.
  */
-export default function SecondJobTaxCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function SecondJobTaxCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [job1Salary, setJob1Salary] = useState(60_000);
   const [job2Salary, setJob2Salary] = useState(25_000);
 
@@ -220,6 +220,7 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
             </Card>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

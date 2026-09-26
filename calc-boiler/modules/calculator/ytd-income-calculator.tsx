@@ -53,7 +53,7 @@ function periodsFromDate(dateStr: string, frequency: Frequency): number | null {
  * (ytd-income-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function YTDIncomeCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function YTDIncomeCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [mode, setMode] = useState<Mode>("ytd");
   const [frequency, setFrequency] = useState<Frequency>("fortnightly");
   const [payPerPeriod, setPayPerPeriod] = useState(2000);
@@ -298,6 +298,7 @@ export default function YTDIncomeCalculatorPage({ children }: { children: React.
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

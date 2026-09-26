@@ -26,7 +26,7 @@ const FORTNIGHTS = 26;
  * static long-form content is server-rendered (carer-allowance-content.tsx)
  * and passed in as `children`.
  */
-export default function CarerAllowancePage({ children }: { children: React.ReactNode }) {
+export default function CarerAllowancePage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [income, setIncome] = useState(90_000);
   const [share, setShare] = useState(100);
   const [onCarerPayment, setOnCarerPayment] = useState(false);
@@ -86,6 +86,7 @@ export default function CarerAllowancePage({ children }: { children: React.React
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

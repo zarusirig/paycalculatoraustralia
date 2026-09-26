@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import IncomeTaxCalculatorPage from "@/modules/calculator/income-tax-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import IncomeTaxCalculatorContent from "@/modules/calculator/income-tax-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -219,7 +220,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <IncomeTaxCalculatorPage>
+      <IncomeTaxCalculatorPage afterCalculator={<WhatsNextInline route="/income-tax-calculator/" />}>
         <IncomeTaxCalculatorContent faqs={FAQS} />
       </IncomeTaxCalculatorPage>
     </>

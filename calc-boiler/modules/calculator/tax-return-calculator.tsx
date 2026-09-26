@@ -34,7 +34,7 @@ function clamp(n: number, min: number, max: number) {
  * (tax-return-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function TaxReturnCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function TaxReturnCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [year, setYear] = useState<ReturnIncomeYear>(DEFAULT_RETURN_YEAR);
   const [totalIncome, setTotalIncome] = useState<number>(EXAMPLE_INPUTS.grossIncome);
   const [taxWithheld, setTaxWithheld] = useState<number>(EXAMPLE_INPUTS.taxWithheld);
@@ -234,6 +234,7 @@ export default function TaxReturnCalculatorPage({ children }: { children: React.
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

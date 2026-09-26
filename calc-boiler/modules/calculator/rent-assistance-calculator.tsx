@@ -25,7 +25,7 @@ import { FONT, INPUT, LABEL, Row, clamp } from "./centrelink-shared";
 const RA = RENT_ASSISTANCE;
 type Period = "week" | "fortnight" | "month";
 
-export default function RentAssistanceCalculatorPage({ children }: { children: ReactNode }) {
+export default function RentAssistanceCalculatorPage({ children, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
   const [situation, setSituation] = useState<RentAssistanceSituation>("single");
   const [rent, setRent] = useState(250);
   const [period, setPeriod] = useState<Period>("week");
@@ -117,6 +117,7 @@ export default function RentAssistanceCalculatorPage({ children }: { children: R
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

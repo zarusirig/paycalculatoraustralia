@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CommissionTaxCalculatorPage from "@/modules/calculator/commission-tax-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import CommissionTaxCalculatorContent from "@/modules/calculator/commission-tax-calculator-content";
 import { COMMISSION_TAX_FAQS } from "@/modules/calculator/commission-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -68,7 +69,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <CommissionTaxCalculatorPage><CommissionTaxCalculatorContent /></CommissionTaxCalculatorPage>
+      <CommissionTaxCalculatorPage afterCalculator={<WhatsNextInline route="/commission-tax-calculator/" />}><CommissionTaxCalculatorContent /></CommissionTaxCalculatorPage>
     </>
   );
 }

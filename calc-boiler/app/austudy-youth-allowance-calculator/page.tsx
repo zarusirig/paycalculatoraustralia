@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AustudyYouthAllowanceCalculatorPage from "@/modules/calculator/austudy-youth-allowance-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import AustudyYouthAllowanceCalculatorContent from "@/modules/calculator/austudy-youth-allowance-calculator-content";
 import { STUDENT_FAQS } from "@/modules/calculator/austudy-youth-allowance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -75,7 +76,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AustudyYouthAllowanceCalculatorPage><AustudyYouthAllowanceCalculatorContent /></AustudyYouthAllowanceCalculatorPage>
+      <AustudyYouthAllowanceCalculatorPage afterCalculator={<WhatsNextInline route="/austudy-youth-allowance-calculator/" />}><AustudyYouthAllowanceCalculatorContent /></AustudyYouthAllowanceCalculatorPage>
     </>
   );
 }

@@ -36,7 +36,7 @@ const AGE_GROUPS: { key: AgeGroup; label: string }[] = [
  * calculator card. The static long-form content is server-rendered
  * (disability-support-pension-calculator-content.tsx) and passed in as `children`.
  */
-export default function DisabilitySupportPensionCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function DisabilitySupportPensionCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [age, setAge] = useState<AgeGroup>("21plus");
   const [couple, setCouple] = useState(false);
   const [wages, setWages] = useState(600);
@@ -122,6 +122,7 @@ export default function DisabilitySupportPensionCalculatorPage({ children }: { c
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

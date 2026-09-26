@@ -27,7 +27,7 @@ function clamp(n: number, min: number, max: number) {
  * (hourly-to-annual-salary-calculator-content.tsx) passed in as `children`, so
  * it is not part of this client bundle.
  */
-export default function HourlyToAnnualCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function HourlyToAnnualCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [hourlyRate, setHourlyRate] = useState(45.50);
   const [hoursPerWeek, setHoursPerWeek] = useState(38);
 
@@ -177,6 +177,7 @@ export default function HourlyToAnnualCalculatorPage({ children }: { children: R
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

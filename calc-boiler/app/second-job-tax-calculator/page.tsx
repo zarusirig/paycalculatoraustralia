@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SecondJobTaxCalculatorPage from "@/modules/calculator/second-job-tax-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import SecondJobTaxCalculatorContent from "@/modules/calculator/second-job-tax-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { SECOND_JOB_FAQS } from "@/modules/calculator/second-job-tax-calculator-faqs";
@@ -72,7 +73,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SecondJobTaxCalculatorPage>
+      <SecondJobTaxCalculatorPage afterCalculator={<WhatsNextInline route="/second-job-tax-calculator/" />}>
         <SecondJobTaxCalculatorContent />
       </SecondJobTaxCalculatorPage>
     </>

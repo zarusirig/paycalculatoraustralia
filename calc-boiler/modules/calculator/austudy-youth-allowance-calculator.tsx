@@ -44,7 +44,7 @@ const YJ = YOUTH_ALLOWANCE_JOBSEEKER;
  * (austudy-youth-allowance-calculator-content.tsx) and passed in as
  * `children`, so it is not part of this client bundle.
  */
-export default function AustudyYouthAllowanceCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function AustudyYouthAllowanceCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [payment, setPayment] = useState<Payment>("austudy");
   const [sitKey, setSitKey] = useState(AUSTUDY_SITS[0].key);
   const [income, setIncome] = useState(800);
@@ -129,6 +129,7 @@ export default function AustudyYouthAllowanceCalculatorPage({ children }: { chil
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

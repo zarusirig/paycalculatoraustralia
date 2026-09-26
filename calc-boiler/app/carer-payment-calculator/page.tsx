@@ -1,4 +1,5 @@
 import CarerPaymentCalculatorPage from "@/modules/calculator/carer-payment-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import CarerPaymentCalculatorContent from "@/modules/calculator/carer-payment-calculator-content";
 import { CARER_PAYMENT_FAQS } from "@/modules/calculator/centrelink-w3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -17,7 +18,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Carer Payment Calculator", description: DESCRIPTION, faqs: CARER_PAYMENT_FAQS, calculator: true, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
-      <CarerPaymentCalculatorPage><CarerPaymentCalculatorContent /></CarerPaymentCalculatorPage>
+      <CarerPaymentCalculatorPage afterCalculator={<WhatsNextInline route="/carer-payment-calculator/" />}><CarerPaymentCalculatorContent /></CarerPaymentCalculatorPage>
     </>
   );
 }

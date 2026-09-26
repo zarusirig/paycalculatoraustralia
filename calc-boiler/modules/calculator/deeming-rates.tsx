@@ -33,7 +33,7 @@ const KIND_LABEL: Record<DeemingKind, string> = {
   nonPensionerCouple: "Couple — neither gets a pension",
 };
 
-export default function DeemingRatesPage({ children }: { children: ReactNode }) {
+export default function DeemingRatesPage({ children, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
   const [kind, setKind] = useState<DeemingKind>("single");
   const [assets, setAssets] = useState(120_000);
   const [partnerAssets, setPartnerAssets] = useState(0);
@@ -118,6 +118,7 @@ export default function DeemingRatesPage({ children }: { children: ReactNode }) 
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

@@ -32,7 +32,7 @@ const DEFAULT_PAYMENT: Record<AdvanceKind, number> = {
   specialEmployment: JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single,
 };
 
-export default function CentrelinkAdvancePaymentPage({ children }: { children: ReactNode }) {
+export default function CentrelinkAdvancePaymentPage({ children, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
   const [kind, setKind] = useState<AdvanceKind>("allowance");
   const [advance, setAdvance] = useState(500);
   const [payment, setPayment] = useState(DEFAULT_PAYMENT.allowance);
@@ -97,6 +97,7 @@ export default function CentrelinkAdvancePaymentPage({ children }: { children: R
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

@@ -31,7 +31,7 @@ const SITUATION_LABEL: Record<CshcSituation, string> = {
   coupleSeparated: "A couple separated by illness, respite care or prison",
 };
 
-export default function CommonwealthSeniorsHealthCardPage({ children: content }: { children: ReactNode }) {
+export default function CommonwealthSeniorsHealthCardPage({ children: content, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
   const [situation, setSituation] = useState<CshcSituation>("single");
   const [yourIncome, setYourIncome] = useState(60_000);
   const [partnerIncome, setPartnerIncome] = useState(0);
@@ -114,6 +114,7 @@ export default function CommonwealthSeniorsHealthCardPage({ children: content }:
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {content}
         </div>
       </div>

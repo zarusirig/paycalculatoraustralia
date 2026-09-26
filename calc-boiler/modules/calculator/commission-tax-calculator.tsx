@@ -51,7 +51,7 @@ const LEAD_TAX = annualTaxOn(LEAD_BASE, LEAD_COMMISSION);
  * (a server component) and is passed in as `children`, so it is not part of
  * this client bundle.
  */
-export default function CommissionTaxCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function CommissionTaxCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [baseSalary, setBaseSalary] = useState(80_000);
   const [commission, setCommission] = useState(5_000);
   const [frequency, setFrequency] = useState<PayFrequency>("fortnightly");
@@ -196,6 +196,7 @@ export default function CommissionTaxCalculatorPage({ children }: { children: Re
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

@@ -29,7 +29,7 @@ function clamp(n: number, min: number, max: number) {
  * long-form content (bonus-tax-calculator-content.tsx) is passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function BonusTaxCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function BonusTaxCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [baseSalary, setBaseSalary] = useState(90_000);
   const [bonusAmount, setBonusAmount] = useState(10_000);
 
@@ -145,6 +145,7 @@ export default function BonusTaxCalculatorPage({ children }: { children: React.R
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import JobseekerPaymentCalculatorPage from "@/modules/calculator/jobseeker-payment-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import JobseekerPaymentCalculatorContent from "@/modules/calculator/jobseeker-payment-calculator-content";
 import { JOBSEEKER_FAQS } from "@/modules/calculator/jobseeker-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -70,7 +71,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <JobseekerPaymentCalculatorPage><JobseekerPaymentCalculatorContent /></JobseekerPaymentCalculatorPage>
+      <JobseekerPaymentCalculatorPage afterCalculator={<WhatsNextInline route="/jobseeker-payment-calculator/" />}><JobseekerPaymentCalculatorContent /></JobseekerPaymentCalculatorPage>
     </>
   );
 }
