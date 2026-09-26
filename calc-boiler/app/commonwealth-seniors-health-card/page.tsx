@@ -1,4 +1,5 @@
 import CommonwealthSeniorsHealthCardPage from "@/modules/calculator/commonwealth-seniors-health-card";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import CommonwealthSeniorsHealthCardContent from "@/modules/calculator/commonwealth-seniors-health-card-content";
 import { CSHC_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -17,7 +18,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Commonwealth Seniors Health Card Income Test Calculator", description: DESCRIPTION, faqs: CSHC_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
-      <CommonwealthSeniorsHealthCardPage><CommonwealthSeniorsHealthCardContent /></CommonwealthSeniorsHealthCardPage>
+      <CommonwealthSeniorsHealthCardPage afterCalculator={<WhatsNextInline route="/commonwealth-seniors-health-card/" />}><CommonwealthSeniorsHealthCardContent /></CommonwealthSeniorsHealthCardPage>
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import GrossPayCalculatorPage from "@/modules/calculator/gross-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import GrossPayCalculatorContent from "@/modules/calculator/gross-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -82,7 +83,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <GrossPayCalculatorPage>
+      <GrossPayCalculatorPage afterCalculator={<WhatsNextInline route="/gross-pay-calculator/" />}>
         <GrossPayCalculatorContent />
       </GrossPayCalculatorPage>
     </>

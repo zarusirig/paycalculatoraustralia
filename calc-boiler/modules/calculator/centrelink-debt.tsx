@@ -25,7 +25,7 @@ import { MoneyInput, W3Hero, W3Section } from "./centrelink-w3-shared";
 const JS_MAX = JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single;
 const T = JOBSEEKER_INCOME_TEST;
 
-export default function CentrelinkDebtPage({ intro, children }: { intro: ReactNode; children: ReactNode }) {
+export default function CentrelinkDebtPage({ intro, children, afterCalculator }: { intro: ReactNode; children: ReactNode; afterCalculator?: ReactNode }) {
   const [reported, setReported] = useState(600);
   const [actual, setActual] = useState(800);
   const [fortnights, setFortnights] = useState(6);
@@ -101,6 +101,7 @@ export default function CentrelinkDebtPage({ intro, children }: { intro: ReactNo
             </ul>
           </W3Section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

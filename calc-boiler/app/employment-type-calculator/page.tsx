@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EmploymentTypeCalculatorPage from "@/modules/calculator/employment-type-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import EmploymentTypeCalculatorContent from "@/modules/calculator/employment-type-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -82,7 +83,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumbSchema, webAppSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]} />
-      <EmploymentTypeCalculatorPage>
+      <EmploymentTypeCalculatorPage afterCalculator={<WhatsNextInline route="/employment-type-calculator/" />}>
         <EmploymentTypeCalculatorContent />
       </EmploymentTypeCalculatorPage>
     </>

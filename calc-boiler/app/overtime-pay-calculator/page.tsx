@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import OvertimePayCalculatorPage from "@/modules/calculator/overtime-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import OvertimePayCalculatorContent from "@/modules/calculator/overtime-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -70,7 +71,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <OvertimePayCalculatorPage>
+      <OvertimePayCalculatorPage afterCalculator={<WhatsNextInline route="/overtime-pay-calculator/" />}>
         <OvertimePayCalculatorContent />
       </OvertimePayCalculatorPage>
     </>

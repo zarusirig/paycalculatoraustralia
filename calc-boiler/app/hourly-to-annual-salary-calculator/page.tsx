@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HourlyToAnnualCalculatorPage from "@/modules/calculator/hourly-to-annual-salary-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import HourlyToAnnualSalaryCalculatorContent from "@/modules/calculator/hourly-to-annual-salary-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -84,7 +85,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <HourlyToAnnualCalculatorPage>
+      <HourlyToAnnualCalculatorPage afterCalculator={<WhatsNextInline route="/hourly-to-annual-salary-calculator/" />}>
         <HourlyToAnnualSalaryCalculatorContent />
       </HourlyToAnnualCalculatorPage>
     </>

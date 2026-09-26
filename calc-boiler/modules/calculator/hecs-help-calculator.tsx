@@ -46,7 +46,7 @@ export interface CalculatorFaq {
  * (hecs-help-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function HECSHelpCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function HECSHelpCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [salary, setSalary] = useState(80_000);
 
   const result = useMemo(() => {
@@ -168,6 +168,7 @@ export default function HECSHelpCalculatorPage({ children }: { children: React.R
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

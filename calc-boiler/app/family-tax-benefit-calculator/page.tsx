@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FamilyTaxBenefitCalculatorPage from "@/modules/calculator/family-tax-benefit-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import FamilyTaxBenefitCalculatorContent from "@/modules/calculator/family-tax-benefit-calculator-content";
 import { FTB_FAQS } from "@/modules/calculator/family-tax-benefit-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -68,7 +69,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <FamilyTaxBenefitCalculatorPage><FamilyTaxBenefitCalculatorContent /></FamilyTaxBenefitCalculatorPage>
+      <FamilyTaxBenefitCalculatorPage afterCalculator={<WhatsNextInline route="/family-tax-benefit-calculator/" />}><FamilyTaxBenefitCalculatorContent /></FamilyTaxBenefitCalculatorPage>
     </>
   );
 }

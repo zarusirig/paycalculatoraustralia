@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import NovatedLeaseCalculatorPage from "@/modules/calculator/novated-lease-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import NovatedLeaseCalculatorContent, {
   NovatedLeaseEvExemption,
   NovatedLeaseHecsAndFbtRates,
@@ -77,7 +78,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <NovatedLeaseCalculatorPage evExemption={<NovatedLeaseEvExemption />} hecsAndFbtRates={<NovatedLeaseHecsAndFbtRates />}>
+      <NovatedLeaseCalculatorPage evExemption={<NovatedLeaseEvExemption />} hecsAndFbtRates={<NovatedLeaseHecsAndFbtRates />} afterCalculator={<WhatsNextInline route="/novated-lease-calculator/" />}>
         <NovatedLeaseCalculatorContent />
       </NovatedLeaseCalculatorPage>
     </>

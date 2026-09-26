@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RentAssistanceCalculatorPage from "@/modules/calculator/rent-assistance-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import RentAssistanceCalculatorContent from "@/modules/calculator/rent-assistance-calculator-content";
 import { RENT_FAQS } from "@/modules/calculator/rent-assistance-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -68,7 +69,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <RentAssistanceCalculatorPage><RentAssistanceCalculatorContent /></RentAssistanceCalculatorPage>
+      <RentAssistanceCalculatorPage afterCalculator={<WhatsNextInline route="/rent-assistance-calculator/" />}><RentAssistanceCalculatorContent /></RentAssistanceCalculatorPage>
     </>
   );
 }

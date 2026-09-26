@@ -51,7 +51,7 @@ const MAX_BY_PERIOD: Record<EntryPeriod, number> = { annual: 500_000, monthly: 4
  * (income-tax-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function IncomeTaxCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function IncomeTaxCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   // moneysmart (#1 for "income tax calculator") takes income in the period the
   // user knows; salary below is always the annualised figure the engine needs.
   const [period, setPeriod] = useState<EntryPeriod>("annual");
@@ -231,6 +231,7 @@ export default function IncomeTaxCalculatorPage({ children }: { children: React.
               </CardContent>
             </Card>
           </section>
+          {afterCalculator}
           {children}
         </div>
       </div>

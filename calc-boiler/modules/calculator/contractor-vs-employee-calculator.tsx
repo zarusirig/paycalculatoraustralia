@@ -23,7 +23,7 @@ function clamp(n: number, min: number, max: number) {
  * (contractor-vs-employee-calculator-content.tsx) and passed in as `children`,
  * so it is not part of this client bundle.
  */
-export default function ContractorVsEmployeeCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function ContractorVsEmployeeCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [grossRate, setGrossRate] = useState(100_000);
   const [contractorExpenses, setContractorExpenses] = useState(3_000);
   const [fundSuper, setFundSuper] = useState(true);
@@ -158,6 +158,7 @@ export default function ContractorVsEmployeeCalculatorPage({ children }: { child
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {afterCalculator}
           {children}
         </div>
       </div>

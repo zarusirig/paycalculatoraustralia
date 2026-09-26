@@ -34,7 +34,7 @@ function calcTakeHome(annualIncome: number) {
  * (employment-type-calculator-content.tsx) and passed in as `children`, so it
  * is not part of this client bundle.
  */
-export default function EmploymentTypeCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function EmploymentTypeCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [hourlyRate, setHourlyRate] = useState(35);
   const [hoursPerWeek, setHoursPerWeek] = useState(38);
 
@@ -202,6 +202,7 @@ export default function EmploymentTypeCalculatorPage({ children }: { children: R
           </section>
 
           {/* CONTENT */}
+          {afterCalculator}
           {children}
         </div>
       </div>

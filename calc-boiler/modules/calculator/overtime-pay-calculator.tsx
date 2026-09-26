@@ -40,7 +40,7 @@ const PENALTY_TYPES = [
  * (overtime-pay-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function OvertimePayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function OvertimePayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [baseRate, setBaseRate] = useState(30);
   const [multiplier, setMultiplier] = useState(1.5);
   const [hoursWorked, setHoursWorked] = useState(8);
@@ -174,6 +174,7 @@ export default function OvertimePayCalculatorPage({ children }: { children: Reac
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

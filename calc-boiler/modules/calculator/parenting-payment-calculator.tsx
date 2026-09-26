@@ -37,7 +37,7 @@ type Status = "single" | "partnered";
  * (parenting-payment-calculator-content.tsx) and passed in as `children`
  * (renamed `content` here: `children` is the number-of-children state).
  */
-export default function ParentingPaymentCalculatorPage({ children: content }: { children: React.ReactNode }) {
+export default function ParentingPaymentCalculatorPage({ children: content, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [status, setStatus] = useState<Status>("single");
   const [children, setChildren] = useState(1);
   const [income, setIncome] = useState(600);
@@ -155,6 +155,7 @@ export default function ParentingPaymentCalculatorPage({ children: content }: { 
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {content}
         </div>
       </div>

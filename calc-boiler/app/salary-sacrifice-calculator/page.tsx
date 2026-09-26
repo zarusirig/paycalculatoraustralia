@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SalarySacrificeCalculatorPage from "@/modules/calculator/salary-sacrifice-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import SalarySacrificeCalculatorContent from "@/modules/calculator/salary-sacrifice-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { SALARY_SACRIFICE_FAQS } from "@/modules/calculator/salary-sacrifice-calculator-faqs";
@@ -86,7 +87,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <SalarySacrificeCalculatorPage>
+      <SalarySacrificeCalculatorPage afterCalculator={<WhatsNextInline route="/salary-sacrifice-calculator/" />}>
         <SalarySacrificeCalculatorContent />
       </SalarySacrificeCalculatorPage>
     </>

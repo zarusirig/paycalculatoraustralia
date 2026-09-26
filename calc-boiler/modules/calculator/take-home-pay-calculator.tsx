@@ -36,7 +36,7 @@ const MAX_BY_PERIOD: Record<EntryPeriod, number> = { annual: 500_000, monthly: 4
  * (take-home-pay-calculator-content.tsx) passed in as `children`, so it is not
  * part of this client bundle.
  */
-export default function TakeHomePayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function TakeHomePayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   // Net-pay calculators on page 1 (paycalculator.com.au, moneysmart,
   // wagecalculator) all accept the pay period the user actually knows.
   const [period, setPeriod] = useState<EntryPeriod>("annual");
@@ -144,6 +144,7 @@ export default function TakeHomePayCalculatorPage({ children }: { children: Reac
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

@@ -38,7 +38,7 @@ function num(v: string, max: number) {
  * card. The static long-form content is server-rendered
  * (family-tax-benefit-calculator-content.tsx) and passed in as `children`.
  */
-export default function FamilyTaxBenefitCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function FamilyTaxBenefitCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [family, setFamily] = useState<FamilyType>("couple");
   const [yourIncome, setYourIncome] = useState(75_000);
   const [partnerIncome, setPartnerIncome] = useState(20_000);
@@ -172,6 +172,7 @@ export default function FamilyTaxBenefitCalculatorPage({ children }: { children:
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

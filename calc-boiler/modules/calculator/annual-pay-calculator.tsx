@@ -31,7 +31,7 @@ function clamp(n: number, min: number, max: number) {
  * server component (annual-pay-calculator-content.tsx) passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function AnnualPayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function AnnualPayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [salary, setSalary] = useState(80_000);
   const [includeHECS, setIncludeHECS] = useState(false);
 
@@ -117,6 +117,7 @@ export default function AnnualPayCalculatorPage({ children }: { children: React.
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

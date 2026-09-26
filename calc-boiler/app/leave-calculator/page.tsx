@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import LeaveCalculatorPage from "@/modules/calculator/leave-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import LeaveCalculatorContent from "@/modules/calculator/leave-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -83,7 +84,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <LeaveCalculatorPage><LeaveCalculatorContent /></LeaveCalculatorPage>
+      <LeaveCalculatorPage afterCalculator={<WhatsNextInline route="/leave-calculator/" />}><LeaveCalculatorContent /></LeaveCalculatorPage>
     </>
   );
 }

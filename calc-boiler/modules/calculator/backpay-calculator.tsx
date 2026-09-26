@@ -25,7 +25,7 @@ function clamp(n: number, min: number, max: number) {
  * long-form content (backpay-calculator-content.tsx) is passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function BackpayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function BackpayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [correctRate, setCorrectRate] = useState(30);
   const [actualRate, setActualRate] = useState(24.1);
   const [hoursPerWeek, setHoursPerWeek] = useState(38);
@@ -192,6 +192,7 @@ export default function BackpayCalculatorPage({ children }: { children: React.Re
             </Card>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

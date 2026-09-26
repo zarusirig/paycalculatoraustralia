@@ -36,7 +36,7 @@ function clamp(n: number, min: number, max: number) {
  * (redundancy-pay-calculator-content.tsx) passed in as `children`, so it is
  * not part of this client bundle.
  */
-export default function RedundancyPayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function RedundancyPayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [baseSalary, setBaseSalary] = useState(90_000);
   const [yearsService, setYearsService] = useState(5);
   const [genuine, setGenuine] = useState(true);
@@ -161,6 +161,7 @@ export default function RedundancyPayCalculatorPage({ children }: { children: Re
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

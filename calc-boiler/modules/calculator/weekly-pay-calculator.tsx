@@ -32,7 +32,7 @@ function clamp(n: number, min: number, max: number) {
  * server component (weekly-pay-calculator-content.tsx) passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function WeeklyPayCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function WeeklyPayCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   // "weekly tax calculator" searchers know their weekly pay, not their salary
   // (the ATO tax withheld calculator and paycalculator.com.au both take a
   // weekly amount), so weekly entry is offered alongside annual salary.
@@ -137,6 +137,7 @@ export default function WeeklyPayCalculatorPage({ children }: { children: React.
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

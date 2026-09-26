@@ -29,7 +29,7 @@ function clamp(n: number, min: number, max: number) {
  * long-form content (pay-rise-calculator-content.tsx) is passed in as
  * `children`, so it is not part of the client bundle.
  */
-export default function PayRiseCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function PayRiseCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [currentSalary, setCurrentSalary] = useState(80_000);
   const [increaseAmount, setIncreaseAmount] = useState(10_000);
   const [inputMode, setInputMode] = useState<"raise" | "new_salary">("raise");
@@ -188,6 +188,7 @@ export default function PayRiseCalculatorPage({ children }: { children: React.Re
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

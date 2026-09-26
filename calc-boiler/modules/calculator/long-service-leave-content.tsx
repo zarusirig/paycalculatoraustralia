@@ -1,4 +1,5 @@
 import Link from "next/link";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import { ChevronRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
@@ -159,6 +160,8 @@ export function LongServiceLeaveHub() {
         <section className="max-w-5xl mx-auto">
           <LongServiceLeaveCalculator heading="Long Service Leave Calculator" />
         </section>
+
+        <WhatsNextInline route="/long-service-leave-calculator/" />
 
         <div className="max-w-4xl mx-auto space-y-10">
           <NotAnnualLeave />
@@ -678,6 +681,8 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
             heading={`Long Service Leave Calculator — ${j.name}`}
           />
         </section>
+
+        <WhatsNextInline route={`/long-service-leave-calculator/${code}/`} />
 
         <div className="max-w-4xl mx-auto space-y-10">
           <NotAnnualLeave />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import YTDIncomeCalculatorPage from "@/modules/calculator/ytd-income-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import YTDIncomeCalculatorContent from "@/modules/calculator/ytd-income-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -75,7 +76,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <YTDIncomeCalculatorPage>
+      <YTDIncomeCalculatorPage afterCalculator={<WhatsNextInline route="/ytd-income-calculator/" />}>
         <YTDIncomeCalculatorContent />
       </YTDIncomeCalculatorPage>
     </>

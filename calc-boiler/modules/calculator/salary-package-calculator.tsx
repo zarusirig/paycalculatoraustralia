@@ -31,7 +31,7 @@ function takeHome(base: number) {
  * (a server component) and is passed in as `children`, so it is not part of
  * this client bundle.
  */
-export default function SalaryPackageCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function SalaryPackageCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [amount, setAmount] = useState(100_000);
   const [mode, setMode] = useState<Mode>("package");
 
@@ -143,6 +143,7 @@ export default function SalaryPackageCalculatorPage({ children }: { children: Re
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {children}
         </div>
       </div>

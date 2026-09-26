@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ParentingPaymentCalculatorPage from "@/modules/calculator/parenting-payment-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import ParentingPaymentCalculatorContent from "@/modules/calculator/parenting-payment-calculator-content";
 import { PARENTING_FAQS } from "@/modules/calculator/parenting-payment-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -68,7 +69,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <ParentingPaymentCalculatorPage><ParentingPaymentCalculatorContent /></ParentingPaymentCalculatorPage>
+      <ParentingPaymentCalculatorPage afterCalculator={<WhatsNextInline route="/parenting-payment-calculator/" />}><ParentingPaymentCalculatorContent /></ParentingPaymentCalculatorPage>
     </>
   );
 }

@@ -34,7 +34,7 @@ function clamp(n: number, min: number, max: number) {
  * (salary-sacrifice-calculator-content.tsx) passed in as `children`, so it is
  * not part of this client bundle.
  */
-export default function SalarySacrificeCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function SalarySacrificeCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [salary, setSalary] = useState(100_000);
   const [sacrifice, setSacrifice] = useState(10_000);
 
@@ -173,6 +173,7 @@ export default function SalarySacrificeCalculatorPage({ children }: { children: 
           </Card>
         </section>
 
+        {afterCalculator}
         {children}
       </div>
     </div>

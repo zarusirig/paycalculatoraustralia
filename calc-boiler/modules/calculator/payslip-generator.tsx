@@ -47,7 +47,7 @@ function formatDateAU(iso: string): string {
  * The static long-form content is server-rendered (payslip-generator-content.tsx)
  * and passed in as `children`, so it is not part of this client bundle.
  */
-export default function PayslipGeneratorPage({ children }: { children: React.ReactNode }) {
+export default function PayslipGeneratorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   // Employer & employee
   const [businessName, setBusinessName] = useState("");
   const [abn, setAbn] = useState("");
@@ -507,6 +507,7 @@ export default function PayslipGeneratorPage({ children }: { children: React.Rea
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {afterCalculator}
           {children}
         </div>
       </div>

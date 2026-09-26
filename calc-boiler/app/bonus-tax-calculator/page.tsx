@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BonusTaxCalculatorPage from "@/modules/calculator/bonus-tax-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import BonusTaxCalculatorContent from "@/modules/calculator/bonus-tax-calculator-content";
 import { BONUS_TAX_FAQS } from "@/modules/calculator/bonus-tax-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -79,7 +80,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <BonusTaxCalculatorPage>
+      <BonusTaxCalculatorPage afterCalculator={<WhatsNextInline route="/bonus-tax-calculator/" />}>
         <BonusTaxCalculatorContent />
       </BonusTaxCalculatorPage>
     </>

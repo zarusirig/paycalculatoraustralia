@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SuperannuationCalculatorPage from "@/modules/calculator/superannuation-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import SuperannuationCalculatorContent, {
   SuperannuationCalculatorIntro,
   SuperannuationCalculatorMiddle,
@@ -62,7 +63,7 @@ const howToSchema = calculatorHowTo({
 });
 
 function Page() {
-  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage intro={<SuperannuationCalculatorIntro />} middle={<SuperannuationCalculatorMiddle />}><SuperannuationCalculatorContent /></SuperannuationCalculatorPage></>);
+  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><SuperannuationCalculatorPage intro={<SuperannuationCalculatorIntro />} middle={<SuperannuationCalculatorMiddle />} afterCalculator={<WhatsNextInline route="/superannuation-calculator/" />}><SuperannuationCalculatorContent /></SuperannuationCalculatorPage></>);
 }
 
 export default withPageEnd(Page, "/superannuation-calculator/");

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TakeHomePayCalculatorPage from "@/modules/calculator/take-home-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import TakeHomePayCalculatorContent from "@/modules/calculator/take-home-pay-calculator-content";
 import { faqPageSchema } from "@/lib/faq";
 import { TAKE_HOME_PAY_FAQS } from "@/modules/calculator/take-home-pay-calculator-faqs";
@@ -61,7 +62,7 @@ const howToSchema = calculatorHowTo({
 });
 
 function Page() {
-  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><TakeHomePayCalculatorPage><TakeHomePayCalculatorContent /></TakeHomePayCalculatorPage></>);
+  return (<><JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} /><TakeHomePayCalculatorPage afterCalculator={<WhatsNextInline route="/take-home-pay-calculator/" />}><TakeHomePayCalculatorContent /></TakeHomePayCalculatorPage></>);
 }
 
 export default withPageEnd(Page, "/take-home-pay-calculator/");

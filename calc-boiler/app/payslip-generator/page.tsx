@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PayslipGeneratorPage from "@/modules/calculator/payslip-generator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import PayslipGeneratorContent from "@/modules/calculator/payslip-generator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebApplication, WithContext } from "schema-dts";
@@ -86,7 +87,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <PayslipGeneratorPage>
+      <PayslipGeneratorPage afterCalculator={<WhatsNextInline route="/payslip-generator/" />}>
         <PayslipGeneratorContent />
       </PayslipGeneratorPage>
     </>

@@ -1,4 +1,5 @@
 import DisabilitySupportPensionCalculatorPage from "@/modules/calculator/disability-support-pension-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import DisabilitySupportPensionCalculatorContent from "@/modules/calculator/disability-support-pension-calculator-content";
 import { DSP_FAQS } from "@/modules/calculator/centrelink-h3-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -18,7 +19,7 @@ function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Disability Support Pension Calculator", description: DESCRIPTION, faqs: DSP_FAQS, calculator: true, dateModified: MEANS_TEST_SOURCES.verifiedOnISO })} />
-      <DisabilitySupportPensionCalculatorPage><DisabilitySupportPensionCalculatorContent /></DisabilitySupportPensionCalculatorPage>
+      <DisabilitySupportPensionCalculatorPage afterCalculator={<WhatsNextInline route="/disability-support-pension-calculator/" />}><DisabilitySupportPensionCalculatorContent /></DisabilitySupportPensionCalculatorPage>
     </>
   );
 }

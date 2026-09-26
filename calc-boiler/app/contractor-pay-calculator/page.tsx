@@ -1,4 +1,5 @@
 import ContractorPayCalculator from "@/modules/calculator/contractor-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import ContractorPayCalculatorContent from "@/modules/calculator/contractor-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type {
@@ -94,7 +95,7 @@ function ContractorPayCalculatorPage() {
       <JsonLd
         code={[webAppSchema, breadcrumbSchema, faqSchema, ORGANIZATION_SCHEMA, howToSchema]}
       />
-      <ContractorPayCalculator>
+      <ContractorPayCalculator afterCalculator={<WhatsNextInline route="/contractor-pay-calculator/" />}>
         <ContractorPayCalculatorContent />
       </ContractorPayCalculator>
     </>

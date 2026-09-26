@@ -28,7 +28,7 @@ function clamp(n: number, min: number, max: number) {
  * static long-form content is server-rendered (leave-calculator-content.tsx)
  * and passed in as `children`, so it is not part of this client bundle.
  */
-export default function LeaveCalculatorPage({ children }: { children: React.ReactNode }) {
+export default function LeaveCalculatorPage({ children, afterCalculator }: { children: React.ReactNode; afterCalculator?: React.ReactNode }) {
   const [salary, setSalary] = useState(80_000);
   const [yearsService, setYearsService] = useState(3);
   const [includeLoading, setIncludeLoading] = useState(true);
@@ -165,6 +165,7 @@ export default function LeaveCalculatorPage({ children }: { children: React.Reac
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {afterCalculator}
           {children}
         </div>
       </div>

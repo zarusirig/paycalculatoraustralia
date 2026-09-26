@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import AgePensionIncomeTestCalculatorPage from "@/modules/calculator/age-pension-income-test-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import AgePensionIncomeTestCalculatorContent from "@/modules/calculator/age-pension-income-test-calculator-content";
 import { PENSION_FAQS } from "@/modules/calculator/age-pension-income-test-faqs";
 import { JsonLd } from "@/modules/seo/json-ld";
@@ -71,7 +72,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <AgePensionIncomeTestCalculatorPage><AgePensionIncomeTestCalculatorContent /></AgePensionIncomeTestCalculatorPage>
+      <AgePensionIncomeTestCalculatorPage afterCalculator={<WhatsNextInline route="/age-pension-income-test-calculator/" />}><AgePensionIncomeTestCalculatorContent /></AgePensionIncomeTestCalculatorPage>
     </>
   );
 }

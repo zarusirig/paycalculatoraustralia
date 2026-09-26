@@ -65,10 +65,12 @@ export default function NovatedLeaseCalculatorPage({
   evExemption,
   hecsAndFbtRates,
   children,
+  afterCalculator,
 }: {
   evExemption: React.ReactNode;
   hecsAndFbtRates: React.ReactNode;
   children: React.ReactNode;
+  afterCalculator?: React.ReactNode;
 }) {
   const [salary, setSalary] = useState(100_000);
   const [vehiclePrice, setVehiclePrice] = useState(60_000);
@@ -411,6 +413,7 @@ export default function NovatedLeaseCalculatorPage({
             <p className="mt-2 text-xs text-warmgray-light">ATO Taxation Determination TD 93/142, table at paragraph 3A, 8-year effective life — the column its own worked example uses for a car.</p>
           </section>
 
+          {afterCalculator}
           {children}
         </div>
       </div>

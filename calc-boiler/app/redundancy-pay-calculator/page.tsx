@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import RedundancyPayCalculatorPage from "@/modules/calculator/redundancy-pay-calculator";
+import WhatsNextInline from "@/components/common/whats-next-inline";
 import RedundancyPayCalculatorContent from "@/modules/calculator/redundancy-pay-calculator-content";
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
@@ -82,7 +83,7 @@ function Page() {
   return (
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA, howToSchema]} />
-      <RedundancyPayCalculatorPage>
+      <RedundancyPayCalculatorPage afterCalculator={<WhatsNextInline route="/redundancy-pay-calculator/" />}>
         <RedundancyPayCalculatorContent faqs={REDUNDANCY_FAQS} />
       </RedundancyPayCalculatorPage>
     </>

@@ -46,7 +46,7 @@ function higherRateFlags(children: ChildRow[]): boolean[] {
   return children.map((c, i) => c.age <= CCS.higher.maxChildAge && i !== eldest.i);
 }
 
-export default function ChildCareSubsidyCalculatorPage({ children: content }: { children: ReactNode }) {
+export default function ChildCareSubsidyCalculatorPage({ children: content, afterCalculator }: { children: ReactNode; afterCalculator?: ReactNode }) {
   const [yourIncome, setYourIncome] = useState(90_000);
   const [partnerIncome, setPartnerIncome] = useState(60_000);
   const [over48, setOver48] = useState(false);
@@ -152,6 +152,7 @@ export default function ChildCareSubsidyCalculatorPage({ children: content }: { 
         </section>
 
         <div className="max-w-4xl mx-auto space-y-10">
+          {afterCalculator}
           {content}
         </div>
       </div>
