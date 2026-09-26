@@ -52,6 +52,15 @@ const RATE_CUT_SAVING = Math.round(
 );
 /** MLS starts above this income for singles without hospital cover. */
 const MLS_START = MEDICARE_LEVY.surcharge.tier1.min - 1;
+const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
+/** "0% to $18,200, 16% to $45,000, … and 45% above", rendered from a bracket scale. */
+function scaleSentence(brackets: typeof TAX_BRACKETS): string {
+  const parts = brackets.map((b, i) =>
+    i === brackets.length - 1 ? `${formatPercent(b.rate, 0)} above` : `${formatPercent(b.rate, 0)} to ${formatAUD(b.max)}`,
+  );
+  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+const OLD_SCALE = scaleSentence(TAX_BRACKETS_2025_26);
 
 /** FY2025-26 gross income tax from the historical bracket constant — comparison only. */
 function taxIn2025_26(income: number): number {
@@ -95,6 +104,10 @@ export default function IncomeTaxCalculatorContent({ faqs }: { faqs: readonly { 
     <>
           <div className="max-w-4xl mx-auto -mt-6 space-y-4">
             <HeadTermLinks terms={["payCalculatorAustralia", "salaryCalculator", "takeHomePayCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
+              {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+              <p className="text-warmgray">
+                The ATO tax rates for {PREV_FY} were {OLD_SCALE}; from {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}, with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the {MEDICARE_PCT} Medicare levy and subtracts up to {formatAUD(LITO.maxOffset)} of Low Income Tax Offset (LITO). Enter any annual, monthly, fortnightly or weekly income for FY{FY} in the calculator above.
+              </p>
               <div className="bg-eucalyptus-light/30 border-l-4 border-eucalyptus-dark rounded-lg p-5 text-warmgray">
                 <p className="text-base leading-relaxed">
                   <strong className="text-navy">Australian income tax for FY{FY} uses 5 brackets:</strong> 0% up to {formatAUD(TAX_FREE_THRESHOLD)}, {NEW_RATE} to {formatAUD(TAX_BRACKETS[1].max)}, {formatPercent(TAX_BRACKETS[2].rate, 0)} to {formatAUD(TAX_BRACKETS[2].max)}, {formatPercent(TAX_BRACKETS[3].rate, 0)} to {formatAUD(TAX_BRACKETS[3].max)}, and {formatPercent(TAX_BRACKETS[4].rate, 0)} above. Most workers also pay the 2% <Link href="/medicare-levy/" className="text-eucalyptus-dark hover:underline font-medium">Medicare levy</Link> and may have <Link href="/hecs-help-calculator/" className="text-eucalyptus-dark hover:underline font-medium">HECS/HELP repayments</Link>. Lodging your {PREV_FY} return? The old {OLD_RATE} rate applied — see the <Link href="/tax-return-calculator/" className="text-eucalyptus-dark hover:underline font-medium">Tax Return Calculator</Link>.

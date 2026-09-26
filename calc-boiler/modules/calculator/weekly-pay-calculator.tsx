@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -46,12 +49,26 @@ export default function WeeklyPayCalculatorPage({ children }: { children: React.
     [salary, includeHECS]
   );
 
+  // Next steps carry the visitor's own salary (annualised), so the salary page
+  // they land on already shows their figure.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const takeHome = nearestSalary("take-home", salary);
+    return [
+      { href: salaryHref("take-home", takeHome), label: `See the full year on ${formatAUD(takeHome)}`, detail: "Annual take-home with super and HECS" },
+      { href: "/fortnightly-pay-calculator/", label: "Switch to fortnightly pay after tax" },
+      { href: "/monthly-pay-calculator/", label: "Switch to monthly pay after tax" },
+      { href: "/weekly-tax-table/", label: "Check the ATO weekly tax table" },
+    ];
+  }, [salary]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8 space-y-6">
         {/* HERO */}
-        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026).
+            The "divided by 52" / "use as a tax calculator" sentences moved to the top of
+            weekly-pay-calculator-content.tsx. */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-4 md:p-6 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -59,19 +76,18 @@ export default function WeeklyPayCalculatorPage({ children }: { children: React.
               <li><span className="font-medium text-navy" aria-current="page">Weekly Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2">Weekly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2">Weekly Pay &amp; Tax Calculator Australia {SITE_CONFIG.financialYear}</h1>
           <p className="text-base md:text-lg text-navy">
-            Weekly pay is your annual salary divided by <strong>52</strong>. On <strong>$80,000</strong> that is {formatAUD(80_000 / 52, 2)} gross
-            and <strong>{formatAUD(EX.weekly, 2)} take-home</strong> every week after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
+            On <strong>$80,000</strong> you take home <strong>{formatAUD(EX.weekly, 2)} a week</strong> ({formatAUD(80_000 / 52, 2)} gross)
+            after income tax and Medicare in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2 text-sm md:text-base">Use this weekly pay calculator as a weekly tax calculator: enter your weekly pay or annual salary.</p>
-          <TrustBar className="mt-3" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
-        <section className="max-w-4xl mx-auto">
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-4 text-center">Calculate Your Weekly Tax &amp; Take-Home Pay</h2>
-          <Card className="shadow-md">
+        <section className="max-w-4xl mx-auto mb-12">
+          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="sr-only md:not-sr-only md:block text-2xl font-semibold text-navy md:mb-3 text-center">Calculate Your Weekly Tax &amp; Take-Home Pay</h2>
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
@@ -103,7 +119,7 @@ export default function WeeklyPayCalculatorPage({ children }: { children: React.
                   <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 rounded-lg shadow-md transition-all">Calculate Weekly Pay</button>
                 </form>
 
-                <Card className="bg-sandstone border-eucalyptus/30 border-2 shadow-sm" role="region" aria-live="polite">
+                <Card id="calc-result" className="bg-sandstone border-eucalyptus/30 border-2 shadow-sm" role="region" aria-live="polite">
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-navy mb-4">Your Weekly Breakdown</h3>
                     <div className="space-y-2.5 text-sm">
@@ -122,12 +138,15 @@ export default function WeeklyPayCalculatorPage({ children }: { children: React.
                         <Row label="Annual Equivalent" value={formatAUD(result.takeHomePay)} />
                         <Row label={`Super (${formatPercent(SUPER_GUARANTEE.rate, 0)} - employer paid)`} value={`+${formatAUD(result.superContribution / 52, 2)}/wk`} sub />
                       </div>
+                      <ResultNextSteps links={nextSteps} />
                     </div>
                   </CardContent>
                 </Card>
               </div>
             </CardContent>
           </Card>
+          {/* Rendered after the card so it never pushes the first input below the fold. */}
+          <StickyResult targetId="calc-result" label="Weekly take-home" value={formatAUD(result.weekly, 2)} hint="per week" />
           {/* Period-specific table directly under the calculator: the value the
               homepage's all-periods calculator doesn't give (intent map, Sep 2026). */}
           <PeriodPayTable period="weekly" currentSalary={salary} />

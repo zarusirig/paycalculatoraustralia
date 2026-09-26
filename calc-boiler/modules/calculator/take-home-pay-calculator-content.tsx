@@ -71,6 +71,8 @@ export default function TakeHomePayCalculatorContent() {
           {/* ---- HOW IS TAKE-HOME PAY CALCULATED? ---- */}
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Take-Home Pay Calculated in Australia?</h2>
+            {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+            <p className="text-warmgray mb-4">Enter your own weekly, fortnightly, monthly or annual pay in the calculator above — this after tax income calculator adds HECS-HELP and super if they apply.</p>
             <p className="text-warmgray mb-4">Take-home pay is your gross salary minus income tax, the Medicare levy, and any compulsory HECS-HELP repayments — calculated using the ATO&apos;s progressive tax brackets for FY{SITE_CONFIG.financialYear}.</p>
             <p className="text-warmgray mb-4">Your employer withholds these deductions from every pay cycle through the &quot;Pay As You Go&quot; (PAYG) system and remits them directly to the Australian Taxation Office. The amount that reaches your bank account — your after-tax income — is what this Australian tax calculator computes.</p>
 
