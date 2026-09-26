@@ -40,25 +40,20 @@ import { useEffect } from "react";
  *   - DELAY_MS = 45_000  → large bounce-rate win, expect a large revenue cut
  *   - remove from layout.tsx → no popunder, lose ~94% of revenue
  *
- * CHANGED 26 Sep 2026: DELAY_MS 0 → 10_000, as a measured test.
+ * 26 Sep 2026: DELAY_MS was set to 10_000 as a test and REVERTED to 0 the
+ * same day, before any data came in. The owner set a revenue goal ($50/day,
+ * about 3.3x the $15.29/day of the 28 days to 25 Sep 2026) and this unit is
+ * 89% of revenue (docs/revenue/2026-09-26-adsterra-28d.md), so a delay that
+ * can only remove impressions works against that goal.
  *
- * Why: the Social Bar (89.3% of revenue in the 28 days to 25 Sep 2026, see
- * docs/revenue/2026-09-26-adsterra-28d.md) rewrites the tab title to
- * "(1) New Message!" and draws a fake notification over the page the moment
- * it loads, so every visitor's first impression of the site is a fake
- * message. GA4 shows 65% of sessions end within 10 seconds anyway, so those
- * sessions were never going to click it; a 10s delay only removes the unit
- * from visitors who were already leaving. The calculator-input trigger below
- * is unchanged, so an engaged visitor still gets it before the 10s mark.
- *
- * How it is judged: one week after deploy, run from calc-boiler
+ * A note in the test's rationale said "GA4 shows 65% of sessions end within
+ * 10 seconds". That was wrong: the GA4 export only showed that 35% of
+ * sessions reach 30 seconds. Nobody has measured the share under 10 seconds.
+ * If a delay is tested again, measure that share first, then judge with
  *
  *   node scripts/adsterra-report.mjs --days 7 --compare
  *
- * and compare Social Bar revenue per 1k pageviews against the baseline.
- * REVERT to 0 if Social Bar revenue drops more than 15% while sessions are
- * flat. If sessions also fell, the drop is traffic, not the delay — look at
- * the per-1k-pageview figure, not the dollar total.
+ * on Social Bar revenue per 1k pageviews, not the dollar total.
  *
  * Whichever you pick, note that Chrome's Abusive Experience Report lists
  * popunders explicitly, and a flagged domain has ALL ads blocked in Chrome —
@@ -68,7 +63,7 @@ import { useEffect } from "react";
 
 const SRC = "https://pl29540036.effectivecpmnetwork.com/d6/b7/79/d6b779f19c693c0f80a1c6a82ba34550.js";
 
-const DELAY_MS = 10_000;
+const DELAY_MS = 0;
 
 export default function DeferredSocialBar() {
   useEffect(() => {

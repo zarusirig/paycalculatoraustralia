@@ -64,12 +64,16 @@ must never be committed.
   Bar's CPM is high because it fires on almost every pageview and counts a
   click on the fake notification as a click.
 
-## Current test (from 26 Sep 2026)
+## Social Bar delay test: cancelled (26 Sep 2026)
 
-`DELAY_MS` in `deferred-social-bar.tsx` went from `0` to `10_000`: the Social
-Bar now loads 10 seconds after the page, or as soon as the visitor touches a
-calculator input, whichever is first. Baseline is
-`2026-09-26-adsterra-28d.md`. Judge one week after deploy with
-`node scripts/adsterra-report.mjs --days 7 --compare`; revert to `0` if
-Social Bar revenue per 1k pageviews drops more than 15% while sessions are
-flat.
+`DELAY_MS` in `deferred-social-bar.tsx` went from `0` to `10_000` on 26 Sep
+2026 and back to `0` the same day, before any data came in. The owner set a
+goal of $50/day and the Social Bar is 89% of revenue, so a delay that can
+only remove impressions works against it. `2026-09-26-adsterra-28d.md` stays
+the baseline for the next change (the Popunder test).
+
+## Goal
+
+$50/day. Baseline $15.29/day (28 days to 25 Sep 2026). At about 2 cents per
+visitor that needs ~2,600 visitors/day; new ad units add a few dollars a day
+at most, so traffic is the main lever.
