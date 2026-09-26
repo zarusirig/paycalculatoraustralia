@@ -6,6 +6,11 @@ interface TrustBarProps {
   variant?: "light" | "dark";
 }
 
+/**
+ * On phones the four signals used to wrap onto four lines (~130px of the first
+ * screen on every calculator page, measured 26 Sep 2026). They now sit on one
+ * horizontally scrollable line under `sm`, and wrap as before from `sm` up.
+ */
 export default function TrustBar({ className = "", variant = "light" }: TrustBarProps) {
   const signals = [
     { icon: ShieldCheck, text: "Official ATO rates" },
@@ -23,12 +28,12 @@ export default function TrustBar({ className = "", variant = "light" }: TrustBar
 
   return (
     <div
-      className={`inline-flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl px-4 py-2.5 text-sm ${colors} ${className}`}
+      className={`flex max-w-full items-center gap-x-3 gap-y-2 overflow-x-auto whitespace-nowrap rounded-xl px-4 py-2 text-sm [scrollbar-width:none] sm:inline-flex sm:flex-wrap sm:whitespace-normal sm:py-2.5 [&::-webkit-scrollbar]:hidden ${colors} ${className}`}
       role="status"
       aria-label="Trust signals"
     >
       {signals.map((signal, i) => (
-        <span key={signal.text} className="flex items-center gap-1.5">
+        <span key={signal.text} className="flex shrink-0 items-center gap-1.5">
           {i > 0 && <span className={`mr-1 ${dotColor}`} aria-hidden="true">&middot;</span>}
           <signal.icon className={`h-3.5 w-3.5 ${iconColor}`} aria-hidden="true" />
           <span className="font-medium text-[0.8125rem]">{signal.text}</span>
