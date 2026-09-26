@@ -24,5 +24,5 @@ import { WhatsNext } from "@/components/common/page-end";
  *     {children}
  */
 export default function WhatsNextInline({ route }: { route: string }) {
-  return <WhatsNext path={route} Link={Link} />;
+  return <WhatsNext path={route} Link={Link} placement="inline" />;
 }

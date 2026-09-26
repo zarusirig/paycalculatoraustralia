@@ -28,17 +28,32 @@ export type LinkComponent = typeof NextLink;
 export type BannerComponent = typeof AdsterraBanner;
 export type PageEndComponents = { Link: LinkComponent; Banner: BannerComponent };
 
-export function WhatsNext({ path, Link }: { path: string; Link: LinkComponent }) {
+/**
+ * `placement` distinguishes the copy rendered under the calculator
+ * (whats-next-inline.tsx) from the one at the page end. It sets a unique
+ * heading id (both can be on one page) and `data-next-step-origin`, which
+ * engagement-tracking.tsx sends to GA4 as `origin` on `next_step_click`.
+ */
+export function WhatsNext({
+  path,
+  Link,
+  placement = "page-end",
+}: {
+  path: string;
+  Link: LinkComponent;
+  placement?: "page-end" | "inline";
+}) {
+  const headingId = placement === "inline" ? "whats-next-inline-heading" : "whats-next-heading";
   const links = getRelatedLinks(path);
 
   if (links.length === 0) return null;
 
   return (
     <section
-      aria-labelledby="whats-next-heading"
+      aria-labelledby={headingId}
       className="mx-auto max-w-7xl px-4 pb-12 pt-2 sm:px-6 lg:px-8"
     >
-      <h2 id="whats-next-heading" className="mb-1 text-2xl font-bold text-navy">
+      <h2 id={headingId} className="mb-1 text-2xl font-bold text-navy">
         What to check next
       </h2>
       <p className="mb-6 text-sm text-warmgray">
@@ -52,6 +67,7 @@ export function WhatsNext({ path, Link }: { path: string; Link: LinkComponent })
               href={link.href}
               data-engagement="next-step"
               data-next-step-href={link.href}
+              data-next-step-origin={placement}
               className="group flex h-full items-start justify-between gap-3 rounded-lg border border-warmgray-light/40 bg-white p-4 transition hover:border-eucalyptus-dark hover:shadow-sm"
             >
               <span>

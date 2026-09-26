@@ -50,6 +50,9 @@ export default function EngagementTracking() {
       track("next_step_click", {
         page_path: pathname,
         destination: link.dataset.nextStepHref ?? "",
+        // "result" (inside the calculator's answer card), "inline" (under the
+        // calculator) or "page-end". Added 26 Sep 2026 to measure which works.
+        origin: link.dataset.nextStepOrigin ?? "unknown",
       });
     };
 
