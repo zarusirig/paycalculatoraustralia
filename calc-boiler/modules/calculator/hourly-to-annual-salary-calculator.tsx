@@ -5,6 +5,10 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
+import { HOURLY_RATE_PAGES, hourlyRateSlug } from "@/lib/constants/hourly-rates";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -40,11 +44,28 @@ export default function HourlyToAnnualCalculatorPage({ children, afterCalculator
   const headlineAnnual = HEADLINE_RATE * EMPLOYMENT.hoursPerYear;
   const headlineNet = calculatePayBreakdown({ grossSalary: headlineAnnual }).takeHomePay;
 
+  // Next steps carry the visitor's own annual figure (and nearest hourly-rate
+  // page), so the page they land on already answers the follow-up question.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const annual = Math.round(annualGross);
+    const takeHome = nearestSalary("take-home", annual);
+    const taxOn = nearestSalary("tax-on", annual);
+    const rate = HOURLY_RATE_PAGES.reduce((best, r) => (Math.abs(r - hourlyRate) < Math.abs(best - hourlyRate) ? r : best));
+    return [
+      { href: salaryHref("take-home", takeHome), label: `See your full take-home pay on ${formatAUD(takeHome)}`, detail: "Weekly, fortnightly and monthly, with super" },
+      { href: salaryHref("tax-on", taxOn), label: `How much tax you pay on ${formatAUD(taxOn)}` },
+      { href: `/hourly-to-salary/${hourlyRateSlug(rate)}/`, label: `Read the full guide to $${rate} an hour` },
+      { href: "/weekly-pay-calculator/", label: "Work out your weekly pay after tax" },
+    ];
+  }, [annualGross, hourlyRate]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8 space-y-6">
+        {/* HERO — compact so the first input sits above the phone fold (GA4 audit, Sep 2026).
+            The "multiply by 1,976" / "enter your own rate" sentences moved to the top of
+            hourly-to-annual-salary-calculator-content.tsx. */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-4 md:p-6 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -52,24 +73,19 @@ export default function HourlyToAnnualCalculatorPage({ children, afterCalculator
               <li><span className="font-medium text-navy" aria-current="page">Hourly Rate Converter</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          <h1 className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Hourly to Annual Salary Calculator
           </h1>
-          <p className="text-lg text-navy">
-            Multiply your hourly rate by <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}</strong> ({EMPLOYMENT.standardWeeklyHours} hours &times; {EMPLOYMENT.weeksPerYear} weeks).
-            ${HEADLINE_RATE} an hour is <strong>{formatAUD(headlineAnnual)} a year</strong> before tax and{" "}
-            {formatAUD(headlineNet)} after tax in FY{SITE_CONFIG.financialYear}.
+          <p className="text-base md:text-lg text-navy">
+            ${HEADLINE_RATE} an hour is <strong>{formatAUD(headlineAnnual)} a year</strong> before tax ({EMPLOYMENT.standardWeeklyHours} hours &times;{" "}
+            {EMPLOYMENT.weeksPerYear} weeks = {EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")} hours) and {formatAUD(headlineNet)} after tax in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2">
-            Enter your own rate and hours below to see your annual salary and what you take home after ATO
-            income tax and Medicare.
-          </p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
-        <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md border-t-4 border-t-eucalyptus">
+        <section className="max-w-4xl mx-auto mb-12">
+          <Card className="shadow-md py-0 border-t-4 border-t-eucalyptus">
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 items-start">
 
@@ -117,7 +133,7 @@ export default function HourlyToAnnualCalculatorPage({ children, afterCalculator
                 </div>
 
                 {/* Results */}
-                <div className="space-y-5">
+                <div id="calc-result" className="space-y-5">
                   <div className="bg-eucalyptus-light/30 rounded-2xl p-6 text-center shadow-sm border border-eucalyptus-light">
                     <div className="text-sm font-bold text-navy uppercase tracking-wider mb-1">Equivalent Annual Base Salary</div>
                     <div className="text-4xl md:text-5xl font-extrabold text-navy mb-1">
@@ -126,6 +142,7 @@ export default function HourlyToAnnualCalculatorPage({ children, afterCalculator
                     <div className="text-sm text-eucalyptus-dark font-medium mt-2">
                       Before tax, super, and deductions
                     </div>
+                    <ResultNextSteps links={nextSteps} />
                   </div>
 
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden shadow-sm">
@@ -175,6 +192,8 @@ export default function HourlyToAnnualCalculatorPage({ children, afterCalculator
               </div>
             </CardContent>
           </Card>
+          {/* Rendered after the card so it never pushes the first input below the fold. */}
+          <StickyResult targetId="calc-result" label="Annual salary" value={formatAUD(annualGross)} hint="a year" />
         </section>
 
         {afterCalculator}

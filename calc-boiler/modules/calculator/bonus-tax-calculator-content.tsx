@@ -72,6 +72,14 @@ export default function BonusTaxCalculatorContent() {
           {/* --- H2: How Is Bonus Tax Calculated in Australia? --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Bonus Tax Calculated in Australia?</h2>
+            {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+            <p className="mb-4 text-warmgray">
+              Tax on a bonus in Australia is the difference between the annual tax on salary alone and the annual tax on
+              salary plus bonus, worked out on the {FY} scale; there is no flat bonus tax. For an employee on $90,000
+              receiving $10,000, that difference is {formatAUD(EX_TAX_ON_BONUS)}, so {formatAUD(EX_NET_BONUS)} of the
+              bonus is kept. Employers withhold from bonus payments using ATO Schedule 5, and any over-withholding is
+              refunded at tax time.
+            </p>
             <p className="mb-4 text-warmgray">
               Bonus tax in Australia is calculated by applying your <strong>marginal tax rate</strong> to the bonus amount, because the ATO treats the bonus as income earned on top of your regular salary.
             </p>

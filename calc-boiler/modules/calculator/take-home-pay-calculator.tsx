@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -50,25 +53,47 @@ export default function TakeHomePayCalculatorPage({ children, afterCalculator }:
     [salary, includeHECS, hasPrivateHealth]
   );
 
+  // The headline figure in the result card, in the period the visitor entered.
+  const headline = period === "annual" ? result.takeHomePay : period === "monthly" ? result.monthly : period === "fortnightly" ? result.fortnightly : result.weekly;
+
+  // Next steps carry the visitor's own salary so the next page answers the
+  // follow-up question straight away.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const takeHome = nearestSalary("take-home", salary);
+    const taxOn = nearestSalary("tax-on", salary);
+    const hourly = nearestSalary("salary-to-hourly", salary);
+    return [
+      { href: salaryHref("take-home", takeHome), label: `See the full breakdown for ${formatAUD(takeHome)}`, detail: "Weekly, fortnightly and monthly, with super" },
+      { href: salaryHref("tax-on", taxOn), label: `How much tax you pay on ${formatAUD(taxOn)}` },
+      { href: salaryHref("salary-to-hourly", hourly), label: `What ${formatAUD(hourly)} a year is per hour` },
+      { href: "/fortnightly-pay-calculator/", label: "Work out your fortnightly pay after tax" },
+    ];
+  }, [salary]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8 space-y-6">
         {/* HERO */}
-        {/* Compact hero: the calculator must sit above the fold (intent map, Sep 2026). */}
-        <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
+        {/* Compact hero: the calculator must sit above the fold (intent map, Sep 2026).
+            The "enter your own pay" sentence moved to take-home-pay-calculator-content.tsx. */}
+        <section className="bg-eucalyptus-light/40 rounded-2xl p-4 md:p-6 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb"><ol className="flex items-center space-x-1 text-sm text-warmgray">
             <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
             <li className="flex items-center"><ChevronRight className="h-3 w-3 text-gray-400" /></li>
             <li><span className="font-medium text-navy" aria-current="page">Take Home Pay Calculator</span></li>
           </ol></nav>
-          <h1 className="text-2xl md:text-4xl font-bold text-navy mt-3 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Take Home Pay Calculator Australia {SITE_CONFIG.financialYear} — Net Pay After Tax</h1>
-          <p className="text-base md:text-lg text-navy">On <strong>$80,000</strong> your net pay is <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight, {formatAUD(EX80.weekly)} a week) after income tax and Medicare in FY{SITE_CONFIG.financialYear}. Enter your own weekly, fortnightly, monthly or annual pay below — this after tax income calculator adds HECS-HELP and super if they apply.</p>
-          <TrustBar className="mt-3" />
+          <h1 className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Take Home Pay Calculator Australia {SITE_CONFIG.financialYear}
+            <span className="hidden md:inline"> — </span>
+            <span className="block text-base font-semibold text-warmgray md:inline md:text-3xl md:font-bold md:text-navy">Net Pay After Tax</span>
+          </h1>
+          <p className="text-base md:text-lg text-navy">On <strong>$80,000</strong> you take home <strong>{formatAUD(EX80.takeHomePay)} a year</strong> ({formatAUD(EX80.fortnightly)} a fortnight) after income tax and Medicare in FY{SITE_CONFIG.financialYear}.</p>
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
-        <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+        <section className="max-w-4xl mx-auto mb-12">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
@@ -101,14 +126,15 @@ export default function TakeHomePayCalculatorPage({ children, afterCalculator }:
                   <button type="submit" className="w-full bg-eucalyptus-dark hover:bg-navy text-white font-semibold py-3 rounded-lg shadow-md transition-all">Calculate Take-Home Pay</button>
                 </form>
 
-                <Card className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
+                <Card id="calc-result" className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
                   <CardContent className="p-6">
                     <h2 className="text-xl font-semibold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Your Net Pay After Tax</h2>
                     {/* Headline result first, moneysmart-style: the answer before the breakdown. */}
                     <div className="mb-4 rounded-xl bg-white p-4 text-center shadow-sm">
                       <p className="text-xs text-warmgray-light">You take home</p>
-                      <p className="text-3xl font-extrabold text-eucalyptus-dark">{formatAUD(period === "annual" ? result.takeHomePay : period === "monthly" ? result.monthly : period === "fortnightly" ? result.fortnightly : result.weekly)}</p>
+                      <p className="text-3xl font-extrabold text-eucalyptus-dark">{formatAUD(headline)}</p>
                       <p className="text-xs text-warmgray">per {PERIOD_NOUN[period]} · {formatPercent(result.effectiveTaxRate)} effective tax</p>
+                      <ResultNextSteps links={nextSteps} />
                     </div>
                     <div className="space-y-2.5 text-sm">
                       <Row label="Gross Salary" value={formatAUD(salary)} bold />
@@ -142,6 +168,8 @@ export default function TakeHomePayCalculatorPage({ children, afterCalculator }:
               </div>
             </CardContent>
           </Card>
+          {/* Rendered after the card so it never pushes the first input below the fold. */}
+          <StickyResult targetId="calc-result" label="Take-home pay" value={formatAUD(headline)} hint={`per ${PERIOD_NOUN[period]}`} />
         </section>
 
         {afterCalculator}

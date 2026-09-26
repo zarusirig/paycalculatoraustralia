@@ -45,6 +45,11 @@ const workedExample = calculatePayBreakdown({ grossSalary: 85_000, includeHECS: 
 export default function FortnightlyPayCalculatorContent() {
   return (
     <>
+          {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+          <p className="text-warmgray">
+            Fortnightly pay is your annual salary divided by <strong>26</strong>. Use this fortnightly pay calculator as a
+            fortnightly tax calculator: enter your fortnightly pay or annual salary in the calculator above.
+          </p>
 
           {/* --- HOW MANY FORTNIGHTS IN A YEAR? --- */}
           {/* Targets "fortnights in a year" (2.4k/mo, KD 0; we ranked 69) and

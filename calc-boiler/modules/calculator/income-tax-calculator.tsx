@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ChevronRight, ShieldCheck } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import {
   calculateIncomeTax,
   calculateLITO,
@@ -28,14 +31,7 @@ const FY = SITE_CONFIG.financialYear; // "2026-27"
 const NEW_RATE = formatPercent(TAX_BRACKETS[1].rate, 0); // 15%
 const OLD_RATE = formatPercent(TAX_BRACKETS_2025_26[1].rate, 0); // 16%
 const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
-/** "0% to $18,200, 16% to $45,000, … and 45% above", rendered from a bracket scale. */
-function scaleSentence(brackets: typeof TAX_BRACKETS): string {
-  const parts = brackets.map((b, i) =>
-    i === brackets.length - 1 ? `${formatPercent(b.rate, 0)} above` : `${formatPercent(b.rate, 0)} to ${formatAUD(b.max)}`,
-  );
-  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
-}
-const OLD_SCALE = scaleSentence(TAX_BRACKETS_2025_26);
+// The 2025-26 scale sentence now lives in income-tax-calculator-content.tsx (moved out of the hero).
 
 const PRESETS: Record<EntryPeriod, readonly number[]> = {
   annual: [45_000, 80_000, 120_000, 190_000],
@@ -86,13 +82,27 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
     return { rawTax: Math.round(rawTax), litoOffset: Math.round(litoOffset), netTax, medicare, totalTax, takeHome, effectiveRate, bracketBreakdown, marginalRate };
   }, [salary]);
 
+  // Next steps carry the visitor's own (annualised) income, so the salary page
+  // they land on already shows their figure.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const taxOn = nearestSalary("tax-on", salary);
+    const takeHome = nearestSalary("take-home", salary);
+    return [
+      { href: salaryHref("tax-on", taxOn), label: `See the full tax breakdown for ${formatAUD(taxOn)}`, detail: "Bracket by bracket, with LITO and Medicare" },
+      { href: salaryHref("take-home", takeHome), label: `What you take home on ${formatAUD(takeHome)}` },
+      { href: "/hecs-help-calculator/", label: "Add your HECS-HELP repayment" },
+      { href: "/tax-return-calculator/", label: "Estimate your tax refund" },
+    ];
+  }, [salary]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="space-y-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
           {/* HERO — compact so the calculator is above the fold (intent map, Sep 2026).
-              The 5-bracket summary box moved directly under the calculator. */}
-          <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8">
+              The 5-bracket summary box moved directly under the calculator; the
+              2025-26 scale / LITO sentences moved to the top of income-tax-calculator-content.tsx. */}
+          <section className="bg-eucalyptus-light/40 rounded-2xl p-4 md:p-6">
             <div className="max-w-4xl mx-auto">
               <nav aria-label="breadcrumb">
                 <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -102,19 +112,21 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
                 </ol>
               </nav>
 
-              <h1 className="mt-3 mb-2 text-2xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-                Income Tax Calculator Australia {FY} — Simple Tax Calculator
+              <h1 className="mt-2 mb-2 text-2xl md:text-3xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+                Income Tax Calculator Australia {FY}
+                <span className="hidden md:inline"> — </span>
+                <span className="block text-base font-semibold text-warmgray md:inline md:text-3xl md:font-bold md:text-navy">Simple Tax Calculator</span>
               </h1>
               <p className="text-base md:text-lg text-warmgray">
-                The ATO tax rates for {SITE_CONFIG.previousFinancialYear} were {OLD_SCALE}; from {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}, with other thresholds unchanged. An income tax calculator applies the scale for the chosen year, adds the {MEDICARE_PCT} Medicare levy and subtracts up to {formatAUD(LITO.maxOffset)} of Low Income Tax Offset (LITO). Enter any annual, monthly, fortnightly or weekly income for FY{FY}.
+                From {SITE_CONFIG.financialYearStart} the {OLD_RATE} bracket became {NEW_RATE}; this calculator adds the {MEDICARE_PCT} Medicare levy and up to {formatAUD(LITO.maxOffset)} of LITO.
               </p>
-              <TrustBar className="mt-3" />
+              <TrustBar className="mt-2" />
             </div>
           </section>
 
           {/* CALCULATOR */}
-          <section className="max-w-4xl mx-auto">
-            <Card className="shadow-md">
+          <section className="max-w-4xl mx-auto mb-12">
+            <Card className="shadow-md py-0">
               <CardContent className="p-6 md:p-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {/* Input */}
@@ -156,7 +168,7 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
                   </div>
 
                   {/* Results */}
-                  <Card className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
+                  <Card id="calc-result" className="bg-sandstone border-0 shadow-none" role="region" aria-live="polite">
                     <CardContent className="p-6">
                       <h2 className="text-xl font-semibold text-navy mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Breakdown</h2>
                       {/* Headline answer first (moneysmart: "The estimated tax on your taxable income is …"). */}
@@ -164,6 +176,7 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
                         <p className="text-xs text-warmgray-light">Estimated tax on {formatAUD(salary)} a year</p>
                         <p className="text-3xl font-extrabold text-ochre">{formatAUD(result.totalTax)}</p>
                         <p className="text-xs text-warmgray">income tax + Medicare · {period === "annual" ? `${formatAUD(result.totalTax / 52)} per week` : `${formatAUD(result.totalTax / PERIODS_PER_YEAR[period])} per ${PERIOD_NOUN[period]}`}</p>
+                        <ResultNextSteps links={nextSteps} />
                       </div>
                       <div className="space-y-3">
                         <div className="flex justify-between"><span className="text-warmgray">Gross Income</span><span className="font-bold text-navy">{formatAUD(salary)}</span></div>
@@ -230,6 +243,8 @@ export default function IncomeTaxCalculatorPage({ children, afterCalculator }: {
                 </div>
               </CardContent>
             </Card>
+            {/* Rendered after the card so it never pushes the first input below the fold. */}
+            <StickyResult targetId="calc-result" label={`Tax on ${formatAUD(salary)}`} value={formatAUD(result.totalTax)} hint="a year" />
           </section>
           {afterCalculator}
           {children}

@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import {
   bonusTaxSplit,
   formatAUD,
@@ -51,11 +54,25 @@ export default function BonusTaxCalculatorPage({ children, afterCalculator }: { 
     }
   }
 
+  // Next steps carry the visitor's own combined income (salary + bonus), so the
+  // page they land on already answers the follow-up question.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const takeHome = nearestSalary("take-home", combinedIncome);
+    const taxOn = nearestSalary("tax-on", combinedIncome);
+    return [
+      { href: salaryHref("take-home", takeHome), label: `See your full take-home pay on ${formatAUD(takeHome)}`, detail: "Salary plus bonus, after tax and Medicare" },
+      { href: salaryHref("tax-on", taxOn), label: `How much tax you pay on ${formatAUD(taxOn)}` },
+      { href: "/salary-sacrifice-calculator/", label: "Salary sacrifice the bonus into super instead" },
+      { href: "/fortnightly-pay-calculator/", label: "Work out your fortnightly pay after tax" },
+    ];
+  }, [combinedIncome]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-sandstone rounded-2xl p-8 md:p-12 max-w-4xl mx-auto border border-sandstone-dark/10">
+      <div className="max-w-7xl mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8 space-y-6">
+        {/* HERO — compact so the first input sits above the phone fold (GA4 audit, Sep 2026).
+            The explanatory sentences moved to the top of bonus-tax-calculator-content.tsx. */}
+        <section className="bg-sandstone rounded-2xl p-4 md:p-6 max-w-4xl mx-auto border border-sandstone-dark/10">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -63,24 +80,22 @@ export default function BonusTaxCalculatorPage({ children, afterCalculator }: { 
               <li><span className="font-medium text-navy" aria-current="page">Bonus Tax Calculator</span></li>
             </ol>
           </nav>
-          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
+          <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-2">
             Bonus Tax Calculator Australia
           </h1>
-          <p className="text-lg text-warmgray">
-            Tax on a bonus in Australia is the difference between the annual tax on salary alone and the annual tax on
-            salary plus bonus, worked out on the {SITE_CONFIG.financialYear} scale; there is no flat bonus tax. For an
-            employee on {formatAUD(LEAD_BASE)} receiving {formatAUD(LEAD_BONUS)}, that difference is{" "}
-            {formatAUD(Math.round(LEAD_SPLIT.total))}, so {formatAUD(Math.round(LEAD_SPLIT.net))} of the bonus is kept.
-            Employers withhold from bonus payments using ATO Schedule 5, and any over-withholding is refunded at tax time.
+          <p className="text-base md:text-lg text-warmgray">
+            Tax on a {formatAUD(LEAD_BONUS)} bonus on a {formatAUD(LEAD_BASE)} salary is{" "}
+            {formatAUD(Math.round(LEAD_SPLIT.total))} in FY{SITE_CONFIG.financialYear}, so you keep{" "}
+            {formatAUD(Math.round(LEAD_SPLIT.net))}; there is no flat bonus tax.
           </p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
-        <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+        <section className="max-w-4xl mx-auto mb-12">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
-              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-6">How Much Tax on Your Bonus?</h2>
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-xl font-semibold text-navy mb-4">How Much Tax on Your Bonus?</h2>
               <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {/* Inputs */}
                 <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
@@ -110,13 +125,14 @@ export default function BonusTaxCalculatorPage({ children, afterCalculator }: { 
                 </form>
 
                 {/* Results */}
-                <div className="space-y-6">
+                <div id="calc-result" className="space-y-6">
                   <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                     <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Your Take-Home Bonus</div>
                     <div className="text-4xl font-extrabold text-navy mb-1">{formatAUD(netBonus)}</div>
                     <div className="text-sm text-warmgray mt-2">
                       from a <strong>{formatAUD(bonusAmount)}</strong> gross bonus
                     </div>
+                    <ResultNextSteps links={nextSteps} />
                   </div>
 
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
@@ -143,6 +159,8 @@ export default function BonusTaxCalculatorPage({ children, afterCalculator }: { 
               </div>
             </CardContent>
           </Card>
+          {/* Rendered after the card so it never pushes the first input below the fold. */}
+          <StickyResult targetId="calc-result" label="Take-home bonus" value={formatAUD(netBonus)} hint="after tax" />
         </section>
 
         {afterCalculator}

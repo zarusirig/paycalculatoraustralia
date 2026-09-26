@@ -48,6 +48,11 @@ const SOURCES_LIST: SourceLink[] = [
 export default function WeeklyPayCalculatorContent() {
   return (
     <>
+          {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+          <p className="text-warmgray">
+            Weekly pay is your annual salary divided by <strong>52</strong>. Use this weekly pay calculator as a weekly tax
+            calculator: enter your weekly pay or annual salary in the calculator above.
+          </p>
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Weekly Pay Calculated in Australia?</h2>
             <p className="text-warmgray mb-4">

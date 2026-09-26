@@ -32,6 +32,11 @@ const SOURCES_LIST: SourceLink[] = [
 export function MonthlyPayCalculatorIntro() {
   return (
     <>
+          {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+          <p className="text-warmgray">
+            Monthly pay is your annual salary divided by <strong>12</strong>. Enter your salary in the calculator above for
+            your own monthly tax, super and net pay.
+          </p>
           {/* --- H2: How Is Monthly Pay Calculated? --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">How Is Monthly Pay Calculated in Australia?</h2>

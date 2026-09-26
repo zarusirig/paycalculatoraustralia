@@ -63,6 +63,13 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
 
+          {/* Moved from the hero (26 Sep 2026) so the calculator sits above the phone fold. */}
+          <p className="text-warmgray">
+            Multiply your hourly rate by <strong>{EMPLOYMENT.hoursPerYear.toLocaleString("en-AU")}</strong> ({EMPLOYMENT.standardWeeklyHours} hours &times; {EMPLOYMENT.weeksPerYear} weeks)
+            to get your annual salary. Enter your own rate and hours in the calculator above to see your annual salary and what you take home after ATO
+            income tax and Medicare.
+          </p>
+
           {/* H2: How Many Hours in a Year? */}
           <section id="hours-in-a-year">
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Many Working Hours Are in a Year?</h2>
