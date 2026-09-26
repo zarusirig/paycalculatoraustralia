@@ -15,6 +15,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AmountPresets } from "@/modules/calculator/head-term-ui";
 import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-primary";
 import { calculatePayBreakdown, formatAUD, formatNegAUD, formatPercent, SUPER_GUARANTEE, EMPLOYMENT } from "@/lib/constants";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { hasPage, nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 import { SourceBadge } from "./source-badge";
 
 type PayBasis = "annual" | "hourly" | "daily" | "weekly" | "fortnightly" | "monthly";
@@ -29,6 +32,23 @@ const OVERTIME_RATES = [
   { value: 2.0, label: "Double Time (2x)" },
   { value: 2.5, label: "Public Holiday (2.5x)" },
 ];
+
+const frequencyLabel: Record<PayFrequency, string> = {
+  annual: "per year",
+  monthly: "per month",
+  fortnightly: "per fortnight",
+  weekly: "per week",
+  hourly: "per hour",
+};
+
+/** The pay-frequency calculator page that matches the frequency picked (all routes exist under app/). */
+const FREQUENCY_CALC: Record<PayFrequency, { href: string; label: string }> = {
+  annual: { href: "/annual-pay-calculator/", label: "Annual pay calculator" },
+  monthly: { href: "/monthly-pay-calculator/", label: "Monthly pay calculator" },
+  fortnightly: { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay calculator" },
+  weekly: { href: "/weekly-pay-calculator/", label: "Weekly pay calculator" },
+  hourly: { href: "/hourly-to-salary/", label: "Hourly rate to annual salary calculator" },
+};
 
 const BASIS_META: Record<PayBasis, { label: string; inputLabel: string; unit: string; default: number; max: number; step: number }> = {
   annual: { label: "Annual", inputLabel: "Your Annual Salary", unit: "/ yr", default: 80_000, max: 500_000, step: 1_000 },
@@ -286,14 +306,6 @@ export default function HomeCalculator() {
     [result.grossSalary, hourlyDivisorHours]
   );
 
-  const frequencyLabel: Record<PayFrequency, string> = {
-    annual: "per year",
-    monthly: "per month",
-    fortnightly: "per fortnight",
-    weekly: "per week",
-    hourly: "per hour",
-  };
-
   // Donut chart segments
   const donutSegments = useMemo(() => [
     { label: "Take-Home Pay", value: result.takeHomePay, color: "#2d9e7c" },
@@ -305,7 +317,43 @@ export default function HomeCalculator() {
   const extraWeeklyFromRise = payRiseResult.weekly - result.weekly;
   const basisMeta = BASIS_META[payBasis];
 
+  // Next-step links inside the result card, carrying the visitor's own salary
+  // (GA4 Jan–Sep 2026: 1.10 pages/session; the answer card had no links).
+  // Salary pages sit on a grid, so each link goes to the nearest page and says
+  // so when it is not the exact figure entered.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const gross = Math.round(result.grossSalary);
+    const nearestOf = (family: "take-home" | "tax-on" | "salary-to-hourly") => {
+      const n = nearestSalary(family, gross);
+      return { n, detail: n === gross ? undefined : `Nearest salary page to ${formatAUD(gross)}` };
+    };
+    const th = nearestOf("take-home");
+    const tx = nearestOf("tax-on");
+    const links: ResultNextStep[] = [
+      { href: salaryHref("take-home", th.n), label: `Full breakdown of ${formatAUD(th.n)} take-home`, detail: th.detail },
+      { href: salaryHref("tax-on", tx.n), label: `How much tax on ${formatAUD(tx.n)}`, detail: tx.detail },
+    ];
+    if (payBasis === "hourly") {
+      links.push({ href: "/hourly-to-salary/", label: "Convert your hourly rate to a salary" });
+    } else {
+      const sh = nearestOf("salary-to-hourly");
+      // Only when a page exists within ~10% of the entered salary (the hourly grid starts at $30k).
+      if (hasPage("salary-to-hourly", sh.n) && Math.abs(sh.n - gross) <= Math.max(5_000, gross * 0.1)) {
+        links.push({ href: salaryHref("salary-to-hourly", sh.n), label: `${formatAUD(sh.n)} salary as an hourly rate`, detail: sh.detail });
+      }
+    }
+    const fc = FREQUENCY_CALC[frequency];
+    links.push({ href: fc.href, label: fc.label, detail: `Tax and super shown ${frequencyLabel[frequency]}` });
+    // De-duplicate by href (hourly basis + hourly frequency both point at /hourly-to-salary/).
+    const seen = new Set<string>();
+    return links.filter((l) => (seen.has(l.href) ? false : (seen.add(l.href), true))).slice(0, 4);
+  }, [result.grossSalary, payBasis, frequency]);
+
+  const headlineFormatted = formatAUD(displayTakeHome, frequency === "hourly" ? 2 : 0);
+
   return (
+    <>
+    <StickyResult targetId="calc-result" label="Take-home pay" value={headlineFormatted} hint={frequencyLabel[frequency]} />
     <Card className="border-0 bg-white shadow-2xl">
       <CardContent className="p-6 sm:p-8">
         <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
@@ -644,7 +692,7 @@ export default function HomeCalculator() {
           aria-label="Pay breakdown results"
         >
           {/* Big take-home number */}
-          <div className="rounded-2xl bg-gradient-to-br from-navy via-navy-light to-navy p-6 text-center">
+          <div id="calc-result" className="rounded-2xl bg-gradient-to-br from-navy via-navy-light to-navy p-6 text-center">
             <p className="mb-1 text-sm font-medium text-sandstone-dark/50">Your take-home pay</p>
             <div className="flex items-baseline justify-center gap-2">
               <AnimatedNumber
@@ -663,6 +711,9 @@ export default function HomeCalculator() {
               </span>
             </div>
           </div>
+
+          {/* Next-step links carrying the visitor's own number, directly under the headline figure. */}
+          <ResultNextSteps links={nextSteps} />
 
           {/* Donut + Breakdown side by side */}
           <div className="grid items-start gap-6 sm:grid-cols-[auto_1fr]">
@@ -795,6 +846,7 @@ export default function HomeCalculator() {
         </div>
       </CardContent>
     </Card>
+    </>
   );
 }
 

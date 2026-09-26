@@ -90,7 +90,7 @@ export default function HomePageTemplate() {
   return (
     <div className="flex-grow">
       {/* ===== HERO + CALCULATOR ===== */}
-      <section className="grain-overlay relative overflow-hidden bg-navy pb-16 pt-20 lg:pt-24">
+      <section className="grain-overlay relative overflow-hidden bg-navy pb-8 pt-8 lg:pb-12 lg:pt-12">
         {/* Background effects */}
         <div className="hero-pattern absolute inset-0" />
         <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-eucalyptus/8 blur-[100px]" />
@@ -100,19 +100,23 @@ export default function HomePageTemplate() {
           {/* Hero Copy — centered above calculator on all screens */}
           {/* Server-rendered: the hero (H1 + intro = the LCP element) is plain
               HTML at its final state, with no animation wrapper to wait on. */}
-          <div className="mb-6 text-center sm:mb-8">
+          <div className="mb-4 text-center sm:mb-8">
             {/* Head-term intent map (Sep 2026): this URL is the one primary for
                 "pay calculator australia" + "salary calculator". Intro kept to
                 one sentence so the calculator sits above the fold on mobile —
-                paycalculator.com.au / wagecalculator open straight on the form. */}
+                paycalculator.com.au / wagecalculator open straight on the form.
+                Fold budget (26 Sep 2026, 390px phone, 150px fixed header + ad):
+                the first input was 755px down; the H1 is sized to two lines and
+                the intro to ~3 lines at 14px so it lands under 600px. The
+                "free … at FY rates" framing moved to the first content section. */}
             <h1
-              className="mb-2 text-3xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
+              className="mb-2 text-xl font-extrabold leading-snug tracking-tight text-white sm:text-5xl sm:leading-tight lg:text-6xl"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               Pay Calculator Australia {FY} — Salary Calculator After Tax
             </h1>
-            <p className="mx-auto mb-4 max-w-2xl text-base text-sandstone-dark/60 sm:text-lg">
-              Free salary calculator: enter any salary or hourly, weekly, fortnightly or monthly wage and see your take-home pay after ATO tax, Medicare, HECS-HELP and {formatPercent(SUPER_GUARANTEE.rate, 0)} super at FY{FY} rates.
+            <p className="mx-auto mb-3 max-w-2xl text-sm text-sandstone-dark/60 sm:mb-4 sm:text-lg">
+              Enter any salary or hourly, weekly, fortnightly or monthly wage and see your take-home pay after ATO tax, Medicare, HECS-HELP and {formatPercent(SUPER_GUARANTEE.rate, 0)} super.
             </p>
             <TrustBar className="mx-auto" variant="dark" />
           </div>
@@ -161,7 +165,7 @@ export default function HomePageTemplate() {
             What Changed in Your Pay on 1 July 2026?
           </h2>
           <p className="mb-5 text-warmgray">
-            Four changes hit Australian pay packets at the start of FY{FY}. This pay calculator already applies all of them.
+            This free salary calculator works out take-home pay at FY{FY} rates for any salary or hourly, weekly, fortnightly or monthly wage. Four changes hit Australian pay packets at the start of FY{FY}, and the calculator already applies all of them.
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="rounded-xl border border-eucalyptus/20 bg-eucalyptus-light/20 p-4">
