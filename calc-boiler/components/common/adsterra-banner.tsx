@@ -98,7 +98,7 @@ function buildSrcDoc({ key, width, height }: AdsterraSize): string {
 <style>html,body{margin:0;padding:0;overflow:hidden;background:transparent;}</style>
 </head>
 <body>
-<script type="text/javascript">
+<script data-cfasync="false" type="text/javascript">
   atOptions = {
     'key' : '${key}',
     'format' : 'iframe',
@@ -107,7 +107,7 @@ function buildSrcDoc({ key, width, height }: AdsterraSize): string {
     'params' : {}
   };
 </script>
-<script type="text/javascript" src="https://www.highperformanceformat.com/${key}/invoke.js"></script>
+<script data-cfasync="false" type="text/javascript" src="https://www.highperformanceformat.com/${key}/invoke.js"></script>
 </body>
 </html>`;
 }
