@@ -9,18 +9,16 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
-  formatPercent,
-  MEDICARE_LEVY,
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
-import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-ui";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 
-const LEAD_GROSS = findGrossForNet(1_500 * 52);
-const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
-const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
 const LEAD_NET_WEEKLY = 1_500;
+const LEAD_GROSS = findGrossForNet(LEAD_NET_WEEKLY * 52);
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -52,11 +50,22 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
 
   const expectedSuper = requiredGross * SUPER_GUARANTEE.rate;
 
+  // Next steps inside the result card, carrying the gross salary just found.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const s = nearestSalary("take-home", requiredGross);
+    const h = nearestSalary("salary-to-hourly", requiredGross);
+    return [
+      { href: salaryHref("take-home", s), label: `Check your take-home on ${formatAUD(s)}`, detail: "Nearest salary page, with super and HECS options" },
+      { href: salaryHref("tax-on", s), label: `See the tax on ${formatAUD(s)}` },
+      { href: salaryHref("salary-to-hourly", h), label: `What ${formatAUD(h)} a year is an hour` },
+    ];
+  }, [requiredGross]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8 space-y-6">
         {/* HERO */}
-        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026). */}
+        {/* Compact hero: calculator above the fold (head-term intent map, Sep 2026; tightened 26 Sep 2026). */}
         <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -65,27 +74,19 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
               <li><span className="font-medium text-navy" aria-current="page">Gross Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Gross Pay Calculator Australia — Net to Gross ({SITE_CONFIG.financialYear})
           </h1>
-          <p className="text-lg text-navy">
-            A gross pay calculator reverses the usual net pay estimate: it starts from a target take-home amount and finds
-            the annual gross salary that produces it under the {SITE_CONFIG.financialYear} tax brackets and the{" "}
-            {MEDICARE_PCT} Medicare levy. A <strong>{formatAUD(LEAD_NET_WEEKLY)} weekly</strong> net target needs{" "}
-            <strong>{formatAUD(Math.round(LEAD_GROSS))} gross a year</strong>, about{" "}
-            {formatAUD(Math.round(LEAD_GROSS / 52))} a week before tax. Employer super of {SG_PCT} is paid on top of that
-            gross figure.
+          <p className="text-base md:text-lg text-navy">
+            A <strong>{formatAUD(LEAD_NET_WEEKLY)} weekly</strong> net target needs{" "}
+            <strong>{formatAUD(Math.round(LEAD_GROSS))} gross a year</strong> under the {SITE_CONFIG.financialYear} brackets.
           </p>
-          <p className="text-warmgray mt-2">
-            Enter your own target take-home pay to find the annual gross salary you need to negotiate. Going the other way, from salary to take-home? Use the{" "}
-            <Link href={HEAD_TERM_PRIMARY.netPayCalculator.href} className="text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.netPayCalculator.anchor}</Link>.
-          </p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 items-start">
 
@@ -127,7 +128,7 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
 
                 {/* Results */}
                 <div className="space-y-6">
-                  <div className="bg-eucalyptus-dark rounded-2xl p-6 text-center text-white shadow-lg relative overflow-hidden">
+                  <div id="calc-result" className="bg-eucalyptus-dark rounded-2xl p-6 text-center text-white shadow-lg relative overflow-hidden">
                     {/* Decorative background shape */}
                     <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                     <div className="absolute -left-10 -bottom-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
@@ -140,6 +141,7 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
                       To take home exactly <strong>{formatAUD(targetNet)} {period}</strong>
                     </div>
                   </div>
+                  <StickyResult targetId="calc-result" label="Required gross salary" value={formatAUD(requiredGross)} hint="a year" />
 
                   {/* Breakdown Box */}
                   <div className="bg-sandstone rounded-xl border border-sandstone-dark/20 overflow-hidden">
@@ -168,6 +170,7 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
                         <div className="border-t border-sandstone-dark/20 pt-2 text-right font-bold text-eucalyptus-dark hidden sm:block">{formatAUD(finalBreakdown.takeHomePay)}</div>
                         <div className="border-t border-sandstone-dark/20 pt-2 text-right font-extrabold text-eucalyptus-dark bg-eucalyptus-light/30 px-2 rounded">{formatAUD(targetNet)}</div>
                       </div>
+                      <ResultNextSteps links={nextSteps} />
                     </div>
                   </div>
 

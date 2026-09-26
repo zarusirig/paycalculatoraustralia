@@ -9,11 +9,12 @@ import {
   calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
-  formatPercent,
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 
 // Lead example: $100,000 with $10,000 sacrificed, from the same engine the
 // calculator uses, so the figures cannot drift from the results below.
@@ -49,11 +50,23 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
   const employerSuper = Math.round(salary * SUPER_GUARANTEE.rate);
   const capRoom = Math.max(0, SUPER_GUARANTEE.concessionalCap - employerSuper);
 
+  // Next steps inside the result card, carrying the visitor's own figures.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const taxable = nearestSalary("tax-on", Math.max(0, salary - sacrifice));
+    const full = nearestSalary("take-home", salary);
+    return [
+      { href: salaryHref("tax-on", taxable), label: `How much tax on ${formatAUD(taxable)} taxable income`, detail: "Your salary after the sacrifice comes off" },
+      { href: "/concessional-contributions-cap/", label: "Check your remaining concessional cap room" },
+      { href: "/superannuation-calculator/", label: `Project what the extra ${formatAUD(sacrifice)} grows to` },
+      { href: salaryHref("take-home", full), label: `See your full take-home on ${formatAUD(full)}` },
+    ];
+  }, [salary, sacrifice]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-sandstone rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+        {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+        <section className="bg-sandstone rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -61,24 +74,19 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
               <li><span className="font-medium text-navy" aria-current="page">Salary Sacrifice Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Salary Sacrifice Calculator — How Much Will You Save?
           </h1>
-          <p className="text-lg text-warmgray">
-            Tax with salary sacrifice is calculated on taxable income after the sacrificed amount is removed:{" "}
-            {formatAUD(LEAD_SALARY)} with {formatAUD(LEAD_SACRIFICE)} sacrificed is taxed as{" "}
-            {formatAUD(LEAD_SALARY - LEAD_SACRIFICE)}, and the {formatAUD(LEAD_SACRIFICE)} goes to super less{" "}
-            {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. For FY{SITE_CONFIG.financialYear} that
-            leaves take-home pay {formatAUD(LEAD_TAKE_HOME_DROP)} lower while {formatAUD(LEAD_SACRIFICE)} is
-            contributed, a saving of {formatAUD(LEAD_TAX_SAVING)} in income tax and Medicare levy. The calculator
-            shows both pays side by side.
+          <p className="text-base md:text-lg text-warmgray">
+            Sacrificing {formatAUD(LEAD_SACRIFICE)} from {formatAUD(LEAD_SALARY)} lowers take-home pay by {formatAUD(LEAD_TAKE_HOME_DROP)} but
+            saves {formatAUD(LEAD_TAX_SAVING)} in income tax and Medicare levy in FY{SITE_CONFIG.financialYear}.
           </p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Compare Your Pay Before and After Salary Sacrifice</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -151,7 +159,8 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
               </div>
 
               {/* Summary */}
-              <div className="mt-6 grid grid-cols-3 gap-4 text-center">
+              <div id="calc-result" className="mt-6">
+              <div className="grid grid-cols-3 gap-4 text-center">
                 <div className="bg-eucalyptus-light/30 rounded-lg p-4">
                   <div className="text-2xl font-bold text-eucalyptus-dark">{formatAUD(taxSaved)}</div>
                   <div className="text-sm text-warmgray">Tax Saved</div>
@@ -169,6 +178,9 @@ export default function SalarySacrificeCalculatorPage({ children, afterCalculato
               <div className="mt-4 bg-sandstone border-l-4 border-eucalyptus/70 p-4 text-sm text-warmgray">
                 <p>You receive <strong>{formatAUD(takeHomeReduction)}</strong> less in take-home pay, but <strong>{formatAUD(sacrifice)}</strong> goes to super — that&apos;s <strong>{formatAUD(taxSaved)}</strong> in tax savings.</p>
               </div>
+              <ResultNextSteps links={nextSteps} />
+              </div>
+              <StickyResult targetId="calc-result" label="Tax saved" value={formatAUD(taxSaved)} hint="a year" />
             </CardContent>
           </Card>
         </section>

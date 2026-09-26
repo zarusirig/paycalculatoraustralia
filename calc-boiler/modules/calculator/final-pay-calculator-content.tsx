@@ -7,7 +7,11 @@ import FaqAccordion from "@/components/common/faq-accordion";
 import { FINAL_PAY_FAQS } from "./final-pay-calculator-faqs";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { EMPLOYMENT, formatPercent, SOURCES, SITE_CONFIG } from "@/lib/constants";
+import { COMMON_LEAVE_LOADING } from "@/lib/constants/leave-loading";
+
+/** Working days in a year on the site's 52-week convention, 5 days a week. */
+const WORKING_DAYS_PER_YEAR = EMPLOYMENT.weeksPerYear * 5;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Final pay when employment ends", url: "https://www.fairwork.gov.au/ending-employment/final-pay", publisher: SOURCES.fwo.name },
@@ -18,6 +22,10 @@ const SOURCES_LIST: SourceLink[] = [
 export default function FinalPayCalculatorContent() {
   return (
     <>
+      {/* Lead copy moved here from the hero (26 Sep 2026) so the calculator sits above the fold. */}
+      <p className="text-lg text-warmgray">
+        Termination pay (final pay) in Australia is the sum of outstanding wages, unused annual leave, any notice paid in lieu, long service leave and, if the role is made redundant, redundancy pay. Unused annual leave is paid at (annual salary &divide; {WORKING_DAYS_PER_YEAR}) &times; leave days, plus {formatPercent(COMMON_LEAVE_LOADING, 1)} leave loading where the award requires it, taxed at the marginal rate in {SITE_CONFIG.financialYear}.
+      </p>
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Is Final Pay Calculated in Australia?</h2>
         <p className="mb-4 text-warmgray">Your final pay when leaving a job comprises <strong>5 separate components</strong>, each calculated independently. Most awards require your employer to pay all outstanding entitlements within <strong>7 days</strong> after your last day; where your award or agreement is silent, the Fair Work Act&apos;s general pay rules apply.</p>

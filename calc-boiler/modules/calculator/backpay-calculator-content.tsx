@@ -33,6 +33,11 @@ export default function BackpayCalculatorContent() {
           {/* CONTENT */}
           <div className="max-w-4xl mx-auto space-y-10">
 
+            <p className="text-lg text-warmgray">
+              Calculate how much you are owed in backpay: the calculator above adds unpaid super and leave entitlements to
+              the wage shortfall to give the total underpayment.
+            </p>
+
             <section id="what-is-back-pay">
               <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is Back Pay?</h2>
               <p className="text-warmgray">{BACKPAY_FAQS[0].a}</p>

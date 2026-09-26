@@ -38,6 +38,10 @@ const SECOND_SAVING = `$${Math.max(0, SECOND_RATE - CONTRIBUTIONS_TAX_RATE).toFi
 // $40,000 petrol car, statutory formula, full year, no employee contribution.
 const ICE_TAXABLE_VALUE = statutoryTaxableValue(40_000);
 const ICE_FBT = Math.round(fbtPayable(ICE_TAXABLE_VALUE));
+// Lead example moved here from the hero (26 Sep 2026) so the calculator sits
+// above the fold: $100,000 with $10,000 sacrificed.
+const LEAD_SALARY = 100_000;
+const LEAD_SACRIFICE = 10_000;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Super guarantee rate", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
@@ -48,6 +52,13 @@ const SOURCES_LIST: SourceLink[] = [
 export default function SalarySacrificeCalculatorContent() {
   return (
     <div className="max-w-4xl mx-auto space-y-10">
+
+      <p className="text-lg text-warmgray">
+        Tax with salary sacrifice is calculated on taxable income after the sacrificed amount is removed:{" "}
+        {formatAUD(LEAD_SALARY)} with {formatAUD(LEAD_SACRIFICE)} sacrificed is taxed as{" "}
+        {formatAUD(LEAD_SALARY - LEAD_SACRIFICE)}, and the {formatAUD(LEAD_SACRIFICE)} goes to super less{" "}
+        {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} contributions tax. The calculator above shows both pays side by side.
+      </p>
 
       {/* --- H2: How Does Salary Sacrifice Work? --- */}
       <section>

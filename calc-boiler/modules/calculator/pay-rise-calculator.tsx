@@ -12,6 +12,9 @@ import {
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 
 // Worked figures computed from the tax engine. The copy had frozen at FY2025-26
 // values (16% first bracket, 2023-24 MLS tiers, $30,000 cap) under a FY2026-27
@@ -49,11 +52,22 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
 
   const superIncrease = Math.round(actualRaise * SUPER_GUARANTEE.rate);
 
+  // Next steps inside the result card, carrying the visitor's new salary.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const s = nearestSalary("take-home", Math.max(0, newSalary));
+    return [
+      { href: salaryHref("take-home", s), label: `See your take-home on ${formatAUD(s)}`, detail: "Your new salary by week, fortnight and month" },
+      { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay on your new salary" },
+      { href: salaryHref("tax-on", s), label: `How much tax on ${formatAUD(s)}` },
+      { href: "/superannuation-calculator/", label: "Project what the extra super grows to" },
+    ];
+  }, [newSalary]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-sandstone rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+        {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+        <section className="bg-sandstone rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -61,20 +75,19 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
               <li><span className="font-medium text-navy" aria-current="page">Pay Rise Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+          <h1 className="text-xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
             Pay Rise Calculator Australia — How Much Extra Will You Take Home? ({SITE_CONFIG.financialYear})
           </h1>
-          <p className="text-lg text-navy">
-            A <strong>$10,000 pay rise on $80,000</strong> adds <strong>{formatAUD(RAISE_10K_ON_80K)} a year</strong> to your take-home pay
-            ({formatAUD(RAISE_10K_ON_80K / 52, 2)} a week) in FY{SITE_CONFIG.financialYear}, because each extra dollar is taxed at your marginal rate.
+          <p className="text-base md:text-lg text-navy">
+            A <strong>$10,000 pay rise on $80,000</strong> adds <strong>{formatAUD(RAISE_10K_ON_80K)} a year</strong> to your
+            take-home pay in FY{SITE_CONFIG.financialYear}.
           </p>
-          <p className="text-warmgray mt-2">Enter your salary and raise (in dollars or as a new salary) to see what you keep.</p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>See Your Pay Before and After a Rise</h2>
 
@@ -124,7 +137,7 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
                 {/* Results */}
                 <div className="space-y-6">
                   {/* Big Number */}
-                  <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
+                  <div id="calc-result" className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                     <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Net Pay Increase</div>
                     <div className="text-4xl font-extrabold text-navy mb-1">
                       {actualRaise >= 0 ? "+" : ""}{formatAUD(takeHomeIncrease)} <span className="text-lg font-medium text-warmgray-light">/ yr</span>
@@ -135,7 +148,14 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
                         The other <strong>{taxPercent.toFixed(1)}%</strong> goes to tax.
                       </div>
                     )}
+                    <ResultNextSteps links={nextSteps} />
                   </div>
+                  <StickyResult
+                    targetId="calc-result"
+                    label="Net pay increase"
+                    value={`${actualRaise >= 0 ? "+" : ""}${formatAUD(takeHomeIncrease)}`}
+                    hint="/ yr"
+                  />
 
                   {/* Breakdown Tables */}
                   <div className="grid grid-cols-2 gap-4">

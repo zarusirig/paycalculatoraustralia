@@ -11,6 +11,8 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import {
   calculatePayBreakdown,
   formatAUD,
+  formatPercent,
+  MEDICARE_LEVY,
   SUPER_GUARANTEE,
   SOURCES,
   SITE_CONFIG,
@@ -18,6 +20,9 @@ import {
   LITO,
 } from "@/lib/constants";
 import { findGrossForNet } from "@/modules/calculator/gross-for-net";
+// HEAD_TERM_PRIMARY must come from the plain module: re-exported through the
+// "use client" head-term-ui it reaches this server component as undefined.
+import { HEAD_TERM_PRIMARY } from "@/modules/calculator/head-term-primary";
 import { HeadTermLinks } from "@/modules/calculator/head-term-ui";
 import { bracketRatesSentence } from "@/modules/calculator/fy-rate-copy";
 
@@ -32,6 +37,10 @@ const EX_100K = calculatePayBreakdown({ grossSalary: 100_000 });
 const GROSS_FOR_1200_WK = findGrossForNet(1_200 * 52);
 const GROSS_FOR_60K_NET = findGrossForNet(60_000);
 const SG_PCT = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
+// Lead copy moved here from the hero (26 Sep 2026) so the calculator sits above the fold.
+const LEAD_NET_WEEKLY = 1_500;
+const LEAD_GROSS = findGrossForNet(LEAD_NET_WEEKLY * 52);
+const MEDICARE_PCT = formatPercent(MEDICARE_LEVY.rate, 0);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -40,10 +49,20 @@ const SOURCES_LIST: SourceLink[] = [
 export default function GrossPayCalculatorContent() {
   return (
     <>
-        <HeadTermLinks className="max-w-4xl mx-auto -mt-6" terms={["netPayCalculator", "salaryCalculator", "incomeTaxCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
+        <HeadTermLinks className="max-w-4xl mx-auto -mt-2" terms={["netPayCalculator", "salaryCalculator", "incomeTaxCalculator", "weeklyTaxCalculator", "fortnightlyTaxCalculator"]} />
 
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+
+          <p className="text-lg text-warmgray">
+            A gross pay calculator reverses the usual net pay estimate: it starts from a target take-home amount and finds
+            the annual gross salary that produces it under the {SITE_CONFIG.financialYear} tax brackets and the{" "}
+            {MEDICARE_PCT} Medicare levy. A {formatAUD(LEAD_NET_WEEKLY)} weekly net target needs{" "}
+            {formatAUD(Math.round(LEAD_GROSS))} gross a year, about {formatAUD(Math.round(LEAD_GROSS / 52))} a week before tax,
+            and employer super of {SG_PCT} is paid on top of that gross figure. Enter your own target take-home pay to find
+            the annual gross salary you need to negotiate. Going the other way, from salary to take-home? Use the{" "}
+            <Link href={HEAD_TERM_PRIMARY.netPayCalculator.href} className="text-eucalyptus-dark hover:underline">{HEAD_TERM_PRIMARY.netPayCalculator.anchor}</Link>.
+          </p>
 
           {/* --- HOW IS GROSS PAY CALCULATED? --- */}
           <section>

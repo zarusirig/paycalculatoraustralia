@@ -9,16 +9,14 @@ import {
   calculateIncomeTax,
   calculateLITO,
   calculateMedicareLevy,
-  EMPLOYMENT,
   formatAUD,
   formatNegAUD,
   formatPercent,
   SITE_CONFIG,
 } from "@/lib/constants";
-import { COMMON_LEAVE_LOADING } from "@/lib/constants/leave-loading";
-
-/** Working days in a year on the site's 52-week convention, 5 days a week. */
-const WORKING_DAYS_PER_YEAR = EMPLOYMENT.weeksPerYear * 5;
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -94,12 +92,24 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
     };
   }, [annualSalary, yearsService, unusedLeaveDays, noticeWeeks, reason]);
 
+  // Next steps inside the result card, carrying the visitor's own inputs.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const s = nearestSalary("tax-on", annualSalary);
+    return [
+      { href: "/leave-calculator/", label: `Check the payout on ${unusedLeaveDays} days of unused leave` },
+      { href: "/long-service-leave-calculator/", label: "Work out long service leave in your state" },
+      reason === "redundancy"
+        ? { href: "/redundancy-pay-calculator/", label: "See the tax-free part of your redundancy pay" }
+        : { href: salaryHref("tax-on", s), label: `How much tax on ${formatAUD(s)}`, detail: "The marginal rate applied to your leave payout" },
+    ];
+  }, [annualSalary, unusedLeaveDays, reason]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="space-y-12">
-          {/* HERO */}
-          <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+          <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8">
             <div className="max-w-4xl mx-auto">
               <nav aria-label="breadcrumb">
                 <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -108,21 +118,21 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
                   <li><span className="font-medium text-navy" aria-current="page">Final Pay Calculator</span></li>
                 </ol>
               </nav>
-              <div className="flex justify-between items-start mb-4 mt-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <div className="flex justify-between items-start mb-2 mt-2">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                   Final Pay Calculator Australia {SITE_CONFIG.financialYear}
                 </h1>
               </div>
-              <p className="text-xl text-warmgray">
-                Termination pay (final pay) in Australia is the sum of outstanding wages, unused annual leave, any notice paid in lieu, long service leave and, if the role is made redundant, redundancy pay. Unused annual leave is paid at (annual salary &divide; {WORKING_DAYS_PER_YEAR}) &times; leave days, plus {formatPercent(COMMON_LEAVE_LOADING, 1)} leave loading where the award requires it, taxed at the marginal rate in {SITE_CONFIG.financialYear}.
+              <p className="text-base md:text-lg text-warmgray">
+                Final pay adds outstanding wages, unused annual leave, notice in lieu, long service leave and any redundancy pay, taxed at your marginal rate in {SITE_CONFIG.financialYear}.
               </p>
-              <TrustBar className="mt-4" />
+              <TrustBar className="mt-2" />
             </div>
           </section>
 
           {/* CALCULATOR */}
           <section className="max-w-4xl mx-auto">
-            <Card className="shadow-md">
+            <Card className="shadow-md py-0">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Final Pay</h2>
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
@@ -175,11 +185,13 @@ export default function FinalPayCalculatorPage({ children, afterCalculator }: { 
 
                   {/* Results */}
                   <div className="space-y-4">
-                    <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
+                    <div id="calc-result" className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                       <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Estimated Net Final Pay</div>
                       <div className="text-4xl font-extrabold text-navy mb-1">{formatAUD(result.netFinalPay)}</div>
                       <div className="text-sm text-warmgray mt-2">After estimated tax of {formatAUD(result.estimatedTax)}</div>
+                      <ResultNextSteps links={nextSteps} />
                     </div>
+                    <StickyResult targetId="calc-result" label="Estimated net final pay" value={formatAUD(result.netFinalPay)} />
 
                     <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
                       <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">

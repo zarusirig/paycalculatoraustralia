@@ -15,6 +15,8 @@ import {
   SUPER_GUARANTEE,
   SITE_CONFIG,
 } from "@/lib/constants";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
 
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
@@ -70,12 +72,23 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
     };
   }, [correctRate, actualRate, hoursPerWeek, weeksUnderpaid]);
 
+  // Next steps inside the result card: recover the money, then check the tax on it.
+  const nextSteps = useMemo<ResultNextStep[]>(
+    () => [
+      { href: "/schedule-5-tax-table/", label: "See how tax is withheld on a back payment", detail: "ATO Schedule 5 spreads the lump sum over the period" },
+      { href: "/award-rates/", label: "Check the award rate you should have been paid" },
+      { href: "/super-guarantee-charge/", label: `Recover the ${formatAUD(result.unpaidSuper)} of unpaid super` },
+      { href: "/hourly-to-annual-salary-calculator/", label: `Convert ${formatAUD(correctRate, 2)} an hour to a salary` },
+    ],
+    [result.unpaidSuper, correctRate],
+  );
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="space-y-12">
-          {/* HERO */}
-          <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+          <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8">
             <div className="max-w-4xl mx-auto">
               <nav aria-label="breadcrumb">
                 <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -84,21 +97,21 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
                   <li><span className="font-medium text-navy" aria-current="page">Backpay Calculator</span></li>
                 </ol>
               </nav>
-              <div className="flex justify-between items-start mb-4 mt-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <div className="flex justify-between items-start mb-2 mt-2">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                   Backpay Calculator Australia — Underpayment Calculator
                 </h1>
               </div>
-              <p className="text-xl text-warmgray">
-                Calculate how much you are owed in backpay. Enter your correct rate, actual rate paid, hours, and period to see the total underpayment including unpaid super and leave entitlements.
+              <p className="text-base md:text-lg text-warmgray">
+                Enter your correct rate, the rate paid, hours and weeks to see what you are owed.
               </p>
-              <TrustBar className="mt-4" />
+              <TrustBar className="mt-2" />
             </div>
           </section>
 
           {/* CALCULATOR */}
           <section className="max-w-4xl mx-auto">
-            <Card className="shadow-md">
+            <Card className="shadow-md py-0">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Your Backpay</h2>
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
@@ -142,11 +155,13 @@ export default function BackpayCalculatorPage({ children, afterCalculator }: { c
 
                   {/* Results */}
                   <div className="space-y-4">
-                    <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
+                    <div id="calc-result" className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                       <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Total Amount Owed</div>
                       <div className="text-4xl font-extrabold text-navy mb-1">{formatAUD(result.grandTotal)}</div>
                       <div className="text-sm text-warmgray mt-2">Including {formatAUD(result.unpaidSuper)} in unpaid super</div>
+                      <ResultNextSteps links={nextSteps} />
                     </div>
+                    <StickyResult targetId="calc-result" label="Total amount owed" value={formatAUD(result.grandTotal)} hint="incl. super" />
 
                     <div className="bg-white rounded-xl border border-sandstone-dark/20 overflow-hidden">
                       <div className="bg-sandstone px-5 py-3 border-b border-sandstone-dark/20">

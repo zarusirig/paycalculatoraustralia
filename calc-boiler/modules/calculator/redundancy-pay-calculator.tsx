@@ -15,6 +15,8 @@ import {
   nesRedundancyWeeks,
   redundancyTax,
 } from "@/lib/constants/redundancy";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
 
 // All tax figures come from lib/constants/redundancy.ts (ATO-sourced, tested).
 // Before 23 Sep 2026 this page hardcoded the 2024-25 limit ($12,524 + $6,263)
@@ -56,11 +58,24 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
     return { weeklyPay, weeks, gross, tax };
   }, [baseSalary, yearsService, genuine, reachedPreservation, smallBusiness]);
 
+  // Next steps inside the result card: the rest of the termination payout.
+  const nextSteps = useMemo<ResultNextStep[]>(
+    () => [
+      { href: "/final-pay-calculator/", label: "Add notice and unused leave to your final pay", detail: "Redundancy pay is only one part of the payout" },
+      { href: "/leave-calculator/", label: "Work out your unused annual leave payout" },
+      {
+        href: "/long-service-leave-calculator/",
+        label: yearsService >= 7 ? `Check long service leave after ${yearsService} years` : "Check whether long service leave is owed",
+      },
+    ],
+    [yearsService],
+  );
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* HERO */}
-        <section className="bg-sandstone rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8 space-y-6">
+        {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+        <section className="bg-sandstone rounded-2xl p-5 md:p-8 max-w-4xl mx-auto">
           <nav aria-label="breadcrumb">
             <ol className="flex items-center space-x-1 text-sm text-warmgray">
               <li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li>
@@ -68,25 +83,19 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
               <li><span className="font-medium text-navy" aria-current="page">Redundancy Pay Calculator</span></li>
             </ol>
           </nav>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3" style={FONT}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy mt-2 mb-2" style={FONT}>
             Redundancy Pay Calculator Australia {Y}
           </h1>
-          <p className="text-lg text-warmgray">
-            A redundancy calculator applies the National Employment Standards scale, weeks of base pay by
-            completed years of continuous service, {nesRedundancyWeeks(1)} weeks at 1 year rising to{" "}
-            {nesRedundancyWeeks(9)} weeks at 9 years and {nesRedundancyWeeks(10)} weeks from 10 years, then
-            the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
-            {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per completed year. Amounts above the limit are taxed
-            as an employment termination payment at {formatPercent(ETP_RATES.atOrOverPreservationAge, 0)} or{" "}
-            {formatPercent(ETP_RATES.underPreservationAge, 0)} depending on age. The same rules apply in NSW,
-            Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
+          <p className="text-base md:text-lg text-warmgray">
+            NES redundancy pay runs from {nesRedundancyWeeks(1)} weeks at 1 year to {nesRedundancyWeeks(9)} weeks at 9 years,
+            tax-free up to {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per completed year.
           </p>
-          <TrustBar className="mt-4" />
+          <TrustBar className="mt-2" />
         </section>
 
         {/* CALCULATOR */}
         <section className="max-w-4xl mx-auto">
-          <Card className="shadow-md">
+          <Card className="shadow-md py-0">
             <CardContent className="p-6 md:p-8">
               <h2 className="text-xl font-semibold text-navy mb-6" style={FONT}>Calculate Your Redundancy Pay</h2>
               <div className="grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-8">
@@ -124,13 +133,15 @@ export default function RedundancyPayCalculatorPage({ children, afterCalculator 
                 </form>
 
                 <div className="space-y-5" role="region" aria-live="polite">
-                  <div className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
+                  <div id="calc-result" className="bg-sandstone border border-sandstone-dark/20 rounded-xl p-6 text-center shadow-sm">
                     <div className="text-sm font-semibold text-ochre uppercase tracking-wider mb-2">Redundancy pay after tax</div>
                     <div className="text-4xl font-extrabold text-navy mb-1 tabular-nums">{formatAUD(r.tax.net)}</div>
                     <div className="text-sm text-warmgray mt-2">
                       {r.weeks} weeks × {formatAUD(r.weeklyPay, 2)} a week = {formatAUD(r.gross, 2)} gross
                     </div>
+                    <ResultNextSteps links={nextSteps} />
                   </div>
+                  <StickyResult targetId="calc-result" label="Redundancy pay after tax" value={formatAUD(r.tax.net)} />
                   <div className="bg-white rounded-xl border border-sandstone-dark/20 p-5 space-y-3 text-sm">
                     <Row label="NES redundancy pay (gross)" value={formatAUD(r.gross, 2)} bold />
                     <Row label={genuine ? `Tax-free limit (${Y})` : "Tax-free limit"} value={genuine ? formatAUD(r.tax.taxFreeLimit) : "Nil — not genuine"} />
