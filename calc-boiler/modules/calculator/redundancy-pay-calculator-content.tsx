@@ -112,6 +112,17 @@ const RELATED_SEARCHES: readonly RelatedSearch[] = [
 export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonly RedundancyFaq[] }) {
   return (
     <div className="max-w-4xl mx-auto space-y-10">
+      <p className="text-lg text-warmgray">
+        A redundancy calculator applies the National Employment Standards scale, weeks of base pay by
+        completed years of continuous service, {nesRedundancyWeeks(1)} weeks at 1 year rising to{" "}
+        {nesRedundancyWeeks(9)} weeks at 9 years and {nesRedundancyWeeks(10)} weeks from 10 years, then
+        the {Y} tax-free limit of {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
+        {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per completed year. Amounts above the limit are taxed
+        as an employment termination payment at {pct(ETP_RATES.atOrOverPreservationAge)} or{" "}
+        {pct(ETP_RATES.underPreservationAge)} depending on age. The same rules apply in NSW,
+        Victoria, Queensland, WA, SA, Tasmania, the ACT and the NT.
+      </p>
+
       {/* NES TABLE + TAX-FREE BOX */}
       <section id="redundancy-pay-table">
         <h2 className={H2} style={FONT}>Redundancy Pay Table: Weeks by Years of Service</h2>

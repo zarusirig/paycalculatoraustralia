@@ -13,9 +13,11 @@ import {
   formatNegAUD,
   formatPercent,
   SITE_CONFIG,
-  TAX_FREE_THRESHOLD,
 } from "@/lib/constants";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
+import ResultNextSteps, { type ResultNextStep } from "@/components/common/result-next-steps";
+import StickyResult from "@/components/common/sticky-result";
+import { nearestSalary, salaryHref } from "@/lib/data/salary-pages";
 
 // Lead example: what the no-tax-free-threshold scale takes from a $1,000 fortnight.
 const LEAD_FORTNIGHT = 1_000;
@@ -88,12 +90,23 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
     };
   }, [job1Salary, job2Salary]);
 
+  // Next steps inside the result card, carrying the visitor's combined income.
+  const nextSteps = useMemo<ResultNextStep[]>(() => {
+    const combined = nearestSalary("take-home", result.totalIncome);
+    return [
+      { href: salaryHref("take-home", combined), label: `See your take-home on ${formatAUD(combined)} combined`, detail: "Both jobs added together and taxed once" },
+      { href: "/tax-free-threshold/", label: "Check which job should claim the tax-free threshold" },
+      { href: "/payg-withholding-tables/", label: "See the no-tax-free-threshold withholding scale" },
+      { href: "/tax-return-calculator/", label: "Estimate your tax return with both incomes" },
+    ];
+  }, [result.totalIncome]);
+
   return (
     <div className="min-h-screen flex-grow">
-      <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div className="space-y-12">
-          {/* HERO */}
-          <section className="bg-eucalyptus-light/40 rounded-2xl p-8 md:p-12">
+      <div className="max-w-7xl mx-auto py-3 md:py-8 px-4 sm:px-6 lg:px-8">
+        <div className="space-y-6">
+          {/* HERO — compact so the first input sits above the phone fold (26 Sep 2026). */}
+          <section className="bg-eucalyptus-light/40 rounded-2xl p-5 md:p-8">
             <div className="max-w-4xl mx-auto">
               <nav aria-label="breadcrumb">
                 <ol className="flex items-center space-x-1 text-sm text-warmgray">
@@ -102,25 +115,22 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
                   <li><span className="font-medium text-navy" aria-current="page">Second Job Tax Calculator</span></li>
                 </ol>
               </nav>
-              <div className="flex justify-between items-start mb-4 mt-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+              <div className="flex justify-between items-start mb-2 mt-2">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                   Second Job Tax Calculator Australia {SITE_CONFIG.financialYear}
                 </h1>
               </div>
-              <p className="text-xl text-warmgray">
-                There is no separate tax rate for a second job in Australia: income from both jobs is added together and
-                taxed once at the {SITE_CONFIG.financialYear} marginal rates. What differs is withholding, because the
-                second employer uses the ATO&apos;s no-tax-free-threshold scale, which takes {formatAUD(LEAD_NO_TFT)} (
-                {formatPercent(LEAD_NO_TFT / LEAD_FORTNIGHT)}) from a {formatAUD(LEAD_FORTNIGHT)} fortnight instead of
-                applying the {formatAUD(TAX_FREE_THRESHOLD)} threshold twice. Over-withholding is refunded at tax time.
+              <p className="text-base md:text-lg text-warmgray">
+                Both jobs are taxed once on combined income, but the second employer withholds {formatAUD(LEAD_NO_TFT)} (
+                {formatPercent(LEAD_NO_TFT / LEAD_FORTNIGHT)}) from a {formatAUD(LEAD_FORTNIGHT)} fortnight without the tax-free threshold.
               </p>
-              <TrustBar className="mt-4" />
+              <TrustBar className="mt-2" />
             </div>
           </section>
 
           {/* CALCULATOR */}
           <section className="max-w-4xl mx-auto">
-            <Card className="shadow-md">
+            <Card className="shadow-md py-0">
               <CardContent className="p-6 md:p-8">
                 <h2 className="text-xl font-semibold text-navy mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Calculate Tax on Two Jobs</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -182,7 +192,7 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
                     </Card>
 
                     {/* Combined EOFY */}
-                    <Card className="bg-white border border-sandstone-dark/20 shadow-sm">
+                    <Card id="calc-result" className="bg-white border border-sandstone-dark/20 shadow-sm">
                       <CardContent className="p-4">
                         <h3 className="text-sm font-semibold text-navy mb-2">Combined — End of Financial Year</h3>
                         <div className="space-y-1 text-sm">
@@ -198,8 +208,15 @@ export default function SecondJobTaxCalculatorPage({ children }: { children: Rea
                           </div>
                           <div className="text-xs text-warmgray-light">Combined effective rate: {formatPercent(result.combinedEffectiveRate)}</div>
                         </div>
+                        <ResultNextSteps links={nextSteps} />
                       </CardContent>
                     </Card>
+                    <StickyResult
+                      targetId="calc-result"
+                      label={result.refundOrDebt >= 0 ? "Estimated refund" : "Estimated tax debt"}
+                      value={`${result.refundOrDebt >= 0 ? "+" : ""}${formatAUD(result.refundOrDebt)}`}
+                      hint="at tax time"
+                    />
                   </div>
                 </div>
 

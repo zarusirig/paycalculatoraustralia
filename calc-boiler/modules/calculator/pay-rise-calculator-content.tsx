@@ -64,6 +64,11 @@ export default function PayRiseCalculatorContent() {
     <>
         {/* CONTENT */}
         <div className="max-w-4xl mx-auto space-y-10">
+          <p className="text-lg text-warmgray">
+            That $10,000 rise is {formatAUD(RAISE_10K_ON_80K / 52, 2)} a week after tax, because each extra dollar is taxed at
+            your marginal rate, not your average rate. Enter your salary and raise (in dollars or as a new salary) in the
+            calculator above to see what you keep.
+          </p>
           <section>
             <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Does a Pay Rise Affect Take-Home Pay?</h2>
             <p className="mb-4 text-warmgray">
