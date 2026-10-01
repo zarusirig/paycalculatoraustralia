@@ -79,8 +79,8 @@ export default function RootLayout({
             script and the `google-adsense-account` meta tag together if AdSense
             is ever applied for. */}
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
-        <link rel="preconnect" href="https://www.highperformanceformat.com" />
-        <link rel="dns-prefetch" href="https://www.highperformanceformat.com" />
+        <link rel="preconnect" href="https://bauval.org" />
+        <link rel="dns-prefetch" href="https://bauval.org" />
         {/* Fonts are self-hosted (app/fonts.css). Preload the two faces every
             page paints above the fold: body text and the H1 (the LCP element). */}
         <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

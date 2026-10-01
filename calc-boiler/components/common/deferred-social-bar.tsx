@@ -61,7 +61,7 @@ import { useEffect } from "react";
  * unit's share.
  */
 
-const SRC = "https://pl29540036.effectivecpmnetwork.com/d6/b7/79/d6b779f19c693c0f80a1c6a82ba34550.js";
+const SRC = "https://bauval.org/14/d6b779f19c693c0f80a1c6a82ba34550";
 
 const DELAY_MS = 0;
 

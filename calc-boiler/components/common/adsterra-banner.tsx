@@ -107,7 +107,7 @@ function buildSrcDoc({ key, width, height }: AdsterraSize): string {
     'params' : {}
   };
 </script>
-<script data-cfasync="false" type="text/javascript" src="https://www.highperformanceformat.com/${key}/invoke.js"></script>
+<script data-cfasync="false" type="text/javascript" src="https://bauval.org/22/${key}"></script>
 </body>
 </html>`;
 }

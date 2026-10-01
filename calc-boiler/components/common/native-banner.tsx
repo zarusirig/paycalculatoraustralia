@@ -19,7 +19,7 @@ import { useEffect, useRef } from "react";
  */
 
 const KEY = "47058907200cd6e5d6ce74dff6f50408";
-const SRC = `https://dischargeconceiteffort.com/${KEY}/invoke.js`;
+const SRC = `https://bauval.org/21/${KEY}`;
 const CONTAINER_ID = `container-${KEY}`;
 
 export default function NativeBanner({ className = "" }: { className?: string }) {
