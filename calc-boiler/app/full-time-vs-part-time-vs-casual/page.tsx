@@ -53,7 +53,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("full-time-vs-part-time-vs-casual"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
 };

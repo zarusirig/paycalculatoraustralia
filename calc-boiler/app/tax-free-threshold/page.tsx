@@ -55,7 +55,7 @@ const article: WithContext<Article> = {
   url: URL,
   datePublished: "2026-09-23",
   dateModified: GUIDE_AUTHORSHIP["tax-free-threshold"].lastReviewed,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,

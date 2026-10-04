@@ -73,7 +73,7 @@ export function buildAwardJsonLd(key: ModernAwardKey) {
     headline: copy.title,
     image: `${BASE}/og-image.png`,
     description: copy.description,
-    author: AUTHORS["penny-ward"].jsonLd,
+    author: AUTHORS["anita-bell"].jsonLd,
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,

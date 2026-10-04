@@ -48,7 +48,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("employer-cost-calculator"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   isBasedOn: { "@type": "Legislation", name: "Superannuation Guarantee (Administration) Act 1992", url: "https://www.legislation.gov.au/Details/C2024C00199" },

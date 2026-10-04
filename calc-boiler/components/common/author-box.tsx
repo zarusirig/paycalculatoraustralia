@@ -3,7 +3,7 @@ import type { Author, Reviewer } from "@/lib/authors";
 
 type AuthorBoxProps = {
   author: Author;
-  reviewer: Reviewer;
+  reviewer?: Reviewer;
   lastReviewed: string;
   datePublished?: string;
 };
@@ -59,7 +59,7 @@ export default function AuthorBox({
             </h3>
             <span className="inline-flex items-center gap-1 rounded-full bg-eucalyptus-light/60 px-2.5 py-0.5 text-xs font-semibold text-eucalyptus-dark">
               <ShieldCheck className="h-3 w-3" />
-              Verified Author
+              Author
             </span>
           </div>
 
@@ -103,14 +103,18 @@ export default function AuthorBox({
         <div className="flex items-center gap-2">
           <ShieldCheck className="h-3.5 w-3.5 text-eucalyptus" />
           <span>
-            Fact-checked by{" "}
-            <strong className="font-semibold text-navy">
-              {reviewer.name}
-            </strong>
-            <span className="text-warmgray-light">
-              {" "}
-              — {reviewer.credentials}
-            </span>
+            {reviewer ? (
+              <>
+                Fact-checked by{" "}
+                <strong className="font-semibold text-navy">{reviewer.name}</strong>
+                <span className="text-warmgray-light"> — {reviewer.credentials}</span>
+              </>
+            ) : (
+              <>
+                Written and checked by{" "}
+                <strong className="font-semibold text-navy">{author.name}</strong>
+              </>
+            )}
           </span>
         </div>
 

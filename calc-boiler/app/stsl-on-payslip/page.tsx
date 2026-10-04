@@ -54,7 +54,7 @@ const article: WithContext<Article> = {
   datePublished: pageDatePublished("stsl-on-payslip", "2026-07-02"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   dateModified: "2026-07-02",

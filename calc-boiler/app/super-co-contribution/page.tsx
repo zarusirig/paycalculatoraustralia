@@ -47,7 +47,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("super-co-contribution"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   isBasedOn: { "@type": "Legislation", name: "Superannuation (Government Co-contribution for Low Income Earners) Act 2003", url: "https://www.legislation.gov.au/Details/C2024C00123" },

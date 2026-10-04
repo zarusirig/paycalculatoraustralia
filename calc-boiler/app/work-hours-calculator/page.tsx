@@ -52,7 +52,7 @@ const webPage: WithContext<WebPage> = {
   url: URL,
   description: DESCRIPTION,
   inLanguage: "en-AU",
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name },
 };
 

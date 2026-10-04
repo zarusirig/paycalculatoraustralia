@@ -49,7 +49,7 @@ const article: WithContext<Article> = {
   datePublished: REPORT.publishedIso,
   dateModified: REPORT.updatedIso,
   inLanguage: "en-AU",
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/favicon.ico` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": REPORT.url },
   citation: REPORT_SOURCES.map((s) => s.url),

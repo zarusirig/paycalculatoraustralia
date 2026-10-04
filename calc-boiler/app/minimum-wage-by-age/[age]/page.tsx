@@ -70,7 +70,7 @@ async function Page({ params }: PageProps) {
     headline: title,
     image: `${BASE}/og-image.png`,
     description: spokeDescription(age),
-    author: AUTHORS["penny-ward"].jsonLd,
+    author: AUTHORS["anita-bell"].jsonLd,
     publisher: {
       "@type": "Organization",
       name: SITE_CONFIG.name,

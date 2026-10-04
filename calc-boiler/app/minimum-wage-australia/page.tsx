@@ -40,7 +40,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("minimum-wage-australia"),
   headline: MW_TITLE,
   description: MW_DESCRIPTION,
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,

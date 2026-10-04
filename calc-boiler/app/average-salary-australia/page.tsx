@@ -46,7 +46,7 @@ const article: WithContext<Article> = {
   description: DESCRIPTION,
   dateModified: AVERAGE_SALARY_VERIFIED_ISO,
   inLanguage: "en-AU",
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
   citation: AVERAGE_SALARY_RELEASES.map((r) => r.url),

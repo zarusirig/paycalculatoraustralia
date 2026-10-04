@@ -40,7 +40,7 @@ const article: WithContext<Article> = {
   url: URL,
   inLanguage: "en-AU",
   dateModified: "2026-09-23",
-  author: { "@type": "Person", name: "James Harrington" },
+  author: { "@type": "Person", name: "Anita Bell" },
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },
 };
 

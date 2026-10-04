@@ -57,8 +57,7 @@ const joinNames = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(
 function authorship(slug: string) {
   return (
     getGuideAuthorship(slug) ?? {
-      author: AUTHORS["penny-ward"],
-      reviewer: REVIEWERS["garth-mcgregor"],
+      author: AUTHORS["anita-bell"],
       lastReviewed: REVIEWED_ON,
     }
   );
@@ -606,7 +605,7 @@ export function LongServiceLeaveHub() {
 
           <ScopeNote authority="Fair Work Ombudsman" authorityUrl={LSL_SOURCES.fwo} />
           <SourceAttribution sources={sources} lastVerified={LSL_SOURCES.verifiedOn} />
-          <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} />
+          <AuthorBox author={a.author} lastReviewed={a.lastReviewed} />
         </div>
       </div>
     </div>
@@ -1027,7 +1026,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
             sources={[jurisdictionSource(code), ATO_SOURCE, FWO_SOURCE]}
             lastVerified={LSL_SOURCES.verifiedOn}
           />
-          <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} />
+          <AuthorBox author={a.author} lastReviewed={a.lastReviewed} />
         </div>
       </div>
     </div>

@@ -47,7 +47,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("division-293-tax"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
 };

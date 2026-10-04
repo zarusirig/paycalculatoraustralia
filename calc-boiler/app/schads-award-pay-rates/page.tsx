@@ -70,7 +70,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("schads-award-pay-rates"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["penny-ward"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,

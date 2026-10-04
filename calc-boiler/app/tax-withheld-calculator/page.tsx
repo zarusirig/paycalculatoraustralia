@@ -57,7 +57,7 @@ const article: WithContext<Article> = {
   url: URL,
   datePublished: "2026-09-23",
   dateModified: GUIDE_AUTHORSHIP["tax-withheld-calculator"].lastReviewed,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` } },
   mainEntityOfPage: URL,
   inLanguage: "en-AU",

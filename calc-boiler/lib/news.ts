@@ -68,7 +68,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Wages",
     datePublished: "2026-06-02",
     dateModified: "2026-09-24",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to Annual Salary Calculator" },
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
@@ -92,7 +92,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Wages",
     datePublished: "2026-06-16",
     dateModified: "2026-07-02",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
       { href: "/weekly-pay-calculator/", label: "Weekly Pay Calculator" },
@@ -117,7 +117,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Wages",
     datePublished: "2026-06-24",
     dateModified: "2026-09-24",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/award-rates/", label: "Award Rates Guide" },
       { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator" },
@@ -142,7 +142,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Wages",
     datePublished: "2026-06-10",
     dateModified: "2026-07-02",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/award-rates/", label: "Award Rates Guide" },
       { href: "/minimum-wage-history-australia/", label: "Minimum Wage History" },
@@ -167,7 +167,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-07-01",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
       { href: "/employer-cost-calculator/", label: "Employer Cost Calculator" },
@@ -192,7 +192,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-07-02",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/understanding-your-payslip/", label: "Understanding Your Payslip" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -211,7 +211,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-07-01",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -236,7 +236,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-02-24",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/salary-sacrifice-calculator/", label: "Salary Sacrifice Calculator" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -255,7 +255,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-03-05",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
@@ -274,7 +274,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Super",
     datePublished: "2026-05-12",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/division-293-tax/", label: "Division 293 Tax Guide" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -298,7 +298,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "HECS",
     datePublished: "2026-06-01",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
       { href: "/extra-super-vs-hecs-repayment/", label: "Extra Super vs HECS Repayment" },
@@ -323,7 +323,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "HECS",
     datePublished: "2026-01-20",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
     ],
@@ -348,7 +348,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "HECS",
     datePublished: "2026-06-26",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       // The calculator owns "hecs repayment threshold" (the separate threshold
       // page was merged into it, Aug 2026); this article is the dated
@@ -376,7 +376,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "HECS",
     datePublished: "2026-07-02",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/hecs-help-calculator/", label: "HECS-HELP Calculator" },
       { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
@@ -401,7 +401,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-05-12",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
@@ -425,7 +425,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-05-12",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/medicare-levy/", label: "Medicare Levy Guide" },
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -449,7 +449,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-07-01",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
       { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
@@ -474,7 +474,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-07-01",
     dateModified: "2026-07-02",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -499,7 +499,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-06-29",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -524,7 +524,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Tax",
     datePublished: "2026-07-01",
     dateModified: "2026-09-24",
-    authorId: "james-harrington",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
@@ -556,7 +556,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Centrelink & Payments",
     datePublished: "2026-01-01",
     dateModified: "2026-07-02",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },
       { href: "/take-home-pay-calculator/", label: "Take-Home Pay Calculator" },
@@ -581,7 +581,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Centrelink & Payments",
     datePublished: "2026-03-20",
     dateModified: "2026-09-24",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -606,7 +606,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Centrelink & Payments",
     datePublished: "2026-03-20",
     dateModified: "2026-07-02",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },
       { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
@@ -631,7 +631,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Centrelink & Payments",
     datePublished: "2026-07-01",
     dateModified: "2026-07-02",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/centrelink-income-test/", label: "Centrelink Income Test Guide" },
       { href: "/parental-leave-pay/", label: "Parental Leave Pay Guide" },
@@ -658,7 +658,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     category: "Wages",
     datePublished: "2026-09-17",
     dateModified: "2026-09-24",
-    authorId: "penny-ward",
+    authorId: "anita-bell",
     relatedCalculators: [
       { href: "/teacher-pay-australia/vic/", label: "Victorian Teacher Pay Scale" },
       { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
@@ -743,7 +743,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Centrelink & Payments",
       datePublished: "2026-09-20",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/age-pension-income-test-calculator/", label: "Age Pension Income Test Calculator" },
         { href: "/jobseeker-payment-calculator/", label: "JobSeeker Payment Calculator" },
@@ -772,7 +772,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Wages",
       datePublished: "2026-09-11",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
         { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
@@ -801,7 +801,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Wages",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/job-pay-rates/physiotherapist/", label: "Physiotherapist Pay Rates" },
         { href: "/job-pay-rates/psychologist/", label: "Psychologist Pay Rates" },
@@ -829,7 +829,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Wages",
       datePublished: "2026-08-26",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/junior-pay-rates/", label: "Junior Pay Rates Guide" },
         { href: "/fast-food-award-rates/", label: "Fast Food Award Rates" },
@@ -858,7 +858,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Wages",
       datePublished: "2026-09-04",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/public-service-pay-scales/qld/", label: "Queensland Public Service Pay Scales" },
         { href: "/pay-calculator-qld/", label: "Queensland Pay Calculator" },
@@ -885,7 +885,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Tax",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      authorId: "james-harrington",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
         { href: "/tax-return-2026/", label: "2026 Tax Return Guide" },
@@ -917,7 +917,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Wages",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      authorId: "penny-ward",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary" },
         { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
@@ -945,7 +945,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       category: "Tax",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      authorId: "james-harrington",
+      authorId: "anita-bell",
       relatedCalculators: [
         { href: "/tax-withheld-calculator/", label: "Tax Withheld Calculator" },
         { href: "/cents-per-km/", label: "Cents per km Guide" },

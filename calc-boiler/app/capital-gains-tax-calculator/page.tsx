@@ -65,7 +65,7 @@ const article: WithContext<Article> = {
   dateModified: pageDateModified("capital-gains-tax-calculator"),
   headline: TITLE,
   description: DESCRIPTION,
-  author: AUTHORS["james-harrington"].jsonLd,
+  author: AUTHORS["anita-bell"].jsonLd,
   publisher: {
     "@type": "Organization",
     name: SITE_CONFIG.name,
