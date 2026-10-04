@@ -81,6 +81,16 @@ export default function RootLayout({
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
         <link rel="preconnect" href="https://bauval.org" />
         <link rel="dns-prefetch" href="https://bauval.org" />
+        {/* Mediavine site script. Mediavine asked for it in <head>; earlier
+            execution = more competitive bids. data-cfasync stops Cloudflare
+            Rocket Loader from deferring it. */}
+        <script
+          type="text/javascript"
+          async
+          data-noptimize="1"
+          data-cfasync="false"
+          src="//scripts.mediavine.com/tags/ac7b3e90-20d0-460b-96d8-8cf868622053.js"
+        />
         {/* Fonts are self-hosted (app/fonts.css). Preload the two faces every
             page paints above the fold: body text and the H1 (the LCP element). */}
         <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
