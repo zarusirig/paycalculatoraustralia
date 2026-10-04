@@ -177,13 +177,63 @@ function PrivacyPage() {
               Cookies
             </h2>
             <p className="mb-3 leading-relaxed text-warmgray">
-              We use cookies only for analytics purposes (Google Analytics). These
-              are small text files stored on your device that help us understand
-              site usage patterns.
+              We use cookies for analytics (Google Analytics) and, where
+              advertising is shown, for serving and measuring ads (see
+              Advertising below). Cookies are small text files stored on your
+              device.
             </p>
             <p className="leading-relaxed text-warmgray">
               You can control or delete cookies through your browser settings. Our
               calculators will continue to work normally without cookies enabled.
+            </p>
+          </section>
+
+          {/* Advertising */}
+          <section aria-labelledby="advertising" className="mb-10">
+            <h2
+              id="advertising"
+              className="mb-4 text-2xl font-bold text-navy"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              Advertising
+            </h2>
+            <p className="mb-3 leading-relaxed text-warmgray">
+              This site is free because it shows advertising. Third-party
+              vendors, including Google, use cookies to serve ads based on your
+              prior visits to this website or other websites.
+            </p>
+            <p className="mb-3 leading-relaxed text-warmgray">
+              Google&apos;s use of advertising cookies enables it and its
+              partners to serve ads to you based on your visit to this site
+              and/or other sites on the internet.
+            </p>
+            <p className="mb-3 leading-relaxed text-warmgray">
+              You can opt out of personalised advertising by visiting{" "}
+              <a
+                href="https://adssettings.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-eucalyptus hover:underline"
+              >
+                Google Ads Settings
+              </a>
+              . You can also opt out of some third-party vendors&apos; use of
+              cookies for personalised advertising at{" "}
+              <a
+                href="https://www.aboutads.info"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-eucalyptus hover:underline"
+              >
+                aboutads.info
+              </a>
+              .
+            </p>
+            <p className="leading-relaxed text-warmgray">
+              Our ad partners may include Google AdSense and Mediavine. They
+              may collect cookie identifiers and device information to show and
+              measure ads. We never give them your salary inputs or calculation
+              results, which stay in your browser.
             </p>
           </section>
 
@@ -219,17 +269,15 @@ function PrivacyPage() {
               <li className="flex items-start gap-2">
                 <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warmgray-light" />
                 <span>
-                  <strong>Vercel</strong> — website hosting and content delivery
-                  (
-                  <a
-                    href="https://vercel.com/legal/privacy-policy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-eucalyptus hover:underline"
-                  >
-                    Vercel Privacy Policy
-                  </a>
-                  )
+                  <strong>Google Firebase Hosting and Cloudflare</strong> —
+                  website hosting and content delivery
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-warmgray-light" />
+                <span>
+                  <strong>Google AdSense and Mediavine</strong> — advertising
+                  (see Advertising above)
                 </span>
               </li>
             </ul>
@@ -246,8 +294,9 @@ function PrivacyPage() {
             </h2>
             <p className="leading-relaxed text-warmgray">
               <strong>We do not sell personal data to third parties.</strong> We
-              do not share any data with advertisers, data brokers, or any other
-              commercial entities beyond the analytics services listed above.
+              do not give advertisers or data brokers your salary inputs or
+              calculation results. Our advertising partners collect cookie and
+              device data as described under Advertising above.
             </p>
           </section>
 
