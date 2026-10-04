@@ -73,7 +73,7 @@ function PrivacyPage() {
             </h1>
             <p className="mt-2 text-sm text-warmgray-light">
               Last updated:{" "}
-              <time dateTime="2026-03-14">14 March 2026</time>
+              <time dateTime="2026-10-05">5 October 2026</time>
             </p>
             <p className="mt-4 text-lg leading-relaxed text-warmgray">
               Your privacy matters. Here&apos;s exactly how{" "}
