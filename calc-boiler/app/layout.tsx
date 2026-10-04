@@ -190,6 +190,17 @@ export default function RootLayout({
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            // Consent Mode v2: analytics and ad storage start denied for the EEA,
+            // UK and Switzerland. Google's consent message (Funding Choices,
+            // enabled in AdSense > Privacy & messaging) updates these on opt-in.
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','IS','LI','NO','GB','CH'],
+              wait_for_update: 500
+            });
             gtag('js', new Date());
             gtag('config', 'G-8WE507LD32', {
               send_page_view: true,

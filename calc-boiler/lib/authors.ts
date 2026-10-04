@@ -26,6 +26,39 @@ export type Reviewer = {
 
 // ─── Primary Authors ────────────────────────────────────────────
 export const AUTHORS: Record<string, Author> = {
+  "anita-bell": {
+    id: "anita-bell",
+    name: "Anita Bell",
+    role: "Founder & Senior Bookkeeper",
+    credentials: "Accountancy degree (2015); certified in Xero, QuickBooks Online, MYOB, Saasu, Zoho and Reckon One",
+    bio: "Anita Bell earned her accountancy degree in 2015 and has worked as a senior bookkeeper with Prime Bookkeeping for over 5 years. This built her skills in Australian and New Zealand tax legislation and industry regulations. She is certified in Xero, QuickBooks Online, MYOB, Saasu, Zoho and Reckon One, and works with payroll and rostering software including Gusto, Deputy, Tsheets and KeyPay. She has strong experience in hospitality, building and construction, financial services, real estate, ecommerce, and medical and health services.",
+    expertise: [
+      "Australian and New Zealand tax legislation",
+      "Bookkeeping and accounting software",
+      "Payroll and rostering software",
+    ],
+    experience: "5+ years as a senior bookkeeper",
+    profileUrl: `${SITE_CONFIG.baseUrl}/about/`,
+    imageUrl: "/images/authors/anita-bell.jpg",
+    jsonLd: {
+      "@type": "Person",
+      name: "Anita Bell",
+      jobTitle: "Founder & Senior Bookkeeper",
+      description:
+        "Senior bookkeeper with an accountancy degree (2015) and 5+ years of experience in Australian and New Zealand tax legislation and payroll software.",
+      url: `${SITE_CONFIG.baseUrl}/about/`,
+      worksFor: {
+        "@type": "Organization",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.baseUrl,
+      },
+      knowsAbout: [
+        "Australian tax legislation",
+        "Bookkeeping",
+        "Payroll software",
+      ],
+    },
+  },
   "james-harrington": {
     id: "james-harrington",
     name: "James Harrington",

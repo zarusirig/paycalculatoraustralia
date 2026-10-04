@@ -539,6 +539,7 @@ export const FOOTER_COMPANY: readonly MenuLink[] = [
   { href: "/embed/", label: "Embed our calculator" },
   { href: "/privacy/", label: "Privacy policy" },
   { href: "/terms/", label: "Terms of use" },
+  { href: "/disclaimer/", label: "Disclaimer" },
   { href: "/site-directory/", label: "Site directory" },
 ];
 
@@ -1118,6 +1119,7 @@ export const FOOTER_STATES_AND_LEGAL = [
   { href: "/contact/", label: "Contact" },
   { href: "/privacy/", label: "Privacy Policy" },
   { href: "/terms/", label: "Terms of Use" },
+  { href: "/disclaimer/", label: "Disclaimer" },
 ] as const;
 
 export const FOOTER_TAX_ON_SALARY = [

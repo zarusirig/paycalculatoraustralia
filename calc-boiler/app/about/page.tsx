@@ -43,7 +43,7 @@ const webPage: WithContext<WebPage> = {
   name: TITLE,
   url: URL,
   description: DESCRIPTION,
-  publisher: { "@type": "Organization", name: SITE_CONFIG.name },
+  publisher: { "@type": "Organization", name: SITE_CONFIG.name, founder: { "@type": "Person", name: "Anita Bell", jobTitle: "Founder & Senior Bookkeeper" } },
 };
 
 function AboutPage() {
@@ -94,6 +94,38 @@ function AboutPage() {
               earn, what gets deducted, and why. We provide instant, accurate
               calculators backed by official government data — completely free,
               with no signups, no paywalls, and no misleading complexity.
+            </p>
+          </section>
+
+          {/* Who runs the site */}
+          <section aria-labelledby="who-we-are" className="mb-12">
+            <h2
+              id="who-we-are"
+              className="mb-4 text-2xl font-bold text-navy"
+              style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
+            >
+              Who Runs This Site
+            </h2>
+            <p className="mb-3 leading-relaxed text-warmgray">
+              <strong>Anita Bell</strong>, founder and senior bookkeeper.
+            </p>
+            <p className="mb-3 leading-relaxed text-warmgray">
+              Anita earned her accountancy degree in 2015 and has worked as a
+              senior bookkeeper with Prime Bookkeeping for over 5 years. This
+              built her skills in Australian and New Zealand tax legislation and
+              industry regulations. She is certified in Xero, QuickBooks Online,
+              MYOB, Saasu, Zoho and Reckon One, and works with payroll and
+              rostering software including Gusto, Deputy, Tsheets and KeyPay.
+            </p>
+            <p className="leading-relaxed text-warmgray">
+              She has strong experience in hospitality, building and
+              construction, financial services, real estate, ecommerce, and
+              medical and health services. This site gives general information
+              and estimates. Read our{" "}
+              <Link href="/disclaimer/" className="text-eucalyptus hover:underline">
+                disclaimer
+              </Link>{" "}
+              before you rely on it.
             </p>
           </section>
 
