@@ -73,11 +73,13 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <head>
-        {/* AdSense script removed: no `<ins class="adsbygoogle">` units exist on
-            the site and no application is pending, so it was a blocking
-            third-party request on every pageview for zero revenue. Re-add this
-            script and the `google-adsense-account` meta tag together if AdSense
-            is ever applied for. */}
+        {/* AdSense account switched (Oct 2026) to ca-pub-6751883350166414.
+            Needed for AdSense site verification. async, so it does not block paint. */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6751883350166414"
+          crossOrigin="anonymous"
+        />
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
         <link rel="preconnect" href="https://bauval.org" />
         <link rel="dns-prefetch" href="https://bauval.org" />
