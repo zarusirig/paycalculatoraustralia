@@ -4,6 +4,7 @@ import "./globals.css";
 import Footer from "@/components/layout/footer";
 import Navbar from "@/components/layout/navbar";
 import Script from "next/script";
+import { ADSTERRA_ENABLED } from "@/lib/ad-config";
 import AdsterraBanner from "@/components/common/adsterra-banner";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
 import DeferredPopunder from "@/components/common/deferred-popunder";
@@ -81,8 +82,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         {/* Ad origins: connect early so the first impression isn't waiting on DNS/TLS. */}
-        <link rel="preconnect" href="https://bauval.org" />
-        <link rel="dns-prefetch" href="https://bauval.org" />
+        {ADSTERRA_ENABLED && <link rel="preconnect" href="https://bauval.org" />}
+        {ADSTERRA_ENABLED && <link rel="dns-prefetch" href="https://bauval.org" />}
         {/* Mediavine site script. Mediavine asked for it in <head>; earlier
             execution = more competitive bids. data-cfasync stops Cloudflare
             Rocket Loader from deferring it. */}

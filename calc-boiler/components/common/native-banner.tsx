@@ -1,5 +1,6 @@
 "use client";
 
+import { ADSTERRA_ENABLED } from "@/lib/ad-config";
 import { useEffect, useRef } from "react";
 
 /**
@@ -22,7 +23,7 @@ const KEY = "47058907200cd6e5d6ce74dff6f50408";
 const SRC = `https://bauval.org/21/${KEY}`;
 const CONTAINER_ID = `container-${KEY}`;
 
-export default function NativeBanner({ className = "" }: { className?: string }) {
+function NativeBannerImpl({ className = "" }: { className?: string }) {
   const injected = useRef(false);
 
   useEffect(() => {
@@ -43,4 +44,9 @@ export default function NativeBanner({ className = "" }: { className?: string })
       <div id={CONTAINER_ID} />
     </aside>
   );
+}
+
+export default function NativeBanner(props: { className?: string }) {
+  if (!ADSTERRA_ENABLED) return null;
+  return <NativeBannerImpl {...props} />;
 }

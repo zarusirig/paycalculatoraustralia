@@ -1,5 +1,6 @@
 "use client";
 
+import { ADSTERRA_ENABLED } from "@/lib/ad-config";
 import { useEffect } from "react";
 
 /**
@@ -58,7 +59,7 @@ function markLoaded() {
   }
 }
 
-export default function DeferredPopunder() {
+function DeferredPopunderImpl() {
   useEffect(() => {
     if (!window.matchMedia(DESKTOP_QUERY).matches) return;
     if (cappedRecently()) return;
@@ -95,4 +96,9 @@ export default function DeferredPopunder() {
   }, []);
 
   return null;
+}
+
+export default function DeferredPopunder() {
+  if (!ADSTERRA_ENABLED) return null;
+  return <DeferredPopunderImpl />;
 }

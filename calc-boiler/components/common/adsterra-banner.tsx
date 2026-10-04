@@ -1,5 +1,6 @@
 "use client";
 
+import { ADSTERRA_ENABLED } from "@/lib/ad-config";
 import { useEffect, useRef, useState } from "react";
 
 /**
@@ -157,7 +158,7 @@ function inspectFill(outer: HTMLIFrameElement): boolean | null {
   }
 }
 
-export default function AdsterraBanner({
+function AdsterraBannerImpl({
   slot,
   className,
   label = "Advertisement",
@@ -268,4 +269,9 @@ export default function AdsterraBanner({
       />
     </div>
   );
+}
+
+export default function AdsterraBanner(props: AdsterraBannerProps) {
+  if (!ADSTERRA_ENABLED) return null;
+  return <AdsterraBannerImpl {...props} />;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { ADSTERRA_ENABLED } from "@/lib/ad-config";
 import { useEffect } from "react";
 
 /**
@@ -65,7 +66,7 @@ const SRC = "https://bauval.org/14/d6b779f19c693c0f80a1c6a82ba34550";
 
 const DELAY_MS = 0;
 
-export default function DeferredSocialBar() {
+function DeferredSocialBarImpl() {
   useEffect(() => {
     let loaded = false;
 
@@ -103,4 +104,9 @@ export default function DeferredSocialBar() {
   }, []);
 
   return null;
+}
+
+export default function DeferredSocialBar() {
+  if (!ADSTERRA_ENABLED) return null;
+  return <DeferredSocialBarImpl />;
 }
