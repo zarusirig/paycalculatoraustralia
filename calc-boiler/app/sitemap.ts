@@ -363,6 +363,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   allPages.push({ slug: "train-driver-salary", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end J6 ---
+  // --- Oct 2026 gig / apprentice / graduate set (5 Oct 2026) ---
+  allPages.push({ slug: "delivery-driver-pay-rate", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "rideshare-delivery-earnings-after-tax", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "apprentice-pay-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "graduate-salary-australia", changeFrequency: "monthly" as const, priority: 0.8 });
+  // --- end Oct 2026 set ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---

@@ -96,7 +96,7 @@ export default function ConstructionTradesPayPage() {
             <section id="apprentice-rates">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Apprentice Pay Rates</h2>
               <p>
-                Apprentice wages in Australia are set as a percentage of the qualified trade rate, increasing each year as the apprentice gains skills and experience. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums.
+                Apprentice wages in Australia are set as a percentage of the qualified trade rate, increasing each year as the apprentice gains skills and experience. Each award sets its own percentages: the table shows the Electrical award minimums for an apprentice electrician who completed Year 12 (50%, 60%, 70% and 82% if they did not). The Building and Construction General On-site Award sets separate percentages for carpentry and other building apprentices, and many employers and enterprise agreements pay above these minimums. For plumbing, carpentry, automotive, hairdressing and cookery apprentices by year, with a wages calculator, see <Link href="/apprentice-pay-rates/">apprentice pay rates</Link>.
               </p>
               <div className="not-prose my-6">
                 <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">

@@ -284,6 +284,12 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "school-support-staff-pay/sa": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "train-driver-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end J6 ---
+  // --- Oct 2026 gig / apprentice / graduate set (5 Oct 2026) ---
+  "delivery-driver-pay-rate": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "rideshare-delivery-earnings-after-tax": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "apprentice-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "graduate-salary-australia": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end Oct 2026 set ---
 };
 
 /** Helper: get full author + reviewer for a guide slug */

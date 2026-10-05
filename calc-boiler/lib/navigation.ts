@@ -223,6 +223,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/minimum-wage-australia/",
         links: [
           { href: "/junior-pay-rates/", label: "Junior pay rates" },
+          { href: "/apprentice-pay-rates/", label: "Apprentice pay rates" }, // Oct 2026
           { href: "/minimum-wage-by-age/16/", label: "Minimum wage at 16" },
           { href: "/minimum-wage-by-age/17/", label: "Minimum wage at 17" },
           { href: "/minimum-wage-by-age/18/", label: "Minimum wage at 18" },
@@ -423,6 +424,9 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/annual-leave-guide/", label: "Annual leave" },
           { href: "/full-time-vs-part-time-vs-casual/", label: "Full-time vs part-time vs casual" },
           { href: "/gig-economy-pay-guide/", label: "Gig economy pay" },
+          { href: "/delivery-driver-pay-rate/", label: "Delivery driver pay rate" }, // Oct 2026
+          { href: "/rideshare-delivery-earnings-after-tax/", label: "Rideshare & delivery tax" }, // Oct 2026
+          { href: "/graduate-salary-australia/", label: "Graduate salary" }, // Oct 2026
           { href: "/new-job-checklist/", label: "New job checklist" },
         ],
       },
@@ -756,6 +760,9 @@ export const GUIDE_CATEGORIES = [
       { href: "/first-job-pay-guide/", label: "First Job Guide", description: "Tax, super & your first payslip" },
       { href: "/new-job-checklist/", label: "New Job Checklist", description: "TFN, super & pay setup" },
       { href: "/gig-economy-pay-guide/", label: "Gig Economy Guide", description: "Uber, delivery & freelancer tax" },
+      { href: "/delivery-driver-pay-rate/", label: "Delivery Driver Pay Rate", description: "$31.30/hr minimum from 17 Aug 2026" },
+      { href: "/rideshare-delivery-earnings-after-tax/", label: "Rideshare & Delivery After Tax", description: "ABN, GST and what to set aside" },
+      { href: "/graduate-salary-australia/", label: "Graduate Salary", description: "Law, nursing, engineering, teaching & more" },
       { href: "/tax-file-number-declaration/", label: "TFN Declaration", description: "How to fill it in correctly" },
       { href: "/notice-of-assessment/", label: "Notice of Assessment", description: "Read your ATO assessment" },
       { href: "/employee-vs-sole-trader-vs-company/", label: "Business Structure", description: "Employee vs sole trader vs company" },
@@ -782,6 +789,7 @@ export const GUIDE_CATEGORIES = [
       { href: "/retail-hospitality-pay-guide/", label: "Retail & Hospitality", description: "Award rates & penalties" },
       { href: "/tech-salary-guide-australia/", label: "IT & Tech Salaries", description: "Developer, engineer & PM pay" },
       { href: "/construction-trades-pay/", label: "Construction & Trades", description: "Apprentice & tradie rates" },
+      { href: "/apprentice-pay-rates/", label: "Apprentice Pay Rates", description: "By trade and year, with a wages calculator" },
     ],
   },
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
