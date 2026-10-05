@@ -63,14 +63,16 @@ export default function LeaveCalculatorPage({ children, afterCalculator }: { chi
             </ol>
           </nav>
           <h1 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-3xl md:text-4xl font-bold text-navy mt-4 mb-3">
-            Annual Leave &amp; Leave Loading Calculator (17.5%) — {SITE_CONFIG.financialYear}
+            Leave Payout Calculator: Unused Annual Leave &amp; {LEAD_LOADING_PCT} Loading — {SITE_CONFIG.financialYear}
           </h1>
           <p className="text-lg text-warmgray">
-            An annual leave calculation is {EMPLOYMENT.annualLeaveWeeks} weeks of paid leave per year of continuous
-            full-time service under the NES, accrued at {ACCRUAL_HOURS_PER_WEEK} hours per {EMPLOYMENT.standardWeeklyHours}-hour
-            week and pro rata for part-time hours. Casuals accrue none and receive a {formatPercent(EMPLOYMENT.casualLoading, 0)}{" "}
-            loading instead. The calculator applies {SITE_CONFIG.financialYear} rates and adds {LEAD_LOADING_PCT} leave
-            loading where it applies, including the tax on lump-sum payouts.
+            When you leave a job, your employer must pay out the annual leave you have not taken. Annual leave builds at{" "}
+            {EMPLOYMENT.annualLeaveWeeks} weeks per year of full-time service ({ACCRUAL_HOURS_PER_WEEK} hours per{" "}
+            {EMPLOYMENT.standardWeeklyHours}-hour week), and the payout adds {LEAD_LOADING_PCT} leave loading where your award or
+            agreement provides it. Casuals accrue none and receive a {formatPercent(EMPLOYMENT.casualLoading, 0)} loading instead.
+            This calculator uses {SITE_CONFIG.financialYear} rates and shows the tax on the lump sum. To track your
+            balance and accrual while you are still employed, use the{" "}
+            <Link href="/annual-leave-calculator/" className="text-eucalyptus-dark underline">annual leave calculator</Link>.
           </p>
           <TrustBar className="mt-4" />
         </section>

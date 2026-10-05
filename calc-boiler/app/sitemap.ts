@@ -353,6 +353,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "ote-salary", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "jury-duty-pay", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end G3 ---
+  // --- Oct core new pages (5 Oct 2026) ---
+  allPages.push({ slug: "marginal-tax-rates", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "annual-leave-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "net-pay-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
+  allPages.push({ slug: "payment-in-lieu-of-notice", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "casual-conversion", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "allowances-guide", changeFrequency: "monthly" as const, priority: 0.8 });
+  allPages.push({ slug: "highest-paying-jobs-australia", changeFrequency: "monthly" as const, priority: 0.7 });
+  // --- end Oct core new pages ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   allPages.push({ slug: "centrelink-payment-rates", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "school-support-staff-pay", changeFrequency: "monthly" as const, priority: 0.8 });

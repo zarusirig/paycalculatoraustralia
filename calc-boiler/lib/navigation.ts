@@ -110,6 +110,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/monthly-pay-calculator/", label: "Monthly pay" },
           { href: "/hourly-to-annual-salary-calculator/", label: "Hourly to annual salary" },
           { href: "/gross-pay-calculator/", label: "Gross pay" },
+          { href: "/net-pay-calculator/", label: "Net pay" }, // Oct core
           { href: "/pay-rise-calculator/", label: "Pay rise" },
           { href: "/salary-package-calculator/", label: "Salary package" },
         ],
@@ -119,6 +120,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/tax-brackets/",
         links: [
           { href: "/tax-brackets/", label: "Tax brackets 2026-27" },
+          { href: "/marginal-tax-rates/", label: "Marginal tax rates" },
           { href: "/tax-withheld-calculator/", label: "Tax withheld calculator" },
           { href: "/tax-return-calculator/", label: "Tax return estimate" },
           { href: "/second-job-tax-calculator/", label: "Second job tax" },
@@ -144,14 +146,17 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         title: "Work & leave",
         links: [
           { href: "/overtime-pay-calculator/", label: "Overtime pay" },
+          { href: "/annual-leave-calculator/", label: "Annual leave calculator" }, // Oct core
           { href: "/leave-calculator/", label: "Annual leave payout" },
           { href: "/leave-loading-calculator/", label: "Leave loading" },
           { href: "/time-in-lieu/", label: "Time in lieu (TOIL)" },
           { href: "/sick-leave-calculator/", label: "Sick & carer's leave" }, // G3
           { href: "/compassionate-leave/", label: "Compassionate leave" }, // G3
           { href: "/redundancy-pay-calculator/", label: "Redundancy pay" },
+          { href: "/payment-in-lieu-of-notice/", label: "Payment in lieu of notice" }, // Oct core
           { href: "/long-service-leave-calculator/", label: "Long service leave" },
           { href: "/casual-loading-calculator/", label: "Casual loading" },
+          { href: "/casual-conversion/", label: "Casual conversion" }, // Oct core
           { href: "/pro-rata-salary-calculator/", label: "Pro-rata salary" },
           { href: "/backpay-calculator/", label: "Backpay" },
         ],
@@ -833,6 +838,19 @@ export const GUIDE_CATEGORIES = [
       { href: "/sick-leave-calculator/", label: "Sick Leave Calculator", description: "Personal/carer's leave: 10 days, 1/26 of hours" },
       { href: "/compassionate-leave/", label: "Compassionate Leave", description: "2 days paid bereavement leave per occasion" },
       { href: "/jury-duty-pay/", label: "Jury Duty Pay", description: "10 days employer make-up pay under the NES" },
+      // Oct core new pages (5 Oct 2026)
+      { href: "/annual-leave-calculator/", label: "Annual Leave Calculator", description: "4 weeks a year, 152 hours on a 38-hour week" },
+      { href: "/payment-in-lieu-of-notice/", label: "Payment in Lieu of Notice", description: "NES notice periods, tax and super on the payout" },
+      { href: "/casual-conversion/", label: "Casual Conversion", description: "The 6 and 12 month employee choice pathway" },
+    ],
+  },
+  {
+    title: "Payslip & Pay Guides",
+    guides: [
+      { href: "/marginal-tax-rates/", label: "Marginal Tax Rates", description: "What a raise or bonus really nets after tax" },
+      { href: "/net-pay-calculator/", label: "Net Pay Calculator", description: "Hourly rate to net pay, line by line" },
+      { href: "/allowances-guide/", label: "Allowances Guide", description: "First aid, laundry, tool, split shift and on-call by award" },
+      { href: "/highest-paying-jobs-australia/", label: "Highest Paying Jobs", description: "Median pay and take-home by occupation" },
     ],
   },
   {
