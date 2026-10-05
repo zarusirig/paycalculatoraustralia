@@ -68,6 +68,9 @@ const MATRIX_COLUMNS = [
   { label: "Public holiday", fullTime: HOSPITALITY_PENALTIES.publicHoliday, casual: HOSPITALITY_PENALTIES.casualPublicHoliday },
 ] as const;
 
+/** Introductory and Levels 1 to 6 for the above-the-fold table; managerial staff are excluded from Schedule B.2. */
+const GLANCE_ROWS = HOSPITALITY_RATES.filter((r) => r.level === "Introductory" || /^Level [1-6]$/.test(r.level));
+
 /** Gaps on this page are the non-retail entries in the shared unverified list. */
 const HOSPITALITY_GAPS = AWARD_UNVERIFIED.filter((g) => !g.startsWith("Retail"));
 
@@ -88,7 +91,7 @@ export default function HospitalityAwardRatesPage() {
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Hospitality Award Pay Rates {SITE_CONFIG.financialYear}
+            Hospitality Award Rates {SITE_CONFIG.financialYear}: Levels 1&ndash;6
           </h1>
           <p className="mb-5 text-xl leading-relaxed text-warmgray">
             The hospitality award is the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name}</a> ({HOSPITALITY_AWARD.code}), the federal award covering cafes, restaurants, pubs, clubs and hotels in every state. For {SITE_CONFIG.financialYear} its adult minimums are {formatAUD(INTRO.hourly, 2)} an hour at introductory level, {formatAUD(L1.hourly, 2)} at level 1 and {formatAUD(L6.hourly, 2)} at level 6, operative from the first full pay period on or after {HOSPITALITY_AWARD.operativeFrom}. Evening and night work add a flat cash amount.
@@ -104,6 +107,60 @@ export default function HospitalityAwardRatesPage() {
           </div>
           <TrustBar className="!max-w-none" />
         </header>
+
+        <section id="level-table" aria-labelledby="level-table-heading" className="mb-10 max-w-6xl">
+          <h2 id="level-table-heading" className="mb-2 text-2xl font-bold text-navy" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
+            Hospitality Award Rates by Level, from {HOSPITALITY_AWARD.operativeFrom}
+          </h2>
+          <p className="mb-3 text-sm text-warmgray">
+            Hourly rates for Introductory and Levels 1 to 6. Each day shows the full-time or part-time rate, then the casual rate with the {pct(LOADING)} loading included. Evening and night loadings are flat cash on top (see <a href="#penalty-rates" className="text-eucalyptus-dark hover:underline">penalty rates</a>).
+          </p>
+          <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+            <table className="w-full min-w-[44rem] text-left text-sm text-navy">
+              <caption className="sr-only">Hospitality award hourly rates by level for ordinary hours, Saturday, Sunday and public holidays, full-time and casual</caption>
+              <thead className="bg-sandstone font-semibold text-navy">
+                <tr>
+                  <th scope="col" className="px-3 py-3">Level</th>
+                  <th scope="col" className="px-3 py-3 text-right">Mon&ndash;Fri</th>
+                  <th scope="col" className="px-3 py-3 text-right">Casual Mon&ndash;Fri</th>
+                  <th scope="col" className="px-3 py-3 text-right">Saturday</th>
+                  <th scope="col" className="px-3 py-3 text-right">Casual Sat</th>
+                  <th scope="col" className="px-3 py-3 text-right">Sunday</th>
+                  <th scope="col" className="px-3 py-3 text-right">Casual Sun</th>
+                  <th scope="col" className="px-3 py-3 text-right">Public holiday</th>
+                  <th scope="col" className="px-3 py-3 text-right">Casual PH</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sandstone-dark/20 bg-white tabular-nums">
+                {GLANCE_ROWS.map((r) => (
+                  <tr key={r.level}>
+                    <th scope="row" className="whitespace-nowrap px-3 py-2 text-left font-semibold">{r.level}</th>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * (1 + LOADING)), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.saturday), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualSaturday), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.sunday), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualSunday), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.publicHoliday), 2)}</td>
+                    <td className="px-3 py-2 text-right">{formatAUD(toCents(r.hourly * HOSPITALITY_PENALTIES.casualPublicHoliday), 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-2 text-xs text-warmgray">
+            Source: {HOSPITALITY_AWARD.name} Schedule B and Table 14, consolidated to {HOSPITALITY_AWARD.operativeFrom}. Adults only; <a href="#junior-rates" className="text-eucalyptus-dark hover:underline">junior rates</a> are a percentage of these.
+          </p>
+          <p className="mt-3 text-sm">
+            <span className="font-semibold text-navy">Jump to:</span>{" "}
+            <a href="#pay-guide" className="text-eucalyptus-dark hover:underline">every level, every day</a> &middot;{" "}
+            <a href="#award-for-hospitality" className="text-eucalyptus-dark hover:underline">which award for hospitality applies</a> &middot;{" "}
+            <a href="#hospitality-industry-award" className="text-eucalyptus-dark hover:underline">hospitality industry award coverage</a> &middot;{" "}
+            <a href="#penalty-rates" className="text-eucalyptus-dark hover:underline">penalty rates</a> &middot;{" "}
+            <a href="#overtime" className="text-eucalyptus-dark hover:underline">overtime</a> &middot;{" "}
+            <a href="#junior-rates" className="text-eucalyptus-dark hover:underline">junior rates</a>
+          </p>
+        </section>
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
@@ -164,6 +221,37 @@ export default function HospitalityAwardRatesPage() {
               />
               <p className="text-sm text-warmgray">
                 Rates are the percentages in award Table 14 applied to each classification&rsquo;s hourly rate and rounded to the cent. Casual weekend and public holiday percentages already include the loading.
+              </p>
+            </section>
+
+            <section id="award-for-hospitality">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Which Award for Hospitality Applies to You?</h2>
+              <p>
+                Not every venue that serves food or drink is under the same award. The award for hospitality depends on what the employer does, not on your job title. Work through it in this order:
+              </p>
+              <ul>
+                <li><strong>Hotel, motel, pub, bar, resort, casino, caterer or accommodation business:</strong> the Hospitality Industry (General) Award 2020 ({HOSPITALITY_AWARD.code}), the rates on this page.</li>
+                <li><strong>A restaurant or cafe that is not part of a hotel or resort:</strong> the Restaurant Industry Award 2020. See the <Link href="/restaurant-award-rates/">restaurant award rates</Link>.</li>
+                <li><strong>A fast food outlet:</strong> the Fast Food Industry Award 2010. See the <Link href="/fast-food-award-rates/">fast food award rates</Link>.</li>
+                <li><strong>A registered or licensed club:</strong> the Registered and Licensed Clubs Award, not the hospitality award.</li>
+                <li><strong>A shop that also sells coffee:</strong> usually the <Link href="/retail-award-rates/">General Retail Industry Award</Link>.</li>
+                <li><strong>An employer with an enterprise agreement that covers you:</strong> the agreement applies instead of the award, and it cannot pay less than the award. Use the <Link href="/enterprise-agreement/">enterprise agreement guide</Link> to find yours.</li>
+              </ul>
+              <p>
+                If you are unsure, the Fair Work Ombudsman&apos;s Pay and Conditions Tool will name the award from your industry and job. The full list of awards is on our <Link href="/award-rates/">award rates by industry</Link> page.
+              </p>
+            </section>
+
+            <section id="hospitality-industry-award">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>The Hospitality Industry Award: Who It Covers</h2>
+              <p>
+                The {HOSPITALITY_AWARD.name} is an <strong>industry award</strong>: clause 4 says it covers, to the exclusion of any other modern award, employers in the hospitality industry throughout Australia and their employees who hold a classification in Schedule A. The hospitality industry is defined to include hotels, motor inns and motels, boarding establishments, private hotels, guest houses and serviced apartments, caravan parks, resorts, wine bars and taverns, caterers, casinos and function or convention facilities, and restaurants operating in or in connection with premises owned or run by those employers.
+              </p>
+              <p>
+                It also covers on-hire employees working in the hospitality industry, and apprentices or trainees hosted by an employer the award covers. It does <strong>not</strong> cover employees under an enterprise agreement or modern enterprise award, or employers in several named industries including registered clubs, hospitals, boarding schools, theme parks, in-flight catering, and restaurants that fall under the Fast Food, Registered and Licensed Clubs or Restaurant Industry awards.
+              </p>
+              <p>
+                The award text is published by the Fair Work Commission at <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer">awards.fairwork.gov.au</a>, and the pay rates above are the clause 18 minimum rates in that text.
               </p>
             </section>
 

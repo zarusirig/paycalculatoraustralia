@@ -33,9 +33,28 @@ export const VIC: Jurisdiction = {
   headline:
     "From 1 May 2026 a VPS Grade 3 is paid between $81,496 and $98,955, a VPS 4 between $100,894 and $114,476, a VPS 5 between $116,413 and $140,849 and a VPS 6 between $142,790 and $191,084. Those are the value ranges in Schedule C of the Victorian Public Service Enterprise Agreement 2024, which applies across the whole VPS — Victoria, unlike the APS, does publish a single table.",
 
-  metaTitle: "VPS Salary 2026 — VPS 1–7 & STS Pay Rates and Salary Bands",
+  metaTitle: "VPS Pay Scale 2026 (VPS1–VPS6): Grade and Step Rates",
+  h1: "VPS Pay Scale 2026 (VPS1–VPS6)",
   metaDescription:
-    "VPS pay rates from 1 May 2026: VPS 3 $81,496–$98,955, VPS 4 $100,894–$114,476, VPS 5 $116,413–$140,849, VPS 6 $142,790–$191,084, with take-home pay.",
+    "VPS pay scale from 1 May 2026, every grade and step: VPS 3 $81,496–$98,955, VPS 4 $100,894–$114,476, VPS 5 $116,413–$140,849, VPS 6 $142,790–$191,084.",
+
+  quickTable: {
+    scheduleId: "vps-2026",
+    groups: [
+      "VPS Grade 1",
+      "VPS Grade 2",
+      "VPS Grade 3",
+      "VPS Grade 4",
+      "VPS Grade 5",
+      "VPS Grade 6",
+    ],
+    title: "VPS pay grades and steps from 1 May 2026",
+    intro:
+      "Annual salary at every progression step of VPS grades 1 to 6, from the 1 May 2026 column of Schedule C. Each row is a value range (3.1, 3.2 and so on) and each column is a step inside it. Grade 7 and the Senior Technical Specialist structure are further down the page.",
+    stepLabel: "Step",
+    note:
+      "Salary only; superannuation is paid on top. Executives (SES) are set by the Victorian Independent Remuneration Tribunal and are not in this grid.",
+  },
 
   instrument:
     "Victorian Public Service Enterprise Agreement 2024. Grades and value ranges are defined in Schedule C, and the classification and value range standard descriptors sit alongside the salary table.",

@@ -41,8 +41,11 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import {
   NURSING_PAY_STATES_NOT_BUILT,
+  annualFor,
   registeredNurseRange,
   takeHomeHref,
+  type NursingStateData,
+  type ScaleFamily,
 } from "@/lib/data/nursing-pay";
 import { NURSES_AWARD } from "@/lib/data/nursing-pay/nurses-award-2020";
 import { annualFromWeekly, headlineRow, rowAnnual } from "@/lib/data/job-pay-rates";
@@ -72,6 +75,23 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Fringe benefits tax — a guide for employers, 6.5 salary packaged entertainment", url: "https://www.ato.gov.au/law/view/document?DocID=SAV/FBTGEMP/00007", publisher: SOURCES.ato.name },
 ];
 
+/** Lowest and highest published annual across every scale of one family in one state. */
+function stateFamilyRange(state: NursingStateData, family: ScaleFamily): { low: number; high: number } | null {
+  const values: number[] = [];
+  for (const scale of state.scales.filter((sc) => sc.family === family)) {
+    for (const point of scale.points) {
+      const annual = annualFor(point);
+      if (annual !== null) values.push(annual);
+    }
+  }
+  return values.length === 0 ? null : { low: Math.min(...values), high: Math.max(...values) };
+}
+
+function rangeCell(range: { low: number; high: number } | null) {
+  if (!range) return "Not published";
+  return range.low === range.high ? formatAUD(range.low) : `${formatAUD(range.low)} – ${formatAUD(range.high)}`;
+}
+
 function afterTax(gross: number): number {
   return calculatePayBreakdown({ grossSalary: gross }).takeHomePay;
 }
@@ -93,10 +113,10 @@ export default function HealthcareWorkerPayPage() {
         {/* HERO HEADER */}
         <header className="mb-10 lg:mb-16 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
-            Healthcare Worker Pay Guide — Salaries, Penalties &amp; Salary Packaging
+            Nurse Salary Australia 2026 (RN, EN, NP)
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            A nurse&apos;s pay in Australia depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. This guide also covers doctors, allied health, penalty rates and salary packaging for public hospital employees.
+            What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. Below: a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then doctors, allied health, penalty rates and salary packaging for public hospital employees.
           </p>
           <TrustBar className="!max-w-none" />
         </header>
@@ -105,6 +125,56 @@ export default function HealthcareWorkerPayPage() {
 
           {/* MAIN ARTICLE CONTENT */}
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+
+            {/* ── Nurse salary by state: RN / EN / NP comparison, above the fold ── */}
+            <section id="nurse-salary-by-state">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Nurse Salary by State: RN, EN and NP</h2>
+              <p>
+                Every row is the lowest and highest annual base salary published in that state&apos;s own public health agreement or award, across the registered nurse base scale, the enrolled nurse scales and the nurse practitioner scale. The grades inside each range are named differently in every state (see the next section), so compare the ranges, not the grade numbers. Base salary only, before shift penalties and superannuation. Queensland&apos;s lowest registered nurse step is a re-entry rate that sits below the standard starting pay point; its state page shows both.
+              </p>
+              <div className="not-prose my-6">
+                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[44rem] text-sm text-left text-warmgray">
+                    <caption className="sr-only">Nurse salary by state and territory, registered, enrolled and nurse practitioner</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-4 py-3">State</th>
+                        <th scope="col" className="px-4 py-3 text-right">RN lowest step</th>
+                        <th scope="col" className="px-4 py-3 text-right">RN top of base scale</th>
+                        <th scope="col" className="px-4 py-3 text-right">Enrolled nurse (EN)</th>
+                        <th scope="col" className="px-4 py-3 text-right">Nurse practitioner (NP)</th>
+                        <th scope="col" className="px-4 py-3">Rates from</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {STATES.map((state) => {
+                        const rn = registeredNurseRange(state)!;
+                        return (
+                          <tr key={state.slug}>
+                            <th scope="row" className="whitespace-nowrap px-4 py-3 text-left font-semibold text-navy">
+                              <Link href={`/healthcare-worker-pay/${state.slug}/`} className="text-eucalyptus-dark hover:underline">
+                                {state.shortName}
+                              </Link>
+                            </th>
+                            <td className="whitespace-nowrap px-4 py-3 text-right font-medium">{formatAUD(rn.entry)}</td>
+                            <td className="whitespace-nowrap px-4 py-3 text-right font-medium">{formatAUD(rn.top)}</td>
+                            <td className="whitespace-nowrap px-4 py-3 text-right">{rangeCell(stateFamilyRange(state, "enrolled"))}</td>
+                            <td className="whitespace-nowrap px-4 py-3 text-right">{rangeCell(stateFamilyRange(state, "practitioner"))}</td>
+                            <td className="px-4 py-3 text-xs">{state.instruments[0].effectiveFrom}</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p className="text-sm">
+                Three rows need a caveat. South Australia&apos;s figures are the last table printed in its agreement; the SA Government has since paid administrative increases that SA Health has not yet published as a table, so current pay is higher. The ACT and Northern Territory agreements have passed their nominal expiry dates and replacements are under negotiation, so their rates are the last agreed. Tasmania does not publish a separate nurse practitioner rate.
+              </p>
+              <p>
+                Each state name opens its own page with the full grade-by-grade scale, the agreement it is read from and the shift penalties. These are public health system rates; private hospitals, aged care and GP clinics usually pay the <a href="#nurses-award-2020">Nurses Award 2020</a> minimum or an enterprise agreement of their own. For a take-home figure, run a salary through the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
+              </p>
+            </section>
 
             {/* ── Section 1: Average Healthcare Salaries ── */}
             <section id="healthcare-salaries">

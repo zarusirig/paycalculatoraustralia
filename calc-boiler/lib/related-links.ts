@@ -45,7 +45,7 @@ const MIN_WAGE = L("/minimum-wage-australia/", "Minimum Wage Australia", "The na
 const JUNIOR = L("/junior-pay-rates/", "Junior Pay Rates", "Minimum wage by age, from 14 to 20.");
 const JOBS_HUB = L("/job-pay-rates/", "Pay Rates by Job", "What 40+ occupations earn under their award, with take-home pay.");
 const EMPLOYERS_HUB = L("/pay-rates/", "Pay Rates by Employer", "Coles, Woolworths, McDonald's and more: what big employers pay.");
-const EA = L("/enterprise-agreement/", "Enterprise Agreements", "When an EA sets your pay instead of the award, and how to find yours.");
+const EA = L("/enterprise-agreement/", "Enterprise Agreement Search (EBA)", "When an EA sets your pay instead of the award, and how to look yours up.");
 const PENALTY_GUIDE = L("/overtime-penalty-rates-guide/", "Penalty Rates Guide", "Weekends, public holidays and late nights.");
 const TOIL = L("/time-in-lieu/", "Time in Lieu (TOIL)", "Taking paid time off instead of overtime pay: the award rules.");
 const LEAVE_LOADING = L("/leave-loading-calculator/", "Leave Loading Calculator", "The 17.5% loading on annual leave, worked out.");
@@ -103,7 +103,7 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/aged-care-award-rates/": [job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "The award for home care and disability support."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/cleaning-award-rates/": [job("cleaner", "Cleaner", "Cleaning services levels and shift penalties."), MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
   "/hair-and-beauty-award-rates/": [job("hairdresser", "Hairdresser", "Hairdresser and apprentice rates, hourly to annual."), JUNIOR, OVERTIME, PENALTY_GUIDE],
-  "/nurses-award-rates/": [job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), job("midwife", "Midwife", "Midwife pay by year of experience."), L("/healthcare-worker-pay/", "Nurse Pay by State", "Public hospital nurse scales in every state."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/nurses-award-rates/": [job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), job("midwife", "Midwife", "Midwife pay by year of experience."), L("/healthcare-worker-pay/", "Nurse Salary Australia by State", "Public hospital nurse scales in every state."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/road-transport-award-rates/": [job("truck-driver", "Truck Driver", "Truck driver grades 1 to 10, hourly and annual."), job("bus-driver", "Bus Driver", "Bus and coach driver pay rates."), OVERTIME, PENALTY_GUIDE, L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
   "/clerks-award-rates/": [job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), job("bookkeeper", "Bookkeeper", "Bookkeeper pay rates by level."), job("medical-receptionist", "Medical Receptionist", "Practice reception pay rates."), MIN_WAGE, OVERTIME, TOIL],
   "/manufacturing-award-rates/": [job("mechanic", "Mechanic", "Mechanic and automotive tradesperson pay."), job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("lab-technician", "Lab Technician", "Laboratory technician pay rates."), OVERTIME, PENALTY_GUIDE, L("/news/c13-classification-phase-out/", "C13 Classification Phase-Out", "What removing the lowest manufacturing grade means for pay.")],
@@ -394,7 +394,7 @@ const CLUSTERS: Cluster[] = [
   {
     match: (p) => p.startsWith("/healthcare-worker-pay/") && p !== "/healthcare-worker-pay/",
     links: [
-      { href: "/healthcare-worker-pay/", title: "Nurse Pay Rates in Australia", blurb: "Nurse and midwife pay scales in every state, compared." },
+      { href: "/healthcare-worker-pay/", title: "Nurse Salary Australia by State", blurb: "Registered, enrolled and practitioner nurse pay in every state, compared." },
       OVERTIME,
       { href: "/salary-packaging-guide/", title: "Salary Packaging Guide", blurb: "Public health packaging and what it is worth." },
       TAKE_HOME,

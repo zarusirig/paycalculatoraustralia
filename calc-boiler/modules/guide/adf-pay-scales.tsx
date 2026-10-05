@@ -135,6 +135,74 @@ function RankSummary({ tables, service }: { tables: RankSalaryTable[]; service?:
   );
 }
 
+
+/**
+ * Army / Navy / RAAF rank list with salary range, most senior first. Names and
+ * ranges come from the PACMAN salary tables, so a rank is never typed twice.
+ * Single-service ranks (Staff Sergeant, Lance Corporal) show a dash for the
+ * services that do not have them.
+ */
+function RankListTable() {
+  const rows: { id: string; army: string | null; navy: string | null; airForce: string | null; min: number; max: number }[] = [
+    ...OFFICER_SALARIES,
+    ...[WO1_SALARIES, ...OTHER_RANK_SALARIES],
+  ].map((t) => {
+    const { min, max } = salaryRange(t);
+    return { id: t.id, army: t.names.army, navy: t.names.navy, airForce: t.names.airForce, min, max };
+  });
+  const officerCount = OFFICER_SALARIES.length;
+  const trainee = TRAINEE_SALARIES[0];
+  return (
+    <TableShell minWidth="46rem" caption="ADF rank list: Army, Navy and Air Force ranks with yearly salary range">
+      <thead className="bg-sandstone font-semibold text-navy">
+        <tr>
+          <th scope="col" className="px-4 py-3">Army rank</th>
+          <th scope="col" className="px-4 py-3">Navy rank</th>
+          <th scope="col" className="px-4 py-3">RAAF rank</th>
+          <th scope="col" className="px-4 py-3 text-right">Lowest salary</th>
+          <th scope="col" className="px-4 py-3 text-right">Highest salary</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+        {rows.slice(0, officerCount).map((r) => (
+          <RankRow key={r.id} row={r} />
+        ))}
+        <tr className="bg-sandstone/40">
+          <th scope="row" colSpan={3} className="px-4 py-3 text-left font-medium text-navy">
+            Service Warrant Officer (the senior warrant officer of each service)
+          </th>
+          <td className="px-4 py-3 text-right" colSpan={2}>{formatAUD(SERVICE_WARRANT_OFFICER_SALARY)} a year</td>
+        </tr>
+        {rows.slice(officerCount).map((r) => (
+          <RankRow key={r.id} row={r} />
+        ))}
+        <tr>
+          <th scope="row" colSpan={3} className="px-4 py-3 text-left font-medium text-navy">
+            Recruit in basic recruit training (all services)
+          </th>
+          <td className="px-4 py-3 text-right" colSpan={2}>{formatAUD(trainee.salary)} a year</td>
+        </tr>
+      </tbody>
+    </TableShell>
+  );
+}
+
+function RankRow({
+  row,
+}: {
+  row: { id: string; army: string | null; navy: string | null; airForce: string | null; min: number; max: number };
+}) {
+  return (
+    <tr>
+      <th scope="row" className="px-4 py-3 text-left font-medium text-navy">{row.army ?? "—"}</th>
+      <td className="px-4 py-3">{row.navy ?? "—"}</td>
+      <td className="px-4 py-3">{row.airForce ?? "—"}</td>
+      <td className="px-4 py-3 text-right">{formatAUD(row.min)}</td>
+      <td className="px-4 py-3 text-right">{formatAUD(row.max)}</td>
+    </tr>
+  );
+}
+
 function TakeHomeNote() {
   return (
     <p className="text-base">
@@ -243,7 +311,7 @@ export function AdfPayScalesHub() {
         <Breadcrumbs trail={[{ href: "/", label: "Pay Calculator" }, { label: "ADF Pay Scales" }]} />
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            ADF Pay Scales 2026 — Army, Navy &amp; Air Force Salary by Rank
+            ADF Ranks and Pay Scales 2026 — Army, Navy &amp; RAAF Salary by Rank
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             A Private, Seaman or Aircraftman in the Permanent Forces earns{" "}
@@ -258,6 +326,30 @@ export function AdfPayScalesHub() {
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <Notices />
+
+            <section id="adf-ranks">
+              <h2 style={HEADING_FONT}>ADF Ranks and Pay: Army, Navy and RAAF Rank List</h2>
+              <p>
+                The Defence Force pays one salary table across all three services, so each row below puts the Army rank,
+                the Navy rank and the Royal Australian Air Force (RAAF) rank of the same standing side by side, most senior
+                first. The range runs from the lowest pay grade and increment to the highest published for that rank,
+                effective {ADF_PAY_EFFECTIVE}. Where only one service has a rank (Staff Sergeant and Lance Corporal are
+                Army ranks) the other columns show a dash. Click through for{" "}
+                {ADF_SERVICE_LIST.map((s, i) => (
+                  <span key={s.slug}>
+                    {i > 0 ? (i === ADF_SERVICE_LIST.length - 1 ? " and " : ", ") : ""}
+                    <Link href={`/adf-pay-scales/${s.slug}/`}>{s.name.toLowerCase()} ranks and pay</Link>
+                  </span>
+                ))}
+                .
+              </p>
+              <RankListTable />
+              <p className="text-sm">
+                One-star ranks and above (Brigadier, Commodore, Air Commodore and the generals, admirals and air marshals
+                above them) are not in these tables, because they are paid under separate arrangements we have not read.
+                Salary is before allowances; see <a href="#not-shown">what this page does not show</a>.
+              </p>
+            </section>
 
             <section id="how-adf-pay-works">
               <h2 style={HEADING_FONT}>How ADF pay works: rank, pay grade and increment</h2>
