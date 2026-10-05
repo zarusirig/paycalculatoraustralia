@@ -66,7 +66,7 @@ export default function TaxWithheldCalculatorPage() {
 
         <header className="mb-8 max-w-4xl">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>
-            Tax Withheld Calculator {FY}: PAYG Withholding Estimator
+            Tax Withheld Calculator {FY}: PAYG Calculator &amp; Withholding Estimator
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
             Work out how much tax your employer should withhold from each weekly, fortnightly or monthly pay, then see whether that adds up to the tax you&rsquo;ll actually owe for {FY}, and roughly what refund or bill to expect. It uses the ATO&rsquo;s own withholding formulas for payments from {PAYG_TABLES_UPDATED}, with or without the tax-free threshold and a HECS-HELP debt.
@@ -78,6 +78,12 @@ export default function TaxWithheldCalculatorPage() {
 
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+
+            <section id="payg-calculator">
+              <h2 style={FONT}>PAYG Calculator: What It Does and Doesn&rsquo;t Do</h2>
+              <p>PAYG (pay as you go) withholding is the tax your employer takes out of each pay and sends to the ATO for you. This <strong>PAYG calculator</strong> and <strong>tax withholding estimator</strong> works out that per-pay amount for any weekly, fortnightly or monthly wage, using the same Schedule 1 formulas the ATO publishes. It then compares a full year of those pays with the tax you&rsquo;ll actually owe, so you can see whether you&rsquo;re heading for a refund or a bill.</p>
+              <p>It is an estimate of withholding, not your tax return. Want the amount for one fixed pay straight from a printed table? Use the <Link href="/weekly-tax-table/">weekly</Link>, <Link href="/fortnightly-tax-table/">fortnightly</Link> or <Link href="/monthly-tax-table/">monthly</Link> tax table. Want your take-home after tax, super and levies on an annual salary? Use the <Link href="/">pay calculator</Link>.</p>
+            </section>
 
             <section id="how-its-calculated">
               <h2 style={FONT}>How Tax Withheld Is Calculated</h2>

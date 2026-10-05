@@ -14,9 +14,10 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payg-withholding-tables/`;
 // Hub intent: "which table do I use". The exact-match "weekly / fortnightly /
 // monthly tax table" queries belong to the dedicated pages, which this page
-// links to with exact-match anchors.
-const TITLE = `PAYG Withholding Tax Tables ${PAYG_FINANCIAL_YEAR}: Weekly, Fortnightly, Monthly`;
-const DESCRIPTION = `Which ATO PAYG withholding tax table to use in ${PAYG_FINANCIAL_YEAR}: weekly (NAT 1005), fortnightly (NAT 1006) and monthly (NAT 1007) tables, plus Schedule 5 for bonuses.`;
+// links to with exact-match anchors. 5 Oct 2026: "Weekly, Fortnightly, Monthly"
+// dropped from title, H2 and description so the hub no longer competes with them.
+const TITLE = `PAYG Withholding Tax Tables ${PAYG_FINANCIAL_YEAR}: Which ATO Schedule to Use`;
+const DESCRIPTION = `Which ATO PAYG withholding schedule to use in ${PAYG_FINANCIAL_YEAR}: the table for each pay cycle (NAT 1005, 1006, 1007), Schedule 5 for bonuses, and what changed on 1 July 2026.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -78,7 +79,7 @@ const dataset: WithContext<Dataset> = {
   name: `ATO PAYG withholding tax tables ${PAYG_FINANCIAL_YEAR} (${ATO_DOCS.map((d) => d.nat).join(", ")})`,
   description: `The ATO PAYG withholding tax tables for the Australian ${PAYG_FINANCIAL_YEAR} financial year: ${ATO_WEEKLY.title.toLowerCase()} (${ATO_WEEKLY.nat}), ${ATO_FORTNIGHTLY.title.toLowerCase()} (${ATO_FORTNIGHTLY.nat}), ${ATO_MONTHLY.title.toLowerCase()} (${ATO_MONTHLY.nat}) and Schedule 5 for back payments, commissions and bonuses (${ATO_SCHEDULE_5.nat}). Amounts to withhold with and without the tax-free threshold, plus study and training support loan components.`,
   url: URL,
-  keywords: ["PAYG withholding tables", "weekly tax table", "fortnightly tax table", "monthly tax table", `${PAYG_FINANCIAL_YEAR} tax tables`, "Australia"],
+  keywords: ["PAYG withholding tables", "PAYG withholding schedules", `${PAYG_FINANCIAL_YEAR} PAYG tables`, "Australia"],
   temporalCoverage: "2026-07-01/2027-06-30",
   spatialCoverage: { "@type": "Country", name: "Australia" },
   creator: { "@type": "Organization", name: "Australian Taxation Office", url: "https://www.ato.gov.au/" },

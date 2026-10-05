@@ -15,8 +15,8 @@ const FY = SITE_CONFIG.financialYear;
 // "ato tax withheld calculator" (5.4k), "tax withheld" (6.6k), "payg tax"
 // (9.9k). Distinct from the /weekly|fortnightly|monthly-tax-table/ pages,
 // which are lookup tables; this is per-pay withholding → year-end refund/bill.
-const TITLE = `Tax Withheld Calculator ${FY}: ATO PAYG Withholding Estimator`;
-const DESCRIPTION = `Work out the tax withheld from your weekly, fortnightly or monthly pay for ${FY} with the ATO's PAYG formulas, tax-free threshold and HECS-HELP, then your refund.`;
+const TITLE = `Tax Withheld Calculator ${FY}: PAYG Calculator & Estimator`;
+const DESCRIPTION = `Tax withheld calculator and PAYG withholding estimator for ${FY}: the tax taken from weekly, fortnightly or monthly pay on ATO formulas, plus your likely refund.`;
 
 export const metadata: Metadata = {
   title: TITLE,

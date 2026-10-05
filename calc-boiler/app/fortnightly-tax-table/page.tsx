@@ -16,7 +16,8 @@ import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
-const TITLE = `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1006) — PAYG Calculator`;
+// 5 Oct 2026: "PAYG Calculator" removed (that query belongs to /tax-withheld-calculator/); both financial years named because the 1 July rollover drives search for each.
+const TITLE = `Fortnightly Tax Table ${PAYG_FINANCIAL_YEAR} and 2025-26 (ATO NAT 1006)`;
 // Previous: "Fortnightly tax table 2026-27 (ATO NAT 1006): enter your fortnightly pay to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV."
 // seo-brain 25 Sep 2026 (Jev-ranked): the HTML table's range from HTML_TABLE_RANGES and the
 // $2,000 worked example from the Schedule 1 engine (same call the page body makes).

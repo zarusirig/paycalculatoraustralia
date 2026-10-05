@@ -69,19 +69,19 @@ note(NMW_HOURLY, {
   award: "National Minimum Wage",
   code: "NMW",
   classification: `adult minimum wage from ${NMW_ORDER.operativeFrom}`,
-  href: "/minimum-wage-history-australia/",
+  href: "/minimum-wage-australia/",
 });
 note(NMW_CASUAL_HOURLY, {
   award: "National Minimum Wage",
   code: "NMW",
   classification: `casual minimum wage (adult rate plus ${Math.round(CASUAL_LOADING * 100)}% loading) from ${NMW_ORDER.operativeFrom}`,
-  href: "/minimum-wage-history-australia/",
+  href: "/minimum-wage-australia/",
 });
 note(NMW_PREVIOUS_HOURLY, {
   award: "National Minimum Wage",
   code: "NMW",
   classification: `adult minimum wage to 30 June 2026 (superseded by $${NMW_HOURLY.toFixed(2)})`,
-  href: "/minimum-wage-history-australia/",
+  href: "/minimum-wage-australia/",
 });
 
 // --- Award adult rates (verified constants) ---------------------------------

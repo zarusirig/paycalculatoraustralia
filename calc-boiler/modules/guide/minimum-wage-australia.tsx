@@ -57,20 +57,35 @@ export default function MinimumWageAustraliaPage() {
 
         <header className="mb-10 max-w-4xl">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={H2}>
-            Minimum Wage in Australia {currentRow.fy}
+            What Is the Minimum Wage in Australia? {currentRow.fy} Rates
           </h1>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
               <strong>Direct answer:</strong> The National Minimum Wage is <strong>{money(NMW.hourly)} an hour</strong>, or <strong>{money(NMW.weekly)} a week</strong> for {EMPLOYMENT.standardWeeklyHours} hours, from {NMW_DECISION.operativeFrom}. That is <strong>{money(NMW.annual)} a year</strong> full time, about <strong>{formatAUD(NMW_AFTER_TAX.annual)} after tax</strong>. Casuals get at least <strong>{money(NMW.casualHourly)}</strong> an hour. It is the same in every state and territory, and it rose {currentRow.published} from {money(NMW.previousHourly)}.
             </p>
           </div>
+          <h2 className="sr-only">Minimum wage in Australia per hour, per week, per year and for casuals</h2>
+          <dl className="mb-6 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {[
+              { label: "Per hour", value: money(NMW.hourly), note: "before tax" },
+              { label: "Per week", value: money(NMW.weekly), note: `${EMPLOYMENT.standardWeeklyHours} hours, before tax` },
+              { label: "Per year", value: money(NMW.annual), note: `${formatAUD(NMW_AFTER_TAX.annual)} after tax` },
+              { label: "Casual, per hour", value: money(NMW.casualHourly), note: "incl. 25% loading" },
+            ].map((b) => (
+              <div key={b.label} className="rounded-xl border border-sandstone-dark/20 bg-white p-4 shadow-sm">
+                <dt className="text-sm font-medium text-warmgray">{b.label}</dt>
+                <dd className="mt-1 text-2xl font-extrabold text-navy tabular-nums" style={H2}>{b.value}</dd>
+                <dd className="mt-1 text-xs text-warmgray-light">{b.note}</dd>
+              </div>
+            ))}
+          </dl>
           <TrustBar className="!max-w-none" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <section id="current-rate">
-              <h2 style={H2}>Current Minimum Wage: Hourly, Weekly and Annual</h2>
+              <h2 style={H2}>What Is the Minimum Wage in Australia? Per Hour, Week, Year and Casual</h2>
               <p>
                 The Fair Work Commission set these rates in the {NMW_DECISION.name} ({NMW_DECISION.citation}, {NMW_DECISION.decidedOn}). {NMW_DECISION.operativeNote}
               </p>

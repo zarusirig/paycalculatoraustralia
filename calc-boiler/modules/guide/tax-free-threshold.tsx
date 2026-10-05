@@ -100,7 +100,7 @@ export default function TaxFreeThresholdPage() {
       <nav aria-label="breadcrumb" className="mb-6"><ol className="flex items-center space-x-1 text-sm text-warmgray"><li><Link href="/" className="hover:text-eucalyptus-dark hover:underline">Pay Calculator</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><Link href="/tax-brackets/" className="hover:text-eucalyptus-dark hover:underline">Tax Brackets</Link></li><li className="flex items-center"><ChevronRight className="h-3 w-3 text-warmgray-light" /></li><li><span className="font-medium text-navy" aria-current="page">Tax-Free Threshold</span></li></ol></nav>
 
       <header className="mb-10 max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>Tax-Free Threshold {FY}: {T} Explained</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>What Is the Tax-Free Threshold? {T} for {FY}</h1>
         <p className="text-xl text-warmgray leading-relaxed mb-6">
           The tax-free threshold is <strong>{T}</strong> for {FY}: an Australian resident pays no income tax on the first {T} of taxable income, about <strong>{formatAUD(TFT_PER_PERIOD.weekly)} a week</strong> or {formatAUD(TFT_PER_PERIOD.fortnightly)} a fortnight. With the low income tax offset, you pay no income tax at all up to <strong>{formatAUD(NIL)}</strong>. You claim it once, on one payer&rsquo;s TFN declaration.
         </p>

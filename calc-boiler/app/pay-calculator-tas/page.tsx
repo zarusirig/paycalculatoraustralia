@@ -13,12 +13,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-tas/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator TAS — Your Take-Home Pay in Tasmania",
+  title: `Pay Calculator TAS ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in Tasmania. A free salary and wage calculator on current ATO rates, plus Tasmanian public holidays by region and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Calculator TAS — Your Take-Home Pay in Tasmania",
+    title: `Pay Calculator TAS ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
     description: "See what you actually take home in Tasmania after income tax, the Medicare levy and HECS-HELP.",
     url: URL,
     siteName: SITE_CONFIG.name,

@@ -119,7 +119,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         href: "/tax-brackets/",
         links: [
           { href: "/tax-brackets/", label: "Tax brackets 2026-27" },
-          { href: "/tax-withheld-calculator/", label: "Tax withheld" },
+          { href: "/tax-withheld-calculator/", label: "Tax withheld calculator" },
           { href: "/tax-return-calculator/", label: "Tax return estimate" },
           { href: "/second-job-tax-calculator/", label: "Second job tax" },
           { href: "/tax-free-threshold/", label: "Tax-free threshold" },
@@ -659,7 +659,7 @@ export const GUIDE_CATEGORIES = [
       { href: "/tax-brackets/", label: "Tax Brackets", description: "Income tax rates and thresholds" },
       { href: "/medicare-levy/", label: "Medicare Levy Guide", description: "Rate, surcharge and exemptions" },
       { href: "/low-income-tax-offset/", label: "Low Income Tax Offset (LITO)", description: "Up to $700 tax reduction" },
-      { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables", description: "Weekly, fortnightly and monthly tables" },
+      { href: "/payg-withholding-tables/", label: "PAYG Withholding Tables", description: "Which ATO schedule applies to your pay" },
       { href: "/weekly-tax-table/", label: "Weekly Tax Table", description: "ATO weekly withholding amounts" },
       { href: "/fortnightly-tax-table/", label: "Fortnightly Tax Table", description: "ATO fortnightly withholding amounts" },
       { href: "/tax-refund-guide/", label: "Tax Refund Guide", description: "Maximise your tax return" },

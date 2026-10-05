@@ -13,12 +13,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-qld/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator QLD — Your Take-Home Pay in Queensland",
+  title: `Pay Calculator QLD ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in Queensland. A free salary and wage calculator on current ATO rates, plus QLD public holidays, penalty rates and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Calculator QLD — Your Take-Home Pay in Queensland",
+    title: `Pay Calculator QLD ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
     description: "See what you actually take home in Queensland after income tax, the Medicare levy and HECS-HELP.",
     url: URL,
     siteName: SITE_CONFIG.name,

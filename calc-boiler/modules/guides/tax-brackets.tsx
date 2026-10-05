@@ -163,7 +163,7 @@ export default function TaxBracketsGuidePage() {
 
         <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 not-prose">
           {[
-            { k: "Tax-free threshold", v: formatAUD(TAX_FREE_THRESHOLD), s: `No income tax up to ${formatAUD(NIL)} with LITO` },
+            { k: "Nil-rate band", v: formatAUD(TAX_FREE_THRESHOLD), s: `First bracket; no income tax up to ${formatAUD(NIL)} with LITO` },
             { k: `Second rate ${FY}`, v: pct(B[1].rate), s: `Was ${pct(P[1].rate)} in ${PREV}` },
             { k: "Top marginal rate", v: pct(TOP.rate), s: `Over ${formatAUD(TOP.min - 1)}; ${pct(TOP.rate + MEDICARE_LEVY.rate)} with Medicare` },
             { k: "Tax at $100,000", v: formatAUD(analyseIncome(100_000).incomeTax), s: `Plus ${formatAUD(analyseIncome(100_000).medicareLevy)} Medicare levy` },
@@ -196,7 +196,7 @@ export default function TaxBracketsGuidePage() {
 
             <section id="brackets-2026-27">
               <h2 style={FONT}>Australian Tax Brackets {FY} (Residents)</h2>
-              <p>These are the ATO&rsquo;s resident income tax rates for the {FY} income year, 1 July 2026 to 30 June 2027. They apply to your <em>taxable income</em> (assessable income minus deductions) if you were an Australian resident for tax purposes all year and are entitled to the full tax-free threshold.</p>
+              <p>These are the ATO&rsquo;s resident income tax rates for the {FY} income year, 1 July 2026 to 30 June 2027. They apply to your <em>taxable income</em> (assessable income minus deductions) if you were an Australian resident for tax purposes all year and are entitled to the full nil-rate band. How that first bracket works, and who can claim it with their employer, is explained on the <Link href="/tax-free-threshold/">what is the tax-free threshold</Link> page.</p>
               <BracketTable brackets={B} caption={`Australian resident tax brackets ${FY}`} />
               <p>Each rate applies only to the slice of income inside its band. The dollar amount in each row (for example {formatAUD(B[2].base)}) is simply the total tax on every band below it, so you can work out tax on any income as <strong>that amount plus the rate times the income over the threshold</strong>. The <Link href="/tax-free-threshold/">tax-free threshold</Link> is the nil band at the top of the table; it has been {formatAUD(TAX_FREE_THRESHOLD)} since 2012.</p>
             </section>

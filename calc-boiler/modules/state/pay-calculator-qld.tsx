@@ -17,6 +17,7 @@ import { findRate } from "@/modules/guide/hospitality-award-faqs";
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { QLD_FAQS } from "./pay-calculator-qld-faqs";
 import {
@@ -91,6 +92,10 @@ export default function PayCalculatorQLDPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <StatePayFacts profile={PROFILE} />
+
+          <StateMinimumWage state="qld" />
+
           <section>
             <H2>Queensland Wage Calculator: From an Hourly Rate to Take-Home Pay</H2>
             <p className="mb-4 text-warmgray">
@@ -215,7 +220,6 @@ export default function PayCalculatorQLDPage() {
             </p>
           </section>
 
-          <StatePayFacts profile={PROFILE} />
 
           <OtherStatesNav profile={PROFILE} />
 

@@ -11,6 +11,7 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { NT_FAQS } from "./pay-calculator-nt-faqs";
 import {
@@ -74,6 +75,10 @@ export default function PayCalculatorNTPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <StatePayFacts profile={PROFILE} />
+
+          <StateMinimumWage state="nt" />
+
           <section>
             <H2>How much of a Northern Territory salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
@@ -169,7 +174,6 @@ export default function PayCalculatorNTPage() {
             </p>
           </section>
 
-          <StatePayFacts profile={PROFILE} />
 
           <OtherStatesNav profile={PROFILE} />
 

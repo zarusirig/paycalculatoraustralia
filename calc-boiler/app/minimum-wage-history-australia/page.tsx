@@ -11,12 +11,12 @@ import { withPageEnd } from "@/components/common/content-slots";
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-history-australia/`;
 
-// History intent only (23 Sep 2026). Current-rate queries ("what is the
+// History intent only (23 Sep 2026; tightened 5 Oct 2026: no current-rate, yearly or annual language, those queries belong to /minimum-wage-australia/). Current-rate queries ("what is the
 // minimum wage in australia", "minimum wage australia 2026") belong to
 // /minimum-wage-australia/, so the title leads with "History" and the year
 // range rather than today's dollar figure.
 const TITLE = `Minimum Wage History Australia: Every Increase ${HISTORY_FIRST.fy.slice(0, 4)}–${HISTORY_LAST.fy.slice(0, 4)}`;
-const DESCRIPTION = `History of Australia's National Minimum Wage since ${HISTORY_FIRST.fy.slice(0, 4)}: hourly and weekly rates, every Annual Wage Review increase (largest ${HISTORY_LARGEST.published} in ${HISTORY_LARGEST.operativeFrom.slice(-4)}) and ${(TOTAL_GROWTH * 100).toFixed(0)}% total growth.`;
+const DESCRIPTION = `History of Australia's National Minimum Wage since ${HISTORY_FIRST.fy.slice(0, 4)}: a year-by-year timeline of every Annual Wage Review increase (largest ${HISTORY_LARGEST.published} in ${HISTORY_LARGEST.operativeFrom.slice(-4)}) and ${(TOTAL_GROWTH * 100).toFixed(0)}% total growth.`;
 
 export const metadata: Metadata = {
   title: TITLE,

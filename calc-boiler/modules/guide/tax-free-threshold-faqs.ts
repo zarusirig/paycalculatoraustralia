@@ -17,7 +17,7 @@ const w900 = tftWithholdingRow(900, "weekly");
 
 export const TAX_FREE_THRESHOLD_FAQS: readonly { q: string; a: string }[] = [
   {
-    q: `What is the tax-free threshold for ${FY}?`,
+    q: `What is the tax-free threshold in Australia for ${FY}?`,
     a: `${T}. It has been ${T} since 1 July 2012 and is unchanged for ${FY}. Australian residents pay no income tax on the first ${T} of taxable income, which works out to ${formatAUD(TFT_PER_PERIOD.weekly)} a week, ${formatAUD(TFT_PER_PERIOD.fortnightly)} a fortnight or about ${formatAUD(TFT_PER_PERIOD.monthly)} a month.`,
   },
   {

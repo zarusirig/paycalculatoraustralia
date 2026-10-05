@@ -16,7 +16,8 @@ const NIL = formatAUD(effectiveNilTaxIncome());
 
 // Intent split with /tax-brackets/: that page answers "what are the rates";
 // this one answers "what is the threshold, and should I claim it on this job".
-const TITLE = `Tax-Free Threshold ${FY}: ${T} — Should You Claim It?`;
+// 5 Oct 2026: question form owns "what is the tax free threshold" (3.6k x2), which /tax-brackets/ was ranking for.
+const TITLE = `What Is the Tax-Free Threshold? ${T} for ${FY}`;
 const DESCRIPTION = `The Australian tax-free threshold is ${T} (${formatAUD(TFT_PER_PERIOD.weekly)} a week) for ${FY}, and no income tax up to ${NIL} with LITO. How to claim it on your TFN declaration.`;
 
 export const metadata: Metadata = {

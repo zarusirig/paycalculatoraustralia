@@ -223,7 +223,7 @@ export default function HomePageTemplate() {
             Total deductions come to {formatAUD(BD80.totalDeductions)}, leaving take-home pay of <strong>{formatAUD(BD80.takeHomePay)}</strong> a year — {formatAUD(BD80.weekly, 2)} a week or {formatAUD(BD80.monthly, 2)} a month. The effective rate on the whole salary is <strong>{formatPercent(BD80.effectiveTaxRate)}</strong>, far below the {formatPercent(BD80.marginalTaxRate)} marginal rate (including Medicare) on the next dollar earned. See the full working for <Link href="/tax-on/80000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $80,000</Link> or <Link href="/tax-on/100000/" className="font-medium text-eucalyptus-dark hover:underline">tax on $100,000</Link>.
           </p>
           <p className="leading-relaxed text-warmgray">
-            For a bracket-by-bracket breakdown of the tax side, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>; to compare net pay across salaries, use the <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>; and to decode each line of your payslip, read <Link href="/understanding-your-payslip/" className="font-medium text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>.
+            For a bracket-by-bracket breakdown of the tax side, use the <Link href="/income-tax-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Income Tax Calculator</Link>; to compare net pay across salaries, use the <Link href="/take-home-pay-calculator/" className="font-medium text-eucalyptus-dark hover:underline">Take-Home Pay Calculator</Link>; to check what your employer takes out of each pay, use the <Link href="/tax-withheld-calculator/" className="font-medium text-eucalyptus-dark hover:underline">tax withheld calculator</Link>; and to decode each line of your payslip, read <Link href="/understanding-your-payslip/" className="font-medium text-eucalyptus-dark hover:underline">Understanding Your Payslip</Link>.
           </p>
 
           <MethodologyDisclosure className="mt-4">
@@ -479,6 +479,7 @@ export default function HomePageTemplate() {
             <CalcLink href="/fortnightly-pay-calculator/" title="Fortnightly Pay Calculator" desc="Fortnightly take-home pay breakdown" />
             <CalcLink href="/weekly-pay-calculator/" title="Weekly Pay Calculator" desc="Weekly wage to take-home pay" />
             <CalcLink href="/monthly-pay-calculator/" title="Monthly Pay Calculator" desc="Monthly salary to take-home pay" />
+            <CalcLink href="/tax-withheld-calculator/" title="Tax Withheld Calculator" desc="PAYG tax taken from each pay, and your likely refund" />
             <CalcLink href="/second-job-tax-calculator/" title="Second Job Tax Calculator" desc="Withholding when you can't claim the tax-free threshold" />
           </div>
 
