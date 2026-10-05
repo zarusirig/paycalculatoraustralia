@@ -270,6 +270,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "australian-tax-and-pay-data": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   "pay-and-tax-changes-calendar": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   // --- end F8 ---
+  // --- Oct 2026 tax and super pages (feat/oct-tax-super) ---
+  "late-tax-return-penalty": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "working-australians-tax-offset": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "listo-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "carry-forward-concessional-contributions-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "termination-payment-tax-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end Oct 2026 tax and super pages ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "fortnights-in-a-year": { authorId: "anita-bell", lastReviewed: "2026-09-24" },

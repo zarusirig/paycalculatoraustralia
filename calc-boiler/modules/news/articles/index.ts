@@ -35,6 +35,7 @@ import TaxReturnDeadlineOctober2026 from "./tax-return-deadline-october-2026";
 import AirTrafficControllerPayRiseOctober2026 from "./air-traffic-controller-pay-rise-october-2026";
 import AwardTransportPaymentsWithholdingOctober2026 from "./award-transport-payments-withholding-october-2026";
 // --- end G6 ---
+import ListoBoostFromJuly2027 from "./listo-boost-from-july-2027";
 
 /** slug → article body component. Every entry in NEWS_ARTICLES must have a component here. */
 export const NEWS_COMPONENTS: Record<string, ComponentType> = {
@@ -74,4 +75,5 @@ export const NEWS_COMPONENTS: Record<string, ComponentType> = {
   "air-traffic-controller-pay-rise-october-2026": AirTrafficControllerPayRiseOctober2026,
   "award-transport-payments-withholding-october-2026": AwardTransportPaymentsWithholdingOctober2026,
   // --- end G6 ---
+  "listo-boost-from-july-2027": ListoBoostFromJuly2027,
 };

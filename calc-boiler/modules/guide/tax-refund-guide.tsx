@@ -220,7 +220,7 @@ export default function TaxRefundGuidePage() {
                 </div>
               </div>
               <p>
-                Late lodgment can attract a &quot;Failure to Lodge&quot; (FTL) penalty of one penalty unit &mdash; <strong>{formatAUD(FTL_PER_PERIOD)} from {PENALTY_UNIT.from}</strong> &mdash; for every {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units ({formatAUD(FTL_MAX_INDIVIDUAL)}). The ATO can remit the penalty depending on your circumstances, so contact it if you will be late. Check our <Link href="/tax-calendar/">Tax Calendar</Link> for a complete schedule of Australian tax dates.
+                Late lodgment can attract a &quot;Failure to Lodge&quot; (FTL) penalty of one penalty unit &mdash; <strong>{formatAUD(FTL_PER_PERIOD)} from {PENALTY_UNIT.from}</strong> &mdash; for every {PENALTY_UNIT.ftlDaysPerUnit} days or part overdue, up to {PENALTY_UNIT.ftlMaxUnits} units ({formatAUD(FTL_MAX_INDIVIDUAL)}). The ATO can remit the penalty depending on your circumstances, so contact it if you will be late. Work out yours with the <Link href="/late-tax-return-penalty/">late tax return penalty calculator</Link>, and check our <Link href="/tax-calendar/">Tax Calendar</Link> for a complete schedule of Australian tax dates.
               </p>
             </section>
 

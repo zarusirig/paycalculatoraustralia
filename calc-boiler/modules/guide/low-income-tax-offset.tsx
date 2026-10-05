@@ -130,7 +130,7 @@ export default function LowIncomeTaxOffsetPage() {
                   </tbody>
                 </table>
               </div>
-              <p>The offset comes off the tax worked out from the <Link href="/tax-brackets/">tax brackets</Link>, dollar for dollar. That makes it worth more than a deduction of the same size: a {m(LITO.maxOffset)} deduction at the {pct(rate)} rate would save {m(LITO.maxOffset * rate)}, while the offset saves the full {m(LITO.maxOffset)} (as long as you have that much tax to offset).</p>
+              <p>The offset comes off the tax worked out from the <Link href="/tax-brackets/">tax brackets</Link>, dollar for dollar. That makes it worth more than a deduction of the same size: a {m(LITO.maxOffset)} deduction at the {pct(rate)} rate would save {m(LITO.maxOffset * rate)}, while the offset saves the full {m(LITO.maxOffset)} (as long as you have that much tax to offset). Low earners also get a super offset: see the <Link href="/listo-calculator/">LISTO calculator</Link>.</p>
             </section>
 
             <section id="lito-by-income">
