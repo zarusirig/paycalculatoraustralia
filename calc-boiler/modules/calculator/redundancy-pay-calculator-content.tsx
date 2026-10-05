@@ -82,6 +82,9 @@ const EX2_TAX = redundancyTax({
   reachedPreservationAge: false,
 });
 
+const NSW = LSL_JURISDICTIONS.nsw;
+const VIC = LSL_JURISDICTIONS.vic;
+
 const LIMIT_YEARS = [1, 2, 3, 5, 8, 10, 15, 20];
 const TABLE_SALARY = 80_000;
 
@@ -125,7 +128,7 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
 
       {/* NES TABLE + TAX-FREE BOX */}
       <section id="redundancy-pay-table">
-        <h2 className={H2} style={FONT}>Redundancy Pay Table: Weeks by Years of Service</h2>
+        <h2 className={H2} style={FONT}>Redundancy Payment Calculation Table: Weeks by Years of Service</h2>
         <p className={P}>
           The National Employment Standards set the minimum redundancy pay for every national system
           employee in Australia. It is worked out on <strong>completed years of continuous service</strong> —
@@ -169,6 +172,12 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
           Fair Work Act 2009 s 119. The {formatAUD(TABLE_SALARY)} column is base salary ÷ 52 × weeks. Awards,
           enterprise agreements and contracts can pay more, never less. Employers with fewer than{" "}
           {SMALL_BUSINESS_HEADCOUNT} employees are exempt, and casuals are not covered.
+        </p>
+
+        <p className="mt-3 text-sm text-warmgray">
+          <strong>No over-45 bump on redundancy pay.</strong> The scale above depends only on completed years of
+          service, never on age. The extra week for employees over 45 applies to the notice period, covered in
+          {" "}<Link href="/payment-in-lieu-of-notice/" className={LINK}>payment in lieu of notice</Link>.
         </p>
 
         <h3 className={H3} style={FONT}>Tax-free amount by years of service ({Y})</h3>
@@ -239,7 +248,15 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
 
       {/* TAX */}
       <section id="redundancy-tax">
-        <h2 className={H2} style={FONT}>How Is Redundancy Pay Taxed in {Y}?</h2>
+        <h2 className={H2} style={FONT}>Is Redundancy Pay Tax Free? Tax on Redundancy Payments in {Y}</h2>
+        <p className={P}>
+          <strong>Partly.</strong> A genuine redundancy payment is tax-free up to {formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus{" "}
+          {formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service. Anything above that limit is an
+          employment termination payment, taxed at {pct(ETP_RATES.underPreservationAge)} or{" "}
+          {pct(ETP_RATES.atOrOverPreservationAge)} depending on age. To see the tax on your own package,
+          including the whole-of-income cap, use the{" "}
+          <Link href="/termination-payment-tax-calculator/" className={LINK}>termination payment tax calculator</Link>.
+        </p>
         <p className={P}>
           A <strong>genuine redundancy payment</strong> is tax-free up to the limit and is not included in
           your assessable income. The part above the limit is an ETP. The whole of a non-genuine payment is
@@ -322,6 +339,41 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className="mt-3 text-xs text-warmgray-light">
           Long service leave figures from each state or territory Act — see the state pages linked above
           for the rules and a calculator set to that state.
+        </p>
+      </section>
+
+      {/* NSW + VIC */}
+      <section id="redundancy-nsw">
+        <h2 className={H2} style={FONT}>Redundancy Pay in NSW</h2>
+        <p className={P}>
+          NSW has no separate redundancy scale. National system employees in NSW get the national table
+          above: {nesRedundancyWeeks(1)} weeks at 1 year to {nesRedundancyWeeks(9)} weeks at 9 years. What NSW adds is
+          long service leave under the {NSW.act}. When your employer ends the job for any reason other than
+          serious and wilful misconduct, a pro-rata payment is owed from {lslOnRedundancyFrom("nsw")} years of service, and
+          at {NSW.takeAfterYears} years the full {NSW.weeksAtQualifying} weeks is payable however the job ends.
+        </p>
+        <p className="text-sm text-warmgray">
+          NSW state public sector and local government employees are not covered by that Act and have their own
+          arrangements, so check your award or agreement. Work out the long service leave part with the{" "}
+          <Link href="/long-service-leave-calculator/nsw/" className={LINK}>NSW long service leave calculator</Link>{" "}
+          and your take-home pay with the <Link href="/pay-calculator-nsw/" className={LINK}>NSW pay calculator</Link>.
+        </p>
+      </section>
+
+      <section id="redundancy-vic">
+        <h2 className={H2} style={FONT}>Redundancy Pay in Victoria</h2>
+        <p className={P}>
+          Victoria uses the same national table for national system employees. The state difference is long service
+          leave under the {VIC.act}: it is payable from {VIC.takeAfterYears} years of continuous service, about{" "}
+          {Number(VIC.weeksAtQualifying.toFixed(2))} weeks at that point, and after {VIC.takeAfterYears} years the
+          unused balance is paid out however the employment ends, redundancy included. It is paid on top of your
+          redundancy pay, notice and unused annual leave.
+        </p>
+        <p className="text-sm text-warmgray">
+          Employees under a federal award or agreement with its own long service leave terms, and building and
+          construction workers in the LeavePlus scheme, sit outside the Act. Use the{" "}
+          <Link href="/long-service-leave-calculator/vic/" className={LINK}>Victorian long service leave calculator</Link>{" "}
+          and the <Link href="/pay-calculator-vic/" className={LINK}>Victorian pay calculator</Link>.
         </p>
       </section>
 

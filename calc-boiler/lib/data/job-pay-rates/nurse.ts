@@ -158,6 +158,10 @@ export const NURSE: Occupation = {
   ],
   faqs: [
     {
+      q: "How much do nurses get paid in Australia?",
+      a: "Jobs and Skills Australia reports median full-time earnings of $2,192 a week for registered nurses (ABS, May 2025), about $113,984 a year. The award minimum is lower: $1,219.50 a week for a registered nurse level 1 pay point 1 from 1 July 2026. State public hospital pay sits above the award.",
+    },
+    {
       q: "What is the award rate for a registered nurse in 2026?",
       a: "Under the Nurses Award, a registered nurse level 1 pay point 1 must be paid at least $32.09 an hour, or $1,219.50 a week, from the first full pay period on or after 1 July 2026 — $63,414 a year full-time before tax. It rises to $38.57 an hour at pay point 8. Aged care registered nurses start higher, at $41.36 an hour.",
     },

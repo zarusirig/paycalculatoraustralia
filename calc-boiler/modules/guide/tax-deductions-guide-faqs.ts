@@ -16,6 +16,10 @@ const thirty = TAX_BRACKETS.find((b) => b.rate === 0.3)!.rate;
 
 export const TAX_DEDUCTIONS_FAQS: readonly FaqItem[] = [
   {
+    q: "What can I claim on tax?",
+    a: "You can claim a work-related expense if you paid for it yourself and were not reimbursed, it directly relates to earning your income, and you have a record, usually a receipt. Common claims are working from home, car and travel, uniforms, tools, self-education, union fees and donations. Private costs such as the daily commute and lunch are not deductible.",
+  },
+  {
     q: "What is the $300 no-receipt threshold?",
     a: "If your total work-related expense claims are $300 or less, you do not need to provide written evidence such as receipts or invoices. However, you must still be able to explain to the ATO how you calculated the amount and demonstrate that the expenses were work-related. This threshold applies to the total of all work-related expenses, not $300 per category.",
   },

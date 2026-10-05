@@ -7,8 +7,8 @@ import type { Faq } from "./t3-shared";
 
 export const LEAVE_LOADING_FAQS: Faq[] = [
   {
-    q: "What is leave loading?",
-    a: "Leave loading is an extra payment, usually 17.5% of your base pay, paid on top of your normal pay while you're on annual leave. It comes from your award or enterprise agreement, not the National Employment Standards, so not every employee gets it.",
+    q: "What is annual leave loading?",
+    a: "Annual leave loading, often just called leave loading, is an extra payment, usually 17.5% of your base pay, paid on top of your normal pay while you're on annual leave. It comes from your award or enterprise agreement, not the National Employment Standards, so not every employee gets it.",
   },
   {
     q: "How do I calculate 17.5% leave loading?",

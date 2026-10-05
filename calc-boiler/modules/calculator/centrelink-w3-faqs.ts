@@ -166,6 +166,10 @@ export const COL_FAQS: readonly W3Faq[] = [
 
 export const PPL_FAQS: readonly W3Faq[] = [
   {
+    q: "How much is parental leave pay?",
+    a: `Paid Parental Leave is ${formatAUD(PPL_RATES["2026-27"].weekly, 2)} a week (${formatAUD(PPL_RATES["2026-27"].daily, 2)} a day) before tax for days taken in 2026-27. For a child born or adopted from ${PPL_NOW.label}, up to ${PPL_NOW.days} days (${PPL_NOW.weeks} weeks) is available, a maximum of ${formatAUD(pplGross(PPL_NOW.days, "2026-27"), 2)}. It is taxable income.`,
+  },
+  {
     q: "How many weeks of Paid Parental Leave do I get in 2026?",
     a: `For a child born or adopted from ${PPL_NOW.label}, your family can get up to ${PPL_NOW.days} days — ${PPL_NOW.weeks} weeks based on a 5-day week. ${PPL_NOW.reservedForPartner} of those days are reserved for a partner. For a child born or adopted from 1 July 2025 to 30 June 2026 it is 120 days (24 weeks), with 15 reserved.`,
   },

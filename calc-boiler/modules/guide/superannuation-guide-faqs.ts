@@ -39,6 +39,10 @@ export const SUPERANNUATION_GUIDE_FAQS: readonly FaqItem[] = [
     a: `The Superannuation Guarantee rate is ${SG}, unchanged since ${SUPER_GUARANTEE.effectiveDate}. This is the legislated peak rate after annual 0.5% increases since FY2021-22. Since ${SUPER_GUARANTEE.paydaySuperStart}, employers must pay ${SG} of an employee's qualifying earnings into their fund every payday, received within ${SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days.`,
   },
   {
+    q: "Do you pay tax on super?",
+    a: `Employer super paid on top of your wages is not deducted from your take-home pay, and no tax on it shows on your payslip. The fund pays ${CONTRIB} contributions tax on concessional contributions, plus Division 293 if your income is high. Salary sacrifice into super lowers your taxable pay, so less income tax is withheld on your payslip.`,
+  },
+  {
     q: "Does superannuation come out of my salary?",
     a: `It depends on your contract structure. A "Base Salary + Super" contract means the employer pays ${SG} on top of your base pay, with no reduction to your salary. A "Total Remuneration Package" (TRP) contract includes super within the total figure — so ${SG} is deducted from the package to determine your base salary. On a ${formatAUD(TRP)} TRP, your base salary is approximately ${formatAUD(TRP_BASE)} and super is ${formatAUD(TRP - TRP_BASE)}.`,
   },
