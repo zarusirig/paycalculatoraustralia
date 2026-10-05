@@ -6,6 +6,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
+import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -55,7 +56,7 @@ const article: WithContext<Article> = {
     logo: { "@type": "ImageObject", url: `${BASE}/icon-512.png` },
   },
   datePublished: "2026-09-23",
-  dateModified: "2026-09-23",
+  dateModified: pageDateModified("tax-return-2026"),
   mainEntityOfPage: { "@type": "WebPage", "@id": URL },
 };
 

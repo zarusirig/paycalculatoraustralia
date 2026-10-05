@@ -43,4 +43,20 @@ export const TAX_RETURN_2026_FAQS: readonly { q: string; a: string }[] = [
     q: "Why is my 2026 refund different from a 2026-27 tax calculator?",
     a: `The tax rates changed on 1 July 2026. The second bracket fell from 16% to 15%. Your 2026 return uses the older ${R.incomeYear} rates, so a calculator set to 2026-27 will show slightly less tax, up to $268 less, than your return actually works out.`,
   },
+  {
+    q: "Do I need to lodge a tax return for 2025-26?",
+    a: `Most people do. The ATO says you must lodge if you were an Australian resident and had tax withheld from your pay or paid tax in instalments during ${R.incomeYear}. You also must lodge if your taxable income was above $18,200 as a resident for the full year, you carried on a business, you made a loss, or you had reportable fringe benefits or reportable employer super contributions on your income statement. If none of the ATO's reasons apply you can lodge a non-lodgment advice instead. The ATO's "Do I need to lodge a tax return?" tool, in ATO online services or on its website, works it out from your own details.`,
+  },
+  {
+    q: "Should I lodge a tax return if I earned under $18,200?",
+    a: `Often yes. If tax was withheld from your pay during ${R.incomeYear}, the ATO lists that as a reason to lodge, and lodging is how you get the withheld tax back as a refund. Income under the tax-free threshold of $18,200 for a full-year resident is not taxed, so a refund is likely. Different thresholds apply to people under 18 with income that is not salary or wages ($416), part-year residents and foreign residents, so check the ATO tool.`,
+  },
+  {
+    q: "How do I lodge my tax return?",
+    a: `Most people lodge online with myTax. Link the ATO to your myGov account, sign in, check the pre-filled employer, bank, health fund and government information, add your deductions, then submit and keep the confirmation. Or use a registered tax agent. Paper returns are possible but slower: most refunds issue within ${R.paperRefundBusinessDays} business days.`,
+  },
+  {
+    q: "When do I have to lodge my tax return?",
+    a: `If you lodge yourself, by ${R.selfLodgeDueDate} for the ${R.incomeYear} year. With a registered tax agent you usually get until ${R.agentDueDateMostPeople}, provided you are on the agent's client list by ${R.selfLodgeDueDate}. Some agent clients have an earlier date (${R.agentDueDateLargeLiability} if the latest return had a tax liability of $20,000 or more, or ${R.selfLodgeDueDate} if a prior-year return was outstanding at 30 June 2026). You can lodge any time from 1 July, and the ATO says it pre-fills most information by ${R.prefillReady}.`,
+  },
 ];

@@ -85,6 +85,10 @@ export const RETURN_2026_SOURCES = {
   agentProgram:
     "https://www.ato.gov.au/tax-and-super-professionals/for-tax-professionals/prepare-and-lodge/registered-agent-lodgment-program/due-dates-for-tax-returns-by-client-type/individuals-and-trusts",
   howToLodge: "https://www.ato.gov.au/individuals-and-families/your-tax-return/how-to-lodge-your-tax-return",
+  // ATO "Do you need to lodge a tax return? 2026" (updated 30 May 2026; re-read 5 Oct 2026).
+  needToLodge:
+    "https://www.ato.gov.au/forms-and-instructions/individual-tax-return-2026-instructions/completing-the-individual-tax-return-2026/do-you-need-to-lodge-a-tax-return-2026",
+  needToLodgeTool: "https://www.ato.gov.au/calculators-and-tools/tax-return-do-i-need-to-lodge",
   progress: "https://www.ato.gov.au/individuals-and-families/your-tax-return/check-the-progress-of-your-tax-return",
   wfh:
     "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses/fixed-rate-method",

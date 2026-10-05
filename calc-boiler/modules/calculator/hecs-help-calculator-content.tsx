@@ -63,6 +63,13 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Voluntary repayments", url: ATO_VOLUNTARY_URL, publisher: SOURCES.ato.name },
 ];
 
+const PREV_BAND_ROWS = [
+  { range: `${formatAUD(0)} – ${formatAUD(HECS_HELP_2025_26.minimumThreshold)}`, rate: "Nil", how: "No compulsory repayment" },
+  { range: `${formatAUD(HECS_HELP_2025_26.bands[1].min)} – ${formatAUD(HECS_HELP_2025_26.bands[1].max)}`, rate: "15%", how: `15c for each $1 over ${formatAUD(HECS_HELP_2025_26.minimumThreshold)}` },
+  { range: `${formatAUD(HECS_HELP_2025_26.bands[2].min)} – ${formatAUD(HECS_HELP_2025_26.bands[2].max)}`, rate: "17%", how: `${formatAUD(HECS_HELP_2025_26.bands[2].base)} plus 17c for each $1 over ${formatAUD(HECS_HELP_2025_26.bands[2].min - 1)}` },
+  { range: `${formatAUD(HECS_HELP_2025_26.bands[3].min)} and over`, rate: "10%", how: "10% of total repayment income" },
+];
+
 const BAND_ROWS = [
   { range: `${formatAUD(0)} – ${formatAUD(T)}`, rate: "Nil", how: "No compulsory repayment" },
   { range: `${formatAUD(B1.min)} – ${formatAUD(B1.max)}`, rate: "15%", how: `15c for each $1 over ${formatAUD(T)}` },
@@ -136,7 +143,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
 
       {/* Rates — also owns "hecs repayment threshold": the separate threshold page was merged here (GSC Aug 2026: 0 clicks on 634 impressions). */}
       <section id="threshold">
-        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Repayment Rates {SITE_CONFIG.financialYear}</h2>
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Repayment Table {SITE_CONFIG.financialYear}: Thresholds and Rates</h2>
         <p className="mb-4 text-warmgray">
           The minimum repayment threshold for {SITE_CONFIG.financialYear} is <strong>{formatAUD(T)}</strong>, up from {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}. Since 1 July 2025 the rates apply marginally, so only the income above the threshold is charged.
         </p>
@@ -173,6 +180,30 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
         <p className="mb-4 text-warmgray">
           That is why <Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">salary sacrificing into super</Link> does not drop you under the threshold — the contributions are added back. The threshold is indexed every year: it was {formatAUD(HECS_HELP_2025_26.minimumThreshold)} in {SITE_CONFIG.previousFinancialYear}, and one set of thresholds covers HELP, VSL, SFSS, SSL, ABSTUDY SSL and AASL alike.
         </p>
+        <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Repayment Table for {SITE_CONFIG.previousFinancialYear} (Your 2026 Tax Return)</h3>
+        <p className="mb-4 text-warmgray">
+          Your tax return lodged in 2026 is assessed on the {SITE_CONFIG.previousFinancialYear} thresholds, not the table above. The 20% one-off reduction to debts existing on 1 June 2025 has already been applied to your balance and does not change these repayment bands.
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+          <table className="w-full text-sm">
+            <thead className="bg-sandstone">
+              <tr>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Repayment income ({SITE_CONFIG.previousFinancialYear})</th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Rate</th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">How it&apos;s calculated</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {PREV_BAND_ROWS.map((band) => (
+                <tr key={band.range} className="hover:bg-sandstone">
+                  <td className="px-4 py-3 text-navy tabular-nums">{band.range}</td>
+                  <td className="px-4 py-3 font-medium text-navy">{band.rate}</td>
+                  <td className="px-4 py-3 text-warmgray">{band.how}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <h3 className="text-xl font-semibold text-navy mt-6 mb-3" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Repayment at Common Incomes ({SITE_CONFIG.financialYear})</h3>
         <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
           <table className="w-full text-sm">

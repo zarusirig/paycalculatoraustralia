@@ -1,3 +1,4 @@
+import { pageDates } from "@/lib/page-dates";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import TeacherPayStatePage from "@/modules/guide/teacher-pay-state";
@@ -115,7 +116,7 @@ async function Page({ params }: PageProps) {
     inLanguage: "en-AU",
     // The reader needs to know how stale this can be: these are the two dates
     // that decide it.
-    datePublished: state.verifiedOn,
+    ...pageDates(`teacher-pay-australia/${state.slug}`),
     publisher: { "@type": "Organization", name: SITE_CONFIG.name },
   };
 

@@ -285,8 +285,8 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       a: "Supply teachers are paid at the Band 3 Step 1 classification: $98.48 an hour or $492.38 a day, both including the 25% casual loading, on the schedule dated 1 September 2025.",
     },
     {
-      q: "Are Queensland teachers getting a pay rise?",
-      a: "Yes. From 7 September 2026 Queensland state school teachers are paid the higher of a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267) or the applicable award rate, which rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The Department of Education had not published the resulting schedule when this page was re-checked on 24 September 2026, so the figures on this page are the ones in force up to 6 September 2026.",
+      q: "When do Queensland teachers get a pay rise?",
+      a: "It has started. From 7 September 2026 Queensland state school teachers are paid the higher of a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267) or the applicable award rate, which rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The Department of Education had not published the resulting schedule when this page was re-checked on 24 September 2026, so the figures on this page are the ones in force up to 6 September 2026.",
     },
   ],
 };

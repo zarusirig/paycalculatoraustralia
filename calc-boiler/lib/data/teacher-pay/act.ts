@@ -182,7 +182,7 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
       a: "By the school, not by service. A principal's School Leader A level is determined by the Schools Weighted Index, and the agreement states that incremental progression does not apply to principals. The three levels pay $195,885, $210,521 and $225,158.",
     },
     {
-      q: "Are ACT teachers due a pay rise?",
+      q: "When do ACT teachers get a pay rise?",
       a: "The 2023-2026 agreement's final increase was on 4 December 2025 and it passed its nominal expiry on 31 March 2026. A government pay offer was made on 9 December 2025 but has not been approved for teaching staff, so there is no scheduled increase currently in force.",
     },
   ],

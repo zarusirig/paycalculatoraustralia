@@ -259,8 +259,8 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
       a: "Principal salaries run from $156,335 at Range 2 subdivision 2-1 to $238,676 at Range 6 subdivision 6-4. The range a principal position sits in is set by the school's Student Resource Package budget and reviewed each year.",
     },
     {
-      q: "Are Victorian teachers getting a pay rise?",
-      a: "Yes, once the Fair Work Commission approves it. Staff approved the proposed Victorian Government Schools Agreement 2026 with 93.1% voting yes (announced 17 September 2026). Its salary schedule lifts a graduate at 1-1 from $79,589 to $92,882 and the top classroom step 2-6 from $118,063 to $133,456 from the first pay period on or after 1 October 2026, rising to $105,384 and $151,419 by November 2029, plus a $2,000 lump sum when it starts.",
+      q: "When do Victorian teachers get a pay rise?",
+      a: "Once the Fair Work Commission approves it. Staff approved the proposed Victorian Government Schools Agreement 2026 with 93.1% voting yes (announced 17 September 2026). Its salary schedule lifts a graduate at 1-1 from $79,589 to $92,882 and the top classroom step 2-6 from $118,063 to $133,456 from the first pay period on or after 1 October 2026, rising to $105,384 and $151,419 by November 2029, plus a $2,000 lump sum when it starts.",
     },
     {
       q: "When will Victorian teachers get the pay rise?",

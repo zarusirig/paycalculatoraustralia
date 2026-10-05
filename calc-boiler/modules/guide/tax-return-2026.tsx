@@ -31,6 +31,7 @@ const SOURCES_LIST: SourceLink[] = [
   { title: "Lodge your tax return online with myTax", url: RETURN_2026_SOURCES.myTax, publisher: SOURCES.ato.name },
   { title: "Lodge your tax return with a registered tax agent", url: RETURN_2026_SOURCES.taxAgent, publisher: SOURCES.ato.name },
   { title: "Registered agent lodgment program: individuals and trusts", url: RETURN_2026_SOURCES.agentProgram, publisher: SOURCES.ato.name },
+  { title: "Do you need to lodge a tax return? 2026", url: RETURN_2026_SOURCES.needToLodge, publisher: SOURCES.ato.name },
   { title: "Check the progress of your tax return", url: RETURN_2026_SOURCES.progress, publisher: SOURCES.ato.name },
   { title: "Working from home: fixed rate method", url: RETURN_2026_SOURCES.wfh, publisher: SOURCES.ato.name },
   { title: "Study and training loans: what's new", url: RETURN_2026_SOURCES.studyLoans, publisher: SOURCES.ato.name },
@@ -108,6 +109,31 @@ export default function TaxReturn2026Page() {
               </p>
             </section>
 
+            <section id="do-i-need-to-lodge">
+              <h2 style={H}>Do I need to lodge a 2026 tax return?</h2>
+              <p>
+                For most employees the answer is yes. The ATO&rsquo;s own test for the {R.incomeYear} year says you must lodge if any of its reasons apply. The main ones for people who earn a wage are below. This is a summary, not the full list.
+              </p>
+              <ul>
+                <li><strong>Tax was withheld from your pay.</strong> You were an Australian resident and paid tax under PAYG withholding or instalments, or had tax withheld from payments you received.</li>
+                <li><strong>Your taxable income was above {formatAUD(18_200)}.</strong> This is the tax-free threshold for a resident for the full year. The ATO&rsquo;s threshold is {formatAUD(416)} if you were under 18 on 30 June 2026 and your income was not salary or wages. Part-year residents and foreign residents have different amounts.</li>
+                <li><strong>You carried on a business or made a loss.</strong> That includes a capital loss, or a loss carried forward from an earlier year.</li>
+                <li><strong>Your income statement shows reportable fringe benefits or reportable employer super contributions.</strong></li>
+                <li><strong>You earned government payments above set limits, or you are a liable parent or a parent entitled to child support</strong> and your income is above the ATO&rsquo;s test amount. The exact limits depend on the payment, so use the ATO tool.</li>
+                <li><strong>You were on a 417 or 462 working holiday visa</strong> with Australian taxable income of {formatAUD(45_001)} or more.</li>
+              </ul>
+              <p>
+                If tax was withheld from your pay you will normally want to lodge even on a small income, because that is how you claim the tax back. If none of the ATO&rsquo;s reasons apply, you can tell the ATO with a non-lodgment advice instead. The ATO&rsquo;s <a href={RETURN_2026_SOURCES.needToLodgeTool} target="_blank" rel="noopener noreferrer">Do I need to lodge a tax return? tool</a> works through the full list using your own details, and the <a href={RETURN_2026_SOURCES.needToLodge} target="_blank" rel="noopener noreferrer">ATO&rsquo;s 2026 instructions</a> set out every reason. Check any borderline case there before you rely on this page. Not lodging when you were required to can lead to penalties, so when in doubt, lodge.
+              </p>
+            </section>
+
+            <section id="when-to-lodge">
+              <h2 style={H}>When do I have to lodge my tax return?</h2>
+              <p>
+                The deadline for a self-lodged {R.incomeYear} return is <strong>{R.selfLodgeDueDate}</strong>. With a registered tax agent it is usually <strong>{R.agentDueDateMostPeople}</strong>, as long as you are on their client list by {R.selfLodgeDueDate}. The full table of dates is under <a href="#deadlines">2026 tax return deadlines</a> above. There is no benefit in waiting until the deadline: you can lodge from 1 July, and the ATO pre-fills most employer, bank, health fund and government information by {R.prefillReady}, so lodging after that point is the quickest way to a refund.
+              </p>
+            </section>
+
             <section id="how-much-tax">
               <h2 style={H}>How much tax will I pay? 2025-26 tax rates</h2>
               <p>
@@ -172,7 +198,14 @@ export default function TaxReturn2026Page() {
             </section>
 
             <section id="how-to-lodge">
-              <h2 style={H}>Lodging with myTax or a tax agent</h2>
+              <h2 style={H}>How to lodge a tax return: myTax or a tax agent</h2>
+              <ol>
+                <li>Create a myGov account and link it to the ATO, if you have not already.</li>
+                <li>Check that your employer has finalised your income statement. The ATO pre-fills most data by {R.prefillReady}.</li>
+                <li>Open myTax in ATO online services and check each pre-filled figure against your own records.</li>
+                <li>Add your deductions, with the receipts or records to back them up.</li>
+                <li>Review, declare and submit. Then track progress in ATO online services or the ATO app.</li>
+              </ol>
               <div className="not-prose grid gap-4 sm:grid-cols-2">
                 <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
                   <div className="mb-2 flex items-center gap-2"><CalendarDays className="h-5 w-5 text-eucalyptus-dark" aria-hidden="true" /><h3 className="font-semibold text-navy">myTax (lodge yourself)</h3></div>
@@ -209,7 +242,7 @@ export default function TaxReturn2026Page() {
                   The estimator applies the {R.incomeYear} resident tax rates, the low income tax offset and the {R.incomeYear} Medicare levy thresholds from the site&rsquo;s tax-constants file. It adds the {R.incomeYear} surcharge tiers and study loan bands where they apply. It does not use the site&rsquo;s current-year engine, which runs on 2026-27 rates. The figures are covered by tests, including the published 2025-26 bracket amounts: {formatAUD(4_288)} at $45,000, {formatAUD(31_288)} at $135,000 and {formatAUD(51_638)} at $190,000. The dates come from the ATO&rsquo;s myTax page (updated 22 September 2026) and the registered agent lodgment program for 2026-27.
                 </p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
+              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026 (lodgment tests re-read 5 October 2026)" />
               {authorship ? <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} /> : null}
             </div>
           </article>

@@ -197,6 +197,10 @@ export const SA_TEACHER_PAY: TeacherPayState = {
 
   faqs: [
     {
+      q: "When do SA teachers get a pay rise?",
+      a: "The 2024 enterprise agreement's last scheduled increase applied from the first full pay period on or after 1 May 2026, and its published schedules show no further increase. The department's rate sheet dated 8 May 2026 shows the current figures. When we re-checked on 24 September 2026 no successor agreement had been published, so the next pay rise depends on a new agreement being reached.",
+    },
+    {
       q: "What is the starting teacher salary in South Australia?",
       a: "Step 1 pays $84,971 a year from the first full pay period on or after 1 May 2026. A teacher with a four-year, honours or higher degree plus a Graduate Diploma in Education starts a step higher, at Step 2, on $89,350. South Australia has no separate graduate teacher classification.",
     },

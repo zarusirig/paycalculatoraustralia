@@ -173,6 +173,10 @@ export const WA_TEACHER_PAY: TeacherPayState = {
 
   faqs: [
     {
+      q: "When do WA teachers get a pay rise?",
+      a: "There is no further scheduled increase on the department's current salary page. Under the 2023 general agreement, WA teachers received 5% from 6 December 2023, 4% from 6 December 2024 and 3% from 6 December 2025, and the December 2025 rise was the last of the three. We could not verify a successor agreement or any new increase date, so check the WA Department of Education's teacher salaries page and the SSTUWA for news. Teachers below Level 2.9 also receive an annual increment each year, provided they teach to a satisfactory standard.",
+    },
+    {
       q: "What is the starting teacher salary in WA?",
       a: "$88,178 a year at level 2.1 for a qualified teacher, on the department's scale as at 6 December 2025. The department takes prior work experience and qualifications into account, so a teacher with recognised experience or five years of training can start higher.",
     },

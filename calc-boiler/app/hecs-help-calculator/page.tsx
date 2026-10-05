@@ -110,6 +110,18 @@ const FAQS: readonly CalculatorFaq[] = [
     a: `Very little. At ${formatAUD(75_000)} the repayment is ${formatAUD(calculateHECS(75_000))} for the year. The marginal system charges 15c only on income above ${formatAUD(T)}, so crossing the line no longer triggers a repayment on your whole income.`,
   },
   {
+    q: "Is HECS interest free?",
+    a: "Yes, in the sense that there is no interest rate. The government charges no interest on study and training support loans. What it does apply is indexation each 1 June, at the lower of CPI or the Wage Price Index, which stops the debt losing value rather than adding a profit margin. The indexation applied on 1 June 2026 was 2.8%.",
+  },
+  {
+    q: "How much HECS do I have to pay?",
+    a: `It depends on your repayment income. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}. Above that you pay 15c for each $1 over ${formatAUD(T)}, so ${formatAUD(calculateHECS(80_000))} on ${formatAUD(80_000)} and ${formatAUD(calculateHECS(100_000))} on ${formatAUD(100_000)}. See the repayment table on this page, or enter your income in the calculator.`,
+  },
+  {
+    q: "What is the STSL line on my payslip?",
+    a: "STSL stands for study and training support loans. If you gave your employer the loan details on your tax file number declaration, the amount labelled STSL is the extra tax they withhold toward your compulsory repayment. It is only an estimate, because your actual repayment is worked out on full-year repayment income when you lodge your return.",
+  },
+  {
     q: "Does a HECS-HELP debt charge interest?",
     a: "No. The government charges no interest on study and training support loans. The balance is adjusted once a year by indexation instead, at the lower of CPI or the Wage Price Index, which keeps its real value steady rather than growing it.",
   },

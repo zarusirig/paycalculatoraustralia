@@ -189,6 +189,10 @@ export const NT_TEACHER_PAY: TeacherPayState = {
 
   faqs: [
     {
+      q: "When do NT teachers get a pay rise?",
+      a: "The next scheduled increase is 4.3% from the first full pay period on or after 1 January 2027 under the Northern Territory Public Sector Educators' 2024-2027 Enterprise Agreement, as the NT Government's teacher pay page also states. The previous increase applied from the first full pay period on or after 1 January 2026. The agreement's nominal expiry is 31 December 2027.",
+    },
+    {
       q: "What is the graduate teacher salary in the NT?",
       a: "A teacher with less than 12 months of post-qualification experience starts at CT1, $96,180 a year, from the first full pay period on or after 1 January 2026. That rises to $100,316 on 1 January 2027 under the same agreement.",
     },
