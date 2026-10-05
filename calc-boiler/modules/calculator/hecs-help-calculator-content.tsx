@@ -443,6 +443,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       <section>
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Calculators and Guides</h2>
         <ul className="list-disc pl-5 text-warmgray space-y-2">
+          <li><Link href="/graduate-salary-australia/" className="text-eucalyptus-dark hover:underline font-medium">Graduate salary Australia</Link> &mdash; starting pay in six professions, with take-home and the repayment at each.</li>
           <li><Link href="/tax-file-number-declaration/" className="text-eucalyptus-dark hover:underline font-medium">Tax file number declaration</Link> &mdash; where you tell your employer about the loan so STSL is withheld.</li>
           <li><Link href="/stsl-on-payslip/" className="text-eucalyptus-dark hover:underline font-medium">STSL on your payslip</Link> &mdash; how the withholding is worked out each pay.</li>
           <li><Link href="/extra-super-vs-hecs-repayment/" className="text-eucalyptus-dark hover:underline font-medium">Extra super vs HECS repayment</Link> &mdash; where a spare dollar does more work.</li>
