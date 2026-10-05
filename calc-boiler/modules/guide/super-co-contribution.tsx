@@ -71,7 +71,7 @@ export default function SuperCoContributionPage() {
                 The government super co-contribution is a matching scheme designed to help low-to-middle income earners build their retirement savings. For every <strong>$1.00</strong> of eligible personal (after-tax, non-concessional) super contributions you make, the government adds <strong>$0.50</strong> to your super fund — up to a maximum of <strong>$500 per financial year</strong>.
               </p>
               <p>
-                To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold.
+                To receive the full $500 co-contribution, you need to make <strong>$1,000</strong> in personal non-concessional contributions during the financial year and earn <strong>{formatAUD(LOWER)} or less</strong> in total income (FY{CO_CONTRIBUTION.incomeYear}). The co-contribution reduces progressively for incomes between {formatAUD(LOWER)} and {formatAUD(HIGHER)}, reaching zero at the upper threshold. Low-income earners may also get the <Link href="/listo-calculator/">low income super tax offset (LISTO)</Link> on their employer&rsquo;s before-tax contributions.
               </p>
 
               <h3>How It Works</h3>

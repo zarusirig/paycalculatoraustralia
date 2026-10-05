@@ -257,6 +257,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- F8 Lever D linkable assets (24 Sep 2026) ---
   "australian-pay-report-2026": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end F8 ---
+  // --- Oct 2026 tax and super pages (feat/oct-tax-super) ---
+  "late-tax-return-penalty": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "working-australians-tax-offset": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "listo-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "carry-forward-concessional-contributions-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "termination-payment-tax-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end Oct 2026 tax and super pages ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "fortnights-in-a-year": { authorId: "anita-bell", lastReviewed: "2026-09-24" },

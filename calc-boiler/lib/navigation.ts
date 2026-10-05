@@ -809,6 +809,18 @@ export const GUIDE_CATEGORIES = [
       { href: "/pension-age-australia/", label: "Pension Age Australia", description: "Age Pension and super access age by birth date" },
     ],
   },
+  // --- Oct 2026 tax and super pages (feat/oct-tax-super); GUIDE_CATEGORIES also feeds /site-directory/ ---
+  {
+    title: "Tax Offsets, Super & Termination",
+    guides: [
+      { href: "/late-tax-return-penalty/", label: "Late Tax Return Penalty", description: "Failure-to-lodge penalty calculator" },
+      { href: "/working-australians-tax-offset/", label: "Working Australians Tax Offset", description: "$250 offset and 14% rate from 2027-28" },
+      { href: "/listo-calculator/", label: "LISTO Calculator", description: "Low income super tax offset, $500 to $810" },
+      { href: "/carry-forward-concessional-contributions-calculator/", label: "Carry-Forward Super Contributions", description: "Use 5 years of unused cap" },
+      { href: "/termination-payment-tax-calculator/", label: "Termination Payment Tax", description: "Redundancy and ETP tax" },
+    ],
+  },
+  // --- end Oct 2026 tax and super pages ---
   // --- end W1 ---
   // --- T3 workplace entitlement attributes (Wave 3, 23 Sep 2026) ---
   // GUIDE_CATEGORIES also feeds /site-directory/, so no separate entry there.

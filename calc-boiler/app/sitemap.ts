@@ -363,6 +363,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   allPages.push({ slug: "train-driver-salary", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end J6 ---
+  // --- Oct 2026 tax and super pages (feat/oct-tax-super) ---
+  for (const slug of ["late-tax-return-penalty", "working-australians-tax-offset", "listo-calculator", "carry-forward-concessional-contributions-calculator", "termination-payment-tax-calculator"]) {
+    allPages.push({ slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end Oct 2026 tax and super pages ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---
   allPages.push({ slug: "tax-withheld-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   // --- end T1 ---

@@ -237,7 +237,7 @@ export default function TaxReturnCalculatorContent() {
       <section>
         <h2 style={H} className="text-2xl font-semibold text-navy mb-4">Tax Return Deadlines for {THIS.incomeYear}</h2>
         <p className="mb-4 text-warmgray">
-          The {THIS.incomeYear} return covers income from <strong>{THIS.incomeYearStart} to {THIS.incomeYearEnd}</strong>. A late return can attract a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)}</strong> (one penalty unit from {PENALTY_UNIT.from}) for every {PENALTY_UNIT.ftlDaysPerUnit} days or part of that it is overdue, up to <strong>{formatAUD(FTL_MAX_INDIVIDUAL)}</strong> for an individual.
+          The {THIS.incomeYear} return covers income from <strong>{THIS.incomeYearStart} to {THIS.incomeYearEnd}</strong>. A late return can attract a failure-to-lodge penalty of <strong>{formatAUD(PENALTY_UNIT.amount)}</strong> (one penalty unit from {PENALTY_UNIT.from}) for every {PENALTY_UNIT.ftlDaysPerUnit} days or part of that it is overdue, up to <strong>{formatAUD(FTL_MAX_INDIVIDUAL)}</strong> for an individual. See the <Link href="/late-tax-return-penalty/">late tax return penalty calculator</Link> to work out yours.
         </p>
         <ul className="space-y-3 text-warmgray">
           <li className="flex items-start gap-3">

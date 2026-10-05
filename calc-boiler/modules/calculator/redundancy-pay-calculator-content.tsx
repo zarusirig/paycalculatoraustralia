@@ -204,7 +204,8 @@ export default function RedundancyPayCalculatorContent({ faqs }: { faqs: readonl
         <p className={P}>
           The formula is <strong>base annual salary ÷ 52 × NES weeks = gross redundancy pay</strong>. The
           ATO then compares the payment with the tax-free limit for your completed years, and anything
-          above it is taxed as an employment termination payment (ETP).
+          above it is taxed as an employment termination payment (ETP). The
+          <Link href="/termination-payment-tax-calculator/" className={LINK}> termination payment tax calculator</Link> works out that tax, including the whole-of-income cap.
         </p>
         <h3 className={H3} style={FONT}>{formatAUD(EX1.salary)} salary, {EX1.years} years, NES minimum</h3>
         <div className={TABLE_WRAP}>

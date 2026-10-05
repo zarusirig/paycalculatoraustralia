@@ -141,7 +141,7 @@ export default function ConcessionalContributionsCapPage() {
                 <tr key={w.year} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : ""}><td className="px-4 py-3 font-medium text-navy">{w.year}</td><td className="px-4 py-3 text-right tabular-nums">{formatAUD(w.cap)}</td><td className="px-4 py-3">{expiryYear(w.year)}</td></tr>
               ))}
             </tbody></table></div><p className="mt-2 text-xs text-warmgray-light">Someone who contributed nothing in those five years could in theory add {formatAUD(WINDOW_TOTAL)} of carry-forward to the {formatAUD(CAP)} cap. In practice you carry forward only what you didn&rsquo;t use each year.</p></div>
-            <p>Carry-forward is useful in a year with a bonus, a capital gain or a return to work, when a large deductible contribution can cut tax at a high marginal rate. Contributions made using carried-forward amounts still count for <Link href="/division-293-tax/">Division 293</Link>.</p>
+            <p>Carry-forward is useful in a year with a bonus, a capital gain or a return to work, when a large deductible contribution can cut tax at a high marginal rate. Contributions made using carried-forward amounts still count for <Link href="/division-293-tax/">Division 293</Link>. To see each year&rsquo;s unused amount and when it expires, use the <Link href="/carry-forward-concessional-contributions-calculator/">carry-forward contributions calculator</Link>.</p>
           </section>
 
           <section>

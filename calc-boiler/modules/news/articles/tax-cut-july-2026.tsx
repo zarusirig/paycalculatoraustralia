@@ -55,7 +55,8 @@ export default function TaxCutJuly2026() {
         This isn&apos;t the end of the schedule. The same legislation cuts the rate again, from 15% to
         14%, from 1 July 2027 — on the same $18,201 to $45,000 bracket — taking the maximum
         annual saving to $536 a year compared with 2024-25 settings. The May 2026 Budget layered
-        a further $250 Working Australians Tax Offset on top from 2027-28; see our{" "}
+        a further $250 Working Australians Tax Offset on top from 2027-28 (work out the combined effect with the{" "}
+        <Link href="/working-australians-tax-offset/">Working Australians Tax Offset calculator</Link>); see our{" "}
         <Link href="/news/federal-budget-2026-27-your-pay/">Budget 2026-27 wrap</Link> for the
         combined picture.
       </p>

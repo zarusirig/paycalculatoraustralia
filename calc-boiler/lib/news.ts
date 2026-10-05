@@ -35,6 +35,8 @@ import {
   CURRENT_CPK_YEAR,
 } from "@/lib/constants/cents-per-km";
 // --- end G6 ---
+import { LISTO_2027_28, LISTO_CURRENT, LISTO_SOURCES } from "@/lib/constants/listo";
+import { formatAUD } from "@/lib/constants/australian-tax";
 
 export type NewsCategory = "Tax" | "Super" | "Wages" | "HECS" | "Centrelink & Payments";
 
@@ -453,6 +455,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     relatedCalculators: [
       { href: "/income-tax-calculator/", label: "Income Tax Calculator" },
       { href: "/pay-rise-calculator/", label: "Pay Rise Calculator" },
+      { href: "/working-australians-tax-offset/", label: "Working Australians Tax Offset Calculator" },
     ],
     relatedArticles: ["july-1-2026-money-changes", "tax-time-2026-whats-new"],
     sources: [
@@ -687,6 +690,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
   // --- G6: news articles, 24 Sep 2026 ---
   ...G6_ARTICLES(),
   // --- end G6 ---
+  ...OCT_TAX_SUPER_ARTICLES(),
 ];
 
 // --- G6: news article metadata (functions of the constants they quote) ---
@@ -890,6 +894,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
         { href: "/tax-return-calculator/", label: "Tax Return Calculator" },
         { href: "/tax-return-2026/", label: "2026 Tax Return Guide" },
         { href: "/tax-calendar/", label: "Tax Calendar 2026-27" },
+        { href: "/late-tax-return-penalty/", label: "Late Tax Return Penalty" },
       ],
       relatedArticles: ["tax-time-2026-whats-new", "hecs-marginal-repayment-first-tax-time", "1000-dollar-instant-tax-deduction"],
       sources: [
@@ -967,6 +972,42 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   ];
 }
 // --- end G6 ---
+
+// --- Oct 2026 tax and super news (feat/oct-tax-super) ---
+function OCT_TAX_SUPER_ARTICLES(): NewsArticleMeta[] {
+  const a = formatAUD(LISTO_CURRENT.incomeThreshold);
+  const b = formatAUD(LISTO_2027_28.incomeThreshold);
+  const ma = formatAUD(LISTO_CURRENT.maxPayment);
+  const mb = formatAUD(LISTO_2027_28.maxPayment);
+  return [
+    {
+      slug: "listo-boost-from-july-2027",
+      headline: `LISTO Boost: Income Limit Rises to ${b} and the Payment to ${mb} From 1 July 2027`,
+      title: `LISTO Boost 2027: ${b} Income Limit, ${mb} Payment`,
+      description: `From 1 July 2027 the low income super tax offset income limit rises from ${a} to ${b} and the maximum from ${ma} to ${mb}. It is now law.`,
+      category: "Super",
+      datePublished: "2026-03-13",
+      dateModified: "2026-10-05",
+      authorId: "anita-bell",
+      relatedCalculators: [
+        { href: "/listo-calculator/", label: "LISTO Calculator" },
+        { href: "/superannuation-calculator/", label: "Superannuation Calculator" },
+      ],
+      relatedArticles: ["super-contribution-caps-2026-27", "super-tax-changes-explained"],
+      sources: [
+        { title: "Low Income Superannuation Tax Offset (LISTO): from 1 July 2027", url: LISTO_SOURCES.atoBoost, publisher: "Australian Taxation Office" },
+        { title: "Low Income Superannuation Tax Offset fact sheet", url: LISTO_SOURCES.treasury, publisher: "Treasury" },
+        { title: "Low income super tax offset", url: LISTO_SOURCES.ato, publisher: "Australian Taxation Office" },
+      ],
+      faq: [
+        { question: "What is changing with LISTO from 1 July 2027?", answer: `The income threshold rises from ${a} to ${b}, to match the top of the second income tax bracket, and the maximum payment rises from ${ma} to ${mb}. The ATO says the measure is now law.` },
+        { question: "Do I need to apply for LISTO?", answer: "No. The ATO pays it into your super fund, which must hold your tax file number. It is 15% of your before-tax super contributions up to the yearly maximum." },
+        { question: "Does the boost apply this year?", answer: `No. For 2026-27 the income limit is still ${a} and the maximum ${ma}. The higher limits start from 1 July 2027.` },
+      ],
+    },
+  ];
+}
+// --- end Oct 2026 tax and super news ---
 
 /** All articles, newest first. */
 export function getAllNews(): NewsArticleMeta[] {
