@@ -20,10 +20,10 @@ const ENTRIES = STATES.map((s) => registeredNurseRange(s)!.entry).sort((a, b) =>
 const RN_ENTRY_LOW = ENTRIES[0];
 const RN_ENTRY_HIGH = ENTRIES[ENTRIES.length - 1];
 
-const TITLE = "Healthcare Worker Pay — Nurses by State, Doctors & Allied Health";
-const DESCRIPTION = `Nurse and midwife pay scales for every state and territory, from the agreements: registered nurses start on ${formatAUD(RN_ENTRY_LOW)} to ${formatAUD(
+const TITLE = "Nurse Salary Australia 2026 (RN, EN, NP): Pay by State";
+const DESCRIPTION = `Nurse salary in Australia by state: registered nurses (RN) start on ${formatAUD(RN_ENTRY_LOW)} to ${formatAUD(
   RN_ENTRY_HIGH,
-)}. Plus doctors and allied health.`;
+)}, plus enrolled (EN) and nurse practitioner (NP) pay.`;
 
 export const metadata: Metadata = {
   title: TITLE,

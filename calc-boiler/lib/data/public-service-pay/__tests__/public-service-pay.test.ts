@@ -388,3 +388,29 @@ test("TAS, ACT and NT level sections are anchored and prefixed", () => {
   assert.equal(nt[0].heading, "NT AO2 salary 2026");
   assert.equal(nt.length, 10);
 });
+
+// Oct 2026: VPS grade x step grid above the fold. Corner checks against Schedule C of
+// the VPS Enterprise Agreement 2024, 1 May 2026 column (all 76 steps were compared
+// programmatically on 5 Oct 2026).
+test("VIC quickTable covers VPS grades 1 to 6 and quotes Schedule C", () => {
+  const vic = getJurisdiction("vic")!;
+  assert.ok(vic.quickTable);
+  assert.equal(vic.h1, "VPS Pay Scale 2026 (VPS1–VPS6)");
+  const schedule = vic.schedules.find((s) => s.id === vic.quickTable!.scheduleId)!;
+  const bands = schedule.streams
+    .flatMap((s) => s.bands)
+    .filter((b) => b.group && vic.quickTable!.groups.includes(b.group));
+  assert.equal(bands.length, 10);
+  const first = (code: string) => bands.find((b) => b.code === code)!.payPoints![0].annual;
+  assert.equal(first("VPS 1.1"), 56_677);
+  assert.equal(first("VPS 3.1"), 81_496);
+  assert.equal(first("VPS 4.1"), 100_894);
+  assert.equal(first("VPS 5.1"), 116_413);
+  assert.equal(first("VPS 6.1"), 142_790);
+  const last = (code: string) => {
+    const pts = bands.find((b) => b.code === code)!.payPoints!;
+    return pts[pts.length - 1].annual;
+  };
+  assert.equal(last("VPS 6.2"), 191_084);
+  assert.equal(last("VPS 3.2"), 98_955);
+});

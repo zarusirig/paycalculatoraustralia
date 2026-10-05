@@ -157,6 +157,27 @@ export interface Jurisdiction {
    * so no figure is typed twice. See `levelSections` in ./index.ts.
    */
   levelGuide?: LevelGuide;
+  /** On-page H1 where it should differ from the title tag (defaults to metaTitle). */
+  h1?: string;
+  /**
+   * Optional above-the-fold grade x step grid, built from an existing schedule
+   * so no figure is typed twice. One row per value range, one column per step.
+   */
+  quickTable?: QuickTable;
+}
+
+export interface QuickTable {
+  scheduleId: string;
+  /** Band `group` labels to include, in order, e.g. "VPS Grade 1". */
+  groups: readonly string[];
+  /** Heading of the table section, e.g. "VPS pay scale by grade and step". */
+  title: string;
+  /** One short paragraph above the grid. */
+  intro: string;
+  /** Prefix for step column headings, e.g. "Step". */
+  stepLabel: string;
+  /** Note under the grid (what is not in it). */
+  note?: string;
 }
 
 /**

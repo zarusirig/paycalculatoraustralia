@@ -42,7 +42,7 @@ export const QLD_NURSING_PAY: NursingStateData = {
   name: "Queensland",
   shortName: "QLD",
   metaTitle: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages",
-  h1: "QLD Nurse Pay Rates 2026 — Queensland Health Nursing Wages (EB12)",
+  h1: "Queensland Nurse Pay Rates 2026 — Queensland Health Nursing Wages (EB12)",
   employer: "Queensland Health (Hospital and Health Services) and the Department of Education",
   ordinaryHoursPerWeek: 38,
 

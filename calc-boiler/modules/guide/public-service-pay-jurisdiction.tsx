@@ -14,12 +14,14 @@ import {
   groupBands,
   groupRange,
   levelSections,
+  shortLevelLabel,
   takeHomeHref,
   nearestTakeHomeSalary,
   type ClassificationBand,
   type LevelSection,
   type Jurisdiction,
   type PaySchedule,
+  type QuickTable,
 } from "@/lib/data/public-service-pay";
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 // J6: each APS level section links to its own grade page.
@@ -158,6 +160,94 @@ function LevelSectionBlock({ section, detailHref }: { section: LevelSection; det
         </p>
       ) : null}
     </section>
+  );
+}
+
+/**
+ * Above-the-fold grade x step grid ("VPS pay scale"): one row per value range,
+ * one column per progression step, built from the same schedule as the
+ * per-grade sections so no salary is typed twice.
+ */
+function QuickGradeTable({ jurisdiction, config }: { jurisdiction: Jurisdiction; config: QuickTable }) {
+  const schedule = jurisdiction.schedules.find((s) => s.id === config.scheduleId);
+  if (!schedule) return null;
+  const bands = schedule.streams
+    .flatMap((stream) => stream.bands)
+    .filter((band) => band.group !== undefined && config.groups.includes(band.group));
+  const maxSteps = Math.max(0, ...bands.map((band) => band.payPoints?.length ?? 0));
+  if (bands.length === 0 || maxSteps === 0) return null;
+  const steps = Array.from({ length: maxSteps }, (_, i) => i + 1);
+
+  return (
+    <section id="grade-step-table" className="scroll-mt-24">
+      <h2 style={HEADING_FONT}>{config.title}</h2>
+      <p>{config.intro}</p>
+      <div className="not-prose my-4 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+        <table className="w-full text-left text-sm text-warmgray">
+          <caption className="sr-only">{config.title}</caption>
+          <thead className="bg-sandstone font-semibold text-navy">
+            <tr>
+              <th scope="col" className="whitespace-nowrap px-3 py-2">Grade</th>
+              <th scope="col" className="whitespace-nowrap px-3 py-2">Value range</th>
+              {steps.map((n) => (
+                <th key={n} scope="col" className="whitespace-nowrap px-3 py-2 text-right">
+                  {config.stepLabel} {n}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+            {bands.map((band) => {
+              const gradeLabel = band.group ? shortLevelLabel(band.group) : "";
+              return (
+                <tr key={band.code}>
+                  <th scope="row" className="whitespace-nowrap px-3 py-2 text-left font-semibold text-navy">
+                    {gradeLabel}
+                  </th>
+                  <td className="whitespace-nowrap px-3 py-2">{band.code.replace(/^VPS /, "")}</td>
+                  {steps.map((n) => {
+                    const point = band.payPoints?.[n - 1];
+                    return (
+                      <td key={n} className="whitespace-nowrap px-3 py-2 text-right tabular-nums">
+                        {point ? formatSalary(point.annual) : "\u2014"}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {config.note && <p className="text-sm">{config.note}</p>}
+    </section>
+  );
+}
+
+function JumpLinks({ jurisdiction }: { jurisdiction: Jurisdiction }) {
+  const links = [
+    ...(jurisdiction.quickTable ? [{ href: "#grade-step-table", label: "Grade and step table" }] : []),
+    ...levelSections(jurisdiction).map((section) => ({ href: `#${section.id}`, label: section.label })),
+    { href: "#progression", label: "Progression" },
+    { href: "#after-tax", label: "After tax" },
+    { href: "#faq", label: "FAQ" },
+  ];
+  return (
+    <nav aria-label="Jump to a section" className="not-prose mb-8">
+      <p className="mb-2 text-sm font-semibold text-navy">Jump to</p>
+      <ul className="flex flex-wrap gap-2">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              className="inline-block rounded-full border border-sandstone-dark/30 bg-white px-3 py-1 text-sm font-medium text-navy hover:border-eucalyptus hover:text-eucalyptus-dark"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
@@ -378,7 +468,7 @@ export default function PublicServicePayJurisdictionPage({
             className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl"
             style={HEADING_FONT}
           >
-            {jurisdiction.metaTitle}
+            {jurisdiction.h1 ?? jurisdiction.metaTitle}
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">{jurisdiction.headline}</p>
           <TrustBar className="!max-w-none" />
@@ -386,6 +476,14 @@ export default function PublicServicePayJurisdictionPage({
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark lg:w-2/3">
+            {/* Above the fold: grade x step grid and jump links (jurisdictions that opt in) */}
+            {jurisdiction.quickTable && (
+              <>
+                <JumpLinks jurisdiction={jurisdiction} />
+                <QuickGradeTable jurisdiction={jurisdiction} config={jurisdiction.quickTable} />
+              </>
+            )}
+
             {/* Who sets the rates */}
             <section id="who-sets-the-rates">
               <h2 style={HEADING_FONT}>Who sets these rates</h2>

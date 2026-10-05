@@ -63,6 +63,21 @@ export default function EnterpriseAgreementPage() {
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
           <section>
+            <H2 id="enterprise-agreement-search">Enterprise Agreement Search and EBA Lookup: Use the Fair Work Commission</H2>
+            <p>
+              The only official enterprise agreement search is the Fair Work Commission&rsquo;s <a href={FWC_SEARCH} target="_blank" rel="noopener noreferrer">agreement Document Search</a>. An EBA lookup there needs the employer&rsquo;s name, which is on your payslip. The Commission publishes all current agreements and details of past ones, and it also keeps these lists:
+            </p>
+            <ul>
+              <li><strong>Agreements in progress:</strong> applications the Commission is considering for approval now, including new agreements and variations.</li>
+              <li><strong>Terminated agreements:</strong> an Excel list with the title, matter number and end date, updated monthly. Once an agreement ends, the document is no longer public.</li>
+              <li><strong>All agreements since 1994</strong> that have not been terminated, as an Excel download, plus a list for each year (updated weekly for the current year) that you can search by industry, agreement ID or matter number.</li>
+            </ul>
+            <p>
+              The steps below walk through the search. Once you have the agreement, use the <a href="#award-floor">award comparison</a> to check its base rate against the award, or look up a major employer in the <a href="#employers">table of big-employer agreements</a>.
+            </p>
+          </section>
+
+          <section>
             <H2 id="find">How to Find Your Enterprise Agreement: EBA Search, Step by Step</H2>
             <ol>
               <li><strong>Check whether one applies.</strong> Look at your payslip or contract for an agreement name, check the company intranet, or ask HR, payroll, a colleague or your union.</li>

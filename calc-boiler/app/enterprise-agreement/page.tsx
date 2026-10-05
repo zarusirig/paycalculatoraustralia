@@ -5,7 +5,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 
 const SLUG = "enterprise-agreement";
-const TITLE = "Enterprise Agreement (EBA) Search: How to Find Yours";
+const TITLE = "Enterprise Agreement Search & EBA Lookup: Find Yours";
 const DESCRIPTION =
   "What an enterprise agreement is, how to find yours in the Fair Work Commission's search, why an expired EBA still applies, and how EBA pay compares with the award.";
 

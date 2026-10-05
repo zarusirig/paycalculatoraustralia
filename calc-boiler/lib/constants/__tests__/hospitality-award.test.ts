@@ -178,3 +178,34 @@ test("determinations are recorded for both awards", () => {
   assert.equal(AWARD_DETERMINATIONS.retail, "PR799285");
   assert.equal(HOSPITALITY_AWARD.determination, AWARD_DETERMINATIONS.hospitality);
 });
+
+// Oct 2026: the above-the-fold level table is computed, so pin it to the figures
+// printed in Schedule B.2.1 and B.2.3 of the consolidated award (read 5 Oct 2026,
+// "incorporates all amendments up to and including 1 July 2026").
+test("above-the-fold table: ordinary, Saturday, Sunday and public holiday rates match Schedule B", () => {
+  const cents = (v: number) => Math.round(Number((v * 100).toFixed(6))) / 100;
+  // level: [ft Sat, ft Sun, ft PH, casual ord, casual Sat, casual Sun, casual PH]
+  const scheduleB: Record<string, number[]> = {
+    Introductory: [32.18, 38.61, 57.92, 32.18, 38.61, 45.05, 64.35],
+    "Level 1": [33.05, 39.66, 59.49, 33.05, 39.66, 46.27, 66.1],
+    "Level 2": [33.85, 40.62, 60.93, 33.85, 40.62, 47.39, 67.7],
+    "Level 3": [34.96, 41.96, 62.93, 34.96, 41.96, 48.95, 69.93],
+    "Level 4": [36.81, 44.18, 66.26, 36.81, 44.18, 51.54, 73.63],
+    "Level 5": [39.13, 46.95, 70.43, 39.13, 46.95, 54.78, 78.25],
+    "Level 6": [40.16, 48.2, 72.29, 40.16, 48.2, 56.23, 80.33],
+  };
+  const P = HOSPITALITY_PENALTIES;
+  for (const [level, expected] of Object.entries(scheduleB)) {
+    const r = HOSPITALITY_RATES.find((x) => x.level === level)!;
+    const got = [
+      cents(r.hourly * P.saturday),
+      cents(r.hourly * P.sunday),
+      cents(r.hourly * P.publicHoliday),
+      cents(r.hourly * (1 + HOSPITALITY_AWARD.casualLoading)),
+      cents(r.hourly * P.casualSaturday),
+      cents(r.hourly * P.casualSunday),
+      cents(r.hourly * P.casualPublicHoliday),
+    ];
+    assert.deepEqual(got, expected, level);
+  }
+});

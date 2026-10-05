@@ -16,8 +16,11 @@ const URL = `${BASE}/hospitality-award-rates/`;
 const L1 = findRate(HOSPITALITY_RATES, "Level 1");
 const L6 = findRate(HOSPITALITY_RATES, "Level 6");
 
-const TITLE = `Hospitality Award Pay Rates ${SITE_CONFIG.financialYear} (${HOSPITALITY_AWARD.code}) — Penalty Rates`;
-const DESCRIPTION = `Current ${HOSPITALITY_AWARD.code} pay rates from ${HOSPITALITY_AWARD.operativeFrom}: Level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L6.hourly, 2)} at Level 6, plus casual, weekend, public holiday, overtime and junior rates.`;
+// CTR test (5 Oct 2026): the page has 14.6k impressions at position 7.9 under the older
+// "Hospitality Award Pay Rates ... Penalty Rates" title. The new title leads with the head
+// term and the table's columns; the description leads with the Level 1 casual figure.
+const TITLE = `Hospitality Award Rates ${SITE_CONFIG.financialYear.slice(0, 4)}: Level 1–6, Casual, Sat, Sun & PH`;
+const DESCRIPTION = `Hospitality award rates from ${HOSPITALITY_AWARD.operativeFrom} (${HOSPITALITY_AWARD.code}): Level 1 is ${formatAUD(L1.hourly, 2)}/hr, ${formatAUD(Math.round(L1.hourly * 125) / 100, 2)} casual. Table for Levels 1–6 with Saturday, Sunday and public holiday rates.`;
 
 export const metadata: Metadata = {
   title: TITLE,

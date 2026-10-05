@@ -122,7 +122,7 @@ export default function AverageSalaryAustraliaPage() {
 
         <header className="mb-10 max-w-4xl lg:mb-14">
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
-            Average Salary in Australia {HEADLINE_YEAR}: {dollars(HEADLINE.averageAnnual)} a Year
+            Average Wage in Australia {HEADLINE_YEAR} (ABS): {dollars(HEADLINE.averageAnnual)} a Year
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">
             The average full-time salary in Australia is <strong className="text-navy">{dollars(HEADLINE.averageAnnual)}</strong> a year
@@ -145,6 +145,43 @@ export default function AverageSalaryAustraliaPage() {
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+
+            <section id="what-is-the-average-salary">
+              <h2 style={HEADING_FONT}>What is the average salary in Australia?</h2>
+              <p>
+                The average salary in Australia is <strong>{dollars(HEADLINE.averageAnnual)} a year</strong> for a full-time adult
+                ({dollarsCents(AWE_HEADLINE.fullTimeOrdinaryWeekly)} a week), from the ABS Average Weekly Earnings release for {AWE_RELEASE.referencePeriod}.
+                That is the mean, so a minority of very high earners lift it. Including overtime the full-time average is{" "}
+                {dollars(HEADLINE.averageFullTimeTotalAnnual)}, and across all employees, part-time included, it is{" "}
+                {dollars(HEADLINE.averageAllEmployeesAnnual)}. The typical worker earns less than the average: see the median below.
+              </p>
+            </section>
+
+            <section id="median-salary">
+              <h2 style={HEADING_FONT}>Median salary in Australia {HEADLINE_YEAR}</h2>
+              <p>
+                The median is the middle of the line: half of employees earn less, half earn more. The ABS publishes it in{" "}
+                <a href={EE_RELEASE.url} target="_blank" rel="noreferrer noopener">Employee Earnings</a> ({EE_RELEASE.referencePeriod}),
+                the latest edition. Yearly figures are the ABS weekly figure &times; 52.
+              </p>
+              <Table caption="Median salary in Australia, ABS Employee Earnings" head={["Measure", "Weekly", "Yearly"]}>
+                <tr><th scope="row" className={`${td} font-medium`}>Median, full-time employees</th><td className={td}>{dollars(EE_MEDIAN.fullTime)}</td><td className={`${td} font-semibold`}>{dollars(HEADLINE.medianFullTimeAnnual)}</td></tr>
+                <tr><th scope="row" className={`${td} font-medium`}>Median, full-time men</th><td className={td}>{dollars(EE_MEDIAN.maleFullTime)}</td><td className={td}>{dollars(annualise(EE_MEDIAN.maleFullTime))}</td></tr>
+                <tr><th scope="row" className={`${td} font-medium`}>Median, full-time women</th><td className={td}>{dollars(EE_MEDIAN.femaleFullTime)}</td><td className={td}>{dollars(annualise(EE_MEDIAN.femaleFullTime))}</td></tr>
+                <tr><th scope="row" className={`${td} font-medium`}>Median, all employees</th><td className={td}>{dollars(EE_MEDIAN.allEmployees)}</td><td className={`${td} font-semibold`}>{dollars(HEADLINE.medianAllAnnual)}</td></tr>
+                {EE_PERCENTILES_ALL.filter((p) => p.percentile !== 50).map((p) => (
+                  <tr key={p.percentile}>
+                    <th scope="row" className={`${td} font-medium`}>{p.percentile}th percentile, all employees</th>
+                    <td className={td}>{dollars(p.weekly)}</td>
+                    <td className={td}>{dollars(annualise(p.weekly))}</td>
+                  </tr>
+                ))}
+              </Table>
+              <p className="text-sm">
+                The full median by state, age and industry is further down this page. To turn any of these into pay in the hand, use the{" "}
+                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link>.
+              </p>
+            </section>
 
             <section id="checker">
               <h2 style={HEADING_FONT}>Is your salary above average?</h2>
@@ -382,6 +419,8 @@ export default function AverageSalaryAustraliaPage() {
                   <h3 className="mb-3 font-bold text-navy">On this page</h3>
                   <div className="space-y-2 text-sm">
                     {[
+                      ["#what-is-the-average-salary", "What is the average salary?"],
+                      ["#median-salary", "Median salary"],
                       ["#checker", "Is my salary above average?"],
                       ["#average-vs-median", "Average vs median"],
                       ["#after-tax", "Average salary after tax"],
