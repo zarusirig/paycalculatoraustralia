@@ -241,6 +241,67 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/payday-super/": [L("/news/payday-super-employees-payslip/", "Payday Super and Your Payslip", "What employees see from July 2026."), L("/super-guarantee-charge/", "Super Guarantee Charge", "What late or missed super costs an employer."), EMPLOYER_COST, SUPER_CALC, WEEKLY_PAY, FORTNIGHTLY_PAY],
 };
 
+// --- Oct core new pages (5 Oct 2026) ---------------------------------------
+// Seven new pages, each linked from at least three existing pages and linking
+// out to its neighbours. Kept in one block so the shared file stays easy to
+// merge: new entries go into PAGE_LINKS, and links added to an existing entry
+// are spliced in as its second card.
+const MARGINAL_RATES = L("/marginal-tax-rates/", "Marginal Tax Rates", "What the next dollar, a raise or a bonus really costs after tax.");
+const ANNUAL_LEAVE_CALC = L("/annual-leave-calculator/", "Annual Leave Calculator", "Hours accrued, your balance and what it is worth.");
+const NET_PAY_CALC = L("/net-pay-calculator/", "Net Pay Calculator", "From hourly rate and hours to net pay on a payslip.");
+const PILON = L("/payment-in-lieu-of-notice/", "Payment in Lieu of Notice", "NES notice periods, and the tax and super on a payout.");
+const CASUAL_CONVERSION = L("/casual-conversion/", "Casual Conversion", "Becoming permanent: the 6 and 12 month rule and what it does to pay.");
+const ALLOWANCES = L("/allowances-guide/", "Allowances Guide", "First aid, laundry, tool, split shift and on-call allowances by award.");
+const HIGHEST_PAYING = L("/highest-paying-jobs-australia/", "Highest Paying Jobs", "Median pay for each job we cover, and what it takes home.");
+const LEAVE_PAYOUT = L("/leave-calculator/", "Leave Payout Calculator", "Unused annual leave paid out when you leave.");
+const ANNUAL_LEAVE_GUIDE = L("/annual-leave-guide/", "Annual Leave Guide", "Four weeks a year, how it accrues and when it can be cashed out.");
+const FINAL_PAY = L("/final-pay-calculator/", "Final Pay Calculator", "Everything you are owed when employment ends.");
+const REDUNDANCY = L("/redundancy-pay-calculator/", "Redundancy Pay Calculator", "NES severance by years of service, and the tax on it.");
+const LSL_CALC = L("/long-service-leave-calculator/", "Long Service Leave Calculator", "Weeks accrued and what a payout is worth, in every state.");
+const EMPLOYMENT_TYPES = L("/full-time-vs-part-time-vs-casual/", "Full-Time vs Part-Time vs Casual", "Leave, loading and hours compared.");
+
+Object.assign(PAGE_LINKS, {
+  // The new pages themselves
+  "/marginal-tax-rates/": [TAX_BRACKETS, PAY_RISE, L("/bonus-tax-calculator/", "Bonus Tax Calculator", "Tax on a bonus, and what is withheld."), LITO, TAKE_HOME, INCOME_TAX],
+  "/annual-leave-calculator/": [LEAVE_PAYOUT, ANNUAL_LEAVE_GUIDE, LEAVE_LOADING, L("/sick-leave-calculator/", "Sick Leave Calculator", "Personal/carer's leave: 10 days, 1/26 of hours."), LSL_CALC, PAYSLIP],
+  "/net-pay-calculator/": [TAKE_HOME, GROSS_VS_NET, FORTNIGHTLY_PAY, L("/gross-pay-calculator/", "Gross Pay Calculator", "Work back from the net pay you want."), TAX_WITHHELD, PAYSLIP],
+  "/payment-in-lieu-of-notice/": [FINAL_PAY, REDUNDANCY, LEAVE_PAYOUT, ANNUAL_LEAVE_CALC, LSL_CALC, PAYSLIP],
+  "/casual-conversion/": [L("/casual-loading-calculator/", "Casual Loading Calculator", "The 25% loading and how it compares with permanent pay."), EMPLOYMENT_TYPES, ANNUAL_LEAVE_CALC, L("/sick-leave-calculator/", "Sick Leave Calculator", "Personal/carer's leave: 10 days, 1/26 of hours."), PAYSLIP, JUNIOR],
+  "/allowances-guide/": [PAYSLIP, PENALTY_GUIDE, L("/travel-allowance/", "Travel Allowance", "ATO reasonable amounts for overnight work travel."), JOBS_HUB, AWARD_RATES, L("/backpay-calculator/", "Backpay Calculator", "What you are owed if you have been underpaid.")],
+  "/highest-paying-jobs-australia/": [JOBS_HUB, L("/average-salary-australia/", "Average Salary Australia", "How your pay compares with the national average."), TAKE_HOME_HUB, EMPLOYERS_HUB, NET_PAY_CALC, MARGINAL_RATES],
+  // Existing pages that point at them and had no card list of their own
+  "/leave-calculator/": [ANNUAL_LEAVE_CALC, LEAVE_LOADING, ANNUAL_LEAVE_GUIDE, FINAL_PAY, PILON, LSL_CALC],
+  "/annual-leave-guide/": [ANNUAL_LEAVE_CALC, LEAVE_PAYOUT, LEAVE_LOADING, LSL_CALC, FINAL_PAY, REDUNDANCY],
+  "/final-pay-calculator/": [PILON, LEAVE_PAYOUT, REDUNDANCY, ANNUAL_LEAVE_CALC, LSL_CALC, TAKE_HOME],
+  "/redundancy-pay-calculator/": [PILON, FINAL_PAY, LEAVE_PAYOUT, LSL_CALC, ANNUAL_LEAVE_GUIDE, TAKE_HOME],
+  "/bonus-tax-calculator/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Annual tax on commission and what is withheld from the pay."), MARGINAL_RATES, L("/schedule-5-tax-table/", "Schedule 5 Tax Table", "ATO withholding on bonuses, commissions and back pay."), PAY_RISE, TAKE_HOME],
+  "/take-home-pay-calculator/": [NET_PAY_CALC, GROSS_VS_NET, MARGINAL_RATES, TAX_WITHHELD, PAYSLIP, INCOME_TAX],
+  "/full-time-vs-part-time-vs-casual/": [CASUAL_CONVERSION, L("/casual-loading-calculator/", "Casual Loading Calculator", "The 25% loading and how it compares with permanent pay."), ANNUAL_LEAVE_CALC, L("/sick-leave-calculator/", "Sick Leave Calculator", "Personal/carer's leave: 10 days, 1/26 of hours."), L("/employment-type-calculator/", "Employment Type Calculator", "Employee or contractor, worked out."), PAYSLIP],
+} satisfies Record<string, RelatedLink[]>);
+
+// Existing cards that gain a link: spliced in as the second card, so the page's
+// own first priority stays where it was.
+const SPLICE_SECOND: Record<string, RelatedLink[]> = {
+  "/tax-brackets/": [MARGINAL_RATES],
+  "/pay-rise-calculator/": [MARGINAL_RATES],
+  "/low-income-tax-offset/": [MARGINAL_RATES],
+  "/sick-leave-calculator/": [ANNUAL_LEAVE_CALC],
+  "/leave-loading-calculator/": [ANNUAL_LEAVE_CALC],
+  "/gross-vs-net-pay/": [NET_PAY_CALC],
+  "/understanding-your-payslip/": [NET_PAY_CALC, ALLOWANCES],
+  "/payslip-generator/": [NET_PAY_CALC],
+  "/casual-loading-calculator/": [CASUAL_CONVERSION],
+  "/travel-allowance/": [ALLOWANCES],
+  "/cents-per-km/": [ALLOWANCES],
+  "/overtime-penalty-rates-guide/": [ALLOWANCES],
+  "/average-salary-australia/": [HIGHEST_PAYING],
+};
+for (const [path, add] of Object.entries(SPLICE_SECOND)) {
+  const existing = PAGE_LINKS[path];
+  if (existing) PAGE_LINKS[path] = [existing[0], ...add, ...existing.slice(1)];
+}
+// --- end Oct core new pages -------------------------------------------------
+
 /**
  * Wider pool used to top up a page that filtered itself out of its own cluster.
  * Ordered by breadth of appeal — the first entries suit almost any visitor.
@@ -287,7 +348,7 @@ const CLUSTERS: Cluster[] = [
   },
   {
     match: (p) => p === "/job-pay-rates/",
-    links: [EMPLOYERS_HUB, AWARD_RATES, MIN_WAGE, JUNIOR, L("/average-salary-australia/", "Average Salary Australia", "How your pay compares with the national average."), L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT salaries, which awards rarely cover.")],
+    links: [EMPLOYERS_HUB, HIGHEST_PAYING, AWARD_RATES, MIN_WAGE, JUNIOR, L("/average-salary-australia/", "Average Salary Australia", "How your pay compares with the national average.")],
     limit: 6,
   },
   // --- Employer pages: employer → award, job, junior rates, EA explainer ---

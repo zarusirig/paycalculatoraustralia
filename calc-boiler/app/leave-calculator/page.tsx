@@ -14,9 +14,11 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
 
 // Derived once so the title, description, JSON-LD and rendered page can never
-// disagree. Leads with the leave-loading intent without dropping the payout one.
-const TITLE = `Annual Leave Calculator & Payout Calculator ${SITE_CONFIG.financialYear}`;
-const DESCRIPTION = `Work out your annual leave payout and 17.5% leave loading. Who gets loading, the 4-week formula, and tax on lump-sum payouts — FY${SITE_CONFIG.financialYear} rates.`;
+// disagree. Retargeted 5 Oct 2026: this page owns the PAYOUT intent (unused
+// leave paid out when you leave, and the 17.5% loading). The accrual / balance
+// intent ("annual leave calculator") lives on /annual-leave-calculator/.
+const TITLE = `Leave Payout Calculator: Unused Annual Leave & Loading ${SITE_CONFIG.financialYear}`;
+const DESCRIPTION = `Work out what your unused annual leave is worth when you finish up, with the 17.5% leave loading where it applies and tax on the payout — FY${SITE_CONFIG.financialYear} rates.`;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -50,7 +52,7 @@ const breadcrumb: WithContext<BreadcrumbList> = {
 const webApp: WithContext<WebApplication> = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  name: `Annual Leave & Leave Loading Calculator Australia`,
+  name: `Leave Payout & Leave Loading Calculator Australia`,
   url: URL,
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
@@ -74,9 +76,9 @@ const faq: WithContext<FAQPage> = {
 };
 
 const howToSchema = calculatorHowTo({
-  name: "How to Use the Annual Leave & Leave Loading Calculator",
+  name: "How to Use the Leave Payout & Leave Loading Calculator",
   url: URL,
-  description: "Calculate your annual leave balance, 17.5% leave loading, and payout value in under a minute.",
+  description: "Work out what your unused annual leave is worth when you leave, including 17.5% leave loading, in under a minute.",
   steps: PAY_CALCULATOR_STEPS,
 });
 

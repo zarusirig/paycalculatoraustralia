@@ -268,6 +268,15 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "ote-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "jury-duty-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end G3 ---
+  // --- Oct core new pages (5 Oct 2026) ---
+  "marginal-tax-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "annual-leave-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "net-pay-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "payment-in-lieu-of-notice": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "casual-conversion": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "allowances-guide": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "highest-paying-jobs-australia": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end Oct core new pages ---
   // --- J6 wave 4 backlog (24 Sep 2026) ---
   "centrelink-payment-rates": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "public-service-pay-scales/aps/aps-3": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
