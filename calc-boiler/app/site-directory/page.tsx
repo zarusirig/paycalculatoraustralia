@@ -34,6 +34,7 @@ import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions }
 // --- end F5 ---
 // --- G4 public holiday pay cluster (24 Sep 2026) ---
 import { STATE_PUBLIC_HOLIDAYS, statePath } from "@/lib/data/public-holidays";
+import { SEASONAL_PAGES, seasonalPath } from "@/lib/data/public-holidays/seasonal-pages";
 // --- end G4 ---
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
@@ -195,6 +196,7 @@ const payScaleGroups: Group[] = [
     title: "Public Holiday Pay",
     items: [
       { href: "/public-holiday-pay/", label: "Public Holiday Pay Rates & Calculator" },
+      ...SEASONAL_PAGES.map((p) => ({ href: seasonalPath(p.slug), label: p.shortName })),
       ...STATE_PUBLIC_HOLIDAYS.map((s) => ({ href: statePath(s.slug), label: `${s.code} Public Holidays 2026 & 2027` })),
     ],
   },

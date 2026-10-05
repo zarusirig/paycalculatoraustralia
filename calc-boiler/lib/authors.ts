@@ -218,6 +218,17 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "public-holiday-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end G4 ---
 
+  // --- holiday-specific pay pages (5 Oct 2026) ---
+  "christmas-day-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "boxing-day-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "new-years-day-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "public-holidays-2027": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "melbourne-cup-day-pay": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "easter-public-holiday-pay": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "australia-day-public-holiday-pay": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "christmas-shutdown-annual-leave": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end holiday-specific pay pages ---
+
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
   "minimum-wage-australia": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "minimum-wage-by-age": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
