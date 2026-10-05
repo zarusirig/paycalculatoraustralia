@@ -27,6 +27,7 @@ import { AVIATION_PATHS } from "@/lib/data/aviation-pay";
 // --- G4 public holiday pay cluster (24 Sep 2026) ---
 import { STATE_PUBLIC_HOLIDAYS } from "@/lib/data/public-holidays";
 import { SEASONAL_PAGES } from "@/lib/data/public-holidays/seasonal-pages";
+import { MW_STATE_SLUGS } from "@/lib/data/minimum-wage-state"; // F1
 // --- end G4 ---
 import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
@@ -303,6 +304,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "minimum-wage-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   for (const age of MIN_WAGE_AGES) {
     allPages.push({ slug: `minimum-wage-by-age/${age}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  // F1: /minimum-wage/{state}/
+  for (const state of MW_STATE_SLUGS) {
+    allPages.push({ slug: `minimum-wage/${state}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   allPages.push({ slug: "pro-rata-salary-calculator", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "casual-loading-calculator", changeFrequency: "monthly" as const, priority: 0.9 });

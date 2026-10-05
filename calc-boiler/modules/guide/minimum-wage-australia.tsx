@@ -145,6 +145,12 @@ export default function MinimumWageAustraliaPage() {
               <p>
                 State and local government employees in some states are also covered by their state&rsquo;s own industrial system rather than the national one.
               </p>
+              <p>
+                State by state, with each state&rsquo;s public holidays, payroll tax, long service leave and a take-home calculator:{" "}
+                <Link href="/minimum-wage/nsw/">NSW</Link>, <Link href="/minimum-wage/vic/">Victoria</Link>, <Link href="/minimum-wage/qld/">Queensland</Link>,{" "}
+                <Link href="/minimum-wage/wa/">Western Australia</Link>, <Link href="/minimum-wage/sa/">South Australia</Link>,{" "}
+                <Link href="/minimum-wage/tas/">Tasmania</Link>, <Link href="/minimum-wage/act/">ACT</Link> and <Link href="/minimum-wage/nt/">Northern Territory</Link>.
+              </p>
             </section>
 
             <section id="award-minimums">
