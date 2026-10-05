@@ -269,7 +269,32 @@ type Cluster = {
   limit?: number;
 };
 
+// --- Holiday pay pages (Oct 2026): the hub, its state pages and the eight holiday guides ---
+const HOLIDAY_GUIDES = [
+  "/christmas-day-pay-rates/",
+  "/boxing-day-pay-rates/",
+  "/new-years-day-pay-rates/",
+  "/public-holidays-2027/",
+  "/melbourne-cup-day-pay/",
+  "/easter-public-holiday-pay/",
+  "/australia-day-public-holiday-pay/",
+  "/christmas-shutdown-annual-leave/",
+];
+const HOLIDAY_LINKS: RelatedLink[] = [
+  L("/public-holiday-pay/", "Public Holiday Pay Rates", "Rates for 14 awards and a calculator."),
+  L("/christmas-day-pay-rates/", "Christmas Day Pay Rates", "Dates by state and what the day pays."),
+  L("/boxing-day-pay-rates/", "Boxing Day Pay Rates", "Saturday 26 and Monday 28 December, state by state."),
+  L("/public-holidays-2027/", "Public Holidays 2027", "Every state's 2027 dates with the pay rate."),
+  L("/christmas-shutdown-annual-leave/", "Christmas Shutdown Leave", "When your employer can direct annual leave."),
+  L("/easter-public-holiday-pay/", "Easter 2027 Pay", "Good Friday to Easter Monday, by state."),
+];
+
 const CLUSTERS: Cluster[] = [
+  {
+    match: (p) => p.startsWith("/public-holiday-pay/") || HOLIDAY_GUIDES.includes(p),
+    links: HOLIDAY_LINKS,
+    limit: 6,
+  },
   // --- Award pages: award → jobs and employers it covers ---
   {
     match: (p) => p in AWARD_LINKS,

@@ -26,6 +26,7 @@ import { AVIATION_PATHS } from "@/lib/data/aviation-pay";
 // --- end F5 ---
 // --- G4 public holiday pay cluster (24 Sep 2026) ---
 import { STATE_PUBLIC_HOLIDAYS } from "@/lib/data/public-holidays";
+import { SEASONAL_PAGES } from "@/lib/data/public-holidays/seasonal-pages";
 // --- end G4 ---
 import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
@@ -396,6 +397,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `public-holiday-pay/${s.slug}`, changeFrequency: "monthly" as const, priority: 0.8 });
   }
   // --- end G4 ---
+  // --- holiday-specific pay pages (5 Oct 2026) ---
+  for (const p of SEASONAL_PAGES) {
+    allPages.push({ slug: p.slug, changeFrequency: "monthly" as const, priority: 0.8 });
+  }
+  // --- end holiday-specific pay pages ---
 
   // 9. E-E-A-T Compliance Pages — priority 0.3 (published last)
   const compliancePages = ["about", "contact", "privacy", "terms", "disclaimer", "site-directory"];

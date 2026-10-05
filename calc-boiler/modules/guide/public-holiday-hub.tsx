@@ -184,6 +184,21 @@ export default function PublicHolidayHub() {
               </p>
             </section>
 
+            <section id="holiday-guides">
+              <h2 style={HEADING_FONT}>Pay guides for the biggest holidays</h2>
+              <p>
+                The rules above apply to every public holiday. These guides add the dates by state, the part-day and extra-day rules and a worked
+                example for the days people ask about most:{" "}
+                <Link href="/christmas-day-pay-rates/">Christmas Day</Link>, <Link href="/boxing-day-pay-rates/">Boxing Day</Link>,{" "}
+                <Link href="/new-years-day-pay-rates/">New Year&rsquo;s Day and Eve</Link>,{" "}
+                <Link href="/easter-public-holiday-pay/">Easter 2027</Link>,{" "}
+                <Link href="/australia-day-public-holiday-pay/">Australia Day 2027</Link> and{" "}
+                <Link href="/melbourne-cup-day-pay/">Melbourne Cup Day</Link>. For the full 2027 calendar with the pay for each day, see{" "}
+                <Link href="/public-holidays-2027/">public holidays 2027</Link>, and for how a Christmas closure affects your leave, the{" "}
+                <Link href="/christmas-shutdown-annual-leave/">Christmas shutdown and annual leave guide</Link>.
+              </p>
+            </section>
+
             <section id="by-state">
               <h2 style={HEADING_FONT}>Public holiday dates by state, 2026 and 2027</h2>
               <p>

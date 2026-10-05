@@ -207,6 +207,8 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
                   <SidebarLink key={o.slug} href={statePath(o.slug)} label={`${o.code} public holidays 2026 & 2027`} />
                 ))}
                 <SidebarLink href={PH_HUB_PATH} label="Public holiday pay — all states" />
+                <SidebarLink href="/christmas-day-pay-rates/" label="Christmas Day pay rates" />
+                <SidebarLink href="/public-holidays-2027/" label="Public holidays 2027 with pay" />
               </div>
             </section>
 
