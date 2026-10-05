@@ -13,12 +13,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-wa/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator WA — Your Take-Home Pay in Western Australia",
+  title: `Pay Calculator WA ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in WA. A free salary and wage calculator on current ATO rates, plus WA public holidays, the state award system and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Calculator WA — Your Take-Home Pay in Western Australia",
+    title: `Pay Calculator WA ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
     description: "See what you actually take home in WA after income tax, the Medicare levy and HECS-HELP.",
     url: URL,
     siteName: SITE_CONFIG.name,

@@ -13,12 +13,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-nsw/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator NSW — Your Take-Home Pay in New South Wales",
+  title: `Pay Calculator NSW ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in NSW. A free salary and wage calculator on current ATO rates, plus NSW public holidays, penalty rates and long service leave.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Calculator NSW — Your Take-Home Pay in New South Wales",
+    title: `Pay Calculator NSW ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
     description: "See what you actually take home in NSW after income tax, the Medicare levy and HECS-HELP.",
     url: URL,
     siteName: SITE_CONFIG.name,

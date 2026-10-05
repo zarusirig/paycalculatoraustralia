@@ -18,6 +18,10 @@ const f2000Help = calculatePAYGWithholding(2_000, "fortnightly", { hasSTSL: true
 
 export const TAX_WITHHELD_FAQS: readonly { q: string; a: string }[] = [
   {
+    q: "What is a PAYG calculator?",
+    a: "A PAYG calculator estimates the pay-as-you-go tax your employer withholds from each pay, using the ATO's published withholding formulas. This one also compares a year of withholding with the tax you'll owe, so you can see a likely refund or bill. It's an estimate: your actual tax is set when you lodge your return.",
+  },
+  {
     q: `How much tax is withheld from $1,000 a week in ${FY}?`,
     a: `${m(w1000.totalWithheld)} if you've claimed the tax-free threshold, leaving ${m(w1000.netPerPeriod)}. Without the threshold (a second job) it's ${m(w1000NoTft.totalWithheld)}. These are the ATO's Schedule 1 amounts for payments from 1 July 2026, and they include the 2% Medicare levy.`,
   },

@@ -12,6 +12,7 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { TAS_FAQS } from "./pay-calculator-tas-faqs";
 import {
@@ -75,6 +76,10 @@ export default function PayCalculatorTASPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <StatePayFacts profile={PROFILE} />
+
+          <StateMinimumWage state="tas" />
+
           <section>
             <H2>How much of a Tasmanian salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
@@ -156,7 +161,6 @@ export default function PayCalculatorTASPage() {
             </p>
           </section>
 
-          <StatePayFacts profile={PROFILE} />
 
           <OtherStatesNav profile={PROFILE} />
 

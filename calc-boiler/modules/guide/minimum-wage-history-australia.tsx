@@ -53,11 +53,11 @@ export default function MinimumWageHistoryPage() {
             Australian Minimum Wage History: Every Increase Since 2010
           </h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">
-            The National Minimum Wage is the pay floor for adults aged {ADULT_AGE} and over not covered by an award or agreement, reset each year by the Fair Work Commission&apos;s Annual Wage Review. From {HISTORY_LAST.operativeFrom} it is {money(NMW.hourly)} an hour, or {money(NMW.weekly)} for a {NMW.hoursPerWeek}-hour week, a {formatIncrease(NMW.increase)} rise. The rate has increased every year since {HISTORY_FIRST.fy}, when it was {money(HISTORY_FIRST.hourly)} an hour; every increase and what drove the big years is below.
+            The National Minimum Wage is the pay floor for adults aged {ADULT_AGE} and over not covered by an award or agreement, reset each year by the Fair Work Commission&apos;s Annual Wage Review. It has gone up in every review since {HISTORY_FIRST.fy}, most recently by {formatIncrease(NMW.increase)} from {HISTORY_LAST.operativeFrom}. This page is the timeline: every increase, the biggest and smallest years, and what drove them. For what the minimum wage is today, see the <Link href="/minimum-wage-australia/">minimum wage in Australia</Link> page.
           </p>
           <div className="mb-6 rounded-xl border-l-4 border-eucalyptus-dark bg-sandstone p-5">
             <p className="text-base leading-relaxed text-navy">
-              <strong>In short:</strong> the adult minimum wage has risen from {money(HISTORY_FIRST.hourly)} an hour in {HISTORY_FIRST.fy.slice(0, 4)} to {money(HISTORY_LAST.hourly)} from {HISTORY_LAST.operativeFrom}, up {(TOTAL_GROWTH * 100).toFixed(1)}%. The biggest single rise was {HISTORY_LARGEST.published} in {HISTORY_LARGEST.operativeFrom.slice(-4)}. For today&rsquo;s rate in full, with after-tax pay, see <Link href="/minimum-wage-australia/" className="font-medium text-eucalyptus-dark underline">minimum wage Australia</Link>.
+              <strong>In short:</strong> the adult minimum wage has risen from {money(HISTORY_FIRST.hourly)} an hour in {HISTORY_FIRST.fy.slice(0, 4)} to {money(HISTORY_LAST.hourly)} from {HISTORY_LAST.operativeFrom}, up {(TOTAL_GROWTH * 100).toFixed(1)}%. The biggest single rise was {HISTORY_LARGEST.published} in {HISTORY_LARGEST.operativeFrom.slice(-4)}. To see what the minimum wage is now, with after-tax pay, go to <Link href="/minimum-wage-australia/" className="font-medium text-eucalyptus-dark underline">what is the minimum wage in Australia</Link>.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -69,7 +69,7 @@ export default function MinimumWageHistoryPage() {
             <section id="wage-by-year">
               <h2 style={H2}>National Minimum Wage by Year</h2>
               <p>
-                The National Minimum Wage is the floor for adults aged 21 and over who are not covered by an award or agreement. Each rate below applied from the first full pay period on or after 1 July of that year.
+                The National Minimum Wage is the floor for adults aged 21 and over who are not covered by an award or agreement. Each figure below applied from the first full pay period on or after 1 July of that year.
               </p>
               <div className="not-prose my-8">
                 <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
@@ -131,7 +131,7 @@ export default function MinimumWageHistoryPage() {
             <section id="current">
               <h2 style={H2}>The Minimum Wage Now</h2>
               <p>
-                The current rate is {money(HISTORY_LAST.hourly)} an hour or {money(HISTORY_LAST.weekly)} a week. The <Link href="/minimum-wage-australia/">minimum wage Australia</Link> page has it hourly, weekly, fortnightly and annually, after tax, with award comparisons and the date of the next review. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>.
+                The latest increase is the last row of the table. For the current figures in full, after tax and with award comparisons and the date of the next review, read <Link href="/minimum-wage-australia/">what is the minimum wage in Australia</Link>. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>.
               </p>
             </section>
 
@@ -164,7 +164,7 @@ export default function MinimumWageHistoryPage() {
                     <SidebarLink href="/minimum-wage-australia/" label="Minimum Wage Australia" />
                     <SidebarLink href="/junior-pay-rates/" label="Minimum Wage by Age" />
                     <SidebarLink href="/award-rates/" label="Modern Award Rates" />
-                    <SidebarLink href="/hourly-to-annual-salary-calculator/" label="Hourly to Annual Converter" />
+                    <SidebarLink href="/hourly-to-annual-salary-calculator/" label="Hourly to Salary Converter" />
                   </div>
                 </CardContent>
               </Card>

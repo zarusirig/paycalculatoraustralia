@@ -16,7 +16,8 @@ import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-tax-table/`;
-const TITLE = `Monthly Tax Table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007) — PAYG Calculator`;
+// 5 Oct 2026: "PAYG Calculator" removed (that query belongs to /tax-withheld-calculator/); both financial years named because the 1 July rollover drives search for each.
+const TITLE = `Monthly Tax Table ${PAYG_FINANCIAL_YEAR} and 2025-26 (ATO NAT 1007)`;
 const DESCRIPTION =
   `Monthly tax table ${PAYG_FINANCIAL_YEAR} (ATO NAT 1007): enter your monthly salary to see tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV.`;
 const MODIFIED = "2026-09-23";

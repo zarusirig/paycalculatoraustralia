@@ -15,6 +15,7 @@ import {
 import { STATE_EMPLOYEE_SOURCES, STATE_PROFILES } from "@/lib/data/state-employee";
 import { PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import StateTakeHomeCalculator from "./state-take-home-calculator";
+import StateMinimumWage from "./state-minimum-wage";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { WA_FAQS } from "./pay-calculator-wa-faqs";
 import {
@@ -80,6 +81,10 @@ export default function PayCalculatorWAPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <StatePayFacts profile={PROFILE} />
+
+          <StateMinimumWage state="wa" />
+
           <section>
             <H2>How much of a WA salary do you actually keep?</H2>
             <p className="mb-4 text-warmgray">
@@ -178,7 +183,6 @@ export default function PayCalculatorWAPage() {
             </p>
           </section>
 
-          <StatePayFacts profile={PROFILE} />
 
           <OtherStatesNav profile={PROFILE} />
 

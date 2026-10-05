@@ -134,13 +134,13 @@ export default function PAYGTablesGuidePage() {
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <section id="sample-tax-table-rows">
-              <h2>Weekly, Fortnightly and Monthly Tax Tables {PAYG_FINANCIAL_YEAR}: Sample Rows</h2>
+              <h2>Sample Rows From Each ATO Pay-Cycle Table, {PAYG_FINANCIAL_YEAR}</h2>
               <p>
-                A few rows from each ATO table for {PAYG_FINANCIAL_YEAR}, for an Australian resident. The tables were last updated on {PAYG_TABLES_UPDATED}. Column 2 is the amount withheld when the tax-free threshold is claimed; column 3 when it is not. The study and training support loan (STSL) column is on each full-table page. Method: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview" target="_blank" rel="noopener noreferrer">ATO tax tables overview</a>.
+                A few rows from each ATO table for {PAYG_FINANCIAL_YEAR}, for an Australian resident. To work out the tax taken from one pay and your likely refund, use the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link>. The tables were last updated on {PAYG_TABLES_UPDATED}. Column 2 is the amount withheld when the tax-free threshold is claimed; column 3 when it is not. The study and training support loan (STSL) column is on each full-table page. Method: <a href="https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview" target="_blank" rel="noopener noreferrer">ATO tax tables overview</a>.
               </p>
               {SAMPLE_TABLES.map((t) => (
                 <div key={t.frequency}>
-                  <h3>{t.label} tax table ({t.nat}), {PAYG_FINANCIAL_YEAR}</h3>
+                  <h3>{t.label} pay cycle: sample rows ({t.nat})</h3>
                   <div className="not-prose my-4">
                     <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                       <table className="w-full text-sm text-left text-navy">

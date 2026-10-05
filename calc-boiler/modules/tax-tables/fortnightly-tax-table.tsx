@@ -12,12 +12,14 @@ import {
   PAYG_TABLES_UPDATED,
   PAYG_FINANCIAL_YEAR,
   PAYG_PREVIOUS_FINANCIAL_YEAR,
+  PAYG_YEAR_INFO,
 } from "@/lib/constants/payg-withholding";
 import TaxTableLookupWidget from "./lookup-widget";
 import FullTaxTable from "./full-tax-table";
 import ForeignResidentTable from "./foreign-resident-table";
 import ExtraPayTable from "./extra-pay-table";
 import AtoDownloads from "./ato-downloads";
+import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
 import { FORTNIGHTLY_TAX_TABLE_FAQS } from "./fortnightly-tax-table-faqs";
@@ -83,6 +85,14 @@ export default function FortnightlyTaxTablePage() {
         <div className="flex flex-col lg:flex-row gap-12">
 
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+
+            <section id="fortnightly-tax-table-coefficients">
+              <h2>Fortnightly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>
+              <p>
+                From {PAYG_TABLES_UPDATED} the ATO fortnightly tax table (ATO {ATO_FORTNIGHTLY.nat}) is built from the two coefficient tables below, one for payees who claim the tax-free threshold and one for those who do not. Use them to check a payroll system, or jump to the full fortnightly table further down, the ATO PDF and spreadsheet <a href="#ato-downloads">download links</a>, or the {PAYG_PREVIOUS_FINANCIAL_YEAR} table for pay dates before 1 July 2026.
+              </p>
+              <CoefficientTables frequency="fortnightly" fy={PAYG_FINANCIAL_YEAR} />
+            </section>
 
             <section id="fortnightly-tax-table-2026-27">
               <h2>Full Fortnightly Tax Table {PAYG_FINANCIAL_YEAR} — With and Without the Tax-Free Threshold</h2>
@@ -305,6 +315,14 @@ export default function FortnightlyTaxTablePage() {
                 $45,000 a year or more. A further cut to 14% arrives on 1 July 2027 &mdash; details in our{" "}
                 <Link href="/tax-changes-2026-27/">2026-27 tax changes guide</Link>.
               </p>
+            </section>
+
+            <section id="fortnightly-tax-table-2025-26">
+              <h2>Fortnightly Tax Table {PAYG_PREVIOUS_FINANCIAL_YEAR}: Pay Dates Before 1 July 2026</h2>
+              <p>
+                The {PAYG_PREVIOUS_FINANCIAL_YEAR} fortnightly tax table applies to {PAYG_YEAR_INFO[PAYG_PREVIOUS_FINANCIAL_YEAR].appliesTo}, so use it for a pay run dated up to 30 June 2026 and the {PAYG_FINANCIAL_YEAR} table for a pay dated from 1 July 2026. What counts is the date the payment is made, not the period the work covers. Both years are in the full table above: switch the year toggle to {PAYG_PREVIOUS_FINANCIAL_YEAR}. Paid on a different cycle? Use the <Link href="/weekly-tax-table/">weekly tax table</Link> or <Link href="/monthly-tax-table/">monthly tax table</Link>.
+              </p>
+              <CoefficientTables frequency="fortnightly" fy={PAYG_PREVIOUS_FINANCIAL_YEAR} />
             </section>
 
             <section id="ato-downloads">

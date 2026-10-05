@@ -145,7 +145,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     authorId: "anita-bell",
     relatedCalculators: [
       { href: "/award-rates/", label: "Award Rates Guide" },
-      { href: "/minimum-wage-history-australia/", label: "Minimum Wage History" },
+      { href: "/minimum-wage-australia/", label: "Minimum Wage Australia" },
     ],
     relatedArticles: ["minimum-wage-increase-july-2026", "award-wage-increase-2026-industries"],
     sources: [

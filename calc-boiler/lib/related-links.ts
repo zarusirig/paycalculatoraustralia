@@ -54,7 +54,7 @@ const TAX_WITHHELD = L("/tax-withheld-calculator/", "Tax Withheld Calculator", "
 const LITO = L("/low-income-tax-offset/", "Low Income Tax Offset", "The LITO that cuts tax for earners under $66,667.");
 const TAX_FREE_THRESHOLD = L("/tax-free-threshold/", "Tax-Free Threshold", "The first $18,200 you earn, and when to claim it.");
 const MLS = L("/medicare-levy-surcharge-calculator/", "Medicare Levy Surcharge Calculator", "Whether you owe the MLS without private hospital cover.");
-const PAYG_TABLES = L("/payg-withholding-tables/", "PAYG Withholding Tables", "The ATO weekly, fortnightly and monthly tax tables.");
+const PAYG_TABLES = L("/payg-withholding-tables/", "PAYG Withholding Tables", "Which ATO PAYG schedule to use for your pay.");
 const TAKE_HOME_HUB = L("/take-home-pay-on/", "Take-Home Pay on Every Salary", "Net pay tables from $20,000 to $500,000.");
 const TAX_ON_HUB = L("/tax-on/", "Tax on Every Salary", "Income tax, Medicare and your marginal rate at each salary.");
 // Exact-match titles (the card title is the anchor) with the "... tax calculator"

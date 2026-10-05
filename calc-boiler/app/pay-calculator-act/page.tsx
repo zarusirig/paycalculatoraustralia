@@ -13,12 +13,12 @@ const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-act/`;
 
 export const metadata: Metadata = {
-  title: "Pay Calculator ACT — Your Take-Home Pay in Canberra",
+  title: `Pay Calculator ACT ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in the ACT. A free salary and wage calculator on current ATO rates, plus Canberra Day, Reconciliation Day and 7-year long service leave.",
   alternates: { canonical: URL },
   openGraph: {
-    title: "Pay Calculator ACT — Your Take-Home Pay in Canberra",
+    title: `Pay Calculator ACT ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
     description: "See what you actually take home in the ACT after income tax, the Medicare levy and HECS-HELP.",
     url: URL,
     siteName: SITE_CONFIG.name,
