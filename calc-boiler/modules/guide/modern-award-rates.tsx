@@ -417,7 +417,8 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
             <section id="when-rates-changed">
               <h2 style={H2}>When These Rates Took Effect</h2>
               <p>
-                <strong>{meta.effectiveNote}</strong> If your pay period began before {meta.operativeFrom}, the previous rate lawfully applies to that whole period and the rise starts with the next one. The award was varied by determination {meta.determination} following the Annual Wage Review 2026. If you have been paid below these rates, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed.
+                <strong>{meta.effectiveNote}</strong>{" "}
+                {meta.timingDetail ?? <>If your pay period began before {meta.operativeFrom}, the previous rate lawfully applies to that whole period and the rise starts with the next one. The award was varied by determination {meta.determination} following the Annual Wage Review 2026. If you have been paid below these rates, our <Link href="/backpay-calculator/">backpay calculator</Link> works out what is owed.</>}
               </p>
             </section>
 

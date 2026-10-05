@@ -1,8 +1,8 @@
 // =============================================================================
-// Public holiday pay rates for the 14 modern awards this site publishes, READ
+// Public holiday pay rates for the modern awards this site publishes, READ
 // FROM the award constants — nothing here re-types a percentage.
 //
-//   - 11 awards in lib/constants/modern-awards.ts (their `penalties` rows)
+//   - every award in lib/constants/modern-awards.ts (their `penalties` rows)
 //   - General Retail and Hospitality (lib/constants/hospitality-award.ts)
 //   - SCHADS (lib/constants/schads-award.ts)
 //
@@ -82,6 +82,10 @@ const NOTES: Record<string, string> = {
   "road-transport":
     "Day workers get 150% on top of the weekly wage for hours worked (effectively 250%), and 200% on top (300%) on Good Friday and Christmas Day; casual day workers 275% and 325% (cl 23.2).",
   clerks: "Paid for at least 4 hours when required to work a public holiday (cl 24.4(d)).",
+  timber:
+    "Casual 275% is tabulated for the General Timber stream only (cl 27.1(d)); the award prints no casual public holiday rate for the other two streams. Minimum 3 hours.",
+  mining: "Casual rate is 250% of the casual hourly rate (Schedule B.2.3), which is 312.5% of the minimum rate.",
+  "health-professionals": "Casuals are paid 275%, the 250% plus the 25% loading (Schedule C.2.3).",
 };
 
 function pickRow(award: ModernAwardData): PenaltyRow {
@@ -172,7 +176,7 @@ export function getAwardPublicHolidayRate(key: string): AwardPublicHolidayRate |
   return PUBLIC_HOLIDAY_AWARD_RATES.find((r) => r.key === key);
 }
 
-/** Lowest and highest permanent / casual public holiday multiples across the 14 awards. */
+/** Lowest and highest permanent / casual public holiday multiples across every award listed. */
 export function publicHolidayRateRange() {
   const perm = PUBLIC_HOLIDAY_AWARD_RATES.map((r) => r.permanent);
   const cas = PUBLIC_HOLIDAY_AWARD_RATES.map((r) => r.casual);

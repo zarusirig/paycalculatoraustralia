@@ -94,7 +94,7 @@ test("no adult rate sits below the 2026 entry-level floor", () => {
 test("every award is consolidated to 1 July 2026 or later and has a unique route", () => {
   const hrefs = new Set<string>();
   for (const award of ALL) {
-    assert.match(award.meta.consolidatedTo, /^1 (July|August|September) 2026/);
+    assert.match(award.meta.consolidatedTo, /^\d{1,2} (July|August|September|October) 2026/);
     assert.match(award.meta.code, /^MA000\d{3}$/);
     assert.ok(award.rates.some((r) => r.level === award.entryLevel), `${award.meta.code} entry level exists`);
     assert.ok(!hrefs.has(award.meta.href));
@@ -260,11 +260,12 @@ test("allowances are positive, cited, and key figures are pinned", () => {
 
 // --- A–Z directory -----------------------------------------------------------
 
-test("award directory is A–Z, covers all twenty-two award pages, and reads rates from constants", () => {
+test("award directory is A–Z, covers every award page, and reads rates from constants", () => {
   // 8 before T4 + Restaurant, Nurses, Aged Care, Hair and Beauty, Cleaning, Road Transport
   // + the October 2026 batch (Misc, Building and Construction, Legal, Electrical, Fitness,
   // Real Estate, Local Government, Live Performance).
-  assert.equal(AWARD_DIRECTORY.length, 22);
+  // Every MODERN_AWARDS entry plus General Retail, Hospitality and SCHADS: derived, not hardcoded, so a new award page cannot break it.
+  assert.equal(AWARD_DIRECTORY.length, Object.keys(MODERN_AWARDS).length + 3);
   const names = AWARD_DIRECTORY.map((a) => a.name);
   assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, "en-AU")));
   const byCode = new Map(AWARD_DIRECTORY.map((a) => [a.code, a]));

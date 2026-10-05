@@ -20,6 +20,7 @@ import {
   type ModernAwardKey,
 } from "@/lib/constants/modern-awards";
 import { OCT_BUILDERS } from "@/modules/guide/modern-award-content-oct";
+import { OCT2_BUILDERS } from "@/modules/guide/modern-award-content-oct2";
 
 export interface AwardFaq {
   q: string;
@@ -611,6 +612,15 @@ const BUILDERS: Record<ModernAwardKey, () => AwardPageCopy> = {
   "real-estate": () => OCT_BUILDERS["real-estate"](),
   "local-government": () => OCT_BUILDERS["local-government"](),
   "live-performance": () => OCT_BUILDERS["live-performance"](),
+  // --- October 2026 batch 2 (modern-award-content-oct2.ts) ---
+  plumbing: () => OCT2_BUILDERS.plumbing(),
+  pastoral: () => OCT2_BUILDERS.pastoral(),
+  horticulture: () => OCT2_BUILDERS.horticulture(),
+  "health-professionals": () => OCT2_BUILDERS["health-professionals"](),
+  timber: () => OCT2_BUILDERS.timber(),
+  "meat-industry": () => OCT2_BUILDERS["meat-industry"](),
+  "commercial-sales": () => OCT2_BUILDERS["commercial-sales"](),
+  mining: () => OCT2_BUILDERS.mining(),
 };
 
 export function getAwardPageCopy(key: ModernAwardKey): AwardPageCopy {

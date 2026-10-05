@@ -202,7 +202,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
     label: "Pay rates",
     intro: "Minimum rates from Fair Work awards, agreements and pay scales.",
     featured: [
-      { href: "/award-rates/", label: "Award Rates", description: "22 modern awards, every level" },
+      { href: "/award-rates/", label: "Award Rates", description: "Every modern award we cover, every level" },
       { href: "/job-pay-rates/", label: "Pay Rates by Job", description: "41 jobs, award to average" },
       { href: "/pay-rates/", label: "Pay Rates by Employer", description: "Coles, Woolworths, Bunnings…" },
       { href: "/minimum-wage-australia/", label: "Minimum Wage", description: "National rate from 1 July 2026" },
@@ -733,6 +733,26 @@ export const GUIDE_CATEGORIES = [
       { href: "/local-government-award-rates/", label: "Local Government Award Rates", description: "Council staff levels 1–11" },
       { href: "/live-performance-award-rates/", label: "Live Performance Award Rates", description: "Theatre and venue production crew" },
       // --- end October 2026 award batch ---
+  // --- October 2026 award batch 2 ---
+  { href: "/plumbing-award-rates/", label: "Plumbing Award Rates" },
+  { href: "/pastoral-award-rates/", label: "Pastoral Award Rates" },
+  { href: "/horticulture-award-rates/", label: "Horticulture Award Rates" },
+  { href: "/health-professionals-award-rates/", label: "Health Professionals Award Rates" },
+  { href: "/timber-award-rates/", label: "Timber Award Rates" },
+  { href: "/meat-industry-award-rates/", label: "Meat Industry Award Rates" },
+  { href: "/commercial-sales-award-rates/", label: "Commercial Sales Award Rates" },
+  { href: "/mining-award-rates/", label: "Mining Award Rates" },
+  // --- end October 2026 award batch 2 ---
+      // --- October 2026 award batch 2 ---
+      { href: "/plumbing-award-rates/", label: "Plumbing Award Rates", description: "Plumbers and fire sprinkler fitters" },
+      { href: "/pastoral-award-rates/", label: "Pastoral Award Rates", description: "Farm and livestock hands, FLH1–FLH8" },
+      { href: "/horticulture-award-rates/", label: "Horticulture Award Rates", description: "Pickers, packers and piece rate rules" },
+      { href: "/health-professionals-award-rates/", label: "Health Professionals Award Rates", description: "New AQF pay structure from 1 Oct 2026" },
+      { href: "/timber-award-rates/", label: "Timber Award Rates", description: "General timber, furniture, pulp and paper" },
+      { href: "/meat-industry-award-rates/", label: "Meat Industry Award Rates", description: "MI 1–MI 8, by establishment type" },
+      { href: "/commercial-sales-award-rates/", label: "Commercial Sales Award Rates", description: "Sales reps, travellers, merchandisers" },
+      { href: "/mining-award-rates/", label: "Mining Award Rates", description: "Entry to Level 7, with industry allowance" },
+      // --- end October 2026 award batch 2 ---
       // --- T4: awards batch 3 (23 Sep 2026) ---
       { href: "/restaurant-award-rates/", label: "Restaurant Award Rates", description: "Restaurants, cafés, cooks and chefs" },
       { href: "/nurses-award-rates/", label: "Nurses Award Rates", description: "RN, EN and aged care nurse rates" },

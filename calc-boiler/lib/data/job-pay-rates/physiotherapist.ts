@@ -66,5 +66,6 @@ export const PHYSIOTHERAPIST = hpssOccupation({
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
     { href: "/salary-packaging-guide/", label: "Salary Packaging Guide" },
     { href: "/employee-vs-sole-trader-vs-company/", label: "Employee vs Sole Trader vs Company" },
+    { href: "/health-professionals-award-rates/", label: "Health Professionals Award Rates" },
   ],
 });

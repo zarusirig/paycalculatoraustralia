@@ -196,6 +196,16 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "local-government-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   "live-performance-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   // --- end October 2026 award batch ---
+  // --- October 2026 award batch 2 ---
+  "plumbing-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "pastoral-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "horticulture-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "health-professionals-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "timber-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "meat-industry-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "commercial-sales-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "mining-award-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  // --- end October 2026 award batch 2 ---
   // --- T4: awards batch 3 (23 Sep 2026) ---
   "restaurant-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "nurses-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },

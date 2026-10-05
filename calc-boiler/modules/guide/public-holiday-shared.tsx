@@ -119,7 +119,7 @@ export function RegionalTable({ table }: { table: RegionalHolidayTable }) {
   );
 }
 
-/** The 14 awards' public holiday rates, permanent and casual, as multiples of the base rate. */
+/** Every award's public holiday rates, permanent and casual, as multiples of the base rate. */
 export function AwardPublicHolidayTable() {
   return (
     <TableShell caption="Public holiday pay rates by modern award" minWidth="40rem">

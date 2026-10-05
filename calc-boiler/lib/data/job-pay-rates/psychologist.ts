@@ -68,5 +68,6 @@ export const PSYCHOLOGIST = hpssOccupation({
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
     { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
     { href: "/salary-packaging-guide/", label: "Salary Packaging Guide" },
+    { href: "/health-professionals-award-rates/", label: "Health Professionals Award Rates" },
   ],
 });
