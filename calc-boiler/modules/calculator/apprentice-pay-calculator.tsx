@@ -24,8 +24,18 @@ const YEAR12_OPTIONS = [
   { value: "not-completed", label: "Did not complete Year 12" },
 ] as const;
 
-export default function ApprenticePayCalculator() {
-  const [tradeSlug, setTradeSlug] = useState("building");
+export default function ApprenticePayCalculator({
+  defaultTrade = "building",
+  lockTrade = false,
+  heading = "Apprentice Wages Calculator",
+}: {
+  /** Data trade slug to start on (lib/data/apprentice-pay). */
+  defaultTrade?: string;
+  /** Hide the trade picker on single-trade pages. */
+  lockTrade?: boolean;
+  heading?: string;
+} = {}) {
+  const [tradeSlug, setTradeSlug] = useState(defaultTrade);
   const [track, setTrack] = useState<ApprenticeTrack>("junior");
   const [stage, setStage] = useState("1");
   const [year12, setYear12] = useState<"completed" | "not-completed">("completed");
@@ -59,16 +69,18 @@ export default function ApprenticePayCalculator() {
   return (
     <Card className="shadow-md not-prose" id="apprentice-wages-calculator">
       <CardContent className="p-6 md:p-8">
-        <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>Apprentice Wages Calculator</h2>
+        <h2 className="text-xl font-semibold text-navy mb-1" style={CALC_FONT}>{heading}</h2>
         <p className="text-sm text-warmgray mb-6">
-          Pick your trade and year to see the award minimum, then check it against your payslip. Rates are the minimums in force from {APPRENTICE_RATES_FROM}; many employers pay more.
+          {lockTrade ? "Pick your year" : "Pick your trade and year"} to see the award minimum, then check it against your payslip. Rates are the minimums in force from {APPRENTICE_RATES_FROM}; many employers pay more.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid gap-4 sm:grid-cols-2 content-start">
-            <div className="sm:col-span-2">
-              <SelectField id="ap-trade" label="Trade" value={tradeSlug} onChange={setTradeSlug} options={TRADE_OPTIONS} />
-            </div>
+            {!lockTrade && (
+              <div className="sm:col-span-2">
+                <SelectField id="ap-trade" label="Trade" value={tradeSlug} onChange={setTradeSlug} options={TRADE_OPTIONS} />
+              </div>
+            )}
             <div className="sm:col-span-2">
               <SelectField id="ap-track" label="Apprentice type" value={effectiveTrack} onChange={setTrack} options={trackOptions} />
             </div>

@@ -34,6 +34,8 @@ function routeExists(href: string): boolean {
       return STATES.includes(slug);
     case "minimum-wage-by-age":
       return /^(1[4-9]|20)$/.test(slug);
+    case "apprentice-pay":
+      return ["carpenter", "bricklayer", "painter", "plumber", "mechanic", "hairdresser", "chef", "boilermaker", "butcher"].includes(slug);
     case "take-home-pay-on":
       return hasPage("take-home", Number(slug));
     case "tax-on":

@@ -26,7 +26,7 @@ const e1n = apprenticeRate(elec, "junior", 1, "not-completed")!;
 export const APPRENTICE_PAY_FAQS: Faq[] = [
   {
     q: "How much do apprentices get paid in Australia?",
-    a: `It depends on the trade's award and the year of the apprenticeship. From the first full pay period on or after 1 July 2026, the first-year minimums across the six trades on this page run from ${formatAUD(FIRST_MIN, 2)} to ${formatAUD(FIRST_MAX, 2)} an hour, rising to between ${formatAUD(FOURTH_MIN, 2)} and ${formatAUD(FOURTH_MAX, 2)} in fourth year. Those are award minimums, so employers and enterprise agreements can pay more, and the electrical and plumbing figures include allowances that the other trades add on top.`,
+    a: `It depends on the trade's award and the year of the apprenticeship. From the first full pay period on or after 1 July 2026, the first-year minimums across the trades on this page run from ${formatAUD(FIRST_MIN, 2)} to ${formatAUD(FIRST_MAX, 2)} an hour, rising to between ${formatAUD(FOURTH_MIN, 2)} and ${formatAUD(FOURTH_MAX, 2)} in fourth year. Those are award minimums, so employers and enterprise agreements can pay more, and the electrical and plumbing figures include allowances that the other trades add on top.`,
   },
   {
     q: "Do apprentices get paid minimum wage?",

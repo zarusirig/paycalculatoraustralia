@@ -397,6 +397,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "delivery-driver-pay-rate", changeFrequency: "monthly" as const, priority: 0.9 });
   allPages.push({ slug: "rideshare-delivery-earnings-after-tax", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "apprentice-pay-rates", changeFrequency: "monthly" as const, priority: 0.8 });
+  for (const trade of ["carpenter", "bricklayer", "painter", "plumber", "mechanic", "hairdresser", "chef", "boilermaker", "butcher"]) {
+    allPages.push({ slug: `apprentice-pay/${trade}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
   allPages.push({ slug: "graduate-salary-australia", changeFrequency: "monthly" as const, priority: 0.8 });
   // --- end Oct 2026 set ---
   // --- T1 wave 3 tax core (23 Sep 2026) ---

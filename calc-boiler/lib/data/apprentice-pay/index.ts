@@ -12,6 +12,8 @@
 //   Automotive      MA000089  cl 16.9(b), 16.10(b) + Schedule B.5, B.6 (RS&R)
 //   Hair and beauty MA000005  cl 18.1, 18.2 (Tables 6 to 9)
 //   Cookery         MA000009  cl 19.1(b) (Table 7), junior apprentices in a trade other than waiting
+//   Manufacturing   MA000010  cl 21.6 (apprentices from 1 Jan 2014), cl 30.2(c)(v) tool allowance; used for boilermakers (fabrication), read 5 Oct 2026
+//   Meat industry   MA000059  cl 16.3(a)(ii), 16.4 (percentages of MI 7, $1,119.10), read 5 Oct 2026; includes meat retail (butcher shops, cl 4.2)
 //
 // Scope: apprentices who started on or after 1 January 2014 under a standard
 // 4-year term (the vast majority now in training). Not modelled, because they
@@ -197,6 +199,47 @@ const COOKERY = rows([
   [4, "either", 95, 1063.15, 27.98],
 ]);
 
+// MA000010 cl 21.6, Column 1 and 2: stage 4 for an apprentice who completed Year 12 is the C12/V3 rate
+// ($1,029.10; $27.08 an hour), not a percentage.
+const MANUFACTURING_JUNIOR: ApprenticeRate[] = [
+  { stage: 1, year12: "not-completed", pct: 50, weekly: 559.55, hourly: 14.73 },
+  { stage: 1, year12: "completed", pct: 55, weekly: 615.51, hourly: 16.2 },
+  { stage: 2, year12: "not-completed", pct: 60, weekly: 671.46, hourly: 17.67 },
+  { stage: 2, year12: "completed", pct: 65, weekly: 727.42, hourly: 19.14 },
+  { stage: 3, year12: "not-completed", pct: 75, weekly: 839.33, hourly: 22.09 },
+  { stage: 3, year12: "completed", pct: 75, weekly: 839.33, hourly: 22.09 },
+  { stage: 4, year12: "not-completed", pct: 88, weekly: 984.81, hourly: 25.92 },
+  { stage: 4, year12: "completed", weekly: 1029.1, hourly: 27.08 },
+];
+// MA000010 cl 21.6 Column 3 (adult apprentice): 80% of C10, then C14/V1, C13/V2, C12/V3.
+const MANUFACTURING_ADULT: ApprenticeRate[] = [
+  { stage: 1, year12: "either", pct: 80, weekly: 895.28, hourly: 23.56 },
+  { stage: 2, year12: "either", weekly: 978.1, hourly: 25.74 },
+  { stage: 3, year12: "either", weekly: 1004.9, hourly: 26.44 },
+  { stage: 4, year12: "either", weekly: 1029.1, hourly: 27.08 },
+];
+
+// MA000059 cl 16.3(a)(ii): 50/60/85/95 (not Year 12) and 55/65/85/95 (Year 12) of MI 7 ($1,119.10).
+// The award prints percentages only, so weekly = pct x $1,119.10 rounded half up to the cent, hourly = weekly / 38.
+const MEAT = rows([
+  [1, "not-completed", 50, 559.55, 14.73],
+  [1, "completed", 55, 615.51, 16.2],
+  [2, "not-completed", 60, 671.46, 17.67],
+  [2, "completed", 65, 727.42, 19.14],
+  [3, "not-completed", 85, 951.24, 25.03],
+  [3, "completed", 85, 951.24, 25.03],
+  [4, "not-completed", 95, 1063.15, 27.98],
+  [4, "completed", 95, 1063.15, 27.98],
+]);
+// MA000059 cl 16.4: adult stage 1 = 80% of MI 7 (or the table rate if greater); stage 2 onwards = the lowest adult
+// classification in cl 16.1 (MI 1, $978.10) or the table rate if greater.
+const MEAT_ADULT: ApprenticeRate[] = [
+  { stage: 1, year12: "either", pct: 80, weekly: 895.28, hourly: 23.56 },
+  { stage: 2, year12: "either", weekly: 978.1, hourly: 25.74 },
+  { stage: 3, year12: "either", weekly: 978.1, hourly: 25.74 },
+  { stage: 4, year12: "either", weekly: 1063.15, hourly: 27.98 },
+];
+
 const SCHOOL_BASED_NOTE =
   "School-based apprentices, trainees and apprentices who started before 1 January 2014 are paid under separate award schedules that are not modelled here.";
 
@@ -348,6 +391,49 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
       SCHOOL_BASED_NOTE,
     ],
     tradePageHref: "/hospitality-award-rates/",
+  },
+  {
+    slug: "manufacturing",
+    name: "Manufacturing and engineering (boilermaker, fabrication)",
+    coverage: "Apprentices in engineering and manufacturing trades, including the Engineering Tradesperson (Fabrication) apprenticeship that boilermakers and metal fabricators do, under the Manufacturing and Associated Industries and Occupations Award 2020.",
+    award: {
+      name: "Manufacturing and Associated Industries and Occupations Award 2020",
+      code: "MA000010",
+      url: awardUrl("MA000010"),
+      clause: "cl 21.6 and cl 22",
+    },
+    rateIncludes:
+      "Percentage of the C10/V5 trades rate ($1,119.10 a week), or the named classification rate where the award uses one, before allowances. Weekly and hourly are as the award prints them.",
+    includesAllowances: false,
+    junior: MANUFACTURING_JUNIOR,
+    adult: MANUFACTURING_ADULT,
+    notes: [
+      "4th year for an apprentice who completed Year 12 is the C12/V3 rate of $1,029.10 a week, not 88% (cl 21.6).",
+      "A tool allowance applies on the same percentage basis as column 1 of cl 21.6 (cl 30.2(c)(v)); it is not in these figures.",
+      SCHOOL_BASED_NOTE,
+    ],
+    tradePageHref: "/job-pay-rates/boilermaker/",
+  },
+  {
+    slug: "meat",
+    name: "Meat industry (apprentice butcher)",
+    coverage: "Apprentice butchers and meat tradespeople in meat retail (butcher shops), processing and manufacturing establishments under the Meat Industry Award 2020.",
+    award: {
+      name: "Meat Industry Award 2020",
+      code: "MA000059",
+      url: awardUrl("MA000059"),
+      clause: "cl 16.3(a)(ii) and 16.4",
+    },
+    rateIncludes:
+      "Percentage of the MI 7 weekly rate ($1,119.10) before allowances. The award prints percentages, so weekly is the percentage rounded to the cent and hourly is weekly divided by 38.",
+    includesAllowances: false,
+    junior: MEAT,
+    adult: MEAT_ADULT,
+    notes: [
+      "Adult apprentices who started on or after 1 January 2014: at least 80% of MI 7 in the first year, then at least the lowest adult classification rate (MI 1) or the year rate, whichever is greater (cl 16.4).",
+      "Allowances (for example for cold work or for tools) are not in these figures.",
+      SCHOOL_BASED_NOTE,
+    ],
   },
 ];
 

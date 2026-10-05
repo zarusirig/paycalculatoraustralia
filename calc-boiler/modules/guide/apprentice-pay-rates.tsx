@@ -12,6 +12,7 @@ import {
   type ApprenticeStage,
   type ApprenticeTrade,
 } from "@/lib/data/apprentice-pay";
+import { APPRENTICE_SPOKES } from "@/lib/data/apprentice-pay/spokes";
 import ApprenticePayCalculator from "@/modules/calculator/apprentice-pay-calculator";
 import { APPRENTICE_PAY_FAQS } from "./apprentice-pay-rates-faqs";
 import {
@@ -157,6 +158,9 @@ export default function ApprenticePayRatesPage() {
               {adultTable(t)}
               <ul>
                 {t.notes.map((n) => <li key={n}>{n}</li>)}
+                {APPRENTICE_SPOKES.filter((sp) => sp.tradeSlug === t.slug).map((sp) => (
+                  <li key={sp.slug}>Year-by-year detail, allowances and take-home: <Link href={`/apprentice-pay/${sp.slug}/`}>{sp.h1}</Link>.</li>
+                ))}
                 {t.tradePageHref && <li>Fuller detail for qualified workers: <Link href={t.tradePageHref}>{t.name.split(" (")[0]} pay rates</Link>.</li>}
               </ul>
             </section>
@@ -212,7 +216,7 @@ export default function ApprenticePayRatesPage() {
             sources={SOURCES_LIST}
             methodology={<>
               <p>Every rate is the minimum printed in the award&rsquo;s apprentice clause or schedule, or the award&rsquo;s percentage applied to its reference rate ({f2(STANDARD_WEEKLY_RATE)} a week) and rounded to the cent; hourly is the award&rsquo;s published figure or weekly divided by 38. The calculator multiplies the hourly minimum by your hours, then by 52 for a full year, and takes tax from the site&rsquo;s 2026-27 resident rates with the low income offset and the Medicare levy (private hospital cover, no HELP debt).</p>
-              <p>Scope: apprentices who started on or after 1 January 2014 on a 4-year term, junior rates for every trade shown and adult rates for Electrical and Automotive. Not shown because they were not checked or depend on individual circumstances: other trades&rsquo; awards, 3-year terms, pre-2014 apprentices, school-based apprentices, trainees, Plumbing, Building, Hair and Beauty and Hospitality adult rules, and enterprise agreements. General information, not advice.</p>
+              <p>Scope: apprentices who started on or after 1 January 2014 on a 4-year term, junior rates for every trade shown and adult rates for Electrical, Automotive, Manufacturing and Meat. Junior rates for the Manufacturing (boilermaker) and Meat Industry (butcher) awards were added on 5 October 2026 and read from the awards. Not shown because they were not checked or depend on individual circumstances: other trades&rsquo; awards, 3-year terms, pre-2014 apprentices, school-based apprentices, trainees, Plumbing, Building, Hair and Beauty and Hospitality adult rules, and enterprise agreements. General information, not advice.</p>
             </>}
           />
         </article>
