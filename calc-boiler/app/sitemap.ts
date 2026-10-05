@@ -169,6 +169,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "local-government-award-rates",
     "live-performance-award-rates",
     // --- end October 2026 award batch ---
+    // --- October 2026 award batch 2 ---
+    "plumbing-award-rates",
+    "pastoral-award-rates",
+    "horticulture-award-rates",
+    "health-professionals-award-rates",
+    "timber-award-rates",
+    "meat-industry-award-rates",
+    "commercial-sales-award-rates",
+    "mining-award-rates",
+    // --- end October 2026 award batch 2 ---
     // --- T4: awards batch 3 (23 Sep 2026) ---
     "restaurant-award-rates",
     "nurses-award-rates",

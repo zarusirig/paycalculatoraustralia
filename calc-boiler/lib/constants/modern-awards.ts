@@ -45,6 +45,7 @@
 
 import type { AwardRate } from "./hospitality-award";
 import { OCT_AWARDS } from "./modern-awards-oct";
+import { OCT2_AWARDS } from "./modern-awards-oct2";
 
 export type { AwardRate };
 
@@ -90,6 +91,13 @@ export interface AwardMeta {
    * all-purpose allowances). Defaults to "Adult minimum rates".
    */
   ratesLabel?: string;
+  /**
+   * Replaces the standard "If your pay period began before ... The award was
+   * varied by determination ..." sentence in "When these rates took effect",
+   * for an award whose classifications moved on different dates
+   * (Health Professionals and Support Services: 1 July and 1 October 2026).
+   */
+  timingDetail?: string;
 }
 
 export interface PenaltyRow {
@@ -1759,6 +1767,8 @@ export const MODERN_AWARDS = {
   // --- end T4 ---
   // --- October 2026 batch (modern-awards-oct.ts) ---
   ...OCT_AWARDS,
+  // --- October 2026 batch 2 (modern-awards-oct2.ts) ---
+  ...OCT2_AWARDS,
 } as const;
 
 export type ModernAwardKey = keyof typeof MODERN_AWARDS;

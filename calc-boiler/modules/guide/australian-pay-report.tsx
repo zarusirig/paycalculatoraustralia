@@ -269,10 +269,11 @@ export default function AustralianPayReport() {
                 ))}
               </Table>
               <p className="text-sm">
-                Full-time adult rates before penalty rates, loadings and allowances. The entry grades — Manufacturing C14 (first 38 hours
-                of induction training), Level 1 in the Miscellaneous award (first 3 months), and Level 1 in the Fitness Industry and Live
-                Performance awards (induction and training) — can sit below the National Minimum Wage. Full classification tables are on
-                each award page and on the <Link href="/award-rates/">award rates hub</Link>.
+                Full-time adult rates before penalty rates, loadings and allowances. The introductory entry grades some awards set for the
+                first weeks or months of employment — for example Manufacturing C14 (first 38 hours of induction training) and Level 1 in
+                the Miscellaneous, Fitness Industry, Live Performance, Horticulture, Pastoral, Meat Industry and Timber awards — can sit
+                below the National Minimum Wage; the lowest award rate that applies to ongoing employment cannot. Full classification
+                tables are on each award page and on the <Link href="/award-rates/">award rates hub</Link>.
               </p>
               <CsvLink file="award-minimum-rates-ranked.csv" />
             </section>

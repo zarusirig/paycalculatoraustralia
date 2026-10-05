@@ -57,6 +57,15 @@ const COVERS: Record<string, string> = {
   "real-estate": "Real estate agencies, sales, leasing and property management staff",
   "local-government": "Councils: depot, library, customer service and community staff",
   "live-performance": "Theatre, concert and venue production and support staff",
+  // --- October 2026 batch 2 ---
+  plumbing: "Plumbers, mechanical services workers and fire sprinkler fitters",
+  pastoral: "Farm and livestock hands, station hands and dairy workers (shearers are piece rate)",
+  horticulture: "Fruit and vegetable pickers, packers and horticulture workers",
+  "health-professionals": "Allied health professionals and health support services staff",
+  timber: "Sawmill, forestry, furniture and pulp and paper workers",
+  "meat-industry": "Meat processing, manufacturing and retail butchery workers",
+  "commercial-sales": "Commercial travellers, merchandisers and advertising sales reps",
+  mining: "Mining operators, technicians and tradespeople",
 };
 
 const modern: AwardDirectoryEntry[] = Object.values(MODERN_AWARDS).map((a) => {

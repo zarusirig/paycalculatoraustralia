@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import { calculatePayBreakdown } from "../../../constants/australian-tax";
 import { AWARD_DIRECTORY } from "../../../constants/award-directory";
+import { MODERN_AWARDS } from "../../../constants/modern-awards";
 import {
   REPORT_CSV_FILES,
   awardRanking,
@@ -43,19 +44,24 @@ test("wage benchmarks are sorted and start at the National Minimum Wage", () => 
   assert.equal(b.find((x) => x.id === "average-ft")!.shareOfAverage, 1);
 });
 
-test("award ranking covers every directory award, highest first, only C14 below the NMW", () => {
+test("award ranking covers every directory award, highest first, only introductory entry grades below the NMW", () => {
   const a = awardRanking();
   assert.equal(a.length, AWARD_DIRECTORY.length);
-  assert.equal(a.length, 22);
+  assert.equal(a.length, Object.keys(MODERN_AWARDS).length + 3);
   for (let i = 1; i < a.length; i++) assert.ok(a[i].hourly <= a[i - 1].hourly);
   // Only the induction / first-months entry grades sit below the NMW: Manufacturing C14 (first 38 hours),
-  // Miscellaneous Level 1 (first 3 months), Fitness Level 1 and Live Performance Level 1 (induction/training).
+  // Miscellaneous Level 1 (first 3 months), Fitness Level 1 and Live Performance Level 1 (induction/training),
+  // Horticulture Level 1 (up to 3 months), Pastoral FLH1 (under 6 months), Meat Industry MI 1 and Timber General Timber Level 1.
   const below = a.filter((row) => row.premiumOverNmw < -1e-9).map((row) => row.classification).sort();
   assert.deepEqual(below, [
     "C14 / V1",
+    "FLH1",
+    "General Timber — Level 1",
+    "Level 1",
     "Level 1",
     "Level 1",
     "Level 1 — Production and Support Staff 1 (induction/training)",
+    "MI 1",
   ]);
 });
 

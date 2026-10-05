@@ -176,11 +176,13 @@ test("getStatePublicHolidays finds built states only", () => {
 // ---------------------------------------------------------------------------
 
 test("every award with a published casual public holiday rate is covered, each once", () => {
-  // Fitness and Local Government are omitted: neither award states a casual public holiday rate (publicHolidayCasualUnpublished).
-  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, Object.keys(MODERN_AWARDS).length + 3 - 2);
-  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, 20);
+  // Fitness, Local Government and Meat Industry are omitted: none states a single casual public holiday rate (publicHolidayCasualUnpublished).
+  const unpublished = (Object.values(MODERN_AWARDS) as readonly { publicHolidayCasualUnpublished?: boolean }[]).filter((a) => a.publicHolidayCasualUnpublished).length;
+  assert.equal(unpublished, 3);
+  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, Object.keys(MODERN_AWARDS).length + 3 - unpublished);
   assert.equal(getAwardPublicHolidayRate("fitness"), undefined);
   assert.equal(getAwardPublicHolidayRate("local-government"), undefined);
+  assert.equal(getAwardPublicHolidayRate("meat-industry"), undefined);
   const keys = PUBLIC_HOLIDAY_AWARD_RATES.map((r) => r.key);
   assert.equal(new Set(keys).size, keys.length);
 });
@@ -208,6 +210,14 @@ test("public holiday multiples match the award tables", () => {
     electrical: [2.5, 3.125], // 312.5% (cl 20.4(b))
     "real-estate": [2, 2.5], // 200% of the casual rate (Schedule B.2.2)
     "live-performance": [2, 2.25],
+    // --- October 2026 batch 2 ---
+    plumbing: [2.5, 2.75],
+    pastoral: [2, 2.25],
+    horticulture: [2, 2.25],
+    "health-professionals": [2.5, 2.75],
+    timber: [2.5, 2.75], // casual 275% is tabulated for the General Timber stream only (cl 27.1(d))
+    "commercial-sales": [2.5, 2.75],
+    mining: [2.5, 3.125], // 250% of the casual rate (Schedule B.2.3)
   };
   for (const r of PUBLIC_HOLIDAY_AWARD_RATES) {
     assert.deepEqual([r.permanent, r.casual], expected[r.key], r.key);

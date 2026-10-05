@@ -117,6 +117,15 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/real-estate-award-rates/": [job("property-manager", "Property Manager", "Property manager pay by level and state."), job("real-estate-agent", "Real Estate Agent", "Agent pay, commission and take-home."), L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), OVERTIME, TOIL],
   "/local-government-award-rates/": [L("/enterprise-agreement/", "Enterprise Agreements", "Why most councils pay under an agreement, not the award."), JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL],
   "/live-performance-award-rates/": [JUNIOR, MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
+  // --- October 2026 award batch 2 ---
+  "/plumbing-award-rates/": [job("plumber", "Plumber", "Plumber pay from apprentice to qualified, with take-home."), L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums for apprentices by trade and year."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Trade pay, allowances and take-home."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/pastoral-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL, L("/horticulture-award-rates/", "Horticulture Award Rates", "Fruit and vegetable pickers, and the piece rate rules.")],
+  "/horticulture-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, L("/pastoral-award-rates/", "Pastoral Award Rates", "Farm and livestock hands, station hands and dairy workers.")],
+  "/health-professionals-award-rates/": [job("physiotherapist", "Physiotherapist", "Physiotherapist pay by year of experience."), job("occupational-therapist", "Occupational Therapist", "OT pay under the new AQF structure."), job("psychologist", "Psychologist", "Psychologist pay by year of experience."), L("/healthcare-worker-pay/", "Healthcare Worker Pay", "Nurses, allied health and support staff compared."), OVERTIME, PENALTY_GUIDE],
+  "/timber-award-rates/": [L("/construction-trades-pay/", "Construction & Trades Pay Guide", "What tradies and apprentices actually earn."), job("forklift-operator", "Forklift Operator", "Forklift operator pay under the award."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/meat-industry-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL, EA],
+  "/commercial-sales-award-rates/": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE],
+  "/mining-award-rates/": [L("/mining-fifo-pay-guide/", "Mining & FIFO Pay Guide", "How FIFO rosters and agreement rates work."), L("/fifo-pay-calculator/", "FIFO Pay Calculator", "Roster, allowances and take-home for FIFO work."), OVERTIME, PENALTY_GUIDE, EA],
   "/schads-award-pay-rates/": [job("disability-support-worker", "Disability Support Worker", "SCHADS levels for disability support work."), job("youth-worker", "Youth Worker", "Where youth work sits in the SCHADS levels."), job("social-worker", "Social Worker", "Social and community services pay."), job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), OVERTIME, PENALTY_GUIDE, TOIL],
 };
 
@@ -389,7 +398,7 @@ const HOLIDAY_GUIDES = [
   "/christmas-shutdown-annual-leave/",
 ];
 const HOLIDAY_LINKS: RelatedLink[] = [
-  L("/public-holiday-pay/", "Public Holiday Pay Rates", "Rates for 14 awards and a calculator."),
+  L("/public-holiday-pay/", "Public Holiday Pay Rates", "Rates for every award we cover, and a calculator."),
   L("/christmas-day-pay-rates/", "Christmas Day Pay Rates", "Dates by state and what the day pays."),
   L("/boxing-day-pay-rates/", "Boxing Day Pay Rates", "Saturday 26 and Monday 28 December, state by state."),
   L("/public-holidays-2027/", "Public Holidays 2027", "Every state's 2027 dates with the pay rate."),

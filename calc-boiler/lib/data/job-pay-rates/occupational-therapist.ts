@@ -65,5 +65,6 @@ export const OCCUPATIONAL_THERAPIST = hpssOccupation({
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
     { href: "/salary-packaging-guide/", label: "Salary Packaging Guide" },
     { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates Guide" },
+    { href: "/health-professionals-award-rates/", label: "Health Professionals Award Rates" },
   ],
 });

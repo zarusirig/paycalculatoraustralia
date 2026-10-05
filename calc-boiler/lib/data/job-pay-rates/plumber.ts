@@ -182,5 +182,6 @@ export const PLUMBER: Occupation = {
     { href: "/construction-trades-pay/", label: "Construction & Trades Pay" },
     { href: "/job-pay-rates/electrician/", label: "Electrician Pay Rates" },
     { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator" },
+    { href: "/plumbing-award-rates/", label: "Plumbing Award Rates" },
   ],
 };
