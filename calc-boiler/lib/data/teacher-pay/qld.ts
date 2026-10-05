@@ -43,8 +43,10 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   nameInSentence: "Queensland",
   graduateStep: "Band 2, Step 1",
   topClassroomStep: "Band 3, Step 4",
-  metaTitle: "QLD Teacher Salary 2026 — Education Queensland Pay Scale Table",
-  h1: "QLD Teacher Salary 2026 — Queensland State School Teacher Pay Scale",
+  h1: "QLD Teacher Salary 2026 — Queensland State School Pay Scale by Band and Step",
+  classificationNote:
+    "Queensland labels classroom teacher pay as Band and Step, from Band 1 Step 1 to Band 3 Step 4. Senior Teacher, Experienced Senior Teacher, Highly Accomplished Teacher and Lead Teacher are paid above Band 3 Step 4. Four-year-trained graduates enter at Band 2 Step 1.",
+  principalScaleIds: ["principals"],
   employer: "the Queensland Department of Education",
   agreementName:
     "Department of Education State School Teachers' Certified Agreement 2022 (expired 30 June 2025, now in arbitration)",

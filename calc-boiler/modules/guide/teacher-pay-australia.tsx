@@ -9,11 +9,11 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants";
 import { EE_MEDIAN_BY_INDUSTRY, EE_RELEASE, EEH_RELEASE, annualise } from "@/lib/data/average-salary";
-import { VIC_2026_AGREEMENT } from "@/lib/data/teacher-pay/vic-2026-agreement";
 import {
   TEACHER_PAY_STATES,
   graduateSalary,
   nearestTakeHomeAmount,
+  teacherAnchorText,
   takeHomeHref,
   topOfClassroomScale,
 } from "@/lib/data/teacher-pay";
@@ -112,7 +112,7 @@ export default function TeacherPayAustraliaPage() {
                       <tr key={state.slug}>
                         <th scope="row" className="px-4 py-3 text-left font-medium">
                           <Link href={`/teacher-pay-australia/${state.slug}/`} className="text-eucalyptus-dark hover:text-navy hover:underline">
-                            {state.code} teacher salary {year}
+                            {teacherAnchorText(state)}
                           </Link>
                         </th>
                         <td className="px-4 py-3 text-right"><SalaryLink salary={graduate} /></td>
@@ -125,9 +125,9 @@ export default function TeacherPayAustraliaPage() {
                 </table>
               </div>
               <p>
-                Comparing raw numbers across states is only half the story: states step up on different dates, and
-                Queensland and Victoria both have pay changes in train that their published schedules do not yet show.
-                Each state page says exactly what applies and when.
+                Comparing raw numbers across states is only half the story: states step up on different dates, and some
+                have pay changes in train that their published schedules do not yet show. Each state page says exactly
+                what applies and when.
               </p>
             </section>
 
@@ -135,8 +135,8 @@ export default function TeacherPayAustraliaPage() {
             <section id="state-pay-scales">
               <h2 style={HEADING_FONT}>Full pay scale for your state</h2>
               <p>
-                Each state page carries the complete published scale — every classification and step, leadership and
-                principal rates, the agreement it comes from, and the rules for moving up a step.
+                Each state page opens with its classroom teacher pay scale, then carries every other classification and step,
+                leadership and principal rates, the agreement it comes from, and the rules for moving up a step. Pick your state.
               </p>
               <div className="not-prose my-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {TEACHER_PAY_STATES.map((s) => {
@@ -150,7 +150,7 @@ export default function TeacherPayAustraliaPage() {
                     >
                       <span>
                         <span className="block text-sm font-semibold text-navy group-hover:text-eucalyptus-dark">
-                          {s.code} teacher salary {year} — {s.name}
+                          {teacherAnchorText(s)}
                         </span>
                         <span className="block text-xs text-warmgray">
                           {grad !== null && top !== null
@@ -180,7 +180,7 @@ export default function TeacherPayAustraliaPage() {
                 </li>
                 <li>
                   <strong>Highly Accomplished and Lead Teacher</strong> certification carries its own salary in several
-                  states — Queensland, South Australia and NSW among them — above the top of the incremental scale.
+                  states, above the top of the incremental scale.
                   Each state page lists those rows where they are published.
                 </li>
                 <li>
@@ -246,10 +246,8 @@ export default function TeacherPayAustraliaPage() {
                 <Link href="/tax-on/">tax on every salary</Link> tables give the figure at each step of a scale.
               </p>
               <p>
-                The range is wide because each state bargains its own agreement: Victoria&rsquo;s proposed{" "}
-                {VIC_2026_AGREEMENT.name} carries rises of {VIC_2026_AGREEMENT.headlineRiseOverFourYears} over four
-                years, and the Northern Territory pays remote loadings on top of its scale. For the all-occupations
-                figure see <Link href="/average-salary-australia/">average salary in Australia</Link>.
+                The range is wide because each state bargains its own agreement and steps up on its own dates. For the
+                all-occupations figure see <Link href="/average-salary-australia/">average salary in Australia</Link>.
               </p>
             </section>
 
@@ -290,7 +288,7 @@ export default function TeacherPayAustraliaPage() {
                   <h2 className="font-bold text-navy mb-3">Teacher pay by state</h2>
                   <div className="space-y-2">
                     {TEACHER_PAY_STATES.map((s) => (
-                      <SidebarLink key={s.slug} href={`/teacher-pay-australia/${s.slug}/`} label={`${s.code} teacher salary ${year}`} />
+                      <SidebarLink key={s.slug} href={`/teacher-pay-australia/${s.slug}/`} label={teacherAnchorText(s)} />
                     ))}
                   </div>
                 </CardContent>

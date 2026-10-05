@@ -29,8 +29,10 @@ export const VIC_TEACHER_PAY: TeacherPayState = {
   code: "VIC",
   name: "Victoria",
   nameInSentence: "Victoria",
-  metaTitle: "Teacher Salary Victoria 2026 — VIC Teacher Pay Rise & Pay Scale",
-  h1: "Teacher Salary Victoria 2026 — VIC Teachers Pay Scale and the 2026 Pay Rise",
+  h1: "Victorian Teacher Salary 2026 — Classroom Teacher Scale (Range 1 and 2, VGSA) and the Pay Rise",
+  classificationNote:
+    "Victorian government school teachers are classroom teachers in Range 1 and Range 2 of the Victorian Government Schools Agreement (VGSA). Each pay point is written as a subdivision, from 1-1 (graduate entry) to 2-6. Leading teachers and learning specialists sit in Range 3.",
+  principalScaleIds: ["principals"],
   employer: "Victorian Department of Education",
   agreementName: "Victorian Government Schools Agreement 2022 (VGSA 2022)",
   agreementUrl: "https://www2.education.vic.gov.au/pal/salary-rates/overview",

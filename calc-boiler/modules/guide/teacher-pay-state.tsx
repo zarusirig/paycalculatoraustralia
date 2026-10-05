@@ -18,6 +18,7 @@ import {
   graduateSalary,
   isExactTakeHomeAmount,
   nearestTakeHomeAmount,
+  principalSummaries,
   scaleRanges,
   takeHomeHref,
   teacherRatesYear,
@@ -186,6 +187,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
 
   const otherStates = TEACHER_PAY_STATES.filter((s) => s.slug !== state.slug);
   const faqs = teacherStateFaqs(state);
+  const principals = principalSummaries(state);
 
   // Google AU "related searches" for "qld teacher pay scale" / "teachers salary
   // qld" (Sept 2026), generalised per state and pointed at pages that answer them.
@@ -276,11 +278,83 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
               </div>
             )}
 
+            {/* ── Pay scale table FIRST: the classroom teacher scale is what the query is for ── */}
+            {hasScales && (
+              <section id="pay-scale">
+                <h2 style={HEADING_FONT}>
+                  {state.name} teacher pay scale {teacherRatesYear(state)} — every step
+                </h2>
+                {state.classificationNote && <p>{state.classificationNote}</p>}
+                <p>
+                  Full-time annual salaries before tax and before superannuation. Part-time teachers
+                  are paid these rates pro rata on their time fraction.
+                </p>
+                <ScaleTable scale={state.scales[0]} />
+              </section>
+            )}
+
             {/* W5 (23 Sep 2026): VIC-only proposed VGSA 2026 pay rise section */}
             {state.slug === "vic" && <VicPayRise2026 />}
 
             {/* ── At a glance: every scale's range, linking to its full table ── */}
             {hasScales && <AtAGlance state={state} />}
+
+            {/* ── Principal salary: only where the state's source publishes it ── */}
+            {principals.length > 0 && (
+              <section id="principal-salary">
+                <h2 style={HEADING_FONT}>
+                  {state.name} principal salary {teacherRatesYear(state)}
+                </h2>
+                <p>
+                  Principals are paid on their own scale, separate from the classroom teacher steps above.
+                  The figures below are read from the same {state.agreementName} schedule as the rest of this
+                  page and apply from {state.ratesEffectiveFrom}.
+                </p>
+                <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                  <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">
+                    <caption className="sr-only">{state.name} public school principal salary range</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-5 py-3">Principal scale</th>
+                        <th scope="col" className="px-5 py-3 text-right">Lowest</th>
+                        <th scope="col" className="px-5 py-3 text-right">Highest</th>
+                        <th scope="col" className="px-5 py-3 text-right">Pay points</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {principals.map((ps) => (
+                        <tr key={ps.scaleId}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium">
+                            <a href={"#" + ps.scaleId} className="text-navy hover:text-eucalyptus-dark hover:underline">
+                              {ps.scaleTitle}
+                            </a>
+                          </th>
+                          <td className="px-5 py-3 text-right"><SalaryLink salary={ps.low} /></td>
+                          <td className="px-5 py-3 text-right"><SalaryLink salary={ps.high} /></td>
+                          <td className="px-5 py-3 text-right">{ps.rows}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {principals.map((ps) => (
+                  <p key={ps.scaleId}>{ps.intro}</p>
+                ))}
+                <p>Every principal pay point is in the full table further down this page.</p>
+              </section>
+            )}
+
+            {/* ── Remaining scales: leadership, specialist and other classifications ── */}
+            {state.scales.length > 1 && (
+              <section id="leadership-scales">
+                <h2 style={HEADING_FONT}>
+                  {state.code} leadership, specialist and other pay scales
+                </h2>
+                {state.scales.slice(1).map((scale) => (
+                  <ScaleTable key={scale.id} scale={scale} />
+                ))}
+              </section>
+            )}
 
             {/* ── The agreement ── */}
             <section id="agreement">
@@ -304,22 +378,6 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
                 schools in {state.nameInSentence} negotiate their own agreements and are not covered here.
               </p>
             </section>
-
-            {/* ── Pay scale tables ── */}
-            {hasScales && (
-              <section id="pay-scale">
-                <h2 style={HEADING_FONT}>
-                  {state.code} teacher pay scale — every classification and step
-                </h2>
-                <p>
-                  Full-time annual salaries before tax and before superannuation. Part-time teachers
-                  are paid these rates pro rata on their time fraction.
-                </p>
-                {state.scales.map((scale) => (
-                  <ScaleTable key={scale.id} scale={scale} />
-                ))}
-              </section>
-            )}
 
             {/* ── Casual rates ── */}
             {state.casual.length > 0 && (

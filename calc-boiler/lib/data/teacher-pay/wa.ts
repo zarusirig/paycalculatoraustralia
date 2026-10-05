@@ -34,6 +34,9 @@ export const WA_TEACHER_PAY: TeacherPayState = {
   code: "WA",
   name: "Western Australia",
   nameInSentence: "Western Australia",
+  h1: "WA Teacher Salary 2026 — Western Australian Public School Pay Scale, Level 2.1 to 2.9",
+  classificationNote:
+    "Western Australia writes the teacher scale as Level 2.1 to Level 2.9, with an annual increment each year. Senior teachers and Level 3 classroom teachers are paid on a separate scale above it.",
   employer: "the WA Department of Education",
   agreementName:
     "School Education Act Employees' (Teachers and Administrators) General Agreement 2023",

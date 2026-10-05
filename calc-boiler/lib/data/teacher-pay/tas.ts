@@ -26,6 +26,10 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
   name: "Tasmania",
   nameInSentence: "Tasmania",
   graduateStep: "Band 1 Level 5",
+  h1: "Tasmanian Teacher Salary 2026 — Teachers Agreement Pay Scale by Band and Level",
+  classificationNote:
+    "Tasmania writes the scale as Band 1, Level 1 to Level 13. Four and five year trained graduates enter at Band 1 Level 5 rather than at the bottom.",
+  principalScaleIds: ["school-based-principals"],
   employer: "the Tasmanian Department for Education, Children and Young People",
   agreementName: "Teachers Agreement 2025",
   agreementUrl:
