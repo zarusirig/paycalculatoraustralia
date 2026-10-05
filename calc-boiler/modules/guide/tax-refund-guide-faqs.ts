@@ -48,6 +48,10 @@ export const TAX_REFUND_FAQS: readonly FaqItem[] = [
     a: `The ATO issues a Notice of Assessment showing the amount owed. Common causes include holding multiple jobs, earning investment income, or incorrectly claiming the tax-free threshold at more than one employer. Payment plans are available — the ATO charges interest at the General Interest Charge rate (${formatPercent(GENERAL_INTEREST_CHARGE.annualRate, 2)} per annum for ${GENERAL_INTEREST_CHARGE.quarter}) on overdue amounts.`,
   },
   {
+    q: "How long does a tax return take?",
+    a: `The ATO says most returns lodged online through myTax are processed in ${RETURN_2026.onlineProcessingBusinessDays} business days, and most refunds are issued within ${RETURN_2026.onlineRefundTypical}. Paper returns take longer, with most refunds issued within ${RETURN_2026.paperRefundBusinessDays} business days. A review, or a refund used to pay another debt, can add time.`,
+  },
+  {
     q: "How long does a tax refund take to arrive?",
     a: `The ATO says most returns lodged online through myTax process in ${RETURN_2026.onlineProcessingBusinessDays} business days and most refunds issue within ${RETURN_2026.onlineRefundTypical}. For paper returns, most refunds issue within ${RETURN_2026.paperRefundBusinessDays} business days. Returns selected for review take longer.`,
   },

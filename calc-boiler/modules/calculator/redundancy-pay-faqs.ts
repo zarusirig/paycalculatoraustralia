@@ -50,6 +50,10 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
     a: `${formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service, for genuine redundancy payments made in the ${Y} income year. With 5 completed years that is ${formatAUD(genuineRedundancyTaxFreeLimit(5))}. For payments made in ${REDUNDANCY_TAX_2025_26.incomeYear} it was ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX_2025_26.taxFreePerYear)} a year.`,
   },
   {
+    q: "Is redundancy pay tax free?",
+    a: `Partly. A genuine redundancy payment is tax-free up to ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} plus ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} for each completed year of service in ${Y}. Anything above that limit is an employment termination payment (ETP) and is taxed. A payment that is not a genuine redundancy has no tax-free part.`,
+  },
+  {
     q: "How is redundancy pay taxed?",
     a: `A genuine redundancy payment is tax-free up to the limit. Anything above it is an employment termination payment (ETP), taxed at ${pct(ETP_RATES.underPreservationAge)} if you are under preservation age (${PRESERVATION_AGE}) at the end of the income year or ${pct(ETP_RATES.atOrOverPreservationAge)} if you have reached it, both including the Medicare levy, up to the ${Y} ETP cap of ${formatAUD(REDUNDANCY_TAX.etpCap)}. Any amount over the cap is taxed at ${pct(ETP_RATES.aboveCap)}.`,
   },
@@ -60,6 +64,14 @@ export const REDUNDANCY_FAQS: readonly RedundancyFaq[] = [
   {
     q: "Is there a different redundancy calculator for QLD, NSW, Victoria or WA?",
     a: "No. NES redundancy pay is set by the Fair Work Act and is the same in every state and territory for national system employees, so one calculator covers Queensland, NSW, Victoria, WA, SA, Tasmania, the ACT and the NT. What differs by state is long service leave, which is paid on top. The main exceptions are state public servants and, in WA, employees of sole traders, partnerships and other unincorporated businesses, who sit in state industrial systems.",
+  },
+  {
+    q: "How much redundancy pay do you get in NSW?",
+    a: "The same as every other state: the National Employment Standards scale, from 4 weeks at 1 year to 16 weeks at 9 years and 12 weeks from 10 years, for national system employees. NSW adds long service leave under its 1955 Act, with a pro-rata payment from 5 years when the employer ends the job for a reason other than serious and wilful misconduct.",
+  },
+  {
+    q: "What are redundancy entitlements in Victoria?",
+    a: "Redundancy pay follows the National Employment Standards scale, the same as every state, for national system employees. On top of that, you are paid notice or pay in lieu, unused annual leave and long service leave. Under Victoria's 2018 Act, long service leave is payable from 7 years of continuous service, however the employment ends.",
   },
   {
     q: "Do small businesses have to pay redundancy?",

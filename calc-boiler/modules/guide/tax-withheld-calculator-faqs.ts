@@ -26,6 +26,10 @@ export const TAX_WITHHELD_FAQS: readonly { q: string; a: string }[] = [
     a: `${m(w1000.totalWithheld)} if you've claimed the tax-free threshold, leaving ${m(w1000.netPerPeriod)}. Without the threshold (a second job) it's ${m(w1000NoTft.totalWithheld)}. These are the ATO's Schedule 1 amounts for payments from 1 July 2026, and they include the 2% Medicare levy.`,
   },
   {
+    q: "What does tax withheld mean?",
+    a: "Tax withheld is the income tax your employer takes out of each pay and sends to the ATO on your behalf. It appears on your payslip as PAYG withholding or tax, and the year-to-date total is reported on your income statement. It is a payment towards your tax bill, not the final amount you owe.",
+  },
+  {
     q: "How is PAYG tax withheld calculated?",
     a: "Your employer converts your pay to a weekly amount (ignoring cents and adding 99c), applies the ATO's Schedule 1 formula for your scale (y = a × x − b), rounds to the nearest dollar, then converts back to your pay period. The scale depends on whether you claimed the tax-free threshold, are a foreign resident, or didn't give a TFN. A study loan adds a separate Schedule 8 amount.",
   },

@@ -38,6 +38,10 @@ export const TAX_RETURN_CALCULATOR_FAQS: readonly { q: string; a: string }[] = [
     a: `Your refund is the tax withheld from your pay minus the tax you actually owe for the year. For example, ${formatAUD(EXAMPLE_INPUTS.grossIncome)} of income, ${formatAUD(EXAMPLE_INPUTS.deductions)} of deductions and ${formatAUD(EXAMPLE_INPUTS.taxWithheld)} withheld gives an estimated ${THIS.incomeYear} refund of ${formatAUD(EXAMPLE_THIS_YEAR.refund)}. The same figures at ${NEXT.incomeYear} rates would show ${formatAUD(EXAMPLE_NEXT_YEAR.refund)}, which is why the calculator asks which year you are lodging for.`,
   },
   {
+    q: "How much tax will I get back?",
+    a: `It is the tax withheld from your pay for the year minus the tax you owe on your taxable income. In the example above, ${formatAUD(EXAMPLE_INPUTS.taxWithheld)} withheld against ${formatAUD(EXAMPLE_INPUTS.grossIncome)} of income and ${formatAUD(EXAMPLE_INPUTS.deductions)} of deductions gives about ${formatAUD(EXAMPLE_THIS_YEAR.refund)} back. Enter your own figures above; more deductions raise the refund.`,
+  },
+  {
     q: "Which income year should I choose?",
     a: `Choose ${THIS.incomeYear} for the return you lodge now. It covers ${THIS.incomeYearStart} to ${THIS.incomeYearEnd} and is due ${R.selfLodgeDueDate} if you lodge it yourself, or usually ${R.agentDueDateMostPeople} through a registered tax agent. Choose ${NEXT.incomeYear} only to plan next year's return on the income you are earning now. That year's second tax rate is ${pct(NEXT.secondBracketRate)} instead of ${pct(THIS.secondBracketRate)}.`,
   },
