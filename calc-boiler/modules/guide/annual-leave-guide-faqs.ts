@@ -28,7 +28,7 @@ export const ANNUAL_LEAVE_FAQS: readonly FaqItem[] = [
   },
   {
     q: "Can my employer force me to take annual leave?",
-    a: "Yes, in two circumstances. Employers can direct employees to take leave during a registered shutdown period (e.g., Christmas closure) with 28 days' notice. Employers can also direct employees with an excessive balance exceeding 8 weeks to take leave, provided the direction does not reduce the balance below 6 weeks and gives at least 8 weeks' notice.",
+    a: "Yes, in two circumstances. Employers can direct employees to take leave during a shutdown period (e.g., Christmas closure) where their award or agreement allows it and the employer follows its notice rules, which differ between awards. Employers can also direct employees with an excessive balance exceeding 8 weeks to take leave, provided the direction does not reduce the balance below 6 weeks and gives at least 8 weeks' notice.",
   },
   {
     q: "Can I cash out annual leave instead of taking it?",
