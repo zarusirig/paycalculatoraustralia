@@ -71,6 +71,13 @@ export const OCCUPATION_SLUGS = [
   "dietitian",
   "veterinarian",
   "architect",
+  // F4 (Oct 2026) — awarded occupations.
+  "retail-manager",
+  "youth-worker",
+  "boilermaker",
+  "welder",
+  "forklift-operator",
+  "flight-attendant",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];

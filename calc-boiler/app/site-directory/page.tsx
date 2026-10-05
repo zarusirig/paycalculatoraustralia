@@ -28,6 +28,7 @@ import { EMPLOYERS } from "@/lib/data/employer-pay";
 import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cluster (C5)
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
+import { MW_STATES, MW_STATE_SLUGS } from "@/lib/data/minimum-wage-state"; // F1
 import { ADF_SERVICE_LIST } from "@/lib/data/adf-pay";
 // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
 import { SERVICE_OCCUPATIONS, SERVICE_OCCUPATION_CONFIG, verifiedJurisdictions } from "@/lib/data/service-pay";
@@ -150,6 +151,11 @@ const payScaleGroups: Group[] = [
         label: `Minimum Wage for a ${a} Year Old`,
       })),
     ],
+  },
+  // F1: minimum wage by state
+  {
+    title: "Minimum Wage by State",
+    items: MW_STATE_SLUGS.map((c) => ({ href: `/minimum-wage/${c}/`, label: `Minimum Wage ${MW_STATES[c].name}` })),
   },
   // --- end minimum wage cluster ---
   // --- C2 occupation pay rates + C5 ADF pay scales (23 Sep 2026) ---

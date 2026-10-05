@@ -95,7 +95,7 @@ const CHEMIST_WAREHOUSE = employer("chemist-warehouse", "Chemist Warehouse", "Ph
 const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/award-rates/": [JOBS_HUB, EMPLOYERS_HUB, MIN_WAGE, JUNIOR, PENALTY_GUIDE, EA],
   "/fair-work-pay-calculator/": [AWARD_RATES, MIN_WAGE, JUNIOR, PENALTY_GUIDE, EA, L("/backpay-calculator/", "Backpay Calculator", "What you are owed if you have been paid under the award.")],
-  "/retail-award-rates/": [job("retail-worker", "Retail Worker", "Retail award levels as hourly, weekly and annual pay."), COLES, WOOLWORTHS, KMART, JUNIOR, PENALTY_GUIDE],
+  "/retail-award-rates/": [job("retail-worker", "Retail Worker", "Retail award levels as hourly, weekly and annual pay."), job("retail-manager", "Retail Manager", "Store and department manager levels 4 to 8, hourly and annual."), COLES, WOOLWORTHS, KMART, JUNIOR, PENALTY_GUIDE],
   "/fast-food-award-rates/": [MCDONALDS, SUBWAY, job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), L("/minimum-wage-by-age/15/", "Minimum Wage for 15 Year Olds", "The junior percentage most first jobs start on."), JUNIOR, PENALTY_GUIDE],
   "/pharmacy-award-rates/": [job("pharmacy-assistant", "Pharmacy Assistant", "Pharmacy assistant levels 1 to 4, hourly and annual."), job("pharmacist", "Pharmacist", "Pharmacist pay from intern to manager."), CHEMIST_WAREHOUSE, JUNIOR, PENALTY_GUIDE, TOIL],
   "/hospitality-award-rates/": [job("bartender", "Bartender", "Bar attendant rates and weekend penalties."), job("chef", "Chef", "Cook and chef grades from commis to head chef."), job("barista", "Barista", "Cafe and takeaway coffee rates under three awards."), JUNIOR, PENALTY_GUIDE, TOIL],
@@ -104,21 +104,28 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   "/cleaning-award-rates/": [job("cleaner", "Cleaner", "Cleaning services levels and shift penalties."), MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
   "/hair-and-beauty-award-rates/": [job("hairdresser", "Hairdresser", "Hairdresser and apprentice rates, hourly to annual."), JUNIOR, OVERTIME, PENALTY_GUIDE],
   "/nurses-award-rates/": [job("nurse", "Nurse", "Registered and enrolled nurse pay rates."), job("midwife", "Midwife", "Midwife pay by year of experience."), L("/healthcare-worker-pay/", "Nurse Pay by State", "Public hospital nurse scales in every state."), OVERTIME, PENALTY_GUIDE, TOIL],
-  "/road-transport-award-rates/": [job("truck-driver", "Truck Driver", "Truck driver grades 1 to 10, hourly and annual."), job("bus-driver", "Bus Driver", "Bus and coach driver pay rates."), OVERTIME, PENALTY_GUIDE, L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
+  "/road-transport-award-rates/": [job("truck-driver", "Truck Driver", "Truck driver grades 1 to 10, hourly and annual."), job("bus-driver", "Bus Driver", "Bus and coach driver pay rates."), job("forklift-operator", "Forklift Operator", "Warehouse, retail, factory and transport forklift rates."), OVERTIME, PENALTY_GUIDE, L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
   "/clerks-award-rates/": [job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), job("bookkeeper", "Bookkeeper", "Bookkeeper pay rates by level."), job("medical-receptionist", "Medical Receptionist", "Practice reception pay rates."), MIN_WAGE, OVERTIME, TOIL],
-  "/manufacturing-award-rates/": [job("mechanic", "Mechanic", "Mechanic and automotive tradesperson pay."), job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("lab-technician", "Lab Technician", "Laboratory technician pay rates."), OVERTIME, PENALTY_GUIDE, L("/news/c13-classification-phase-out/", "C13 Classification Phase-Out", "What removing the lowest manufacturing grade means for pay.")],
+  "/manufacturing-award-rates/": [job("mechanic", "Mechanic", "Mechanic and automotive tradesperson pay."), job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("boilermaker", "Boilermaker", "The C10 trade rate and higher levels for fabrication trades."), job("welder", "Welder", "Welding grades from C13 to the trade rate."), job("lab-technician", "Lab Technician", "Laboratory technician pay rates."), OVERTIME, PENALTY_GUIDE, L("/news/c13-classification-phase-out/", "C13 Classification Phase-Out", "What removing the lowest manufacturing grade means for pay.")],
   "/security-award-rates/": [job("security-guard", "Security Guard", "Security officer levels and night shift rates."), OVERTIME, PENALTY_GUIDE, TOIL],
-  "/schads-award-pay-rates/": [job("disability-support-worker", "Disability Support Worker", "SCHADS levels for disability support work."), job("social-worker", "Social Worker", "Social and community services pay."), job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/schads-award-pay-rates/": [job("disability-support-worker", "Disability Support Worker", "SCHADS levels for disability support work."), job("youth-worker", "Youth Worker", "Where youth work sits in the SCHADS levels."), job("social-worker", "Social Worker", "Social and community services pay."), job("aged-care-worker", "Aged Care Worker", "Personal care worker pay after the work value increases."), OVERTIME, PENALTY_GUIDE, TOIL],
 };
 
 /** Occupation → award and employer pages. Everything else gets the generic job set. */
 const JOB_LINKS: Record<string, RelatedLink[]> = {
-  "retail-worker": [COLES, WOOLWORTHS, KMART, BUNNINGS, L("/minimum-wage-by-age/16/", "Minimum Wage for 16 Year Olds", "What a 16-year-old must be paid in retail and elsewhere.")],
+  // F4 (Oct 2026)
+  "retail-manager": [L("/retail-award-rates/", "Retail Award Rates", "Every General Retail Industry Award level, with penalties."), job("retail-worker", "Retail Worker", "Retail Levels 1 to 4 as hourly, weekly and annual pay.")],
+  "youth-worker": [L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "Every SCHADS level, sleepover and shift rate."), job("disability-support-worker", "Disability Support Worker", "The same award for disability services.")],
+  boilermaker: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("welder", "Welder", "Welding grades under the same award.")],
+  welder: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("boilermaker", "Boilermaker", "The trade rate for fabrication tradespeople.")],
+  "forklift-operator": [job("truck-driver", "Truck Driver", "Road transport grades, including forklift work."), job("retail-worker", "Retail Worker", "Forklift and ride-on operators sit at Level 2 in retail.")],
+  "flight-attendant": [L("/pilot-salary/", "Pilot Salary", "Pilot pay under the Air Pilots Award and airline agreements."), L("/air-traffic-controller-salary/", "Air Traffic Controller Salary", "Airservices Australia agreement pay by level.")],
+  "retail-worker": [COLES, WOOLWORTHS, KMART, BUNNINGS, L("/minimum-wage-by-age/16/", "Minimum Wage for 16 Year Olds", "What a 16-year-old must be paid in retail and elsewhere."), job("retail-manager", "Retail Manager", "Where store and department managers sit in the same award.")],
   "pharmacy-assistant": [CHEMIST_WAREHOUSE, L("/pharmacy-award-rates/", "Pharmacy Award Rates", "Every Pharmacy Industry Award level and penalty."), JUNIOR],
   pharmacist: [CHEMIST_WAREHOUSE, L("/pharmacy-award-rates/", "Pharmacy Award Rates", "Every Pharmacy Industry Award level and penalty.")],
   barista: [MCDONALDS, L("/minimum-wage-by-age/17/", "Minimum Wage for 17 Year Olds", "Junior rates for cafe and takeaway work.")],
   bartender: [L("/hospitality-award-rates/", "Hospitality Award Rates", "Pub and bar minimum rates and penalties."), MIN_WAGE],
-  "truck-driver": [L("/road-transport-award-rates/", "Road Transport Award Rates", "Every grade in the Road Transport and Distribution Award."), L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time.")],
+  "truck-driver": [L("/road-transport-award-rates/", "Road Transport Award Rates", "Every grade in the Road Transport and Distribution Award."), L("/cents-per-km/", "Cents per Kilometre", "Vehicle allowances on the payslip and at tax time."), job("forklift-operator", "Forklift Operator", "Forklift rates in warehouse, factory and retail awards.")],
   "bus-driver": [L("/road-transport-award-rates/", "Road Transport Award Rates", "Driver grades under the Road Transport Award."), AWARD_RATES],
   cleaner: [L("/cleaning-award-rates/", "Cleaning Award Rates", "Cleaning Services Award levels and shift rates."), MIN_WAGE],
   "apprentice-electrician": [L("/minimum-wage-by-age/18/", "Minimum Wage for 18 Year Olds", "How junior and apprentice rates compare."), AWARD_RATES],
@@ -270,6 +277,19 @@ type Cluster = {
 };
 
 const CLUSTERS: Cluster[] = [
+  // --- F4 (Oct 2026): aviation salary pages → cabin crew award page ---
+  {
+    match: (p) => p === "/pilot-salary/" || p === "/air-traffic-controller-salary/",
+    links: [
+      job("flight-attendant", "Flight Attendant", "Cabin crew award rates and the flying allowance."),
+      L("/pilot-salary/", "Pilot Salary", "Pilot pay under the Air Pilots Award and airline agreements."),
+      L("/air-traffic-controller-salary/", "Air Traffic Controller Salary", "Airservices Australia agreement pay by level."),
+      JOBS_HUB,
+      TAKE_HOME,
+      EA,
+    ],
+    limit: 6,
+  },
   // --- Award pages: award → jobs and employers it covers ---
   {
     match: (p) => p in AWARD_LINKS,
@@ -331,8 +351,28 @@ const CLUSTERS: Cluster[] = [
         EMPLOYER_COST,
         L(`/pay-calculator-${st}/`, `${STATE_NAMES[st] ?? st.toUpperCase()} Pay Calculator`, "The employee side: take-home pay in this state."),
         L("/payday-super/", "Payday Super", "Paying SG with every pay run from July 2026."),
+        L(`/minimum-wage/${st}/`, `${STATE_NAMES[st] ?? st.toUpperCase()} Minimum Wage`, "What a minimum-wage employee costs and keeps in this state."),
+        L(`/public-holiday-pay/${st}/`, `${STATE_NAMES[st] ?? st.toUpperCase()} Public Holidays`, "State public holiday dates and the pay rates that go with them."),
       ];
     },
+    limit: 6,
+  },
+  // --- Minimum wage state pages (F1, Oct 2026) ---
+  {
+    match: (p) => /^\/minimum-wage\/[a-z]+\/$/.test(p),
+    links: (p) => {
+      const st = p.split("/")[2];
+      const name = STATE_NAMES[st] ?? st.toUpperCase();
+      return [
+        MIN_WAGE,
+        L(`/payroll-tax/${st}/`, `${name} Payroll Tax`, "For employers: the threshold and rate in this state."),
+        L(`/long-service-leave-calculator/${st}/`, `${name} Long Service Leave`, `Accrual and payout under ${name} long service leave law.`),
+        L(`/public-holiday-pay/${st}/`, `${name} Public Holidays`, "State public holiday dates and the pay rates that go with them."),
+        L(`/pay-calculator-${st}/`, `${name} Pay Calculator`, "Take-home pay at any wage in this state."),
+        L("/junior-pay-rates/", "Minimum Wage by Age", "What under-21s must legally be paid."),
+      ];
+    },
+    limit: 6,
   },
   // --- State pay calculators → payroll tax and long service leave for that state ---
   {
@@ -342,6 +382,7 @@ const CLUSTERS: Cluster[] = [
       const name = STATE_NAMES[st];
       return [
         TAKE_HOME,
+        L(`/minimum-wage/${st}/`, `${name} Minimum Wage`, "The rate, state rules and take-home at minimum wage."),
         L(`/long-service-leave-calculator/${st}/`, `${name} Long Service Leave`, `Accrual and payout under ${name} long service leave law.`),
         L(`/payroll-tax/${st}/`, `${name} Payroll Tax`, "For employers: the threshold and rate in this state."),
         AWARD_RATES,

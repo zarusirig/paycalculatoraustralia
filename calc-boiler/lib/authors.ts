@@ -221,6 +221,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- Minimum wage cluster (C5 workstream, 23 Sep 2026) ---
   "minimum-wage-australia": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "minimum-wage-by-age": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
+  "minimum-wage": { authorId: "anita-bell", lastReviewed: "2026-10-05" }, // /minimum-wage/{state}/ (F1)
   "pro-rata-salary-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "casual-loading-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- end minimum wage cluster ---

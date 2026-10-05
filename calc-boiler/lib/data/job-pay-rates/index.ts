@@ -32,6 +32,13 @@ import { SONOGRAPHER } from "./sonographer";
 import { SPEECH_PATHOLOGIST } from "./speech-pathologist";
 import { VETERINARIAN } from "./veterinarian";
 import { ARCHITECT } from "./architect";
+// F4 (Oct 2026)
+import { BOILERMAKER } from "./boilermaker";
+import { FLIGHT_ATTENDANT } from "./flight-attendant";
+import { FORKLIFT_OPERATOR } from "./forklift-operator";
+import { RETAIL_MANAGER } from "./retail-manager";
+import { WELDER } from "./welder";
+import { YOUTH_WORKER } from "./youth-worker";
 import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
@@ -115,6 +122,13 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   dietitian: DIETITIAN,
   veterinarian: VETERINARIAN,
   architect: ARCHITECT,
+  // F4 (Oct 2026)
+  "retail-manager": RETAIL_MANAGER,
+  "youth-worker": YOUTH_WORKER,
+  boilermaker: BOILERMAKER,
+  welder: WELDER,
+  "forklift-operator": FORKLIFT_OPERATOR,
+  "flight-attendant": FLIGHT_ATTENDANT,
 };
 
 /** Every occupation, in the order the hub lists them. */

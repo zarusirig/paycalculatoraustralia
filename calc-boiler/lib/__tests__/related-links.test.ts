@@ -29,6 +29,9 @@ function routeExists(href: string): boolean {
     case "long-service-leave-calculator":
     case "teacher-pay-australia":
       return STATES.includes(slug);
+    case "minimum-wage":
+    case "public-holiday-pay":
+      return STATES.includes(slug);
     case "minimum-wage-by-age":
       return /^(1[4-9]|20)$/.test(slug);
     case "take-home-pay-on":

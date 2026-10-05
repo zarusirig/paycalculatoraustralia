@@ -51,7 +51,7 @@ export type StateRow = {
   cells: Partial<Record<StateTopicKey, string>>;
 };
 
-export type StateTopicKey = "pay" | "payrollTax" | "lsl" | "teachers" | "nurses" | "publicService" | "publicHolidays"; // publicHolidays: G4
+export type StateTopicKey = "pay" | "payrollTax" | "lsl" | "teachers" | "nurses" | "publicService" | "publicHolidays" | "minWage"; // publicHolidays: G4, minWage: F1
 
 export type MegaMenu = {
   id: string;
@@ -329,6 +329,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
     groups: [
       { title: "Pay calculator", links: STATES.map(([c, abbr]) => ({ href: `/pay-calculator-${c}/`, label: `Pay calculator ${abbr}` })) },
       { title: "Payroll tax", href: "/payroll-tax/", links: STATES.map(([c, abbr]) => ({ href: `/payroll-tax/${c}/`, label: `${abbr} payroll tax` })) },
+      { title: "Minimum wage", href: "/minimum-wage-australia/", links: STATES.map(([c, abbr]) => ({ href: `/minimum-wage/${c}/`, label: `${abbr} minimum wage` })) }, // F1
       { title: "Long service leave", href: "/long-service-leave-calculator/", links: STATES.map(([c, abbr]) => ({ href: `/long-service-leave-calculator/${c}/`, label: `${abbr} long service leave` })) },
       // --- G4 public holiday pay cluster (24 Sep 2026) ---
       { title: "Public holidays", href: "/public-holiday-pay/", links: STATES.map(([c, abbr]) => ({ href: `/public-holiday-pay/${c}/`, label: `${abbr} public holidays` })) },
@@ -348,6 +349,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
       topics: [
         { key: "pay", label: "Pay calculator", hub: "/" },
         { key: "payrollTax", label: "Payroll tax", hub: "/payroll-tax/" },
+        { key: "minWage", label: "Minimum wage", hub: "/minimum-wage-australia/" }, // F1
         { key: "lsl", label: "Long service leave", hub: "/long-service-leave-calculator/" },
         { key: "publicHolidays", label: "Public holidays", hub: "/public-holiday-pay/" }, // G4
         { key: "teachers", label: "Teachers", hub: "/teacher-pay-australia/" },
@@ -360,6 +362,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
         cells: {
           pay: `/pay-calculator-${c}/`,
           payrollTax: `/payroll-tax/${c}/`,
+          minWage: `/minimum-wage/${c}/`, // F1
           lsl: `/long-service-leave-calculator/${c}/`,
           publicHolidays: `/public-holiday-pay/${c}/`, // G4
           teachers: `/teacher-pay-australia/${c}/`,
