@@ -170,6 +170,7 @@ export const CRANE_OPERATOR: Occupation = {
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
     { href: "/construction-trades-pay/", label: "Construction & Trades Pay" },
+    { href: "/building-and-construction-award-rates/", label: "Building & Construction Award Rates" },
     { href: "/mining-fifo-pay-guide/", label: "Mining & FIFO Pay Guide" },
     { href: "/job-pay-rates/truck-driver/", label: "Truck Driver Pay Rates" },
   ],

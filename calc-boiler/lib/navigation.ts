@@ -202,7 +202,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
     label: "Pay rates",
     intro: "Minimum rates from Fair Work awards, agreements and pay scales.",
     featured: [
-      { href: "/award-rates/", label: "Award Rates", description: "14 modern awards, every level" },
+      { href: "/award-rates/", label: "Award Rates", description: "22 modern awards, every level" },
       { href: "/job-pay-rates/", label: "Pay Rates by Job", description: "41 jobs, award to average" },
       { href: "/pay-rates/", label: "Pay Rates by Employer", description: "Coles, Woolworths, Bunnings…" },
       { href: "/minimum-wage-australia/", label: "Minimum Wage", description: "National rate from 1 July 2026" },
@@ -723,6 +723,16 @@ export const GUIDE_CATEGORIES = [
       { href: "/security-award-rates/", label: "Security Award Rates", description: "Security officer levels 1–5" },
       { href: "/clerks-award-rates/", label: "Clerks Award Rates", description: "Clerks—Private Sector levels 1–5" },
       // --- end award cluster C3 ---
+      // --- October 2026 award batch ---
+      { href: "/miscellaneous-award-rates/", label: "Miscellaneous Award Rates", description: "The catch-all award, levels 1–4" },
+      { href: "/building-and-construction-award-rates/", label: "Building & Construction Award Rates", description: "On-site CW/ECW levels, weekend and overtime" },
+      { href: "/legal-services-award-rates/", label: "Legal Services Award Rates", description: "Law firm clerical staff and law clerks" },
+      { href: "/electrical-award-rates/", label: "Electrical Award Rates", description: "Electrical worker grades 1–10" },
+      { href: "/fitness-industry-award-rates/", label: "Fitness Industry Award Rates", description: "Gym, pool and coaching staff" },
+      { href: "/real-estate-award-rates/", label: "Real Estate Award Rates", description: "Property management and sales staff" },
+      { href: "/local-government-award-rates/", label: "Local Government Award Rates", description: "Council staff levels 1–11" },
+      { href: "/live-performance-award-rates/", label: "Live Performance Award Rates", description: "Theatre and venue production crew" },
+      // --- end October 2026 award batch ---
       // --- T4: awards batch 3 (23 Sep 2026) ---
       { href: "/restaurant-award-rates/", label: "Restaurant Award Rates", description: "Restaurants, cafés, cooks and chefs" },
       { href: "/nurses-award-rates/", label: "Nurses Award Rates", description: "RN, EN and aged care nurse rates" },
@@ -1102,6 +1112,16 @@ export const FOOTER_GUIDES_SUPER_PAY = [
   { href: "/security-award-rates/", label: "Security Award Rates" },
   { href: "/clerks-award-rates/", label: "Clerks Award Rates" },
   // --- end award cluster C3 ---
+  // --- October 2026 award batch ---
+  { href: "/miscellaneous-award-rates/", label: "Miscellaneous Award Rates" },
+  { href: "/building-and-construction-award-rates/", label: "Building & Construction Award Rates" },
+  { href: "/legal-services-award-rates/", label: "Legal Services Award Rates" },
+  { href: "/electrical-award-rates/", label: "Electrical Award Rates" },
+  { href: "/fitness-industry-award-rates/", label: "Fitness Industry Award Rates" },
+  { href: "/real-estate-award-rates/", label: "Real Estate Award Rates" },
+  { href: "/local-government-award-rates/", label: "Local Government Award Rates" },
+  { href: "/live-performance-award-rates/", label: "Live Performance Award Rates" },
+  // --- end October 2026 award batch ---
   // --- T4: awards batch 3 (23 Sep 2026) ---
   { href: "/restaurant-award-rates/", label: "Restaurant Award Rates" },
   { href: "/nurses-award-rates/", label: "Nurses Award Rates" },

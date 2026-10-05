@@ -145,6 +145,7 @@ export const ELECTRICIAN: Occupation = {
   related: [
     { href: "/construction-trades-pay/", label: "Construction & Trades Pay" },
     { href: "/manufacturing-award-rates/", label: "Manufacturing Award Pay Rates" },
+    { href: "/electrical-award-rates/", label: "Electrical Award Pay Rates" },
     { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator" },
   ],
 };

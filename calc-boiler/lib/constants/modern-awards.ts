@@ -44,6 +44,7 @@
 // =============================================================================
 
 import type { AwardRate } from "./hospitality-award";
+import { OCT_AWARDS } from "./modern-awards-oct";
 
 export type { AwardRate };
 
@@ -83,6 +84,12 @@ export interface AwardMeta {
    * the rate table.
    */
   hourlyDerivation?: string;
+  /**
+   * What the rate table rows are, where they are not the plain award minimum
+   * (Electrical and Construction: the ordinary hourly rate including the
+   * all-purpose allowances). Defaults to "Adult minimum rates".
+   */
+  ratesLabel?: string;
 }
 
 export interface PenaltyRow {
@@ -226,6 +233,12 @@ export interface ModernAwardData {
    * (Nurses: shift loadings add, weekends compound). Used in the FAQ.
    */
   casualRuleSummary?: string;
+  /**
+   * Set where the award does not tabulate (or clearly state) a casual public
+   * holiday rate (Fitness, Local Government), so the cross-award public
+   * holiday comparison omits the award rather than guess a casual figure.
+   */
+  publicHolidayCasualUnpublished?: boolean;
 }
 
 const VERIFIED_ON = "23 September 2026";
@@ -1744,6 +1757,8 @@ export const MODERN_AWARDS = {
   cleaning: CLEANING_AWARD,
   "road-transport": ROAD_TRANSPORT_AWARD,
   // --- end T4 ---
+  // --- October 2026 batch (modern-awards-oct.ts) ---
+  ...OCT_AWARDS,
 } as const;
 
 export type ModernAwardKey = keyof typeof MODERN_AWARDS;

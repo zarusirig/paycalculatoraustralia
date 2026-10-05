@@ -46,11 +46,17 @@ test("wage benchmarks are sorted and start at the National Minimum Wage", () => 
 test("award ranking covers every directory award, highest first, only C14 below the NMW", () => {
   const a = awardRanking();
   assert.equal(a.length, AWARD_DIRECTORY.length);
-  assert.equal(a.length, 14);
+  assert.equal(a.length, 22);
   for (let i = 1; i < a.length; i++) assert.ok(a[i].hourly <= a[i - 1].hourly);
-  // Only the Manufacturing C14 induction rate (first 38 hours) sits below the NMW.
-  const below = a.filter((row) => row.premiumOverNmw < -1e-9).map((row) => row.classification);
-  assert.deepEqual(below, ["C14 / V1"]);
+  // Only the induction / first-months entry grades sit below the NMW: Manufacturing C14 (first 38 hours),
+  // Miscellaneous Level 1 (first 3 months), Fitness Level 1 and Live Performance Level 1 (induction/training).
+  const below = a.filter((row) => row.premiumOverNmw < -1e-9).map((row) => row.classification).sort();
+  assert.deepEqual(below, [
+    "C14 / V1",
+    "Level 1",
+    "Level 1",
+    "Level 1 — Production and Support Staff 1 (induction/training)",
+  ]);
 });
 
 test("public sector rows resolve for teachers, nurses and six public services", () => {

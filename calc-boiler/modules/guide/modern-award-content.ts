@@ -19,6 +19,7 @@ import {
   type ModernAwardData,
   type ModernAwardKey,
 } from "@/lib/constants/modern-awards";
+import { OCT_BUILDERS } from "@/modules/guide/modern-award-content-oct";
 
 export interface AwardFaq {
   q: string;
@@ -41,6 +42,8 @@ export interface AwardPageCopy {
   /** Authorship slug in lib/authors.ts. */
   slug: string;
   faqs: readonly AwardFaq[];
+  /** Optional worked pay example, rendered below the rate table. */
+  workedExample?: { heading: string; intro: string; steps: readonly string[]; outro?: string };
   /**
    * Optional section linking the award to the pay instruments that usually
    * sit above it (Nurses: state public health agreements).
@@ -52,19 +55,19 @@ export interface AwardPageCopy {
   };
 }
 
-const pct = (v: number) => {
+export const pct = (v: number) => {
   const p = Math.round(v * 1000) / 10;
   return `${p % 1 === 0 ? p.toFixed(0) : p.toFixed(1)}%`;
 };
-const $ = (v: number) => formatAUD(v, 2);
-const casual = (a: ModernAwardData, hourly: number) => roundCents(hourly * (1 + a.meta.casualLoading));
-const FY = SITE_CONFIG.financialYear;
+export const $ = (v: number) => formatAUD(v, 2);
+export const casual = (a: ModernAwardData, hourly: number) => roundCents(hourly * (1 + a.meta.casualLoading));
+export const FY = SITE_CONFIG.financialYear;
 
 /** The lowest adult classification (rates[0] in most awards; not in Nurses, where student ENs sit lower). */
-function first(a: ModernAwardData) {
+export function first(a: ModernAwardData) {
   return a.rates.reduce((m, r) => (r.hourly < m.hourly ? r : m), a.rates[0]);
 }
-function last(a: ModernAwardData) {
+export function last(a: ModernAwardData) {
   return a.rates.reduce((m, r) => (r.hourly > m.hourly ? r : m), a.rates[0]);
 }
 
@@ -76,7 +79,7 @@ function casualExceptions(a: ModernAwardData): string {
 }
 
 /** FAQs every award page carries, worded from that award's own data. */
-function commonFaqs(a: ModernAwardData): AwardFaq[] {
+export function commonFaqs(a: ModernAwardData): AwardFaq[] {
   const entry = findAwardRate(a, a.entryLevel);
   const top = last(a);
   const out: AwardFaq[] = [
@@ -599,6 +602,15 @@ const BUILDERS: Record<ModernAwardKey, () => AwardPageCopy> = {
   "hair-and-beauty": hairAndBeauty,
   cleaning,
   "road-transport": roadTransport,
+  // --- October 2026 batch (modern-award-content-oct.ts); lazy so import order cannot matter ---
+  miscellaneous: () => OCT_BUILDERS.miscellaneous(),
+  "building-construction": () => OCT_BUILDERS["building-construction"](),
+  "legal-services": () => OCT_BUILDERS["legal-services"](),
+  electrical: () => OCT_BUILDERS.electrical(),
+  fitness: () => OCT_BUILDERS.fitness(),
+  "real-estate": () => OCT_BUILDERS["real-estate"](),
+  "local-government": () => OCT_BUILDERS["local-government"](),
+  "live-performance": () => OCT_BUILDERS["live-performance"](),
 };
 
 export function getAwardPageCopy(key: ModernAwardKey): AwardPageCopy {

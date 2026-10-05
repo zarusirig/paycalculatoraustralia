@@ -164,7 +164,7 @@ export default function ConstructionTradesPayPage() {
             <section id="overtime">
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Overtime in Construction</h2>
               <p>
-                Overtime is a significant component of construction worker earnings. The Building and Construction General On-site Award sets the following overtime provisions:
+                Overtime is a significant component of construction worker earnings. The Building and Construction General On-site Award sets the following overtime provisions (the hourly rate for every CW/ECW level, with the industry allowance built in, is on our <Link href="/building-and-construction-award-rates/">Building and Construction Award rates page</Link>):
               </p>
               <ul>
                 <li><strong>Monday to Friday:</strong> Time-and-a-half for the first 2 hours beyond ordinary hours (7.6 hours/day or 38 hours/week), then double time thereafter.</li>
@@ -236,6 +236,7 @@ export default function ConstructionTradesPayPage() {
                   <h3 className="font-bold text-navy mb-3">Related Calculators</h3>
                   <div className="space-y-3">
                     <SidebarLink href="/award-rates/" label="Award Rates Guide" />
+                    <SidebarLink href="/building-and-construction-award-rates/" label="Construction Award Rates" />
                     <SidebarLink href="/overtime-pay-calculator/" label="Overtime Calculator" />
                     <SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" />
                     <SidebarLink href="/average-salary-australia/" label="Average Salary Australia" />

@@ -12,6 +12,7 @@ import {
   PH_HUB_PATH,
   STATE_PUBLIC_HOLIDAYS,
   getStatePublicHolidays,
+  PUBLIC_HOLIDAY_AWARD_RATES,
   pctLabel,
   publicHolidayRateRange,
   stateFaqs,
@@ -57,8 +58,8 @@ function hubDescription(): string {
   const r = publicHolidayRateRange();
   const rates = `${pctLabel(r.permanentMin)}–${pctLabel(r.permanentMax)} for permanent staff, ${pctLabel(r.casualMin)}–${pctLabel(r.casualMax)} for casuals`;
   return fitDescription(
-    `Public holiday pay rates for 14 modern awards: ${rates}. Pay for not working, refusing a shift, substitute days, and a calculator. Dates for every state.`,
-    `Public holiday pay rates for 14 modern awards: ${rates}. Pay for not working, substitute days and a calculator.`,
+    `Public holiday pay rates for ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards: ${rates}. Pay for not working, refusing a shift, substitute days, and a calculator. Dates for every state.`,
+    `Public holiday pay rates for ${PUBLIC_HOLIDAY_AWARD_RATES.length} modern awards: ${rates}. Pay for not working, substitute days and a calculator.`,
   );
 }
 

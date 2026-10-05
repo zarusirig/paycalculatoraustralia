@@ -138,6 +138,7 @@ export const CARPENTER: Occupation = {
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [
     { href: "/construction-trades-pay/", label: "Construction & Trades Pay" },
+    { href: "/building-and-construction-award-rates/", label: "Building & Construction Award Rates" },
     { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator" },
     { href: "/job-pay-rates/electrician/", label: "Electrician Pay Rates" },
   ],

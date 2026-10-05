@@ -154,9 +154,15 @@ const SCHADS: AwardPublicHolidayRate = {
   note: `The award says "${SCHADS_AWARD.publicHolidayAwardWording}". Public holiday pay replaces weekend rates and shift loadings (cl 34.2(b)).`,
 };
 
-/** All 14 awards, A–Z by short name. */
+/**
+ * Every award with a published casual public holiday rate, A–Z by short name.
+ * Fitness and Local Government are left out: their award texts do not give a
+ * clear casual public holiday rate (see publicHolidayCasualUnpublished).
+ */
 export const PUBLIC_HOLIDAY_AWARD_RATES: readonly AwardPublicHolidayRate[] = [
-  ...Object.values(MODERN_AWARDS).map(fromModernAward),
+  ...(Object.values(MODERN_AWARDS) as readonly ModernAwardData[])
+    .filter((a) => !a.publicHolidayCasualUnpublished)
+    .map(fromModernAward),
   RETAIL,
   HOSPITALITY,
   SCHADS,
