@@ -103,7 +103,7 @@ export default function TaxChanges202627Page() {
                 The 2026-27 financial year runs from <strong>1 July 2026 to 30 June 2027</strong>. The year&apos;s settings are now confirmed: the legislated rate cut took effect on 1 July 2026, the ATO has published the 2026-27 HELP repayment thresholds and super contribution caps, and the headline measures from the 12 May 2026 federal budget &mdash; including the CGT changes that start on 1 July 2027 &mdash; have passed into law.
               </p>
               <p>
-                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>16% to 15%</strong> on 1 July 2026 (and to 14% from 1 July 2027). For anyone earning $45,000 or more, that is a tax cut of <strong>$268 per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26.
+                Building on the Stage 3 structure that took effect on 1 July 2024, the legislated cost-of-living tax cuts lower the first marginal rate from <strong>16% to 15%</strong> on 1 July 2026 (and to 14% from 1 July 2027). For anyone earning $45,000 or more, that is a tax cut of <strong>$268 per year</strong> in FY2026-27. All other rates and thresholds carry over from FY2025-26. For the dates of every change through 1 July 2027, see the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
               </p>
             </section>
 

@@ -131,7 +131,7 @@ export default function MinimumWageHistoryPage() {
             <section id="current">
               <h2 style={H2}>The Minimum Wage Now</h2>
               <p>
-                The latest increase is the last row of the table. For the current figures in full, after tax and with award comparisons and the date of the next review, read <Link href="/minimum-wage-australia/">what is the minimum wage in Australia</Link>. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>.
+                The latest increase is the last row of the table. For the current figures in full, after tax and with award comparisons and the date of the next review, read <Link href="/minimum-wage-australia/">what is the minimum wage in Australia</Link>. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>. Every year in the table above is free to download as CSV from the <Link href="/australian-tax-and-pay-data/">Australian tax and pay data</Link> page.
               </p>
             </section>
 

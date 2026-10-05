@@ -273,7 +273,7 @@ export default function JuniorPayRatesPage() {
                 <strong>Three differences worth knowing.</strong> Retail and fast food pay differently at under-16 &mdash; 45% against 40% &mdash; while matching exactly at 16 through 19. Retail&rsquo;s 20-year-old band splits on service, reaching the adult rate only after more than six months with the same employer, where fast food currently holds 20-year-olds at 90% until they turn 21 (that changes from 1 December 2026 for those with more than six months&rsquo; service; <a href="#pending-change">see below</a>). And Hair and Beauty reaches the full adult rate at 18, the earliest of any common award.
               </p>
               <p>
-                Full classification tables are on our <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages. Hospitality is a fourth scale again, paying 85% at 19 where retail pays 80%, and it has a separate table for office employees.
+                Full classification tables are on our <Link href="/retail-award-rates/">retail award rates</Link> and <Link href="/hospitality-award-rates/">hospitality award rates</Link> pages. Hospitality is a fourth scale again, paying 85% at 19 where retail pays 80%, and it has a separate table for office employees. The dated steps of the retail, fast food and pharmacy 18 to 20 phase-in are on the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
               </p>
             </section>
 

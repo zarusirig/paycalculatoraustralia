@@ -9,13 +9,14 @@ import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { EMBED_DATA } from "@/lib/embed/take-home-engine";
 import { EMBED_DEFAULT_HEIGHT, EMBED_PATH, EMBED_URL, autoResizeSnippet, embedCode } from "@/lib/embed/take-home-widget-html";
+import { BADGE_HEIGHT, BADGE_PATH, FIGURE_BADGES, badgeEmbedCode } from "@/lib/embed/figure-badges";
 import CopySnippet from "@/modules/guide/copy-snippet";
 import { withPageEnd } from "@/components/common/content-slots";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/embed/`;
-const TITLE = "Free Take-Home Pay Calculator Widget for Your Website";
-const DESCRIPTION = `Embed a free Australian take-home pay calculator on your website or blog. ${EMBED_DATA.fy} ATO rates, HECS and super options, updated automatically. One line of code.`;
+const TITLE = "Free Take-Home Pay Calculator and Live Rate Badges for Your Website";
+const DESCRIPTION = `Embed a free Australian take-home pay calculator, or live badges for the minimum wage, super rate and tax-free threshold, on your website or blog. ${EMBED_DATA.fy} ATO and Fair Work rates, updated automatically. One line of code.`;
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
 export const metadata: Metadata = {
@@ -102,6 +103,34 @@ function EmbedPage() {
               resize itself exactly, add this script once anywhere on the page:
             </p>
             <CopySnippet id="embed-resize" label="Auto-resize script (optional)" text={autoResizeSnippet()} />
+
+            <h2 id="badges" style={HEADING_FONT}>Live figure badges: minimum wage, super rate and more</h2>
+            <p>
+              Need just one number on your page, such as a payroll or HR blog quoting the current minimum wage? These small badges
+              show a single figure with its source. They read the figure from this site, so when a rate changes the badge on your page
+              changes with it and you never edit the code again. They carry no ads, cookies or tracking.
+            </p>
+            {FIGURE_BADGES.map((b) => (
+              <div key={b.id}>
+                <h3 style={HEADING_FONT}>{b.label}</h3>
+                <div className="not-prose">
+                  <iframe
+                    src={`${BADGE_PATH}index.html?figure=${b.id}`}
+                    title={`${b.label} badge (preview)`}
+                    width="100%"
+                    height={BADGE_HEIGHT}
+                    loading="lazy"
+                    className="w-full max-w-[420px] border-0"
+                  />
+                </div>
+                <CopySnippet id={`badge-${b.id}`} label={`Embed code: ${b.label}`} text={badgeEmbedCode(b.id)} />
+              </div>
+            ))}
+            <p>
+              Add <code>&amp;theme=dark</code> or <code>&amp;theme=light</code> to force a colour scheme. The figures are the same ones
+              published in our <Link href="/australian-tax-and-pay-data/">open tax and pay data</Link>, and the dates they change on are
+              in the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link>.
+            </p>
 
             <h2 style={HEADING_FONT}>Terms of use</h2>
             <ul>

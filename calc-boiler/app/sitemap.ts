@@ -385,6 +385,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // /embed/take-home-pay/ is deliberately absent: it is noindex (widget document).
   allPages.push({ slug: "australian-pay-report-2026", changeFrequency: "monthly" as const, priority: 0.8 });
   allPages.push({ slug: "embed", changeFrequency: "yearly" as const, priority: 0.5 });
+  // --- Oct 2026 link assets: open data page and the what-changes-when calendar ---
+  allPages.push({ slug: "australian-tax-and-pay-data", changeFrequency: "monthly" as const, priority: 0.7 });
+  allPages.push({ slug: "pay-and-tax-changes-calendar", changeFrequency: "monthly" as const, priority: 0.7 });
   // --- end F8 ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   for (const slug of ["fifo-pay-calculator", "fortnights-in-a-year", "centrelink-payment-dates"]) {

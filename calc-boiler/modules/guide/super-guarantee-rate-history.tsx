@@ -157,7 +157,7 @@ export default function SuperGuaranteeRateHistoryPage() {
                 </div>
               </div>
               <p>
-                SG is paid on top of salary, so a rate rise doesn&rsquo;t reduce the gross pay in your contract. Whether employers pass the cost on through smaller pay rises over time is debated among economists. The <Link href="/employer-cost-calculator/">employer cost calculator</Link> shows the full cost of employing someone.
+                SG is paid on top of salary, so a rate rise doesn&rsquo;t reduce the gross pay in your contract. Whether employers pass the cost on through smaller pay rises over time is debated among economists. The <Link href="/employer-cost-calculator/">employer cost calculator</Link> shows the full cost of employing someone. The rate history is available as a CSV on the <Link href="/australian-tax-and-pay-data/">Australian tax and pay data</Link> page.
               </p>
             </section>
 
