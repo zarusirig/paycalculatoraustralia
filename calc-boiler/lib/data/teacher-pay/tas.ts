@@ -226,8 +226,8 @@ export const TAS_TEACHER_PAY: TeacherPayState = {
       a: "You need 12 months or more at Level 12 and full teacher registration certified by the Teachers Registration Board. If you have the service but not the registration, you progress from the date the TRB certifies it.",
     },
     {
-      q: "Are Tasmanian teachers getting another pay rise?",
-      a: "Yes, two more are already locked in. Clause 8.1 of the Teachers Agreement 2025 provides 3% from the first full pay period on or after 1 March 2027 and 2.75% from 1 March 2028. The agreement runs until 19 September 2028.",
+      q: "When do Tasmanian teachers get their next pay rise?",
+      a: "Two more are already locked in. Clause 8.1 of the Teachers Agreement 2025 provides 3% from the first full pay period on or after 1 March 2027 and 2.75% from 1 March 2028. The agreement runs until 19 September 2028.",
     },
     {
       q: "Why do Tasmanian teacher salary tables disagree?",

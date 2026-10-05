@@ -197,6 +197,9 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
               <p>
                 Home care is paid under different schedules with <strong>no ERO uplift</strong>, so the rates are materially lower than the social and community services table above. Being classified into the wrong schedule is one of the more expensive errors in this award.
               </p>
+              <p>
+                <strong>Schedule E rates rise from {SCHADS_SCHEDULE_E_INCREASE.operativeFrom}.</strong> The Fair Work Commission ({SCHADS_SCHEDULE_E_INCREASE.decision}, {SCHADS_SCHEDULE_E_INCREASE.decidedOn}) deferred the home care disability increase from {SCHADS_SCHEDULE_E_INCREASE.deferredFrom} to {SCHADS_SCHEDULE_E_INCREASE.operativeFrom}, an interim rise of up to {Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}%. The table below shows the rates in force today. See <Link href="/news/schads-home-care-disability-pay-rise-december-2026/">SCHADS home care disability pay rise from 1 December 2026</Link> for the new rates.
+              </p>
 
               <h3>Home care &mdash; disability care (Schedule E)</h3>
               <RateTable rows={SCHADS_HOME_CARE_DISABILITY} caption="SCHADS home care disability care pay rates" />
@@ -405,6 +408,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
               <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Related Guides</h2>
               <ul>
                 <li><Link href="/award-rates/">Award Rates Australia</Link> &mdash; how modern awards work and which one covers you</li>
+                <li><Link href="/news/schads-home-care-disability-pay-rise-december-2026/">SCHADS home care pay rise, 1 December 2026</Link> &mdash; the new Schedule E disability care rates</li>
                 <li><Link href="/junior-pay-rates/">Junior Pay Rates</Link> &mdash; the awards that do set age-based rates, and the percentages</li>
                 <li><Link href="/overtime-penalty-rates-guide/">Penalty Rates</Link> &mdash; weekend, evening and public holiday loadings across awards</li>
                 <li><Link href="/healthcare-worker-pay/">Healthcare Worker Pay</Link> &mdash; nurses, doctors and allied health</li>

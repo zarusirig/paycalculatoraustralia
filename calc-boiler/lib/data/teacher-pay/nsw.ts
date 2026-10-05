@@ -191,6 +191,10 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
 
   faqs: [
     {
+      q: "When do NSW teachers get a pay rise?",
+      a: "The award already schedules the next one: 3% from the first pay period commencing on or after 9 October 2026 (clause 3 of the Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024). The previous 3% applied from the first pay period commencing on or after 9 October 2025, and the one before that from 9 October 2024. The 9 October 2026 rise is the last in the award's three-year schedule, so check for a new award after it. Because it applies from the first pay period on or after that date, it shows on your pay a little after 9 October rather than on the day itself. It takes Step 1 to $92,882 and Step 7 to $133,422.",
+    },
+    {
       q: "What is the graduate teacher salary in NSW?",
       a: "A new graduate teacher in a NSW public school starts on Step 1 of the classroom teacher scale, $90,177 a year, from the first full pay period on or after 9 October 2025. That rises to $92,882 from 9 October 2026 under the same award.",
     },

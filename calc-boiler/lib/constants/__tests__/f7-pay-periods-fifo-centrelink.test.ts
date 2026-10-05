@@ -23,6 +23,7 @@ import { calculateFifoPay, FIFO_DEFAULTS, ROSTER_PRESETS } from "../fifo-pay";
 import { calculatePayBreakdown, SUPER_GUARANTEE } from "../australian-tax";
 import {
   CHRISTMAS_2025_26,
+  CHRISTMAS_2026_27,
   CHRISTMAS_2026_27_PUBLISHED,
   HOLIDAYS_2026_27,
   daysEarly,
@@ -190,6 +191,12 @@ test("2025-26 Christmas tables transcribed: 12 rows each, dates move earlier, ne
 
 test("Christmas 2026 schedule flagged as unpublished until refreshed", () => {
   assert.equal(CHRISTMAS_2026_27_PUBLISHED, false);
+  // No unconfirmed dates: the schedule stays null until transcribed from Services Australia.
+  assert.equal(CHRISTMAS_2026_27, null);
+});
+
+test("flag and schedule move together: a published flag needs a transcribed schedule", () => {
+  assert.equal(CHRISTMAS_2026_27_PUBLISHED, CHRISTMAS_2026_27 !== null);
 });
 
 test("projected fortnightly dates step by 14 days and flag holidays", () => {

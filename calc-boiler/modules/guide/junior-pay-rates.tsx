@@ -301,6 +301,9 @@ export default function JuniorPayRatesPage() {
                     <p className="text-sm leading-relaxed text-navy">
                       It is <strong>not a jump to the adult rate</strong>. On {PENDING_JUNIOR_CHANGE.earliestStart} an eligible 19-year-old moves from 80% to 85%, not to 100%. Employees with 6 months or less stay on 70%, 80% and 90%, and rates for under-18s do not change.
                     </p>
+                    <p className="mt-2 text-sm leading-relaxed text-navy">
+                      <strong>Why some sources still say &ldquo;could start&rdquo;.</strong> The Fair Work Ombudsman&rsquo;s explainer, published 8 April 2026, says the changes &ldquo;could start from 1 December 2026&rdquo;. That was written before the Commission&rsquo;s {PENDING_JUNIOR_CHANGE.implementationDecidedOn} decision, which at paragraph [263] says the transitional arrangements should commence on {PENDING_JUNIOR_CHANGE.earliestStart} for the retail and fast food awards, and adopted the Pharmacy Guild&rsquo;s agreed transition for pharmacy. Re-read against the decision on 5 October 2026. The new percentages do not apply to any pay period before that date.
+                    </p>
                   </div>
                 </div>
               </div>

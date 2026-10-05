@@ -337,6 +337,21 @@ export default function BonusTaxCalculatorContent() {
               </p>
             </section>
 
+          {/* --- H2: Christmas bonus disambiguation (Oct 2026): employer bonus vs the Centrelink myth --- */}
+          <section id="christmas-bonus">
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Christmas Bonus: From Your Employer or From Centrelink?</h2>
+            <p className="mb-4 text-warmgray">
+              &quot;Christmas bonus&quot; means two different things in Australia, and only one of them is real income this page can work out.
+            </p>
+            <ul className="list-disc pl-5 space-y-3 text-warmgray mb-4">
+              <li><strong>A Christmas bonus from your employer.</strong> A year-end or Christmas bonus paid through payroll is treated like any other bonus. The {formatPercent(SUPER_GUARANTEE.rate, 0)} super guarantee generally applies if it counts as qualifying earnings, and tax is withheld using the Schedule 5 method described above. Enter the amount in the calculator at the top of this page to see what lands in your account.</li>
+              <li><strong>A Christmas bonus from Centrelink.</strong> We found no Christmas bonus listed among Services Australia&apos;s payments. Services Australia warns that unofficial websites and social media posts promote one-off and bonus payments that don&apos;t exist, with amounts such as $750, $950, $1,800 and $4,100. If a post promises one, check <a href="https://www.servicesaustralia.gov.au/fake-information-about-centrelink-payments" target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline font-medium">Services Australia&apos;s fake information page</a>, and don&apos;t click links or give out personal details. The only genuine Services Australia and myGov websites are servicesaustralia.gov.au and my.gov.au.</li>
+            </ul>
+            <p className="text-warmgray">
+              What Centrelink does change over Christmas is when payments arrive, because of public holidays. See <Link href="/centrelink-payment-dates/" className="text-eucalyptus-dark hover:underline font-medium">Centrelink payment dates</Link> for the schedule, and <Link href="/public-holiday-pay/" className="text-eucalyptus-dark hover:underline font-medium">public holiday pay</Link> if you are working over the break.
+            </p>
+          </section>
+
           {/* --- H2: Commission vs Bonus (original, kept) --- */}
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }} className="text-2xl font-semibold text-navy mb-4">Is There a Difference Between Commission Tax and Bonus Tax?</h2>

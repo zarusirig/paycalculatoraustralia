@@ -133,4 +133,8 @@ export const BONUS_TAX_FAQS: readonly BonusTaxFaq[] = [
     q: "How do I calculate the tax taken out of my bonus?",
     a: `Payroll uses the ATO's Schedule 5 method. It divides the bonus by your pay periods (${FN_PERIODS} for fortnightly), adds that slice to one normal pay, finds the extra withholding, then multiplies it back by ${FN_PERIODS}. On ${formatAUD(FN_PAY_90K)} a fortnight, a ${formatAUD(BONUS_5K)} bonus has ${formatAUD(WITHHELD_5K.withheldFromAdditionalPayment)} withheld. Withholding is capped at ${formatPercent(SCHEDULE_5_WITHHOLDING_LIMIT, 0)} of the bonus.`,
   },
+  {
+    q: "Is there a Christmas bonus from Centrelink?",
+    a: "We found no Christmas bonus listed among Services Australia's payments. Services Australia warns that online posts about one-off and bonus payments, with amounts such as $750, $950, $1,800 and $4,100, are fake. Check servicesaustralia.gov.au or my.gov.au before acting on any claim. A Christmas bonus from your employer is different: it is paid through payroll and taxed like any other bonus.",
+  },
 ];

@@ -6,6 +6,7 @@ import {
   CENTRELINK_DATES_SOURCES,
   CENTRELINK_DATES_VERIFIED_ON,
   CHRISTMAS_2025_26,
+  CHRISTMAS_2026_27,
   CHRISTMAS_2026_27_PUBLISHED,
   HOLIDAYS_2026_27,
   PENSION_PAYMENTS,
@@ -32,8 +33,9 @@ import {
 } from "./t3-shared";
 
 // ⚠️ REFRESH: when Services Australia publishes the Christmas 2026 tables, add
-// them to lib/constants/centrelink-payment-dates.ts (CHRISTMAS_2026_27), flip
-// CHRISTMAS_2026_27_PUBLISHED, and render them above last year's tables.
+// them to lib/constants/centrelink-payment-dates.ts (CHRISTMAS_2026_27) and
+// flip CHRISTMAS_2026_27_PUBLISHED. The Christmas 2026 section already renders
+// the four tables once both are set; last year's tables stay below as reference.
 
 const SA = SOURCES.servicesAustralia.name;
 const SOURCES_LIST: SourceLink[] = [
@@ -50,6 +52,10 @@ const d = (iso: string) => {
 };
 
 const S = CHRISTMAS_2025_26;
+// Both must be set before anything Christmas-2026 is shown: the flag alone
+// (without a transcribed schedule) renders nothing unconfirmed.
+const NEW = CHRISTMAS_2026_27_PUBLISHED ? CHRISTMAS_2026_27 : null;
+const PUBLISHED_2026 = NEW !== null;
 const maxEarly = Math.max(...[...S.allowances.noReport, ...S.pensions.noReport].map(daysEarly));
 
 function ReportTable({ rows, caption }: { rows: readonly ReportingChangeRow[]; caption: string }) {
@@ -82,7 +88,7 @@ export default function CentrelinkPaymentDatesPage() {
       <PageHeader title="Centrelink Payment Dates and Christmas 2026 Changes">
         <p>
           <strong>Centrelink pays most payments every 2 weeks on your own fortnightly cycle, so there is no single payment date for everyone.</strong> Your payment and reporting dates are in your Centrelink online account. Services Australia doesn&rsquo;t delay payments for public holidays; it may pay you <em>early</em> instead.{" "}
-          {CHRISTMAS_2026_27_PUBLISHED
+          {PUBLISHED_2026
             ? "The Christmas 2026 dates are below."
             : `The Christmas 2026 dates haven't been published yet (checked ${CENTRELINK_DATES_VERIFIED_ON}); below are last year's official tables so you can see how the changes work.`}
         </p>
@@ -92,7 +98,7 @@ export default function CentrelinkPaymentDatesPage() {
         items={[
           { k: "Payment cycle", v: "2 weeks", s: "Weekly option for some" },
           { k: "Report by", v: "5 pm", s: "On your reporting date" },
-          { k: "Christmas 2026 dates", v: CHRISTMAS_2026_27_PUBLISHED ? "Published" : "Not yet", s: `Checked ${CENTRELINK_DATES_VERIFIED_ON}` },
+          { k: "Christmas 2026 dates", v: PUBLISHED_2026 ? "Published" : "Not yet", s: `Checked ${CENTRELINK_DATES_VERIFIED_ON}` },
           { k: "Christmas 2025", v: `Up to ${maxEarly} days early`, s: "No-report payments: earlier, never later" },
         ]}
       />
@@ -121,8 +127,18 @@ export default function CentrelinkPaymentDatesPage() {
 
           <section>
             <H2 id="christmas-2026">Centrelink Christmas Payment Dates 2026</H2>
-            {CHRISTMAS_2026_27_PUBLISHED ? (
-              <p>Services Australia has published the Christmas 2026 dates. Check the tables below.</p>
+            {NEW ? (
+              <>
+                <p>Services Australia has published the Christmas 2026 and New Year 2027 dates (page version dated {NEW.pageLastUpdated}). They apply to {NEW.label}.</p>
+                <h3>JobSeeker, Youth Allowance and other allowances: if you had to report</h3>
+                <ReportTable rows={NEW.allowances.report} caption={`${NEW.label}, as published by Services Australia.`} />
+                <h3>Allowances: if you didn&rsquo;t have to report</h3>
+                <PayTable rows={NEW.allowances.noReport} caption={`${NEW.label}, as published by Services Australia.`} />
+                <h3>Pensions and families: if you had to report</h3>
+                <ReportTable rows={NEW.pensions.report} caption={`${NEW.label}, as published by Services Australia.`} />
+                <h3>Pensions and families: if you didn&rsquo;t have to report</h3>
+                <PayTable rows={NEW.pensions.noReport} caption={`${NEW.label}, as published by Services Australia.`} />
+              </>
             ) : (
               <>
                 <p><strong>Not published yet.</strong> As of {CENTRELINK_DATES_VERIFIED_ON}, Services Australia&rsquo;s <a href={CENTRELINK_DATES_SOURCES.holidayPage} target="_blank" rel="noopener noreferrer">public holiday reporting and payment dates</a> page doesn&rsquo;t list any Christmas 2026 changes. Last year&rsquo;s tables were on a version of that page dated 27 October 2025. We&rsquo;ll add the 2026 dates here when they&rsquo;re released. Until then, your online account is the only reliable source for your own dates.</p>

@@ -161,7 +161,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "minimum-wage-history-australia": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "mining-fifo-pay-guide": { authorId: "anita-bell", lastReviewed: "2026-03-15" },
   "healthcare-worker-pay": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
-  "teacher-pay-australia": { authorId: "anita-bell", lastReviewed: "2026-08-28" },
+  "teacher-pay-australia": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   // C1 employer pay rates (hub + every /pay-rates/[employer]/ page)
   "pay-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "long-service-leave-calculator": { authorId: "anita-bell", lastReviewed: "2026-08-28" },
@@ -169,14 +169,14 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "tech-salary-guide-australia": { authorId: "anita-bell", lastReviewed: "2026-03-13" },
   "construction-trades-pay": { authorId: "anita-bell", lastReviewed: "2026-03-12" },
 
-  "hecs-help-calculator": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
+  "hecs-help-calculator": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   "hecs-repayment-threshold": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
   "capital-gains-tax-calculator": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
   "work-hours-calculator": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
   "super-guarantee-charge": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
 
   // Per-award rate pages
-  "schads-award-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
+  "schads-award-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   "hospitality-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "retail-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- Award cluster C3 (Sep 2026): additional per-award rate pages ---
@@ -194,7 +194,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "cleaning-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "road-transport-award-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- end T4 ---
-  "junior-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-07-28" },
+  "junior-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
 
   // Wave 13 Expansion — Payslip Tools (tax-table slugs registered above)
   "stsl-on-payslip": { authorId: "anita-bell", lastReviewed: "2026-07-02" },
@@ -244,7 +244,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
 
   // --- W1 timely pages (Wave 2, 23 Sep 2026) ---
   "payday-super": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
-  "tax-return-2026": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
+  "tax-return-2026": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   "pension-age-australia": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- end W1 ---
 
@@ -273,7 +273,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "fortnights-in-a-year": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
-  "centrelink-payment-dates": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "centrelink-payment-dates": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   // --- end F7 ---
   // --- G3 wave 4 opportunities (24 Sep 2026) ---
   "sick-leave-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
