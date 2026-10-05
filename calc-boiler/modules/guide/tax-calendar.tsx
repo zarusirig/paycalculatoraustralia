@@ -236,7 +236,7 @@ export default function TaxCalendarPage() {
               <li><strong>Penalty unit</strong> — {formatAUD(PENALTY_UNIT.amount)}, up from {formatAUD(PENALTY_UNIT.previousAmount)}</li>
               <li><strong>Car expenses</strong> — {R.carCentsPerKmNextYear}c per km for {Y.incomeYear}, up from {R.carCentsPerKm}c</li>
             </ul>
-            <p>See all of them on our <Link href="/tax-changes-2026-27/">2026-27 tax changes</Link> page, or see your take-home pay at current rates with the <Link href="/">Pay Calculator</Link>.</p>
+            <p>See all of them on our <Link href="/tax-changes-2026-27/">2026-27 tax changes</Link> page, or the <Link href="/pay-and-tax-changes-calendar/">pay and tax changes calendar</Link> for the 1 December 2026 and 1 July 2027 dates, or see your take-home pay at current rates with the <Link href="/">Pay Calculator</Link>.</p>
           </section>
 
           {/* ---- CONTEXT BORDER ---- */}

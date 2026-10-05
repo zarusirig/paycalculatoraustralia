@@ -131,7 +131,7 @@ export default function MinimumWageHistoryPage() {
             <section id="current">
               <h2 style={H2}>The Minimum Wage Now</h2>
               <p>
-                The current rate is {money(HISTORY_LAST.hourly)} an hour or {money(HISTORY_LAST.weekly)} a week. The <Link href="/minimum-wage-australia/">minimum wage Australia</Link> page has it hourly, weekly, fortnightly and annually, after tax, with award comparisons and the date of the next review. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>.
+                The current rate is {money(HISTORY_LAST.hourly)} an hour or {money(HISTORY_LAST.weekly)} a week. The <Link href="/minimum-wage-australia/">minimum wage Australia</Link> page has it hourly, weekly, fortnightly and annually, after tax, with award comparisons and the date of the next review. Under-21s are paid a percentage of it; see <Link href="/junior-pay-rates/">minimum wage by age</Link>. Every year in the table above is free to download as CSV from the <Link href="/australian-tax-and-pay-data/">Australian tax and pay data</Link> page.
               </p>
             </section>
 

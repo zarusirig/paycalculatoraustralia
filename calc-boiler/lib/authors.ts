@@ -256,6 +256,8 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   // --- end T1 ---
   // --- F8 Lever D linkable assets (24 Sep 2026) ---
   "australian-pay-report-2026": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "australian-tax-and-pay-data": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "pay-and-tax-changes-calendar": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
   // --- end F8 ---
   // --- F7 remaining planned nodes (24 Sep 2026) ---
   "fifo-pay-calculator": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
