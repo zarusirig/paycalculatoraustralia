@@ -657,7 +657,7 @@ const CLUSTERS: Cluster[] = [
   },
   // --- Tax tables / withholding ---
   {
-    match: (p) => p.endsWith("-tax-table/") || p === "/payg-withholding-tables/",
+    match: (p) => p.endsWith("-tax-table/") || p === "/payg-withholding-tables/" || /^\/(weekly|fortnightly|monthly)-tax-table\/\[fy\]\/$/.test(p),
     links: [
       WEEKLY_PAY,
       FORTNIGHTLY_PAY,

@@ -331,6 +331,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const service of ADF_SERVICE_SLUGS) {
     allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
+  // --- F5 PAYG tax tables by financial year (Oct 2026) ---
+  for (const cycle of ["weekly", "fortnightly", "monthly"]) {
+    for (const fy of ["2026-27", "2025-26", "2024-25"]) {
+      allPages.push({ slug: `${cycle}-tax-table/${fy}`, changeFrequency: "monthly" as const, priority: 0.7 });
+    }
+  }
+  // --- end F5 ---
   // --- end C2/C5 ---
   // --- W2 wave 2: tax-free threshold, MLS calculator, concessional cap (23 Sep 2026) ---
   allPages.push({ slug: "tax-free-threshold", changeFrequency: "monthly" as const, priority: 0.8 });

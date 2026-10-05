@@ -40,8 +40,16 @@ export const PAYG_TABLES_UPDATED = "1 July 2026";
  * The current year comes first. The tax-table pages offer these as an FY
  * toggle so payroll staff can check a pay run from the previous year.
  */
-export type PaygFinancialYear = "2026-27" | "2025-26";
+export type PaygFinancialYear = "2026-27" | "2025-26" | "2024-25";
 export const PAYG_FINANCIAL_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26"];
+/**
+ * Every year that has its own /{cycle}-tax-table/{fy}/ page, newest first.
+ * 2024-25 is not in the lookup-widget toggle (PAYG_FINANCIAL_YEARS) but the
+ * engine carries it: the ATO's single Schedule 1 edition applied to payments
+ * made from 1 July 2024 to 30 June 2026, so 2024-25 uses the same coefficients
+ * as 2025-26.
+ */
+export const PAYG_TABLE_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26", "2024-25"];
 export const PAYG_PREVIOUS_FINANCIAL_YEAR: PaygFinancialYear = "2025-26";
 
 export interface PaygYearInfo {
@@ -50,6 +58,9 @@ export interface PaygYearInfo {
   readonly appliesTo: string;
   readonly schedule1Url: string;
   readonly sampleDataUrl: string;
+  /** First and last pay date (ISO) the year covers, i.e. the financial year. */
+  readonly payDatesFrom: string;
+  readonly payDatesTo: string;
   /** Whether the engine carries this year's Schedule 8 (STSL) coefficients. */
   readonly stslSupported: boolean;
 }
@@ -57,6 +68,8 @@ export interface PaygYearInfo {
 export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
   "2026-27": {
     fy: "2026-27",
+    payDatesFrom: "2026-07-01",
+    payDatesTo: "2027-06-30",
     appliesTo: "payments made from 1 July 2026",
     schedule1Url:
       "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld",
@@ -66,6 +79,8 @@ export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
   },
   "2025-26": {
     fy: "2025-26",
+    payDatesFrom: "2025-07-01",
+    payDatesTo: "2026-06-30",
     // The ATO did not reissue Schedule 1 on 1 July 2025: the 1 July 2024
     // edition "applied to payments made from 1 July 2024 to 30 June 2026".
     appliesTo: "payments made from 1 July 2024 to 30 June 2026",
@@ -79,7 +94,36 @@ export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
     // carried — the pages disable the study-loan option for this year.
     stslSupported: false,
   },
+  "2024-25": {
+    fy: "2024-25",
+    payDatesFrom: "2024-07-01",
+    payDatesTo: "2025-06-30",
+    // Same ATO edition as 2025-26 (read 5 October 2026: "This schedule applied
+    // to payments made from 1 July 2024 to 30 June 2026", last updated 17 June
+    // 2024), so the coefficients are identical.
+    appliesTo: "payments made from 1 July 2024 to 30 June 2026",
+    schedule1Url:
+      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026",
+    sampleDataUrl:
+      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data",
+    // Schedule 8 for 2024-25 is a different (pre-marginal) system that the
+    // engine does not carry, so no study-loan component is shown.
+    stslSupported: false,
+  },
 };
+
+/**
+ * Which financial year's table applies to a payment made on `isoDate`
+ * (YYYY-MM-DD). The ATO looks at the date the payment is MADE, not the period
+ * worked. Returns null outside the years the site carries.
+ */
+export function paygFinancialYearForPayDate(isoDate: string): PaygFinancialYear | null {
+  for (const fy of PAYG_TABLE_YEARS) {
+    const info = PAYG_YEAR_INFO[fy];
+    if (isoDate >= info.payDatesFrom && isoDate <= info.payDatesTo) return fy;
+  }
+  return null;
+}
 
 // The FY2026-27 scale now lives in australian-tax.ts as the sitewide single
 // source of truth. Re-exported here so existing tax-table page imports keep
@@ -254,6 +298,12 @@ const SCALES_BY_YEAR: Record<PaygFinancialYear, Record<WithholdingScale, readonl
     noTft: SCALE_1_NO_TFT_2025_26,
     foreignResident: SCALE_3_FOREIGN_2025_26,
   },
+  // Same ATO edition (1 July 2024 to 30 June 2026) as 2025-26.
+  "2024-25": {
+    tft: SCALE_2_TFT_2025_26,
+    noTft: SCALE_1_NO_TFT_2025_26,
+    foreignResident: SCALE_3_FOREIGN_2025_26,
+  },
 };
 
 // ---------- Schedule 8 (NAT 3539): study and training support loans ----------
@@ -325,6 +375,40 @@ export function withholdingForPeriod(
   const x = toWeeklyEquivalent(grossPerPeriod, frequency);
   const weekly = applyScale(x, SCALES_BY_YEAR[financialYear][scale]);
   return fromWeeklyWithholding(weekly, frequency);
+}
+
+export interface WithholdingWorkings {
+  /** Weekly equivalent x the ATO formula runs on (whole dollars + 99c). */
+  readonly x: number;
+  /** Coefficients of the band x falls in; `a` is null for a nil band. */
+  readonly a: number | null;
+  readonly b: number;
+  /** a·x − b before rounding (0 for a nil band). */
+  readonly raw: number;
+  /** Weekly amount after rounding to the nearest dollar. */
+  readonly weekly: number;
+  /** Amount for the pay period (weekly, doubled, or converted for monthly). */
+  readonly perPeriod: number;
+}
+
+/**
+ * Step-by-step workings for one withholding amount, for worked examples. The
+ * final figure is by construction the same as withholdingForPeriod.
+ */
+export function explainWithholding(
+  grossPerPeriod: number,
+  frequency: PayFrequency,
+  scale: WithholdingScale,
+  financialYear: PaygFinancialYear
+): WithholdingWorkings {
+  const x = toWeeklyEquivalent(Math.max(0, grossPerPeriod), frequency);
+  const band = SCALES_BY_YEAR[financialYear][scale].find((bd) => x < bd.lessThan);
+  if (!band || band.a === null) {
+    return { x, a: null, b: 0, raw: 0, weekly: 0, perPeriod: 0 };
+  }
+  const raw = band.a * x - band.b;
+  const weekly = Math.max(0, roundATO(raw));
+  return { x, a: band.a, b: band.b, raw, weekly, perPeriod: fromWeeklyWithholding(weekly, frequency) };
 }
 
 /**

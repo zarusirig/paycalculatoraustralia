@@ -18,6 +18,8 @@ import {
 interface FullTaxTableProps {
   frequency: PayFrequency;
   caption: string;
+  /** Lock the table to one financial year (FY pages): hides the year toggle. */
+  fixedFy?: PaygFinancialYear;
 }
 
 const toggleBase =
@@ -31,8 +33,8 @@ const toggleOff = "bg-white text-navy border-sandstone-dark/30 hover:border-euca
  * toggle swaps in the previous year's coefficients. "Download CSV" builds a
  * whole-dollar version in the browser — nothing is fetched.
  */
-export default function FullTaxTable({ frequency, caption }: FullTaxTableProps) {
-  const [fy, setFy] = useState<PaygFinancialYear>(PAYG_FINANCIAL_YEARS[0]);
+export default function FullTaxTable({ frequency, caption, fixedFy }: FullTaxTableProps) {
+  const [fy, setFy] = useState<PaygFinancialYear>(fixedFy ?? PAYG_FINANCIAL_YEARS[0]);
   const rows = useMemo(() => buildTaxTableRows(frequency, fy, HTML_TABLE_RANGES[frequency]), [frequency, fy]);
   const showStsl = PAYG_YEAR_INFO[fy].stslSupported;
   const period = FREQUENCY_LABELS[frequency];
@@ -57,7 +59,7 @@ export default function FullTaxTable({ frequency, caption }: FullTaxTableProps) 
     <div className="not-prose my-6">
       <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Financial year">
-          {PAYG_FINANCIAL_YEARS.map((y) => (
+          {!fixedFy && PAYG_FINANCIAL_YEARS.map((y) => (
             <button key={y} type="button" aria-pressed={fy === y} onClick={() => setFy(y)} className={`${toggleBase} ${fy === y ? toggleOn : toggleOff}`}>
               {y}
             </button>

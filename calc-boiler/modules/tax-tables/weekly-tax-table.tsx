@@ -22,6 +22,7 @@ import AtoDownloads from "./ato-downloads";
 import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
+import FyTableLinks from "./fy-links";
 import { WEEKLY_TAX_TABLE_FAQS } from "./weekly-tax-table-faqs";
 import {
   ATO_SCHEDULE_1,
@@ -333,6 +334,8 @@ export default function WeeklyTaxTablePage() {
               </p>
               <AtoDownloads doc={ATO_WEEKLY} also={[ATO_SCHEDULE_1, ATO_SCHEDULE_8]} />
             </section>
+
+            <FyTableLinks only="weekly" />
 
             <section id="related-resources">
               <h2>Related Tax Tables and Calculators</h2>

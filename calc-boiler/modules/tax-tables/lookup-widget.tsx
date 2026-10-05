@@ -32,6 +32,8 @@ const NAT: Record<PayFrequency, string> = {
 interface LookupWidgetProps {
   frequency: PayFrequency;
   defaultGross: number;
+  /** Lock the widget to one financial year (FY pages): hides the year toggle. */
+  fixedFy?: PaygFinancialYear;
 }
 
 const toggleBase =
@@ -44,9 +46,9 @@ const toggleOff = "bg-white text-navy border-sandstone-dark/30 hover:border-euca
  * the amount the ATO table says to withhold — both threshold columns, the
  * study-loan component, and either financial year the engine carries.
  */
-export default function TaxTableLookupWidget({ frequency, defaultGross }: LookupWidgetProps) {
+export default function TaxTableLookupWidget({ frequency, defaultGross, fixedFy }: LookupWidgetProps) {
   const [gross, setGross] = useState(defaultGross);
-  const [fy, setFy] = useState<PaygFinancialYear>(PAYG_FINANCIAL_YEARS[0]);
+  const [fy, setFy] = useState<PaygFinancialYear>(fixedFy ?? PAYG_FINANCIAL_YEARS[0]);
   const [claimsTFT, setClaimsTFT] = useState(true);
   const [hasSTSL, setHasSTSL] = useState(false);
 
@@ -112,6 +114,7 @@ export default function TaxTableLookupWidget({ frequency, defaultGross }: Lookup
               </div>
             </fieldset>
 
+            {!fixedFy && (
             <fieldset>
               <legend className="block text-sm font-semibold text-navy mb-1.5">Financial year</legend>
               <div className="flex flex-wrap gap-2" role="group">
@@ -122,6 +125,7 @@ export default function TaxTableLookupWidget({ frequency, defaultGross }: Lookup
                 ))}
               </div>
             </fieldset>
+            )}
 
             <label className={`flex items-center gap-2 text-sm ${stslAvailable ? "cursor-pointer" : "opacity-60"}`}>
               <input
@@ -135,8 +139,9 @@ export default function TaxTableLookupWidget({ frequency, defaultGross }: Lookup
             </label>
             {!stslAvailable && (
               <p className="text-xs text-warmgray -mt-2">
-                The ATO changed the {fy} study-loan formulas part-way through the year (24 September 2025), so this
-                page shows the {fy} income-tax amount only.
+                {fy === "2025-26"
+                  ? "The ATO changed the 2025-26 study-loan formulas part-way through the year (24 September 2025), so this page shows the 2025-26 income-tax amount only."
+                  : `Study-loan (STSL) amounts are not shown for ${fy}; this page shows the income-tax amount only.`}
               </p>
             )}
           </form>
