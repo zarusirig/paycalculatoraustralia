@@ -20,6 +20,7 @@ import {
   type TaxTableRow,
 } from "@/lib/constants/payg-withholding";
 import TaxTableFaqSection from "@/modules/tax-tables/faq-section";
+import FyTableLinks from "@/modules/tax-tables/fy-links";
 import { PAYG_HUB_FAQS } from "./payg-withholding-tables-faqs";
 
 const SOURCES_LIST: SourceLink[] = [
@@ -492,6 +493,8 @@ export default function PAYGTablesGuidePage() {
                 A net weekly pay of <strong>{formatAUD(example1500.netPerPeriod)}</strong> corresponds to a gross weekly salary of approximately <strong>$1,500</strong> (or $78,000 per year) for a resident claiming the tax-free threshold with no study loan. The relationship between net and gross is non-linear because of progressive marginal rates &mdash; each additional dollar of gross pay is taxed at a higher marginal rate. Use our <Link href="/gross-pay-calculator/">Gross Pay Calculator</Link> to reverse-engineer the PAYG withholding instantly from any net figure.
               </p>
             </section>
+
+            <FyTableLinks />
 
             <section id="related-resources">
               <h2>Related Resources</h2>

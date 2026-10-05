@@ -26,6 +26,9 @@ import {
   calculateSchedule5MethodB,
   PAYG_FINANCIAL_YEAR,
   PAYG_FINANCIAL_YEARS,
+  PAYG_TABLE_YEARS,
+  paygFinancialYearForPayDate,
+  explainWithholding,
   PAYG_YEAR_INFO,
   buildTaxTableRows,
   taxTableCsv,
@@ -540,7 +543,7 @@ test("Schedule 5 withholding is a whole number of dollars", () => {
 // Scales 5 and 6 (Medicare exemptions) are not implemented and not tested.
 // =============================================================================
 type SampleRow = readonly [number, number, number, number];
-const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly SampleRow[]>> = {
+const ATO_EDITION_DATA: Record<Exclude<PaygFinancialYear, "2024-25">, Record<PayFrequency, readonly SampleRow[]>> = {
   "2026-27": {
     weekly: [
       [116, 17, 0, 35],
@@ -847,7 +850,14 @@ const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly S
   },
 };
 
-for (const fy of PAYG_FINANCIAL_YEARS) {
+// 2024-25 is covered by the same ATO edition as 2025-26 ("applied to payments
+// made from 1 July 2024 to 30 June 2026"), so the same 144 ATO rows prove it.
+const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly SampleRow[]>> = {
+  ...ATO_EDITION_DATA,
+  "2024-25": ATO_EDITION_DATA["2025-26"],
+};
+
+for (const fy of PAYG_TABLE_YEARS) {
   for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
     test(`ATO ${fy} Schedule 1 sample data: every ${frequency} row, Scales 1/2/3`, () => {
       const rows = ATO_SAMPLE_DATA[fy][frequency];
@@ -914,4 +924,53 @@ test("stepped table rows and CSV come from the same engine as the lookup", () =>
   assert.ok(row988, "fortnightly CSV steps by $2 from $0");
   assert.equal(row988!.split(",")[1], "40");
   assert.equal(row988!.split(",")[2], "176");
+});
+
+test("2024-25 carries the same Schedule 1 edition as 2025-26 and has its own year info", () => {
+  assert.deepEqual(PAYG_TABLE_YEARS, ["2026-27", "2025-26", "2024-25"]);
+  assert.equal(PAYG_YEAR_INFO["2024-25"].stslSupported, false);
+  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+    for (let g = 0; g <= 12_000; g += 37) {
+      for (const scale of ["tft", "noTft", "foreignResident"] as const) {
+        assert.equal(
+          withholdingForPeriod(g, frequency, scale, "2024-25"),
+          withholdingForPeriod(g, frequency, scale, "2025-26"),
+        );
+      }
+    }
+  }
+  // ATO fortnightly sample row (edition for 1 July 2024 to 30 June 2026): $7,306 Scale 2 = $2,134.
+  assert.equal(withholdingForPeriod(7_306, "fortnightly", "tft", "2024-25"), 2_134);
+  const r = calculatePAYGWithholding(4_000, "fortnightly", { hasSTSL: true, financialYear: "2024-25" });
+  assert.equal(r.stslWithheld, 0);
+  assert.equal(r.stslSupported, false);
+});
+
+test("pay date -> financial year: the date the payment is made decides", () => {
+  assert.equal(paygFinancialYearForPayDate("2024-06-30"), null);
+  assert.equal(paygFinancialYearForPayDate("2024-07-01"), "2024-25");
+  assert.equal(paygFinancialYearForPayDate("2025-06-30"), "2024-25");
+  assert.equal(paygFinancialYearForPayDate("2025-07-01"), "2025-26");
+  assert.equal(paygFinancialYearForPayDate("2026-06-30"), "2025-26");
+  assert.equal(paygFinancialYearForPayDate("2026-07-01"), "2026-27");
+  assert.equal(paygFinancialYearForPayDate("2027-06-30"), "2026-27");
+  assert.equal(paygFinancialYearForPayDate("2027-07-01"), null);
+});
+
+test("explainWithholding workings agree with withholdingForPeriod for every year, cycle and scale", () => {
+  for (const fy of PAYG_TABLE_YEARS) {
+    for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+      for (const scale of ["tft", "noTft", "foreignResident"] as const) {
+        for (let g = 0; g <= 15_000; g += 53) {
+          assert.equal(explainWithholding(g, frequency, scale, fy).perPeriod, withholdingForPeriod(g, frequency, scale, fy));
+        }
+      }
+    }
+  }
+  // ATO worked example, fortnightly $989.80, Scale 2: x = 494.99, 0.15x - 54.3462 = 19.90 -> $20 weekly -> $40.
+  const w = explainWithholding(989.8, "fortnightly", "tft", "2026-27");
+  assert.equal(w.x, 494.99);
+  assert.equal(w.a, 0.15);
+  assert.equal(w.weekly, 20);
+  assert.equal(w.perPeriod, 40);
 });

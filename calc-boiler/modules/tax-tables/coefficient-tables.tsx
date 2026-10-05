@@ -29,6 +29,7 @@ const PERIOD_FACTOR: Record<PayFrequency, number> = { weekly: 1, fortnightly: 2,
 const SCALES: Record<PaygFinancialYear, { tft: readonly CoefficientBand[]; noTft: readonly CoefficientBand[] }> = {
   "2026-27": { tft: SCALE_2_TFT, noTft: SCALE_1_NO_TFT },
   "2025-26": { tft: SCALE_2_TFT_2025_26, noTft: SCALE_1_NO_TFT_2025_26 },
+  "2024-25": { tft: SCALE_2_TFT_2025_26, noTft: SCALE_1_NO_TFT_2025_26 },
 };
 
 const TH = "px-3 py-2 font-semibold text-navy";

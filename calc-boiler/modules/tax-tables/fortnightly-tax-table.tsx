@@ -22,6 +22,7 @@ import AtoDownloads from "./ato-downloads";
 import CoefficientTables from "./coefficient-tables";
 import TaxTableFaqSection from "./faq-section";
 import TaxTablesSidebar from "./sidebar";
+import FyTableLinks from "./fy-links";
 import { FORTNIGHTLY_TAX_TABLE_FAQS } from "./fortnightly-tax-table-faqs";
 import {
   ATO_FORTNIGHTLY,
@@ -334,6 +335,8 @@ export default function FortnightlyTaxTablePage() {
               </p>
               <AtoDownloads doc={ATO_FORTNIGHTLY} also={[ATO_SCHEDULE_1, ATO_SCHEDULE_8]} />
             </section>
+
+            <FyTableLinks only="fortnightly" />
 
             <section id="related-resources">
               <h2>Related Tax Tables and Calculators</h2>
