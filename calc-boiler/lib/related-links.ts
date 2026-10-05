@@ -125,7 +125,13 @@ const JOB_LINKS: Record<string, RelatedLink[]> = {
   // F4 (Oct 2026)
   "retail-manager": [L("/retail-award-rates/", "Retail Award Rates", "Every General Retail Industry Award level, with penalties."), job("retail-worker", "Retail Worker", "Retail Levels 1 to 4 as hourly, weekly and annual pay.")],
   "youth-worker": [L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "Every SCHADS level, sleepover and shift rate."), job("disability-support-worker", "Disability Support Worker", "The same award for disability services.")],
-  boilermaker: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("welder", "Welder", "Welding grades under the same award.")],
+  // Apprentice spokes (Oct 2026)
+  carpenter: [L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 minimums with the tool and industry allowances."), L("/building-and-construction-award-rates/", "Building and Construction Award Rates", "Every level of the award.")],
+  plumber: [L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4 minimums, allowances already included."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Tradie rates, allowances and overtime.")],
+  mechanic: [L("/apprentice-pay/mechanic/", "Apprentice Mechanic Pay", "Year 1 to 4 minimums, weekend rates and tool allowance."), L("/manufacturing-award-rates/", "Manufacturing Award Rates", "The award for many engineering trades.")],
+  hairdresser: [L("/apprentice-pay/hairdresser/", "Apprentice Hairdresser Pay", "Year 1 to 4 minimums, adult start and take-home."), L("/hair-and-beauty-award-rates/", "Hair and Beauty Award Rates", "Every level, with penalties.")],
+  chef: [L("/apprentice-pay/chef/", "Apprentice Chef Pay", "Year 1 to 4 cookery apprentice minimums."), L("/hospitality-award-rates/", "Hospitality Award Rates", "Every level of the hospitality award.")],
+  boilermaker: [L("/apprentice-pay/boilermaker/", "Apprentice Boilermaker Pay", "Year 1 to 4 minimums under the Manufacturing Award."), L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("welder", "Welder", "Welding grades under the same award.")],
   welder: [L("/manufacturing-award-rates/", "Manufacturing Award Rates", "Every C-level in the Manufacturing Award, with penalties."), job("boilermaker", "Boilermaker", "The trade rate for fabrication tradespeople.")],
   "forklift-operator": [job("truck-driver", "Truck Driver", "Road transport grades, including forklift work."), job("retail-worker", "Retail Worker", "Forklift and ride-on operators sit at Level 2 in retail.")],
   "flight-attendant": [L("/pilot-salary/", "Pilot Salary", "Pilot pay under the Air Pilots Award and airline agreements."), L("/air-traffic-controller-salary/", "Air Traffic Controller Salary", "Airservices Australia agreement pay by level.")],
@@ -212,9 +218,9 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
   "/rideshare-delivery-earnings-after-tax/": [L("/delivery-driver-pay-rate/", "Delivery Driver Pay Rate", "The $31.30 an hour minimum, and a payout checker."), L("/gig-economy-pay-guide/", "Gig Economy Pay Guide", "ABN, BAS and deductions for gig workers."), L("/contractor-vs-employee-calculator/", "Contractor vs Employee", "Compare both sides on the same income."), L("/cents-per-km/", "Cents per Kilometre", "Cents per km vs logbook for car expenses."), TAX_BRACKETS, TAKE_HOME],
   "/gig-economy-pay-guide/": [L("/delivery-driver-pay-rate/", "Delivery Driver Pay Rate", "The legal hourly minimum for delivery workers from 17 August 2026."), L("/rideshare-delivery-earnings-after-tax/", "Rideshare & Delivery Tax", "GST, income tax and what to set aside, on your figures."), L("/contractor-pay-calculator/", "Contractor Pay Calculator", "Convert a contract rate to real take-home."), L("/contractor-vs-employee-calculator/", "Contractor vs Employee", "Compare both sides on the same income."), L("/cents-per-km/", "Cents per Kilometre", "The car expense methods compared."), TAKE_HOME],
   "/contractor-pay-calculator/": [L("/delivery-driver-pay-rate/", "Delivery Driver Pay Rate", "The legal hourly minimum for delivery workers."), L("/rideshare-delivery-earnings-after-tax/", "Rideshare & Delivery Tax", "GST and tax for drivers and riders."), L("/contractor-vs-employee-calculator/", "Contractor vs Employee", "Compare both sides on the same income."), L("/gig-economy-pay-guide/", "Gig Economy Pay Guide", "Rideshare and delivery earnings, tax and super."), L("/employer-cost-calculator/", "Employer Cost Calculator", "The full cost of employing someone."), TAKE_HOME],
-  "/apprentice-pay-rates/": [L("/job-pay-rates/apprentice-electrician/", "Apprentice Electrician Pay", "Full electrical apprentice rates, adult and penalty rates."), L("/construction-trades-pay/", "Construction & Trades Pay", "Tradie rates, allowances and overtime."), JUNIOR, AWARD_RATES, L("/hourly-to-annual-salary-calculator/", "Hourly to Annual Salary Calculator", "Turn an hourly rate into a yearly figure."), TAKE_HOME],
+  "/apprentice-pay-rates/": [L("/job-pay-rates/apprentice-electrician/", "Apprentice Electrician Pay", "Full electrical apprentice rates, adult and penalty rates."), L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."), L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4, allowances already included."), L("/construction-trades-pay/", "Construction & Trades Pay", "Tradie rates, allowances and overtime."), JUNIOR, TAKE_HOME],
   "/graduate-salary-australia/": [HECS_CALC, TAKE_HOME_HUB, JOBS_HUB, L("/first-job-pay-guide/", "First Job Pay Guide", "Payslips, tax and super in your first job."), L("/teacher-pay-australia/", "Teacher Pay by State", "Classroom teacher salaries in every state."), PAY_RISE],
-  "/construction-trades-pay/": [L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums by trade and year, with a wages calculator."), TAKE_HOME, AWARD_RATES, INCOME_TAX],
+  "/construction-trades-pay/": [L("/apprentice-pay-rates/", "Apprentice Pay Rates", "Award minimums by trade and year, with a wages calculator."), L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."), L("/apprentice-pay/bricklayer/", "Apprentice Bricklayer Pay", "Year 1 to 4 with the bricklayer tool allowance."), TAKE_HOME, AWARD_RATES, INCOME_TAX],
   "/teacher-pay-australia/": [L("/graduate-salary-australia/", "Graduate Salary Australia", "What new graduates earn, teachers included, from official sources."), TAKE_HOME, { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a raise actually adds to each pay." }, AWARD_RATES],
   "/healthcare-worker-pay/": [L("/graduate-salary-australia/", "Graduate Salary Australia", "What new nurses, doctors and others earn, from official sources."), TAKE_HOME, { href: "/pay-rise-calculator/", title: "Pay Rise Calculator", blurb: "What a raise actually adds to each pay." }, AWARD_RATES],
   // --- end Oct 2026 set ---
@@ -392,6 +398,28 @@ const HOLIDAY_LINKS: RelatedLink[] = [
 ];
 
 const CLUSTERS: Cluster[] = [
+  // --- Apprentice pay spokes (Oct 2026): /apprentice-pay/{trade}/ ---
+  {
+    match: (p) => /^\/apprentice-pay\/[a-z-]+\/$/.test(p),
+    links: (p) => {
+      const slug = p.split("/")[2];
+      const sibling: Record<string, RelatedLink> = {
+        carpenter: L("/apprentice-pay/carpenter/", "Apprentice Carpenter Pay", "Year 1 to 4 with the tool and industry allowances."),
+        plumber: L("/apprentice-pay/plumber/", "Apprentice Plumber Pay", "Year 1 to 4, allowances already included."),
+        mechanic: L("/apprentice-pay/mechanic/", "Apprentice Mechanic Pay", "Year 1 to 4, weekend rates and tool allowance."),
+        chef: L("/apprentice-pay/chef/", "Apprentice Chef Pay", "Year 1 to 4 cookery apprentice minimums."),
+      };
+      const others = Object.entries(sibling).filter(([k]) => k !== slug).map(([, v]) => v).slice(0, 2);
+      return [
+        L("/apprentice-pay-rates/", "Apprentice Pay Rates by Trade", "Every trade side by side, with a wages calculator."),
+        L("/job-pay-rates/apprentice-electrician/", "Apprentice Electrician Pay", "Full electrical apprentice rates, adult and penalty rates."),
+        ...others,
+        TAKE_HOME,
+        JUNIOR,
+      ];
+    },
+    limit: 6,
+  },
   {
     match: (p) => p.startsWith("/public-holiday-pay/") || HOLIDAY_GUIDES.includes(p),
     links: HOLIDAY_LINKS,
