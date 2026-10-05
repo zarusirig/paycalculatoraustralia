@@ -48,6 +48,15 @@ const COVERS: Record<string, string> = {
   "hair-and-beauty": "Hairdressers, barbers and beauty therapists",
   cleaning: "Commercial cleaners and trolley collectors",
   "road-transport": "Truck, forklift and delivery drivers, couriers and loaders",
+  // --- October 2026 batch ---
+  miscellaneous: "Catch-all for employees not covered by any other award",
+  "building-construction": "Building, civil and engineering construction site workers",
+  "legal-services": "Law firm clerical, administrative and law clerk staff",
+  electrical: "Electricians and electrical, electronic and communications contractors",
+  fitness: "Gyms, pools, fitness trainers and sport coaches",
+  "real-estate": "Real estate agencies, sales, leasing and property management staff",
+  "local-government": "Councils: depot, library, customer service and community staff",
+  "live-performance": "Theatre, concert and venue production and support staff",
 };
 
 const modern: AwardDirectoryEntry[] = Object.values(MODERN_AWARDS).map((a) => {

@@ -99,6 +99,7 @@ export const PROPERTY_MANAGER: Occupation = {
   related: [
     { href: "/job-pay-rates/real-estate-agent/", label: "Real Estate Agent Pay Rates" },
     { href: "/award-rates/", label: "Award Rates" },
+    { href: "/real-estate-award-rates/", label: "Real Estate Award Pay Rates" },
     { href: "/weekly-pay-calculator/", label: "Weekly Pay Calculator" },
   ],
 };

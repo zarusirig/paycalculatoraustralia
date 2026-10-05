@@ -126,7 +126,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                 </p>
               ) : (
                 <p>
-                  Adult minimum rates for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification &mdash; the difference is hours, not rate. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
+                  {meta.ratesLabel ?? "Adult minimum rates"} for full-time and part-time employees under the {meta.name}. Part-time employees are paid the same hourly rate as full-time employees at their classification &mdash; the difference is hours, not rate. The casual column adds the {pct(loading)} loading ({meta.casualLoadingClause}).
                 </p>
               )}
               <AwardRateTable
@@ -174,6 +174,20 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
                     <li key={l.href}><Link href={l.href}>{l.label}</Link>{l.note ? <> &mdash; {l.note}</> : null}</li>
                   ))}
                 </ul>
+              </section>
+            )}
+
+            {copy.workedExample && (
+              <section id="worked-example">
+                <h2 style={H2}>{copy.workedExample.heading}</h2>
+                <p>{copy.workedExample.intro}</p>
+                <ol>
+                  {copy.workedExample.steps.map((s) => (<li key={s}>{s}</li>))}
+                </ol>
+                {copy.workedExample.outro && <p>{copy.workedExample.outro}</p>}
+                <p className="text-sm">
+                  Try your own hours in the <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> or the <Link href="/casual-loading-calculator/">casual loading calculator</Link>, add up a full week in the <Link href="/weekly-pay-calculator/">weekly pay calculator</Link>, or check the <Link href="/public-holiday-pay/">public holiday pay guide</Link>.
+                </p>
               </section>
             )}
 
@@ -380,7 +394,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
               <ul>
                 {award.hoursNotes.map((n) => (<li key={n}>{n}</li>))}
               </ul>
-              <TakeHomeLinks rows={award.rates} heading={`What does a ${meta.shortName.toLowerCase()} rate take home?`} />
+              <TakeHomeLinks rows={award.rates} heading={`What does ${/^[aeiou]/i.test(meta.shortName) ? "an" : "a"} ${meta.shortName.toLowerCase()} rate take home?`} />
             </section>
 
             <section id="not-covered">

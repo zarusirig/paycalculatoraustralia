@@ -271,7 +271,7 @@ export default function PublicHolidayHub() {
                   Public holiday percentages are read from the site&rsquo;s award constants, which were transcribed from the Fair Work
                   Commission&rsquo;s consolidated award texts and apply from the first full pay period on or after 1 July 2026. Where an
                   award prints the casual rate as a percentage of the casual hourly rate, it is converted to a percentage of the base
-                  rate so all 14 awards compare on one scale. The rights and pay for not working come from the Fair Work
+                  rate so all {PUBLIC_HOLIDAY_AWARD_RATES.length} awards compare on one scale. The rights and pay for not working come from the Fair Work
                   Ombudsman&rsquo;s public holiday pages and the Fair Work Act 2009 ss 114–116.
                 </p>
                 <p>

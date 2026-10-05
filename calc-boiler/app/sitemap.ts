@@ -157,6 +157,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "security-award-rates",
     "clerks-award-rates",
     // --- end award cluster C3 ---
+    // --- October 2026 award batch ---
+    "miscellaneous-award-rates",
+    "building-and-construction-award-rates",
+    "legal-services-award-rates",
+    "electrical-award-rates",
+    "fitness-industry-award-rates",
+    "real-estate-award-rates",
+    "local-government-award-rates",
+    "live-performance-award-rates",
+    // --- end October 2026 award batch ---
     // --- T4: awards batch 3 (23 Sep 2026) ---
     "restaurant-award-rates",
     "nurses-award-rates",

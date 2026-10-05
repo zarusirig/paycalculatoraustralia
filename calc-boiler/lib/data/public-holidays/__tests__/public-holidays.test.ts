@@ -175,9 +175,12 @@ test("getStatePublicHolidays finds built states only", () => {
 // Award public holiday rates — derived from the award constants
 // ---------------------------------------------------------------------------
 
-test("all 14 awards are covered, each once", () => {
-  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, Object.keys(MODERN_AWARDS).length + 3);
-  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, 14);
+test("every award with a published casual public holiday rate is covered, each once", () => {
+  // Fitness and Local Government are omitted: neither award states a casual public holiday rate (publicHolidayCasualUnpublished).
+  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, Object.keys(MODERN_AWARDS).length + 3 - 2);
+  assert.equal(PUBLIC_HOLIDAY_AWARD_RATES.length, 20);
+  assert.equal(getAwardPublicHolidayRate("fitness"), undefined);
+  assert.equal(getAwardPublicHolidayRate("local-government"), undefined);
   const keys = PUBLIC_HOLIDAY_AWARD_RATES.map((r) => r.key);
   assert.equal(new Set(keys).size, keys.length);
 });
@@ -198,6 +201,13 @@ test("public holiday multiples match the award tables", () => {
     retail: [2.25, 2.5],
     hospitality: [2.25, 2.5],
     schads: [2.5, 2.75],
+    // --- October 2026 batch ---
+    miscellaneous: [2.5, 2.5], // casual loading not added (Schedule A.2.1)
+    "building-construction": [2.5, 2.75],
+    "legal-services": [2.5, 2.75],
+    electrical: [2.5, 3.125], // 312.5% (cl 20.4(b))
+    "real-estate": [2, 2.5], // 200% of the casual rate (Schedule B.2.2)
+    "live-performance": [2, 2.25],
   };
   for (const r of PUBLIC_HOLIDAY_AWARD_RATES) {
     assert.deepEqual([r.permanent, r.casual], expected[r.key], r.key);
@@ -205,7 +215,7 @@ test("public holiday multiples match the award tables", () => {
   assert.equal(getAwardPublicHolidayRate("manufacturing")?.casualCompounded, true);
   assert.equal(getAwardPublicHolidayRate("manufacturing")?.casualAsPrinted, 2.5);
   assert.equal(getAwardPublicHolidayRate("retail")?.casualCompounded, false);
-  assert.deepEqual(publicHolidayRateRange(), { permanentMin: 2, permanentMax: 2.5, casualMin: 2.5, casualMax: 3.125 });
+  assert.deepEqual(publicHolidayRateRange(), { permanentMin: 2, permanentMax: 2.5, casualMin: 2.25, casualMax: 3.125 }); // casualMin 225%: Live Performance (200% + 25% loading)
 });
 
 // ---------------------------------------------------------------------------

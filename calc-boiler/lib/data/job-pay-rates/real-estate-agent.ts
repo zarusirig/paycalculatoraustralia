@@ -104,5 +104,6 @@ export const REAL_ESTATE_AGENT: Occupation = {
     { href: "/job-pay-rates/property-manager/", label: "Property Manager Pay Rates" },
     { href: "/commission-tax-calculator/", label: "Commission Tax Calculator" },
     { href: "/award-rates/", label: "Award Rates" },
+    { href: "/real-estate-award-rates/", label: "Real Estate Award Pay Rates" },
   ],
 };

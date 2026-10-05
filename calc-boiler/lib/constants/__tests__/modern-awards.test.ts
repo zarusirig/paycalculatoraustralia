@@ -260,9 +260,11 @@ test("allowances are positive, cited, and key figures are pinned", () => {
 
 // --- A–Z directory -----------------------------------------------------------
 
-test("award directory is A–Z, covers all fourteen award pages, and reads rates from constants", () => {
-  // 8 before T4 + Restaurant, Nurses, Aged Care, Hair and Beauty, Cleaning, Road Transport.
-  assert.equal(AWARD_DIRECTORY.length, 14);
+test("award directory is A–Z, covers all twenty-two award pages, and reads rates from constants", () => {
+  // 8 before T4 + Restaurant, Nurses, Aged Care, Hair and Beauty, Cleaning, Road Transport
+  // + the October 2026 batch (Misc, Building and Construction, Legal, Electrical, Fitness,
+  // Real Estate, Local Government, Live Performance).
+  assert.equal(AWARD_DIRECTORY.length, 22);
   const names = AWARD_DIRECTORY.map((a) => a.name);
   assert.deepEqual(names, [...names].sort((a, b) => a.localeCompare(b, "en-AU")));
   const byCode = new Map(AWARD_DIRECTORY.map((a) => [a.code, a]));

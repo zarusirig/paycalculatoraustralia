@@ -269,8 +269,9 @@ export default function AustralianPayReport() {
                 ))}
               </Table>
               <p className="text-sm">
-                Full-time adult rates before penalty rates, loadings and allowances. The Manufacturing C14 rate applies only to the first
-                38 hours of induction training, which is why it can sit below the National Minimum Wage. Full classification tables are on
+                Full-time adult rates before penalty rates, loadings and allowances. The entry grades — Manufacturing C14 (first 38 hours
+                of induction training), Level 1 in the Miscellaneous award (first 3 months), and Level 1 in the Fitness Industry and Live
+                Performance awards (induction and training) — can sit below the National Minimum Wage. Full classification tables are on
                 each award page and on the <Link href="/award-rates/">award rates hub</Link>.
               </p>
               <CsvLink file="award-minimum-rates-ranked.csv" />
