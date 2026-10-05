@@ -124,6 +124,18 @@ export interface TeacherPayState {
   /** H1 override. */
   h1?: string;
   /**
+   * One or two sentences in the state's OWN classification language (VIC
+   * "Range 1 and Range 2 subdivisions", NSW "Steps", QLD "Band and Step"),
+   * shown directly above the first pay-scale table. Built only from labels
+   * and notes already in `scales`.
+   */
+  classificationNote?: string;
+  /**
+   * Ids of the scales that hold principal salaries, where the state's source
+   * publishes them. Absent when principal pay could not be verified (WA).
+   */
+  principalScaleIds?: string[];
+  /**
    * Label of the step in the FIRST scale where a qualified graduate starts,
    * when that is not the first row — Queensland's Band 1 is for Permission to
    * Teach and interns, South Australia's first row is Special Authority, and

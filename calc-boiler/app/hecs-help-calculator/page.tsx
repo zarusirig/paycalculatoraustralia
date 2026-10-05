@@ -66,6 +66,14 @@ const FAQS: readonly CalculatorFaq[] = [
     a: `On repayment income of ${formatAUD(80_000)} the compulsory repayment is ${formatAUD(calculateHECS(80_000))} for the year, about ${formatAUD(annualToWeekly(calculateHECS(80_000)), 2)} a week, in ${SITE_CONFIG.financialYear}. It is 15c for each $1 of the ${formatAUD(80_000 - T)} above the ${formatAUD(T)} threshold.`,
   },
   {
+    q: "How much HECS do I have to pay?",
+    a: `It depends on your repayment income, not the size of your debt. In ${SITE_CONFIG.financialYear} you pay nothing at or below ${formatAUD(T)}, then 15c for each dollar above it, up to ${formatAUD(B2.base)} plus 17c per dollar over ${formatAUD(B2.min - 1)} in the middle band and ${B3.marginalRate * 100}% of total repayment income from ${formatAUD(B3.min)}. On ${formatAUD(90_000)} that is ${formatAUD(calculateHECS(90_000))} a year. Repayments stop when the balance reaches zero.`,
+  },
+  {
+    q: "Is HECS interest free?",
+    a: `Yes. No interest is charged on a HECS-HELP debt. Instead the ATO applies indexation each 1 June to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. The 1 June 2026 rate was ${HECS_HELP.indexationRate * 100}%, so a balance of ${formatAUD(30_000)} carried over 11 months rose by ${formatAUD(30_000 * HECS_HELP.indexationRate)}.`,
+  },
+  {
     q: "How do I calculate my HECS repayment?",
     a: `Take your repayment income (taxable income plus reportable fringe benefits, net investment losses, reportable super contributions and exempt foreign employment income) and find its band. For ${SITE_CONFIG.financialYear}: nil up to ${formatAUD(T)}; 15% of the income over ${formatAUD(T)}; ${formatAUD(B2.base)} plus 17% of the income over ${formatAUD(B2.min - 1)}; or ${B3.marginalRate * 100}% of your whole repayment income from ${formatAUD(B3.min)}. On ${formatAUD(100_000)} that is 15% × ${formatAUD(100_000 - T)} = ${formatAUD(calculateHECS(100_000))}.`,
   },

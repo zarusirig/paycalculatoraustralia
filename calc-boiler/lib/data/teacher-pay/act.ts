@@ -28,6 +28,10 @@ export const ACT_TEACHER_PAY: TeacherPayState = {
   code: "ACT",
   name: "Australian Capital Territory",
   nameInSentence: "the ACT",
+  h1: "ACT Teacher Salary 2026 — Teacher Level 1 to 8 Pay Scale",
+  classificationNote:
+    "The ACT classroom teacher scale is Teacher Level 1 to Teacher Level 8. Levels 1 to 3 are the New Educator stage and Levels 4 to 8 the Experienced Teacher stage; those are development stages, not separate pay classifications.",
+  principalScaleIds: ["school-leaders"],
   employer: "the ACT Education Directorate",
   agreementName:
     "ACT Public Sector Education Directorate (Teaching Staff) Enterprise Agreement 2023-2026",

@@ -13,6 +13,7 @@ import { formatAUD } from "@/lib/constants";
 import {
   TEACHER_PAY_STATES,
   graduateSalary,
+  teacherAnchorText,
   teacherRatesYear,
   topOfClassroomScale,
   type TeacherPayFaq,
@@ -57,8 +58,6 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
   const { rows, lowestGraduate, highestGraduate, lowestTop, highestTop } = teacherHubSummary();
   const list = (key: "graduate" | "top") =>
     rows.map((r) => `${r.state.code} ${formatAUD(r[key])}`).join(", ");
-  const vic = rows.find((r) => r.state.slug === "vic");
-  const nsw = rows.find((r) => r.state.slug === "nsw");
 
   const faqs: TeacherPayFaq[] = [
     {
@@ -89,26 +88,12 @@ export function teacherHubFaqs(): TeacherPayFaq[] {
     },
   ];
 
-  if (vic) {
-    faqs.push({
-      q: "How much do teachers get paid in Victoria?",
-      a: `A graduate Victorian government school teacher is paid ${formatAUD(
-        vic.graduate,
-      )} and the top of the classroom teacher scale is ${formatAUD(vic.top)}, under the ${
-        vic.state.agreementName
-      }, from ${vic.state.ratesEffectiveFrom}. ${vic.state.nextIncrease ? vic.state.nextIncrease.detail : ""}`.trim(),
-    });
-  }
-  if (nsw) {
-    faqs.push({
-      q: "How much do teachers get paid in NSW?",
-      a: `A NSW public school teacher starts at ${formatAUD(nsw.graduate)} and reaches ${formatAUD(
-        nsw.top,
-      )} at the top of the classroom scale, under the ${nsw.state.agreementName}, from ${
-        nsw.state.ratesEffectiveFrom
-      }.${nsw.state.nextIncrease ? ` Next increase: ${nsw.state.nextIncrease.date}. ${nsw.state.nextIncrease.detail}` : ""}`,
-    });
-  }
+  faqs.push({
+    q: "Where can I see the full teacher pay scale for my state?",
+    a: `Each state and territory has its own page with every step of its published scale, leadership rates and the date its next increase applies: ${rows
+      .map((r) => teacherAnchorText(r.state))
+      .join(", ")}. The comparison table above links to each.`,
+  });
 
   faqs.push({
     q: "Do private and Catholic school teachers earn the same?",

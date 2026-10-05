@@ -11,7 +11,7 @@ import {
   TEACHER_STATE_SLUGS,
   getTeacherPayState,
   graduateSalary,
-  teacherRatesYear,
+  teacherStateMetaTitle,
   topOfClassroomScale,
   type TeacherPayState,
 } from "@/lib/data/teacher-pay";
@@ -33,14 +33,7 @@ function canonicalFor(slug: string) {
 }
 
 function titleFor(state: TeacherPayState) {
-  if (state.metaTitle) return state.metaTitle;
-  const year = teacherRatesYear(state);
-  const grad = graduateSalary(state);
-  const top = topOfClassroomScale(state);
-  if (grad === null || top === null) {
-    return `${state.code} Teacher Salary ${year} — ${state.name} Public School Pay Scale`;
-  }
-  return `${state.code} Teacher Salary ${year} — Pay Scale ${formatAUD(grad)} to ${formatAUD(top)}`;
+  return teacherStateMetaTitle(state);
 }
 
 function descriptionFor(state: TeacherPayState) {

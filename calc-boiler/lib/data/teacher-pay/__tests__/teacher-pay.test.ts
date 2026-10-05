@@ -15,6 +15,9 @@ import {
   isTeacherStateSlug,
   lowestPublishedSalary,
   nearestTakeHomeAmount,
+  principalSummaries,
+  teacherAnchorText,
+  teacherStateMetaTitle,
   scaleRanges,
   takeHomeHref,
   teacherRatesYear,
@@ -252,9 +255,37 @@ test("scaleRanges summarises every published scale", () => {
   }
 });
 
-test("state titles lead with the searched phrase and the year", () => {
-  assert.equal(getTeacherPayState("vic")!.metaTitle?.startsWith("Teacher Salary Victoria 2026"), true);
-  assert.equal(getTeacherPayState("nsw")!.metaTitle?.startsWith("NSW Teacher Salary 2026"), true);
-  assert.equal(getTeacherPayState("qld")!.metaTitle?.startsWith("QLD Teacher Salary 2026"), true);
-  for (const state of TEACHER_PAY_STATES) assert.ok(teacherRatesYear(state).length === 4, state.code);
+test("state titles follow '{State} Teacher Salary 2026 (Scale and Step)'", () => {
+  assert.equal(teacherStateMetaTitle(getTeacherPayState("vic")!), "Victoria Teacher Salary 2026 (Scale and Step)");
+  assert.equal(teacherStateMetaTitle(getTeacherPayState("nsw")!), "New South Wales Teacher Salary 2026 (Scale and Step)");
+  for (const state of TEACHER_PAY_STATES) {
+    assert.ok(teacherRatesYear(state).length === 4, state.code);
+    assert.ok(teacherStateMetaTitle(state).endsWith("(Scale and Step)"), state.code);
+    assert.ok((state.h1 ?? "").length > 0, `${state.code} has its own H1`);
+    assert.ok((state.classificationNote ?? "").length > 0, `${state.code} has classification language`);
+  }
+});
+
+test("hub anchors read the way people search", () => {
+  assert.equal(teacherAnchorText(getTeacherPayState("vic")!), "Victorian teacher salary 2026");
+  assert.equal(teacherAnchorText(getTeacherPayState("nsw")!), "NSW teacher salary 2026");
+  assert.equal(teacherAnchorText(getTeacherPayState("qld")!), "Queensland teacher salary 2026");
+});
+
+test("principal summaries come only from published principal rows", () => {
+  const vic = principalSummaries(getTeacherPayState("vic")!);
+  assert.equal(vic.length, 1);
+  assert.equal(vic[0].low, 156_335);
+  assert.equal(vic[0].high, 238_676);
+  // ACT mixes executive teachers, deputies and principals in one table.
+  const act = principalSummaries(getTeacherPayState("act")!);
+  assert.equal(act[0].low, 195_885);
+  assert.equal(act[0].high, 225_158);
+  // WA could not be verified, so nothing is published.
+  assert.deepEqual(principalSummaries(getTeacherPayState("wa")!), []);
+  for (const state of TEACHER_PAY_STATES) {
+    for (const id of state.principalScaleIds ?? []) {
+      assert.ok(state.scales.some((s) => s.id === id), `${state.code} principal scale ${id} exists`);
+    }
+  }
 });

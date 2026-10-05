@@ -29,6 +29,10 @@ export const NT_TEACHER_PAY: TeacherPayState = {
   code: "NT",
   name: "Northern Territory",
   nameInSentence: "the Northern Territory",
+  h1: "Northern Territory Teacher Salary 2026 — CT1 to CT9 Pay Scale",
+  classificationNote:
+    "The Northern Territory classifies classroom teachers as CT1 to CT9, with the entry level set by completed years of post-qualification service. Senior teachers are on a separate ST1 to ST8 scale.",
+  principalScaleIds: ["principals"],
   employer: "the NT Department of Education",
   agreementName: "Northern Territory Public Sector Educators' 2024-2027 Enterprise Agreement",
   agreementUrl:

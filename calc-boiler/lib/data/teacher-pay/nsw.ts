@@ -23,8 +23,10 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   name: "New South Wales",
   nameInSentence: "New South Wales",
   topClassroomStep: "Step 7",
-  metaTitle: "NSW Teacher Salary 2026 — NSW Teachers Pay Scale & Pay Rates",
-  h1: "NSW Teacher Salary 2026 — NSW Public School Teachers Pay Scale",
+  h1: "NSW Teacher Salary 2026 — Classroom Teacher Pay Scale, Step 1 to Step 7",
+  classificationNote:
+    "NSW writes the classroom teacher scale as Step 1 to Step 7 (Schedule 1A of the award). Steps 1 and 2 carry Graduate accreditation and Steps 3 to 7 Proficient accreditation; Highly Accomplished and Lead Teacher certification is paid above Step 7.",
+  principalScaleIds: ["principals"],
   employer: "NSW Department of Education",
   agreementName:
     "Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024",

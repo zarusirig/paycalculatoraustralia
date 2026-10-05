@@ -33,6 +33,12 @@ const [, B1, B2, B3] = HECS_HELP.bands;
 /** Repayment at common incomes — the table the old threshold page led with. */
 const EXAMPLE_INCOMES = [75_000, 85_000, 100_000, 130_000, 190_000];
 
+/** Long-tail "HECS repayment on $X" table. Every row runs through calculateHECS. */
+const LONG_TAIL_INCOMES = [60_000, 70_000, 80_000, 90_000, 100_000, 120_000];
+
+/** Sample unpaid balance for the indexation example (a round figure, not a statistic). */
+const INDEXATION_EXAMPLE_BALANCE = 30_000;
+
 // ATO published indexation rates, QC18714. 2023 and 2024 were recalculated
 // under the CPI-or-WPI cap; the original figures are shown for context.
 const INDEXATION_HISTORY = [
@@ -226,6 +232,63 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
         </p>
       </section>
 
+      {/* LONG-TAIL: repayment on a given income, how much, interest-free. All figures from the engine. */}
+      <section id="repayment-on-80000">
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>HECS Repayment on {formatAUD(80_000)} ({SITE_CONFIG.financialYear})</h2>
+        <p className="mb-3 text-warmgray">
+          On a repayment income of <strong>{formatAUD(80_000)}</strong> the compulsory HECS repayment for {SITE_CONFIG.financialYear} is <strong>{formatAUD(calculateHECS(80_000))}</strong> a year, or {formatAUD(annualToWeekly(calculateHECS(80_000)), 2)} a week. That is 15 cents for each dollar of the {formatAUD(80_000 - T)} above the {formatAUD(T)} threshold, about {(calculateHECS(80_000) / 80_000 * 100).toFixed(1)}% of your income. The same calculation at other common salaries:
+        </p>
+        <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20">
+          <table className="w-full text-sm">
+            <caption className="sr-only">HECS repayment at common incomes, {SITE_CONFIG.financialYear}</caption>
+            <thead className="bg-sandstone">
+              <tr>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">HECS repayment on</th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Per year</th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Per fortnight</th>
+                <th scope="col" className="px-4 py-3 text-left font-semibold text-navy">Share of income</th>
+              </tr>
+            </thead>
+            <tbody>
+              {LONG_TAIL_INCOMES.map((income, i) => {
+                const annual = calculateHECS(income);
+                return (
+                  <tr key={income} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
+                    <td className="px-4 py-3 text-navy tabular-nums">{formatAUD(income)}</td>
+                    <td className="px-4 py-3 text-navy tabular-nums">{annual === 0 ? "Nil" : formatAUD(annual)}</td>
+                    <td className="px-4 py-3 text-navy tabular-nums">{annual === 0 ? "Nil" : formatAUD(annual / 26, 2)}</td>
+                    <td className="px-4 py-3 text-warmgray tabular-nums">{annual === 0 ? "0%" : `${(annual / income * 100).toFixed(1)}%`}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 text-sm text-warmgray-light">
+          Repayment income is not always your salary: reportable fringe benefits, net investment losses and reportable super contributions are added back. The {formatAUD(80_000)} row assumes salary is the only component.
+        </p>
+      </section>
+
+      <section id="how-much-hecs-do-i-pay">
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How Much HECS Do I Have to Pay?</h2>
+        <p className="mb-3 text-warmgray">
+          It depends on your income, not on the size of your debt. If your repayment income is {formatAUD(T)} or less you pay nothing in {SITE_CONFIG.financialYear}. Above that you pay 15 cents for each dollar over {formatAUD(T)}, stepping to {formatAUD(B2.base)} plus 17 cents per dollar from {formatAUD(B2.min)}, and 10% of your whole repayment income from {formatAUD(B3.min)}. The repayment is the same whether you owe $5,000 or $50,000, until the balance reaches zero and repayments stop.
+        </p>
+        <p className="text-warmgray">
+          Your employer withholds the repayment through PAYG during the year using your tax file number declaration, and the exact amount is settled when your return is assessed. See <a href="#why-payslip-differs" className="text-eucalyptus-dark hover:underline font-medium">why your payslip deduction differs</a> from the annual figure.
+        </p>
+      </section>
+
+      <section id="is-hecs-interest-free">
+        <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Is HECS Interest Free?</h2>
+        <p className="mb-3 text-warmgray">
+          Yes, in the sense that the government charges no interest on a HECS-HELP debt. What it does charge is <strong>indexation</strong>: on 1 June each year the ATO adjusts the part of your balance that has been unpaid for more than 11 months, using the lower of CPI or the Wage Price Index. The 1 June 2026 rate was <strong>{HECS_HELP.indexationRate * 100}%</strong>.
+        </p>
+        <p className="mb-3 text-warmgray">
+          Worked example: on a balance of {formatAUD(INDEXATION_EXAMPLE_BALANCE)} that had been unpaid for more than 11 months, {HECS_HELP.indexationRate * 100}% indexation adds {formatAUD(INDEXATION_EXAMPLE_BALANCE * HECS_HELP.indexationRate)}, taking it to {formatAUD(INDEXATION_EXAMPLE_BALANCE * (1 + HECS_HELP.indexationRate))}. Indexation protects the real value of the loan; it is not a profit margin, and a debt that is repaid steadily grows far less than one left alone. The full history and the voluntary repayment timing rules are in the <a href="#indexation" className="text-eucalyptus-dark hover:underline font-medium">indexation section</a> below.
+        </p>
+      </section>
+
       {/* ALL LOAN SCHEMES — the consolidation section */}
       <section id="loan-schemes">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Study and Training Loan This Covers</h2>
@@ -337,7 +400,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       </section>
 
       {/* STSL vs assessment */}
-      <section>
+      <section id="why-payslip-differs">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Why Your Payslip Deduction Differs From Your Actual Repayment</h2>
         <p className="mb-3 text-warmgray">
           The amount withheld each pay is an <strong>estimate</strong>. Employers withhold an additional PAYG component — shown as <strong>STSL</strong> on most payslips — from ATO withholding schedules, based on that pay period&apos;s earnings alone.
@@ -351,7 +414,7 @@ export default function HECSHelpCalculatorContent({ faqs }: { faqs: readonly Cal
       </section>
 
       {/* Indexation & voluntary repayments */}
-      <section>
+      <section id="indexation">
         <h2 className="text-2xl font-semibold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Indexation and Voluntary Repayments</h2>
         <p className="mb-3 text-warmgray">
           Study loans carry no interest. Instead the ATO applies indexation on <strong>1 June</strong> each year to the part of the balance unpaid for more than 11 months, at the lower of CPI or the Wage Price Index. On {HECS_HELP.indexationDate} the rate was <strong>{HECS_HELP.indexationRate * 100}%</strong> — read more on <Link href="/news/hecs-indexation-2026/" className="text-eucalyptus-dark hover:underline font-medium">HECS indexation 2026</Link>.

@@ -149,4 +149,68 @@ export function scaleRanges(
     });
 }
 
+/**
+ * <title> for a state page: "{State} Teacher Salary 2026 (Scale and Step)".
+ * One format for all eight so the hub and the state pages stop competing on
+ * differently worded titles.
+ */
+export function teacherStateMetaTitle(state: TeacherPayState): string {
+  return `${state.name} Teacher Salary ${teacherRatesYear(state)} (Scale and Step)`;
+}
+
+/**
+ * The exact anchor text the hub uses to link to each state page, in the form
+ * people search: "Victorian teacher salary 2026", "NSW teacher salary 2026".
+ */
+const ANCHOR_PREFIX: Readonly<Record<TeacherStateSlug, string>> = {
+  nsw: "NSW",
+  vic: "Victorian",
+  qld: "Queensland",
+  wa: "Western Australian",
+  sa: "South Australian",
+  tas: "Tasmanian",
+  act: "ACT",
+  nt: "Northern Territory",
+};
+
+export function teacherAnchorText(state: TeacherPayState): string {
+  return `${ANCHOR_PREFIX[state.slug]} teacher salary ${teacherRatesYear(state)}`;
+}
+
+export interface PrincipalSummary {
+  scaleId: string;
+  scaleTitle: string;
+  /** Plain-English line from the source scale about what sets the level. */
+  intro: string;
+  low: number;
+  high: number;
+  /** Rows counted: principal rows only, deputy and executive rows excluded. */
+  rows: number;
+}
+
+/**
+ * Principal salary range per principal scale a state publishes. Rows labelled
+ * deputy, assistant or executive are excluded so a mixed leadership table (the
+ * ACT's) reports principals only. Empty when the state publishes none.
+ */
+export function principalSummaries(state: TeacherPayState): PrincipalSummary[] {
+  const ids = state.principalScaleIds ?? [];
+  return ids.flatMap((id) => {
+    const scale = state.scales.find((s) => s.id === id);
+    if (!scale) return [];
+    const salaries = scale.steps
+      .filter((step) => !/deputy|assistant|executive|director/i.test(step.label))
+      .map((step) => step.salary);
+    if (salaries.length === 0) return [];
+    return [{
+      scaleId: scale.id,
+      scaleTitle: scale.title,
+      intro: scale.intro,
+      low: Math.min(...salaries),
+      high: Math.max(...salaries),
+      rows: salaries.length,
+    }];
+  });
+}
+
 export * from "./types";

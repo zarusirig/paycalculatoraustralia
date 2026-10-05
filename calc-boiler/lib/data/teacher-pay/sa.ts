@@ -33,6 +33,10 @@ export const SA_TEACHER_PAY: TeacherPayState = {
   name: "South Australia",
   nameInSentence: "South Australia",
   graduateStep: "Step 1",
+  h1: "SA Teacher Salary 2026 — South Australian Public School Pay Scale, Step 1 to 9",
+  classificationNote:
+    "South Australia pays teachers on Step 1 to Step 9, and Step 9 is the only step that has to be applied for. Entry depends on qualification: Step 1 for a three or four year degree, Step 2 for a four year degree plus a Graduate Diploma in Education.",
+  principalScaleIds: ["band-a-principals"],
   employer: "the SA Department for Education",
   agreementName:
     "South Australian School and Preschool Education Staff Enterprise Agreement 2024",
