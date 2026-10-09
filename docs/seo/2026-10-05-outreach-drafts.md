@@ -1,8 +1,18 @@
 # Outreach drafts, 5 October 2026
 
+> **Update, 9 October 2026.** The send sheet is now at `docs/seo/2026-10-09-outreach-send-sheet.csv`. All 30 prospect pages were reloaded with Firecrawl on 9 Oct. For every row the sheet gives the page status, the public contact route the site itself publishes (no guessed addresses, no email finders), a personalisation line taken from what is on the page, and the draft to use. The drafts below now carry those contacts and opening lines.
+>
+> - Result: 24 rows are ready to send. 3 are on hold because the page changed (SDA, JobWatch, Backpacker Job Board). 2 have no usable contact route (Victoria Legal Aid; Reddit, which is process only). SourceBottle needs Anita to register herself. No target is dead.
+> - Draft 10 has been retargeted. The 5 Oct Youthlaw page offers resources for *youth workers* (duty of care, street law), not for young employees, so the draft now points at Youthlaw's "Rates of Pay and Unpaid Wages" fact sheet.
+> - Draft 9 now goes to Finder's PR desk. The article dates from January 2023 and its author has published nothing on Finder since February 2023.
+> - Draft 6 has a caveat: FCA's toolkit sits behind a login, so a listing there would not be a public link.
+> - Owner check before drafts 3, 4 and 8 go out: our junior pages give a 17-year-old $15.29 an hour, while Australian Unions' factsheet gives $15.28 (57.8% of $26.44 = $15.282). Confirm the figure against the National Minimum Wage Order 2026. Drafts 3 and 8 now link `/junior-pay-rates/` rather than `/minimum-wage-by-age/17/`.
+> - Page status in the sheet: *ok* means the page exists and fits the pitch. *changed* means it exists but no longer fits as described on 5 Oct. *dead* means it is gone.
+> - Prospects with no draft of their own use the nearest draft, marked "adapt". Swap the **Page** line and replace the opening sentence with the sheet's personalisation line.
+
 Ten drafts for the best prospects in `2026-10-05-link-prospects.csv`. **Nothing here has been sent and nobody has been contacted.** They are for Anita Bell to review, edit and send herself.
 
-Assets these emails refer to (all shipped on branch `feat/oct-link-assets`, live only after merge and deploy; do not send until the URLs resolve):
+Assets these emails refer to. They shipped on branch `feat/oct-link-assets`, and all of them returned 200 on the live site on 9 Oct 2026. Check that they still resolve on the day you send:
 
 - Open data: https://pay-calculator-australia.com/australian-tax-and-pay-data/ (six CSVs and one JSON: resident tax rates, Medicare levy, super guarantee, HECS-HELP thresholds, National Minimum Wage 2010-11 to 2026-27, junior rates; CC BY 4.0)
 - Calendar: https://pay-calculator-australia.com/pay-and-tax-changes-calendar/ (1 July 2026, 1 December 2026, 1 January 2027, 1 July 2027, with an .ics)
@@ -10,8 +20,8 @@ Assets these emails refer to (all shipped on branch `feat/oct-link-assets`, live
 
 ## Before sending any of them
 
-1. Open the prospect's page and confirm it still has the list or paragraph the email mentions. The CSV URLs were returned by search on 5 Oct and not individually reloaded.
-2. Find a real contact from the organisation's own site (webmaster, editor, student services, "suggest a resource" form). No addresses are guessed here.
+1. Open the prospect's page and confirm it still has the list or paragraph the email mentions. (Done for all 30 on 9 Oct; see the send sheet. Look again on the day you send, because pages change.)
+2. Find a real contact from the organisation's own site (webmaster, editor, student services, "suggest a resource" form). No addresses are guessed here. (Done on 9 Oct: the `contact` column of the send sheet. Every address or form in it is published by the site itself.)
 3. Check the "To" line is a person or role, not a bulk list. One organisation, one email, no follow-up chain beyond a single reminder after two weeks.
 4. Sign as Anita Bell, owner of Pay Calculator Australia. No other title, no credentials, no claims about expertise beyond running the site.
 5. Lines such as "I read your piece" or "I came across your page" must be true when you send. Read the page first, or delete the line.
@@ -23,15 +33,15 @@ All figures quoted below come from the live assets, which read from the site's A
 
 ## 1. SuperGuide (finance publisher)
 
-**To:** editorial contact via superguide.com.au
-**Page:** https://www.superguide.com.au/super-booster/income-tax-rates-brackets
+**To:** general enquiries form, https://www.superguide.com.au/about-us/contact-us (no editorial email is published)
+**Page:** https://www.superguide.com.au/super-booster/income-tax-rates-brackets (updated 1 July 2026; checked 9 Oct)
 **Asset:** /australian-tax-and-pay-data/
 
 **Subject:** Free CSV of Australian tax scales, 2025-26 to 2027-28, in case it is useful for your tax rates page
 
 Hello,
 
-I run Pay Calculator Australia, a free calculator site. Your income tax rates and brackets page covers the same ground as one of my own pages.
+I run Pay Calculator Australia, a free calculator site. Your income tax brackets guide sets the resident scales side by side from 2016-17 to 2025-26 in its "Tax rate changes" table, and it covers the same ground as one of my own pages.
 
 I have published the resident tax scales as a plain CSV and JSON, covering 2025-26, 2026-27 and the legislated 2027-28 scale (the second rate falling to 14% on 1 July 2027), with each row marked historical, current or legislated-not-in-force. Medicare levy, super guarantee by year and HELP thresholds are alongside. Every figure is sourced to the ATO and listed on the page, and it is free to reuse with a link under CC BY 4.0:
 
@@ -47,15 +57,15 @@ Pay Calculator Australia
 
 ## 2. Canstar (annual "what changes" coverage)
 
-**To:** news or editorial contact via canstar.com.au
-**Page:** https://www.canstar.com.au/news/the-changes-happening-on-july-1-2026/
+**To:** Laine Gordon, PR Lead, Banking (the piece's author), Laine.Gordon@canstar.com.au, as listed on https://www.canstar.com.au/media/ (general alternative: media@canstar.com.au)
+**Page:** https://www.canstar.com.au/news/the-changes-happening-on-july-1-2026/ (now titled "New financial year: the winners, losers and hidden costs from 1 July", 25 June 2026)
 **Asset:** /pay-and-tax-changes-calendar/
 
 **Subject:** A dated list of pay and tax changes through 1 July 2027, with sources
 
-Hello,
+Hello Laine,
 
-I run Pay Calculator Australia. I read your 1 July 2026 changes piece and have since put together a single dated page for the following twelve months:
+I run Pay Calculator Australia. I read your 25 June piece on the winners, losers and hidden costs from 1 July, which led with the 16% rate falling to 15% and the further drop to 14% next July. I have since put together a single dated page for the following twelve months:
 
 https://pay-calculator-australia.com/pay-and-tax-changes-calendar/
 
@@ -71,19 +81,19 @@ Pay Calculator Australia
 
 ## 3. AWU (minimum wage page)
 
-**To:** website or communications contact via awu.net.au
-**Page:** https://awu.net.au/minimum-wage/
-**Asset:** /minimum-wage-by-age/ and /australian-tax-and-pay-data/
+**To:** contact form, https://awu.net.au/contact-us/ (the national office address members@nat.awu.net.au is also published, but it is for member services)
+**Page:** https://awu.net.au/minimum-wage/ (still shows 2025-26 figures; checked 9 Oct)
+**Asset:** /junior-pay-rates/ and /australian-tax-and-pay-data/
 
 **Subject:** Minimum wage history and junior rates as a free table, for your members' page
 
 Hello,
 
-I run Pay Calculator Australia, an independent calculator site. Your minimum wage page explains the rate in plain terms; one thing members often ask is how much it has moved and what juniors get.
+I run Pay Calculator Australia, an independent calculator site. Your minimum wage page explains the rate in plain terms, but it still gives the 1 July 2025 figure of $24.95 an hour ($948 a week) and junior rates built on it, such as $9.18 for under-16s. From 1 July 2026 the National Minimum Wage is $26.44 an hour ($1,004.90 a week), and the under-16 rate is $9.73.
 
 I have two free resources that might sit alongside it:
 
-- Minimum wage by age, with the hourly and casual rates for each age: https://pay-calculator-australia.com/minimum-wage-by-age/17/ (linked from https://pay-calculator-australia.com/junior-pay-rates/)
+- Junior minimum wage by age, with hourly and casual rates for every age from under 16 to 20: https://pay-calculator-australia.com/junior-pay-rates/
 - The adult National Minimum Wage for every year since 2010-11 as a CSV, from $15.00 to $26.44 an hour, with the increase as announced by the Fair Work Commission: https://pay-calculator-australia.com/australian-tax-and-pay-data/
 
 Figures are from the Fair Work Commission's Annual Wage Review decisions and the National Minimum Wage Order, linked on the page. If either would be useful as a supporting resource, you are welcome to link it. If you notice a number that does not match your records, please tell me and I will check it.
@@ -96,17 +106,17 @@ Pay Calculator Australia
 
 ## 4. Australian Unions (minimum wage factsheet)
 
-**To:** website contact via australianunions.org.au
-**Page:** https://www.australianunions.org.au/factsheet/minimum-wage/
+**To:** "Send us a message" form, https://www.australianunions.org.au/contact-australian-unions/ (subject: General enquiry)
+**Page:** https://www.australianunions.org.au/factsheet/minimum-wage/ (updated July 2026; checked 9 Oct)
 **Asset:** /minimum-wage-history-australia/ and the CSV
 
 **Subject:** Minimum wage history 2010 to 2026 with a downloadable table
 
 Hello,
 
-I run Pay Calculator Australia. I came across your minimum wage factsheet while checking my own history page.
+I run Pay Calculator Australia. I came across your minimum wage factsheet while checking my own history page. It makes the point that unions campaign at the Annual Wage Review every year to win the increase.
 
-For people who want the year-by-year series, I have published the National Minimum Wage from 2010-11 to 2026-27 (hourly, 38-hour week, and the announced percentage increase) on a page with a CSV download and a "how to cite" box:
+For people who want the year-by-year results of those reviews, I have published the National Minimum Wage from 2010-11 to 2026-27 (hourly, 38-hour week, and the announced percentage increase). The history page is the first link below; the second is the data page, which has the CSV download and a "Cite this page" box:
 
 https://pay-calculator-australia.com/minimum-wage-history-australia/
 https://pay-calculator-australia.com/australian-tax-and-pay-data/
@@ -121,15 +131,17 @@ Pay Calculator Australia
 
 ## 5. Employsure (employer guide)
 
-**To:** content team via employsure.com.au
-**Page:** https://employsure.com.au/guides/wage-and-pay/minimum-wage-australia
+**To:** media@peninsula-au.com, listed under "Media & PR" on https://employsure.com.au/contact (the guide's byline is Adam Wyatt, Content Writer, with no email published)
+**Page:** https://employsure.com.au/guides/wage-and-pay/minimum-wage-australia (last updated 2 July 2025; checked 9 Oct)
 **Asset:** /embed/ badges and the CSV
 
 **Subject:** A live minimum wage figure for your guide that updates itself
 
 Hello,
 
-I run Pay Calculator Australia. Employer guides on minimum wage go out of date every 1 July, so I built a small embeddable badge that shows the current National Minimum Wage ($26.44 an hour, $1,004.90 for a 38-hour week, from 1 July 2026) and changes by itself when the figure changes. There are also badges for the super guarantee rate, the tax-free threshold and the HELP threshold. They have no ads or tracking and carry a visible source link:
+I run Pay Calculator Australia. Your Minimum Wage in Australia guide (last updated 2 July 2025) still opens with $23.23 an hour and the 3.75% rise to $24.10 from 1 July 2024. The rate from 1 July 2026 is $26.44 an hour, or $1,004.90 for a 38-hour week.
+
+Employer guides on minimum wage go out of date every 1 July, so I built a small embeddable badge that shows the current National Minimum Wage and changes by itself when the figure changes. There are also badges for the super guarantee rate, the tax-free threshold and the HELP threshold. They have no ads or tracking and carry a visible source link:
 
 https://pay-calculator-australia.com/embed/
 
@@ -146,15 +158,17 @@ Pay Calculator Australia
 
 ## 6. Financial Counselling Australia (toolkit for counsellors)
 
-**To:** the toolkit or website contact via financialcounsellingaustralia.org.au
-**Page:** https://www.financialcounsellingaustralia.org.au/our-work/toolkit-for-financial-counsellors/
+**To:** info@financialcounsellingaustralia.org.au, as published on https://www.financialcounsellingaustralia.org.au/contact/
+**Page:** https://www.financialcounsellingaustralia.org.au/our-work/toolkit-for-financial-counsellors/ (checked 9 Oct)
 **Asset:** /embed/ and /take-home-pay-calculator/
+
+> Caveat (9 Oct): the public page has no resource list, and the toolkit sits behind a login at toolkit.org.au, so a listing there would not be a public link. Send only if the referral and credibility value is worth it.
 
 **Subject:** A free, ad-free take-home pay calculator and HELP threshold table for counsellors
 
 Hello,
 
-I run Pay Calculator Australia. Counsellors often need a quick, reliable figure for a client's after-tax income or HELP repayment. I have a take-home pay calculator that carries no ads or tracking when embedded, using the 2026-27 ATO rates, with options for HELP debt and super:
+I run Pay Calculator Australia. Your toolkit page says new resources such as guidance notes are added to the toolkit frequently. Counsellors often need a quick, reliable figure for a client's after-tax income or HELP repayment, so I wondered whether a calculator would be of use there. I have a take-home pay calculator that carries no ads or tracking when embedded, using the 2026-27 ATO rates, with options for HELP debt and super:
 
 https://pay-calculator-australia.com/embed/
 
@@ -172,15 +186,15 @@ Pay Calculator Australia
 
 ## 7. La Trobe University (student wellbeing, financial awareness)
 
-**To:** student wellbeing or the page owner via latrobe.edu.au
-**Page:** https://www.latrobe.edu.au/students/support/wellbeing/resource-hub/financial/awareness
+**To:** no page-owner email is published. Use General enquiries on https://www.latrobe.edu.au/contact (ASK La Trobe). Do not use the Wellbeing "Contact us" form, which is for students asking for support.
+**Page:** https://www.latrobe.edu.au/students/support/wellbeing/resource-hub/financial/awareness (checked 9 Oct)
 **Asset:** /first-job-pay-guide/ and /embed/
 
 **Subject:** A plain-English first-job pay guide and a free calculator students can use
 
 Hello,
 
-I run Pay Calculator Australia, a free calculator site. Your financial awareness page lists tools for students; I thought two of mine might fit.
+I run Pay Calculator Australia, a free calculator site. Your Financial awareness page's Taxes section points students to CPA Australia's tax tips, a pay calculator and Moneysmart's income tax page. It also notes that tax time is confusing for students with student loans, government payments and multiple jobs. I thought two of mine might fit there.
 
 - A first-job pay guide: payslips, tax, super and junior rates: https://pay-calculator-australia.com/first-job-pay-guide/
 - A take-home pay calculator with a HELP/HECS option on the 2026-27 rates, with no sign-up. It can also be embedded: https://pay-calculator-australia.com/embed/
@@ -195,19 +209,19 @@ Pay Calculator Australia
 
 ## 8. Right Now (opinion and reporting on young workers)
 
-**To:** the editor or contributor named on the article via rightnow.org.au
-**Page:** https://rightnow.org.au/opinion/young-cheap-and-disposable-why-australias-retail-and-food-industry-is-failing-young-people/
-**Asset:** /minimum-wage-by-age/ and the junior rates CSV
+**To:** the Editor, rose@rightnow.org.au ("Contact the Editor" on https://rightnow.org.au/contact/). The author, Megan Sapardanis, has no published email, so do not look for her elsewhere.
+**Page:** https://rightnow.org.au/opinion/young-cheap-and-disposable-why-australias-retail-and-food-industry-is-failing-young-people/ (published 20 January 2026; checked 9 Oct)
+**Asset:** /junior-pay-rates/ and the junior rates CSV
 
 **Subject:** Junior pay rates as a percentage of the adult minimum wage, with a table you can cite
 
 Hello,
 
-I run Pay Calculator Australia. Your piece on retail and food work for young people makes a point that is easy to get wrong with numbers, so I thought a source table might help future articles.
+I run Pay Calculator Australia. Megan Sapardanis's 20 January piece on retail and food work cites the under-16 junior rate as 36.8% of the minimum wage, or $9.18 an hour, with the adult rate at $24.95. Those were the 2025-26 figures. From 1 July 2026 they are $9.73 and $26.44, so I thought a source table might help future articles.
 
 The National Minimum Wage for juniors, as a percentage of the adult rate and in dollars (hourly and casual), is on one page and as a CSV, with the Fair Work Commission order it comes from:
 
-https://pay-calculator-australia.com/minimum-wage-by-age/17/
+https://pay-calculator-australia.com/junior-pay-rates/
 https://pay-calculator-australia.com/australian-tax-and-pay-data/
 
 I have also put a dated page together on the 1 December 2026 phase-in for 18 to 20 year olds on the retail, fast food and pharmacy awards, which is the change most relevant to your topic. It is a phase-in with six-monthly steps, not a move to the adult rate:
@@ -224,15 +238,15 @@ Pay Calculator Australia
 
 ## 9. Finder (HECS coverage)
 
-**To:** the author of the article, or the news desk, via finder.com.au
-**Page:** https://www.finder.com.au/news/is-paying-off-hecs-debt-early-the-smart-move
+**To:** Taylor Blackburn, head of public relations, Australia, aupr@finder.com. https://www.finder.com.au/media says to send data requests there. The author, Luana Matrone, lists an address on her author page but has published nothing on Finder since February 2023.
+**Page:** https://www.finder.com.au/news/is-paying-off-hecs-debt-early-the-smart-move (posted 31 January 2023, shown with a "more than 3 years old" banner; checked 9 Oct)
 **Asset:** /australian-tax-and-pay-data/ (HECS table) and /hecs-help-calculator/
 
 **Subject:** 2026-27 HELP repayment thresholds as a table, if useful for future HECS stories
 
-Hello,
+Hello Taylor,
 
-I run Pay Calculator Australia. I read your piece on paying off HECS early.
+I run Pay Calculator Australia. Finder's 31 January 2023 article on paying off HECS early quotes the 2022/23 repayment threshold of $48,361 and repayments of 1% to 10% of total income. Since 1 July 2025, repayments are charged only on income above the threshold, which is $69,528 for 2026-27.
 
 For future stories, I have put the 2025-26 and 2026-27 HELP repayment thresholds (the minimum is $69,528 for 2026-27) in a table and CSV, with the rate and base repayment for each band and a link to the ATO page they come from:
 
@@ -250,19 +264,21 @@ Pay Calculator Australia
 
 ---
 
-## 10. Youthlaw (resources for young workers)
+## 10. Youthlaw (rates of pay fact sheet)
 
-**To:** the resources or website contact via youthlaw.asn.au
-**Page:** https://youthlaw.asn.au/training-resources/publications-for-workers/
+> Retargeted 9 Oct. The 5 Oct target (https://youthlaw.asn.au/training-resources/publications-for-workers/) offers resources for *youth workers*: duty of care, street law, police contact. It has nothing on pay, so the old opening line ("your publications for young workers") would have been wrong. Youthlaw's pay content for young people is the fact sheet below.
+
+**To:** info@youthlaw.asn.au, the general and media address on https://youthlaw.asn.au/general-and-media-enquiries/
+**Page:** https://youthlaw.asn.au/learn-about-the-law/rates-of-pay-and-unpaid-wages/ (last updated June 2023; checked 9 Oct)
 **Asset:** /junior-pay-rates/ and /pay-and-tax-changes-calendar/
 
 **Subject:** Junior pay rates by age and the 1 December 2026 award change, in plain English
 
 Hello,
 
-I run Pay Calculator Australia, an independent calculator site. I came across your publications for young workers.
+I run Pay Calculator Australia, an independent calculator site. Your Rates of Pay and Unpaid Wages fact sheet (last updated June 2023) points young people to a single JobWatch page on getting paid.
 
-I have two plain-English pages that might be worth a mention alongside them:
+I have two plain-English pages that might be worth a mention alongside it:
 
 - Junior minimum wage by age, with hourly and casual rates and how awards differ from the national rate: https://pay-calculator-australia.com/junior-pay-rates/
 - A dated list of what is changing, including the 1 December 2026 start of higher junior percentages for 18 to 20 year olds on the retail, fast food and pharmacy awards (only for employees with more than 6 months with their employer): https://pay-calculator-australia.com/pay-and-tax-changes-calendar/
@@ -278,6 +294,7 @@ Pay Calculator Australia
 ## Prospects held back
 
 - **Reddit / SourceBottle:** process, not outreach. Register as Anita Bell and answer only what she can stand behind.
-- **Government pages (youth.gov.au):** low odds; use the "suggest a resource" form only if one exists.
-- **University hubs not drafted here (UTS, ANU, VU, Curtin, Monash):** same shape as draft 7; send after one or two replies show the framing works.
+- **Government pages (youth.gov.au):** low odds. There is no "suggest a resource" form, only the general enquiries form, which is in the send sheet.
+- **University hubs not drafted here (UTS, ANU, VU, Curtin, Monash):** same shape as draft 7; send after one or two replies show the framing works. As of 9 Oct, each has a published contact and a personalisation line in the send sheet. VU's post still gives the 2022 HELP threshold ($46,620), and Monash MSA's HECS timeline still describes the $67,000 threshold as a promise. Lead with those corrections.
 - **Redundant with 1-10:** Compare the Market (same as Finder), Australian Unions and AWU can be sent the same week but as separate emails.
+- **Held on 9 Oct (page changed):** SDA (the page is SDA's own retail pay calculator), JobWatch (its external links list only regulators and legal services), Backpacker Job Board (the guide now cites only official sources and is building its own calculator). Victoria Legal Aid has no website or resource-suggestion contact route.
