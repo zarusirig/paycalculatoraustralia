@@ -15,7 +15,7 @@
 // 23 September 2026. The page slug on JSA is 2723-psychologists-and-psychotherapists.
 
 import { ALL_OCCUPATIONS_MEDIAN_WEEKLY, jsaUrl } from "./common";
-import { hpssOct2026Occupation } from "./health-professionals-oct-2026";
+import { HPSS_OCT_2026_NOTICES, hpssOct2026Occupation } from "./health-professionals-oct-2026";
 import type { MedianEarnings } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -41,8 +41,7 @@ export const PSYCHOLOGIST = hpssOct2026Occupation(9, {
   ],
   median: MEDIAN,
   notices: [
-    "These are the rates from the first full pay period starting on or after 1 October 2026, under Fair Work Commission determination PR814029. They are the first stage of the Commission's gender undervaluation increases; further stages are due from 30 June 2027, 2028, 2029 and 2030.",
-    "If you were employed under this award on 30 September 2026, clause J.4 translates you into the new structure and clause J.4.3 keeps your old minimum rate if it was higher. Our Health Professionals Award rates page covers the full award.",
+    ...HPSS_OCT_2026_NOTICES,
     "The award does not set a separate rate for clinical psychologists or other area-of-practice endorsements. An endorsed psychologist's classification depends on the duties and responsibility of the role under Schedule A.2.",
   ],
   faqs: [

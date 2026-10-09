@@ -44,7 +44,16 @@ export const HPSS_AWARD: AwardRef = {
 export const HPSS_SOURCE_TITLE =
   "Health Professionals and Support Services Award 2020 [MA000027] — consolidated to 1 July 2026";
 
-/** Clause 17.2–17.5 weekly and hourly minimums; casual = Schedule C.2.3 ordinary hours column. */
+/**
+ * Clause 17.2–17.5 weekly and hourly minimums; casual = Schedule C.2.3 ordinary hours column.
+ * SUPERSEDED from the first full pay period starting on or after 1 October 2026
+ * by determination PR814029 (read 9 October 2026,
+ * https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814029.pdf). These are
+ * the rates as at 30 September 2026; the consolidated award keeps some of them
+ * only as clause J.4.3 retained minimums. No page renders this table any more —
+ * the current rates are HPSS_OCT_2026_* below, tabled by
+ * health-professionals-oct-2026.ts.
+ */
 export const HPSS_TABLES: RateTable[] = [
   {
     id: "level-1",

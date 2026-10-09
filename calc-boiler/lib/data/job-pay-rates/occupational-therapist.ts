@@ -14,7 +14,7 @@
 // $1,913 a week / $50 an hour (ABS SEEH May 2025), read 23 September 2026.
 
 import { ALL_OCCUPATIONS_MEDIAN_WEEKLY, jsaUrl } from "./common";
-import { hpssOct2026Occupation } from "./health-professionals-oct-2026";
+import { HPSS_OCT_2026_NOTICES, hpssOct2026Occupation } from "./health-professionals-oct-2026";
 import type { MedianEarnings } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -40,8 +40,7 @@ export const OCCUPATIONAL_THERAPIST = hpssOct2026Occupation(7, {
   ],
   median: MEDIAN,
   notices: [
-    "These are the rates from the first full pay period starting on or after 1 October 2026, under Fair Work Commission determination PR814029. They are the first stage of the Commission's gender undervaluation increases; further stages are due from 30 June 2027, 2028, 2029 and 2030.",
-    "If you were employed under this award on 30 September 2026, clause J.4 translates you into the new structure and clause J.4.3 keeps your old minimum rate if it was higher. Our Health Professionals Award rates page covers the full award.",
+    ...HPSS_OCT_2026_NOTICES,
   ],
   faqs: [
     {
