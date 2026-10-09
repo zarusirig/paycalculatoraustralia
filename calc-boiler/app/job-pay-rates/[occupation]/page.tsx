@@ -60,6 +60,7 @@ function titleFor(occ: Occupation): string {
 }
 
 function descriptionFor(occ: Occupation): string {
+  if (occ.metaDescription) return occ.metaDescription;
   const r = headlineRow(occ);
   if (r && occ.award) {
     // Award names run long ("Electrical, Electronic and Communications Contracting
@@ -108,7 +109,12 @@ async function Page({ params }: PageProps) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
       { "@type": "ListItem", position: 2, name: "Job Pay Rates", item: `${BASE}/job-pay-rates/` },
-      { "@type": "ListItem", position: 3, name: `${occ.name} Pay Rates`, item: url },
+      ...(occ.parent
+        ? [
+            { "@type": "ListItem" as const, position: 3, name: occ.parent.label, item: `${BASE}${occ.parent.href}` },
+            { "@type": "ListItem" as const, position: 4, name: `${occ.name} Pay Rates`, item: url },
+          ]
+        : [{ "@type": "ListItem" as const, position: 3, name: `${occ.name} Pay Rates`, item: url }]),
     ],
   };
 
@@ -120,7 +126,7 @@ async function Page({ params }: PageProps) {
     url,
     description: descriptionFor(occ),
     inLanguage: "en-AU",
-    dateModified: "2026-09-23",
+    dateModified: occ.dateModified ?? "2026-09-23",
     publisher: { "@type": "Organization", name: SITE_CONFIG.name },
   };
 

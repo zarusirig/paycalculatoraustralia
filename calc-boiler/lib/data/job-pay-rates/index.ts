@@ -39,6 +39,19 @@ import { FORKLIFT_OPERATOR } from "./forklift-operator";
 import { RETAIL_MANAGER } from "./retail-manager";
 import { WELDER } from "./welder";
 import { YOUTH_WORKER } from "./youth-worker";
+// P1 (Oct 2026) — professional and corporate salary pages
+import { ACTUARY } from "./actuary";
+import { BUSINESS_ANALYST } from "./business-analyst";
+import { CIVIL_ENGINEER } from "./civil-engineer";
+import { CYBER_SECURITY } from "./cyber-security";
+import { DATA_ANALYST } from "./data-analyst";
+import { ELECTRICAL_ENGINEER } from "./electrical-engineer";
+import { MECHANICAL_ENGINEER } from "./mechanical-engineer";
+import { MORTGAGE_BROKER } from "./mortgage-broker";
+import { PARALEGAL } from "./paralegal";
+import { PROJECT_MANAGER } from "./project-manager";
+import { SOFTWARE_ENGINEER } from "./software-engineer";
+import { SURVEYOR } from "./surveyor";
 import { DOCTOR } from "./doctor";
 import { DISABILITY_SUPPORT_WORKER } from "./disability-support-worker";
 import { EARLY_CHILDHOOD_TEACHER } from "./early-childhood-teacher";
@@ -129,6 +142,19 @@ export const OCCUPATIONS_BY_SLUG: Readonly<Record<OccupationSlug, Occupation>> =
   welder: WELDER,
   "forklift-operator": FORKLIFT_OPERATOR,
   "flight-attendant": FLIGHT_ATTENDANT,
+  // P1 (Oct 2026)
+  "civil-engineer": CIVIL_ENGINEER,
+  "electrical-engineer": ELECTRICAL_ENGINEER,
+  "mechanical-engineer": MECHANICAL_ENGINEER,
+  "software-engineer": SOFTWARE_ENGINEER,
+  "cyber-security": CYBER_SECURITY,
+  "project-manager": PROJECT_MANAGER,
+  "data-analyst": DATA_ANALYST,
+  "business-analyst": BUSINESS_ANALYST,
+  actuary: ACTUARY,
+  "mortgage-broker": MORTGAGE_BROKER,
+  paralegal: PARALEGAL,
+  surveyor: SURVEYOR,
 };
 
 /** Every occupation, in the order the hub lists them. */
@@ -168,6 +194,8 @@ export interface AfterTax {
   grossAnnual: number;
   netAnnual: number;
   netWeekly: number;
+  /** Take-home a fortnight (annual / 26, to the cent), as the engine reports it. */
+  netFortnightly: number;
   tax: number;
   medicare: number;
 }
@@ -183,6 +211,7 @@ export function afterTax(grossAnnual: number): AfterTax {
     grossAnnual,
     netAnnual: b.takeHomePay,
     netWeekly: b.weekly,
+    netFortnightly: b.fortnightly,
     tax: b.netIncomeTax,
     medicare: b.medicareLevy,
   };

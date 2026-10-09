@@ -58,6 +58,8 @@ function JobRow({ occ }: { occ: Occupation }) {
             {occ.award.code}
             {r ? <span className="block text-xs">{r.label}</span> : null}
           </>
+        ) : occ.coverageMode === "depends" ? (
+          "No award names this job (National Minimum Wage floor)"
         ) : (
           "Award-free (National Minimum Wage)"
         )}

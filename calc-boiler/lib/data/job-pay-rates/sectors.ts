@@ -72,4 +72,17 @@ export const OCCUPATION_SECTOR: Readonly<Record<OccupationSlug, JobSectorId>> = 
   welder: "trades",
   "forklift-operator": "trades",
   "flight-attendant": "trades",
+  // P1 (Oct 2026) — professional and corporate salary pages
+  "civil-engineer": "office",
+  "electrical-engineer": "office",
+  "mechanical-engineer": "office",
+  "software-engineer": "office",
+  "cyber-security": "office",
+  "project-manager": "office",
+  "data-analyst": "office",
+  "business-analyst": "office",
+  actuary: "office",
+  "mortgage-broker": "office",
+  paralegal: "office",
+  surveyor: "office",
 };

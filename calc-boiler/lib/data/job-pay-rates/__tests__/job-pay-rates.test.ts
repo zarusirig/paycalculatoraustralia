@@ -226,8 +226,13 @@ test("award pages cite a consolidated award text on awards.fairwork.gov.au", () 
 test("annual and after-tax figures link to a take-home page that exists", () => {
   for (const occ of OCCUPATIONS) {
     const r = headlineRow(occ);
-    const weekly = r ? r.weekly : occ.median!.medianWeekly;
-    const annual = annualFromWeekly(weekly);
+    // P1 (Oct 2026): a page with no award row and no JSA median leads with the
+    // ATO median salary instead (project manager, data analyst).
+    const annual = r
+      ? annualFromWeekly(r.weekly)
+      : occ.median
+        ? annualFromWeekly(occ.median.medianWeekly)
+        : occ.ato!.rows[0].medianSalary;
     const target = nearestTakeHomeAmount(annual);
     assert.ok(target >= 30_000 && target <= 200_000 && target % 5_000 === 0, `${occ.slug} -> ${target}`);
     const t = afterTax(annual);
@@ -387,7 +392,12 @@ test("W4: a metaTitle override still states the headline hourly rate", () => {
   for (const occ of OCCUPATIONS) {
     if (!occ.metaTitle) continue;
     const r = headlineRow(occ);
-    assert.ok(r, occ.slug);
+    if (!r) {
+      // P1 (Oct 2026): pages with no award to quote lead with a median salary.
+      assert.equal(occ.award, null, occ.slug);
+      assert.match(occ.metaTitle, /Median/, occ.slug);
+      continue;
+    }
     assert.ok(occ.metaTitle.includes(`$${r.hourly.toFixed(2)}`), `${occ.slug}: ${occ.metaTitle}`);
   }
 });

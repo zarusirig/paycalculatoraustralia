@@ -17,8 +17,27 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TECH_SALARY_FAQS } from "./tech-salary-guide-australia-faqs";
+import { BUSINESS_ANALYST_ATO } from "@/lib/data/job-pay-rates/business-analyst";
+import { ATO_TABLE_15 } from "@/lib/data/job-pay-rates/common";
+import { CYBER_SECURITY_ATO } from "@/lib/data/job-pay-rates/cyber-security";
+import { DATA_ANALYST_ATO } from "@/lib/data/job-pay-rates/data-analyst";
+import { PROJECT_MANAGER_ATO } from "@/lib/data/job-pay-rates/project-manager";
+import { SOFTWARE_ENGINEER_ATO } from "@/lib/data/job-pay-rates/software-engineer";
+
+// Role spokes under /job-pay-rates/ (Oct 2026). Medians are read from the
+// spokes' ATO Table 15A data so the hub and the spoke cannot disagree.
+const ATO_ROW = (stats: { rows: { code: string; medianSalary: number }[] }, code: string) =>
+  stats.rows.find((r) => r.code === code)!.medianSalary;
+const ROLE_SPOKES = [
+  { href: "/job-pay-rates/software-engineer/", label: "Software engineer salary", median: ATO_ROW(SOFTWARE_ENGINEER_ATO, "261313"), basis: "software engineers" },
+  { href: "/job-pay-rates/cyber-security/", label: "Cyber security salary", median: ATO_ROW(CYBER_SECURITY_ATO, "262116"), basis: "cyber security analysts; seven roles compared" },
+  { href: "/job-pay-rates/data-analyst/", label: "Data analyst salary", median: ATO_ROW(DATA_ANALYST_ATO, "224114"), basis: "data analysts" },
+  { href: "/job-pay-rates/business-analyst/", label: "Business analyst salary", median: ATO_ROW(BUSINESS_ANALYST_ATO, "261111"), basis: "IT business analysts" },
+  { href: "/job-pay-rates/project-manager/", label: "Project manager salary", median: ATO_ROW(PROJECT_MANAGER_ATO, "135112"), basis: "IT project managers; construction and program roles compared" },
+];
 
 const SOURCES_LIST: SourceLink[] = [
+  { title: ATO_TABLE_15.title, url: ATO_TABLE_15.url, publisher: ATO_TABLE_15.publisher },
   { title: "ICT industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
   { title: "Seek salary data", url: "https://au.seek.com/career-advice/role/software-developer/salary", publisher: "Seek" },
   { title: "Hays salary guide", url: "https://www.hays.com.au/salary-guide", publisher: "Hays" },
@@ -53,6 +72,21 @@ export default function TechSalaryGuideAustraliaPage() {
 
           {/* MAIN ARTICLE CONTENT */}
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+
+            {/* ── Section 0: Official figures by role (spokes, Oct 2026) ── */}
+            <section id="pay-by-role">
+              <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tech Pay by Role: Official Figures</h2>
+              <p>
+                Each of these roles has its own page with the ATO&rsquo;s 2023&ndash;24 tax-return figures, any award minimum that can apply, and take-home pay on each figure. The medians below are salary or wage income for everyone who gave that occupation on their return.
+              </p>
+              <ul>
+                {ROLE_SPOKES.map((r) => (
+                  <li key={r.href}>
+                    <Link href={r.href}>{r.label}</Link>: {formatAUD(r.median)} median ({r.basis})
+                  </li>
+                ))}
+              </ul>
+            </section>
 
             {/* ── Section 1: Average Tech Salaries by Role ── */}
             <section id="tech-salaries">

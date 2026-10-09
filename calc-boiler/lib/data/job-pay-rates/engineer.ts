@@ -133,9 +133,27 @@ export const ENGINEER: Occupation = {
     },
     {
       q: "What do engineers actually earn in Australia?",
-      a: "Jobs and Skills Australia reports median full-time earnings of $2,217 a week for civil engineering professionals (ABS, May 2025), about $115,284 a year — far above the award, because most engineers are paid market salaries. Other engineering disciplines have their own medians.",
+      a: "Jobs and Skills Australia reports median full-time earnings of $2,217 a week for civil engineering professionals (ABS, May 2025), about $115,284 a year — far above the award, because most engineers are paid market salaries. Other engineering disciplines have their own medians: the civil, electrical and mechanical engineer pages show each one, with ATO tax-return figures.",
     },
   ],
+  spokes: [
+    {
+      href: "/job-pay-rates/civil-engineer/",
+      label: "Civil engineer salary",
+      blurb: "tax-return figures for civil, structural, geotechnical and transport engineers, and the award exclusions for water, rail and council employers.",
+    },
+    {
+      href: "/job-pay-rates/electrical-engineer/",
+      label: "Electrical engineer salary",
+      blurb: "electrical and electronics engineers' pay, and why the Electrical Power Industry Award takes some electrical engineers outside this award.",
+    },
+    {
+      href: "/job-pay-rates/mechanical-engineer/",
+      label: "Mechanical engineer salary",
+      blurb: "mechanical, industrial and production engineers' pay, and why mechanical engineering technicians are not on these rates.",
+    },
+  ],
+  dateModified: "2026-10-09",
   sources: [
     { title: "Professional Employees Award 2020 [MA000065] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000065") },
     FWO_PAY_GUIDES,
