@@ -103,13 +103,13 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "medicare-levy": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "low-income-tax-offset": { authorId: "anita-bell", lastReviewed: "2026-09-23" }, // T1 rebuild
   "payg-withholding-tables": { authorId: "anita-bell", lastReviewed: "2026-07-01" },
-  "weekly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-07-01" },
-  "fortnightly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-07-01" },
-  "monthly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-07-01" },
+  "weekly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "fortnightly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "monthly-tax-table": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
   "schedule-5-tax-table": { authorId: "anita-bell", lastReviewed: "2026-07-01" },
   "bonus-tax-guide": { authorId: "anita-bell", lastReviewed: "2026-03-09" },
   "tax-refund-guide": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
-  "tax-calendar": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
+  "tax-calendar": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
   "fringe-benefits-tax": { authorId: "anita-bell", lastReviewed: "2026-03-04" },
   "working-holiday-tax": { authorId: "anita-bell", lastReviewed: "2026-03-03" },
   "non-resident-tax": { authorId: "anita-bell", lastReviewed: "2026-03-02" },
@@ -160,8 +160,8 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "full-time-vs-part-time-vs-casual": { authorId: "anita-bell", lastReviewed: "2026-03-14" },
   "minimum-wage-history-australia": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "mining-fifo-pay-guide": { authorId: "anita-bell", lastReviewed: "2026-03-15" },
-  "healthcare-worker-pay": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
-  "teacher-pay-australia": { authorId: "anita-bell", lastReviewed: "2026-10-05" },
+  "healthcare-worker-pay": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "teacher-pay-australia": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
   // C1 employer pay rates (hub + every /pay-rates/[employer]/ page)
   "pay-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   "long-service-leave-calculator": { authorId: "anita-bell", lastReviewed: "2026-08-28" },
@@ -222,7 +222,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "ytd-income-calculator": { authorId: "anita-bell", lastReviewed: "2026-07-02" },
 
   // --- C2/C5 occupation pay rates + ADF pay scales (23 Sep 2026) ---
-  "job-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
+  "job-pay-rates": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
   "adf-pay-scales": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- end C2/C5 ---
 
@@ -240,7 +240,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "police-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "firefighter-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "prison-officer-pay": { authorId: "anita-bell", lastReviewed: "2026-10-09" }, // J8
-  "air-traffic-controller-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "air-traffic-controller-salary": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
   "pilot-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end F5 ---
 
