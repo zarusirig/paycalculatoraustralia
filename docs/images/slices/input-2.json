@@ -1,0 +1,758 @@
+[
+ {
+  "key": "income-tax-calculator",
+  "routes": [
+   "/income-tax-calculator/"
+  ],
+  "title": "Income Tax Calculator Australia 2026-27 \u2014 Simple Tax Calculator",
+  "h1": "Income Tax Calculator Australia 2026-27 \u2014 Simple Tax Calculator",
+  "description": "Tax on $80,000 is $14,520 plus $1,600 Medicare in FY2026-27. Simple tax calculator: annual, monthly, fortnightly or weekly income for ATO tax and take-home pay."
+ },
+ {
+  "key": "redundancy-pay-calculator",
+  "routes": [
+   "/redundancy-pay-calculator/"
+  ],
+  "title": "Redundancy Pay Calculator 2026-27 \u2014 NES Table & Tax-Free Limit",
+  "h1": "Redundancy Pay Calculator Australia 2026-27",
+  "description": "Free Australian redundancy calculator: NES redundancy pay (4 to 16 weeks by years of service), the 2026-27 tax-free limit of $13,598 + $6,801 per year, and ETP tax."
+ },
+ {
+  "key": "bonus-tax-calculator",
+  "routes": [
+   "/bonus-tax-calculator/"
+  ],
+  "title": "Bonus Tax Calculator Australia \u2014 Tax on Your Bonus",
+  "h1": "Bonus Tax Calculator Australia",
+  "description": "Calculate how much tax you pay on a bonus or commission. See your actual take-home from any lump sum using marginal tax rates for FY2026-27."
+ },
+ {
+  "key": "jobseeker-payment-calculator",
+  "routes": [
+   "/jobseeker-payment-calculator/"
+  ],
+  "title": "JobSeeker Payment Calculator 2026 \u2014 Rates From 20 September",
+  "h1": "JobSeeker Payment Calculator \u2014 Rates and How Working Affects Your Payment",
+  "description": "How much is JobSeeker? $824.90 a fortnight single from 20 September 2026. See what you keep when you work: the $150 free area, tapers and partner income."
+ },
+ {
+  "key": "carer-payment-calculator",
+  "routes": [
+   "/carer-payment-calculator/"
+  ],
+  "title": "Carer Payment Calculator 2026 \u2014 Centrelink Rates & Income Test",
+  "h1": "Carer Payment Calculator 2026 \u2014 Rates, Income Test and Work Hours",
+  "description": "Carer Payment is $1,237.70 a fortnight single, $933.00 each for couples from 20 September 2026. See what you keep when you work: income test and 100-hours rule."
+ },
+ {
+  "key": "child-care-subsidy-calculator",
+  "routes": [
+   "/child-care-subsidy-calculator/"
+  ],
+  "title": "Child Care Subsidy Calculator 2026-27 \u2014 CCS % & Gap Fee",
+  "h1": "Child Care Subsidy Calculator 2026-27 \u2014 Your CCS % and Gap Fee",
+  "description": "CCS 2026-27: 90% up to $88,520 family income, 1% less per $5,000 above, up to 95% for younger siblings. Enter both parents' pay and fees for your gap fee."
+ },
+ {
+  "key": "ytd-income-calculator",
+  "routes": [
+   "/ytd-income-calculator/"
+  ],
+  "title": "YTD Calculator Australia \u2014 Year to Date Income & Annualiser",
+  "h1": "YTD Calculator \u2014 Year to Date Income Australia",
+  "description": "Free YTD calculator for Australia. Work out your year-to-date income from your payslip, or annualise a YTD gross figure into projected annual salary and tax."
+ },
+ {
+  "key": "monthly-pay-calculator",
+  "routes": [
+   "/monthly-pay-calculator/"
+  ],
+  "title": "Monthly Pay Calculator Australia 2026-27: Take-Home Pay",
+  "h1": "Monthly Pay Calculator Australia 2026-27",
+  "description": "$80,000 is $5,323 a month after tax in 2026-27 ($6,667 gross \u00f7 12). Enter any salary to see your monthly tax, Medicare, super and take-home pay."
+ },
+ {
+  "key": "pay-calculator-sa",
+  "routes": [
+   "/pay-calculator-sa/"
+  ],
+  "title": "Pay Calculator SA 2026-27: Wage & Salary After Tax",
+  "h1": "Pay Calculator SA: Your Take-Home Pay in South Australia",
+  "description": "Work out your take-home pay in South Australia. A free salary and wage calculator on current ATO rates, plus SA public holidays, part-days and long service leave."
+ },
+ {
+  "key": "medicare-levy",
+  "routes": [
+   "/medicare-levy/"
+  ],
+  "title": "Medicare Levy Calculator 2026: 2% Levy, Low-Income, Family Limits",
+  "h1": "Medicare Levy Calculator The 2% Levy, Low-Income and Family Thresholds",
+  "description": "Free Medicare levy calculator: the 2% levy, the low-income shade-in from $28,011 to $35,013, and exemptions. The 2026-27 surcharge has its own calculator."
+ },
+ {
+  "key": "low-income-tax-offset",
+  "routes": [
+   "/low-income-tax-offset/"
+  ],
+  "title": "LITO Calculator 2026-27: Low Income Tax Offset ($700 Max)",
+  "h1": "Low Income Tax Offset (LITO) 2026-27: $700 Calculator & Thresholds",
+  "description": "The low income tax offset is $700 up to $37,500, $325 at $45,000 and nil at $66,667. Work out your LITO for 2026-27 and why you pay no tax up to $22,866."
+ },
+ {
+  "key": "hospitality-award-rates",
+  "routes": [
+   "/hospitality-award-rates/"
+  ],
+  "title": "Hospitality Award Rates 2026: Level 1\u20136, Casual, Sat, Sun & PH",
+  "h1": "Hospitality Award Rates 2026-27: Levels 1\u20136",
+  "description": "Hospitality award rates from 1 July 2026 (MA000009): Level 1 is $26.44/hr, $33.05 casual. Table for Levels 1\u20136 with Saturday, Sunday and public holiday rates."
+ },
+ {
+  "key": "clerks-award-rates",
+  "routes": [
+   "/clerks-award-rates/"
+  ],
+  "title": "Clerks Award Pay Rates 2026-27 \u2014 Private Sector Levels 1\u20135",
+  "h1": "Clerks Award Pay Rates 2026-27",
+  "description": "Clerks\u2014Private Sector Award rates from 1 July 2026: Level 1 $26.97/hr to Level 5 $33.99/hr. Casual, weekend, public holiday, overtime and junior rates."
+ },
+ {
+  "key": "real-estate-award-rates",
+  "routes": [
+   "/real-estate-award-rates/"
+  ],
+  "title": "Real Estate Award Pay Rates 2026-27 (MA000106) \u2014 Levels 1\u20134",
+  "h1": "Real Estate Award Pay Rates 2026-27",
+  "description": "Real Estate Industry Award MA000106 rates from 1 July 2026: $26.59 to $33.88 an hour, casual, public holiday and junior rates."
+ },
+ {
+  "key": "health-professionals-award-rates",
+  "routes": [
+   "/health-professionals-award-rates/"
+  ],
+  "title": "Health Professionals Award Pay Rates 2026-27 (MA000027)",
+  "h1": "Health Professionals Award Pay Rates 2026-27",
+  "description": "Health Professionals Award MA000027: AQF 7 graduate $34.44/hr from 1 Oct 2026, support services from $26.97. Casual, weekend and overtime rates."
+ },
+ {
+  "key": "nurses-award-rates",
+  "routes": [
+   "/nurses-award-rates/"
+  ],
+  "title": "Nurses Award Pay Rates 2026-27 (MA000034) \u2014 RN, EN & AIN Rates",
+  "h1": "Nurses Award Pay Rates 2026-27",
+  "description": "Nurses Award 2020 rates: RN level 1 $32.09/hr ($1,219.50/wk), enrolled nurse $30.00, aged care RN $41.36 from 1 August 2026. Shift and casual rates."
+ },
+ {
+  "key": "employer-cost-calculator",
+  "routes": [
+   "/employer-cost-calculator/"
+  ],
+  "title": "True Cost of an Employee Calculator Australia",
+  "h1": "Employer Cost Calculator: The True Cost of Hiring",
+  "description": "Calculate the true cost of hiring an employee in Australia: superannuation, payroll tax, workers compensation and leave provisions on top of base salary."
+ },
+ {
+  "key": "novated-lease-guide",
+  "routes": [
+   "/novated-lease-guide/"
+  ],
+  "title": "How a Novated Lease Works \u2014 Explained Step by Step",
+  "h1": "How a Novated Lease Works",
+  "description": "What a novated lease is: the three-way agreement, how the employee contribution cancels FBT, which EVs are exempt, and what you owe at the end."
+ },
+ {
+  "key": "cost-of-living-payment-2026",
+  "routes": [
+   "/cost-of-living-payment-2026/"
+  ],
+  "title": "Cost of Living Payment 2026 \u2014 Is There One? (Checked Sep 2026)",
+  "h1": "Is There a Cost of Living Payment in 2026?",
+  "description": "No Commonwealth cost of living payment exists in 2026: it stopped from 30 June 2023. What you can get instead: 20 September 2026 increases and Rent Assistance."
+ },
+ {
+  "key": "first-job-pay-guide",
+  "routes": [
+   "/first-job-pay-guide/"
+  ],
+  "title": "First Job Pay Guide \u2014 Tax, Super & Your First Payslip",
+  "h1": "First Job Pay Guide \u2014 Everything You Need to Know About Your First Pay",
+  "description": "Starting your first job? Your tax file number, super, the tax-free threshold, how to read your first payslip and how much you'll actually take home."
+ },
+ {
+  "key": "private-health-insurance-medicare",
+  "routes": [
+   "/private-health-insurance-medicare/"
+  ],
+  "title": "Private Health Insurance vs Medicare Levy Surcharge: Worth It?",
+  "h1": "Private Health Insurance & Medicare \u2014 When PHI Saves You Money",
+  "description": "Is private hospital cover cheaper than the Medicare levy surcharge? The 2026-27 surcharge and rebate tiers, your break-even premium and lifetime cover loading."
+ },
+ {
+  "key": "employee-vs-sole-trader-vs-company",
+  "routes": [
+   "/employee-vs-sole-trader-vs-company/"
+  ],
+  "title": "Employee vs Sole Trader vs Company \u2014 Which Pays More?",
+  "h1": "Employee vs Sole Trader vs Company \u2014 Which Structure Pays More?",
+  "description": "Compare employee, sole trader and company structures in Australia: tax rates, super, liability, GST and take-home pay at different income levels."
+ },
+ {
+  "key": "retail-hospitality-pay-guide",
+  "routes": [
+   "/retail-hospitality-pay-guide/"
+  ],
+  "title": "Retail & Hospitality Pay \u2014 Award Rates, Penalties & Loading",
+  "h1": "Retail & Hospitality Pay Guide \u2014 Award Rates, Penalties & Your Rights",
+  "description": "Retail and hospitality pay rates: General Retail and Hospitality Industry Awards, casual loading (25%), weekend penalties and public holiday rates explained."
+ },
+ {
+  "key": "full-time-vs-part-time-vs-casual",
+  "routes": [
+   "/full-time-vs-part-time-vs-casual/"
+  ],
+  "title": "Full-Time vs Part-Time vs Casual: Entitlements Compared",
+  "h1": "Full-Time vs Part-Time vs Casual: Entitlements Compared",
+  "description": "Full-time vs part-time vs casual entitlements compared: paid leave, notice, redundancy, super, the 25% casual loading and casual conversion under the Fair Work Act."
+ },
+ {
+  "key": "hourly-to-salary",
+  "routes": [
+   "/hourly-to-salary/20/",
+   "/hourly-to-salary/20-5/",
+   "/hourly-to-salary/21/",
+   "/hourly-to-salary/21-5/",
+   "/hourly-to-salary/22/",
+   "/hourly-to-salary/22-5/",
+   "/hourly-to-salary/23/",
+   "/hourly-to-salary/23-5/",
+   "/hourly-to-salary/24/",
+   "/hourly-to-salary/24-5/",
+   "/hourly-to-salary/24-95/",
+   "/hourly-to-salary/25/",
+   "/hourly-to-salary/25-5/",
+   "/hourly-to-salary/25-74/",
+   "/hourly-to-salary/26/",
+   "/hourly-to-salary/26-44/",
+   "/hourly-to-salary/26-5/",
+   "/hourly-to-salary/27/",
+   "/hourly-to-salary/27-08/",
+   "/hourly-to-salary/27-28/",
+   "/hourly-to-salary/27-5/",
+   "/hourly-to-salary/27-55/",
+   "/hourly-to-salary/27-81/",
+   "/hourly-to-salary/27-97/",
+   "/hourly-to-salary/28/",
+   "/hourly-to-salary/28-44/",
+   "/hourly-to-salary/28-45/",
+   "/hourly-to-salary/28-5/",
+   "/hourly-to-salary/28-86/",
+   "/hourly-to-salary/28-89/",
+   "/hourly-to-salary/29/",
+   "/hourly-to-salary/29-06/",
+   "/hourly-to-salary/29-45/",
+   "/hourly-to-salary/29-5/",
+   "/hourly-to-salary/30/",
+   "/hourly-to-salary/30-36/",
+   "/hourly-to-salary/30-5/",
+   "/hourly-to-salary/30-66/",
+   "/hourly-to-salary/31/",
+   "/hourly-to-salary/31-11/",
+   "/hourly-to-salary/31-3/",
+   "/hourly-to-salary/31-5/",
+   "/hourly-to-salary/32/",
+   "/hourly-to-salary/32-13/",
+   "/hourly-to-salary/32-19/",
+   "/hourly-to-salary/32-5/",
+   "/hourly-to-salary/32-61/",
+   "/hourly-to-salary/32-67/",
+   "/hourly-to-salary/32-77/",
+   "/hourly-to-salary/33/",
+   "/hourly-to-salary/33-05/",
+   "/hourly-to-salary/33-5/",
+   "/hourly-to-salary/33-99/",
+   "/hourly-to-salary/34/",
+   "/hourly-to-salary/34-42/",
+   "/hourly-to-salary/34-45/",
+   "/hourly-to-salary/34-5/",
+   "/hourly-to-salary/35/",
+   "/hourly-to-salary/35-5/",
+   "/hourly-to-salary/35-81/",
+   "/hourly-to-salary/36/",
+   "/hourly-to-salary/36-22/",
+   "/hourly-to-salary/36-23/",
+   "/hourly-to-salary/36-5/",
+   "/hourly-to-salary/37/",
+   "/hourly-to-salary/37-36/",
+   "/hourly-to-salary/37-5/",
+   "/hourly-to-salary/37-68/",
+   "/hourly-to-salary/38/",
+   "/hourly-to-salary/38-5/",
+   "/hourly-to-salary/39/",
+   "/hourly-to-salary/39-13/",
+   "/hourly-to-salary/39-5/",
+   "/hourly-to-salary/39-53/",
+   "/hourly-to-salary/40/",
+   "/hourly-to-salary/40-49/",
+   "/hourly-to-salary/40-5/",
+   "/hourly-to-salary/40-58/",
+   "/hourly-to-salary/41/",
+   "/hourly-to-salary/41-5/",
+   "/hourly-to-salary/41-66/",
+   "/hourly-to-salary/42/",
+   "/hourly-to-salary/42-5/",
+   "/hourly-to-salary/42-55/",
+   "/hourly-to-salary/43/",
+   "/hourly-to-salary/43-42/",
+   "/hourly-to-salary/43-5/",
+   "/hourly-to-salary/44/",
+   "/hourly-to-salary/44-5/",
+   "/hourly-to-salary/45/",
+   "/hourly-to-salary/45-5/",
+   "/hourly-to-salary/46/",
+   "/hourly-to-salary/46-5/",
+   "/hourly-to-salary/46-7/",
+   "/hourly-to-salary/47/",
+   "/hourly-to-salary/47-5/",
+   "/hourly-to-salary/47-92/",
+   "/hourly-to-salary/48/",
+   "/hourly-to-salary/48-5/",
+   "/hourly-to-salary/49/",
+   "/hourly-to-salary/49-16/",
+   "/hourly-to-salary/49-5/",
+   "/hourly-to-salary/50/",
+   "/hourly-to-salary/50-25/",
+   "/hourly-to-salary/51/",
+   "/hourly-to-salary/52/",
+   "/hourly-to-salary/53/",
+   "/hourly-to-salary/53-43/",
+   "/hourly-to-salary/54/",
+   "/hourly-to-salary/54-58/",
+   "/hourly-to-salary/55/",
+   "/hourly-to-salary/55-85/",
+   "/hourly-to-salary/56/",
+   "/hourly-to-salary/57/",
+   "/hourly-to-salary/58/",
+   "/hourly-to-salary/58-37/",
+   "/hourly-to-salary/59/",
+   "/hourly-to-salary/59-66/",
+   "/hourly-to-salary/60/",
+   "/hourly-to-salary/60-95/",
+   "/hourly-to-salary/61/",
+   "/hourly-to-salary/62/",
+   "/hourly-to-salary/63/",
+   "/hourly-to-salary/63-13/",
+   "/hourly-to-salary/64/",
+   "/hourly-to-salary/64-46/",
+   "/hourly-to-salary/65/",
+   "/hourly-to-salary/65-77/",
+   "/hourly-to-salary/66/",
+   "/hourly-to-salary/67/",
+   "/hourly-to-salary/68/",
+   "/hourly-to-salary/68-49/",
+   "/hourly-to-salary/69/",
+   "/hourly-to-salary/69-84/",
+   "/hourly-to-salary/70/",
+   "/hourly-to-salary/71/",
+   "/hourly-to-salary/71-19/",
+   "/hourly-to-salary/72/",
+   "/hourly-to-salary/73/",
+   "/hourly-to-salary/74/",
+   "/hourly-to-salary/75/",
+   "/hourly-to-salary/76/",
+   "/hourly-to-salary/77/",
+   "/hourly-to-salary/78/",
+   "/hourly-to-salary/79/",
+   "/hourly-to-salary/80/",
+   "/hourly-to-salary/81/",
+   "/hourly-to-salary/82/",
+   "/hourly-to-salary/83/",
+   "/hourly-to-salary/84/",
+   "/hourly-to-salary/85/",
+   "/hourly-to-salary/86/",
+   "/hourly-to-salary/87/",
+   "/hourly-to-salary/88/",
+   "/hourly-to-salary/89/",
+   "/hourly-to-salary/90/",
+   "/hourly-to-salary/91/",
+   "/hourly-to-salary/92/",
+   "/hourly-to-salary/93/",
+   "/hourly-to-salary/94/",
+   "/hourly-to-salary/95/",
+   "/hourly-to-salary/96/",
+   "/hourly-to-salary/97/",
+   "/hourly-to-salary/98/",
+   "/hourly-to-salary/99/",
+   "/hourly-to-salary/100/"
+  ],
+  "title": "$20 an Hour Is How Much a Year in Australia? $39,520",
+  "h1": "$20 an Hour Is How Much a Year?",
+  "description": "$20 an hour is $39,520 a year before tax on a 38-hour week and $36,131 after tax ($694.83 a week) in 2026-27. Plus part-time and casual figures."
+ },
+ {
+  "key": "pay-rates--bunnings",
+  "routes": [
+   "/pay-rates/bunnings/"
+  ],
+  "title": "Bunnings Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Bunnings Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Bunnings pays adults $28.64/hr ($35.09 casual) at Team Member under the Bunnings Retail Enterprise Agreement 2023. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--liquorland",
+  "routes": [
+   "/pay-rates/liquorland/"
+  ],
+  "title": "Liquorland Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Liquorland Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Liquorland pays adults $28.43/hr ($35.54 casual) at Level 1 under the Coles Retail Enterprise Agreement 2024. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--bws",
+  "routes": [
+   "/pay-rates/bws/"
+  ],
+  "title": "BWS Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "BWS Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "BWS pays adults $28.55/hr ($35.69 casual) at Team Member under the Endeavour Group Retail Agreement 2025. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--david-jones",
+  "routes": [
+   "/pay-rates/david-jones/"
+  ],
+  "title": "David Jones Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "David Jones Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "David Jones pays adults $27.98/hr ($34.98 casual) at Level 1 under the David Jones Enterprise Agreement 2024. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--priceline",
+  "routes": [
+   "/pay-rates/priceline/"
+  ],
+  "title": "Priceline Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Priceline Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Priceline pays adults $29.57/hr ($36.96 casual) at Retail Employee / Glow Assistant. Every level, junior rates by age, penalty rates and weekly pay."
+ },
+ {
+  "key": "pay-rates--guzman-y-gomez",
+  "routes": [
+   "/pay-rates/guzman-y-gomez/"
+  ],
+  "title": "Guzman y Gomez Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Guzman y Gomez Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Guzman y Gomez pays adults $27.81/hr ($34.76 casual) at Fast food employee level 1 under the Fast Food Industry Award 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "casual-loading-calculator",
+  "routes": [
+   "/casual-loading-calculator/"
+  ],
+  "title": "Casual Loading Calculator 2026-27: 25% Casual Rate vs Permanent",
+  "h1": "Casual Loading Calculator 2026-27",
+  "description": "How much is casual loading? Usually 25%: casual rate = base rate \u00d7 1.25, so the $26.44 minimum wage is $33.05 casual. Compare casual vs permanent pay by award."
+ },
+ {
+  "key": "job-pay-rates--disability-support-worker",
+  "routes": [
+   "/job-pay-rates/disability-support-worker/"
+  ],
+  "title": "Disability Support Worker Pay Rates 2026 \u2014 $36.22/hr Minimum",
+  "h1": "Disability Support Worker Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Disability Support Worker award pay rates for 2026\u201327: $36.22/hr, $1,376.49/wk, casual $45.28/hr under MA000100. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--security-guard",
+  "routes": [
+   "/job-pay-rates/security-guard/"
+  ],
+  "title": "Security Guard Pay Rates Australia 2026 \u2014 $28.42/hr Award Minimum",
+  "h1": "Security Guard Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Security Guard award pay rates for 2026\u201327: $28.42/hr, $1,080.10/wk, casual $35.53/hr under MA000016. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--plumber",
+  "routes": [
+   "/job-pay-rates/plumber/"
+  ],
+  "title": "Plumber Pay Rates Australia 2026 \u2014 $32.80/hr Award Minimum",
+  "h1": "Plumber Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Plumber award pay rates for 2026\u201327: $32.80/hr, $1,246.54/wk, casual $41.00/hr under the Plumbing and Fire Sprinklers Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--teacher-aide",
+  "routes": [
+   "/job-pay-rates/teacher-aide/"
+  ],
+  "title": "Teacher Aide Pay Rates Australia 2026 \u2014 $28.24/hr Award Minimum",
+  "h1": "Teacher Aide Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Teacher Aide award pay rates for 2026\u201327: $28.24/hr, $1,073.10/wk, casual $35.30/hr under MA000076. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--chef",
+  "routes": [
+   "/job-pay-rates/chef/"
+  ],
+  "title": "Chef Pay Rates Australia 2026 \u2014 $29.45/hr Award Minimum",
+  "h1": "Chef Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Chef award pay rates for 2026\u201327: $29.45/hr, $1,119.10/wk, casual $36.81/hr under the Hospitality Industry (General) Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--lab-technician",
+  "routes": [
+   "/job-pay-rates/lab-technician/"
+  ],
+  "title": "Lab Technician Pay Rates Australia 2026 \u2014 $32.44/hr Award Minimum",
+  "h1": "Lab Technician Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Lab Technician award pay rates for 2026\u201327: $32.44/hr, $1,232.70/wk, casual $40.55/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--radiographer",
+  "routes": [
+   "/job-pay-rates/radiographer/"
+  ],
+  "title": "Radiographer Salary Australia 2026 \u2014 $34.44/hr Award Minimum",
+  "h1": "Radiographer Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Radiographer award pay rates for 2026\u201327: $34.44/hr, $1,308.80/wk, casual $43.05/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--veterinarian",
+  "routes": [
+   "/job-pay-rates/veterinarian/"
+  ],
+  "title": "Vet Salary Australia 2026 \u2014 $34.20/hr Award Minimum",
+  "h1": "Veterinarian Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Veterinarian award pay rates for 2026\u201327: $34.20/hr, $1,299.70/wk, casual $42.75/hr under MA000118. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--forklift-operator",
+  "routes": [
+   "/job-pay-rates/forklift-operator/"
+  ],
+  "title": "Forklift Operator Pay Rates Australia 2026 \u2014 $27.97/hr Minimum",
+  "h1": "Forklift Operator Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Forklift Operator award pay rates for 2026\u201327: $27.97/hr, $1,062.80/wk, casual $34.96/hr under MA000084. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--cyber-security",
+  "routes": [
+   "/job-pay-rates/cyber-security/"
+  ],
+  "title": "Cyber Security Salary 2026 \u2014 $99,733\u2013$180,327 Median, $33.71/hr",
+  "h1": "Cyber Security Salary Australia 2026 \u2014 Seven Roles From Tax Returns, With Take-Home",
+  "description": "Cyber security salaries from 2023\u201324 tax returns: analysts $99,733 median, engineers $133,128, architects $180,327. Award floor and take-home pay on each."
+ },
+ {
+  "key": "job-pay-rates--paralegal",
+  "routes": [
+   "/job-pay-rates/paralegal/"
+  ],
+  "title": "Paralegal Salary Australia 2026 \u2014 $36.03/hr Award, $62,615 Median",
+  "h1": "Paralegal Salary Australia 2026 \u2014 Award Rates, Median Pay & Take-Home",
+  "description": "Paralegal pay in Australia: Legal Services Award law clerk minimum $36.03 an hour ($71,198 a year), $62,615 median on 2023\u201324 tax returns, and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--personal-trainer",
+  "routes": [
+   "/job-pay-rates/personal-trainer/"
+  ],
+  "title": "Personal Trainer Salary Australia 2026 \u2014 $32.13/hr Award",
+  "h1": "Personal Trainer Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Personal Trainer award pay rates for 2026\u201327: $32.13/hr, $1,221.10/wk, casual $40.16/hr under the Fitness Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--optometrist",
+  "routes": [
+   "/job-pay-rates/optometrist/"
+  ],
+  "title": "Optometrist Salary Australia 2026 \u2014 $107,824 Average (ATO)",
+  "h1": "Optometrist Salary Australia 2026 \u2014 What Optometrists Earn and Take Home",
+  "description": "Optometrists averaged $107,824 taxable income in 2023\u201324 (median $100,818), ATO data. State figures, award coverage and take-home pay."
+ },
+ {
+  "key": "concessional-contributions-cap",
+  "routes": [
+   "/concessional-contributions-cap/"
+  ],
+  "title": "Concessional Contributions Cap 2026-27: $32,500 + Calculator",
+  "h1": "Concessional Contributions Cap 2026-27: $32,500",
+  "description": "The concessional contributions cap is $32,500 from 1 July 2026. Check your super guarantee and salary sacrifice against it, carry-forward rules and Division 293."
+ },
+ {
+  "key": "enterprise-agreement",
+  "routes": [
+   "/enterprise-agreement/"
+  ],
+  "title": "Enterprise Agreement Search & EBA Lookup: Find Yours",
+  "h1": "Enterprise Agreements (EBAs): What They Are and How to Find Yours",
+  "description": "What an enterprise agreement is, how to find yours in the Fair Work Commission's search, why an expired EBA still applies, and how EBA pay compares with the award."
+ },
+ {
+  "key": "payroll-tax",
+  "routes": [
+   "/payroll-tax/",
+   "/payroll-tax/nsw/",
+   "/payroll-tax/vic/",
+   "/payroll-tax/qld/",
+   "/payroll-tax/wa/",
+   "/payroll-tax/sa/",
+   "/payroll-tax/tas/",
+   "/payroll-tax/act/",
+   "/payroll-tax/nt/"
+  ],
+  "title": "Payroll Tax Australia 2026-27: Rates and Thresholds by State",
+  "h1": "Payroll Tax in Australia 2026-27: Rates and Thresholds by State",
+  "description": "Payroll tax rates and thresholds for every state and territory in 2026-27, from $1m (VIC, WA) to $2.5m (NT). How it's calculated, who registers and due dates."
+ },
+ {
+  "key": "annual-leave-calculator",
+  "routes": [
+   "/annual-leave-calculator/"
+  ],
+  "title": "Annual Leave Calculator Australia: Hours, Balance & Payout",
+  "h1": "Annual Leave Calculator Australia: Hours, Balance and Payout",
+  "description": "Annual leave calculator: 4 weeks a year (152 hours on a 38-hour week), accrual per pay, your balance, 17.5% loading and tax on a payout. Fair Work NES rules."
+ },
+ {
+  "key": "centrelink-payment-rates",
+  "routes": [
+   "/centrelink-payment-rates/"
+  ],
+  "title": "Centrelink Payment Rates from 20 September 2026 (All Payments)",
+  "h1": "Centrelink Payment Rates from 20 September 2026",
+  "description": "Every Centrelink payment rate from 20 September 2026: JobSeeker, Youth Allowance, Austudy, Age Pension, DSP, Carer, Parenting Payment, FTB, Rent Assistance, deeming."
+ },
+ {
+  "key": "carry-forward-concessional-contributions-calculator",
+  "routes": [
+   "/carry-forward-concessional-contributions-calculator/"
+  ],
+  "title": "Carry-Forward Concessional Contributions Calculator 2026-27",
+  "h1": "Carry-Forward Concessional Contributions Calculator (2026-27)",
+  "description": "Use unused super cap from the last 5 years on top of the $32,500 cap if your balance is under $500,000. Year-by-year calculator with expiry dates."
+ },
+ {
+  "key": "apprentice-pay--bricklayer",
+  "routes": [
+   "/apprentice-pay/bricklayer/"
+  ],
+  "title": "Apprentice Bricklayer Pay 2026-27: Year 1 to 4 Rates",
+  "h1": "Apprentice Bricklayer Pay in Australia: Year 1 to 4 (2026-27)",
+  "description": "Apprentice bricklayer minimums from 1 July 2026 with the $29.26 tool and industry allowances: $18.73 an hour in year 1 to $29.04 in year 4, plus take-home pay."
+ },
+ {
+  "key": "apprentice-pay--boilermaker",
+  "routes": [
+   "/apprentice-pay/boilermaker/"
+  ],
+  "title": "Apprentice Boilermaker Pay 2026-27: Year 1 to 4 Rates",
+  "h1": "Apprentice Boilermaker Pay in Australia: Year 1 to 4 (2026-27)",
+  "description": "Apprentice boilermaker award minimums from 1 July 2026: $16.20 an hour in year 1 to $27.08 in year 4, with allowances, adult start and take-home pay."
+ },
+ {
+  "key": "firefighter-pay",
+  "routes": [
+   "/firefighter-pay/",
+   "/firefighter-pay/nsw/",
+   "/firefighter-pay/vic/",
+   "/firefighter-pay/qld/",
+   "/firefighter-pay/sa/",
+   "/firefighter-pay/tas/",
+   "/firefighter-pay/act/",
+   "/firefighter-pay/nt/"
+  ],
+  "title": "Firefighter Salary Australia 2026 \u2014 Firefighter Pay by State",
+  "h1": "Firefighter Salary Australia 2026 \u2014 Firefighter Pay by State",
+  "description": "Firefighter salaries by state: entry $58,066\u2013$90,054, top of scale $84,494\u2013$134,638. NSW, VIC, QLD, SA, TAS, ACT, NT pay tables with take-home pay."
+ },
+ {
+  "key": "australian-tax-and-pay-data",
+  "routes": [
+   "/australian-tax-and-pay-data/"
+  ],
+  "title": "Australian Tax and Pay Data: Free CSV and JSON Download",
+  "h1": "Australian Tax and Pay Data: Free CSV and JSON Downloads",
+  "description": "Download Australian tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage history (2010 to 2026-27) as CSV and JSON. Sourced to the ATO and Fair Work Commission, free to reuse with a link."
+ },
+ {
+  "key": "christmas-day-pay-rates",
+  "routes": [
+   "/christmas-day-pay-rates/"
+  ],
+  "title": "Christmas Day Pay Rates 2026: Public Holiday Rates by State",
+  "h1": "Christmas Day pay rates 2026 and 2027: what you earn by state and award",
+  "description": "Christmas Day is Friday 25 December 2026. Retail and hospitality pay 225% (casual 250%). Dates by state, Christmas Eve part-day rules and a pay calculator."
+ },
+ {
+  "key": "australia-day-public-holiday-pay",
+  "routes": [
+   "/australia-day-public-holiday-pay/"
+  ],
+  "title": "Australia Day 2027 Public Holiday Pay: Tuesday 26 January",
+  "h1": "Australia Day 2027 public holiday pay: Tuesday 26 January",
+  "description": "Australia Day 2027 is Tuesday 26 January, a public holiday in every state with no extra day. Retail and hospitality pay 225% (casual 250%). Calculator inside."
+ },
+ {
+  "key": "disclaimer",
+  "routes": [
+   "/disclaimer/"
+  ],
+  "title": "Disclaimer \u2014 Pay Calculator Australia",
+  "h1": "Disclaimer",
+  "description": "Pay Calculator Australia gives general information and estimates only. It is not financial, tax, legal or employment advice."
+ },
+ {
+  "key": "news--c13-classification-phase-out",
+  "routes": [
+   "/news/c13-classification-phase-out/"
+  ],
+  "title": "C13 Classification Phase-Out: What the Award Rate Change Means",
+  "h1": "FWC Begins Phasing Out the C13 Award Classification",
+  "description": "The Fair Work Commission is phasing out C13, the lowest ongoing award rate, in three stages from 1 July 2026. What it means for C13 workers' pay."
+ },
+ {
+  "key": "news--super-tax-changes-explained",
+  "routes": [
+   "/news/super-tax-changes-explained/"
+  ],
+  "title": "Super Tax Changes 2026 Explained: Who Division 296 Affects",
+  "h1": "The Super Tax Changes, Explained: Who Division 296 Actually Hits",
+  "description": "Payday super, Division 296 and higher contribution caps all start or change in 2026-27. A plain-English guide to who is affected and what changes."
+ },
+ {
+  "key": "news--medicare-levy-thresholds-2026",
+  "routes": [
+   "/news/medicare-levy-thresholds-2026/"
+  ],
+  "title": "Medicare Levy Thresholds Lifted: Who Pays Less in 2025-26",
+  "h1": "Medicare Levy Thresholds Lifted: Who Pays Less From 2025-26",
+  "description": "Medicare levy low-income thresholds rose 2.9% for 2025-26 \u2014 singles now pay no levy below $28,011, up from $27,222, sparing over a million low earners."
+ },
+ {
+  "key": "news--age-pension-increase-march-2026",
+  "routes": [
+   "/news/age-pension-increase-march-2026/"
+  ],
+  "title": "Age Pension Rises $22.20 a Fortnight From 20 March 2026",
+  "h1": "Age Pension Rises $22.20 a Fortnight From 20 March 2026",
+  "description": "The Age Pension rose $22.20 a fortnight to $1,200.90 for singles from 20 March 2026; couples get $905.20 each. DSP and Carer Payment rose by the same amount."
+ },
+ {
+  "key": "news--health-professionals-award-changes-october-2026",
+  "routes": [
+   "/news/health-professionals-award-changes-october-2026/"
+  ],
+  "title": "Health Professionals Award Changes 1 October 2026: New Rates",
+  "h1": "Health Professionals Award Changes From 1 October 2026: New AQF Pay Structure Lifts an AQF 7 Graduate to $1,308.80 a Week",
+  "description": "Allied health moves to an AQF-based pay structure from 1 October 2026. An AQF 7 graduate goes from $1,219.50 to $1,308.80 a week. New rates and later stages."
+ },
+ {
+  "key": "news--listo-boost-from-july-2027",
+  "routes": [
+   "/news/listo-boost-from-july-2027/"
+  ],
+  "title": "LISTO Boost 2027: $45,000 Income Limit, $810 Payment",
+  "h1": "LISTO Boost: Income Limit Rises to $45,000 and the Payment to $810 From 1 July 2027",
+  "description": "From 1 July 2027 the low income super tax offset income limit rises from $37,000 to $45,000 and the maximum from $500 to $810. It is now law."
+ }
+]

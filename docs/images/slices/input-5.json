@@ -1,0 +1,718 @@
+[
+ {
+  "key": "salary-sacrifice-calculator",
+  "routes": [
+   "/salary-sacrifice-calculator/"
+  ],
+  "title": "Salary Sacrifice Tax Calculator 2026-27 \u2014 Pay Before and After",
+  "h1": "Salary Sacrifice Calculator \u2014 How Much Will You Save?",
+  "description": "On $100,000, salary sacrificing $10,000 to super saves $3,200 tax in 2026-27 and cuts take-home by $6,800. Compare pay before and after, plus how it is calculated."
+ },
+ {
+  "key": "salary-package-calculator",
+  "routes": [
+   "/salary-package-calculator/"
+  ],
+  "title": "Salary Package Calculator \u2014 Including Super or Plus Super",
+  "h1": "Salary Package Calculator \u2014 Including Super or Plus Super",
+  "description": "Turn \"$X package\", \"$X including super\" or \"$X plus super\" into base salary, 12% super, total package and 2026-27 take-home pay. Tables for $50k\u2013$300k both ways."
+ },
+ {
+  "key": "leave-calculator",
+  "routes": [
+   "/leave-calculator/"
+  ],
+  "title": "Leave Payout Calculator: Unused Annual Leave & Loading 2026-27",
+  "h1": "Leave Payout Calculator: Unused Annual Leave & 17.5% Loading \u2014 2026-27",
+  "description": "Work out what your unused annual leave is worth when you finish up, with the 17.5% leave loading where it applies and tax on the payout \u2014 FY2026-27 rates."
+ },
+ {
+  "key": "parenting-payment-calculator",
+  "routes": [
+   "/parenting-payment-calculator/"
+  ],
+  "title": "Parenting Payment Calculator 2026 \u2014 Single & Partnered Rates",
+  "h1": "Parenting Payment Calculator \u2014 Single and Partnered",
+  "description": "Parenting Payment Single is $1,068.20 a fortnight and Partnered $755.10 from 20 September 2026. What you keep when you work: the $232.60 free area and 40c taper."
+ },
+ {
+  "key": "age-pension-assets-test-calculator",
+  "routes": [
+   "/age-pension-assets-test-calculator/"
+  ],
+  "title": "Age Pension Assets Test Calculator 2026 \u2014 Limits From 20 Sep",
+  "h1": "Age Pension Assets Test Calculator 2026 \u2014 Limits, Taper and Which Test Applies",
+  "description": "Full Age Pension with assets up to $333,000 (single homeowner); $3 a fortnight less per $1,000 above, nil at $745,750 from 20 Sep 2026. See which test applies."
+ },
+ {
+  "key": "employment-type-calculator",
+  "routes": [
+   "/employment-type-calculator/"
+  ],
+  "title": "Part-Time vs Full-Time vs Casual Pay Calculator",
+  "h1": "Part-Time vs Full-Time vs Casual Calculator",
+  "description": "Part-time salary from your hourly rate and hours: $35 an hour over 38 hours is $69,160 a year, $56,509 after tax. Casual loading lifts the same rate to $43.75."
+ },
+ {
+  "key": "novated-lease-calculator",
+  "routes": [
+   "/novated-lease-calculator/"
+  ],
+  "title": "Novated Lease Calculator \u2014 EV, PHEV and FBT",
+  "h1": "Novated Lease Calculator \u2014 EV, PHEV and Petrol, With FBT",
+  "description": "Novated lease calculator: salary sacrifice a car and see the pre-tax deduction, post-tax contribution, FBT or the EV exemption, and take-home pay before and after."
+ },
+ {
+  "key": "pay-calculator-qld",
+  "routes": [
+   "/pay-calculator-qld/"
+  ],
+  "title": "Pay Calculator QLD 2026-27: Wage & Salary After Tax",
+  "h1": "Pay Calculator QLD: Your Take-Home Pay in Queensland",
+  "description": "Work out your take-home pay in Queensland. A free salary and wage calculator on current ATO rates, plus QLD public holidays, penalty rates and long service leave."
+ },
+ {
+  "key": "pay-calculator-nt",
+  "routes": [
+   "/pay-calculator-nt/"
+  ],
+  "title": "Pay Calculator NT 2026-27: Wage & Salary After Tax",
+  "h1": "Pay Calculator NT: Your Take-Home Pay in the Northern Territory",
+  "description": "Work out your take-home pay in the NT. A free salary and wage calculator on current ATO rates, plus the zone tax offset, Picnic Day and long service leave."
+ },
+ {
+  "key": "fortnightly-tax-table",
+  "routes": [
+   "/fortnightly-tax-table/",
+   "/fortnightly-tax-table/2026-27/",
+   "/fortnightly-tax-table/2025-26/"
+  ],
+  "title": "Fortnightly Tax Table 2026-27 and 2025-26 (ATO NAT 1006)",
+  "h1": "Fortnightly Tax Table 2026-27 (ATO NAT 1006)",
+  "description": "ATO fortnightly tax table 2026-27 (NAT 1006), $700 to $8,000 in $100 steps: on $2,000 a fortnight, $276 is withheld with the threshold, $498 without. STSL and CSV."
+ },
+ {
+  "key": "award-rates",
+  "routes": [
+   "/award-rates/"
+  ],
+  "title": "Award Rates 2026-27 \u2014 A\u2013Z Pay Rates for 30 Modern Awards",
+  "h1": "Award Rates 2026-27: Pay Rates for Every Major Modern Award, A\u2013Z",
+  "description": "Current award rates from 1 July 2026: Level 1 pay $25.74\u2013$32.61/hr across the major awards, with casual, penalty and junior rates. Minimum wage $26.44/hr."
+ },
+ {
+  "key": "pharmacy-award-rates",
+  "routes": [
+   "/pharmacy-award-rates/"
+  ],
+  "title": "Pharmacy Award Pay Rates 2026-27 (MA000012) \u2014 Assistant Rates",
+  "h1": "Pharmacy Award Pay Rates 2026-27",
+  "description": "Pharmacy Industry Award rates from 1 July 2026: pharmacy assistant $27.81\u2013$30.66/hr, pharmacist $41.74, manager $52.15. Casual, penalty and junior rates."
+ },
+ {
+  "key": "legal-services-award-rates",
+  "routes": [
+   "/legal-services-award-rates/"
+  ],
+  "title": "Legal Services Award Pay Rates 2026-27 (MA000116) \u2014 Levels 1\u20136",
+  "h1": "Legal Services Award Pay Rates 2026-27",
+  "description": "Legal Services Award (MA000116) rates from 1 July 2026: Level 1 $28.24/hr to law clerk $36.03/hr. Casual, overtime, shift and junior rates."
+ },
+ {
+  "key": "plumbing-award-rates",
+  "routes": [
+   "/plumbing-award-rates/"
+  ],
+  "title": "Plumbing Award Pay Rates 2026-27 \u2014 Plumber & Fire Sprinkler",
+  "h1": "Plumbing Award Pay Rates 2026-27",
+  "description": "Plumbing Award MA000036 rates: plumber $32.80/hr registered, $31.63 not. Overtime, weekend and casual rates, with the 2026 allowance change."
+ },
+ {
+  "key": "commercial-sales-award-rates",
+  "routes": [
+   "/commercial-sales-award-rates/"
+  ],
+  "title": "Commercial Sales Award Pay Rates 2026-27 (MA000083)",
+  "h1": "Commercial Sales Award Pay Rates 2026-27",
+  "description": "Commercial Sales Award MA000083: sales rep $29.55/hr, merchandiser $27.47/hr, casual, weekend and junior rates."
+ },
+ {
+  "key": "cleaning-award-rates",
+  "routes": [
+   "/cleaning-award-rates/"
+  ],
+  "title": "Cleaning Award Pay Rates 2026-27 (MA000022) \u2014 Casual Cleaners",
+  "h1": "Cleaning Award Pay Rates 2026-27",
+  "description": "Cleaning Services Award rates from 1 July 2026: Level 1 $27.08/hr full-time, $31.14 part-time (15% allowance), $33.85 casual. Night, weekend and holiday rates."
+ },
+ {
+  "key": "tax-refund-guide",
+  "routes": [
+   "/tax-refund-guide/"
+  ],
+  "title": "Tax Refund Guide \u2014 How Tax Returns Work in Australia",
+  "h1": "Tax Refund Guide \u2014 How Tax Returns Work in Australia",
+  "description": "How tax refunds work: over-withholding explained, common deductions, myTax process, expected timelines. Understand your tax return."
+ },
+ {
+  "key": "parental-leave-pay",
+  "routes": [
+   "/parental-leave-pay/"
+  ],
+  "title": "Paid Parental Leave Calculator 2026 \u2014 26 Weeks, Pay & Super",
+  "h1": "Paid Parental Leave Calculator 2026 \u2014 26 Weeks, Pay and Super",
+  "description": "Paid Parental Leave in Australia: 26 weeks (130 days) for babies born from 1 July 2026, $1,004.70 a week in 2026-27, 20 days for partners, 12% super."
+ },
+ {
+  "key": "tax-calendar",
+  "routes": [
+   "/tax-calendar/"
+  ],
+  "title": "Australian Tax Calendar 2026-27 \u2014 Key Tax Dates & Deadlines",
+  "h1": "Australian Tax Calendar 2026-27",
+  "description": "Every key tax date for 2026-27: 2025-26 tax returns due 31 October 2026 (15 May 2027 via an agent), quarterly BAS and PAYG instalments, and Payday Super deadlines."
+ },
+ {
+  "key": "stage-3-tax-cuts",
+  "routes": [
+   "/stage-3-tax-cuts/"
+  ],
+  "title": "Stage 3 Tax Cuts Explained \u2014 Before & After (FY2024-25)",
+  "h1": "Stage 3 Tax Cuts \u2014 How Much More You Take Home",
+  "description": "How the revised Stage 3 tax cuts affect your pay. Before and after comparison at every income level: see how much more you take home under the new brackets."
+ },
+ {
+  "key": "notice-of-assessment",
+  "routes": [
+   "/notice-of-assessment/"
+  ],
+  "title": "Notice of Assessment \u2014 How to Read Your ATO Assessment",
+  "h1": "Notice of Assessment \u2014 Understanding Your ATO Tax Assessment",
+  "description": "How to read your Notice of Assessment from the ATO. Understand taxable income, tax offsets, Medicare levy, credits, and what your refund or debt amount means."
+ },
+ {
+  "key": "mining-fifo-pay-guide",
+  "routes": [
+   "/mining-fifo-pay-guide/"
+  ],
+  "title": "Mining & FIFO Pay Guide \u2014 Salary, Rosters & Allowances",
+  "h1": "Mining & FIFO Pay Guide \u2014 Salaries, Rosters & Take-Home Pay",
+  "description": "Mining and FIFO pay explained: average salaries ($100K\u2013$200K+), roster structures, FIFO allowances, zone tax offset, overtime rates, and take-home pay calculation."
+ },
+ {
+  "key": "tax-bracket-history",
+  "routes": [
+   "/tax-bracket-history/"
+  ],
+  "title": "Australian Tax Bracket History \u2014 Every Rate From 2020 to 2026",
+  "h1": "Tax Bracket History \u2014 Australian Income Tax Rates 2020 to 2026",
+  "description": "Australian tax brackets from FY2020-21 to FY2026-27: how rates and thresholds changed year by year, including the Stage 3 tax cuts. Historical rate comparison."
+ },
+ {
+  "key": "take-home-pay-on",
+  "routes": [
+   "/take-home-pay-on/",
+   "/take-home-pay-on/20000/",
+   "/take-home-pay-on/25000/",
+   "/take-home-pay-on/30000/",
+   "/take-home-pay-on/35000/",
+   "/take-home-pay-on/40000/",
+   "/take-home-pay-on/41000/",
+   "/take-home-pay-on/42000/",
+   "/take-home-pay-on/43000/",
+   "/take-home-pay-on/44000/",
+   "/take-home-pay-on/45000/",
+   "/take-home-pay-on/46000/",
+   "/take-home-pay-on/47000/",
+   "/take-home-pay-on/48000/",
+   "/take-home-pay-on/49000/",
+   "/take-home-pay-on/50000/",
+   "/take-home-pay-on/51000/",
+   "/take-home-pay-on/52000/",
+   "/take-home-pay-on/53000/",
+   "/take-home-pay-on/54000/",
+   "/take-home-pay-on/55000/",
+   "/take-home-pay-on/56000/",
+   "/take-home-pay-on/57000/",
+   "/take-home-pay-on/58000/",
+   "/take-home-pay-on/59000/",
+   "/take-home-pay-on/60000/",
+   "/take-home-pay-on/61000/",
+   "/take-home-pay-on/62000/",
+   "/take-home-pay-on/63000/",
+   "/take-home-pay-on/64000/",
+   "/take-home-pay-on/65000/",
+   "/take-home-pay-on/66000/",
+   "/take-home-pay-on/67000/",
+   "/take-home-pay-on/68000/",
+   "/take-home-pay-on/69000/",
+   "/take-home-pay-on/70000/",
+   "/take-home-pay-on/71000/",
+   "/take-home-pay-on/72000/",
+   "/take-home-pay-on/73000/",
+   "/take-home-pay-on/74000/",
+   "/take-home-pay-on/75000/",
+   "/take-home-pay-on/76000/",
+   "/take-home-pay-on/77000/",
+   "/take-home-pay-on/78000/",
+   "/take-home-pay-on/79000/",
+   "/take-home-pay-on/80000/",
+   "/take-home-pay-on/81000/",
+   "/take-home-pay-on/82000/",
+   "/take-home-pay-on/83000/",
+   "/take-home-pay-on/84000/",
+   "/take-home-pay-on/85000/",
+   "/take-home-pay-on/86000/",
+   "/take-home-pay-on/87000/",
+   "/take-home-pay-on/88000/",
+   "/take-home-pay-on/89000/",
+   "/take-home-pay-on/90000/",
+   "/take-home-pay-on/91000/",
+   "/take-home-pay-on/92000/",
+   "/take-home-pay-on/93000/",
+   "/take-home-pay-on/94000/",
+   "/take-home-pay-on/95000/",
+   "/take-home-pay-on/96000/",
+   "/take-home-pay-on/97000/",
+   "/take-home-pay-on/98000/",
+   "/take-home-pay-on/99000/",
+   "/take-home-pay-on/100000/",
+   "/take-home-pay-on/101000/",
+   "/take-home-pay-on/102000/",
+   "/take-home-pay-on/103000/",
+   "/take-home-pay-on/104000/",
+   "/take-home-pay-on/105000/",
+   "/take-home-pay-on/106000/",
+   "/take-home-pay-on/107000/",
+   "/take-home-pay-on/108000/",
+   "/take-home-pay-on/109000/",
+   "/take-home-pay-on/110000/",
+   "/take-home-pay-on/111000/",
+   "/take-home-pay-on/112000/",
+   "/take-home-pay-on/113000/",
+   "/take-home-pay-on/114000/",
+   "/take-home-pay-on/115000/",
+   "/take-home-pay-on/116000/",
+   "/take-home-pay-on/117000/",
+   "/take-home-pay-on/118000/",
+   "/take-home-pay-on/119000/",
+   "/take-home-pay-on/120000/",
+   "/take-home-pay-on/121000/",
+   "/take-home-pay-on/122000/",
+   "/take-home-pay-on/123000/",
+   "/take-home-pay-on/124000/",
+   "/take-home-pay-on/125000/",
+   "/take-home-pay-on/126000/",
+   "/take-home-pay-on/127000/",
+   "/take-home-pay-on/128000/",
+   "/take-home-pay-on/129000/",
+   "/take-home-pay-on/130000/",
+   "/take-home-pay-on/131000/",
+   "/take-home-pay-on/132000/",
+   "/take-home-pay-on/133000/",
+   "/take-home-pay-on/134000/",
+   "/take-home-pay-on/135000/",
+   "/take-home-pay-on/136000/",
+   "/take-home-pay-on/137000/",
+   "/take-home-pay-on/138000/",
+   "/take-home-pay-on/139000/",
+   "/take-home-pay-on/140000/",
+   "/take-home-pay-on/141000/",
+   "/take-home-pay-on/142000/",
+   "/take-home-pay-on/143000/",
+   "/take-home-pay-on/144000/",
+   "/take-home-pay-on/145000/",
+   "/take-home-pay-on/146000/",
+   "/take-home-pay-on/147000/",
+   "/take-home-pay-on/148000/",
+   "/take-home-pay-on/149000/",
+   "/take-home-pay-on/150000/",
+   "/take-home-pay-on/155000/",
+   "/take-home-pay-on/160000/",
+   "/take-home-pay-on/165000/",
+   "/take-home-pay-on/170000/",
+   "/take-home-pay-on/175000/",
+   "/take-home-pay-on/180000/",
+   "/take-home-pay-on/185000/",
+   "/take-home-pay-on/190000/",
+   "/take-home-pay-on/195000/",
+   "/take-home-pay-on/200000/",
+   "/take-home-pay-on/210000/",
+   "/take-home-pay-on/220000/",
+   "/take-home-pay-on/230000/",
+   "/take-home-pay-on/240000/",
+   "/take-home-pay-on/250000/",
+   "/take-home-pay-on/260000/",
+   "/take-home-pay-on/270000/",
+   "/take-home-pay-on/280000/",
+   "/take-home-pay-on/290000/",
+   "/take-home-pay-on/300000/",
+   "/take-home-pay-on/350000/",
+   "/take-home-pay-on/400000/",
+   "/take-home-pay-on/500000/"
+  ],
+  "title": "Salary After Tax Australia 2026-27: Take-Home Pay on 138 Salaries",
+  "h1": "Salary After Tax in Australia",
+  "description": "Take-home pay after tax for every salary from $20,000 to $500,000 in 2026-27. E.g. $100,000 after tax is $77,480. Weekly, fortnightly and monthly on each page."
+ },
+ {
+  "key": "pay-rates",
+  "routes": [
+   "/pay-rates/"
+  ],
+  "title": "Pay Rates by Employer 2026 \u2014 Coles, Woolworths, Bunnings & More",
+  "h1": "Pay Rates by Employer 2026 \u2014 Coles, Woolworths, Bunnings, McDonald\u2019s & More",
+  "description": "Hourly pay rates at Coles, Woolworths, McDonald's, Hungry Jack's, Big W, Australia Post and other big Australian employers, from each agreement or award."
+ },
+ {
+  "key": "pay-rates--kmart",
+  "routes": [
+   "/pay-rates/kmart/"
+  ],
+  "title": "Kmart Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Kmart Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Kmart pays adults $27.96/hr ($34.95 casual) at Retail Assistant under the Kmart National Agreement 2024. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--big-w",
+  "routes": [
+   "/pay-rates/big-w/"
+  ],
+  "title": "Big W Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Big W Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Big W pays adults $28.29/hr ($35.36 casual) at Store Team Member Level 1 under the BIG W Stores Enterprise Agreement 2023. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--kfc",
+  "routes": [
+   "/pay-rates/kfc/"
+  ],
+  "title": "KFC Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "KFC Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "KFC pays adults $27.95/hr ($34.78 casual) at Team Member (Level 1) under the KFC National Enterprise Agreement 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--virgin-australia",
+  "routes": [
+   "/pay-rates/virgin-australia/"
+  ],
+  "title": "Virgin Australia Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Virgin Australia Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Virgin Australia pays adults $30.05/hr ($37.56 casual) at Cabin Crew 1 (CC1). Every level, junior rates by age, penalty rates and weekly pay."
+ },
+ {
+  "key": "pay-rates--starbucks",
+  "routes": [
+   "/pay-rates/starbucks/"
+  ],
+  "title": "Starbucks Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Starbucks Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Starbucks pays adults $27.81/hr ($34.76 casual) at Fast food employee level 1 under the Fast Food Industry Award 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "minimum-wage-by-age",
+  "routes": [
+   "/minimum-wage-by-age/14/",
+   "/minimum-wage-by-age/15/",
+   "/minimum-wage-by-age/16/",
+   "/minimum-wage-by-age/17/",
+   "/minimum-wage-by-age/18/",
+   "/minimum-wage-by-age/19/",
+   "/minimum-wage-by-age/20/"
+  ],
+  "title": "Minimum Wage for a 14 Year Old in Australia (2026-27)",
+  "h1": "Minimum Wage for a 14 Year Old in Australia (2026-27)",
+  "description": "A 14-year-old's minimum wage from 1 July 2026: $9.73/hr ($12.16 casual) with no award, $12.51 under the retail award, $11.12 in fast food and $13.22 in hospitality."
+ },
+ {
+  "key": "job-pay-rates--dental-assistant",
+  "routes": [
+   "/job-pay-rates/dental-assistant/"
+  ],
+  "title": "Dental Assistant Pay Rates Australia 2026 \u2014 $30.63/hr Minimum",
+  "h1": "Dental Assistant Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Dental Assistant award pay rates for 2026\u201327: $30.63/hr, $1,163.90/wk, casual $38.29/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--truck-driver",
+  "routes": [
+   "/job-pay-rates/truck-driver/"
+  ],
+  "title": "Truck Driver Pay Rates Australia 2026 \u2014 $29.00/hr Award Minimum",
+  "h1": "Truck Driver Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Truck Driver award pay rates for 2026\u201327: $29.00/hr, $1,102.00/wk, casual $36.25/hr under MA000038. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--psychologist",
+  "routes": [
+   "/job-pay-rates/psychologist/"
+  ],
+  "title": "Psychologist Pay Rates Australia 2026 \u2014 $38.02/hr Award Minimum",
+  "h1": "Psychologist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Psychologist award pay rates for 2026\u201327: $38.02/hr, $1,444.90/wk, casual $47.53/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--engineer",
+  "routes": [
+   "/job-pay-rates/engineer/"
+  ],
+  "title": "Engineer Pay Rates Australia 2026 \u2014 $34.57/hr Award Minimum",
+  "h1": "Engineer Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Engineer award pay rates for 2026\u201327: $34.57/hr, $1,313.83/wk, casual $43.21/hr under the Professional Employees Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--childcare-worker",
+  "routes": [
+   "/job-pay-rates/childcare-worker/"
+  ],
+  "title": "Childcare Worker Pay Rates Australia 2026 \u2014 $32.47/hr Minimum",
+  "h1": "Childcare Worker Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Childcare Worker award pay rates for 2026\u201327: $32.47/hr, $1,233.90/wk, casual $40.59/hr under the Children's Services Award 2010. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--retail-worker",
+  "routes": [
+   "/job-pay-rates/retail-worker/"
+  ],
+  "title": "Retail Worker Pay Rates Australia 2026 \u2014 $27.81/hr Award Minimum",
+  "h1": "Retail Worker Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Retail Worker award pay rates for 2026\u201327: $27.81/hr, $1,056.80/wk, casual $34.76/hr under the General Retail Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--bookkeeper",
+  "routes": [
+   "/job-pay-rates/bookkeeper/"
+  ],
+  "title": "Bookkeeper Pay Rates Australia 2026 \u2014 $31.11/hr Award Minimum",
+  "h1": "Bookkeeper Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Bookkeeper award pay rates for 2026\u201327: $31.11/hr, $1,182.10/wk, casual $38.89/hr under the Clerks\u2014Private Sector Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--audiologist",
+  "routes": [
+   "/job-pay-rates/audiologist/"
+  ],
+  "title": "Audiologist Salary Australia 2026 \u2014 $38.02/hr Award Minimum",
+  "h1": "Audiologist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Audiologist award pay rates for 2026\u201327: $38.02/hr, $1,444.90/wk, casual $47.53/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--youth-worker",
+  "routes": [
+   "/job-pay-rates/youth-worker/"
+  ],
+  "title": "Youth Worker Pay Rates Australia 2026 \u2014 $37.36/hr Award Minimum",
+  "h1": "Youth Worker Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Youth Worker award pay rates for 2026\u201327: $37.36/hr, $1,419.79/wk, casual $46.70/hr under MA000100. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--electrical-engineer",
+  "routes": [
+   "/job-pay-rates/electrical-engineer/"
+  ],
+  "title": "Electrical Engineer Salary 2026 \u2014 $130,630 Median, $34.57/hr Min",
+  "h1": "Electrical Engineer Salary Australia 2026 \u2014 Median Pay, Award Minimum & Take-Home",
+  "description": "Electrical engineers' median salary was $130,630 on 2023\u201324 tax returns and $2,553 a week full-time (JSA). Graduate award minimum $68,538; take-home on each."
+ },
+ {
+  "key": "job-pay-rates--business-analyst",
+  "routes": [
+   "/job-pay-rates/business-analyst/"
+  ],
+  "title": "Business Analyst Salary Australia 2026 \u2014 $119,229 Median",
+  "h1": "Business Analyst Salary Australia 2026 \u2014 Median Pay & Take-Home",
+  "description": "Business analysts' median salary was $119,229 on 2023\u201324 tax returns; full-time ICT analysts' median is $2,697 a week. Take-home pay and award coverage."
+ },
+ {
+  "key": "job-pay-rates--bricklayer",
+  "routes": [
+   "/job-pay-rates/bricklayer/"
+  ],
+  "title": "Bricklayer Salary Australia 2026 \u2014 $31.99/hr Award Minimum",
+  "h1": "Bricklayer Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Bricklayer award pay rates for 2026\u201327: $31.99/hr, $1,215.51/wk, casual $39.99/hr under MA000020. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--dentist",
+  "routes": [
+   "/job-pay-rates/dentist/"
+  ],
+  "title": "Dentist Salary Australia 2026 \u2014 $162,722 Average (ATO Data)",
+  "h1": "Dentist Salary Australia 2026 \u2014 What Dentists Earn and Take Home",
+  "description": "Dentists averaged $162,722 taxable income in 2023\u201324 (median $131,588), ATO data. Full-time employee median $3,232 a week, plus take-home pay."
+ },
+ {
+  "key": "adf-pay-scales",
+  "routes": [
+   "/adf-pay-scales/",
+   "/adf-pay-scales/army/",
+   "/adf-pay-scales/navy/",
+   "/adf-pay-scales/air-force/"
+  ],
+  "title": "ADF Ranks & Pay Scales 2026: Army, Navy & RAAF Salary",
+  "h1": "ADF Ranks and Pay Scales 2026 \u2014 Army, Navy & RAAF Salary by Rank",
+  "description": "Army, Navy and RAAF ranks and pay (PACMAN, from 6 November 2025): Private $79,096\u2013$126,292, officers from $87,091, recruits $60,517. Rank list and take-home pay."
+ },
+ {
+  "key": "pension-age-australia",
+  "routes": [
+   "/pension-age-australia/"
+  ],
+  "title": "Pension Age Australia: 67, Plus Retirement Age Calculator",
+  "h1": "Pension Age in Australia: When You Can Get the Age Pension and Your Super",
+  "description": "Age Pension age in Australia is 67. There is no compulsory retirement age and super preservation age is 60. Enter your birth date to see your pension dates."
+ },
+ {
+  "key": "gross-vs-net-pay",
+  "routes": [
+   "/gross-vs-net-pay/"
+  ],
+  "title": "Gross vs Net Pay Australia: Difference + Converter",
+  "h1": "Gross vs Net Pay: What's the Difference?",
+  "description": "Gross pay is before tax; net pay is what reaches your bank. $3,000 gross a fortnight is $2,402.00 net in 2026-27. A worked payslip and a gross to net converter."
+ },
+ {
+  "key": "ote-salary",
+  "routes": [
+   "/ote-salary/"
+  ],
+  "title": "OTE Salary Meaning: On-Target Earnings + Calculator",
+  "h1": "OTE Salary Meaning: On-Target Earnings Explained, with Calculator",
+  "description": "OTE means on-target earnings: base salary plus commission at 100% of target. See pay above and below target, 12% super on commission and take-home pay."
+ },
+ {
+  "key": "casual-conversion",
+  "routes": [
+   "/casual-conversion/"
+  ],
+  "title": "Casual Conversion Australia: Becoming Permanent & Your Pay",
+  "h1": "Casual Conversion in Australia: How to Become Permanent and What It Does to Your Pay",
+  "description": "Casual conversion in Australia: the 6 and 12 month employee choice pathway, 21-day employer response, reasons to refuse, and what happens to your 25% loading."
+ },
+ {
+  "key": "late-tax-return-penalty",
+  "routes": [
+   "/late-tax-return-penalty/"
+  ],
+  "title": "Late Tax Return Penalty: Failure to Lodge Calculator 2026",
+  "h1": "Late Tax Return Penalty: Failure to Lodge Calculator (2026)",
+  "description": "Late tax return penalty: $364 per 28 days overdue, up to $1,820. Self-lodge deadline 31 Oct 2026. Calculate yours and see when the ATO waives it."
+ },
+ {
+  "key": "rideshare-delivery-earnings-after-tax",
+  "routes": [
+   "/rideshare-delivery-earnings-after-tax/"
+  ],
+  "title": "Uber & Delivery Driver Earnings After Tax: ABN & GST Guide",
+  "h1": "Rideshare & Delivery Earnings After Tax in Australia",
+  "description": "Rideshare and delivery payments have no tax withheld. Work out GST, income tax and what to set aside on your own figures. ABN, GST and deductions explained."
+ },
+ {
+  "key": "apprentice-pay--mechanic",
+  "routes": [
+   "/apprentice-pay/mechanic/"
+  ],
+  "title": "Apprentice Mechanic Pay 2026-27: Year 1 to 4 Rates and Take-Home",
+  "h1": "Apprentice Mechanic Pay in Australia: Year 1 to 4 (2026-27)",
+  "description": "Apprentice mechanic award minimums from 1 July 2026: $16.20 an hour in year 1 to $25.92 in year 4, with allowances, adult start and take-home pay."
+ },
+ {
+  "key": "tax-withheld-calculator",
+  "routes": [
+   "/tax-withheld-calculator/"
+  ],
+  "title": "Tax Withheld Calculator 2026-27: PAYG Calculator & Estimator",
+  "h1": "Tax Withheld Calculator 2026-27: PAYG Calculator & Withholding Estimator",
+  "description": "Tax withheld calculator and PAYG withholding estimator for 2026-27: the tax taken from weekly, fortnightly or monthly pay on ATO formulas, plus your likely refund."
+ },
+ {
+  "key": "pilot-salary",
+  "routes": [
+   "/pilot-salary/"
+  ],
+  "title": "Pilot Salary Australia 2026 \u2014 Air Pilots Award Minimum Pay",
+  "h1": "Pilot Salary Australia 2026 \u2014 Air Pilots Award Minimum Pay",
+  "description": "Pilot minimum pay under the Air Pilots Award [MA000046]: $58,226 to $100,233 a year, every award salary table, how casual pilots are paid, and take-home pay."
+ },
+ {
+  "key": "fortnights-in-a-year",
+  "routes": [
+   "/fortnights-in-a-year/"
+  ],
+  "title": "How Many Fortnights in a Year? 26 or 27 Pays in 2026-27",
+  "h1": "How Many Fortnights in a Year?",
+  "description": "There are 26 fortnights in a year plus a day: usually 26 fortnightly pays, 52 weekly and 12 monthly. See when 2026-27 has 27 fortnightly or 53 weekly pay days."
+ },
+ {
+  "key": "public-holidays-2027",
+  "routes": [
+   "/public-holidays-2027/"
+  ],
+  "title": "Public Holidays 2027 by State: Dates and What You Get Paid",
+  "h1": "Public holidays 2027 by state, with what each one pays",
+  "description": "Public holidays 2027 for every state and territory, with the pay rate you earn working one: 225% in retail, casual 250%. Easter, Christmas and a calculator."
+ },
+ {
+  "key": "contact",
+  "routes": [
+   "/contact/"
+  ],
+  "title": "Contact Pay Calculator Australia",
+  "h1": "Contact Us",
+  "description": "Get in touch with Pay Calculator Australia. Report errors, suggest features, or ask questions about Australian pay, tax, and super calculators."
+ },
+ {
+  "key": "news--minimum-wage-increase-july-2026",
+  "routes": [
+   "/news/minimum-wage-increase-july-2026/"
+  ],
+  "title": "Minimum Wage Increase July 2026: FWC Lifts NMW 6% \u2014 New Rates",
+  "h1": "Minimum Wage Rises 6% to $26.44 an Hour From 1 July 2026",
+  "description": "The minimum wage rises 6% from $24.95 to $26.44 an hour ($1,004.90 a week) and award rates 4.75% from 1 July 2026. Who gets the increase and your take-home pay."
+ },
+ {
+  "key": "news--division-296-super-tax-starts",
+  "routes": [
+   "/news/division-296-super-tax-starts/"
+  ],
+  "title": "Division 296 Super Tax 2026: Extra 15% Above $3 Million Explained",
+  "h1": "Division 296 Super Tax Starts: Extra 15% on Balances Above $3 Million",
+  "description": "From 1 July 2026, Division 296 adds a 15% tax on earnings from super balances above $3 million, plus 10% above $10 million. Who it hits and when."
+ },
+ {
+  "key": "news--hecs-repayment-threshold-2026-27",
+  "routes": [
+   "/news/hecs-repayment-threshold-2026-27/"
+  ],
+  "title": "HECS Repayment Threshold Rises to $69,528 for 2026-27",
+  "h1": "HECS Repayment Threshold Rises to $69,528 for 2026-27",
+  "description": "The FY2026-27 HECS repayment threshold is $69,528, up from $67,000, before 15c-in-the-dollar repayments start under the marginal system. See the full bands."
+ },
+ {
+  "key": "news--tax-time-2026-whats-new",
+  "routes": [
+   "/news/tax-time-2026-whats-new/"
+  ],
+  "title": "Tax Time 2026: What's New When You Lodge Your Return",
+  "h1": "Tax Time 2026: Everything New When You Lodge This Year",
+  "description": "Lodging your 2025-26 tax return? Medicare levy thresholds rose, the $2 gift minimum was scrapped, and the WFH rate stays at 70 cents an hour."
+ },
+ {
+  "key": "news--victorian-teachers-pay-rise-2026",
+  "routes": [
+   "/news/victorian-teachers-pay-rise-2026/"
+  ],
+  "title": "VIC Teachers Pay Rise 2026: 93.1% Vote Yes, $133,456 Top Step",
+  "h1": "Victorian Teachers Pay Rise 2026: Staff Vote 93.1% Yes \u2014 What the New Agreement Pays and When",
+  "description": "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum."
+ },
+ {
+  "key": "news--tax-return-deadline-october-2026",
+  "routes": [
+   "/news/tax-return-deadline-october-2026/"
+  ],
+  "title": "Tax Return Deadline 2026: 31 October 2026 (Lodge by 2 Nov 2026)",
+  "h1": "Tax Return Deadline Is 31 October 2026 \u2014 a Saturday, So Self-Lodgers Have Until Monday 2 November 2026",
+  "description": "2025-26 tax returns are due 31 October 2026, a Saturday, so self-lodgers have until Monday 2 November 2026. Late: $364 per 28 days; GIC 11.51%."
+ }
+]

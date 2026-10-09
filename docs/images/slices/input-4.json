@@ -1,0 +1,586 @@
+[
+ {
+  "key": "superannuation-calculator",
+  "routes": [
+   "/superannuation-calculator/"
+  ],
+  "title": "Super Calculator 2026-27: How Much Super Your Employer Pays",
+  "h1": "Superannuation Calculator Australia \u2014 How Much Super Your Employer Pays (2026-27)",
+  "description": "Your employer pays 12% super on top of salary: $9,600 a year on $80,000, paid with every pay from 1 July 2026. Total package and $32,500 cap space for 2026-27."
+ },
+ {
+  "key": "gross-pay-calculator",
+  "routes": [
+   "/gross-pay-calculator/"
+  ],
+  "title": "Net to Gross Pay Calculator Australia 2026-27 (Reverse Tax)",
+  "h1": "Gross Pay Calculator Australia \u2014 Net to Gross (2026-27)",
+  "description": "To take home $1,500 a week you need $100,763 a year gross in 2026-27. Enter any weekly, fortnightly, monthly or annual net pay to find the gross salary you need."
+ },
+ {
+  "key": "overtime-pay-calculator",
+  "routes": [
+   "/overtime-pay-calculator/"
+  ],
+  "title": "Overtime Pay Calculator \u2014 Time-and-a-Half & Double Time",
+  "h1": "Overtime & Penalty Rate Calculator 2026-27",
+  "description": "Calculate your overtime and penalty rate pay. Enter your base rate, select the multiplier \u2014 see your overtime pay after tax. Free penalty rate calculator."
+ },
+ {
+  "key": "age-pension-income-test-calculator",
+  "routes": [
+   "/age-pension-income-test-calculator/"
+  ],
+  "title": "Age Pension Calculator 2026 \u2014 Rates From 20 Sep & Income Test",
+  "h1": "Age Pension Calculator 2026 \u2014 Rates From 20 September and the Income Test",
+  "description": "Age Pension rates from 20 September 2026: $1,237.70 a fortnight single, $933.00 each for couples. Calculate it with your wages, the free areas and the Work Bonus."
+ },
+ {
+  "key": "centrelink-advance-payment",
+  "routes": [
+   "/centrelink-advance-payment/"
+  ],
+  "title": "Centrelink Advance Payment 2026 \u2014 Amounts & Repayment Calculator",
+  "h1": "Centrelink Advance Payment Calculator \u2014 How Much and What You Repay",
+  "description": "Centrelink advance payment: $250 to $500 on JobSeeker, Parenting Payment and Youth Allowance, up to $1,764.15 on a pension, repaid over 13 fortnights."
+ },
+ {
+  "key": "final-pay-calculator",
+  "routes": [
+   "/final-pay-calculator/"
+  ],
+  "title": "Final Pay Calculator Australia \u2014 End of Employment Payout",
+  "h1": "Final Pay Calculator Australia 2026-27",
+  "description": "Calculate your final pay when leaving a job: unused annual leave payout, notice pay, long service leave and the tax on your final payment. Free calculator."
+ },
+ {
+  "key": "work-hours-calculator",
+  "routes": [
+   "/work-hours-calculator/"
+  ],
+  "title": "Work Hours Calculator \u2014 Timesheet With Breaks & Overtime",
+  "h1": "Work Hours Calculator \u2014 Timesheet, Breaks and Overtime",
+  "description": "Add up work hours from start and finish times, minus unpaid breaks, in decimal hours and h:mm, with overnight shifts, 25% casual loading and overtime past 38 hours."
+ },
+ {
+  "key": "pay-calculator-nsw",
+  "routes": [
+   "/pay-calculator-nsw/"
+  ],
+  "title": "Pay Calculator NSW 2026-27: Wage & Salary After Tax",
+  "h1": "Pay Calculator NSW: Your Take-Home Pay in New South Wales",
+  "description": "Work out your take-home pay in NSW. A free salary and wage calculator on current ATO rates, plus NSW public holidays, penalty rates and long service leave."
+ },
+ {
+  "key": "pay-calculator-act",
+  "routes": [
+   "/pay-calculator-act/"
+  ],
+  "title": "Pay Calculator ACT 2026-27: Wage & Salary After Tax",
+  "h1": "Pay Calculator ACT: Your Take-Home Pay in Canberra",
+  "description": "Work out your take-home pay in the ACT. A free salary and wage calculator on current ATO rates, plus Canberra Day, Reconciliation Day and 7-year long service leave."
+ },
+ {
+  "key": "weekly-tax-table",
+  "routes": [
+   "/weekly-tax-table/",
+   "/weekly-tax-table/2026-27/",
+   "/weekly-tax-table/2025-26/"
+  ],
+  "title": "Weekly Tax Table 2026-27 and 2025-26 (ATO NAT 1005)",
+  "h1": "Weekly Tax Table 2026-27 (ATO NAT 1005)",
+  "description": "Weekly tax table 2026-27 (ATO NAT 1005): enter your weekly pay to see the tax withheld with or without the tax-free threshold. Full table, HELP/STSL and CSV."
+ },
+ {
+  "key": "stsl-on-payslip",
+  "routes": [
+   "/stsl-on-payslip/"
+  ],
+  "title": "What Does STSL Mean on a Payslip? HECS-HELP Withholding (2026-27)",
+  "h1": "What Is STSL on Your Payslip?",
+  "description": "STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above $69,528 a year ($1,337 a week) in 2026-27."
+ },
+ {
+  "key": "fast-food-award-rates",
+  "routes": [
+   "/fast-food-award-rates/"
+  ],
+  "title": "Fast Food Award Pay Rates 2026-27 (MA000003) \u2014 Casual & Junior",
+  "h1": "Fast Food Award Pay Rates 2026-27",
+  "description": "Fast Food Industry Award rates from 1 July 2026: Level 1 $27.81/hr ($34.76 casual) to $30.27 at Level 3. Weekend, late-night, public holiday and junior rates."
+ },
+ {
+  "key": "building-and-construction-award-rates",
+  "routes": [
+   "/building-and-construction-award-rates/"
+  ],
+  "title": "Building & Construction Award Pay Rates 2026-27 (MA000020)",
+  "h1": "Building and Construction Award Pay Rates 2026-27",
+  "description": "Building and Construction Award MA000020 rates from 1 July 2026: $28.44 to $36.23 an hour, casual and weekend rates."
+ },
+ {
+  "key": "live-performance-award-rates",
+  "routes": [
+   "/live-performance-award-rates/"
+  ],
+  "title": "Live Performance Award Pay Rates 2026-27 (MA000081) \u2014 Crew",
+  "h1": "Live Performance Award Pay Rates 2026-27",
+  "description": "Live Performance Award MA000081 crew rates from 1 July 2026: $25.74 to $34.46 an hour, casual, Sunday and overtime rates."
+ },
+ {
+  "key": "meat-industry-award-rates",
+  "routes": [
+   "/meat-industry-award-rates/"
+  ],
+  "title": "Meat Industry Award Pay Rates 2026-27 (MA000059) \u2014 MI 1 to MI 8",
+  "h1": "Meat Industry Award Pay Rates 2026-27",
+  "description": "Meat Industry Award MA000059 rates: MI 1 $25.74 to MI 8 $30.53 an hour. Casual, weekend and overtime rates by establishment type."
+ },
+ {
+  "key": "hair-and-beauty-award-rates",
+  "routes": [
+   "/hair-and-beauty-award-rates/"
+  ],
+  "title": "Hair and Beauty Award Pay Rates 2026-27 (MA000005) \u2014 Hairdressers",
+  "h1": "Hair and Beauty Award Pay Rates 2026-27",
+  "description": "Hair and Beauty Industry Award rates from 1 July 2026: Level 1 $27.81/hr ($34.76 casual) to Level 6 $32.00. Saturday 133%, Sunday 200% and junior rates."
+ },
+ {
+  "key": "annual-leave-guide",
+  "routes": [
+   "/annual-leave-guide/"
+  ],
+  "title": "Annual Leave Guide Australia \u2014 Entitlements & Payout Rules",
+  "h1": "Annual Leave Guide Australia",
+  "description": "Annual leave explained: NES entitlements, 17.5% leave loading, pro-rata calculation, payout on termination. Complete leave rights guide."
+ },
+ {
+  "key": "fringe-benefits-tax",
+  "routes": [
+   "/fringe-benefits-tax/"
+  ],
+  "title": "Fringe Benefits Tax (FBT) \u2014 Rate, Gross-Up & Examples",
+  "h1": "Fringe Benefits Tax (FBT) Guide Australia FY2025-26",
+  "description": "Fringe Benefits Tax in Australia for FY2025-26: the 47% FBT rate, Type 1 (2.0802) and Type 2 (1.8868) gross-up factors, reportable benefits and worked examples."
+ },
+ {
+  "key": "sapto-calculator",
+  "routes": [
+   "/sapto-calculator/"
+  ],
+  "title": "SAPTO Calculator & Eligibility Checker \u2014 Offset up to $2,230",
+  "h1": "SAPTO Calculator & Eligibility Checker Seniors and Pensioners Tax Offset",
+  "description": "Check SAPTO eligibility and work out your seniors and pensioners tax offset: up to $2,230 single, $1,602 each for a couple. 2025-26 income year."
+ },
+ {
+  "key": "gig-economy-pay-guide",
+  "routes": [
+   "/gig-economy-pay-guide/"
+  ],
+  "title": "Gig Economy Tax Guide \u2014 Uber, Deliveroo & Freelance Pay",
+  "h1": "Gig Economy Pay Guide \u2014 Tax & Pay for Uber, Delivery & Freelance Workers",
+  "description": "Gig worker tax guide: ABN obligations, GST registration, quarterly BAS and deductions for rideshare, delivery and freelance work when you're your own boss."
+ },
+ {
+  "key": "tax-file-number-declaration",
+  "routes": [
+   "/tax-file-number-declaration/"
+  ],
+  "title": "Tax File Number Declaration \u2014 How to Fill It In",
+  "h1": "Tax File Number Declaration \u2014 How to Complete It Correctly",
+  "description": "How to complete a TFN declaration for a new job: the tax-free threshold claim, HECS debt notification, and what happens if you don't provide your TFN. Step by step."
+ },
+ {
+  "key": "super-guarantee-charge",
+  "routes": [
+   "/super-guarantee-charge/"
+  ],
+  "title": "Super Guarantee Charge \u2014 What Late Super Costs in 2026-27",
+  "h1": "Super Guarantee Charge \u2014 What Late Super Actually Costs",
+  "description": "Payday Super started 1 July 2026 and rebuilt the SGC: super must reach the fund within 7 business days of payday. The charge and notional earnings explained."
+ },
+ {
+  "key": "construction-trades-pay",
+  "routes": [
+   "/construction-trades-pay/"
+  ],
+  "title": "Construction & Trades Pay Guide \u2014 Tradie & Apprentice Rates",
+  "h1": "Construction & Trades Pay Guide \u2014 Rates, Overtime & Apprentice Wages",
+  "description": "Construction and trades pay rates: apprentice wages, qualified trade rates, labourer pay, overtime, site allowances, and take-home pay for tradies in Australia."
+ },
+ {
+  "key": "extra-super-vs-hecs-repayment",
+  "routes": [
+   "/extra-super-vs-hecs-repayment/"
+  ],
+  "title": "Extra Super vs Voluntary HECS Repayment \u2014 Which Is Smarter?",
+  "h1": "Extra Super vs Paying Off HECS Faster \u2014 Which Should You Prioritise?",
+  "description": "Extra super or pay off HECS faster? Compare the tax benefit, HECS indexation and long-term outcomes, with a decision framework for Australian workers."
+ },
+ {
+  "key": "public-service-pay-scales",
+  "routes": [
+   "/public-service-pay-scales/",
+   "/public-service-pay-scales/aps/",
+   "/public-service-pay-scales/vic/",
+   "/public-service-pay-scales/qld/",
+   "/public-service-pay-scales/nsw/",
+   "/public-service-pay-scales/wa/",
+   "/public-service-pay-scales/sa/",
+   "/public-service-pay-scales/tas/",
+   "/public-service-pay-scales/act/",
+   "/public-service-pay-scales/nt/",
+   "/public-service-pay-scales/aps/aps-3/",
+   "/public-service-pay-scales/aps/aps-4/",
+   "/public-service-pay-scales/aps/aps-5/",
+   "/public-service-pay-scales/aps/aps-6/",
+   "/public-service-pay-scales/aps/el1/",
+   "/public-service-pay-scales/aps/el2/"
+  ],
+  "title": "Public Service Pay Scales 2026: APS Level Salaries and All States",
+  "h1": "Public Service Pay Scales in Australia",
+  "description": "APS 4 salary: $82,906 median at 31 Dec 2025; 90% of APS 6 staff earn $97,316 to $115,199. Pay scale tables for the APS and all 8 state and territory services."
+ },
+ {
+  "key": "pay-rates--chemist-warehouse",
+  "routes": [
+   "/pay-rates/chemist-warehouse/"
+  ],
+  "title": "Chemist Warehouse Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Chemist Warehouse Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Chemist Warehouse pays adults $27.81/hr ($34.76 casual) at Pharmacy assistant level 1 under the Pharmacy Industry Award 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--iga",
+  "routes": [
+   "/pay-rates/iga/"
+  ],
+  "title": "IGA Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "IGA Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "IGA pays adults $27.81/hr ($34.76 casual) at Retail employee level 1 under the General Retail Industry Award 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "pay-rates--hoyts",
+  "routes": [
+   "/pay-rates/hoyts/"
+  ],
+  "title": "Hoyts Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Hoyts Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Hoyts pays adults $28.56/hr ($35.70 casual) at Cinema Worker Level 1. Every level, junior rates by age, penalty rates and weekly pay."
+ },
+ {
+  "key": "pay-rates--qantas",
+  "routes": [
+   "/pay-rates/qantas/"
+  ],
+  "title": "Qantas Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Qantas Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Qantas pays adults $32.20/hr ($47.29 casual) at Flight Attendant \u2014 first to third year. Every level, junior rates by age, penalty rates and weekly pay."
+ },
+ {
+  "key": "pay-rates--spotlight",
+  "routes": [
+   "/pay-rates/spotlight/"
+  ],
+  "title": "Spotlight Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "h1": "Spotlight Pay Rates 2026 \u2014 Hourly Wage by Age & Level",
+  "description": "Spotlight pays adults $27.81/hr ($34.76 casual) at Retail employee level 1 under the General Retail Industry Award 2020. Every level, junior and penalty rates."
+ },
+ {
+  "key": "minimum-wage-australia",
+  "routes": [
+   "/minimum-wage-australia/"
+  ],
+  "title": "Minimum Wage Australia 2026-27: $26.44 an Hour, $1,004.90 a Week",
+  "h1": "What Is the Minimum Wage in Australia? 2026-27 Rates",
+  "description": "The National Minimum Wage is $26.44 an hour, $1,004.90 a week or $52,254.80 a year from 1 July 2026, up 6.0% from $24.95. Casual $33.05, plus after-tax pay."
+ },
+ {
+  "key": "job-pay-rates--pharmacist",
+  "routes": [
+   "/job-pay-rates/pharmacist/"
+  ],
+  "title": "Pharmacist Pay Rates Australia 2026 \u2014 $41.74/hr Award Minimum",
+  "h1": "Pharmacist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Pharmacist award pay rates for 2026\u201327: $41.74/hr, $1,586.30/wk, casual $52.18/hr under the Pharmacy Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--property-manager",
+  "routes": [
+   "/job-pay-rates/property-manager/"
+  ],
+  "title": "Property Manager Pay Rates Australia 2026 \u2014 $29.45/hr Minimum",
+  "h1": "Property Manager Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Property Manager award pay rates for 2026\u201327: $29.45/hr, $1,119.10/wk, casual $36.81/hr under the Real Estate Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--physiotherapist",
+  "routes": [
+   "/job-pay-rates/physiotherapist/"
+  ],
+  "title": "Physiotherapist Pay Rates Australia 2026 \u2014 $34.44/hr Minimum",
+  "h1": "Physiotherapist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Physiotherapist award pay rates for 2026\u201327: $34.44/hr, $1,308.80/wk, casual $43.05/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--crane-operator",
+  "routes": [
+   "/job-pay-rates/crane-operator/"
+  ],
+  "title": "Crane Operator Pay Rates Australia 2026 \u2014 $32.06/hr Award Minimum",
+  "h1": "Crane Operator Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Crane Operator award pay rates for 2026\u201327: $32.06/hr, $1,218.09/wk, casual $40.08/hr under the Mobile Crane Hiring Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--midwife",
+  "routes": [
+   "/job-pay-rates/midwife/"
+  ],
+  "title": "Midwife Pay Rates Australia 2026 \u2014 $32.09/hr Award Minimum",
+  "h1": "Midwife Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Midwife award pay rates for 2026\u201327: $32.09/hr, $1,219.50/wk, casual $40.11/hr under the Nurses Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--barista",
+  "routes": [
+   "/job-pay-rates/barista/"
+  ],
+  "title": "Barista Pay Rates Australia 2026 \u2014 $27.08/hr Award Minimum",
+  "h1": "Barista Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Barista award pay rates for 2026\u201327: $27.08/hr, $1,029.10/wk, casual $33.85/hr under the Restaurant Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--receptionist",
+  "routes": [
+   "/job-pay-rates/receptionist/"
+  ],
+  "title": "Receptionist Pay Rates Australia 2026 \u2014 $26.97/hr Award Minimum",
+  "h1": "Receptionist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Receptionist award pay rates for 2026\u201327: $26.97/hr, $1,024.70/wk, casual $33.71/hr under the Clerks\u2014Private Sector Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--speech-pathologist",
+  "routes": [
+   "/job-pay-rates/speech-pathologist/"
+  ],
+  "title": "Speech Pathologist Salary Australia 2026 \u2014 $34.44/hr Minimum",
+  "h1": "Speech Pathologist Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Speech Pathologist award pay rates for 2026\u201327: $34.44/hr, $1,308.80/wk, casual $43.05/hr under MA000027. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--retail-manager",
+  "routes": [
+   "/job-pay-rates/retail-manager/"
+  ],
+  "title": "Retail & Store Manager Pay 2026 \u2014 $31.11/hr Award Minimum",
+  "h1": "Retail Manager Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Retail Manager award pay rates for 2026\u201327: $31.11/hr, $1,182.10/wk, casual $38.89/hr under the General Retail Industry Award 2020. Penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--civil-engineer",
+  "routes": [
+   "/job-pay-rates/civil-engineer/"
+  ],
+  "title": "Civil Engineer Salary 2026 \u2014 $120,000 Median, $34.57/hr Award",
+  "h1": "Civil Engineer Salary Australia 2026 \u2014 Award Minimum, Median & Take-Home",
+  "description": "Civil engineer pay in Australia: $120,000 median and $131,274 average salary on 2023\u201324 tax returns, the $68,538 graduate award minimum, and take-home."
+ },
+ {
+  "key": "job-pay-rates--data-analyst",
+  "routes": [
+   "/job-pay-rates/data-analyst/"
+  ],
+  "title": "Data Analyst Salary Australia 2026 \u2014 $89,634 Median & Take-Home",
+  "h1": "Data Analyst Salary Australia 2026 \u2014 Median Pay From Tax Returns & Take-Home",
+  "description": "Data analysts' median salary was $89,634 on 2023\u201324 tax returns, data scientists' $105,143. Take-home pay on each, award coverage and the legal minimum."
+ },
+ {
+  "key": "job-pay-rates--vet-nurse",
+  "routes": [
+   "/job-pay-rates/vet-nurse/"
+  ],
+  "title": "Vet Nurse Salary Australia 2026 \u2014 $32.13/hr Award Minimum",
+  "h1": "Vet Nurse Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Vet Nurse award pay rates for 2026\u201327: $32.13/hr, $1,221.10/wk, casual $40.16/hr under MA000118. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--excavator-operator",
+  "routes": [
+   "/job-pay-rates/excavator-operator/"
+  ],
+  "title": "Excavator Operator Salary Australia 2026 \u2014 $32.15/hr Award",
+  "h1": "Excavator Operator Pay Rates Australia 2026 \u2014 Award & Hourly Wage",
+  "description": "Excavator Operator award pay rates for 2026\u201327: $32.15/hr, $1,221.55/wk, casual $40.19/hr under MA000020. Every classification, penalty rates and take-home pay."
+ },
+ {
+  "key": "job-pay-rates--surgeon",
+  "routes": [
+   "/job-pay-rates/surgeon/"
+  ],
+  "title": "Surgeon Salary Australia 2026 \u2014 $519,998 Average (ATO Data)",
+  "h1": "Surgeon Salary Australia 2026 \u2014 Earnings by Specialty and Take-Home Pay",
+  "description": "Surgeons averaged $519,998 taxable income in 2023\u201324, the top occupation in ATO data. Figures by specialty and state, hospital pay and take-home."
+ },
+ {
+  "key": "tax-return-2026",
+  "routes": [
+   "/tax-return-2026/"
+  ],
+  "title": "Tax Return 2026: 31 Oct Deadline, Refund Estimator & Rates",
+  "h1": "Tax Return 2026: Deadline, Refund Estimate and 2025-26 Tax Rates",
+  "description": "Your 2026 tax return covers 2025-26. Lodge yourself by 31 October 2026, or by 15 May 2027 with a tax agent. Most online refunds arrive within 2 weeks."
+ },
+ {
+  "key": "cents-per-km",
+  "routes": [
+   "/cents-per-km/"
+  ],
+  "title": "Cents per km 2026-27: ATO Rate 91c + Calculator",
+  "h1": "Cents per km 2026-27: 91c ATO Rate and Calculator",
+  "description": "The ATO cents per km rate is 91c for 2026-27 (88c for 2025-26), capped at 5,000 km per car: up to $4,550. Rates by year, payslip withholding and a calculator."
+ },
+ {
+  "key": "compassionate-leave",
+  "routes": [
+   "/compassionate-leave/"
+  ],
+  "title": "Compassionate Leave Australia: 2 Days Paid Bereavement Leave",
+  "h1": "Compassionate Leave in Australia: 2 Days Bereavement Leave and Pay",
+  "description": "Compassionate leave is 2 days per occasion for a death or life-threatening illness in the family, stillbirth or miscarriage. Paid for permanent staff. Calculator."
+ },
+ {
+  "key": "payment-in-lieu-of-notice",
+  "routes": [
+   "/payment-in-lieu-of-notice/"
+  ],
+  "title": "Payment in Lieu of Notice Australia: Notice, Tax & Super",
+  "h1": "Payment in Lieu of Notice Australia: Notice Periods, Tax and Super",
+  "description": "Payment in lieu of notice in Australia: NES notice periods (1 to 4 weeks, plus 1 if over 45), what the payment must include, ETP tax rates and super on top."
+ },
+ {
+  "key": "train-driver-salary",
+  "routes": [
+   "/train-driver-salary/"
+  ],
+  "title": "Train Driver Salary Australia 2026 \u2014 Sydney Trains & Metro Pay",
+  "h1": "Train Driver Salary Australia 2026: Sydney Trains and Metro Melbourne Pay",
+  "description": "Train driver pay from July 2026: Sydney Trains drivers $1,861.35 a week, Metro Trains Melbourne qualified drivers $92,077 a year, trainee rates and take-home pay."
+ },
+ {
+  "key": "delivery-driver-pay-rate",
+  "routes": [
+   "/delivery-driver-pay-rate/"
+  ],
+  "title": "Delivery Driver Pay Rate Australia: $31.30/hr Minimum (2026)",
+  "h1": "Delivery Driver Pay Rate in Australia: the $31.30 an Hour Minimum",
+  "description": "On-demand delivery workers have a legal pay floor from 17 Aug 2026: $31.30/hr on a bike, $31.50 motorbike, $32 car, before expenses. Check your payout, free."
+ },
+ {
+  "key": "apprentice-pay--plumber",
+  "routes": [
+   "/apprentice-pay/plumber/"
+  ],
+  "title": "Apprentice Plumber Pay 2026-27: Year 1 to 4 Rates and Take-Home",
+  "h1": "Apprentice Plumber Pay in Australia: Year 1 to 4 (2026-27)",
+  "description": "Apprentice plumber award minimums from 1 July 2026: $18.11 an hour in year 1 to $28.93 in year 4, with allowances, adult start and take-home pay."
+ },
+ {
+  "key": "graduate-salary-australia",
+  "routes": [
+   "/graduate-salary-australia/"
+  ],
+  "title": "Graduate Salary Australia 2026: Law, Nursing, Engineering & More",
+  "h1": "Graduate Salary in Australia: Law, Nursing, Engineering, Accounting, Teaching & Medicine",
+  "description": "Graduate salaries by field from official sources: QILT survey medians, award and state agreement starting rates, plus first-payslip take-home and HELP repayments."
+ },
+ {
+  "key": "air-traffic-controller-salary",
+  "routes": [
+   "/air-traffic-controller-salary/"
+  ],
+  "title": "Air Traffic Controller Salary Australia 2026 \u2014 Airservices Pay",
+  "h1": "Air Traffic Controller Salary Australia 2026 \u2014 Airservices ATC Pay Scale",
+  "description": "Air traffic controller salary in Australia: $64,398 to $243,589 a year base under the Airservices agreement, plus trainee pay, scheduled increases and take-home pay."
+ },
+ {
+  "key": "fifo-pay-calculator",
+  "routes": [
+   "/fifo-pay-calculator/"
+  ],
+  "title": "FIFO Pay Calculator: Roster, Overtime & Take-Home (2026-27)",
+  "h1": "FIFO Pay Calculator",
+  "description": "Work out FIFO pay on a 2:1, 8:6, even-time or 4:1 roster: hourly rate, overtime, shift loadings and site allowances, then take-home after 2026-27 tax."
+ },
+ {
+  "key": "new-years-day-pay-rates",
+  "routes": [
+   "/new-years-day-pay-rates/"
+  ],
+  "title": "New Year's Day & New Year's Eve Pay Rates 2026-27",
+  "h1": "New Year's Day and New Year's Eve pay rates 2026-27",
+  "description": "New Year's Day is Friday 1 January 2027 in every state. SA and NT add a 7pm to midnight New Year's Eve holiday. Retail pays 225%, casual 250%. Calculator inside."
+ },
+ {
+  "key": "about",
+  "routes": [
+   "/about/"
+  ],
+  "title": "About Pay Calculator Australia \u2014 Methodology & Sources",
+  "h1": "About Pay Calculator Australia",
+  "description": "Learn how Pay Calculator Australia ensures accuracy. Our methodology, data sources (ATO, Fair Work), and commitment to free, up-to-date Australian pay calculators."
+ },
+ {
+  "key": "news",
+  "routes": [
+   "/news/"
+  ],
+  "title": "Australian Pay & Tax News \u2014 Wage, Super & Tax Changes",
+  "h1": "Australian Pay & Tax News",
+  "description": "The latest Australian pay news: minimum wage decisions, tax changes, super rules, HECS updates and Centrelink increases, and what each means for your take-home pay."
+ },
+ {
+  "key": "news--payday-super-employees-payslip",
+  "routes": [
+   "/news/payday-super-employees-payslip/"
+  ],
+  "title": "Payday Super and Your Payslip: What Changed July 2026",
+  "h1": "Payday Super: What Changes on Your Payslip From July 2026",
+  "description": "Payday super requires employers to pay your super guarantee alongside every pay run from 1 July 2026. Here's what to check on your payslip now."
+ },
+ {
+  "key": "news--hecs-20-percent-cut-status",
+  "routes": [
+   "/news/hecs-20-percent-cut-status/"
+  ],
+  "title": "The 20% HECS Debt Cut: How to Check It Landed",
+  "h1": "The 20% HECS Debt Cut: How to Check It Hit Your Balance",
+  "description": "The one-off 20% HELP debt cut is now fully processed, wiping about $5,520 off the average $27,600 balance. Here's how to check it applied to your account."
+ },
+ {
+  "key": "news--1000-dollar-instant-tax-deduction",
+  "routes": [
+   "/news/1000-dollar-instant-tax-deduction/"
+  ],
+  "title": "$1,000 Instant Tax Deduction: How It Works for 2026-27",
+  "h1": "The $1,000 Instant Tax Deduction: No Receipts, One Tick",
+  "description": "The $1,000 instant work-related deduction is now law for 2026-27 \u2014 claim it with no receipts from July 2027, saving workers an average $205."
+ },
+ {
+  "key": "news--centrelink-changes-july-2026",
+  "routes": [
+   "/news/centrelink-changes-july-2026/"
+  ],
+  "title": "Centrelink Changes July 2026: Family Payment Increases",
+  "h1": "Centrelink Changes From 1 July: Family Payments and Higher Limits",
+  "description": "From 1 July 2026, Family Tax Benefit Part A rose to $235.48 a fortnight per child under 13, Part B to $200.34, and the Part B income limit lifted to $124,327."
+ },
+ {
+  "key": "news--queensland-state-wage-case-2026",
+  "routes": [
+   "/news/queensland-state-wage-case-2026/"
+  ],
+  "title": "QLD State Wage Case 2026: 4.75% Rise, $1,004.90 Minimum Wage",
+  "h1": "Queensland State Wage Case 2026: State Award Wages Rise 4.75% From 1 September 2026",
+  "description": "The QIRC's [2026] QIRC 280 lifts Queensland state award wages 4.75% from 1 September 2026 and sets the state minimum wage at $1,004.90 a week. Who it covers."
+ }
+]
