@@ -101,7 +101,7 @@ export default function AllowancesGuidePage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/understanding-your-payslip/", label: "Payslip" }, { label: "Allowances Guide" }]} />
 
-      <PageHeader title="Award Allowances Guide: First Aid, Laundry, Tool, Split Shift and On-Call Rates">
+      <PageHeader featuredImage title="Award Allowances Guide: First Aid, Laundry, Tool, Split Shift and On-Call Rates">
         <p>
           <strong>An allowance is extra pay on top of your base rate for a particular task, condition or expense, and the amount comes from your award or agreement.</strong> This guide lists the current amounts for five common allowances (first aid, laundry and uniform, tools, split or broken shifts, and on-call) across {awardCount} modern awards. Every figure is the amount printed in the award, with the clause, and nothing is estimated. Find your award, check the line on your payslip, and see how allowances are taxed.
         </p>

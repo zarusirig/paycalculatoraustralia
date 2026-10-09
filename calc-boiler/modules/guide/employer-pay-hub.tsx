@@ -14,6 +14,7 @@ import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import { EMPLOYERS, entryRate, topRate } from "@/lib/data/employer-pay";
 import { PAY_RATES_HUB_FAQS } from "@/modules/guide/employer-pay-hub-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const money = (v: number) => formatAUD(v, 2);
@@ -46,6 +47,7 @@ export default function EmployerPayHubPage() {
             Pay Calculator Australia is independent and not affiliated with any employer listed here.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

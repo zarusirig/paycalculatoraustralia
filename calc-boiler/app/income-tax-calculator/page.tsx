@@ -22,6 +22,7 @@ import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/income-tax-calculator/`;
@@ -156,7 +157,7 @@ const DESCRIPTION = fitDescription(
   `Tax on ${formatAUD(80_000)} is ${formatAUD(S80.net)} plus ${formatAUD(S80.medicare)} Medicare in FY${FY}. Simple tax calculator: annual, monthly, fortnightly or weekly income for ATO tax and take-home pay.`,
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
@@ -167,14 +168,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: `Free income tax calculator with bracket breakdown. ATO rates for FY${FY}.`,
   },
-};
+});
 
 const breadcrumbSchema: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

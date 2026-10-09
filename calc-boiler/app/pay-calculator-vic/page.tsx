@@ -8,11 +8,12 @@ import { VIC_FAQS } from "@/modules/state/pay-calculator-vic-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-calculator-vic/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: `Pay Calculator VIC ${SITE_CONFIG.financialYear}: Wage & Salary After Tax`,
   description:
     "Work out your take-home pay in Victoria: a salary and wage calculator on current ATO rates, plus VIC public holidays, penalty rates and long service leave.",
@@ -24,14 +25,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pay Calculator VIC",
     description: "Your take-home pay in Victoria, plus VIC holidays and long service leave.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

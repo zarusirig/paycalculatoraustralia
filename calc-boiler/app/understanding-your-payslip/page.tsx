@@ -8,19 +8,20 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_FAQS } from "@/modules/guide/understanding-your-payslip-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/understanding-your-payslip/`;
 const TITLE = "Understanding Your Payslip in Australia — A Complete Guide";
 const DESCRIPTION = "How to read your Australian payslip: gross pay, net pay, PAYG withholding, superannuation contributions, and your rights under the Fair Work Ombudsman.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

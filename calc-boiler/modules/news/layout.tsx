@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { Children, Fragment, isValidElement, type ReactNode } from "react";
+import FeaturedImage from "@/components/common/featured-image";
 import { ChevronRight, Newspaper, ArrowRight } from "lucide-react";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { AUTHORS } from "@/lib/authors";
@@ -35,6 +36,31 @@ export function NewsKeyFacts({ title = "Key facts", rows }: { title?: string; ro
   );
 }
 
+/**
+ * The article body with the featured image after its lede (the first <p>,
+ * `className="lead"` in every article) and before its first <h2>.
+ *
+ * The body arrives as <ArticleBody />, a plain synchronous server component
+ * returning a fragment, so it is rendered here to reach those top-level
+ * elements. Anything else (an async body, no top-level <p> or <h2>) gets the
+ * image at the top of the article instead: never twice, never missing.
+ */
+function bodyWithFeaturedImage(body: ReactNode, figure: ReactNode): ReactNode {
+  let tree: ReactNode = body;
+  if (isValidElement(body) && typeof body.type === "function") {
+    const rendered: unknown = (body.type as (props: unknown) => unknown)(body.props);
+    if (rendered instanceof Promise) return <>{figure}{body}</>;
+    tree = rendered as ReactNode;
+  }
+  if (isValidElement(tree) && tree.type === Fragment) tree = (tree.props as { children?: ReactNode }).children;
+  const nodes = Children.toArray(tree);
+  const firstH2 = nodes.findIndex((n) => isValidElement(n) && n.type === "h2");
+  const lede = nodes.findIndex((n) => isValidElement(n) && n.type === "p");
+  const at = lede >= 0 && (firstH2 < 0 || lede < firstH2) ? lede + 1 : firstH2;
+  if (at < 0) return <>{figure}{body}</>;
+  return <>{nodes.slice(0, at)}{figure}{nodes.slice(at)}</>;
+}
+
 export default function NewsArticleLayout({ meta, children }: { meta: NewsArticleMeta; children: ReactNode }) {
   const author = AUTHORS[meta.authorId];
   const related = getRelatedNews(meta.slug);
@@ -68,7 +94,7 @@ export default function NewsArticleLayout({ meta, children }: { meta: NewsArticl
 
         <div className="max-w-4xl">
           <article className="prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
-            {children}
+            {bodyWithFeaturedImage(children, <FeaturedImage key="featured-image" />)}
           </article>
 
           {meta.faq && meta.faq.length > 0 && (

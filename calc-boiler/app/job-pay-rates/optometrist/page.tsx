@@ -4,6 +4,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { getHealthSalaryPage } from "@/lib/data/health-salary";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Optometrist salary (9 Oct 2026): ATO Taxation statistics 2023–24 Table 15, Jobs
 // and Skills Australia, award and state schedules. Data: lib/data/health-salary.
@@ -11,7 +12,7 @@ import { withPageEnd } from "@/components/common/content-slots";
 
 const PAGE = getHealthSalaryPage("optometrist");
 
-export const metadata: Metadata = healthSalaryMetadata(PAGE);
+export const metadata: Metadata = withFeaturedImage(healthSalaryMetadata(PAGE));
 
 function Page() {
   return (

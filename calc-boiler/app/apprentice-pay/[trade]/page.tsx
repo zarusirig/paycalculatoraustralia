@@ -6,6 +6,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { APPRENTICE_SPOKES, getSpoke } from "@/lib/data/apprentice-pay/spokes";
 import { SITE_CONFIG } from "@/lib/constants";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026 keyword-gap family F3: /apprentice-pay/{trade}/. One trade deep; the
 // all-trades comparison lives on /apprentice-pay-rates/. Rates: lib/data/apprentice-pay
@@ -29,13 +30,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!spoke) return {};
   const title = spokeTitle(spoke);
   const description = spokeDescription(spoke);
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url(spoke.slug) },
-    openGraph: { title, description, url: url(spoke.slug), siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url: url(spoke.slug), siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

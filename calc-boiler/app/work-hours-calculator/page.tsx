@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { CASUAL_LOADING, STANDARD_WEEKLY_HOURS } from "@/lib/constants/work-hours";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/work-hours-calculator/`;
@@ -14,7 +15,7 @@ const URL = `${BASE}/work-hours-calculator/`;
 const TITLE = "Work Hours Calculator — Timesheet With Breaks & Overtime";
 const DESCRIPTION = `Add up work hours from start and finish times, minus unpaid breaks, in decimal hours and h:mm, with overnight shifts, ${CASUAL_LOADING * 100}% casual loading and overtime past ${STANDARD_WEEKLY_HOURS} hours.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -26,7 +27,6 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Add up a week of shifts, deduct unpaid breaks, handle overnight shifts and price the period.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

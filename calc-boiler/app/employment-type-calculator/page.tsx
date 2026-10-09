@@ -10,6 +10,7 @@ import { EMPLOYMENT, SITE_CONFIG, calculatePayBreakdown, formatAUD } from "@/lib
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/employment-type-calculator/`;
@@ -27,7 +28,7 @@ const casualRateAtDefaults = DEFAULT_HOURLY_RATE * (1 + EMPLOYMENT.casualLoading
 // seo-brain 25 Sep 2026 (Jev-ranked): a concrete part-time answer for "part time salary calculator".
 const DESCRIPTION = `Part-time salary from your hourly rate and hours: ${formatAUD(DEFAULT_HOURLY_RATE)} an hour over ${DEFAULT_HOURS} hours is ${formatAUD(annualAtDefaults)} a year, ${formatAUD(takeHomeAtDefaults)} after tax. Casual loading lifts the same rate to ${formatAUD(casualRateAtDefaults, 2)}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: "Part-Time vs Full-Time vs Casual Pay Calculator",
   description: DESCRIPTION,
   alternates: { canonical: PAGE_URL },
@@ -38,14 +39,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Part-Time vs Full-Time vs Casual Calculator",
     description: "Compare full-time, part-time, and casual pay including entitlements and super.",
   },
-};
+});
 
 const breadcrumbSchema: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

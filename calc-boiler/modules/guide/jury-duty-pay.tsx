@@ -17,6 +17,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /jury-duty-pay/ (G3, wave 4). Sources: lib/constants/jury-duty.ts.
 
@@ -50,6 +51,7 @@ export default function JuryDutyPayPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how-paid">How Jury Duty Pay Works</H2>
             <p>Your employer&rsquo;s obligation depends on whether they ask for evidence of the court payment:</p>

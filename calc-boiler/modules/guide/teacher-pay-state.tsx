@@ -33,6 +33,7 @@ import TeacherPayPrintButton from "@/modules/guide/teacher-pay-print-button";
 import { teacherStateFaqs } from "@/lib/data/teacher-pay/hub";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { JURISDICTION_SLUGS } from "@/lib/data/public-service-pay";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -259,6 +260,7 @@ export default function TeacherPayStatePage({ state }: { state: TeacherPayState 
             </p>
           )}
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

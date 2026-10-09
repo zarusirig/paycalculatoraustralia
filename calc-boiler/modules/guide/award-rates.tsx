@@ -22,6 +22,7 @@ import { FAST_FOOD_AWARD, MANUFACTURING_AWARD, PHARMACY_AWARD, SECURITY_AWARD, r
 import { AWARD_HUB_FAQS } from "@/modules/guide/award-rates-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Awards", url: "https://www.fairwork.gov.au/employment-conditions/awards", publisher: SOURCES.fwo.name },
@@ -75,6 +76,7 @@ export default function AwardRatesGuidePage() {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

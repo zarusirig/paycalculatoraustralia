@@ -18,6 +18,7 @@ const CO_ROWS = [
 ];
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Super co-contribution", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/government-super-contributions/super-co-contribution", publisher: SOURCES.ato.name },
@@ -58,6 +59,7 @@ export default function SuperCoContributionPage() {
             The government will match up to $500 of your personal super contributions if you are a low-to-middle income earner. Plus, contributing to your spouse&apos;s super can earn you a tax offset of up to $540. Here is how both schemes work, who qualifies, and how to maximise the benefit.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

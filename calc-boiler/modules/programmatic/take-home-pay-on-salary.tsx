@@ -18,6 +18,7 @@ import { salaryFacts } from "@/lib/data/salary-pages";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on-salary-faqs";
 import { EarningsPosition, NeighbourTable, NextThousand, SalaryBandNotes, SalaryNav } from "@/modules/programmatic/salary-page-sections";
+import FeaturedImage from "@/components/common/featured-image";
 
 interface TakeHomePayOnSalaryProps {
   salary: number;
@@ -78,6 +79,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       </section>
 
       <TrustBar />
+      <FeaturedImage lazy className="mt-0" />
 
       {/* Full Pay Breakdown */}
       <section>

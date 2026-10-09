@@ -8,19 +8,20 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-packaging-guide/`;
 const TITLE = "Salary Packaging Guide Australia — FBT-Exempt Benefits";
 const DESCRIPTION = "Salary packaging guide: meal entertainment, LAFHA, portable devices and other FBT-exempt items, and how packaging works for not-for-profit and hospital staff.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

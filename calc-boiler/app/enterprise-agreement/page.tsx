@@ -3,19 +3,20 @@ import EnterpriseAgreementPage from "@/modules/guide/enterprise-agreement";
 import { ENTERPRISE_AGREEMENT_FAQS } from "@/modules/guide/enterprise-agreement-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "enterprise-agreement";
 const TITLE = "Enterprise Agreement Search & EBA Lookup: Find Yours";
 const DESCRIPTION =
   "What an enterprise agreement is, how to find yours in the Fair Work Commission's search, why an expired EBA still applies, and how EBA pay compares with the award.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

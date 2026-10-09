@@ -16,6 +16,7 @@ import { AWE_HEADLINE, AWE_RELEASE, annualise } from "@/lib/data/average-salary"
 import { NeighbourTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 interface SalaryToHourlyProps {
   salary: number;
@@ -97,6 +98,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
       </section>
 
       <TrustBar />
+      <FeaturedImage lazy className="mt-0" />
 
       {/* Hourly Rate Breakdown */}
       <section>

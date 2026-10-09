@@ -12,6 +12,7 @@ import {
 } from "@/lib/constants/capital-gains-tax";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/capital-gains-tax-calculator/`;
@@ -24,7 +25,7 @@ const TAXED_SHARE = formatPercent(1 - CGT_DISCOUNT_RATES.individual, 0);
 const TITLE = `Capital Gains Tax Calculator — ${DISCOUNT} Discount, ${CGT_INCOME_YEAR}`;
 const DESCRIPTION = `There is no capital gains tax rate in Australia: your gain is taxed at your marginal rate, and only ${TAXED_SHARE} of it after ${CGT_MINIMUM_OWNERSHIP_MONTHS} months. Work out your ${CGT_INCOME_YEAR} CGT bill.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -35,10 +36,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

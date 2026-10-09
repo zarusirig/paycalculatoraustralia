@@ -11,6 +11,7 @@ import { faqPageSchema } from "@/lib/faq";
 import { salaryToHourlyFaqs } from "@/modules/programmatic/salary-to-hourly-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
 import { fitTitle } from "@/lib/seo-title";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // "$75.5k" would read as an error in a title.
   const kSalary = salaryAmount % 1_000 === 0 ? `$${(salaryAmount / 1_000).toLocaleString("en-AU")}k` : formattedSalary;
 
-  return {
+  return withFeaturedImage({
     // Answer-first, in the GSC phrasing ("80000 a year is how much an hour",
     // "80k a year is how much an hour"). Hourly figures from the tax engine
     // and EMPLOYMENT.hoursPerYear, never hardcoded.
@@ -58,8 +59,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     // og:url + image: without an openGraph object these pages emitted no
     // og:url. og:title/description are filled from title/description.
-    openGraph: { url: `${SITE_CONFIG.baseUrl}/salary-to-hourly/${resolvedParams.amount}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-  };
+    openGraph: { url: `${SITE_CONFIG.baseUrl}/salary-to-hourly/${resolvedParams.amount}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  });
 }
 
 async function SalaryToHourlyPage({ params }: PageProps) {

@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { calculatorHowTo } from "@/lib/schema";
 import { PAYROLL_TAX_FY } from "@/lib/constants/payroll-tax";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payroll-tax-calculator/`;
@@ -14,13 +15,13 @@ const URL = `${BASE}/payroll-tax-calculator/`;
 const TITLE = `Payroll Tax Calculator ${PAYROLL_TAX_FY} — NSW, VIC, QLD & All States`;
 const DESCRIPTION = `Free payroll tax calculator for every Australian state and territory on ${PAYROLL_TAX_FY} rates: thresholds, phase-outs, VIC surcharges, the QLD levy and grouped wages.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

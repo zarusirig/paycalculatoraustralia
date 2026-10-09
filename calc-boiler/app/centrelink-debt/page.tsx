@@ -6,12 +6,13 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { CARER_SUPPORT_SOURCES, RESOLUTION_SCHEME } from "@/lib/constants/centrelink-carer-and-support";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-debt";
 const TITLE = "Centrelink Debt 2026 — Overpayment Refunds & Apportionment Scheme";
 const DESCRIPTION = `Centrelink debt: Income Apportionment Resolution Scheme refunds of up to $600 per debt (apply by ${RESOLUTION_SCHEME.closes}), the $475m robodebt settlement and repayments.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

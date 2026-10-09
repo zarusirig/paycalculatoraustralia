@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const DIV293_THRESHOLD = 250_000;
 
@@ -41,6 +42,7 @@ export default function Division293TaxPage() {
             If your income plus super contributions exceed $250,000, you may owe an additional 15% tax on your super. Here&apos;s how Division 293 works, how to calculate it, and what strategies can help you manage it.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

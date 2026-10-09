@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "TFN declaration", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration", publisher: SOURCES.ato.name },
@@ -26,6 +27,7 @@ export default function NewJobChecklistPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>New Job Pay Checklist — Set Up Your Pay Correctly From Day One</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Starting a new job involves more than just showing up. From TFN declarations to super fund choice and verifying your first pay, this checklist ensures you get paid correctly and do not leave money on the table.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

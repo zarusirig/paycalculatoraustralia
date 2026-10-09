@@ -28,6 +28,7 @@ import CgtCalculator from "@/modules/calculator/cgt-calculator";
 import { CGT_FAQS } from "@/modules/guide/capital-gains-tax-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_CGT = "https://www.ato.gov.au/individuals-and-families/investments-and-assets/capital-gains-tax";
 const ATO_DISCOUNT = `${ATO_CGT}/cgt-discount`;
@@ -123,6 +124,7 @@ export default function CapitalGainsTaxPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <h2 style={H2}>There Is No &ldquo;Capital Gains Tax Rate&rdquo;</h2>

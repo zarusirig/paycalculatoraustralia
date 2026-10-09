@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Novated leasing", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls/cars-and-fbt/car-leasing-and-fbt", publisher: SOURCES.ato.name },
   { title: "Fringe benefits tax – car fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits/fbt-on-cars-other-vehicles-parking-and-tolls", publisher: SOURCES.ato.name },
@@ -24,6 +25,7 @@ export default function NovatedLeaseGuidePage() {
       <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How a Novated Lease Works</h1><p className="text-xl text-warmgray leading-relaxed mb-6">The three-way agreement, what sits in the running-cost budget, how the employee contribution cancels the FBT, what happens if you leave your job, and what you owe at the end. This page explains the mechanics; the numbers for your own salary and car are on the calculator.</p><TrustBar className="!max-w-none" /><div className="not-prose mt-8 rounded-xl border border-eucalyptus/40 bg-eucalyptus-light/40 p-5"><div className="flex items-start gap-4"><Calculator className="h-6 w-6 text-eucalyptus-dark mt-0.5 flex-shrink-0" /><div><p className="text-base font-bold text-navy mb-1">Want the figures, not the theory?</p><p className="text-sm text-warmgray mb-3">The <Link href="/novated-lease-calculator/" className="font-semibold text-eucalyptus-dark underline">Novated Lease Calculator</Link> works out the pre-tax and post-tax deductions on your payslip, the FBT or the electric car exemption, the reportable fringe benefits amount, and your take-home pay before and after &mdash; on your salary and your car price.</p><Link href="/novated-lease-calculator/" className="inline-flex items-center gap-1 text-sm font-semibold text-eucalyptus-dark hover:underline">Open the novated lease calculator <ChevronRight className="h-4 w-4" /></Link></div></div></div></header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage lazy className="mt-0" />
 
           {/* ============================================================ */}
           {/* SECTION 1 — What Is a Novated Lease? */}

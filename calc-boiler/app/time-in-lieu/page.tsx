@@ -3,19 +3,20 @@ import TimeInLieuPage from "@/modules/guide/time-in-lieu";
 import { TIME_IN_LIEU_FAQS } from "@/modules/guide/time-in-lieu-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "time-in-lieu";
 const TITLE = "Time in Lieu (TOIL) Australia: Award Rules + Calculator";
 const DESCRIPTION =
   "Time in lieu is paid time off instead of overtime pay. It isn't in the NES, so your award must allow it: hour for hour under Clerks, time and a half under Retail.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

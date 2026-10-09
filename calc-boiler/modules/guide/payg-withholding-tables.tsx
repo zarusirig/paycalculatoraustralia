@@ -22,6 +22,7 @@ import {
 import TaxTableFaqSection from "@/modules/tax-tables/faq-section";
 import FyTableLinks from "@/modules/tax-tables/fy-links";
 import { PAYG_HUB_FAQS } from "./payg-withholding-tables-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "ATO Tax tables", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview", publisher: SOURCES.ato.name },
@@ -127,6 +128,7 @@ export default function PAYGTablesGuidePage() {
             ))}
           </nav>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

@@ -3,6 +3,7 @@ import JuryDutyPayPage from "@/modules/guide/jury-duty-pay";
 import { JURY_DUTY_PAY_FAQS } from "@/modules/guide/jury-duty-pay-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // G3 (wave 4, 24 Sep 2026). Targets: jury duty pay 1.3k (KD 0), community
 // service leave 390 (DataForSEO, AU).
@@ -12,13 +13,13 @@ const TITLE = "Jury Duty Pay Australia: Make-Up Pay Calculator";
 const DESCRIPTION =
   "Employers pay full-time and part-time staff for the first 10 days of jury duty: base pay, or make-up pay minus the court payment. Calculator with Fair Work examples.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

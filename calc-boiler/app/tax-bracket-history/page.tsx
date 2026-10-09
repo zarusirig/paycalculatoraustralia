@@ -8,19 +8,20 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { TAX_BRACKET_HISTORY_FAQS } from "@/modules/guide/tax-bracket-history-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-bracket-history/`;
 const TITLE = "Australian Tax Bracket History — Every Rate From 2020 to 2026";
 const DESCRIPTION = "Australian tax brackets from FY2020-21 to FY2026-27: how rates and thresholds changed year by year, including the Stage 3 tax cuts. Historical rate comparison.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

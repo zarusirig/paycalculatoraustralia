@@ -11,6 +11,7 @@ import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { WEEKLY_PAY_FAQS } from "@/modules/calculator/weekly-pay-calculator-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/weekly-pay-calculator/`;
@@ -35,13 +36,13 @@ const DESCRIPTION = fitDescription(
   `$80,000 is ${formatAUD(at80k.weekly)} a week after tax in ${FY} (${formatAUD(80_000 / 52)} gross ÷ 52). Weekly tax calculator: enter weekly pay or salary for tax, Medicare, super and take-home pay.`,
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: `Weekly take-home pay after tax — ${FY} rates.` },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

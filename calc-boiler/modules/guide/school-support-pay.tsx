@@ -82,7 +82,7 @@ export function SchoolSupportStatePage({ state }: { state: SchoolSupportState })
         { label: state.code },
       ]} />
 
-      <PageHeader title={state.h1}>
+      <PageHeader featuredImage title={state.h1}>
         <p><strong>{state.headline}</strong></p>
       </PageHeader>
 
@@ -162,7 +162,7 @@ export function SchoolSupportHubPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" }, { label: "School Support Staff Pay" }]} />
 
-      <PageHeader title="Teacher Aide Pay by State 2026: School Support Staff Pay Rates">
+      <PageHeader featuredImage title="Teacher Aide Pay by State 2026: School Support Staff Pay Rates">
         <p>
           <strong>A teacher aide in a government school starts on $38.33 an hour in NSW (SLSO 1), $31.69 in Queensland (OO2), $34.75 in WA (Education Assistant 1.1), $51,622 a year full-time in Victoria (ES 1-1) and $58,360 a year in South Australia (SSO-1).</strong> Each state pays its school support staff under its own award or agreement, with different job titles, hours and pay dates. Private and Catholic school teacher aides are covered by a federal award instead, on our <Link href="/job-pay-rates/teacher-aide/">teacher aide pay rates</Link> page.
         </p>

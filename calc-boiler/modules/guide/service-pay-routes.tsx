@@ -72,7 +72,7 @@ export function serviceHubMetadata(occupation: ServiceOccupation): Metadata {
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
   };
 }
@@ -151,7 +151,7 @@ export function serviceStateMetadata(occupation: ServiceOccupation, slug: string
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
   };
 }

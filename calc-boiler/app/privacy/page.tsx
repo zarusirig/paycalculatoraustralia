@@ -4,6 +4,8 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/privacy/`;
@@ -11,7 +13,7 @@ const TITLE = "Privacy Policy — Pay Calculator Australia";
 const DESCRIPTION =
   "How Pay Calculator Australia handles your data. All calculations happen in your browser — we don't collect, store, or transmit your salary information.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -22,10 +24,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -80,6 +81,7 @@ function PrivacyPage() {
               {SITE_CONFIG.name} handles your data — in plain English,
               not legal jargon.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           {/* Key point */}

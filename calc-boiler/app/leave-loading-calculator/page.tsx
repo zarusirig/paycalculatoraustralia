@@ -3,19 +3,20 @@ import LeaveLoadingPage from "@/modules/guide/leave-loading";
 import { LEAVE_LOADING_FAQS } from "@/modules/guide/leave-loading-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "leave-loading-calculator";
 const TITLE = "Leave Loading Calculator: 17.5% Annual Leave Loading";
 const DESCRIPTION =
   "Work out 17.5% annual leave loading, including the award test that pays your shift penalties instead if higher. Which awards pay it, how it's taxed and payout.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

@@ -28,6 +28,7 @@ import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
 import PublicHolidayPayCalculator from "@/modules/calculator/public-holiday-pay-calculator";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 import { AwardPublicHolidayTable } from "./public-holiday-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 export default function PublicHolidayHub() {
   const range = publicHolidayRateRange();
@@ -82,6 +83,7 @@ export default function PublicHolidayHub() {
             <section id="calculator" className="not-prose mb-12">
               <PublicHolidayPayCalculator />
             </section>
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="award-rates">
               <h2 style={HEADING_FONT}>Public holiday penalty rates by award</h2>

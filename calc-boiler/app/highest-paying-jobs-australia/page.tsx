@@ -4,6 +4,7 @@ import { HIGHEST_PAYING_FAQS } from "@/modules/guide/highest-paying-jobs-austral
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG } from "@/lib/constants";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct core batch (5 Oct 2026): "highest paying jobs australia". Border-
 // conditional: kept strictly payslip-shaped (median gross, tax, take-home) and
@@ -15,13 +16,13 @@ const TITLE = `Highest Paying Jobs Australia ${SITE_CONFIG.financialYear}: Media
 const DESCRIPTION =
   "Highest paying jobs in Australia ranked by median full-time weekly pay, with what each takes home after tax and a link to each job's award rates.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

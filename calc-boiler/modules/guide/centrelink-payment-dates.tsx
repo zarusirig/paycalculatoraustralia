@@ -31,6 +31,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // ⚠️ REFRESH: when Services Australia publishes the Christmas 2026 tables, add
 // them to lib/constants/centrelink-payment-dates.ts (CHRISTMAS_2026_27) and
@@ -107,6 +108,7 @@ export default function CentrelinkPaymentDatesPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how">How Centrelink Payment Dates Work</H2>
             <p>Most Centrelink payments, including JobSeeker Payment, Youth Allowance, Parenting Payment and Age Pension, are paid every 2 weeks. Each person is on their own fortnightly cycle, so your payment day is the same weekday every fortnight but can differ from someone else&rsquo;s. That is why there is no national &ldquo;Centrelink payday&rdquo;. Some people can ask to be paid <a href={CENTRELINK_DATES_SOURCES.weeklyPaymentOption} target="_blank" rel="noopener noreferrer">weekly</a> instead.</p>

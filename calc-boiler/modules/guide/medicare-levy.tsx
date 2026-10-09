@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/medicare-levy-extra";
 import MedicareLevyCalculator from "@/modules/calculator/medicare-levy-calculator";
 import { MEDICARE_LEVY_FAQS } from "@/modules/guide/medicare-levy-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_LEVY =
   "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy";
@@ -90,6 +91,7 @@ export default function MedicareLevyPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How the Medicare Levy Is Calculated</h2>

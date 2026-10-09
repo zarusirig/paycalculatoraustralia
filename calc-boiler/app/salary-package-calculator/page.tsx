@@ -9,19 +9,20 @@ import { SITE_CONFIG, SUPER_GUARANTEE, formatPercent } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-package-calculator/`;
 const TITLE = "Salary Package Calculator — Including Super or Plus Super";
 const DESCRIPTION = `Turn "$X package", "$X including super" or "$X plus super" into base salary, ${formatPercent(SUPER_GUARANTEE.rate, 0)} super, total package and ${SITE_CONFIG.financialYear} take-home pay. Tables for $50k–$300k both ways.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: "Package including super → base salary, super and take-home. Plus super → total package." },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

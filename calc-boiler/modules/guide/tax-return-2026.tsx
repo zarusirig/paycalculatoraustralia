@@ -22,6 +22,7 @@ import {
 } from "@/lib/constants/tax-return-2025-26";
 import { TAX_RETURN_2026_FAQS } from "@/modules/guide/tax-return-2026-faqs";
 import RefundEstimator2026 from "@/modules/guide/tax-return-2026-estimator";
+import FeaturedImage from "@/components/common/featured-image";
 
 const R = RETURN_2026;
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
@@ -88,6 +89,8 @@ export default function TaxReturn2026Page() {
                 <ChevronRight className="h-5 w-5 flex-shrink-0 text-eucalyptus-dark" aria-hidden="true" />
               </Link>
             </section>
+
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="deadlines">
               <h2 style={H}>2026 tax return deadlines</h2>

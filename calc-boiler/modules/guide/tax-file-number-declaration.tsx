@@ -10,6 +10,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TFN_DECLARATION_FAQS } from "./tax-file-number-declaration-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   // Question numbering verified 23 Sep 2026 against the ATO paper form instructions:
@@ -43,6 +44,7 @@ export default function TaxFileNumberDeclarationPage() {
             Every new job requires a TFN declaration. Getting it wrong can mean too much or too little tax withheld from your pay. Here&apos;s a step-by-step guide to filling it in correctly and avoiding costly mistakes.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

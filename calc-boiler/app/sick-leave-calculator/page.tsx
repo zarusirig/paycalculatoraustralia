@@ -3,6 +3,7 @@ import SickLeavePage from "@/modules/guide/sick-leave";
 import { SICK_LEAVE_FAQS } from "@/modules/guide/sick-leave-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // G3 (wave 4, 24 Sep 2026). Targets: sick leave 8.1k, carer leave 5.4k,
 // personal leave 2.9k, personal/carer's leave 1k, sick leave calculator 720,
@@ -13,13 +14,13 @@ const TITLE = "Sick Leave Calculator Australia: Personal & Carer's Leave";
 const DESCRIPTION =
   "Sick leave in Australia: 10 days a year full-time (76 hours on 38 h/week), pro rata part-time. Calculate your personal/carer's leave balance. Fair Work rules.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

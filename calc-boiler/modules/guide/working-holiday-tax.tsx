@@ -9,6 +9,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { WORKING_HOLIDAY_TAX_FAQS } from "./working-holiday-tax-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Resident-side comparison figures, derived from the current-year engine so
 // they can never lag a bracket change (the 16%→15% cut moved all of these).
@@ -43,6 +44,7 @@ export default function WorkingHolidayTaxPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Working Holiday Maker Tax Rate {SITE_CONFIG.financialYear}</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Complete guide to tax rates for 417 and 462 visa holders working in Australia. Understand the 15% flat rate, employer obligations, and how to lodge your departure tax return.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">

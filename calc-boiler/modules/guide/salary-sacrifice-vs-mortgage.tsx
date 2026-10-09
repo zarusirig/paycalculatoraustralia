@@ -30,6 +30,7 @@ const k = (v: number) => `$${Math.round(v / 1000)}K`;
 const CAP = SUPER_GUARANTEE.concessionalCap;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Salary sacrificing for employees", url: "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/working-as-an-employee/salary-sacrificing-for-employees", publisher: SOURCES.ato.name },
@@ -60,6 +61,7 @@ export default function SalarySacrificeVsMortgagePage() {
             If you have spare cash flow, should you salary sacrifice into super for the tax benefit or make extra mortgage repayments for the guaranteed interest saving? The answer depends on your tax bracket, mortgage rate, and how far you are from retirement.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         {/* DISCLAIMER */}

@@ -39,6 +39,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /apprentice-pay/{trade}/ (Oct 2026 keyword-gap family F3). One trade deep:
 // year by year, junior vs adult start, the allowances the award adds, penalty
@@ -237,6 +238,7 @@ export default function ApprenticePayTradePage({ spoke }: { spoke: ApprenticeSpo
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="by-year">Apprentice {spoke.label} Pay by Year</H2>
             {pg ? (

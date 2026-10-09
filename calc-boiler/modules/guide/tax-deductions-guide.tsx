@@ -13,6 +13,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TAX_DEDUCTIONS_FAQS } from "./tax-deductions-guide-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Deductions you can claim", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim", publisher: SOURCES.ato.name },
@@ -30,6 +31,7 @@ export default function TaxDeductionsGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Deductions Guide — Work-Related Deductions That Reduce Your Tax</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how work-related tax deductions reduce your taxable income and lower your tax bill. From vehicle expenses to working from home, this guide covers every major deduction category for Australian taxpayers in FY2025-26.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

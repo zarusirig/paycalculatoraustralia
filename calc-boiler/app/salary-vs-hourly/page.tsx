@@ -8,19 +8,20 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-vs-hourly/`;
 const TITLE = "Salary vs Hourly Pay Australia — Which Is Better For You?";
 const DESCRIPTION = "Salary vs hourly pay: the real differences in overtime, leave entitlements, stability and total package value. See which arrangement pays more for your situation.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

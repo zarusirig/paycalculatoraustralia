@@ -10,6 +10,7 @@ import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import { EMPLOYMENT } from "@/lib/constants/australian-tax";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Types of employees", url: "https://www.fairwork.gov.au/starting-employment/types-of-employees", publisher: SOURCES.fwo.name },
@@ -41,6 +42,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
             This guide compares the entitlements of full-time, part-time and casual employment in Australia: paid leave, the {Math.round(EMPLOYMENT.casualLoading * 100)}% casual loading, notice periods, redundancy pay, super and casual conversion rights, as they stand under the Fair Work Act and the modern awards. It explains what each employment type gives up and gets in return; to put dollar figures on the comparison for your own rate and hours, use the <Link href="/employment-type-calculator/" className="text-eucalyptus-dark hover:underline">part-time vs full-time vs casual pay calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

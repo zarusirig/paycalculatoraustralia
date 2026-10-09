@@ -26,6 +26,7 @@ import {
   type HealthSalaryPage,
 } from "@/lib/data/health-salary";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /job-pay-rates/{dentist,radiologist,anaesthetist,optometrist,gp,surgeon}/ —
 // salary pages for health jobs where no modern award sets most people's pay.
@@ -57,7 +58,6 @@ export function healthSalaryMetadata(page: HealthSalaryPage): Metadata {
       siteName: SITE_CONFIG.name,
       type: "article",
       locale: "en_AU",
-      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title: page.metaTitle, description: page.metaDescription },
   };
@@ -204,6 +204,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
             after income tax and the Medicare levy.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

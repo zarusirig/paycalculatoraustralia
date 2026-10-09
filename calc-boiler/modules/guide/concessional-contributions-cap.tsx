@@ -19,6 +19,7 @@ import {
 } from "@/lib/constants/super-contributions";
 import ConcessionalCapCalculator from "@/modules/calculator/concessional-cap-calculator";
 import { CONCESSIONAL_CAP_FAQS } from "@/modules/guide/concessional-contributions-cap-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_CAP =
   "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/concessional-contributions-cap";
@@ -92,6 +93,7 @@ export default function ConcessionalContributionsCapPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <H2 id="what-counts">What Counts Towards the Concessional Cap</H2>

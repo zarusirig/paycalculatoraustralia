@@ -8,6 +8,7 @@ import { AUTHORS } from "@/lib/authors";
 import { SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE } from "@/lib/constants/australian-tax";
 import { PAYDAY_SUPER_LAW, PAYDAY_SUPER_SOURCES } from "@/lib/constants/payday-super";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payday-super/`;
@@ -17,7 +18,7 @@ const DAYS = SUPER_GUARANTEE_CHARGE.current.businessDaysToPay;
 const TITLE = "Payday Super 2026: Super Paid Every Payday + Calculator";
 const DESCRIPTION = `Payday Super started ${SUPER_GUARANTEE.paydaySuperStart}: employers pay ${RATE} super with every pay, received by your fund within ${DAYS} business days. Calculate super per pay and the due date.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -28,10 +29,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

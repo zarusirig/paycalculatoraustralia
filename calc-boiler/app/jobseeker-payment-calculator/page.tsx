@@ -9,6 +9,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { CENTRELINK_SOURCES, JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/jobseeker-payment-calculator/`;
@@ -16,13 +17,13 @@ const SEP = JOBSEEKER_RATES[SEPTEMBER_2026];
 const TITLE = "JobSeeker Payment Calculator 2026 — Rates From 20 September";
 const DESCRIPTION = `How much is JobSeeker? ${formatAUD(SEP.maxFortnightly.single, 2)} a fortnight single from 20 September 2026. See what you keep when you work: the $150 free area, tapers and partner income.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

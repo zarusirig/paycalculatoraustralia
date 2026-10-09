@@ -22,6 +22,7 @@ import {
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { TAX_CHANGES_2026_27_FAQS } from "./tax-changes-2026-27-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HECS_SOURCE_URL = "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds";
 
@@ -81,6 +82,7 @@ export default function TaxChanges202627Page() {
             The confirmed Australian tax changes for the 2026-27 financial year, now in effect. From the 15% rate cut and Payday Super to the published HECS thresholds, here&apos;s what you need to know to plan your take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/work-hours";
 import WorkHoursCalculator from "@/modules/calculator/work-hours-calculator";
 import { WORK_HOURS_FAQS } from "@/modules/guide/work-hours-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const FWO_HOURS_URL = "https://www.fairwork.gov.au/employment-conditions/hours-of-work-breaks-and-rosters";
 const FWO_RECORDS_URL = "https://www.fairwork.gov.au/pay-and-wages/pay-records-and-payslips";
@@ -84,6 +85,7 @@ export default function WorkHoursCalculatorPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>How to Use the Timesheet Calculator</h2>

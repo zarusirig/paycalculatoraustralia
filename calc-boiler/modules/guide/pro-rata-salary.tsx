@@ -10,6 +10,7 @@ import { SITE_CONFIG, SOURCES, EMPLOYMENT, formatAUD } from "@/lib/constants";
 import { PRO_RATA_DEFAULTS, calculateProRata } from "@/lib/constants/minimum-wage";
 import ProRataSalaryCalculator from "@/modules/calculator/pro-rata-salary-calculator";
 import { PRO_RATA_EXAMPLE, PRO_RATA_FAQS } from "@/modules/guide/pro-rata-salary-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -53,6 +54,7 @@ export default function ProRataSalaryPage() {
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+            <FeaturedImage placement="content" className="mt-0" />
             <section id="what-is-pro-rata">
               <h2 style={H2}>What Is a Pro-Rata Salary?</h2>
               <p>

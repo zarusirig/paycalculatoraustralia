@@ -3,6 +3,7 @@ import type NextLink from "next/link";
 import type AdsterraBanner from "@/components/common/adsterra-banner";
 import { ChevronRight } from "lucide-react";
 import { getRelatedLinks } from "@/lib/related-links";
+import { setPageRoute } from "@/lib/page-route";
 
 /**
  * The end of every page: the 300x250 rectangle and "What to check next".
@@ -133,6 +134,8 @@ export function withPageEndUsing<P extends object>(
       const value = params[key];
       return Array.isArray(value) ? value.join("/") : (value ?? "");
     });
+    // For the featured image and JSON-LD further down the tree (lib/page-route.ts).
+    setPageRoute(path);
     return (
       <>
         <Page {...props} />

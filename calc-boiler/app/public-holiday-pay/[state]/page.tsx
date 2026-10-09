@@ -5,6 +5,7 @@ import {
   publicHolidayStateParams,
 } from "@/modules/guide/public-holiday-routes";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{ state: string }>;
@@ -19,7 +20,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { state } = await params;
-  return publicHolidayStateMetadata(state);
+  return withFeaturedImage(publicHolidayStateMetadata(state));
 }
 
 async function Page({ params }: PageProps) {

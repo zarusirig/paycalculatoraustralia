@@ -27,6 +27,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Working Credit (QC 29721)", url: WORKING_CREDIT_SOURCES.servicesAustralia, publisher: SOURCES.servicesAustralia.name },
@@ -65,6 +66,7 @@ export default function WorkingCreditPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="who">Who Gets Working Credit</H2>
             <DataTable

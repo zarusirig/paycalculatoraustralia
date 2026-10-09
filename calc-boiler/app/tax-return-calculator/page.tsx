@@ -11,6 +11,7 @@ import { RETURN_YEARS } from "@/lib/constants/tax-return-estimator";
 import { TAX_RETURN_CALCULATOR_FAQS } from "@/modules/calculator/tax-return-calculator-faqs";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-calculator/`;
@@ -20,7 +21,7 @@ const NEXT = RETURN_YEARS["2026-27"];
 const TITLE = `Tax Return Calculator ${THIS.returnName} — Estimate Your ${THIS.incomeYear} Refund`;
 const DESCRIPTION = `Estimate your ${THIS.incomeYear} tax refund or bill using the ${THIS.incomeYear} rates your ${THIS.returnName} return is assessed on. Due ${RETURN_2026.selfLodgeDueDate}. Switch to ${NEXT.incomeYear} to plan next year.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -31,14 +32,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: `Estimate your ${THIS.incomeYear} tax refund on the rates your return is actually assessed on.`,
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

@@ -3,6 +3,7 @@ import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants/a
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Hub for /tax-on/[salary]/ (Wave 3 / T6). Every figure is computed from the
 // tax engine at build time.
@@ -14,12 +15,12 @@ const TITLE = `Tax on Every Salary in Australia: ${formatAUD(first)} to ${format
 const DESCRIPTION = `Income tax and Medicare levy on ${TAX_ON_SALARIES.length} salaries from ${formatAUD(first)} to ${formatAUD(last)} for ${SITE_CONFIG.financialYear}. E.g. tax on $80,000 is ${formatAUD(example.netIncomeTax)} plus ${formatAUD(example.medicareLevy)} Medicare. Bracket by bracket.`;
 const URL = `${SITE_CONFIG.baseUrl}/tax-on/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-};
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+});
 
 function TaxOnHubPage() {
   return (

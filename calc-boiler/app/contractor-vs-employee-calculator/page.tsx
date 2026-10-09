@@ -10,11 +10,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contractor-vs-employee-calculator/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: "Contractor vs Employee Calculator — Compare Take-Home",
   description:
     "Compare take-home pay as a contractor (ABN) vs employee. See the real difference after tax, super, GST & insurance. Side-by-side comparison.",
@@ -26,14 +27,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contractor vs Employee Calculator Australia",
     description: "Are you better off as a contractor or employee? Compare take-home pay.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

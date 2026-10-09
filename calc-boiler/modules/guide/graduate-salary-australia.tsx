@@ -56,7 +56,7 @@ export default function GraduateSalaryAustraliaPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/first-job-pay-guide/", label: "First Job" }, { label: "Graduate Salary" }]} />
 
-      <PageHeader title="Graduate Salary in Australia: Law, Nursing, Engineering, Accounting, Teaching & Medicine">
+      <PageHeader featuredImage title="Graduate Salary in Australia: Law, Nursing, Engineering, Accounting, Teaching & Medicine">
         <p>
           <strong>The median full-time salary for Australian undergraduates four to six months after finishing was {f0(QILT_MEDIANS_2025.all)} in the Government&rsquo;s 2025 Graduate Outcomes Survey.</strong> By field it runs from {f0(QILT_MEDIANS_2025.business)} (business and management) to {f0(QILT_MEDIANS_2025.medicine)} (medicine). This page lines those survey medians up against the published award or agreement starting rates we could verify, then shows what each leaves in your first payslip.
         </p>

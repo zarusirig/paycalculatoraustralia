@@ -29,6 +29,7 @@ import {
   type EmployerPay,
   type PenaltyRow,
 } from "@/lib/data/employer-pay";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -115,6 +116,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
             the Fair Work {isAward ? "Ombudsman" : "Commission"} website, verified {e.verifiedOn}.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

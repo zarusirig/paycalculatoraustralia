@@ -8,6 +8,7 @@ import { AUTHORS } from "@/lib/authors";
 import { SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE } from "@/lib/constants/australian-tax";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-charge/`;
@@ -17,7 +18,7 @@ const C = SUPER_GUARANTEE_CHARGE.current;
 const TITLE = "Super Guarantee Charge — What Late Super Costs in 2026-27";
 const DESCRIPTION = `Payday Super started ${SUPER_GUARANTEE.paydaySuperStart} and rebuilt the SGC: super must reach the fund within ${C.businessDaysToPay} business days of payday. The charge and notional earnings explained.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -28,10 +29,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

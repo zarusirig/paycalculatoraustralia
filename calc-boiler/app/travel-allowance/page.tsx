@@ -5,18 +5,19 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { OVERTIME_MEAL_REASONABLE, PUBLISHED_DAILY_TOTALS, TD_2026_4 } from "@/lib/constants/travel-allowance";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "travel-allowance";
 const TITLE = `Travel Allowance ${TD_2026_4.incomeYear}: ATO Reasonable Amounts + Calculator`;
 const DESCRIPTION = `ATO reasonable travel allowance amounts for ${TD_2026_4.incomeYear} (${TD_2026_4.id}): ${formatAUD(PUBLISHED_DAILY_TOTALS[1].Sydney!, 2)} a day in Sydney, every capital, 117 country centres and overseas. Overtime meal ${formatAUD(OVERTIME_MEAL_REASONABLE)}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

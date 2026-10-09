@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    // Large image previews (Google Discover, image-rich results) in the
+    // generic robots meta as well as googlebot's. No page sets its own robots.
+    "max-image-preview": "large",
     googleBot: {
       index: true,
       follow: true,
@@ -48,8 +51,10 @@ export const metadata: Metadata = {
     siteName: "Pay Calculator Australia",
     // Static PNG (public/og-image.png), not the file-based opengraph-image
     // route: that exported as an extensionless file behind a ?hash URL, which
-    // robots.txt's Disallow: /*?* blocks for social crawlers. Pages that set
-    // their own `openGraph` replace this object, so they list the image too.
+    // robots.txt's Disallow: /*?* blocks for social crawlers. This is only the
+    // fallback: every page's metadata goes through withFeaturedImage
+    // (lib/featured-image.ts), which sets its og:image and twitter:image to
+    // the page's featured image, or to this same /og-image.png until it has one.
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Pay Calculator Australia — Free Australian Pay Calculator" }],
   },
   twitter: {

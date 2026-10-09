@@ -7,6 +7,7 @@ import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTIONS, PUBLIC_SERVICE_PAY_FAQS } from "@/lib/data/public-service-pay";
 import { APS } from "@/lib/data/public-service-pay/aps";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/public-service-pay-scales/`;
@@ -28,7 +29,7 @@ const APS6 = apsBand("APS 6");
 const DESCRIPTION =
   `APS 4 salary: ${formatAUD(APS4.median!)} median at 31 Dec 2025; 90% of APS 6 staff earn ${formatAUD(APS6.min)} to ${formatAUD(APS6.max)}. Pay scale tables for the APS and all ${JURISDICTIONS.length - 1} state and territory services.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -39,10 +40,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

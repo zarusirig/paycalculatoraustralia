@@ -5,19 +5,21 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { formatNewsDate, getAllNews, NEWS_CATEGORIES } from "@/lib/news";
 import NewsIndexPage from "@/modules/news/index-page";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/news/`;
 const TITLE = "Australian Pay & Tax News — Wage, Super & Tax Changes";
 const DESCRIPTION = "The latest Australian pay news: minimum wage decisions, tax changes, super rules, HECS updates and Centrelink increases, and what each means for your take-home pay.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const collection: WithContext<CollectionPage> = {
   "@context": "https://schema.org",
@@ -51,6 +53,7 @@ function Page() {
     <>
       <JsonLd code={[collection, breadcrumb]} />
       <NewsIndexPage
+        featuredImage={<FeaturedImage className="mb-0 mt-6" />}
         categories={NEWS_CATEGORIES}
         items={getAllNews().map((a) => ({
           slug: a.slug,

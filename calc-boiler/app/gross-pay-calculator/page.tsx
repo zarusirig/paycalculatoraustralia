@@ -11,6 +11,7 @@ import { findGrossForNet } from "@/modules/calculator/gross-for-net";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/gross-pay-calculator/`;
@@ -27,7 +28,7 @@ const GROSS_FOR_1500_WK = Math.round(findGrossForNet(1_500 * 52));
 const TITLE = `Net to Gross Pay Calculator Australia ${FY} (Reverse Tax)`;
 const DESCRIPTION = `To take home $1,500 a week you need ${formatAUD(GROSS_FOR_1500_WK)} a year gross in ${FY}. Enter any weekly, fortnightly, monthly or annual net pay to find the gross salary you need.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -38,14 +39,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: "Find out exactly how much gross salary you need to hit your take-home goals.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

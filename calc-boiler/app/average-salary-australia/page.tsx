@@ -13,6 +13,7 @@ import {
 } from "@/lib/data/average-salary";
 import { pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/average-salary-australia/`;
@@ -21,13 +22,13 @@ const URL = `${BASE}/average-salary-australia/`;
 const TITLE = averageSalaryTitle();
 const DESCRIPTION = averageSalaryDescription();
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", modifiedTime: AVERAGE_SALARY_VERIFIED_ISO, images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", modifiedTime: AVERAGE_SALARY_VERIFIED_ISO },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

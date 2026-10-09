@@ -11,12 +11,13 @@ import { AUTHORS } from "@/lib/authors";
 import { DATA_FILES, JSON_FILE, OPEN_DATA, dataHref, suggestedCitation } from "@/lib/data/open-data";
 import { faqPageSchema } from "@/lib/faq";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const TITLE = "Australian Tax and Pay Data: Free CSV and JSON Download";
 const DESCRIPTION = `Download Australian tax rates, Medicare levy, super guarantee, HECS-HELP thresholds and National Minimum Wage history (2010 to ${SITE_CONFIG.financialYear}) as CSV and JSON. Sourced to the ATO and Fair Work Commission, free to reuse with a link.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: OPEN_DATA.url },
@@ -29,10 +30,9 @@ export const metadata: Metadata = {
     locale: "en_AU",
     publishedTime: OPEN_DATA.publishedIso,
     modifiedTime: OPEN_DATA.updatedIso,
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

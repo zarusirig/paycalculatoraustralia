@@ -8,6 +8,7 @@ import { getAllNews, getNewsBySlug } from "@/lib/news";
 import { NEWS_COMPONENTS } from "@/modules/news/articles";
 import NewsArticleLayout from "@/modules/news/layout";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const meta = getNewsBySlug(slug);
   if (!meta) return {};
   const url = `${BASE}/news/${meta.slug}/`;
-  return {
+  return withFeaturedImage({
     title: meta.title,
     description: meta.description,
     alternates: { canonical: url },
@@ -37,10 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: "en_AU",
       publishedTime: meta.datePublished,
       modifiedTime: meta.dateModified,
-      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
-  };
+  });
 }
 
 async function NewsArticlePage({ params }: PageProps) {

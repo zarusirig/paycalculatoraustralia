@@ -24,6 +24,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /payment-in-lieu-of-notice/ — NES notice table and the tax and super
 // treatment of PILON. It does not rebuild /final-pay-calculator/ (the whole
@@ -69,6 +70,7 @@ export default function PilonPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="notice-period">How Much Notice Must an Employer Give?</H2>
             <p>

@@ -24,6 +24,7 @@ import {
 import { HOW_PAY_IS_SET, serviceHubFaqs } from "@/lib/data/service-pay/hub";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 import { SalaryLink, TakeHomeLinkNote } from "./service-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SIBLINGS: { href: string; label: string }[] = [
   { href: "/paramedic-pay/", label: "Paramedic pay by state" },
@@ -76,6 +77,7 @@ export default function ServicePayHub({ occupation }: { occupation: ServiceOccup
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

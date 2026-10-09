@@ -29,6 +29,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Cents per kilometre method (QC107246)", url: CENTS_PER_KM_SOURCES.atoMethod, publisher: SOURCES.ato.name },
@@ -71,6 +72,7 @@ export default function CentsPerKmPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="rates">ATO Cents per km Rates by Year</H2>
             <DataTable

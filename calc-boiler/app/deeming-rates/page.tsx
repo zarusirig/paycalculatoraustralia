@@ -7,13 +7,14 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { DEEMING, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "deeming-rates";
 const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 const TITLE = `Deeming Rates 2026 — ${pct(DEEMING.lowerRate)} & ${pct(DEEMING.upperRate)} + Deeming Calculator`;
 const DESCRIPTION = `Deeming rates from ${DEEMING.ratesFrom}: ${pct(DEEMING.lowerRate)} on the first ${formatAUD(DEEMING.thresholds.single)} (single) or ${formatAUD(DEEMING.thresholds.pensionerCouple)} (couple), ${pct(DEEMING.upperRate)} above. Calculate deemed income alongside your wages.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

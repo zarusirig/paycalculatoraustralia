@@ -16,6 +16,7 @@ import { pageDateModified } from "@/lib/page-dates";
 import { withPageEndUsing } from "@/components/common/page-end";
 import HomeLink from "@/modules/home/templates/home-link";
 import HomeAdsterraBanner from "@/modules/home/templates/home-adsterra-banner";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const FY = SITE_CONFIG.financialYear;
 
@@ -43,7 +44,7 @@ const DESCRIPTION = fitDescription(
   `On $80,000 you take home ${formatAUD(BD80.takeHomePay)} a year (${formatAUD(BD80.weekly)} a week) in ${FY}. Pay and salary calculator for any salary, hourly or casual wage after tax, HECS and ${Math.round(SUPER_GUARANTEE.rate * 100)}% super.`,
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/` },
@@ -54,10 +55,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const organizationSchema: WithContext<Organization> = {
   "@context": "https://schema.org",

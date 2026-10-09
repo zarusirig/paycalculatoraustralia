@@ -8,6 +8,7 @@ import { HECS_HELP, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/stsl-on-payslip/`;
@@ -21,13 +22,13 @@ const TITLE = `What Does STSL Mean on a Payslip? HECS-HELP Withholding (${FY})`;
 // the same /52 rounding the page body renders.
 const DESCRIPTION = `STSL on a payslip is Study and Training Support Loans: the extra PAYG withheld for HECS-HELP, FEE-HELP and VET loans above ${formatAUD(HECS_HELP.minimumThreshold)} a year (${formatAUD(Math.round(HECS_HELP.minimumThreshold / 52))} a week) in ${FY}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

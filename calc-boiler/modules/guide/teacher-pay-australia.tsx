@@ -18,6 +18,7 @@ import {
   topOfClassroomScale,
 } from "@/lib/data/teacher-pay";
 import { teacherHubFaqs, teacherHubSummary } from "@/lib/data/teacher-pay/hub";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -82,6 +83,7 @@ export default function TeacherPayAustraliaPage() {
             below is read from the state&rsquo;s own agreement or salary schedule and links to its take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

@@ -9,19 +9,21 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/employer-cost-calculator/`;
 const TITLE = "True Cost of an Employee Calculator Australia";
 const DESCRIPTION = "Calculate the true cost of hiring an employee in Australia: superannuation, payroll tax, workers compensation and leave provisions on top of base salary.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -61,6 +63,8 @@ function Page() {
     <>
       <JsonLd code={[breadcrumb, webPage, article, faq]} />
       <EmployerCostCalculatorPage sidebar={<EmployerCostCalculatorSidebar />}>
+        {/* After the calculator, at the start of the guide content. */}
+        <FeaturedImage placement="content" className="mt-0 mb-12" />
         <EmployerCostCalculatorContent />
       </EmployerCostCalculatorPage>
     </>

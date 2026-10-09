@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/pension-age";
 import { PENSION_AGE_FAQS } from "@/modules/guide/pension-age-australia-faqs";
 import RetirementDatesCalculator from "@/modules/guide/pension-age-calculator";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
@@ -79,6 +80,8 @@ export default function PensionAgeAustraliaPage() {
             <section className="not-prose mb-10">
               <RetirementDatesCalculator />
             </section>
+
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="age-pension-age">
               <h2 style={H}>Age Pension age: {AGE_PENSION_AGE}</h2>

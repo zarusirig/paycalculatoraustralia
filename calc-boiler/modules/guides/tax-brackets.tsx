@@ -35,6 +35,7 @@ import {
 import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import TaxBracketsLookup from "@/modules/calculator/tax-brackets-lookup";
 import { MAX_SAVING_2026_27, MAX_SAVING_2027_28, TAX_BRACKETS_FAQS } from "@/modules/guides/tax-brackets-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // =============================================================================
 // /tax-brackets/ — rebuilt 23 Sep 2026 (Wave 3, T1).
@@ -159,6 +160,7 @@ export default function TaxBracketsGuidePage() {
             Australia has five resident income tax brackets for {FY}: <strong>nil</strong> up to {formatAUD(B[0].max)}, <strong>{pct(B[1].rate)}</strong> to {formatAUD(B[1].max)}, <strong>{pct(B[2].rate)}</strong> to {formatAUD(B[2].max)}, <strong>{pct(B[3].rate)}</strong> to {formatAUD(B[3].max)} and <strong>{pct(TOP.rate)}</strong> above that. The second rate fell from {pct(P[1].rate)} to {pct(B[1].rate)} on 1 July 2026, worth up to {formatAUD(MAX_SAVING_2026_27)} a year, and falls again to {pct(N[1].rate)} on {LEGISLATED_CUT_2027_28.effectiveDate}. The 2% Medicare levy is charged on top.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 not-prose">

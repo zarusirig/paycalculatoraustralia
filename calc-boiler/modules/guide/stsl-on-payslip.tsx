@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES, HECS_HELP, formatAUD, calculatePayBreakdown, calculateHECS } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Study and training support loans rates and repayment thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: SOURCES.ato.name },
@@ -55,6 +56,7 @@ export default function STSLOnPayslipPage() {
           </p>
           <p className="text-sm text-warmgray-light mb-6">Updated: 2 July 2026 — reflects FY2026-27 thresholds.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

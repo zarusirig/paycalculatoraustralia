@@ -24,6 +24,7 @@ const EX_RESULT = EX_WITHHELD - EX_TOTAL;
 const MLS_SINGLE_2025_26 = MLS_2025_26_SINGLE[0].min - 1;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Notice of assessment", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return", publisher: SOURCES.ato.name },
@@ -55,6 +56,7 @@ export default function NoticeOfAssessmentPage() {
             A notice of assessment (NOA) is the document the ATO issues after processing an income tax return, setting out taxable income, the tax on that income, credits for tax already withheld and the resulting refund or amount owing. For the {RETURN_2026.incomeYear} return, most online lodgements are assessed within {RETURN_2026.onlineRefundTypical} and paper returns within {RETURN_2026.paperRefundBusinessDays} business days. This guide explains each line and what to do if something looks wrong.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

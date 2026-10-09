@@ -12,6 +12,7 @@ import {
 } from "@/lib/data/public-service-pay/aps-grades";
 import { formatSalary } from "@/lib/data/public-service-pay/types";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // J6 (wave 4, 24 Sep 2026): one page per APS level, nested under the APS
 // jurisdiction page. Only /aps/{grade}/ is built; other jurisdictions have no
@@ -49,13 +50,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!d) return {};
   const { title, description } = meta(d);
   const url = `${SITE_CONFIG.baseUrl}/public-service-pay-scales/aps/${d.grade.slug}/`;
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

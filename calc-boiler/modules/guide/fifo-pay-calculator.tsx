@@ -25,6 +25,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Living-away-from-home allowance fringe benefits (QC 71150)", url: FIFO_SOURCES.lafha, publisher: SOURCES.ato.name },
@@ -65,6 +66,7 @@ export default function FifoPayCalculatorPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how">How FIFO Pay Is Worked Out</H2>
             <p>Most FIFO jobs in mining, oil and gas and construction pay an hourly rate set by an enterprise agreement. The roster decides how many hours you work, and the agreement decides which of those hours are ordinary time and which are overtime. Many agreements average the 38-hour week across the roster cycle, and that is what this calculator does:</p>

@@ -5,6 +5,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { SITE_CONFIG } from "@/lib/constants";
 import { SCHOOL_SUPPORT_SLUGS, getSchoolSupportState } from "@/lib/data/school-support-pay";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // J6 (wave 4, 24 Sep 2026): one page per state with verified current rates.
 // Targets (DataForSEO AU): slso pay rate nsw 480, sso pay rate 480,
@@ -25,13 +26,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const state = getSchoolSupportState(slug);
   if (!state) return {};
   const url = `${SITE_CONFIG.baseUrl}/school-support-staff-pay/${state.slug}/`;
-  return {
+  return withFeaturedImage({
     title: state.metaTitle,
     description: state.metaDescription,
     alternates: { canonical: url },
-    openGraph: { title: state.metaTitle, description: state.metaDescription, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title: state.metaTitle, description: state.metaDescription, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title: state.metaTitle, description: state.metaDescription },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

@@ -36,6 +36,7 @@ import AuthorBox from "@/components/common/author-box";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { TAX_CALENDAR_FAQS } from "./tax-calendar-faqs";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const R = RETURN_2026;
@@ -84,6 +85,7 @@ export default function TaxCalendarPage() {
       <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={H}>Australian Tax Calendar {Y.incomeYear}</h1><p className="text-xl text-warmgray leading-relaxed mb-6">A tax week in Australia is one of the {EMPLOYMENT.weeksPerYear} weeks of the financial year, which for {Y.incomeYear} runs from {Y.start} to {Y.end}. Within that year the {R.incomeYear} tax return is due {R.selfLodgeDueDate}{self.effectiveIso !== self.iso ? `, accepted on ${formatIso(self.effectiveIso, "long")} as the next business day` : ""}, or {R.agentDueDateMostPeople} for most tax agent clients; super is due within {SGC.current.businessDaysToPay} business days of each payday. Where a due date falls on a weekend or public holiday, we show the next business day the ATO accepts.</p><TrustBar className="!max-w-none" /></header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage className="mt-0" />
 
           {/* ===== SECTION 1: Key Tax Dates ===== */}
           <section><h2 style={H}>What Are the Key Tax Dates for {Y.incomeYear}?</h2>

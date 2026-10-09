@@ -5,6 +5,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { FTL_MAX_INDIVIDUAL, PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026. Targets: late tax return penalty 390, tax return penalty 140
 // (DataForSEO, AU; peaks 1,600 and 720 in Oct 2025).
@@ -14,13 +15,13 @@ const URL = `${SITE_CONFIG.baseUrl}/${SLUG}/`;
 const TITLE = "Late Tax Return Penalty: Failure to Lodge Calculator 2026";
 const DESCRIPTION = `Late tax return penalty: ${formatAUD(PENALTY_UNIT.amount)} per 28 days overdue, up to ${formatAUD(FTL_MAX_INDIVIDUAL)}. Self-lodge deadline 31 Oct 2026. Calculate yours and see when the ATO waives it.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

@@ -10,6 +10,7 @@ import { calculatePayBreakdown, EMPLOYMENT, formatAUD, SITE_CONFIG } from "@/lib
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hourly-to-annual-salary-calculator/`;
@@ -29,7 +30,7 @@ const netAt = (rate: number) => calculatePayBreakdown({ grossSalary: annualAt(ra
 const TITLE = `Hourly to Annual Salary Calculator Australia: $${HEADLINE_RATE}/hr = ${formatAUD(annualAt(HEADLINE_RATE))}`;
 const DESCRIPTION = `$${HEADLINE_RATE} an hour is ${formatAUD(annualAt(HEADLINE_RATE))} a year (${EMPLOYMENT.standardWeeklyHours} hrs × ${EMPLOYMENT.weeksPerYear} weeks = ${HOURS_LABEL} hours), or ${formatAUD(netAt(HEADLINE_RATE))} after tax in ${FY}. Convert any hourly rate to weekly, fortnightly and annual pay.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -40,14 +41,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: `Any hourly rate to an annual salary, before and after tax, ${FY}.`,
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

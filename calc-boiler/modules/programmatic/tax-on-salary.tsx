@@ -20,6 +20,7 @@ import { salaryFacts } from "@/lib/data/salary-pages";
 import { DIVISION_293 } from "@/lib/constants/super-contributions";
 import { NextThousandTaxTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 interface TaxOnSalaryProps {
   salary: number;
@@ -98,6 +99,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
       </section>
 
       <TrustBar />
+      <FeaturedImage lazy className="mt-0" />
 
       {/* H2: How Much Tax Do You Pay on [salary]? */}
       <section className="prose prose-eucalyptus max-w-none">

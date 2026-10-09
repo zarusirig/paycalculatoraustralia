@@ -3,6 +3,7 @@ import DeliveryDriverPayRatePage from "@/modules/guide/delivery-driver-pay-rate"
 import { DELIVERY_DRIVER_FAQS } from "@/modules/guide/delivery-driver-pay-rate-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026 trending set, item 1. The first FWC Minimum Standards Order
 // (on-demand delivery) started 17 August 2026. Targets: delivery driver pay
@@ -13,13 +14,13 @@ const TITLE = "Delivery Driver Pay Rate Australia: $31.30/hr Minimum (2026)";
 const DESCRIPTION =
   "On-demand delivery workers have a legal pay floor from 17 Aug 2026: $31.30/hr on a bike, $31.50 motorbike, $32 car, before expenses. Check your payout, free.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

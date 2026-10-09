@@ -7,12 +7,13 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { CARER_ALLOWANCE, CARER_SUPPORT_SOURCES } from "@/lib/constants/centrelink-carer-and-support";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "carer-allowance";
 const TITLE = "Carer Allowance 2026 — Centrelink Rate, Income Limit & Work";
 const DESCRIPTION = `Centrelink Carer Allowance is ${formatAUD(CARER_ALLOWANCE.fortnightly, 2)} a fortnight, not taxed, with a ${formatAUD(CARER_ALLOWANCE.incomeLimit)} combined income limit and no assets test. Plus the ${formatAUD(CARER_ALLOWANCE.carerSupplementAnnual)} Carer Supplement.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

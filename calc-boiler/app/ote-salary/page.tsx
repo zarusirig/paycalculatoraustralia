@@ -3,6 +3,7 @@ import OteSalaryPage from "@/modules/guide/ote-salary";
 import { OTE_SALARY_FAQS } from "@/modules/guide/ote-salary-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // G3 (wave 4, 24 Sep 2026). Targets: ote meaning salary 3.6k, ote definition
 // salary 3.6k, what is ote 1.3k, what does ote mean in salary 720, ote salary
@@ -13,13 +14,13 @@ const TITLE = "OTE Salary Meaning: On-Target Earnings + Calculator";
 const DESCRIPTION =
   "OTE means on-target earnings: base salary plus commission at 100% of target. See pay above and below target, 12% super on commission and take-home pay.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

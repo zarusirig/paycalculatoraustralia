@@ -23,6 +23,7 @@ import {
 import { SCHADS_AWARD, SCHADS_PENALTIES, SCHADS_SACS } from "@/lib/constants/schads-award";
 // --- G4 public holiday pay cluster ---
 import { STATE_PUBLIC_HOLIDAYS, statePath, statewideDays, yearOf } from "@/lib/data/public-holidays";
+import FeaturedImage from "@/components/common/featured-image";
 const PH_COUNTS = STATE_PUBLIC_HOLIDAYS.map((st) => statewideDays(yearOf(st, 2026)!).length);
 const PH_COUNT_MIN = Math.min(...PH_COUNTS);
 const PH_COUNT_MAX = Math.max(...PH_COUNTS);
@@ -101,6 +102,7 @@ export default function OvertimePenaltyRatesGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Penalty Rates Australia &mdash; Weekend, Public Holiday &amp; Overtime Loadings</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Overtime pay rates in Australia are the base hourly rate multiplied by a loading set by the modern award or enterprise agreement: usually {HOSPITALITY_OVERTIME.weekdayFirst2Hours} times for the first two or three hours beyond {EMPLOYMENT.standardWeeklyHours} ordinary hours a week and double time ({HOSPITALITY_OVERTIME.weekdayAfter2Hours.toFixed(1)} times) after that, with {RETAIL_OVERTIME.publicHoliday} times for overtime on a public holiday under awards such as retail. On a {formatAUD(30)} base, 3 hours at time-and-a-half is {formatAUD(30 * RETAIL_OVERTIME.weekdayFirst3Hours * 3)}. This guide covers the multipliers by award, how casual penalties differ and how the loadings are taxed. Rates current from {AWR_EFFECTIVE}.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

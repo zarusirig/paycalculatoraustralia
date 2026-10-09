@@ -13,6 +13,7 @@ import {
 } from "@/modules/tax-tables/ato-schedules";
 import { pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-tax-table/`;
@@ -28,13 +29,13 @@ const DESCRIPTION =
   `ATO fortnightly tax table ${PAYG_FINANCIAL_YEAR} (${ATO_FORTNIGHTLY.nat}), ${formatAUD(TABLE_RANGE.from)} to ${formatAUD(TABLE_RANGE.to)} in ${formatAUD(TABLE_RANGE.step)} steps: on ${formatAUD(2_000)} a fortnight, ${formatAUD(at2000.totalWithheld)} is withheld with the threshold, ${formatAUD(at2000NoTft.totalWithheld)} without. STSL and CSV.`;
 const MODIFIED = "2026-09-23";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

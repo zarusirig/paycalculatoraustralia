@@ -6,6 +6,7 @@ import type { Article, BreadcrumbList, FAQPage, WebApplication, WithContext } fr
 import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-withheld-calculator/`;
@@ -18,13 +19,13 @@ const FY = SITE_CONFIG.financialYear;
 const TITLE = `Tax Withheld Calculator ${FY}: PAYG Calculator & Estimator`;
 const DESCRIPTION = `Tax withheld calculator and PAYG withholding estimator for ${FY}: the tax taken from weekly, fortnightly or monthly pay on ATO formulas, plus your likely refund.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

@@ -15,6 +15,7 @@ import { CSHC, DEEMING, DSP, PENSION_ASSETS_TEST } from "@/lib/constants/centrel
 import { CCS } from "@/lib/constants/child-care-subsidy";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [
   { title: "Income test for pensions", url: "https://www.servicesaustralia.gov.au/income-test-for-age-pension", publisher: SOURCES.servicesAustralia.name },
   { title: "Income test for JobSeeker Payment", url: "https://www.servicesaustralia.gov.au/income-test-for-jobseeker-payment", publisher: SOURCES.servicesAustralia.name },
@@ -42,6 +43,7 @@ export default function CentrelinkIncomeTestPage() {
       <header className="mb-10 max-w-4xl"><h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Centrelink Income Test Guide</h1><p className="text-xl text-warmgray leading-relaxed mb-6">The Centrelink income test reduces an income-support payment by a set number of cents for each dollar earned above a free area. For <a href={CENTRELINK_SOURCES.jobseekerIncomeTest} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">JobSeeker Payment</a>, income up to {formatAUD(JOBSEEKER.incomeTest.freeArea)} a fortnight has no effect, each dollar to {formatAUD(JOBSEEKER.incomeTest.band1End)} cuts the payment by {Math.round(JOBSEEKER.incomeTest.taper1 * 100)} cents and each dollar above {formatAUD(JOBSEEKER.incomeTest.band1End)} by {Math.round(JOBSEEKER.incomeTest.taper2 * 100)} cents; the single rate of {formatAUD(JS_SEP.maxFortnightly.single, 2)} from {JS_SEP.ratesFrom} reaches $0 at {formatAUD(JS_SEP.publishedCutOff.single, 2)}. The same mechanism, with different free areas and tapers, applies to Parenting Payment, Family Tax Benefit, Youth Allowance and Age Pension.</p><TrustBar className="!max-w-none" /></header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage lazy className="mt-0" />
 
           {/* ── H2 1: What Is the Centrelink Income Test? ── */}
           <section>

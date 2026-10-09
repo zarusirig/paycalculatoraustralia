@@ -3,6 +3,7 @@ import RideshareDeliveryAfterTaxPage from "@/modules/guide/rideshare-delivery-ea
 import { RIDESHARE_AFTER_TAX_FAQS } from "@/modules/guide/rideshare-delivery-earnings-after-tax-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026 trending set, item 15 (spillover from the delivery minimum). Passes
 // the audience border only as a contractor tax and GST calculator: no income
@@ -13,13 +14,13 @@ const TITLE = "Uber & Delivery Driver Earnings After Tax: ABN & GST Guide";
 const DESCRIPTION =
   "Rideshare and delivery payments have no tax withheld. Work out GST, income tax and what to set aside on your own figures. ABN, GST and deductions explained.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

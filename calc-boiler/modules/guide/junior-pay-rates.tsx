@@ -23,6 +23,7 @@ import {
 import { JUNIOR_EMPLOYER_AGES, JUNIOR_EMPLOYER_ROWS, JUNIOR_FAQS } from "@/modules/guide/junior-pay-rates-faqs";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
 import { MIN_WAGE_AGES, ageSummary, money } from "@/modules/guide/minimum-wage-by-age-data";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
@@ -80,6 +81,7 @@ export default function JuniorPayRatesPage() {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         {/* Age-led summary: the queries are "minimum wage for a 15 year old" etc. */}

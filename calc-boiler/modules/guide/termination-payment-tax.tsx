@@ -25,6 +25,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /termination-payment-tax-calculator/ (Oct 2026): tax on genuine redundancy
 // and other ETPs, including the whole-of-income cap. Rules and sources:
@@ -74,6 +75,7 @@ export default function TerminationPaymentTaxPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="what-is-etp">What Counts as a Termination Payment for Tax?</H2>
             <p>

@@ -11,6 +11,7 @@ import { TAX_ON_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
 import { fitTitle } from "@/lib/seo-title";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
   const totalRate = ((totalTax / salaryAmount) * 100).toFixed(1);
 
-  return {
+  return withFeaturedImage({
     // Leads with the answer, in GSC phrasing ("tax on 60000 australia"). Only a
     // listing showing the number competes with an AI Overview that already
     // states one. Deliberately drops "Take-Home Pay"/"After Tax" — those belong
@@ -53,8 +54,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     // og:url + image: without an openGraph object these pages emitted no
     // og:url. og:title/description are filled from title/description.
-    openGraph: { url: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-  };
+    openGraph: { url: `${SITE_CONFIG.baseUrl}/tax-on/${resolvedParams.salary}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  });
 }
 
 async function TaxOnSalaryPage({ params }: PageProps) {

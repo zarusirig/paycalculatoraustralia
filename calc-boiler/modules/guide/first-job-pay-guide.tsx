@@ -23,6 +23,7 @@ const FIRST_JOB_ROWS = [
 ] as const;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Apply for a TFN", url: "https://www.ato.gov.au/individuals-and-families/tax-file-number/apply-for-a-tfn", publisher: SOURCES.ato.name },
@@ -40,6 +41,7 @@ export default function FirstJobPayGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>First Job Pay Guide — Everything You Need to Know About Your First Pay</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Starting your first job is exciting, but your first payslip can be confusing. This guide explains what happens to your pay before it reaches your bank account — from tax and superannuation to understanding every line on your payslip.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

@@ -9,6 +9,7 @@ import { AUTHORS, getGuideAuthorship } from "@/lib/authors";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -29,13 +30,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = mwStateTitle(s);
   const description = mwStateDescription(s);
   const url = `${BASE}/minimum-wage/${s.slug}/`;
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

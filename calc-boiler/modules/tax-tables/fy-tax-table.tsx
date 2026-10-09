@@ -46,6 +46,7 @@ import {
   fyWindow,
   longDate,
 } from "./fy-tax-table-data";
+import FeaturedImage from "@/components/common/featured-image";
 
 const COMPARE_ROWS: Record<PayFrequency, readonly number[]> = {
   weekly: [700, 1_000, 1_500, 2_000, 3_000],
@@ -245,6 +246,7 @@ export default function FyTaxTablePage({ frequency, fy }: { frequency: PayFreque
             <PayDateFinder frequency={frequency} currentFy={fy} />
           </section>
           <TrustBar className="!max-w-none mt-5" />
+          <FeaturedImage placement="content" className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

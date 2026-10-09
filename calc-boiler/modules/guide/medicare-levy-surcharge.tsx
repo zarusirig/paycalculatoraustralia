@@ -23,6 +23,7 @@ import {
 import type { MlsTier } from "@/lib/constants/medicare-levy-extra";
 import MedicareLevySurchargeCalculator from "@/modules/calculator/medicare-levy-surcharge-calculator";
 import { MLS_FAQS } from "@/modules/guide/medicare-levy-surcharge-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_RATES =
   "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates";
@@ -96,6 +97,7 @@ export default function MedicareLevySurchargePage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <H2 id="thresholds">Medicare Levy Surcharge Thresholds and Rates {MLS_INCOME_YEAR}</H2>

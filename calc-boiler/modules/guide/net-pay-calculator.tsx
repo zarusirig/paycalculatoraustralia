@@ -18,6 +18,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /net-pay-calculator/ — the hourly-rate view of net pay, laid out as a
 // payslip, with net pay per hour. Distinct from /take-home-pay-calculator/
@@ -66,6 +67,7 @@ export default function NetPayPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="what-is-net-pay">What Net Pay Means on a Payslip</H2>
             <p>

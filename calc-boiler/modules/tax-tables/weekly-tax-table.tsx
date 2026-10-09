@@ -33,6 +33,7 @@ import {
   WEEKLY_FOREIGN_BANDS,
   WEEKLY_TABLE_ROWS,
 } from "./ato-schedules";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${ATO_WEEKLY.title} (${ATO_WEEKLY.nat})`, url: ATO_WEEKLY.pageUrl, publisher: SOURCES.ato.name },
@@ -80,6 +81,7 @@ export default function WeeklyTaxTablePage() {
             {ATO_WEEKLY.nat} published {ATO_WEEKLY.published} &middot; applies to payments made from {PAYG_TABLES_UPDATED} &middot; includes the {PAYG_FINANCIAL_YEAR} rate cut (15% on $18,201&ndash;$45,000) &middot; {PAYG_PREVIOUS_FINANCIAL_YEAR} amounts available via the year toggle
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage placement="content" className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

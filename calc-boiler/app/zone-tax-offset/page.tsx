@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/zone-tax-offset/`;
@@ -19,7 +20,7 @@ const SPECIAL = formatAUD(ZONE_AREA_RATES.specialArea.fixedAmount);
 
 const TITLE = `Zone Tax Offset Calculator — ${A} Zone A, ${SPECIAL} Special Area`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: `Work out your zone tax offset: Zone A ${A}, Zone B ${B}, special area ${SPECIAL}, plus dependant amounts. Follows the ATO's T4 worksheets for the ${ZONE_OFFSET_INCOME_YEAR} income year.`,
   alternates: { canonical: URL },
@@ -30,9 +31,8 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

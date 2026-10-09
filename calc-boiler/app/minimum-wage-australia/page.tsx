@@ -8,6 +8,7 @@ import { AUTHORS } from "@/lib/authors";
 import { NMW_ORDER } from "@/lib/constants/junior-rates";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/minimum-wage-australia/`;
@@ -15,13 +16,13 @@ const URL = `${BASE}/minimum-wage-australia/`;
 // Current-rate intent ("what is the minimum wage in australia", "minimum wage
 // australia 2026", state variants). /minimum-wage-history-australia/ keeps the
 // history intent so the two do not compete.
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: MW_TITLE,
   description: MW_DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: MW_TITLE, description: MW_DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: MW_TITLE, description: MW_DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: MW_TITLE, description: MW_DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

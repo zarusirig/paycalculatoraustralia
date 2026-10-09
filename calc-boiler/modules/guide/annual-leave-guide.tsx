@@ -15,6 +15,7 @@ const PAYOUT_BASE = Math.round(156 * PAYOUT_RATE * 100) / 100;
 const PAYOUT_LOADING = Math.round(PAYOUT_BASE * 0.175 * 100) / 100;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Annual leave", url: "https://www.fairwork.gov.au/leave/annual-leave", publisher: SOURCES.fwo.name },
@@ -32,6 +33,7 @@ export default function AnnualLeaveGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Annual Leave Guide Australia</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Your complete guide to annual leave entitlements, 17.5% leave loading, pro-rata calculations, and payout rules when you leave your job. Updated for FY{SITE_CONFIG.financialYear}.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">

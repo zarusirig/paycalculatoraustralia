@@ -3,6 +3,7 @@ import AnnualLeavePage from "@/modules/guide/annual-leave-calculator";
 import { ANNUAL_LEAVE_CALCULATOR_FAQS } from "@/modules/guide/annual-leave-calculator-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct core batch (5 Oct 2026): head term "annual leave calculator". Owns the
 // accrual / balance intent. /leave-calculator/ was retargeted to the payout
@@ -13,13 +14,13 @@ const TITLE = "Annual Leave Calculator Australia: Hours, Balance & Payout";
 const DESCRIPTION =
   "Annual leave calculator: 4 weeks a year (152 hours on a 38-hour week), accrual per pay, your balance, 17.5% loading and tax on a payout. Fair Work NES rules.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

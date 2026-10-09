@@ -8,6 +8,7 @@ import { AUTHORS } from "@/lib/authors";
 import { RETURN_2026 } from "@/lib/constants/tax-return-2025-26";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-return-2026/`;
@@ -18,7 +19,7 @@ const R = RETURN_2026;
 const TITLE = "Tax Return 2026: 31 Oct Deadline, Refund Estimator & Rates";
 const DESCRIPTION = `Your 2026 tax return covers ${R.incomeYear}. Lodge yourself by ${R.selfLodgeDueDate}, or by ${R.agentDueDateMostPeople} with a tax agent. Most online refunds arrive within ${R.onlineRefundTypical}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -29,10 +30,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

@@ -3,6 +3,7 @@ import CentrelinkPaymentRatesPage from "@/modules/guide/centrelink-payment-rates
 import { CENTRELINK_PAYMENT_RATES_FAQS } from "@/modules/guide/centrelink-payment-rates-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // J6 (wave 4, 24 Sep 2026). Targets: centrelink payment rates 2.9k (KD 14),
 // how much is jobseeker payment 2.9k, centrelink rates 140 (DataForSEO, AU).
@@ -13,13 +14,13 @@ const DESCRIPTION =
   "Every Centrelink payment rate from 20 September 2026: JobSeeker, Youth Allowance, Austudy, Age Pension, DSP, Carer, Parenting Payment, FTB, Rent Assistance, deeming.";
 const URL = `https://pay-calculator-australia.com/${SLUG}/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

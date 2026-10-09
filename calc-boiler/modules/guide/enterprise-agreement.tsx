@@ -45,7 +45,7 @@ export default function EnterpriseAgreementPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/award-rates/", label: "Awards & Agreements" }, { label: "Enterprise Agreements" }]} />
 
-      <PageHeader title="Enterprise Agreements (EBAs): What They Are and How to Find Yours">
+      <PageHeader featuredImage title="Enterprise Agreements (EBAs): What They Are and How to Find Yours">
         <p>
           <strong>An enterprise agreement is a set of pay rates and conditions bargained between an employer and its staff and approved by the Fair Work Commission.</strong> If one covers you, it replaces the award, but it can&rsquo;t pay a lower base rate than the award, it had to leave award-covered staff better off overall, and the National Employment Standards still apply. To find yours, search the business name from your payslip in the Commission&rsquo;s <a href={FWC_SEARCH} target="_blank" rel="noopener noreferrer">Document Search</a>. An agreement past its nominal expiry date still applies until it&rsquo;s replaced.
         </p>

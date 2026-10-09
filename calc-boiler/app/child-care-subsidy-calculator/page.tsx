@@ -7,12 +7,13 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { CCS, CCS_SOURCES } from "@/lib/constants/child-care-subsidy";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "child-care-subsidy-calculator";
 const TITLE = "Child Care Subsidy Calculator 2026-27 — CCS % & Gap Fee";
 const DESCRIPTION = `CCS ${CCS.financialYear}: ${CCS.standard.maxPercent}% up to ${formatAUD(CCS.standard.lowerThreshold)} family income, 1% less per ${formatAUD(CCS.standard.step)} above, up to ${CCS.higher.maxPercent}% for younger siblings. Enter both parents' pay and fees for your gap fee.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

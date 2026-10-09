@@ -28,6 +28,7 @@ import { toCents } from "@/modules/guide/hospitality-award-faqs";
 import { AwardDirectorySidebar, PayGuideMatrix, PrintButton, TakeHomeLinks } from "@/modules/guide/award-page-parts";
 import { PublicHolidayRowLink } from "@/modules/guide/public-holiday-shared"; // G4
 import { WEEKS_PER_YEAR } from "@/lib/data/average-salary";
+import FeaturedImage from "@/components/common/featured-image";
 
 /** Schedule B Levels 2 to 5, the classifications most support and case workers sit in. */
 const LEVELS_2_TO_5 = SCHADS_SACS.filter((r) => /^Level [2-5] /.test(r.classification));
@@ -142,6 +143,7 @@ export default function SchadsAwardPayRatesPage({ asOf }: { asOf: string }) {
             <a href="#pay-guide" className="text-sm font-medium text-eucalyptus-dark hover:underline">Jump to the full pay guide table</a>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

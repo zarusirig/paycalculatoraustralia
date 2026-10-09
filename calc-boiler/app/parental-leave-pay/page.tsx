@@ -8,6 +8,8 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { PPL_CURRENT_FY, PPL_ENTITLEMENT, PPL_RATES, PPL_SOURCES } from "@/lib/constants/paid-parental-leave";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 // W3 (23 Sep 2026): retargeted from "Parental Leave Pay Guide" to
 // "Paid Parental Leave" (14.8k) / "paid parental leave australia" (6.6k) /
@@ -20,13 +22,13 @@ const RATE = PPL_RATES[PPL_CURRENT_FY];
 const TITLE = "Paid Parental Leave Calculator 2026 — 26 Weeks, Pay & Super";
 const DESCRIPTION = `Paid Parental Leave in Australia: ${NOW.weeks} weeks (${NOW.days} days) for babies born from ${NOW.label}, ${formatAUD(RATE.weekly, 2)} a week in 2026-27, ${NOW.reservedForPartner} days for partners, 12% super.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -63,6 +65,8 @@ function Page() {
     <>
       <JsonLd code={[breadcrumb, webApp, faq, ORGANIZATION_SCHEMA as unknown as WithContext<WebApplication>]} />
       <ParentalLeavePayPage>
+        {/* After the calculator, at the start of the explanatory content. */}
+        <FeaturedImage placement="content" className="mt-0 mb-10" />
         <ParentalLeavePayContent />
       </ParentalLeavePayPage>
     </>

@@ -13,6 +13,7 @@ import {
   formatSalary,
   type Jurisdiction,
 } from "@/lib/data/public-service-pay";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
 
@@ -90,6 +91,7 @@ export default function PublicServicePayScalesPage() {
             determination that sets it.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

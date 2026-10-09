@@ -31,6 +31,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${TD_2026_4.id}: reasonable travel and overtime meal allowance expense amounts for the 2026-27 income year`, url: TD_2026_4.url, publisher: SOURCES.ato.name },
@@ -73,6 +74,7 @@ export default function TravelAllowancePage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="capital-cities">Reasonable Travel Allowance by Capital City, {TD_2026_4.incomeYear}</H2>
             <p>Daily totals (accommodation, meals and incidentals) from Tables 1 to 3 of {TD_2026_4.id}. Your salary means salary excluding allowances; part-timers use the full-time equivalent.</p>

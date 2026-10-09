@@ -106,6 +106,7 @@ export default function HospitalityAwardRatesPage() {
             <span className="text-sm text-warmgray">Award code {HOSPITALITY_AWARD.code} &middot; rates from {HOSPITALITY_AWARD.operativeFrom}</span>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <section id="level-table" aria-labelledby="level-table-heading" className="mb-10 max-w-6xl">
@@ -608,3 +609,5 @@ export default function HospitalityAwardRatesPage() {
     </div>
   );
 }
+
+import FeaturedImage from "@/components/common/featured-image";

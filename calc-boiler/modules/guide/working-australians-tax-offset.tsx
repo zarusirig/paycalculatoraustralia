@@ -26,6 +26,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /working-australians-tax-offset/ (Oct 2026): the $250 offset and the 14%
 // rate from 1 July 2027. Rules and sources: lib/constants/tax-2027-28.ts.
@@ -70,6 +71,7 @@ export default function WorkingAustraliansTaxOffsetPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="what-is-wato">What Is the Working Australians Tax Offset?</H2>
             <p>

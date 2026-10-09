@@ -9,6 +9,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TAX_BRACKET_HISTORY_FAQS } from "./tax-bracket-history-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Individual income tax rates for Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -55,6 +56,7 @@ export default function TaxBracketHistoryPage() {
             How have Australian tax brackets evolved over the past six financial years? This page tracks every rate and threshold change from FY2020-21 through FY2025-26, including the landmark Stage 3 tax cuts that reshaped the system from 1 July 2024.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

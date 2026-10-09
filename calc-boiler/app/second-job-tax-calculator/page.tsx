@@ -11,11 +11,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/second-job-tax-calculator/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: "Second Job Tax Calculator Australia — Tax on Two Jobs",
   description:
     "Calculate how much tax you pay on a second job in Australia: why it's taxed higher, PAYG withholding without the tax-free threshold, and combined take-home pay.",
@@ -28,14 +29,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Second Job Tax Calculator Australia — Tax on Two Jobs (2026-27)",
     description: "Calculate tax on a second job including PAYG withholding and combined take-home pay.",
   },
-};
+});
 
 const breadcrumbSchema: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

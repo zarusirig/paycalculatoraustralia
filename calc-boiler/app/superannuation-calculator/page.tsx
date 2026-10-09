@@ -12,6 +12,7 @@ import { calculateSuper, formatAUD, SITE_CONFIG, SUPER_GUARANTEE } from "@/lib/c
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/superannuation-calculator/`;
@@ -28,13 +29,13 @@ const SUPER_80K = calculateSuper(80_000);
 const TITLE = `Super Calculator ${FY}: How Much Super Your Employer Pays`;
 const DESCRIPTION = `Your employer pays ${SG} super on top of salary: ${formatAUD(SUPER_80K)} a year on $80,000, paid with every pay from ${SUPER_GUARANTEE.paydaySuperStart}. Total package and ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap space for ${FY}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: `Employer super at ${SG} for ${FY}.` },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [
   { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },

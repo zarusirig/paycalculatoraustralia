@@ -12,6 +12,8 @@ import { EMBED_DEFAULT_HEIGHT, EMBED_PATH, EMBED_URL, autoResizeSnippet, embedCo
 import { BADGE_HEIGHT, BADGE_PATH, FIGURE_BADGES, badgeEmbedCode } from "@/lib/embed/figure-badges";
 import CopySnippet from "@/modules/guide/copy-snippet";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/embed/`;
@@ -19,13 +21,13 @@ const TITLE = "Free Take-Home Pay Calculator and Live Rate Badges for Your Websi
 const DESCRIPTION = `Embed a free Australian take-home pay calculator, or live badges for the minimum wage, super rate and tax-free threshold, on your website or blog. ${EMBED_DATA.fy} ATO and Fair Work rates, updated automatically. One line of code.`;
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -70,6 +72,7 @@ function EmbedPage() {
               itself when rates change, and carries no ads, cookies or tracking.
             </p>
 
+            <FeaturedImage />
             <h2 style={HEADING_FONT}>Preview</h2>
             <div className="not-prose">
               {/* Relative src so the preview works on every environment; the copy-paste code below uses the absolute URL. */}

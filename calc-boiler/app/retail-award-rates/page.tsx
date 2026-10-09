@@ -10,6 +10,7 @@ import { RETAIL_AWARD, RETAIL_RATES } from "@/lib/constants/hospitality-award";
 import { casualHourly } from "@/modules/guide/hospitality-award-faqs";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/retail-award-rates/`;
@@ -20,7 +21,7 @@ const L8 = findRate(RETAIL_RATES, "Level 8");
 const TITLE = `Retail Award Pay Rates ${SITE_CONFIG.financialYear} (${RETAIL_AWARD.code}) — Casual & Junior Rates`;
 const DESCRIPTION = `Current ${RETAIL_AWARD.code} pay rates from ${RETAIL_AWARD.operativeFrom}: level 1 ${formatAUD(L1.hourly, 2)}/hr up to ${formatAUD(L8.hourly, 2)} at level 8, casual ${formatAUD(casualHourly(L1.hourly, RETAIL_AWARD.casualLoading), 2)}. Weekend, evening and public holiday penalties, junior rates.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -31,10 +32,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

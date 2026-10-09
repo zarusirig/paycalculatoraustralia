@@ -14,6 +14,7 @@ const EX_SALARY = calculatePayBreakdown({ grossSalary: 75_000 });
 const EX_HOURLY = calculatePayBreakdown({ grossSalary: 91_091 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Pay and wages", url: "https://www.fairwork.gov.au/pay-and-wages", publisher: SOURCES.fwo.name },
@@ -54,6 +55,7 @@ export default function SalaryVsHourlyPage() {
             Choosing between a salaried role and hourly pay affects your income stability, overtime access, leave entitlements, and total package value. Here is how to compare them side by side and determine which arrangement genuinely pays more for your situation.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

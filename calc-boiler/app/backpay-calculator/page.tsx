@@ -10,11 +10,12 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE_URL = SITE_CONFIG.baseUrl;
 const PAGE_URL = `${BASE_URL}/backpay-calculator/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: "Backpay Calculator Australia — Underpayment & Wage Theft",
   description:
     "Calculate how much backpay you're owed: enter your actual and correct rates, hours and period to see the total underpayment, including super and leave.",
@@ -27,14 +28,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Backpay Calculator Australia — Underpayment & Wage Theft Calculator",
     description: "Calculate backpay owed including unpaid super and leave. Free Australian calculator.",
   },
-};
+});
 
 const breadcrumbSchema: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

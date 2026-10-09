@@ -56,6 +56,7 @@ import { RADIOGRAPHER } from "@/lib/data/job-pay-rates/radiographer"; // G3
 import { SPEECH_PATHOLOGIST } from "@/lib/data/job-pay-rates/speech-pathologist"; // G3
 import { DISABILITY_SUPPORT_WORKER } from "@/lib/data/job-pay-rates/disability-support-worker";
 import { FBT } from "@/lib/constants/novated-lease";
+import FeaturedImage from "@/components/common/featured-image";
 
 
 const SOURCES_LIST: SourceLink[] = [
@@ -119,6 +120,7 @@ export default function HealthcareWorkerPayPage() {
             What is a nurse salary in Australia? It depends on the state, because each public health system has its own agreement and classification ladder. Entry-step registered nurse pay runs from {formatAUD(RN_ENTRY.low)} a year in {RN_ENTRY.lowState} to {formatAUD(RN_ENTRY.high)} in {RN_ENTRY.highState}, and the top of the base scale from {formatAUD(RN_TOP.low)} to {formatAUD(RN_TOP.high)}, before shift penalties. The Nurses Award 2020 floor is {formatAUD(AWARD_RN1.points[0].hourly, 2)} an hour from {NURSES_AWARD.generalRatesFrom}. Below: a state-by-state table for registered nurses (RN), enrolled nurses (EN) and nurse practitioners (NP), then doctors, allied health, penalty rates and salary packaging for public hospital employees.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

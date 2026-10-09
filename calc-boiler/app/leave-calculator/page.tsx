@@ -9,6 +9,7 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import { LEAVE_FAQS } from "@/modules/calculator/leave-calculator-faqs";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/leave-calculator/`;
@@ -20,7 +21,7 @@ const URL = `${BASE}/leave-calculator/`;
 const TITLE = `Leave Payout Calculator: Unused Annual Leave & Loading ${SITE_CONFIG.financialYear}`;
 const DESCRIPTION = `Work out what your unused annual leave is worth when you finish up, with the 17.5% leave loading where it applies and tax on the payout — FY${SITE_CONFIG.financialYear} rates.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -31,14 +32,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

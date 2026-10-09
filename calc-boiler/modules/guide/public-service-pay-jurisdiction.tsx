@@ -28,6 +28,7 @@ import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 import { apsGradeHrefForLabel } from "@/lib/data/public-service-pay/aps-grades";
 import { TEACHER_STATE_SLUGS } from "@/lib/data/teacher-pay/types";
 import { RelatedSearches, type RelatedSearch } from "@/modules/seo/related-searches";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" };
 
@@ -472,6 +473,7 @@ export default function PublicServicePayJurisdictionPage({
           </h1>
           <p className="mb-6 text-xl leading-relaxed text-warmgray">{jurisdiction.headline}</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
