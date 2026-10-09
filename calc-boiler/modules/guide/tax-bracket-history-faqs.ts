@@ -70,6 +70,6 @@ export const TAX_BRACKET_HISTORY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "What are the 4 stages of the Personal Income Tax Plan?",
-    a: "The Personal Income Tax Plan was legislated in three stages, and the 1 July 2026 rate cut is often counted as a fourth. Stage 1 (FY2018-19) introduced the Low and Middle Income Tax Offset. Stage 2 (from FY2020-21) raised the top of the 19% bracket from $37,000 to $45,000 and the top of the 32.5% bracket from $90,000 to $120,000. Stage 3 (revised, from FY2024-25) cut the 19% rate to 16% and the 32.5% rate to 30%, instead of the original flat 30% rate from $45,001 to $200,000. The 1 July 2026 cut from 16% to 15% came later, under separate Cost of Living Tax Cuts legislation.",
+    a: "The Personal Income Tax Plan was legislated in three stages, and the 1 July 2026 rate cut is often counted as a fourth. Stage 1 (FY2018-19) introduced the Low and Middle Income Tax Offset. Stage 2 (from FY2020-21) raised the top of the 19% bracket from $37,000 to $45,000 and the top of the 32.5% bracket from $90,000 to $120,000. Stage 3 (revised, from FY2024-25) cut the 19% rate to 16% and the 32.5% rate to 30%, instead of the original flat 30% rate from $45,001 to $200,000. The 1 July 2026 cut from 16% to 15% came later, under separate legislation: the Treasury Laws Amendment (More Cost of Living Relief) Act 2025.",
   },
 ];
