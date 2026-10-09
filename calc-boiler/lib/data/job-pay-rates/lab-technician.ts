@@ -8,7 +8,12 @@
 //   - HPSS Schedule B lists "Medical Laboratory Technician" among the common
 //     health professionals, so a pathology lab technician who meets the
 //     requirement to practise is a Health Professional (level 1 on entry,
-//     Schedule A.2.1). Rows: HPSS_TABLES in ./health-professionals-common.ts.
+//     Schedule A.2.1). ROLLED 9 October 2026: from the first full pay period
+//     starting on or after 1 October 2026, determination PR814029 sets
+//     Medical Laboratory Technician at AQF Level 5 (Schedule B.3); rows are
+//     the AQF Level 5 table in ./health-professionals-oct-2026.ts, read
+//     9 October 2026 from
+//     https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814029.pdf
 //   - HPSS Schedule A.1.1 and A.1.3 list "Laboratory assistant" as an
 //     indicative Support Services level 1 and level 3 role. Rates: cl 16.2(a)
 //     (level 1 $1,024.70 / $26.97; level 3 $1,106.20 / $29.11).
@@ -25,13 +30,21 @@ import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
   FWO_PAY_GUIDES,
-  JOB_PAY_VERIFIED_ON,
   casualFromHourly,
   jsaSource,
   jsaUrl,
   rowFromModernAward,
 } from "./common";
-import { HPSS_AWARD, HPSS_OVERTIME, HPSS_PENALTIES, HPSS_PENALTIES_NOTE, HPSS_SOURCE_TITLE, HPSS_TABLES } from "./health-professionals-common";
+import { firstYear } from "./allied-health-g3";
+import { HPSS_OVERTIME, HPSS_PENALTIES, HPSS_PENALTIES_NOTE } from "./health-professionals-common";
+import {
+  HPSS_AWARD_OCT_2026,
+  HPSS_OCT_2026_NOTICES,
+  HPSS_OCT_2026_SOURCES,
+  HPSS_OCT_2026_VERIFIED_ON,
+  hpssOct2026Label,
+  hpssOct2026Level1Table,
+} from "./health-professionals-oct-2026";
 import type { MedianEarnings, Occupation, RateTable } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -45,16 +58,16 @@ const MEDIAN: MedianEarnings = {
 
 const SCIENCE_TECHNICIANS_MEDIAN_WEEKLY = 1_794;
 
-const HPSS_LEVEL_1 = HPSS_TABLES.find((t) => t.id === "level-1");
-if (!HPSS_LEVEL_1) throw new Error("lab-technician: HPSS level-1 table missing");
+/** Schedule B.3 (PR814029): Medical Laboratory Technician, AQF Level 5. */
+const AQF = 5;
+const F = firstYear(AQF);
 
 const TABLES: RateTable[] = [
   {
-    ...HPSS_LEVEL_1,
-    id: "medical-lab",
-    title: "Medical laboratory technician pay rates — Health Professional level 1",
+    ...hpssOct2026Level1Table(AQF, "medical-lab"),
+    title: "Medical laboratory technician pay rates — Health Professional level 1 (AQF Level 5)",
     intro:
-      "Health Professionals and Support Services Award cl 17.2, from the first full pay period on or after 1 July 2026. Entry pay point depends on qualification; one pay point a year after that. Casual rates are Schedule C.2.3 exactly.",
+      "Health Professionals and Support Services Award cl 17.1(a) as substituted by determination PR814029, from the first full pay period starting on or after 1 October 2026. Schedule B sets medical laboratory technicians at AQF Level 5; pay rises with years of experience at Level 1. Casual rates are Schedule C.2.3 exactly.",
   },
   {
     id: "lab-assistant",
@@ -84,15 +97,15 @@ export const LAB_TECHNICIAN: Occupation = {
   slug: "lab-technician",
   name: "Lab Technician",
   plural: "lab technicians",
-  award: HPSS_AWARD,
+  award: HPSS_AWARD_OCT_2026,
   headline: {
     tableId: "medical-lab",
-    label: "Level 1 pay point 1",
-    why: "a newly qualified medical laboratory technician entering at Health Professional level 1 with a diploma-level qualification",
+    label: hpssOct2026Label(AQF),
+    why: "a first-year medical laboratory technician at Health Professional level 1 (AQF Level 5, the award's standard qualification level for the role)",
   },
   coverage: [
     "Which award covers a lab technician depends on the lab. Pathology and medical laboratory technicians employed by private pathology companies, private hospitals and other national-system health employers are covered by the Health Professionals and Support Services Award 2020 [MA000027], which lists \"Medical Laboratory Technician\" among its health professionals (Schedule B).",
-    "A health professional starts at level 1 on the pay point that matches their qualification — pay point 1 for a diploma, pay point 2 for a 3-year degree, pay point 3 for a 4-year degree — and moves up a pay point each year. Laboratory assistants without those qualifications are Support Services employees: the award lists them at level 1 and level 3.",
+    `From the first full pay period starting on or after 1 October 2026, a health professional's level 1 rate depends on the AQF level Schedule B gives the profession — AQF Level 5 for a medical laboratory technician — and years of experience at Level 1: ${F.hourly} an hour in the 1st year, ${F.later[0]} in the 2nd and 3rd years, ${F.later[1]} in the 4th to 6th years and ${F.later[2]} from the 7th year. An employer that requires a higher qualification must pay at that qualification's AQF level (cl B.2(d)). Laboratory assistants without those qualifications are Support Services employees: the award lists them at level 1 and level 3.`,
     "Laboratory technicians employed by manufacturers covered by the Manufacturing and Associated Industries and Occupations Award 2020 [MA000010] are classified as Engineering/Laboratory Technicians at Levels I to V (wage groups C9 to C5). Some manufacturing sectors, such as food and beverage manufacturing, have their own awards.",
     "Lab technicians in public hospitals, universities, schools and government agencies are paid under state awards, enterprise agreements or public sector agreements rather than these awards.",
   ],
@@ -103,6 +116,8 @@ export const LAB_TECHNICIAN: Occupation = {
   allowances: [],
   median: MEDIAN,
   notices: [
+    ...HPSS_OCT_2026_NOTICES,
+    "The Health Professional rows are the PR814029 rates from 1 October 2026. The laboratory assistant (Support Services) and Manufacturing Award rows are unchanged 1 July 2026 rates; all were re-checked against the consolidated awards on 9 October 2026.",
     `The median shown is for medical technicians (ANZSCO 3112). Jobs and Skills Australia reports a higher median of $${SCIENCE_TECHNICIANS_MEDIAN_WEEKLY.toLocaleString("en-AU")} a week for science technicians (ANZSCO 3114), which covers laboratory technicians outside health.`,
   ],
   notShown: [
@@ -113,7 +128,7 @@ export const LAB_TECHNICIAN: Occupation = {
   faqs: [
     {
       q: "What is the award rate for a lab technician in 2026?",
-      a: "A medical laboratory technician entering the Health Professionals and Support Services Award at level 1 pay point 1 must be paid at least $30.89 an hour, or $1,174.00 a week, from the first full pay period on or after 1 July 2026 — $61,048 a year full-time. With a 3-year degree the entry rate is $32.09 an hour.",
+      a: `A first-year medical laboratory technician under the Health Professionals and Support Services Award (Health Professional level 1, AQF Level 5) must be paid at least ${F.hourly} an hour, or ${F.weekly} a week, from the first full pay period starting on or after 1 October 2026 — ${F.annual} a year full-time. The rate rises to ${F.later[0]} an hour in the 2nd and 3rd years.`,
     },
     {
       q: "What is a laboratory assistant paid?",
@@ -125,7 +140,7 @@ export const LAB_TECHNICIAN: Occupation = {
     },
     {
       q: "What is the casual rate for a lab technician?",
-      a: "A casual medical laboratory technician at level 1 pay point 1 earns at least $38.61 an hour — the Health Professionals Award's published casual rate. On weekends a casual is paid 175% of the minimum hourly rate.",
+      a: `A casual first-year medical laboratory technician earns at least ${F.casual} an hour — the Health Professionals Award's published casual rate. On weekends a casual is paid 175% of the minimum hourly rate.`,
     },
     {
       q: "What do lab technicians actually earn?",
@@ -133,14 +148,15 @@ export const LAB_TECHNICIAN: Occupation = {
     },
   ],
   sources: [
-    { title: HPSS_SOURCE_TITLE, publisher: "Fair Work Commission", url: HPSS_AWARD.url },
+    ...HPSS_OCT_2026_SOURCES,
     { title: "Manufacturing and Associated Industries and Occupations Award 2020 [MA000010] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: MANUFACTURING_AWARD.meta.awardTextUrl },
     { title: "Science Technicians (ANZSCO 3114) occupation profile", publisher: "Jobs and Skills Australia", url: jsaUrl("3114-science-technicians") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
   ],
-  verifiedOn: JOB_PAY_VERIFIED_ON,
+  verifiedOn: HPSS_OCT_2026_VERIFIED_ON,
+  ratesFrom: "the first full pay period starting on or after 1 October 2026 for the Health Professional rows, and on or after 1 July 2026 for the others",
   related: [
     { href: "/manufacturing-award-rates/", label: "Manufacturing Award Pay Rates" },
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },

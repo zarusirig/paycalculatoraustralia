@@ -238,7 +238,7 @@ test("graduate and top figures are the qualified-graduate and incremental-top ro
   assert.equal(topOfClassroomScale(getTeacherPayState("qld")!), 113_957, "QLD Band 3 Step 4");
   assert.equal(graduateSalary(getTeacherPayState("sa")!), 84_971, "SA Step 1, not Special Authority");
   assert.equal(graduateSalary(getTeacherPayState("tas")!), 85_313, "TAS four-year-trained entry");
-  assert.equal(graduateSalary(getTeacherPayState("nsw")!), 90_177);
+  assert.equal(graduateSalary(getTeacherPayState("nsw")!), 92_882, "NSW Step 1, 9 October 2026 column");
   assert.equal(graduateSalary(getTeacherPayState("vic")!), 79_589);
 });
 

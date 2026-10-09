@@ -433,10 +433,18 @@ test("the GIC rate carries the quarter it belongs to, so staleness is visible", 
   // This resets quarterly and is the fastest-staling figure on the site.
   assert.ok(GENERAL_INTEREST_CHARGE.quarter.length > 0);
   assert.equal(GENERAL_INTEREST_CHARGE.resetsQuarterly, true);
-  assert.equal(GENERAL_INTEREST_CHARGE.annualRate, 0.1143);
+  // October–December 2026, ATO QC16145 (updated 4 September 2026), read 9 October 2026.
+  assert.equal(GENERAL_INTEREST_CHARGE.quarter, "October–December 2026");
+  assert.equal(GENERAL_INTEREST_CHARGE.annualRate, 0.1151);
   // The ATO publishes the daily rate; deriving it lands on a different digit.
-  assert.equal(GENERAL_INTEREST_CHARGE.dailyRatePercent, 0.03131507);
+  assert.equal(GENERAL_INTEREST_CHARGE.dailyRatePercent, 0.03153425);
+  assert.equal(GENERAL_INTEREST_CHARGE.previousQuarter.label, "July–September 2026");
+  assert.equal(GENERAL_INTEREST_CHARGE.previousQuarter.annualRate, 0.1143);
+  assert.equal(GENERAL_INTEREST_CHARGE.previousQuarter.dailyRatePercent, 0.03131507);
   assert.ok(GENERAL_INTEREST_CHARGE.annualRate > GENERAL_INTEREST_CHARGE.previousQuarter.annualRate);
+  assert.equal(GENERAL_INTEREST_CHARGE.nextRateDue, "mid-December 2026");
+  // January–March 2027 was unpublished when rolled; no staged rate is kept.
+  assert.equal("nextQuarter" in GENERAL_INTEREST_CHARGE, false);
 });
 
 test("Payday Super concessional cap relief is not presented as law", () => {

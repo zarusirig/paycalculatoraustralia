@@ -25,7 +25,7 @@ import {
   formatIso,
   weekdayOf,
 } from "@/lib/constants/tax-calendar-2026-27";
-import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { ATC_12_MONTH_COLUMN, ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
 import {
   AWARD_TRANSPORT_CHANGE_DATE,
@@ -727,13 +727,17 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const qPct = `${(QS.increase * 100).toFixed(2)}%`;
 
 
-  const gicNext = `${(GENERAL_INTEREST_CHARGE.nextQuarter.annualRate * 100).toFixed(2)}%`;
+  const GIC = GENERAL_INTEREST_CHARGE;
+  const gicNow = `${(GIC.annualRate * 100).toFixed(2)}%`;
+  const gicPrev = `${(GIC.previousQuarter.annualRate * 100).toFixed(2)}%`;
+  const gicMove = GIC.annualRate > GIC.previousQuarter.annualRate ? "up from" : GIC.annualRate < GIC.previousQuarter.annualRate ? "down from" : "unchanged from";
 
 
   const atcPct = `${(ATC_24_MONTH_COLUMN.increase * 100).toFixed(1)}%`;
   const atcL1 = ATC_24_MONTH_COLUMN.salaries["Level 1"];
   const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
-  const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
+  // The pre-rise figure: ATC_PAY itself carries the 24-month column from 7 October 2026.
+  const atcL1Now = ATC_12_MONTH_COLUMN.salaries["Level 1"] ?? NaN;
 
 
   const atExtra = `$${withholdingForPeriod(1_300 + 22, "weekly") - withholdingForPeriod(1_300, "weekly")}`;
@@ -885,7 +889,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       slug: "tax-return-deadline-october-2026",
       headline: `Tax Return Deadline Is ${RETURN_2026.selfLodgeDueDate} — a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, So Self-Lodgers Have Until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}`,
       title: `Tax Return Deadline 2026: ${RETURN_2026.selfLodgeDueDate} (Lodge by ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso)})`,
-      description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNext}.`,
+      description: `${RETURN_2026.incomeYear} tax returns are due ${RETURN_2026.selfLodgeDueDate}, a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, so self-lodgers have until ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. Late: $${PENALTY_UNIT.amount} per 28 days; GIC ${gicNow}.`,
       category: "Tax",
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
@@ -910,7 +914,7 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       faq: [
         { question: "When is the tax return deadline in 2026?", answer: `If you lodge your own ${RETURN_2026.incomeYear} return, it is due ${RETURN_2026.selfLodgeDueDate}. That date is a ${weekdayOf(RETURN_DATES_2026.selfLodge.iso)}, and the ATO lets you lodge on the next business day when a due date is not a business day — ${weekdayOf(RETURN_DATES_2026.selfLodge.effectiveIso)} ${formatIso(RETURN_DATES_2026.selfLodge.effectiveIso, "long")}. If you use a registered tax agent and are on their list before ${RETURN_2026.selfLodgeDueDate}, most people have until ${RETURN_2026.agentDueDateMostPeople}.` },
         { question: "What is the penalty for lodging a tax return late?", answer: `The failure-to-lodge penalty is one penalty unit ($${PENALTY_UNIT.amount} from ${PENALTY_UNIT.from}) for each 28 days or part of 28 days the return is late, up to five units ($${FTL_MAX_INDIVIDUAL.toLocaleString("en-AU")}) for an individual. The ATO says it generally doesn't apply the penalty for isolated late lodgments and warns you before it does.` },
-        { question: "What is the ATO general interest charge rate for October to December 2026?", answer: `${gicNext} a year (a daily rate of ${GENERAL_INTEREST_CHARGE.nextQuarter.dailyRatePercent}%), up from ${(GENERAL_INTEREST_CHARGE.annualRate * 100).toFixed(2)}% for ${GENERAL_INTEREST_CHARGE.quarter}. GIC compounds daily on overdue tax, and GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
+        { question: `What is the ATO general interest charge rate for ${GIC.quarter}?`, answer: `${gicNow} a year (a daily rate of ${GIC.dailyRatePercent}%), ${gicMove} ${gicPrev} for ${GIC.previousQuarter.label}. GIC compounds daily on overdue tax and resets every quarter; the next rate is due ${GIC.nextRateDue}. GIC incurred from 1 July 2025 can't be claimed as a tax deduction.` },
         { question: "Can I still use a tax agent to get a later deadline?", answer: `Yes, if you contact a registered tax agent and are added to their client list before ${RETURN_2026.selfLodgeDueDate}. Most individual clients then have until ${RETURN_2026.agentDueDateMostPeople}, though some — for example those whose latest return had a liability of $20,000 or more — have an earlier date (${RETURN_2026.agentDueDateLargeLiability}).` },
       ],
     },

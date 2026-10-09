@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { NewsKeyFacts } from "@/modules/news/layout";
 import { calculatePayBreakdown, formatAUD } from "@/lib/constants";
-import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { ATC_12_MONTH_COLUMN, ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
 
 const SHOWN = ["Ab Initio Trainee", "Field Trainee", "Level 1", "Level 5", "Level 10", "UTS"];
 
 export default function AirTrafficControllerPayRiseOctober2026() {
   const A = ATC_24_MONTH_COLUMN;
+  // "now" is the superseded 12-month column; ATC_PAY has carried the 24-month column since 7 October 2026.
   const steps = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps ?? [];
-  const rows = steps.map((s) => ({ label: s.label, now: s.salary, next: A.salaries[s.label] ?? s.salary }));
+  const rows = steps.map((s) => ({ label: s.label, now: ATC_12_MONTH_COLUMN.salaries[s.label] ?? NaN, next: A.salaries[s.label] ?? s.salary }));
   const pick = (label: string) => {
     const r = rows.find((x) => x.label === label);
     if (!r) throw new Error(`No ATC step ${label}`);

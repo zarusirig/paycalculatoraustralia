@@ -18,7 +18,10 @@
 // Social workers in the health industry (hospitals, private health providers)
 // are instead covered by the Health Professionals and Support Services Award,
 // whose Schedule B lists "Social Worker"; that rate is quoted in the coverage
-// text from health-professionals-common.ts.
+// text. Rolled 9 October 2026 to PR814029 (from 1 October 2026): Schedule B.3
+// lists Social Worker at AQF Level 7, 8 and 9; the 1st-year rates come from
+// health-professionals-oct-2026.ts, read 9 October 2026 from
+// https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814029.pdf
 //
 // Median: Jobs and Skills Australia, ANZSCO 2725 Social Workers, $2,172 a week
 // / $57 an hour (ABS SEEH May 2025), read 23 September 2026.
@@ -34,7 +37,9 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import { HPSS_AWARD, HPSS_SOURCE_TITLE } from "./health-professionals-common";
+import { firstYear } from "./allied-health-g3";
+import { HPSS_AWARD } from "./health-professionals-common";
+import { HPSS_OCT_2026_SOURCES } from "./health-professionals-oct-2026";
 import type { MedianEarnings, Occupation, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -81,7 +86,7 @@ export const SOCIAL_WORKER: Occupation = {
   coverage: [
     "Social workers employed by community organisations, charities, NDIS providers, family and youth services and other not-for-profits are covered by the Social, Community, Home Care and Disability Services Industry Award 2010 — the SCHADS Award [MA000100] — in the Social and community services stream (Schedule B). The award defines that sector as including social work.",
     "Schedule B makes Level 3 the graduate entry level: a relevant 3-year degree starts at pay point 3 and a relevant 4-year degree — such as an accredited Bachelor of Social Work — at pay point 4. Level 4 generally requires a 4-year degree plus a year's experience (or a 3-year degree plus two); levels 5 and above are senior practitioner, supervisory and management roles.",
-    `Social workers in the health industry — private hospitals and health providers — are covered instead by the ${HPSS_AWARD.name} [${HPSS_AWARD.code}], which lists social worker as a health professional. There a 4-year degree graduate starts at Level 1 pay point 3: $33.51 an hour or $1,273.40 a week, well below the SCHADS rate.`,
+    `Social workers in the health industry — private hospitals and health providers — are covered instead by the ${HPSS_AWARD.name} [${HPSS_AWARD.code}], which lists social worker as a health professional. From the first full pay period starting on or after 1 October 2026 a first-year social worker there is paid by the AQF level of their social work qualification: ${firstYear(7).hourly} an hour (${firstYear(7).weekly} a week) at AQF Level 7, the bachelor level, and ${firstYear(8).hourly} or ${firstYear(9).hourly} at AQF Level 8 or 9 — still well below the SCHADS rate.`,
     "The SCHADS rates for levels 2 and up include the Equal Remuneration Order, which the award says forms part of ordinary pay for all purposes. Social workers in state or Commonwealth government are paid under their public service agreement instead.",
   ],
   tables: [
@@ -128,7 +133,7 @@ export const SOCIAL_WORKER: Occupation = {
     },
     {
       q: "Which award covers social workers?",
-      a: "It depends on the employer. Social workers in community organisations and not-for-profits are covered by the SCHADS Award. Social workers in hospitals and other health businesses are covered by the Health Professionals and Support Services Award, which pays a 4-year graduate a minimum of $33.51 an hour. Government social workers are paid under public sector agreements.",
+      a: `It depends on the employer. Social workers in community organisations and not-for-profits are covered by the SCHADS Award. Social workers in hospitals and other health businesses are covered by the Health Professionals and Support Services Award, which from 1 October 2026 pays a first-year social worker with a bachelor-level (AQF Level 7) qualification a minimum of ${firstYear(7).hourly} an hour. Government social workers are paid under public sector agreements.`,
     },
     {
       q: "How much overtime do social workers get?",
@@ -141,7 +146,7 @@ export const SOCIAL_WORKER: Occupation = {
   ],
   sources: [
     { title: "Social, Community, Home Care and Disability Services Industry Award 2010 [MA000100] — consolidated to 1 September 2026", publisher: "Fair Work Commission", url: SCHADS_AWARD.awardTextUrl },
-    { title: HPSS_SOURCE_TITLE, publisher: "Fair Work Commission", url: HPSS_AWARD.url },
+    HPSS_OCT_2026_SOURCES[0],
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),

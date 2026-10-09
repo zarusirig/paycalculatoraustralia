@@ -1,20 +1,21 @@
 // Psychologist — Health Professionals and Support Services Award 2020
-// [MA000027]. Rates, penalties and sources live in
-// health-professionals-common.ts; see that file's header for the clauses.
+// [MA000027]. Penalties live in health-professionals-common.ts; the rate
+// tables are the 1 October 2026 structure in health-professionals-oct-2026.ts.
 //
-// Headline: Level 1 pay point 4, "Masters degree entry" (cl 17.2). General
-// registration as a psychologist follows at least a 4-year accredited sequence
-// plus further study or supervised practice; we lead with the masters entry
-// point and state the 4-year entry point (pay point 3) alongside it rather than
-// asserting which route a given employee took. Provisional psychologists and
-// psychology graduates without a masters are paid by their qualification.
+// Rolled 9 October 2026 to determination PR814029 (operative from the first
+// full pay period starting on or after 1 October 2026), read 9 October 2026:
+// https://www.fwc.gov.au/documents/awardsandorders/pdf/pr814029.pdf
+// Schedule B.3 lists Psychologist at AQF Level 9 only (a masters-level
+// qualification), so a newly qualified psychologist is "AQF Level 9—1st
+// year": $1,444.90 a week, $38.02 an hour, casual $47.53 (cl 17.1(e),
+// Schedule C.2.3).
 //
 // Median: Jobs and Skills Australia, ANZSCO 2723 Psychologists and
 // Psychotherapists, $2,204 a week / $60 an hour (ABS SEEH May 2025), read
 // 23 September 2026. The page slug on JSA is 2723-psychologists-and-psychotherapists.
 
 import { ALL_OCCUPATIONS_MEDIAN_WEEKLY, jsaUrl } from "./common";
-import { hpssOccupation } from "./health-professionals-common";
+import { HPSS_OCT_2026_NOTICES, hpssOct2026Occupation } from "./health-professionals-oct-2026";
 import type { MedianEarnings } from "./types";
 
 const MEDIAN: MedianEarnings = {
@@ -26,34 +27,35 @@ const MEDIAN: MedianEarnings = {
   url: jsaUrl("2723-psychologists-and-psychotherapists"),
 };
 
-export const PSYCHOLOGIST = hpssOccupation({
+export const PSYCHOLOGIST = hpssOct2026Occupation(9, {
   slug: "psychologist",
   name: "Psychologist",
   plural: "psychologists",
-  headlineLabel: "Level 1 pay point 4",
-  why: "a newly qualified psychologist with a masters degree",
+  headlineLabel: "Level 1 — AQF 9 — 1st year",
+  why: "a first-year psychologist (AQF Level 9, the award's standard qualification for the profession)",
   coverage: [
     "Psychologists employed in private practice, private hospitals, community health, NDIS and EAP providers are covered by the Health Professionals and Support Services Award 2020 [MA000027], which lists psychologist in Schedule B.",
-    "Level 1 is the entry level for new graduates, and the starting pay point depends on the qualification: pay point 3 for a 4-year degree, pay point 4 for a masters degree and pay point 5 for a PhD. Full-time employees then move up one pay point a year until pay point 6.",
-    "Level 2 is a psychologist who works independently on routine matters; level 3 is an experienced psychologist doing complex work or holding extra responsibility; level 4 is a senior or management role.",
+    "From the first full pay period starting on or after 1 October 2026, Level 1 pay depends on the AQF level of the profession's standard minimum qualification and your years of experience in the profession at Level 1. Schedule B sets psychology at AQF Level 9, so a newly qualified psychologist starts on the AQF Level 9 1st-year rate and moves to the 2nd–3rd year, 4th–6th year and 7th year+ rates with experience.",
+    "Level 2 is a senior clinician, specialist, supervisor or educator (Level 2.1 with under 5 years in that role, 2.2 with 5 or more); Level 3 is an advanced clinician, senior specialist or section manager; Level 4 is a manager.",
     "Psychologists employed by a state health service, education department or the Australian Public Service are paid under their employer's agreement instead. Psychologists who bill Medicare as contractors or sole traders have no award minimum.",
   ],
   median: MEDIAN,
   notices: [
+    ...HPSS_OCT_2026_NOTICES,
     "The award does not set a separate rate for clinical psychologists or other area-of-practice endorsements. An endorsed psychologist's classification depends on the duties and responsibility of the role under Schedule A.2.",
   ],
   faqs: [
     {
       q: "What is the award rate for a psychologist in 2026?",
-      a: "A newly qualified psychologist with a masters degree must be paid at least $34.66 an hour, or $1,317.20 a week, under the Health Professionals and Support Services Award from the first full pay period on or after 1 July 2026. That is $68,494 a year full-time before tax. A 4-year degree entrant starts at $33.51 an hour.",
+      a: "A first-year psychologist must be paid at least $38.02 an hour, or $1,444.90 a week, under the Health Professionals and Support Services Award from the first full pay period starting on or after 1 October 2026. That is $75,135 a year full-time before tax. The rate rises to $40.66 an hour in the 2nd and 3rd years, $43.67 in the 4th to 6th years and $46.18 from the 7th year.",
     },
     {
       q: "What is the casual rate for a psychologist?",
-      a: "A casual Level 1 pay point 4 psychologist earns at least $43.33 an hour including the 25% casual loading, rising to 175% of the minimum hourly rate on weekends and 275% on public holidays.",
+      a: "A casual first-year (AQF Level 9) psychologist earns at least $47.53 an hour including the 25% casual loading, rising to 175% of the minimum hourly rate on weekends and 275% on public holidays.",
     },
     {
       q: "Is there a separate award rate for clinical psychologists?",
-      a: "No. The award classifies health professionals by level and pay point, not by endorsement. An experienced clinical psychologist doing specialist work would typically fit level 3 ($45.89 to $52.19 an hour), but the classification depends on the role's duties.",
+      a: "No. The award classifies health professionals by level, not by endorsement. An experienced clinical psychologist working as a senior clinician or specialist would typically fit Level 2 ($51.19 to $52.19 an hour) or, as an advanced clinician, Level 3 ($52.19), but the classification depends on the role's duties.",
     },
     {
       q: "Are psychologists covered by an award if they work in private practice?",

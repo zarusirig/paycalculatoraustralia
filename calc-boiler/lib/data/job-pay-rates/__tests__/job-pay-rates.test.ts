@@ -246,24 +246,43 @@ test("annualFromWeekly uses 52 weeks", () => {
 // read 23 September 2026.
 // ---------------------------------------------------------------------------
 
-test("W4: HPSS health professional rates match cl 17.2 and Schedule C.2.3", () => {
-  // [label, weekly, hourly, casual] exactly as the award prints them.
-  const published: [string, number, number, number][] = [
-    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
-    ["Level 1 pay point 3", 1273.4, 33.51, 41.89],
-    ["Level 1 pay point 4", 1317.2, 34.66, 43.33],
-    ["Level 2 pay point 1", 1493.9, 39.31, 49.14],
-    ["Level 4 pay point 4", 2705.1, 71.19, 88.99],
+test("W4: HPSS health professional rates match PR814029 cl 17.1–17.2 and Schedule C.2.3 (from 1 October 2026)", () => {
+  // [label, weekly, hourly, casual] exactly as PR814029 prints them (read 9 October 2026).
+  const senior: [string, number, number, number][] = [
+    ["Level 2.1 — Senior Clinician, Specialist, Supervisor or Educator (under 5 years at Level 2)", 1945.4, 51.19, 63.99],
+    ["Level 2.2 — Senior Clinician, Specialist, Supervisor or Educator (5 years or more)", 1983.2, 52.19, 65.24],
+    ["Level 3 — Advanced Clinician, Senior Specialist or Section Manager", 1983.2, 52.19, 65.24],
+    ["Level 4 — Manager", 2499.1, 65.77, 82.21],
   ];
+  const level1: Record<string, [string, number, number, number][]> = {
+    "occupational-therapist": [
+      ["Level 1 — AQF 7 — 1st year", 1308.8, 34.44, 43.05],
+      ["Level 1 — AQF 7 — 2nd – 3rd year", 1409.0, 37.08, 46.35],
+      ["Level 1 — AQF 7 — 4th – 6th year", 1565.3, 41.19, 51.49],
+      ["Level 1 — AQF 7 — 7th year+", 1689.5, 44.46, 55.58],
+    ],
+    psychologist: [
+      ["Level 1 — AQF 9 — 1st year", 1444.9, 38.02, 47.53],
+      ["Level 1 — AQF 9 — 2nd – 3rd year", 1545.2, 40.66, 50.83],
+      ["Level 1 — AQF 9 — 4th – 6th year", 1659.3, 43.67, 54.59],
+      ["Level 1 — AQF 9 — 7th year+", 1755.0, 46.18, 57.73],
+    ],
+  };
+  level1.physiotherapist = level1["occupational-therapist"];
   for (const slug of ["occupational-therapist", "physiotherapist", "psychologist"]) {
-    for (const [label, weekly, hourly, casual] of published) {
+    for (const [label, weekly, hourly, casual] of [...level1[slug], ...senior]) {
       const r = row(slug, label);
       assert.deepEqual([r.weekly, r.hourly, r.casualHourly], [weekly, hourly, casual], `${slug} ${label}`);
     }
-    assert.equal(getOccupation(slug)!.award!.code, "MA000027");
+    const occ = getOccupation(slug)!;
+    assert.equal(occ.award!.code, "MA000027");
+    assert.equal(occ.award!.consolidatedTo, "1 October 2026");
+    // The pre-October pay points are no longer shown as current on these pages.
+    assert.ok(!occ.tables.flatMap((t) => t.rows).some((r) => /pay point/.test(r.label)), slug);
   }
-  assert.equal(headlineRow(getOccupation("occupational-therapist")!)!.hourly, 33.51); // 4-year degree entry
-  assert.equal(headlineRow(getOccupation("psychologist")!)!.hourly, 34.66); // masters entry
+  assert.equal(headlineRow(getOccupation("occupational-therapist")!)!.hourly, 34.44); // AQF 7, 1st year
+  assert.equal(headlineRow(getOccupation("physiotherapist")!)!.hourly, 34.44); // AQF 7, 1st year
+  assert.equal(headlineRow(getOccupation("psychologist")!)!.hourly, 38.02); // AQF 9, 1st year
 });
 
 test("W4: social worker rates are the SCHADS constants, headline is the 4-year graduate entry", () => {
@@ -504,9 +523,10 @@ test("T5: hairdresser — Table 4 levels and the cl 18.6 graduate rate (92.5% of
   assert.equal(Math.round(1119.1 * 0.925 * 100) / 100, 1035.17);
 });
 
-test("T5: lab technician — HPSS level 1 shared rows, support services lab assistant, Manufacturing C9–C5", () => {
+test("T5: lab technician — HPSS level 1 AQF 5 rows (PR814029), support services lab assistant, Manufacturing C9–C5", () => {
   checkPublished("lab-technician", [
-    ["Level 1 pay point 1", 1174.0, 30.89, 38.61],
+    ["Level 1 — AQF 5 — 1st year", 1232.7, 32.44, 40.55],
+    ["Level 1 — AQF 5 — 7th year+", 1541.3, 40.56, 50.7],
     ["Support Services level 1 — laboratory assistant", 1024.7, 26.97, 33.71],
     ["Support Services level 3 — laboratory assistant", 1106.2, 29.11, 36.39],
     ["C9 — Laboratory Technician Level I", 1154.3, 30.38, 37.98],
@@ -543,9 +563,9 @@ test("T5: pathology collector — cl 16.2(c) transitional table and Schedule C.1
   ]);
 });
 
-test("T5: dental hygienist uses the shared HPSS health professional table", () => {
+test("T5: dental hygienist uses the HPSS AQF Level 7 table from 1 October 2026 (PR814029)", () => {
   const h = headlineRow(getOccupation("dental-hygienist")!)!;
-  assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 pay point 2", 1219.5, 32.09, 40.11]);
+  assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 — AQF 7 — 1st year", 1308.8, 34.44, 43.05]);
 });
 
 test("T5: retail worker reads the shared retail constants", () => {
@@ -560,29 +580,48 @@ test("T5: retail worker reads the shared retail constants", () => {
 // --- G3 (wave 4, 24 Sep 2026): allied health on the HPSS award ---
 const G3_SLUGS = ["radiographer", "sonographer", "speech-pathologist", "audiologist", "podiatrist", "dietitian"] as const;
 
-test("G3: allied health pages headline HPSS level 1 pay point 2 and say Salary in the title", () => {
+test("G3: allied health pages headline their Schedule B.3 AQF level, 1st year (PR814029), and say Salary in the title", () => {
+  // [label, weekly, hourly, casual] exactly as PR814029 cl 17.1 and Schedule C.2.3 print them (read 9 October 2026).
+  const AQF7: [string, number, number, number] = ["Level 1 — AQF 7 — 1st year", 1308.8, 34.44, 43.05];
+  const expected: Record<(typeof G3_SLUGS)[number], [string, number, number, number]> = {
+    radiographer: AQF7,
+    sonographer: ["Level 1 — AQF 8 — 1st year", 1337.1, 35.19, 43.99],
+    "speech-pathologist": AQF7,
+    audiologist: ["Level 1 — AQF 9 — 1st year", 1444.9, 38.02, 47.53],
+    podiatrist: AQF7,
+    dietitian: AQF7,
+  };
   for (const slug of G3_SLUGS) {
     const occ = getOccupation(slug)!;
     assert.ok(occ, slug);
     assert.equal(occ.award?.code, "MA000027", slug);
+    assert.equal(occ.award?.consolidatedTo, "1 October 2026", slug);
     const h = headlineRow(occ)!;
-    assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], ["Level 1 pay point 2", 1219.5, 32.09, 40.11], slug);
-    assert.ok(occ.metaTitle?.includes("Salary") && occ.metaTitle.includes("$32.09"), slug);
+    assert.deepEqual([h.label, h.weekly, h.hourly, h.casualHourly], expected[slug], slug);
+    assert.ok(occ.metaTitle?.includes("Salary") && occ.metaTitle.includes(`$${expected[slug][2].toFixed(2)}`), slug);
     assert.ok(occ.metaTitle!.length <= 65, `${slug} title ${occ.metaTitle!.length}`);
+    assert.ok(!occ.tables.flatMap((t) => t.rows).some((r) => /pay point/.test(r.label)), `${slug} still shows pre-October pay points`);
+  }
+  // Professions Schedule B.3 lists at AQF 7, 8 and 9 table all three.
+  for (const slug of ["dietitian", "speech-pathologist"]) {
+    assert.deepEqual(getOccupation(slug)!.tables.map((t) => t.id), ["level-1", "level-1-aqf-8", "level-1-aqf-9", "levels-2-4"], slug);
   }
 });
 
-test("G3: FAQ figures agree with the shared HPSS rows they quote", () => {
-  const rows = getOccupation("radiographer")!.tables.flatMap((t) => t.rows);
-  const pp = (label: string) => rows.find((r) => r.label === label)!;
-  assert.equal(annualFromWeekly(pp("Level 1 pay point 2").weekly), 63_414);
-  assert.equal(pp("Level 1 pay point 3").hourly, 33.51);
-  assert.equal(pp("Level 1 pay point 4").hourly, 34.66);
-  assert.equal(pp("Level 1 pay point 5").hourly, 37.76);
-  assert.equal(pp("Level 1 pay point 6").hourly, 39.1);
-  // Weekend 150% and public holiday 250% of $32.09, as Schedule C.2.1 publishes them.
-  assert.equal(Math.round(32.09 * 1.5 * 100) / 100, 48.14);
-  assert.equal(Math.round(32.09 * 2.5 * 100) / 100, 80.23);
+test("G3: FAQ figures agree with the PR814029 rows and Schedule C.2.1 rates they quote", () => {
+  const occ = getOccupation("radiographer")!;
+  const rows = occ.tables.flatMap((t) => t.rows);
+  const r = (label: string) => rows.find((x) => x.label === label)!;
+  assert.equal(annualFromWeekly(r("Level 1 — AQF 7 — 1st year").weekly), 68_058);
+  assert.equal(r("Level 1 — AQF 7 — 2nd – 3rd year").hourly, 37.08);
+  assert.equal(r("Level 1 — AQF 7 — 4th – 6th year").hourly, 41.19);
+  assert.equal(r("Level 1 — AQF 7 — 7th year+").hourly, 44.46);
+  const faqs = occ.faqs.map((f) => f.a).join(" ");
+  // Schedule C.2.1, AQF Level 7—1st year: weekend (150%) $51.66, public holiday (250%) $86.10, as printed.
+  for (const figure of ["$34.44", "$1,308.80", "$68,058", "$43.05", "$51.66", "$86.10", "$51.19", "$65.77"]) {
+    assert.ok(faqs.includes(figure), `radiographer FAQs should quote ${figure}`);
+  }
+  assert.ok(!/\$32\.09|\$33\.51|\$40\.11|\$48\.14/.test(faqs), "pre-October figures left in the FAQs");
 });
 
 test("G3: vet rates follow the cl 15.3 NOTE chain (annual ÷ 52 to 10c, ÷ 38) and Schedule B.2.5 casuals", () => {

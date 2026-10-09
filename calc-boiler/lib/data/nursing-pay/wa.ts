@@ -9,10 +9,13 @@
 //     clause 17. Publishes ANNUAL rates. Column "On and from 12 October 2025".
 //   - Enrolled nurses and assistants in nursing generally: WA Health System -
 //     United Workers Union (WA) Industrial Agreement 2024, clause 24.
-//     Publishes WEEKLY rates. Column "7 October 2025".
+//     Publishes WEEKLY rates. Column "Increase of $65 7 October 2026" — rolled
+//     on 9 October 2026 from the WAIRC's registered copy (AG 31/2025),
+//     clause 24.1(e) and 24.2(a), read 9 October 2026:
+//     https://downloads.wairc.wa.gov.au/agreements/wah044.pdf
 //
-// Both read 28 August 2026 from the PDFs published by the Department of Health
-// WA. Neither publishes an hourly rate, so this page does not show one — the
+// Both first read 28 August 2026 from the PDFs published by the Department of
+// Health WA. Neither publishes an hourly rate, so this page does not show one — the
 // ordinary hours are an average of 38 a week under both agreements, but no
 // hourly divisor is prescribed and we will not invent one.
 //
@@ -36,6 +39,9 @@ const UWU_SOURCE = {
   title:
     "WA Health System – United Workers Union (WA) – Enrolled Nurses, Assistants in Nursing, Aboriginal Health Workers, Ethnic Health Workers and Aboriginal Health Practitioners Industrial Agreement 2024",
   url: "https://www.health.wa.gov.au/~/media/Corp/Documents/Health-for/Industrial-relations/Awards-and-agreements/Enrolled-nurses/WA-Health-System--United-Workers-Union-WA--Enrolled-Nurses-Assistants-in-Nursing-Aboriginal-Health-W.pdf",
+  // Same agreement as registered by the WAIRC (AG 31/2025); 7 October 2026
+  // rates read from this copy on 9 October 2026:
+  // https://downloads.wairc.wa.gov.au/agreements/wah044.pdf
   publisher: "Department of Health, Western Australia",
 };
 
@@ -64,12 +70,12 @@ export const WA_NURSING_PAY: NursingStateData = {
       id: "wa-uwu-2024",
       name:
         "WA Health System – United Workers Union (WA) – Enrolled Nurses, Assistants in Nursing, Aboriginal Health Workers, Ethnic Health Workers and Aboriginal Health Practitioners Industrial Agreement 2024",
-      effectiveFrom: "7 October 2025",
-      nextIncrease: "7 October 2026 (a flat $65 a week)",
+      effectiveFrom: "7 October 2026",
+      // Clause 24 prints no column after 7 October 2026.
       tribunal: "Western Australian Industrial Relations Commission",
       source: UWU_SOURCE,
       note:
-        "Clause 24 publishes weekly rates and increases enrolled nurses and assistants in nursing by a flat dollar amount rather than a percentage.",
+        "Clause 24 publishes weekly rates and increases enrolled nurses and assistants in nursing by a flat dollar amount rather than a percentage: $65 a week on 7 October 2025 and again on 7 October 2026.",
     },
   ],
 
@@ -135,16 +141,16 @@ export const WA_NURSING_PAY: NursingStateData = {
       family: "enrolled",
       instrumentId: "wa-uwu-2024",
       points: [
-        { label: "Level 1", weekly: 1461.76 },
-        { label: "Level 2", weekly: 1488.21 },
-        { label: "Level 3", weekly: 1514.65 },
-        { label: "Level 4", weekly: 1541.11 },
-        { label: "Advanced Skill Enrolled Nurse 1", weekly: 1594.01 },
-        { label: "Advanced Skill Enrolled Nurse 2", weekly: 1646.9 },
-        { label: "Advanced Skill Enrolled Nurse 3", weekly: 1699.83 },
+        { label: "Level 1", weekly: 1526.76 },
+        { label: "Level 2", weekly: 1553.21 },
+        { label: "Level 3", weekly: 1579.65 },
+        { label: "Level 4", weekly: 1606.11 },
+        { label: "Advanced Skill Enrolled Nurse 1", weekly: 1659.01 },
+        { label: "Advanced Skill Enrolled Nurse 2", weekly: 1711.9 },
+        { label: "Advanced Skill Enrolled Nurse 3", weekly: 1764.83 },
       ],
       note:
-        "Enrolled nurse levels 1 to 4 are years of employment as an enrolled nurse. Advanced skill requires a relevant post-enrolment qualification and at least three years' experience.",
+        "Rates from 7 October 2026 (clause 24.1(e), after the second flat $65-a-week rise). Enrolled nurse levels 1 to 4 are years of employment as an enrolled nurse. Advanced skill requires a relevant post-enrolment qualification and at least three years' experience.",
     },
     {
       classification: "Enrolled Mental Health Nurse",
@@ -181,9 +187,9 @@ export const WA_NURSING_PAY: NursingStateData = {
       family: "support",
       instrumentId: "wa-uwu-2024",
       points: [
-        { label: "Year 1", weekly: 1329.54 },
-        { label: "Year 2", weekly: 1355.96 },
-        { label: "Year 3", weekly: 1382.42 },
+        { label: "Year 1", weekly: 1394.54 },
+        { label: "Year 2", weekly: 1420.96 },
+        { label: "Year 3", weekly: 1447.42 },
       ],
     },
   ],
@@ -243,6 +249,6 @@ export const WA_NURSING_PAY: NursingStateData = {
     "Saturday is +50% and Sunday +75%, and those replace the shift loading rather than adding to it.",
     "Registered nurses and midwives progress through Level 1.1 to 2.4, then into Senior Registered Nurse/Midwife Levels 1 to 10.",
     "Nurse practitioners have no separate rate: the agreement classifies them as Senior Registered Nurses at a level assessed on work value, floored at Level 3.",
-    "Enrolled nurses get a flat $65-a-week rise on 7 October 2026, not a percentage.",
+    "Enrolled nurses and assistants in nursing got a flat $65-a-week rise on 7 October 2026, not a percentage, taking EN Level 1 to $1,526.76 a week.",
   ],
 };

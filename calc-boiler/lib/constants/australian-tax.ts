@@ -328,24 +328,26 @@ export const PAYDAY_SUPER_CAP_RELIEF = {
  * asserts the label is non-empty. Re-check at the start of each quarter at
  * ato.gov.au (General interest charge rates).
  */
+// Rolled to October–December 2026 on 9 October 2026. Source: ATO "General
+// interest charge (GIC) rates" (QC16145, page last updated 4 September 2026,
+// read 9 October 2026): October – December 2026 11.51% / 0.03153425% daily;
+// July – September 2026 11.43% / 0.03131507% daily. The January–March 2027
+// rate was not yet published when read, so no next-quarter rate is held here.
+// When it appears (about two weeks before 1 January 2027), roll it in the same
+// way: current → previousQuarter, new rate → annualRate / dailyRatePercent.
 export const GENERAL_INTEREST_CHARGE = {
-  annualRate: 0.1143,
+  annualRate: 0.1151,
   /**
    * The ATO publishes the daily rate explicitly. QUOTE IT — do not derive it
    * by dividing the annual rate, which lands on a different last digit.
    */
-  dailyRatePercent: 0.03131507,
-  quarter: "July–September 2026",
-  previousQuarter: { label: "April–June 2026", annualRate: 0.1096 },
+  dailyRatePercent: 0.03153425,
+  quarter: "October–December 2026",
+  previousQuarter: { label: "July–September 2026", annualRate: 0.1143, dailyRatePercent: 0.03131507 },
   resetsQuarterly: true,
   /** Next quarter's rate is generally announced ~2 weeks before it starts. */
-  nextRateDue: "mid-September 2026",
+  nextRateDue: "mid-December 2026",
   sourceUrl: "https://www.ato.gov.au/tax-rates-and-codes/general-interest-charge-rates",
-  // --- G6: next quarter's rate, published by the ATO (page last updated
-  // 4 September 2026, read 24 September 2026). Roll it into annualRate /
-  // dailyRatePercent / quarter on 1 October 2026. ---
-  nextQuarter: { label: "October–December 2026", annualRate: 0.1151, dailyRatePercent: 0.03153425, startsOn: "1 October 2026" },
-  // --- end G6 ---
 } as const;
 
 // ---------- HECS-HELP Repayment (FY2026-27 — New Marginal System) ----------

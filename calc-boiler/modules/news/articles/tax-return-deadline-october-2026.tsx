@@ -17,8 +17,10 @@ export default function TaxReturnDeadlineOctober2026() {
   const self = RETURN_DATES_2026.selfLodge;
   const moved = self.effectiveIso !== self.iso;
   const G = GENERAL_INTEREST_CHARGE;
-  const n = G.nextQuarter;
-  const gic = Math.round(DEBT * ((1 + n.dailyRatePercent / 100) ** DAYS - 1) * 100) / 100;
+  const prev = G.previousQuarter;
+  const move = G.annualRate > prev.annualRate ? "up from" : G.annualRate < prev.annualRate ? "down from" : "unchanged from";
+  // Compounds the ATO's published daily rate, which is quoted, never derived.
+  const gic = Math.round(DEBT * ((1 + G.dailyRatePercent / 100) ** DAYS - 1) * 100) / 100;
   const ftl = (days: number) => Math.min(Math.ceil(days / PENALTY_UNIT.ftlDaysPerUnit), PENALTY_UNIT.ftlMaxUnits) * PENALTY_UNIT.amount;
   const pct = (r: number) => `${(r * 100).toFixed(2)}%`;
 
@@ -34,7 +36,7 @@ export default function TaxReturnDeadlineOctober2026() {
           </>
         ) : null}{" "}
         Miss it and you risk a failure-to-lodge penalty of {formatAUD(PENALTY_UNIT.amount)} for every 28 days, and
-        interest on any tax you owe at {pct(n.annualRate)} a year from {n.startsOn}.
+        interest on any tax you owe at {pct(G.annualRate)} a year for {G.quarter}.
       </p>
 
       <NewsKeyFacts
@@ -43,7 +45,7 @@ export default function TaxReturnDeadlineOctober2026() {
           { label: "Self-lodgment due date", after: moved ? `${RETURN_2026.selfLodgeDueDate} (lodge by ${formatIso(self.effectiveIso, "long")})` : RETURN_2026.selfLodgeDueDate },
           { label: "Via a registered tax agent (most people)", after: `${RETURN_2026.agentDueDateMostPeople}, if on the agent's list by ${RETURN_2026.selfLodgeDueDate}` },
           { label: "Failure-to-lodge penalty", after: `${formatAUD(PENALTY_UNIT.amount)} per 28 days late, max ${formatAUD(FTL_MAX_INDIVIDUAL)}` },
-          { label: `General interest charge, ${n.label}`, before: pct(G.annualRate), after: pct(n.annualRate) },
+          { label: `General interest charge, ${G.quarter}`, before: pct(prev.annualRate), after: pct(G.annualRate) },
           { label: "Typical online refund", after: `within ${RETURN_2026.onlineRefundTypical}` },
         ]}
       />
@@ -74,8 +76,8 @@ export default function TaxReturnDeadlineOctober2026() {
       </p>
       <p>
         Interest is the bigger risk if you owe tax. The general interest charge compounds daily and resets each
-        quarter; the ATO has set it at <strong>{pct(n.annualRate)}</strong> for {n.label}, up from{" "}
-        {pct(G.annualRate)}, with a daily rate of {n.dailyRatePercent}%. On a {formatAUD(DEBT)} bill left unpaid
+        quarter; the ATO has set it at <strong>{pct(G.annualRate)}</strong> for {G.quarter}, {move}{" "}
+        {pct(prev.annualRate)} for {prev.label}, with a daily rate of {G.dailyRatePercent}%. On a {formatAUD(DEBT)} bill left unpaid
         for {DAYS} days, that is about {formatAUD(gic, 2)} — and GIC incurred from 1 July 2025 can&apos;t be claimed as a tax deduction.
       </p>
 

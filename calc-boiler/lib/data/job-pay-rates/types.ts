@@ -206,6 +206,11 @@ export interface Occupation {
   sources: OccupationSource[];
   /** Date every figure was read from its source. */
   verifiedOn: string;
+  /**
+   * When the tables took effect, where it differs from JOB_PAY_RATES_FROM
+   * (e.g. the Health Professionals Award's 1 October 2026 structure).
+   */
+  ratesFrom?: string;
   /** Related pages on this site. */
   related: { href: string; label: string }[];
   /**

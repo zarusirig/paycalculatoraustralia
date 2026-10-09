@@ -10,9 +10,17 @@
 // The FWC decision (as corrected) says the agreement operates from 7 October
 // 2024 with a nominal expiry date of 7 October 2027. Attachment 1 prints three
 // salary columns headed "On Commencement" (4%), "12 months" (3.8%) and
-// "24 months" (3.4%). On 24 September 2026 the "12 months" column is in force
-// (12 months after the 7 October 2024 commencement); the "24 months" column is
-// the next scheduled rise. Every salary below is the "12 months" column.
+// "24 months" (3.4%).
+//
+// ROLLED 9 October 2026: the "24 months" column is in force from 7 October 2026
+// (24 months after the 7 October 2024 commencement). Every salary in ATC_PAY
+// below is now the "24 months" column, re-read on 9 October 2026 from
+// Attachment 1 of the agreement PDF (pages 124–127: ATC, ADT, SSO and FDC
+// tables) and the separate ATC base salary PDF:
+//   https://www.airservicesaustralia.com/wp-content/uploads/2024/11/Enterprise_Agreement_2024-2027.pdf
+//   https://www.airservicesaustralia.com/wp-content/uploads/2024/11/ATC_Classification_Base_Salary.pdf
+// The superseded "12 months" ATC column is kept as ATC_12_MONTH_COLUMN for the
+// before/after figures in the October 2026 news article.
 
 import type { AviationPayPage } from "./types";
 
@@ -24,46 +32,41 @@ export const ATC_PAY: AviationPayPage = {
     status:
       "Approved by the Fair Work Commission on 30 September 2024 ([2024] FWCA 3415, AG2024/2680); operates from 7 October 2024; nominal expiry date 7 October 2027.",
   },
-  ratesEffectiveFrom: "7 October 2025",
-  scheduledIncreases: [
-    {
-      date: "7 October 2026",
-      detail:
-        "The agreement's \"24 months\" salary column, a 3.4% rise, is due 24 months after the 7 October 2024 commencement. It takes the Ab Initio Trainee to $64,398, the Field Trainee to $92,251, Level 1 to $125,564 and Level 10 to $243,589.",
-    },
-  ],
-  verifiedOn: "24 September 2026",
+  ratesEffectiveFrom: "7 October 2026",
+  // The "24 months" column is the agreement's last; none is scheduled after it.
+  scheduledIncreases: [],
+  verifiedOn: "9 October 2026",
 
   scales: [
     {
       id: "atc-classification",
       title: "Air traffic controller classification and base salary (Attachment 1)",
       intro:
-        "Base salaries for Airservices air traffic controllers, from ab initio trainee through the licensed Level 1 to Level 10 scale to the supervisor classifications. Figures are the agreement's \"12 months\" column.",
+        "Base salaries for Airservices air traffic controllers, from ab initio trainee through the licensed Level 1 to Level 10 scale to the supervisor classifications. Figures are the agreement's \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
-        { label: "Ab Initio Trainee", salary: 62_280, note: "In initial training, before any ATC licence" },
-        { label: "Field Trainee", salary: 89_218, note: "On-the-job final field training" },
-        { label: "Level 1", salary: 121_435 },
-        { label: "Level 2", salary: 136_307 },
-        { label: "Level 3", salary: 151_175 },
-        { label: "Level 4", salary: 164_391 },
-        { label: "Level 5", salary: 177_609 },
-        { label: "Level 6", salary: 193_305 },
-        { label: "Level 7", salary: 206_522 },
-        { label: "Level 8", salary: 219_741 },
-        { label: "Level 9", salary: 227_174 },
-        { label: "Level 10", salary: 235_580, note: "Top of the controller progression scale" },
+        { label: "Ab Initio Trainee", salary: 64_398, note: "In initial training, before any ATC licence" },
+        { label: "Field Trainee", salary: 92_251, note: "On-the-job final field training" },
+        { label: "Level 1", salary: 125_564 },
+        { label: "Level 2", salary: 140_941 },
+        { label: "Level 3", salary: 156_315 },
+        { label: "Level 4", salary: 169_981 },
+        { label: "Level 5", salary: 183_648 },
+        { label: "Level 6", salary: 199_878 },
+        { label: "Level 7", salary: 213_544 },
+        { label: "Level 8", salary: 227_212 },
+        { label: "Level 9", salary: 234_898 },
+        { label: "Level 10", salary: 243_589, note: "Top of the controller progression scale" },
         {
           label: "SY TTCU",
-          salary: 251_859,
+          salary: 260_422,
           note: "Grandfathered: closed to new employees from 1 July 2025",
         },
-        { label: "UTS", salary: 257_391, note: "Unit Tower Supervisor" },
-        { label: "CSS / SS", salary: 257_391 },
+        { label: "UTS", salary: 266_142, note: "Unit Tower Supervisor" },
+        { label: "CSS / SS", salary: 266_142 },
         {
           label: "SY CSS/Supervisor",
-          salary: 277_044,
+          salary: 286_463,
           note: "Grandfathered: closed to new employees from 1 July 2025",
         },
       ],
@@ -72,55 +75,55 @@ export const ATC_PAY: AviationPayPage = {
       id: "fdc-classification",
       title: "Flight Data Co-ordinator (FDC) classification and base salary",
       intro:
-        "Base salaries for Flight Data Co-ordinators covered by the same agreement. Figures are the \"12 months\" column.",
+        "Base salaries for Flight Data Co-ordinators covered by the same agreement. Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
-        { label: "FDC Trainee", salary: 88_834 },
-        { label: "FDC Level 1", salary: 113_100 },
-        { label: "FDC Level 2", salary: 122_248 },
-        { label: "FDC Level 3", salary: 125_392 },
-        { label: "FDC Level 4", salary: 128_809 },
-        { label: "FDC Level 5", salary: 137_881 },
-        { label: "FDC Level 6", salary: 142_581 },
-        { label: "FDC Level 7", salary: 147_856 },
-        { label: "FDC Supervisor", salary: 171_130 },
+        { label: "FDC Trainee", salary: 91_854 },
+        { label: "FDC Level 1", salary: 116_946 },
+        { label: "FDC Level 2", salary: 126_405 },
+        { label: "FDC Level 3", salary: 129_655 },
+        { label: "FDC Level 4", salary: 133_189 },
+        { label: "FDC Level 5", salary: 142_569 },
+        { label: "FDC Level 6", salary: 147_429 },
+        { label: "FDC Level 7", salary: 152_883 },
+        { label: "FDC Supervisor", salary: 176_948 },
       ],
     },
     {
       id: "sso-classification",
       title: "Simulator Support Officer (SSO) classification and base salary",
       intro:
-        "Base salaries for Simulator Support Officers, who support ATC training simulators. Figures are the \"12 months\" column.",
+        "Base salaries for Simulator Support Officers, who support ATC training simulators. Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
-        { label: "Trainee", salary: 84_317 },
-        { label: "SSO1 - Level 1", salary: 92_617 },
-        { label: "SSO2 - Level 2", salary: 98_126 },
-        { label: "SSO3 - Level 3", salary: 103_697 },
-        { label: "SSO4 - Level 4", salary: 106_943 },
-        { label: "SSO5 - Level 5 Fully Endorsed SSO", salary: 110_254 },
-        { label: "SSO6 - Level 6 Multi-Skilled SSO", salary: 114_333 },
-        { label: "SSO7 - Level 7 Exercise Design and Development", salary: 116_962 },
-        { label: "SSO8 - Level 8 Competency, Training and Standards", salary: 128_660 },
+        { label: "Trainee", salary: 87_184 },
+        { label: "SSO1 - Level 1", salary: 95_766 },
+        { label: "SSO2 - Level 2", salary: 101_463 },
+        { label: "SSO3 - Level 3", salary: 107_222 },
+        { label: "SSO4 - Level 4", salary: 110_579 },
+        { label: "SSO5 - Level 5 Fully Endorsed SSO", salary: 114_002 },
+        { label: "SSO6 - Level 6 Multi-Skilled SSO", salary: 118_220 },
+        { label: "SSO7 - Level 7 Exercise Design and Development", salary: 120_939 },
+        { label: "SSO8 - Level 8 Competency, Training and Standards", salary: 133_034 },
         {
           label: "SSO9 - Level 9 Simulator Data and Design SSO Instructor - ASA ATC Instructor Higher Duties",
-          salary: 134_037,
+          salary: 138_594,
         },
-        { label: "Supervisor", salary: 150_792 },
+        { label: "Supervisor", salary: 155_919 },
       ],
     },
     {
       id: "adt-classification",
       title: "Airways Data Team (ADT) classification and base salary",
       intro:
-        "Base salaries for the Airways Data Team (previously the TAAATS Data Management Unit). Figures are the \"12 months\" column.",
+        "Base salaries for the Airways Data Team (previously the TAAATS Data Management Unit). Figures are the \"24 months\" column, in force from 7 October 2026.",
       stepHeading: "Classification",
       steps: [
-        { label: "ADT Trainee", salary: 81_739 },
-        { label: "Level 1", salary: 132_023 },
-        { label: "Level 2", salary: 142_351 },
-        { label: "Level 3", salary: 147_618 },
-        { label: "ADT Supervisor", salary: 182_473 },
+        { label: "ADT Trainee", salary: 84_518 },
+        { label: "Level 1", salary: 136_512 },
+        { label: "Level 2", salary: 147_191 },
+        { label: "Level 3", salary: 152_637 },
+        { label: "ADT Supervisor", salary: 188_677 },
       ],
     },
   ],
@@ -128,9 +131,9 @@ export const ATC_PAY: AviationPayPage = {
   topStep: "Level 10",
 
   traineePay: [
-    "An Ab Initio Trainee is paid $62,280 a year under the agreement's \"12 months\" column ($64,398 once the \"24 months\" column applies). Schedule 1 defines an Ab Initio as an employee who does not hold, and has never held, an air traffic control licence and is undergoing Airservices training to become a licensed controller.",
+    "An Ab Initio Trainee is paid $64,398 a year under the agreement's \"24 months\" column, in force from 7 October 2026 (it was $62,280 under the \"12 months\" column). Schedule 1 defines an Ab Initio as an employee who does not hold, and has never held, an air traffic control licence and is undergoing Airservices training to become a licensed controller.",
     "Under Schedule 1, Ab Initios are not required to work night shifts or to perform ordinary hours on Saturdays or Sundays.",
-    "An Ab Initio moves to the Field Trainee classification ($89,218) when they start final field training, or automatically two weeks (14 days) after finishing the Ab Initio course if field training has not started by then.",
+    "An Ab Initio moves to the Field Trainee classification ($92,251) when they start final field training, or automatically two weeks (14 days) after finishing the Ab Initio course if field training has not started by then.",
     "Airservices' careers FAQ says initial training may take up to 18 months, followed by on-the-job field training managing live traffic with an instructor for about three to six months. Trainees work Monday to Friday, about 7.5 hours a day, during initial training.",
     "Once at Level 1, a controller moves up one classification level per year to Level 10, provided their performance is satisfactory and they meet the conditions in clause 27.3 (ASIC renewal, mandatory training, exams and CASA Class 3 medical on time).",
     "The FAQ says new recruits must sign a Training Bond Agreement committing to Airservices for five years after completing training, and must repay a proportion of training fees if the bond is broken.",
@@ -155,7 +158,7 @@ export const ATC_PAY: AviationPayPage = {
     },
   ],
   notices: [
-    "The \"24 months\" salary column (a 3.4% rise) falls due on 7 October 2026, shortly after these figures were read. From then, every salary on this page rises to the agreement's next column.",
+    "Every salary on this page is the agreement's \"24 months\" column, a 3.4% rise that took effect on 7 October 2026 and the last scheduled under this agreement. Figures re-read from Attachment 1 on 9 October 2026.",
     "The SY TTCU and SY CSS/Supervisor classifications closed to new employees from 1 July 2025 and are grandfathered for existing employees who meet clauses 27.14 to 27.21.",
     "These are base salaries only. Controllers' actual earnings also include penalty rates, overtime and allowances, which vary by roster and location.",
     "Air traffic controllers in the Australian Defence Force are paid under ADF pay scales, not this agreement.",
@@ -192,15 +195,15 @@ export const ATC_PAY: AviationPayPage = {
   faqs: [
     {
       q: "How much does an air traffic controller earn in Australia?",
-      a: "Airservices Australia controllers are paid under their 2024-2027 enterprise agreement. A licensed controller starts at Level 1 on $121,435 a year and moves up one level a year to Level 10 on $235,580. Supervisor classifications (UTS, CSS / SS) are $257,391. These are base salaries before penalty rates and allowances, and they rise 3.4% on 7 October 2026.",
+      a: "Airservices Australia controllers are paid under their 2024-2027 enterprise agreement. A licensed controller starts at Level 1 on $125,564 a year and moves up one level a year to Level 10 on $243,589. Supervisor classifications (UTS, CSS / SS) are $266,142. These are base salaries before penalty rates and allowances, from the 3.4% rise on 7 October 2026.",
     },
     {
       q: "What do ATC trainees get paid?",
-      a: "An Ab Initio Trainee earns $62,280 a year during initial training, which Airservices says can take up to 18 months. On starting final field training they move to Field Trainee at $89,218. Once licensed they start at Level 1 on $121,435.",
+      a: "An Ab Initio Trainee earns $64,398 a year during initial training, which Airservices says can take up to 18 months. On starting final field training they move to Field Trainee at $92,251. Once licensed they start at Level 1 on $125,564.",
     },
     {
       q: "How often do air traffic controllers get a pay rise?",
-      a: "Two ways. The agreement's salary table rises 4% on commencement, 3.8% after 12 months and 3.4% after 24 months (due 7 October 2026). Separately, controllers from Level 1 progress one classification level each year up to Level 10 if their performance is satisfactory and they meet the licence, medical and training conditions in clause 27.3.",
+      a: "Two ways. The agreement's salary table rose 4% on commencement, 3.8% after 12 months and 3.4% after 24 months (from 7 October 2026, the last scheduled rise). Separately, controllers from Level 1 progress one classification level each year up to Level 10 if their performance is satisfactory and they meet the licence, medical and training conditions in clause 27.3.",
     },
     {
       q: "Do air traffic controllers get paid overtime?",
@@ -213,10 +216,37 @@ export const ATC_PAY: AviationPayPage = {
   ],
 };
 
+/**
+ * The superseded "12 months" ATC column (in force 7 October 2025 to
+ * 6 October 2026), from the same Attachment 1, re-read 9 October 2026. Kept
+ * only for before/after comparisons; ATC_PAY carries the current column.
+ */
+export const ATC_12_MONTH_COLUMN = {
+  inForceFrom: "7 October 2025",
+  salaries: {
+    "Ab Initio Trainee": 62_280,
+    "Field Trainee": 89_218,
+    "Level 1": 121_435,
+    "Level 2": 136_307,
+    "Level 3": 151_175,
+    "Level 4": 164_391,
+    "Level 5": 177_609,
+    "Level 6": 193_305,
+    "Level 7": 206_522,
+    "Level 8": 219_741,
+    "Level 9": 227_174,
+    "Level 10": 235_580,
+    "SY TTCU": 251_859,
+    UTS: 257_391,
+    "CSS / SS": 257_391,
+    "SY CSS/Supervisor": 277_044,
+  } as Record<string, number>,
+} as const;
+
 // --- G6: the agreement's "24 months" salary column (3.4%) ---
 /**
  * Attachment 1 of the 2024-2027 agreement, "24 months" column, read on
- * 24 September 2026 from Airservices' "Air Traffic Control Classification Base
+ * 24 September 2026 and re-read 9 October 2026 from Airservices' "Air Traffic Control Classification Base
  * Salary 2024-2027" PDF (identical to the agreement's Attachment 1). Due
  * 24 months after the 7 October 2024 commencement — see ATC_PAY.unverified on
  * the exact pay period. Labels match ATC_PAY's "atc-classification" steps.
