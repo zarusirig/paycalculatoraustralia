@@ -175,5 +175,10 @@ export const DOCTOR: Occupation = {
     { href: "/healthcare-worker-pay/", label: "Healthcare Worker Pay" },
     { href: "/public-service-pay-scales/", label: "Public Service Pay Scales" },
     { href: "/salary-packaging-guide/", label: "Salary Packaging Guide" },
+    // Specialist and GP salary pages (lib/data/health-salary), which link back up here.
+    { href: "/job-pay-rates/gp/", label: "GP Salary" },
+    { href: "/job-pay-rates/surgeon/", label: "Surgeon Salary" },
+    { href: "/job-pay-rates/anaesthetist/", label: "Anaesthetist Salary" },
+    { href: "/job-pay-rates/radiologist/", label: "Radiologist Salary" },
   ],
 };

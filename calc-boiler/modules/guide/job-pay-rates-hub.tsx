@@ -8,6 +8,8 @@ import { formatAUD } from "@/lib/constants";
 import { FWO_PAY_GUIDES, JOB_PAY_RATES_FROM, JOB_PAY_VERIFIED_ON } from "@/lib/data/job-pay-rates/common";
 import { OCCUPATIONS, headlineRow, type Occupation } from "@/lib/data/job-pay-rates";
 import { JOB_SECTORS, OCCUPATION_SECTOR } from "@/lib/data/job-pay-rates/sectors";
+import { HEALTH_SALARY_PAGES, healthSalaryPath } from "@/lib/data/health-salary";
+import { ATO_INCOME_YEAR } from "@/lib/data/health-salary/ato-2023-24";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 
 export const JOB_PAY_HUB_FAQS = [
@@ -141,6 +143,49 @@ export default function JobPayRatesHubPage() {
               ))}
             </section>
 
+            {/* --- Health salary pages (9 Oct 2026): jobs where no award sets most people's pay --- */}
+            <section id="doctor-dentist-salaries">
+              <h2 style={HEADING_FONT}>Doctor and dentist salaries</h2>
+              <p>
+                No modern award sets most of the pay in these jobs, so their pages lead with what people in the job
+                reported to the ATO for the {ATO_INCOME_YEAR} income year, and what that pay comes to after tax and on a
+                payslip. The award minimum for employed doctors, from intern to specialist, is on the{" "}
+                <Link href="/job-pay-rates/doctor/">doctor pay rates</Link> page.
+              </p>
+              <TableShell minWidth="34rem" caption={`Doctor and dentist income, ${ATO_INCOME_YEAR}`}>
+                <thead className="bg-sandstone font-semibold text-navy">
+                  <tr>
+                    <th scope="col" className="px-4 py-3">Job</th>
+                    <th scope="col" className="px-4 py-3 text-right">Average taxable income</th>
+                    <th scope="col" className="px-4 py-3 text-right">Median taxable income</th>
+                    <th scope="col" className="px-4 py-3 text-right">People</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                  {HEALTH_SALARY_PAGES.map((p) => (
+                    <tr key={p.slug}>
+                      <th scope="row" className="px-4 py-3 text-left font-medium">
+                        <Link
+                          href={healthSalaryPath(p.slug)}
+                          className="text-eucalyptus-dark underline decoration-eucalyptus/40 underline-offset-4 hover:text-navy"
+                        >
+                          {p.name} salary
+                        </Link>
+                      </th>
+                      <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(p.ato.averageTaxableIncome)}</td>
+                      <td className="px-4 py-3 text-right">{formatAUD(p.ato.medianTaxableIncome)}</td>
+                      <td className="px-4 py-3 text-right">{p.ato.individuals.toLocaleString("en-AU")}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TableShell>
+              <p className="text-base">
+                ATO Taxation statistics {ATO_INCOME_YEAR}, Individuals Table 15. Taxable income includes business and
+                investment income and counts part-time workers, so it is not a salary rate.
+              </p>
+            </section>
+            {/* --- end health salary pages --- */}
+
             <section id="how-to-read">
               <h2 style={HEADING_FONT}>How to read an award rate</h2>
               <p>
@@ -200,6 +245,12 @@ export default function JobPayRatesHubPage() {
               <SidebarLink href="/air-traffic-controller-salary/" label="Air traffic controller salary" />
               <SidebarLink href="/pilot-salary/" label="Pilot salary" />
               {/* --- end F5 --- */}
+              {/* --- Health salary pages (9 Oct 2026) --- */}
+              <p className="pt-2 text-xs font-semibold uppercase tracking-wide text-warmgray">Doctor and dentist salaries</p>
+              {HEALTH_SALARY_PAGES.map((p) => (
+                <SidebarLink key={p.slug} href={healthSalaryPath(p.slug)} label={`${p.name} salary`} />
+              ))}
+              {/* --- end health salary pages --- */}
               <SidebarLink href="/award-rates/" label="All award rates" />
             </div>
           </aside>
