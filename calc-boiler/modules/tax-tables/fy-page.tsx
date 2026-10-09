@@ -14,7 +14,7 @@ import {
 } from "@/lib/constants/payg-withholding";
 import FyTaxTablePage from "./fy-tax-table";
 import { fyTaxTableFaqs } from "./fy-tax-table-faqs";
-import { FY_CYCLES, fyPath, fyWindow, longDate, parseFy } from "./fy-tax-table-data";
+import { FY_CYCLES, fyLabel, fyPath, fyWindow, longDate, parseFy } from "./fy-tax-table-data";
 import { ATO_SCHEDULE_1, ATO_TAX_TABLES_INDEX } from "./ato-schedules";
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -25,9 +25,11 @@ export function fyCanonical(frequency: PayFrequency, fy: PaygFinancialYear): str
 
 function titleFor(frequency: PayFrequency, fy: PaygFinancialYear): string {
   const c = FY_CYCLES[frequency];
+  const label = fyLabel(fy);
   return fitTitle(
-    `${c.label} Tax Table ${fy}: ATO ${c.ato.nat} Withholding Amounts`,
-    `${c.label} Tax Table ${fy} (${c.ato.nat})`,
+    `${c.label} Tax Table ${label}: ATO ${c.ato.nat} Withholding Amounts`,
+    `${c.label} Tax Table ${label}: ATO ${c.ato.nat} Amounts`,
+    `${c.label} Tax Table ${label} (${c.ato.nat})`,
   );
 }
 
@@ -35,10 +37,12 @@ function descriptionFor(frequency: PayFrequency, fy: PaygFinancialYear): string 
   const c = FY_CYCLES[frequency];
   const r = calculatePAYGWithholding(c.exampleGross, frequency, { financialYear: fy });
   const info = PAYG_YEAR_INFO[fy];
+  const label = fyLabel(fy);
+  const shared = info.coversYears.length > 1 ? " One ATO table for both years." : "";
   return fitDescription(
-    `${c.label} tax table for ${fy} (${c.ato.nat}): amounts to withhold for pay dates ${longDate(info.payDatesFrom)} to ${longDate(info.payDatesTo)}. ${formatAUD(c.exampleGross)} a ${c.period} has ${formatAUD(r.totalWithheld)} withheld.`,
-    `${c.label} tax table ${fy} (${c.ato.nat}): amounts to withhold for pay dates ${fyWindow(fy)}. ${formatAUD(c.exampleGross)} a ${c.period}: ${formatAUD(r.totalWithheld)} withheld.`,
-    `${c.label} tax table ${fy} (${c.ato.nat}): ATO amounts to withhold, which table applies to your pay date, worked example and CSV.`,
+    `${c.label} tax table for ${label} (${c.ato.nat}): amounts to withhold for pay dates ${longDate(info.payDatesFrom)} to ${longDate(info.payDatesTo)}.${shared} ${formatAUD(c.exampleGross)} a ${c.period} has ${formatAUD(r.totalWithheld)} withheld.`,
+    `${c.label} tax table ${label} (${c.ato.nat}): amounts to withhold for pay dates ${fyWindow(fy)}. ${formatAUD(c.exampleGross)} a ${c.period}: ${formatAUD(r.totalWithheld)} withheld.`,
+    `${c.label} tax table ${label} (${c.ato.nat}): ATO amounts to withhold, which table applies to your pay date, worked example and CSV.`,
   );
 }
 
@@ -74,7 +78,7 @@ export function FyRoutePage({ frequency, rawFy }: { frequency: PayFrequency; raw
       { "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE },
       { "@type": "ListItem", position: 2, name: "PAYG Withholding Tables", item: `${BASE}/payg-withholding-tables/` },
       { "@type": "ListItem", position: 3, name: `${c.label} Tax Table`, item: `${BASE}/${c.slug}/` },
-      { "@type": "ListItem", position: 4, name: fy, item: url },
+      { "@type": "ListItem", position: 4, name: info.label, item: url },
     ],
   };
   const webPage: WithContext<WebPage> = {
@@ -101,11 +105,11 @@ export function FyRoutePage({ frequency, rawFy }: { frequency: PayFrequency; raw
   const dataset: WithContext<Dataset> = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    name: `${c.label} PAYG withholding amounts ${fy} (ATO ${c.ato.nat})`,
-    description: `PAYG withholding amounts for ${c.period}ly payments made ${fyWindow(fy)}, computed from the ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient method, with and without the tax-free threshold.`,
+    name: `${c.label} PAYG withholding amounts ${info.label} (ATO ${c.ato.nat})`,
+    description: `PAYG withholding amounts for ${c.period}ly payments made from ${fyWindow(fy)}, computed from the ATO Schedule 1 (${ATO_SCHEDULE_1.nat}) coefficient method, with and without the tax-free threshold.`,
     url,
     identifier: c.ato.nat,
-    keywords: [`${c.period}ly tax table`, c.ato.nat, "PAYG withholding", `${fy} tax tables`, "Australia"],
+    keywords: [`${c.period}ly tax table`, c.ato.nat, "PAYG withholding", ...info.coversYears.map((y) => `${y} tax tables`), "Australia"],
     temporalCoverage: `${info.payDatesFrom}/${info.payDatesTo}`,
     spatialCoverage: { "@type": "Country", name: "Australia" },
     creator: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },

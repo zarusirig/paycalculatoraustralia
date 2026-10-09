@@ -75,7 +75,7 @@ export default function FullTaxTable({ frequency, caption, fixedFy }: FullTaxTab
         </button>
       </div>
       <p className="text-xs text-warmgray mb-2">
-        {fy}: applies to {PAYG_YEAR_INFO[fy].appliesTo}. Rows every {formatAUD(range.step)} from {formatAUD(range.from)} to{" "}
+        {PAYG_YEAR_INFO[fy].label}: applies to {PAYG_YEAR_INFO[fy].appliesTo}. Rows every {formatAUD(range.step)} from {formatAUD(range.from)} to{" "}
         {formatAUD(range.to)}; use the lookup above for an exact amount.
       </p>
       <div className="overflow-x-auto max-h-[70vh] overflow-y-auto rounded-xl border border-sandstone-dark/20 shadow-sm">

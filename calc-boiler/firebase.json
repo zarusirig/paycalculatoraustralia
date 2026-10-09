@@ -166,6 +166,36 @@
         "source": "/contractor-vs-employee/",
         "destination": "/contractor-vs-employee-calculator/",
         "type": 301
+      },
+      {
+        "source": "/weekly-tax-table/2024-25",
+        "destination": "/weekly-tax-table/2025-26/",
+        "type": 301
+      },
+      {
+        "source": "/weekly-tax-table/2024-25/",
+        "destination": "/weekly-tax-table/2025-26/",
+        "type": 301
+      },
+      {
+        "source": "/fortnightly-tax-table/2024-25",
+        "destination": "/fortnightly-tax-table/2025-26/",
+        "type": 301
+      },
+      {
+        "source": "/fortnightly-tax-table/2024-25/",
+        "destination": "/fortnightly-tax-table/2025-26/",
+        "type": 301
+      },
+      {
+        "source": "/monthly-tax-table/2024-25",
+        "destination": "/monthly-tax-table/2025-26/",
+        "type": 301
+      },
+      {
+        "source": "/monthly-tax-table/2024-25/",
+        "destination": "/monthly-tax-table/2025-26/",
+        "type": 301
       }
     ],
     "headers": [

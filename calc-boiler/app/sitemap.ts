@@ -29,6 +29,7 @@ import { STATE_PUBLIC_HOLIDAYS } from "@/lib/data/public-holidays";
 import { SEASONAL_PAGES } from "@/lib/data/public-holidays/seasonal-pages";
 import { MW_STATE_SLUGS } from "@/lib/data/minimum-wage-state"; // F1
 // --- end G4 ---
+import { PAYG_TABLE_YEARS } from "@/lib/constants/payg-withholding"; // F5 tax tables by year
 import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
 
@@ -342,8 +343,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     allPages.push({ slug: `adf-pay-scales/${service}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   // --- F5 PAYG tax tables by financial year (Oct 2026) ---
+  // Same list the [fy] routes render. No 2024-25 page: the ATO's one edition
+  // for 1 July 2024 to 30 June 2026 lives at /…/2025-26/ (2024-25 URLs 301).
   for (const cycle of ["weekly", "fortnightly", "monthly"]) {
-    for (const fy of ["2026-27", "2025-26", "2024-25"]) {
+    for (const fy of PAYG_TABLE_YEARS) {
       allPages.push({ slug: `${cycle}-tax-table/${fy}`, changeFrequency: "monthly" as const, priority: 0.7 });
     }
   }

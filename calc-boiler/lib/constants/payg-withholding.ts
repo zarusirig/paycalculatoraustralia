@@ -22,7 +22,12 @@
 // See lib/constants/__tests__/payg-withholding.test.ts.
 //
 // FY2026-27 change: from 1 July 2026 the 16% rate on $18,201–$45,000 falls
-// to 15% (Treasury Laws Amendment (Cost of Living Tax Cuts) Act 2025) — see
+// to 15% (Treasury Laws Amendment (More Cost of Living Relief) Act 2025, the
+// name the ATO gives it on the tax tables index, "Important Information – July
+// 2026 updates", read 9 October 2026:
+// https://www.ato.gov.au/tax-rates-and-codes/tax-tables-overview). The same
+// Act raised the Medicare levy low-income thresholds, so Scale 2's levy bands
+// moved too (SCALE_2_MEDICARE vs SCALE_2_MEDICARE_2025_26). See
 // TAX_HISTORY.upcomingFY2026_27 in australian-tax.ts.
 // =============================================================================
 
@@ -39,35 +44,51 @@ export const PAYG_TABLES_UPDATED = "1 July 2026";
  * Financial years the engine carries full Schedule 1 coefficient sets for.
  * The current year comes first. The tax-table pages offer these as an FY
  * toggle so payroll staff can check a pay run from the previous year.
+ *
+ * There is deliberately no "2024-25" key. The ATO issued ONE Schedule 1
+ * edition (and one NAT 1005 / 1006 / 1007) for payments made from 1 July 2024
+ * to 30 June 2026 and did not reissue it on 1 July 2025, so 2024-25 and
+ * 2025-26 withholding is identical and the "2025-26" entry covers both. Read
+ * 9 October 2026: the ATO's "Tax tables for 2024–25" and "Tax tables for
+ * 2025–26" pages link the same "...-01-july-2024-to-30-june-2026" weekly,
+ * fortnightly and monthly tables and the same Schedule 1:
+ * https://www.ato.gov.au/tax-rates-and-codes/previous-years-tax-tables/tax-tables-for-2024-25
+ * https://www.ato.gov.au/tax-rates-and-codes/previous-years-tax-tables/tax-tables-for-2025-26
  */
-export type PaygFinancialYear = "2026-27" | "2025-26" | "2024-25";
+export type PaygFinancialYear = "2026-27" | "2025-26";
 export const PAYG_FINANCIAL_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26"];
 /**
- * Every year that has its own /{cycle}-tax-table/{fy}/ page, newest first.
- * 2024-25 is not in the lookup-widget toggle (PAYG_FINANCIAL_YEARS) but the
- * engine carries it: the ATO's single Schedule 1 edition applied to payments
- * made from 1 July 2024 to 30 June 2026, so 2024-25 uses the same coefficients
- * as 2025-26.
+ * Every table that has its own /{cycle}-tax-table/{fy}/ page, newest first.
+ * The 2025-26 page also serves 2024-25 (same ATO edition); the old 2024-25
+ * URLs 301 to it (calc-boiler/firebase.json). Only add a page when the ATO
+ * issues a new edition: a page per financial year with identical amounts is a
+ * near-duplicate.
  */
-export const PAYG_TABLE_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26", "2024-25"];
+export const PAYG_TABLE_YEARS: readonly PaygFinancialYear[] = ["2026-27", "2025-26"];
 export const PAYG_PREVIOUS_FINANCIAL_YEAR: PaygFinancialYear = "2025-26";
 
 export interface PaygYearInfo {
   readonly fy: PaygFinancialYear;
+  /** Every financial year this table applies to, oldest first. */
+  readonly coversYears: readonly string[];
+  /** Display label: "2026-27", or "2024-25 and 2025-26" for a two-year edition. */
+  readonly label: string;
   /** Plain-English period the ATO says the schedule applies to. */
   readonly appliesTo: string;
   readonly schedule1Url: string;
   readonly sampleDataUrl: string;
-  /** First and last pay date (ISO) the year covers, i.e. the financial year. */
+  /** First and last pay date (ISO) the table applies to: the whole ATO edition. */
   readonly payDatesFrom: string;
   readonly payDatesTo: string;
-  /** Whether the engine carries this year's Schedule 8 (STSL) coefficients. */
+  /** Whether the engine carries this table's Schedule 8 (STSL) coefficients. */
   readonly stslSupported: boolean;
 }
 
 export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
   "2026-27": {
     fy: "2026-27",
+    coversYears: ["2026-27"],
+    label: "2026-27",
     payDatesFrom: "2026-07-01",
     payDatesTo: "2027-06-30",
     appliesTo: "payments made from 1 July 2026",
@@ -79,45 +100,37 @@ export const PAYG_YEAR_INFO: Record<PaygFinancialYear, PaygYearInfo> = {
   },
   "2025-26": {
     fy: "2025-26",
-    payDatesFrom: "2025-07-01",
-    payDatesTo: "2026-06-30",
-    // The ATO did not reissue Schedule 1 on 1 July 2025: the 1 July 2024
-    // edition "applied to payments made from 1 July 2024 to 30 June 2026".
-    appliesTo: "payments made from 1 July 2024 to 30 June 2026",
-    schedule1Url:
-      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026",
-    sampleDataUrl:
-      "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data",
-    // Schedule 8 changed part-way through 2025-26 (one edition for 1 July to
-    // 23 September 2025, another from 24 September 2025 to 30 June 2026), so a
-    // single 2025-26 STSL figure would be wrong for part of the year. Not
-    // carried — the pages disable the study-loan option for this year.
-    stslSupported: false,
-  },
-  "2024-25": {
-    fy: "2024-25",
+    // One ATO edition for both years: "This schedule applied to payments made
+    // from 1 July 2024 to 30 June 2026", last updated 17 June 2024 (read
+    // 5 October 2026 and again 9 October 2026). Not reissued on 1 July 2025.
+    coversYears: ["2024-25", "2025-26"],
+    label: "2024-25 and 2025-26",
     payDatesFrom: "2024-07-01",
-    payDatesTo: "2025-06-30",
-    // Same ATO edition as 2025-26 (read 5 October 2026: "This schedule applied
-    // to payments made from 1 July 2024 to 30 June 2026", last updated 17 June
-    // 2024), so the coefficients are identical.
+    payDatesTo: "2026-06-30",
     appliesTo: "payments made from 1 July 2024 to 30 June 2026",
     schedule1Url:
       "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026",
     sampleDataUrl:
       "https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data",
-    // Schedule 8 for 2024-25 is a different (pre-marginal) system that the
-    // engine does not carry, so no study-loan component is shown.
+    // Schedule 8 was NOT one edition across these two years: 2024-25 used the
+    // pre-marginal edition for 1 July 2024 to 30 June 2025, and 2025-26 had one
+    // edition for 1 July to 23 September 2025 and another from 24 September
+    // 2025 to 30 June 2026 (ATO "Tax tables for 2024–25" and "Tax tables for
+    // 2025–26" pages, read 9 October 2026). A single STSL figure would be wrong
+    // for most of the period, so it is not carried and the pages disable the
+    // study-loan option.
     stslSupported: false,
   },
 };
 
 /**
- * Which financial year's table applies to a payment made on `isoDate`
- * (YYYY-MM-DD). The ATO looks at the date the payment is MADE, not the period
- * worked. Returns null outside the years the site carries.
+ * Which table (keyed by the financial year of its page) applies to a payment
+ * made on `isoDate` (YYYY-MM-DD). The ATO looks at the date the payment is
+ * MADE, not the period worked. A 2024-25 pay date returns "2025-26" because one
+ * ATO edition covers both years. Returns null outside the dates the site
+ * carries.
  */
-export function paygFinancialYearForPayDate(isoDate: string): PaygFinancialYear | null {
+export function paygTableYearForPayDate(isoDate: string): PaygFinancialYear | null {
   for (const fy of PAYG_TABLE_YEARS) {
     const info = PAYG_YEAR_INFO[fy];
     if (isoDate >= info.payDatesFrom && isoDate <= info.payDatesTo) return fy;
@@ -217,7 +230,14 @@ export const SCALE_3_FOREIGN_2025_26: readonly CoefficientBand[] = [
 /** Scale 4 — no TFN provided. Flat rate on earnings, cents ignored. */
 export const NO_TFN_RATES = { resident: 0.47, foreignResident: 0.45 } as const;
 
-/** Medicare levy parameters embedded in Scale 2 (FY2026-27). */
+/**
+ * Medicare levy parameters embedded in Scale 2 (FY2026-27). Source: ATO
+ * Schedule 1 coefficients page, "Notes on using the scales" ("no Medicare levy
+ * is payable by a person whose taxable income for the year is $28,011 ($538 per
+ * week) or less ... less than $35,013 ($673 per week)"; family threshold
+ * 47,238, additional child 4,338), published 17 June 2026, read 9 October 2026:
+ * https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld/coefficients-to-use-in-formulas-for-withholding-from-weekly-payments
+ */
 export const SCALE_2_MEDICARE = {
   weeklyThreshold: 538,
   weeklyShadeInThreshold: 673,
@@ -225,6 +245,26 @@ export const SCALE_2_MEDICARE = {
   annualShadeInThreshold: 35_013,
   familyThreshold: 47_238,
   additionalChild: 4_338,
+  rate: 0.02,
+} as const;
+
+/**
+ * Medicare levy parameters embedded in Scale 2 for the edition that applied
+ * from 1 July 2024 to 30 June 2026 (2024-25 and 2025-26). Source: that
+ * edition's coefficients page, "Notes on using the scales" ("no Medicare levy
+ * is payable by a person whose taxable income for the year is $26,000 ($500
+ * per week) or less ... less than $32,500 ($625 per week)"; family threshold
+ * 43,846, additional child 4,027), last updated 17 June 2024, read 9 October 2026:
+ * https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/coefficients-to-use-in-formulas-for-withholding-from-weekly-payments
+ * They match the 500 / 625 band edges in SCALE_2_TFT_2025_26.
+ */
+export const SCALE_2_MEDICARE_2025_26 = {
+  weeklyThreshold: 500,
+  weeklyShadeInThreshold: 625,
+  annualThreshold: 26_000,
+  annualShadeInThreshold: 32_500,
+  familyThreshold: 43_846,
+  additionalChild: 4_027,
   rate: 0.02,
 } as const;
 
@@ -294,12 +334,6 @@ const SCALES_BY_YEAR: Record<PaygFinancialYear, Record<WithholdingScale, readonl
     foreignResident: SCALE_3_FOREIGN,
   },
   "2025-26": {
-    tft: SCALE_2_TFT_2025_26,
-    noTft: SCALE_1_NO_TFT_2025_26,
-    foreignResident: SCALE_3_FOREIGN_2025_26,
-  },
-  // Same ATO edition (1 July 2024 to 30 June 2026) as 2025-26.
-  "2024-25": {
     tft: SCALE_2_TFT_2025_26,
     noTft: SCALE_1_NO_TFT_2025_26,
     foreignResident: SCALE_3_FOREIGN_2025_26,
@@ -375,6 +409,23 @@ export function withholdingForPeriod(
   const x = toWeeklyEquivalent(grossPerPeriod, frequency);
   const weekly = applyScale(x, SCALES_BY_YEAR[financialYear][scale]);
   return fromWeeklyWithholding(weekly, frequency);
+}
+
+/**
+ * Lowest whole-dollar earnings for the pay period that have anything withheld
+ * under a scale: the point where the printed table stops showing $0. It sits a
+ * few dollars above the ATO's nil band edge (Scale 2: x < 362 from 1 July 2026,
+ * x < 361 before) because a formula result under 50c rounds to $0.
+ */
+export function firstWholeDollarWithheld(
+  frequency: PayFrequency,
+  scale: WithholdingScale = "tft",
+  financialYear: PaygFinancialYear = PAYG_FINANCIAL_YEAR
+): number {
+  for (let gross = 1; gross <= 100_000; gross++) {
+    if (withholdingForPeriod(gross, frequency, scale, financialYear) > 0) return gross;
+  }
+  return Number.NaN;
 }
 
 export interface WithholdingWorkings {
