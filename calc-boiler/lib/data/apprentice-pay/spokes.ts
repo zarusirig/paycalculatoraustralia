@@ -259,6 +259,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     h1: "Apprentice Bricklayer Pay",
     lead:
       "A bricklaying apprentice's minimum includes a $29.26 a week tool allowance, the amount clause 21.1(a) of the Building and Construction General On-site Award sets for a bricklayer or refractory bricklayer. It is paid in full to apprentices with the industry allowance, for all purposes (cl 19.7(c)). That is $11.96 a week less than the carpentry tool allowance, about 31 cents an hour, and it is the only reason a bricklaying apprentice's minimum differs from a carpentry apprentice's.",
+    job: { href: "/job-pay-rates/bricklayer/", label: "Bricklayer pay rates (qualified)" },
     extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "The levels and allowances behind the apprentice rates." }],
     allowances: buildingScenarios("Tool allowance (refractory bricklayer or bricklayer)", BRICKLAYER_PG.toolAllowance),
     payGuide: BRICKLAYER_PG,

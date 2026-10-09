@@ -15,7 +15,8 @@
 export const SERVICE_STATE_SLUGS = ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"] as const;
 export type ServiceStateSlug = (typeof SERVICE_STATE_SLUGS)[number];
 
-export const SERVICE_OCCUPATIONS = ["paramedic", "police", "firefighter"] as const;
+// "prison-officer" added in J8 (9 Oct 2026): state corrective services, same state-by-state model.
+export const SERVICE_OCCUPATIONS = ["paramedic", "police", "firefighter", "prison-officer"] as const;
 export type ServiceOccupation = (typeof SERVICE_OCCUPATIONS)[number];
 
 /** One row of a published pay table. */

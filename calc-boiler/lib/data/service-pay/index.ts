@@ -39,6 +39,16 @@ import { TAS_FIREFIGHTER_PAY } from "./firefighter/tas";
 import { ACT_FIREFIGHTER_PAY } from "./firefighter/act";
 import { NT_FIREFIGHTER_PAY } from "./firefighter/nt";
 
+// J8 (9 Oct 2026)
+import { NSW_PRISON_OFFICER_PAY } from "./prison-officer/nsw";
+import { VIC_PRISON_OFFICER_PAY } from "./prison-officer/vic";
+import { QLD_PRISON_OFFICER_PAY } from "./prison-officer/qld";
+import { WA_PRISON_OFFICER_PAY } from "./prison-officer/wa";
+import { SA_PRISON_OFFICER_PAY } from "./prison-officer/sa";
+import { TAS_PRISON_OFFICER_PAY } from "./prison-officer/tas";
+import { ACT_PRISON_OFFICER_PAY } from "./prison-officer/act";
+import { NT_PRISON_OFFICER_PAY } from "./prison-officer/nt";
+
 export const SERVICE_PAY: Readonly<
   Record<ServiceOccupation, Readonly<Record<ServiceStateSlug, ServicePayJurisdiction>>>
 > = {
@@ -71,6 +81,16 @@ export const SERVICE_PAY: Readonly<
     tas: TAS_FIREFIGHTER_PAY,
     act: ACT_FIREFIGHTER_PAY,
     nt: NT_FIREFIGHTER_PAY,
+  },
+  "prison-officer": {
+    nsw: NSW_PRISON_OFFICER_PAY,
+    vic: VIC_PRISON_OFFICER_PAY,
+    qld: QLD_PRISON_OFFICER_PAY,
+    wa: WA_PRISON_OFFICER_PAY,
+    sa: SA_PRISON_OFFICER_PAY,
+    tas: TAS_PRISON_OFFICER_PAY,
+    act: ACT_PRISON_OFFICER_PAY,
+    nt: NT_PRISON_OFFICER_PAY,
   },
 };
 

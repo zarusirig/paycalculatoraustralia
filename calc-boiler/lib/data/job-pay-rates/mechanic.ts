@@ -32,7 +32,10 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation, RateRow } from "./types";
+import { MANUFACTURING_AWARD, findAwardRate } from "../../constants/modern-awards";
+import { MINING_AWARD } from "../../constants/modern-awards-oct2";
+import { money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const CODE = "MA000089";
 
@@ -59,6 +62,50 @@ const OTHER_ROWS: RateRow[] = [
   r("R4 — Vehicle RS&R industry employee Level 4", 1062.9, 27.97),
   r("R5 — Vehicle RS&R industry employee Level 5", 1088.2, 28.64),
 ];
+
+// ---------------------------------------------------------------------------
+// J8 (9 Oct 2026): "diesel mechanic salary" (720 a month) is answered on this
+// page, not a new URL. Read 9 October 2026:
+//   - Vehicle Repair, Services and Retail Award cl 4.2(a) (above): repairing
+//     and servicing trucks, agricultural machinery and other vehicles — R6.
+//   - Mining Industry Award 2020 [MA000011] cl 4.2(d): "the servicing,
+//     maintaining (including mechanical, electrical, fabricating or
+//     engineering) or repairing of plant and equipment" used in mining "by
+//     employees principally employed to perform work on an ongoing basis at a
+//     location where those activities are being performed". Schedule A.3.4
+//     Level 3—Competent: skills "acquired through the completion of a trade
+//     certificate", applying to Mining Industry Maintenance Trades Employees.
+//     Ordinary hourly $30.54 / casual $38.18 including the $41.41 all-purpose
+//     industry allowance (Schedule B.1.3, B.2), from MINING_AWARD.
+//   - Manufacturing Award C10 Engineering Tradesperson (Mechanical) Level I
+//     (Schedule A.4.7), from MANUFACTURING_AWARD.
+// ---------------------------------------------------------------------------
+
+const MINING_TRADE = findAwardRate(MINING_AWARD, "Level 3 (Competent)");
+const MANUFACTURING_TRADE = findAwardRate(MANUFACTURING_AWARD, "C10 / V5");
+
+function dieselRow(where: string, award: string, hourly: number, weekly: number): string[] {
+  return [where, award, money2(hourly), money2(weekly), money2(casualFromHourly(hourly))];
+}
+
+const DIESEL_MECHANIC_SECTION: OccupationSection = {
+  id: "diesel-mechanic-pay",
+  heading: "Diesel mechanic pay: which award applies",
+  paragraphs: [
+    "A diesel mechanic's minimum depends on who employs you, not on the engine. In a truck or machinery workshop or a dealership you are a motor mechanic under the Vehicle Repair, Services and Retail Award, at the R6 trade rate. A heavy diesel fitter maintaining plant on a mine site is usually covered by the Mining Industry Award, and a maintenance fitter in a factory by the Manufacturing Award.",
+    "On a mine the award's trade level is Level 3—Competent for maintenance trades employees, and every rate includes a $41.41 a week industry allowance paid for all purposes, which is why the hourly rate is higher. Most large mining operations pay under enterprise agreements well above these minimums.",
+  ],
+  table: {
+    caption: "Diesel mechanic minimum rates by award, 2026–27",
+    head: ["Where you work", "Award and level", "Hourly", "Weekly", "Casual hourly"],
+    rows: [
+      dieselRow("Truck or machinery workshop; dealership", "Vehicle Repair, Services and Retail Award — R6", MECHANIC_ROWS[0].hourly, MECHANIC_ROWS[0].weekly),
+      dieselRow("Factory or processing plant maintenance", "Manufacturing Award — C10 tradesperson", MANUFACTURING_TRADE.hourly, MANUFACTURING_TRADE.weekly),
+      dieselRow("Maintaining plant on a mine site", "Mining Industry Award — Level 3 (maintenance trades)", MINING_TRADE.hourly, MINING_TRADE.weekly),
+    ],
+    note: "Minimums from the first full pay period on or after 1 July 2026. The mining row includes the all-purpose industry allowance (Schedule B.1.3). Casual is the hourly rate plus 25%; the Vehicle Repair Award's casual loading rises outside weekday daytime hours.",
+  },
+};
 
 export const MECHANIC: Occupation = {
   slug: "mechanic",
@@ -128,6 +175,7 @@ export const MECHANIC: Occupation = {
     "Vehicle salesperson commission provisions (cl 28) and driveway attendant rates (cl 27).",
     "Unapprenticed junior rates (cl 16.6), which apply only to the non-trade classifications listed in that clause.",
   ],
+  sections: [DIESEL_MECHANIC_SECTION],
   faqs: [
     {
       q: "What is the award rate for a mechanic in 2026?",
@@ -142,6 +190,10 @@ export const MECHANIC: Occupation = {
       a: "A diesel mechanic in a truck or heavy vehicle workshop is covered by the same award and classification as a motor mechanic — R6, $29.45 an hour — because the award covers repairing trucks, agricultural machinery and other vehicles. A diesel fitter employed by a mine or a manufacturer may be under a different award.",
     },
     {
+      q: "Is a diesel fitter on a mine site paid more than a workshop diesel mechanic?",
+      a: `Under the awards, slightly. A trade-qualified maintenance fitter covered by the Mining Industry Award is at least Level 3—Competent: ${money2(MINING_TRADE.hourly)} an hour including the $41.41 a week industry allowance, against ${money2(MECHANIC_ROWS[0].hourly)} for an R6 mechanic in a vehicle workshop. In practice most mines pay under enterprise agreements well above both.`,
+    },
+    {
       q: "Do mechanics get a tool allowance?",
       a: "Yes. A tradesperson who is required to supply their own hand tools gets $13.86 a week (cl 19.6(a)). It is an expense allowance, not added to the hourly rate for penalties or overtime.",
     },
@@ -153,6 +205,7 @@ export const MECHANIC: Occupation = {
   sources: [
     { title: "Vehicle Repair, Services and Retail Award 2020 [MA000089] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl(CODE) },
     { title: "Pay Guide — Vehicle Repair, Services and Retail Award [MA000089], published 24 June 2026", publisher: "Fair Work Ombudsman", url: "https://calculate.fairwork.gov.au/ArticleDocuments/872/vehicle-repair-services-and-retail-award-ma000089-pay-guide.pdf.aspx" },
+    { title: "Mining Industry Award 2020 [MA000011] — consolidated to 1 July 2026", publisher: "Fair Work Commission", url: awardTextUrl("MA000011") },
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
@@ -163,5 +216,6 @@ export const MECHANIC: Occupation = {
     { href: "/construction-trades-pay/", label: "Construction Trades Pay" },
     { href: "/manufacturing-award-rates/", label: "Manufacturing Award Pay Rates" },
     { href: "/overtime-pay-calculator/", label: "Overtime Pay Calculator" },
+    { href: "/job-pay-rates/fitter-and-turner/", label: "Fitter and Turner Pay Rates" },
   ],
 };

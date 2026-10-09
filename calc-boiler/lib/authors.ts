@@ -239,6 +239,7 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "paramedic-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "police-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "firefighter-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
+  "prison-officer-pay": { authorId: "anita-bell", lastReviewed: "2026-10-09" }, // J8
   "air-traffic-controller-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "pilot-salary": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   // --- end F5 ---

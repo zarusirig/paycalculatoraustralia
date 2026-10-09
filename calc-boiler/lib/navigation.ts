@@ -277,6 +277,7 @@ export const MEGA_MENU: readonly MegaMenu[] = [
           { href: "/paramedic-pay/", label: "Paramedics" },
           { href: "/police-pay/", label: "Police" },
           { href: "/firefighter-pay/", label: "Firefighters" },
+          { href: "/prison-officer-pay/", label: "Prison officers" }, // J8
         ],
       },
       {
@@ -821,6 +822,7 @@ export const GUIDE_CATEGORIES = [
       { href: "/paramedic-pay/", label: "Paramedic Pay by State", description: "Ambulance service pay scales" },
       { href: "/police-pay/", label: "Police Pay by State", description: "Constable to senior sergeant" },
       { href: "/firefighter-pay/", label: "Firefighter Pay by State", description: "Recruit to station officer" },
+      { href: "/prison-officer-pay/", label: "Prison Officer Pay by State", description: "Correctional officer pay scales" }, // J8
       { href: "/air-traffic-controller-salary/", label: "Air Traffic Controller Salary", description: "Airservices pay levels" },
       { href: "/pilot-salary/", label: "Pilot Salary", description: "Air Pilots Award rates" },
       // --- end C2/C5 ---

@@ -91,6 +91,14 @@ export const OCCUPATION_SLUGS = [
   "mortgage-broker",
   "paralegal",
   "surveyor",
+  // J8 (9 Oct 2026) — awarded trades, care and office occupations.
+  "vet-nurse",
+  "bricklayer",
+  "fitter-and-turner",
+  "landscaper",
+  "personal-trainer",
+  "payroll-officer",
+  "excavator-operator",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
@@ -223,6 +231,28 @@ export interface OccupationFaq {
   a: string;
 }
 
+/**
+ * A short, targeted H2 section for a job title this page owns but does not
+ * lead with (J8: "store manager" on the retail manager page, "diesel mechanic"
+ * on the mechanic page), so the query is answered here instead of on a thin
+ * near-duplicate URL. Every figure in it follows the same sourcing rules as
+ * the rest of the page.
+ */
+export interface OccupationSection {
+  /** Anchor id, unique on the page. */
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  table?: {
+    caption: string;
+    /** Column headings; the first column is the row heading. */
+    head: string[];
+    rows: string[][];
+    /** One line under the table: basis, rounding, sources. */
+    note?: string;
+  };
+}
+
 export interface Occupation {
   slug: OccupationSlug;
   /** Singular job title in title case, e.g. "Electrician". */
@@ -251,6 +281,8 @@ export interface Occupation {
   notices: string[];
   /** What this page deliberately does not publish, and why. */
   notShown: string[];
+  /** Targeted sections rendered after the pay tables (J8). */
+  sections?: OccupationSection[];
   faqs: OccupationFaq[];
   sources: OccupationSource[];
   /** Date every figure was read from its source. */

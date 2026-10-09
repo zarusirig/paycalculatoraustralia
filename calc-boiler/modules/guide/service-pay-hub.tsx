@@ -29,6 +29,7 @@ const SIBLINGS: { href: string; label: string }[] = [
   { href: "/paramedic-pay/", label: "Paramedic pay by state" },
   { href: "/police-pay/", label: "Police pay by state" },
   { href: "/firefighter-pay/", label: "Firefighter pay by state" },
+  { href: "/prison-officer-pay/", label: "Prison officer pay by state" },
   { href: "/healthcare-worker-pay/", label: "Nurse and healthcare worker pay" },
   { href: "/teacher-pay-australia/", label: "Teacher pay by state" },
   { href: "/public-service-pay-scales/", label: "Public service pay scales" },

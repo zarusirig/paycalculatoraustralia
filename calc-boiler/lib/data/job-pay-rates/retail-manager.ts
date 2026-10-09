@@ -49,7 +49,8 @@ import {
   jsaUrl,
 } from "./common";
 import { retailRow } from "./retail-worker";
-import type { MedianEarnings, Occupation } from "./types";
+import { annual52, money0, takeHomeWeekly } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "1421",
@@ -74,6 +75,35 @@ const money = (x: number) => `$${x.toFixed(2)}`;
 const L4 = retailRow("Level 4");
 const L6 = retailRow("Level 6");
 const L8 = retailRow("Level 8");
+
+// J8 (9 Oct 2026): "store manager salary" (880 a month) is answered on this
+// page. The roles are the award's own indicative titles (Schedule A.4.3, A.6.2,
+// A.8.3, quoted in the header); the money is the Level 4 / 6 / 8 rows above;
+// take-home is the site's tax engine (j8-common.ts).
+function storeRole(role: string, level: string, row: { hourly: number; weekly: number }): string[] {
+  const annual = annual52(row.weekly);
+  return [role, level, money(row.hourly), money(row.weekly), money0(annual), money0(takeHomeWeekly(annual))];
+}
+
+const STORE_MANAGER_SECTION: OccupationSection = {
+  id: "store-manager-pay",
+  heading: "Store manager pay under the Retail Award",
+  paragraphs: [
+    "A store manager's award level is set by the shop they run, not by the title on their contract. Find the row that matches your store, then check the hourly rate on your payslip against it. If you are on an annual salary, divide it by 52 and compare it with the weekly figure.",
+    "A shop \"with departments or sections\" is the dividing line. Running a shop without departments is Level 6; running a shop with departments is Level 8, and the deputy in that larger shop is Level 6.",
+  ],
+  table: {
+    caption: "Store manager minimum pay by role, General Retail Industry Award 2026–27",
+    head: ["Your role", "Level", "Hourly", "Weekly", "Annual", "Take-home a week"],
+    rows: [
+      storeRole("Assistant or deputy manager, shop without departments", "Level 4", L4),
+      storeRole("Manager or duty manager, shop without departments", "Level 6", L6),
+      storeRole("Assistant manager, shop with departments", "Level 6", L6),
+      storeRole("Shop manager, shop with departments", "Level 8", L8),
+    ],
+    note: "Full-time minimums from the first full pay period on or after 1 July 2026. Annual is weekly x 52. Take-home uses 2026–27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS — the same engine as the take-home pay calculator.",
+  },
+};
 
 export const RETAIL_MANAGER: Occupation = {
   slug: "retail-manager",
@@ -134,6 +164,7 @@ export const RETAIL_MANAGER: Occupation = {
     "Shiftworker penalty rates and baking production early-morning rates.",
     "Whether a particular manager falls outside the award because of their earnings; that depends on the employee's guaranteed annual earnings and is not shown here.",
   ],
+  sections: [STORE_MANAGER_SECTION],
   faqs: [
     {
       q: "What is the award rate for a retail store manager in 2026?",
@@ -146,6 +177,10 @@ export const RETAIL_MANAGER: Occupation = {
     {
       q: "Do retail managers get penalty rates?",
       a: "While the award covers them, yes. The weekend, evening and public holiday penalty rates in the General Retail Industry Award apply to every level, including managers, and overtime applies to time worked beyond ordinary hours. Managers on an enterprise agreement follow that agreement instead, and a manager paid a salary should check the contract and award for how penalties and overtime apply.",
+    },
+    {
+      q: "How much does a store manager take home a week?",
+      a: `On the award minimum, a full-time manager of a shop without departments (Level 6) earns ${money0(annual52(L6.weekly))} a year and takes home about ${money0(takeHomeWeekly(annual52(L6.weekly)))} a week after tax. The manager of a shop with departments (Level 8) earns ${money0(annual52(L8.weekly))} and takes home about ${money0(takeHomeWeekly(annual52(L8.weekly)))} a week. Both assume 2026–27 resident tax rates and no HECS.`,
     },
     {
       q: "How much do Coles, Woolworths and Kmart store managers earn?",

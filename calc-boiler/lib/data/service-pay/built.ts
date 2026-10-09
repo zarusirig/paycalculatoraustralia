@@ -9,4 +9,5 @@ export const SERVICE_PAY_BUILT: Readonly<Record<ServiceOccupation, readonly Serv
   paramedic: ["nsw", "vic", "qld", "wa", "sa", "tas", "act", "nt"],
   police: ["nsw", "vic", "qld", "wa", "tas", "act", "nt"],
   firefighter: ["nsw", "vic", "qld", "sa", "tas", "act", "nt"],
+  "prison-officer": ["nsw", "vic", "wa", "sa", "tas", "act", "nt"], // J8
 };

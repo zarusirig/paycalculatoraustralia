@@ -63,7 +63,9 @@ function hubDescription(occupation: ServiceOccupation): string {
 
 export function serviceHubMetadata(occupation: ServiceOccupation): Metadata {
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
-  const title = fitTitle(serviceHubHeading(occupation));
+  // J8: a fallback for occupation names too long for the full form ("Prison officer").
+  const heading = serviceHubHeading(occupation);
+  const title = fitTitle(heading, heading.replace(/ — .+ Pay by State$/, " — Pay by State"));
   const description = hubDescription(occupation);
   const url = `${BASE}${cfg.hubPath}`;
   return {
@@ -142,7 +144,7 @@ export function serviceStateMetadata(occupation: ServiceOccupation, slug: string
   const cfg = SERVICE_OCCUPATION_CONFIG[occupation];
   // The H1 names the employer in full; the <title> drops the trailing "Pay Scale" if it won't fit.
   const heading = serviceStateHeading(j);
-  const title = fitTitle(heading, heading.replace(/ Pay Scale$/, ""));
+  const title = fitTitle(heading, heading.replace(/ Pay Scale$/, ""), heading.replace(/ — .+$/, " — Pay Scale")); // J8: last form for long employer names
   const description = stateDescription(j);
   const url = `${BASE}${cfg.hubPath}${j.slug}/`;
   return {

@@ -37,7 +37,8 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation, RateRow } from "./types";
+import { annual52, money0, money2, takeHomeWeekly } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const CODE = "MA000120";
 
@@ -73,6 +74,42 @@ const SUPPORT_ROWS: RateRow[] = [
   r("Support Worker Level 2.2 — after 1 year", 1057.0, 27.82),
   r("Support Worker Level 3.1 — on commencement", 1119.1, 29.45),
 ];
+
+// J8 (9 Oct 2026): "early childhood educator salary" (590 a month) is answered
+// on this page. Award rows are CHILDCARE_CSE_ROWS above; the Worker Retention
+// Payment minimums are the Department of Education figures already quoted in
+// the coverage text (read 23 September 2026); take-home is the site's tax
+// engine (j8-common.ts).
+const WRP_MIN_HOURLY: Readonly<Record<string, number>> = {
+  "Level 3 — Qualified Educator": 33.87,
+  "Level 5 — Advanced Educator": 38.14,
+};
+
+function educatorRow(qualification: string, label: string): string[] {
+  const r = CHILDCARE_CSE_ROWS.find((x) => x.label === label);
+  if (!r) throw new Error(`educator section: no row ${label}`);
+  const wrp = WRP_MIN_HOURLY[label];
+  return [qualification, label, money2(r.hourly), money2(r.weekly), wrp ? money2(wrp) : "—", money0(takeHomeWeekly(annual52(r.weekly)))];
+}
+
+const EDUCATOR_SECTION: OccupationSection = {
+  id: "early-childhood-educator-pay",
+  heading: "Early childhood educator pay: Certificate III and Diploma",
+  paragraphs: [
+    "\"Early childhood educator\" is the everyday name for the educator levels in the Children's Services Award, and your qualification sets your level. A Certificate III in Early Childhood Education and Care makes you a Level 3 Qualified Educator; a Diploma makes you a Level 5 Advanced Educator. University-qualified early childhood teachers are covered by a different award — see the early childhood teacher page.",
+    "If your centre receives the Worker Retention Payment, it must pay at least the grant's minimum hourly rate for your level, which is higher than the award. Check which applies to you, then compare it with the hourly rate on your payslip.",
+  ],
+  table: {
+    caption: "Early childhood educator pay by qualification, 2026–27",
+    head: ["Qualification", "Award level", "Award hourly", "Award weekly", "Worker Retention Payment minimum", "Take-home a week (award)"],
+    rows: [
+      educatorRow("No qualification yet, under 12 months' experience", "Level 1 — Introductory Educator"),
+      educatorRow("Certificate III", "Level 3 — Qualified Educator"),
+      educatorRow("Diploma", "Level 5 — Advanced Educator"),
+    ],
+    note: "Award rates from the first full pay period on or after 1 July 2026 (cl 14.1(b)). Worker Retention Payment minimums apply from 1 July 2026 only where the provider takes the grant (Department of Education). Take-home is on the full-time award wage, 2026–27 resident rates, no HECS.",
+  },
+};
 
 export const CHILDCARE_WORKER: Occupation = {
   slug: "childcare-worker",
@@ -143,6 +180,7 @@ export const CHILDCARE_WORKER: Occupation = {
     "Schedule I translation rates for employees who held a pre-March 2026 classification.",
     "Every Worker Retention Payment rate — only the Level 3 and Level 5 figures are quoted; the Department of Education publishes the full table.",
   ],
+  sections: [EDUCATOR_SECTION],
   faqs: [
     {
       q: "What is the award rate for a childcare worker in 2026?",
@@ -159,6 +197,10 @@ export const CHILDCARE_WORKER: Occupation = {
     {
       q: "Do childcare workers get paid more than the award?",
       a: "Often, yes. Centres that take the Worker Retention Payment must pay eligible educators at least the grant's minimum rates — $33.87 an hour for a Level 3 Qualified Educator from 1 July 2026, against the award's $32.47. Jobs and Skills Australia reports a median of $1,341 a week for full-time child carers (ABS, May 2025).",
+    },
+    {
+      q: "How much does an early childhood educator earn per hour?",
+      a: "Under the Children's Services Award, a Certificate III early childhood educator (Level 3—Qualified Educator) earns at least $32.47 an hour and a Diploma-qualified educator (Level 5—Advanced Educator) at least $36.57, from the first full pay period on or after 1 July 2026. Centres that take the Worker Retention Payment must pay at least $33.87 and $38.14 an hour for those levels.",
     },
     {
       q: "How much does a diploma-qualified educator earn?",
