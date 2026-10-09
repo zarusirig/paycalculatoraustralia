@@ -1070,8 +1070,1173 @@
   "/news/listo-boost-from-july-2027/": "news--listo-boost-from-july-2027"
  },
  "images": {
+  "age-pension-assets-test-calculator": {
+   "alt": "A retired couple look at a tablet over cups of tea on the verandah of a weatherboard house among gum trees",
+   "width": 1200,
+   "height": 675
+  },
+  "age-pension-income-test-calculator": {
+   "alt": "An older man in a green apron smiles as he waters flowering grevilleas at a plant nursery",
+   "width": 1200,
+   "height": 675
+  },
+  "aged-care-award-rates": {
+   "alt": "A care worker in teal scrubs walks arm in arm with an older woman using a cane down a sunny corridor",
+   "width": 1200,
+   "height": 675
+  },
+  "annual-leave-guide": {
+   "alt": "A smiling couple walk hand in hand along a white sand beach with turquoise water",
+   "width": 1200,
+   "height": 675
+  },
+  "annual-pay-calculator": {
+   "alt": "A woman in a navy blazer walks to work with a takeaway coffee along a leafy city footpath",
+   "width": 1200,
+   "height": 675
+  },
+  "austudy-youth-allowance-calculator": {
+   "alt": "A student highlights a textbook on the lawn of a sandstone campus under a jacaranda",
+   "width": 1200,
+   "height": 675
+  },
+  "average-salary-australia": {
+   "alt": "Two commuters with takeaway coffees stand at the rail of a green and cream harbour ferry at sunrise",
+   "width": 1200,
+   "height": 675
+  },
+  "award-rates": {
+   "alt": "A chef, a nurse in navy scrubs and a tradie in hi-vis laugh together at a sandstone caf\u00e9 window",
+   "width": 1200,
+   "height": 675
+  },
+  "backpay-calculator": {
+   "alt": "A hospitality worker in a black apron frowns over two payslips at a caf\u00e9 table in a city laneway",
+   "width": 1200,
+   "height": 675
+  },
+  "bonus-tax-calculator": {
+   "alt": "A smiling woman in a linen blazer reads her phone at an office desk with a river view behind",
+   "width": 1200,
+   "height": 675
+  },
+  "building-and-construction-award-rates": {
+   "alt": "Two carpenters in hi-vis shirts and white hard hats nail up a timber wall frame on a new housing estate",
+   "width": 1200,
+   "height": 675
+  },
+  "capital-gains-tax-calculator": {
+   "alt": "A couple walk through an empty, freshly painted apartment towards an open balcony, she holds the keys",
+   "width": 1200,
+   "height": 675
+  },
+  "carer-allowance": {
+   "alt": "A woman helps her elderly mother into a green cardigan beside an armchair, a walking frame nearby",
+   "width": 1200,
+   "height": 675
+  },
+  "carer-payment-calculator": {
+   "alt": "A woman steadies her elderly father as he walks with a frame along a garden path outside a brick house",
+   "width": 1200,
+   "height": 675
+  },
+  "casual-loading-calculator": {
+   "alt": "A young events worker carries white folding chairs across a vineyard lawn set up for a wedding",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-advance-payment": {
+   "alt": "A woman on a couch frowns at her phone, a basket of folded washing beside her",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-crisis-payment": {
+   "alt": "A woman makes a phone call at a small table in a bare rental unit with packed bags on the floor",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-debt": {
+   "alt": "A worried man rubs his forehead while reading printed pages at a kitchen table beside a mug of tea",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-income-test": {
+   "alt": "A man in a cardigan sits deep in thought at a library table beside a closed laptop and phone",
+   "width": 1200,
+   "height": 675
+  },
+  "child-care-subsidy-calculator": {
+   "alt": "A father crouches at a childcare centre gate to hand a small backpack to his toddler",
+   "width": 1200,
+   "height": 675
+  },
+  "cleaning-award-rates": {
+   "alt": "A cleaner in a maroon tunic mops an office lobby floor at dusk beside her cleaning trolley",
+   "width": 1200,
+   "height": 675
+  },
+  "clerks-award-rates": {
+   "alt": "An office clerk on a desk phone sorts through manila folders at a reception desk",
+   "width": 1200,
+   "height": 675
+  },
+  "commercial-sales-award-rates": {
+   "alt": "A sales rep in a rust blazer shows a jar of seed to a store owner in a country produce store",
+   "width": 1200,
+   "height": 675
+  },
+  "commission-tax-calculator": {
+   "alt": "A saleswoman shakes hands with a smiling couple in a bright furniture showroom",
+   "width": 1200,
+   "height": 675
+  },
+  "commonwealth-seniors-health-card": {
+   "alt": "A retired couple sit side by side on a timber bench in a clinic waiting room, he holds a folder",
+   "width": 1200,
+   "height": 675
+  },
+  "construction-trades-pay": {
+   "alt": "A bricklayer in an orange work shirt and bush hat lays a brick on fresh mortar at a house site",
+   "width": 1200,
+   "height": 675
+  },
+  "contractor-pay-calculator": {
+   "alt": "A bearded man works on a laptop at a timber table on the veranda of an old Queenslander house",
+   "width": 1200,
+   "height": 675
+  },
+  "contractor-vs-employee-calculator": {
+   "alt": "A man with a pen gazes into a tropical garden from a Queenslander veranda, a closed laptop beside him",
+   "width": 1200,
+   "height": 675
+  },
+  "cost-of-living-payment-2026": {
+   "alt": "An older couple laugh as they unpack vegetables, bread and eggs from cloth bags in their kitchen",
+   "width": 1200,
+   "height": 675
+  },
+  "deeming-rates": {
+   "alt": "A retired man in a green cardigan reads a letter over a pot of tea in a sunroom with orchids and a garden view",
+   "width": 1200,
+   "height": 675
+  },
+  "disability-support-pension-calculator": {
+   "alt": "A man in a wheelchair sorts stacks of books at a timber desk in a sandstone library",
+   "width": 1200,
+   "height": 675
+  },
+  "division-293-tax": {
+   "alt": "A woman in a linen blazer reads a document in a leather armchair, a cup of tea beside her",
+   "width": 1200,
+   "height": 675
+  },
+  "electrical-award-rates": {
+   "alt": "An electrical worker in a hard hat pulls cable through overhead trays on a high-rise office fit-out",
+   "width": 1200,
+   "height": 675
+  },
+  "employee-vs-sole-trader-vs-company": {
+   "alt": "A freelance designer with tattooed arms draws on a tablet at a timber desk in a converted garage studio",
+   "width": 1200,
+   "height": 675
+  },
+  "employer-cost-calculator": {
+   "alt": "A caf\u00e9 owner works on a laptop among folders and papers while staff make coffee behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "employment-type-calculator": {
+   "alt": "A woman ties back her hair and grabs a tote bag in the sunny hallway of a brick home before a shift",
+   "width": 1200,
+   "height": 675
+  },
+  "extra-super-vs-hecs-repayment": {
+   "alt": "A young couple talk through a decision over coffee on an apartment balcony at sunset",
+   "width": 1200,
+   "height": 675
+  },
+  "fair-work-pay-calculator": {
+   "alt": "A young chef in kitchen whites reads his payslip at the back door of a restaurant kitchen",
+   "width": 1200,
+   "height": 675
+  },
+  "family-tax-benefit-calculator": {
+   "alt": "Parents plan their budget at a dining table while a child's hands draw with crayons in the foreground",
+   "width": 1200,
+   "height": 675
+  },
+  "fast-food-award-rates": {
+   "alt": "A teenage worker in a black cap wraps a burger at a stainless steel bench in a fast food kitchen",
+   "width": 1200,
+   "height": 675
+  },
+  "final-pay-calculator": {
+   "alt": "A man packs a plant, a mug and a photo frame into a cardboard box at his office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "first-job-pay-guide": {
+   "alt": "A teenage boy in a black polo and apron writes an order at a fish and chip shop counter by the sea",
+   "width": 1200,
+   "height": 675
+  },
+  "fitness-industry-award-rates": {
+   "alt": "A personal trainer kneels beside a woman holding a plank and adjusts her arm in a warehouse gym",
+   "width": 1200,
+   "height": 675
+  },
+  "fortnightly-pay-calculator": {
+   "alt": "A young couple plan their budget at a timber dining table with a notebook, laptop and a bowl of lemons",
+   "width": 1200,
+   "height": 675
+  },
+  "fortnightly-tax-table": {
+   "alt": "A payroll clerk in glasses types at a timber desk by a window looking out over dry paddocks",
+   "width": 1200,
+   "height": 675
+  },
+  "fringe-benefits-tax": {
+   "alt": "One hand passes a car key into another's open palm across an office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "full-time-vs-part-time-vs-casual": {
+   "alt": "At a pre-dawn bakery shift change, an older baker hangs up his apron as a young baker ties hers on",
+   "width": 1200,
+   "height": 675
+  },
+  "gig-economy-pay-guide": {
+   "alt": "A rideshare driver sits in his car at dusk with a phone in a mount, city lights outside",
+   "width": 1200,
+   "height": 675
+  },
+  "gross-pay-calculator": {
+   "alt": "A young man in a green jumper rests his chin on his hand while working on a laptop at a kitchen bench",
+   "width": 1200,
+   "height": 675
+  },
+  "hair-and-beauty-award-rates": {
+   "alt": "A young hairdresser trims an older woman's wet grey hair in a salon full of plants",
+   "width": 1200,
+   "height": 675
+  },
+  "health-professionals-award-rates": {
+   "alt": "A physiotherapist in green scrubs assesses a man's shoulder in a bright clinic room",
+   "width": 1200,
+   "height": 675
+  },
+  "healthcare-worker-pay": {
+   "alt": "A nurse in navy scrubs adjusts an IV line beside a resting patient in a hospital room with a hill view",
+   "width": 1200,
+   "height": 675
+  },
+  "hecs-help-calculator": {
+   "alt": "A young woman with a mug of tea looks at her laptop in a sunny share-house room with a graduation photo behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "home": {
+   "alt": "A woman in a cream jumper works on a laptop at a timber kitchen table beside a mug and a potted eucalyptus",
+   "width": 1200,
+   "height": 675
+  },
+  "horticulture-award-rates": {
+   "alt": "A young picker in a bush hat reaches for a red apple in an orchard, with fruit crates behind",
+   "width": 1200,
+   "height": 675
+  },
+  "hospitality-award-rates": {
+   "alt": "A hotel housekeeper in a sage uniform smooths white sheets on a bed in a beachfront room",
+   "width": 1200,
+   "height": 675
+  },
+  "hourly-to-annual-salary-calculator": {
+   "alt": "A warehouse worker in a hi-vis vest leans on stacked pallets and checks his phone during a break",
+   "width": 1200,
+   "height": 675
+  },
+  "hourly-to-salary": {
+   "alt": "A hairdresser trims a smiling older woman's grey hair in a small salon with timber shelves",
+   "width": 1200,
+   "height": 675
+  },
+  "income-tax-calculator": {
+   "alt": "A woman works on a laptop at a timber kitchen table beside a mug of tea and an open garden window",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates": {
+   "alt": "A tradesman, a nurse and a caf\u00e9 worker start the morning on a jacaranda-lined shopping street",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--accountant": {
+   "alt": "An accountant in a navy blazer marks up paperwork at a desk by an arched window in a sandstone office",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--aged-care-worker": {
+   "alt": "An aged care worker in lilac scrubs walks arm in arm with an older man with a cane through a garden",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--apprentice-electrician": {
+   "alt": "A young apprentice electrician strips a cable at a switchboard while his supervisor watches on a building site",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--audiologist": {
+   "alt": "An audiologist in a white shirt fits a hearing aid behind the ear of an older woman in a clinic",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--barista": {
+   "alt": "A barista in a canvas apron pours latte art into a cup beside a chrome espresso machine",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--bartender": {
+   "alt": "A bearded bartender polishes a wine glass behind the worn timber bar of an old pub",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--boilermaker": {
+   "alt": "A boilermaker in a leather jacket checks a weld on a steel beam while sparks fly from a grinder behind him",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--bookkeeper": {
+   "alt": "A grey-haired bookkeeper in glasses works on a laptop by a window looking out over vineyard rows",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--bus-driver": {
+   "alt": "A bus driver in a navy turban steers a city bus down a sunny tree-lined street, seen from behind",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--carpenter": {
+   "alt": "A carpenter in safety glasses hammers a nail into a pine stud on a house-frame building site",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--chef": {
+   "alt": "A chef in a white jacket plates barramundi with tweezers as flames rise from the grill behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--childcare-worker": {
+   "alt": "An early childhood educator in a coral T-shirt paints with small children at a low table",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--cleaner": {
+   "alt": "A cleaner in a teal tunic vacuums an empty office at night beside a cleaning trolley",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--crane-operator": {
+   "alt": "A crane operator in a white hard hat works the control levers in his cab, looking up at the load",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--dental-assistant": {
+   "alt": "A dental assistant in pale blue scrubs lays out sterilised instruments on a tray beside a dental chair",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--disability-support-worker": {
+   "alt": "A support worker chops carrots while a young man in a wheelchair stirs a pot at a low kitchen bench",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--doctor": {
+   "alt": "A doctor with a stethoscope listens to an older man across a desk in a calm consulting room",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--early-childhood-teacher": {
+   "alt": "An early childhood teacher shows a picture book of Australian animals to three preschoolers on a rug",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--electrician": {
+   "alt": "An electrician in safety glasses works on a switchboard set into a brick wall, tool bag at his knees",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--engineer": {
+   "alt": "A civil engineer in a white hard hat points out a new river bridge to a site supervisor",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--hairdresser": {
+   "alt": "A hairdresser in a black apron trims a client's shoulder-length hair in a plant-filled salon",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--lawyer": {
+   "alt": "A young lawyer in a grey suit reads a thick bound volume, pen in hand, by a window onto sandstone buildings",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--mechanic": {
+   "alt": "A mechanic in grey overalls works on an engine with a spanner under a raised bonnet in a suburban garage",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--mechanical-engineer": {
+   "alt": "An engineer in a hard hat and hi-vis vest rests a hand on a pipe flange at a water treatment plant",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--medical-receptionist": {
+   "alt": "A smiling receptionist with a headset greets a patient over a timber clinic front desk",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--midwife": {
+   "alt": "A smiling midwife in navy scrubs helps a new mother cradle her swaddled newborn in a hospital bed",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--nurse": {
    "alt": "A nurse in navy scrubs reads a tablet at a ward desk beside a window",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--occupational-therapist": {
+   "alt": "An occupational therapist in a hijab smiles as an older man stacks wooden blocks during a therapy session",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--pathology-collector": {
+   "alt": "A pathology collector in pale blue scrubs and gloves ties a tourniquet on a patient's outstretched arm",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--pharmacist": {
+   "alt": "A pharmacist in a white coat counts tablets on a tray at the dispensary counter",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--pharmacy-assistant": {
+   "alt": "A pharmacy assistant hands a paper bag across the counter to an older woman in glasses",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--physiotherapist": {
+   "alt": "A physiotherapist in a navy polo guides a woman's arm through a resistance band exercise",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--plumber": {
+   "alt": "A plumber lying under a kitchen sink tightens a pipe fitting with a wrench beside an open toolbox",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--podiatrist": {
+   "alt": "A podiatrist holding an instrument tray chats with a smiling older woman resting her bare foot in a clinic chair",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--property-manager": {
+   "alt": "A property manager in a beige blazer shows a young couple around an empty apartment with a balcony",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--psychologist": {
+   "alt": "A psychologist in a mustard cardigan listens to a client on a sofa in a calm room full of plants",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--real-estate-agent": {
+   "alt": "A real estate agent in a linen blazer shows a couple through a kitchen toward a sandstone courtyard",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--receptionist": {
+   "alt": "A smiling receptionist with silver hair and a headset greets a visitor across a timber front desk",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--retail-worker": {
+   "alt": "A shop assistant in a black T-shirt hangs linen shirts on a brass rail in a sandstone boutique",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--security-guard": {
+   "alt": "A security guard in a plain black uniform watches shoppers at a shopping centre entrance at dusk",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--social-worker": {
+   "alt": "A social worker in a green cardigan listens to a client over cups of tea at a small round table",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--sonographer": {
+   "alt": "A sonographer in navy scrubs scans a patient's wrist with an ultrasound probe in a dim clinic room",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--speech-pathologist": {
+   "alt": "A speech pathologist shapes a sound with her lips as an older man watches and smiles",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--teacher-aide": {
+   "alt": "A teacher aide helps a student paint gum leaves at a classroom table, a big fig tree outside",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--truck-driver": {
+   "alt": "A truck driver in orange hi-vis crouches to check the front wheel of a white truck on a gravel roadside",
+   "width": 1200,
+   "height": 675
+  },
+  "jobseeker-payment-calculator": {
+   "alt": "A man types on a laptop at a long table in a public library, a water bottle and notebook beside him",
+   "width": 1200,
+   "height": 675
+  },
+  "junior-pay-rates": {
+   "alt": "A teenage barista in an olive apron pours latte art in a country-town caf\u00e9 with a pressed-metal ceiling",
+   "width": 1200,
+   "height": 675
+  },
+  "leave-calculator": {
+   "alt": "An older woman in a green cardigan smiles as she packs a plant and a mug into a box at her office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "legal-services-award-rates": {
+   "alt": "A young law clerk carries a stack of ribbon-tied folders along a timber and sandstone corridor",
+   "width": 1200,
+   "height": 675
+  },
+  "live-performance-award-rates": {
+   "alt": "A stage technician in black work clothes coils a cable on a theatre stage in front of empty red seats",
+   "width": 1200,
+   "height": 675
+  },
+  "local-government-award-rates": {
+   "alt": "A council parks worker in hi-vis and a bush hat plants grevilleas from a wheelbarrow",
+   "width": 1200,
+   "height": 675
+  },
+  "long-service-leave-calculator": {
+   "alt": "An older couple unfold camp chairs beside their caravan on a gum-lined riverbank, a kettle on the stove",
+   "width": 1200,
+   "height": 675
+  },
+  "low-income-tax-offset": {
+   "alt": "A young woman in a canvas apron waters seedlings with a hose under shade cloth at a plant nursery",
+   "width": 1200,
+   "height": 675
+  },
+  "manufacturing-award-rates": {
+   "alt": "A factory worker in safety glasses and earmuffs inspects a pressed steel part beside a metal press",
+   "width": 1200,
+   "height": 675
+  },
+  "meat-industry-award-rates": {
+   "alt": "A butcher in a white coat and apron trims a leg of lamb on a wooden block",
+   "width": 1200,
+   "height": 675
+  },
+  "medicare-levy": {
+   "alt": "An older man in a flannel shirt and a woman wait on timber chairs in a country town clinic waiting room",
+   "width": 1200,
+   "height": 675
+  },
+  "minimum-wage": {
+   "alt": "A kitchen hand in a grey t-shirt and apron rinses a stack of plates at a steaming restaurant sink",
+   "width": 1200,
+   "height": 675
+  },
+  "minimum-wage-australia": {
+   "alt": "A farm worker in a bush hat drops red apples into a canvas picking bag in an orchard",
+   "width": 1200,
+   "height": 675
+  },
+  "minimum-wage-by-age": {
+   "alt": "A teenage boy in a beige polo pushes a long line of shopping trolleys across a country car park",
+   "width": 1200,
+   "height": 675
+  },
+  "minimum-wage-history-australia": {
+   "alt": "Two women in grey work tops fold white linen on a steel bench in a commercial laundry",
+   "width": 1200,
+   "height": 675
+  },
+  "mining-award-rates": {
+   "alt": "A mine worker in orange hi-vis and a hard hat looks out over a red open-cut pit with haul trucks below",
+   "width": 1200,
+   "height": 675
+  },
+  "mining-fifo-pay-guide": {
+   "alt": "Two mine workers in orange hi-vis and white hard hats talk beside a giant haul truck tyre at an open-cut mine",
+   "width": 1200,
+   "height": 675
+  },
+  "miscellaneous-award-rates": {
+   "alt": "A man in a work shirt sets out rows of folding chairs in a timber community hall",
+   "width": 1200,
+   "height": 675
+  },
+  "monthly-pay-calculator": {
+   "alt": "A young couple plan their budget in a notebook at a table on the verandah of a timber Queenslander",
+   "width": 1200,
+   "height": 675
+  },
+  "monthly-tax-table": {
+   "alt": "A payroll officer works through month-end pay at his desk beside a stack of folders and a lake view",
+   "width": 1200,
+   "height": 675
+  },
+  "new-job-checklist": {
+   "alt": "A smiling older colleague welcomes a young woman with a backpack on her first day in a plant-filled office",
+   "width": 1200,
+   "height": 675
+  },
+  "non-resident-tax": {
+   "alt": "A young traveller with a backpack and water bottle stands on a mangrove boardwalk by a tropical bay",
+   "width": 1200,
+   "height": 675
+  },
+  "notice-of-assessment": {
+   "alt": "A grey-haired man reads a letter by the letterbox at the front gate of his brick home",
+   "width": 1200,
+   "height": 675
+  },
+  "novated-lease-calculator": {
+   "alt": "A woman plugs a charging cable into a white electric car parked in the driveway of a sandstone townhouse",
+   "width": 1200,
+   "height": 675
+  },
+  "novated-lease-guide": {
+   "alt": "A woman plugs a charging cable into a white electric car parked in a suburban driveway",
+   "width": 1200,
+   "height": 675
+  },
+  "nurses-award-rates": {
+   "alt": "A nurse in blue scrubs kneels to tuck a knitted blanket over an elderly woman's knees in an armchair",
+   "width": 1200,
+   "height": 675
+  },
+  "overtime-pay-calculator": {
+   "alt": "A warehouse worker in an orange hi-vis vest stands at a loading dock door at dusk, pallets and a forklift behind",
+   "width": 1200,
+   "height": 675
+  },
+  "overtime-penalty-rates-guide": {
+   "alt": "A factory worker carrying a metal lunchbox walks out through the plant gate late at night",
+   "width": 1200,
+   "height": 675
+  },
+  "parental-leave-pay": {
+   "alt": "A father holds his sleeping newborn, wrapped in a muslin blanket, close to his chest by a sunny window",
+   "width": 1200,
+   "height": 675
+  },
+  "parenting-payment-calculator": {
+   "alt": "A father works on a laptop at a kitchen table while a toddler plays with wooden blocks on the floor",
+   "width": 1200,
+   "height": 675
+  },
+  "pastoral-award-rates": {
+   "alt": "A farm hand in a felt hat leans on a stockyard rail as merino sheep run past and a kelpie watches him",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-act": {
+   "alt": "A woman in a green rain jacket cycles along a lakeside path lined with golden autumn poplars",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-nsw": {
+   "alt": "A man with a backpack walks past sandstone terraces under flowering jacaranda trees in Sydney",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-nt": {
+   "alt": "A man in a bush hat drinks water beside a dusty white ute on a red dirt road below rocky ranges",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-qld": {
+   "alt": "A young woman in a black T-shirt walks to work along a palm-lined tropical beachfront path",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-sa": {
+   "alt": "A vineyard worker in a straw hat prunes vines with secateurs, a stone shed and gum trees behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-tas": {
+   "alt": "A worker in a hi-vis jacket and beanie walks past wooden fishing boats on a misty Hobart wharf",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-vic": {
+   "alt": "A woman in a green jumper works on a laptop by the window of a Melbourne terrace with an iron lace balcony",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-calculator-wa": {
+   "alt": "A mine worker in an orange hi-vis shirt and white hard hat overlooks a red-earth open-cut mine",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates": {
+   "alt": "Two young retail workers, one in a navy polo and one in an apron, chat as they cross a car park",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--anaconda": {
+   "alt": "A camping store worker shows a customer how to clip tent poles, with sleeping mats and rope on shelves",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--australia-post": {
+   "alt": "A delivery worker in a navy cap carries a parcel up a garden path to a weatherboard house",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--big-w": {
+   "alt": "A store worker in a navy polo pushes a trolley stacked with cardboard cartons through a homewares store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--bunnings": {
+   "alt": "A hardware store worker in a green apron helps a customer choose pine timber in a warehouse aisle",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--bws": {
+   "alt": "A young man in a navy polo wheels a trolley of cardboard cartons through a cool room lined with beer kegs",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--chemist-warehouse": {
+   "alt": "A young pharmacy assistant in a white shirt restocks shelves with plain white boxes",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--coles": {
+   "alt": "A young supermarket worker in a green polo stacks apples and oranges in the fresh produce section",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--costco": {
+   "alt": "A store worker in a green polo lifts a carton onto tall warehouse shelving, a pallet jack behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--dan-murphys": {
+   "alt": "A young bottle shop worker in a black polo straightens wine bottles on a timber shelf",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--david-jones": {
+   "alt": "A silver-haired sales assistant adjusts a camel coat on a young man at a mirror in a department store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--dominos": {
+   "alt": "A teenage pizza maker in an apron slides a pizza out of a glowing oven beside stacked boxes",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--event-cinemas": {
+   "alt": "A young cinema worker with braids scoops popcorn into a striped tub at the candy bar",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--guzman-y-gomez": {
+   "alt": "A young crew member in a black cap wraps a burrito in foil behind bowls of salsa, rice and beans",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--harvey-norman": {
+   "alt": "An appliance salesman points out the shelves of an open fridge to an older woman in a showroom",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--hoyts": {
+   "alt": "A young cinema worker scoops popcorn from a glass popcorn machine into a paper bucket",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--hungry-jacks": {
+   "alt": "A young crew member in a black cap flips burger patties on a flat grill in a fast-food kitchen",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--iga": {
+   "alt": "A teenage grocery worker in a green apron stacks apples and oranges into wooden crates",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--jb-hi-fi": {
+   "alt": "A store worker in a black t-shirt helps an older customer try on headphones at an electronics demo bench",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--kfc": {
+   "alt": "A young fast-food worker in a black cap lifts a basket of fried chicken out of a deep fryer",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--kmart": {
+   "alt": "A retail assistant in a teal polo folds towels onto shelves of cushions in a large homewares aisle",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--liquorland": {
+   "alt": "A bottle shop worker in a grey polo places a bottle of red wine on a timber shelf",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--mcdonalds": {
+   "alt": "A teenage crew member in a cap assembles a burger at a stainless steel fast-food kitchen station",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--officeworks": {
+   "alt": "A store worker in a navy polo adjusts an office chair for a smiling customer in an office supplies store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--priceline": {
+   "alt": "A beauty assistant swatches a lipstick shade on a customer's hand at a pharmacy cosmetics counter",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--qantas": {
+   "alt": "A flight attendant in a navy uniform wheels a cabin bag past terminal windows with a plane outside",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--rebel": {
+   "alt": "A sports store worker laces a running shoe on a customer's foot beside a wall of shoes and footballs",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--red-rooster": {
+   "alt": "A smiling counter worker lifts a roast chicken from a rotisserie above trays of potatoes and coleslaw",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--spotlight": {
+   "alt": "A woman in a green apron cuts floral fabric at a counter in a fabric and yarn store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--starbucks": {
+   "alt": "A young barista in a brown apron pours latte art into a cup in a busy caf\u00e9",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--subway": {
+   "alt": "A young sandwich-shop worker in a black cap fills a bread roll with salad at a glass counter",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--target": {
+   "alt": "A shop assistant in a red polo folds knitted jumpers into neat stacks in a department store",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--virgin-australia": {
+   "alt": "A flight attendant in a dark uniform walks down the aisle of a sunlit passenger jet cabin",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--woolworths": {
+   "alt": "A supermarket worker in a green polo arranges leafy greens and apples on a timber produce display",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rates--zambrero": {
+   "alt": "A young worker in a black cap and gloves wraps a burrito above trays of rice, beans, salsa and guacamole",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-rise-calculator": {
+   "alt": "A smiling woman in a sage blazer talks with an older manager over coffee in a brick-walled office",
+   "width": 1200,
+   "height": 675
+  },
+  "payg-withholding-tables": {
+   "alt": "A mechanic workshop owner types on a laptop in her office, a car raised on a hoist behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "payslip-generator": {
+   "alt": "A florist in a linen apron works on a laptop at her workbench among banksias, waratahs and eucalyptus",
+   "width": 1200,
+   "height": 675
+  },
+  "pharmacy-award-rates": {
+   "alt": "A pharmacy assistant restocks white boxes on a shelf while a pharmacist works at the counter behind",
+   "width": 1200,
+   "height": 675
+  },
+  "plumbing-award-rates": {
+   "alt": "A plumber in a navy shirt kneels to tighten copper pipes under a farmhouse kitchen sink",
+   "width": 1200,
+   "height": 675
+  },
+  "private-health-insurance-medicare": {
+   "alt": "A man recovering in a private hospital bed holds hands with his wife beside a window onto gum trees",
+   "width": 1200,
+   "height": 675
+  },
+  "pro-rata-salary-calculator": {
+   "alt": "A father closes his laptop and picks up his keys at a home desk beside a child's backpack and drawing",
+   "width": 1200,
+   "height": 675
+  },
+  "public-service-pay-scales": {
+   "alt": "Two office colleagues discuss a printed report at a standing desk in a bright open-plan office",
+   "width": 1200,
+   "height": 675
+  },
+  "real-estate-award-rates": {
+   "alt": "A real estate agent hands house keys to a smiling couple on the porch of a weatherboard home",
+   "width": 1200,
+   "height": 675
+  },
+  "redundancy-pay-calculator": {
+   "alt": "A grey-haired man packs a plant and a mug into a cardboard box at his office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "rent-assistance-calculator": {
+   "alt": "An older woman unpacks a blanket from moving boxes in a red-brick rented unit with a jacaranda outside",
+   "width": 1200,
+   "height": 675
+  },
+  "restaurant-award-rates": {
+   "alt": "A waitress in a linen apron sets napkins and wine glasses on a table in a busy bistro at lunch",
+   "width": 1200,
+   "height": 675
+  },
+  "retail-award-rates": {
+   "alt": "A young shop assistant folds knitwear on a timber table in a boutique inside a heritage arcade",
+   "width": 1200,
+   "height": 675
+  },
+  "retail-hospitality-pay-guide": {
+   "alt": "A young waitress in a black apron carries plates of food through a busy country pub dining room",
+   "width": 1200,
+   "height": 675
+  },
+  "road-transport-award-rates": {
+   "alt": "A truck driver ratchets a load strap on a flat trailer at an outback roadside stop beside a white truck",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-package-calculator": {
+   "alt": "A hiring manager and a new employee smile and shake hands across a table by a city office window",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-packaging-guide": {
+   "alt": "Two hospital workers in teal scrubs laugh over takeaway coffees on a bench in a garden courtyard",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-sacrifice-calculator": {
+   "alt": "A woman in a green blazer talks a man through his pay options at a round table in a bright office",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-sacrifice-vs-mortgage": {
+   "alt": "A couple talk over mugs of tea at their kitchen bench, house keys beside them and a Hills hoist outside",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-to-hourly": {
+   "alt": "A man at a desk in a brick warehouse office looks up at a large wall clock in late afternoon light",
+   "width": 1200,
+   "height": 675
+  },
+  "salary-vs-hourly": {
+   "alt": "A woman with a work lanyard writes in a notebook on a park bench at lunch, a takeaway coffee beside her",
+   "width": 1200,
+   "height": 675
+  },
+  "sapto-calculator": {
+   "alt": "A retired couple talk over a tablet and cups of tea at a sunny table with a beach view",
+   "width": 1200,
+   "height": 675
+  },
+  "schads-award-pay-rates": {
+   "alt": "A support worker in a green polo walks beside an older man using a walking frame on a garden path",
+   "width": 1200,
+   "height": 675
+  },
+  "schedule-5-tax-table": {
+   "alt": "A woman in glasses checks a printed sheet with a pen at her desk in an open-plan office",
+   "width": 1200,
+   "height": 675
+  },
+  "second-job-tax-calculator": {
+   "alt": "A man in a blue office shirt ties on a black apron in a wine bar before an evening shift",
+   "width": 1200,
+   "height": 675
+  },
+  "security-award-rates": {
+   "alt": "A security officer in a plain black uniform patrols an empty shopping centre at night with a torch",
+   "width": 1200,
+   "height": 675
+  },
+  "stage-3-tax-cuts": {
+   "alt": "An electrician in a hi-vis shirt smiles at her phone while sitting on stacked timber at a building site",
+   "width": 1200,
+   "height": 675
+  },
+  "stsl-on-payslip": {
+   "alt": "A young man in a green T-shirt studies his laptop at a small desk beside a stack of old books",
+   "width": 1200,
+   "height": 675
+  },
+  "super-co-contribution": {
+   "alt": "A young couple chat over mugs of tea at a small table by a window, a closed laptop between them",
+   "width": 1200,
+   "height": 675
+  },
+  "super-guarantee-charge": {
+   "alt": "A bearded cabinet maker in a dusty apron works on a laptop at a bench in his timber workshop",
+   "width": 1200,
+   "height": 675
+  },
+  "super-guarantee-rate-history": {
+   "alt": "A furniture maker in a green apron does the payroll on a laptop at her workshop bench",
+   "width": 1200,
+   "height": 675
+  },
+  "superannuation-calculator": {
+   "alt": "A woman sits on a timber verandah working on a laptop with a mug of tea beside her",
+   "width": 1200,
+   "height": 675
+  },
+  "superannuation-guide": {
+   "alt": "A retired couple laugh while picking tomatoes from raised garden beds behind their weatherboard home",
+   "width": 1200,
+   "height": 675
+  },
+  "take-home-pay-calculator": {
+   "alt": "A woman smiles at her phone over a mug of coffee at a sunny kitchen bench",
+   "width": 1200,
+   "height": 675
+  },
+  "take-home-pay-on": {
+   "alt": "A young couple plan their budget with a laptop, a notebook and two coffees at a kitchen bench",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-bracket-history": {
+   "alt": "An elderly man and his granddaughter laugh together at a cottage kitchen table with an old ledger and teapot",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-brackets": {
+   "alt": "An accountant in glasses explains something to a young couple seated across her office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-calendar": {
+   "alt": "A florist in a denim apron works on a laptop at her shop counter among buckets of waratahs and banksias",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-changes-2026-27": {
+   "alt": "A couple read news on a tablet on the steps of a Queenslander verandah with coffee and a jacaranda",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-deductions-guide": {
+   "alt": "A man files a paper into an envelope at his table beside a laptop, work boots and a folded hi-vis vest",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-file-number-declaration": {
+   "alt": "A young woman in a green headscarf fills in a form while a smiling manager points to the page",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-on": {
+   "alt": "A woman in a linen blazer leans back from her laptop in a harbourside office, deep in thought",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-refund-guide": {
+   "alt": "A smiling woman in a mustard jumper checks her phone with a coffee on a balcony above the sea",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-return-calculator": {
+   "alt": "An older couple sort paper receipts into a folder at a kitchen table with a laptop and a lemon tree outside",
+   "width": 1200,
+   "height": 675
+  },
+  "teacher-pay-australia": {
+   "alt": "A teacher in a green cardigan helps with a paper-leaf craft at a classroom table, pupils seen from behind",
+   "width": 1200,
+   "height": 675
+  },
+  "tech-salary-guide-australia": {
+   "alt": "Two software developers talk at a desk with a laptop and monitors in a brick warehouse office",
+   "width": 1200,
+   "height": 675
+  },
+  "timber-award-rates": {
+   "alt": "A sawmill worker in ear muffs and safety glasses guides a hardwood plank along a saw bench",
+   "width": 1200,
+   "height": 675
+  },
+  "understanding-your-payslip": {
+   "alt": "A young man at a share-house kitchen table holds up his payslip to read it",
+   "width": 1200,
+   "height": 675
+  },
+  "weekly-pay-calculator": {
+   "alt": "A young man in navy workwear smiles at his phone on a bench beside stacked timber under a big gum tree",
+   "width": 1200,
+   "height": 675
+  },
+  "weekly-tax-table": {
+   "alt": "A couple sit at a kitchen table with a laptop, coffee mugs and a bowl of fruit, planning together",
+   "width": 1200,
+   "height": 675
+  },
+  "work-from-home-deductions": {
+   "alt": "A woman in a green cardigan types on a laptop at a home desk by a window with autumn trees outside",
+   "width": 1200,
+   "height": 675
+  },
+  "work-hours-calculator": {
+   "alt": "A caf\u00e9 worker in a linen apron rests on a back step with a glass of water during her break",
+   "width": 1200,
+   "height": 675
+  },
+  "working-holiday-tax": {
+   "alt": "A young backpacker in a straw hat picks red apples into a canvas bag in a Tasmanian orchard",
+   "width": 1200,
+   "height": 675
+  },
+  "ytd-income-calculator": {
+   "alt": "A mine worker in orange hi-vis checks his phone in a crib room, haul trucks on red dirt outside the window",
+   "width": 1200,
+   "height": 675
+  },
+  "zone-tax-offset": {
+   "alt": "A couple sit on the veranda of a corrugated-iron house in the outback at sunset, a cattle dog at their feet",
    "width": 1200,
    "height": 675
   }
