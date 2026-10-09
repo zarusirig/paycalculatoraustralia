@@ -68,4 +68,18 @@ export const SERVICE_OCCUPATION_CONFIG: Readonly<Record<ServiceOccupation, Servi
     employerKind: "fire and rescue service",
     authorKey: "firefighter-pay",
   },
+  // J8 (9 Oct 2026)
+  "prison-officer": {
+    occupation: "prison-officer",
+    hubPath: "/prison-officer-pay/",
+    segment: "prison-officer-pay",
+    singular: "Prison officer",
+    plural: "prison officers",
+    salaryNoun: "Prison Officer Salary",
+    hubLabel: "Prison Officer Pay Australia",
+    entryLabel: "Entry officer",
+    topLabel: "Top of base officer scale",
+    employerKind: "corrective services agency",
+    authorKey: "prison-officer-pay",
+  },
 };

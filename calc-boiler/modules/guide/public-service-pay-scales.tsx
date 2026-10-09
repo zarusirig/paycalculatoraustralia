@@ -488,6 +488,11 @@ export default function PublicServicePayScalesPage() {
                       Firefighter pay by state
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/prison-officer-pay/" className="text-eucalyptus-dark hover:text-navy hover:underline">
+                      Prison officer pay by state
+                    </Link>
+                  </li>
                   {/* --- end F5 --- */}
                 </ul>
               </div>

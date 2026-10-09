@@ -203,6 +203,48 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               ))}
             </section>
 
+            {(occ.sections ?? []).map((s) => (
+              <section key={s.id} id={s.id}>
+                <h2 style={HEADING_FONT}>{s.heading}</h2>
+                {s.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+                {s.table ? (
+                  <div className="not-prose mb-6">
+                    <TableShell minWidth="34rem" caption={s.table.caption}>
+                      <thead className="bg-sandstone font-semibold text-navy">
+                        <tr>
+                          {s.table.head.map((h, i) => (
+                            <th key={h} scope="col" className={`px-4 py-3${i > 0 ? " text-right" : ""}`}>
+                              {h}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                        {s.table.rows.map((row) => (
+                          <tr key={row[0]}>
+                            {row.map((cell, i) =>
+                              i === 0 ? (
+                                <th key={`${row[0]}-h`} scope="row" className="px-4 py-3 text-left font-medium text-navy">
+                                  {cell}
+                                </th>
+                              ) : (
+                                <td key={`${row[0]}-${s.table!.head[i]}`} className="px-4 py-3 text-right">
+                                  {cell}
+                                </td>
+                              ),
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </TableShell>
+                    {s.table.note ? <p className="mt-2 text-xs text-warmgray">{s.table.note}</p> : null}
+                  </div>
+                ) : null}
+              </section>
+            ))}
+
             <section id="penalty-rates">
               <h2 style={HEADING_FONT}>
                 {occ.name} penalty rates{occ.overtime.length > 0 ? " and overtime" : ""}

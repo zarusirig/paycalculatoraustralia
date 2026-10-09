@@ -197,6 +197,7 @@ export default function JobPayRatesHubPage() {
               <SidebarLink href="/paramedic-pay/" label="Paramedic pay by state" />
               <SidebarLink href="/police-pay/" label="Police pay by state" />
               <SidebarLink href="/firefighter-pay/" label="Firefighter pay by state" />
+              <SidebarLink href="/prison-officer-pay/" label="Prison officer pay by state" />
               <SidebarLink href="/air-traffic-controller-salary/" label="Air traffic controller salary" />
               <SidebarLink href="/pilot-salary/" label="Pilot salary" />
               {/* --- end F5 --- */}

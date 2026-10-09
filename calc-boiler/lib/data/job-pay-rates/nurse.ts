@@ -28,6 +28,7 @@ import {
   NURSES_AWARD_GENERAL,
 } from "../nursing-pay/nurses-award-2020";
 import type { AwardScale } from "../nursing-pay/types";
+import { NURSING_PAY_STATES, annualFor, getNursingPay, instrumentFor } from "../nursing-pay";
 import {
   ALL_OCCUPATIONS_MEDIAN_WEEKLY,
   ANNUAL_WAGE_REVIEW_2026,
@@ -38,7 +39,8 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation, RateRow } from "./types";
+import { annual52, money0, money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "2544",
@@ -72,7 +74,79 @@ export const NURSE_STATE_PAGES = [
   { href: "/healthcare-worker-pay/wa/", label: "Nurse pay WA" },
   { href: "/healthcare-worker-pay/sa/", label: "Nurse pay SA" },
   { href: "/healthcare-worker-pay/tas/", label: "Nurse pay Tasmania" },
+  { href: "/healthcare-worker-pay/act/", label: "Nurse pay ACT" },
+  { href: "/healthcare-worker-pay/nt/", label: "Nurse pay NT" },
 ];
+
+// ---------------------------------------------------------------------------
+// J8 (9 Oct 2026): "enrolled nurse salary" (1,600 a month) is answered here
+// rather than on a new URL. Award figures come from the Nurses Award scales
+// above; the state rows are the first "enrolled" scale in each state file in
+// lib/data/nursing-pay/ (the data /healthcare-worker-pay/{state}/ renders),
+// annualised by that module's annualFor() — published annual wins, otherwise
+// fortnightly x 26 or weekly x 52. JSA median: ANZSCO 4114 Enrolled and
+// Mothercraft Nurses, $1,777 a week / $46 an hour (ABS SEEH May 2025), read
+// 9 October 2026.
+// ---------------------------------------------------------------------------
+
+export const EN_MEDIAN_WEEKLY = 1_777;
+const EN_JSA_URL = jsaUrl("4114-enrolled-and-mothercraft-nurses");
+
+const EN_AWARD = scale("Enrolled nurse", NURSES_AWARD_GENERAL).points;
+const EN_AGED = scale("Enrolled nurse — aged care", NURSES_AWARD_AGED_CARE).points[0];
+
+export interface EnrolledNurseStateRow {
+  code: string;
+  name: string;
+  classification: string;
+  entry: number;
+  top: number;
+  effectiveFrom: string;
+}
+
+/** The base enrolled nurse scale in each state's public health system, from the verified state files. */
+export function enrolledNurseStateRows(): EnrolledNurseStateRow[] {
+  const rows: EnrolledNurseStateRow[] = [];
+  for (const slug of NURSING_PAY_STATES) {
+    const st = getNursingPay(slug);
+    const sc = st?.scales.find((x) => x.family === "enrolled");
+    if (!st || !sc) continue;
+    const annuals = sc.points.map(annualFor).filter((x): x is number => x !== null);
+    if (annuals.length === 0) continue;
+    rows.push({
+      code: st.code,
+      name: st.name,
+      classification: sc.classification,
+      entry: annuals[0],
+      top: Math.max(...annuals),
+      effectiveFrom: instrumentFor(st, sc.instrumentId)?.effectiveFrom ?? "",
+    });
+  }
+  return rows;
+}
+
+const EN_STATES = enrolledNurseStateRows();
+const EN_LOWEST = EN_STATES.reduce((a, b) => (b.entry < a.entry ? b : a));
+const EN_HIGHEST = EN_STATES.reduce((a, b) => (b.entry > a.entry ? b : a));
+
+const ENROLLED_NURSE_SECTION: OccupationSection = {
+  id: "enrolled-nurse-pay",
+  heading: "Enrolled nurse pay: award minimum and public hospital rates by state",
+  paragraphs: [
+    `An enrolled nurse (EN) has a separate, lower scale than a registered nurse. Under the Nurses Award the general-stream EN minimum runs from ${money2(EN_AWARD[0].weekly)} a week (${money2(EN_AWARD[0].hourly)} an hour) at pay point 1 to ${money2(EN_AWARD[EN_AWARD.length - 1].weekly)} at pay point 5 — ${money0(annual52(EN_AWARD[0].weekly))} to ${money0(annual52(EN_AWARD[EN_AWARD.length - 1].weekly))} a year full-time. In aged care, an enrolled nurse supervising other direct care employees gets at least ${money2(EN_AGED.weekly)} a week (${money2(EN_AGED.hourly)} an hour) from the first full pay period on or after 1 August 2026.`,
+    "Enrolled nurses in state public hospitals are paid under each state's own award or agreement, which pays well above the Nurses Award. The table shows the base enrolled nurse scale in each state's public health system, from the same verified tables as our state nurse pay pages. Where an instrument publishes weekly or fortnightly rates, the annual figure is weekly x 52 or fortnightly x 26.",
+    `Jobs and Skills Australia reports median full-time earnings of ${money0(EN_MEDIAN_WEEKLY)} a week for enrolled and mothercraft nurses (ANZSCO 4114, ABS Survey of Employee Earnings and Hours, May 2025), about ${money0(annual52(EN_MEDIAN_WEEKLY))} a year before tax.`,
+  ],
+  table: {
+    caption: "Enrolled nurse base salary by state public health system",
+    head: ["State", "Scale", "Entry (annual)", "Top of scale", "Rates from"],
+    rows: [
+      ["Nurses Award (private, aged care, agencies)", "Enrolled nurse, general stream", money0(annual52(EN_AWARD[0].weekly)), money0(annual52(EN_AWARD[EN_AWARD.length - 1].weekly)), "1 July 2026"],
+      ...EN_STATES.map((r) => [r.code, r.classification, money0(r.entry), money0(r.top), r.effectiveFrom]),
+    ],
+    note: `Annual base salary before tax, shift penalties and super. State rows are the first enrolled nurse scale each state publishes; several states have further EN scales (advanced skills, certificate-only or mental health) on their state page.`,
+  },
+};
 
 export const NURSE: Occupation = {
   slug: "nurse",
@@ -154,8 +228,9 @@ export const NURSE: Occupation = {
   notShown: [
     "Registered nurse levels 4 and 5, nurse practitioners and student enrolled nurses — see the healthcare worker pay page for the full award.",
     "Aged care enrolled nurse and level 3–5 aged care rates.",
-    "ACT and NT public sector nurse scales, which we have not yet verified.",
+    "State public sector registered nurse and midwife scales, which are on the state nurse pay pages.",
   ],
+  sections: [ENROLLED_NURSE_SECTION],
   faqs: [
     {
       q: "How much do nurses get paid in Australia?",
@@ -178,6 +253,10 @@ export const NURSE: Occupation = {
       a: "Under the Nurses Award, Sunday ordinary hours are paid at 175% of the minimum hourly rate — $56.16 an hour for an RN level 1 pay point 1. Public holidays are 200%.",
     },
     {
+      q: "How much does an enrolled nurse earn in Australia?",
+      a: `Under the Nurses Award, an enrolled nurse earns at least ${money2(EN_AWARD[0].hourly)} an hour (${money2(EN_AWARD[0].weekly)} a week) at pay point 1 from 1 July 2026. In state public hospitals the starting enrolled nurse salary ranges from ${money0(EN_LOWEST.entry)} (${EN_LOWEST.code}) to ${money0(EN_HIGHEST.entry)} (${EN_HIGHEST.code}) a year on the base scale. Jobs and Skills Australia puts the median for enrolled and mothercraft nurses at ${money0(EN_MEDIAN_WEEKLY)} a week (ABS, May 2025).`,
+    },
+    {
       q: "What do registered nurses actually earn in Australia?",
       a: "Jobs and Skills Australia reports median full-time earnings of $2,192 a week for registered nurses (ABS, May 2025), about $113,984 a year. That reflects state public sector agreements and above-award pay, not the award minimum.",
     },
@@ -187,6 +266,11 @@ export const NURSE: Occupation = {
     FWO_PAY_GUIDES,
     ANNUAL_WAGE_REVIEW_2026,
     jsaSource(MEDIAN),
+    {
+      title: "Enrolled and Mothercraft Nurses (ANZSCO 4114) occupation profile — ABS Survey of Employee Earnings and Hours, May 2025",
+      publisher: "Jobs and Skills Australia",
+      url: EN_JSA_URL,
+    },
   ],
   verifiedOn: JOB_PAY_VERIFIED_ON,
   related: [

@@ -72,4 +72,12 @@ export const OCCUPATION_SECTOR: Readonly<Record<OccupationSlug, JobSectorId>> = 
   welder: "trades",
   "forklift-operator": "trades",
   "flight-attendant": "trades",
+  // J8 (9 Oct 2026)
+  "vet-nurse": "health",
+  bricklayer: "trades",
+  "fitter-and-turner": "trades",
+  landscaper: "trades",
+  "personal-trainer": "hospitality-retail",
+  "payroll-officer": "office",
+  "excavator-operator": "trades",
 };

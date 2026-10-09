@@ -122,7 +122,9 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
                     ? "Graduate and intern paramedic pay"
                     : j.occupation === "police"
                       ? "Recruit and trainee police pay"
-                      : "Recruit firefighter pay"}
+                      : j.occupation === "prison-officer"
+                        ? "Trainee and probationary prison officer pay"
+                        : "Recruit firefighter pay"}
                 </h2>
                 {j.traineePay.map((p) => (
                   <p key={p}>{p}</p>

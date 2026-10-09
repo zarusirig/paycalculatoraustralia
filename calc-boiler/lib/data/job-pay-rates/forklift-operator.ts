@@ -43,7 +43,8 @@ import {
   rowFromModernAward,
 } from "./common";
 import { retailRow } from "./retail-worker";
-import type { MedianEarnings, Occupation, RateRow } from "./types";
+import { annual52, money0, takeHomeWeekly } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "7213",
@@ -64,6 +65,37 @@ const GRADE_3 = storeRow("Storeworker grade 3", 1093.1, 28.77, 35.96, "Operation
 const GRADE_4 = storeRow("Storeworker grade 4", 1125.3, 29.61, 37.01, "Warehouse or large section; leading hand over 10 storeworkers");
 
 const money = (x: number) => `$${x.toFixed(2)}`;
+
+// J8 (9 Oct 2026): "forklift driver salary" (480 a month) is answered on this
+// page. Rows are GRADE_2 to GRADE_4 above and the Road Transport Grade 3 row in
+// the second table; annual is weekly x 52 and take-home is the site's tax
+// engine (j8-common.ts).
+const TRANSPORT_GRADE_3 = { hourly: 27.83, weekly: 1057.6 };
+
+function driverRow(label: string, r: { hourly: number; weekly: number }): string[] {
+  const annual = annual52(r.weekly);
+  return [label, money(r.hourly), money(r.weekly), money0(annual), money0(takeHomeWeekly(annual))];
+}
+
+const FORKLIFT_DRIVER_SECTION: OccupationSection = {
+  id: "forklift-driver-pay",
+  heading: "Forklift driver pay per year and after tax",
+  paragraphs: [
+    "Forklift driver and forklift operator are the same job as far as the award is concerned: the classification turns on licensed operation of materials handling equipment, not the job title. These are the full-time minimums turned into a yearly figure and an after-tax weekly amount, so you can compare them with what lands in your account.",
+    "Jobs and Skills Australia's median for forklift drivers is $1,340 a week before tax (ABS, May 2025), above every award grade here, because many distribution centres pay under enterprise agreements and drivers often work overtime.",
+  ],
+  table: {
+    caption: "Forklift driver minimum pay per year and take-home, 2026–27",
+    head: ["Classification", "Hourly", "Weekly", "Annual", "Take-home a week"],
+    rows: [
+      driverRow("Road Transport — Transport Worker Grade 3", TRANSPORT_GRADE_3),
+      driverRow("Storeworker grade 2 (licensed forklift driver)", GRADE_2),
+      driverRow("Storeworker grade 3", GRADE_3),
+      driverRow("Storeworker grade 4", GRADE_4),
+    ],
+    note: "Full-time minimums from the first full pay period on or after 1 July 2026. Annual is weekly x 52. Take-home uses 2026–27 resident tax rates, the low income tax offset and the 2% Medicare levy, with no HECS.",
+  },
+};
 
 export const FORKLIFT_OPERATOR: Occupation = {
   slug: "forklift-operator",
@@ -107,7 +139,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
         "The same job under other awards, from the first full pay period on or after 1 July 2026. Retail and Manufacturing from the shared award data on this site; Transport Worker Grade 3 from the Road Transport and Distribution Award.",
       rows: [
         rowFromModernAward(MANUFACTURING_AWARD, "C12 / V3", "Manufacturing C12 — Employee Level III", "Operation of mobile equipment including fork-lifts"),
-        storeRow("Road Transport — Transport Worker Grade 3", 1057.6, 27.83, 34.79, "Forklift up to 5 tonnes"),
+        storeRow("Road Transport — Transport Worker Grade 3", TRANSPORT_GRADE_3.weekly, TRANSPORT_GRADE_3.hourly, 34.79, "Forklift up to 5 tonnes"),
         rowFromModernAward(MANUFACTURING_AWARD, "C11 / V4", "Manufacturing C11 — Employee Level IV", "Licensed and certified above C12 level"),
         retailRow("Level 2", "Forklift or ride-on equipment operator"),
       ],
@@ -140,6 +172,7 @@ export const FORKLIFT_OPERATOR: Occupation = {
     "Rates under enterprise agreements at individual distribution centres.",
     "Licence costs and the High Risk Work Licence rules, which are a work health and safety matter, not a pay matter.",
   ],
+  sections: [FORKLIFT_DRIVER_SECTION],
   faqs: [
     {
       q: "What is the award rate for a forklift operator in 2026?",
@@ -156,6 +189,10 @@ export const FORKLIFT_OPERATOR: Occupation = {
     {
       q: "Is the forklift operator rate the same in retail and manufacturing?",
       a: `No. The rate depends on the award that covers the employer. A forklift operator in a shop is Retail Employee Level 2 (${money(retailRow("Level 2").hourly)} an hour), in a factory generally Manufacturing C12 or C11, and in a transport business a Transport Worker Grade 3. The second table shows each.`,
+    },
+    {
+      q: "How much does a forklift driver earn a year?",
+      a: `On the award minimum, a full-time licensed forklift driver in a warehouse (Storeworker grade 2) earns ${money0(annual52(GRADE_2.weekly))} a year before tax and takes home about ${money0(takeHomeWeekly(annual52(GRADE_2.weekly)))} a week. At grade 4 it is ${money0(annual52(GRADE_4.weekly))} a year. Overtime, shift loadings and enterprise agreements lift what many drivers actually earn.`,
     },
     {
       q: "What do forklift operators actually earn?",

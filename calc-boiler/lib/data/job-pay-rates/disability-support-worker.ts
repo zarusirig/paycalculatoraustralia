@@ -32,9 +32,12 @@
 
 import {
   SCHADS_AWARD,
+  SCHADS_HOME_CARE_AGED,
   SCHADS_HOME_CARE_DISABILITY,
+  SCHADS_HOME_CARE_DISABILITY_DEC_2026,
   SCHADS_PENALTIES,
   SCHADS_SACS,
+  SCHADS_SCHEDULE_E_INCREASE,
   SCHADS_VEHICLE_ALLOWANCE,
   type SchadsRate,
 } from "../../constants/schads-award";
@@ -47,7 +50,8 @@ import {
   jsaSource,
   jsaUrl,
 } from "./common";
-import type { MedianEarnings, Occupation, RateRow } from "./types";
+import { money2 } from "./j8-common";
+import type { MedianEarnings, Occupation, OccupationSection, RateRow } from "./types";
 
 const MEDIAN: MedianEarnings = {
   anzscoCode: "4231",
@@ -81,6 +85,44 @@ const SACS_NOTES: Record<string, string> = {
 };
 
 const pct = (x: number) => `${Math.round(x * 1000) / 10}%`;
+
+// ---------------------------------------------------------------------------
+// J8 (9 Oct 2026): "support worker salary" (1,000 a month) is answered here
+// rather than on a new URL. Every figure is a SCHADS constant from
+// lib/constants/schads-award.ts (SACS, Schedule E home care — disability,
+// Schedule F home care — aged care, and the 1 December 2026 Schedule E rates
+// from PR814259). Casual = hourly x 1.25 in integer cents, as above.
+// ---------------------------------------------------------------------------
+
+function schadsRow(stream: string, list: readonly SchadsRate[], classification: string): string[] {
+  const r = list.find((x) => x.classification === classification);
+  if (!r) throw new Error(`support worker section: no SCHADS row ${classification}`);
+  return [`${stream} — ${classification}`, money2(r.hourly), money2(r.weekly), money2(casual(r.hourly))];
+}
+
+const HCD_L2 = SCHADS_HOME_CARE_DISABILITY_DEC_2026.find((r) => r.classification === "Level 2 pay point 1")!;
+
+const SUPPORT_WORKER_SECTION: OccupationSection = {
+  id: "support-worker-pay",
+  heading: "Support worker pay rates: which SCHADS stream applies",
+  paragraphs: [
+    "\"Support worker\" is not a classification in the SCHADS Award. Your minimum depends on the stream your work falls in and then your level. Support in group homes, supported accommodation, respite and day programs is the Social and community services stream (Schedule B). Support in a person's own home is Home care — disability (Schedule E), or Home care — aged care (Schedule F) when the client is older. Support workers in residential aged care homes are covered by the Aged Care Award instead — see the aged care worker page.",
+    `Home care — disability rates are about to rise. The Fair Work Commission's gender undervaluation decision (${SCHADS_SCHEDULE_E_INCREASE.decision}) lifts Schedule E rates by up to ${Math.round(SCHADS_SCHEDULE_E_INCREASE.interimIncrease * 100)}% from ${SCHADS_SCHEDULE_E_INCREASE.operativeFrom} (${SCHADS_SCHEDULE_E_INCREASE.determination}): Level 2 pay point 1 goes to ${money2(HCD_L2.weekly)} a week. The rest of the increase comes with a new classification structure from ${SCHADS_SCHEDULE_E_INCREASE.remainderFrom}.`,
+  ],
+  table: {
+    caption: "Support worker minimum rates by SCHADS stream",
+    head: ["Stream and level", "Hourly", "Weekly", "Casual hourly"],
+    rows: [
+      schadsRow("Group homes and day programs", SCHADS_SACS, "Level 1 pay point 1"),
+      schadsRow("Group homes and day programs", SCHADS_SACS, "Level 2 pay point 1"),
+      schadsRow("In-home disability support", SCHADS_HOME_CARE_DISABILITY, "Level 1 pay point 1"),
+      schadsRow("In-home disability support", SCHADS_HOME_CARE_DISABILITY, "Level 5 pay point 2"),
+      schadsRow("Home care for older people", SCHADS_HOME_CARE_AGED, "Level 2 Home carer"),
+      schadsRow("Home care for older people", SCHADS_HOME_CARE_AGED, "Level 3 Qualified"),
+    ],
+    note: "SCHADS Award minimums from the first full pay period on or after 1 July 2026; Schedule B Level 2 includes the Equal Remuneration Order. Casual is the hourly rate plus 25%. In-home disability rows show the lowest and highest Schedule E levels.",
+  },
+};
 
 export const DISABILITY_SUPPORT_WORKER: Occupation = {
   slug: "disability-support-worker",
@@ -153,6 +195,7 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     "Crisis accommodation and family day care streams, and trainee rates under Schedule I.",
     "Casual shift loadings, which follow different rules for casuals.",
   ],
+  sections: [SUPPORT_WORKER_SECTION],
   faqs: [
     {
       q: "What is the award rate for a disability support worker in 2026?",
@@ -165,6 +208,10 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     {
       q: "Why is home care disability pay lower?",
       a: "Support delivered in a client's own home is covered by the Home care — disability stream, which carries no Equal Remuneration Order uplift. Its rates run from $27.28 to $35.81 an hour, compared with $36.22 for Level 2 in the social and community services stream.",
+    },
+    {
+      q: "What is the award rate for a support worker?",
+      a: `It depends on where you work. A support worker with a relevant certificate in a group home or day program is SCHADS Level 2, ${money2(SCHADS_SACS.find((r) => r.classification === "Level 2 pay point 1")!.hourly)} an hour. In-home disability support runs from ${money2(SCHADS_HOME_CARE_DISABILITY[0].hourly)} to ${money2(SCHADS_HOME_CARE_DISABILITY[SCHADS_HOME_CARE_DISABILITY.length - 1].hourly)} an hour, and a Level 3 Qualified home carer for older people gets ${money2(SCHADS_HOME_CARE_AGED.find((r) => r.classification === "Level 3 Qualified")!.hourly)}. Support workers in residential aged care are under the Aged Care Award.`,
     },
     {
       q: "How much is the sleepover allowance?",
@@ -186,5 +233,6 @@ export const DISABILITY_SUPPORT_WORKER: Occupation = {
     { href: "/schads-award-pay-rates/", label: "SCHADS Award Pay Rates" },
     { href: "/overtime-penalty-rates-guide/", label: "Overtime & Penalty Rates Guide" },
     { href: "/salary-packaging-guide/", label: "Salary Packaging Guide" },
+    { href: "/job-pay-rates/aged-care-worker/", label: "Aged Care Worker Pay Rates" },
   ],
 };

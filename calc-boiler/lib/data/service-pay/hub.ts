@@ -24,6 +24,12 @@ export const HOW_PAY_IS_SET: Readonly<Record<ServiceOccupation, string[]>> = {
     "A career firefighter starts on a recruit rate during training, moves through firefighter classes or levels as they qualify, and reaches senior or qualified firefighter after several years. Station officers and other officer ranks sit on separate, higher rates.",
     "Most career firefighters work a rotating roster of day and night shifts. Several states build a shift or roster allowance into pay on top of base salary — each state page lists what its instrument sets.",
   ],
+  // J8 (9 Oct 2026)
+  "prison-officer": [
+    "Prison officers — called correctional officers or custodial officers in most states — are not paid under a national modern award. Each state and territory corrective services agency pays under its own state award, enterprise agreement or industrial agreement, so pay depends first on the state you work in.",
+    "Every state starts new officers on a trainee or probationary rate while they complete entry training, then moves them up yearly or by qualification. Several states tie progression to the Certificate III and Certificate IV in Correctional Practice.",
+    "Rosters change the numbers a lot. Western Australia and Tasmania pay shift officers a separate, higher annualised salary that replaces shift penalties, the Northern Territory adds a 40% consolidated allowance, and Victoria's salaries include 5.26% for working an 80-hour fortnight. Each state page says what its salary includes.",
+  ],
 };
 
 /** Hub FAQs, built from the verified state files. */

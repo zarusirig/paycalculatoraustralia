@@ -136,6 +136,7 @@ export const APPRENTICE_SPOKES: readonly ApprenticeSpoke[] = [
     trade: "bricklaying",
     tradeSlug: "building",
     h1: "Apprentice Bricklayer Pay",
+    job: { href: "/job-pay-rates/bricklayer/", label: "Bricklayer pay rates (qualified)" },
     extraLinks: [{ href: "/building-and-construction-award-rates/", label: "Building and Construction Award rates", blurb: "The levels and allowances behind the apprentice rates." }],
     allowances: buildingScenarios("Tool allowance (refractory bricklayer or bricklayer)", 29.26),
     sharesTableWith: ["carpenter", "painter"],
