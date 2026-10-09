@@ -42,6 +42,33 @@ export function jsaSource(median: MedianEarnings): OccupationSource {
   };
 }
 
+// ---------------------------------------------------------------------------
+// ATO Taxation statistics 2023–24 (Oct 2026 professional occupations).
+//
+// Individuals Table 15A, "Average and median taxable income, salary or wages,
+// and total income, by occupation and sex, 2023–24 income year", published by
+// the ATO on data.gov.au (ts24individual15occupationsex.xlsx), read 9 October
+// 2026. Table notes: occupation is what the person wrote on their 2023–24
+// return, coded to ANZSCO 2024; salary-or-wage averages and medians count only
+// people who reported a non-zero amount; the 2023–24 figures come from returns
+// processed by 31 October 2025.
+// ---------------------------------------------------------------------------
+
+export const ATO_TAXSTATS_INCOME_YEAR = "2023–24";
+
+export const ATO_TABLE_15_URL =
+  "https://data.gov.au/data/dataset/taxation-statistics-2023-24/resource/3286e287-ee87-4be4-87b2-56c5c6602009";
+
+export const ATO_TABLE_15: OccupationSource = {
+  title: "Taxation statistics 2023–24, Individuals Table 15: average and median taxable income and salary or wages by occupation",
+  publisher: "Australian Taxation Office (data.gov.au)",
+  url: ATO_TABLE_15_URL,
+};
+
+/** The caveat that travels with every ATO occupation figure. */
+export const ATO_DEFINITION =
+  "ATO figures come from 2023–24 individual tax returns: everyone who gave this occupation, including part-time and part-year workers. Salary or wages is the gross wage income people reported (averages and medians count only those who reported some); taxable income adds other income such as interest and business income and subtracts deductions. Neither figure is a full-time rate or a legal minimum.";
+
 export function jsaUrl(codeAndSlug: string): string {
   return `https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/${codeAndSlug}`;
 }

@@ -78,6 +78,19 @@ export const OCCUPATION_SLUGS = [
   "welder",
   "forklift-operator",
   "flight-attendant",
+  // P1 (Oct 2026) — professional and corporate salary pages.
+  "civil-engineer",
+  "electrical-engineer",
+  "mechanical-engineer",
+  "software-engineer",
+  "cyber-security",
+  "project-manager",
+  "data-analyst",
+  "business-analyst",
+  "actuary",
+  "mortgage-broker",
+  "paralegal",
+  "surveyor",
 ] as const;
 
 export type OccupationSlug = (typeof OCCUPATION_SLUGS)[number];
@@ -163,6 +176,42 @@ export interface MedianEarnings {
   url: string;
 }
 
+/**
+ * One occupation row from the ATO's Taxation statistics, Individuals Table 15A
+ * ("Average and median taxable income, salary or wages, and total income, by
+ * occupation and sex"), the Total (all sexes) line. Dollars exactly as printed.
+ * These are tax-return figures for everyone who gave the occupation, including
+ * part-time and part-year workers — not full-time rates.
+ */
+export interface AtoOccupationRow {
+  /** ATO occupation code, e.g. "233211". */
+  code: string;
+  /** Occupation description exactly as Table 15A prints it, e.g. "Civil engineer". */
+  title: string;
+  /** "Individuals no." column. */
+  individuals: number;
+  avgTaxableIncome: number;
+  medianTaxableIncome: number;
+  /** Average salary or wage income, among people who reported a non-zero amount. */
+  avgSalary: number;
+  /** Median salary or wage income, among people who reported a non-zero amount. */
+  medianSalary: number;
+}
+
+export interface AtoOccupationStats {
+  /** Income year the table covers, e.g. "2023–24". */
+  incomeYear: string;
+  /** The first row is the one the page leads with. */
+  rows: AtoOccupationRow[];
+  /** One sentence on which rows are shown and why. */
+  intro: string;
+  /**
+   * How many rows, from the top, get a median-salary line in the take-home
+   * table (default 1). Use it where the job title spans several ATO codes.
+   */
+  takeHomeRows?: number;
+}
+
 export interface OccupationSource {
   title: string;
   publisher: string;
@@ -219,4 +268,31 @@ export interface Occupation {
    * admitted lawyers are award-free).
    */
   metaTitle?: string;
+
+  // ---------------------------------------------------------------------------
+  // Optional salary-page fields (Oct 2026 professional occupations). All
+  // optional, so award pages that do not set them render exactly as before.
+  // ---------------------------------------------------------------------------
+
+  /** H1 override, for pages searched as "<job> salary" rather than "pay rates". */
+  heading?: string;
+  /** Meta description override. Keep it under 160 characters. */
+  metaDescription?: string;
+  /** Hero paragraph override. Every figure in it must also appear in the data. */
+  lede?: string;
+  /**
+   * "depends": no award can be named for the job title — coverage turns on the
+   * employer's industry and the duties — so the page must not say "award-free".
+   */
+  coverageMode?: "depends";
+  /** ATO Taxation statistics (Table 15A) for the occupation. */
+  ato?: AtoOccupationStats;
+  /** Payslip lines worth checking, each backed by the source it cites. */
+  payslipNotes?: string[];
+  /** The broader occupation page this one is a discipline of (breadcrumb + backlink). */
+  parent?: { href: string; label: string; blurb: string };
+  /** Discipline pages under this one, linked from a section of their own. */
+  spokes?: { href: string; label: string; blurb: string }[];
+  /** ISO date for the WebPage dateModified, when later than the cluster default. */
+  dateModified?: string;
 }

@@ -4,14 +4,27 @@
 // from the page. CGT figures come from lib/constants/capital-gains-tax.ts.
 
 import { CGT_DISCOUNT_RATES, CGT_REFORM_2027 } from "@/lib/constants/capital-gains-tax";
+import { formatAUD } from "@/lib/constants/australian-tax";
+import { CYBER_SECURITY_ATO } from "@/lib/data/job-pay-rates/cyber-security";
+import { PROJECT_MANAGER_ATO } from "@/lib/data/job-pay-rates/project-manager";
+import { SOFTWARE_ENGINEER_ATO } from "@/lib/data/job-pay-rates/software-engineer";
 import type { FaqItem } from "@/lib/faq";
+
+// Role-level pay now lives on the /job-pay-rates/ spokes (Oct 2026), which
+// carry ATO Taxation statistics 2023–24 figures. These answers summarise and
+// link down; the numbers are read from the spokes' data so they cannot drift.
+const SWE = SOFTWARE_ENGINEER_ATO.rows[0];
+const CYBER_ANALYST = CYBER_SECURITY_ATO.rows.find((r) => r.code === "262116")!;
+const CYBER_ARCHITECT = CYBER_SECURITY_ATO.rows.find((r) => r.code === "262117")!;
+const ICT_PM = PROJECT_MANAGER_ATO.rows.find((r) => r.code === "135112")!;
 
 const DISCOUNT = `${CGT_DISCOUNT_RATES.individual * 100}%`;
 
 export const TECH_SALARY_FAQS: readonly FaqItem[] = [
   {
     q: "How much do software developers earn in Australia?",
-    a: "Junior developers earn $65K–$80K, mid-level developers $90K–$120K, senior developers $130K–$170K, and lead/principal engineers $160K–$200K. These are base salaries — total compensation at larger companies includes equity (RSUs), bonuses, and benefits that can add $10K–$80K+ per year.",
+    a: `On 2023–24 tax returns, people who gave their occupation as software engineer had a median salary or wage income of ${formatAUD(SWE.medianSalary)} (ATO). The software engineer salary page compares developers, programmers and testers, and shows take-home pay on each figure.`,
+    links: { "software engineer salary page": "/job-pay-rates/software-engineer/" },
   },
   {
     q: "Is it better to be a contractor or permanent employee in tech?",
@@ -38,7 +51,13 @@ export const TECH_SALARY_FAQS: readonly FaqItem[] = [
   },
   {
     q: "How much do cybersecurity professionals earn?",
-    a: "Cybersecurity analysts earn $100K–$150K, security engineers $120K–$170K, and CISOs/security directors $180K–$280K. The sector has acute talent shortages, driving salaries higher than equivalent seniority levels in general software development. Government and defence sector cybersecurity roles may also include security clearance bonuses.",
+    a: `It depends on the role: on 2023–24 tax returns the median salary was ${formatAUD(CYBER_ANALYST.medianSalary)} for cyber security analysts and ${formatAUD(CYBER_ARCHITECT.medianSalary)} for cyber security architects (ATO). The cyber security salary page lists all seven cyber roles with take-home pay.`,
+    links: { "cyber security salary page": "/job-pay-rates/cyber-security/" },
+  },
+  {
+    q: "How much do IT project managers earn?",
+    a: `IT project managers had a median salary of ${formatAUD(ICT_PM.medianSalary)} on 2023–24 tax returns (ATO). The project manager salary page compares IT, construction and program roles.`,
+    links: { "project manager salary page": "/job-pay-rates/project-manager/" },
   },
   {
     q: "Do remote tech workers earn less?",

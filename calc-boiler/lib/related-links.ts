@@ -111,7 +111,7 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
   // --- October 2026 award batch ---
   "/miscellaneous-award-rates/": [MIN_WAGE, JUNIOR, OVERTIME, PENALTY_GUIDE, TOIL],
   "/building-and-construction-award-rates/": [L("/construction-trades-pay/", "Construction & Trades Pay Guide", "What tradies and apprentices actually earn, with take-home pay."), job("carpenter", "Carpenter", "Carpenter pay with the tool allowance included."), job("crane-operator", "Crane Operator", "Crane operator pay under the award."), OVERTIME, PENALTY_GUIDE, TOIL],
-  "/legal-services-award-rates/": [job("lawyer", "Lawyer", "Solicitor and lawyer salaries, which sit outside this award."), job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), OVERTIME, PENALTY_GUIDE, TOIL],
+  "/legal-services-award-rates/": [job("lawyer", "Lawyer", "Solicitor and lawyer salaries, which sit outside this award."), job("paralegal", "Paralegal", "Law clerk and legal support rates under this award."), job("receptionist", "Receptionist", "Receptionist pay under the Clerks Award."), OVERTIME, PENALTY_GUIDE, TOIL],
   "/electrical-award-rates/": [job("electrician", "Electrician", "Electrician pay from apprentice to qualified."), job("apprentice-electrician", "Apprentice Electrician", "Apprentice electrician rates by year."), L("/construction-trades-pay/", "Construction & Trades Pay Guide", "Trade pay, allowances and take-home."), OVERTIME, PENALTY_GUIDE],
   "/fitness-industry-award-rates/": [JUNIOR, MIN_WAGE, OVERTIME, PENALTY_GUIDE, TOIL],
   "/real-estate-award-rates/": [job("property-manager", "Property Manager", "Property manager pay by level and state."), job("real-estate-agent", "Real Estate Agent", "Agent pay, commission and take-home."), L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), OVERTIME, TOIL],
@@ -131,6 +131,21 @@ const AWARD_LINKS: Record<string, RelatedLink[]> = {
 
 /** Occupation → award and employer pages. Everything else gets the generic job set. */
 const JOB_LINKS: Record<string, RelatedLink[]> = {
+  // P1 (Oct 2026) — professional salary pages: discipline ↔ parent, tech spokes ↔ hub.
+  engineer: [job("civil-engineer", "Civil Engineer", "Civil, structural and geotechnical engineers' salaries."), job("electrical-engineer", "Electrical Engineer", "Electrical engineers' salaries and take-home."), job("mechanical-engineer", "Mechanical Engineer", "Mechanical and industrial engineers' salaries.")],
+  "civil-engineer": [job("engineer", "Engineer", "Every Professional Employees Award pay point."), job("surveyor", "Surveyor", "Surveying Award rates and surveyors' tax-return pay.")],
+  "electrical-engineer": [job("engineer", "Engineer", "Every Professional Employees Award pay point."), job("electrician", "Electrician", "The trade award, not the engineers' award.")],
+  "mechanical-engineer": [job("engineer", "Engineer", "Every Professional Employees Award pay point."), job("civil-engineer", "Civil Engineer", "Civil engineers' salaries and award exclusions.")],
+  "software-engineer": [L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT pay in one place."), job("cyber-security", "Cyber Security", "Seven cyber roles from analyst to architect.")],
+  "cyber-security": [L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT pay in one place."), job("software-engineer", "Software Engineer", "Software engineers' salaries and award coverage.")],
+  "project-manager": [L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT pay in one place."), job("business-analyst", "Business Analyst", "Business analysts' salaries and take-home.")],
+  "data-analyst": [L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT pay in one place."), job("actuary", "Actuary", "Actuaries' and statisticians' pay from tax returns.")],
+  "business-analyst": [L("/tech-salary-guide-australia/", "Tech Salary Guide", "Developer, data and IT pay in one place."), job("data-analyst", "Data Analyst", "Data analysts' and data scientists' pay.")],
+  actuary: [job("data-analyst", "Data Analyst", "Data analysts' and data scientists' pay."), job("accountant", "Accountant", "Accountants are award-free: the median and the floor.")],
+  "mortgage-broker": [L("/commission-tax-calculator/", "Commission Tax Calculator", "Tax on commission and bonus payments."), job("real-estate-agent", "Real Estate Agent", "Agent pay, commission and take-home.")],
+  paralegal: [L("/legal-services-award-rates/", "Legal Services Award Rates", "Every level of the Legal Services Award."), job("lawyer", "Lawyer", "Law graduates and admitted lawyers.")],
+  lawyer: [job("paralegal", "Paralegal", "Law clerk and legal support award rates.")],
+  surveyor: [job("civil-engineer", "Civil Engineer", "Civil engineers' salaries and award exclusions."), job("architect", "Architect", "Architects' award and median pay.")],
   // F4 (Oct 2026)
   "retail-manager": [L("/retail-award-rates/", "Retail Award Rates", "Every General Retail Industry Award level, with penalties."), job("retail-worker", "Retail Worker", "Retail Levels 1 to 4 as hourly, weekly and annual pay.")],
   "youth-worker": [L("/schads-award-pay-rates/", "SCHADS Award Pay Rates", "Every SCHADS level, sleepover and shift rate."), job("disability-support-worker", "Disability Support Worker", "The same award for disability services.")],
@@ -266,6 +281,8 @@ const PAGE_LINKS: Record<string, RelatedLink[]> = {
 
   // Weak pages found by the audit
   "/salary-sacrifice-calculator/": [L("/salary-sacrifice-vs-mortgage/", "Salary Sacrifice vs Mortgage", "Extra super or extra home loan repayments?"), L("/salary-packaging-guide/", "Salary Packaging Guide", "What else you can package, and the caps."), L("/concessional-contributions-cap/", "Concessional Contributions Cap", "The yearly limit on pre-tax super."), SUPER_CALC],
+  // P1 (Oct 2026): the tech hub links down to its role spokes.
+  "/tech-salary-guide-australia/": [job("software-engineer", "Software Engineer", "Software engineers' pay from tax returns, with take-home."), job("cyber-security", "Cyber Security", "Seven cyber roles from analyst to architect."), job("data-analyst", "Data Analyst", "Data analysts' and data scientists' pay."), job("business-analyst", "Business Analyst", "Business analysts' salaries and take-home."), job("project-manager", "Project Manager", "Construction, IT and program roles compared."), TAKE_HOME],
   "/average-salary-australia/": [JOBS_HUB, L("/australian-pay-report-2026/", "Australian Pay Report 2026", "Minimum, median and average pay side by side, with the data."), L("/tech-salary-guide-australia/", "Tech Salary Guide", "Software, data and IT salaries in Australia."), TAKE_HOME_HUB, L("/graduate-salary-australia/", "Graduate Salary Australia", "What new graduates earn in six professions, sourced."), PAY_RISE],
   "/pension-age-australia/": [L("/age-pension-income-test-calculator/", "Age Pension Income Test Calculator", "Single and couple tests with the Work Bonus."), L("/sapto-calculator/", "SAPTO Calculator", "The seniors and pensioners tax offset."), INCOME_TEST_HUB, SUPER_CALC],
   "/age-pension-income-test-calculator/": [L("/age-pension-assets-test-calculator/", "Age Pension Assets Test Calculator", "Both tests together, with your savings deemed."), L("/deeming-rates/", "Deeming Rates", "1.75% and 3.75% from 20 September 2026."), L("/pension-age-australia/", "Pension Age Australia", "When you qualify for the Age Pension."), INCOME_TEST_HUB],
