@@ -22,8 +22,14 @@
 // adult-apprentice rules for plumbing, building, hair and beauty and cookery
 // (the awards set them as "greater of" tests that depend on an employee's prior
 // pay), waiting (food and beverage) apprentices, enterprise agreements, and
-// every trade whose award we did not read (e.g. metal fabrication, bricklayers
-// beyond the building award, roof tilers, horticulture).
+// every trade whose award we did not read (e.g. bricklayers outside the
+// building award, roof tilers, horticulture).
+//
+// Cross-checked 9 October 2026 against the Fair Work Ombudsman pay guides for
+// MA000036, MA000020, MA000089, MA000005, MA000009, MA000010 and MA000059
+// (https://calculate.fairwork.gov.au/payguides/fairwork/<code>/pdf, rates from
+// the first full pay period on or after 1 July 2026): every junior and adult
+// figure below matches, except the plumbing weekly rates, which were corrected.
 //
 // "Hourly" is the award's published hourly figure (Schedule B/E/RS&R, Tables
 // 6-9, Table 7) or, where the award prints only a weekly rate, weekly / 38.
@@ -102,10 +108,20 @@ function electricalRows(): { junior: ApprenticeRate[]; adult: ApprenticeRate[] }
 
 const electrical = electricalRows();
 
-// ---- Plumbing: Schedule E.2.1 hourly rates, weekly = hourly x 38 ------------
+// ---- Plumbing: Schedule E.2.1 hourly rates; weekly from the FWO pay guide ----
+// Hourly is the award's Schedule E.2.1 figure. Weekly is the Fair Work Ombudsman
+// pay guide figure (MA000036 pay guide, published 11 August 2026, "Apprentice -
+// Started after 1 Jan 2014 - Plumbing and mechanical services", read 9 Oct 2026:
+// https://calculate.fairwork.gov.au/payguides/fairwork/ma000036/pdf). Until
+// 9 Oct 2026 this file used hourly x 38, which ran up to 17 cents a week off the
+// cl 18.2(c) weekly rate (e.g. 864.50 instead of 864.35 in 3rd year).
 const plumbHourly = {
   "not-completed": [16.56, 19.65, 22.75, 28.93],
   completed: [18.11, 21.2, 22.75, 28.93],
+} as const;
+const plumbWeekly = {
+  "not-completed": [629.23, 746.79, 864.35, 1099.48],
+  completed: [688.01, 805.57, 864.35, 1099.48],
 } as const;
 const plumbPct = {
   "not-completed": [50, 60, 70, 90],
@@ -116,8 +132,7 @@ function plumbingRows(): ApprenticeRate[] {
   const out: ApprenticeRate[] = [];
   ([1, 2, 3, 4] as const).forEach((s, i) => {
     (["not-completed", "completed"] as const).forEach((y) => {
-      const hourly = plumbHourly[y][i];
-      out.push({ stage: s, year12: y, pct: plumbPct[y][i], weekly: Math.round(hourly * FULL_TIME_HOURS * 100) / 100, hourly });
+      out.push({ stage: s, year12: y, pct: plumbPct[y][i], weekly: plumbWeekly[y][i], hourly: plumbHourly[y][i] });
     });
   });
   return out;
@@ -276,7 +291,7 @@ export const APPRENTICE_TRADES: readonly ApprenticeTrade[] = [
       clause: "cl 18.2(c) and Schedule E.2.1",
     },
     rateIncludes:
-      "Percentage of the tradesperson level 1 weekly rate plus the full industry allowance and the relevant percentage of the tool and plumbing trade allowances (all purposes). Hourly is Schedule E.2.1 exactly; weekly is hourly x 38.",
+      "Percentage of the tradesperson level 1 weekly rate plus the full industry allowance and the relevant percentage of the tool and plumbing trade allowances (all purposes). Hourly is Schedule E.2.1 exactly; weekly is the Fair Work Ombudsman pay guide figure.",
     includesAllowances: true,
     junior: plumbingRows(),
     adult: null,
@@ -468,6 +483,13 @@ export interface ApprenticePayInput {
   hoursPerWeek: number;
   /** What the employer actually pays per hour, if the reader wants a comparison. */
   actualHourly?: number;
+  /**
+   * All-purpose allowances a week that the award makes part of the apprentice's
+   * minimum rate (building: tool + industry allowance, MA000020 cl 19.7(b), (c)).
+   * When set, the minimum hourly rate is (weekly wage + allowances) / 38, rounded
+   * to the cent, which is how the Fair Work Ombudsman pay guide prints it.
+   */
+  weeklyAllowance?: number;
 }
 
 export interface ApprenticePayResult {
@@ -486,6 +508,8 @@ export interface ApprenticePayResult {
 }
 
 const r2 = (n: number) => Math.round(n * 100) / 100;
+/** Round half up to the cent, robust to binary float error (916.37 / 38 = 24.115 -> 24.12). */
+export const roundCent = (n: number) => Math.round(n * 100 + 1e-9) / 100;
 
 export function apprenticePay(input: ApprenticePayInput): ApprenticePayResult | null {
   const trade = getTrade(input.tradeSlug);
@@ -493,13 +517,15 @@ export function apprenticePay(input: ApprenticePayInput): ApprenticePayResult | 
   const rate = apprenticeRate(trade, input.track, input.stage, input.year12);
   if (!rate) return null;
   const hours = Math.max(0, input.hoursPerWeek);
-  const minWeekly = r2(rate.hourly * hours);
+  const allowance = input.weeklyAllowance && input.weeklyAllowance > 0 ? input.weeklyAllowance : 0;
+  const minHourly = allowance > 0 ? roundCent((rate.weekly + allowance) / FULL_TIME_HOURS) : rate.hourly;
+  const minWeekly = r2(minHourly * hours);
   const hasActual = typeof input.actualHourly === "number" && input.actualHourly > 0;
-  const diff = hasActual ? r2((input.actualHourly as number) - rate.hourly) : null;
+  const diff = hasActual ? r2((input.actualHourly as number) - minHourly) : null;
   return {
     trade,
     rate,
-    minHourly: rate.hourly,
+    minHourly,
     minWeekly,
     minAnnual: r2(minWeekly * 52),
     hourlyDifference: diff,
