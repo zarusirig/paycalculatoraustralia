@@ -20,6 +20,7 @@ import {
   SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
 import { nearestSalary } from "@/lib/data/salary-pages";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HOURS_PER_YEAR: number = EMPLOYMENT.hoursPerYear;
 const WEEKS: number = EMPLOYMENT.weeksPerYear;
@@ -66,6 +67,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
 
   return (
     <div className="max-w-4xl mx-auto space-y-12">
+      <FeaturedImage className="mt-0 mb-12" />
       {/* ── Answer table ── */}
       <section>
         <h2

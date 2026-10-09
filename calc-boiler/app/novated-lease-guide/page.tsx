@@ -6,19 +6,20 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { faqPageSchema } from "@/lib/faq";
 import { NOVATED_LEASE_GUIDE_FAQS } from "@/modules/guide/novated-lease-guide-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/novated-lease-guide/`;
 const TITLE = "How a Novated Lease Works — Explained Step by Step";
 const DESCRIPTION = "What a novated lease is: the three-way agreement, how the employee contribution cancels FBT, which EVs are exempt, and what you owe at the end.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

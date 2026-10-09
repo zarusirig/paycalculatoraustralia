@@ -3,6 +3,7 @@ import { SchoolSupportHubPage } from "@/modules/guide/school-support-pay";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { SCHOOL_SUPPORT_HUB_FAQS } from "@/lib/data/school-support-pay";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // J6 (wave 4, 24 Sep 2026). Targets (DataForSEO AU): teacher aide pay /
 // teacher aide salary / teacher aide pay rate 1.6k each, education support
@@ -14,13 +15,13 @@ const DESCRIPTION =
   "Teacher aide pay in government schools by state: NSW SLSO, VIC Education Support, QLD teacher aide, WA Education Assistant and SA SSO rates, with take-home pay.";
 const URL = `https://pay-calculator-australia.com/${SLUG}/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 function Page() {
   return (

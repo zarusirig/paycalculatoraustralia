@@ -4,6 +4,8 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/terms/`;
@@ -11,7 +13,7 @@ const TITLE = "Terms of Use — Pay Calculator Australia";
 const DESCRIPTION =
   "Terms of use for Pay Calculator Australia. Our calculators provide estimates based on official ATO rates — not financial advice. Read our full terms.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -22,10 +24,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -79,6 +80,7 @@ function TermsPage() {
               By using {SITE_CONFIG.name} ({SITE_CONFIG.domain}), you agree to
               these terms. Please read them carefully.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           {/* Key disclaimer */}

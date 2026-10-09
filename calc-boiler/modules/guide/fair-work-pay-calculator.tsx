@@ -85,7 +85,7 @@ export default function FairWorkPayCalculatorPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/award-rates/", label: "Award Rates" }, { label: "Fair Work Pay Calculator" }]} />
 
-      <PageHeader title={`Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear}: How It Works and the Rates Behind It`}>
+      <PageHeader featuredImage title={`Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear}: How It Works and the Rates Behind It`}>
         <p>
           <strong>The Fair Work pay calculator is the Fair Work Ombudsman&rsquo;s Pay and Conditions Tool (PACT), which returns the minimum award rate for your classification, employment type, age and the day and time you worked.</strong> For {SITE_CONFIG.financialYear} those minimums start at the national minimum wage of {formatAUD(NMW.hourly, 2)} an hour and run through every level of the {AWARD_ROWS.length} awards below, from the first full pay period on or after {NMW_DECISION.operativeFrom}. This page explains what PACT asks, shows the base rates it draws on, and lets you check the hourly rate on your payslip against the award floor.
         </p>

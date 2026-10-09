@@ -10,6 +10,7 @@ import { MONTHLY_PAY_FAQS } from "@/modules/calculator/monthly-pay-calculator-fa
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/monthly-pay-calculator/`;
@@ -23,13 +24,13 @@ const at80k = calculatePayBreakdown({ grossSalary: 80_000, includeHECS: false, h
 const TITLE = `Monthly Pay Calculator Australia ${FY}: Take-Home Pay`;
 const DESCRIPTION = `$80,000 is ${formatAUD(at80k.monthly)} a month after tax in ${FY} (${formatAUD(80_000 / 12)} gross ÷ 12). Enter any salary to see your monthly tax, Medicare, super and take-home pay.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: `Monthly take-home pay after tax — ${FY} rates.` },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

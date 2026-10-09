@@ -27,6 +27,7 @@ import {
 } from "@/lib/data/open-data";
 import CopySnippet from "@/modules/guide/copy-snippet";
 import { OPEN_DATA_FAQS } from "./australian-tax-and-pay-data-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const td = "px-3 py-2";
@@ -98,6 +99,7 @@ export default function AustralianTaxAndPayData() {
             <a href="#cite" className="font-semibold text-eucalyptus-dark underline">Cite this page</a>
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

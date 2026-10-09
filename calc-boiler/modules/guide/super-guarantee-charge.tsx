@@ -16,6 +16,7 @@ import {
   SUPER_GUARANTEE_CHARGE,
 } from "@/lib/constants/australian-tax";
 import { SGC_FAQS } from "@/modules/guide/super-guarantee-charge-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const C = SUPER_GUARANTEE_CHARGE.current;
 const L = SUPER_GUARANTEE_CHARGE.legacy;
@@ -56,6 +57,7 @@ export default function SuperGuaranteeChargePage() {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

@@ -6,6 +6,7 @@ import type { Article, BreadcrumbList, FAQPage, WebPage, WithContext } from "sch
 import { LITO, SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/low-income-tax-offset/`;
@@ -18,13 +19,13 @@ const m = (n: number) => formatAUD(n);
 const TITLE = `LITO Calculator ${FY}: Low Income Tax Offset (${m(LITO.maxOffset)} Max)`;
 const DESCRIPTION = `The low income tax offset is ${m(LITO.maxOffset)} up to ${m(LITO.fullOffsetCeiling)}, ${m(LITO_MID)} at ${m(LITO.phaseOut1.end)} and nil at ${m(LITO.nilOffsetIncome)}. Work out your LITO for ${FY} and why you pay no tax up to ${m(NIL_NOW)}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

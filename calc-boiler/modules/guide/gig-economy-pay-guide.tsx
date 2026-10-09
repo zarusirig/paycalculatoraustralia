@@ -17,6 +17,7 @@ const GIG_ROWS = [30_000, 50_000, 75_000, 100_000].map((income) => {
 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Gig economy and tax", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/income-you-must-declare", publisher: SOURCES.ato.name },
@@ -34,6 +35,7 @@ export default function GigEconomyPayGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Gig Economy Pay Guide — Tax &amp; Pay for Uber, Delivery &amp; Freelance Workers</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Working for Uber, Deliveroo, DoorDash, or freelancing? You are running a business, and the tax rules are different from employment. This guide covers ABN registration, GST obligations, quarterly BAS, deductions, and super — everything gig workers need to manage their tax.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

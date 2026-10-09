@@ -9,6 +9,7 @@ import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, formatAUD, formatPercent } from 
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { SG_RATE_FAQS } from "@/modules/guide/super-guarantee-rate-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Retargeted 23 Sep 2026 (W2) to answer "superannuation rate" / "super
 // guarantee rate" first: the rate is 12% from 1 July 2025. Rates from 1 July
@@ -68,6 +69,7 @@ export default function SuperGuaranteeRateHistoryPage() {
             The super guarantee rate is <strong>{RATE}</strong>. It rose from {formatPercent(SUPER_GUARANTEE.previousRate, 1)} on {SUPER_GUARANTEE.effectiveDate}, stays at {RATE} for {FY}, and {RATE} is the rate the ATO lists for 1 July 2027 onwards. Your employer pays it on top of your wages: {formatAUD(100_000 * SUPER_GUARANTEE.rate)} a year on a {formatAUD(100_000)} salary. From {SUPER_GUARANTEE.paydaySuperStart} it is paid with every pay under Payday Super.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="mb-10 grid gap-4 sm:grid-cols-3 not-prose max-w-4xl">

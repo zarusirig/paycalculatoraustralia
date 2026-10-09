@@ -6,18 +6,20 @@ import { formatAUD } from "@/lib/constants";
 import { CARER_SUPPORT_SOURCES, crisisPaymentAmount } from "@/lib/constants/centrelink-carer-and-support";
 import { JOBSEEKER_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-income-test";
 import { withPageEnd } from "@/components/common/content-slots";
+import FeaturedImage from "@/components/common/featured-image";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-crisis-payment";
 const TITLE = "Centrelink Crisis Payment 2026: Eligibility, Amount, How to Claim";
 const DESCRIPTION = `Crisis Payment is one week of your payment's maximum basic rate: ${formatAUD(crisisPaymentAmount(JOBSEEKER_RATES[SEPTEMBER_2026].maxFortnightly.single), 2)} on single JobSeeker. Who qualifies, the 7-day contact rule and how to claim.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (
     <>
       <JsonLd code={w3Schema({ slug: SLUG, name: "Centrelink Crisis Payment", description: DESCRIPTION, faqs: CRISIS_FAQS, calculator: false, dateModified: CARER_SUPPORT_SOURCES.verifiedOnISO })} />
-      <CentrelinkCrisisPaymentPage />
+      <CentrelinkCrisisPaymentPage featuredImage={<FeaturedImage className="mt-0 mb-12" />} />
     </>
   );
 }

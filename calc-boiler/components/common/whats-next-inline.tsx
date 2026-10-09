@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { WhatsNext } from "@/components/common/page-end";
 import NativeBanner from "@/components/common/native-banner";
+import FeaturedImage from "@/components/common/featured-image";
 
 /**
  * "What to check next", rendered directly under a calculator instead of (or as
@@ -25,11 +26,14 @@ import NativeBanner from "@/components/common/native-banner";
  *     {children}
  */
 export default function WhatsNextInline({ route }: { route: string }) {
-  // Our own next steps first, then the one native ad unit for the page.
+  // Our own next steps first, then the one native ad unit for the page. The
+  // featured image follows: after the calculator and its result, at the start
+  // of the explanatory content (`children`), never above the calculator.
   return (
     <>
       <WhatsNext path={route} Link={Link} placement="inline" />
       <NativeBanner className="pb-10" />
+      <FeaturedImage placement="content" route={route} className="mt-0 mb-12" />
     </>
   );
 }

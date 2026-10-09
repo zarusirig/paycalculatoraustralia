@@ -31,6 +31,7 @@ import {
   typicalSalary,
 } from "./state-sections";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
+import FeaturedImage from "@/components/common/featured-image";
 
 const PROFILE = STATE_PROFILES.SA;
 
@@ -76,6 +77,7 @@ export default function PayCalculatorSAPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <FeaturedImage placement="content" className="mt-0 mb-10" />
           <StatePayFacts profile={PROFILE} />
 
           <StateMinimumWage state="sa" />

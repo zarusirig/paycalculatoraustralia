@@ -18,6 +18,7 @@ import { SCHADS_AWARD, SCHADS_PENALTIES } from "@/lib/constants/schads-award";
 import { FAST_FOOD_LEVEL_1, NMW } from "@/lib/constants/minimum-wage";
 import CasualLoadingCalculator from "@/modules/calculator/casual-loading-calculator";
 import { CASUAL_FAQS, EXAMPLE_ALL_LEAVE, EXAMPLE_NO_SICK } from "@/modules/guide/casual-loading-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const pct = (v: number) => `${Math.round(v * 1000) / 10}%`;
@@ -67,6 +68,7 @@ export default function CasualLoadingPage() {
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+            <FeaturedImage placement="content" className="mt-0" />
             <section id="loading-by-award">
               <h2 style={H2}>Casual Loading Rate by Award</h2>
               <p>

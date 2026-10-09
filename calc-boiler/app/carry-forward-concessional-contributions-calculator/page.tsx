@@ -5,6 +5,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG, SUPER_GUARANTEE, formatAUD } from "@/lib/constants";
 import { CARRY_FORWARD } from "@/lib/constants/super-contributions";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026. Target: carry forward concessional contributions 1.6k/mo
 // (DataForSEO, AU; 4,400 in Jun, 1,300 in Aug, so seasonal into June 2027).
@@ -14,13 +15,13 @@ const URL = `${SITE_CONFIG.baseUrl}/${SLUG}/`;
 const TITLE = "Carry-Forward Concessional Contributions Calculator 2026-27";
 const DESCRIPTION = `Use unused super cap from the last 5 years on top of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} cap if your balance is under ${formatAUD(CARRY_FORWARD.totalSuperBalanceLimit)}. Year-by-year calculator with expiry dates.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

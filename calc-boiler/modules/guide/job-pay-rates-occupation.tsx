@@ -22,6 +22,7 @@ import {
   type RateTable,
 } from "@/lib/data/job-pay-rates";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 /** H1 and title stem. Award-free jobs do not get "Award" in the heading. */
 export function occupationHeading(occ: Occupation): string {
@@ -327,6 +328,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

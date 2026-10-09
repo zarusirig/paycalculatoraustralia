@@ -26,6 +26,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /delivery-driver-pay-rate/ (Oct 2026 trending set, item 1). Rules and sources:
 // lib/constants/delivery-minimum-pay.ts. The worked examples are arithmetic on
@@ -71,6 +72,7 @@ export default function DeliveryDriverPayRatePage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="what-changed">What the Minimum Standards Order Changed</H2>
             <p>

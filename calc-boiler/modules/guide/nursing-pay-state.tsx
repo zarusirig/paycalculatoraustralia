@@ -34,6 +34,7 @@ import {
 } from "@/lib/data/nursing-pay/nurses-award-2020";
 import { nursingStateFaqs } from "@/lib/data/nursing-pay/faqs";
 import type { NursingStateData, NursingStateSlug, PayPoint, PayScale } from "@/lib/data/nursing-pay/types";
+import FeaturedImage from "@/components/common/featured-image";
 
 const AWARD_RN1 = NURSES_AWARD_GENERAL.find((s) => s.classification === "Registered nurse — level 1")!;
 
@@ -176,6 +177,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
             from the source linked at the bottom of this page on {state.verifiedOn}.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

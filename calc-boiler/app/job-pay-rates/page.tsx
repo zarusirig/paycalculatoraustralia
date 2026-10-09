@@ -6,6 +6,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { OCCUPATIONS } from "@/lib/data/job-pay-rates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/job-pay-rates/`;
@@ -13,13 +14,13 @@ const TITLE = "Job Pay Rates Australia 2026 — Award Minimums by Occupation";
 const DESCRIPTION =
   "Award pay rates for 40+ jobs in 2026–27: nurses, aged care, childcare, chefs, retail workers, cleaners, electricians and more. Hourly, casual and weekly minimums.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

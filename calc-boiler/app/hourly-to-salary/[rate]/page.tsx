@@ -13,6 +13,7 @@ import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schem
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { fitDescription } from "@/lib/seo-title";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{ rate: string }>;
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const rate = hourlyRateFromSlug(raw);
   const { gross, net } = figuresFor(rate);
 
-  return {
+  return withFeaturedImage({
     // Leads with the answer in the searcher's phrasing ("$35 an hour is how
     // much a year"). "in Australia" separates us from US pages that answer on
     // a 40-hour week; the after-tax figure moves to the description.
@@ -58,9 +59,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: SITE_CONFIG.name,
       type: "website",
       locale: "en_AU",
-      images: ["/og-image.png"],
     },
-  };
+  });
 }
 
 async function HourlyToSalaryPage({ params }: PageProps) {

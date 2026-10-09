@@ -9,6 +9,7 @@ import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PHI_MEDICARE_FAQS } from "@/modules/guide/private-health-insurance-medicare-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/private-health-insurance-medicare/`;
@@ -17,13 +18,13 @@ const URL = `${BASE}/private-health-insurance-medicare/`;
 const TITLE = "Private Health Insurance vs Medicare Levy Surcharge: Worth It?";
 const DESCRIPTION = `Is private hospital cover cheaper than the Medicare levy surcharge? The ${MLS_INCOME_YEAR} surcharge and rebate tiers, your break-even premium and lifetime cover loading.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

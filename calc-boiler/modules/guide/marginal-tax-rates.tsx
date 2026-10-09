@@ -22,6 +22,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /marginal-tax-rates/ — what the next dollar costs and what a raise or bonus
 // really adds to take-home pay. Deliberately NOT a second /tax-brackets/: that
@@ -71,6 +72,7 @@ export default function MarginalTaxRatesPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="marginal-vs-average">Marginal vs Average Tax Rate</H2>
             <p>

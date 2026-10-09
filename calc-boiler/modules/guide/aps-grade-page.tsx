@@ -88,7 +88,7 @@ export default function ApsGradePage({ data }: { data: ApsGradeData }) {
         { label: `${grade.label} salary` },
       ]} />
 
-      <PageHeader title={`${grade.label} Salary 2026: Pay Rates by Agency, Pay Points and Take-Home Pay`}>
+      <PageHeader featuredImage title={`${grade.label} Salary 2026: Pay Rates by Agency, Pay Points and Take-Home Pay`}>
         <p>
           <strong>
             From 12 March 2026 every APS agency must pay {grade.label} at least {formatSalary(threshold.min)} at the bottom of its range, and its range must reach at least {formatSalary(threshold.max)} at the top.

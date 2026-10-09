@@ -6,6 +6,7 @@ import type { Article, BreadcrumbList, FAQPage, Table, WebPage, WithContext } fr
 import { SITE_CONFIG, TAX_BRACKETS_2025_26, TAX_BRACKETS_2026_27, formatAUD, formatPercent } from "@/lib/constants";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-brackets/`;
@@ -20,13 +21,13 @@ const pct = (r: number) => formatPercent(r, 0);
 const TITLE = `Tax Brackets Australia ${FY}: Income Tax Rates & Thresholds`;
 const DESCRIPTION = `ATO tax brackets for ${FY} and ${PREV}: nil to ${formatAUD(B[0].max)}, ${pct(B[1].rate)} to ${formatAUD(B[1].max)} (was ${pct(TAX_BRACKETS_2025_26[1].rate)}), ${pct(B[2].rate)}, ${pct(B[3].rate)}, ${pct(B[4].rate)}. Tax on any income, marginal vs average rate, and the 2027-28 cut.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

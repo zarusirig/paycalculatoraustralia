@@ -18,6 +18,7 @@ import {
 } from "@/lib/constants/novated-lease";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Fringe benefits tax — rates and thresholds (Table 5: capping thresholds)", url: FBT_CAPS_SOURCES.ratesAndThresholds, publisher: SOURCES.ato.name },
@@ -98,6 +99,7 @@ export default function SalaryPackagingGuidePage() {
             Salary packaging extends far beyond novated car leases. Not-for-profit employees, public hospital staff, and charities workers can access FBT-exempt benefits worth thousands each year — from meal entertainment to portable devices and self-education expenses.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

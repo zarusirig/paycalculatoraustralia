@@ -27,6 +27,7 @@ import {
 } from "@/lib/data/service-pay";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink } from "./job-pay-shared";
 import { NoticeList, RangeTable, ScaleTable, TakeHomeLinkNote } from "./service-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 /** H1 / <title> stem shared by the route and the page. */
 export function serviceStateHeading(j: ServicePayJurisdiction): string {
@@ -67,6 +68,7 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

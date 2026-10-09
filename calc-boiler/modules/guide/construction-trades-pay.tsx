@@ -24,6 +24,7 @@ const TRADE_TAKE_HOME = [
 ] as const;
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Building and Construction General On-site Award", url: "https://services.fairwork.gov.au/find-my-award", publisher: SOURCES.fwo.name },
@@ -53,6 +54,7 @@ export default function ConstructionTradesPayPage() {
             Apprenticeship rates of pay are a percentage of the qualified tradesperson&apos;s award rate that steps up each year of the apprenticeship. Under the Electrical award from {APPRENTICE_ELECTRICIAN_AWARD.award?.consolidatedTo ?? SITE_CONFIG.financialYearStart} the minimums for a Year 12 completer are {APPRENTICE_PCTS}, or {APPRENTICE_HOURLY} an hour; adult apprentices get at least {formatAUD(ADULT_APPRENTICE_Y1.hourly, 2)} an hour in first year. This guide also covers qualified trade rates, site allowances, overtime provisions and take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

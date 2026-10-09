@@ -33,6 +33,7 @@ import {
 } from "@/lib/data/minimum-wage-state";
 import MinimumWageStateCalculator from "@/modules/calculator/minimum-wage-state-calculator";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const m = (v: number) => formatAUD(v, 2);
 
@@ -110,6 +111,7 @@ export default function MinimumWageStatePage({ state: s }: { state: MwStateInfo 
             </nav>
 
             <MinimumWageStateCalculator state={s.slug} stateName={s.name} />
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="rate">
               <h2 style={HEADING_FONT}>The minimum wage rate {s.inName}</h2>

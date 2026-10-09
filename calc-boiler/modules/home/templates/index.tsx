@@ -2,6 +2,7 @@ import Link from "./home-link";
 import { ArrowRight, GraduationCap, Heart, PiggyBank, Receipt } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FeaturedImage from "@/components/common/featured-image";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { HOME_FAQS, RATE_CUT_MAX_SAVING } from "@/modules/home/home-faqs";
@@ -160,6 +161,10 @@ export default function HomePageTemplate() {
 
       {/* ═══ CONTENT SECTIONS ═══ */}
       <div className="mx-auto max-w-4xl space-y-20 px-4 py-20 sm:px-6 lg:px-8">
+        {/* Featured image: after the calculator, never above it (the first
+            input stays within 600px of the top on a 390px phone). */}
+        <FeaturedImage placement="content" className="mt-0 mb-20" />
+
         {/* ===== 1. WHAT CHANGED ON 1 JULY 2026 ===== */}
         <section>
           <h2

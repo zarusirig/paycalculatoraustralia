@@ -30,6 +30,7 @@ import {
   spokeFaqs,
   spokeTitle,
 } from "@/modules/guide/minimum-wage-by-age-data";
+import FeaturedImage from "@/components/common/featured-image";
 
 const RETAIL_L1_WEEKLY = RETAIL_RATES.find((r) => r.level === "Level 1")!.weekly;
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
@@ -94,6 +95,7 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

@@ -11,6 +11,7 @@ import { fitDescription } from "@/lib/seo-title";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/annual-pay-calculator/`;
@@ -37,13 +38,13 @@ const DESCRIPTION = fitDescription(
   `$80,000 a year is ${formatAUD(at80k.takeHomePay)} after tax in ${FY}; $100,000 is ${formatAUD(at100k.takeHomePay)}. Salary after tax calculator: yearly gross to take-home after tax, Medicare and HECS.`,
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: `Yearly take-home pay after tax for FY${FY}.` },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

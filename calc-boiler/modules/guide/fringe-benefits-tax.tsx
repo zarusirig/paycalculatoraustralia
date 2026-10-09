@@ -11,6 +11,7 @@ import { FBT, FBT_CAPS, capFaceValue, LUXURY_CAR_TAX } from "@/lib/constants/nov
 import { PENALTY_UNIT } from "@/lib/constants/tax-calendar-2026-27";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 const SOURCES_LIST: SourceLink[] = [{ title: "Fringe benefits tax", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax", publisher: SOURCES.ato.name }, { title: "FBT rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/fringe-benefits-tax-rates-and-thresholds", publisher: SOURCES.ato.name }, { title: "Types of fringe benefits", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/fringe-benefits-tax/types-of-fringe-benefits", publisher: SOURCES.ato.name }];
 
 export default function FringeBenefitsTaxPage() {
@@ -23,6 +24,7 @@ export default function FringeBenefitsTaxPage() {
           The FBT year runs from {FBT.yearStart} to {FBT.yearEnd}, not the 1 July to 30 June income year, and fringe benefits tax is paid by employers, not employees, on non-cash benefits. The FBT rate is <strong className="text-navy">{formatPercent(FBT.rate, 0)}</strong>, applied to the taxable value grossed up by <strong className="text-navy">{FBT.grossUpType1}</strong> (Type 1, GST-creditable) or <strong className="text-navy">{FBT.grossUpType2}</strong> (Type 2). This guide covers which benefits are exempt, the caps and thresholds, and how reportable fringe benefits affect take-home pay and the tax return.
         </p>
         <TrustBar className="!max-w-none" />
+        <FeaturedImage className="mb-0 mt-6" />
       </header>
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">

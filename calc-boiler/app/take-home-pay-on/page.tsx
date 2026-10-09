@@ -3,6 +3,7 @@ import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants/a
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Hub for /take-home-pay-on/[salary]/ (Wave 3 / T6). Every figure is computed
 // from the tax engine at build time.
@@ -14,12 +15,12 @@ const TITLE = `Salary After Tax Australia ${SITE_CONFIG.financialYear}: Take-Hom
 const DESCRIPTION = `Take-home pay after tax for every salary from ${formatAUD(first)} to ${formatAUD(last)} in ${SITE_CONFIG.financialYear}. E.g. $100,000 after tax is ${formatAUD(example.takeHomePay)}. Weekly, fortnightly and monthly on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/take-home-pay-on/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-};
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+});
 
 function TakeHomePayHubPage() {
   return (

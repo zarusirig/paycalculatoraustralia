@@ -5,19 +5,20 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { payslipFromGross } from "@/lib/constants/gross-vs-net";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "gross-vs-net-pay";
 const EX = payslipFromGross({ gross: 3_000, frequency: "fortnightly" });
 const TITLE = "Gross vs Net Pay Australia: Difference + Converter";
 const DESCRIPTION = `Gross pay is before tax; net pay is what reaches your bank. ${formatAUD(3_000)} gross a fortnight is ${formatAUD(EX.net, 2)} net in 2026-27. A worked payslip and a gross to net converter.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

@@ -7,12 +7,13 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { ADVANCE_LIMITS, CARER_SUPPORT_SOURCES } from "@/lib/constants/centrelink-carer-and-support";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "centrelink-advance-payment";
 const TITLE = "Centrelink Advance Payment 2026 — Amounts & Repayment Calculator";
 const DESCRIPTION = `Centrelink advance payment: ${formatAUD(250)} to ${formatAUD(500)} on JobSeeker, Parenting Payment and Youth Allowance, up to ${formatAUD(ADVANCE_LIMITS.pensionSingle.max, 2)} on a pension, repaid over 13 fortnights.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

@@ -5,6 +5,7 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { REDUNDANCY_TAX_2026_27 as Y } from "@/lib/constants/redundancy";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026. Targets: redundancy tax 480, termination payment tax 260,
 // lump sum tax 110, genuine redundancy tax free 70 (DataForSEO, AU; flat).
@@ -16,13 +17,13 @@ const URL = `${SITE_CONFIG.baseUrl}/${SLUG}/`;
 const TITLE = "Termination Payment Tax Calculator: Redundancy & ETP 2026-27";
 const DESCRIPTION = `Tax on a redundancy or termination payment: tax-free up to ${formatAUD(Y.taxFreeBase)} + ${formatAUD(Y.taxFreePerYear)} per year of service, then 17% or 32% up to the ${formatAUD(Y.etpCap)} ETP cap. Calculate yours.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

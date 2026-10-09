@@ -4,6 +4,7 @@ import { CENTRELINK_DATES_FAQS } from "@/modules/guide/centrelink-payment-dates-
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { CHRISTMAS_2026_27_PUBLISHED } from "@/lib/constants/centrelink-payment-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // DataForSEO AU, 24 Sep 2026: "centrelink christmas payment dates" 14,800/mo
 // (almost all in December: 165,000 in Dec 2025), "centrelink reporting dates"
@@ -20,13 +21,13 @@ const TITLE = CHRISTMAS_2026_27_PUBLISHED
 const DESCRIPTION =
   "Centrelink payment dates: how payment and reporting dates work, when the Christmas 2026 dates are published, last year's holiday tables, and your next dates.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

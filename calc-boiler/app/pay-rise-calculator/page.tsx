@@ -10,6 +10,7 @@ import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAY_RISE_FAQS } from "@/modules/calculator/pay-rise-calculator-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rise-calculator/`;
@@ -27,7 +28,7 @@ const RAISE_10K_ON_80K =
 const TITLE = `Pay Rise Calculator Australia ${FY}: Extra Take-Home Pay`;
 const DESCRIPTION = `A $10,000 pay rise on $80,000 adds ${formatAUD(RAISE_10K_ON_80K)} a year after tax in ${FY} (${formatAUD(RAISE_10K_ON_80K / 52)} a week). Work out what any salary increase or percentage raise really adds to your pay.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -38,14 +39,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: "Calculate your take-home pay increase after tax and Medicare.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

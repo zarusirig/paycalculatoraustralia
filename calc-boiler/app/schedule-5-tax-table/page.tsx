@@ -14,6 +14,7 @@ import {
 } from "@/modules/tax-tables/ato-schedules";
 import { pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/schedule-5-tax-table/`;
@@ -26,13 +27,13 @@ const DESCRIPTION =
   `PAYG on Schedule 5: a ${formatAUD(5_000)} bonus on ${formatAUD(2_000)} a fortnight has ${formatAUD(bonusExample.withheldFromAdditionalPayment)} withheld (${(bonusExample.effectiveRate * 100).toFixed(1)}%), leaving ${formatAUD(bonusExample.netAdditionalPayment)}, in ${PAYG_FINANCIAL_YEAR}. ${ATO_SCHEDULE_5.nat} methods A and B, ${Math.round(SCHEDULE_5_WITHHOLDING_LIMIT * 100)}% cap and reckoner.`;
 const MODIFIED = "2026-07-28";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

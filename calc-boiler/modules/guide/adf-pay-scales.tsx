@@ -27,6 +27,7 @@ import {
   type RankSalaryTable,
 } from "@/lib/data/adf-pay";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const PAY_GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 
@@ -321,6 +322,7 @@ export function AdfPayScalesHub() {
             Conditions Manual, effective {ADF_PAY_EFFECTIVE}.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
@@ -509,6 +511,7 @@ export function AdfServicePage({ service }: { service: AdfService }) {
             sits on, and take-home pay — all from PACMAN, effective {ADF_PAY_EFFECTIVE}.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

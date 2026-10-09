@@ -7,6 +7,7 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { calculatorHowTo } from "@/lib/schema";
 import { NMW } from "@/lib/constants/minimum-wage";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/casual-loading-calculator/`;
@@ -14,13 +15,13 @@ const URL = `${BASE}/casual-loading-calculator/`;
 const TITLE = `Casual Loading Calculator ${SITE_CONFIG.financialYear}: 25% Casual Rate vs Permanent`;
 const DESCRIPTION = `How much is casual loading? Usually 25%: casual rate = base rate × 1.25, so the ${formatAUD(NMW.hourly, 2)} minimum wage is ${formatAUD(NMW.casualHourly, 2)} casual. Compare casual vs permanent pay by award.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

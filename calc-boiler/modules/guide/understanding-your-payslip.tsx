@@ -10,6 +10,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { PAYSLIP_FAQS } from "./understanding-your-payslip-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Worked examples come from the site's FY2026-27 tax engine (resident, no
 // HECS, private cover so no MLS) — never hardcode them: the previous copy
@@ -53,6 +54,7 @@ export default function UnderstandingYourPayslipPage() {
             YTD on a payslip stands for year-to-date: the running total of gross pay, PAYG tax withheld and superannuation since 1 July, the start of the Australian financial year. At 30 June the YTD gross must match the income statement in myGov. Payslips are compulsory under the Fair Work Act, with penalties of up to {formatAUD(PAYSLIP_PENALTY_INDIVIDUAL)} for individuals and {formatAUD(PAYSLIP_PENALTY_COMPANY)} for companies at {formatAUD(PENALTY_UNIT.amount)} a penalty unit from {PENALTY_UNIT.from}. This guide decodes gross pay, net pay, PAYG and super so you can spot an underpayment.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

@@ -9,6 +9,7 @@ import { RETAIL_PENALTIES } from "@/lib/constants/hospitality-award";
 import { faqPageSchema } from "@/lib/faq";
 import { PENALTY_RATES_FAQS } from "@/modules/guide/overtime-penalty-rates-guide-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/overtime-penalty-rates-guide/`;
@@ -17,13 +18,13 @@ const URL = `${BASE}/overtime-penalty-rates-guide/`;
 const TITLE = "Penalty Rates Australia — Weekend, Public Holiday & Overtime";
 const DESCRIPTION = `Penalty rates for weekends, public holidays, evenings and overtime: Saturday ${(RETAIL_PENALTIES.saturday * 100).toFixed(0)}%, Sunday ${(RETAIL_PENALTIES.sunday * 100).toFixed(0)}%, public holidays ${(RETAIL_PENALTIES.publicHoliday * 100).toFixed(0)}% (retail), plus hospitality and SCHADS tables.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: "Penalty rate tables by award, casual vs permanent, and how loadings are taxed.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: "Penalty rate tables by award, casual vs permanent, and how loadings are taxed.", url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Pay Calculator", item: BASE }, { "@type": "ListItem", position: 2, name: "Award Rates", item: `${BASE}/award-rates/` }, { "@type": "ListItem", position: 3, name: "Penalty Rates", item: URL }] };
 const webPage: WithContext<WebPage> = { "@context": "https://schema.org", "@type": "WebPage", name: TITLE, url: URL, description: DESCRIPTION, publisher: { "@type": "Organization", name: SITE_CONFIG.name } };

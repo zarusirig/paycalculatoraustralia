@@ -13,6 +13,7 @@ import {
 } from "@/lib/data/employer-pay";
 import { fitDescription } from "@/lib/seo-title";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -52,13 +53,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = descriptionFor(e);
   const url = canonicalFor(e.slug);
 
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

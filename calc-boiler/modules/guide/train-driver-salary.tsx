@@ -57,7 +57,7 @@ export default function TrainDriverSalaryPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/job-pay-rates/", label: "Pay Rates by Job" }, { label: "Train Driver Salary" }]} />
 
-      <PageHeader title="Train Driver Salary Australia 2026: Sydney Trains and Metro Melbourne Pay">
+      <PageHeader featuredImage title="Train Driver Salary Australia 2026: Sydney Trains and Metro Melbourne Pay">
         <p>
           <strong>A Sydney Trains driver is paid {money(syd.weekly!)} a week from 1 July 2026, about {formatSalary(syd.annual)} a year, or {money(syd.weeklyWithAllowance!)} a week with the industry allowance. At Metro Trains Melbourne a Qualified Driver Level 1 is paid {formatSalary(mel.annual)} a year, rising to {formatSalary(METRO_TRAINS.rows[2].annual)} at the Qualified Driver (SPOT) rate after 6 months, subject to assessment.</strong> Passenger train drivers are paid under each operator&rsquo;s own enterprise agreement, so the figures below are read from those agreements rather than from an award.
         </p>

@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { EMPLOYERS } from "@/lib/data/employer-pay";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pay-rates/`;
@@ -14,13 +15,13 @@ const TITLE = "Pay Rates by Employer 2026 — Coles, Woolworths, Bunnings & More
 const DESCRIPTION =
   "Hourly pay rates at Coles, Woolworths, McDonald's, Hungry Jack's, Big W, Australia Post and other big Australian employers, from each agreement or award.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

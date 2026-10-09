@@ -38,6 +38,7 @@ const singleMls = (income: number) =>
   estimateMls({ own: { taxableIncome: income, reportableFringeBenefits: 0, netInvestmentLosses: 0, reportableSuperContributions: 0 }, hasSpouse: false, spouseMlsIncome: 0, dependentChildren: 0, daysWithoutCover: 365 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Medicare levy surcharge", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge", publisher: SOURCES.ato.name },
@@ -69,6 +70,7 @@ export default function PrivateHealthInsuranceMedicarePage() {
             Private health insurance does not remove the {formatMlsRate(MEDICARE_LEVY.rate)} Medicare levy, which every resident taxpayer above the low-income threshold pays; it only exempts the holder from the Medicare levy surcharge. The surcharge for {MLS_INCOME_YEAR} is {formatMlsRate(MEDICARE_LEVY.surcharge.tier1.rate)}, {formatMlsRate(MEDICARE_LEVY.surcharge.tier2.rate)} or {formatMlsRate(MEDICARE_LEVY.surcharge.tier3.rate)} of income for singles earning over {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} or families over {formatAUD(MEDICARE_LEVY.surcharge.familyTier1.min - 1)} who have no eligible hospital cover. To work out your own surcharge, use the <Link href="/medicare-levy-surcharge-calculator/" className="text-eucalyptus-dark hover:underline">Medicare levy surcharge calculator</Link>.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

@@ -45,7 +45,7 @@ export function aviationMetadata(slug: AviationPageSlug): Metadata {
     title,
     description: desc,
     alternates: { canonical: url },
-    openGraph: { title, description: desc, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description: desc, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description: desc },
   };
 }

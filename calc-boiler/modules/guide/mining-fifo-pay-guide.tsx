@@ -22,6 +22,7 @@ const ABS_AWE_LATEST =
 const EX = calculatePayBreakdown({ grossSalary: 150_000 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Mining industry earnings", url: "https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/average-weekly-earnings-australia", publisher: SOURCES.abs.name },
@@ -54,6 +55,7 @@ export default function MiningFIFOPayGuidePage() {
             in mining at {formatAUD(MINING_WEEKLY, 2)} a week, about {formatAUD(MINING_AVG)} a year ({AWE_RELEASE.referencePeriod}), against a national average of {formatAUD(NATIONAL_AVG)}. FIFO packages for {SITE_CONFIG.financialYear} vary with role and roster and are taxed on the normal ATO scale; this guide covers mining salaries, rosters, allowances and take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

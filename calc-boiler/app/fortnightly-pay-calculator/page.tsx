@@ -12,6 +12,7 @@ import { FORTNIGHTLY_EXTRA_PAY } from "@/modules/tax-tables/ato-schedules";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/fortnightly-pay-calculator/`;
@@ -38,7 +39,7 @@ const DESCRIPTION = fitDescription(
   `$80,000 is ${formatAUD(at80k.fortnightly)} a fortnight after tax in ${FY} (${formatAUD(80_000 / 26)} gross ÷ 26). Fortnightly tax calculator: enter fortnightly pay or salary. 26 fortnights a year, or ${FORTNIGHTLY_EXTRA_PAY.extraPayCount}.`,
 );
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -49,10 +50,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: `Take-home pay every 2 weeks — ${FY} rates.` },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

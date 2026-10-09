@@ -10,6 +10,7 @@ import { NMW_ORDER } from "@/lib/constants/junior-rates";
 import { isMinWageAge, type MinWageAge } from "@/lib/constants/minimum-wage";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -35,13 +36,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const url = `${BASE}/minimum-wage-by-age/${age}/`;
   const title = spokeTitle(age);
   const description = spokeDescription(age);
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+    openGraph: { title, description, url, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

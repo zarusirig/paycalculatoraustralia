@@ -10,6 +10,7 @@ import { pageDateModified } from "@/lib/page-dates";
 import { faqPageSchema } from "@/lib/faq";
 import { PAYSLIP_GENERATOR_FAQS } from "@/modules/calculator/payslip-generator-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payslip-generator/`;
@@ -17,7 +18,7 @@ const TITLE = "Free Payslip Generator Australia — Create Payslips Online";
 const DESCRIPTION =
   "Create a Fair Work-compliant Australian payslip in your browser. Free payslip generator with PAYG tax, super and YTD totals — print or save as PDF. No signup.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -28,14 +29,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Free Payslip Generator Australia",
     description: "Create compliant Australian payslips online — PAYG tax, super and YTD totals included. Print or save as PDF.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

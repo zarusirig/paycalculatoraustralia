@@ -5,6 +5,8 @@ import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import { ShieldCheck, Database, RefreshCw, ExternalLink } from "lucide-react";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/about/`;
@@ -12,7 +14,7 @@ const TITLE = "About Pay Calculator Australia — Methodology & Sources";
 const DESCRIPTION =
   "Learn how Pay Calculator Australia ensures accuracy. Our methodology, data sources (ATO, Fair Work), and commitment to free, up-to-date Australian pay calculators.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -23,10 +25,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -78,6 +79,7 @@ function AboutPage() {
               built this site because understanding your pay shouldn&apos;t
               require an accounting degree.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           {/* Mission */}

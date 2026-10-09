@@ -17,6 +17,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /compassionate-leave/ (G3, wave 4). Rules and sources:
 // lib/constants/compassionate-leave.ts.
@@ -52,6 +53,7 @@ export default function CompassionateLeavePage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="when">When Can You Take Compassionate Leave?</H2>
             <p>Under the National Employment Standards (Fair Work Act s 104) you can take compassionate leave when:</p>

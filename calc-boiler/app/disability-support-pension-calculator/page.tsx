@@ -7,13 +7,14 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { DSP, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "disability-support-pension-calculator";
 const R = DSP.rates21Plus.maxFortnightly;
 const TITLE = "Disability Support Pension Calculator 2026 — DSP Rates & Work";
 const DESCRIPTION = `DSP is ${formatAUD(R.single.total, 2)} a fortnight single and ${formatAUD(R.coupleEach.total, 2)} each for couples from ${DSP.ratesFrom}. Work up to ${DSP.maxWorkHoursPerWeek} hours a week: see what your pay does to DSP.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

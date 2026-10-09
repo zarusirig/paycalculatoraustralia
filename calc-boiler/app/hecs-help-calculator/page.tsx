@@ -8,6 +8,7 @@ import { HECS_HELP, SITE_CONFIG, annualToWeekly, calculateHECS, formatAUD } from
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/hecs-help-calculator/`;
@@ -19,7 +20,7 @@ const B3 = HECS_HELP.bands[3];
 const TITLE = `HECS Repayment Calculator ${SITE_CONFIG.financialYear} — Thresholds & Rates Table`;
 const DESCRIPTION = `Work out your compulsory HECS-HELP repayment for ${SITE_CONFIG.financialYear}: the ${formatAUD(T)} threshold, the marginal rate table, indexation, voluntary repayments and the overseas rules.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -27,14 +28,13 @@ export const metadata: Metadata = {
     title: `HECS Repayment Calculator Australia ${SITE_CONFIG.financialYear}`,
     description: `Free calculator on the marginal repayment system. ${SITE_CONFIG.financialYear} threshold ${formatAUD(T)}, covering every study and training support loan.`,
     url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: `HECS Repayment Calculator Australia ${SITE_CONFIG.financialYear}`,
     description: `Marginal system calculator, ${SITE_CONFIG.financialYear} thresholds, all six study loan schemes.`,
   },
-};
+});
 
 /**
  * The former /hecs-help-guide/ and /hecs-repayment-threshold/ pages were merged

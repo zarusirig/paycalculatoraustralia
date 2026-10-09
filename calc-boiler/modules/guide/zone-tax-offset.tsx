@@ -19,6 +19,7 @@ import ZoneTaxOffsetCalculator from "@/modules/calculator/zone-tax-offset-calcul
 import { ZONE_FAQS } from "@/modules/guide/zone-tax-offset-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ZONE_LIST_URL = "https://www.ato.gov.au/calculators-and-tools/tax-offsets-australian-zones";
 const T4_URL =
@@ -58,6 +59,7 @@ export default function ZoneTaxOffsetPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           {/* ── SECTION 1 ── */}
           <section>

@@ -8,6 +8,7 @@ import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { JURISDICTION_SLUGS, getJurisdiction } from "@/lib/data/public-service-pay";
 import { jurisdictionFaqs } from "@/lib/data/public-service-pay/paa-faqs";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{ jurisdiction: string }>;
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!jurisdiction) return {};
 
   const url = `${SITE_CONFIG.baseUrl}/public-service-pay-scales/${jurisdiction.slug}/`;
-  return {
+  return withFeaturedImage({
     title: jurisdiction.metaTitle,
     description: jurisdiction.metaDescription,
     alternates: { canonical: url },
@@ -37,14 +38,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: SITE_CONFIG.name,
       type: "website",
       locale: "en_AU",
-      images: ["/og-image.png"],
     },
     twitter: {
       card: "summary_large_image",
       title: jurisdiction.metaTitle,
       description: jurisdiction.metaDescription,
     },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

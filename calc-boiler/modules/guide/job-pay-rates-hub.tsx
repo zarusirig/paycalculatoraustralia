@@ -11,6 +11,7 @@ import { JOB_SECTORS, OCCUPATION_SECTOR } from "@/lib/data/job-pay-rates/sectors
 import { HEALTH_SALARY_PAGES, healthSalaryPath } from "@/lib/data/health-salary";
 import { ATO_INCOME_YEAR } from "@/lib/data/health-salary/ato-2023-24";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 export const JOB_PAY_HUB_FAQS = [
   {
@@ -99,6 +100,7 @@ export default function JobPayRatesHubPage() {
             and what people in the job actually earn.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

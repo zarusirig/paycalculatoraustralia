@@ -5,6 +5,8 @@ import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { Mail, MessageSquare, Bug } from "lucide-react";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/contact/`;
@@ -12,7 +14,7 @@ const TITLE = "Contact Pay Calculator Australia";
 const DESCRIPTION =
   "Get in touch with Pay Calculator Australia. Report errors, suggest features, or ask questions about Australian pay, tax, and super calculators.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -23,10 +25,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -77,6 +78,7 @@ function ContactPage() {
               figures, or want to suggest a new feature? We&apos;d love to hear
               from you.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           {/* Contact Methods */}

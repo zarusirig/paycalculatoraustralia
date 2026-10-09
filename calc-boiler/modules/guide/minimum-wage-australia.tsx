@@ -16,6 +16,7 @@ import {
   NMW_PERIODS,
   currentRow,
 } from "@/modules/guide/minimum-wage-australia-data";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const money = (v: number) => formatAUD(v, 2);
@@ -80,6 +81,7 @@ export default function MinimumWageAustraliaPage() {
             ))}
           </dl>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

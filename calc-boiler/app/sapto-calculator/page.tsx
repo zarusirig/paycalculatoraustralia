@@ -6,6 +6,7 @@ import type { BreadcrumbList, FAQPage, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/sapto-calculator/`;
@@ -19,7 +20,7 @@ const COUPLE = formatAUD(SAPTO_BANDS.couple.maxOffset);
 // 2026-27 ones were announced as changing but not yet readable from the ATO).
 const TITLE = `SAPTO Calculator & Eligibility Checker — Offset up to ${SINGLE}`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: `Check SAPTO eligibility and work out your seniors and pensioners tax offset: up to ${SINGLE} single, ${COUPLE} each for a couple. ${SAPTO_INCOME_YEAR} income year.`,
   alternates: { canonical: URL },
@@ -30,9 +31,8 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

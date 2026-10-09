@@ -3,6 +3,7 @@ import ApprenticePayRatesPage from "@/modules/guide/apprentice-pay-rates";
 import { APPRENTICE_PAY_FAQS } from "@/modules/guide/apprentice-pay-rates-faqs";
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct 2026 trending set, item 6. Apprentice pay rates, apprentice wages and the
 // apprentice wages calculator share one SERP, so they are one page (no
@@ -14,13 +15,13 @@ const TITLE = "Apprentice Pay Rates Australia 2026-27 & Wages Calculator";
 const DESCRIPTION =
   "Apprentice award minimums by trade and year from 1 July 2026: carpentry, plumbing, electrical, mechanic, hairdressing, cookery. Check your wage with the calculator.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

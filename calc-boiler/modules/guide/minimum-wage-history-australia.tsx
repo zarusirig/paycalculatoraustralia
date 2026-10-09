@@ -17,6 +17,7 @@ import {
   HISTORY_SMALLEST,
   TOTAL_GROWTH,
 } from "@/modules/guide/minimum-wage-history-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Rebuilt 23 Sep 2026 on NMW_HISTORY (lib/constants/minimum-wage.ts). The old
 // hand-typed table showed $26.44 from 1 July 2024 and 2025-26 as "TBD".
@@ -61,6 +62,7 @@ export default function MinimumWageHistoryPage() {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

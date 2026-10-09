@@ -10,6 +10,7 @@ import { AGE_PENSION_RATES, SEPTEMBER_2026 } from "@/lib/constants/centrelink-in
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/age-pension-income-test-calculator/`;
@@ -17,13 +18,13 @@ const TITLE = "Age Pension Calculator 2026 — Rates From 20 Sep & Income Test";
 const SEP = AGE_PENSION_RATES[SEPTEMBER_2026].maxFortnightly;
 const DESCRIPTION = `Age Pension rates from 20 September 2026: ${formatAUD(SEP.single.total, 2)} a fortnight single, ${formatAUD(SEP.coupleEach.total, 2)} each for couples. Calculate it with your wages, the free areas and the Work Bonus.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

@@ -9,19 +9,20 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { FAMILY_PAYMENT_SOURCES, PARENTING_PAYMENT, ppsFreeArea } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/parenting-payment-calculator/`;
 const TITLE = "Parenting Payment Calculator 2026 — Single & Partnered Rates";
 const DESCRIPTION = `Parenting Payment Single is ${formatAUD(PARENTING_PAYMENT.single.maxFortnightly, 2)} a fortnight and Partnered ${formatAUD(PARENTING_PAYMENT.partnered.maxFortnightly, 2)} from ${PARENTING_PAYMENT.ratesFrom}. What you keep when you work: the ${formatAUD(ppsFreeArea(1), 2)} free area and 40c taper.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

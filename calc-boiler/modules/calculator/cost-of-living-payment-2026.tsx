@@ -31,7 +31,8 @@ const SOURCES_LIST = [
   source("How much Age Pension you can get", CENTRELINK_SOURCES.agePensionRates),
 ];
 
-export default function CostOfLivingPayment2026Page() {
+/** `featuredImage`: the page's <FeaturedImage />, rendered by page.tsx (a server component). */
+export default function CostOfLivingPayment2026Page({ featuredImage }: { featuredImage?: React.ReactNode }) {
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
@@ -40,6 +41,7 @@ export default function CostOfLivingPayment2026Page() {
             <strong>No.</strong> There is no Commonwealth cost of living payment in 2026. Services Australia says the Cost of Living Payment <strong>stopped from {COL.cwthCostOfLivingPaymentEnded}</strong>, and the federal Energy Bill Relief Fund <strong>ended on {COL.energyBillReliefEnded}</strong>. What does happen is the regular indexation of existing payments — most recently on 20 September 2026 — plus state and territory concessions.
           </p>
         </W3Hero>
+        {featuredImage}
 
         <div className="max-w-4xl mx-auto space-y-10">
           <Note tone="warn">

@@ -29,6 +29,7 @@ import { PH_NES_SOURCES } from "@/lib/data/public-holidays/hub";
 import PublicHolidayPayCalculator from "@/modules/calculator/public-holiday-pay-calculator";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink } from "./job-pay-shared";
 import { AwardPublicHolidayTable, HolidayYearTable, RegionalTable } from "./public-holiday-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 export default function PublicHolidayStatePage({ state: s }: { state: StatePublicHolidays }) {
   const y26 = yearOf(s, 2026)!;
@@ -73,6 +74,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

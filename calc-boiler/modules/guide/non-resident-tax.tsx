@@ -14,6 +14,7 @@ import { SAPTO_BANDS, SAPTO_INCOME_YEAR } from "@/lib/constants/sapto";
 import { ZONE_AREA_RATES, ZONE_OFFSET_INCOME_YEAR } from "@/lib/constants/zone-tax-offset";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Resident-vs-non-resident comparison figures, derived from the current-year
 // engine so a bracket change (like the 16%→15% cut) can never strand them.
@@ -49,6 +50,7 @@ export default function NonResidentTaxPage() {
             The non-resident tax rate in Australia is {formatPercent(NR[0].rate, 0)} on every dollar of Australian-sourced income up to {formatAUD(NR[0].max)}, then {formatPercent(NR[1].rate, 0)} to {formatAUD(NR[1].max)} and {formatPercent(NR[2].rate, 0)} above, for {SITE_CONFIG.financialYear}. Unlike residents, foreign residents get no {formatAUD(TAX_FREE_THRESHOLD)} tax-free threshold and no {formatPercent(SECOND_BRACKET_RATE, 0)} bracket, but they are not charged the {formatPercent(MEDICARE_LEVY.rate, 0)} Medicare levy. The rates were unchanged by the {SITE_CONFIG.financialYearStart} resident tax cut; a side-by-side comparison with resident rates is below.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">

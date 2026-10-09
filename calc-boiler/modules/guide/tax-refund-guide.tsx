@@ -11,6 +11,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { TAX_REFUND_FAQS } from "./tax-refund-guide-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Lodge your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return", publisher: SOURCES.ato.name },
@@ -52,6 +53,7 @@ export default function TaxRefundGuidePage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Tax Refund Guide — How Tax Returns Work in Australia</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">Understand how tax refunds work, what deductions you can claim, and how to maximise your return. A complete guide to the Australian tax return process for the FY{RY} return you lodge in 2026.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

@@ -23,6 +23,7 @@ import { CYBER_SECURITY_ATO } from "@/lib/data/job-pay-rates/cyber-security";
 import { DATA_ANALYST_ATO } from "@/lib/data/job-pay-rates/data-analyst";
 import { PROJECT_MANAGER_ATO } from "@/lib/data/job-pay-rates/project-manager";
 import { SOFTWARE_ENGINEER_ATO } from "@/lib/data/job-pay-rates/software-engineer";
+import FeaturedImage from "@/components/common/featured-image";
 
 // Role spokes under /job-pay-rates/ (Oct 2026). Medians are read from the
 // spokes' ATO Table 15A data so the hub and the spoke cannot disagree.
@@ -66,6 +67,7 @@ export default function TechSalaryGuideAustraliaPage() {
             IT and tech workers in Australia are paid a market base salary with no modern award floor for most roles, so pay is set by the employer or the contract rather than a Fair Work minimum. Net pay follows the ATO {SITE_CONFIG.financialYear} brackets: on a {formatAUD(110_000)} base, take-home is {formatAUD(EX110.takeHomePay)} a year after income tax and the Medicare levy, and permanent staff receive {Math.round(SUPER_GUARANTEE.rate * 100)}% super on top. This guide covers salaries by role, contractor versus permanent pay, city-by-city variations and salary packaging.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

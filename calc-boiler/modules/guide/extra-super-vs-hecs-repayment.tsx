@@ -21,6 +21,7 @@ const HECS_10Y = fv(MONTHLY * 12 * (1 - MARGINAL), HECS_HELP.indexationRate, 10)
 const HECS_AT_90K = calculateHECS(90_000);
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Study and training loan indexation rates", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: SOURCES.ato.name },
@@ -52,6 +53,7 @@ export default function ExtraSuperVsHecsRepaymentPage() {
             With spare cash, should you boost your super balance through voluntary contributions or make voluntary HECS-HELP repayments to eliminate your student debt? This guide compares the tax benefits, growth potential, and practical trade-offs to help you decide.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         {/* DISCLAIMER */}

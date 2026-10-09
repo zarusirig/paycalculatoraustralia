@@ -7,6 +7,7 @@ import { SG_RATE_FAQS } from "@/modules/guide/super-guarantee-rate-faqs";
 import { AUTHORS } from "@/lib/authors";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/super-guarantee-rate-history/`;
@@ -16,13 +17,13 @@ const RATE = formatPercent(SUPER_GUARANTEE.rate, 0);
 const TITLE = `Super Guarantee Rate ${SITE_CONFIG.financialYear}: ${RATE} | Superannuation Rate History`;
 const DESCRIPTION = `The superannuation guarantee rate is ${RATE} from ${SUPER_GUARANTEE.effectiveDate} and stays ${RATE} for ${SITE_CONFIG.financialYear}, now paid every payday. What your employer pays, and every SG rate since 2002.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

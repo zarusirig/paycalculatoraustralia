@@ -27,6 +27,7 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import TrustBar from "@/components/common/trust-bar";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
+import FeaturedImage from "@/components/common/featured-image";
 
 const H = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const LINK = "text-eucalyptus hover:text-navy transition-colors font-medium";
@@ -110,6 +111,7 @@ export function SalaryHub({ copy, related }: { copy: HubCopy; related: { href: s
       <div className="container px-4 md:px-6 py-12 pb-24">
         <div className="max-w-5xl mx-auto space-y-10">
           <TrustBar />
+          <FeaturedImage className="mt-0 mb-10" />
 
           <nav aria-label="Jump to salary band" className="flex flex-wrap gap-2">
             {groups.map(({ band }) => (

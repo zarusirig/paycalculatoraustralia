@@ -4,6 +4,7 @@ import { NET_PAY_CALCULATOR_FAQS } from "@/modules/guide/net-pay-calculator-faqs
 import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG } from "@/lib/constants";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Oct core batch (5 Oct 2026): head term "net pay calculator". The hourly-rate
 // view of net pay with a payslip layout and net pay per hour; the annual
@@ -14,13 +15,13 @@ const TITLE = `Net Pay Calculator Australia ${SITE_CONFIG.financialYear}: Hourly
 const DESCRIPTION =
   "Net pay calculator for Australia: enter your hourly rate and hours to see net pay each week, fortnight or month, line by line, and what each hour is worth after tax.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

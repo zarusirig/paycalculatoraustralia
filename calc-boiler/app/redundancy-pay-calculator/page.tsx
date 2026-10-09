@@ -10,6 +10,7 @@ import { REDUNDANCY_FAQS } from "@/modules/calculator/redundancy-pay-faqs";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/redundancy-pay-calculator/`;
@@ -18,7 +19,7 @@ const Y = REDUNDANCY_TAX.incomeYear;
 const TITLE = `Redundancy Pay Calculator ${Y} — NES Table & Tax-Free Limit`;
 const DESCRIPTION = `Free Australian redundancy calculator: NES redundancy pay (4 to 16 weeks by years of service), the ${Y} tax-free limit of ${formatAUD(REDUNDANCY_TAX.taxFreeBase)} + ${formatAUD(REDUNDANCY_TAX.taxFreePerYear)} per year, and ETP tax.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -29,14 +30,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: `Redundancy Pay Calculator Australia ${Y}`,
     description: `NES table, ${Y} tax-free limit and ETP tax in one calculator.`,
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

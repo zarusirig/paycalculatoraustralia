@@ -17,6 +17,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /ote-salary/ (G3, wave 4). Sources: lib/constants/ote-salary.ts.
 
@@ -58,6 +59,7 @@ export default function OteSalaryPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="meaning">What OTE Means in a Job Offer</H2>
             <p>

@@ -15,8 +15,9 @@ import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/li
 import type { Metadata } from "next";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: "Contractor Pay Calculator Australia — Your Real Take-Home",
   description:
     "Contractor pay calculator for Australia: net pay after GST, income tax, super and deductions, with an ABN vs PAYG comparison for FY2026-27.",
@@ -31,14 +32,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contractor Pay Calculator Australia",
     description: "See your real take-home as a contractor in Australia.",
   },
-};
+});
 
 const webAppSchema: WithContext<WebApplication> = {
   "@context": "https://schema.org",

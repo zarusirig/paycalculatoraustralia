@@ -49,6 +49,7 @@ import {
 import PublicHolidayPayCalculator from "@/modules/calculator/public-holiday-pay-calculator";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 import { RegionalTable } from "./public-holiday-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 function Sections({ sections }: { sections: readonly SeasonalSection[] }) {
   return (
@@ -457,6 +458,7 @@ export default function SeasonalHolidayPage({ page }: { page: SeasonalPage }) {
             </p>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

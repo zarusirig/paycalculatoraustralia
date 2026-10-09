@@ -9,6 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import { SITE_CONFIG, SOURCES } from "@/lib/constants";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Income tax rates for individuals", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
@@ -25,6 +26,7 @@ export default function Stage3TaxCutsPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Stage 3 Tax Cuts — How Much More You Take Home</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">The revised Stage 3 tax cuts took effect on 1 July 2024, changing tax brackets for every Australian taxpayer earning above $18,200. This guide shows exactly how much you save compared to the old rates, with a full before-and-after comparison at every income level.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

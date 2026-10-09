@@ -25,6 +25,7 @@ const TAKE_HOME_ROWS = [
 ];
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const HOSP_L1 = HOSPITALITY_RATES.find((r) => r.level === "Level 1")!;
 const RETAIL_L1 = RETAIL_RATES.find((r) => r.level === "Level 1")!;
@@ -57,6 +58,7 @@ export default function RetailHospitalityPayGuidePage() {
             The hospitality award rate is the same in Queensland as in every other state, because the <a href={HOSPITALITY_AWARD.awardTextUrl} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{HOSPITALITY_AWARD.name} ({HOSPITALITY_AWARD.code})</a> is federal: its adult level 1 rate is {formatAUD(HOSP_L1.hourly, 2)} an hour from {HOSPITALITY_AWARD.operativeFrom}, or {formatAUD(HOSP_L1.hourly * (1 + HOSPITALITY_AWARD.casualLoading), 2)} for a casual. Retail workers are covered by the {RETAIL_AWARD.name} ({RETAIL_AWARD.code}), where level 1 is {formatAUD(RETAIL_L1.hourly, 2)} an hour. Both add weekend penalties, and this guide covers the two awards in detail.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

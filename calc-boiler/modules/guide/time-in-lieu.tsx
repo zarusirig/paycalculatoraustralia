@@ -23,6 +23,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 const FWO_MAX_HOURS =
   "https://www.fairwork.gov.au/tools-and-resources/fact-sheets/minimum-workplace-entitlements/maximum-weekly-hours";
@@ -63,6 +64,7 @@ export default function TimeInLieuPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="ratio">Is Time in Lieu Hour for Hour or Time and a Half?</H2>
             <p>Each award&rsquo;s &ldquo;time off instead of payment for overtime&rdquo; clause answers this differently. We read the clause in each of the awards below:</p>

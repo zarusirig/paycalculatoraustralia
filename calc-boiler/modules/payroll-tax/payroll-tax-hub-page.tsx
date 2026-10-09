@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TrustBar from "@/components/common/trust-bar";
+import FeaturedImage from "@/components/common/featured-image";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
@@ -49,6 +50,7 @@ export default function PayrollTaxHubPage() {
               Calculate payroll tax for your business
             </Link>
           </p>
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

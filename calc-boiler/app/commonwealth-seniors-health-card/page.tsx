@@ -7,12 +7,13 @@ import { w3Metadata, w3Schema } from "@/modules/seo/centrelink-w3-schema";
 import { formatAUD } from "@/lib/constants";
 import { CSHC, MEANS_TEST_SOURCES } from "@/lib/constants/centrelink-means-test";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "commonwealth-seniors-health-card";
 const TITLE = `Commonwealth Seniors Health Card 2026 — ${formatAUD(CSHC.incomeLimit.single)} Income Limit`;
 const DESCRIPTION = `Commonwealth Seniors Health Card income limit from 20 Sep 2026: ${formatAUD(CSHC.incomeLimit.single)} single, ${formatAUD(CSHC.incomeLimit.couple)} couple, no assets test. Check your wages and deemed super against it.`;
 
-export const metadata = w3Metadata(SLUG, TITLE, DESCRIPTION);
+export const metadata = withFeaturedImage(w3Metadata(SLUG, TITLE, DESCRIPTION));
 
 function Page() {
   return (

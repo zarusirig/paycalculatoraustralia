@@ -22,6 +22,7 @@ import {
 import { nearestTakeHome, takeHomeHref } from "@/lib/data/service-pay";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink } from "./job-pay-shared";
 import { NoticeList, ScaleTable, TakeHomeLinkNote } from "./service-pay-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 interface AviationCopy {
   crumb: string;
@@ -97,6 +98,7 @@ export default function AviationPayPageView({ page }: { page: AviationPayPage })
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

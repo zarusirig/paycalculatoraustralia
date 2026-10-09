@@ -24,6 +24,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /rideshare-delivery-earnings-after-tax/ (Oct 2026 trending set, item 15).
 // Passes the border only as a contractor-tax and GST calculator: it never says
@@ -72,6 +73,7 @@ export default function RideshareDeliveryAfterTaxPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how-it-works">How Gig Income Is Taxed</H2>
             <p>

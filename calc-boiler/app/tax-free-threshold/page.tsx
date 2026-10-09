@@ -7,6 +7,7 @@ import { SITE_CONFIG, TAX_FREE_THRESHOLD, formatAUD } from "@/lib/constants";
 import { TFT_PER_PERIOD, effectiveNilTaxIncome } from "@/lib/constants/tax-free-threshold";
 import { AUTHORS, GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/tax-free-threshold/`;
@@ -20,13 +21,13 @@ const NIL = formatAUD(effectiveNilTaxIncome());
 const TITLE = `What Is the Tax-Free Threshold? ${T} for ${FY}`;
 const DESCRIPTION = `The Australian tax-free threshold is ${T} (${formatAUD(TFT_PER_PERIOD.weekly)} a week) for ${FY}, and no income tax up to ${NIL} with LITO. How to claim it on your TFN declaration.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

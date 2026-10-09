@@ -10,6 +10,7 @@ import { ORGANIZATION_SCHEMA } from "@/lib/schema";
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const withHecs = calculatePayBreakdown({ grossSalary: salaryAmount, includeHECS: true });
   const shortSalary = `$${(salaryAmount / 1000).toLocaleString("en-AU")}k`;
 
-  return {
+  return withFeaturedImage({
     // Answer-first, in the phrasing GSC shows ("110k after tax australia",
     // "100 000 after tax australia"). Owns net-pay intent; /tax-on/ owns
     // tax-owed intent, so neither title carries the other's head phrase.
@@ -46,8 +47,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     // og:url + image: without an openGraph object these pages emitted no
     // og:url. og:title/description are filled from title/description.
-    openGraph: { url: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-  };
+    openGraph: { url: `${SITE_CONFIG.baseUrl}/take-home-pay-on/${resolvedParams.salary}/`, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+  });
 }
 
 async function TakeHomePayOnSalaryPage({ params }: PageProps) {

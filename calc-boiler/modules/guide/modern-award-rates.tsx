@@ -11,6 +11,7 @@ import { AlertTriangle, ChevronRight, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FeaturedImage from "@/components/common/featured-image";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
@@ -114,6 +115,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
             <span className="text-sm text-warmgray">Award code {meta.code} &middot; rates from {meta.operativeFrom}</span>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">

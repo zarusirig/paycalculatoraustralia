@@ -24,6 +24,7 @@ const COMPARISONS = [100_000, 150_000, 200_000].map((income) => {
 });
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Business structures", url: "https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business", publisher: SOURCES.ato.name },
@@ -64,6 +65,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             Your business structure determines how much tax you pay, whether you need to manage GST, how super works, and the level of personal liability you carry. Here is a real-numbers comparison at different income levels to help you choose the right structure.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

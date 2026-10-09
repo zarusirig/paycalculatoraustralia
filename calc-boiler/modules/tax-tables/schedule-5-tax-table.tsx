@@ -30,6 +30,7 @@ import {
   SCHEDULE_5_BONUS_ROWS,
   SCHEDULE_5_WITHHOLDING_LIMIT,
 } from "./ato-schedules";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${ATO_SCHEDULE_5.title} (${ATO_SCHEDULE_5.nat})`, url: ATO_SCHEDULE_5.pageUrl, publisher: SOURCES.ato.name },
@@ -105,6 +106,8 @@ export default function Schedule5TaxTablePage() {
                 </div>
               </div>
             </section>
+
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="schedule-5-table-2026-27">
               <h2>Schedule 5 Ready Reckoner 2026-27</h2>

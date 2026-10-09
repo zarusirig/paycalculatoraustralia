@@ -33,6 +33,7 @@ import { MW_STATE_SLUGS } from "@/lib/data/minimum-wage-state"; // F1
 import { PAYG_TABLE_YEARS } from "@/lib/constants/payg-withholding"; // F5 tax tables by year
 import { GUIDE_AUTHORSHIP } from "@/lib/authors";
 import { discoverStaticSlugs, lastModifiedForSlug, slugHasRoute } from "@/lib/sitemap-lastmod";
+import { absoluteUrl, featuredImageFor } from "@/lib/featured-image";
 
 /**
  * Dynamic sitemap generator — Pay Calculator Australia
@@ -514,7 +515,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     ...pages.map((page) => ({
       url: page.slug ? `${baseUrl}/${page.slug}/` : `${baseUrl}/`,
       lastModified: lastModifiedForSlug(page.slug, buildDate, GUIDE_AUTHORSHIP[page.slug]?.lastReviewed),
@@ -523,4 +524,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...newsEntries,
   ];
+
+  // Each page's featured image (the 1200px webp shown on the page), once its
+  // files exist; see lib/featured-image.ts.
+  return entries.map((entry) => {
+    const image = featuredImageFor(entry.url);
+    return image ? { ...entry, images: [absoluteUrl(image.src)] } : entry;
+  });
 }

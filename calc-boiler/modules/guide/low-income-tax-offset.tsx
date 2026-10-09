@@ -26,6 +26,7 @@ import {
 } from "@/lib/constants/tax-rates-reference";
 import LitoCalculator from "@/modules/calculator/lito-calculator";
 import { LITO_FAQS, LITO_MID, NIL_NOW, NIL_PREV } from "@/modules/guide/low-income-tax-offset-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // =============================================================================
 // /low-income-tax-offset/ — rebuilt 23 Sep 2026 (Wave 3, T1).
@@ -113,6 +114,7 @@ export default function LowIncomeTaxOffsetPage() {
 
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="thresholds">
               <h2 style={FONT}>LITO Thresholds and Formula</h2>

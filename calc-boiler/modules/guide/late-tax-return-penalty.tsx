@@ -26,6 +26,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /late-tax-return-penalty/ (Oct 2026): failure-to-lodge penalty for an
 // individual's tax return. Rules and sources: lib/constants/late-lodgement.ts.
@@ -79,6 +80,7 @@ export default function LateTaxReturnPenaltyPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how-much">How Much Is the Late Tax Return Penalty?</H2>
             <p>

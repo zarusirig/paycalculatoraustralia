@@ -4,6 +4,8 @@ import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, WebPage, WithContext } from "schema-dts";
 import { SITE_CONFIG } from "@/lib/constants";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/disclaimer/`;
@@ -11,7 +13,7 @@ const TITLE = "Disclaimer — Pay Calculator Australia";
 const DESCRIPTION =
   "Pay Calculator Australia gives general information and estimates only. It is not financial, tax, legal or employment advice.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -22,10 +24,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -79,6 +80,7 @@ function DisclaimerPage() {
               {SITE_CONFIG.name} gives general information and estimates. Please
               read this before you rely on anything on this site.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           <div className="mb-10 rounded-xl border border-amber-200 bg-amber-50 p-5">

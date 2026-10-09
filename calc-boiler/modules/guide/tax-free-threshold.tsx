@@ -31,6 +31,7 @@ import {
 } from "@/lib/constants/tax-free-threshold";
 import TaxFreeThresholdHelper from "@/modules/calculator/tax-free-threshold-helper";
 import { TAX_FREE_THRESHOLD_FAQS } from "@/modules/guide/tax-free-threshold-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_CLAIM =
   "https://www.ato.gov.au/individuals-and-families/jobs-and-employment-types/tax-free-threshold/how-to-claim-the-tax-free-threshold";
@@ -126,6 +127,7 @@ export default function TaxFreeThresholdPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <H2>What the Tax-Free Threshold Is</H2>

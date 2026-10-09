@@ -9,6 +9,7 @@ import { PAYG_HUB_FAQS } from "@/modules/guide/payg-withholding-tables-faqs";
 import { ATO_FORTNIGHTLY, ATO_MONTHLY, ATO_SCHEDULE_5, ATO_TAX_TABLES_INDEX, ATO_WEEKLY } from "@/modules/tax-tables/ato-schedules";
 import { pageDateModified, pageDatePublished } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/payg-withholding-tables/`;
@@ -19,13 +20,13 @@ const URL = `${BASE}/payg-withholding-tables/`;
 const TITLE = `PAYG Withholding Tax Tables ${PAYG_FINANCIAL_YEAR}: Which ATO Schedule to Use`;
 const DESCRIPTION = `Which ATO PAYG withholding schedule to use in ${PAYG_FINANCIAL_YEAR}: the table for each pay cycle (NAT 1005, 1006, 1007), Schedule 5 for bonuses, and what changed on 1 July 2026.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

@@ -17,6 +17,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /listo-calculator/ (Oct 2026): low income super tax offset today and the
 // 1 July 2027 boost. Rules and sources: lib/constants/listo.ts.
@@ -61,6 +62,7 @@ export default function ListoCalculatorPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="what-is-listo">What Is LISTO?</H2>
             <p>

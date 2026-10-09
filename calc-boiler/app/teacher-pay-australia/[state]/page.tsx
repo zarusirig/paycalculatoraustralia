@@ -17,6 +17,7 @@ import {
 } from "@/lib/data/teacher-pay";
 import { fitDescription } from "@/lib/seo-title";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = descriptionFor(state);
   const url = canonicalFor(state.slug);
 
-  return {
+  return withFeaturedImage({
     title,
     description,
     alternates: { canonical: url },
@@ -70,10 +71,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       siteName: SITE_CONFIG.name,
       type: "article",
       locale: "en_AU",
-      images: ["/og-image.png"],
     },
     twitter: { card: "summary_large_image", title, description },
-  };
+  });
 }
 
 async function Page({ params }: PageProps) {

@@ -5,19 +5,20 @@ import { t3JsonLd } from "@/modules/guide/t3-seo";
 import { formatAUD } from "@/lib/constants";
 import { CPK_KM_CAP, CURRENT_CPK_RATE, CURRENT_CPK_YEAR, PREVIOUS_CPK_RATE } from "@/lib/constants/cents-per-km";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "cents-per-km";
 const c = (d: number) => `${Math.round(d * 100)}c`;
 const TITLE = `Cents per km ${CURRENT_CPK_YEAR}: ATO Rate ${c(CURRENT_CPK_RATE)} + Calculator`;
 const DESCRIPTION = `The ATO cents per km rate is ${c(CURRENT_CPK_RATE)} for ${CURRENT_CPK_YEAR} (${c(PREVIOUS_CPK_RATE)} for 2025-26), capped at ${CPK_KM_CAP.toLocaleString("en-AU")} km per car: up to ${formatAUD(CURRENT_CPK_RATE * CPK_KM_CAP)}. Rates by year, payslip withholding and a calculator.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `https://pay-calculator-australia.com/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `https://pay-calculator-australia.com/${SLUG}/`, siteName: "Pay Calculator Australia", type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

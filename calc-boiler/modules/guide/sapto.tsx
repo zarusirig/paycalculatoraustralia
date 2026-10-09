@@ -18,6 +18,7 @@ import SaptoEligibilityChecker from "@/modules/calculator/sapto-eligibility-chec
 import { SAPTO_FAQS } from "@/modules/guide/sapto-faqs";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const ATO_URL =
   "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/seniors-and-pensioners-tax-offset";
@@ -62,6 +63,7 @@ export default function SaptoPage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <FeaturedImage placement="content" className="mt-0" />
 
           <section>
             <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>What Is SAPTO?</h2>

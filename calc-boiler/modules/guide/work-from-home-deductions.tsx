@@ -23,6 +23,7 @@ import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import FaqAccordion from "@/components/common/faq-accordion";
 import { WFH_FAQS } from "./work-from-home-deductions-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Working from home expenses", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/working-from-home-expenses", publisher: SOURCES.ato.name },
@@ -40,6 +41,7 @@ export default function WorkFromHomeDeductionsPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Work From Home Tax Deductions — What You Can Claim in 2025-26</h1>
           <p className="text-xl text-warmgray leading-relaxed mb-6">If you work from home — even one day a week — you can claim a tax deduction for running expenses. This guide explains the two available methods, what each covers, the records you need, and exactly how much you can expect to save.</p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">

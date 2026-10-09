@@ -17,7 +17,16 @@ export type NewsIndexItem = {
   dateLabel: string;
 };
 
-export default function NewsIndexPage({ items, categories }: { items: NewsIndexItem[]; categories: NewsCategory[] }) {
+/** `featuredImage`: the page's <FeaturedImage />, rendered by app/news/page.tsx (a server component). */
+export default function NewsIndexPage({
+  items,
+  categories,
+  featuredImage,
+}: {
+  items: NewsIndexItem[];
+  categories: NewsCategory[];
+  featuredImage?: React.ReactNode;
+}) {
   const [filter, setFilter] = useState<NewsCategory | "All">("All");
   const articles = items.filter((a) => filter === "All" || a.category === filter);
 
@@ -41,6 +50,7 @@ export default function NewsIndexPage({ items, categories }: { items: NewsIndexI
             starts, and what it means for your take-home pay. Every story links to a calculator so
             you can run your own numbers.
           </p>
+          {featuredImage}
         </header>
 
         <div className="mb-8 flex flex-wrap gap-2" role="group" aria-label="Filter news by category">

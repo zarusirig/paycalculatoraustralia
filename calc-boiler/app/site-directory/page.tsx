@@ -40,6 +40,8 @@ import { SEASONAL_PAGES, seasonalPath } from "@/lib/data/public-holidays/seasona
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES, PAYROLL_TAX_STATES } from "@/lib/constants/payroll-tax";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
+import FeaturedImage from "@/components/common/featured-image";
 // --- end T2 ---
 
 const BASE = SITE_CONFIG.baseUrl;
@@ -49,13 +51,13 @@ const TITLE = "Site Directory — Every Calculator, Guide & Tax Table";
 const DESCRIPTION =
   "Complete index of every calculator, guide, tax table and salary breakdown on Pay Calculator Australia. Browse the full site in one page.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
@@ -402,6 +404,7 @@ function Page() {
               Every calculator, guide, tax table and salary breakdown on this site — {total} pages,
               organised by topic. All figures use official ATO rates for FY{SITE_CONFIG.financialYear}.
             </p>
+            <FeaturedImage className="mb-0 mt-6" />
           </header>
 
           {SECTIONS.map((section) => (

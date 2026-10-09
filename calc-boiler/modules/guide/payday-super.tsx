@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/payday-super";
 import { PAYDAY_SUPER_FAQS } from "@/modules/guide/payday-super-faqs";
 import PerPaySuperCalculator from "@/modules/guide/payday-super-calculator";
+import FeaturedImage from "@/components/common/featured-image";
 
 const C = SUPER_GUARANTEE_CHARGE.current;
 const L = SUPER_GUARANTEE_CHARGE.legacy;
@@ -71,6 +72,8 @@ export default function PaydaySuperPage() {
             <section className="not-prose mb-10">
               <PerPaySuperCalculator />
             </section>
+
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="what-changed">
               <h2 style={H}>What changed on {SUPER_GUARANTEE.paydaySuperStart}</h2>

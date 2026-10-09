@@ -8,13 +8,14 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { REPORT, REPORT_CSV_FILES, maxTaxCutGain, reportCsvHref, suggestedCitation } from "@/lib/data/pay-report";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const cut = maxTaxCutGain();
 const TITLE = `${REPORT.title}: Take-Home Pay, Minimum Wage & Awards`;
 const DESCRIPTION = `Data study: take-home pay at every salary ${SITE_CONFIG.previousFinancialYear} vs ${SITE_CONFIG.financialYear} (the tax cut is worth at most $${cut.perYear} a year), minimum vs median wage and 14 award minimums ranked.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: REPORT.url },
@@ -27,10 +28,9 @@ export const metadata: Metadata = {
     locale: "en_AU",
     publishedTime: REPORT.publishedIso,
     modifiedTime: REPORT.updatedIso,
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

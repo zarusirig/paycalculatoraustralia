@@ -6,18 +6,19 @@ import { withPageEnd } from "@/components/common/content-slots";
 import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { NMW } from "@/lib/constants/minimum-wage";
 import { AWARD_DIRECTORY } from "@/lib/constants/award-directory";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const SLUG = "fair-work-pay-calculator";
 const TITLE = `Fair Work Pay Calculator (PACT) ${SITE_CONFIG.financialYear} — How It Works & Rates`;
 const DESCRIPTION = `How the Fair Work pay calculator (PACT) works, the ${SITE_CONFIG.financialYear} award base rates for ${AWARD_DIRECTORY.length} awards from ${formatAUD(NMW.hourly, 2)} an hour, and a checker for your own payslip rate.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: `${SITE_CONFIG.baseUrl}/${SLUG}/` },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_CONFIG.baseUrl}/${SLUG}/`, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: `${SITE_CONFIG.baseUrl}/${SLUG}/`, siteName: SITE_CONFIG.name, type: "article", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const jsonLd = t3JsonLd({
   slug: SLUG,

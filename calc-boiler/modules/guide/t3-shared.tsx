@@ -7,6 +7,7 @@ import { ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
+import FeaturedImage from "@/components/common/featured-image";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
@@ -47,12 +48,30 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   );
 }
 
-export function PageHeader({ title, children }: { title: string; children: React.ReactNode }) {
+/**
+ * `featuredImage`: guide pages pass it to show the page's featured image at
+ * the end of the header (after the H1 and intro, before the first H2). Pages
+ * with a calculator under the header leave it off and render
+ * <FeaturedImage placement="content" /> after the calculator instead, so the
+ * image never pushes the calculator down. Lazy: these intros are long enough
+ * that the image starts below the first screen of a 390px phone (measured
+ * 9 Oct 2026, 833–990px down).
+ */
+export function PageHeader({
+  title,
+  children,
+  featuredImage = false,
+}: {
+  title: string;
+  children: React.ReactNode;
+  featuredImage?: boolean;
+}) {
   return (
     <header className="mb-10 max-w-4xl">
       <h1 className="text-4xl md:text-5xl font-extrabold text-navy leading-tight mb-6" style={FONT}>{title}</h1>
       <div className="text-xl text-warmgray leading-relaxed mb-6">{children}</div>
       <TrustBar className="!max-w-none" />
+      {featuredImage && <FeaturedImage lazy className="mb-0 mt-6" />}
     </header>
   );
 }

@@ -67,7 +67,7 @@ export default function CentrelinkPaymentRatesPage() {
     <div className={PAGE_WRAP}><div className={PAGE_INNER}>
       <Breadcrumbs items={[{ href: "/", label: "Pay Calculator" }, { href: "/centrelink-income-test/", label: "Centrelink" }, { label: "Centrelink Payment Rates" }]} />
 
-      <PageHeader title="Centrelink Payment Rates from 20 September 2026">
+      <PageHeader featuredImage title="Centrelink Payment Rates from 20 September 2026">
         <p>
           <strong>From {JS.ratesFrom}, JobSeeker Payment is up to {f2(JS.maxFortnightly.single)} a fortnight for a single person, and the Age Pension is up to {f2(AP.maxFortnightly.single.total)} single or {f2(AP.maxFortnightly.coupleEach.total)} each for a couple, including supplements.</strong> The Disability Support Pension (21 and over) and Carer Payment are paid at the same pension rate. Student payments (Austudy and Youth Allowance) did not change in September because they are indexed on 1 January. Every rate below is the fortnightly maximum before the income and assets tests, and each payment links to a calculator that applies those tests to your income.
         </p>

@@ -9,19 +9,20 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { FAMILY_PAYMENT_SOURCES, FTB_A, FTB_B } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/family-tax-benefit-calculator/`;
 const TITLE = `Family Tax Benefit Calculator ${FTB_A.financialYear} — FTB Part A & B`;
 const DESCRIPTION = `Estimate FTB Part A (up to ${formatAUD(FTB_A.maxFortnightly.age0to12, 2)} a fortnight per child) and Part B (up to ${formatAUD(FTB_B.maxFortnightly.youngestUnder5, 2)}) for ${FTB_A.financialYear}: income thresholds, the Part B limit and how a pay rise changes it.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

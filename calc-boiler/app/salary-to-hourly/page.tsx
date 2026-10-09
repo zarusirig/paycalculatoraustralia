@@ -3,6 +3,7 @@ import { EMPLOYMENT, formatAUD, SITE_CONFIG } from "@/lib/constants/australian-t
 import { SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 // Hub for /salary-to-hourly/[amount]/ (Wave 3 / T6). Hourly figures use
 // EMPLOYMENT.hoursPerYear, never a typed-in divisor.
@@ -14,12 +15,12 @@ const TITLE = `Salary to Hourly Rate Australia ${SITE_CONFIG.financialYear}: ${f
 const DESCRIPTION = `Hourly rate for ${SALARY_TO_HOURLY_SALARIES.length} annual salaries on a ${EMPLOYMENT.standardWeeklyHours}-hour week (${hours.toLocaleString("en-AU")} hours a year). E.g. $80,000 a year is ${formatAUD(80_000 / hours, 2)} an hour before tax. After-tax hourly rate on each page.`;
 const URL = `${SITE_CONFIG.baseUrl}/salary-to-hourly/`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
-};
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
+});
 
 function SalaryToHourlyHubPage() {
   return (

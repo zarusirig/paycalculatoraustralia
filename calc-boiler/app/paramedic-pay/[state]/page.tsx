@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ServiceStateRoute, serviceStateMetadata, serviceStateParams } from "@/modules/guide/service-pay-routes";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 interface PageProps {
   params: Promise<{ state: string }>;
@@ -16,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { state } = await params;
-  return serviceStateMetadata("paramedic", state);
+  return withFeaturedImage(serviceStateMetadata("paramedic", state));
 }
 
 async function Page({ params }: PageProps) {

@@ -34,6 +34,7 @@ import {
   WorkedExample,
   typicalSalary,
 } from "./state-sections";
+import FeaturedImage from "@/components/common/featured-image";
 
 const PROFILE = STATE_PROFILES.WA;
 
@@ -81,6 +82,7 @@ export default function PayCalculatorWAPage() {
         </section>
 
         <div className="mx-auto max-w-4xl space-y-10">
+          <FeaturedImage placement="content" className="mt-0 mb-10" />
           <StatePayFacts profile={PROFILE} />
 
           <StateMinimumWage state="wa" />

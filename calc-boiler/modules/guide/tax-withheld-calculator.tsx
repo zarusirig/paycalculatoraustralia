@@ -19,6 +19,7 @@ import { TFT_WITHHOLDING_STARTS_ABOVE } from "@/lib/constants/tax-free-threshold
 import { estimateYearEnd } from "@/lib/constants/tax-rates-reference";
 import TaxWithheldCalculator from "@/modules/calculator/tax-withheld-calculator";
 import { EXAMPLE, TAX_WITHHELD_FAQS } from "@/modules/guide/tax-withheld-calculator-faqs";
+import FeaturedImage from "@/components/common/featured-image";
 
 // =============================================================================
 // /tax-withheld-calculator/ — new 23 Sep 2026 (Wave 3, T1).
@@ -78,6 +79,7 @@ export default function TaxWithheldCalculatorPage() {
 
         <div className="flex flex-col lg:flex-row gap-12">
           <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+            <FeaturedImage placement="content" className="mt-0" />
 
             <section id="payg-calculator">
               <h2 style={FONT}>PAYG Calculator: What It Does and Doesn&rsquo;t Do</h2>

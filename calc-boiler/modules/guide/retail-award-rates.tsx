@@ -93,6 +93,7 @@ export default function RetailAwardRatesPage() {
             <span className="text-sm text-warmgray">Award code {RETAIL_AWARD.code} &middot; rates from {RETAIL_AWARD.operativeFrom}</span>
           </div>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage lazy className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
@@ -428,3 +429,5 @@ export default function RetailAwardRatesPage() {
     </div>
   );
 }
+
+import FeaturedImage from "@/components/common/featured-image";

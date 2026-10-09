@@ -25,6 +25,7 @@ import {
   PageHeader,
   RelatedSidebar,
 } from "./t3-shared";
+import FeaturedImage from "@/components/common/featured-image";
 
 // /annual-leave-calculator/ — accrual, balance, value and payout tax. This is
 // the "while you work here" page; /leave-calculator/ owns the payout-on-leaving
@@ -71,6 +72,7 @@ export default function AnnualLeavePage() {
 
       <div className="flex flex-col lg:flex-row gap-12">
         <article className={ARTICLE_CLASS}>
+          <FeaturedImage placement="content" className="mt-0" />
           <section>
             <H2 id="how-much">How Much Annual Leave Do You Get?</H2>
             <p>

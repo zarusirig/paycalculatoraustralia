@@ -11,13 +11,14 @@ import { AUTHORS } from "@/lib/authors";
 import { CHANGES_CALENDAR } from "@/lib/constants/pay-tax-changes-calendar";
 import { faqPageSchema } from "@/lib/faq";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const TITLE = "What Changes and When: Australian Pay and Tax Dates 2026-27";
 const DESCRIPTION =
   "What changed on 1 July 2026, what changes on 1 December 2026 (junior award phase-in), what does not change on 1 January 2027, and what is legislated for 1 July 2027. Sourced to the ATO and Fair Work Commission, with a calendar download.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: CHANGES_CALENDAR.url },
@@ -30,10 +31,9 @@ export const metadata: Metadata = {
     locale: "en_AU",
     publishedTime: CHANGES_CALENDAR.publishedIso,
     modifiedTime: CHANGES_CALENDAR.updatedIso,
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

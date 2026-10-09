@@ -10,6 +10,7 @@ import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, SUPER_GUARANTEE_CHARGE, SG_RATE_
 import { CARRY_FORWARD, CONTRIBUTIONS_TAX_RATE, DIVISION_293, DIVISION_296, LOW_RATE_CAP, TRANSFER_BALANCE_CAP_PREVIOUS, bringForwardThresholds } from "@/lib/constants/super-contributions";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
+import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Super Guarantee percentage", url: "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/paying-super-contributions/how-much-super-to-pay", publisher: SOURCES.ato.name },
@@ -69,6 +70,7 @@ export default function SuperannuationGuidePage() {
             The superannuation rate for {SITE_CONFIG.financialYear} is {formatPercent(SUPER_GUARANTEE.rate, 0)}, the legislated ceiling of the Super Guarantee, paid by employers on top of salary on qualifying earnings up to {formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} a year. Under Payday Super, in force since {SUPER_GUARANTEE.paydaySuperStart}, it is due within {SUPER_GUARANTEE_CHARGE.current.businessDaysToPay} business days of each pay rather than quarterly. Contributions are taxed at {formatPercent(CONTRIBUTIONS_TAX_RATE, 0)} in the fund. This guide covers the caps and how super affects your take-home pay.
           </p>
           <TrustBar className="!max-w-none" />
+          <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">

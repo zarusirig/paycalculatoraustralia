@@ -7,6 +7,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { AUTHORS } from "@/lib/authors";
 import { AGE_PENSION_AGE } from "@/lib/constants/pension-age";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/pension-age-australia/`;
@@ -14,7 +15,7 @@ const URL = `${BASE}/pension-age-australia/`;
 const TITLE = `Pension Age Australia: ${AGE_PENSION_AGE}, Plus Retirement Age Calculator`;
 const DESCRIPTION = `Age Pension age in Australia is ${AGE_PENSION_AGE}. There is no compulsory retirement age and super preservation age is 60. Enter your birth date to see your pension dates.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -25,10 +26,9 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "article",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

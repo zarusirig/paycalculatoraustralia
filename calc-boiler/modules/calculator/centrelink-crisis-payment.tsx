@@ -43,7 +43,8 @@ const SOURCES_LIST = [
   source("Who can get Crisis Payment — release from prison or psychiatric confinement", SRC.crisisPrisonWho),
 ];
 
-export default function CentrelinkCrisisPaymentPage() {
+/** `featuredImage`: the page's <FeaturedImage />, rendered by page.tsx (a server component). */
+export default function CentrelinkCrisisPaymentPage({ featuredImage }: { featuredImage?: React.ReactNode }) {
   return (
     <div className="min-h-screen flex-grow">
       <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-12">
@@ -52,6 +53,7 @@ export default function CentrelinkCrisisPaymentPage() {
             Crisis Payment is a one-off, non-taxable payment for people on (or eligible for) an income support payment who are in severe financial hardship after an extreme circumstance. It equals <strong>one week of the maximum basic rate</strong> of your payment — about {formatAUD(crisisPaymentAmount(JS.single), 2)} for a single person on JobSeeker. You must contact Services Australia within {CRISIS_PAYMENT.contactWithinDays} days.
           </p>
         </W3Hero>
+        {featuredImage}
 
         <div className="max-w-4xl mx-auto space-y-10">
           <Note tone="warn">

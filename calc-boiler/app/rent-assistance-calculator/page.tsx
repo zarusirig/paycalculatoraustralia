@@ -9,19 +9,20 @@ import { SITE_CONFIG, formatAUD } from "@/lib/constants";
 import { FAMILY_PAYMENT_SOURCES, RENT_ASSISTANCE } from "@/lib/constants/centrelink-family-payments";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/rent-assistance-calculator/`;
 const TITLE = "Rent Assistance Calculator — Centrelink Rates From 20 Sep 2026";
 const DESCRIPTION = `Centrelink Rent Assistance pays 75c per dollar of rent over the threshold, up to ${formatAUD(RENT_ASSISTANCE.rows.single.max, 2)} a fortnight single or ${formatAUD(RENT_ASSISTANCE.rows.singleFamily1or2.max, 2)} for families, from ${RENT_ASSISTANCE.ratesFrom}.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
-  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU", images: ["/og-image.png"] },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: URL, siteName: SITE_CONFIG.name, type: "website", locale: "en_AU" },
   twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",

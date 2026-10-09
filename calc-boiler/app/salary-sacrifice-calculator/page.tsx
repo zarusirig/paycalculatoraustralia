@@ -10,6 +10,7 @@ import { SITE_CONFIG, calculatePayBreakdown, formatAUD } from "@/lib/constants";
 import { ORGANIZATION_SCHEMA, calculatorHowTo, PAY_CALCULATOR_STEPS } from "@/lib/schema";
 import { pageDateModified } from "@/lib/page-dates";
 import { withPageEnd } from "@/components/common/content-slots";
+import { withFeaturedImage } from "@/lib/featured-image";
 
 const BASE = SITE_CONFIG.baseUrl;
 const URL = `${BASE}/salary-sacrifice-calculator/`;
@@ -31,7 +32,7 @@ const takeHomeCutAtDefaults = withoutSacrifice.takeHomePay - withSacrifice.takeH
 // seo-brain 25 Sep 2026 (Jev-ranked): a concrete tax-saved figure instead of a promise.
 const DESCRIPTION = `On ${formatAUD(DEFAULT_SALARY)}, salary sacrificing ${formatAUD(DEFAULT_SACRIFICE)} to super saves ${formatAUD(taxSavedAtDefaults)} tax in ${FY} and cuts take-home by ${formatAUD(takeHomeCutAtDefaults)}. Compare pay before and after, plus how it is calculated.`;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withFeaturedImage({
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: URL },
@@ -42,14 +43,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: "en_AU",
-    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: "Compare pay before and after sacrifice. See your tax savings.",
   },
-};
+});
 
 const breadcrumb: WithContext<BreadcrumbList> = {
   "@context": "https://schema.org",
