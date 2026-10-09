@@ -7,13 +7,18 @@
 //
 // The award publishes three salary columns — rates from the first full pay
 // period on or after 9 October 2024, 9 October 2025 and 9 October 2026, each a
-// 3% rise. On 28 August 2026 the column IN FORCE is 9 October 2025, which is
-// why that is what this file publishes. The 9 October 2026 column is already
-// made and appears on the page as the next scheduled increase.
+// 3% rise.
 //
-// Cross-check: the NSW Department of Education's own "Salary of a teacher" page
-// quotes $90,177 for a new graduate and $129,536 at the top of the 7-step
-// scale, matching the award's 9 October 2025 Step 1 and Step 7 exactly.
+// ROLLED 9 October 2026: every figure below is now the award's own
+// "9.10.2026" column (Schedules 1A, 1B, 2A, 2B Table 2, 3 and 4 Table 1),
+// re-read on 9 October 2026 from the IRC gazette copy:
+//   http://www.ircgazette.justice.nsw.gov.au/irc/ircgazette.nsf/webviewdate/C9868
+// It is the last column the award prints; the award remains in force until
+// 8 October 2027. Nothing here is computed from the 3%.
+//
+// Earlier cross-check (28 August 2026): the NSW Department of Education's
+// "Salary of a teacher" page quoted $90,177 and $129,536, matching the award's
+// 9 October 2025 Step 1 and Step 7 exactly.
 
 import type { TeacherPayState } from "./types";
 
@@ -31,13 +36,10 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   agreementName:
     "Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024",
   agreementUrl: "http://www.ircgazette.justice.nsw.gov.au/irc/ircgazette.nsf/webviewdate/C9868",
-  ratesEffectiveFrom: "9 October 2025",
-  nextIncrease: {
-    date: "9 October 2026",
-    detail:
-      "A further 3% from the first full pay period on or after 9 October 2026, already written into the award. That takes Step 1 to $92,882 and Step 7 to $133,422.",
-  },
-  verifiedOn: "28 August 2026",
+  ratesEffectiveFrom: "the first full pay period on or after 9 October 2026",
+  // 9 October 2026 is the award's last salary column; none is published after it.
+  nextIncrease: null,
+  verifiedOn: "9 October 2026",
 
   scales: [
     {
@@ -47,16 +49,16 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
         "The standards-based salary scale that covers every classroom teacher in a NSW public school, primary and secondary alike. There is one scale — a primary teacher and a secondary teacher on the same step are paid the same.",
       stepHeading: "Step",
       steps: [
-        { label: "Step 1", salary: 90_177, note: "Graduate accreditation" },
-        { label: "Step 2", salary: 96_980, note: "Graduate accreditation" },
-        { label: "Step 3", salary: 101_122, note: "Proficient accreditation" },
-        { label: "Step 4", salary: 105_263, note: "Proficient accreditation" },
-        { label: "Step 5", salary: 112_594, note: "Proficient accreditation" },
-        { label: "Step 6", salary: 121_064, note: "Proficient accreditation" },
-        { label: "Step 7", salary: 129_536, note: "Proficient accreditation — top of scale" },
+        { label: "Step 1", salary: 92_882, note: "Graduate accreditation" },
+        { label: "Step 2", salary: 99_889, note: "Graduate accreditation" },
+        { label: "Step 3", salary: 104_156, note: "Proficient accreditation" },
+        { label: "Step 4", salary: 108_421, note: "Proficient accreditation" },
+        { label: "Step 5", salary: 115_972, note: "Proficient accreditation" },
+        { label: "Step 6", salary: 124_696, note: "Proficient accreditation" },
+        { label: "Step 7", salary: 133_422, note: "Proficient accreditation — top of scale" },
         {
           label: "Highly Accomplished / Lead Teacher",
-          salary: 137_861,
+          salary: 141_997,
           note: "Voluntary higher accreditation",
         },
       ],
@@ -68,14 +70,14 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
         "School-based promotion positions. Head teacher and assistant principal sit on the same rate; deputy principal is a single rate regardless of primary, secondary or central school.",
       stepHeading: "Position",
       steps: [
-        { label: "Head Teacher, high school", salary: 149_059 },
-        { label: "Head Teacher, central school", salary: 149_059 },
-        { label: "Assistant Principal, primary school", salary: 149_059 },
-        { label: "Assistant Principal, central school", salary: 149_059 },
-        { label: "Deputy Principal, high school", salary: 174_034 },
-        { label: "Deputy Principal, primary school", salary: 174_034 },
-        { label: "Deputy Principal (Secondary), central school", salary: 174_034 },
-        { label: "Deputy Principal (Primary), central school", salary: 174_034 },
+        { label: "Head Teacher, high school", salary: 153_531 },
+        { label: "Head Teacher, central school", salary: 153_531 },
+        { label: "Assistant Principal, primary school", salary: 153_531 },
+        { label: "Assistant Principal, central school", salary: 153_531 },
+        { label: "Deputy Principal, high school", salary: 179_255 },
+        { label: "Deputy Principal, primary school", salary: 179_255 },
+        { label: "Deputy Principal (Secondary), central school", salary: 179_255 },
+        { label: "Deputy Principal (Primary), central school", salary: 179_255 },
       ],
     },
     {
@@ -85,16 +87,16 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
         "The principal classification structure. A principal's classification is derived from their school's funding allocation, and P2 to P5 include a complexity loading on top of the base principal salary.",
       stepHeading: "Classification",
       steps: [
-        { label: "Teaching Principal 1 (TP1) / Associate Principal", salary: 149_059 },
-        { label: "Teaching Principal 2 (TP2) / Associate Principal", salary: 174_034 },
-        { label: "Principal 1 (P1)", salary: 178_811 },
-        { label: "Principal 2 (P2)", salary: 192_461, note: "Base + $13,650 complexity loading" },
-        { label: "Principal 3 (P3)", salary: 213_283, note: "Base + $34,472 complexity loading" },
-        { label: "Principal 4 (P4)", salary: 222_610, note: "Base + $43,799 complexity loading" },
-        { label: "Principal 5 (P5)", salary: 229_435, note: "Base + $50,624 complexity loading" },
+        { label: "Teaching Principal 1 (TP1) / Associate Principal", salary: 153_531 },
+        { label: "Teaching Principal 2 (TP2) / Associate Principal", salary: 179_255 },
+        { label: "Principal 1 (P1)", salary: 184_175 },
+        { label: "Principal 2 (P2)", salary: 198_235, note: "Base + $14,060 complexity loading" },
+        { label: "Principal 3 (P3)", salary: 219_681, note: "Base + $35,506 complexity loading" },
+        { label: "Principal 4 (P4)", salary: 229_288, note: "Base + $45,113 complexity loading" },
+        { label: "Principal 5 (P5)", salary: 236_318, note: "Base + $52,143 complexity loading" },
         {
           label: "Executive Principal, Connected Communities",
-          salary: 245_989,
+          salary: 253_369,
           note: "Plus a $50,000 allowance under clause 5.9",
         },
       ],
@@ -106,20 +108,20 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
         "School counsellors are paid on their own standards-based scale, which tops out well above the classroom teacher scale.",
       stepHeading: "Step",
       steps: [
-        { label: "SC1", salary: 101_122 },
-        { label: "SC2", salary: 105_263 },
-        { label: "SC3", salary: 112_594 },
-        { label: "SC4", salary: 121_064 },
-        { label: "SC5", salary: 149_059 },
-        { label: "School Counsellor Advanced Certification", salary: 160_983 },
+        { label: "SC1", salary: 104_156 },
+        { label: "SC2", salary: 108_421 },
+        { label: "SC3", salary: 115_972 },
+        { label: "SC4", salary: 124_696 },
+        { label: "SC5", salary: 153_531 },
+        { label: "School Counsellor Advanced Certification", salary: 165_812 },
       ],
     },
   ],
 
   casual: [
-    { label: "Casual Teacher 1 (CT1)", rate: 466.44, unit: "day", note: "Graduate accreditation" },
-    { label: "Casual Teacher 2 (CT2)", rate: 523.04, unit: "day" },
-    { label: "Casual Teacher 3 (CT3)", rate: 582.38, unit: "day" },
+    { label: "Casual Teacher 1 (CT1)", rate: 480.43, unit: "day", note: "Graduate accreditation" },
+    { label: "Casual Teacher 2 (CT2)", rate: 538.73, unit: "day" },
+    { label: "Casual Teacher 3 (CT3)", rate: 599.85, unit: "day" },
   ],
 
   progression: [
@@ -164,7 +166,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "The award commenced on 9 October 2024 and remains in force until 8 October 2027, so the rates below are current and a further 3% is already locked in for 9 October 2026.",
+    "The rates below are the award's 9 October 2026 column, the last 3% rise it schedules, paid from the first full pay period on or after 9 October 2026 — so the first pay with the new rate can fall a little after that date. The award remains in force until 8 October 2027.",
   ],
 
   unverified: [
@@ -194,15 +196,15 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
   faqs: [
     {
       q: "When do NSW teachers get a pay rise?",
-      a: "The award already schedules the next one: 3% from the first pay period commencing on or after 9 October 2026 (clause 3 of the Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024). The previous 3% applied from the first pay period commencing on or after 9 October 2025, and the one before that from 9 October 2024. The 9 October 2026 rise is the last in the award's three-year schedule, so check for a new award after it. Because it applies from the first pay period on or after that date, it shows on your pay a little after 9 October rather than on the day itself. It takes Step 1 to $92,882 and Step 7 to $133,422.",
+      a: "The latest is 3% from the first pay period commencing on or after 9 October 2026 (clause 3 of the Crown Employees (Teachers in Schools and Related Employees) Salaries and Conditions Award 2024), which took Step 1 to $92,882 and Step 7 to $133,422. The previous 3% applied from the first pay period commencing on or after 9 October 2025, and the one before that from 9 October 2024. The 9 October 2026 rise is the last in the award's three-year schedule, and the award remains in force until 8 October 2027, so any further rise depends on a new award. Because it applies from the first pay period on or after 9 October, it shows on your pay a little after that date rather than on the day itself.",
     },
     {
       q: "What is the graduate teacher salary in NSW?",
-      a: "A new graduate teacher in a NSW public school starts on Step 1 of the classroom teacher scale, $90,177 a year, from the first full pay period on or after 9 October 2025. That rises to $92,882 from 9 October 2026 under the same award.",
+      a: "A new graduate teacher in a NSW public school starts on Step 1 of the classroom teacher scale, $92,882 a year from the first full pay period on or after 9 October 2026. It was $90,177 under the award's previous column, from 9 October 2025.",
     },
     {
       q: "What is the top of the NSW teacher pay scale?",
-      a: "Step 7, $129,536 a year, is the top of the classroom teacher scale. Above that, Highly Accomplished / Lead Teacher accreditation pays $137,861, and moving into a promotion position such as head teacher pays $149,059.",
+      a: "Step 7, $133,422 a year, is the top of the classroom teacher scale. Above that, Highly Accomplished / Lead Teacher accreditation pays $141,997, and moving into a promotion position such as head teacher pays $153,531.",
     },
     {
       q: "How long does it take to reach the top of the NSW teacher scale?",
@@ -210,7 +212,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "How much is a head teacher paid in NSW?",
-      a: "A head teacher in a NSW high school or central school is paid $149,059 a year, the same rate as an assistant principal in a primary or central school. A deputy principal is paid $174,034.",
+      a: "A head teacher in a NSW high school or central school is paid $153,531 a year, the same rate as an assistant principal in a primary or central school. A deputy principal is paid $179,255.",
     },
     {
       q: "Do primary and secondary teachers get paid the same in NSW?",
@@ -218,7 +220,7 @@ export const NSW_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is the casual teacher daily rate in NSW?",
-      a: "Casual teachers are paid a daily rate: $466.44 at CT1 (graduate accreditation), $523.04 at CT2 and $582.38 at CT3, from the first full pay period on or after 9 October 2025.",
+      a: "Casual teachers are paid a daily rate: $480.43 at CT1 (graduate accreditation), $538.73 at CT2 and $599.85 at CT3, for rates commencing on or after 9 October 2026.",
     },
   ],
 };

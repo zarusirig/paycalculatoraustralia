@@ -71,16 +71,34 @@ test("every dollar figure in an FAQ answer appears in the page's own data", () =
 });
 
 // --- G6: ATC "24 months" column ---
-import { ATC_24_MONTH_COLUMN, ATC_PAY as ATC_PAY_G6 } from "../air-traffic-controller";
+import { ATC_12_MONTH_COLUMN, ATC_24_MONTH_COLUMN, ATC_PAY as ATC_PAY_G6 } from "../air-traffic-controller";
 
 test("G6: every ATC 24-month salary is the 12-month salary x 1.034, to the dollar", () => {
   const steps = ATC_PAY_G6.scales.find((s) => s.id === "atc-classification")?.steps ?? [];
   assert.ok(steps.length > 0);
   assert.equal(Object.keys(ATC_24_MONTH_COLUMN.salaries).length, steps.length);
+  assert.equal(Object.keys(ATC_12_MONTH_COLUMN.salaries).length, steps.length);
   for (const s of steps) {
+    const prev = ATC_12_MONTH_COLUMN.salaries[s.label];
     const next = ATC_24_MONTH_COLUMN.salaries[s.label];
-    assert.ok(next !== undefined, s.label);
-    assert.ok(Math.abs(s.salary * (1 + ATC_24_MONTH_COLUMN.increase) - next) <= 1, `${s.label}: ${s.salary} -> ${next}`);
+    assert.ok(prev !== undefined && next !== undefined, s.label);
+    assert.ok(Math.abs(prev * (1 + ATC_24_MONTH_COLUMN.increase) - next) <= 1, `${s.label}: ${prev} -> ${next}`);
   }
+});
+
+test("ATC page carries the 24-month column from 7 October 2026 (Attachment 1, re-read 9 October 2026)", () => {
+  assert.equal(ATC_PAY_G6.ratesEffectiveFrom, "7 October 2026");
+  assert.equal(ATC_PAY_G6.scheduledIncreases.length, 0);
+  const atc = ATC_PAY_G6.scales.find((s) => s.id === "atc-classification")?.steps ?? [];
+  for (const s of atc) assert.equal(s.salary, ATC_24_MONTH_COLUMN.salaries[s.label], s.label);
+  const get = (id: string, label: string) =>
+    ATC_PAY_G6.scales.find((s) => s.id === id)?.steps.find((st) => st.label === label)?.salary;
+  // Published "24 months" figures from the agreement's ADT, SSO and FDC tables.
+  assert.equal(get("fdc-classification", "FDC Trainee"), 91_854);
+  assert.equal(get("fdc-classification", "FDC Supervisor"), 176_948);
+  assert.equal(get("sso-classification", "Trainee"), 87_184);
+  assert.equal(get("sso-classification", "Supervisor"), 155_919);
+  assert.equal(get("adt-classification", "ADT Trainee"), 84_518);
+  assert.equal(get("adt-classification", "ADT Supervisor"), 188_677);
 });
 // --- end G6 ---

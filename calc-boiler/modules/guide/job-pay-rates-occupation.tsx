@@ -128,7 +128,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               The award minimum for {occ.headline.why} is{" "}
               <strong className="text-navy">{money(headline.hourly)} an hour</strong> —{" "}
               {money(headline.weekly)} a week or {formatAUD(headlineAnnual)} a year full-time — under the{" "}
-              {occ.award.name} [{occ.award.code}], from {JOB_PAY_RATES_FROM}.
+              {occ.award.name} [{occ.award.code}], from {occ.ratesFrom ?? JOB_PAY_RATES_FROM}.
               {headline.casualHourly !== null ? (
                 <> A casual on the same classification earns at least {money(headline.casualHourly)} an hour</>
               ) : null}
@@ -195,7 +195,7 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                 {occ.name} {occ.award ? "award pay rates" : "minimum pay"} 2026–27
               </h2>
               <p>
-                These rates apply from {JOB_PAY_RATES_FROM}. Part-time employees are paid the same hourly rates for the
+                These rates apply from {occ.ratesFrom ?? JOB_PAY_RATES_FROM}. Part-time employees are paid the same hourly rates for the
                 hours they work.
               </p>
               {occ.tables.map((t) => (

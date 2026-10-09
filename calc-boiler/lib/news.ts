@@ -25,7 +25,7 @@ import {
   formatIso,
   weekdayOf,
 } from "@/lib/constants/tax-calendar-2026-27";
-import { ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
+import { ATC_12_MONTH_COLUMN, ATC_24_MONTH_COLUMN, ATC_PAY } from "@/lib/data/aviation-pay/air-traffic-controller";
 import { withholdingForPeriod } from "@/lib/constants/payg-withholding";
 import {
   AWARD_TRANSPORT_CHANGE_DATE,
@@ -736,7 +736,8 @@ function G6_ARTICLES(): NewsArticleMeta[] {
   const atcPct = `${(ATC_24_MONTH_COLUMN.increase * 100).toFixed(1)}%`;
   const atcL1 = ATC_24_MONTH_COLUMN.salaries["Level 1"];
   const atcL10 = ATC_24_MONTH_COLUMN.salaries["Level 10"];
-  const atcL1Now = ATC_PAY.scales.find((s) => s.id === "atc-classification")?.steps.find((s) => s.label === "Level 1")?.salary ?? NaN;
+  // The pre-rise figure: ATC_PAY itself carries the 24-month column from 7 October 2026.
+  const atcL1Now = ATC_12_MONTH_COLUMN.salaries["Level 1"] ?? NaN;
 
 
   const atExtra = `$${withholdingForPeriod(1_300 + 22, "weekly") - withholdingForPeriod(1_300, "weekly")}`;
