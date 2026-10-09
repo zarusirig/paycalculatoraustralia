@@ -6,7 +6,7 @@
 > - Draft 10 has been retargeted. The 5 Oct Youthlaw page offers resources for *youth workers* (duty of care, street law), not for young employees, so the draft now points at Youthlaw's "Rates of Pay and Unpaid Wages" fact sheet.
 > - Draft 9 now goes to Finder's PR desk. The article dates from January 2023 and its author has published nothing on Finder since February 2023.
 > - Draft 6 has a caveat: FCA's toolkit sits behind a login, so a listing there would not be a public link.
-> - Owner check before drafts 3, 4 and 8 go out: our junior pages give a 17-year-old $15.29 an hour, while Australian Unions' factsheet gives $15.28 (57.8% of $26.44 = $15.282). Confirm the figure against the National Minimum Wage Order 2026. Drafts 3 and 8 now link `/junior-pay-rates/` rather than `/minimum-wage-by-age/17/`.
+> - 17-year-old rate settled (9 Oct 2026): $15.29 is correct. It is the figure the Fair Work Ombudsman publishes (57.8% of the $1,004.90 weekly rate, divided by 38). Australian Unions' $15.28 applies 57.8% to the hourly rate, which is out by a cent; see `calc-boiler/lib/constants/junior-rates.ts`. Drafts 3, 4 and 8 can go. Drafts 3 and 8 now link `/junior-pay-rates/` rather than `/minimum-wage-by-age/17/`.
 > - Page status in the sheet: *ok* means the page exists and fits the pitch. *changed* means it exists but no longer fits as described on 5 Oct. *dead* means it is gone.
 > - Prospects with no draft of their own use the nearest draft, marked "adapt". Swap the **Page** line and replace the opening sentence with the sheet's personalisation line.
 
