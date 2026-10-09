@@ -1070,6 +1070,16 @@
   "/news/listo-boost-from-july-2027/": "news--listo-boost-from-july-2027"
  },
  "images": {
+  "about": {
+   "alt": "Two colleagues study a laptop together at a timber table in a bright office full of plants",
+   "width": 1200,
+   "height": 675
+  },
+  "adf-pay-scales": {
+   "alt": "Two service members in plain olive uniforms carry a wooden crate across gravel toward a hangar at dawn",
+   "width": 1200,
+   "height": 675
+  },
   "age-pension-assets-test-calculator": {
    "alt": "A retired couple look at a tablet over cups of tea on the verandah of a weatherboard house among gum trees",
    "width": 1200,
@@ -1085,6 +1095,21 @@
    "width": 1200,
    "height": 675
   },
+  "air-traffic-controller-salary": {
+   "alt": "An air traffic controller in a headset watches a plane on the runway from a control tower at dusk",
+   "width": 1200,
+   "height": 675
+  },
+  "allowances-guide": {
+   "alt": "A plumber packs wrenches into a canvas tool bag on a ute tray beside a first aid pouch and a spare shirt",
+   "width": 1200,
+   "height": 675
+  },
+  "annual-leave-calculator": {
+   "alt": "A smiling woman packs a straw hat, sunglasses and summer clothes into a suitcase on her bed",
+   "width": 1200,
+   "height": 675
+  },
   "annual-leave-guide": {
    "alt": "A smiling couple walk hand in hand along a white sand beach with turquoise water",
    "width": 1200,
@@ -1092,6 +1117,71 @@
   },
   "annual-pay-calculator": {
    "alt": "A woman in a navy blazer walks to work with a takeaway coffee along a leafy city footpath",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--boilermaker": {
+   "alt": "A young apprentice with a raised welding helmet inspects a fresh weld on a steel beam as sparks fly behind",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--bricklayer": {
+   "alt": "A young apprentice in a hi-vis vest lays a brick as an older bricklayer points out the next step",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--butcher": {
+   "alt": "A young apprentice butcher trims a lamb leg on a wooden block as an older butcher looks on",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--carpenter": {
+   "alt": "A young apprentice carpenter steadies a pine board on a sawhorse as an older carpenter marks it in pencil",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--chef": {
+   "alt": "A young apprentice chef plates scallops with tweezers as the head chef points beside him",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--hairdresser": {
+   "alt": "A teenage apprentice hairdresser blow-dries a client's long wavy hair with a round brush in a leafy salon",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--mechanic": {
+   "alt": "A young apprentice in navy overalls works on a car engine as an older mechanic looks on in a country workshop",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--painter": {
+   "alt": "A young apprentice painter in white overalls rolls sage green paint onto a wall in a new home",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay--plumber": {
+   "alt": "A young apprentice plumber tightens a copper pipe under a sink while an older plumber points and guides him",
+   "width": 1200,
+   "height": 675
+  },
+  "apprentice-pay-rates": {
+   "alt": "A young apprentice carpenter with a tape measure learns from an older carpenter inside a new timber house frame",
+   "width": 1200,
+   "height": 675
+  },
+  "australia-day-public-holiday-pay": {
+   "alt": "A food truck worker hands a wrapped souvlaki to a customer as families picnic by a river",
+   "width": 1200,
+   "height": 675
+  },
+  "australian-pay-report-2026": {
+   "alt": "Morning commuters with coffees cross a wide city intersection between sandstone buildings and towers",
+   "width": 1200,
+   "height": 675
+  },
+  "australian-tax-and-pay-data": {
+   "alt": "A researcher in a cardigan studies colourful charts on a large monitor in a book-lined office",
    "width": 1200,
    "height": 675
   },
@@ -1120,6 +1210,11 @@
    "width": 1200,
    "height": 675
   },
+  "boxing-day-pay-rates": {
+   "alt": "A young retail worker restocks linen shirts on a rack under paper star decorations in a busy store",
+   "width": 1200,
+   "height": 675
+  },
   "building-and-construction-award-rates": {
    "alt": "Two carpenters in hi-vis shirts and white hard hats nail up a timber wall frame on a new housing estate",
    "width": 1200,
@@ -1137,6 +1232,16 @@
   },
   "carer-payment-calculator": {
    "alt": "A woman steadies her elderly father as he walks with a frame along a garden path outside a brick house",
+   "width": 1200,
+   "height": 675
+  },
+  "carry-forward-concessional-contributions-calculator": {
+   "alt": "A red-haired woman in a work shirt talks with an older adviser over coffee, port cranes outside",
+   "width": 1200,
+   "height": 675
+  },
+  "casual-conversion": {
+   "alt": "A young warehouse worker in a hi-vis vest smiles and shakes hands with his supervisor among cartons",
    "width": 1200,
    "height": 675
   },
@@ -1165,8 +1270,38 @@
    "width": 1200,
    "height": 675
   },
+  "centrelink-payment-dates": {
+   "alt": "An older woman checks her phone over a cup of tea beside a small Christmas tree and a bowl of cherries",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-payment-rates": {
+   "alt": "A young woman in a green hoodie studies at a share house kitchen table, a bike in the hall behind",
+   "width": 1200,
+   "height": 675
+  },
+  "centrelink-working-credit-calculator": {
+   "alt": "A man in a green polo pots native seedlings at a timber bench under shade cloth at a country nursery",
+   "width": 1200,
+   "height": 675
+  },
+  "cents-per-km": {
+   "alt": "A woman with a work bag steps out of the driver's door of a silver hatchback beside a wheat field",
+   "width": 1200,
+   "height": 675
+  },
   "child-care-subsidy-calculator": {
    "alt": "A father crouches at a childcare centre gate to hand a small backpack to his toddler",
+   "width": 1200,
+   "height": 675
+  },
+  "christmas-day-pay-rates": {
+   "alt": "A shop assistant with a red ribbon in her hair ties twine around a brown-paper gift beside Christmas greenery",
+   "width": 1200,
+   "height": 675
+  },
+  "christmas-shutdown-annual-leave": {
+   "alt": "A tradesman pulls down the roller door of his workshop on a jacaranda-lined street in summer",
    "width": 1200,
    "height": 675
   },
@@ -1195,8 +1330,23 @@
    "width": 1200,
    "height": 675
   },
+  "compassionate-leave": {
+   "alt": "A man holds a mug of tea on his back step while a friend rests a comforting hand on his shoulder",
+   "width": 1200,
+   "height": 675
+  },
+  "concessional-contributions-cap": {
+   "alt": "A man in a denim shirt talks with a payroll officer behind a laptop in a bright office",
+   "width": 1200,
+   "height": 675
+  },
   "construction-trades-pay": {
    "alt": "A bricklayer in an orange work shirt and bush hat lays a brick on fresh mortar at a house site",
+   "width": 1200,
+   "height": 675
+  },
+  "contact": {
+   "alt": "A smiling support worker in a mustard top and headset types a reply at her desk by a city window",
    "width": 1200,
    "height": 675
   },
@@ -1220,8 +1370,18 @@
    "width": 1200,
    "height": 675
   },
+  "delivery-driver-pay-rate": {
+   "alt": "A delivery rider with a grey insulated backpack rides an e-bike along a wet city street at dusk",
+   "width": 1200,
+   "height": 675
+  },
   "disability-support-pension-calculator": {
    "alt": "A man in a wheelchair sorts stacks of books at a timber desk in a sandstone library",
+   "width": 1200,
+   "height": 675
+  },
+  "disclaimer": {
+   "alt": "A woman with glasses on her head looks out a window at a gum tree and mountain, tea and a closed laptop beside her",
    "width": 1200,
    "height": 675
   },
@@ -1230,8 +1390,18 @@
    "width": 1200,
    "height": 675
   },
+  "easter-public-holiday-pay": {
+   "alt": "A baker in a floury white apron lifts a tray of glazed hot cross buns from a wood-fired oven",
+   "width": 1200,
+   "height": 675
+  },
   "electrical-award-rates": {
    "alt": "An electrical worker in a hard hat pulls cable through overhead trays on a high-rise office fit-out",
+   "width": 1200,
+   "height": 675
+  },
+  "embed": {
+   "alt": "A woman works on a website at a large monitor beside a sketchbook of layout wireframes and a coffee",
    "width": 1200,
    "height": 675
   },
@@ -1247,6 +1417,11 @@
   },
   "employment-type-calculator": {
    "alt": "A woman ties back her hair and grabs a tote bag in the sunny hallway of a brick home before a shift",
+   "width": 1200,
+   "height": 675
+  },
+  "enterprise-agreement": {
+   "alt": "Factory workers in hi-vis vests raise their hands to vote as a workplace delegate speaks in a lunchroom",
    "width": 1200,
    "height": 675
   },
@@ -1270,8 +1445,18 @@
    "width": 1200,
    "height": 675
   },
+  "fifo-pay-calculator": {
+   "alt": "Two workers in orange hi-vis with backpacks walk across a red-dirt airstrip toward a small white plane",
+   "width": 1200,
+   "height": 675
+  },
   "final-pay-calculator": {
    "alt": "A man packs a plant, a mug and a photo frame into a cardboard box at his office desk",
+   "width": 1200,
+   "height": 675
+  },
+  "firefighter-pay": {
+   "alt": "A firefighter in tan gear rolls up a hose beside a red fire truck as smoke drifts over bushland",
    "width": 1200,
    "height": 675
   },
@@ -1295,6 +1480,11 @@
    "width": 1200,
    "height": 675
   },
+  "fortnights-in-a-year": {
+   "alt": "A young woman in a cream jumper sorts bills beside her laptop while a cat sleeps on the windowsill",
+   "width": 1200,
+   "height": 675
+  },
   "fringe-benefits-tax": {
    "alt": "One hand passes a car key into another's open palm across an office desk",
    "width": 1200,
@@ -1310,8 +1500,18 @@
    "width": 1200,
    "height": 675
   },
+  "graduate-salary-australia": {
+   "alt": "Three laughing graduates in black gowns walk through a sandstone quadrangle under jacaranda blossom",
+   "width": 1200,
+   "height": 675
+  },
   "gross-pay-calculator": {
    "alt": "A young man in a green jumper rests his chin on his hand while working on a laptop at a kitchen bench",
+   "width": 1200,
+   "height": 675
+  },
+  "gross-vs-net-pay": {
+   "alt": "A woman in a white linen shirt works on a laptop by a window with palm trees and a ceiling fan",
    "width": 1200,
    "height": 675
   },
@@ -1332,6 +1532,11 @@
   },
   "hecs-help-calculator": {
    "alt": "A young woman with a mug of tea looks at her laptop in a sunny share-house room with a graduation photo behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "highest-paying-jobs-australia": {
+   "alt": "Two engineers in white hard hats and hi-vis vests check rolled plans above a river and city skyline",
    "width": 1200,
    "height": 675
   },
@@ -1375,13 +1580,28 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--actuary": {
+   "alt": "An analyst points at a hand-drawn diagram on a large sheet as two colleagues listen over coffee",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--aged-care-worker": {
    "alt": "An aged care worker in lilac scrubs walks arm in arm with an older man with a cane through a garden",
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--anaesthetist": {
+   "alt": "An anaesthetist in teal scrubs, cap and mask adjusts the dials of a machine in an operating theatre",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--apprentice-electrician": {
    "alt": "A young apprentice electrician strips a cable at a switchboard while his supervisor watches on a building site",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--architect": {
+   "alt": "An architect in round glasses studies a card scale model of a house with a wide veranda",
    "width": 1200,
    "height": 675
   },
@@ -1410,8 +1630,18 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--bricklayer": {
+   "alt": "A bricklayer in a navy work shirt spreads mortar with a trowel on a red brick wall at a new housing estate",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--bus-driver": {
    "alt": "A bus driver in a navy turban steers a city bus down a sunny tree-lined street, seen from behind",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--business-analyst": {
+   "alt": "A business analyst points to a wall of coloured sticky notes as two colleagues listen at a table",
    "width": 1200,
    "height": 675
   },
@@ -1430,6 +1660,11 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--civil-engineer": {
+   "alt": "A civil engineer in a hi-vis vest and hard hat looks up at a concrete bridge being built over a river",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--cleaner": {
    "alt": "A cleaner in a teal tunic vacuums an empty office at night beside a cleaning trolley",
    "width": 1200,
@@ -1440,8 +1675,33 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--cyber-security": {
+   "alt": "A cyber security analyst studies two glowing monitors in a dim office with city lights behind",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--data-analyst": {
+   "alt": "A young man in round glasses studies two monitors at a desk with a harbour view behind him",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--dental-assistant": {
    "alt": "A dental assistant in pale blue scrubs lays out sterilised instruments on a tray beside a dental chair",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--dental-hygienist": {
+   "alt": "A dental hygienist in green scrubs shows a patient how to floss using a model of teeth",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--dentist": {
+   "alt": "A dentist in a white tunic chats and smiles with a patient sitting up in the dental chair",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--dietitian": {
+   "alt": "A dietitian talks with a client at a round table set with a bowl of fruit and a plate of vegetables",
    "width": 1200,
    "height": 675
   },
@@ -1460,6 +1720,11 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--electrical-engineer": {
+   "alt": "An engineer in a hi-vis vest and safety glasses holds a tablet between rows of solar panels in the outback",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--electrician": {
    "alt": "An electrician in safety glasses works on a switchboard set into a brick wall, tool bag at his knees",
    "width": 1200,
@@ -1470,8 +1735,43 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--excavator-operator": {
+   "alt": "An excavator operator in an orange hi-vis shirt watches the bucket lift red earth from a trench",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--fitter-and-turner": {
+   "alt": "A machinist in safety glasses turns a steel shaft on a lathe as metal shavings curl away",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--flight-attendant": {
+   "alt": "A flight attendant in a navy uniform sets up a galley trolley with cups and a teapot by the cabin windows",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--forklift-operator": {
+   "alt": "A forklift operator in an orange hard hat and hi-vis vest works the controls in a busy warehouse",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--gp": {
+   "alt": "A GP with a stethoscope chats with an older man in a consulting room overlooking a garden",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--hairdresser": {
    "alt": "A hairdresser in a black apron trims a client's shoulder-length hair in a plant-filled salon",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--lab-technician": {
+   "alt": "A lab technician in safety glasses and blue gloves pipettes a sample into a rack of test tubes",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--landscaper": {
+   "alt": "A landscaper in knee pads and gloves taps a sandstone paver into place with a rubber mallet",
    "width": 1200,
    "height": 675
   },
@@ -1500,6 +1800,11 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--mortgage-broker": {
+   "alt": "A broker with a pen talks a young couple through paperwork beside a small model house",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--nurse": {
    "alt": "A nurse in navy scrubs reads a tablet at a ward desk beside a window",
    "width": 1200,
@@ -1510,8 +1815,28 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--optometrist": {
+   "alt": "An optometrist shines a small light into a young woman's eye beside a phoropter",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--paralegal": {
+   "alt": "A paralegal in a navy blazer sorts stacks of folders on a long table, a river and bridge outside",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--pathology-collector": {
    "alt": "A pathology collector in pale blue scrubs and gloves ties a tourniquet on a patient's outstretched arm",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--payroll-officer": {
+   "alt": "A payroll officer wearing a headset talks with a caller at his desk in a bright open-plan office",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--personal-trainer": {
+   "alt": "A personal trainer coaches a woman through kettlebell squats on a riverside lawn at sunrise",
    "width": 1200,
    "height": 675
   },
@@ -1540,6 +1865,11 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--project-manager": {
+   "alt": "A project manager in a white hard hat talks with a foreman beside formwork stacks, a crane behind",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--property-manager": {
    "alt": "A property manager in a beige blazer shows a young couple around an empty apartment with a balcony",
    "width": 1200,
@@ -1550,6 +1880,16 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--radiographer": {
+   "alt": "A radiographer in teal scrubs positions an older man's arm on an X-ray table",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--radiologist": {
+   "alt": "A radiologist in glasses studies a chest X-ray and a brain scan on two monitors in a dim reading room",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--real-estate-agent": {
    "alt": "A real estate agent in a linen blazer shows a couple through a kitchen toward a sandstone courtyard",
    "width": 1200,
@@ -1557,6 +1897,11 @@
   },
   "job-pay-rates--receptionist": {
    "alt": "A smiling receptionist with silver hair and a headset greets a visitor across a timber front desk",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--retail-manager": {
+   "alt": "A store manager in a black blazer talks with a young assistant folding knitwear in a clothing boutique",
    "width": 1200,
    "height": 675
   },
@@ -1575,6 +1920,11 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--software-engineer": {
+   "alt": "A software engineer with headphones points at a monitor while a colleague leans in, harbour behind",
+   "width": 1200,
+   "height": 675
+  },
   "job-pay-rates--sonographer": {
    "alt": "A sonographer in navy scrubs scans a patient's wrist with an ultrasound probe in a dim clinic room",
    "width": 1200,
@@ -1582,6 +1932,16 @@
   },
   "job-pay-rates--speech-pathologist": {
    "alt": "A speech pathologist shapes a sound with her lips as an older man watches and smiles",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--surgeon": {
+   "alt": "A surgeon in blue scrubs, cap and mask concentrates under theatre lights with two colleagues behind",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--surveyor": {
+   "alt": "A surveyor in a bush hat looks through a total station beside a new housing estate among gum trees",
    "width": 1200,
    "height": 675
   },
@@ -1595,6 +1955,26 @@
    "width": 1200,
    "height": 675
   },
+  "job-pay-rates--vet-nurse": {
+   "alt": "A smiling vet nurse in teal scrubs strokes a brown kelpie lying on a steel exam table",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--veterinarian": {
+   "alt": "A vet listens to a red kelpie's chest with a stethoscope while a farmer in a felt hat holds its collar",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--welder": {
+   "alt": "A welder in a dark helmet welds a steel beam as sparks fly in a workshop with gum trees outside",
+   "width": 1200,
+   "height": 675
+  },
+  "job-pay-rates--youth-worker": {
+   "alt": "A youth worker in a yellow T-shirt talks with two teenagers beside a park basketball court",
+   "width": 1200,
+   "height": 675
+  },
   "jobseeker-payment-calculator": {
    "alt": "A man types on a laptop at a long table in a public library, a water bottle and notebook beside him",
    "width": 1200,
@@ -1605,13 +1985,33 @@
    "width": 1200,
    "height": 675
   },
+  "jury-duty-pay": {
+   "alt": "A man in a navy blazer with a folder under his arm looks up at the sandstone steps of a columned courthouse",
+   "width": 1200,
+   "height": 675
+  },
+  "late-tax-return-penalty": {
+   "alt": "A worried man rests his hand on his forehead beside a laptop and a stack of envelopes at a kitchen table",
+   "width": 1200,
+   "height": 675
+  },
   "leave-calculator": {
    "alt": "An older woman in a green cardigan smiles as she packs a plant and a mug into a box at her office desk",
    "width": 1200,
    "height": 675
   },
+  "leave-loading-calculator": {
+   "alt": "A man on holiday reads a book in a hammock on a beach-shack veranda, coffee on the rail, sea beyond",
+   "width": 1200,
+   "height": 675
+  },
   "legal-services-award-rates": {
    "alt": "A young law clerk carries a stack of ribbon-tied folders along a timber and sandstone corridor",
+   "width": 1200,
+   "height": 675
+  },
+  "listo-calculator": {
+   "alt": "A young nursery worker in an olive apron waters rows of potted native seedlings near a polytunnel",
    "width": 1200,
    "height": 675
   },
@@ -1640,6 +2040,11 @@
    "width": 1200,
    "height": 675
   },
+  "marginal-tax-rates": {
+   "alt": "An electrician in safety glasses wires a switchboard under a work lamp on a building site at dusk",
+   "width": 1200,
+   "height": 675
+  },
   "meat-industry-award-rates": {
    "alt": "A butcher in a white coat and apron trims a leg of lamb on a wooden block",
    "width": 1200,
@@ -1647,6 +2052,16 @@
   },
   "medicare-levy": {
    "alt": "An older man in a flannel shirt and a woman wait on timber chairs in a country town clinic waiting room",
+   "width": 1200,
+   "height": 675
+  },
+  "medicare-levy-surcharge-calculator": {
+   "alt": "A woman in reading glasses scrolls a tablet on her couch, with a mug of tea and papers on the table",
+   "width": 1200,
+   "height": 675
+  },
+  "melbourne-cup-day-pay": {
+   "alt": "A bartender pours a beer from a tap as a crowd in fascinators celebrates in an old pub",
    "width": 1200,
    "height": 675
   },
@@ -1695,8 +2110,193 @@
    "width": 1200,
    "height": 675
   },
+  "net-pay-calculator": {
+   "alt": "A hairdresser in a black apron sweeps up hair clippings in a sunlit salon at the end of her shift",
+   "width": 1200,
+   "height": 675
+  },
   "new-job-checklist": {
    "alt": "A smiling older colleague welcomes a young woman with a backpack on her first day in a plant-filled office",
+   "width": 1200,
+   "height": 675
+  },
+  "new-years-day-pay-rates": {
+   "alt": "A smiling bartender pours sparkling wine at a rooftop bar as fireworks light up the harbour behind",
+   "width": 1200,
+   "height": 675
+  },
+  "news": {
+   "alt": "A woman in a linen blazer reads her phone over a coffee at a caf\u00e9 window, a tram passing outside",
+   "width": 1200,
+   "height": 675
+  },
+  "news--1000-dollar-instant-tax-deduction": {
+   "alt": "A tradeswoman in a navy work shirt smiles at a laptop on her couch, work boots and tool bag by the door",
+   "width": 1200,
+   "height": 675
+  },
+  "news--age-pension-increase-march-2026": {
+   "alt": "An older man in a straw hat picks tomatoes into a basket while his wife smiles from the verandah",
+   "width": 1200,
+   "height": 675
+  },
+  "news--age-pension-increase-september-2026": {
+   "alt": "An older woman in a straw hat waters bok choy, herbs and chillies in her backyard vegetable garden",
+   "width": 1200,
+   "height": 675
+  },
+  "news--air-traffic-controller-pay-rise-october-2026": {
+   "alt": "An air traffic controller in a headset watches a jet on the runway from a control tower at dusk",
+   "width": 1200,
+   "height": 675
+  },
+  "news--award-transport-payments-withholding-october-2026": {
+   "alt": "A worker with a backpack and takeaway coffee waits at a suburban bus shelter at dawn",
+   "width": 1200,
+   "height": 675
+  },
+  "news--award-wage-increase-2026-industries": {
+   "alt": "An aged care worker in lavender scrubs shares a laugh and a cup of tea with an elderly woman",
+   "width": 1200,
+   "height": 675
+  },
+  "news--c13-classification-phase-out": {
+   "alt": "A packing shed worker in a hairnet and gloves sorts oranges on a conveyor, citrus orchards outside",
+   "width": 1200,
+   "height": 675
+  },
+  "news--centrelink-changes-july-2026": {
+   "alt": "A father packs school lunch boxes at the kitchen bench while two young children eat breakfast behind him",
+   "width": 1200,
+   "height": 675
+  },
+  "news--centrelink-payment-increase-january-2026": {
+   "alt": "A university student in a grey hoodie writes in a notebook on the lawn under a jacaranda tree",
+   "width": 1200,
+   "height": 675
+  },
+  "news--deeming-rates-change-2026": {
+   "alt": "An older woman and her adult son look through a folder of papers at a table set for tea",
+   "width": 1200,
+   "height": 675
+  },
+  "news--division-296-super-tax-starts": {
+   "alt": "An older couple talk with a financial planner at a timber table in a sandstone home overlooking the sea",
+   "width": 1200,
+   "height": 675
+  },
+  "news--federal-budget-2026-27-your-pay": {
+   "alt": "A woman in a linen blazer holds her phone and gazes out of a bus window on her morning commute",
+   "width": 1200,
+   "height": 675
+  },
+  "news--health-professionals-award-changes-october-2026": {
+   "alt": "A young therapist in navy scrubs steadies an older man walking between parallel bars in a rehab gym",
+   "width": 1200,
+   "height": 675
+  },
+  "news--hecs-20-percent-cut-status": {
+   "alt": "A young woman with curly hair sits cross-legged on a sofa beside a laptop, smiling with relief",
+   "width": 1200,
+   "height": 675
+  },
+  "news--hecs-indexation-2026": {
+   "alt": "A young woman in a knit jumper rests her chin on her hand beside a stack of old textbooks",
+   "width": 1200,
+   "height": 675
+  },
+  "news--hecs-marginal-repayment-first-tax-time": {
+   "alt": "A young man in a hoodie smiles beside his laptop on a balcony above a river lined with jacarandas",
+   "width": 1200,
+   "height": 675
+  },
+  "news--hecs-repayment-threshold-2026-27": {
+   "alt": "Two young graduates laugh as they walk through a sandstone university courtyard under jacaranda trees",
+   "width": 1200,
+   "height": 675
+  },
+  "news--july-1-2026-money-changes": {
+   "alt": "A man in a beanie and puffer jacket reads his phone with a takeaway coffee on a frosty winter street",
+   "width": 1200,
+   "height": 675
+  },
+  "news--junior-pay-rates-december-2026": {
+   "alt": "A young supermarket worker in a green polo stacks red apples in the fruit and vegetable section",
+   "width": 1200,
+   "height": 675
+  },
+  "news--listo-boost-from-july-2027": {
+   "alt": "A young kitchen hand in a black apron rinses a stack of plates as cooks work the woks behind him",
+   "width": 1200,
+   "height": 675
+  },
+  "news--medicare-levy-thresholds-2026": {
+   "alt": "A young woman in a green hoodie folds white towels beside a row of washing machines in a laundromat",
+   "width": 1200,
+   "height": 675
+  },
+  "news--minimum-wage-increase-july-2026": {
+   "alt": "A young kitchen hand in a black apron stacks clean white plates on a steel bench in a restaurant kitchen",
+   "width": 1200,
+   "height": 675
+  },
+  "news--new-minimum-wage-take-home-pay": {
+   "alt": "A young cleaner in a teal polo smiles at her phone, cloth in hand, in a sunlit office foyer",
+   "width": 1200,
+   "height": 675
+  },
+  "news--payday-super-employees-payslip": {
+   "alt": "A care worker in a lilac uniform smiles at her phone on a break-room bench beside a mug and lunch box",
+   "width": 1200,
+   "height": 675
+  },
+  "news--payday-super-starts-july-2026": {
+   "alt": "A florist checks a tablet at her workbench among buckets of native flowers and eucalyptus",
+   "width": 1200,
+   "height": 675
+  },
+  "news--queensland-state-wage-case-2026": {
+   "alt": "A groundskeeper in a khaki hat and work shirt rakes fallen jacaranda flowers in a country-town park",
+   "width": 1200,
+   "height": 675
+  },
+  "news--schads-home-care-disability-pay-rise-december-2026": {
+   "alt": "A support worker in a teal polo and a young man with Down syndrome chop vegetables together, laughing",
+   "width": 1200,
+   "height": 675
+  },
+  "news--super-contribution-caps-2026-27": {
+   "alt": "A couple in their fifties read through a folder over a pot of tea on a deck by a river",
+   "width": 1200,
+   "height": 675
+  },
+  "news--super-tax-changes-explained": {
+   "alt": "A silver-haired woman in glasses works on a laptop in a sunroom with a teapot beside her",
+   "width": 1200,
+   "height": 675
+  },
+  "news--tax-cut-july-2026": {
+   "alt": "A man in a puffer jacket picks Brussels sprouts at a winter farmers market stall",
+   "width": 1200,
+   "height": 675
+  },
+  "news--tax-return-deadline-october-2026": {
+   "alt": "A tax agent in a burgundy blouse talks with a young couple across a timber desk with blank papers",
+   "width": 1200,
+   "height": 675
+  },
+  "news--tax-time-2026-whats-new": {
+   "alt": "A woman in a grey hoodie works on a laptop at home while her dog sleeps on the rug beneath the table",
+   "width": 1200,
+   "height": 675
+  },
+  "news--transfer-balance-cap-increase-2026": {
+   "alt": "A retired woman talks through plans with a planner at a table by a window overlooking a bay",
+   "width": 1200,
+   "height": 675
+  },
+  "news--victorian-teachers-pay-rise-2026": {
+   "alt": "A teacher in a navy blazer explains a lesson to a class of students seen from behind",
    "width": 1200,
    "height": 675
   },
@@ -1725,6 +2325,11 @@
    "width": 1200,
    "height": 675
   },
+  "ote-salary": {
+   "alt": "A saleswoman in a charcoal suit takes a phone call by tall office windows overlooking a river",
+   "width": 1200,
+   "height": 675
+  },
   "overtime-pay-calculator": {
    "alt": "A warehouse worker in an orange hi-vis vest stands at a loading dock door at dusk, pallets and a forklift behind",
    "width": 1200,
@@ -1732,6 +2337,11 @@
   },
   "overtime-penalty-rates-guide": {
    "alt": "A factory worker carrying a metal lunchbox walks out through the plant gate late at night",
+   "width": 1200,
+   "height": 675
+  },
+  "paramedic-pay": {
+   "alt": "A paramedic in a green uniform restocks a kit bag at the open back of a white van on a misty morning",
    "width": 1200,
    "height": 675
   },
@@ -1747,6 +2357,11 @@
   },
   "pastoral-award-rates": {
    "alt": "A farm hand in a felt hat leans on a stockyard rail as merino sheep run past and a kelpie watches him",
+   "width": 1200,
+   "height": 675
+  },
+  "pay-and-tax-changes-calendar": {
+   "alt": "A woman in a knit jumper writes in a planner with coloured tabs beside a cup of tea on a winter morning",
    "width": 1200,
    "height": 675
   },
@@ -1970,8 +2585,28 @@
    "width": 1200,
    "height": 675
   },
+  "payday-super": {
+   "alt": "A young woman in a work apron smiles at her phone on a tram ride home at dusk",
+   "width": 1200,
+   "height": 675
+  },
   "payg-withholding-tables": {
    "alt": "A mechanic workshop owner types on a laptop in her office, a car raised on a hoist behind her",
+   "width": 1200,
+   "height": 675
+  },
+  "payment-in-lieu-of-notice": {
+   "alt": "A manager in a linen blazer talks seriously with an employee across a meeting table with a closed folder",
+   "width": 1200,
+   "height": 675
+  },
+  "payroll-tax": {
+   "alt": "A business owner with short grey hair talks with a colleague as they walk through a busy open-plan office",
+   "width": 1200,
+   "height": 675
+  },
+  "payroll-tax-calculator": {
+   "alt": "A factory owner and a supervisor in hairnets talk as they walk past packing lines and stacked cartons",
    "width": 1200,
    "height": 675
   },
@@ -1980,13 +2615,38 @@
    "width": 1200,
    "height": 675
   },
+  "pension-age-australia": {
+   "alt": "A retired man in a straw hat ties tomato plants to stakes in a raised garden bed in his backyard",
+   "width": 1200,
+   "height": 675
+  },
   "pharmacy-award-rates": {
    "alt": "A pharmacy assistant restocks white boxes on a shelf while a pharmacist works at the counter behind",
    "width": 1200,
    "height": 675
   },
+  "pilot-salary": {
+   "alt": "A pilot in a white shirt with a headset round his neck checks over a small white propeller plane at sunrise",
+   "width": 1200,
+   "height": 675
+  },
   "plumbing-award-rates": {
    "alt": "A plumber in a navy shirt kneels to tighten copper pipes under a farmhouse kitchen sink",
+   "width": 1200,
+   "height": 675
+  },
+  "police-pay": {
+   "alt": "A police officer in a plain navy uniform walks away down a jacaranda-lined suburban footpath at dusk",
+   "width": 1200,
+   "height": 675
+  },
+  "prison-officer-pay": {
+   "alt": "An officer in a navy uniform walks the wire perimeter fence of a correctional centre in morning mist",
+   "width": 1200,
+   "height": 675
+  },
+  "privacy": {
+   "alt": "Hands type on a laptop at a timber desk beside a mug, a small plant and a closed notebook",
    "width": 1200,
    "height": 675
   },
@@ -1997,6 +2657,16 @@
   },
   "pro-rata-salary-calculator": {
    "alt": "A father closes his laptop and picks up his keys at a home desk beside a child's backpack and drawing",
+   "width": 1200,
+   "height": 675
+  },
+  "public-holiday-pay": {
+   "alt": "A bar worker in a black t-shirt carries a tray of iced drinks through a busy pub beer garden",
+   "width": 1200,
+   "height": 675
+  },
+  "public-holidays-2027": {
+   "alt": "A bartender in a black T-shirt pours a beer from the tap at a busy country pub",
    "width": 1200,
    "height": 675
   },
@@ -2032,6 +2702,11 @@
   },
   "retail-hospitality-pay-guide": {
    "alt": "A young waitress in a black apron carries plates of food through a busy country pub dining room",
+   "width": 1200,
+   "height": 675
+  },
+  "rideshare-delivery-earnings-after-tax": {
+   "alt": "A delivery rider in a wet black rain jacket waits on his e-bike on a rainy street of terrace houses",
    "width": 1200,
    "height": 675
   },
@@ -2085,6 +2760,11 @@
    "width": 1200,
    "height": 675
   },
+  "school-support-staff-pay": {
+   "alt": "A teacher aide points to a kookaburra picture in a book as a primary student reads beside her",
+   "width": 1200,
+   "height": 675
+  },
   "second-job-tax-calculator": {
    "alt": "A man in a blue office shirt ties on a black apron in a wine bar before an evening shift",
    "width": 1200,
@@ -2092,6 +2772,16 @@
   },
   "security-award-rates": {
    "alt": "A security officer in a plain black uniform patrols an empty shopping centre at night with a torch",
+   "width": 1200,
+   "height": 675
+  },
+  "sick-leave-calculator": {
+   "alt": "A man wrapped in a knitted blanket rests on the couch with lemon tea and tissues on a rainy day",
+   "width": 1200,
+   "height": 675
+  },
+  "site-directory": {
+   "alt": "A smiling man browses a tablet on a linen sofa in a sunny living room, a coffee beside him",
    "width": 1200,
    "height": 675
   },
@@ -2170,6 +2860,11 @@
    "width": 1200,
    "height": 675
   },
+  "tax-free-threshold": {
+   "alt": "A young caf\u00e9 worker fills in a new-starter form on a clipboard as her smiling manager points to the page",
+   "width": 1200,
+   "height": 675
+  },
   "tax-on": {
    "alt": "A woman in a linen blazer leans back from her laptop in a harbourside office, deep in thought",
    "width": 1200,
@@ -2180,8 +2875,18 @@
    "width": 1200,
    "height": 675
   },
+  "tax-return-2026": {
+   "alt": "A man in a green jumper works on a laptop at a dining table at dusk, a pile of receipts beside him",
+   "width": 1200,
+   "height": 675
+  },
   "tax-return-calculator": {
    "alt": "An older couple sort paper receipts into a folder at a kitchen table with a laptop and a lemon tree outside",
+   "width": 1200,
+   "height": 675
+  },
+  "tax-withheld-calculator": {
+   "alt": "A business owner in a denim shirt works on a laptop at a desk inside her timber joinery workshop",
    "width": 1200,
    "height": 675
   },
@@ -2195,8 +2900,33 @@
    "width": 1200,
    "height": 675
   },
+  "termination-payment-tax-calculator": {
+   "alt": "A man carries a box with a plant and a photo frame out of a sandstone office building",
+   "width": 1200,
+   "height": 675
+  },
+  "terms": {
+   "alt": "Hands hold a fountain pen over a stack of printed pages beside reading glasses and a cup of tea",
+   "width": 1200,
+   "height": 675
+  },
   "timber-award-rates": {
    "alt": "A sawmill worker in ear muffs and safety glasses guides a hardwood plank along a saw bench",
+   "width": 1200,
+   "height": 675
+  },
+  "time-in-lieu": {
+   "alt": "A smiling woman with a tote bag wheels her bicycle out of an office building into afternoon sun",
+   "width": 1200,
+   "height": 675
+  },
+  "train-driver-salary": {
+   "alt": "Seen from behind, a train driver looks through the cab window at tracks curving past suburban houses",
+   "width": 1200,
+   "height": 675
+  },
+  "travel-allowance": {
+   "alt": "A woman in a hi-vis vest wheels a suitcase along a country motel veranda, a work ute and water tower behind",
    "width": 1200,
    "height": 675
   },
@@ -2222,6 +2952,11 @@
   },
   "work-hours-calculator": {
    "alt": "A caf\u00e9 worker in a linen apron rests on a back step with a glass of water during her break",
+   "width": 1200,
+   "height": 675
+  },
+  "working-australians-tax-offset": {
+   "alt": "A young couple eat noodles and chat on the floor of their apartment beside an open laptop",
    "width": 1200,
    "height": 675
   },

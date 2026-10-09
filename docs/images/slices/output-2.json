@@ -1,0 +1,450 @@
+[
+ {
+  "key": "income-tax-calculator",
+  "alt": "A woman works on a laptop at a timber kitchen table beside a mug of tea and an open garden window",
+  "prompt": "Realistic editorial photograph, a woman in her forties of South Asian heritage works out her yearly income tax on a laptop at a worn timber kitchen table, the laptop screen angled away from the camera, a cup of tea and a pen beside her, in the kitchen of an inner-city Melbourne terrace house with a window onto a leafy courtyard, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "f408489c-c81e-405c-8e45-a94096fec09c"
+ },
+ {
+  "key": "redundancy-pay-calculator",
+  "alt": "A grey-haired man packs a plant and a mug into a cardboard box at his office desk",
+  "prompt": "Realistic editorial photograph, a man in his late fifties with grey stubble packs a desk plant and a coffee mug into a plain cardboard box at a cleared office desk on his last day after being made redundant, colleagues softly blurred in the background, an open-plan office in North Sydney with afternoon light through tall windows, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "05932bf7-0b13-465b-afe6-9e4472ca81c6"
+ },
+ {
+  "key": "bonus-tax-calculator",
+  "alt": "A smiling woman in a linen blazer reads her phone at an office desk with a river view behind",
+  "prompt": "Realistic editorial photograph, a young East Asian Australian saleswoman in her early thirties smiles as she reads good news on her phone at her desk after receiving her annual bonus, the phone screen facing away from the camera, colleagues blurred behind her, a bright modern office in Brisbane with river views through the windows, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "db33e4f1-b958-4b34-98c0-e4bd09c0eca2"
+ },
+ {
+  "key": "jobseeker-payment-calculator",
+  "alt": "A man types on a laptop at a long table in a public library, a water bottle and notebook beside him",
+  "prompt": "Realistic editorial photograph, a Pacific Islander man in his early thirties searches for work on a laptop at a long table in a bright public library in Western Sydney, the laptop screen facing away from the camera, a notebook and a water bottle beside him, rows of shelves softly blurred behind, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "c3314659-a84e-45f2-8e72-1d87fbb1c65c"
+ },
+ {
+  "key": "carer-payment-calculator",
+  "alt": "A woman steadies her elderly father as he walks with a frame along a garden path outside a brick house",
+  "prompt": "Realistic editorial photograph, a woman in her fifties gently helps her elderly father walk with a walking frame along the garden path of their brick suburban home in Adelaide, seen from the side, roses and a gum tree behind them, late afternoon, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "be25f30b-8e35-4e61-a7e3-9c073466b768"
+ },
+ {
+  "key": "child-care-subsidy-calculator",
+  "alt": "A father crouches at a childcare centre gate to hand a small backpack to his toddler",
+  "prompt": "Realistic editorial photograph, a father in his thirties in work clothes crouches at the gate of a childcare centre to hand a small backpack to his toddler, the child seen only from behind and out of focus, a leafy suburban childcare centre in Perth with a sandpit and timber play equipment in the background, early morning, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "35057daf-c586-46e4-809f-0674e8a938c5"
+ },
+ {
+  "key": "ytd-income-calculator",
+  "alt": "A mine worker in orange hi-vis checks his phone in a crib room, haul trucks on red dirt outside the window",
+  "prompt": "Realistic editorial photograph, an Aboriginal Australian mine worker in his forties wearing a plain orange hi-vis shirt with no markings sits at a table in a mine site crib room on his lunch break, checking his year-to-date pay on his phone, the phone screen facing away from the camera, red dirt and haul trucks blurred through the window in the Pilbara, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "94d9c7a1-303f-4ef1-a5fa-b6b941c43e58"
+ },
+ {
+  "key": "monthly-pay-calculator",
+  "alt": "A young couple plan their budget in a notebook at a table on the verandah of a timber Queenslander",
+  "prompt": "Realistic editorial photograph, a young couple in their late twenties, she of Filipino heritage and he of Anglo-Australian heritage, plan their monthly budget together at a dining table in a timber Queenslander house in Brisbane, a laptop with its screen turned away from the camera, coffee cups and a houseplant, louvred windows and a verandah with frangipani behind them, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "2299f1fd-6815-490c-9b6b-cf42687cd855"
+ },
+ {
+  "key": "pay-calculator-sa",
+  "alt": "A vineyard worker in a straw hat prunes vines with secateurs, a stone shed and gum trees behind her",
+  "prompt": "Realistic editorial photograph, a vineyard worker in her thirties with a wide-brimmed hat prunes grapevines with secateurs between long rows of vines in the Barossa Valley, South Australia, rolling hills, an old bluestone farm shed and gum trees in the distance, soft morning sun, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "4618fe6d-5712-4cae-814e-071aeee1d094"
+ },
+ {
+  "key": "medicare-levy",
+  "alt": "An older man in a flannel shirt and a woman wait on timber chairs in a country town clinic waiting room",
+  "prompt": "Realistic editorial photograph, an older man in his sixties with a flannel shirt waits in the bright waiting room of a country town GP clinic, a woman of Greek heritage in her forties seated a few chairs away, timber floors, potted plants and a window onto a quiet main street with a verandahed shopfront blurred outside, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no posters, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "a6896288-5423-4e23-a8cc-541c01a0fa83"
+ },
+ {
+  "key": "low-income-tax-offset",
+  "alt": "A young woman in a canvas apron waters seedlings with a hose under shade cloth at a plant nursery",
+  "prompt": "Realistic editorial photograph, a young woman in her early twenties with a plain canvas apron waters seedlings with a hose at a garden nursery where she works part-time, rows of potted native plants and grevilleas around her, a shade-cloth roof filtering the sun, in a regional New South Wales town, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no plant labels, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "1a9a2cb2-f5ec-4cec-b7e5-39c902c3fd41"
+ },
+ {
+  "key": "hospitality-award-rates",
+  "alt": "A hotel housekeeper in a sage uniform smooths white sheets on a bed in a beachfront room",
+  "prompt": "Realistic editorial photograph, a hotel housekeeper in her forties of Vietnamese heritage, wearing a plain sage-green uniform with no badges, smooths crisp white sheets while making a bed in a bright hotel room overlooking the beach at Surfers Paradise, Gold Coast, a cleaning trolley at the doorway, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "e92298cf-623c-4dd8-999a-5cc7f25a4e56"
+ },
+ {
+  "key": "clerks-award-rates",
+  "alt": "An office clerk on a desk phone sorts through manila folders at a reception desk",
+  "prompt": "Realistic editorial photograph, an administrative clerk in his twenties of Indian heritage, wearing a pale blue business shirt, talks on a desk phone while sorting plain manila folders at the front reception desk of a small suburban accounting office in Parramatta, a monitor turned away from the camera, indoor plants and frosted glass behind him, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "48588e66-ef87-4a58-81ef-5987aaca4982"
+ },
+ {
+  "key": "real-estate-award-rates",
+  "alt": "A real estate agent hands house keys to a smiling couple on the porch of a weatherboard home",
+  "prompt": "Realistic editorial photograph, a real estate agent in her thirties with a neat blazer hands a set of house keys to a smiling young couple on the front porch of a renovated weatherboard home in suburban Hobart, Tasmania, a garden with native shrubs, seen slightly from the side, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "88e8f33f-d5fb-40fe-8f4c-853b1db44619"
+ },
+ {
+  "key": "health-professionals-award-rates",
+  "alt": "A physiotherapist in green scrubs assesses a man's shoulder in a bright clinic room",
+  "prompt": "Realistic editorial photograph, a physiotherapist in her thirties with short dark hair assesses the shoulder of a middle-aged male patient seated on a treatment table, her hands gently guiding his arm, a bright allied health clinic in Canberra with timber shelving, resistance bands and a skeleton-free plain wall, natural light from a large window, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no posters, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "fa7a8dfa-3397-4395-bac3-c367c80fbf72"
+ },
+ {
+  "key": "nurses-award-rates",
+  "alt": "A nurse in blue scrubs kneels to tuck a knitted blanket over an elderly woman's knees in an armchair",
+  "prompt": "Realistic editorial photograph, an enrolled nurse in her fifties of Ghanaian heritage, wearing plain light blue scrubs with no badges, kneels beside an elderly woman in an armchair to adjust a blanket over her knees in the sunny lounge of an aged care home in suburban Melbourne, garden visible through large windows, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "3fd9bb82-9924-46ea-ae91-4704e5fcad0a"
+ },
+ {
+  "key": "employer-cost-calculator",
+  "alt": "A café owner works on a laptop among folders and papers while staff make coffee behind her",
+  "prompt": "Realistic editorial photograph, a café owner in her thirties of Lebanese heritage sits at a small cluttered desk in the back office of her café doing the weekly payroll on a laptop, the laptop screen facing away from the camera, through the open doorway her staff are blurred working at the coffee machine and counter, an inner-west Sydney café with exposed brick, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "60e39ec8-9a96-44db-9484-30b974103e36"
+ },
+ {
+  "key": "novated-lease-guide",
+  "alt": "A woman plugs a charging cable into a white electric car parked in a suburban driveway",
+  "prompt": "Realistic editorial photograph, a woman in her forties plugs a charging cable into the side of a sleek unbadged white electric car parked in the driveway of a modern suburban home in Brisbane, seen from the side, the car with no badges and no number plate visible, a palm and gum trees along the street, late afternoon, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "018e5fd8-2de2-491a-89db-da88dcd48527"
+ },
+ {
+  "key": "cost-of-living-payment-2026",
+  "alt": "An older couple laugh as they unpack vegetables, bread and eggs from cloth bags in their kitchen",
+  "prompt": "Realistic editorial photograph, a retired couple in their seventies unpack fresh vegetables, bread and eggs from reusable shopping bags onto the laminate bench of their modest kitchen in a 1970s brick home in suburban Perth, she holds up a cabbage while he looks on, afternoon light through a window with a lemon tree outside, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no product labels, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "0895ae86-edd1-4031-92c9-1e36094298af"
+ },
+ {
+  "key": "first-job-pay-guide",
+  "alt": "A teenage boy in a black polo and apron writes an order at a fish and chip shop counter by the sea",
+  "prompt": "Realistic editorial photograph, a 17-year-old boy in a plain black polo shirt and apron takes an order at the counter of a fish and chip shop in a coastal town on the New South Wales south coast, an older co-worker frying chips behind him, the sea glimpsed through the front window, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no menu boards, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "2b035974-c88b-4237-8f29-1e57d3f8d63f"
+ },
+ {
+  "key": "private-health-insurance-medicare",
+  "alt": "A man recovering in a private hospital bed holds hands with his wife beside a window onto gum trees",
+  "prompt": "Realistic editorial photograph, a man in his forties of Chinese heritage sits up in bed in a quiet private hospital room recovering after surgery, his wife sitting beside him holding his hand, a large window with a view of gum trees, soft white linen and a timber bedside table, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no monitors, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "c2fd84bd-cbc9-4c4f-99d1-c13acadb2309"
+ },
+ {
+  "key": "employee-vs-sole-trader-vs-company",
+  "alt": "A freelance designer with tattooed arms draws on a tablet at a timber desk in a converted garage studio",
+  "prompt": "Realistic editorial photograph, a freelance graphic designer in her early thirties with tattooed forearms sketches on a drawing tablet at a big timber desk in her sunlit converted-garage home studio in Fremantle, Western Australia, the tablet screen angled away, pot plants and rolls of paper, a roller door open to a limestone wall and frangipani, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no posters, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "e6986a2e-5c6b-48d9-b7e1-db74d8d887ee"
+ },
+ {
+  "key": "retail-hospitality-pay-guide",
+  "alt": "A young waitress in a black apron carries plates of food through a busy country pub dining room",
+  "prompt": "Realistic editorial photograph, a young waitress in her early twenties of Torres Strait Islander heritage, in a plain black shirt and apron, carries three plates of food across the busy timber dining room of a heritage country pub on a sunny Sunday lunch, diners blurred at tables, pressed-tin ceiling and tall sash windows, in regional Victoria, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no chalkboards, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "5b74650b-0320-48c3-9d74-d051ee531be6"
+ },
+ {
+  "key": "full-time-vs-part-time-vs-casual",
+  "alt": "At a pre-dawn bakery shift change, an older baker hangs up his apron as a young baker ties hers on",
+  "prompt": "Realistic editorial photograph, a shift changeover before dawn at a busy commercial bakery in suburban Adelaide: a male baker in his fifties of Italian heritage hangs up his flour-dusted apron to head home while a young female baker in her twenties ties hers on to start, trays of bread rolls and a deck oven glowing behind them, warm lamp light mixing with blue pre-dawn light from a window, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "9afd2478-6d5e-4ac0-8e0f-991e6bfef34c"
+ },
+ {
+  "key": "hourly-to-salary",
+  "alt": "A hairdresser trims a smiling older woman's grey hair in a small salon with timber shelves",
+  "prompt": "Realistic editorial photograph, a hairdresser in his late twenties of Korean heritage cuts a client's hair with scissors and comb in a small suburban hair salon in Melbourne, the client in her sixties seated in a cape and smiling, seen from the side rather than in the mirror, warm timber shelves with unlabelled bottles and plants, natural light from a shopfront window, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no product labels, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "3206d97e-65eb-4bf9-a338-351744b19416"
+ },
+ {
+  "key": "pay-rates--bunnings",
+  "alt": "A hardware store worker in a green apron helps a customer choose pine timber in a warehouse aisle",
+  "prompt": "Realistic editorial photograph, a hardware store team member in his forties of Samoan heritage, wearing a plain dark green apron with no logo over a work shirt, helps a woman choose lengths of pine timber in the high-ceilinged timber aisle of a big warehouse hardware store in western Sydney, tall racks of raw timber and a trolley, seen slightly from the side, natural light from skylights, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no price tags, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "182c7801-f3c2-46df-a0d4-5f16ee8f5f9d"
+ },
+ {
+  "key": "pay-rates--liquorland",
+  "alt": "A bottle shop worker in a grey polo places a bottle of red wine on a timber shelf",
+  "prompt": "Realistic editorial photograph, a bottle shop worker in her late twenties of Indian heritage, in a plain charcoal polo shirt with no logo, restocks a timber wine shelf in a small suburban bottle shop in Canberra, holding a dark wine bottle, rows of bottles with plain blank labels softly out of focus, warm downlights and late afternoon light from the shopfront, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no labels, no signs, no price tags, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "1c95c9be-e7b1-465f-93e8-0aa6bfbd75a3"
+ },
+ {
+  "key": "pay-rates--david-jones",
+  "alt": "A silver-haired sales assistant adjusts a camel coat on a young man at a mirror in a department store",
+  "prompt": "Realistic editorial photograph, a department store sales assistant in her fifties with silver hair and a neat black outfit helps a young man of Middle Eastern heritage try on a camel wool coat in front of a large mirror on the menswear floor of a grand department store in Sydney's CBD, racks of tailored jackets and soft warm lighting, seen from the side, natural light from tall arched windows, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no price tags, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "2304b943-2014-4d21-acf9-91d9bc77aee0"
+ },
+ {
+  "key": "pay-rates--bws",
+  "alt": "A young man in a navy polo wheels a trolley of cardboard cartons through a cool room lined with beer kegs",
+  "prompt": "Realistic editorial photograph, a young man in his early twenties in a plain navy polo shirt with no logo pushes a hand trolley stacked with plain unmarked brown cardboard cartons through the chilled cool room at the back of a suburban liquor store in Darwin, steel shelving holding only more plain unmarked cartons and silver beer kegs, condensation on the glass door, seen from the side, cool fluorescent light mixed with warm daylight from an open loading door, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No bottles, no text, no logos, no readable writing or numbers, no labels, no stickers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "662a825a-aec6-48c1-9e23-3eb08eb41e98"
+ },
+ {
+  "key": "pay-rates--priceline",
+  "alt": "A beauty assistant swatches a lipstick shade on a customer's hand at a pharmacy cosmetics counter",
+  "prompt": "Realistic editorial photograph, a beauty retail assistant in her twenties of Vietnamese heritage, in a plain white shirt with no badge, swatches a lipstick shade on the back of a customer's hand at a bright cosmetics counter in a suburban pharmacy in Brisbane, the customer a woman in her forties of Sudanese heritage, rows of small unlabelled makeup products softly out of focus, natural light from the shopfront, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no product labels, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "2fd78c87-b8bf-42ca-9cd0-e2cec55200f0"
+ },
+ {
+  "key": "pay-rates--guzman-y-gomez",
+  "alt": "A young crew member in a black cap wraps a burrito in foil behind bowls of salsa, rice and beans",
+  "prompt": "Realistic editorial photograph, a young fast food crew member around eighteen with a plain black cap and black shirt with no logo rolls a burrito in foil at a stainless steel prep line in a busy Mexican-style fast food kitchen in suburban Melbourne, bowls of fresh salsa, rice and beans in front of him, co-workers blurred behind, bright kitchen light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no menu boards, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "55287500-8586-49b4-ac60-8d899d6788af"
+ },
+ {
+  "key": "casual-loading-calculator",
+  "alt": "A young events worker carries white folding chairs across a vineyard lawn set up for a wedding",
+  "prompt": "Realistic editorial photograph, a casual events worker in her twenties of Brazilian heritage, in a plain black t-shirt, carries two white folding chairs across the lawn while setting up rows of seating for an outdoor wedding at a vineyard venue in the Hunter Valley, New South Wales, other casual staff blurred in the background, rolling green hills and gum trees, golden afternoon light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "698d2b3c-e3cb-46ba-a925-b5c2d96ddecc"
+ },
+ {
+  "key": "job-pay-rates--disability-support-worker",
+  "alt": "A support worker chops carrots while a young man in a wheelchair stirs a pot at a low kitchen bench",
+  "prompt": "Realistic editorial photograph, a disability support worker in his thirties of Nepalese heritage chops vegetables alongside a young man in a wheelchair who is stirring a pot at a lowered accessible kitchen bench in a bright share house in suburban Newcastle, both smiling and focused on cooking together, a window onto a backyard with a lemon-scented gum, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no lanyards, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "f4e37de6-c390-4a99-adce-2655fffe8c8b"
+ },
+ {
+  "key": "job-pay-rates--security-guard",
+  "alt": "A security guard in a plain black uniform watches shoppers at a shopping centre entrance at dusk",
+  "prompt": "Realistic editorial photograph, a security guard in his forties in a plain black uniform shirt and trousers with no badges, patches, insignia or lettering stands at the glass entrance of a suburban shopping centre at dusk, seen from the side and slightly behind, watching shoppers pass, warm interior light spilling onto the pavement, palm trees and a car park softly blurred, Gold Coast, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no weapons, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "dae5fe14-876d-45fe-9058-6dc391457a87"
+ },
+ {
+  "key": "job-pay-rates--plumber",
+  "alt": "A plumber lying under a kitchen sink tightens a pipe fitting with a wrench beside an open toolbox",
+  "prompt": "Realistic editorial photograph, a plumber in his thirties of Maori heritage, in a plain navy work shirt with no logo, lies half under a kitchen sink tightening a pipe fitting with a wrench in a renovated suburban kitchen in Perth, an open toolbox and a torch on the floor beside him, the homeowner's kitchen bench and window with bottlebrush outside, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "b1b5d08d-6637-4232-9522-da3cb63f0f38"
+ },
+ {
+  "key": "job-pay-rates--teacher-aide",
+  "alt": "A teacher aide helps a student paint gum leaves at a classroom table, a big fig tree outside",
+  "prompt": "Realistic editorial photograph, a teacher aide in her forties of Filipino heritage kneels beside a primary school student's desk helping with a painting activity, the child seen only from behind and out of focus with paintbrush in hand, bright classroom in a regional Queensland school with paintings of gum leaves pinned up and louvre windows onto a playground with a big fig tree, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no alphabet charts, no posters with words, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "e1407865-9551-47ea-9be3-85d533df6e05"
+ },
+ {
+  "key": "job-pay-rates--chef",
+  "alt": "A chef in a white jacket plates barramundi with tweezers as flames rise from the grill behind her",
+  "prompt": "Realistic editorial photograph, a chef in her thirties with a plain white chef's jacket with no logo carefully plates a dish of barramundi with tweezers at the pass of a busy commercial restaurant kitchen in Sydney, flames from the grill and other cooks blurred behind her, stainless steel benches and warm overhead heat lamps, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no order dockets, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "0415a2b0-0284-4bb7-bed7-60060e2b6da4"
+ },
+ {
+  "key": "job-pay-rates--lab-technician",
+  "alt": "A lab technician in safety glasses and blue gloves pipettes a sample into a rack of test tubes",
+  "prompt": "Realistic editorial photograph, a pathology lab technician in his twenties of Sri Lankan heritage, in a plain white lab coat, safety glasses and blue gloves, pipettes a sample into a row of small unlabelled test tubes at a clean bench in a bright hospital pathology laboratory in Adelaide, a centrifuge and glassware softly blurred behind, natural light from high windows, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no labels, no screens, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "f35cfedd-7567-49ca-85be-5ab45f119221"
+ },
+ {
+  "key": "job-pay-rates--radiographer",
+  "alt": "A radiographer in teal scrubs positions an older man's arm on an X-ray table",
+  "prompt": "Realistic editorial photograph, a radiographer in her thirties of Japanese heritage, in plain teal scrubs with no badges, gently positions an older man's arm on the detector plate of a plain unbranded X-ray machine in a calm hospital imaging room in Hobart, Tasmania, soft overhead light and a window with gum trees, seen from the side, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no warning signs, no screens, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "82566b06-5e32-4de4-bc48-498c9af126ba"
+ },
+ {
+  "key": "job-pay-rates--veterinarian",
+  "alt": "A vet listens to a red kelpie's chest with a stethoscope while a farmer in a felt hat holds its collar",
+  "prompt": "Realistic editorial photograph, a veterinarian in her forties with a stethoscope and plain green scrubs examines a red kelpie dog standing on a steel exam table, its owner, a farmer in an Akubra-style felt hat, steadying the dog, in a small regional vet clinic in country New South Wales, a window onto dry paddocks, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no posters, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "a67e1a72-eb24-4188-916c-b2de58094108"
+ },
+ {
+  "key": "job-pay-rates--forklift-operator",
+  "alt": "A forklift operator in an orange hard hat and hi-vis vest works the controls in a busy warehouse",
+  "prompt": "Realistic editorial photograph, a forklift operator in his fifties of Lebanese heritage, wearing a plain orange hi-vis vest with no markings and a hard hat, drives an unbranded yellow forklift lifting a pallet of plain shrink-wrapped boxes in a large distribution warehouse in western Melbourne, tall racking and skylights, seen from the side, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no labels, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "7f5300e6-6424-48c5-b8f8-92e3702e76ad"
+ },
+ {
+  "key": "job-pay-rates--cyber-security",
+  "alt": "A cyber security analyst studies two glowing monitors in a dim office with city lights behind",
+  "prompt": "Realistic editorial photograph, a cyber security analyst in her late twenties of Chinese heritage sits at a desk in a dim security operations room in Canberra, studying two large monitors that glow with abstract blurred blue and green light, the screens deliberately out of focus and unreadable, a colleague in the background, city lights through a window, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no code, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "487802d4-e01e-4bd8-ad8e-f42b5d418097"
+ },
+ {
+  "key": "job-pay-rates--paralegal",
+  "alt": "A paralegal in a navy blazer sorts stacks of folders on a long table, a river and bridge outside",
+  "prompt": "Realistic editorial photograph, a paralegal in her twenties of Indigenous Australian heritage, in a smart navy blazer, sorts plain unmarked document folders into neat piles on a long timber table in a glass-walled meeting room of a city law firm in Brisbane, the river and a bridge softly blurred through the windows, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no printed pages, no book spines, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "6e511cf6-bb51-48de-b63d-e1e9b28156c3"
+ },
+ {
+  "key": "job-pay-rates--personal-trainer",
+  "alt": "A personal trainer coaches a woman through kettlebell squats on a riverside lawn at sunrise",
+  "prompt": "Realistic editorial photograph, a personal trainer in his late twenties of Ethiopian heritage, in a plain grey t-shirt, coaches a woman in her fifties doing kettlebell squats on the grass of a riverside park in Perth at sunrise, the Swan River and gum trees behind, a towel and water bottle on the grass, golden morning light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no brand marks on clothing, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "3220e029-b9bc-499d-b46a-d4b8e9fa788a"
+ },
+ {
+  "key": "job-pay-rates--optometrist",
+  "alt": "An optometrist shines a small light into a young woman's eye beside a phoropter",
+  "prompt": "Realistic editorial photograph, an optometrist in his forties of Greek heritage, in a pale blue shirt, examines a young woman's eyes with a handheld ophthalmoscope light in a calm, softly lit consulting room of a suburban optometry practice in Adelaide, a phoropter on an arm beside the chair, timber shelves with spectacle frames softly blurred, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No eye chart, no letters, no text, no logos, no readable writing or numbers, no screens, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "8ebbd9fe-96a5-4a11-b0a4-c625e86dbc6a"
+ },
+ {
+  "key": "concessional-contributions-cap",
+  "alt": "A man in a denim shirt talks with a payroll officer behind a laptop in a bright office",
+  "prompt": "Realistic editorial photograph, a man in his late forties of Croatian heritage sits across a desk from a payroll officer in a bright corporate HR office in Melbourne's Docklands, discussing setting up salary sacrifice into his super, she gestures at a laptop whose screen faces away from the camera, glass partitions and indoor plants behind, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no printed documents, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "3d8883fc-10ee-4281-b6f4-a611821d74ef"
+ },
+ {
+  "key": "enterprise-agreement",
+  "alt": "Factory workers in hi-vis vests raise their hands to vote as a workplace delegate speaks in a lunchroom",
+  "prompt": "Realistic editorial photograph, a group of factory workers of mixed ages and backgrounds in plain work shirts and unmarked hi-vis vests sit around tables in a factory lunchroom in Geelong, listening as a woman in her fifties, their workplace delegate, talks through the terms of their new pay agreement, several raising hands to vote, steel-framed windows with afternoon light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no papers with print, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "4a4aadae-b40d-4058-bd76-bea8b252652b"
+ },
+ {
+  "key": "payroll-tax",
+  "alt": "A business owner with short grey hair talks with a colleague as they walk through a busy open-plan office",
+  "prompt": "Realistic editorial photograph, the owner of a mid-sized engineering firm, a woman in her fifties of Indian heritage with short grey hair, walks through a large busy open-plan office in Perth's CBD talking with her operations manager, dozens of staff at long desks behind them, monitors facing away from the camera, high ceilings, plants and floor-to-ceiling windows, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "2356781e-85be-4863-9186-2c85c9d56a40"
+ },
+ {
+  "key": "annual-leave-calculator",
+  "alt": "A smiling woman packs a straw hat, sunglasses and summer clothes into a suitcase on her bed",
+  "prompt": "Realistic editorial photograph, a woman in her forties of Korean heritage packs a sun hat, sunglasses and folded summer clothes into an open suitcase on her bed, smiling as she gets ready for her annual leave, a bright bedroom in a Brisbane townhouse with a window onto palms and blue sky, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no luggage tags, no passports, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "6dcfad6f-25a5-4889-8a22-cb220870eeb1"
+ },
+ {
+  "key": "centrelink-payment-rates",
+  "alt": "A young woman in a green hoodie studies at a share house kitchen table, a bike in the hall behind",
+  "prompt": "Realistic editorial photograph, a university student in her early twenties of Vietnamese heritage studies at the kitchen table of a share house in inner-city Melbourne, a closed laptop, plain-covered textbooks and a cup of tea in front of her, a pushbike leaning in the hallway behind, a housemate blurred at the stove, warm afternoon light through a window with a jasmine vine, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no book titles, no posters, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "ff692c15-9cf7-4a2f-8634-d0f3beabc7e8"
+ },
+ {
+  "key": "carry-forward-concessional-contributions-calculator",
+  "alt": "A red-haired woman in a work shirt talks with an older adviser over coffee, port cranes outside",
+  "prompt": "Realistic editorial photograph, a self-employed electrician in her forties, a woman with tied-back red hair in a plain work shirt, sits with a financial adviser, a man in his sixties, at a round timber table in a small bright advisory office in Newcastle, New South Wales, talking through catching up on her retirement savings, coffee cups and a closed folder on the table, harbour cranes blurred through the window, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no screens, no printed documents, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "626d3848-319b-4057-bfcd-dfbd4b4414f6"
+ },
+ {
+  "key": "apprentice-pay--bricklayer",
+  "alt": "A young apprentice in a hi-vis vest lays a brick as an older bricklayer points out the next step",
+  "prompt": "Realistic editorial photograph, a first-year apprentice bricklayer around eighteen in a plain grey work shirt and unmarked hi-vis vest spreads mortar and lays a red brick on a rising wall, his supervisor, an older bricklayer in his fifties, watching and pointing, on a sunny suburban building site in western Sydney, timber frames and gum trees in the background, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "b324c150-c088-461d-a0b8-2137e5231f88"
+ },
+ {
+  "key": "apprentice-pay--boilermaker",
+  "alt": "A young apprentice with a raised welding helmet inspects a fresh weld on a steel beam as sparks fly behind",
+  "prompt": "Realistic editorial photograph, a young apprentice boilermaker around nineteen in a plain navy work shirt, leather gloves and a raised plain welding helmet inspects a fresh weld on a steel beam in a heavy fabrication workshop in Whyalla, South Australia, sparks from another welder blurred in the background, steel plates and an overhead crane, light from a big roller door, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no stickers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "f95951eb-069f-4051-a6ad-9f81e857a32a"
+ },
+ {
+  "key": "firefighter-pay",
+  "alt": "A firefighter in tan gear rolls up a hose beside a red fire truck as smoke drifts over bushland",
+  "prompt": "Realistic editorial photograph, a firefighter in plain tan turnout gear with no badges, patches, insignia or lettering, seen from the side and slightly behind, rolls up a canvas fire hose beside a plain red fire truck with no markings at a country fire station at dusk, smoke haze over gum-covered hills in the distance, another firefighter blurred in the background, warm low sunlight, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no emblems, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "e855d8db-820f-4c43-9cb0-ddf6868b27f3"
+ },
+ {
+  "key": "australian-tax-and-pay-data",
+  "alt": "A researcher in a cardigan studies colourful charts on a large monitor in a book-lined office",
+  "prompt": "Realistic editorial photograph, an economics researcher in his thirties of Iranian heritage works at a long desk in a quiet university research office in Canberra, studying a large monitor showing abstract out-of-focus coloured line charts and bar charts with no readable labels, a coffee mug and notebook beside him, bookshelves and a window onto autumn trees, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no axis labels, no book titles, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "1ee938e8-e22c-4bbb-9b4b-451776bde652"
+ },
+ {
+  "key": "christmas-day-pay-rates",
+  "alt": "A shop assistant with a red ribbon in her hair ties twine around a brown-paper gift beside Christmas greenery",
+  "prompt": "Realistic editorial photograph, a young retail assistant in her twenties of Fijian Indian heritage, wearing a small festive red ribbon in her hair and a plain green apron, wraps a gift in brown paper and twine at the counter of a gift shop on a hot summer Christmas Day in a coastal town in New South Wales, strands of tinsel and native Christmas bush decorate the counter, sunlight streaming in from the street, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no gift tags, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "cff168c5-1e6f-45af-94ee-aeb73f0dbd59"
+ },
+ {
+  "key": "australia-day-public-holiday-pay",
+  "alt": "A food truck worker hands a wrapped souvlaki to a customer as families picnic by a river",
+  "prompt": "Realistic editorial photograph, a food truck worker in his thirties of Greek-Australian heritage, in a plain white t-shirt and apron, hands a paper-wrapped souvlaki through the serving window of an unbranded food truck to a customer at a riverside park on a hot summer public holiday in Adelaide, families picnicking on the lawn under gum trees in the background, bright midday sun, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no flags, no menu boards, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "a031d086-a0a3-4e09-a56b-50db221a9d72"
+ },
+ {
+  "key": "disclaimer",
+  "alt": "A woman with glasses on her head looks out a window at a gum tree and mountain, tea and a closed laptop beside her",
+  "prompt": "Realistic editorial photograph, a woman in her fifties with reading glasses pushed up on her head sits at a timber desk in a quiet sunlit study in Hobart, pausing thoughtfully with a cup of tea beside a closed laptop and a closed plain notebook, looking out a window at a garden with a gum tree and Mount Wellington in soft haze, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no papers, no book titles, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "6f3530ef-b70b-446b-bdd5-503090f63eca"
+ },
+ {
+  "key": "news--c13-classification-phase-out",
+  "alt": "A packing shed worker in a hairnet and gloves sorts oranges on a conveyor, citrus orchards outside",
+  "prompt": "Realistic editorial photograph, a factory hand in her forties of Sudanese heritage, wearing a plain hairnet, apron and gloves, sorts fresh oranges on a conveyor belt in a regional fruit packing shed in the Riverland, South Australia, co-workers along the line softly blurred, plain unmarked cardboard crates stacked behind, light from a big open roller door onto citrus orchards, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no labels, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "6cbed6d1-d1e1-4e49-9a0b-3ed27361e5fa"
+ },
+ {
+  "key": "news--super-tax-changes-explained",
+  "alt": "A silver-haired woman in glasses works on a laptop in a sunroom with a teapot beside her",
+  "prompt": "Realistic editorial photograph, a semi-retired woman in her late sixties of Scottish-Australian heritage, with silver hair and reading glasses, reviews her retirement savings on a laptop at a desk in a bright sunroom of her home on the Sunshine Coast, the laptop screen angled away from the camera, a pot of tea and a garden of frangipani and palms outside the glass, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no printed documents, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "a0eacaf9-5167-46f9-874c-0b01bd57b8f6"
+ },
+ {
+  "key": "news--medicare-levy-thresholds-2026",
+  "alt": "A young woman in a green hoodie folds white towels beside a row of washing machines in a laundromat",
+  "prompt": "Realistic editorial photograph, a young woman in her early twenties of Colombian heritage, working a part-time shift at a suburban laundromat in Brisbane, folds warm white towels on a long bench, rows of front-loading washing machines behind her, a plastic basket of laundry beside her, afternoon light through the shopfront window, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no machine displays, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "4d866ef6-0a35-41ea-9249-78ce6247e984"
+ },
+ {
+  "key": "news--age-pension-increase-march-2026",
+  "alt": "An older man in a straw hat picks tomatoes into a basket while his wife smiles from the verandah",
+  "prompt": "Realistic editorial photograph, a retired man in his seventies of Italian heritage, in a cardigan and straw hat, picks ripe tomatoes from his backyard vegetable garden in suburban Melbourne, a wicker basket on his arm, his wife in her seventies smiling from the back verandah of their brick home with a cup of tea, a lemon tree and a paling fence, soft morning sun, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "d5b876b5-7889-447b-b151-ee1122eacebe"
+ },
+ {
+  "key": "news--health-professionals-award-changes-october-2026",
+  "alt": "A young therapist in navy scrubs steadies an older man walking between parallel bars in a rehab gym",
+  "prompt": "Realistic editorial photograph, a newly graduated occupational therapist in her mid twenties of Pakistani heritage, in plain navy scrubs with no badges, supports an older man as he walks between parallel bars in a bright hospital rehabilitation gym in Perth, exercise mats and a wheelchair in the background, large windows onto gum trees, natural light, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no posters, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "ff4903b0-ff87-4a61-91ba-d8ed4060f452"
+ },
+ {
+  "key": "news--listo-boost-from-july-2027",
+  "alt": "A young kitchen hand in a black apron rinses a stack of plates as cooks work the woks behind him",
+  "prompt": "Realistic editorial photograph, a kitchen hand in his early twenties of Burmese heritage, in a plain black t-shirt and apron, rinses a stack of plates at a stainless steel dish station in the busy back kitchen of a suburban Thai restaurant in Darwin, steam rising, cooks blurred at the woks behind him, warm kitchen lights and evening light through a small window, shallow depth of field, candid, warm muted palette with soft eucalyptus green and sandstone tones, 35mm lens. No text, no logos, no readable writing or numbers, no order dockets, no signs, no banknotes or coins.",
+  "model": "muse-image",
+  "taskId": "0ef5887f-52eb-4b22-a156-c2a7e6787f85"
+ }
+]
