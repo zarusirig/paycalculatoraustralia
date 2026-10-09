@@ -15,6 +15,7 @@ import { MIN_WAGE_AGES } from "@/lib/constants/minimum-wage"; // minimum wage cl
 // C2 occupation pay rates + C5 ADF pay scales (2026-09-23)
 import { OCCUPATION_SLUGS } from "@/lib/data/job-pay-rates/types";
 import { ADF_SERVICE_SLUGS } from "@/lib/data/adf-pay/types";
+import { HEALTH_SALARY_SLUGS } from "@/lib/data/health-salary/types"; // health salary pages (9 Oct 2026)
 // --- T2 payroll tax cluster (23 Sep 2026) ---
 import { PAYROLL_TAX_STATE_CODES } from "@/lib/constants/payroll-tax";
 // --- end T2 ---
@@ -336,6 +337,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   allPages.push({ slug: "job-pay-rates", changeFrequency: "monthly" as const, priority: 0.8 });
   for (const occupation of OCCUPATION_SLUGS) {
     allPages.push({ slug: `job-pay-rates/${occupation}`, changeFrequency: "monthly" as const, priority: 0.7 });
+  }
+  // Health salary pages: static routes beside the occupation route (9 Oct 2026).
+  for (const slug of HEALTH_SALARY_SLUGS) {
+    allPages.push({ slug: `job-pay-rates/${slug}`, changeFrequency: "monthly" as const, priority: 0.7 });
   }
   allPages.push({ slug: "adf-pay-scales", changeFrequency: "monthly" as const, priority: 0.8 });
   for (const service of ADF_SERVICE_SLUGS) {

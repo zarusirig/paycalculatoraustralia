@@ -226,6 +226,15 @@ export const GUIDE_AUTHORSHIP: Record<string, GuideAuthorship> = {
   "adf-pay-scales": { authorId: "anita-bell", lastReviewed: "2026-09-23" },
   // --- end C2/C5 ---
 
+  // --- Health salary pages (9 Oct 2026, lib/data/health-salary) ---
+  "job-pay-rates/dentist": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "job-pay-rates/radiologist": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "job-pay-rates/anaesthetist": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "job-pay-rates/optometrist": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "job-pay-rates/gp": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  "job-pay-rates/surgeon": { authorId: "anita-bell", lastReviewed: "2026-10-09" },
+  // --- end health salary pages ---
+
   // --- F5 emergency-service + aviation pay (24 Sep 2026) ---
   "paramedic-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },
   "police-pay": { authorId: "anita-bell", lastReviewed: "2026-09-24" },

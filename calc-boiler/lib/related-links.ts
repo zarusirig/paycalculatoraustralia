@@ -358,6 +358,34 @@ for (const [path, add] of Object.entries(SPLICE_SECOND)) {
 }
 // --- end Oct core new pages -------------------------------------------------
 
+// --- Health salary pages (9 Oct 2026) ----------------------------------------
+// Static routes /job-pay-rates/{dentist,radiologist,anaesthetist,optometrist,
+// gp,surgeon}/ (lib/data/health-salary). The medical ones link up to the
+// doctor award page, and the doctor page links down to them.
+const salaryPage = (slug: string, name: string, blurb: string) => L(`/job-pay-rates/${slug}/`, `${name} Salary`, blurb);
+const DOCTOR_AWARD = job("doctor", "Doctor", "Medical Practitioners Award minimums, intern to specialist.");
+const DENTIST_SALARY = salaryPage("dentist", "Dentist", "What dentists earn by ATO tax data, and take home.");
+const RADIOLOGIST_SALARY = salaryPage("radiologist", "Radiologist", "Radiologist earnings and public hospital specialist pay.");
+const ANAESTHETIST_SALARY = salaryPage("anaesthetist", "Anaesthetist", "Anaesthetist earnings by state, and take-home pay.");
+const OPTOMETRIST_SALARY = salaryPage("optometrist", "Optometrist", "What optometrists earn, and whether an award applies.");
+const GP_SALARY = salaryPage("gp", "GP", "GP earnings and the award minimum for employed GPs.");
+const SURGEON_SALARY = salaryPage("surgeon", "Surgeon", "Surgeon earnings by specialty and state.");
+const SALARY_PACKAGING = L("/salary-packaging-guide/", "Salary Packaging Guide", "The public hospital packaging cap, and what it saves.");
+const DIVISION_293 = L("/division-293-tax/", "Division 293 Tax", "The extra super tax on high incomes.");
+
+Object.assign(PAGE_LINKS, {
+  "/job-pay-rates/dentist/": [job("dental-hygienist", "Dental Hygienist", "Award minimums for dental hygienists and therapists."), job("dental-assistant", "Dental Assistant", "Dental assistant award levels."), OPTOMETRIST_SALARY, GP_SALARY, HECS_CALC, TAKE_HOME],
+  "/job-pay-rates/radiologist/": [DOCTOR_AWARD, job("radiographer", "Radiographer", "Medical imaging technologist award rates."), ANAESTHETIST_SALARY, SURGEON_SALARY, SALARY_PACKAGING, DIVISION_293],
+  "/job-pay-rates/anaesthetist/": [DOCTOR_AWARD, SURGEON_SALARY, RADIOLOGIST_SALARY, SALARY_PACKAGING, DIVISION_293, MLS],
+  "/job-pay-rates/optometrist/": [L("/health-professionals-award-rates/", "Health Professionals Award Rates", "The award for allied health, including orthoptists."), DENTIST_SALARY, GP_SALARY, job("audiologist", "Audiologist", "Audiologist award rates."), HECS_CALC, TAKE_HOME],
+  "/job-pay-rates/gp/": [DOCTOR_AWARD, SURGEON_SALARY, DENTIST_SALARY, L("/contractor-vs-employee-calculator/", "Contractor vs Employee Calculator", "Compare a contract rate with a salary."), HECS_CALC, TAKE_HOME],
+  "/job-pay-rates/surgeon/": [DOCTOR_AWARD, ANAESTHETIST_SALARY, RADIOLOGIST_SALARY, SALARY_PACKAGING, DIVISION_293, HIGHEST_PAYING],
+} satisfies Record<string, RelatedLink[]>);
+
+// The doctor award page links down to the four medical salary pages.
+JOB_LINKS.doctor = [RADIOLOGIST_SALARY, ANAESTHETIST_SALARY, SURGEON_SALARY, GP_SALARY];
+// --- end health salary pages ---------------------------------------------------
+
 /**
  * Wider pool used to top up a page that filtered itself out of its own cluster.
  * Ordered by breadth of appeal — the first entries suit almost any visitor.
