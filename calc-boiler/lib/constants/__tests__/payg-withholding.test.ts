@@ -27,7 +27,12 @@ import {
   PAYG_FINANCIAL_YEAR,
   PAYG_FINANCIAL_YEARS,
   PAYG_TABLE_YEARS,
-  paygFinancialYearForPayDate,
+  paygTableYearForPayDate,
+  firstWholeDollarWithheld,
+  SCALE_2_TFT,
+  SCALE_2_TFT_2025_26,
+  SCALE_2_MEDICARE,
+  SCALE_2_MEDICARE_2025_26,
   explainWithholding,
   PAYG_YEAR_INFO,
   buildTaxTableRows,
@@ -40,6 +45,8 @@ import {
 
 import {
   TAX_BRACKETS,
+  TAX_BRACKETS_2023_24,
+  TAX_BRACKETS_2025_26,
   LITO,
   HECS_HELP,
   MEDICARE_LEVY,
@@ -536,14 +543,15 @@ test("Schedule 5 withholding is a whole number of dollars", () => {
 //
 // 2026-27 (published 17 June 2026, read 23 September 2026):
 // https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld/sample-data/withholding-amounts-sample-data
-// 2025-26 (edition for 1 July 2024 to 30 June 2026, read 23 September 2026):
+// 2025-26 (edition for 1 July 2024 to 30 June 2026, so it also proves every
+// 2024-25 pay date; read 23 September 2026):
 // https://www.ato.gov.au/tax-rates-and-codes/schedule-1-tax-table-01-july-2024-to-30-june-2026/sample-data/withholding-amounts-sample-data
 //
 // Row format: [earnings, Scale 1 (no TFT), Scale 2 (TFT), Scale 3 (foreign)].
 // Scales 5 and 6 (Medicare exemptions) are not implemented and not tested.
 // =============================================================================
 type SampleRow = readonly [number, number, number, number];
-const ATO_EDITION_DATA: Record<Exclude<PaygFinancialYear, "2024-25">, Record<PayFrequency, readonly SampleRow[]>> = {
+const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly SampleRow[]>> = {
   "2026-27": {
     weekly: [
       [116, 17, 0, 35],
@@ -850,13 +858,6 @@ const ATO_EDITION_DATA: Record<Exclude<PaygFinancialYear, "2024-25">, Record<Pay
   },
 };
 
-// 2024-25 is covered by the same ATO edition as 2025-26 ("applied to payments
-// made from 1 July 2024 to 30 June 2026"), so the same 144 ATO rows prove it.
-const ATO_SAMPLE_DATA: Record<PaygFinancialYear, Record<PayFrequency, readonly SampleRow[]>> = {
-  ...ATO_EDITION_DATA,
-  "2024-25": ATO_EDITION_DATA["2025-26"],
-};
-
 for (const fy of PAYG_TABLE_YEARS) {
   for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
     test(`ATO ${fy} Schedule 1 sample data: every ${frequency} row, Scales 1/2/3`, () => {
@@ -926,35 +927,85 @@ test("stepped table rows and CSV come from the same engine as the lookup", () =>
   assert.equal(row988!.split(",")[2], "176");
 });
 
-test("2024-25 carries the same Schedule 1 edition as 2025-26 and has its own year info", () => {
-  assert.deepEqual(PAYG_TABLE_YEARS, ["2026-27", "2025-26", "2024-25"]);
-  assert.equal(PAYG_YEAR_INFO["2024-25"].stslSupported, false);
-  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
-    for (let g = 0; g <= 12_000; g += 37) {
-      for (const scale of ["tft", "noTft", "foreignResident"] as const) {
-        assert.equal(
-          withholdingForPeriod(g, frequency, scale, "2024-25"),
-          withholdingForPeriod(g, frequency, scale, "2025-26"),
-        );
-      }
-    }
+test("one page per ATO edition: 2024-25 is served by the 2025-26 table, not a page of its own", () => {
+  // The ATO's 1 July 2024 edition ran to 30 June 2026 and was not reissued on
+  // 1 July 2025. A separate 2024-25 page would duplicate 2025-26 exactly; the
+  // old /…/2024-25/ URLs 301 to /…/2025-26/ (firebase.json).
+  assert.deepEqual(PAYG_TABLE_YEARS, ["2026-27", "2025-26"]);
+  assert.ok(!(PAYG_TABLE_YEARS as readonly string[]).includes("2024-25"));
+  assert.ok(!Object.keys(PAYG_YEAR_INFO).includes("2024-25"));
+  const shared = PAYG_YEAR_INFO["2025-26"];
+  assert.deepEqual(shared.coversYears, ["2024-25", "2025-26"]);
+  assert.equal(shared.label, "2024-25 and 2025-26");
+  assert.equal(shared.payDatesFrom, "2024-07-01");
+  assert.equal(shared.payDatesTo, "2026-06-30");
+  assert.equal(shared.appliesTo, "payments made from 1 July 2024 to 30 June 2026");
+  assert.equal(shared.stslSupported, false);
+  assert.deepEqual(PAYG_YEAR_INFO["2026-27"].coversYears, ["2026-27"]);
+  // Editions must not overlap or leave a gap.
+  for (let i = 0; i < PAYG_TABLE_YEARS.length - 1; i++) {
+    // Explicit types: assert's narrowing inside a loop trips TS7022 otherwise.
+    const newerFrom: string = PAYG_YEAR_INFO[PAYG_TABLE_YEARS[i]].payDatesFrom;
+    const olderTo: string = PAYG_YEAR_INFO[PAYG_TABLE_YEARS[i + 1]].payDatesTo;
+    const dayAfter: Date = new Date(`${olderTo}T00:00:00Z`);
+    dayAfter.setUTCDate(dayAfter.getUTCDate() + 1);
+    assert.equal(dayAfter.toISOString().slice(0, 10), newerFrom);
   }
   // ATO fortnightly sample row (edition for 1 July 2024 to 30 June 2026): $7,306 Scale 2 = $2,134.
-  assert.equal(withholdingForPeriod(7_306, "fortnightly", "tft", "2024-25"), 2_134);
-  const r = calculatePAYGWithholding(4_000, "fortnightly", { hasSTSL: true, financialYear: "2024-25" });
+  assert.equal(withholdingForPeriod(7_306, "fortnightly", "tft", "2025-26"), 2_134);
+  const r = calculatePAYGWithholding(4_000, "fortnightly", { hasSTSL: true, financialYear: "2025-26" });
   assert.equal(r.stslWithheld, 0);
   assert.equal(r.stslSupported, false);
 });
 
-test("pay date -> financial year: the date the payment is made decides", () => {
-  assert.equal(paygFinancialYearForPayDate("2024-06-30"), null);
-  assert.equal(paygFinancialYearForPayDate("2024-07-01"), "2024-25");
-  assert.equal(paygFinancialYearForPayDate("2025-06-30"), "2024-25");
-  assert.equal(paygFinancialYearForPayDate("2025-07-01"), "2025-26");
-  assert.equal(paygFinancialYearForPayDate("2026-06-30"), "2025-26");
-  assert.equal(paygFinancialYearForPayDate("2026-07-01"), "2026-27");
-  assert.equal(paygFinancialYearForPayDate("2027-06-30"), "2026-27");
-  assert.equal(paygFinancialYearForPayDate("2027-07-01"), null);
+test("'what changed' figures agree with the coefficients and bracket arithmetic", () => {
+  // Scale 2's Medicare bands are the levy thresholds the year-locked pages quote.
+  assert.equal(SCALE_2_TFT[1].lessThan, SCALE_2_MEDICARE.weeklyThreshold); // 538
+  assert.equal(SCALE_2_TFT[2].lessThan, SCALE_2_MEDICARE.weeklyShadeInThreshold); // 673
+  assert.equal(SCALE_2_TFT_2025_26[1].lessThan, SCALE_2_MEDICARE_2025_26.weeklyThreshold); // 500
+  assert.equal(SCALE_2_TFT_2025_26[2].lessThan, SCALE_2_MEDICARE_2025_26.weeklyShadeInThreshold); // 625
+  // ATO nil band (tax-free threshold claimed): x < 362 from 1 July 2026, x < 361
+  // before. The first whole dollar actually withheld sits a little higher,
+  // because a formula result under 50c rounds to $0.
+  assert.equal(SCALE_2_TFT[0].a, null);
+  assert.equal(SCALE_2_TFT[0].lessThan, 362);
+  assert.equal(SCALE_2_TFT_2025_26[0].a, null);
+  assert.equal(SCALE_2_TFT_2025_26[0].lessThan, 361);
+  assert.equal(firstWholeDollarWithheld("weekly", "tft", "2025-26"), 364);
+  assert.equal(firstWholeDollarWithheld("weekly", "tft", "2026-27"), 365);
+  assert.equal(withholdingForPeriod(363, "weekly", "tft", "2025-26"), 0);
+  assert.equal(withholdingForPeriod(364, "weekly", "tft", "2025-26"), 1);
+  assert.equal(withholdingForPeriod(364, "weekly", "tft", "2026-27"), 0);
+  assert.equal(withholdingForPeriod(365, "weekly", "tft", "2026-27"), 1);
+  for (const frequency of ["weekly", "fortnightly", "monthly"] as const) {
+    for (const fy of PAYG_TABLE_YEARS) {
+      const first = firstWholeDollarWithheld(frequency, "tft", fy);
+      assert.equal(withholdingForPeriod(first - 1, frequency, "tft", fy), 0, `${fy} ${frequency}`);
+      assert.ok(withholdingForPeriod(first, frequency, "tft", fy) > 0, `${fy} ${frequency}`);
+    }
+  }
+  // Each bracket's base is the tax on everything below it (ATO resident rates).
+  for (const scale of [TAX_BRACKETS_2023_24, TAX_BRACKETS_2025_26, TAX_BRACKETS]) {
+    for (let i = 1; i < scale.length - 1; i++) {
+      const b = scale[i];
+      assert.equal(Math.round(b.base + (b.max - b.min + 1) * b.rate), scale[i + 1].base, `${b.label}`);
+    }
+  }
+  assert.equal(TAX_BRACKETS_2023_24[1].rate, 0.19);
+  assert.equal(TAX_BRACKETS_2023_24[2].max, 120_000);
+  assert.equal(TAX_BRACKETS_2025_26[2].base - TAX_BRACKETS[2].base, 268);
+});
+
+test("pay date -> table: the date the payment is made decides", () => {
+  assert.equal(paygTableYearForPayDate("2024-06-30"), null);
+  // 2024-25 pay dates use the one 1 July 2024 to 30 June 2026 edition.
+  assert.equal(paygTableYearForPayDate("2024-07-01"), "2025-26");
+  assert.equal(paygTableYearForPayDate("2025-06-30"), "2025-26");
+  assert.equal(paygTableYearForPayDate("2025-07-01"), "2025-26");
+  assert.equal(paygTableYearForPayDate("2026-06-30"), "2025-26");
+  assert.equal(paygTableYearForPayDate("2026-07-01"), "2026-27");
+  assert.equal(paygTableYearForPayDate("2027-06-30"), "2026-27");
+  assert.equal(paygTableYearForPayDate("2027-07-01"), null);
 });
 
 test("explainWithholding workings agree with withholdingForPeriod for every year, cycle and scale", () => {

@@ -28,8 +28,8 @@ const PERIOD_FACTOR: Record<PayFrequency, number> = { weekly: 1, fortnightly: 2,
 
 const SCALES: Record<PaygFinancialYear, { tft: readonly CoefficientBand[]; noTft: readonly CoefficientBand[] }> = {
   "2026-27": { tft: SCALE_2_TFT, noTft: SCALE_1_NO_TFT },
+  // One ATO edition for 1 July 2024 to 30 June 2026 (2024-25 and 2025-26).
   "2025-26": { tft: SCALE_2_TFT_2025_26, noTft: SCALE_1_NO_TFT_2025_26 },
-  "2024-25": { tft: SCALE_2_TFT_2025_26, noTft: SCALE_1_NO_TFT_2025_26 },
 };
 
 const TH = "px-3 py-2 font-semibold text-navy";
@@ -102,7 +102,7 @@ export default function CoefficientTables({
   return (
     <div className="not-prose my-6">
       <Heading className="mb-2 text-base font-bold text-navy">
-        {`${frequency.charAt(0).toUpperCase()}${frequency.slice(1)} tax table ${fy}: ATO Schedule 1 coefficients`}
+        {`${frequency.charAt(0).toUpperCase()}${frequency.slice(1)} tax table ${info.label}: ATO Schedule 1 coefficients`}
       </Heading>
       <p className="mb-3 text-sm text-warmgray">
         Weekly equivalent x is worked out from your pay, then tax withheld = a &times; x &minus; b, rounded to the dollar

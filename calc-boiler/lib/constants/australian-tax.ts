@@ -3,9 +3,11 @@
 // Single source of truth for the whole site.
 //
 // From 1 July 2026 the second marginal rate fell from 16% to 15% (Treasury
-// Laws Amendment (Cost of Living Tax Cuts) Act 2025). TAX_BRACKETS is the
-// current year; TAX_BRACKETS_2025_26 is retained for /tax-bracket-history/
-// and year-over-year comparisons ONLY — do not compute current figures with it.
+// Laws Amendment (More Cost of Living Relief) Act 2025 — the name the ATO uses
+// on its tax tables index, read 9 October 2026). TAX_BRACKETS is the current
+// year; TAX_BRACKETS_2025_26 and TAX_BRACKETS_2023_24 are retained for
+// /tax-bracket-history/ and year-over-year comparisons ONLY — do not compute
+// current figures with them.
 // =============================================================================
 
 export interface TaxBracket {
@@ -32,12 +34,30 @@ export const TAX_BRACKETS = TAX_BRACKETS_2026_27;
 export const SECOND_BRACKET_RATE = 0.15;
 
 // ---------- Income Tax Brackets (FY2025-26) — HISTORICAL ONLY ----------
+// Identical in FY2024-25 (the first Stage 3 year): ATO "Tax rates – Australian
+// resident" lists the same 16% / $4,288 / $31,288 / $51,638 scale for both
+// 2024–25 and 2025–26 (last updated 13 August 2026, read 9 October 2026):
+// https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents
 export const TAX_BRACKETS_2025_26: readonly TaxBracket[] = [
   { min: 0, max: 18_200, rate: 0, base: 0, label: "Tax-free threshold" },
   { min: 18_201, max: 45_000, rate: 0.16, base: 0, label: "16c for each $1 over $18,200" },
   { min: 45_001, max: 135_000, rate: 0.30, base: 4_288, label: "30c for each $1 over $45,000" },
   { min: 135_001, max: 190_000, rate: 0.37, base: 31_288, label: "37c for each $1 over $135,000" },
   { min: 190_001, max: Infinity, rate: 0.45, base: 51_638, label: "45c for each $1 over $190,000" },
+] as const;
+
+// ---------- Income Tax Brackets (FY2023-24, pre-Stage 3) — HISTORICAL ONLY ----------
+// The last year before Stage 3 (the same scale applied from 2020-21). Source:
+// ATO "Tax rates – Australian resident", table "Resident tax rates 2023–24"
+// (19% / $5,092 + 32.5% / $29,467 + 37% / $51,667 + 45%), last updated
+// 13 August 2026, read 9 October 2026:
+// https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents
+export const TAX_BRACKETS_2023_24: readonly TaxBracket[] = [
+  { min: 0, max: 18_200, rate: 0, base: 0, label: "Tax-free threshold" },
+  { min: 18_201, max: 45_000, rate: 0.19, base: 0, label: "19c for each $1 over $18,200" },
+  { min: 45_001, max: 120_000, rate: 0.325, base: 5_092, label: "32.5c for each $1 over $45,000" },
+  { min: 120_001, max: 180_000, rate: 0.37, base: 29_467, label: "37c for each $1 over $120,000" },
+  { min: 180_001, max: Infinity, rate: 0.45, base: 51_667, label: "45c for each $1 over $180,000" },
 ] as const;
 
 export const TAX_FREE_THRESHOLD = 18_200;

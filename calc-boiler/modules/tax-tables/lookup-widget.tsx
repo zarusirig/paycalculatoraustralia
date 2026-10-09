@@ -140,7 +140,7 @@ export default function TaxTableLookupWidget({ frequency, defaultGross, fixedFy 
             {!stslAvailable && (
               <p className="text-xs text-warmgray -mt-2">
                 {fy === "2025-26"
-                  ? "The ATO changed the 2025-26 study-loan formulas part-way through the year (24 September 2025), so this page shows the 2025-26 income-tax amount only."
+                  ? "The study-loan formulas were not one edition across 2024-25 and 2025-26: the ATO changed them on 1 July 2025 and again on 24 September 2025. This lookup shows the income-tax amount only for those years."
                   : `Study-loan (STSL) amounts are not shown for ${fy}; this page shows the income-tax amount only.`}
               </p>
             )}

@@ -2,18 +2,19 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { paygFinancialYearForPayDate, PAYG_TABLE_YEARS, PAYG_YEAR_INFO } from "@/lib/constants/payg-withholding";
-import { fyPath, FY_CYCLES, longDate } from "./fy-tax-table-data";
+import { paygTableYearForPayDate, PAYG_TABLE_YEARS, PAYG_YEAR_INFO } from "@/lib/constants/payg-withholding";
+import { fyLabel, fyPath, FY_CYCLES, longDate } from "./fy-tax-table-data";
 import type { PayFrequency } from "@/lib/constants/payg-withholding";
 
 /**
  * "Which table applies to my pay date?" The ATO goes by the date the payment is
  * MADE, so a pay run dated 3 July 2026 for work done in June still uses the
- * 2026-27 table. Pick a date and get the year and the link.
+ * 2026-27 table. Pick a date and get the table and the link. A 2024-25 pay
+ * date lands on the 2025-26 page: one ATO edition covers both years.
  */
 export default function PayDateFinder({ frequency, currentFy }: { frequency: PayFrequency; currentFy: string }) {
   const [date, setDate] = useState("");
-  const fy = date ? paygFinancialYearForPayDate(date) : null;
+  const fy = date ? paygTableYearForPayDate(date) : null;
   const cycle = FY_CYCLES[frequency];
   const first = PAYG_TABLE_YEARS[PAYG_TABLE_YEARS.length - 1];
 
@@ -26,7 +27,7 @@ export default function PayDateFinder({ frequency, currentFy }: { frequency: Pay
         id={`pay-date-${frequency}`}
         type="date"
         value={date}
-        min="2024-07-01"
+        min={PAYG_YEAR_INFO[first].payDatesFrom}
         onChange={(e) => setDate(e.target.value)}
         className="rounded-md border border-sandstone-dark/30 px-3 py-2 text-navy"
       />
@@ -34,12 +35,12 @@ export default function PayDateFinder({ frequency, currentFy }: { frequency: Pay
         {!date && <span className="text-warmgray">Pick a pay date to see which table applies.</span>}
         {date && fy && (
           <span>
-            A payment made on <strong>{longDate(date)}</strong> uses the <strong>{fy}</strong> {cycle.period}ly table.{" "}
+            A payment made on <strong>{longDate(date)}</strong> uses the {cycle.period}ly table for <strong>{fyLabel(fy)}</strong>.{" "}
             {fy === currentFy ? (
               <span>You are on that page.</span>
             ) : (
               <Link href={fyPath(frequency, fy)} className="font-semibold text-eucalyptus-dark underline">
-                Open the {cycle.label.toLowerCase()} tax table for {fy}
+                Open the {cycle.label.toLowerCase()} tax table for {fyLabel(fy)}
               </Link>
             )}
           </span>

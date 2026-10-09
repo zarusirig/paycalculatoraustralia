@@ -1,9 +1,11 @@
-// Config for the 9 financial-year tax-table pages: /{weekly,fortnightly,monthly}-tax-table/{fy}/
+// Config for the 6 year-locked tax-table pages: /{weekly,fortnightly,monthly}-tax-table/{fy}/
 //
-// Each page is one pay cycle x one financial year (2024-25, 2025-26, 2026-27).
-// The cycle landing pages (/weekly-tax-table/ etc.) stay the canonical page for
-// the generic head terms; these pages answer "which table applies to a payment
-// made in year X" and are year-locked.
+// Each page is one pay cycle x one ATO edition, keyed by financial year:
+// 2026-27, and 2025-26, whose page also covers 2024-25 because the ATO issued
+// one edition for 1 July 2024 to 30 June 2026. The old /…/2024-25/ URLs 301 to
+// /…/2025-26/ (firebase.json). The cycle landing pages (/weekly-tax-table/
+// etc.) stay the canonical page for the generic head terms; these pages answer
+// "which table applies to a payment made in year X" and are year-locked.
 
 import {
   PAYG_TABLE_YEARS,
@@ -93,6 +95,16 @@ export function longDate(iso: string): string {
 export function fyWindow(fy: PaygFinancialYear): string {
   const info = PAYG_YEAR_INFO[fy];
   return `${longDate(info.payDatesFrom)} to ${longDate(info.payDatesTo)}`;
+}
+
+/** "2026-27" or "2024-25 and 2025-26": every financial year the table covers. */
+export function fyLabel(fy: PaygFinancialYear): string {
+  return PAYG_YEAR_INFO[fy].label;
+}
+
+/** "2026-27" or "2024-25 or 2025-26", for "a payment made in …". */
+export function fyLabelOr(fy: PaygFinancialYear): string {
+  return PAYG_YEAR_INFO[fy].coversYears.join(" or ");
 }
 
 /** The year before / after, within the years the site carries. */
