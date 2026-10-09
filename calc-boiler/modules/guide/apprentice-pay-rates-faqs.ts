@@ -1,5 +1,6 @@
 import { formatAUD } from "@/lib/constants";
 import { APPRENTICE_TRADES, apprenticeRate, getTrade } from "@/lib/data/apprentice-pay";
+import { getSpoke, headlineRate } from "@/lib/data/apprentice-pay/spokes";
 import type { Faq } from "./t3-shared";
 
 // Shared by the page body and the FAQPage JSON-LD. Rates come from
@@ -17,6 +18,8 @@ const FOURTH_MAX = Math.max(...fourth);
 const bld = getTrade("building")!;
 const bld1y = apprenticeRate(bld, "junior", 1, "completed")!;
 const bld1n = apprenticeRate(bld, "junior", 1, "not-completed")!;
+// FWO MA000020 pay guide (2 July 2026): carpenter group, general building site, wage + tool + industry allowance.
+const carp1 = headlineRate(getSpoke("carpenter")!, 1, "completed");
 const ckr = getTrade("cookery")!;
 const ckr1 = apprenticeRate(ckr, "junior", 1, "completed")!;
 const elec = getTrade("electrical")!;
@@ -34,7 +37,7 @@ export const APPRENTICE_PAY_FAQS: Faq[] = [
   },
   {
     q: "What is a first-year apprentice carpenter paid in 2026?",
-    a: `Under the Building and Construction General On-site Award a first-year apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the $1,119.10 standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the tool and industry allowances on top for all purposes, so the real minimum is higher.`,
+    a: `Under the Building and Construction General On-site Award a first-year apprentice who completed Year 12 must be paid at least ${formatAUD(bld1y.hourly, 2)} an hour (${formatAUD(bld1y.weekly, 2)} a week, 55% of the $1,119.10 standard rate), or ${formatAUD(bld1n.hourly, 2)} an hour (${formatAUD(bld1n.weekly, 2)}) if they did not complete Year 12. The award adds the $41.22 carpenter tool allowance and the industry allowance on top for all purposes, so on a general building site the Fair Work Ombudsman pay guide puts the first-year minimum with Year 12 at ${formatAUD(carp1.hourly, 2)} an hour (${formatAUD(carp1.weekly, 2)} a week).`,
   },
   {
     q: "What is a first-year apprentice chef paid?",
@@ -66,6 +69,6 @@ export const APPRENTICE_PAY_FAQS: Faq[] = [
   },
   {
     q: "Which trades are not on this page?",
-    a: "Awards for other trades (for example metal fabrication, bricklayers outside the building award's percentages, roof tilers, horticulture and retail) were not checked for this page, so no rate is shown. Apprentices who started before 1 January 2014, school-based apprentices, trainees and apprentices on enterprise agreements are also not covered. Check your pay guide at fairwork.gov.au.",
+    a: "Awards for other trades (for example bricklayers outside the building award, roof tilers, horticulture and retail) were not checked for this page, so no rate is shown. Apprentices who started before 1 January 2014, school-based apprentices, trainees and apprentices on enterprise agreements are also not covered. Check your pay guide at fairwork.gov.au.",
   },
 ];

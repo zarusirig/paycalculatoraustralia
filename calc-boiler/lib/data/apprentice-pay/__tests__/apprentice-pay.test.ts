@@ -58,11 +58,34 @@ test("electrical rates are the Schedule B.4 hourly rates", () => {
   assert.equal(apprenticeRate(e, "adult", 3, "completed")!.hourly, 28.9);
 });
 
-test("plumbing weekly is Schedule E hourly x 38", () => {
+test("plumbing: hourly is Schedule E.2.1, weekly is the FWO pay guide figure (not hourly x 38)", () => {
   const p = getTrade("plumbing")!;
-  for (const r of p.junior) {
-    assert.ok(Math.abs(r.weekly - r.hourly * FULL_TIME_HOURS) <= 0.005);
+  const want = {
+    "not-completed": [[629.23, 16.56], [746.79, 19.65], [864.35, 22.75], [1099.48, 28.93]],
+    completed: [[688.01, 18.11], [805.57, 21.2], [864.35, 22.75], [1099.48, 28.93]],
+  } as const;
+  for (const y12 of ["not-completed", "completed"] as const) {
+    ([1, 2, 3, 4] as const).forEach((s, i) => {
+      const r = apprenticeRate(p, "junior", s, y12)!;
+      assert.deepEqual([r.weekly, r.hourly], [...want[y12][i]], `plumbing ${s} ${y12}`);
+      // The pay guide weekly divided by 38 rounds to the Schedule E hourly.
+      assert.equal(Math.round((r.weekly / FULL_TIME_HOURS) * 100) / 100, r.hourly);
+    });
   }
+  // The old hourly x 38 derivation was up to 17 cents a week off (688.18 vs 688.01).
+  assert.equal(Math.round(18.11 * FULL_TIME_HOURS * 100) / 100, 688.18);
+});
+
+test("calculator: a weekly all-purpose allowance is added before dividing by 38", () => {
+  // Building, stage 3, general site carpenter: 839.33 + 41.22 + 67.15 = 947.70 -> $24.94 (FWO pay guide).
+  const r = apprenticePay({ tradeSlug: "building", track: "junior", stage: 3, year12: "completed", hoursPerWeek: 38, weeklyAllowance: 108.37 })!;
+  assert.equal(r.minHourly, 24.94);
+  assert.equal(r.minWeekly, 947.72); // 24.94 x 38
+  // Painter general stage 3: 916.37 / 38 = 24.115 exactly, rounded half up to 24.12 like the pay guide.
+  const p = apprenticePay({ tradeSlug: "building", track: "junior", stage: 3, year12: "completed", hoursPerWeek: 38, weeklyAllowance: 77.04 })!;
+  assert.equal(p.minHourly, 24.12);
+  // No allowance: unchanged.
+  assert.equal(apprenticePay({ tradeSlug: "building", track: "junior", stage: 3, year12: "completed", hoursPerWeek: 38 })!.minHourly, 22.09);
 });
 
 test("every trade has 4 stages for junior apprentices and rates rise with the stage", () => {

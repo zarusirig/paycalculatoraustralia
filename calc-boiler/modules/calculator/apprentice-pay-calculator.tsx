@@ -24,16 +24,31 @@ const YEAR12_OPTIONS = [
   { value: "not-completed", label: "Did not complete Year 12" },
 ] as const;
 
+export interface SiteAllowanceOption {
+  id: string;
+  label: string;
+  /** All-purpose allowances a week, stage 1 to 4, that form part of the minimum rate. */
+  byStage: readonly [number, number, number, number];
+  /** Plain description of what is included, for the result note. */
+  note: string;
+}
+
 export default function ApprenticePayCalculator({
   defaultTrade = "building",
   lockTrade = false,
   heading = "Apprentice Wages Calculator",
+  siteAllowances,
 }: {
   /** Data trade slug to start on (lib/data/apprentice-pay). */
   defaultTrade?: string;
   /** Hide the trade picker on single-trade pages. */
   lockTrade?: boolean;
   heading?: string;
+  /**
+   * Trade pages where the award makes allowances part of the minimum (building trades, MA000020 cl 19.7(c)):
+   * one option per site type. The calculator then compares against wage + allowances.
+   */
+  siteAllowances?: readonly SiteAllowanceOption[];
 } = {}) {
   const [tradeSlug, setTradeSlug] = useState(defaultTrade);
   const [track, setTrack] = useState<ApprenticeTrack>("junior");
@@ -41,6 +56,8 @@ export default function ApprenticePayCalculator({
   const [year12, setYear12] = useState<"completed" | "not-completed">("completed");
   const [hours, setHours] = useState(38);
   const [actual, setActual] = useState(0);
+  const [site, setSite] = useState(siteAllowances?.[0]?.id ?? "");
+  const siteOption = siteAllowances?.find((o) => o.id === site);
 
   const trade = getTrade(tradeSlug)!;
   const adultAvailable = trade.adult !== null;
@@ -60,8 +77,9 @@ export default function ApprenticePayCalculator({
         year12,
         hoursPerWeek: hours,
         actualHourly: actual > 0 ? actual : undefined,
+        weeklyAllowance: siteOption && effectiveTrack === "junior" ? siteOption.byStage[Number(stage) - 1] : undefined,
       }),
-    [tradeSlug, effectiveTrack, stage, year12, hours, actual],
+    [tradeSlug, effectiveTrack, stage, year12, hours, actual, siteOption],
   );
 
   const take = useMemo(() => (r ? calculatePayBreakdown({ grossSalary: Math.round(r.minAnnual), hasPrivateHealth: true }) : null), [r]);
@@ -84,6 +102,11 @@ export default function ApprenticePayCalculator({
             <div className="sm:col-span-2">
               <SelectField id="ap-track" label="Apprentice type" value={effectiveTrack} onChange={setTrack} options={trackOptions} />
             </div>
+            {siteAllowances && siteAllowances.length > 0 && (
+              <div className="sm:col-span-2">
+                <SelectField id="ap-site" label="Where you work" value={site} onChange={setSite} options={siteAllowances.map((o) => ({ value: o.id, label: o.label }))} />
+              </div>
+            )}
             <SelectField id="ap-stage" label="Year of apprenticeship" value={stage} onChange={setStage} options={STAGE_OPTIONS} />
             {!noYear12Split ? (
               <SelectField id="ap-y12" label="Year 12" value={year12} onChange={setYear12} options={YEAR12_OPTIONS} />
@@ -116,8 +139,8 @@ export default function ApprenticePayCalculator({
                   </p>
                 )}
                 <p className="text-xs text-warmgray-light">
-                  {r.trade.rateIncludes} Award: {r.trade.award.name} [{r.trade.award.code}], {r.trade.award.clause}.
-                  {!r.trade.includesAllowances ? " Allowances are extra, so your actual minimum is higher." : ""} Take-home assumes a resident on the tax-free threshold for 2026-27, private hospital cover, and no HELP debt. An enterprise agreement can pay more.
+                  {siteOption ? `${siteOption.note} ` : `${r.trade.rateIncludes} `}Award: {r.trade.award.name} [{r.trade.award.code}], {r.trade.award.clause}.
+                  {!r.trade.includesAllowances && !siteOption ? " Allowances are extra, so your actual minimum is higher." : ""} Take-home assumes a resident on the tax-free threshold for 2026-27, private hospital cover, and no HELP debt. An enterprise agreement can pay more.
                 </p>
               </>
             ) : (
