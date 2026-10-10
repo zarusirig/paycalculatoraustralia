@@ -35,7 +35,7 @@ const SOURCES_LIST: SourceLink[] = [
 // Google AU "related searches" for "junior pay rates" and "minimum wage for 16
 // year olds australia" (Sept 2026), each pointed at the page that answers it.
 const RELATED_SEARCHES: readonly RelatedSearch[] = [
-  { label: "Minimum wage by age", href: "/minimum-wage-by-age/" },
+  { label: "Minimum wage for 16 year olds", href: "/minimum-wage-by-age/16/" },
   { label: "Retail award junior rates", href: "/retail-award-rates/" },
   { label: "Fast food award junior rates", href: "/fast-food-award-rates/" },
   { label: "Hospitality award rates by age", href: "/hospitality-award-rates/" },

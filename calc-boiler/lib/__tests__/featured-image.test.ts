@@ -44,7 +44,8 @@ test("every `images` entry is 1200x675 with alt text", () => {
 
 test("every route maps to a string key, and routes have leading and trailing slashes", () => {
   const routes = Object.entries(DATA.routes);
-  assert.ok(routes.length > 1000, `only ${routes.length} routes`);
+  // 719 after the 10 Oct 2026 numbered-page prune; guards against a truncated manifest.
+  assert.ok(routes.length > 700, `only ${routes.length} routes`);
   assert.equal(DATA.routes["/"], "home");
   for (const [route, key] of routes) {
     assert.equal(typeof key, "string", route);
