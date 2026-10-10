@@ -47,7 +47,7 @@ const FREQUENCY_CALC: Record<PayFrequency, { href: string; label: string }> = {
   monthly: { href: "/monthly-pay-calculator/", label: "Monthly pay calculator" },
   fortnightly: { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay calculator" },
   weekly: { href: "/weekly-pay-calculator/", label: "Weekly pay calculator" },
-  hourly: { href: "/hourly-to-salary/", label: "Hourly rate to annual salary calculator" },
+  hourly: { href: "/hourly-to-annual-salary-calculator/", label: "Hourly rate to annual salary calculator" },
 };
 
 const BASIS_META: Record<PayBasis, { label: string; inputLabel: string; unit: string; default: number; max: number; step: number }> = {
@@ -334,7 +334,7 @@ export default function HomeCalculator() {
       { href: salaryHref("tax-on", tx.n), label: `How much tax on ${formatAUD(tx.n)}`, detail: tx.detail },
     ];
     if (payBasis === "hourly") {
-      links.push({ href: "/hourly-to-salary/", label: "Convert your hourly rate to a salary" });
+      links.push({ href: "/hourly-to-annual-salary-calculator/", label: "Convert your hourly rate to a salary" });
     } else {
       const sh = nearestOf("salary-to-hourly");
       // Only when a page exists within ~10% of the entered salary (the hourly grid starts at $30k).
