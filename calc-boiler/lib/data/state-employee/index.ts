@@ -284,7 +284,7 @@ export const STATE_PROFILES: Readonly<Record<string, StateEmployeeProfile>> = {
     publicHolidays2026: VIC_HOLIDAYS,
     longServiceLeave: {
       act: "Long Service Leave Act 2018 (Vic)",
-      agency: "Wage Inspectorate Victoria",
+      agency: "Workforce Inspectorate Victoria", // renamed from Wage Inspectorate Victoria on 12 December 2025 (vic.gov.au)
       agencyUrl: "https://www.vic.gov.au/long-service-leave",
       takeAfterYears: 7,
       weeksAtEntitlement: 6.07,
