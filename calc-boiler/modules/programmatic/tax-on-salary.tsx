@@ -4,140 +4,205 @@ import {
   formatAUD,
   formatNegAUD,
   TAX_BRACKETS,
-  HECS_HELP,
-  LITO,
-  MEDICARE_LEVY,
   SITE_CONFIG,
   SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
+import { WATO_SOURCES } from "@/lib/constants/tax-2027-28";
+import { LISTO_CURRENT } from "@/lib/constants/listo";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { hasPage, salaryFacts, salaryHref } from "@/lib/data/salary-pages";
-import { thresholdsNear, distanceText } from "@/lib/data/salary-pages/tax-on-thresholds";
+import { THRESHOLD_WINDOW, distanceText } from "@/lib/data/salary-pages/tax-on-thresholds";
+import { rangeSections } from "@/lib/data/salary-pages/tax-on-ranges";
 import { payPointsRoundingTo } from "@/lib/data/salary-pages/tax-on-pay-points";
 import { awardMinimumsRoundingTo } from "@/lib/data/salary-pages/tax-on-occupations";
+import { payBand, publishedPayGroups } from "@/lib/data/salary-pages/tax-on-published-pay";
 import { salaryPercentile, EE_RELEASE, AWE_RELEASE } from "@/lib/data/average-salary";
-import { DIVISION_293 } from "@/lib/constants/super-contributions";
-import { NextThousandTaxTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 import { taxOnSalaryFaqs } from "@/modules/programmatic/tax-on-salary-faqs";
+import { RangeSections, TaxOnNav } from "@/modules/programmatic/tax-on-salary-ranges";
+import { taxByYearLine } from "@/modules/programmatic/tax-on-salary-range-copy";
 import {
-  litoShrinkAbove,
   sacrificeSentence,
-  nextThousandSentence,
+  nextThousandLine,
   occupationIntro,
   occupationGroupsNear,
-  versus,
   benchmarkIntro,
   benchmarkLines,
   bracketPositionSentence,
-  bracketWalk,
-  comparisonRangeSentence,
+  comparisonCrossings,
+  comparisonSentence,
   fullTimeMinimumWageAnnual,
   medianComparisonSentence,
+  minimumWageHoursSentence,
   placementSentence,
-  taxByYear,
-  taxByYearSentence,
   thresholdsBeyond,
   thresholdsIntro,
+  thresholdsNote,
+  nearThresholds,
 } from "@/modules/programmatic/tax-on-salary-copy";
 import FeaturedImage from "@/components/common/featured-image";
 
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const LINK = "text-eucalyptus hover:text-navy transition-colors font-medium";
+const LIST = "list-disc pl-5 mt-3 space-y-1 text-navy leading-relaxed";
 const pct1 = (r: number) => `${(r * 100).toFixed(1)}%`;
 
 interface TaxOnSalaryProps {
   salary: number;
 }
 
-// /tax-on/[salary]/ — rebuilt 10 Oct 2026. The grid is $5,000 steps and each
-// page is about its own salary: the bracket walk, tax by year, the thresholds
-// within $15,000, where the salary sits among Australian earners (ABS), the
-// published pay figures that round to it (ABS groups, JSA occupation medians,
-// state teacher and nursing scales, award minimums: each lands on exactly one
-// page of the $5k grid) and the HECS-HELP case. Copy that was word-for-word the
-// same on every page (generic
-// deductions, the calculators grid, the Stage 3 history) is now one line and a
-// link to the guide that covers it.
-export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
-  const SOURCES_LIST: SourceLink[] = [
-    { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: "ATO" },
-    { title: "Medicare levy", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy", publisher: "ATO" },
-    { title: "Study and training support loans", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "ATO" },
-    { title: `${EE_RELEASE.title}, ${EE_RELEASE.referencePeriod}`, url: EE_RELEASE.url, publisher: "ABS" },
-    { title: `${AWE_RELEASE.title}, ${AWE_RELEASE.referencePeriod}`, url: AWE_RELEASE.url, publisher: "ABS" },
-    ...occupationGroupsNear(salary).map((g) => ({
-      title: `${g.anzscoTitle} (ANZSCO ${g.anzscoCode}) occupation profile`,
-      url: g.url,
-      publisher: "Jobs and Skills Australia",
-    })),
-  ];
+const ATO = {
+  rates: { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: "ATO" },
+  levy: { title: "Medicare levy", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy", publisher: "ATO" },
+  lito: { title: "Low income tax offset", url: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/offsets-and-rebates/low-income-tax-offset", publisher: "ATO" },
+  levyReduction: { title: "Medicare levy reduction for low-income earners", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy/medicare-levy-reduction/medicare-levy-reduction-for-low-income-earners", publisher: "ATO" },
+  mls: { title: "Medicare levy surcharge income, thresholds and rates", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy-surcharge/medicare-levy-surcharge-income-thresholds-and-rates", publisher: "ATO" },
+  loans: { title: "Study and training support loans", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "ATO" },
+  div293: { title: "Division 293 tax on concessional contributions by high-income earners", url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/division-293-tax-on-concessional-contributions-by-high-income-earners", publisher: "ATO" },
+  wato: { title: "Working Australians tax offset", url: WATO_SOURCES.ato, publisher: "ATO" },
+} satisfies Record<string, SourceLink>;
 
-  // Headline figures exclude HECS-HELP (the usual "tax on $X" question is for
-  // someone without a study loan, and the page title shows these numbers).
+// /tax-on/[salary]/ — second pass 10 Oct 2026. The core answer (tax, Medicare,
+// take-home, the bracket and take-home tables) is on every page. Everything
+// else is there only where it applies at this salary: the range sections
+// (offset, levy reduction, bracket edge, surcharge, HECS-HELP, Division 293;
+// see tax-on-salary-ranges.tsx), the next-$1,000 breakdown only where its rate
+// differs from the bracket rate plus levy, the comparison table only where a
+// threshold falls inside it, the thresholds table and its caveats only for
+// thresholds within $15,000, the median comparison only near a median, the
+// concessional-cap room only where it is within $15,000 of running out, and
+// the published pay figures closest to the salary. Passages that were the
+// same on every page apart from the numbers (tax by year, the next-$1,000
+// table, salary sacrifice, the "nearest occupation" sentences, the method
+// note) are one line and a link each, or gone.
+export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
   const facts = salaryFacts(salary);
   const breakdown = facts.breakdown;
-  const withHecs = facts.withHecs;
   const s = formatAUD(salary);
   const fy = SITE_CONFIG.financialYear;
   const employerSuper = facts.employerSuper;
-  const totalTax = breakdown.netIncomeTax + breakdown.medicareLevy;
+  const sections = new Set(rangeSections(salary));
 
-  // Comparison rows: ±$5k and ±$10k, the neighbouring pages (salaries at or below $0 dropped).
-  const comparisons = [-10000, -5000, 0, 5000, 10000]
-    .filter((diff) => salary + diff > 0)
-    .map((diff) => {
-      const b = calculatePayBreakdown({ grossSalary: salary + diff });
-      return { diff, salary: salary + diff, b, diffToCurrent: b.takeHomePay - breakdown.takeHomePay };
-    });
-  const plusTenK = comparisons.find((c) => c.diff === 10000);
+  const near = nearThresholds(salary);
+  const note = thresholdsNote(salary);
+  const comparisons =
+    comparisonCrossings(salary).length > 0
+      ? [-10000, -5000, 0, 5000, 10000]
+          .filter((diff) => salary + diff > 0)
+          .map((diff) => {
+            const b = calculatePayBreakdown({ grossSalary: salary + diff });
+            return { diff, salary: salary + diff, b, diffToCurrent: b.takeHomePay - breakdown.takeHomePay };
+          })
+      : [];
 
-  const near = thresholdsNear(salary);
-  const years = taxByYear(salary);
+  const nextDiffers = Math.abs(facts.nextThousand.effectiveMarginal - breakdown.marginalTaxRate) > 0.001;
+  const medians = medianComparisonSentence(salary);
   const ft = salaryPercentile(salary, "fullTime");
-  const minWageAnnual = fullTimeMinimumWageAnnual();
-  const hecsBand = HECS_HELP.bands[facts.hecsBandIndex];
   const benchmarks = benchmarkLines(salary);
   const occupations = occupationGroupsNear(salary);
   const payPoints = payPointsRoundingTo(salary);
   const awardRows = awardMinimumsRoundingTo(salary);
+  const published = publishedPayGroups(salary);
+  const band = payBand(salary);
+  const anyPay = benchmarks.length + occupations.length + payPoints.length + awardRows.length + published.length > 0;
 
-  // LITO and Medicare, by stage — one sentence each, only when they bite.
-  const litoSentence =
-    facts.litoStage === "full"
-      ? `The full ${formatAUD(LITO.maxOffset)} Low Income Tax Offset comes off the bracket tax${breakdown.netIncomeTax === 0 ? ", which wipes it out" : ""}.`
-      : facts.litoStage === "nil"
-        ? salary - LITO.nilOffsetIncome <= 15_000
-          ? `There is no Low Income Tax Offset: it ran out at ${formatAUD(LITO.nilOffsetIncome)}, ${formatAUD(salary - LITO.nilOffsetIncome)} below this salary.`
-          : ""
-        : `A reduced Low Income Tax Offset of ${formatAUD(breakdown.litoOffset)} comes off, shrinking by ${litoShrinkAbove(salary) ?? "1.5c"} for every extra dollar.`;
-  const medicareSentence =
-    facts.medicareStage === "exempt"
-      ? `No Medicare levy is payable: the income is under the ${formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} low-income threshold (${SITE_CONFIG.previousFinancialYear} figure, the latest published).`
-      : facts.medicareStage === "shade-in"
-        ? `The Medicare levy is still shading in at 10c per dollar above ${formatAUD(MEDICARE_LEVY.lowIncomeThreshold)} (${SITE_CONFIG.previousFinancialYear} threshold), so it is ${formatAUD(breakdown.medicareLevy)} rather than the full 2%.`
-        : `The Medicare levy is the full 2%: ${formatAUD(breakdown.medicareLevy)}.`;
+  const SOURCES_LIST: SourceLink[] = [
+    ATO.rates,
+    ATO.levy,
+    ...(sections.has("lito") ? [ATO.lito] : []),
+    ...(sections.has("medicare") ? [ATO.levyReduction] : []),
+    ...(sections.has("mls") ? [ATO.mls] : []),
+    ...(sections.has("hecs") ? [ATO.loans] : []),
+    ...(sections.has("div293") ? [ATO.div293] : []),
+    ...(breakdown.netIncomeTax > 0 ? [ATO.wato] : []),
+    { title: `${EE_RELEASE.title}, ${EE_RELEASE.referencePeriod}`, url: EE_RELEASE.url, publisher: "ABS" },
+    ...(medians || benchmarks.length > 0 ? [{ title: `${AWE_RELEASE.title}, ${AWE_RELEASE.referencePeriod}`, url: AWE_RELEASE.url, publisher: "ABS" }] : []),
+    ...occupations.map((g) => ({
+      title: `${g.anzscoTitle} (ANZSCO ${g.anzscoCode}) occupation profile`,
+      url: g.url,
+      publisher: "Jobs and Skills Australia",
+    })),
+    ...published
+      .flatMap((g) => g.items.map((p) => p.ref))
+      .filter((r, i, all) => all.findIndex((x) => x.url === r.url) === i),
+  ];
+
+  // Salary sacrifice in one line; the concessional-cap room only where it is
+  // within $15,000 of running out (from about $146,000).
+  const sacrifice = facts.superCapped
+    ? `That leaves ${formatAUD(facts.concessionalRoom)} of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (${fy}) for salary sacrifice.`
+    : facts.concessionalRoom < 1_000
+      ? `Employer super leaves ${formatAUD(facts.concessionalRoom)} of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (${fy}), too little for a $1,000 salary sacrifice.`
+      : facts.concessionalRoom <= THRESHOLD_WINDOW
+        ? `Only ${formatAUD(facts.concessionalRoom)} of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (${fy}) is left after employer super for salary sacrifice.`
+        : facts.sacrificeThousand.netGain <= 0
+          ? `${sacrificeSentence(salary)}${
+              salary <= LISTO_CURRENT.incomeThreshold
+                ? ` Up to ${formatAUD(LISTO_CURRENT.incomeThreshold)} the low income super tax offset refunds ${Math.round(LISTO_CURRENT.rate * 100)}% of concessional contributions, at most ${formatAUD(LISTO_CURRENT.maxPayment)} a year (${LISTO_CURRENT.incomeYear}); employer super alone uses ${formatAUD(Math.min(LISTO_CURRENT.maxPayment, employerSuper * LISTO_CURRENT.rate))} of it.`
+                : ""
+            }`
+          : "";
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <section className="prose prose-eucalyptus max-w-none">
-        <p className="text-lg text-navy leading-relaxed">
-          {bracketPositionSentence(salary)} Take-home is <strong>{formatAUD(breakdown.takeHomePay)}</strong> a year ({formatAUD(breakdown.weekly)} a week), and your
-          employer pays {formatAUD(employerSuper)} of super on top.
-        </p>
+        <p className="text-lg text-navy leading-relaxed">{bracketPositionSentence(salary)}</p>
       </section>
 
       <TrustBar />
       <FeaturedImage lazy className="mt-0" />
 
-      <section className="prose prose-eucalyptus max-w-none">
+      <section>
         <h2 style={H2} className="text-2xl font-bold text-navy mb-4">How Much Tax Do You Pay on {s}?</h2>
-        <p className="text-navy leading-relaxed">
-          {bracketWalk(salary)} That is {formatAUD(breakdown.incomeTax)} before offsets. {litoSentence} {medicareSentence} Total:{" "}
-          <strong>{formatAUD(totalTax)}</strong>.
+        <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-sandstone/30 text-navy font-semibold border-b border-sandstone-dark/20">
+                <tr>
+                  <th className="px-6 py-4">Tax Bracket</th>
+                  <th className="px-6 py-4 text-right">Income in Bracket</th>
+                  <th className="px-6 py-4 text-right">Tax Rate</th>
+                  <th className="px-6 py-4 text-right">Tax Paid</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sandstone-dark/10">
+                {TAX_BRACKETS.map((bracket, index) => {
+                  if (salary <= bracket.min) return null;
+                  const incomeInBracket = Math.min(salary, bracket.max) - bracket.min + (bracket.min === 0 ? 0 : 1);
+                  return (
+                    <tr key={index} className="hover:bg-sandstone/30 transition-colors">
+                      <td className="px-6 py-4 text-warmgray">
+                        {index === 0
+                          ? `$0 – ${formatAUD(bracket.max)}`
+                          : index === TAX_BRACKETS.length - 1
+                            ? `Over ${formatAUD(bracket.min - 1)}`
+                            : `${formatAUD(bracket.min - 1)} – ${formatAUD(bracket.max)}`}
+                      </td>
+                      <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket)}</td>
+                      <td className="px-6 py-4 text-right text-warmgray">{(bracket.rate * 100).toFixed(1)}%</td>
+                      <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket * bracket.rate)}</td>
+                    </tr>
+                  );
+                })}
+                {breakdown.litoOffset > 0 && (
+                  <tr className="bg-sandstone text-navy transition-colors">
+                    <td colSpan={3} className="px-6 py-4 text-right font-medium">Minus Low Income Tax Offset (LITO)</td>
+                    <td className="px-6 py-4 text-right font-bold text-eucalyptus">{formatNegAUD(breakdown.litoOffset, 0, "−")}</td>
+                  </tr>
+                )}
+                <tr className="bg-sandstone text-navy font-bold border-t-2 border-sandstone-dark/20">
+                  <td colSpan={3} className="px-6 py-4 text-right">Total Income Tax</td>
+                  <td className="px-6 py-4 text-right">{formatAUD(breakdown.netIncomeTax)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Card>
+        <p className="mt-4 text-sm text-warmgray">
+          {taxByYearLine(salary)} <a href="/tax-bracket-history/" className={LINK}>Tax bracket history</a>.
         </p>
       </section>
 
@@ -193,92 +258,20 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           {facts.superCapped
             ? `(capped at the ${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)} maximum contribution base)`
             : `(${Math.round(SUPER_GUARANTEE.rate * 100)}%)`}
-          , a package of {formatAUD(salary + employerSuper)}.
-          {facts.division293 > 0 &&
-            ` Income plus super is over ${formatAUD(DIVISION_293.threshold)}, so Division 293 adds about ${formatAUD(facts.division293)}, billed separately by the ATO.`}
+          .{sacrifice && ` ${sacrifice}`} <a href="/salary-sacrifice-calculator/" className={LINK}>Salary sacrifice calculator</a>.
         </p>
       </section>
 
-      <section>
-        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">What Tax Bracket Does {s} Fall Into?</h2>
-        <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-sandstone/30 text-navy font-semibold border-b border-sandstone-dark/20">
-                <tr>
-                  <th className="px-6 py-4">Tax Bracket</th>
-                  <th className="px-6 py-4 text-right">Income in Bracket</th>
-                  <th className="px-6 py-4 text-right">Tax Rate</th>
-                  <th className="px-6 py-4 text-right">Tax Paid</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {TAX_BRACKETS.map((bracket, index) => {
-                  if (salary <= bracket.min) return null;
-                  const incomeInBracket = Math.min(salary, bracket.max) - bracket.min + (bracket.min === 0 ? 0 : 1);
-                  return (
-                    <tr key={index} className="hover:bg-sandstone/30 transition-colors">
-                      <td className="px-6 py-4 text-warmgray">
-                        {index === 0
-                          ? `$0 – ${formatAUD(bracket.max)}`
-                          : index === TAX_BRACKETS.length - 1
-                            ? `Over ${formatAUD(bracket.min - 1)}`
-                            : `${formatAUD(bracket.min - 1)} – ${formatAUD(bracket.max)}`}
-                      </td>
-                      <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket)}</td>
-                      <td className="px-6 py-4 text-right text-warmgray">{(bracket.rate * 100).toFixed(1)}%</td>
-                      <td className="px-6 py-4 text-right font-medium text-navy">{formatAUD(incomeInBracket * bracket.rate)}</td>
-                    </tr>
-                  );
-                })}
-                {breakdown.litoOffset > 0 && (
-                  <tr className="bg-sandstone text-navy transition-colors">
-                    <td colSpan={3} className="px-6 py-4 text-right font-medium">Minus Low Income Tax Offset (LITO)</td>
-                    <td className="px-6 py-4 text-right font-bold text-eucalyptus">{formatNegAUD(breakdown.litoOffset, 0, "−")}</td>
-                  </tr>
-                )}
-                <tr className="bg-sandstone text-navy font-bold border-t-2 border-sandstone-dark/20">
-                  <td colSpan={3} className="px-6 py-4 text-right">Total Income Tax</td>
-                  <td className="px-6 py-4 text-right">{formatAUD(breakdown.netIncomeTax)}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </Card>
+      <RangeSections salary={salary} />
 
-        <h3 style={H2} className="text-xl font-bold text-navy mt-8 mb-3">Income Tax on {s} by Year</h3>
-        <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-sandstone/30 text-navy font-semibold border-b border-sandstone-dark/20">
-                <tr>
-                  <th className="px-4 py-3">Income year</th>
-                  <th className="px-4 py-3">Scale</th>
-                  <th className="px-4 py-3 text-right">Income tax after LITO</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {years.map((y) => (
-                  <tr key={y.year} className={y.year === fy ? "bg-eucalyptus-light/40 font-medium" : ""}>
-                    <td className="px-4 py-3">{y.year}</td>
-                    <td className="px-4 py-3 text-warmgray">{y.note}</td>
-                    <td className="px-4 py-3 text-right">{formatAUD(y.tax)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-        <p className="mt-3 text-sm text-warmgray">
-          {taxByYearSentence(salary)} Rates for every year: <a href="/tax-brackets/" className={LINK}>tax brackets</a> and{" "}
-          <a href="/tax-bracket-history/" className={LINK}>tax bracket history</a>.
+      {near.near.length === 0 ? (
+        <p className="text-navy leading-relaxed">
+          {thresholdsIntro(salary)} {thresholdsBeyond(salary)}
         </p>
-      </section>
-
-      <section>
-        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Tax Thresholds Near {s}</h2>
-        <p className="text-navy leading-relaxed mb-4">{thresholdsIntro(salary)}</p>
-        {near.near.length > 0 && (
+      ) : (
+        <section>
+          <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Tax Thresholds Near {s}</h2>
+          <p className="text-navy leading-relaxed mb-4">{thresholdsIntro(salary)}</p>
           <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-left">
@@ -306,130 +299,124 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
               </table>
             </div>
           </Card>
-        )}
-        <p className="mt-4 text-navy leading-relaxed">{thresholdsBeyond(salary)}</p>
-        <p className="mt-4 text-navy leading-relaxed">
-          {facts.superCapped
-            ? `Employer super is capped at ${formatAUD(employerSuper)}, which uses almost all of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (${fy}), so there is ${formatAUD(facts.concessionalRoom)} of room for salary sacrifice.`
-            : `Employer super of ${formatAUD(employerSuper)} uses ${pct1(employerSuper / SUPER_GUARANTEE.concessionalCap)} of the ${formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (${fy}), leaving ${formatAUD(facts.concessionalRoom)} for salary sacrifice. ${facts.concessionalRoom < 1_000 ? "That is too little for a $1,000 sacrifice without going over the cap." : sacrificeSentence(salary)}`}{" "}
-          Other ways to lower the bill are in the <a href="/tax-deductions-guide/" className={LINK}>tax deductions guide</a> and the{" "}
-          <a href="/salary-sacrifice-calculator/" className={LINK}>salary sacrifice calculator</a>.
-        </p>
-        <p className="mt-3 text-sm text-warmgray">
-          Medicare levy low-income thresholds are {SITE_CONFIG.previousFinancialYear} figures, the latest the ATO has published; every other figure is {fy}.
-          Distances assume this salary is your only income: the MLS, HECS-HELP and Division 293 tests also count items such as reportable fringe benefits and reportable super.
-        </p>
-      </section>
+          <p className="mt-4 text-navy leading-relaxed">{thresholdsBeyond(salary)}</p>
+          {note && <p className="mt-3 text-sm text-warmgray">{note}</p>}
+        </section>
+      )}
+
+      {nextDiffers && (
+        <section>
+          <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Tax on the Next $1,000 Above {s}</h2>
+          <p className="text-navy leading-relaxed">{nextThousandLine(salary)}</p>
+        </section>
+      )}
 
       <section>
-        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">How Does {s} Compare to Other Salary Levels?</h2>
-        <Card className="overflow-hidden border-sandstone-dark/20 shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left">
-              <thead className="bg-sandstone/30 text-navy font-semibold border-b border-sandstone-dark/20">
-                <tr>
-                  <th className="px-6 py-4">Gross Salary</th>
-                  <th className="px-6 py-4 text-right">Income Tax</th>
-                  <th className="px-6 py-4 text-right">Medicare Levy</th>
-                  <th className="px-6 py-4 text-right">Take-Home Pay</th>
-                  <th className="px-6 py-4 text-right">Effective Rate</th>
-                  <th className="px-6 py-4 text-right">Difference</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sandstone-dark/10">
-                {comparisons.map((c) => (
-                  <tr key={c.salary} className={c.diff === 0 ? "bg-eucalyptus-light/40 border-l-4 border-eucalyptus font-medium" : "hover:bg-sandstone/30 transition-colors"}>
-                    <td className="px-6 py-4">
-                      {c.diff !== 0 && hasPage("tax-on", c.salary) ? (
-                        <a href={salaryHref("tax-on", c.salary)} className={LINK}>{formatAUD(c.salary)}</a>
-                      ) : (
-                        formatAUD(c.salary)
-                      )}
-                      {c.diff === 0 && <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-sandstone text-navy">You are here</span>}
-                    </td>
-                    <td className="px-6 py-4 text-right text-warmgray">{formatAUD(c.b.netIncomeTax)}</td>
-                    <td className="px-6 py-4 text-right text-warmgray">{formatAUD(c.b.medicareLevy)}</td>
-                    <td className="px-6 py-4 text-right text-navy">{formatAUD(c.b.takeHomePay)}</td>
-                    <td className="px-6 py-4 text-right text-warmgray">{pct1(c.b.effectiveTaxRate)}</td>
-                    <td className="px-6 py-4 text-right">
-                      {c.diff === 0 ? "—" : (
-                        <span className={c.diff > 0 ? "text-eucalyptus font-medium" : "text-ochre font-medium"}>
-                          {c.diff > 0 ? "+" : ""}
-                          {formatAUD(c.diffToCurrent)}
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-        <p className="mt-4 text-sm text-warmgray">
-          {comparisonRangeSentence(salary)} An extra $10,000 on {s} adds {formatAUD(plusTenK ? plusTenK.diffToCurrent : 0)} of take-home. Pages run in $5,000 steps; for any other figure use the{" "}
-          <a href="/income-tax-calculator/" className={LINK}>income tax calculator</a>.
+        {comparisons.length > 0 && (
+          <>
+            <h2 style={H2} className="text-2xl font-bold text-navy mb-4">How Does {s} Compare to Other Salary Levels?</h2>
+            <Card className="mb-4 overflow-hidden border-sandstone-dark/20 shadow-sm">
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left">
+                  <thead className="bg-sandstone/30 text-navy font-semibold border-b border-sandstone-dark/20">
+                    <tr>
+                      <th className="px-6 py-4">Gross Salary</th>
+                      <th className="px-6 py-4 text-right">Income Tax</th>
+                      <th className="px-6 py-4 text-right">Medicare Levy</th>
+                      <th className="px-6 py-4 text-right">Take-Home Pay</th>
+                      <th className="px-6 py-4 text-right">Effective Rate</th>
+                      <th className="px-6 py-4 text-right">Difference</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-sandstone-dark/10">
+                    {comparisons.map((c) => (
+                      <tr key={c.salary} className={c.diff === 0 ? "bg-eucalyptus-light/40 border-l-4 border-eucalyptus font-medium" : "hover:bg-sandstone/30 transition-colors"}>
+                        <td className="px-6 py-4">
+                          {c.diff !== 0 && hasPage("tax-on", c.salary) ? (
+                            <a href={salaryHref("tax-on", c.salary)} className={LINK}>{formatAUD(c.salary)}</a>
+                          ) : (
+                            formatAUD(c.salary)
+                          )}
+                          {c.diff === 0 && <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-sandstone text-navy">You are here</span>}
+                        </td>
+                        <td className="px-6 py-4 text-right text-warmgray">{formatAUD(c.b.netIncomeTax)}</td>
+                        <td className="px-6 py-4 text-right text-warmgray">{formatAUD(c.b.medicareLevy)}</td>
+                        <td className="px-6 py-4 text-right text-navy">{formatAUD(c.b.takeHomePay)}</td>
+                        <td className="px-6 py-4 text-right text-warmgray">{pct1(c.b.effectiveTaxRate)}</td>
+                        <td className="px-6 py-4 text-right">
+                          {c.diff === 0 ? "—" : (
+                            <span className={c.diff > 0 ? "text-eucalyptus font-medium" : "text-ochre font-medium"}>
+                              {c.diff > 0 ? "+" : ""}
+                              {formatAUD(c.diffToCurrent)}
+                            </span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </>
+        )}
+        <p className="text-sm text-warmgray">
+          {comparisonSentence(salary)} Any other figure: <a href="/income-tax-calculator/" className={LINK}>income tax calculator</a>.
         </p>
-        <div className="mt-6">
-          <SalaryNav salary={salary} family="tax-on" />
-        </div>
+        <TaxOnNav salary={salary} />
       </section>
-
-      <div>
-        <NextThousandTaxTable salary={salary} />
-        <p className="mt-3 text-sm text-warmgray">{nextThousandSentence(salary)}</p>
-      </div>
 
       <section>
         <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Where {s} Sits Among Australian Earners</h2>
-        <p className="text-navy leading-relaxed mb-3">{placementSentence(salary)}</p>
-        <p className="text-navy leading-relaxed mb-3">{medianComparisonSentence(salary)}</p>
         <p className="text-navy leading-relaxed">
-          {salary >= minWageAnnual
-            ? `Counting full-time employees only, the ABS's $100-a-week band counts put ${s} ahead of ${
+          {placementSentence(salary)}
+          {medians && ` ${medians}`}{" "}
+          {salary >= fullTimeMinimumWageAnnual()
+            ? `Among full-time employees only, ABS band counts put it ahead of ${
                 ft.bandCeiling === null
                   ? `at least ${Math.round(ft.shareBelowFloor * 100)}%`
                   : Math.round(ft.shareBelowFloor * 100) === Math.round(ft.shareBelowCeiling * 100)
                     ? `about ${Math.round(ft.shareBelowFloor * 100)}%`
-                    : `between ${Math.round(ft.shareBelowFloor * 100)}% and ${Math.round(ft.shareBelowCeiling * 100)}%`
-              } of them.`
-            : `A full-time adult on the National Minimum Wage earns about ${formatAUD(minWageAnnual)} a year (from 1 July 2026), so ${s} is usually a part-time or casual income, and the all-employee comparison above is the fair one.`}{" "}
-          Full tables: <a href="/average-salary-australia/" className={LINK}>average salary in Australia</a>.
+                    : `${Math.round(ft.shareBelowFloor * 100)}–${Math.round(ft.shareBelowCeiling * 100)}%`
+              }.`
+            : minimumWageHoursSentence(salary)}{" "}
+          <a href="/average-salary-australia/" className={LINK}>Average salary in Australia</a>.
         </p>
-        <h3 style={H2} className="text-xl font-bold text-navy mt-6 mb-3">Pay Close to {s}</h3>
-        <p className="text-navy leading-relaxed">{benchmarkIntro(salary)}</p>
+        {anyPay && <h3 style={H2} className="text-xl font-bold text-navy mt-6 mb-3">Pay Close to {s}</h3>}
         {benchmarks.length > 0 && (
-          <ul className="list-disc pl-5 mt-3 space-y-2 text-navy leading-relaxed">
-            {benchmarks.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
+          <>
+            <p className="text-navy leading-relaxed">{benchmarkIntro(salary)}</p>
+            <ul className={LIST}>
+              {benchmarks.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          </>
         )}
-        <p className="text-navy leading-relaxed mt-4">{occupationIntro(salary)}</p>
         {occupations.length > 0 && (
-          <ul className="list-disc pl-5 mt-3 space-y-2 text-navy leading-relaxed">
-            {occupations.map((g) => (
-              <li key={g.anzscoCode}>
-                {g.jobs.map((j, i) => (
-                  <React.Fragment key={j.href}>
-                    {i > 0 && (i === g.jobs.length - 1 ? " and " : ", ")}
-                    <a href={j.href} className={LINK}>{j.name}</a>
-                  </React.Fragment>
-                ))}{" "}
-                ({g.anzscoTitle}): {formatAUD(g.annual)} a year ({formatAUD(g.weekly)} a week), {versus(g.annual, salary)}.
-              </li>
-            ))}
-          </ul>
+          <>
+            <p className="text-navy leading-relaxed mt-4">{occupationIntro(salary)}</p>
+            <ul className={LIST}>
+              {occupations.map((g) => (
+                <li key={g.anzscoCode}>
+                  {g.jobs.map((j, i) => (
+                    <React.Fragment key={j.href}>
+                      {i > 0 && (i === g.jobs.length - 1 ? " and " : ", ")}
+                      <a href={j.href} className={LINK}>{j.name}</a>
+                    </React.Fragment>
+                  ))}{" "}
+                  ({g.anzscoTitle}): {formatAUD(g.annual)}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
         {payPoints.length > 0 && (
           <>
-            <p className="text-navy leading-relaxed mt-4">
-              Public-sector pay points that round to {s}, from the state teacher and nursing scales on this site:
-            </p>
-            <ul className="list-disc pl-5 mt-3 space-y-2 text-navy leading-relaxed">
+            <p className="text-navy leading-relaxed mt-4">State teacher and nursing pay points that round to {s}:</p>
+            <ul className={LIST}>
               {payPoints.map((p) => (
                 <li key={p.id}>
-                  <a href={p.href} className={LINK}>{p.state} {p.sector === "teacher" ? "teachers" : "nurses"}</a>, {p.scale}, {p.step}:{" "}
-                  {formatAUD(p.annual)}, {versus(p.annual, salary)}.{p.effectiveFrom ? ` Rate applies from ${p.effectiveFrom}.` : ""}
+                  <a href={p.href} className={LINK}>{p.state} {p.sector === "teacher" ? "teachers" : "nurses"}</a>, {p.scale}, {p.step}: {formatAUD(p.annual)}
                 </li>
               ))}
             </ul>
@@ -437,30 +424,36 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
         )}
         {awardRows.length > 0 && (
           <>
-            <p className="text-navy leading-relaxed mt-4">
-              Award minimums for full-time adults that round to {s} (Fair Work modern awards, as printed on our job pages):
-            </p>
-            <ul className="list-disc pl-5 mt-3 space-y-2 text-navy leading-relaxed">
+            <p className="text-navy leading-relaxed mt-4">Full-time adult award minimums that round to {s}:</p>
+            <ul className={LIST}>
               {awardRows.map((a) => (
                 <li key={a.id}>
-                  <a href={a.href} className={LINK}>{a.award}</a>, {a.classification}: {formatAUD(a.annual)} a year, {versus(a.annual, salary)}.
+                  <a href={a.href} className={LINK}>{a.award}</a>, {a.classification}: {formatAUD(a.annual)}
                 </li>
               ))}
             </ul>
           </>
         )}
-      </section>
-
-      <section className="bg-sandstone/30 rounded-xl p-8 border border-sandstone-dark/20">
-        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Tax on {s} With a HECS-HELP Debt</h2>
-        <p className="text-navy leading-relaxed">
-          {facts.hecsBandIndex === 0
-            ? `No compulsory repayment: ${s} is ${formatAUD(HECS_HELP.minimumThreshold - salary)} under the ${formatAUD(HECS_HELP.minimumThreshold)} repayment threshold for ${fy}, so take-home stays at ${formatAUD(breakdown.takeHomePay)}.`
-            : facts.hecsBandIndex === HECS_HELP.bands.length - 1
-              ? `The repayment is a flat ${Math.round(hecsBand.marginalRate * 100)}% of repayment income: ${formatAUD(withHecs.hecsRepayment)} a year (${formatAUD(withHecs.hecsRepayment / 52)} a week), cutting take-home from ${formatAUD(breakdown.takeHomePay)} to ${formatAUD(withHecs.takeHomePay)}.`
-              : `The compulsory repayment is ${formatAUD(withHecs.hecsRepayment)} a year (${formatAUD(withHecs.hecsRepayment / 52)} a week) on the "${hecsBand.label}" band, cutting take-home from ${formatAUD(breakdown.takeHomePay)} to ${formatAUD(withHecs.takeHomePay)}. With the loan, ${pct1(facts.nextThousand.effectiveMarginalWithHecs)} of a $1,000 rise goes in tax, Medicare and repayments.`}{" "}
-          <a href="/hecs-help-calculator/" className={LINK}>HECS-HELP calculator</a>
-        </p>
+        {published.length > 0 && band && (
+          <>
+            <p className="text-navy leading-relaxed mt-4">
+              More published pay from {formatAUD(Math.ceil(band.lo))} to {formatAUD(Math.ceil(band.hi) - 1)}:
+            </p>
+            <ul className={LIST}>
+              {published.map((g) => (
+                <li key={g.measure}>
+                  {g.measure}:{" "}
+                  {g.items.map((p, i) => (
+                    <React.Fragment key={p.id}>
+                      {i > 0 && "; "}
+                      <a href={p.href} className={LINK}>{p.who}</a> {formatAUD(p.annual)}
+                    </React.Fragment>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </section>
 
       <section>
@@ -477,9 +470,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
 
       <MethodologyDisclosure>
         <p className="text-sm text-warmgray">
-          ATO resident rates for {fy}; Medicare levy with the {SITE_CONFIG.previousFinancialYear} low-income thresholds; no surcharge or HECS-HELP in the headline figures; super at{" "}
-          {Math.round(SUPER_GUARANTEE.rate * 100)}% on top of salary. The percentile is our straight-line estimate between published ABS points. Full method:{" "}
-          <a href="/about/#methodology" className={LINK}>our methodology</a>.
+          ATO resident rates for {fy}; headline figures leave out the surcharge and HECS-HELP. <a href="/about/#methodology" className={LINK}>Our methodology</a>.
         </p>
       </MethodologyDisclosure>
       <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
