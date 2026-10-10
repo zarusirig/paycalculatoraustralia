@@ -6,12 +6,24 @@ import { SOLE_TRADER_COMPANY_FAQS } from "@/modules/guide/employee-vs-sole-trade
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { SITE_CONFIG, SOURCES, SUPER_GUARANTEE, LITO, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { EMPLOYMENT, MEDICARE_LEVY, SITE_CONFIG, SOURCES, SUPER_GUARANTEE, LITO, TAX_BRACKETS, TAX_FREE_THRESHOLD, calculatePayBreakdown, formatAUD } from "@/lib/constants";
+import { ABR_SOURCES, COMPANY_TAX, GST_RATE_SOURCE, GST_REGISTRATION, PSI_SOURCES } from "@/lib/constants/company-tax";
+import { CONTRIBUTIONS_TAX_RATE } from "@/lib/constants/super-contributions";
+
+const pct = (r: number) => `${Math.round(r * 1000) / 10}%`;
+const SG = pct(SUPER_GUARANTEE.rate);
+const TOP_RATE = TAX_BRACKETS[TAX_BRACKETS.length - 1].rate;
+const TOP = pct(TOP_RATE);
+const ML = pct(MEDICARE_LEVY.rate);
+const COMPANY_RATE = pct(COMPANY_TAX.baseRateEntityRate);
+/** First individual bracket taxed above the company rate (30% from $45,001). */
+const ABOVE_COMPANY = TAX_BRACKETS.find((b) => b.rate > COMPANY_TAX.baseRateEntityRate)!;
 
 // Structure comparison, derived from the FY2026-27 engine. The old tables
 // mixed 2025-26 rates with arithmetic errors (e.g. $38,838 tax on $150,000).
+// The $70,000 director salary is an assumption of the worked example.
 const DIRECTOR_SALARY = 70_000;
-const COMPANY_TAX_RATE = 0.25;
+const COMPANY_TAX_RATE = COMPANY_TAX.baseRateEntityRate;
 const COMPARISONS = [100_000, 150_000, 200_000].map((income) => {
   const employeeTax = calculatePayBreakdown({ grossSalary: income }).totalDeductions;
   const soleTraderSuper = Math.round(income * SUPER_GUARANTEE.rate);
@@ -28,9 +40,17 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Business structures", url: "https://www.ato.gov.au/businesses-and-organisations/starting-registering-or-closing-a-business", publisher: SOURCES.ato.name },
-  { title: "Company tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/company-tax-rates", publisher: SOURCES.ato.name },
-  { title: "GST registration", url: "https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/registering-for-gst", publisher: SOURCES.ato.name },
+  { title: "Changes to company tax rates (base rate entities)", url: COMPANY_TAX.sources.rateChanges, publisher: SOURCES.ato.name },
+  { title: "Company tax rates 2025–26", url: COMPANY_TAX.sources.rates2025_26, publisher: SOURCES.ato.name },
+  { title: "Tax rates – Australian residents", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
+  { title: "Super guarantee rates and thresholds", url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/super-guarantee", publisher: SOURCES.ato.name },
+  { title: "Registering for GST", url: GST_REGISTRATION.source, publisher: SOURCES.ato.name },
+  { title: "How GST works", url: GST_RATE_SOURCE, publisher: SOURCES.ato.name },
+  { title: "Personal services income: how to attribute PSI", url: PSI_SOURCES.attribute, publisher: SOURCES.ato.name },
   { title: "Contractor vs employee", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/employee-or-independent-contractor", publisher: SOURCES.ato.name },
+  { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwo.name },
+  { title: "Sole trader", url: ABR_SOURCES.soleTrader, publisher: "Australian Business Register" },
+  { title: "Applying for an ABN", url: ABR_SOURCES.applying, publisher: "Australian Business Register" },
 ];
 
 function SidebarLink({ href, label }: { href: string; label: string }) {
@@ -97,13 +117,13 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                     <tbody>
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">Tax rates</td>
-                        <td className="p-3 text-navy">Individual marginal (0-45%)</td>
-                        <td className="p-3 text-navy">Individual marginal (0-45%)</td>
-                        <td className="p-3 text-navy">Flat 25% company rate</td>
+                        <td className="p-3 text-navy">Individual marginal (0&ndash;{TOP})</td>
+                        <td className="p-3 text-navy">Individual marginal (0&ndash;{TOP})</td>
+                        <td className="p-3 text-navy">Flat {COMPANY_RATE} (base rate entity), otherwise {pct(COMPANY_TAX.fullRate)}</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Superannuation</td>
-                        <td className="p-3 text-navy">Employer pays 12% SG</td>
+                        <td className="p-3 text-navy">Employer pays {SG} SG</td>
                         <td className="p-3 text-navy">Self-funded (optional)</td>
                         <td className="p-3 text-navy">Company pays SG on director salary</td>
                       </tr>
@@ -122,8 +142,8 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                       <tr className="border-b border-sandstone-dark/10">
                         <td className="p-3 text-navy font-medium">GST</td>
                         <td className="p-3 text-navy">Not applicable</td>
-                        <td className="p-3 text-navy">Required if turnover &gt; $75K</td>
-                        <td className="p-3 text-navy">Required if turnover &gt; $75K</td>
+                        <td className="p-3 text-navy">Required once GST turnover reaches {formatAUD(GST_REGISTRATION.threshold)}</td>
+                        <td className="p-3 text-navy">Required once GST turnover reaches {formatAUD(GST_REGISTRATION.threshold)}</td>
                       </tr>
                       <tr className="border-b border-sandstone-dark/10 bg-sandstone/30">
                         <td className="p-3 text-navy font-medium">Insurance</td>
@@ -146,13 +166,13 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
             <section id="employee">
               <h2>Employee</h2>
               <p>
-                As an employee, your employer handles PAYG withholding, superannuation contributions (12% SG), workers&apos; compensation insurance, and payroll tax. You receive the National Employment Standards protections: 4 weeks annual leave, 10 days personal/carer&apos;s leave, notice of termination, and redundancy pay.
+                As an employee, your employer handles PAYG withholding, superannuation contributions ({SG} SG), workers&apos; compensation insurance, and payroll tax. You receive the National Employment Standards protections: {EMPLOYMENT.annualLeaveWeeks} weeks annual leave, {EMPLOYMENT.personalLeaveDays} days personal/carer&apos;s leave, notice of termination, and redundancy pay.
               </p>
               <p>
-                Employees pay individual income tax at marginal rates from 0% to 45%, plus the 2% Medicare levy. The tax-free threshold of $18,200 applies, and the Low Income Tax Offset (LITO) provides up to {formatAUD(LITO.maxOffset)} in additional relief, phasing out completely at {formatAUD(LITO.nilOffsetIncome)}.
+                Employees pay individual income tax at marginal rates from 0% to {TOP}, plus the {ML} Medicare levy. The tax-free threshold of {formatAUD(TAX_FREE_THRESHOLD)} applies, and the Low Income Tax Offset (LITO) provides up to {formatAUD(LITO.maxOffset)} in additional relief, phasing out completely at {formatAUD(LITO.nilOffsetIncome)}.
               </p>
               <p>
-                <strong>Best for:</strong> Workers who value stability, paid leave, employer-funded super, and minimal administrative burden. Most Australians are best served as employees unless their income or business circumstances specifically favour another structure.
+                <strong>Best for:</strong> Workers who value stability, paid leave, employer-funded super, and minimal administrative burden.
               </p>
             </section>
 
@@ -166,13 +186,13 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </p>
               <ul>
                 <li><strong>No employer super</strong> — Super contributions are optional but highly recommended. You can claim a tax deduction for personal super contributions up to the {formatAUD(SUPER_GUARANTEE.concessionalCap)} concessional cap (FY{SITE_CONFIG.financialYear})</li>
-                <li><strong>GST registration</strong> — Required when annual turnover reaches <strong>$75,000</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
+                <li><strong>GST registration</strong> — Required within {GST_REGISTRATION.daysToRegister} days once GST turnover reaches <strong>{formatAUD(GST_REGISTRATION.threshold)}</strong>. Below this threshold, registration is optional but may be beneficial for claiming GST credits on business purchases</li>
                 <li><strong>BAS lodgment</strong> — Quarterly (or monthly) Business Activity Statements reporting GST collected and paid, plus PAYG instalments on expected income tax</li>
-                <li><strong>No leave entitlements</strong> — Time off means no income. Factor in 4-6 weeks of non-earning time when comparing to employment</li>
+                <li><strong>No leave entitlements</strong> — Time off means no income. An employee is paid for {EMPLOYMENT.annualLeaveWeeks} weeks&apos; annual leave, {EMPLOYMENT.personalLeaveDays} days&apos; personal leave and public holidays; a sole trader has to fund those days from the days they bill. The <Link href="/contractor-pay-calculator/">Contractor Pay Calculator</Link> prices them in</li>
                 <li><strong>Business deductions</strong> — Home office, vehicle, tools, equipment, professional development, and other business-related expenses reduce taxable income</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Freelancers, contractors, and small operators earning under $120,000 who want simplicity and full control over their work. Setup is free (ABN registration is instant), and accounting costs are typically $1,000-$2,500 per year.
+                <strong>Best for:</strong> Freelancers, contractors, and small operators who want simplicity and full control over their work. The Australian Business Register describes it as the simplest and cheapest business structure, and a successful online ABN application gives you your ABN immediately.
               </p>
             </section>
 
@@ -195,32 +215,35 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 A proprietary limited company (Pty Ltd) is a separate legal entity from its directors and shareholders. The company earns income, pays tax, and can hold assets independently. This separation provides <strong>asset protection</strong> — creditors of the company generally cannot access the personal assets of directors.
               </p>
               <p>
-                The base rate entity company tax rate is <strong>25%</strong> for companies with aggregated turnover under $50 million. This flat rate is significantly lower than the top individual marginal rate of 45% + 2% Medicare levy = 47%.
+                The base rate entity company tax rate is <strong>{COMPANY_RATE}</strong> for companies with aggregated turnover under ${COMPANY_TAX.aggregatedTurnoverThreshold / 1_000_000} million and no more than {pct(COMPANY_TAX.maxPassiveIncomeShare)} of assessable income from passive sources such as interest, rent and dividends; other companies pay {pct(COMPANY_TAX.fullRate)} (ATO, {COMPANY_TAX.firstYear} onwards). This flat rate is lower than the top individual marginal rate of {TOP} + {ML} Medicare levy = {pct(TOP_RATE + MEDICARE_LEVY.rate)}.
+              </p>
+              <p>
+                A company may not lower the tax on <strong>personal services income</strong> (PSI): income produced mainly (more than 50%) from your own skills or effort. If the PSI rules apply, the company must attribute that income to you and it is taxed at your marginal rates (<a href={PSI_SOURCES.attribute} target="_blank" rel="noopener noreferrer">ATO</a>). Check the PSI rules before setting up a company to contract.
               </p>
               <h3>Paying Yourself from a Company</h3>
               <p>
                 Company directors typically pay themselves through a combination of:
               </p>
               <ul>
-                <li><strong>Salary/wages</strong> — Taxed at individual marginal rates. The company claims a deduction and must pay 12% SG on the director&apos;s salary</li>
+                <li><strong>Salary/wages</strong> — Taxed at individual marginal rates. The company claims a deduction and must pay {SG} SG on the director&apos;s salary</li>
                 <li><strong>Dividends</strong> — Distributed from after-tax profits. Franked dividends carry franking credits that offset the individual&apos;s tax liability</li>
-                <li><strong>Retained earnings</strong> — Profits left in the company are taxed at 25% and can be reinvested or distributed later</li>
+                <li><strong>Retained earnings</strong> — Profits left in the company are taxed at {COMPANY_RATE} and can be reinvested or distributed later</li>
               </ul>
               <h3>Setup and Ongoing Costs</h3>
               <ul>
                 <li>ASIC company registration and annual review fees (indexed each 1 July; check the current amounts at asic.gov.au)</li>
-                <li>Accountant fees (company tax return, BAS, bookkeeping): <strong>$2,500-$5,000/year</strong></li>
+                <li>Accountant fees for the company tax return, BAS and bookkeeping, which vary with the work involved: get a quote before you set up</li>
                 <li>Initial setup: ASIC registration plus initial accounting and bank setup</li>
               </ul>
               <p>
-                <strong>Best for:</strong> Businesses earning consistently over $120,000-$135,000 that want asset protection, the ability to retain profits at 25%, and a more professional structure for clients and contracts.
+                <strong>Best for:</strong> Businesses that want asset protection, the ability to retain profits at {COMPANY_RATE}, and a separate legal entity for clients and contracts, where the income is not personal services income caught by the PSI rules.
               </p>
             </section>
 
             <section id="take-home-comparison">
               <h2>Take-Home Pay Comparison</h2>
               <p>
-                The following table compares approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super at 12%, claimed as a tax deduction. The company column assumes paying a $70,000 salary plus 12% super and retaining the rest in the company.
+                The following tables are our calculation of approximate take-home outcomes at three income levels. The employee column assumes the employer pays SG on top. The sole trader column includes self-funded super at {SG}, claimed as a tax deduction. The company column assumes paying a {formatAUD(DIRECTOR_SALARY)} salary (our assumption) plus {SG} super and retaining the rest in the company.
               </p>
 
               {COMPARISONS.map((c) => (
@@ -266,7 +289,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
               </div>
               ))}
               <p className="text-sm text-warmgray">
-                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with 25% company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays 15% contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates and are simplified illustrations. These are simplified illustrations — consult an accountant for precise modelling.
+                *Company figures combine personal tax on the {formatAUD(DIRECTOR_SALARY)} director salary with {COMPANY_RATE} company tax on the remaining profit, which stays in the company (so the company &ldquo;cash in hand&rdquo; includes after-tax profit you have not yet drawn). Paying it out later as franked dividends tops the tax up to your personal marginal rate. They assume the PSI rules do not apply. The sole trader column deducts the self-funded super as a personal concessional contribution; the fund then pays {pct(CONTRIBUTIONS_TAX_RATE)} contributions tax on it. All figures use FY{SITE_CONFIG.financialYear} individual rates, leave out accounting and ASIC costs, and are simplified illustrations — consult an accountant for precise modelling.
               </p>
             </section>
 
@@ -276,14 +299,13 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
                 Switching from sole trader to company makes sense when several conditions align:
               </p>
               <ul>
-                <li><strong>Consistent income above $120,000-$135,000</strong> — The 25% company tax rate starts saving money compared to the 37% and 45% individual brackets</li>
+                <li><strong>Profit you do not need to draw</strong> — A base rate entity pays {COMPANY_RATE} on its profit, against individual marginal rates of {pct(ABOVE_COMPANY.rate)} to {TOP} (plus the {ML} Medicare levy) on income above {formatAUD(ABOVE_COMPANY.min - 1)}. Profit paid out later as a franked dividend is topped up to your marginal rate, so the saving is on profit left in the company for reinvestment</li>
                 <li><strong>Asset protection needs</strong> — If your business carries liability risk (client work, physical services, product supply), a company shields personal assets</li>
-                <li><strong>Retaining profits</strong> — If you do not need all business income personally, leaving profits in the company at 25% tax allows reinvestment</li>
-                <li><strong>Multiple income streams</strong> — A company can split income through dividends to shareholders (within tax laws) and employ family members</li>
+                <li><strong>Multiple income streams</strong> — A company can split income through dividends to shareholders (within tax laws) and employ family members; where the PSI rules apply, personal services income is attributed to the person who earned it instead</li>
                 <li><strong>Professional credibility</strong> — Some clients and government contracts require engaging with a company rather than a sole trader</li>
               </ul>
               <p>
-                Do <strong>not</strong> switch solely for tax reasons at lower income levels. The additional accounting costs ($2,500-$5,000/year), annual ASIC review fees, and compliance burden (separate bank accounts, company tax returns, director obligations) can outweigh any tax benefit below $120,000.
+                Do <strong>not</strong> switch solely for tax reasons. A company adds accounting fees, ASIC registration and annual review fees, and compliance work (separate bank accounts, company tax returns, director obligations). Get those costs from your accountant and ASIC, and set them against the tax difference the tables above show at your income.
               </p>
             </section>
 
@@ -305,7 +327,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
 
             <div className="mt-12 not-prose">
               <MethodologyDisclosure>
-                <p>Tax comparisons use FY{SITE_CONFIG.financialYear} individual marginal rates and the 25% base rate entity company tax rate. Take-home pay figures are simplified illustrations assuming no deductions beyond the standard tax-free threshold and Medicare levy. Company scenarios assume a $70,000 director salary with retained earnings taxed at 25%. Actual outcomes depend on deductions, dividend timing, and individual circumstances. This is general information, not business structuring advice.</p>
+                <p>Tax comparisons use FY{SITE_CONFIG.financialYear} individual marginal rates and the Medicare levy from our tax engine (ATO resident rates), and the {COMPANY_RATE} base rate entity company tax rate the ATO applies from {COMPANY_TAX.firstYear} onwards. The take-home tables are our calculation and simplified illustrations: no deductions other than the sole trader&apos;s self-funded super, private hospital cover (no Medicare levy surcharge), no accounting or ASIC costs, and, for the company, an assumed {formatAUD(DIRECTOR_SALARY)} director salary with {SG} SG and the rest retained and taxed at {COMPANY_RATE}, with the PSI rules not applying. GST and company facts are from the ATO and the sole trader description from the Australian Business Register. This page quotes no accounting-fee estimates or income thresholds for switching structure. Actual outcomes depend on deductions, dividend timing, and individual circumstances. This is general information, not business structuring advice.</p>
               </MethodologyDisclosure>
               <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
               {(() => { const a = getGuideAuthorship("employee-vs-sole-trader-vs-company"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}

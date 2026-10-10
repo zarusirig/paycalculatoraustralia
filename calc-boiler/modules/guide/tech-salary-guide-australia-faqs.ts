@@ -10,6 +10,7 @@ import {
   CGT_REFORM_2027,
 } from "@/lib/constants/capital-gains-tax";
 import { EMPLOYMENT, SUPER_GUARANTEE, formatAUD } from "@/lib/constants/australian-tax";
+import { COMPANY_TAX } from "@/lib/constants/company-tax";
 import { DEFAULT_CONTRACTOR_ASSUMPTIONS } from "@/lib/constants/contractor-rate";
 import { CYBER_SECURITY_ATO } from "@/lib/data/job-pay-rates/cyber-security";
 import { PROJECT_MANAGER_ATO } from "@/lib/data/job-pay-rates/project-manager";
@@ -30,12 +31,8 @@ const SG = `${Math.round(SUPER_GUARANTEE.rate * 100)}%`;
 const [R110, R150] = DAY_RATE_EXAMPLES;
 const D150 = DAY_RATE_EXAMPLES_DEFAULT_DAYS[1];
 
-/**
- * Base rate entity company tax rate. ATO "Tax rates 2025–26" (companies),
- * last updated 24 June 2026, read 10 October 2026: base rate entities 25%,
- * otherwise 30%. 2025–26 is the latest year the ATO has published.
- */
-export const BASE_RATE_ENTITY_TAX = "25%";
+/** Base rate entity company tax rate, from lib/constants/company-tax.ts (ATO, cited there). */
+export const BASE_RATE_ENTITY_TAX = `${Math.round(COMPANY_TAX.baseRateEntityRate * 100)}%`;
 
 export const TECH_SALARY_FAQS: readonly FaqItem[] = [
   {
