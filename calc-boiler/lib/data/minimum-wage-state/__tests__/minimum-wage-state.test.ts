@@ -14,6 +14,7 @@ import {
   mwStateFaqs,
   mwStateH1,
   mwStateTitle,
+  stateOnlyHolidays,
 } from "../index";
 import { NMW } from "../../../constants/minimum-wage";
 import { PAYROLL_TAX_STATES } from "../../../constants/payroll-tax";
@@ -131,15 +132,55 @@ test("headcount at the payroll tax threshold is threshold / annual NMW, rounded 
   assert.ok(minimumWageHeadcountAtThreshold("nt") > minimumWageHeadcountAtThreshold("nsw"));
 });
 
-test("every state's FAQ set is complete and has no unfilled placeholders", () => {
+test("every state's FAQ set is complete, state-specific and has no unfilled placeholders", () => {
+  const seen = new Map<string, string>();
   for (const slug of MW_STATE_SLUGS) {
     const faqs = mwStateFaqs(MW_STATES[slug]);
-    assert.equal(faqs.length, 6);
+    assert.ok(faqs.length >= 3, `${slug}: ${faqs.length} FAQs`);
     for (const f of faqs) {
       assert.ok(f.q.length > 10 && f.a.length > 40);
       assert.doesNotMatch(f.a, /undefined|NaN|\[object/);
     }
+    // Apart from the shared rate question, no two states ask the same question.
+    for (const f of faqs.slice(1)) {
+      assert.equal(seen.get(f.q), undefined, `${slug} repeats "${f.q}" from ${seen.get(f.q)}`);
+      seen.set(f.q, slug);
+    }
   }
+});
+
+test("coverage lists come from the sources: WA councils and unincorporated businesses are state system", () => {
+  for (const slug of MW_STATE_SLUGS) {
+    const s = MW_STATES[slug];
+    assert.ok(s.coverage.national.length >= 1, `${slug} national list`);
+    assert.ok(s.answerNote.length > 30, `${slug} answer note`);
+    for (const src of [...s.sources, ...s.regulators]) assert.match(src.url, /^https?:\/\//, `${slug} ${src.url}`);
+  }
+  assert.deepEqual(MW_STATES.act.coverage.state, []);
+  assert.deepEqual(MW_STATES.nt.coverage.state, []);
+  const wa = MW_STATES.wa.coverage.state.join(" ");
+  assert.match(wa, /Sole traders/);
+  assert.match(wa, /local governments \(since 1 January 2023\)/);
+  assert.match(MW_STATES.tas.coverage.national.join(" "), /local government/);
+  assert.match(MW_STATES.sa.coverage.state.join(" "), /Government Business Enterprises/);
+});
+
+test("WA State Wage order figures: adult apprentice and award-free apprentice scale", () => {
+  const wa = MW_STATES.wa.stateWage.join(" ");
+  assert.match(wa, /\[2026\] WAIRC 00400/);
+  assert.match(wa, /\$828\.90 a week for apprentices aged 21 or over/);
+  assert.match(wa, /\$464\.20, \$607\.90, \$828\.90 and \$972\.60 a week/);
+});
+
+test("state-only holidays drop the days every state shares and keep each state's own days", () => {
+  for (const slug of MW_STATE_SLUGS) {
+    const names = stateOnlyHolidays(slug).map((h) => h.name);
+    assert.ok(!names.includes("Christmas Day"), `${slug} lists Christmas Day`);
+    assert.ok(!names.includes("Good Friday"), `${slug} lists Good Friday`);
+  }
+  assert.ok(stateOnlyHolidays("act").some((h) => h.name === "Canberra Day"));
+  assert.ok(stateOnlyHolidays("nt").some((h) => h.name === "Picnic Day"));
+  assert.ok(stateOnlyHolidays("wa").some((h) => h.name === "Western Australia Day"));
 });
 
 test("WA and QLD copy carries the verified state figures", () => {

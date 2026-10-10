@@ -12,10 +12,12 @@ import {
   type PublicHolidayDate,
   type RegionalHolidayTable,
 } from "@/lib/data/public-holidays";
+import type { WeekendHolidayRow } from "@/lib/data/public-holidays/weekend";
 import { TableShell } from "./job-pay-shared";
 
+// Whole-state days are the default, so only the exceptions carry a label.
 const KIND_LABEL: Record<PublicHolidayDate["kind"], string> = {
-  statewide: "Whole state",
+  statewide: "",
   additional: "Additional day",
   "part-day": "Part day",
   regional: "Part of state",
@@ -35,7 +37,7 @@ export function HolidayYearTable({ year, code }: { year: HolidayYear; code: stri
               Date {year.year}
             </th>
             <th scope="col" className="px-4 py-3 font-semibold">
-              Applies
+              Type
             </th>
           </tr>
         </thead>
@@ -159,6 +161,52 @@ export function AwardPublicHolidayTable() {
               ) : null}
             </td>
             <td className="px-4 py-3 text-xs text-warmgray">{a.note ?? ""}</td>
+          </tr>
+        ))}
+      </tbody>
+    </TableShell>
+  );
+}
+
+/**
+ * One state's weekend holidays in 2026 and 2027: whether the weekend day is a
+ * holiday there, which weekday is added, and what a Retail or Hospitality
+ * shift on the weekend day pays as a result.
+ */
+export function WeekendHolidayTable({ rows, code }: { rows: readonly WeekendHolidayRow[]; code: string }) {
+  return (
+    <TableShell caption={`${code} weekend public holidays 2026 and 2027`} minWidth="36rem">
+      <thead className="bg-sandstone font-semibold text-navy">
+        <tr>
+          <th scope="col" className="px-4 py-3">
+            Weekend date
+          </th>
+          <th scope="col" className="px-4 py-3">
+            Weekday holiday
+          </th>
+          <th scope="col" className="px-4 py-3">
+            Weekend shift, Retail / Hospitality (casual)
+          </th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-sandstone-dark/10 bg-white">
+        {rows.map((r) => (
+          <tr key={r.date} className={r.weekendIsHoliday ? "" : "bg-sandstone/40"}>
+            <th scope="row" className="px-4 py-2.5 text-left font-medium text-navy">
+              {r.name}
+              <span className="block text-xs font-normal text-warmgray">
+                <time dateTime={r.date}>{formatHolidayDate(r.date)}</time>
+                {r.weekendIsHoliday ? "" : `: not a ${code} public holiday`}
+              </span>
+              {r.note ? <span className="block text-xs font-normal text-warmgray">{r.note}</span> : null}
+            </th>
+            <td className="whitespace-nowrap px-4 py-2.5 text-navy">
+              {r.extra ? <time dateTime={r.extra.date}>{formatHolidayDate(r.extra.date, false)}</time> : "None"}
+            </td>
+            <td className="px-4 py-2.5 text-navy">
+              {pctLabel(r.permanent)} ({pctLabel(r.casual)})
+              {r.weekendIsHoliday ? null : <span className="block text-xs text-warmgray">{`ordinary ${r.weekday} rate`}</span>}
+            </td>
           </tr>
         ))}
       </tbody>

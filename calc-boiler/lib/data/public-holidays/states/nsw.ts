@@ -3,6 +3,10 @@ import type { StatePublicHolidays } from "../types";
 // Source: NSW Government "NSW public holidays" (industrialrelations.nsw.gov.au
 // redirects here), table "NSW public holidays 2026 to 2027", read 24 Sep 2026.
 // The page prints dates as "Monday 27 April 2026".
+// Re-read 10 Oct 2026 (https://www.nsw.gov.au/about-nsw/public-holidays): the
+// Bank Holiday footnote (Retail Trading Act 2008 Part 3A, Fair Trading 13 32 20),
+// the Public Holidays Act 2010 note on Fair Work Act ss 114 and 116, the
+// Minister's declaration of local days and the 131 628 line for local government.
 
 export const NSW_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   slug: "nsw",
@@ -62,13 +66,21 @@ export const NSW_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       heading: "The August Bank Holiday is not a public holiday",
       paragraphs: [
         "The first Monday in August (3 August 2026, 2 August 2027) is a Bank Holiday in NSW, not a declared public holiday. The NSW Government says so in terms: retail bank branches and some financial institutions must close, but for everyone else it is an ordinary working day and no public holiday rate applies.",
+        "The closure comes from Part 3A of the Retail Trading Act 2008, and exempt institutions can open. The Government lists the day only because it affects how those institutions are staffed. Fair Trading NSW (13 32 20) answers questions about bank and shop trading restrictions.",
+      ],
+    },
+    {
+      id: "nsw-law",
+      heading: "The Public Holidays Act 2010 and the day-off rules",
+      paragraphs: [
+        "The NSW Government notes that the Public Holidays Act 2010 applies two Fair Work Act 2009 provisions to employees and employers in NSW: section 114, the right to be absent on a public holiday, and section 116, payment for that absence. NSW council staff are in the state system, and NSW Industrial Relations (131 628) helps the local government industry with public holiday questions.",
       ],
     },
     {
       id: "local-days",
       heading: "Local public holidays and local event days",
       paragraphs: [
-        "Councils in regional NSW can apply for a local public holiday or a local event day, usually for an agricultural show or a race day. The difference matters for your pay. A local public holiday is a declared public holiday for work purposes in that area, so award public holiday rates can apply. A local event day is not a public holiday for work purposes, so it is an ordinary day.",
+        "Councils in regional NSW can apply for a local public holiday or a local event day, usually for an agricultural show or a racing carnival. The Minister for Industrial Relations makes the declaration, for a whole day or part of a day. The difference matters for your pay. A local public holiday is a declared public holiday for work purposes in that area, so award public holiday rates can apply. A local event day is not a public holiday for work purposes, so it is an ordinary day.",
         "The NSW Government publishes the current list of both on its local public holidays page, linked in the sources below.",
       ],
     },

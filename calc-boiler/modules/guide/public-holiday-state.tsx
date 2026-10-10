@@ -1,9 +1,12 @@
 // /public-holiday-pay/{state}/ — one page per state or territory (G4).
-// The date tables are the supporting context; the pay rules, the prefilled
-// calculator and the payslip links are the core.
+// The page carries what differs by state: the state's own dates for 2026 and
+// 2027, its part-day and regional holidays, which weekend days are holidays
+// there (and so what a weekend shift pays), and the state's own rules. The
+// rules that are the same everywhere (every award's rate, pay for a day off,
+// refusing a shift, substitute days by agreement) get one line and a link to
+// the /public-holiday-pay/ hub.
 
 import Link from "next/link";
-import { ArrowRight, Calculator } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
@@ -26,10 +29,13 @@ import {
   type StatePublicHolidays,
 } from "@/lib/data/public-holidays";
 import { PH_NES_SOURCES } from "@/lib/data/public-holidays/hub";
+import { ordinaryWeekendDays, weekendHolidayRows } from "@/lib/data/public-holidays/weekend";
 import PublicHolidayPayCalculator from "@/modules/calculator/public-holiday-pay-calculator";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink } from "./job-pay-shared";
-import { AwardPublicHolidayTable, HolidayYearTable, RegionalTable } from "./public-holiday-shared";
+import { HolidayYearTable, RegionalTable, WeekendHolidayTable } from "./public-holiday-shared";
 import FeaturedImage from "@/components/common/featured-image";
+
+const listOf = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
 export default function PublicHolidayStatePage({ state: s }: { state: StatePublicHolidays }) {
   const y26 = yearOf(s, 2026)!;
@@ -46,6 +52,9 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
   const lsl = `/long-service-leave-calculator/${s.slug}/`;
   const payCalc = `/pay-calculator-${s.slug}/`;
   const firstExtra = statewideDays(y26).find((h) => h.kind === "additional");
+  const weekendRows = weekendHolidayRows(s);
+  const ordinaryWeekend = ordinaryWeekendDays(s);
+  const inState = s.inName.charAt(0).toUpperCase() + s.inName.slice(1);
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -68,9 +77,8 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
               <strong>Direct answer:</strong> {s.code} has {statewideDays(y26).length} whole-day public holidays in 2026 and{" "}
               {statewideDays(y27).length} in 2027
               {parts.length ? `, plus part-day holidays from ${partHours.join(" / ")}` : ""}. Work one and your award pays{" "}
-              {pctLabel(range.permanentMin)} to {pctLabel(range.permanentMax)} of your base rate ({pctLabel(range.casualMin)} to{" "}
-              {pctLabel(range.casualMax)} for casuals). Full-time and part-time staff who have the day off are still paid their base
-              rate if it falls on a day they normally work.
+              {pctLabel(range.permanentMin)} to {pctLabel(range.permanentMax)} of your base rate: {pctLabel(presetAward.permanent)} under
+              the {presetAward.shortName} ({pctLabel(presetAward.casual)} for casuals).
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -84,7 +92,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
                 ["#dates-2026", "2026 dates"],
                 ["#dates-2027", "2027 dates"],
                 ...(s.regional.length ? [["#regional", "Regional holidays"]] : []),
-                ["#pay", "Pay rates"],
+                ["#weekends", "Weekend holidays"],
                 ["#calculator", "Calculator"],
                 ["#faq", "FAQ"],
               ].map(([href, label]) => (
@@ -99,6 +107,7 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
               <p>
                 Every public holiday {s.inName} for 2026, as published by the {s.sources[0].publisher}.
                 {firstExtra ? ` Additional days such as ${firstExtra.name} on ${formatHolidayDate(firstExtra.date)} are public holidays for pay too.` : ""}
+                {regionalInList.length ? ` Rows marked "Part of state" apply only where your job is based in that area.` : ""}
               </p>
               <HolidayYearTable year={y26} code={s.code} />
             </section>
@@ -120,25 +129,23 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
               </section>
             ) : null}
 
+            <section id="weekends">
+              <h2 style={HEADING_FONT}>Weekend holidays {s.inName}: which shift gets the public holiday rate</h2>
+              <p>
+                Whether the weekend day stays a holiday {s.inName}, and which weekday is added, decides which shift gets the public
+                holiday rate.
+                {ordinaryWeekend.length
+                  ? ` ${inState}, ${listOf(ordinaryWeekend.map((r) => formatHolidayDate(r.date)))} ${ordinaryWeekend.length > 1 ? "are ordinary weekend days" : "is an ordinary weekend day"} for pay.`
+                  : ` ${inState}, every one of those weekend days is itself a public holiday.`}
+              </p>
+              <WeekendHolidayTable rows={weekendRows} code={s.code} />
+            </section>
+
             <section id="pay">
-              <h2 style={HEADING_FONT}>What you&rsquo;re paid on a {s.code} public holiday</h2>
               <p>
-                The state decides which days are public holidays. Your award or enterprise agreement decides the rate. If you work
-                the day, every hour is paid at the public holiday rate below. If you don&rsquo;t work it and it falls on a day you
-                normally work, a full-time or part-time employee is paid their base rate for their ordinary hours. Casuals are paid
-                only for hours they work.
+                Every award&rsquo;s rate, pay for a day off and refusing a shift: see the{" "}
+                <Link href={`${PH_HUB_PATH}#award-rates`}>public holiday pay guide</Link>.
               </p>
-              <AwardPublicHolidayTable />
-              <p>
-                You can refuse a request to work a public holiday if the request is unreasonable or you have reasonable grounds. The{" "}
-                <Link href={PH_HUB_PATH}>public holiday pay guide</Link> covers refusals, leave and substitute days in full.
-              </p>
-              {regionalInList.length ? (
-                <p>
-                  Holidays marked &ldquo;Part of state&rdquo; are public holidays only where your job is based in that area. Elsewhere
-                  in {s.code} they are ordinary working days.
-                </p>
-              ) : null}
             </section>
 
             <section id="calculator" className="not-prose my-12">
@@ -148,16 +155,14 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
                 awardKey={preset.awardKey}
                 employment={preset.employment}
                 hours={preset.hours}
+                compactAwardLabels
+                intro={`Prefilled for a ${preset.employment === "casual" ? "casual" : "permanent"} ${presetAward.shortName} employee working ${preset.hours} hours. Change the award, base rate and hours to match your payslip.`}
                 partDayNote={
                   parts.length
                     ? `For ${Array.from(new Set(parts.map((p) => p.name))).join(" and ")}, enter only the hours worked from ${partHours.join(" / ")}; earlier hours are ordinary hours.`
                     : undefined
                 }
               />
-              <p className="mt-3 text-sm text-warmgray">
-                Prefilled for a {preset.employment === "casual" ? "casual" : "permanent"} employee under the {presetAward.shortName}.
-                Change the award, rate and hours to match your payslip.
-              </p>
             </section>
 
             {s.specifics.map((sec) => (
@@ -169,65 +174,30 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
               </section>
             ))}
 
-            <section id="your-pay">
-              <h2 style={HEADING_FONT}>Your {s.code} pay, leave and payslip</h2>
-              <p>
-                Public holiday pay is taxed as ordinary income with the rest of your pay. To see what a pay period with a public holiday
-                shift leaves you after tax, use the <Link href={payCalc}>{s.code} pay calculator</Link>. Long service leave is set by{" "}
-                {s.code} law, not the National Employment Standards; the{" "}
-                <Link href={lsl}>{s.code} long service leave calculator</Link> works out your entitlement. To check the public holiday line on your payslip, the{" "}
-                <Link href="/understanding-your-payslip/">payslip guide</Link> explains each line, and the{" "}
-                <Link href="/backpay-calculator/">back pay calculator</Link> totals an underpayment.
-              </p>
-              <div className="not-prose my-8 flex flex-wrap gap-3">
-                <Link
-                  href={payCalc}
-                  className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
-                >
-                  <Calculator className="h-5 w-5" aria-hidden="true" />
-                  {s.code} pay calculator
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href={lsl}
-                  className="inline-flex items-center gap-2 rounded-lg border border-eucalyptus-dark px-6 py-3 font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone"
-                >
-                  {s.code} long service leave
-                </Link>
-              </div>
-            </section>
-
             <section id="faq">
               <h2 style={HEADING_FONT}>{s.code} public holiday pay questions</h2>
               <FaqList faqs={faqs} />
             </section>
 
-            <section id="other-states">
-              <h2 style={HEADING_FONT}>Public holidays in other states</h2>
-              <div className="not-prose mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {others.map((o) => (
-                  <SidebarLink key={o.slug} href={statePath(o.slug)} label={`${o.code} public holidays 2026 & 2027`} />
-                ))}
-                <SidebarLink href={PH_HUB_PATH} label="Public holiday pay — all states" />
-                <SidebarLink href="/christmas-day-pay-rates/" label="Christmas Day pay rates" />
-                <SidebarLink href="/public-holidays-2027/" label="Public holidays 2027 with pay" />
-              </div>
-            </section>
+            <nav id="other-states" aria-label="Public holidays in other states" className="not-prose my-8 text-sm text-warmgray">
+              Other states:{" "}
+              {others.map((o, i) => (
+                <span key={o.slug}>
+                  {i ? " · " : ""}
+                  <Link href={statePath(o.slug)} className="text-eucalyptus-dark hover:underline">
+                    {o.code}
+                  </Link>
+                </span>
+              ))}
+            </nav>
 
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How this page is sourced">
                 <p>
-                  Every date was read from the {s.sources[0].publisher}&rsquo;s own public holidays page on {s.verifiedOn}. Each date is
-                  stored alongside the text the government prints, and automated tests check the day, month and weekday against it.
-                  Where the government has not yet published a date, the page says so instead of estimating it.
-                </p>
-                <p>
-                  Public holiday pay rates are read from the site&rsquo;s award constants (Fair Work Commission award texts, rates from
-                  the first full pay period on or after 1 July 2026). Rights when not working come from the Fair Work Ombudsman and the
-                  Fair Work Act 2009 ss 114–116.
+                  {s.code} dates are tested against the {s.sources[0].publisher} page as printed on {s.verifiedOn}.
                 </p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={[...s.sources, ...PH_NES_SOURCES]} lastVerified={s.verifiedOn} />
+              <SourceAttribution sources={[...s.sources, PH_NES_SOURCES[0]]} lastVerified={s.verifiedOn} />
               {authorship ? (
                 <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />
               ) : null}
@@ -238,36 +208,12 @@ export default function PublicHolidayStatePage({ state: s }: { state: StatePubli
             <div className="sticky top-8 space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h3 className="mb-3 font-bold text-navy">{s.code} at a glance</h3>
-                  <dl className="space-y-3 text-sm">
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Whole-day holidays 2026</dt>
-                      <dd className="font-semibold text-navy">{statewideDays(y26).length}</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Whole-day holidays 2027</dt>
-                      <dd className="font-semibold text-navy">{statewideDays(y27).length}</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Part-day holidays</dt>
-                      <dd className="text-right font-semibold text-navy">{parts.length ? partHours.join(" / ") : "None"}</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Verified</dt>
-                      <dd className="font-semibold text-navy">{s.verifiedOn}</dd>
-                    </div>
-                  </dl>
-                </CardContent>
-              </Card>
-              <Card className="border-sandstone-dark/20 bg-sandstone">
-                <CardContent className="p-6">
                   <h3 className="mb-3 font-bold text-navy">Related</h3>
                   <div className="space-y-3">
                     <SidebarLink href={payCalc} label={`${s.code} Pay Calculator`} />
                     <SidebarLink href={lsl} label={`${s.code} Long Service Leave`} />
                     <SidebarLink href={PH_HUB_PATH} label="Public Holiday Pay Guide" />
-                    <SidebarLink href="/overtime-penalty-rates-guide/" label="Penalty Rates Guide" />
-                    <SidebarLink href="/award-rates/" label="Award Rates" />
+                    <SidebarLink href="/understanding-your-payslip/" label="Payslip Guide" />
                   </div>
                 </CardContent>
               </Card>
