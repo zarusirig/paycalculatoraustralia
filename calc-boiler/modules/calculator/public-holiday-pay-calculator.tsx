@@ -32,6 +32,10 @@ export interface PublicHolidayCalculatorProps {
   stateCode?: string;
   /** Extra line under the result, e.g. SA's 7pm–midnight part-day rule. */
   partDayNote?: string;
+  /** Award options show the award name only (the rate appears in the result). Used on the state pages. */
+  compactAwardLabels?: boolean;
+  /** Replaces the default instructions under the heading, e.g. a state page's prefill note. */
+  intro?: string;
 }
 
 export default function PublicHolidayPayCalculator({
@@ -41,6 +45,8 @@ export default function PublicHolidayPayCalculator({
   hours: initialHours = 8,
   stateCode,
   partDayNote,
+  compactAwardLabels = false,
+  intro,
 }: PublicHolidayCalculatorProps) {
   const initialAward = getAwardPublicHolidayRate(awardKey) ?? PUBLIC_HOLIDAY_AWARD_RATES[0];
   const [key, setKey] = useState<string>(initialAward.key);
@@ -66,8 +72,12 @@ export default function PublicHolidayPayCalculator({
           {heading}
         </h2>
         <p className="mb-6 text-sm text-warmgray">
-          Enter your base hourly rate (the permanent rate from your payslip or award, before any casual loading), the
-          hours you work on the day and your award. The award rate is read from the award&rsquo;s own penalty table.
+          {intro ?? (
+            <>
+              Enter your base hourly rate (the permanent rate from your payslip or award, before any casual loading), the
+              hours you work on the day and your award. The award rate is read from the award&rsquo;s own penalty table.
+            </>
+          )}
         </p>
         <div className="grid gap-8 lg:grid-cols-2">
           <form onSubmit={(e) => e.preventDefault()} className="grid content-start gap-4 sm:grid-cols-2">
@@ -85,7 +95,7 @@ export default function PublicHolidayPayCalculator({
                 options={[
                   ...PUBLIC_HOLIDAY_AWARD_RATES.map((a) => ({
                     value: a.key,
-                    label: `${a.shortName} — ${pctLabel(a.permanent)} / casual ${pctLabel(a.casual)}`,
+                    label: compactAwardLabels ? a.shortName : `${a.shortName} — ${pctLabel(a.permanent)} / casual ${pctLabel(a.casual)}`,
                   })),
                   { value: CUSTOM, label: "Enterprise agreement or other — enter the rate" },
                 ]}

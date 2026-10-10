@@ -49,7 +49,7 @@ export default function MinimumWageStateCalculator({ state, stateName }: { state
           Take-home pay at the minimum wage in {stateName}
         </h2>
         <p className="mb-6 text-sm text-warmgray">
-          Pick your hours and age. We apply the minimum wage, then 2026-27 income tax and the Medicare levy, and show what stays in your account.
+          Pick your hours and age to see what stays in your account after 2026-27 income tax and the Medicare levy.
         </p>
 
         <div className="grid gap-8 lg:grid-cols-2">
@@ -76,7 +76,7 @@ export default function MinimumWageStateCalculator({ state, stateName }: { state
                 value={age}
                 onChange={setAge}
                 options={AGE_OPTIONS}
-                hint="Under 21, with no award, you get a percentage of the adult rate."
+                hint="No award? Under-21s get a percentage of the adult rate."
               />
             )}
             <NumberField id="mw-hours" label="Hours a week" hint="A full-time week is 38." value={hours} onChange={setHours} step={0.5} max={80} />
@@ -105,7 +105,7 @@ export default function MinimumWageStateCalculator({ state, stateName }: { state
               </p>
             )}
             <p className="text-xs text-warmgray-light">
-              Assumes an Australian resident claiming the tax-free threshold, no HECS-HELP debt and no private health surcharge. Annual figures are weekly pay times 52. Under-21 percentages are the National Minimum Wage junior table; an award may set different juniors. Estimate only.
+              Resident claiming the tax-free threshold, no HECS-HELP debt. Under-21 rates use the national junior table; an award may differ. Estimate only.
             </p>
           </div>
         </div>

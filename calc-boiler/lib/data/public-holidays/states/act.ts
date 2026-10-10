@@ -3,6 +3,9 @@ import type { StatePublicHolidays } from "../types";
 // Source: ACT Government "Public holidays, school terms and daylight saving"
 // (act.gov.au — the old cmtedd.act.gov.au holidays page now redirects here),
 // read 24 Sep 2026. Paired days are printed "Saturday 25 and Monday 27 April".
+// Re-read 10 Oct 2026 (https://www.act.gov.au/living-in-the-act/public-holidays-school-terms-and-daylight-saving):
+// the page also lists 2028 and 2029 ("New Year's Day | Saturday 1 and Monday 3
+// January" 2028; Christmas Monday 25, Boxing Day Tuesday 26 December 2028).
 
 export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
   slug: "act",
@@ -84,6 +87,13 @@ export const ACT_PUBLIC_HOLIDAYS: StatePublicHolidays = {
       heading: "The August bank holiday",
       paragraphs: [
         "The Holidays Act 1958 also sets a bank holiday on the first Monday in August. The ACT Government notes that bank holidays do not apply to everyone, so for most employees it is an ordinary working day. Check your award or enterprise agreement if you work in banking or finance.",
+      ],
+    },
+    {
+      id: "new-year-2028",
+      heading: "Already published: New Year 2028 on a weekend",
+      paragraphs: [
+        "The ACT Government's page already lists 2028 and 2029. New Year's Day 2028 falls on a Saturday, and the ACT lists both Saturday 1 and Monday 3 January 2028, so a shift on either day over the 2027-28 New Year is paid at the public holiday rate. Christmas Day and Boxing Day 2028 fall on a Monday and Tuesday, with no extra day.",
       ],
     },
   ],
