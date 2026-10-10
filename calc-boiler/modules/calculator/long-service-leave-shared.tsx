@@ -124,6 +124,28 @@ export function RelatedLinks({ current }: { current?: JurisdictionCode | "hub" }
           ))}
         </ul>
       </div>
+      {current !== undefined && current !== "hub" ? (
+        // State pages: the same four links without the descriptions, which
+        // were identical on all eight spokes (they stay in full on the hub).
+        <p className="text-warmgray text-sm">
+          <span className="font-semibold text-navy">Work out the rest of your pay:</span>{" "}
+          <Link href="/leave-calculator/" className={LINK}>
+            annual leave
+          </Link>{" "}
+          &middot;{" "}
+          <Link href="/final-pay-calculator/" className={LINK}>
+            final pay
+          </Link>{" "}
+          &middot;{" "}
+          <Link href="/redundancy-pay-calculator/" className={LINK}>
+            redundancy pay
+          </Link>{" "}
+          &middot;{" "}
+          <Link href="/take-home-pay-calculator/" className={LINK}>
+            take-home pay
+          </Link>
+        </p>
+      ) : (
       <div>
         <h3 className="font-semibold text-navy mb-2">Work out the rest of your pay</h3>
         <ul className="space-y-2 text-warmgray text-sm">
@@ -153,6 +175,7 @@ export function RelatedLinks({ current }: { current?: JurisdictionCode | "hub" }
           </li>
         </ul>
       </div>
+      )}
     </div>
   );
 }

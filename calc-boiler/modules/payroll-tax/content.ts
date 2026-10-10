@@ -12,6 +12,7 @@ import {
   type PayrollTaxStateCode,
 } from "@/lib/constants/payroll-tax";
 import { millions, pctTrim } from "./format";
+import { PAYROLL_TAX_STATE_DETAIL } from "./state-detail";
 
 export interface Faq {
   q: string;
@@ -63,10 +64,10 @@ export function stateFaqs(code: PayrollTaxStateCode): Faq[] {
       q: `When is ${s.abbr} payroll tax due?`,
       a: `Monthly returns: ${s.monthlyDue} Annual return for ${PAYROLL_TAX_FY}: ${s.annualDue}.`,
     },
-    {
-      q: `Does ${s.abbr} payroll tax come out of an employee's pay?`,
-      a: `No. Payroll tax is paid by the employer to the ${s.revenueOffice} on top of wages. It is not withheld from pay and does not appear on a payslip, so it does not change an employee's take-home pay.`,
-    },
+    // "Does payroll tax come out of an employee's pay?" used to close every
+    // state's list with the same answer; it now lives once on the hub, and each
+    // state ends with the questions its own rules answer differently.
+    ...PAYROLL_TAX_STATE_DETAIL[code].faqs,
   ];
 }
 

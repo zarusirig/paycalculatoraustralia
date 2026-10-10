@@ -8,65 +8,15 @@ import { formatAUD } from "@/lib/constants";
 import {
   PAYROLL_TAX_FY,
   PAYROLL_TAX_STATES,
-  PAYROLL_TAX_AUSTRALIA_URL,
   calculatePayrollTax,
   type PayrollTaxStateCode,
 } from "@/lib/constants/payroll-tax";
 import PayrollTaxCalculator from "./payroll-tax-calculator";
-import { INTERSTATE_EXAMPLE, billLabel, exampleRows, interstateExample, stateFaqs } from "./content";
+import { exampleRows, stateFaqs } from "./content";
 import { pctTrim } from "./format";
-import {
-  Breadcrumb,
-  FaqList,
-  H2_STYLE,
-  LAST_VERIFIED,
-  RatesTable,
-  RelatedCard,
-  StateLinksNav,
-  TaxableWagesList,
-} from "./sections";
+import { Breadcrumb, FaqList, H2_STYLE, RelatedCard, StateLinksNav } from "./sections";
+import { PAYROLL_TAX_STATE_DETAIL, PAYROLL_TAX_STATE_DETAIL_VERIFIED_ON } from "./state-detail";
 import FeaturedImage from "@/components/common/featured-image";
-
-/** Pages each state's figures were read from (23 Sep 2026), beyond the rates page. */
-const EXTRA_SOURCES: Record<PayrollTaxStateCode, SourceLink[]> = {
-  nsw: [
-    { title: "Key dates for payroll tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/lodge-and-pay-returns/key-dates", publisher: "Revenue NSW" },
-    { title: "Register for payroll tax", url: "https://www.revenue.nsw.gov.au/taxes-duties-levies-royalties/payroll-tax/registration/register-for-payroll-tax", publisher: "Revenue NSW" },
-  ],
-  vic: [
-    { title: "Threshold and phase-out rate", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/threshold-and-phase-out-rate", publisher: "State Revenue Office Victoria" },
-    { title: "Payroll tax surcharges", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/thresholds-and-grouping/payroll-tax-surcharges", publisher: "State Revenue Office Victoria" },
-    { title: "Regional employers", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/industries-and-locations/regional-employers", publisher: "State Revenue Office Victoria" },
-    { title: "Lodge your monthly return", url: "https://www.sro.vic.gov.au/businesses-and-organisations/payroll-tax/managing-your-payroll-tax/lodge-your-monthly-return", publisher: "State Revenue Office Victoria" },
-  ],
-  qld: [
-    { title: "Payroll tax deductions", url: "https://qro.qld.gov.au/payroll-tax/calculate/deductions/", publisher: "Queensland Revenue Office" },
-    { title: "Payroll tax discount for regional businesses", url: "https://qro.qld.gov.au/payroll-tax/calculate/regional-discount/", publisher: "Queensland Revenue Office" },
-    { title: "Calculating the mental health levy", url: "https://qro.qld.gov.au/payroll-tax/mental-health-levy/calculating/", publisher: "Queensland Revenue Office" },
-    { title: "Payroll tax due dates", url: "https://qro.qld.gov.au/payroll-tax/returns/due-dates/", publisher: "Queensland Revenue Office" },
-  ],
-  wa: [
-    { title: "Local non-group employer: payroll tax", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/calculation-payroll-tax-employer-guide/local-non-group-employer-payroll-tax", publisher: "Department of Treasury and Finance WA" },
-    { title: "Interstate non-group employer: payroll tax", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/calculation-payroll-tax-employer-guide/interstate-non-group-employer-payroll-tax", publisher: "Department of Treasury and Finance WA" },
-    { title: "Registration: Payroll Tax Employer Guide", url: "https://www.wa.gov.au/government/multi-step-guides/payroll-tax-employer-guide/registration-payroll-tax-employer-guide", publisher: "Department of Treasury and Finance WA" },
-  ],
-  sa: [
-    { title: "How is payroll tax calculated?", url: "https://www.revenuesa.sa.gov.au/payrolltax/how-is-payroll-tax-calculated", publisher: "RevenueSA" },
-    { title: "Payroll Tax Rate Table (from 1 January 2019)", url: "https://www.revenuesa.sa.gov.au/__data/assets/pdf_file/0007/205459/PRT-Rate-Table.pdf", publisher: "RevenueSA" },
-  ],
-  tas: [
-    { title: "Lodge your return", url: "https://www.sro.tas.gov.au/payroll-tax/lodge-your-return", publisher: "State Revenue Office Tasmania" },
-    { title: "Payroll tax annual adjustment return guideline", url: "https://www.sro.tas.gov.au/Documents/Annual-Adjustment-Return-Guideline.pdf", publisher: "State Revenue Office Tasmania" },
-  ],
-  act: [
-    { title: "Calculating payroll tax", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/calculating-payroll-tax", publisher: "ACT Revenue Office" },
-    { title: "Lodging returns", url: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/lodging-returns", publisher: "ACT Revenue Office" },
-  ],
-  nt: [
-    { title: "Payroll tax (rates, due dates and 1 July 2026 changes)", url: "https://treasury.nt.gov.au/dtf/territory-revenue-office/payroll-tax", publisher: "Territory Revenue Office" },
-    { title: "Payroll tax guide for NT employers and businesses", url: "https://treasury.nt.gov.au/pms/tro/information/I-PRT-001.pdf", publisher: "Territory Revenue Office" },
-  ],
-};
 
 /** State-specific paragraph for the "how it is calculated" section. */
 const HOW_NOTE: Record<PayrollTaxStateCode, string> = {
@@ -82,15 +32,16 @@ const HOW_NOTE: Record<PayrollTaxStateCode, string> = {
 
 export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCode }) {
   const s = PAYROLL_TAX_STATES[code];
+  const d = PAYROLL_TAX_STATE_DETAIL[code];
   const rows = exampleRows(code);
-  const inter = interstateExample(code);
   const ex3 = calculatePayrollTax({ state: code, stateWages: 3_000_000 });
   const faqs = stateFaqs(code);
   const authorship = getGuideAuthorship("payroll-tax");
+  // "the State Revenue Office Victoria", but "Revenue NSW", "RevenueSA", "RevenueWA (…)".
+  const office = /^Revenue/.test(s.revenueOffice) ? s.revenueOffice : `the ${s.revenueOffice}`;
   const sources: SourceLink[] = [
     { title: `${s.name} payroll tax rates and thresholds`, url: s.ratesUrl, publisher: s.revenueOffice },
-    ...EXTRA_SOURCES[code],
-    { title: "Lodging payroll tax returns", url: PAYROLL_TAX_AUSTRALIA_URL, publisher: "Payroll Tax Australia" },
+    ...d.sources.filter((x) => x.url !== s.ratesUrl),
   ];
 
   return (
@@ -114,7 +65,7 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
               <strong>{s.headlineRate}</strong> on taxable wages above a <strong>{formatAUD(s.annualThreshold)}</strong>{" "}
               annual threshold (monthly: {s.monthlyThresholdText}). A business paying {formatAUD(3_000_000)} of wages
               only in {s.abbr} pays <strong>{formatAUD(ex3.total)}</strong> for the year. It is paid by employers to
-              the {s.revenueOffice}; nothing is deducted from employees&rsquo; pay.
+              {office}; nothing is deducted from employees&rsquo; pay.
             </p>
           </div>
           <TrustBar className="!max-w-none" />
@@ -130,7 +81,6 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
             <section id="rate">
               <h2 style={H2_STYLE}>{s.abbr} Payroll Tax Rate {PAYROLL_TAX_FY}</h2>
               <p>{s.rateSummary}</p>
-              {s.extras && <p><strong>Surcharges and concessions:</strong> {s.extras}</p>}
               {s.changeFrom2025_26 && <p><strong>What changed on 1 July 2026:</strong> {s.changeFrom2025_26}</p>}
             </section>
 
@@ -141,11 +91,14 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
                 <li><strong>Monthly:</strong> {s.monthlyThresholdText}</li>
               </ul>
               <p>{s.thresholdSummary}</p>
+              <p>{HOW_NOTE[code]}</p>
             </section>
 
             <section id="calculate">
-              <h2 style={H2_STYLE}>How to Calculate {s.abbr} Payroll Tax</h2>
-              <p>{HOW_NOTE[code]}</p>
+              <h2 style={H2_STYLE}>{s.abbr} Payroll Tax Worked Examples</h2>
+              {d.workedExample.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
               <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
                 <table className="w-full min-w-[34rem] text-left text-sm text-navy">
                   <caption className="sr-only">{s.abbr} payroll tax at four wage bills, {PAYROLL_TAX_FY}</caption>
@@ -153,7 +106,7 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
                     <tr>
                       <th scope="col" className="px-4 py-3">{s.abbr} wages (all in {s.abbr})</th>
                       <th scope="col" className="px-4 py-3 text-right">Threshold / deduction</th>
-                      <th scope="col" className="px-4 py-3 text-right">Payroll tax{s.extras && code !== "act" ? " incl. surcharge" : ""}</th>
+                      <th scope="col" className="px-4 py-3 text-right">Payroll tax{code === "vic" || code === "qld" ? " incl. surcharge" : ""}</th>
                       <th scope="col" className="px-4 py-3 text-right">Effective rate</th>
                     </tr>
                   </thead>
@@ -169,71 +122,63 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
                   </tbody>
                 </table>
               </div>
-              <p>
-                <strong>Interstate example:</strong> an employer paying {formatAUD(INTERSTATE_EXAMPLE.stateWages)} in{" "}
-                {s.abbr} out of {formatAUD(INTERSTATE_EXAMPLE.australianWages)} Australia-wide ({pctTrim(inter.share, 0)} in{" "}
-                {s.abbr}) gets a threshold or deduction of {formatAUD(inter.deduction)} and pays{" "}
-                {formatAUD(inter.total)} in {s.abbr}. It also pays payroll tax in the other states on the other{" "}
-                {billLabel(INTERSTATE_EXAMPLE.australianWages - INTERSTATE_EXAMPLE.stateWages)}.
-              </p>
             </section>
 
-            <section id="register">
-              <h2 style={H2_STYLE}>Who Must Register for {s.abbr} Payroll Tax</h2>
+            <section id="levies">
+              <h2 style={H2_STYLE}>{d.leviesHeading}</h2>
+              {d.levies.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+            </section>
+
+            <section id="grouping">
+              <h2 style={H2_STYLE}>Grouping Rules in {s.name}</h2>
+              {d.grouping.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+            </section>
+
+            <section id="contractors">
+              <h2 style={H2_STYLE}>{d.contractorsHeading}</h2>
+              {d.contractors.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
+            </section>
+
+            <section id="lodging">
+              <h2 style={H2_STYLE}>Registering, Lodging and Paying in {s.abbr}</h2>
               <p>{s.registration}</p>
-              <p>
-                The test uses total Australian wages, including every business you are grouped with, so an employer
-                with a small {s.abbr} payroll can still be liable. Grouped businesses add their wages together, and
-                only the designated group employer claims the threshold.
-              </p>
-            </section>
-
-            <section id="due-dates">
-              <h2 style={H2_STYLE}>{s.abbr} Payroll Tax Due Dates {PAYROLL_TAX_FY}</h2>
               <ul>
                 <li><strong>Monthly returns:</strong> {s.monthlyDue}</li>
-                <li><strong>Annual reconciliation:</strong> {s.annualDue}</li>
+                <li><strong>Annual return for {PAYROLL_TAX_FY}:</strong> {s.annualDue}</li>
               </ul>
-              <p>
-                Returns are lodged and paid online with the <a href={s.revenueOfficeUrl} target="_blank" rel="noreferrer noopener">{s.revenueOffice}</a>.
-                Late payment attracts interest and penalty tax.
-              </p>
+              {d.lodgement.map((t) => (
+                <p key={t}>{t}</p>
+              ))}
             </section>
 
-            <section id="taxable-wages">
-              <h2 style={H2_STYLE}>What Counts as Wages for {s.abbr} Payroll Tax</h2>
-              <TaxableWagesList />
-            </section>
-
-            <section id="employees">
-              <h2 style={H2_STYLE}>{s.abbr} Payroll Tax and Your Employees</h2>
-              <p>
-                Payroll tax is an on-cost, like super and {s.workersComp} workers compensation premiums: the employer
-                pays it on top of wages and none of it is withheld from pay. Employees who want their own figures should
-                use the <Link href={s.payCalculatorPath}>{s.abbr} pay calculator</Link> for take-home pay. For the full
-                cost of a hire — salary, super, leave and payroll tax — use the{" "}
-                <Link href="/employer-cost-calculator/">employer cost calculator</Link>.
-              </p>
-            </section>
-
-            <section id="compare">
-              <h2 style={H2_STYLE}>{s.abbr} Compared With Other States</h2>
-              <RatesTable highlight={code} />
-            </section>
+            <p>
+              What counts as wages, why employees never pay it and how {s.abbr} compares with the other states are the
+              same everywhere, so they are covered once on the{" "}
+              <Link href="/payroll-tax/#taxable-wages">payroll tax hub</Link> and in the{" "}
+              <Link href="/payroll-tax/#compare">state-by-state comparison</Link>. For an employee&rsquo;s take-home pay
+              use the <Link href={s.payCalculatorPath}>{s.abbr} pay calculator</Link>; for the full cost of a hire, the{" "}
+              <Link href="/employer-cost-calculator/">employer cost calculator</Link>.
+            </p>
 
             <FaqList faqs={faqs} />
 
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How these figures are worked out">
                 <p>
-                  Rates, thresholds and rules come from the {s.revenueOffice} and were checked on {LAST_VERIFIED}. The
-                  calculator and tables assume a full {PAYROLL_TAX_FY} year of wages with the threshold claimed in full
-                  (by the designated group employer, for a group) and no exemptions. They do not model part-year
-                  employers or monthly returns; the {s.revenueOffice}&rsquo;s online return is the final word. The
-                  engine is tested against the worked examples the revenue offices publish.
+                  {s.abbr} payroll tax is administered by {office} under the {d.legislation}. The rate,
+                  thresholds and rules on this page were read from its own pages on{" "}
+                  {PAYROLL_TAX_STATE_DETAIL_VERIFIED_ON}. The calculator assumes a full {PAYROLL_TAX_FY} year with the
+                  threshold claimed in full and no exempt wages; the revenue office&rsquo;s worked examples above are
+                  pinned against it in the test suite.
                 </p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={sources} lastVerified={LAST_VERIFIED} />
+              <SourceAttribution sources={sources} lastVerified={PAYROLL_TAX_STATE_DETAIL_VERIFIED_ON} />
               {authorship ? (
                 <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />
               ) : null}

@@ -6,6 +6,9 @@
 // state or territory revenue office on 23 September 2026 (via Firecrawl); the
 // source URL sits next to each figure. Where a revenue office publishes a
 // worked example, lib/constants/__tests__/payroll-tax.test.ts pins it.
+// Re-read from every revenue office on 10 October 2026 (raw markdown): every
+// rate, threshold, phase-out, levy and monthly figure below still matches;
+// only the ACT's description of the 2025-26 structure was corrected.
 //
 // Scope of the engine (said on every page that uses it):
 //   - a full financial year of wages (no part-year apportionment);
@@ -621,8 +624,12 @@ export const PAYROLL_TAX_STATES: Record<PayrollTaxStateCode, PayrollTaxStateInfo
     monthlyDue:
       "7th of the following month for July–November and January–May; the December return is due 14 January (next working day if a weekend or public holiday).",
     annualDue: "28 July 2027 (June wages go in the annual reconciliation)",
+    // Corrected 10 Oct 2026 against Tables 2 and 3 of revenue.act.gov.au
+    // ".../payroll-tax/about-payroll-tax": 2025-26 surcharges were 0.5% ($50m–$100m)
+    // and 1% (above $100m), and from 1 January 2026 wages above $150m paid 8.75%
+    // with no surcharge — not a flat 6.85% for everyone above $150m.
     changeFrom2025_26:
-      "From 1 July 2026 the threshold fell from $2 million to $1.75 million and the general rate moved from a flat 6.85% (plus surcharges for $50m+ employers) to the banded 6.75%–8.75% scale.",
+      "From 1 July 2026 the threshold fell from $2 million to $1.75 million and the banded 6.75%–8.75% scale replaced the old structure: a flat 6.85% with a 0.5% surcharge for $50m–$100m of Australian wages and 1% above $100m (and, from 1 January 2026, 8.75% with no surcharge above $150m).",
     revenueOffice: "ACT Revenue Office",
     revenueOfficeUrl: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax",
     ratesUrl: "https://www.revenue.act.gov.au/business-taxes-and-levies/payroll-tax/about-payroll-tax",

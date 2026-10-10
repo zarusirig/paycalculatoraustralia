@@ -226,8 +226,14 @@ test("below the pro-rata trigger nothing is payable however the job ends", () =>
 });
 
 test("WA and SA withhold pro-rata for serious misconduct; NSW and QLD still pay past 10 years", () => {
-  assert.equal(entitlementOnEnding("wa", serviceFromParts(12), "serious-misconduct").payableOnEndingWeeks, 0);
-  assert.equal(entitlementOnEnding("sa", serviceFromParts(12), "serious-misconduct").payableOnEndingWeeks, 0);
+  // Between 7 and 10 years a serious-misconduct dismissal pays nothing in WA or SA.
+  assert.equal(entitlementOnEnding("wa", serviceFromParts(8), "serious-misconduct").payableOnEndingWeeks, 0);
+  assert.equal(entitlementOnEnding("sa", serviceFromParts(8), "serious-misconduct").payableOnEndingWeeks, 0);
+  // WA Private Sector Labour Relations' Anastasia (12 years 1 month, serious
+  // misconduct): the first 10 years' 8.667 weeks, nothing pro-rata since.
+  assert.equal(entitlementOnEnding("wa", serviceFromParts(12, 1), "serious-misconduct").payableOnEndingWeeks, 8.667);
+  // SafeWork SA: from 10 years the entitlement cannot be removed for misconduct.
+  assert.ok(Math.abs(entitlementOnEnding("sa", serviceFromParts(12), "serious-misconduct").payableOnEndingWeeks - 15.6) < 1e-9);
   assert.ok(entitlementOnEnding("nsw", serviceFromParts(12), "serious-misconduct").payableOnEndingWeeks > 0);
   assert.ok(entitlementOnEnding("qld", serviceFromParts(12), "serious-misconduct").payableOnEndingWeeks > 0);
 });
@@ -353,7 +359,7 @@ test("the ATO cut-over dates and rates are the ones the schedule publishes", () 
 // =============================================================================
 
 test("every source URL is https and the verification date is recorded", () => {
-  assert.equal(LSL_SOURCES.verifiedOn, "28 August 2026");
+  assert.equal(LSL_SOURCES.verifiedOn, "10 October 2026");
   for (const [key, value] of Object.entries(LSL_SOURCES)) {
     if (key === "verifiedOn") continue;
     assert.ok(String(value).startsWith("https://"), `${key} is not an https URL`);
@@ -370,9 +376,10 @@ test("a jurisdiction with no verified cashing-out rule says so rather than guess
       assert.ok(j.cashingOutNote.length > 20, `${code} needs a cashing-out explanation`);
     }
   }
-  // The two we could not verify on 28 August 2026.
-  assert.equal(LSL_JURISDICTIONS.sa.cashingOut, null);
+  // The one we still could not verify on 10 October 2026.
   assert.equal(LSL_JURISDICTIONS.act.cashingOut, null);
+  // SafeWork SA, "Payment of entitlement": by written agreement after 10 years.
+  assert.equal(LSL_JURISDICTIONS.sa.cashingOut, "by-agreement");
   // The ones we could.
   assert.equal(LSL_JURISDICTIONS.nsw.cashingOut, "prohibited");
   assert.equal(LSL_JURISDICTIONS.vic.cashingOut, "prohibited");
