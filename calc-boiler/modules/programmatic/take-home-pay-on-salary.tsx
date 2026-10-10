@@ -1,22 +1,36 @@
 import React from "react";
 import Link from "next/link";
 import {
-  calculatePayBreakdown,
   formatAUD,
   formatNegAUD,
   SITE_CONFIG,
   EMPLOYMENT,
-  SUPER_GUARANTEE,
+  HECS_HELP_2025_26,
 } from "@/lib/constants/australian-tax";
+import { NMW_ORDER } from "@/lib/constants/junior-rates";
+import { LISTO_SOURCES } from "@/lib/constants/listo";
+import { RETURN_2026_SOURCES } from "@/lib/constants/tax-return-2025-26";
+import { WATO_SOURCES } from "@/lib/constants/tax-2027-28";
 import { Card } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import { hasPage, salaryFacts, salaryHref } from "@/lib/data/salary-pages";
+import {
+  apprenticesOnPage,
+  div293Effect,
+  hecsShift,
+  hoursRows,
+  jobsOnPage,
+  lowIncomeHelp,
+  sacrificeEffect,
+  takeHomeBand,
+} from "@/lib/data/salary-pages/take-home-sections";
 import { FaqAnswer } from "@/components/common/faq-accordion";
 import { takeHomePayOnSalaryFaqs } from "@/modules/programmatic/take-home-pay-on-salary-faqs";
-import { EarningsPosition, NeighbourTable, NextThousand, SalaryBandNotes, SalaryNav } from "@/modules/programmatic/salary-page-sections";
+import { SalaryNav } from "@/modules/programmatic/salary-page-sections";
 import { JobsNearSalary } from "@/modules/programmatic/jobs-near-salary";
+import { PartTimeHours, TakeHomeFactors, YearChangeLine } from "@/modules/programmatic/take-home-sections";
 import FeaturedImage from "@/components/common/featured-image";
 
 interface TakeHomePayOnSalaryProps {
@@ -26,78 +40,100 @@ interface TakeHomePayOnSalaryProps {
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
 const LINK = "text-eucalyptus hover:text-navy transition-colors font-medium";
 
-const SOURCES_LIST: SourceLink[] = [
-  { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: "ATO" },
-  { title: "Medicare levy", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy", publisher: "ATO" },
-  { title: "Superannuation guarantee", url: "https://www.ato.gov.au/tax-rates-and-codes/key-superannuation-rates-and-thresholds/super-guarantee", publisher: "ATO" },
-];
+const ATO = {
+  rates: { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: "ATO" },
+  medicare: { title: "Medicare levy", url: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy", publisher: "ATO" },
+  sacrifice: {
+    title: "Salary sacrificing super",
+    url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/salary-sacrificing-super",
+    publisher: "ATO",
+  },
+  coContribution: {
+    title: "Super co-contribution",
+    url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/how-to-save-more-in-your-super/government-super-contributions/super-co-contribution",
+    publisher: "ATO",
+  },
+  studyLoans: { title: "Study and training support loans", url: "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds", publisher: "ATO" },
+  div293: {
+    title: "Division 293 tax on concessional contributions by high-income earners",
+    url: "https://www.ato.gov.au/individuals-and-families/super-for-individuals-and-families/super/growing-and-keeping-track-of-your-super/caps-limits-and-tax-on-super-contributions/division-293-tax-on-concessional-contributions-by-high-income-earners",
+    publisher: "ATO",
+  },
+} satisfies Record<string, SourceLink>;
 
-// Oct 2026: the sections that read word-for-word the same on every salary
-// (pay by frequency, how brackets work, ways to increase take-home, related
-// calculators, the methodology list) are cut to a line each with a link to the
-// page that covers them, so most of this page is about its own salary. The
-// bracket-by-bracket working lives on the paired /tax-on/ page.
+/** Sources for the sections this salary actually shows. */
+function sourcesFor(salary: number): SourceLink[] {
+  const band = takeHomeBand(salary);
+  const out: SourceLink[] = [ATO.rates, ATO.medicare];
+  if (band === "low") {
+    out.push({ title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: "Fair Work Commission" });
+    for (const r of hoursRows(salary).slice(1)) out.push({ title: r.sourceLabel, url: r.sourceUrl, publisher: "Fair Work Commission" });
+    out.push({ title: "Low income super tax offset", url: LISTO_SOURCES.ato, publisher: "ATO" });
+    if (lowIncomeHelp(salary).coContribution > 0) out.push(ATO.coContribution);
+  } else {
+    if (sacrificeEffect(salary).amount > 0) out.push(ATO.sacrifice);
+    if (band === "middle" && lowIncomeHelp(salary).coContribution > 0) out.push(ATO.coContribution);
+    if (band === "high") out.push({ title: "Medicare levy surcharge income, thresholds and rates", url: RETURN_2026_SOURCES.mls, publisher: "ATO" });
+    if (div293Effect(salary)) out.push(ATO.div293);
+  }
+  if (hecsShift(salary) || salary > HECS_HELP_2025_26.minimumThreshold) out.push(ATO.studyLoans);
+  out.push({ title: "Working Australians tax offset", url: WATO_SOURCES.ato, publisher: "ATO" });
+  const { occupations, publicPay, show } = jobsOnPage(salary);
+  const awards = new Map<string, string>();
+  for (const a of apprenticesOnPage(salary)) for (const t of a.trades) awards.set(t.awardUrl, t.award);
+  for (const [url, title] of awards) out.push({ title: `${title} (apprentice rates)`, url, publisher: "Fair Work Commission" });
+  if (show) {
+    for (const o of occupations) {
+      out.push({ title: `${o.anzscoTitle} (ANZSCO ${o.anzscoCode}) occupation profile`, url: o.sourceUrl, publisher: "Jobs and Skills Australia" });
+    }
+    const seen = new Set<string>();
+    for (const p of publicPay) {
+      if (!p.sourceUrl || seen.has(p.sourceUrl)) continue;
+      seen.add(p.sourceUrl);
+      out.push({ title: `${p.service} pay rates`, url: p.sourceUrl, publisher: p.service });
+    }
+  }
+  return out;
+}
+
+// Oct 2026 (second pass): the take-home pages were still ~95% the same with
+// the numbers masked. The page now keeps the core answer (the hero, a month,
+// the breakdown table) and one line each, with a link, for what is the same on
+// every salary. Everything else is a section that exists only where it applies
+// (modules/programmatic/take-home-sections.tsx): hours and offsets at low
+// salaries, salary sacrifice in the middle, the surcharge and Division 293 at
+// the top, HECS-HELP only where a neighbouring page is in another band, the
+// change since 2025-26, and the jobs that land on this salary. The bracket
+// working, the threshold list, the comparison table and the ABS placement are
+// on the paired /tax-on/ page and are not repeated here.
 export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   // Headline figures exclude HECS-HELP: "$X after tax" is asked (and answered
   // by the ATO and every other AU pay site) for someone without a study loan.
-  const breakdown = calculatePayBreakdown({ grossSalary: salary });
-
-  const formattedSalary = formatAUD(salary);
-  const effectiveRate = (breakdown.effectiveTaxRate * 100).toFixed(1);
-
-  const hourlyGross = salary / EMPLOYMENT.hoursPerYear;
-  const hourlyNet = breakdown.takeHomePay / EMPLOYMENT.hoursPerYear;
-
-  // Employer SG capped at the maximum contribution base (the engine's
-  // superContribution is an uncapped 12%, which overstates it above ~$270k).
   const facts = salaryFacts(salary);
+  const breakdown = facts.breakdown;
+  const band = takeHomeBand(salary);
+  const s = formatAUD(salary);
+
+  // Employer SG capped at the maximum contribution base.
   const employerSuper = facts.employerSuper;
-  const totalPackage = salary + employerSuper;
 
   const taxOnHref = hasPage("tax-on", salary) ? salaryHref("tax-on", salary) : "/tax-brackets/";
-  const taxOnLabel = hasPage("tax-on", salary) ? `Tax on ${formattedSalary}` : "tax brackets";
   const hourlyHref = hasPage("salary-to-hourly", salary) ? salaryHref("salary-to-hourly", salary) : "/salary-to-hourly/";
-
-  const tax = breakdown.netIncomeTax;
-  const medicare = breakdown.medicareLevy;
-  const deductionsText =
-    tax === 0 && medicare === 0
-      ? "with no income tax or Medicare levy to pay"
-      : tax === 0
-        ? `with no income tax to pay and ${formatAUD(medicare)} of Medicare levy`
-        : medicare === 0
-          ? `after ${formatAUD(tax)} of income tax and no Medicare levy`
-          : `after ${formatAUD(tax)} of income tax and ${formatAUD(medicare)} of Medicare levy`;
-  const bracketText =
-    breakdown.litoOffset > 0 && tax === 0
-      ? `The Low Income Tax Offset cancels all ${formatAUD(breakdown.incomeTax)} of the bracket tax`
-      : breakdown.litoOffset > 0
-        ? `The ${formatAUD(tax)} of income tax is ${formatAUD(breakdown.incomeTax)} of bracket tax less a ${formatAUD(breakdown.litoOffset)} Low Income Tax Offset`
-        : `The ${formatAUD(tax)} of income tax is worked out bracket by bracket`;
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      {/* Introduction */}
-      {/* The hero above already gives the yearly, fortnightly and weekly answer;
-          the HECS-HELP case is in "What applies" and the FAQ. */}
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
-          That is <strong>{formatAUD(breakdown.monthly)} a month</strong>, {deductionsText}.
-          Your employer also pays {formatAUD(employerSuper)} of super on top{facts.superCapped ? ", the most SG requires because earnings above the maximum contribution base attract none" : ""}.
-          Use our <a href="/take-home-pay-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">Take-Home Pay Calculator</a> to model different salary scenarios.
+          That is <strong>{formatAUD(breakdown.monthly)} a month</strong>{breakdown.netIncomeTax === 0 ? ", with no income tax to pay" : ""}.
+          <YearChangeLine salary={salary} />
         </p>
-        <EarningsPosition salary={salary} />
       </section>
 
       <TrustBar />
       <FeaturedImage lazy className="mt-0" />
 
-      {/* Full Pay Breakdown */}
       <section>
-        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Full Pay Breakdown on {formattedSalary}</h2>
-        <p className="text-navy leading-relaxed mb-6">
-          Your effective rate of tax and Medicare is {effectiveRate}%, so you keep {(100 - parseFloat(effectiveRate)).toFixed(1)}% of {formattedSalary}.
-        </p>
+        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">Pay Breakdown on {s}</h2>
         <Card className="overflow-hidden border-sandstone-dark/10 shadow-md">
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left">
@@ -150,33 +186,26 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
             </table>
           </div>
         </Card>
-        <p className="mt-4 text-sm text-warmgray">
-          With super your total package is {formatAUD(totalPackage)}. On a {EMPLOYMENT.standardWeeklyHours}-hour week {formattedSalary} is {formatAUD(hourlyGross, 2)} an hour before tax and{" "}
-          {formatAUD(hourlyNet, 2)} after ({formatAUD(breakdown.daily, 2)} a day); see <Link href={hourlyHref} className={LINK}>salary to hourly</Link> for part-time hours.
+        <p className="mt-4 text-sm text-warmgray leading-relaxed">
+          Workings: <Link href={taxOnHref} className={LINK}>tax brackets</Link> · <Link href="/medicare-levy/" className={LINK}>Medicare levy</Link> ·{" "}
+          <Link href="/superannuation-guide/" className={LINK}>super{facts.superCapped ? " (capped)" : ""}</Link>
+          {band !== "low" && (
+            <>
+              {" "}· <Link href={hourlyHref} className={LINK}>{formatAUD(salary / EMPLOYMENT.hoursPerYear, 2)} an hour</Link>
+            </>
+          )}{" "}
+          · <Link href="/take-home-pay-calculator/" className={LINK}>calculator</Link>
         </p>
       </section>
 
+      {band === "low" && <PartTimeHours salary={salary} />}
+
+      <TakeHomeFactors salary={salary} />
+
       <JobsNearSalary salary={salary} />
-
-      <div className="space-y-3">
-        <SalaryBandNotes salary={salary} />
-        <p className="text-navy leading-relaxed">
-          {bracketText}; the bracket-by-bracket working is on the <Link href={taxOnHref} className={LINK}>{taxOnLabel}</Link> page.
-        </p>
-      </div>
-
-      <NextThousand salary={salary} />
-
-      <NeighbourTable salary={salary} family="take-home" offsets={[-10_000, -5_000, 0, 5_000, 10_000]} />
 
       <SalaryNav salary={salary} family="take-home" />
 
-      <p className="text-navy leading-relaxed">
-        More ways to cut the tax on {formattedSalary}: <Link href="/tax-deductions-guide/" className={LINK}>work-related deductions</Link> and a{" "}
-        <Link href="/novated-lease-calculator/" className={LINK}>novated lease</Link>.
-      </p>
-
-      {/* FAQs */}
       <section>
         <h2 style={H2} className="text-2xl font-bold text-navy mb-6">Frequently Asked Questions</h2>
         <Accordion type="single" collapsible className="w-full space-y-4">
@@ -192,11 +221,10 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
       </section>
 
       <p className="text-sm text-warmgray">
-        Assumes an Australian resident on {SITE_CONFIG.financialYear} rates with private hospital cover (no Medicare Levy Surcharge) and no HECS-HELP in the
-        headline; super is paid on top at {Math.round(SUPER_GUARANTEE.rate * 100)}%, capped at the maximum contribution base.{" "}
-        <Link href="/about/#methodology" className={LINK}>How we calculate</Link>.
+        Single resident, no HECS-HELP{band === "high" ? ", hospital cover held" : ""}; Medicare thresholds {SITE_CONFIG.previousFinancialYear}.{" "}
+        <Link href="/about/#methodology" className={LINK}>Method</Link>.
       </p>
-      <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+      <SourceAttribution sources={sourcesFor(salary)} lastVerified={SITE_CONFIG.lastVerified} />
     </div>
   );
 }
