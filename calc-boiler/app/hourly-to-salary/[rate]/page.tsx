@@ -4,17 +4,17 @@ import {
   HourlyToSalary,
   ALL_RATES,
   annualFromHourly,
-  hourlyAwardFaq,
   hourlyRateSlug,
   hourlyRateFromSlug,
 } from "@/modules/programmatic/hourly-to-salary";
+import { hourlyToSalaryFaqs } from "@/modules/programmatic/hourly-to-salary-faqs";
 import {
   calculatePayBreakdown,
   formatAUD,
   EMPLOYMENT,
   SITE_CONFIG,
 } from "@/lib/constants/australian-tax";
-import { AFTER_TAX_PART_TIME_HOURS, casualAfterTax, hourlyAfterTax } from "@/lib/constants/hourly-rates"; // G5
+import { hourlyAfterTax } from "@/lib/constants/hourly-rates"; // G5
 import { JsonLd } from "@/modules/seo/json-ld";
 import type { BreadcrumbList, FAQPage, WebApplication, WithContext } from "schema-dts";
 import { ORGANIZATION_SCHEMA } from "@/lib/schema";
@@ -78,9 +78,6 @@ async function HourlyToSalaryPage({ params }: PageProps) {
   const BASE = SITE_CONFIG.baseUrl;
   const URL = `${BASE}/hourly-to-salary/${raw}/`;
   const hours = EMPLOYMENT.standardWeeklyHours;
-  // G5
-  const afterTax = hourlyAfterTax(rate);
-  const casual = casualAfterTax(rate);
 
   const webApp: WithContext<WebApplication> = {
     "@context": "https://schema.org",
@@ -112,26 +109,10 @@ async function HourlyToSalaryPage({ params }: PageProps) {
   };
 
   // One list feeds both the visible FAQ section and the FAQPage markup, so the
-  // two cannot drift. (Before, the markup's questions appeared nowhere on the
-  // page, which Google's structured-data policy treats as hidden content.)
-  // 10 Oct 2026: the "how much a week" and "after tax a year" answers repeated
-  // the tables word for word, so they went; the award question is rate-specific.
-  const faqItems = [
-    {
-      q: `${formatAUD(rate, 2)} an hour is how much a year?`,
-      a: `${formatAUD(rate, 2)} an hour is ${formatAUD(gross)} a year before tax, based on ${hours} hours a week over ${EMPLOYMENT.weeksPerYear} weeks. After income tax and the Medicare levy that is ${formatAUD(net)} a year.`,
-    },
-    // G5: the after-tax phrasings ("$N an hour is how much a week after tax", fortnightly, casual)
-    {
-      q: `${rateLabel(rate)} an hour is how much a week after tax?`,
-      a: `${formatAUD(afterTax.perWeek, 2)} a week after tax on a ${hours}-hour week, or ${formatAUD(afterTax.perFortnight, 2)} a fortnight and ${formatAUD(afterTax.perMonth, 2)} a month. At ${AFTER_TAX_PART_TIME_HOURS.map((h) => `${h} hours it is ${formatAUD(hourlyAfterTax(rate, h).perWeek, 2)}`).join(" and at ")} a week.`,
-    },
-    {
-      q: `What is ${rateLabel(rate)} an hour casual after tax?`,
-      a: `With a 25% casual loading the rate becomes ${formatAUD(casual.rate, 2)} an hour, which is ${formatAUD(casual.perWeek, 2)} a week after tax for ${hours} hours. The loading replaces paid leave, and some awards and agreements set it differently.`,
-    },
-    hourlyAwardFaq(rate),
-  ];
+  // two cannot drift. Second pass, 10 Oct 2026: three or four questions chosen
+  // by what applies at this rate (modules/programmatic/hourly-to-salary-faqs.ts);
+  // "how much a year" went because the H1 and hero answer it word for word.
+  const faqItems = hourlyToSalaryFaqs(rate);
   const faq: WithContext<FAQPage> = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
