@@ -127,9 +127,9 @@ test("between neighbours: the previous page's salary to the next one's", () => {
   assert.equal(mid.lo, 95_000);
   assert.equal(mid.hi, 105_000);
   assert.deepEqual(mid.near.map((t) => t.id), ["mls-1"]);
-  const tail = thresholdsBetweenNeighbours(350_000, TAX_ON_SALARIES);
+  const tail = thresholdsBetweenNeighbours(400_000, TAX_ON_SALARIES);
   assert.equal(tail.lo, 300_000);
-  assert.equal(tail.hi, 400_000);
+  assert.equal(tail.hi, 500_000);
   assert.deepEqual(tail.near.map((t) => t.id), ["mls-family-3", "ppl-family"]);
   const first = thresholdsBetweenNeighbours(TAX_ON_SALARIES[0], TAX_ON_SALARIES);
   assert.equal(first.lo, TAX_ON_SALARIES[0]);

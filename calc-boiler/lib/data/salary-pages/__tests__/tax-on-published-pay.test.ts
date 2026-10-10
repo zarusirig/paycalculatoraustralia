@@ -15,7 +15,8 @@ test("bands tile the grid: each page owns the stretch halfway to its neighbours"
   }
   // On the $5,000 part of the grid the band is the same as rounding to the nearest $5,000.
   assert.deepEqual(payBand(100_000), { lo: 97_500, hi: 102_500 });
-  assert.deepEqual(payBand(350_000), { lo: 325_000, hi: 375_000 });
+  assert.deepEqual(payBand(300_000), { lo: 275_000, hi: 350_000 });
+  assert.equal(payBand(350_000), null);
   assert.equal(payBand(123_456), null);
 });
 
@@ -39,7 +40,7 @@ test("figures are read from the verified source files", () => {
 });
 
 test("the high-salary pages now have published pay to compare against", () => {
-  for (const s of [250_000, 300_000, 350_000, 400_000, 500_000]) {
+  for (const s of [250_000, 300_000, 400_000, 500_000]) {
     assert.ok(publishedPayNear(s).length > 0, String(s));
   }
 });

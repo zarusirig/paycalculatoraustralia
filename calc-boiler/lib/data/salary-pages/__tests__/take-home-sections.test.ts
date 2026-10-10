@@ -40,7 +40,9 @@ test("every kept salary lands on itself and midpoints go to the lower page", () 
   assert.equal(landingSalary(22_500), 20_000);
   assert.equal(landingSalary(22_501), 25_000);
   assert.equal(landingSalary(205_000), 200_000);
-  assert.equal(landingSalary(205_001), 210_000);
+  assert.equal(landingSalary(205_001), 200_000);
+  assert.equal(landingSalary(225_000), 200_000);
+  assert.equal(landingSalary(225_001), 250_000);
   assert.equal(landingSalary(1_000), null);
 });
 

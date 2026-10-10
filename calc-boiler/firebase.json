@@ -3703,8 +3703,286 @@
         "source": "/hourly-to-salary/71-19/",
         "destination": "/hourly-to-salary/71/",
         "type": 301
-      }
+      },
       // --- end 10 Oct 2026 salary-to-hourly / hourly-to-salary prune ---
+      // ---- High-salary prune, 10 Oct 2026 (AdSense near-duplicate fix) -------
+      // Above $200,000 only $250k, $300k, $400k and $500k keep a page in
+      // /tax-on/, /take-home-pay-on/ and /salary-to-hourly/ (HIGH_SALARY_TAIL in
+      // lib/data/salary-pages). The 9 removed salaries per family ($210k-$240k,
+      // $260k-$290k, $350k) 301 to the nearest kept page (ties go to the lower
+      // one), with and without the trailing slash. Guarded by
+      // lib/data/salary-pages/__tests__/high-salary-tail.test.ts.
+      {
+        "source": "/tax-on/210000",
+        "destination": "/tax-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/210000/",
+        "destination": "/tax-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/220000",
+        "destination": "/tax-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/220000/",
+        "destination": "/tax-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/230000",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/230000/",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/240000",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/240000/",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/260000",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/260000/",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/270000",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/270000/",
+        "destination": "/tax-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/280000",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/280000/",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/290000",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/290000/",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/350000",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/350000/",
+        "destination": "/tax-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/210000",
+        "destination": "/take-home-pay-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/210000/",
+        "destination": "/take-home-pay-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/220000",
+        "destination": "/take-home-pay-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/220000/",
+        "destination": "/take-home-pay-on/200000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/230000",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/230000/",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/240000",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/240000/",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/260000",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/260000/",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/270000",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/270000/",
+        "destination": "/take-home-pay-on/250000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/280000",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/280000/",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/290000",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/290000/",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/350000",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/350000/",
+        "destination": "/take-home-pay-on/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/210000",
+        "destination": "/salary-to-hourly/200000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/210000/",
+        "destination": "/salary-to-hourly/200000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/220000",
+        "destination": "/salary-to-hourly/200000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/220000/",
+        "destination": "/salary-to-hourly/200000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/230000",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/230000/",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/240000",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/240000/",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/260000",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/260000/",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/270000",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/270000/",
+        "destination": "/salary-to-hourly/250000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/280000",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/280000/",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/290000",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/290000/",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/350000",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/350000/",
+        "destination": "/salary-to-hourly/300000/",
+        "type": 301
+      }
+      // ---- end high-salary prune -----------------------------------------------
     ],
     "headers": [
       {

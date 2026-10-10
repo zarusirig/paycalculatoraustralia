@@ -38,13 +38,25 @@ function range(from: number, to: number, step: number): number[] {
   return out;
 }
 
-/** Salaries above $200k that carry search demand ("250k after tax", "300k"). */
-export const HIGH_SALARY_TAIL: readonly number[] = [...range(210_000, 300_000, 10_000), 350_000, 400_000, 500_000];
+/**
+ * Salaries above $200k that keep a page in all three families: the round
+ * figures people search ("250k after tax", "300k", "400k", "500k").
+ *
+ * Pruned 10 Oct 2026 from $210k–$300k in $10k steps plus $350k: above about
+ * $200k every salary sits in the top bracket and the top MLS tier with no
+ * LITO, so those pages were 88–93% the same as each other. The removed
+ * salaries (HIGH_SALARY_REMOVED) 301 to the nearest kept page in every family
+ * (firebase.json, high-salary block).
+ */
+export const HIGH_SALARY_TAIL: readonly number[] = [250_000, 300_000, 400_000, 500_000];
+
+/** Former high-salary pages in all three families: each 301s to nearestSalary(family, s). */
+export const HIGH_SALARY_REMOVED: readonly number[] = [...range(210_000, 290_000, 10_000).filter((s) => s !== 250_000), 350_000];
 
 /**
  * The full salary grid (Wave 3 / T6): $20k–$35k in $5k steps, every $1,000
- * from $40k to $150k, $5k steps to $200k, $10k steps to $300k, then $350k,
- * $400k and $500k. /tax-on/ and /salary-to-hourly/ are built from it.
+ * from $40k to $150k, $5k steps to $200k, then HIGH_SALARY_TAIL ($250k,
+ * $300k, $400k, $500k). /take-home-pay-on/ is filtered from it.
  */
 export const SALARY_GRID: readonly number[] = [
   ...range(20_000, 35_000, 5_000),
@@ -75,7 +87,7 @@ export const TAX_ON_REMOVED_SALARIES: readonly number[] = range(40_000, 150_000,
 
 /**
  * /salary-to-hourly/ — multiples of $5,000 only: $30,000, then $40k–$200k in
- * $5k steps, $10k steps to $300k, then $350k, $400k and $500k (47 pages).
+ * $5k steps, then HIGH_SALARY_TAIL ($250k, $300k, $400k, $500k): 38 pages.
  *
  * Pruned 10 Oct 2026 from the $1k take-home grid (135 pages): neighbouring
  * $1k pages were identical apart from the numbers. Each removed URL 301s to
@@ -87,10 +99,7 @@ export const TAX_ON_REMOVED_SALARIES: readonly number[] = range(40_000, 150_000,
 export const SALARY_TO_HOURLY_SALARIES: readonly number[] = [
   30_000,
   ...range(40_000, 200_000, 5_000),
-  ...range(210_000, 300_000, 10_000),
-  350_000,
-  400_000,
-  500_000,
+  ...HIGH_SALARY_TAIL,
 ];
 
 export type SalaryFamily = "take-home" | "tax-on" | "salary-to-hourly";
