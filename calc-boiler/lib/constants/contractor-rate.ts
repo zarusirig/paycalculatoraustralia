@@ -137,3 +137,49 @@ export function contractorRateToEquivalentSalary(
     employeeHourly: Math.round((equivalentSalary / EMPLOYMENT.hoursPerYear) * 100) / 100,
   };
 }
+
+export interface SalaryDayRateEquivalent {
+  /** Employee base salary to match. */
+  salary: number;
+  /** Super Guarantee on the salary, capped at the maximum contribution base. */
+  superGuarantee: number;
+  /** Salary + SG: the employment package. Paid leave is already inside the salary. */
+  packageValue: number;
+  insurance: number;
+  admin: number;
+  /** Package + insurance + admin: what the contractor must bill in a year, ex GST. */
+  billedIncomeNeeded: number;
+  billableDays: number;
+  /** billedIncomeNeeded ÷ billableDays, rounded UP to the whole dollar, ex GST. */
+  dayRate: number;
+  /** Part of the salary that is pay for leave and public holidays (days the contractor cannot bill). */
+  leaveValue: number;
+}
+
+/**
+ * The inverse of contractorRateToEquivalentSalary for a day rate: the lowest
+ * whole-dollar day rate (ex GST) whose billed income covers the salary, the
+ * Super Guarantee on it and the insurance and admin costs, under the same
+ * assumptions. Feeding the result back through contractorRateToEquivalentSalary
+ * returns at least `salary`.
+ */
+export function salaryToContractorDayRate(
+  salary: number,
+  overrides: Partial<ContractorSalaryAssumptions> = {},
+): SalaryDayRateEquivalent {
+  const a = { ...DEFAULT_CONTRACTOR_ASSUMPTIONS, ...overrides };
+  const s = nonNeg(salary);
+  const unbilled =
+    nonNeg(a.annualLeaveDays) + nonNeg(a.personalLeaveDays) + nonNeg(a.publicHolidayDays) + nonNeg(a.downtimeDays);
+  const billableDays = Math.max(0, WORKING_DAYS_PER_YEAR - unbilled);
+  const superGuarantee = round(Math.min(s * SUPER_GUARANTEE.rate, SUPER_GUARANTEE.maxSGAnnual));
+  const packageValue = s + superGuarantee;
+  const insurance = nonNeg(a.insurancePerYear);
+  const admin = nonNeg(a.adminPerYear);
+  const billedIncomeNeeded = packageValue + insurance + admin;
+  const dayRate = billableDays > 0 ? Math.ceil(billedIncomeNeeded / billableDays) : 0;
+  const paidDaysOff = nonNeg(a.annualLeaveDays) + nonNeg(a.personalLeaveDays) + nonNeg(a.publicHolidayDays);
+  const leaveValue = round((s * Math.min(paidDaysOff, WORKING_DAYS_PER_YEAR)) / WORKING_DAYS_PER_YEAR);
+
+  return { salary: s, superGuarantee, packageValue, insurance, admin, billedIncomeNeeded, billableDays, dayRate, leaveValue };
+}

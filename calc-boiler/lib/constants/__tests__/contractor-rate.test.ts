@@ -6,6 +6,7 @@ import {
   WEEKDAY_PUBLIC_HOLIDAYS_2026,
   WORKING_DAYS_PER_YEAR,
   contractorRateToEquivalentSalary,
+  salaryToContractorDayRate,
 } from "../contractor-rate";
 import { SUPER_GUARANTEE } from "../australian-tax";
 import { STATE_PUBLIC_HOLIDAYS } from "../../data/public-holidays";
@@ -97,4 +98,36 @@ test("the 10 public holiday assumption sits inside the 2026 state range, and the
   assert.equal(Math.max(...counts), WEEKDAY_PUBLIC_HOLIDAYS_2026.max);
   const ph = DEFAULT_CONTRACTOR_ASSUMPTIONS.publicHolidayDays;
   assert.ok(ph >= WEEKDAY_PUBLIC_HOLIDAYS_2026.min && ph <= WEEKDAY_PUBLIC_HOLIDAYS_2026.max);
+});
+
+test("salary → day rate: 230 billable days (no sick days or downtime) for $110,000 and $150,000", () => {
+  const days230 = { personalLeaveDays: 0, downtimeDays: 0 };
+  const a = salaryToContractorDayRate(110_000, days230);
+  assert.equal(a.billableDays, 230);
+  assert.equal(a.superGuarantee, 13_200);
+  assert.equal(a.packageValue, 123_200);
+  assert.equal(a.billedIncomeNeeded, 126_200); // + $1,500 insurance + $1,500 admin
+  assert.equal(a.dayRate, 549); // 126,200 ÷ 230 = 548.70, rounded up
+  assert.equal(a.leaveValue, 12_692); // 30 paid days off ÷ 260 of the salary
+  const b = salaryToContractorDayRate(150_000, days230);
+  assert.equal(b.superGuarantee, 18_000);
+  assert.equal(b.billedIncomeNeeded, 171_000);
+  assert.equal(b.dayRate, 744); // 171,000 ÷ 230 = 743.48, rounded up
+});
+
+test("salary → day rate round-trips through contractorRateToEquivalentSalary", () => {
+  for (const overrides of [{}, { personalLeaveDays: 0, downtimeDays: 0 }]) {
+    for (const salary of [60_000, 110_000, 150_000, 200_000, 300_000]) {
+      const r = salaryToContractorDayRate(salary, overrides);
+      assert.ok(contractorRateToEquivalentSalary(r.dayRate, "day", overrides).equivalentSalary >= salary, `${salary} at ${r.dayRate}`);
+      assert.ok(contractorRateToEquivalentSalary(r.dayRate - 1, "day", overrides).equivalentSalary < salary, `${salary} at ${r.dayRate - 1}`);
+    }
+  }
+});
+
+test("salary → day rate: SG capped above the maximum contribution base; bad input is zero", () => {
+  const r = salaryToContractorDayRate(400_000);
+  assert.equal(r.superGuarantee, Math.round(SUPER_GUARANTEE.maxSGAnnual));
+  for (const bad of [0, -1, Number.NaN]) assert.equal(salaryToContractorDayRate(bad).salary, 0);
+  assert.equal(salaryToContractorDayRate(100_000, { downtimeDays: 500 }).dayRate, 0);
 });
