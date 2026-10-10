@@ -18,6 +18,7 @@ import {
   serviceFromParts,
   type JurisdictionCode,
 } from "@/lib/constants/long-service-leave";
+import { LSL_STATE_DETAIL } from "./long-service-leave-state-detail";
 
 /** Weeks, formatted for prose. */
 export function weeks(n: number, dp = 2) {
@@ -60,7 +61,7 @@ export const LSL_HUB_FAQS: Faq[] = [
   },
   {
     q: "Can you cash out long service leave?",
-    a: "It varies. NSW, Victoria and the Northern Territory prohibit it — in NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. SafeWork SA and WorkSafe ACT do not address it in the guidance we verified, so check with them.",
+    a: "It varies. NSW, Victoria and the Northern Territory prohibit it — in NSW and Victoria it is an offence to give or receive payment instead of taking the leave. WA and Tasmania allow it by agreement once the entitlement has accrued, and South Australia by written, signed agreement once you reach 10 years. Queensland allows it only where an award or agreement provides for it, or where the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship. WorkSafe ACT does not address it in the guidance we verified, so check with them.",
   },
   {
     q: "Do casual employees get long service leave?",
@@ -82,10 +83,15 @@ export const LSL_HUB_FAQS: Faq[] = [
 
 export function spokeFaqs(code: JurisdictionCode): Faq[] {
   const j = LSL_JURISDICTIONS[code];
+  const d = LSL_STATE_DETAIL[code];
   const at10 = accruedWeeks(code, serviceFromParts(10));
   const at7 = accruedWeeks(code, serviceFromParts(7));
   const conditional = j.proRataUnconditionalFromYears > j.proRataFromYears;
 
+  // The tax answer and the "who is not covered" answer used to be identical on
+  // all eight spokes. Tax now lives on the hub; exclusions are listed in the
+  // page body; each spoke instead carries the questions its own Act answers
+  // differently (LSL_STATE_DETAIL[code].faqs).
   return [
     {
       q: `How much long service leave do you get after 10 years ${j.inName}?`,
@@ -102,17 +108,11 @@ export function spokeFaqs(code: JurisdictionCode): Faq[] {
       q: `Do you get long service leave paid out if you resign ${j.inName}?`,
       a: conditional
         ? `Only from ${j.proRataUnconditionalFromYears} years if you simply resign. Between ${j.proRataFromYears} and ${j.proRataUnconditionalFromYears} years ${j.abbr} pays a pro-rata amount only where one of these applies: ${j.proRataConditions.join("; ")}. From ${j.proRataUnconditionalFromYears} years the accrued balance is paid however the employment ends.`
-        : `Yes. From ${j.proRataFromYears} years of continuous service ${j.abbr} pays the accrued balance however the employment ends — resignation, dismissal, redundancy or death${code === "wa" ? ", the only exception being dismissal for serious misconduct" : code === "sa" ? ", unless you are dismissed for serious and wilful misconduct or you end the contract unlawfully" : ""}.`,
+        : `Yes. From ${j.proRataFromYears} years of continuous service ${j.abbr} pays the accrued balance however the employment ends — resignation, dismissal, redundancy or death${code === "wa" ? ", except that a dismissal for serious misconduct pays no pro-rata amount" : code === "sa" ? ", unless before 10 years you are dismissed for serious and wilful misconduct or you end the contract unlawfully" : ""}.`,
     },
     {
-      q: `How is long service leave calculated ${j.inName}?`,
-      a: `${j.act} accrues ${j.weeksPerYear.toFixed(4)} weeks for each year of continuous service, paid at your ordinary weekly rate at the time you take the leave or the job ends. ${
-        j.proRataBasis === "completed-years"
-          ? "Part years are dropped: 8½ years is paid as 8."
-          : j.proRataBasis === "completed-years-and-months"
-            ? "It is worked out on completed years and months."
-            : "Part years count, down to the day."
-      }${code === "vic" ? " The Act words it as one week for every 60 weeks of employment, which is the same thing." : ""}${code === "qld" ? " Casual and regular part-time employees use a separate hours formula: total ordinary hours ÷ 52 × 8.6667 ÷ 10." : ""}`,
+      q: `How is long service leave pay calculated ${j.inName}?`,
+      a: d.payCalc[0],
     },
     {
       q: `Do casual employees get long service leave ${j.inName}?`,
@@ -122,13 +122,6 @@ export function spokeFaqs(code: JurisdictionCode): Faq[] {
       q: `Can you cash out long service leave ${j.inName}?`,
       a: j.cashingOutNote,
     },
-    {
-      q: `How much tax do you pay on a long service leave payout ${j.inName}?`,
-      a: `Tax is federal, so it is the same in every state. If your service started after 17 August 1993, the payout is taxed at your marginal rate when you resign, retire or are dismissed. If you leave through genuine redundancy, invalidity or an early retirement scheme, the ATO withholds a flat ${LSL_TAX.flatRate * 100}% instead. No tax is withheld from unused leave paid after an employee's death.`,
-    },
-    {
-      q: `Who is not covered by ${j.act}?`,
-      a: `${j.agency} lists: ${j.notCovered.join("; ")}. If you are in one of those groups, your long service leave comes from somewhere else — check with the Fair Work Ombudsman on 13 13 94 or your scheme.`,
-    },
+    ...d.faqs,
   ];
 }

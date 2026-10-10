@@ -3,7 +3,7 @@
 // for withholding from an unused long service leave payment on termination.
 //
 // Every figure below was read from the page named next to it on 28 August 2026
-// (LSL_SOURCES). Long service leave is NOT part of the National Employment
+// and re-checked on 10 October 2026 (LSL_SOURCES). Long service leave is NOT part of the National Employment
 // Standards: each jurisdiction has its own Act, its own qualifying period, its
 // own accrual rate and its own pro-rata trigger. They are modelled separately
 // here rather than flattened into one formula with a multiplier, because the
@@ -30,7 +30,7 @@
 // =============================================================================
 
 export const LSL_SOURCES = {
-  verifiedOn: "28 August 2026",
+  verifiedOn: "10 October 2026",
   /** NSW Industrial Relations, "Long service leave" — FAQs 7, 9 and the milestone/pro-rata tables. */
   nsw: "https://www.nsw.gov.au/employment/rights-responsibilities/leave/long-service-leave",
   /** Business Victoria, "Long service leave – an overview". */
@@ -53,6 +53,12 @@ export const LSL_SOURCES = {
   sa: "https://www.safework.sa.gov.au/workers/wages-and-conditions/long-service-leave/accruing-leave",
   /** SafeWork SA long service leave hub. */
   saHub: "https://www.safework.sa.gov.au/workers/wages-and-conditions/long-service-leave",
+  /** SafeWork SA, "Payment of entitlement" — cashing out after 10 years, misconduct after 10 years. */
+  saPayment: "https://www.safework.sa.gov.au/workers/wages-and-conditions/long-service-leave/payment",
+  /** SafeWork SA, "Who is entitled to long service leave" — exclusions and portable schemes. */
+  saWho: "https://www.safework.sa.gov.au/workers/wages-and-conditions/long-service-leave/who-is-entitled-to-long-service-leave",
+  /** ACT Leave — the portable schemes under the Long Service Leave (Portable Schemes) Act 2009. */
+  actLeave: "https://actleave.act.gov.au/",
   /** WorkSafe Tasmania, "Long service leave". */
   tas: "https://worksafe.tas.gov.au/topics/laws-and-compliance/long-service-leave",
   /** WorkSafe Tasmania, "Pro rata long service leave" — the two worked examples. */
@@ -75,10 +81,12 @@ export const LSL_SOURCES = {
  * estimated; the pages send the reader to the authority instead.
  */
 export const LSL_UNVERIFIED = [
-  "SA_CASHING_OUT_UNVERIFIED — SafeWork SA's long service leave pages do not state whether an SA entitlement can be cashed out. Readers are sent to SafeWork SA.",
   "ACT_CASHING_OUT_UNVERIFIED — WorkSafe ACT Guidance Note 067 does not address cashing out. Readers are sent to WorkSafe ACT.",
-  "UNPAID_PARENTAL_LEAVE_NSW_QLD_WA_SA_NT_UNVERIFIED — only Victoria and Tasmania state on their own pages how unpaid parental leave is treated for long service leave accrual, so no cross-jurisdiction row is published.",
+  "UNPAID_PARENTAL_LEAVE_NSW_WA_ACT_UNVERIFIED — Victoria, Queensland, South Australia, Tasmania and the NT state on their own pages how parental or unpaid leave is treated for long service leave; NSW, WA and the ACT do not, so no cross-jurisdiction row is published.",
 ] as const;
+// Resolved on 10 October 2026: SafeWork SA's "Payment of entitlement" page
+// says an SA entitlement can be cashed out by written agreement once 10 years
+// is reached (SA_CASHING_OUT_UNVERIFIED removed).
 
 export type JurisdictionCode = "nsw" | "vic" | "qld" | "wa" | "sa" | "tas" | "act" | "nt";
 
@@ -209,7 +217,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     adjective: "Victorian",
     act: "Long Service Leave Act 2018 (Vic)",
     actUrl: "https://www.legislation.vic.gov.au/in-force/acts/long-service-leave-act-2018",
-    agency: "Wage Inspectorate Victoria",
+    agency: "Workforce Inspectorate Victoria", // renamed from Wage Inspectorate Victoria on 12 December 2025 (vic.gov.au/long-service-leave)
     agencyUrl: "https://www.vic.gov.au/long-service-leave",
     sourceUrl: LSL_SOURCES.vic,
     takeAfterYears: 7,
@@ -274,7 +282,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "Queensland long service leave can only be cashed in if the award, enterprise agreement or certified agreement allows it, or if the Queensland Industrial Relations Commission orders it on compassionate grounds or financial hardship (Form 13), and only once the entitlement has been reached.",
     notCovered: [
       "employees whose long service leave comes from a federal award or enterprise agreement",
-      "building and construction and contract cleaning employees in Queensland's portable schemes",
+      "building and construction, contract cleaning and community services workers in Queensland's QLeave portable schemes",
     ],
     summary:
       "Ten years of continuous service earns 8.6667 weeks, rising to 13 weeks at 15 years; past 15 years leave can be taken as it accrues. Between 7 and 10 years a proportionate payment is owed only in defined circumstances — death, illness, domestic necessity, or a dismissal that is not about your conduct, capacity or performance. From 10 years the payment on termination is automatic and covers your full continuous service.",
@@ -310,7 +318,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
       "WA long service leave can be cashed out by agreement between the employer and employee once the entitlement has fully accrued.",
     notCovered: [
       "employees whose long service leave comes from a federal award or agreement with its own provisions",
-      "employees in a portable long service leave scheme",
+      "on-site construction industry employees, who are covered by the Construction Industry Portable Paid Long Service Leave Act 1985 (MyLeave)",
     ],
     summary:
       "Leave can be taken after 10 years of continuous employment, when 8.667 weeks has accrued, with another 4.333 weeks every 5 years after that. WA is unusually generous at the exit: after 7 years of continuous employment a full-time, part-time, casual or seasonal employee is paid pro-rata long service leave when the job ends by resignation, dismissal, redundancy or death — the only exception being dismissal for serious misconduct.",
@@ -341,15 +349,18 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     casualsCovered: true,
     casualsNote:
       "Full-time, part-time and casual workers accrue at the same 1.3 weeks a year — employment status does not change the rate. A casual's contracts must form a continuous series; a prolonged gap or a clear termination can break it. Weeks that do not count as service (such as unpaid leave) must be added on before the 10 years is reached.",
-    cashingOut: null,
+    // SafeWork SA, "Payment of entitlement" (read 10 October 2026).
+    cashingOut: "by-agreement",
     cashingOutNote:
-      "SafeWork SA's long service leave guidance does not state whether an SA entitlement can be cashed out. Check with SafeWork SA before agreeing to anything.",
+      "Once you complete 10 years, you and your employer can agree to a cash payment instead of some or all of the leave. SafeWork SA says the agreement must be in writing and signed by both of you, it is paid at your current ordinary weekly rate, and the employer must give you a written statement of the payment and the leave left. Your employer cannot force you to take cash instead of leave.",
     notCovered: [
-      "workers whose long service leave comes from the federal system rather than the SA Act",
-      "community services workers covered by SA's portable long service leave scheme",
+      "SA and Commonwealth public sector employees",
+      "construction industry workers covered by the Construction Industry Long Service Leave Act 1987 (SA)",
+      "community services workers covered by the Portable Long Service Leave Act 2024 (SA)",
+      "workers whose long service leave comes from a pre-modernised award, or an award or agreement with its own long service leave terms",
     ],
     summary:
-      "South Australia pays the largest entitlement in the country: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each COMPLETED year — 8½ years pays 10.4 weeks, not 11.05. It is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice.",
+      "South Australia pays the largest entitlement in the country: 13 weeks after 10 years of continuous service, then 1.3 weeks for every year after that, at the same rate whether you are full-time, part-time or casual. A pro-rata payment becomes available once you complete 7 years, worth 1.3 weeks for each COMPLETED year — 8½ years pays 10.4 weeks, not 11.05. Before 10 years it is not payable if you are dismissed for serious and wilful misconduct or you end the contract unlawfully, such as by walking out without working your notice; from 10 years even a misconduct dismissal does not remove it.",
   },
 
   tas: {
@@ -431,7 +442,7 @@ export const LSL_JURISDICTIONS: Readonly<Record<JurisdictionCode, LslJurisdictio
     notCovered: [
       "employees covered by an award or agreement that contains long service leave provisions",
       "ACT and Commonwealth public sector employees",
-      "employees in the ACT's portable schemes — building and construction, contract cleaning, community sector and security",
+      "employees in the ACT Leave portable schemes — building and construction, community sector, security, and the Services Industry Scheme (contract cleaning; hairdressing and beauty, and accommodation and food services, from 1 January 2027)",
     ],
     summary:
       "The ACT reaches the entitlement fastest of any jurisdiction: 6.0667 weeks of paid leave after just 7 years of continuous service, then a further fifth of a month each year. If a public holiday or award holiday falls during your long service leave, the leave is extended by a day. A pro-rata payment can be owed from as little as 5 years where the job ends through illness, incapacity, pressing necessity, retirement, death, or a dismissal short of serious and wilful misconduct — and it is worked out on completed years and months.",
@@ -716,16 +727,27 @@ export function entitlementOnEnding(
     explanation = `Under ${j.proRataFromYears} years of continuous service, so no long service leave is payable ${j.inName} however the job ends.`;
   } else if (years >= j.proRataUnconditionalFromYears) {
     // Past the unconditional threshold the balance is paid however the job
-    // ends. WA and SA are the exception: both name serious misconduct as a
-    // disqualifier at every length of service. Victoria's own guidance says
-    // the balance is paid "for any reason" after 7 years and names no
-    // misconduct exclusion, so none is applied here.
-    const misconductBlocks = reason === "serious-misconduct" && (code === "wa" || code === "sa");
-    if (misconductBlocks) {
+    // ends. WA and SA are the exception for a serious-misconduct dismissal,
+    // and both only until a full entitlement exists (read 10 October 2026):
+    //  - WA (Private Sector Labour Relations, "Long service leave when
+    //    employment ends"): no pro-rata between 7 and 10 years; after that only
+    //    the untaken part of the last FULLY accrued entitlement is paid, with
+    //    nothing pro-rata since (Anastasia: 12 years 1 month pays 8.667 weeks).
+    //  - SA (SafeWork SA, "Payment of entitlement"): no pro-rata between 7 and
+    //    10 years; from 10 years the entitlement "cannot be removed" and is
+    //    paid in full.
+    // Victoria's own guidance says the balance is paid "for any reason" after
+    // 7 years and names no misconduct exclusion, so none is applied there.
+    const misconduct = reason === "serious-misconduct" && (code === "wa" || code === "sa");
+    if (misconduct && years < j.takeAfterYears) {
       explanation =
         code === "sa"
-          ? "SafeWork SA says a pro-rata payment is not owed where the contract is terminated for serious and wilful misconduct."
+          ? "SafeWork SA says a pro-rata payment is not owed where the contract is terminated for serious and wilful misconduct before 10 years."
           : "WA does not pay pro-rata long service leave where an employee is dismissed for serious misconduct.";
+    } else if (misconduct && code === "wa") {
+      payable = takeable;
+      explanation =
+        "WA pays only the untaken part of the last fully accrued entitlement when an employee is dismissed for serious misconduct — nothing pro-rata for the years since.";
     } else {
       payable = accrued;
       unconditional = true;

@@ -4,9 +4,9 @@ import { ChevronRight } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
-import SourceAttribution from "@/components/common/source-attribution";
+import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
-import { AUTHORS, REVIEWERS, getGuideAuthorship } from "@/lib/authors";
+import { AUTHORS, getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import {
   JURISDICTION_CODES,
@@ -20,6 +20,7 @@ import {
 } from "@/lib/constants/long-service-leave";
 import LongServiceLeaveCalculator from "./long-service-leave-calculator";
 import { LSL_HUB_FAQS, spokeFaqs } from "./long-service-leave-faqs";
+import { LSL_DETAIL_VERIFIED_ON, LSL_STATE_DETAIL } from "./long-service-leave-state-detail";
 import {
   ATO_SOURCE,
   FONT,
@@ -165,7 +166,7 @@ export function LongServiceLeaveHub() {
         <div className="max-w-4xl mx-auto space-y-10">
           <NotAnnualLeave />
 
-          <section>
+          <section id="by-state">
             <h2 style={FONT} className={H2}>
               How Much Long Service Leave Do You Get in Each State?
             </h2>
@@ -347,7 +348,7 @@ export function LongServiceLeaveHub() {
             </p>
           </section>
 
-          <section>
+          <section id="resignation">
             <h2 style={FONT} className={H2}>
               Long Service Leave Payout on Resignation
             </h2>
@@ -415,7 +416,7 @@ export function LongServiceLeaveHub() {
             </p>
           </section>
 
-          <section>
+          <section id="tax">
             <h2 style={FONT} className={H2}>
               Tax on a Long Service Leave Payout
             </h2>
@@ -615,9 +616,14 @@ export function LongServiceLeaveHub() {
 // =============================================================================
 // SPOKE — one state or territory
 // =============================================================================
+// Everything rendered here is either this jurisdiction's own data
+// (LSL_JURISDICTIONS) or its own rules (LSL_STATE_DETAIL). What is the same in
+// every state — the federal tax schedule and the eight-way comparison — is one
+// line with a link to the hub, not a repeated table.
 
 export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
   const j = LSL_JURISDICTIONS[code];
+  const d = LSL_STATE_DETAIL[code];
   const a = authorship(`long-service-leave-calculator-${code}`);
   const faqs = spokeFaqs(code);
   const conditional = j.proRataUnconditionalFromYears > j.proRataFromYears;
@@ -627,7 +633,30 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
   const examplePayout = qualifyingWeeks * exampleWeekly;
   const exampleTarget = takeHomeSalaryStep(exampleWeekly * 52 + examplePayout);
 
-  const milestones = [5, 7, 8, 10, 12, 15, 20, 25];
+  const basis =
+    j.proRataBasis === "completed-years"
+      ? "Only completed years are paid; a part year is dropped."
+      : j.proRataBasis === "completed-years-and-months"
+        ? "Completed years and months are counted; loose days are not."
+        : code === "qld"
+          ? "Part years count, using Queensland's years, months, weeks and days tables."
+          : "Part years count, down to the day.";
+
+  // Sources: the Act's authority first, then every page this jurisdiction's
+  // detail was read from, then the portable schemes, de-duplicated by URL.
+  const sourceList: SourceLink[] = [];
+  const seen = new Set<string>();
+  for (const s of [
+    jurisdictionSource(code),
+    ...d.sources,
+    ...d.portable.map((p) => ({ title: p.name, url: p.url, publisher: p.name.split(" — ")[0] })),
+    ATO_SOURCE,
+    FWO_SOURCE,
+  ]) {
+    if (seen.has(s.url)) continue;
+    seen.add(s.url);
+    sourceList.push(s);
+  }
 
   return (
     <div className="min-h-screen flex-grow">
@@ -668,40 +697,38 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
               {Number(j.weeksAtQualifying.toFixed(2))} weeks after {j.takeAfterYears} years under the {j.act}
             </span>
           </h1>
-          <p className="text-lg text-warmgray">
-            {j.summary}
-          </p>
+          <p className="text-lg text-warmgray">{j.summary}</p>
           <TrustBar className="mt-4" />
         </section>
 
         <section className="max-w-5xl mx-auto">
-          <LongServiceLeaveCalculator
-            jurisdiction={code}
-            heading={`Long Service Leave Calculator — ${j.name}`}
-          />
+          <LongServiceLeaveCalculator jurisdiction={code} heading={`Long Service Leave Calculator — ${j.name}`} />
         </section>
 
         <WhatsNextInline route={`/long-service-leave-calculator/${code}/`} />
 
         <div className="max-w-4xl mx-auto space-y-10">
-          <NotAnnualLeave />
+          <p className="text-sm text-warmgray">
+            Long service leave is not annual leave: annual leave is the federal four weeks a year in the{" "}
+            <Link href="/leave-calculator/" className={LINK}>
+              annual leave calculator
+            </Link>
+            .
+          </p>
 
-          <section>
+          <section id="entitlement">
             <h2 style={FONT} className={H2}>
               How Much Long Service Leave You Get {j.inName}
             </h2>
+            <p className={P}>{d.actNote}</p>
             <p className={P}>
-              Long service leave {j.inName} comes from the{" "}
+              The{" "}
               <a href={j.actUrl} target="_blank" rel="noreferrer noopener" className={LINK}>
                 {j.act}
-              </a>
-              , administered by{" "}
-              <a href={j.agencyUrl} target="_blank" rel="noreferrer noopener" className={LINK}>
-                {j.agency}
-              </a>
-              . It accrues at <strong>{j.weeksPerYear.toFixed(4)} weeks for every year</strong> of
-              continuous service with one employer. At {j.takeAfterYears} years you can take{" "}
-              <strong>{j.weeksAtQualifying} weeks</strong> of paid leave; after that, {j.thereafter}.
+              </a>{" "}
+              accrues <strong>{j.weeksPerYear.toFixed(4)} weeks for every year</strong> with one employer. At{" "}
+              {j.takeAfterYears} years you can take <strong>{j.weeksAtQualifying} weeks</strong>; after that,{" "}
+              {j.thereafter}. {basis}
             </p>
             <div className={TABLE_WRAP}>
               <table className="w-full text-sm">
@@ -722,7 +749,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sandstone-dark/10">
-                  {milestones.map((y, i) => {
+                  {d.milestones.map((y, i) => {
                     const svc = serviceFromParts(y);
                     const acc = accruedWeeks(code, svc);
                     const take = takeableWeeks(code, svc);
@@ -730,9 +757,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
                       <tr key={y} className={i % 2 === 1 ? "bg-eucalyptus-light/30" : undefined}>
                         <td className={TD + " font-medium"}>{y} years</td>
                         <td className={TD + " text-right"}>{weeks(acc)}</td>
-                        <td className={TD + " text-right font-semibold"}>
-                          {take === 0 ? "—" : weeks(take)}
-                        </td>
+                        <td className={TD + " text-right font-semibold"}>{take === 0 ? "—" : weeks(take)}</td>
                         <td className={TD + " text-right"}>{formatAUD(acc * exampleWeekly)}</td>
                       </tr>
                     );
@@ -741,26 +766,20 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
               </table>
             </div>
             <p className="mt-2 text-xs text-warmgray-light">
-              &ldquo;Accrued&rdquo; is what is paid out when employment ends and a pro-rata entitlement
-              exists. &ldquo;Can take&rdquo; is what you can use as leave while still employed — a dash
-              means the {j.takeAfterYears}-year qualifying period has not been reached.
+              Accrued is what is paid out when the job ends and a pro-rata entitlement exists; a dash means the{" "}
+              {j.takeAfterYears}-year qualifying period has not been reached.
             </p>
           </section>
 
-          <section>
+          <section id="pro-rata">
             <h2 style={FONT} className={H2}>
-              Pro-Rata Long Service Leave {j.inName} — Resignation, Termination and Death
+              Pro-Rata Long Service Leave {j.inName}
             </h2>
-            <p className={P}>
-              A pro-rata payment first becomes possible at{" "}
-              <strong>{j.proRataFromYears} years</strong> of continuous service{" "}
-              {j.inName}. Below that, nothing is owed however the job ends.
-            </p>
             {conditional ? (
               <>
                 <p className={P}>
-                  Between {j.proRataFromYears} and {j.proRataUnconditionalFromYears} years the payment
-                  is owed only where one of these applies:
+                  Nothing is owed below <strong>{j.proRataFromYears} years</strong>. Between {j.proRataFromYears} and{" "}
+                  {j.proRataUnconditionalFromYears} years the {j.adjective} Act pays a pro-rata amount only where:
                 </p>
                 <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
                   {j.proRataConditions.map((c) => (
@@ -768,228 +787,128 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
                   ))}
                 </ul>
                 <p className={P}>
-                  A plain resignation for a better job is not on that list. From{" "}
-                  <strong>{j.proRataUnconditionalFromYears} years</strong> the accrued balance is paid
-                  out however the employment ends, and it covers your whole period of continuous
-                  service — not just the years past the milestone.
+                  From <strong>{j.proRataUnconditionalFromYears} years</strong> the balance is paid however the job ends,
+                  resignation included.
                 </p>
               </>
             ) : (
               <p className={P}>
-                From {j.proRataFromYears} years the accrued balance is paid out{" "}
-                <strong>however the employment ends</strong> — resignation, dismissal, redundancy or
-                death.{" "}
+                From <strong>{j.proRataFromYears} years</strong> the accrued balance is paid however the job ends.{" "}
                 {code === "wa"
-                  ? "The only exception is dismissal for serious misconduct, and the onus is on the employer to prove it was warranted."
+                  ? "The exception is dismissal for serious misconduct, which the employer must prove."
                   : code === "sa"
-                    ? "SafeWork SA names two exceptions: dismissal for serious and wilful misconduct, and a worker who terminates the contract unlawfully, such as by not working the required notice."
-                    : "Victoria's Act names no exception: after 7 years the unused balance must be paid in full on the final day of employment."}
+                    ? "Before 10 years it is withheld for serious and wilful misconduct, or where you end the contract unlawfully by not working your notice."
+                    : "The Act names no exception: the unused balance is due in full on the last day of employment."}
               </p>
             )}
-            <p className={P}>
-              Whatever is owed is paid in your final pay, with unused annual leave and any notice. Work
-              the whole thing out with the{" "}
-              <Link href="/final-pay-calculator/" className={LINK}>
-                final pay calculator
-              </Link>
-              , and remember that annual leave is a separate entitlement handled by the{" "}
-              <Link href="/leave-calculator/" className={LINK}>
-                annual leave calculator
-              </Link>
-              .
-            </p>
           </section>
 
-          <section>
+          <section id="payout">
             <h2 style={FONT} className={H2}>
-              Casual and Part-Time Long Service Leave {j.inName}
+              How {j.adjective} Long Service Leave Pay Is Worked Out
+            </h2>
+            {d.payCalc.map((t) => (
+              <p key={t} className={P}>
+                {t}
+              </p>
+            ))}
+          </section>
+
+          <section id="taking-leave">
+            <h2 style={FONT} className={H2}>
+              Taking Long Service Leave {j.inName}
+            </h2>
+            {d.takingLeave.map((t) => (
+              <p key={t} className={P}>
+                {t}
+              </p>
+            ))}
+          </section>
+
+          <section id="casual">
+            <h2 style={FONT} className={H2}>
+              Casual, Part-Time and Continuous Service {j.inName}
             </h2>
             <p className={P}>{j.casualsNote}</p>
-            <p className={P}>
-              Because the entitlement is measured in <strong>weeks</strong>, a part-timer earns the
-              same number of weeks as a full-timer and is paid at their own ordinary weekly rate. Put
-              your actual weekly pay into the calculator above rather than a full-time equivalent.
-            </p>
+            {d.continuity.map((t) => (
+              <p key={t} className={P}>
+                {t}
+              </p>
+            ))}
           </section>
 
-          <section>
+          <section id="cashing-out">
             <h2 style={FONT} className={H2}>
               Cashing Out Long Service Leave {j.inName}
             </h2>
             <p className={P}>{j.cashingOutNote}</p>
           </section>
 
-          <section>
+          <section id="portable">
             <h2 style={FONT} className={H2}>
-              Tax on a {j.abbr} Long Service Leave Payout
+              Portable Long Service Schemes {j.inName}
             </h2>
-            <p className={P}>
-              Tax on long service leave is federal, so it is the same {j.inName} as everywhere else.
-              Leave you <em>take</em> is taxed like ordinary pay. An <strong>unused</strong> balance
-              paid out at termination follows the ATO&apos;s unused-leave schedule:
-            </p>
-            <div className={TABLE_WRAP}>
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th scope="col" className={TH}>
-                      Leave accrued
-                    </th>
-                    <th scope="col" className={TH}>
-                      Resignation, retirement or dismissal
-                    </th>
-                    <th scope="col" className={TH}>
-                      Genuine redundancy or invalidity
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  <tr>
-                    <td className={TD}>Before 16 August 1978</td>
-                    <td className={TD}>5% taxed at marginal rates</td>
-                    <td className={TD}>5% taxed at marginal rates</td>
-                  </tr>
-                  <tr className="bg-eucalyptus-light/30">
-                    <td className={TD}>16 Aug 1978 – 17 Aug 1993</td>
-                    <td className={TD}>Flat 32%</td>
-                    <td className={TD}>Flat 32%</td>
-                  </tr>
-                  <tr>
-                    <td className={TD}>After 17 August 1993</td>
-                    <td className={TD}>
-                      <strong>Marginal rate</strong>
-                    </td>
-                    <td className={TD}>
-                      <strong>Flat 32%</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p className={P + " mt-4"}>
-              For anyone who started work after 17 August 1993, only the last row applies. A{" "}
-              {j.takeAfterYears}-year {j.abbr} entitlement of {weeks(qualifyingWeeks)} weeks on{" "}
-              {formatAUD(exampleWeekly)} a week is {formatAUD(examplePayout)} gross, landing in a year
-              worth about {formatAUD(exampleWeekly * 52 + examplePayout)} — see{" "}
-              <Link href={`/take-home-pay-on/${exampleTarget}/`} className={LINK}>
-                take-home pay on {formatAUD(exampleTarget)}
-              </Link>{" "}
-              for what that leaves after tax. The calculator above applies the same split to your own
-              dates.
-            </p>
-          </section>
-
-          <section>
-            <h2 style={FONT} className={H2}>
-              Who Is Not Covered by the {j.abbr} Act
-            </h2>
+            <p className={P}>{d.portableIntro}</p>
+            <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
+              {d.portable.map((p) => (
+                <li key={p.name}>
+                  <a href={p.url} target="_blank" rel="noreferrer noopener" className={LINK}>
+                    {p.name}
+                  </a>{" "}
+                  — {p.covers}
+                </li>
+              ))}
+            </ul>
+            <h3 style={FONT} className={H3}>
+              Also outside the {j.abbr} Act
+            </h3>
             <ul className="list-disc pl-6 space-y-1 text-warmgray mb-4">
               {j.notCovered.map((n) => (
                 <li key={n}>{n}</li>
               ))}
             </ul>
-            <p className={P}>
-              If one of those describes you, the figures on this page are not yours. {j.agency} is the
-              regulator for the Act itself; for a federal award or agreement, contact the{" "}
-              <a href={LSL_SOURCES.fwo} target="_blank" rel="noreferrer noopener" className={LINK}>
-                Fair Work Ombudsman
-              </a>{" "}
-              on 13 13 94.
-            </p>
           </section>
 
-          <section>
+          <section id="tax">
             <h2 style={FONT} className={H2}>
-              How {j.abbr} Compares
+              Tax, and How {j.abbr} Compares
             </h2>
             <p className={P}>
-              {j.abbr} is one of eight jurisdictions with its own Act. The qualifying period runs from
-              7 years (Victoria and the ACT) to 10, and the rate from 0.8667 weeks a year to 1.3 (South
-              Australia and the Northern Territory).
-            </p>
-            <div className={TABLE_WRAP}>
-              <table className="w-full text-sm">
-                <thead className="bg-sandstone">
-                  <tr>
-                    <th scope="col" className={TH}>
-                      State
-                    </th>
-                    <th scope="col" className={TH + " text-right"}>
-                      Take leave at
-                    </th>
-                    <th scope="col" className={TH + " text-right"}>
-                      Weeks then
-                    </th>
-                    <th scope="col" className={TH + " text-right"}>
-                      Pro-rata from
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-sandstone-dark/10">
-                  {JURISDICTION_CODES.map((c) => {
-                    const other = LSL_JURISDICTIONS[c];
-                    const isThis = c === code;
-                    return (
-                      <tr key={c} className={isThis ? "bg-eucalyptus-light/50 font-semibold" : undefined}>
-                        <td className={TD}>
-                          {isThis ? (
-                            other.abbr
-                          ) : (
-                            <Link href={`/long-service-leave-calculator/${c}/`} className={LINK}>
-                              {other.abbr}
-                            </Link>
-                          )}
-                        </td>
-                        <td className={TD + " text-right"}>{other.takeAfterYears} years</td>
-                        <td className={TD + " text-right"}>{other.weeksAtQualifying}</td>
-                        <td className={TD + " text-right"}>{other.proRataFromYears} years</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className={P + " mt-4"}>
-              The{" "}
-              <Link href="/long-service-leave-calculator/" className={LINK}>
-                long service leave hub
+              Tax on a payout is federal, so it is the same {j.inName} as everywhere: the{" "}
+              <Link href="/long-service-leave-calculator/#tax" className={LINK}>
+                ATO unused-leave schedule is set out on the hub
+              </Link>
+              . A {j.takeAfterYears}-year {j.abbr} entitlement of {weeks(qualifyingWeeks)} weeks at{" "}
+              {formatAUD(exampleWeekly)} a week is {formatAUD(examplePayout)} gross — see{" "}
+              <Link href={`/take-home-pay-on/${exampleTarget}/`} className={LINK}>
+                take-home pay on {formatAUD(exampleTarget)}
               </Link>{" "}
-              sets all eight side by side, including what each pays if you resign at 8 years.
+              for the year it lands in. For the other seven Acts side by side, see{" "}
+              <Link href="/long-service-leave-calculator/#by-state" className={LINK}>
+                long service leave in every state
+              </Link>
+              .
             </p>
           </section>
 
           <MethodologyDisclosure>
             <ul className="list-disc pl-4 space-y-1">
               <li>
-                Weeks = years of continuous service × {j.weeksPerYear.toFixed(4)}, the rate{" "}
-                {j.agency} publishes.{" "}
-                {j.proRataBasis === "completed-years"
-                  ? "Part years are dropped — the Act pays completed years only."
-                  : j.proRataBasis === "completed-years-and-months"
-                    ? "Completed years and months are counted; loose days are not."
-                    : "Part years count, down to the day."}
+                Weeks = years of continuous service × {j.weeksPerYear.toFixed(4)}, the rate {j.agency} publishes.{" "}
+                {basis}
               </li>
               <li>
-                Payout = weeks × your ordinary weekly rate, which excludes overtime. The calculator
-                treats a day as one fifth of a week.
+                Payout = weeks × the weekly pay you enter. The calculator does not apply the {j.abbr} averaging or
+                ordinary-pay rules described above, so enter the figure those rules give you.
               </li>
               <li>
-                Tax follows the ATO&apos;s unused-leave withholding schedule; the marginal rate is
-                derived from this site&apos;s FY2026-27 tax engine rather than quoted from a bracket.
-              </li>
-              <li>
-                {j.agency}&apos;s own published worked example is reconciled back to this formula in the
-                test suite. Source: <span className="break-all">{j.sourceUrl}</span>, read{" "}
-                {LSL_SOURCES.verifiedOn}.
-              </li>
-              <li>
-                Not modelled: absences that do not count as service, leave already taken, portable
-                schemes, and awards or agreements that displace the Act.
+                {j.agency}&apos;s published worked example is reconciled to this formula in the test suite. Source:{" "}
+                <span className="break-all">{j.sourceUrl}</span>, read {LSL_SOURCES.verifiedOn}.
               </li>
             </ul>
           </MethodologyDisclosure>
 
-          <section>
+          <section id="faq">
             <h2 style={FONT} className={H2}>
               Frequently Asked Questions
             </h2>
@@ -1022,10 +941,7 @@ export function LongServiceLeaveSpoke({ code }: { code: JurisdictionCode }) {
           </section>
 
           <ScopeNote authority={j.agency} authorityUrl={j.agencyUrl} />
-          <SourceAttribution
-            sources={[jurisdictionSource(code), ATO_SOURCE, FWO_SOURCE]}
-            lastVerified={LSL_SOURCES.verifiedOn}
-          />
+          <SourceAttribution sources={sourceList} lastVerified={LSL_DETAIL_VERIFIED_ON} />
           <AuthorBox author={a.author} lastReviewed={a.lastReviewed} />
         </div>
       </div>
