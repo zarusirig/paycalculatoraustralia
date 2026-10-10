@@ -53,8 +53,17 @@ export const TAKE_HOME_SALARIES: readonly number[] = [
   ...HIGH_SALARY_TAIL,
 ];
 
-/** /tax-on/ uses the same grid as /take-home-pay-on/ (a page pair per salary). */
-export const TAX_ON_SALARIES: readonly number[] = TAKE_HOME_SALARIES;
+/**
+ * /tax-on/ — $5,000 steps only (pruned 10 Oct 2026). Every /tax-on/ page that
+ * ranked was a $5k multiple, and the $1k pages between them were the same page
+ * with the numbers swapped. Its own grid, not derived from TAKE_HOME_SALARIES,
+ * so resizing one family cannot silently resize the other. The removed URLs
+ * (TAX_ON_REMOVED_SALARIES) 301 to the nearest kept page in firebase.json.
+ */
+export const TAX_ON_SALARIES: readonly number[] = [...range(20_000, 200_000, 5_000), ...HIGH_SALARY_TAIL];
+
+/** Former /tax-on/ pages ($1k steps from $41k to $149k): each 301s to nearestSalary("tax-on", s). */
+export const TAX_ON_REMOVED_SALARIES: readonly number[] = range(40_000, 150_000, 1_000).filter((s) => s % 5_000 !== 0);
 
 /**
  * /salary-to-hourly/ — the take-home grid from $40k up, plus the long-standing

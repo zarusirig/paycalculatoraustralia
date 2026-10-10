@@ -55,10 +55,12 @@ export default function PayRiseCalculatorPage({ children, afterCalculator }: { c
   // Next steps inside the result card, carrying the visitor's new salary.
   const nextSteps = useMemo<ResultNextStep[]>(() => {
     const s = nearestSalary("take-home", Math.max(0, newSalary));
+    // /tax-on/ has its own $5k grid (10 Oct 2026), so look it up separately.
+    const t = nearestSalary("tax-on", Math.max(0, newSalary));
     return [
       { href: salaryHref("take-home", s), label: `See your take-home on ${formatAUD(s)}`, detail: "Your new salary by week, fortnight and month" },
       { href: "/fortnightly-pay-calculator/", label: "Fortnightly pay on your new salary" },
-      { href: salaryHref("tax-on", s), label: `How much tax on ${formatAUD(s)}` },
+      { href: salaryHref("tax-on", t), label: `How much tax on ${formatAUD(t)}` },
       { href: "/superannuation-calculator/", label: "Project what the extra super grows to" },
     ];
   }, [newSalary]);

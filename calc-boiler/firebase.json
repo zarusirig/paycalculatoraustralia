@@ -62,6 +62,893 @@
         "destination": "/tax-on/200000/",
         "type": 301
       },
+      // ---- /tax-on/ prune, 10 Oct 2026 (AdSense thin-content fix) ----------
+      // 88 $1k-step /tax-on/ pages removed; /tax-on/ keeps $5k steps only
+      // (TAX_ON_SALARIES in lib/data/salary-pages). Each removed URL 301s to
+      // the NEAREST kept page, with and without the trailing slash. Firebase
+      // CLI reads this file with cjson, so // comments are allowed here.
+      // Guarded by lib/data/salary-pages/__tests__/tax-on-grid.test.ts.
+      {
+        "source": "/tax-on/41000",
+        "destination": "/tax-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/41000/",
+        "destination": "/tax-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/42000",
+        "destination": "/tax-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/42000/",
+        "destination": "/tax-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/43000",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/43000/",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/44000",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/44000/",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/46000",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/46000/",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/47000",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/47000/",
+        "destination": "/tax-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/48000",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/48000/",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/49000",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/49000/",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/51000",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/51000/",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/52000",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/52000/",
+        "destination": "/tax-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/53000",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/53000/",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/54000",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/54000/",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/56000",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/56000/",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/57000",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/57000/",
+        "destination": "/tax-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/58000",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/58000/",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/59000",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/59000/",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/61000",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/61000/",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/62000",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/62000/",
+        "destination": "/tax-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/63000",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/63000/",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/64000",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/64000/",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/66000",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/66000/",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/67000",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/67000/",
+        "destination": "/tax-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/68000",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/68000/",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/69000",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/69000/",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/71000",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/71000/",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/72000",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/72000/",
+        "destination": "/tax-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/73000",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/73000/",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/74000",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/74000/",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/76000",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/76000/",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/77000",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/77000/",
+        "destination": "/tax-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/78000",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/78000/",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/79000",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/79000/",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/81000",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/81000/",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/82000",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/82000/",
+        "destination": "/tax-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/83000",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/83000/",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/84000",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/84000/",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/86000",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/86000/",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/87000",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/87000/",
+        "destination": "/tax-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/88000",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/88000/",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/89000",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/89000/",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/91000",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/91000/",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/92000",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/92000/",
+        "destination": "/tax-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/93000",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/93000/",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/94000",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/94000/",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/96000",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/96000/",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/97000",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/97000/",
+        "destination": "/tax-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/98000",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/98000/",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/99000",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/99000/",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/101000",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/101000/",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/102000",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/102000/",
+        "destination": "/tax-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/103000",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/103000/",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/104000",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/104000/",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/106000",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/106000/",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/107000",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/107000/",
+        "destination": "/tax-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/108000",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/108000/",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/109000",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/109000/",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/111000",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/111000/",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/112000",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/112000/",
+        "destination": "/tax-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/113000",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/113000/",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/114000",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/114000/",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/116000",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/116000/",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/117000",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/117000/",
+        "destination": "/tax-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/118000",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/118000/",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/119000",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/119000/",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/121000",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/121000/",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/122000",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/122000/",
+        "destination": "/tax-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/123000",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/123000/",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/124000",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/124000/",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/126000",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/126000/",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/127000",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/127000/",
+        "destination": "/tax-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/128000",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/128000/",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/129000",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/129000/",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/131000",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/131000/",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/132000",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/132000/",
+        "destination": "/tax-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/133000",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/133000/",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/134000",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/134000/",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/136000",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/136000/",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/137000",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/137000/",
+        "destination": "/tax-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/138000",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/138000/",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/139000",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/139000/",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/141000",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/141000/",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/142000",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/142000/",
+        "destination": "/tax-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/143000",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/143000/",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/144000",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/144000/",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/146000",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/146000/",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/147000",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/147000/",
+        "destination": "/tax-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/148000",
+        "destination": "/tax-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/148000/",
+        "destination": "/tax-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/149000",
+        "destination": "/tax-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/tax-on/149000/",
+        "destination": "/tax-on/150000/",
+        "type": 301
+      },
+      // ---- end /tax-on/ prune -------------------------------------------
       {
         "source": "/medicare-levy-calculator/",
         "destination": "/medicare-levy/",
