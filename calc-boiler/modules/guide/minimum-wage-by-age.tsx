@@ -6,71 +6,88 @@ import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
-import { SITE_CONFIG, SOURCES, EMPLOYMENT, formatAUD } from "@/lib/constants";
+import { SOURCES, EMPLOYMENT } from "@/lib/constants";
+import { NMW_ORDER } from "@/lib/constants/junior-rates";
+import { FAST_FOOD_LEVEL_1, weeklyPay, type MinWageAge } from "@/lib/constants/minimum-wage";
 import {
-  ADULT_AGE,
-  MINIMUM_WORKING_AGE,
-  NMW_ORDER,
-  PENDING_JUNIOR_CHANGE,
-} from "@/lib/constants/junior-rates";
-import {
-  RETAIL_JUNIOR_LEVEL_RESTRICTION,
-  RETAIL_RATES,
-  HOSPITALITY_JUNIOR_ADULT_RATE_EXCEPTIONS,
-} from "@/lib/constants/hospitality-award";
-import { FAST_FOOD_LEVEL_1, awardJuniorHourly, weeklyPay, type MinWageAge } from "@/lib/constants/minimum-wage";
+  APPRENTICE_TRAINEE,
+  CHILD_WORK_RULES,
+  PHASE_IN,
+  STATE_RULES_VERIFIED_ON,
+} from "@/lib/constants/junior-age-facts";
 import {
   MIN_WAGE_AGES,
-  aAge,
   SPOKE_HOURS,
+  aAge,
+  adultRateBlock,
+  ageNote,
   ageSummary,
-  annualTaxOn,
+  apprenticeText,
+  awardPercentRows,
+  awardSpreadText,
+  scopeNotes,
+  birthdayBlock,
+  extraAwardSources,
   money,
   pctLabel,
+  phaseInMeaning,
+  phaseInTable,
   spokeFaqs,
+  schoolRulesForAge,
   spokeTitle,
+  workRulesForAge,
 } from "@/modules/guide/minimum-wage-by-age-data";
 import FeaturedImage from "@/components/common/featured-image";
 
-const RETAIL_L1_WEEKLY = RETAIL_RATES.find((r) => r.level === "Level 1")!.weekly;
 const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const TABLE_WRAP = "overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm";
+const TH = "px-4 py-3";
 
-const SOURCES_LIST: SourceLink[] = [
-  { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
-  { title: "Junior pay rates", url: "https://www.fairwork.gov.au/pay-and-wages/minimum-wages/junior-pay-rates", publisher: SOURCES.fwo.name },
-  { title: "General Retail Industry Award 2020 (MA000004)", url: "https://awards.fairwork.gov.au/MA000004.html", publisher: SOURCES.fwc.name },
-  { title: `${FAST_FOOD_LEVEL_1.award} (${FAST_FOOD_LEVEL_1.code})`, url: FAST_FOOD_LEVEL_1.awardTextUrl, publisher: SOURCES.fwc.name },
-  { title: "Hospitality Industry (General) Award 2020 (MA000009)", url: "https://awards.fairwork.gov.au/MA000009.html", publisher: SOURCES.fwc.name },
-  { title: "Minimum working age", url: "https://www.fairwork.gov.au/find-help-for/young-workers-and-students/minimum-working-age", publisher: SOURCES.fwo.name },
-];
+const FWO = SOURCES.fwo.name;
+const FWC = SOURCES.fwc.name;
 
-function ageNote(age: MinWageAge): string {
-  switch (age) {
-    case 14:
-      return "Fourteen-year-olds sit in the lowest band of every junior scale. Whether a 14-year-old can work at all, and for how many hours, is set by the state, not by Fair Work, so check the working-age table below before anything else.";
-    case 15:
-      return "Fifteen is still the under-16 band for the National Minimum Wage and the retail and fast food awards, and the under-17 band in hospitality. A 15-year-old is paid the same percentage as a 14-year-old; the rate only steps up on the 16th birthday.";
-    case 16:
-      return "Sixteen is the first step up on the National Minimum Wage and the retail and fast food scales. Hospitality is the exception: its junior table has no 16-year-old row, so a 16-year-old stays on the under-17 rate until turning 17.";
-    case 17:
-      return "At 17 every scale moves up again, and hospitality finally catches up with its own 17-year-old band. The Hair and Beauty award pays 75% at 17, higher than any of the three awards below.";
-    case 18:
-      return "Eighteen is an adult for most legal purposes but still a junior for pay. The National Minimum Wage pays 68.3% of the adult rate and the three awards below pay 70%. The Hair and Beauty award is the main exception: it pays the full adult rate from 18.";
-    case 19:
-      return "At 19 the awards diverge: hospitality pays 85% of the adult rate, while retail and fast food pay 80%. The National Minimum Wage pays 82.5%.";
-    case 20:
-      return "Twenty is where most awards reach the adult rate, but not all of them. Hospitality pays 100% at 20. Retail pays 90% in the first six months with the employer and 100% after that. Fast food pays 20-year-olds 90% for now, rising for those with more than six months' service from 1 December 2026 (see below), and the National Minimum Wage pays 97.7%.";
+/** Sources shown on a spoke: the ones its age-specific sections actually rely on. */
+function sourcesFor(age: MinWageAge): SourceLink[] {
+  const list: SourceLink[] = [
+    { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: FWC },
+    { title: "Junior pay rates", url: APPRENTICE_TRAINEE.fwoJuniorUrl, publisher: FWO },
+    { title: "General Retail Industry Award 2020 (MA000004)", url: "https://awards.fairwork.gov.au/MA000004.html", publisher: FWC },
+    { title: `${FAST_FOOD_LEVEL_1.award} (${FAST_FOOD_LEVEL_1.code})`, url: FAST_FOOD_LEVEL_1.awardTextUrl, publisher: FWC },
+    { title: "Hospitality Industry (General) Award 2020 (MA000009)", url: "https://awards.fairwork.gov.au/MA000009.html", publisher: FWC },
+  ];
+  if (age <= 15) {
+    list.push({ title: "Minimum working age", url: "https://www.fairwork.gov.au/find-help-for/young-workers-and-students/minimum-working-age", publisher: FWO });
+    for (const r of CHILD_WORK_RULES) list.push({ title: r.title, url: r.url, publisher: r.publisher });
   }
+  if (age >= 16 && age <= 18) {
+    for (const r of schoolRulesForAge(age as 16 | 17 | 18)) {
+      const page = CHILD_WORK_RULES.find((c) => c.url === r.url)!;
+      list.push({ title: page.title, url: page.url, publisher: page.publisher });
+    }
+  }
+  if (age >= 17) {
+    list.push({ title: `Junior rates implementation decision ${PHASE_IN.decision}`, url: PHASE_IN.decisionUrl, publisher: FWC });
+    for (const [pr, award] of [["PR813655", "General Retail"], ["PR813654", "Fast Food"], ["PR813656", "Pharmacy"]] as const) {
+      list.push({ title: `${pr}: ${award} Industry Award 2020 junior rates determination`, url: PHASE_IN.determinationUrl(pr), publisher: FWC });
+    }
+  }
+  if (age >= 18) {
+    for (const x of extraAwardSources(age as 18 | 19 | 20)) list.push({ ...x, publisher: FWC });
+    list.push({ title: "Apprentice and trainee pay rates", url: APPRENTICE_TRAINEE.fwoApprenticeUrl, publisher: FWO });
+  }
+  return list;
 }
 
 export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
   const s = ageSummary(age);
   const faqs = spokeFaqs(age);
-  const weeksPerYear = EMPLOYMENT.weeksPerYear;
-  const taxExampleGross = weeklyPay(s.topCasual.casualHourly, 20) * weeksPerYear;
-  const taxExample = annualTaxOn(taxExampleGross);
-  const others = MIN_WAGE_AGES.filter((a) => a !== age);
-  const showWorkingAge = age <= 15;
+  const percentRows = awardPercentRows(age);
+  const birthday = birthdayBlock(age);
+  const phase = age >= 18 ? phaseInTable(age as 18 | 19 | 20) : null;
+  const adult = age >= 18 ? adultRateBlock(age as 18 | 19 | 20) : null;
+  const rules = age <= 15 ? workRulesForAge(age as 14 | 15) : null;
+  const prev = age > 14 ? age - 1 : null;
+  const next = age < 20 ? age + 1 : null;
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -104,67 +121,32 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
               <h2 style={H2}>Minimum Hourly Rate for {aAge(age)} Year Old</h2>
               <p>{ageNote(age)}</p>
               <div className="not-prose my-6">
-                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full min-w-[34rem] text-left text-sm text-navy">
-                    <caption className="sr-only">Minimum wage for {aAge(age)} year old from {NMW_ORDER.operativeFrom}</caption>
+                <div className={TABLE_WRAP}>
+                  <table className="w-full min-w-[40rem] text-left text-sm text-navy">
+                    <caption className="sr-only">Minimum wage for {aAge(age)} year old from {NMW_ORDER.operativeFrom}, hourly and casual weekly</caption>
                     <thead className="bg-sandstone font-semibold text-navy">
                       <tr>
-                        <th scope="col" className="px-5 py-4">What covers the job</th>
-                        <th scope="col" className="px-5 py-4">% of adult rate</th>
-                        <th scope="col" className="px-5 py-4">Hourly</th>
-                        <th scope="col" className="px-5 py-4">Casual hourly (+25%)</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                      {s.lines.map((l) => (
-                        <tr key={l.key}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">
-                            {l.href ? <Link href={l.href} className="text-eucalyptus-dark hover:underline">{l.label}</Link> : l.label}
-                            <span className="block text-xs font-normal text-warmgray">{l.sublabel}</span>
-                          </th>
-                          <td className="px-5 py-3">{pctLabel(l.percentage)}</td>
-                          <td className="px-5 py-3 font-medium">{money(l.hourly)}</td>
-                          <td className="px-5 py-3">{money(l.casualHourly)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <p className="mt-2 text-xs text-warmgray-light">
-                  Rates apply from the first full pay period starting on or after {NMW_ORDER.operativeFrom}. The National Minimum Wage figures match those published by the Fair Work Ombudsman. The fast food figures match the award&rsquo;s own Schedule A. Retail and hospitality junior figures are our calculation: the award percentage applied to the Level 1 weekly rate, divided by {EMPLOYMENT.standardWeeklyHours}.
-                </p>
-              </div>
-              <p>
-                <strong>Which line applies to you?</strong> The first row is only for jobs that no award or enterprise agreement covers, which is uncommon for young workers. Supermarkets, shops and department stores normally fall under the retail award. Burger chains, pizza shops and takeaway outlets normally fall under the fast food award. Cafes, restaurants, pubs and hotels normally fall under the hospitality award. Big employers often have their own enterprise agreement, which must leave you better off overall than the award.
-              </p>
-            </section>
-
-            <section id="weekly-pay">
-              <h2 style={H2}>Weekly Pay for {aAge(age)} Year Old at 10, 15 and 20 Hours</h2>
-              <p>
-                Most {age}-year-olds work casual shifts after school and on weekends. These are casual weekly amounts before tax, at ordinary Monday&ndash;Friday rates:
-              </p>
-              <div className="not-prose my-6">
-                <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                  <table className="w-full min-w-[34rem] text-left text-sm text-navy">
-                    <caption className="sr-only">Casual weekly pay for {aAge(age)} year old</caption>
-                    <thead className="bg-sandstone font-semibold text-navy">
-                      <tr>
-                        <th scope="col" className="px-5 py-4">Casual rate</th>
+                        <th scope="col" className={TH}>Pay floor</th>
+                        <th scope="col" className={TH}>%</th>
+                        <th scope="col" className={TH}>Hourly</th>
+                        <th scope="col" className={TH}>Casual</th>
                         {SPOKE_HOURS.map((h) => (
-                          <th key={h} scope="col" className="px-5 py-4">{h} hrs/week</th>
+                          <th key={h} scope="col" className={TH}>{h} hrs casual</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-sandstone-dark/20 bg-white">
                       {s.lines.map((l) => (
                         <tr key={l.key}>
-                          <th scope="row" className="px-5 py-3 text-left font-medium">
-                            {l.label}
-                            <span className="block text-xs font-normal text-warmgray">{money(l.casualHourly)}/hr</span>
+                          <th scope="row" className={`${TH} text-left font-medium`}>
+                            {l.href ? <Link href={l.href} className="text-eucalyptus-dark hover:underline">{l.label}</Link> : l.label}
+                            <span className="block text-xs font-normal text-warmgray">{l.sublabel}</span>
                           </th>
+                          <td className={TH}>{pctLabel(l.percentage)}</td>
+                          <td className={`${TH} font-medium`}>{money(l.hourly)}</td>
+                          <td className={TH}>{money(l.casualHourly)}</td>
                           {SPOKE_HOURS.map((h) => (
-                            <td key={h} className="px-5 py-3">{money(weeklyPay(l.casualHourly, h))}</td>
+                            <td key={h} className={TH}>{money(weeklyPay(l.casualHourly, h))}</td>
                           ))}
                         </tr>
                       ))}
@@ -172,129 +154,221 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
                   </table>
                 </div>
                 <p className="mt-2 text-xs text-warmgray-light">
-                  Hourly rate multiplied by hours. Saturday, Sunday, evening and public holiday work attracts penalty rates on top; see <Link href="/overtime-penalty-rates-guide/" className="text-eucalyptus-dark hover:underline">penalty rates</Link>.
+                  From the first full pay period starting on or after {NMW_ORDER.operativeFrom}, before tax, Monday&ndash;Friday rates. Which row applies to you, and how the award rows are worked out, is on the <Link href="/junior-pay-rates/#which-rate-applies" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
                 </p>
               </div>
+            </section>
+
+            <section id="awards">
+              <h2 style={H2}>Every Award Junior Scale at {age}</h2>
+              <p>{awardSpreadText(age)}</p>
+              <div className="not-prose my-6">
+                <div className={TABLE_WRAP}>
+                  <table className="w-full min-w-[30rem] text-left text-sm text-navy">
+                    <caption className="sr-only">Award junior percentages for {aAge(age)} year old, grouped by percentage</caption>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className={TH}>% of adult rate at {age}</th>
+                        <th scope="col" className={TH}>Award (the band {aAge(age)}-year-old falls in)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {percentRows.map((row) => (
+                        <tr key={row.label}>
+                          <th scope="row" className={`${TH} text-left font-semibold`}>{row.label}</th>
+                          <td className={TH}>
+                            {row.awards.map((a, i) => (
+                              <span key={a.name}>
+                                {i > 0 ? "; " : ""}
+                                <Link href={a.href} className="text-eucalyptus-dark hover:underline">{a.name}</Link> <span className="text-warmgray">({a.band.toLowerCase()}{a.scope ? "*" : ""})</span>
+                              </span>
+                            ))}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-2 text-xs text-warmgray-light">
+                  * {scopeNotes(age)} Awards with no junior scale pay the adult rate at any age (<Link href="/junior-pay-rates/#awards-without-junior-rates" className="text-eucalyptus-dark hover:underline">which ones</Link>).
+                </p>
+              </div>
+            </section>
+
+            <section id="next-birthday">
+              <h2 style={H2}>{birthday.heading}</h2>
+              <p>{birthday.intro}</p>
+              {birthday.rises.length > 0 && (
+                <ul>
+                  {birthday.rises.map((r) => (
+                    <li key={r.step}><strong>{r.step}:</strong> {r.awards}</li>
+                  ))}
+                </ul>
+              )}
+              {birthday.dollars && <p>{birthday.dollars}</p>}
+              {birthday.waits.length > 0 && (
+                <ul>
+                  {birthday.waits.map((w) => (
+                    <li key={w.at}>{age + 1 === w.at ? "Rises" : `No rise until ${w.at}`}: {w.awards}</li>
+                  ))}
+                </ul>
+              )}
               <p>
-                <strong>Tax.</strong> If you claim the {formatAUD(18_200)} tax-free threshold with your employer, most junior earnings attract little or no income tax. Working 20 hours every week of the year at the highest casual rate above ({money(s.topCasual.casualHourly)}) comes to about {formatAUD(Math.round(taxExampleGross))} a year, with an estimated {formatAUD(taxExample)} of income tax and Medicare levy for the year. Use the <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> or the <Link href="/weekly-pay-calculator/">weekly pay calculator</Link> for your own hours. Your employer must also pay super on top of your wages. To see what the 25% casual loading is worth against a permanent job, use the <Link href="/casual-loading-calculator/">casual loading calculator</Link>.
+                {prev ? <><Link href={`/minimum-wage-by-age/${prev}/`}>Rates at {prev}</Link> · </> : null}
+                {next ? <Link href={`/minimum-wage-by-age/${next}/`}>Rates at {next}</Link> : <Link href="/minimum-wage-australia/">Adult minimum wage at 21: {money(EMPLOYMENT.minimumWageHourly)} an hour</Link>}
+                {age <= 16 ? <> · Under-18 rates are not touched by the Fair Work Commission&rsquo;s 2026 junior-rate decision (<Link href="/junior-pay-rates/#pending-change">what it changes</Link>).</> : null}
               </p>
             </section>
 
-            <section id="award-rules">
-              <h2 style={H2}>Rules That Change the Rate</h2>
-              <ul>
-                <li><strong>Retail:</strong> {RETAIL_JUNIOR_LEVEL_RESTRICTION}</li>
-                <li><strong>Hospitality:</strong> {HOSPITALITY_JUNIOR_ADULT_RATE_EXCEPTIONS}</li>
-                <li><strong>Fast food:</strong> the percentage applies to your classification. Level 2 and Level 3 pay more than the Level 1 figures shown here.</li>
-                <li><strong>No junior rates at all:</strong> some awards have no junior scale. The <Link href="/schads-award-pay-rates/">SCHADS award</Link> pays juniors the full adult rate for their classification.</li>
-              </ul>
-            </section>
-
-            {s.pending && s.pending.length > 0 && (
-              <section id="pending-change">
-                <h2 style={H2}>Pay Rise for {age} Year Olds from {PENDING_JUNIOR_CHANGE.earliestStart}</h2>
-                <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
-                  <div className="flex items-start gap-4">
-                    <AlertTriangle className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" aria-hidden="true" />
-                    <p className="text-sm leading-relaxed text-navy">
-                      The Fair Work Commission has decided ({PENDING_JUNIOR_CHANGE.implementationDecision}, {PENDING_JUNIOR_CHANGE.implementationDecidedOn}) to move 18 to 20-year-olds with <strong>{PENDING_JUNIOR_CHANGE.serviceQualifier}</strong> towards the adult rate under the retail, fast food and pharmacy awards. It happens in steps from the first full pay period on or after <strong>{PENDING_JUNIOR_CHANGE.earliestStart}</strong>, not all at once. Until then the rates above apply, and {age}-year-olds with 6 months or less stay on them.
-                    </p>
-                  </div>
-                </div>
-                <div className="not-prose my-6">
-                  <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                    <table className="w-full min-w-[34rem] text-left text-sm text-navy">
-                      <caption className="sr-only">Junior rate transition for {age} year olds with more than 6 months&rsquo; service</caption>
-                      <thead className="bg-sandstone font-semibold text-navy">
-                        <tr>
-                          <th scope="col" className="px-5 py-4">Award (determination)</th>
-                          <th scope="col" className="px-5 py-4">Now</th>
-                          <th scope="col" className="px-5 py-4">From {PENDING_JUNIOR_CHANGE.earliestStart}</th>
-                          <th scope="col" className="px-5 py-4">Adult rate from</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                        {s.pending.map((p) => {
-                          const adultWeekly = p.key === "retail" ? RETAIL_L1_WEEKLY : p.key === "fastFood" ? FAST_FOOD_LEVEL_1.weekly : null;
-                          return (
-                            <tr key={p.key}>
-                              <th scope="row" className="px-5 py-3 text-left font-medium">
-                                {p.award} <span className="block text-xs font-normal text-warmgray">{p.determination}</span>
-                              </th>
-                              <td className="px-5 py-3">{p.present}%</td>
-                              <td className="px-5 py-3 font-medium">
-                                {p.firstStep}%
-                                {adultWeekly ? <span className="block text-xs font-normal text-warmgray">{money(awardJuniorHourly(adultWeekly, p.firstStep / 100))}/hr on Level 1</span> : null}
-                              </td>
-                              <td className="px-5 py-3">{p.fullAdultFrom}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="mt-2 text-xs text-warmgray-light">
-                    Percentages from the determinations. Level 1 dollars are our calculation on today&rsquo;s adult Level 1 rate; the July 2027 wage review will change the base.{age === 20 ? " Retail is not listed: a 20-year-old with more than 6 months' service already gets the retail adult rate." : ""}
-                  </p>
-                </div>
+            {age === 17 && (
+              <section id="phase-in">
+                <h2 style={H2}>Turning 18 After {PHASE_IN.start}</h2>
                 <p>
-                  Every step for every age is on the <Link href="/junior-pay-rates/#pending-change">minimum wage by age</Link> page. The change does not affect the National Minimum Wage junior scale or the hospitality award.
+                  Rates for 17-year-olds are not changed by {PHASE_IN.decision}. The change waits for the 18th birthday: under Retail, Fast Food and Pharmacy, an 18-year-old with more than 6 months with the employer moves up in steps from the first full pay period on or after {PHASE_IN.start}, reaching 100% from 1 July 2029. So how long you have been with your employer when you turn 18 decides which 18-year-old rate you get. The FAQ below has the dollars, and every date is on the <Link href="/minimum-wage-by-age/18/#phase-in">18-year-old page</Link>.
                 </p>
               </section>
             )}
 
-            {showWorkingAge ? (
-              <section id="minimum-working-age">
-                <h2 style={H2}>Can {aAge(age).replace("a", "A")} Year Old Work? Minimum Working Age by State</h2>
-                <p>
-                  <strong>There is no national minimum working age.</strong> Each state and territory sets its own rules, and every one of them bars work during school hours for children of compulsory school age.
-                </p>
+            {phase && (
+              <section id="phase-in">
+                <h2 style={H2}>The {PHASE_IN.start} Phase-In for {age} Year Olds</h2>
+                <div className="not-prose my-6 rounded-xl border-l-4 border-ochre bg-sandstone p-5">
+                  <div className="flex items-start gap-4">
+                    <AlertTriangle className="mt-0.5 h-6 w-6 flex-shrink-0 text-ochre" aria-hidden="true" />
+                    <p className="text-sm leading-relaxed text-navy">
+                      {PHASE_IN.inForce ? "In force" : "Decided, not yet in force"} ({PHASE_IN.decision}): a four-year phase-in for <strong>{PHASE_IN.serviceQualifier}</strong>, from the first full pay period on or after <strong>{PHASE_IN.start}</strong>, not a jump to the adult rate.
+                    </p>
+                  </div>
+                </div>
                 <div className="not-prose my-6">
-                  <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                    <table className="w-full min-w-[30rem] text-left text-sm text-navy">
-                      <caption className="sr-only">Minimum working age by state and territory</caption>
+                  <div className={TABLE_WRAP}>
+                    <table className="w-full min-w-[26rem] text-left text-sm text-navy">
+                      <caption className="sr-only">Phase-in percentages for {age} year olds with more than 6 months&rsquo; service</caption>
                       <thead className="bg-sandstone font-semibold text-navy">
                         <tr>
-                          <th scope="col" className="px-5 py-4">State or territory</th>
-                          <th scope="col" className="px-5 py-4">Minimum age</th>
-                          <th scope="col" className="px-5 py-4">Detail</th>
+                          <th scope="col" className={TH}>From</th>
+                          {phase.columns.map((c) => (
+                            <th key={c.award} scope="col" className={TH}>
+                              <a href={c.url} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{c.award}</a>
+                              <span className="block text-xs font-normal text-warmgray">{c.determination}</span>
+                            </th>
+                          ))}
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                        {MINIMUM_WORKING_AGE.map((j) => (
-                          <tr key={j.jurisdiction}>
-                            <th scope="row" className="px-5 py-3 text-left font-medium">
-                              <a href={j.url} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{j.jurisdiction}</a>
-                            </th>
-                            <td className="px-5 py-3 font-medium">{j.summary}</td>
-                            <td className="px-5 py-3 text-warmgray">{j.detail}</td>
+                        {phase.dates.map((d, i) => (
+                          <tr key={d}>
+                            <th scope="row" className={`${TH} text-left font-medium`}>{d}</th>
+                            {phase.columns.map((c) => (
+                              <td key={c.award} className={TH}>{c.cells[i] == null ? "100%" : `${c.cells[i]}%`}</td>
+                            ))}
                           </tr>
                         ))}
                       </tbody>
                     </table>
                   </div>
-                  <p className="mt-2 text-xs text-warmgray-light">Each state name links to that jurisdiction&rsquo;s own government page.</p>
                 </div>
-              </section>
-            ) : (
-              <section id="minimum-working-age">
-                <h2 style={H2}>Working Age Rules at {age}</h2>
                 <p>
-                  There is no national minimum working age; each state sets its own. Most state limits on job types and employer licences apply below 15. Some states also cap hours on school days, and every state bars work during school hours, while you are still of compulsory school age. The state-by-state table is on the <Link href="/junior-pay-rates/#minimum-working-age">minimum wage by age</Link> page.
+                  {phaseInMeaning(age as 18 | 19 | 20)}{age < 20 ? <> Next column: <Link href={`/minimum-wage-by-age/${age + 1}/#phase-in`}>{age + 1}-year-olds</Link>.</> : null}
                 </p>
               </section>
             )}
 
-            <section id="other-ages">
-              <h2 style={H2}>Minimum Wage at Other Ages</h2>
-              <ul>
-                {others.map((a) => (
-                  <li key={a}><Link href={`/minimum-wage-by-age/${a}/`}>Minimum wage for a {a} year old</Link></li>
-                ))}
-                <li><Link href="/minimum-wage-australia/">Adult minimum wage (21 and over)</Link>: {money(EMPLOYMENT.minimumWageHourly)} an hour</li>
-                <li><Link href="/junior-pay-rates/">Minimum wage by age: every band in one table</Link></li>
-              </ul>
-            </section>
+            {rules && (
+              <section id="working-rules">
+                <h2 style={H2}>{age === 14 ? "Can a 14 Year Old Work? State Rules for Under-15s" : "What Changes at 15: State Work Rules"}</h2>
+                <p>
+                  There is no national minimum working age: the Fair Work Ombudsman says it &ldquo;depends on the state or territory you&rsquo;re working in&rdquo;.{" "}
+                  {age === 14
+                    ? "Here is what each state's own government page says applies to a 14-year-old."
+                    : "Most state limits stop at 15; here is what each state's own government page says about a 15-year-old."}
+                </p>
+                <div className="not-prose my-6">
+                  <div className={TABLE_WRAP}>
+                    <table className="w-full min-w-[30rem] text-left text-sm text-navy">
+                      <caption className="sr-only">Work rules for {aAge(age)} year old by state and territory</caption>
+                      <thead className="bg-sandstone font-semibold text-navy">
+                        <tr>
+                          <th scope="col" className={TH}>State</th>
+                          <th scope="col" className={TH}>{age === 14 ? "Rules at 14" : "At 15"}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                        {rules.map((r) => (
+                          <tr key={r.jurisdiction}>
+                            <th scope="row" className={`${TH} text-left font-medium`}>
+                              <a href={r.url} target="_blank" rel="noopener noreferrer" className="text-eucalyptus-dark hover:underline">{r.jurisdiction}</a>
+                            </th>
+                            <td className={TH}>{r.text}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="mt-2 text-xs text-warmgray-light">Read from each government page on {STATE_RULES_VERIFIED_ON}; each state name links to it.</p>
+                </div>
+              </section>
+            )}
+
+            {(age === 16 || age === 17) && (
+              <section id="school-and-work">
+                <h2 style={H2}>School and Work at {age}</h2>
+                <p>
+                  {age === 16 ? "Most state job, hours and permit rules stop at 15, so at 16 what limits work is mostly school. What the state pages say about 16-year-olds:" : "At 17 the limits left are about school and under-18 protections. What the state pages say about 17-year-olds:"}
+                </p>
+                <ul>
+                  {schoolRulesForAge(age).map((r) => (
+                    <li key={r.jurisdiction}>
+                      <a href={r.url} target="_blank" rel="noopener noreferrer"><strong>{r.jurisdiction}</strong></a>: {r.text}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {age === 18 && (
+              <section id="under-18-rules">
+                <h2 style={H2}>Under-18 Rules That Stop at 18</h2>
+                <ul>
+                  {schoolRulesForAge(18).map((r) => (
+                    <li key={r.jurisdiction}>
+                      <a href={r.url} target="_blank" rel="noopener noreferrer"><strong>{r.jurisdiction}</strong></a>: {r.text}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {adult && (
+              <section id="adult-rate">
+                <h2 style={H2}>When {aAge(age)} Year Old Gets the Adult Rate</h2>
+                {adult.newAt.length > 0 ? (
+                  <>
+                    <p><strong>New at {age}:</strong></p>
+                    <ul>
+                      {adult.newAt.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </>
+                ) : (
+                  <p>No award junior scale reaches 100% at {age}: turning {age} only moves you along the scales. The adult-rate rules from 18 still apply.</p>
+                )}
+                {adult.carried && <p>{adult.carried}</p>}
+                {age === 18 ? (
+                  <p>Every other award junior scale reaches 100% at 20 or 21; the <Link href="/minimum-wage-by-age/19/#adult-rate">19-year-old page</Link> lists which is which.</p>
+                ) : (
+                  <ul>
+                    {adult.later.map((l) => (
+                      <li key={l.at}><strong>Adult rate at {l.at}:</strong> {l.awards}</li>
+                    ))}
+                  </ul>
+                )}
+                <p>
+                  <strong>{age === 19 ? "Trainees." : "Apprentices."}</strong> {apprenticeText(age as 18 | 19 | 20)} See <Link href="/apprentice-pay-rates/">apprentice pay rates</Link> and the Fair Work Ombudsman&rsquo;s <a href={APPRENTICE_TRAINEE.fwoApprenticeUrl} target="_blank" rel="noopener noreferrer">apprentice and trainee pay</a> page.
+                </p>
+              </section>
+            )}
 
             <section id="faq">
               <h2 style={H2}>Frequently Asked Questions</h2>
@@ -309,10 +383,10 @@ export default function MinimumWageByAgePage({ age }: { age: MinWageAge }) {
             <div className="mt-12 not-prose">
               <MethodologyDisclosure title="How these rates were worked out">
                 <p>
-                  National Minimum Wage junior rates come from the {NMW_ORDER.citation} ({NMW_ORDER.reference}) and are regression-tested against the Fair Work Ombudsman&rsquo;s published hourly and casual figures. Award junior rates apply the award&rsquo;s percentage to the Level 1 weekly rate and divide by {EMPLOYMENT.standardWeeklyHours}, the order the awards use; the fast food figures are tested against the award&rsquo;s own Schedule A. The adult National Minimum Wage applies from {ADULT_AGE}. Tax estimates use the {SITE_CONFIG.financialYear} resident rates with the tax-free threshold claimed.
+                  Each award&rsquo;s percentage of its Level 1 weekly rate, divided by {EMPLOYMENT.standardWeeklyHours}; full method on the <Link href="/junior-pay-rates/#how-calculated" className="text-eucalyptus-dark hover:underline">junior pay rates</Link> page.
                 </p>
               </MethodologyDisclosure>
-              <SourceAttribution sources={SOURCES_LIST} lastVerified="23 September 2026" />
+              <SourceAttribution sources={sourcesFor(age)} lastVerified="10 October 2026" />
               {(() => { const a = getGuideAuthorship("minimum-wage-by-age"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>
           </article>
