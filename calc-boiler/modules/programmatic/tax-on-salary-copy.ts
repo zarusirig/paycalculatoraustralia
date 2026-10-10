@@ -11,13 +11,10 @@ import {
   LITO,
   SITE_CONFIG,
   TAX_BRACKETS,
-  TAX_BRACKETS_2023_24,
-  TAX_BRACKETS_2025_26,
   formatAUD,
 } from "@/lib/constants/australian-tax";
-import { RESIDENT_SCALES, incomeTaxAfterLitoOnScale } from "@/lib/constants/tax-rates-reference";
-import { salaryFacts } from "@/lib/data/salary-pages";
-import { THRESHOLD_WINDOW, allThresholds, thresholdsNear, type ThresholdPosition } from "@/lib/data/salary-pages/tax-on-thresholds";
+import { TAX_ON_SALARIES, salaryFacts } from "@/lib/data/salary-pages";
+import { THRESHOLD_WINDOW, allThresholds, thresholdsBetweenNeighbours, type ThresholdPosition } from "@/lib/data/salary-pages/tax-on-thresholds";
 import { AWE_HEADLINE, AWE_RELEASE, EE_MEDIAN, EE_RELEASE, annualise } from "@/lib/data/average-salary";
 import { ordinal, placeAmongAllEmployees, type AllEmployeePlacement } from "@/lib/data/average-salary/all-employee-percentile";
 import { benchmarksRoundingTo, groupBenchmarks, nearestBenchmarks, type AbsBenchmark } from "@/lib/data/average-salary/abs-benchmarks";
@@ -31,7 +28,7 @@ const pct = (r: number) => `${Number((r * 100).toFixed(2))}%`;
 
 /** Threshold name for use after "the": lower-case the first letter unless it starts a proper name or acronym. */
 export function inSentence(name: string): string {
-  return /^(Medicare|LITO|HECS|Division|\d)/.test(name) ? name : name[0].toLowerCase() + name.slice(1);
+  return /^(Medicare|LITO|HECS|Division|Family|Parental|\d)/.test(name) ? name : name[0].toLowerCase() + name.slice(1);
 }
 
 /** How fast LITO shrinks for the next dollar of income ("5c", "1.5c"), or null when it is not shrinking. */
@@ -72,20 +69,6 @@ export function bracketPositionSentence(salary: number): string {
   return `${s} sits ${formatAUD(salary - floor)} into the ${pct(b.rate)} bracket, ${formatAUD(nextFloor - salary)} short of the ${pct(f.nextBracketRate)} rate that starts above ${formatAUD(nextFloor)}.`;
 }
 
-/** The bracket-by-bracket walk: "the first $18,200 is tax-free, $26,800 at 15% ($4,020) and …". */
-export function bracketWalk(salary: number): string {
-  const parts: string[] = [];
-  TAX_BRACKETS.forEach((b, i) => {
-    if (salary < b.min) return;
-    const inBracket = Math.min(salary, b.max) - (i === 0 ? 0 : b.min - 1);
-    if (i === 0) parts.push(`the first ${formatAUD(inBracket)} is tax-free`);
-    else parts.push(`${formatAUD(inBracket)} is taxed at ${pct(b.rate)} (${formatAUD(inBracket * b.rate)})`);
-  });
-  if (parts.length === 1) return `All of ${formatAUD(salary)} is under the tax-free threshold.`;
-  const last = parts.pop();
-  return `Of ${formatAUD(salary)}, ${parts.join(", ")} and ${last}.`;
-}
-
 /** Why the tax on the next $1,000 differs from the headline marginal rate, named from the facts. */
 export function nextThousandReasons(salary: number): string[] {
   const f = salaryFacts(salary);
@@ -107,49 +90,29 @@ export function nextThousandReasons(salary: number): string[] {
   return reasons;
 }
 
-/** One sentence under the next-$1,000 table: why its rate matches or differs from the headline rate. */
-export function nextThousandSentence(salary: number): string {
+/**
+ * The next $1,000 in one paragraph (replaces the five-row table): what goes in
+ * tax and Medicare, what is kept, why the rate differs from the headline rate
+ * when it does, and the study-loan cost only where a repayment applies.
+ */
+export function nextThousandLine(salary: number): string {
   const f = salaryFacts(salary);
+  const up = calculatePayBreakdown({ grossSalary: salary + 1_000 });
+  const tax = up.netIncomeTax - f.breakdown.netIncomeTax;
+  const levy = up.medicareLevy - f.breakdown.medicareLevy;
   const eff = f.nextThousand.effectiveMarginal;
   const head = f.breakdown.marginalTaxRate;
   const reasons = nextThousandReasons(salary);
-  if (Math.abs(eff - head) <= 0.001 || reasons.length === 0) {
-    return `Here the whole $1,000 is taxed at the same ${pct(eff)}: the bracket rate plus the Medicare levy, with no offset or levy shade-in in play.`;
-  }
-  return `The rate on the next $1,000 is ${eff > head ? "higher" : "lower"} than the headline ${pct(head)} because ${list(reasons)}.`;
-}
-
-// ---------------------------------------------------------------------------
-// Income tax by year (the Stage 3 and 1 July 2026 cuts, applied to this salary)
-// ---------------------------------------------------------------------------
-
-export interface YearRow {
-  year: string;
-  note: string;
-  tax: number;
-}
-
-export function taxByYear(salary: number): YearRow[] {
-  const fy = SITE_CONFIG.financialYear;
-  return [
-    { year: "2023-24", note: `last year before Stage 3, ${pct(TAX_BRACKETS_2023_24[1].rate)} second rate`, tax: incomeTaxAfterLitoOnScale(salary, TAX_BRACKETS_2023_24) },
-    { year: "2025-26", note: `Stage 3 scale, ${pct(TAX_BRACKETS_2025_26[1].rate)} second rate`, tax: incomeTaxAfterLitoOnScale(salary, TAX_BRACKETS_2025_26) },
-    { year: fy, note: `this year, ${pct(TAX_BRACKETS[1].rate)} second rate`, tax: incomeTaxAfterLitoOnScale(salary, TAX_BRACKETS) },
-    { year: "2027-28", note: `legislated, ${pct(RESIDENT_SCALES["2027-28"][1].rate)} second rate`, tax: incomeTaxAfterLitoOnScale(salary, RESIDENT_SCALES["2027-28"]) },
-  ];
-}
-
-export function taxByYearSentence(salary: number): string {
-  const s = formatAUD(salary);
-  const rows = taxByYear(salary);
-  const [y23, y25, now, y27] = rows;
-  if (rows.every((r) => r.tax === 0)) {
-    return `No income tax is payable on ${s} under any of these scales: the Low Income Tax Offset cancels it each year.`;
-  }
-  const vs23 = y23.tax - now.tax;
-  const vs25 = y25.tax - now.tax;
-  const next = now.tax - y27.tax;
-  return `Income tax on ${s} is ${formatAUD(vs23)} a year lower than under the pre-Stage 3 scale and ${formatAUD(vs25)} lower than in 2025-26; the legislated cut from 1 July 2027 takes off another ${formatAUD(next)}. Medicare levy excluded.`;
+  const why =
+    Math.abs(eff - head) <= 0.001 || reasons.length === 0
+      ? `the bracket rate plus the levy, nothing else in play`
+      : `${eff > head ? "above" : "below"} the headline ${pct(head)} because ${list(reasons)}`;
+  const hecs = f.nextThousand.takeHome - f.nextThousand.takeHomeWithHecs;
+  const loan =
+    hecs > 0
+      ? ` With a study loan another ${formatAUD(hecs)} goes in repayments, leaving ${formatAUD(f.nextThousand.takeHomeWithHecs)}.`
+      : "";
+  return `A rise to ${formatAUD(salary + 1_000)} adds ${formatAUD(tax)} of income tax and ${formatAUD(levy)} of Medicare levy, so you keep ${formatAUD(f.nextThousand.takeHome)} of the $1,000: ${pct(eff)} goes, ${why}.${loan}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -167,61 +130,97 @@ function shortPosition(t: ThresholdPosition): string {
   return `${t.name} at ${formatAUD(t.at)} (${formatAUD(t.distance)} away)`;
 }
 
+/** The thresholds a move to either neighbouring page crosses (tax-on-thresholds.ts). */
+export function nearThresholds(salary: number) {
+  return thresholdsBetweenNeighbours(salary, TAX_ON_SALARIES);
+}
+
 export function thresholdsIntro(salary: number): string {
-  const n = thresholdsNear(salary);
-  const s = formatAUD(salary);
-  const w = formatAUD(THRESHOLD_WINDOW);
+  const n = nearThresholds(salary);
+  const range = `${formatAUD(n.lo)} and ${formatAUD(n.hi)}`;
   if (n.near.length === 0) {
-    return `No tax, levy or super threshold falls within ${w} of ${s}, so the same rules apply to a rise or a cut of that size.`;
+    return `No tax, levy, super or family-payment threshold sits between ${range}.`;
   }
   const ahead = n.near.filter((t) => t.status !== "passed").length;
   const passed = n.near.length - ahead;
-  const count = n.near.length === 1 ? "One threshold falls" : `${n.near.length} thresholds fall`;
-  const split =
-    passed === 0
-      ? "all still ahead"
-      : ahead === 0
-        ? "all already passed"
-        : `${passed} already passed and ${ahead} still ahead`;
-  return `${count} within ${w} of ${s}, ${n.near.length === 1 ? (passed ? "already passed" : "still ahead") : split}. Each changes what the next dollar costs or what a pay cut saves.`;
+  if (n.near.length === 1) return `One threshold between ${range}, ${passed ? "already passed" : "still ahead"}:`;
+  const split = passed === 0 ? "all ahead" : ahead === 0 ? "all passed" : `${passed} passed, ${ahead} ahead`;
+  return `${n.near.length} thresholds between ${range} (${split}):`;
+}
+
+/** Caveats under the thresholds table, only for the kinds of threshold it shows. */
+export function thresholdsNote(salary: number): string {
+  const kinds = new Set(nearThresholds(salary).near.map((t) => t.kind));
+  const parts: string[] = [];
+  if (kinds.has("medicare")) {
+    parts.push(`The Medicare levy low-income thresholds are ${SITE_CONFIG.previousFinancialYear} figures, the latest the ATO has published.`);
+  }
+  const wide = [
+    kinds.has("mls") ? "MLS" : null,
+    kinds.has("hecs") ? "HECS-HELP" : null,
+    kinds.has("div293") ? "Division 293" : null,
+  ].filter((x): x is string => x !== null);
+  if (wide.length > 0) {
+    parts.push(`The ${list(wide)} ${wide.length === 1 ? "test also counts" : "tests also count"} reportable fringe benefits and similar items, not just salary.`);
+  }
+  if (kinds.has("family")) {
+    parts.push("Family payment tests use adjusted taxable income, and the family tests add a partner's income.");
+  }
+  if (kinds.has("super-offset")) {
+    parts.push("The super offsets also depend on the contributions made.");
+  }
+  return parts.join(" ");
 }
 
 export function thresholdsBeyond(salary: number): string {
-  const n = thresholdsNear(salary);
+  const n = nearThresholds(salary);
   const parts: string[] = [];
   if (n.nextBeyond) {
-    parts.push(`The next one further up is the ${inSentence(n.nextBeyond.name)} at ${formatAUD(n.nextBeyond.at)}, ${formatAUD(n.nextBeyond.distance)} above ${formatAUD(salary)} (${n.nextBeyond.incomeYear}).`);
+    parts.push(`Next further up: the ${inSentence(n.nextBeyond.name)} at ${formatAUD(n.nextBeyond.at)} (${n.nextBeyond.incomeYear}).`);
   } else {
-    const top = allThresholds().slice(-1)[0];
-    parts.push(`Nothing changes further up: above ${formatAUD(top.at)} every rate on this page is flat.`);
+    parts.push("No threshold on this page lies further up.");
   }
-  if (n.near.length === 0 && n.lastBefore) {
-    parts.push(`The last one passed was the ${inSentence(n.lastBefore.name)} at ${formatAUD(n.lastBefore.at)}, ${formatAUD(n.lastBefore.distance)} below.`);
+  if (n.lastBefore) {
+    parts.push(`The last one passed was the ${inSentence(n.lastBefore.name)} at ${formatAUD(n.lastBefore.at)}.`);
   }
   return parts.join(" ");
 }
 
 export function thresholdsFaqAnswer(salary: number): string {
-  const n = thresholdsNear(salary);
-  const s = formatAUD(salary);
+  const n = nearThresholds(salary);
+  const range = `${formatAUD(n.lo)} and ${formatAUD(n.hi)}`;
   if (n.near.length === 0) {
-    const next = n.nextBeyond ? ` The next is the ${inSentence(n.nextBeyond.name)} at ${formatAUD(n.nextBeyond.at)}, ${formatAUD(n.nextBeyond.distance)} higher.` : " None lies further up.";
-    const last = n.lastBefore ? ` The last was the ${inSentence(n.lastBefore.name)} at ${formatAUD(n.lastBefore.at)}, ${formatAUD(n.lastBefore.distance)} lower.` : "";
-    return `None within ${formatAUD(THRESHOLD_WINDOW)} of ${s}.${next}${last}`;
+    const next = n.nextBeyond ? ` The next is the ${inSentence(n.nextBeyond.name)} at ${formatAUD(n.nextBeyond.at)}.` : " None lies further up.";
+    const last = n.lastBefore ? ` The last was the ${inSentence(n.lastBefore.name)} at ${formatAUD(n.lastBefore.at)}.` : "";
+    return `None between ${range}.${next}${last}`;
   }
-  return `Within ${formatAUD(THRESHOLD_WINDOW)} of ${s}: ${list(n.near.map(shortPosition))}.`;
+  return `Between ${range}: ${list(n.near.map(shortPosition))}.`;
 }
 
-/** Thresholds crossed inside the ±$10,000 comparison table. */
-export function comparisonRangeSentence(salary: number): string {
+/**
+ * Thresholds between salary − $10,000 and salary + $10,000 that move the
+ * headline figures (income tax, the offset, the Medicare levy). The surcharge,
+ * HECS-HELP, Division 293 and super thresholds are left out: the headline
+ * take-home excludes them, so its steps do not jump there.
+ */
+export function comparisonCrossings(salary: number) {
   const lo = Math.max(0, salary - 10_000);
   const hi = salary + 10_000;
-  const crossed = allThresholds().filter((t) => t.at >= lo && t.at < hi);
-  const range = `${formatAUD(lo)} to ${formatAUD(hi)}`;
+  return allThresholds().filter((t) => t.at >= lo && t.at < hi && (t.kind === "income-tax" || t.kind === "lito" || t.kind === "medicare"));
+}
+
+/**
+ * The ±$10,000 comparison: when a threshold falls inside it, the page shows
+ * the table and this sentence names the thresholds; otherwise the table is
+ * dropped and this one line gives the step instead.
+ */
+export function comparisonSentence(salary: number): string {
+  const crossed = comparisonCrossings(salary);
   if (crossed.length === 0) {
-    return `No threshold sits between ${range}, so each $5,000 step in the table moves take-home by close to the same amount.`;
+    const step = calculatePayBreakdown({ grossSalary: salary + 5_000 }).takeHomePay - salaryFacts(salary).breakdown.takeHomePay;
+    return `A $5,000 rise adds ${formatAUD(step)} of take-home.`;
   }
-  return `Between ${range} the table crosses ${list(crossed.map((t) => `the ${inSentence(t.name)} (${formatAUD(t.at)})`))}, which is why the steps are uneven.`;
+  return `The steps are uneven because they cross ${list(crossed.map((t) => `the ${inSentence(t.name)} (${formatAUD(t.at)})`))}.`;
 }
 
 // ---------------------------------------------------------------------------
@@ -242,27 +241,42 @@ export function placementSentence(salary: number): string {
   const wk = formatAUD(p.weekly);
   const src = `ABS ${EE_RELEASE.title}, ${EE_RELEASE.referencePeriod}`;
   if (p.kind === "below-lowest" && p.upper) {
-    return `${s} is ${wk} a week, below the 10th percentile of ${formatAUD(p.upper.weekly)} a week (${formatAUD(annualise(p.upper.weekly))} a year): among the lowest-paid 10% of all employees, full-time and part-time (${src}).`;
+    return `${s} is ${wk} a week, below the 10th percentile of ${formatAUD(p.upper.weekly)} a week: among the lowest-paid 10% of all employees, full-time and part-time (${src}).`;
   }
   if (p.kind === "above-highest" && p.lower) {
-    return `${s} is ${wk} a week, above the 90th percentile of ${formatAUD(p.lower.weekly)} a week (${formatAUD(annualise(p.lower.weekly))} a year): in the top 10% of all employees, full-time and part-time (${src}).`;
+    return `${s} is ${wk} a week, above the 90th percentile of ${formatAUD(p.lower.weekly)} a week: in the top 10% of all employees, full-time and part-time (${src}).`;
   }
   const lo = p.lower!;
   const hi = p.upper!;
-  return `${s} is ${wk} a week. Among all employees, full-time and part-time, that is about the ${ordinal(p.estimate!)} percentile, ${segmentWords(p)}. This is our estimate from ABS percentiles, read between the published ${ordinal(lo.percentile)} (${formatAUD(lo.weekly)} a week) and ${ordinal(hi.percentile)} (${formatAUD(hi.weekly)} a week) in ${src}.`;
+  return `${s} (${wk} a week) is about the ${ordinal(p.estimate!)} percentile of all employees, ${segmentWords(p)} (our estimate between the published ${ordinal(lo.percentile)} and ${ordinal(hi.percentile)}, ${src}).`;
 }
 
+/**
+ * The ABS medians and the full-time average, named only when one is within
+ * THRESHOLD_WINDOW of the salary (where the comparison tells the reader
+ * something); empty otherwise.
+ */
 export function medianComparisonSentence(salary: number): string {
-  const allMedian = annualise(EE_MEDIAN.allEmployees);
-  const ftMedian = annualise(EE_MEDIAN.fullTime);
-  const avg = annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly);
+  const marks = [
+    { name: "all-employee median", v: annualise(EE_MEDIAN.allEmployees), period: EE_RELEASE.referencePeriod },
+    { name: "full-time median", v: annualise(EE_MEDIAN.fullTime), period: EE_RELEASE.referencePeriod },
+    { name: "full-time average", v: annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly), period: AWE_RELEASE.referencePeriod },
+  ].filter((m) => Math.abs(salary - m.v) <= THRESHOLD_WINDOW);
+  if (marks.length === 0) return "";
   const side = (v: number) => (salary >= v ? `${formatAUD(salary - v)} above` : `${formatAUD(v - salary)} below`);
-  return `It is ${side(allMedian)} the all-employee median of ${formatAUD(allMedian)}, ${side(ftMedian)} the full-time median of ${formatAUD(ftMedian)} (${EE_RELEASE.referencePeriod}) and ${side(avg)} the full-time average of ${formatAUD(avg)} (${AWE_RELEASE.title}, ${AWE_RELEASE.referencePeriod}).`;
+  return `It is ${list(marks.map((m) => `${side(m.v)} the ${m.name} (${formatAUD(m.v)}, ${m.period})`))}.`;
 }
 
 /** Full-time minimum wage as an annual salary (38-hour week × 52). */
 export function fullTimeMinimumWageAnnual(): number {
   return Math.round(EMPLOYMENT.minimumWageWeekly * 52);
+}
+
+/** Below a full-time minimum-wage income: the hours a week this salary is at the adult minimum wage. */
+export function minimumWageHoursSentence(salary: number): string {
+  const s = formatAUD(salary);
+  const hours = salary / EMPLOYMENT.weeksPerYear / EMPLOYMENT.minimumWageHourly;
+  return `A full-time adult on the National Minimum Wage earns ${formatAUD(fullTimeMinimumWageAnnual())} a year from 1 July 2026, so ${s} is usually part-time or casual pay: at the minimum ${formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour it is about ${hours.toFixed(1)} hours a week.`;
 }
 
 export function placementFaqAnswer(salary: number): string {
@@ -277,15 +291,12 @@ export function placementFaqAnswer(salary: number): string {
           : p.estimate! >= 50
             ? "It is above the median, but not in the top quarter."
             : "No: it is below the median.";
-  const wk = formatAUD(p.weekly);
   const src = `ABS ${EE_RELEASE.title}, ${EE_RELEASE.referencePeriod}`;
   const where =
     p.kind === "between"
-      ? `At ${wk} a week it is about the ${ordinal(p.estimate!)} percentile of all employees, full-time and part-time (our estimate from ${src} percentiles).`
-      : `At ${wk} a week it is ${p.kind === "above-highest" ? "above the 90th" : "below the 10th"} percentile of all employees, full-time and part-time (${src}).`;
-  const ftMedian = annualise(EE_MEDIAN.fullTime);
-  const vsFt = salary >= ftMedian ? `${formatAUD(salary - ftMedian)} above` : `${formatAUD(ftMedian - salary)} below`;
-  return `${verdict} ${where} It is ${vsFt} the full-time median of ${formatAUD(ftMedian)}.`;
+      ? `About the ${ordinal(p.estimate!)} percentile of all employees (our estimate from ${src}).`
+      : `${p.kind === "above-highest" ? "Above the 90th" : "Below the 10th"} percentile of all employees (${src}).`;
+  return `${verdict} ${where}`;
 }
 
 // ---------------------------------------------------------------------------
@@ -297,15 +308,10 @@ function who(groups: string[]): string {
   return list(groups);
 }
 
-export function versus(annual: number, salary: number): string {
-  if (annual === salary) return `exactly ${formatAUD(salary)}`;
-  return `${formatAUD(Math.abs(annual - salary))} ${annual > salary ? "above" : "below"} ${formatAUD(salary)}`;
-}
-
 /** One line per published ABS group figure that rounds to this salary (nearest $5,000). */
 export function benchmarkLines(salary: number): string[] {
   return groupBenchmarks(benchmarksRoundingTo(salary)).map(
-    (g) => `${g.measure} ${who(g.groups)}: ${formatAUD(g.annual)}, ${versus(g.annual, salary)} (${g.release.title}, ${g.release.referencePeriod}).`,
+    (g) => `${g.measure} ${who(g.groups)}: ${formatAUD(g.annual)} (${g.release.referencePeriod})`,
   );
 }
 
@@ -316,7 +322,7 @@ function name(x: AbsBenchmark): string {
 export function benchmarkIntro(salary: number): string {
   const s = formatAUD(salary);
   if (benchmarksRoundingTo(salary).length > 0) {
-    return `These published ABS group figures round to ${s} at the nearest $5,000, so they describe pay close to this salary:`;
+    return `ABS group figures that round to ${s} at the nearest $5,000:`;
   }
   const { below, above } = nearestBenchmarks(salary);
   if (below && above) {
@@ -339,7 +345,7 @@ function occ(o: OccupationMedian): string {
 export function occupationIntro(salary: number): string {
   const s = formatAUD(salary);
   if (occupationMediansRoundingTo(salary).length > 0) {
-    return `Occupations whose median full-time pay rounds to ${s}. These are full-time, non-managerial adults, from Jobs and Skills Australia's profiles of the ABS Survey of Employee Earnings and Hours, May 2025:`;
+    return `Occupations whose median full-time pay rounds to ${s} (non-managerial adults; Jobs and Skills Australia, from ABS data for May 2025):`;
   }
   const { below, above } = nearestOccupationMedians(salary);
   if (below && above) {

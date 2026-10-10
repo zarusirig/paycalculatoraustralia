@@ -6,8 +6,13 @@ import {
   THRESHOLD_WINDOW,
   allThresholds,
   distanceText,
+  thresholdsBetweenNeighbours,
   thresholdsNear,
 } from "../tax-on-thresholds";
+import { CO_CONTRIBUTION } from "../../../constants/super-contributions";
+import { LISTO_CURRENT } from "../../../constants/listo";
+import { FTB_B } from "../../../constants/centrelink-family-payments";
+import { PPL_INCOME_TEST } from "../../../constants/paid-parental-leave";
 import { TAX_ON_SALARIES } from "../index";
 import {
   HECS_HELP,
@@ -52,9 +57,9 @@ test("Division 293 salary equivalent: salary + 12% SG crosses $250,000 one dolla
   assert.ok((s + 1) * (1 + SUPER_GUARANTEE.rate) > DIVISION_293.threshold);
 });
 
-test("each threshold is labelled with its income year; Medicare low-income figures lag a year", () => {
+test("each threshold is labelled with its income year; Medicare low-income figures and the PPL test year lag a year", () => {
   for (const t of allThresholds()) {
-    if (t.kind === "medicare") assert.equal(t.incomeYear, SITE_CONFIG.previousFinancialYear, t.id);
+    if (t.kind === "medicare" || t.id.startsWith("ppl-")) assert.equal(t.incomeYear, SITE_CONFIG.previousFinancialYear, t.id);
     else assert.equal(t.incomeYear, SITE_CONFIG.financialYear, t.id);
     assert.ok(t.href.startsWith("/") && t.href.endsWith("/"), t.href);
   }
@@ -70,7 +75,7 @@ test("near = within ±$15,000; status and distance are right", () => {
   const n = thresholdsNear(120_000);
   assert.deepEqual(
     n.near.map((t) => t.id),
-    ["mls-1", "mls-2", "hecs-17", "bracket-37"],
+    ["mls-1", "mls-2", "ftb-b", "hecs-17", "bracket-37"],
   );
   const mls1 = n.near[0];
   assert.equal(mls1.status, "passed");
@@ -96,7 +101,7 @@ test("with nothing near, the next and last thresholds are named", () => {
   const top = thresholdsNear(500_000);
   assert.equal(top.near.length, 0);
   assert.equal(top.nextBeyond, null);
-  assert.equal(top.lastBefore?.id, "super-max-base");
+  assert.equal(top.lastBefore?.id, "ppl-family");
 });
 
 test("every kept tax-on salary gets either a near threshold or a next/last one", () => {
@@ -104,4 +109,30 @@ test("every kept tax-on salary gets either a near threshold or a next/last one",
     const n = thresholdsNear(s);
     assert.ok(n.near.length > 0 || n.nextBeyond || n.lastBefore, `${s}`);
   }
+});
+
+test("second-pass thresholds are read from their constants", () => {
+  assert.equal(byId("listo").at, LISTO_CURRENT.incomeThreshold);
+  assert.equal(byId("co-contribution-lower").at, CO_CONTRIBUTION.lowerThreshold);
+  assert.equal(byId("co-contribution-higher").at, CO_CONTRIBUTION.higherThreshold);
+  assert.equal(byId("ftb-b").at, FTB_B.primaryEarnerLimit);
+  assert.equal(byId("ppl-individual").at, PPL_INCOME_TEST["2025-26"].individual);
+  assert.equal(byId("ppl-family").at, PPL_INCOME_TEST["2025-26"].family);
+  assert.equal(byId("mls-family-1").at, MEDICARE_LEVY.surcharge.familyTier1.min - 1);
+  assert.equal(byId("mls-family-3").at, MEDICARE_LEVY.surcharge.familyTier3.min - 1);
+});
+
+test("between neighbours: the previous page's salary to the next one's", () => {
+  const mid = thresholdsBetweenNeighbours(100_000, TAX_ON_SALARIES);
+  assert.equal(mid.lo, 95_000);
+  assert.equal(mid.hi, 105_000);
+  assert.deepEqual(mid.near.map((t) => t.id), ["mls-1"]);
+  const tail = thresholdsBetweenNeighbours(350_000, TAX_ON_SALARIES);
+  assert.equal(tail.lo, 300_000);
+  assert.equal(tail.hi, 400_000);
+  assert.deepEqual(tail.near.map((t) => t.id), ["mls-family-3", "ppl-family"]);
+  const first = thresholdsBetweenNeighbours(TAX_ON_SALARIES[0], TAX_ON_SALARIES);
+  assert.equal(first.lo, TAX_ON_SALARIES[0]);
+  assert.equal(thresholdsBetweenNeighbours(500_000, TAX_ON_SALARIES).hi, 500_000);
+  for (const t of mid.near) assert.ok(t.at >= mid.lo && t.at <= mid.hi);
 });

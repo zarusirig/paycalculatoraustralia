@@ -26,9 +26,13 @@ import {
   TAX_FREE_THRESHOLD,
   formatAUD,
 } from "../../constants/australian-tax";
-import { DIVISION_293 } from "../../constants/super-contributions";
+import { CO_CONTRIBUTION, DIVISION_293 } from "../../constants/super-contributions";
+import { LISTO_2027_28, LISTO_CURRENT } from "../../constants/listo";
+import { FTB_B } from "../../constants/centrelink-family-payments";
+import { PPL_INCOME_TEST } from "../../constants/paid-parental-leave";
+import { MLS_CHILD_INCREMENT } from "../../constants/medicare-levy-extra";
 
-export type ThresholdKind = "income-tax" | "lito" | "medicare" | "mls" | "hecs" | "div293" | "super";
+export type ThresholdKind = "income-tax" | "lito" | "medicare" | "mls" | "hecs" | "div293" | "super" | "super-offset" | "family";
 
 export interface Threshold {
   id: string;
@@ -54,8 +58,16 @@ export interface ThresholdPosition extends Threshold {
   status: ThresholdStatus;
 }
 
-/** Window either side of the salary for "near". */
+/** Window either side of the salary for "near": where the range sections start. */
 export const THRESHOLD_WINDOW = 15_000;
+
+/**
+ * Window for the thresholds table on /tax-on/[salary]/ (second pass, 10 Oct
+ * 2026): one $5,000 grid step either side, the size of a rise or cut to the
+ * next page. The next threshold beyond it and the last one passed are named
+ * under the table, so nothing further away is lost.
+ */
+export const TABLE_WINDOW = 5_000;
 
 const pc = (r: number) => `${Number((r * 100).toFixed(2))}%`;
 const cents = (r: number) => `${Number((r * 100).toFixed(1))}c`;
@@ -241,6 +253,88 @@ export function allThresholds(): Threshold[] {
       change: `Employer super stops rising: the super guarantee is owed only on the first ${formatAUD(SUPER_GUARANTEE.maxContributionBaseAnnual)}, a maximum of ${formatAUD(SUPER_GUARANTEE.maxSGAnnual)} a year.`,
       href: "/concessional-contributions-cap/",
     },
+    // Second pass (10 Oct 2026): the other income tests a salary crosses.
+    {
+      id: "listo",
+      kind: "super-offset",
+      at: LISTO_CURRENT.incomeThreshold,
+      name: "Low income super tax offset limit",
+      incomeYear: LISTO_CURRENT.incomeYear,
+      change: `Above ${formatAUD(LISTO_CURRENT.incomeThreshold)} of adjusted taxable income the ATO no longer refunds ${pc(LISTO_CURRENT.rate)} of concessional contributions (up to ${formatAUD(LISTO_CURRENT.maxPayment)}) into super. The limit becomes ${formatAUD(LISTO_2027_28.incomeThreshold)} in ${LISTO_2027_28.incomeYear}.`,
+      href: "/listo-calculator/",
+    },
+    {
+      id: "co-contribution-lower",
+      kind: "super-offset",
+      at: CO_CONTRIBUTION.lowerThreshold,
+      name: "Super co-contribution lower threshold",
+      incomeYear: CO_CONTRIBUTION.incomeYear,
+      change: `The government co-contribution (up to ${formatAUD(CO_CONTRIBUTION.maxEntitlement)} for ${formatAUD(CO_CONTRIBUTION.contributionForMax)} of after-tax contributions) shrinks by ${Number((CO_CONTRIBUTION.reductionPerDollar * 100).toFixed(3))}c per dollar of total income above ${formatAUD(CO_CONTRIBUTION.lowerThreshold)}.`,
+      href: "/super-co-contribution/",
+    },
+    {
+      id: "co-contribution-higher",
+      kind: "super-offset",
+      at: CO_CONTRIBUTION.higherThreshold,
+      name: "Super co-contribution cut-out",
+      incomeYear: CO_CONTRIBUTION.incomeYear,
+      change: `No government super co-contribution on total income of ${formatAUD(CO_CONTRIBUTION.higherThreshold)} or more.`,
+      href: "/super-co-contribution/",
+    },
+    {
+      id: "ftb-b",
+      kind: "family",
+      at: FTB_B.primaryEarnerLimit,
+      name: "Family Tax Benefit Part B limit",
+      incomeYear: fy,
+      change: `No FTB Part B when the primary (or single) earner's adjusted taxable income is over ${formatAUD(FTB_B.primaryEarnerLimit)}.`,
+      href: "/family-tax-benefit-calculator/",
+    },
+    {
+      id: "ppl-individual",
+      kind: "family",
+      at: PPL_INCOME_TEST["2025-26"].individual,
+      name: "Parental Leave Pay individual income test",
+      incomeYear: "2025-26",
+      change: `Adjusted taxable income above ${formatAUD(PPL_INCOME_TEST["2025-26"].individual)} in the income year assessed fails the individual test; the family test (${formatAUD(PPL_INCOME_TEST["2025-26"].family)} combined) can still pass.`,
+      href: "/parental-leave-pay/",
+    },
+    {
+      id: "mls-family-1",
+      kind: "mls",
+      at: s.familyTier1.min - 1,
+      name: "Medicare levy surcharge, family tier 1",
+      incomeYear: fy,
+      change: `A couple or family without hospital cover pays a ${pc(s.familyTier1.rate)} surcharge above ${formatAUD(s.familyTier1.min - 1)} of combined income for MLS purposes (plus ${formatAUD(MLS_CHILD_INCREMENT)} per child after the first).`,
+      href: "/medicare-levy-surcharge-calculator/",
+    },
+    {
+      id: "mls-family-2",
+      kind: "mls",
+      at: s.familyTier2.min - 1,
+      name: "Medicare levy surcharge, family tier 2",
+      incomeYear: fy,
+      change: `The family surcharge rises from ${pc(s.familyTier1.rate)} to ${pc(s.familyTier2.rate)}.`,
+      href: "/medicare-levy-surcharge-calculator/",
+    },
+    {
+      id: "mls-family-3",
+      kind: "mls",
+      at: s.familyTier3.min - 1,
+      name: "Medicare levy surcharge, family tier 3",
+      incomeYear: fy,
+      change: `The family surcharge reaches its top rate of ${pc(s.familyTier3.rate)}.`,
+      href: "/medicare-levy-surcharge-calculator/",
+    },
+    {
+      id: "ppl-family",
+      kind: "family",
+      at: PPL_INCOME_TEST["2025-26"].family,
+      name: "Parental Leave Pay family income test",
+      incomeYear: "2025-26",
+      change: `No Parental Leave Pay when combined family income in the income year assessed is over ${formatAUD(PPL_INCOME_TEST["2025-26"].family)}, or a single person's own income is.`,
+      href: "/parental-leave-pay/",
+    },
   ];
   return list.sort((a, b) => a.at - b.at);
 }
@@ -267,6 +361,33 @@ export function thresholdsNear(salary: number, window: number = THRESHOLD_WINDOW
   const below = all.filter((t) => t.at < salary - window);
   return {
     salary,
+    near,
+    nextBeyond: above.length ? position(above[0], salary) : null,
+    lastBefore: below.length ? position(below[below.length - 1], salary) : null,
+  };
+}
+
+/**
+ * The thresholds a move to either neighbouring /tax-on/ page would cross:
+ * from the previous page's salary to the next one's (inclusive). On the
+ * $5,000 part of the grid that is ±$5,000; on the high-salary tail it widens
+ * with the gaps between pages. On the first and last pages it stops at the
+ * salary on the side with no neighbour.
+ */
+export function thresholdsBetweenNeighbours(salary: number, grid: readonly number[]): ThresholdsNear & { lo: number; hi: number } {
+  const i = grid.indexOf(salary);
+  const prev = i > 0 ? grid[i - 1] : undefined;
+  const next = i >= 0 && i < grid.length - 1 ? grid[i + 1] : undefined;
+  const lo = prev ?? salary;
+  const hi = next ?? salary;
+  const all = allThresholds();
+  const near = all.filter((t) => t.at >= lo && t.at <= hi).map((t) => position(t, salary));
+  const above = all.filter((t) => t.at > hi);
+  const below = all.filter((t) => t.at < lo);
+  return {
+    salary,
+    lo,
+    hi,
     near,
     nextBeyond: above.length ? position(above[0], salary) : null,
     lastBefore: below.length ? position(below[below.length - 1], salary) : null,
