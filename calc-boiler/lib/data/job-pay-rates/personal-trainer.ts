@@ -151,10 +151,6 @@ export const PERSONAL_TRAINER: Occupation = {
       a: `A fitness instructor with a Fitness Certificate III doing Level 3 work is Level 3A: at least ${money2(PT_L3A.hourly)} an hour or ${money2(PT_L3A.weekly)} a week, and ${money2(PT_L3A.casualHourly ?? 0)} an hour as a weekday casual.`,
     },
     {
-      q: "Does the award apply to self-employed personal trainers?",
-      a: "No. Awards cover employees. A trainer who runs their own business, or pays a gym rent or a fee to train their own clients, sets their own prices and has no award minimum. If a gym directs your hours and pays you a wage, you are likely an employee and the award applies.",
-    },
-    {
       q: "What do personal trainers actually earn?",
       a: `Jobs and Skills Australia reports median full-time earnings of $1,500 a week for fitness instructors, the group that includes personal trainers (ABS, May 2025), about ${money0(annual52(1_500))} a year before tax. Only about a third of the group works full-time.`,
     },

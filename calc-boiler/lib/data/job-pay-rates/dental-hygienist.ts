@@ -65,10 +65,6 @@ export const DENTAL_HYGIENIST = hpssOct2026Occupation(AQF, {
       a: `Yes. Ordinary hours between midnight Friday and midnight Sunday are paid at 150% of the minimum hourly rate for full-time and part-time staff — ${F.weekend} an hour for a first-year hygienist.`,
     },
     {
-      q: "Can a dental hygienist be paid a percentage of billings?",
-      a: "If you are an employee, whatever the pay arrangement you must still receive at least the award minimum for the hours you work. A genuine contractor is not covered by the award.",
-    },
-    {
       q: "What do dental hygienists actually earn?",
       a: "Jobs and Skills Australia reports median full-time earnings of $2,210 a week for dental hygienists, technicians and therapists (ABS, May 2025). That unit group also includes dental technicians, prosthetists and therapists, so it is a guide rather than a hygienist-only figure.",
     },

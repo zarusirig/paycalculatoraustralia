@@ -87,6 +87,7 @@ import { SECURITY_GUARD } from "./security-guard";
 import { SOCIAL_WORKER } from "./social-worker";
 import { TEACHER_AIDE } from "./teacher-aide";
 import { TRUCK_DRIVER } from "./truck-driver";
+import { OCCUPATION_SECTOR } from "./sectors";
 import type { Occupation, OccupationSlug, RateRow } from "./types";
 import { OCCUPATION_SLUGS } from "./types";
 
@@ -231,6 +232,27 @@ export function afterTax(grossAnnual: number): AfterTax {
     tax: b.netIncomeTax,
     medicare: b.medicareLevy,
   };
+}
+
+/**
+ * The other occupation pages an occupation page links to: first the jobs paid
+ * under the same award, then the jobs in the same hub sector, each group
+ * nearest first in hub order, capped at `max`. The page's parent and spokes
+ * are left out because the page links them in their own sections. Replaces a
+ * list of every other occupation, which was the same block on every page.
+ */
+export function relatedOccupations(occ: Occupation, max = 6): Occupation[] {
+  const at = OCCUPATIONS.findIndex((o) => o.slug === occ.slug);
+  const skip = new Set<string>([occ.slug, ...(occ.spokes ?? []).map((s) => s.href), ...(occ.parent ? [occ.parent.href] : [])]);
+  const nearest = OCCUPATIONS.map((o, i) => ({ o, d: Math.abs(i - at) }))
+    .filter(({ o }) => !skip.has(o.slug) && !skip.has(`/job-pay-rates/${o.slug}/`))
+    .sort((a, b) => a.d - b.d)
+    .map(({ o }) => o);
+  const sameAward = occ.award ? nearest.filter((o) => o.award?.code === occ.award!.code) : [];
+  const sameSector = nearest.filter(
+    (o) => OCCUPATION_SECTOR[o.slug] === OCCUPATION_SECTOR[occ.slug] && !sameAward.includes(o),
+  );
+  return [...sameAward, ...sameSector].slice(0, max);
 }
 
 /** The lowest and highest weekly minimum across every table, or null when there are none. */

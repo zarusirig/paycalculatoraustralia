@@ -99,10 +99,6 @@ export const BOOKKEEPER: Occupation = {
       a: "It depends on the duties. Initial processing of invoices, payroll data and reconciliations is Level 2; posting journals to ledgers and preparing bank statements is Level 3; preparing financial or tax schedules and reconciling accounts to balance is Level 4.",
     },
     {
-      q: "Does the award apply to a freelance bookkeeper?",
-      a: "No. Awards cover employees. A self-employed bookkeeper or BAS agent working for their own clients sets their own rates.",
-    },
-    {
       q: "What do bookkeepers actually earn?",
       a: "Jobs and Skills Australia reports median full-time earnings of $1,400 a week for bookkeepers (ABS Survey of Employee Earnings and Hours, May 2025), about $72,800 a year.",
     },

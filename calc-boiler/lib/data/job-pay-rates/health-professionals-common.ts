@@ -114,7 +114,6 @@ export const HPSS_ALLOWANCES: Allowance[] = [
 
 export const HPSS_NOT_SHOWN: string[] = [
   "State public hospital and health service pay scales, which are set by state awards and enterprise agreements, not this award.",
-  "Rates under enterprise agreements, which replace the award for employers that have one.",
   "Annualised salary arrangements under clause 22, available by written agreement from level 2 up.",
 ];
 

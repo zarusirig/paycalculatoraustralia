@@ -107,10 +107,6 @@ export const PROJECT_MANAGER: Occupation = {
       q: "Is there an award for project managers?",
       a: "No award names the job. The Professional Employees Award, for example, excludes anyone in a wholly or principally managerial position. Whether another award applies depends on your employer's industry and duties; if none does, you are award-free and the National Minimum Wage is the floor.",
     },
-    {
-      q: "Do project managers get paid overtime?",
-      a: "Only if your contract, an enterprise agreement or an award provides for it. Award-free employees have no award overtime rate, and the National Employment Standards allow an employer to require reasonable additional hours. If an award does cover your role, its overtime clause applies.",
-    },
   ],
   sources: [ATO_TABLE_15, ...JSA_SOURCES, { title: "Professional Employees Award 2020 [MA000065] — Schedule A", publisher: "Fair Work Commission", url: PROFESSIONAL_AWARD.url }, NMW_ORDER_2026, FWO_PAY_SLIPS],
   verifiedOn: PROFESSIONAL_VERIFIED_ON,

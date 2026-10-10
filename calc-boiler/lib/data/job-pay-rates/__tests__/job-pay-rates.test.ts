@@ -10,9 +10,11 @@ import {
   headlineRow,
   isOccupationSlug,
   nearestTakeHomeAmount,
+  relatedOccupations,
   rowAnnual,
   weeklyRange,
 } from "../index";
+import { OCCUPATION_SECTOR } from "../sectors";
 import { REAL_ESTATE_ROWS } from "../real-estate-common";
 import { dailyHireHourly } from "../building-construction-common";
 import { SCHADS_SACS } from "../../../constants/schads-award";
@@ -660,4 +662,29 @@ test("G3: podiatrist carries no median (JSA publishes N/A); the others carry JSA
   assert.equal(getOccupation("speech-pathologist")!.median!.medianWeekly, 2_003);
   assert.equal(getOccupation("audiologist")!.median!.anzscoCode, "2527");
   assert.equal(getOccupation("dietitian")!.median!.medianWeekly, 1_667);
+});
+
+test("related jobs: same award first, then same sector, never self, parent or spokes, at most 6", () => {
+  for (const occ of OCCUPATIONS) {
+    const rel = relatedOccupations(occ);
+    assert.ok(rel.length <= 6, occ.slug);
+    assert.ok(rel.length > 0, `${occ.slug} links no related job`);
+    assert.equal(new Set(rel.map((o) => o.slug)).size, rel.length, `${occ.slug} duplicates`);
+    const banned = new Set([`/job-pay-rates/${occ.slug}/`, ...(occ.spokes ?? []).map((s) => s.href), ...(occ.parent ? [occ.parent.href] : [])]);
+    for (const o of rel) {
+      assert.ok(!banned.has(`/job-pay-rates/${o.slug}/`), `${occ.slug} links ${o.slug}`);
+      const sameAward = occ.award !== null && o.award?.code === occ.award.code;
+      assert.ok(sameAward || OCCUPATION_SECTOR[o.slug] === OCCUPATION_SECTOR[occ.slug], `${occ.slug} -> ${o.slug} unrelated`);
+    }
+    // Every same-award job comes before any job that is only in the same sector.
+    const firstSectorOnly = rel.findIndex((o) => !(occ.award && o.award?.code === occ.award.code));
+    if (firstSectorOnly >= 0) {
+      for (const o of rel.slice(firstSectorOnly)) assert.ok(!(occ.award && o.award?.code === occ.award.code), occ.slug);
+    }
+  }
+  assert.deepEqual(
+    relatedOccupations(getOccupation("electrician")!).map((o) => o.slug).slice(0, 1),
+    ["apprentice-electrician"],
+  );
+  assert.ok(!relatedOccupations(getOccupation("engineer")!).some((o) => o.slug === "civil-engineer"), "engineer spokes are linked in their own section");
 });

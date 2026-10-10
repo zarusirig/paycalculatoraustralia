@@ -7,15 +7,17 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { MEDICARE_LEVY, formatAUD, formatNegAUD } from "@/lib/constants";
-import { ATO_DEFINITION, JOB_PAY_RATES_FROM, MEDIAN_DEFINITION } from "@/lib/data/job-pay-rates/common";
+import { ATO_DEFINITION, JOB_PAY_RATES_FROM, MEDIAN_NOTE } from "@/lib/data/job-pay-rates/common";
+import { GENERIC_PAYSLIP_NOTES } from "@/lib/data/job-pay-rates/professional-common";
+import { JOB_SECTORS, OCCUPATION_SECTOR } from "@/lib/data/job-pay-rates/sectors";
 import {
-  OCCUPATIONS,
   afterTax,
   annualFromWeekly,
   headlineRow,
   rowAnnual,
   isExactTakeHomeAmount,
   nearestTakeHomeAmount,
+  relatedOccupations,
   takeHomeHref,
   type Occupation,
   type RateRow,
@@ -23,6 +25,12 @@ import {
 } from "@/lib/data/job-pay-rates";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink, TableShell } from "./job-pay-shared";
 import FeaturedImage from "@/components/common/featured-image";
+
+// One template for every /job-pay-rates/<occupation>/ page. Each section is
+// built from the occupation's own data and renders only when that data
+// exists. Explanations that would read the same on every page (how medians
+// work, what part-timers and casuals get, tax assumptions, payslip rules) are
+// one line with a link to the guide that covers them.
 
 /** H1 and title stem. Award-free jobs do not get "Award" in the heading. */
 export function occupationHeading(occ: Occupation): string {
@@ -64,6 +72,46 @@ export function salaryFigures(occ: Occupation): SalaryFigure[] {
   return out;
 }
 
+/** The figure a link to another occupation page shows: its award minimum, else its median. */
+function glanceFigure(occ: Occupation): string | null {
+  const h = headlineRow(occ);
+  if (h && occ.award) return `${money(h.hourly)}/hr minimum`;
+  const ato = occ.ato?.rows[0];
+  if (ato) return `${formatAUD(ato.medianSalary)} median salary`;
+  if (occ.median) return `${formatAUD(occ.median.medianWeekly)}/wk median`;
+  return null;
+}
+
+function money(n: number): string {
+  return formatAUD(n, 2);
+}
+
+function TakeHomeLink({ annual }: { annual: number }) {
+  const nearest = nearestTakeHomeAmount(annual);
+  const exact = isExactTakeHomeAmount(annual);
+  return (
+    <Link href={takeHomeHref(annual)}>
+      take-home pay on {formatAUD(nearest)}
+      {exact ? "" : ` (the nearest step to ${formatAUD(annual)})`}
+    </Link>
+  );
+}
+
+function TakeHomeButton() {
+  return (
+    <div className="not-prose my-6">
+      <Link
+        href="/take-home-pay-calculator/"
+        className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
+      >
+        <Calculator className="h-5 w-5" aria-hidden="true" />
+        Calculate your take-home pay
+        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+      </Link>
+    </div>
+  );
+}
+
 function AtoTable({ occ }: { occ: Occupation }) {
   if (!occ.ato) return null;
   return (
@@ -97,10 +145,41 @@ function AtoTable({ occ }: { occ: Occupation }) {
   );
 }
 
+/** The Jobs and Skills Australia median, set against this job's own award minimum where it has one. */
+function MedianSection({ occ, heading }: { occ: Occupation; heading: string }) {
+  if (!occ.median) return null;
+  const m = occ.median;
+  const headline = occ.award ? headlineRow(occ) : null;
+  const gap = headline ? Math.round(m.medianWeekly - headline.weekly) : 0;
+  return (
+    <section id="actual-earnings">
+      <h2 style={HEADING_FONT}>{heading}</h2>
+      <p>
+        Jobs and Skills Australia puts median full-time earnings for{" "}
+        <a href={m.url} target="_blank" rel="noreferrer noopener">
+          {m.anzscoTitle} (ANZSCO {m.anzscoCode})
+        </a>{" "}
+        at <strong>{formatAUD(m.medianWeekly)} a week</strong> ({formatAUD(m.medianHourly)} an hour), against{" "}
+        {formatAUD(m.allOccupationsWeekly)} a week for all occupations.
+        {headline && gap !== 0 ? (
+          <>
+            {" "}That is {formatAUD(Math.abs(gap))} a week {gap > 0 ? "above" : "below"} the {headline.label} minimum of{" "}
+            {money(headline.weekly)}.
+          </>
+        ) : null}
+      </p>
+      <p className="text-base">
+        {MEDIAN_NOTE} <Link href="/average-salary-australia/#average-vs-median">Average and median pay explained</Link>.
+      </p>
+    </section>
+  );
+}
+
 /** ATO and JSA figures, then take-home pay on each. Salary pages lead with this. */
-function SalaryFiguresSection({ occ }: { occ: Occupation }) {
+function SalaryFiguresSection({ occ, payslipLink }: { occ: Occupation; payslipLink: boolean }) {
   const lead = occ.ato?.rows[0];
   const figures = salaryFigures(occ);
+  const surcharge = figures.some((f) => f.gross >= MEDICARE_LEVY.surcharge.tier1.min);
   return (
     <>
       {occ.ato && lead ? (
@@ -116,33 +195,17 @@ function SalaryFiguresSection({ occ }: { occ: Occupation }) {
           </p>
           <p>{occ.ato.intro}</p>
           <AtoTable occ={occ} />
-          <p className="text-base">{ATO_DEFINITION}</p>
+          <p className="text-base">
+            {ATO_DEFINITION} <Link href="/average-salary-australia/#average-vs-median">Average and median pay explained</Link>.
+          </p>
         </section>
       ) : null}
 
-      {occ.median ? (
-        <section id="actual-earnings">
-          <h2 style={HEADING_FONT}>Median full-time pay</h2>
-          <p>
-            Jobs and Skills Australia puts median full-time earnings for{" "}
-            <a href={occ.median.url} target="_blank" rel="noreferrer noopener">
-              {occ.median.anzscoTitle} (ANZSCO {occ.median.anzscoCode})
-            </a>{" "}
-            at <strong>{formatAUD(occ.median.medianWeekly)} a week</strong> ({formatAUD(occ.median.medianHourly)} an
-            hour), against {formatAUD(occ.median.allOccupationsWeekly)} a week for all occupations.
-          </p>
-          <p className="text-base">{MEDIAN_DEFINITION}</p>
-        </section>
-      ) : null}
+      <MedianSection occ={occ} heading="Median full-time pay" />
 
       {figures.length > 0 ? (
         <section id="after-tax">
           <h2 style={HEADING_FONT}>{occ.name} pay after tax</h2>
-          <p>
-            What each figure on this page leaves after income tax and the Medicare levy, worked out with the same tax
-            engine as the rest of this site. Use the row nearest your own salary to sense-check the net pay on your
-            payslip.
-          </p>
           <TableShell minWidth="40rem" caption={`${occ.name} take-home pay on each figure`}>
             <thead className="bg-sandstone font-semibold text-navy">
               <tr>
@@ -172,48 +235,26 @@ function SalaryFiguresSection({ occ }: { occ: Occupation }) {
             </tbody>
           </TableShell>
           <p>
-            2026–27 resident tax rates with the low income tax offset and the 2% Medicare levy; no HECS-HELP repayment
-            and no Medicare levy surcharge. Superannuation is paid on top by your employer. Your employer withholds tax
-            each pay from the ATO&rsquo;s withholding schedules, so the tax on a payslip will not match these annual
-            figures to the dollar. For the full breakdown see <TakeHomeLink annual={figures[figures.length - 1].gross} />, or
-            enter your own salary below.
+            2026–27 resident rates with the Medicare levy and no HECS-HELP
+            {surcharge ? (
+              <>
+, assuming private hospital cover (without it a single person pays the{" "}
+                <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link> above{" "}
+                {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)})
+              </>
+            ) : null}
+            . Full breakdown: <TakeHomeLink annual={figures[figures.length - 1].gross} />
+            {payslipLink ? (
+              <>
+                ; what a payslip must show: <Link href="/understanding-your-payslip/">understanding your payslip</Link>
+              </>
+            ) : null}
+            .
           </p>
-          {figures.some((f) => f.gross >= MEDICARE_LEVY.surcharge.tier1.min) ? (
-            <p>
-              The table assumes private hospital cover. A single person without it pays the{" "}
-              <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link> of 1% to 1.5% once
-              their income for surcharge purposes passes {formatAUD(MEDICARE_LEVY.surcharge.tier1.min - 1)} (2026–27),
-              which would lower the take-home on the higher rows.
-            </p>
-          ) : null}
-          <div className="not-prose my-6">
-            <Link
-              href="/take-home-pay-calculator/"
-              className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
-            >
-              <Calculator className="h-5 w-5" aria-hidden="true" />
-              Calculate your take-home pay
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
+          <TakeHomeButton />
         </section>
       ) : null}
     </>
-  );
-}
-
-function money(n: number): string {
-  return formatAUD(n, 2);
-}
-
-function TakeHomeLink({ annual }: { annual: number }) {
-  const nearest = nearestTakeHomeAmount(annual);
-  const exact = isExactTakeHomeAmount(annual);
-  return (
-    <Link href={takeHomeHref(annual)}>
-      take-home pay on {formatAUD(nearest)}
-      {exact ? "" : ` (the nearest step to ${formatAUD(annual)})`}
-    </Link>
   );
 }
 
@@ -223,6 +264,9 @@ function casualCell(n: number | null): string {
 }
 
 function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?: string }) {
+  const casual = table.rows.some((r) => r.casualHourly !== null);
+  const someCasualMissing = casual && table.rows.some((r) => r.casualHourly === null);
+  const awardSalary = table.rows.some((r) => r.annual !== undefined);
   return (
     <div className="not-prose my-8">
       <h3 className="mb-2 text-xl font-bold text-navy" style={HEADING_FONT} id={table.id}>
@@ -235,8 +279,8 @@ function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?
             <th scope="col" className="px-4 py-3">Classification</th>
             <th scope="col" className="px-4 py-3 text-right">Hourly</th>
             <th scope="col" className="px-4 py-3 text-right">Weekly (38 hrs)</th>
-            <th scope="col" className="px-4 py-3 text-right">Annual</th>
-            <th scope="col" className="px-4 py-3 text-right">Casual hourly</th>
+            <th scope="col" className="px-4 py-3 text-right">{awardSalary ? "Annual (award salary)" : "Annual (weekly × 52)"}</th>
+            {casual ? <th scope="col" className="px-4 py-3 text-right">Casual hourly</th> : null}
           </tr>
         </thead>
         <tbody className="divide-y divide-sandstone-dark/20 bg-white">
@@ -251,21 +295,15 @@ function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?
                 <td className="px-4 py-3 text-right font-semibold text-navy">{money(row.hourly)}</td>
                 <td className="px-4 py-3 text-right">{money(row.weekly)}</td>
                 <td className="px-4 py-3 text-right">{formatAUD(rowAnnual(row))}</td>
-                <td className="px-4 py-3 text-right">{casualCell(row.casualHourly)}</td>
+                {casual ? <td className="px-4 py-3 text-right">{casualCell(row.casualHourly)}</td> : null}
               </tr>
             );
           })}
         </tbody>
       </TableShell>
-      <p className="mt-2 text-xs text-warmgray">
-        {table.rows.some((r) => r.annual !== undefined)
-          ? "Annual is the award's own full-time annual salary"
-          : "Annual is the weekly rate × 52"}
-        , before tax and before superannuation.{" "}
-        {table.rows.some((r) => r.casualHourly === null)
-          ? "A dash means the award sets no casual rate for that classification."
-          : "Casual hourly includes the 25% casual loading."}
-      </p>
+      {someCasualMissing ? (
+        <p className="mt-2 text-xs text-warmgray">A dash means the award sets no casual rate for that classification.</p>
+      ) : null}
     </div>
   );
 }
@@ -273,14 +311,25 @@ function RatesTable({ table, headlineLabel }: { table: RateTable; headlineLabel?
 export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) {
   const headline = headlineRow(occ);
   const headlineAnnual = headline ? rowAnnual(headline) : null;
+  const headlineTable = occ.headline ? occ.tables.find((t) => t.id === occ.headline!.tableId) : undefined;
   const medianAnnual = occ.median ? annualFromWeekly(occ.median.medianWeekly) : null;
   const afterTaxBase = headlineAnnual ?? medianAnnual;
   const net = afterTaxBase !== null ? afterTax(afterTaxBase) : null;
   const authorship = getGuideAuthorship("job-pay-rates");
-  const others = OCCUPATIONS.filter((o) => o.slug !== occ.slug);
   // Pages with ATO figures lead with what people earn and the take-home on
-  // each figure; the award section follows.
+  // each figure; the award tables follow.
   const salaryPage = occ.ato !== undefined;
+  // An award-free page without ATO figures leads with the market median.
+  const leadWithMedian = !salaryPage && !occ.award && occ.median !== null;
+  // Award-free pages carry only the National Minimum Wage row, which the
+  // coverage section states in one line instead of a table.
+  const nmw = occ.award ? undefined : occ.tables.flatMap((t) => t.rows).find((r) => r.label.startsWith("National Minimum Wage"));
+  const hasPenaltyRules = occ.award !== null && (occ.penalties.length > 0 || occ.overtime.length > 0);
+  const anyCasual = occ.tables.some((t) => t.rows.some((r) => r.casualHourly !== null));
+  const showPenaltyCasual = occ.penalties.some((p) => p.casual !== "—");
+  const ownPayslipNotes = (occ.payslipNotes ?? []).filter((n) => !GENERIC_PAYSLIP_NOTES.has(n));
+  const related = relatedOccupations(occ);
+  const sector = JOB_SECTORS.find((s) => s.id === OCCUPATION_SECTOR[occ.slug]);
   const sourceLinks: SourceLink[] = occ.sources.map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
 
   return (
@@ -344,7 +393,27 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               </div>
             )}
 
-            {salaryPage ? <SalaryFiguresSection occ={occ} /> : null}
+            {salaryPage ? (
+              <SalaryFiguresSection occ={occ} payslipLink={ownPayslipNotes.length === 0 && (occ.payslipNotes ?? []).length > 0} />
+            ) : null}
+
+            {leadWithMedian ? <MedianSection occ={occ} heading={`What ${occ.plural} actually earn`} /> : null}
+
+            {occ.award ? (
+              <section id="pay-rates">
+                <h2 style={HEADING_FONT}>{occ.name} award pay rates 2026–27</h2>
+                {occ.lede ? <p>These rates apply from {occ.ratesFrom ?? JOB_PAY_RATES_FROM}.</p> : null}
+                {occ.tables.map((t) => (
+                  <RatesTable key={t.id} table={t} headlineLabel={occ.headline?.tableId === t.id ? occ.headline.label : undefined} />
+                ))}
+                {anyCasual ? (
+                  <p className="text-base">
+                    Casual hourly rates include the 25% casual loading (
+                    <Link href="/casual-loading-calculator/">casual loading calculator</Link>).
+                  </p>
+                ) : null}
+              </section>
+            ) : null}
 
             <section id="award">
               <h2 style={HEADING_FONT}>
@@ -373,20 +442,15 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                   ) : null}
                   .
                 </p>
+              ) : nmw ? (
+                <p>
+                  {occ.coverageMode === "depends" ? "If no award covers you, the" : "The"} legal floor is the National
+                  Minimum Wage: <strong>{money(nmw.hourly)} an hour</strong>, {money(nmw.weekly)} a week, for adults from{" "}
+                  {JOB_PAY_RATES_FROM} (<Link href="/minimum-wage-australia/">minimum wage guide</Link>). Penalty rates and
+                  overtime then come from your contract or enterprise agreement (
+                  <Link href="/overtime-penalty-rates-guide/">overtime and penalty rates guide</Link>).
+                </p>
               ) : null}
-            </section>
-
-            <section id="pay-rates">
-              <h2 style={HEADING_FONT}>
-                {occ.name} {occ.award ? "award pay rates" : "minimum pay"} 2026–27
-              </h2>
-              <p>
-                These rates apply from {occ.ratesFrom ?? JOB_PAY_RATES_FROM}. Part-time employees are paid the same hourly rates for the
-                hours they work.
-              </p>
-              {occ.tables.map((t) => (
-                <RatesTable key={t.id} table={t} headlineLabel={occ.headline?.tableId === t.id ? occ.headline.label : undefined} />
-              ))}
             </section>
 
             {(occ.sections ?? []).map((s) => (
@@ -431,46 +495,44 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               </section>
             ))}
 
-            <section id="penalty-rates">
-              <h2 style={HEADING_FONT}>
-                {occ.name} penalty rates{occ.overtime.length > 0 ? " and overtime" : ""}
-              </h2>
-              {occ.penalties.length > 0 && (
-                <TableShell minWidth="30rem" caption={`${occ.name} penalty rates`}>
-                  <thead className="bg-sandstone font-semibold text-navy">
-                    <tr>
-                      <th scope="col" className="px-4 py-3">When you work</th>
-                      <th scope="col" className="px-4 py-3 text-right">Full-time / part-time</th>
-                      <th scope="col" className="px-4 py-3 text-right">Casual</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                    {occ.penalties.map((p) => (
-                      <tr key={p.when}>
-                        <th scope="row" className="px-4 py-3 text-left font-medium text-navy">{p.when}</th>
-                        <td className="px-4 py-3 text-right">{p.permanent}</td>
-                        <td className="px-4 py-3 text-right">{p.casual}</td>
+            {hasPenaltyRules && (
+              <section id="penalty-rates">
+                <h2 style={HEADING_FONT}>
+                  {occ.name} penalty rates{occ.overtime.length > 0 ? " and overtime" : ""}
+                </h2>
+                {occ.penalties.length > 0 && (
+                  <TableShell minWidth="30rem" caption={`${occ.name} penalty rates`}>
+                    <thead className="bg-sandstone font-semibold text-navy">
+                      <tr>
+                        <th scope="col" className="px-4 py-3">When you work</th>
+                        <th scope="col" className="px-4 py-3 text-right">Full-time / part-time</th>
+                        {showPenaltyCasual ? <th scope="col" className="px-4 py-3 text-right">Casual</th> : null}
                       </tr>
-                    ))}
-                  </tbody>
-                </TableShell>
-              )}
-              <p>{occ.penaltiesNote}</p>
-              {occ.overtime.length > 0 && (
-                <>
-                  <h3 style={HEADING_FONT}>Overtime</h3>
-                  <ul>
-                    {occ.overtime.map((o) => (
-                      <li key={o}>{o}</li>
-                    ))}
-                  </ul>
-                  <p>
-                    Work out a shift with penalties or overtime using the{" "}
-                    <Link href="/overtime-pay-calculator/">overtime pay calculator</Link>.
-                  </p>
-                </>
-              )}
-            </section>
+                    </thead>
+                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                      {occ.penalties.map((p) => (
+                        <tr key={p.when}>
+                          <th scope="row" className="px-4 py-3 text-left font-medium text-navy">{p.when}</th>
+                          <td className="px-4 py-3 text-right">{p.permanent}</td>
+                          {showPenaltyCasual ? <td className="px-4 py-3 text-right">{p.casual}</td> : null}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </TableShell>
+                )}
+                <p>{occ.penaltiesNote}</p>
+                {occ.overtime.length > 0 && (
+                  <>
+                    <h3 style={HEADING_FONT}>Overtime</h3>
+                    <ul>
+                      {occ.overtime.map((o) => (
+                        <li key={o}>{o}</li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </section>
+            )}
 
             {occ.allowances.length > 0 && (
               <section id="allowances">
@@ -496,71 +558,50 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               </section>
             )}
 
-            {!salaryPage && net && afterTaxBase !== null && (
+            {!salaryPage && afterTaxBase !== null && (
               <section id="after-tax">
                 <h2 style={HEADING_FONT}>{occ.name} pay after tax</h2>
-                <p>
-                  {headline
-                    ? `On the ${headline.label} rate of ${money(headline.weekly)} a week, a full-time ${occ.name.toLowerCase()} earns ${formatAUD(afterTaxBase)} a year before tax.`
-                    : `On the median of ${formatAUD(occ.median!.medianWeekly)} a week, a full-time ${occ.name.toLowerCase()} earns about ${formatAUD(afterTaxBase)} a year before tax.`}
-                </p>
-                <TableShell minWidth="26rem" caption={`${occ.name} take-home pay`}>
+                <TableShell
+                  minWidth="36rem"
+                  caption={headlineTable ? `${occ.name} take-home pay by classification` : `${occ.name} take-home pay`}
+                >
+                  <thead className="bg-sandstone font-semibold text-navy">
+                    <tr>
+                      <th scope="col" className="px-4 py-3">{headlineTable ? "Classification" : "Figure"}</th>
+                      <th scope="col" className="px-4 py-3 text-right">Gross a year</th>
+                      <th scope="col" className="px-4 py-3 text-right">Tax and Medicare</th>
+                      <th scope="col" className="px-4 py-3 text-right">Take-home a year</th>
+                      <th scope="col" className="px-4 py-3 text-right">A week</th>
+                    </tr>
+                  </thead>
                   <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                    <tr>
-                      <th scope="row" className="px-4 py-3 text-left font-medium text-navy">Gross annual pay</th>
-                      <td className="px-4 py-3 text-right">{formatAUD(afterTaxBase)}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="px-4 py-3 text-left font-medium text-navy">Income tax (after LITO)</th>
-                      <td className="px-4 py-3 text-right">{formatNegAUD(net.tax, 0, "−")}</td>
-                    </tr>
-                    <tr>
-                      <th scope="row" className="px-4 py-3 text-left font-medium text-navy">Medicare levy</th>
-                      <td className="px-4 py-3 text-right">{formatNegAUD(net.medicare, 0, "−")}</td>
-                    </tr>
-                    <tr className="bg-sandstone/40">
-                      <th scope="row" className="px-4 py-3 text-left font-semibold text-navy">Take-home per year</th>
-                      <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(net.netAnnual)}</td>
-                    </tr>
-                    <tr className="bg-sandstone/40">
-                      <th scope="row" className="px-4 py-3 text-left font-semibold text-navy">Take-home per week</th>
-                      <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(net.netWeekly, 0)}</td>
-                    </tr>
+                    {(headlineTable
+                      ? headlineTable.rows.map((r) => ({ label: r.label, gross: rowAnnual(r) }))
+                      : [{ label: `Median full-time pay — ${occ.median!.anzscoTitle}`, gross: afterTaxBase }]
+                    ).map((f) => {
+                      const t = afterTax(f.gross);
+                      return (
+                        <tr key={f.label} className={f.label === occ.headline?.label ? "bg-eucalyptus-light/30" : undefined}>
+                          <th scope="row" className="px-4 py-3 text-left font-medium text-navy">{f.label}</th>
+                          <td className="px-4 py-3 text-right">{formatAUD(f.gross)}</td>
+                          <td className="px-4 py-3 text-right">{formatNegAUD(t.tax + t.medicare, 0, "−")}</td>
+                          <td className="px-4 py-3 text-right font-semibold text-navy">{formatAUD(t.netAnnual)}</td>
+                          <td className="px-4 py-3 text-right">{formatAUD(t.netWeekly, 0)}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </TableShell>
                 <p>
-                  2026–27 resident tax rates with the low income tax offset and the 2% Medicare levy; no HECS-HELP
-                  repayment and no Medicare levy surcharge. Superannuation is paid on top by your employer. For the full
-                  breakdown see <TakeHomeLink annual={afterTaxBase} />, or put in your own hours with the{" "}
+                  2026–27 resident rates with the Medicare levy and no HECS-HELP; super is paid on top. Full breakdown:{" "}
+                  <TakeHomeLink annual={afterTaxBase} />, or put in your own hours with the{" "}
                   <Link href="/weekly-pay-calculator/">weekly pay calculator</Link>.
                 </p>
-                <div className="not-prose my-6">
-                  <Link
-                    href="/take-home-pay-calculator/"
-                    className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
-                  >
-                    <Calculator className="h-5 w-5" aria-hidden="true" />
-                    Calculate your take-home pay
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
+                <TakeHomeButton />
               </section>
             )}
 
-            {!salaryPage && occ.median && (
-              <section id="actual-earnings">
-                <h2 style={HEADING_FONT}>What {occ.plural} actually earn</h2>
-                <p>
-                  Jobs and Skills Australia puts median full-time earnings for{" "}
-                  <a href={occ.median.url} target="_blank" rel="noreferrer noopener">
-                    {occ.median.anzscoTitle} (ANZSCO {occ.median.anzscoCode})
-                  </a>{" "}
-                  at <strong>{formatAUD(occ.median.medianWeekly)} a week</strong> ({formatAUD(occ.median.medianHourly)} an
-                  hour), against {formatAUD(occ.median.allOccupationsWeekly)} a week for all occupations.
-                </p>
-                <p className="text-base">{MEDIAN_DEFINITION}</p>
-              </section>
-            )}
+            {!salaryPage && !leadWithMedian ? <MedianSection occ={occ} heading={`What ${occ.plural} actually earn`} /> : null}
 
             {occ.spokes && occ.spokes.length > 0 && (
               <section id="disciplines">
@@ -579,16 +620,16 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               </section>
             )}
 
-            {occ.payslipNotes && occ.payslipNotes.length > 0 && (
+            {ownPayslipNotes.length > 0 && (
               <section id="payslip">
                 <h2 style={HEADING_FONT}>Checking a {occ.name.toLowerCase()} payslip</h2>
                 <ul>
-                  {occ.payslipNotes.map((n) => (
+                  {ownPayslipNotes.map((n) => (
                     <li key={n}>{n}</li>
                   ))}
                 </ul>
                 <p>
-                  For what every line on a payslip should show, see{" "}
+                  The lines every payslip must show are in{" "}
                   <Link href="/understanding-your-payslip/">understanding your payslip</Link>.
                 </p>
               </section>
@@ -605,39 +646,49 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
               </section>
             )}
 
-            <section id="faq">
-              <h2 style={HEADING_FONT}>{occ.name} pay questions</h2>
-              <FaqList faqs={occ.faqs} />
-            </section>
+            {occ.faqs.length > 0 && (
+              <section id="faq">
+                <h2 style={HEADING_FONT}>{occ.name} pay questions</h2>
+                <FaqList faqs={occ.faqs} />
+              </section>
+            )}
 
-            <section id="other-jobs">
-              <h2 style={HEADING_FONT}>Pay rates for other jobs</h2>
-              <div className="not-prose mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {others.map((o) => (
-                  <SidebarLink key={o.slug} href={`/job-pay-rates/${o.slug}/`} label={`${o.name} pay rates`} />
-                ))}
-              </div>
-            </section>
+            {related.length > 0 && (
+              <section id="other-jobs">
+                <h2 style={HEADING_FONT}>Pay rates for related jobs</h2>
+                <div className="not-prose mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {related.map((o) => {
+                    const figure = glanceFigure(o);
+                    return (
+                      <SidebarLink
+                        key={o.slug}
+                        href={`/job-pay-rates/${o.slug}/`}
+                        label={figure ? `${o.name}: ${figure}` : `${o.name} pay rates`}
+                      />
+                    );
+                  })}
+                </div>
+                {sector ? (
+                  <p>
+                    Every {sector.title.toLowerCase()} job is on the{" "}
+                    <Link href={`/job-pay-rates/#${sector.id}`}>job pay rates hub</Link>.
+                  </p>
+                ) : null}
+              </section>
+            )}
 
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How this page is sourced">
                 <p>
                   {occ.award
-                    ? `Every minimum rate was read from the Fair Work Commission's consolidated text of the ${occ.award.name}, consolidated to ${occ.award.consolidatedTo}, on ${occ.verifiedOn}. Casual rates are the award's own published figures wherever it publishes them. Nothing is estimated.`
+                    ? `Minimum rates: the ${occ.award.name}, consolidated to ${occ.award.consolidatedTo}, read on ${occ.verifiedOn}.`
                     : occ.coverageMode === "depends"
-                      ? `No modern award names this job, so this page does not say which award, if any, covers you: that turns on your employer's industry and your duties. The minimum shown is the National Minimum Wage Order 2026, read on ${occ.verifiedOn}.`
-                      : `Award coverage is taken from the Fair Work Ombudsman's published guidance and the minimum from the National Minimum Wage Order 2026, read on ${occ.verifiedOn}.`}
-                </p>
-                {occ.ato ? (
-                  <p>
-                    Income figures are the ATO&rsquo;s Taxation statistics {occ.ato.incomeYear}, Individuals Table 15A,
-                    exactly as published: the occupation is what each person wrote on their tax return.
-                  </p>
-                ) : null}
-                <p>
-                  The median comes from Jobs and Skills Australia&rsquo;s occupation profile and is a market figure, not an
-                  entitlement. Take-home figures use the same tax engine as the rest of this site. Award rates change every
-                  1 July, so re-check after the next Annual Wage Review.
+                      ? `No modern award names this job, so award coverage turns on your employer's industry and duties. Legal floor: the National Minimum Wage Order 2026, read on ${occ.verifiedOn}.`
+                      : `Award coverage: the Fair Work Ombudsman's guidance. Legal floor: the National Minimum Wage Order 2026, read on ${occ.verifiedOn}.`}
+                  {occ.ato ? ` Income: ATO Taxation statistics ${occ.ato.incomeYear}, Individuals Table 15A, as published.` : ""}
+                  {occ.median
+                    ? ` Median: Jobs and Skills Australia, ${occ.median.anzscoTitle} (ANZSCO ${occ.median.anzscoCode}).`
+                    : ""}
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sourceLinks} lastVerified={occ.verifiedOn} />
@@ -699,6 +750,9 @@ export default function JobPayRatesOccupationPage({ occ }: { occ: Occupation }) 
                   <div className="space-y-3">
                     <SidebarLink href="/weekly-pay-calculator/" label="Weekly Pay Calculator" />
                     <SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" />
+                    {hasPenaltyRules && !occ.related.some((r) => r.href === "/overtime-pay-calculator/") ? (
+                      <SidebarLink href="/overtime-pay-calculator/" label="Overtime Pay Calculator" />
+                    ) : null}
                     {occ.parent ? <SidebarLink href={occ.parent.href} label={occ.parent.label} /> : null}
                     {occ.related.map((r) => (
                       <SidebarLink key={r.href} href={r.href} label={r.label} />

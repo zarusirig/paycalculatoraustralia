@@ -86,10 +86,6 @@ export const ACCOUNTANT: Occupation = {
       a: "Jobs and Skills Australia reports median full-time earnings of $2,003 a week for accountants, about $104,156 a year, from the ABS Survey of Employee Earnings and Hours (May 2025). The all-occupation median on the same measure is $1,852 a week.",
     },
     {
-      q: "Do accountants get paid overtime?",
-      a: "Not automatically. Award-free employees have no award overtime rate, so overtime pay depends on your contract or enterprise agreement. Your employer can require reasonable additional hours under the National Employment Standards.",
-    },
-    {
       q: "Is an accounts clerk covered by an award?",
       a: "Usually, yes. Accounts clerks and other clerical staff are generally covered by the Clerks—Private Sector Award, which sets minimum rates by level. That award does not cover qualified accountants doing professional accounting work.",
     },
