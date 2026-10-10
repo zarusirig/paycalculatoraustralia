@@ -220,7 +220,7 @@ export default function HourlyToAnnualSalaryCalculatorContent() {
 
             <h3 className="text-xl font-semibold text-navy mb-3 mt-8" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>Every Hourly Rate From $20 to $100 as an Annual Salary</h3>
             <p className="mb-4 text-warmgray">
-              Each rate below has its own page: gross and after-tax pay per week, fortnight, month and year, the same rate at 20 to 50 hours a week, and — for rates like $26.44 (the national minimum wage) or $29.45 (Hospitality and Retail Level 4) — which award classification pays it.
+              Each whole-dollar rate below has its own page: gross and after-tax pay per week, fortnight, month and year, the same rate at 20 to 50 hours a week, and the award classifications whose adult minimum rate is closest to it.
             </p>
             <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 text-sm">
               {HOURLY_RATE_PAGES.map((rate) => (

@@ -18,6 +18,14 @@
 // Anything below $20 is deliberately out — those are junior percentages, and
 // that intent ("minimum wage for a 16 year old") is served by /junior-pay-rates/.
 //
+// PRUNED 10 Oct 2026: whole dollars only (81 pages). The 30 half-dollar and
+// 55 cent-level pages were the same template with the number swapped, which
+// AdSense reads as low-value auto-generated content. Each removed slug 301s
+// to the whole dollar below it (firebase.json: 37-5 -> 37, 26-44 -> 26). The
+// award rates they carried now appear as "nearest award minimums" on the
+// whole-dollar pages (lib/data/award-rate-index.ts). The notes below still
+// back notesForRate() for exact-rate lookups.
+//
 // Consumers: app/hourly-to-salary/[rate]/page.tsx (generateStaticParams),
 // app/sitemap.ts, app/site-directory/page.tsx and the hub's link table. Do not
 // re-declare the list anywhere else.
@@ -35,10 +43,6 @@ import { CASUAL_LOADING, NMW_ORDER } from "./junior-rates";
 
 export const HOURLY_RATE_MIN = 20;
 export const HOURLY_RATE_MAX = 100;
-
-/** Half-dollar pages are generated across this band only. */
-export const HALF_DOLLAR_MIN = 20.5;
-export const HALF_DOLLAR_MAX = 49.5;
 
 export interface HourlyRateNote {
   /** Short instrument name for prose, e.g. "Hospitality Award". */
@@ -126,21 +130,11 @@ for (const r of SCHADS_HOME_CARE_AGED) {
   });
 }
 
-/** Rates that carry a note (NMW or award), whatever the band. */
-const NOTED_RATES = [...notes.keys()];
-
 const wholeDollars: number[] = [];
 for (let r = HOURLY_RATE_MIN; r <= HOURLY_RATE_MAX; r += 1) wholeDollars.push(r);
 
-const halfDollars: number[] = [];
-for (let r = HALF_DOLLAR_MIN; r <= HALF_DOLLAR_MAX; r += 1) halfDollars.push(round2(r));
-
-/** Every generated /hourly-to-salary/ rate, ascending, unique, inside the band. */
-export const HOURLY_RATE_PAGES: readonly number[] = [
-  ...new Set([...wholeDollars, ...halfDollars, ...NOTED_RATES].map(round2)),
-]
-  .filter((r) => r >= HOURLY_RATE_MIN && r <= HOURLY_RATE_MAX)
-  .sort((a, b) => a - b);
+/** Every generated /hourly-to-salary/ rate: each whole dollar $20–$100, ascending. */
+export const HOURLY_RATE_PAGES: readonly number[] = wholeDollars;
 
 /** The award/NMW classifications that pay exactly this rate, if any. */
 export function notesForRate(rate: number): HourlyRateNote[] {

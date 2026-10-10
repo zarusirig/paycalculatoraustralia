@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HourlyToSalary, ALL_RATES, annualFromHourly, hourlyRateSlug, hourlyRateFromSlug } from "@/modules/programmatic/hourly-to-salary";
+import {
+  HourlyToSalary,
+  ALL_RATES,
+  annualFromHourly,
+  hourlyAwardFaq,
+  hourlyRateSlug,
+  hourlyRateFromSlug,
+} from "@/modules/programmatic/hourly-to-salary";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -107,18 +114,12 @@ async function HourlyToSalaryPage({ params }: PageProps) {
   // One list feeds both the visible FAQ section and the FAQPage markup, so the
   // two cannot drift. (Before, the markup's questions appeared nowhere on the
   // page, which Google's structured-data policy treats as hidden content.)
+  // 10 Oct 2026: the "how much a week" and "after tax a year" answers repeated
+  // the tables word for word, so they went; the award question is rate-specific.
   const faqItems = [
     {
       q: `${formatAUD(rate, 2)} an hour is how much a year?`,
       a: `${formatAUD(rate, 2)} an hour is ${formatAUD(gross)} a year before tax, based on ${hours} hours a week over ${EMPLOYMENT.weeksPerYear} weeks. After income tax and the Medicare levy that is ${formatAUD(net)} a year.`,
-    },
-    {
-      q: `${formatAUD(rate, 2)} an hour is how much a week?`,
-      a: `On a ${hours}-hour week, ${formatAUD(rate, 2)} an hour is ${formatAUD(rate * hours, 2)} a week before tax.`,
-    },
-    {
-      q: `How much is ${formatAUD(rate, 2)} an hour after tax?`,
-      a: `${formatAUD(net)} a year, which works out to about ${formatAUD(net / EMPLOYMENT.hoursPerYear, 2)} an hour in the hand once income tax and the Medicare levy come out.`,
     },
     // G5: the after-tax phrasings ("$N an hour is how much a week after tax", fortnightly, casual)
     {
@@ -129,6 +130,7 @@ async function HourlyToSalaryPage({ params }: PageProps) {
       q: `What is ${rateLabel(rate)} an hour casual after tax?`,
       a: `With a 25% casual loading the rate becomes ${formatAUD(casual.rate, 2)} an hour, which is ${formatAUD(casual.perWeek, 2)} a week after tax for ${hours} hours. The loading replaces paid leave, and some awards and agreements set it differently.`,
     },
+    hourlyAwardFaq(rate),
   ];
   const faq: WithContext<FAQPage> = {
     "@context": "https://schema.org",

@@ -52,7 +52,8 @@ test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
   assert.equal(SALARY_GRID.length, 4 + 111 + 10 + HIGH_SALARY_TAIL.length);
   assert.equal(SALARY_GRID[SALARY_GRID.length - 1], 500_000);
   assert.deepEqual(TAX_ON_SALARIES, SALARY_GRID);
-  assert.ok(SALARY_TO_HOURLY_SALARIES.includes(72_000));
+  assert.ok(SALARY_TO_HOURLY_SALARIES.includes(75_000));
+  assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(72_000));
   assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(25_000));
 });
 
