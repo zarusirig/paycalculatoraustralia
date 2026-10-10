@@ -6,6 +6,12 @@ type AuthorBoxProps = {
   reviewer?: Reviewer;
   lastReviewed: string;
   datePublished?: string;
+  /**
+   * Leave out the bio and expertise tags, linking to the author's profile
+   * instead. For page families whose many sibling pages would otherwise repeat
+   * the same bio (state pay-scale pages); the family hub keeps the full box.
+   */
+  compact?: boolean;
 };
 
 export default function AuthorBox({
@@ -13,6 +19,7 @@ export default function AuthorBox({
   reviewer,
   lastReviewed,
   datePublished,
+  compact = false,
 }: AuthorBoxProps) {
   const reviewedDate = new Date(lastReviewed);
   const formattedReviewed = reviewedDate.toLocaleDateString("en-AU", {
@@ -73,30 +80,43 @@ export default function AuthorBox({
         </div>
       </div>
 
-      {/* Bio */}
-      <p
-        className="mt-4 text-sm leading-relaxed text-warmgray"
-        itemProp="description"
-      >
-        {author.bio}
-      </p>
-
-      {/* Expertise tags */}
-      <div className="mt-4">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-warmgray-light">
-          Areas of Expertise
+      {compact ? (
+        <p className="mt-4 text-sm text-warmgray">
+          <a
+            href={author.profileUrl}
+            className="font-medium text-eucalyptus-dark underline decoration-eucalyptus/40 underline-offset-4 hover:text-navy"
+          >
+            About {author.name}
+          </a>
         </p>
-        <div className="flex flex-wrap gap-2">
-          {author.expertise.map((topic) => (
-            <span
-              key={topic}
-              className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-navy shadow-sm ring-1 ring-sandstone-dark/15"
-            >
-              {topic}
-            </span>
-          ))}
-        </div>
-      </div>
+      ) : (
+        <>
+          {/* Bio */}
+          <p
+            className="mt-4 text-sm leading-relaxed text-warmgray"
+            itemProp="description"
+          >
+            {author.bio}
+          </p>
+
+          {/* Expertise tags */}
+          <div className="mt-4">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-warmgray-light">
+              Areas of Expertise
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {author.expertise.map((topic) => (
+                <span
+                  key={topic}
+                  className="rounded-md bg-white px-2.5 py-1 text-xs font-medium text-navy shadow-sm ring-1 ring-sandstone-dark/15"
+                >
+                  {topic}
+                </span>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Reviewer + dates */}
       <div className="mt-5 flex flex-col gap-3 border-t border-sandstone-dark/15 pt-4 text-xs text-warmgray sm:flex-row sm:items-center sm:justify-between">

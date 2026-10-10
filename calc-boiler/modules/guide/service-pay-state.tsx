@@ -1,8 +1,13 @@
-// State page for the F5 emergency-service pay cluster:
-// /paramedic-pay/{state}/, /police-pay/{state}/, /firefighter-pay/{state}/.
-// Only built for jurisdictions with a verified table (see the routes'
-// generateStaticParams); unverified jurisdictions appear on the hub as a
-// "not yet verified — see official source" card.
+// State page for the service-pay family: /paramedic-pay/{state}/,
+// /police-pay/{state}/, /firefighter-pay/{state}/ and
+// /prison-officer-pay/{state}/. Only built for jurisdictions with a verified
+// table (see the routes' generateStaticParams); unverified jurisdictions
+// appear on the hub as a "not yet verified — see official source" card.
+//
+// The page leads with the state's own instrument, dates, tables, allowances
+// and notices. Explanations that would read the same on every state (how pay
+// is set without a modern award, how penalties and super are taxed) live on
+// the family hub and the guides, and are linked in one line here.
 
 import Link from "next/link";
 import { ArrowRight, Calculator } from "lucide-react";
@@ -16,17 +21,16 @@ import { formatAUD } from "@/lib/constants";
 import {
   SERVICE_OCCUPATION_CONFIG,
   entrySalary,
-  nearestTakeHome,
   ratesYear,
   scaleRanges,
   serviceJurisdictions,
-  takeHomeHref,
   topSalary,
   isVerified,
   type ServicePayJurisdiction,
 } from "@/lib/data/service-pay";
+import { entryRow, serviceKeyFacts, topRow } from "@/lib/data/service-pay/facts";
 import { Breadcrumbs, FaqList, HEADING_FONT, SidebarLink } from "./job-pay-shared";
-import { NoticeList, RangeTable, ScaleTable, TakeHomeLinkNote } from "./service-pay-shared";
+import { NoticeList, RangeTable, SalaryLink, ScaleTable } from "./service-pay-shared";
 import FeaturedImage from "@/components/common/featured-image";
 
 /** H1 / <title> stem shared by the route and the page. */
@@ -35,14 +39,26 @@ export function serviceStateHeading(j: ServicePayJurisdiction): string {
   return `${j.code} ${cfg.salaryNoun} ${ratesYear(j)} — ${j.employer} Pay Scale`;
 }
 
+const TRAINEE_HEADING: Record<ServicePayJurisdiction["occupation"], string> = {
+  paramedic: "Graduate and intern paramedic pay",
+  police: "Recruit and trainee police pay",
+  "prison-officer": "Trainee and probationary prison officer pay",
+  firefighter: "Recruit firefighter pay",
+};
+
 export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction: ServicePayJurisdiction }) {
   const cfg = SERVICE_OCCUPATION_CONFIG[j.occupation];
   const entry = entrySalary(j);
   const top = topSalary(j);
+  const entryStep = entryRow(j);
+  const topStep = topRow(j);
+  const facts = serviceKeyFacts(j);
   const authorship = getGuideAuthorship(cfg.authorKey);
   const sources: SourceLink[] = j.sources.map((s) => ({ title: s.title, url: s.url, publisher: s.publisher }));
   const others = serviceJurisdictions(j.occupation).filter((o) => o.slug !== j.slug && isVerified(o));
   const lowerNoun = cfg.singular.toLowerCase();
+  // Some instruments publish weekly or fortnightly rates; the notes column quotes them.
+  const converted = j.scales.some((s) => s.steps.some((step) => /week|fortnight/i.test(step.note ?? "")));
 
   return (
     <div className="min-h-screen flex-grow bg-white">
@@ -59,12 +75,11 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
           <h1 className="mb-6 text-4xl font-extrabold leading-tight text-navy md:text-5xl" style={HEADING_FONT}>
             {serviceStateHeading(j)}
           </h1>
-          {entry !== null && top !== null ? (
+          {entry !== null && top !== null && entryStep && topStep ? (
             <p className="mb-6 text-xl leading-relaxed text-warmgray">
-              {j.employer} pays {cfg.plural} from <strong className="text-navy">{formatAUD(entry)}</strong> a year at
-              entry to <strong className="text-navy">{formatAUD(top)}</strong> at the top of the{" "}
-              {j.scales[0].title.toLowerCase()} table, before shift penalties, allowances and super. Every figure is read
-              from the {j.agreementName} and applies from {j.ratesEffectiveFrom}.
+              Under the {j.agreementName}, from {j.ratesEffectiveFrom}, the {entryStep.label} rate is{" "}
+              <strong className="text-navy">{formatAUD(entry)}</strong> a year and the {topStep.label} rate is{" "}
+              <strong className="text-navy">{formatAUD(top)}</strong>.
             </p>
           ) : null}
           <TrustBar className="!max-w-none" />
@@ -79,55 +94,40 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
               <h2 style={HEADING_FONT}>
                 {j.code} {lowerNoun} pay {ratesYear(j)} at a glance
               </h2>
-              <p>
-                Full-time base salaries from {j.ratesEffectiveFrom}. Tap a table name for every row, or a salary to see
-                it after tax.
-              </p>
+              <div className="not-prose my-6 overflow-hidden rounded-xl border border-sandstone-dark/20">
+                <dl className="divide-y divide-sandstone-dark/20 text-sm">
+                  {facts.map((f) => (
+                    <div key={f.label} className="grid gap-1 bg-white px-5 py-3 sm:grid-cols-3 sm:gap-4">
+                      <dt className="font-medium text-warmgray">{f.label}</dt>
+                      <dd className="text-navy sm:col-span-2">
+                        {f.href ? (
+                          <a href={f.href} target="_blank" rel="noreferrer noopener" className="underline decoration-eucalyptus/40 underline-offset-4 hover:text-eucalyptus-dark">
+                            {f.value}
+                          </a>
+                        ) : (
+                          f.value
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+              {j.nextIncrease ? <p>{j.nextIncrease.detail}</p> : null}
               <RangeTable rows={scaleRanges(j)} caption={`${j.employer} pay ranges by table`} />
-            </section>
-
-            <section id="agreement">
-              <h2 style={HEADING_FONT}>
-                Which agreement sets {j.code} {lowerNoun} pay
-              </h2>
-              <p>
-                {cfg.plural.charAt(0).toUpperCase() + cfg.plural.slice(1)} employed by {j.employer} are paid under the{" "}
-                <a href={j.agreementUrl} target="_blank" rel="noreferrer noopener">
-                  {j.agreementName}
-                </a>
-                . The rates below apply from {j.ratesEffectiveFrom} and were read from the source on {j.verifiedOn}.
-              </p>
-              {j.nextIncrease ? (
-                <p>
-                  <strong>Next scheduled increase:</strong> {j.nextIncrease.date}. {j.nextIncrease.detail}
-                </p>
-              ) : null}
             </section>
 
             <section id="pay-scale">
               <h2 style={HEADING_FONT}>
                 {j.employer} pay scale — every classification
               </h2>
-              <p>
-                Annual full-time base salary before tax and before superannuation. Part-time staff are paid pro rata.
-              </p>
               {j.scales.map((scale) => (
                 <ScaleTable key={scale.id} scale={scale} caption={`${j.employer}: ${scale.title}`} />
               ))}
-              <TakeHomeLinkNote />
             </section>
 
             {j.traineePay.length > 0 ? (
               <section id="trainee-pay">
-                <h2 style={HEADING_FONT}>
-                  {j.occupation === "paramedic"
-                    ? "Graduate and intern paramedic pay"
-                    : j.occupation === "police"
-                      ? "Recruit and trainee police pay"
-                      : j.occupation === "prison-officer"
-                        ? "Trainee and probationary prison officer pay"
-                        : "Recruit firefighter pay"}
-                </h2>
+                <h2 style={HEADING_FONT}>{TRAINEE_HEADING[j.occupation]}</h2>
                 {j.traineePay.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
@@ -136,59 +136,18 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
 
             {j.penalties.length > 0 ? (
               <section id="penalties">
-                <h2 style={HEADING_FONT}>Shift penalties, loadings and allowances</h2>
-                <p>
-                  Base salary is not the whole of it: {cfg.plural} on rotating rosters are paid extra for shift work.
-                  In summary, from the {j.agreementName}:
-                </p>
+                <h2 style={HEADING_FONT}>{j.employer} penalties, loadings and allowances</h2>
                 <ul>
                   {j.penalties.map((p) => (
                     <li key={p}>{p}</li>
                   ))}
                 </ul>
-                <p>
-                  Check the instrument for the exact conditions that apply to your roster. Overtime is worked out
-                  separately — the <Link href="/overtime-pay-calculator/">overtime pay calculator</Link> handles time
-                  and a half and double time.
-                </p>
               </section>
             ) : null}
 
-            <section id="after-tax">
-              <h2 style={HEADING_FONT}>
-                What a {j.code} {lowerNoun} salary is worth after tax
-              </h2>
-              {entry !== null && top !== null ? (
-                <p>
-                  Every salary in the tables links to its take-home figure. Start with{" "}
-                  <Link href={takeHomeHref(entry)}>take-home pay on {formatAUD(nearestTakeHome(entry))}</Link> for the
-                  entry rate or <Link href={takeHomeHref(top)}>take-home pay on {formatAUD(nearestTakeHome(top))}</Link>{" "}
-                  for the top of the scale. Those figures cover base salary only; shift penalties and allowances are
-                  taxed as ordinary income on top.
-                </p>
-              ) : null}
-              <p>
-                Employer superannuation is paid on top of these salaries. For your own pay including penalties, a study
-                loan or salary packaging, use the{" "}
-                <Link href="/take-home-pay-calculator/">take-home pay calculator</Link> or the{" "}
-                <Link href={`/pay-calculator-${j.slug}/`}>{j.code} pay calculator</Link>.
-              </p>
-              <div className="not-prose my-8">
-                <Link
-                  href="/take-home-pay-calculator/"
-                  className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
-                >
-                  <Calculator className="h-5 w-5" aria-hidden="true" />
-                  Calculate your take-home pay
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </section>
-
             {j.unverified.length > 0 ? (
               <section id="not-shown">
-                <h2 style={HEADING_FONT}>What this page does not show</h2>
-                <p>We publish only what we could read from a primary source. These are left off rather than estimated:</p>
+                <h2 style={HEADING_FONT}>Left off this page</h2>
                 <ul>
                   {j.unverified.map((u) => (
                     <li key={u}>{u}</li>
@@ -206,6 +165,23 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
               </section>
             ) : null}
 
+            <section id="after-tax">
+              <p>
+                How tax, super and penalties apply to these salaries:{" "}
+                <Link href={`${cfg.hubPath}#after-tax`}>{cfg.hubLabel}</Link>.
+              </p>
+              <div className="not-prose my-8">
+                <Link
+                  href="/take-home-pay-calculator/"
+                  className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
+                >
+                  <Calculator className="h-5 w-5" aria-hidden="true" />
+                  Calculate your take-home pay
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </section>
+
             {others.length > 0 ? (
               <section id="other-states">
                 <h2 style={HEADING_FONT}>
@@ -213,7 +189,7 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
                 </h2>
                 <div className="not-prose mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {others.map((o) => (
-                    <SidebarLink key={o.slug} href={`${cfg.hubPath}${o.slug}/`} label={`${o.code} ${lowerNoun} pay — ${o.employer}`} />
+                    <SidebarLink key={o.slug} href={`${cfg.hubPath}${o.slug}/`} label={o.employer} />
                   ))}
                 </div>
               </section>
@@ -222,19 +198,20 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How this page is sourced">
                 <p>
-                  Every salary on this page was read from the {j.agreementName} or {j.employer}&rsquo;s own published pay
-                  table on {j.verifiedOn}, and applies from {j.ratesEffectiveFrom}. Nothing is estimated, averaged or
-                  interpolated. Where the instrument publishes a weekly or fortnightly rate, the annual figure is that rate
-                  multiplied out and the published rate is shown in the notes column.
-                </p>
-                <p>
-                  Take-home figures come from the site&rsquo;s own calculator using ATO rates for the current income
-                  year.
+                  Read from the {j.agreementName} on {j.verifiedOn}.
+                  {converted
+                    ? " A weekly or fortnightly rate in the notes column is the rate as published; where the instrument prints no annual figure, the annual salary is that rate multiplied out."
+                    : ""}
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sources} lastVerified={j.verifiedOn} />
               {authorship ? (
-                <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />
+                <AuthorBox
+                  author={authorship.author}
+                  reviewer={authorship.reviewer}
+                  lastReviewed={authorship.lastReviewed}
+                  compact
+                />
               ) : null}
             </div>
           </article>
@@ -243,42 +220,33 @@ export default function ServicePayStatePage({ jurisdiction: j }: { jurisdiction:
             <div className="sticky top-8 space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h3 className="mb-3 font-bold text-navy">
-                    {j.code} {lowerNoun} pay at a glance
-                  </h3>
+                  <h3 className="mb-3 font-bold text-navy">{j.employer}</h3>
                   <dl className="space-y-3 text-sm">
-                    {entry !== null ? (
+                    {entry !== null && entryStep ? (
                       <div className="flex items-baseline justify-between gap-3">
-                        <dt className="text-warmgray">{cfg.entryLabel}</dt>
-                        <dd className="font-semibold text-navy">{formatAUD(entry)}</dd>
+                        <dt className="text-warmgray">{entryStep.label}</dt>
+                        <dd className="font-semibold">
+                          <SalaryLink salary={entry} />
+                        </dd>
                       </div>
                     ) : null}
-                    {top !== null ? (
+                    {top !== null && topStep ? (
                       <div className="flex items-baseline justify-between gap-3">
-                        <dt className="text-warmgray">{cfg.topLabel}</dt>
-                        <dd className="font-semibold text-navy">{formatAUD(top)}</dd>
+                        <dt className="text-warmgray">{topStep.label}</dt>
+                        <dd className="font-semibold">
+                          <SalaryLink salary={top} />
+                        </dd>
                       </div>
                     ) : null}
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Rates from</dt>
-                      <dd className="text-right font-semibold text-navy">{j.ratesEffectiveFrom}</dd>
-                    </div>
-                    <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-warmgray">Verified</dt>
-                      <dd className="font-semibold text-navy">{j.verifiedOn}</dd>
-                    </div>
                   </dl>
                 </CardContent>
               </Card>
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h3 className="mb-3 font-bold text-navy">Related</h3>
                   <div className="space-y-3">
                     <SidebarLink href={cfg.hubPath} label={cfg.hubLabel} />
-                    <SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" />
                     <SidebarLink href={`/pay-calculator-${j.slug}/`} label={`${j.code} Pay Calculator`} />
                     <SidebarLink href="/overtime-pay-calculator/" label="Overtime Pay Calculator" />
-                    <SidebarLink href="/public-service-pay-scales/" label="Public Service Pay Scales" />
                   </div>
                 </CardContent>
               </Card>
