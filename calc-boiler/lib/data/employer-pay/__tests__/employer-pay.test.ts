@@ -193,7 +193,10 @@ test("hourly-to-salary link always targets a generated page", () => {
       assert.match(link.href, /^\/hourly-to-salary\/\d+(-\d{1,2})?\/$/);
     }
   }
-  assert.equal(hourlyToSalaryLink(27.81).exact, true); // Retail Level 1 has its own page
+  // Whole-dollar pages only since 10 Oct 2026: Retail Level 1 ($27.81) links to the nearest.
+  assert.equal(hourlyToSalaryLink(27.81).exact, false);
+  assert.equal(hourlyToSalaryLink(27.81).rate, 28);
+  assert.equal(hourlyToSalaryLink(30).exact, true);
 });
 
 test("formatPct", () => {

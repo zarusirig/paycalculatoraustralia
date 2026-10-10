@@ -32,7 +32,7 @@ function SalaryToHourlyHubPage() {
         intro: (
           <p>
             {SALARY_TO_HOURLY_SALARIES.length} annual salaries converted to an hourly rate on a standard {EMPLOYMENT.standardWeeklyHours}-hour week
-            ({hours.toLocaleString("en-AU")} hours a year). Each page adds the after-tax hourly rate, daily pay and a comparison with the minimum wage.
+            ({hours.toLocaleString("en-AU")} hours a year): every $5,000 from $40,000 to $200,000, plus $30,000 and higher salaries to {formatAUD(last)}. Each page adds the after-tax hourly rate, the award classifications whose adult minimum rate is closest to that hourly figure, and a comparison with the minimum wage.
           </p>
         ),
         figure: (s) => `${formatAUD(s / hours, 2)}/hr`,

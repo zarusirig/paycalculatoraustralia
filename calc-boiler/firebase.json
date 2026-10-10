@@ -196,7 +196,1742 @@
         "source": "/monthly-tax-table/2024-25/",
         "destination": "/monthly-tax-table/2025-26/",
         "type": 301
+      },
+      // --- 10 Oct 2026 (AdSense thin-content prune): /salary-to-hourly/ and /hourly-to-salary/ ---
+      // salary-to-hourly keeps multiples of $5,000 only; each of the 88 removed salaries goes to the nearest kept one.
+      // hourly-to-salary keeps whole dollars only; each of the 85 half-dollar and cent slugs goes to the whole dollar below.
+      // Both forms of each URL (with and without the trailing slash) are listed.
+      {
+        "source": "/salary-to-hourly/41000",
+        "destination": "/salary-to-hourly/40000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/41000/",
+        "destination": "/salary-to-hourly/40000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/42000",
+        "destination": "/salary-to-hourly/40000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/42000/",
+        "destination": "/salary-to-hourly/40000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/43000",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/43000/",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/44000",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/44000/",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/46000",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/46000/",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/47000",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/47000/",
+        "destination": "/salary-to-hourly/45000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/48000",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/48000/",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/49000",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/49000/",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/51000",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/51000/",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/52000",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/52000/",
+        "destination": "/salary-to-hourly/50000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/53000",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/53000/",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/54000",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/54000/",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/56000",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/56000/",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/57000",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/57000/",
+        "destination": "/salary-to-hourly/55000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/58000",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/58000/",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/59000",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/59000/",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/61000",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/61000/",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/62000",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/62000/",
+        "destination": "/salary-to-hourly/60000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/63000",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/63000/",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/64000",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/64000/",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/66000",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/66000/",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/67000",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/67000/",
+        "destination": "/salary-to-hourly/65000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/68000",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/68000/",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/69000",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/69000/",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/71000",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/71000/",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/72000",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/72000/",
+        "destination": "/salary-to-hourly/70000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/73000",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/73000/",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/74000",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/74000/",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/76000",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/76000/",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/77000",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/77000/",
+        "destination": "/salary-to-hourly/75000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/78000",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/78000/",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/79000",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/79000/",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/81000",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/81000/",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/82000",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/82000/",
+        "destination": "/salary-to-hourly/80000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/83000",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/83000/",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/84000",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/84000/",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/86000",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/86000/",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/87000",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/87000/",
+        "destination": "/salary-to-hourly/85000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/88000",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/88000/",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/89000",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/89000/",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/91000",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/91000/",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/92000",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/92000/",
+        "destination": "/salary-to-hourly/90000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/93000",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/93000/",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/94000",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/94000/",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/96000",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/96000/",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/97000",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/97000/",
+        "destination": "/salary-to-hourly/95000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/98000",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/98000/",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/99000",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/99000/",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/101000",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/101000/",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/102000",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/102000/",
+        "destination": "/salary-to-hourly/100000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/103000",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/103000/",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/104000",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/104000/",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/106000",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/106000/",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/107000",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/107000/",
+        "destination": "/salary-to-hourly/105000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/108000",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/108000/",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/109000",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/109000/",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/111000",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/111000/",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/112000",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/112000/",
+        "destination": "/salary-to-hourly/110000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/113000",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/113000/",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/114000",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/114000/",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/116000",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/116000/",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/117000",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/117000/",
+        "destination": "/salary-to-hourly/115000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/118000",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/118000/",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/119000",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/119000/",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/121000",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/121000/",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/122000",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/122000/",
+        "destination": "/salary-to-hourly/120000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/123000",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/123000/",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/124000",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/124000/",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/126000",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/126000/",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/127000",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/127000/",
+        "destination": "/salary-to-hourly/125000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/128000",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/128000/",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/129000",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/129000/",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/131000",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/131000/",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/132000",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/132000/",
+        "destination": "/salary-to-hourly/130000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/133000",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/133000/",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/134000",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/134000/",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/136000",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/136000/",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/137000",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/137000/",
+        "destination": "/salary-to-hourly/135000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/138000",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/138000/",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/139000",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/139000/",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/141000",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/141000/",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/142000",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/142000/",
+        "destination": "/salary-to-hourly/140000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/143000",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/143000/",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/144000",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/144000/",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/146000",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/146000/",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/147000",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/147000/",
+        "destination": "/salary-to-hourly/145000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/148000",
+        "destination": "/salary-to-hourly/150000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/148000/",
+        "destination": "/salary-to-hourly/150000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/149000",
+        "destination": "/salary-to-hourly/150000/",
+        "type": 301
+      },
+      {
+        "source": "/salary-to-hourly/149000/",
+        "destination": "/salary-to-hourly/150000/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/20-5",
+        "destination": "/hourly-to-salary/20/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/20-5/",
+        "destination": "/hourly-to-salary/20/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/21-5",
+        "destination": "/hourly-to-salary/21/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/21-5/",
+        "destination": "/hourly-to-salary/21/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/22-5",
+        "destination": "/hourly-to-salary/22/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/22-5/",
+        "destination": "/hourly-to-salary/22/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/23-5",
+        "destination": "/hourly-to-salary/23/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/23-5/",
+        "destination": "/hourly-to-salary/23/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/24-5",
+        "destination": "/hourly-to-salary/24/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/24-5/",
+        "destination": "/hourly-to-salary/24/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/24-95",
+        "destination": "/hourly-to-salary/24/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/24-95/",
+        "destination": "/hourly-to-salary/24/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/25-5",
+        "destination": "/hourly-to-salary/25/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/25-5/",
+        "destination": "/hourly-to-salary/25/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/25-74",
+        "destination": "/hourly-to-salary/25/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/25-74/",
+        "destination": "/hourly-to-salary/25/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/26-44",
+        "destination": "/hourly-to-salary/26/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/26-44/",
+        "destination": "/hourly-to-salary/26/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/26-5",
+        "destination": "/hourly-to-salary/26/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/26-5/",
+        "destination": "/hourly-to-salary/26/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-08",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-08/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-28",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-28/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-5",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-5/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-55",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-55/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-81",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-81/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-97",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/27-97/",
+        "destination": "/hourly-to-salary/27/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-44",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-44/",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-45",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-45/",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-5",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-5/",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-86",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-86/",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-89",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/28-89/",
+        "destination": "/hourly-to-salary/28/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-06",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-06/",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-45",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-45/",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-5",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/29-5/",
+        "destination": "/hourly-to-salary/29/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-36",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-36/",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-5",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-5/",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-66",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/30-66/",
+        "destination": "/hourly-to-salary/30/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-11",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-11/",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-3",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-3/",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-5",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/31-5/",
+        "destination": "/hourly-to-salary/31/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-13",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-13/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-19",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-19/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-5",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-5/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-61",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-61/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-67",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-67/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-77",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/32-77/",
+        "destination": "/hourly-to-salary/32/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-05",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-05/",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-5",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-5/",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-99",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/33-99/",
+        "destination": "/hourly-to-salary/33/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-42",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-42/",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-45",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-45/",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-5",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/34-5/",
+        "destination": "/hourly-to-salary/34/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/35-5",
+        "destination": "/hourly-to-salary/35/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/35-5/",
+        "destination": "/hourly-to-salary/35/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/35-81",
+        "destination": "/hourly-to-salary/35/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/35-81/",
+        "destination": "/hourly-to-salary/35/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-22",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-22/",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-23",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-23/",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-5",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/36-5/",
+        "destination": "/hourly-to-salary/36/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-36",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-36/",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-5",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-5/",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-68",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/37-68/",
+        "destination": "/hourly-to-salary/37/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/38-5",
+        "destination": "/hourly-to-salary/38/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/38-5/",
+        "destination": "/hourly-to-salary/38/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-13",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-13/",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-5",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-5/",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-53",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/39-53/",
+        "destination": "/hourly-to-salary/39/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-49",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-49/",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-5",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-5/",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-58",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/40-58/",
+        "destination": "/hourly-to-salary/40/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/41-5",
+        "destination": "/hourly-to-salary/41/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/41-5/",
+        "destination": "/hourly-to-salary/41/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/41-66",
+        "destination": "/hourly-to-salary/41/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/41-66/",
+        "destination": "/hourly-to-salary/41/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/42-5",
+        "destination": "/hourly-to-salary/42/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/42-5/",
+        "destination": "/hourly-to-salary/42/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/42-55",
+        "destination": "/hourly-to-salary/42/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/42-55/",
+        "destination": "/hourly-to-salary/42/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/43-42",
+        "destination": "/hourly-to-salary/43/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/43-42/",
+        "destination": "/hourly-to-salary/43/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/43-5",
+        "destination": "/hourly-to-salary/43/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/43-5/",
+        "destination": "/hourly-to-salary/43/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/44-5",
+        "destination": "/hourly-to-salary/44/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/44-5/",
+        "destination": "/hourly-to-salary/44/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/45-5",
+        "destination": "/hourly-to-salary/45/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/45-5/",
+        "destination": "/hourly-to-salary/45/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/46-5",
+        "destination": "/hourly-to-salary/46/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/46-5/",
+        "destination": "/hourly-to-salary/46/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/46-7",
+        "destination": "/hourly-to-salary/46/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/46-7/",
+        "destination": "/hourly-to-salary/46/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/47-5",
+        "destination": "/hourly-to-salary/47/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/47-5/",
+        "destination": "/hourly-to-salary/47/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/47-92",
+        "destination": "/hourly-to-salary/47/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/47-92/",
+        "destination": "/hourly-to-salary/47/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/48-5",
+        "destination": "/hourly-to-salary/48/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/48-5/",
+        "destination": "/hourly-to-salary/48/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/49-16",
+        "destination": "/hourly-to-salary/49/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/49-16/",
+        "destination": "/hourly-to-salary/49/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/49-5",
+        "destination": "/hourly-to-salary/49/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/49-5/",
+        "destination": "/hourly-to-salary/49/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/50-25",
+        "destination": "/hourly-to-salary/50/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/50-25/",
+        "destination": "/hourly-to-salary/50/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/53-43",
+        "destination": "/hourly-to-salary/53/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/53-43/",
+        "destination": "/hourly-to-salary/53/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/54-58",
+        "destination": "/hourly-to-salary/54/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/54-58/",
+        "destination": "/hourly-to-salary/54/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/55-85",
+        "destination": "/hourly-to-salary/55/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/55-85/",
+        "destination": "/hourly-to-salary/55/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/58-37",
+        "destination": "/hourly-to-salary/58/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/58-37/",
+        "destination": "/hourly-to-salary/58/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/59-66",
+        "destination": "/hourly-to-salary/59/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/59-66/",
+        "destination": "/hourly-to-salary/59/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/60-95",
+        "destination": "/hourly-to-salary/60/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/60-95/",
+        "destination": "/hourly-to-salary/60/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/63-13",
+        "destination": "/hourly-to-salary/63/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/63-13/",
+        "destination": "/hourly-to-salary/63/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/64-46",
+        "destination": "/hourly-to-salary/64/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/64-46/",
+        "destination": "/hourly-to-salary/64/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/65-77",
+        "destination": "/hourly-to-salary/65/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/65-77/",
+        "destination": "/hourly-to-salary/65/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/68-49",
+        "destination": "/hourly-to-salary/68/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/68-49/",
+        "destination": "/hourly-to-salary/68/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/69-84",
+        "destination": "/hourly-to-salary/69/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/69-84/",
+        "destination": "/hourly-to-salary/69/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/71-19",
+        "destination": "/hourly-to-salary/71/",
+        "type": 301
+      },
+      {
+        "source": "/hourly-to-salary/71-19/",
+        "destination": "/hourly-to-salary/71/",
+        "type": 301
       }
+      // --- end 10 Oct 2026 salary-to-hourly / hourly-to-salary prune ---
     ],
     "headers": [
       {

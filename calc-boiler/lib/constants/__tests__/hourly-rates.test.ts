@@ -5,9 +5,9 @@
 //
 // The list drives generateStaticParams for /hourly-to-salary/[rate]/, the
 // sitemap, the site directory and the hub's link table, so it has to be one
-// list in one place. These tests pin the three things GSC showed people
-// actually search: every whole dollar from $20 to $100, the half-dollars in
-// the award band, and the exact cent-level award/NMW rates ($26.44, $29.45).
+// list in one place. Since the 10 Oct 2026 prune it is every whole dollar from
+// $20 to $100 and nothing else: half-dollar and cent-level pages 301 to the
+// whole dollar below. The NMW and award notes still resolve for exact rates.
 // =============================================================================
 
 import { test } from "node:test";
@@ -43,23 +43,22 @@ test("every whole dollar from the floor to the ceiling has a page", () => {
   }
 });
 
-test("half-dollar rates exist across the award band", () => {
-  for (const r of [20.5, 34.5, 36.5, 37.5, 49.5]) {
-    assert.ok(HOURLY_RATE_PAGES.includes(r), `$${r} missing`);
+test("only whole dollars are pages (half-dollar and cent-level pages were pruned)", () => {
+  assert.equal(HOURLY_RATE_PAGES.length, HOURLY_RATE_MAX - HOURLY_RATE_MIN + 1);
+  for (const r of HOURLY_RATE_PAGES) assert.ok(Number.isInteger(r), `$${r} is not a whole dollar`);
+  for (const r of [20.5, 37.5, 49.5, 26.44, 29.45]) {
+    assert.ok(!HOURLY_RATE_PAGES.includes(r), `$${r} should redirect, not be a page`);
   }
 });
 
-test("the national minimum wage and its casual rate are pages, with notes", () => {
+test("the national minimum wage still carries its notes (no page of its own)", () => {
   const nmw = EMPLOYMENT.minimumWageHourly;
-  assert.ok(HOURLY_RATE_PAGES.includes(nmw));
+  assert.ok(!HOURLY_RATE_PAGES.includes(nmw));
   assert.ok(notesForRate(nmw).some((n) => /minimum wage/i.test(n.classification)));
-  const casual = Math.round(nmw * 1.25 * 100) / 100;
-  assert.ok(HOURLY_RATE_PAGES.includes(casual), `casual NMW ${casual} missing`);
 });
 
-test("award hourly rates from the verified constants are pages, with notes", () => {
+test("award hourly rates from the verified constants still carry notes", () => {
   // Hospitality Level 4, Retail Level 4, SCHADS L1 pp3 and Home Care L3 pp1 all pay $29.45.
-  assert.ok(HOURLY_RATE_PAGES.includes(29.45));
   const notes = notesForRate(29.45);
   assert.ok(notes.length >= 3, `expected several awards at $29.45, got ${notes.length}`);
   assert.ok(notes.some((n) => n.code === "MA000009"));
@@ -76,6 +75,7 @@ test("slugs round-trip and never contain a dot (Next drops the trailing slash on
     assert.ok(!slug.includes("."), `slug ${slug} contains a dot`);
     assert.ok(!slug.startsWith("$"));
   }
+  // Still used for the redirected slugs' parsing.
   assert.equal(hourlyRateSlug(37.5), "37-5");
   assert.equal(hourlyRateSlug(26.44), "26-44");
   assert.equal(hourlyRateSlug(30), "30");

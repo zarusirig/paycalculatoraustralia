@@ -47,7 +47,7 @@ test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
   assert.ok(!TAKE_HOME_SALARIES.includes(151_000));
   assert.equal(TAKE_HOME_SALARIES.length, 4 + 111 + 10 + HIGH_SALARY_TAIL.length);
   assert.equal(TAKE_HOME_SALARIES[TAKE_HOME_SALARIES.length - 1], 500_000);
-  assert.ok(SALARY_TO_HOURLY_SALARIES.includes(72_000));
+  assert.ok(SALARY_TO_HOURLY_SALARIES.includes(75_000));
   assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(25_000));
 });
 

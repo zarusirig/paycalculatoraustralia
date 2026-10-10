@@ -57,14 +57,23 @@ export const TAKE_HOME_SALARIES: readonly number[] = [
 export const TAX_ON_SALARIES: readonly number[] = TAKE_HOME_SALARIES;
 
 /**
- * /salary-to-hourly/ — the take-home grid from $40k up, plus the long-standing
- * $30,000 page. (No $20k/$25k/$35k: those were never hourly pages and a
- * sub-$40k annual salary is almost always a part-time figure, where a 38-hour
- * conversion misleads.)
+ * /salary-to-hourly/ — multiples of $5,000 only: $30,000, then $40k–$200k in
+ * $5k steps, $10k steps to $300k, then $350k, $400k and $500k (47 pages).
+ *
+ * Pruned 10 Oct 2026 from the $1k take-home grid (135 pages): neighbouring
+ * $1k pages were identical apart from the numbers. Each removed URL 301s to
+ * the nearest kept salary (firebase.json). Declared on its own, not filtered
+ * from TAKE_HOME_SALARIES, so a change to that grid cannot add or drop pages
+ * here. (No $20k/$25k/$35k: a sub-$40k annual salary is almost always a
+ * part-time figure, where a 38-hour conversion misleads.)
  */
 export const SALARY_TO_HOURLY_SALARIES: readonly number[] = [
   30_000,
-  ...TAKE_HOME_SALARIES.filter((s) => s >= 40_000),
+  ...range(40_000, 200_000, 5_000),
+  ...range(210_000, 300_000, 10_000),
+  350_000,
+  400_000,
+  500_000,
 ];
 
 export type SalaryFamily = "take-home" | "tax-on" | "salary-to-hourly";

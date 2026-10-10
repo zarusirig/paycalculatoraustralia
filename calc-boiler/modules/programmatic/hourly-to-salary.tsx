@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HOURLY_RATE_PAGES, hourlyRateFromSlug, hourlyRateSlug, notesForRate } from "@/lib/constants/hourly-rates";
+import { HOURLY_RATE_PAGES, hourlyRateFromSlug, hourlyRateSlug } from "@/lib/constants/hourly-rates";
 // G5: after-tax section, prev/next links and band notes
 import {
   AFTER_TAX_PART_TIME_HOURS,
@@ -9,7 +9,7 @@ import {
   type HourlyAfterTax,
 } from "@/lib/constants/hourly-rates";
 import { hubHref, salaryFacts } from "@/lib/data/salary-pages";
-import { SalaryBandNotes } from "@/modules/programmatic/salary-page-sections";
+import { EarningsPosition, SalaryBandNotes } from "@/modules/programmatic/salary-page-sections";
 import {
   calculatePayBreakdown,
   formatAUD,
@@ -20,9 +20,17 @@ import {
   SUPER_GUARANTEE,
 } from "@/lib/constants/australian-tax";
 import { nearestSalary } from "@/lib/data/salary-pages";
+import { NMW, NMW_DECISION } from "@/lib/constants/minimum-wage";
+import { CASUAL_LOADING } from "@/lib/constants/junior-rates";
+import { awardRatesNear } from "@/lib/data/award-rate-index";
+import {
+  AwardRatesNearSection,
+  awardRatesFaqAnswer,
+  awardRatesHeading,
+} from "@/modules/programmatic/award-rates-near";
+import type { FaqItem } from "@/lib/faq";
 import FeaturedImage from "@/components/common/featured-image";
 
-const HOURS_PER_YEAR: number = EMPLOYMENT.hoursPerYear;
 const WEEKS: number = EMPLOYMENT.weeksPerYear;
 // Widened from the `as const` literal 38 so it can be used as a default
 // parameter that callers may override with other hours-per-week values.
@@ -32,10 +40,9 @@ const STANDARD_HOURS: number = EMPLOYMENT.standardWeeklyHours;
 const HOURS_VARIANTS = [20, 25, 30, 35, 38, 40, 45, 50];
 
 /**
- * The rate inventory lives in lib/constants/hourly-rates.ts (whole dollars
- * $20–$100, half-dollars across the award band, plus every NMW and verified
- * award hourly rate). It is re-exported here under the name the routes,
- * sitemap and site directory already import.
+ * The rate inventory lives in lib/constants/hourly-rates.ts (every whole
+ * dollar $20–$100 since the 10 Oct 2026 prune). It is re-exported here under
+ * the name the routes, sitemap and site directory already import.
  */
 export const ALL_RATES: readonly number[] = HOURLY_RATE_PAGES;
 export { hourlyRateSlug, hourlyRateFromSlug };
@@ -44,112 +51,45 @@ export function annualFromHourly(hourly: number, hoursPerWeek = STANDARD_HOURS):
   return hourly * hoursPerWeek * WEEKS;
 }
 
+const H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+const LINK = "text-eucalyptus-dark hover:underline";
+
+/** "$35" for whole-dollar rates, "$26.44" otherwise. */
+function perHourLabel(r: number): string {
+  return Number.isInteger(r) ? formatAUD(r) : formatAUD(r, 2);
+}
+
+const pct0 = (v: number) => `${Math.round(v * 100)}%`;
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
 interface HourlyToSalaryProps {
   rate: number;
 }
 
 export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   const gross = annualFromHourly(rate);
-  // No HECS in the headline figures (the page title quotes them, and "after
-  // tax" is asked for someone without a study loan); the loan case is noted.
-  const breakdown = calculatePayBreakdown({ grossSalary: gross });
-  const withHecs = calculatePayBreakdown({ grossSalary: gross, includeHECS: true });
-  const net = breakdown.takeHomePay;
-  const netHourly = net / HOURS_PER_YEAR;
-  const casual = rate * (1 + EMPLOYMENT.casualLoading);
-  const aboveMinimum = rate - EMPLOYMENT.minimumWageHourly;
-  const awardNotes = notesForRate(rate);
+  const label = perHourLabel(rate);
 
-  const neighbours = ALL_RATES.filter((r) => r !== rate)
-    .sort((a, b) => Math.abs(a - rate) - Math.abs(b - rate))
-    .slice(0, 6)
-    .sort((a, b) => a - b);
-
+  // 10 Oct 2026: the separate "by pay period" table repeated the gross and
+  // take-home rows of the after-tax table, so the two were merged (a Day
+  // column was added there) and the award section moved up.
   return (
     <div className="max-w-4xl mx-auto space-y-12">
       <FeaturedImage className="mt-0 mb-12" />
-      {/* ── Answer table ── */}
-      <section>
-        <h2
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          className="text-2xl font-bold text-navy mb-4"
-        >
-          {formatAUD(rate, 2)} an Hour Is How Much a Year?
-        </h2>
-        <p className="text-warmgray mb-4">
-          At {formatAUD(rate, 2)} an hour on a {STANDARD_HOURS}-hour week, you earn{" "}
-          <strong className="text-navy">{formatAUD(gross)}</strong> a year before tax and{" "}
-          <strong className="text-navy">{formatAUD(net)}</strong> after tax — about{" "}
-          {formatAUD(netHourly, 2)} an hour in the hand.
-        </p>
-
-        <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
-          <table className="w-full text-sm text-left text-warmgray">
-            <thead className="bg-sandstone font-semibold text-navy">
-              <tr>
-                <th className="px-5 py-3">Period</th>
-                <th className="px-5 py-3 text-right">Gross</th>
-                <th className="px-5 py-3 text-right">After tax</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-              <tr>
-                <td className="px-5 py-3 font-medium">Hourly</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(rate, 2)}</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(netHourly, 2)}</td>
-              </tr>
-              <tr className="bg-eucalyptus-light/30">
-                <td className="px-5 py-3 font-medium">Daily ({STANDARD_HOURS / 5} hrs)</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(rate * (STANDARD_HOURS / 5), 2)}</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(breakdown.daily, 2)}</td>
-              </tr>
-              <tr>
-                <td className="px-5 py-3 font-medium">Weekly</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(rate * STANDARD_HOURS, 2)}</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(breakdown.weekly, 2)}</td>
-              </tr>
-              <tr className="bg-eucalyptus-light/30">
-                <td className="px-5 py-3 font-medium">Fortnightly</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(rate * STANDARD_HOURS * 2, 2)}</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(breakdown.fortnightly, 2)}</td>
-              </tr>
-              <tr>
-                <td className="px-5 py-3 font-medium">Monthly</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(gross / 12, 2)}</td>
-                <td className="px-5 py-3 text-right tabular-nums">{formatAUD(breakdown.monthly, 2)}</td>
-              </tr>
-              <tr className="bg-eucalyptus-light/30">
-                <td className="px-5 py-3 font-medium">Annual</td>
-                <td className="px-5 py-3 text-right font-bold tabular-nums text-navy">{formatAUD(gross)}</td>
-                <td className="px-5 py-3 text-right font-bold tabular-nums text-navy">{formatAUD(net)}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p className="text-xs text-warmgray-light mt-2">
-          Based on {STANDARD_HOURS} hours a week over {WEEKS} weeks ({HOURS_PER_YEAR.toLocaleString()} hours a
-          year), FY{SITE_CONFIG.financialYear} resident rates including the Medicare levy, with no HECS-HELP debt.
-          {withHecs.hecsRepayment > 0
-            ? ` With a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} brings the annual figure to ${formatAUD(withHecs.takeHomePay)}.`
-            : ""}
-        </p>
-      </section>
-
-      {/* ── G5: after-tax breakdown ── */}
+      {/* ── G5: after-tax breakdown (the answer table) ── */}
       <HourlyAfterTaxSection rate={rate} />
+
+      {/* ── Award minimums near this rate (10 Oct 2026) ── */}
+      <HourlyAwardSection rate={rate} />
+
+      {/* ── G5: part-time and casual after tax, and what applies at this income ── */}
+      <HourlyPartTimeSection rate={rate} />
 
       {/* ── Hours variants ── */}
       <section>
-        <h2
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          className="text-2xl font-bold text-navy mb-4"
-        >
-          {formatAUD(rate, 2)} an Hour by Hours Worked
+        <h2 style={H2} className="text-2xl font-bold text-navy mb-4">
+          {label} an Hour by Hours Worked
         </h2>
-        <p className="text-warmgray mb-4">
-          Most people searching this do not work a standard week. Part-time, casual and shift
-          workers can read their own figure off this table.
-        </p>
         <div className="overflow-hidden rounded-xl border border-sandstone-dark/20 shadow-sm">
           <table className="w-full text-sm text-left text-warmgray">
             <thead className="bg-sandstone font-semibold text-navy">
@@ -182,183 +122,15 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
         </div>
       </section>
 
-      {/* ── Context ── */}
-      <section>
-        <h2
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          className="text-2xl font-bold text-navy mb-4"
-        >
-          Is {formatAUD(rate, 2)} an Hour Good Pay in Australia?
-        </h2>
-        <div className="grid sm:grid-cols-3 gap-4 mb-4">
-          <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
-            <div className="text-xs uppercase tracking-wider text-ochre font-semibold mb-1">
-              vs minimum wage
-            </div>
-            <div className="text-2xl font-extrabold text-navy">
-              {aboveMinimum >= 0 ? "+" : ""}
-              {formatAUD(aboveMinimum, 2)}
-            </div>
-            <div className="text-xs text-warmgray mt-1">
-              National minimum is {formatAUD(EMPLOYMENT.minimumWageHourly, 2)} an hour
-            </div>
-          </div>
-          <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
-            <div className="text-xs uppercase tracking-wider text-ochre font-semibold mb-1">
-              As a casual
-            </div>
-            <div className="text-2xl font-extrabold text-navy">{formatAUD(casual, 2)}</div>
-            <div className="text-xs text-warmgray mt-1">
-              With the {formatPercent(EMPLOYMENT.casualLoading, 0)} casual loading
-            </div>
-          </div>
-          <div className="rounded-xl border border-sandstone-dark/20 bg-white p-5">
-            <div className="text-xs uppercase tracking-wider text-ochre font-semibold mb-1">
-              Super on top
-            </div>
-            <div className="text-2xl font-extrabold text-navy">
-              {formatAUD(gross * SUPER_GUARANTEE.rate)}
-            </div>
-            <div className="text-xs text-warmgray mt-1">
-              {formatPercent(SUPER_GUARANTEE.rate, 0)} guarantee, paid on top of your wage
-            </div>
-          </div>
-        </div>
-        <p className="text-warmgray">
-          {aboveMinimum >= 0 ? (
-            <>
-              {formatAUD(rate, 2)} an hour is {formatAUD(aboveMinimum, 2)} above the national
-              minimum wage of {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}. Your effective tax rate
-              at {formatAUD(gross)} is {formatPercent(breakdown.effectiveTaxRate)}, with a marginal
-              rate of {formatPercent(breakdown.marginalTaxRate, 0)} on your next dollar.
-            </>
-          ) : (
-            <>
-              {formatAUD(rate, 2)} an hour is below the national minimum wage of{" "}
-              {formatAUD(EMPLOYMENT.minimumWageHourly, 2)}. Unless you are a junior, an apprentice,
-              or on a supported wage, this may be an underpayment — check your{" "}
-              <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">
-                award rate
-              </Link>
-              .
-            </>
-          )}{" "}
-          Casual employees receive the {formatPercent(EMPLOYMENT.casualLoading, 0)} loading instead
-          of paid leave, so {formatAUD(casual, 2)} an hour casual is not the same as{" "}
-          {formatAUD(casual, 2)} permanent.
-        </p>
-      </section>
-
-
-      {/* ── Who is paid exactly this rate ── */}
-      {awardNotes.length > 0 && (
-        <section>
-          <h2
-            style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-            className="text-2xl font-bold text-navy mb-4"
-          >
-            Who Is Paid {formatAUD(rate, 2)} an Hour?
-          </h2>
-          <p className="text-warmgray mb-3">
-            {formatAUD(rate, 2)} is not a round number by accident — it is a published minimum
-            rate. On a {STANDARD_HOURS}-hour week it is {formatAUD(rate * STANDARD_HOURS, 2)} a
-            week, which is the figure the Fair Work Commission sets; the hourly rate is that
-            weekly amount divided by {STANDARD_HOURS}.
-          </p>
-          <ul className="space-y-2 text-warmgray">
-            {awardNotes.map((n) => (
-              <li key={`${n.code}-${n.classification}`}>
-                <Link href={n.href} className="text-eucalyptus-dark hover:underline">
-                  {n.award}
-                </Link>
-                {n.code !== "NMW" ? ` (${n.code})` : ""} — {n.classification}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* ── Sibling mesh ── */}
-      <section>
-        <h2
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          className="text-2xl font-bold text-navy mb-6"
-        >
-          Other Hourly Rates
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {neighbours.map((r) => (
-            <Link
-              key={r}
-              href={`/hourly-to-salary/${hourlyRateSlug(r)}/`}
-              className="rounded-lg border border-sandstone-dark/20 bg-white p-4 hover:border-eucalyptus hover:shadow-sm transition-all"
-            >
-              <div className="font-semibold text-navy">{formatAUD(r, 2)} an hour</div>
-              <div className="text-xs text-warmgray mt-1">
-                {formatAUD(annualFromHourly(r))} a year
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ── G5: prev / next rate and the salary hubs ── */}
-      <RateNav rate={rate} />
-
-      {/* ── Related ── */}
-      <section>
-        <h2
-          style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
-          className="text-2xl font-bold text-navy mb-4"
-        >
-          Related Calculators
-        </h2>
-        <ul className="space-y-2 text-warmgray">
-          <li>
-            <Link href="/hourly-to-annual-salary-calculator/" className="text-eucalyptus-dark hover:underline">
-              Hourly to Annual Salary Calculator
-            </Link>{" "}
-            — any rate and any number of hours
-          </li>
-          <li>
-            <Link href={`/salary-to-hourly/${roundToSalaryStep(gross)}/`} className="text-eucalyptus-dark hover:underline">
-              {formatAUD(roundToSalaryStep(gross))} salary to hourly rate
-            </Link>{" "}
-            — the same conversion in reverse
-          </li>
-          <li>
-            <Link href={`/take-home-pay-on/${roundToTakeHomeStep(gross)}/`} className="text-eucalyptus-dark hover:underline">
-              Take-home pay on {formatAUD(roundToTakeHomeStep(gross))}
-            </Link>{" "}
-            — the nearest annual salary, broken down per week and fortnight
-          </li>
-          <li>
-            <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline">
-              Take-Home Pay Calculator
-            </Link>{" "}
-            — net pay after tax, super and HECS-HELP
-          </li>
-          <li>
-            <Link href="/overtime-pay-calculator/" className="text-eucalyptus-dark hover:underline">
-              Overtime &amp; Penalty Rates Calculator
-            </Link>{" "}
-            — time-and-a-half, double time and weekend loadings
-          </li>
-          <li>
-            <Link href="/award-rates/" className="text-eucalyptus-dark hover:underline">
-              Award Rates
-            </Link>{" "}
-            — check the legal minimum for your classification
-          </li>
-        </ul>
-      </section>
+      {/* ── G5: prev / next rate, the reverse pages and the salary hubs ── */}
+      <RateNav rate={rate} gross={gross} />
     </div>
   );
 }
 
 /**
  * Nearest salary that has a /salary-to-hourly/ page, for the reverse link.
- * Reads the shared grid in lib/data/salary-pages ($1k steps from $40k).
+ * Reads the shared grid in lib/data/salary-pages ($5k steps since 10 Oct 2026).
  */
 export function roundToSalaryStep(salary: number): number {
   return nearestSalary("salary-to-hourly", salary);
@@ -370,6 +142,68 @@ export function roundToTakeHomeStep(salary: number): number {
 }
 
 // =============================================================================
+// Award minimums near the rate (10 Oct 2026). Rows from
+// lib/data/award-rate-index.ts; the minimum wage from lib/constants/minimum-wage.ts.
+// =============================================================================
+
+/** The FAQ entry that goes with the award section (same text, so JSON-LD and page agree). */
+export function hourlyAwardFaq(rate: number): FaqItem {
+  const label = perHourLabel(rate);
+  return {
+    q: `Which award jobs have a minimum rate of about ${label} an hour?`,
+    a: awardRatesFaqAnswer(awardRatesNear(rate), label),
+  };
+}
+
+function HourlyAwardSection({ rate }: { rate: number }) {
+  const label = perHourLabel(rate);
+  const near = awardRatesNear(rate);
+  const vsNmw = round2(rate - NMW.hourly);
+  const casual = round2(rate * (1 + CASUAL_LOADING));
+  const nmw = formatAUD(NMW.hourly, 2);
+  return (
+    <AwardRatesNearSection
+      id="award-rates"
+      heading={awardRatesHeading(near, label, "jobs")}
+      label={label}
+      near={near}
+      showCasual
+      intro={
+        <>
+        <p>
+          {vsNmw >= 0 ? (
+            <>
+              {label} an hour is {formatAUD(vsNmw, 2)} ({pct0(vsNmw / NMW.hourly)}) above the{" "}
+              <Link href="/minimum-wage-australia/" className={LINK}>
+                national minimum wage
+              </Link>{" "}
+              of {nmw} an hour, the adult rate from {NMW_DECISION.operativeFrom} ({NMW_DECISION.name},{" "}
+              {NMW_DECISION.citation}).
+            </>
+          ) : (
+            <>
+              {label} an hour is {formatAUD(-vsNmw, 2)} below the{" "}
+              <Link href="/minimum-wage-australia/" className={LINK}>
+                national minimum wage
+              </Link>{" "}
+              of {nmw} an hour that has applied to adults since {NMW_DECISION.operativeFrom}. Below that, check
+              whether you are on an award entry rate (the lowest is listed below), a{" "}
+              <Link href="/junior-pay-rates/" className={LINK}>
+                junior
+              </Link>
+              , apprentice or trainee rate, or the supported wage; otherwise it may be an underpayment.
+            </>
+          )}{" "}
+          As a casual, the {pct0(CASUAL_LOADING)} loading makes the same base rate {formatAUD(casual, 2)} an hour.
+        </p>
+        <EarningsPosition salary={annualFromHourly(rate)} />
+        </>
+      }
+    />
+  );
+}
+
+// =============================================================================
 // G5 — "$N an hour after tax" section and prev/next rate links.
 //
 // The after-tax phrasing gets ~170 searches a month across $20–$80 and Google
@@ -378,75 +212,50 @@ export function roundToTakeHomeStep(salary: number): number {
 // (docs/seo/2026-09-24-hourly-after-tax-demand.md).
 // =============================================================================
 
-const G5_H2 = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
-const G5_LINK = "text-eucalyptus-dark hover:underline";
-
-function perHourLabel(r: number): string {
-  return Number.isInteger(r) ? formatAUD(r) : formatAUD(r, 2);
-}
-
-const pct0 = (v: number) => `${Math.round(v * 100)}%`;
-
 function HourlyAfterTaxSection({ rate }: { rate: number }) {
   const ft = hourlyAfterTax(rate);
-  const partTime = AFTER_TAX_PART_TIME_HOURS.map((h) => hourlyAfterTax(rate, h));
-  const casual = casualAfterTax(rate);
   const hoursYear = ft.hoursPerWeek * WEEKS;
-  const taxShare = (ft.incomeTax + ft.medicareLevy) / ft.grossAnnual;
+  const label = perHourLabel(rate);
+  // Effective and marginal rates and the HECS-HELP case, from the same engine.
+  const breakdown = calculatePayBreakdown({ grossSalary: ft.grossAnnual });
+  const withHecs = calculatePayBreakdown({ grossSalary: ft.grossAnnual, includeHECS: true });
 
-  // Lines of the full-time breakdown, each shown per hour / week / fortnight / month / year.
+  // Lines of the full-time breakdown, each shown per hour / day / week / fortnight / month / year.
   const lines: { label: string; annual: number; strong?: boolean }[] = [
     { label: "Gross pay", annual: ft.grossAnnual },
     { label: "Income tax (after LITO)", annual: -ft.incomeTax },
     { label: "Medicare levy", annual: -ft.medicareLevy },
     { label: "Take-home pay", annual: ft.takeHomeAnnual, strong: true },
   ];
-  const per = (annual: number) => [annual / hoursYear, annual / WEEKS, annual / (WEEKS / 2), annual / 12, annual];
-  const cell = (v: number) => (v < 0 ? formatNegAUD(-v, 2, "−") : formatAUD(v, 2));
-
-  // Part-time copy branches on what actually happens to the tax at 25 hours.
-  const pt25 = partTime[partTime.length - 1];
-  const grossCut = 1 - pt25.grossAnnual / ft.grossAnnual;
-  const netCut = 1 - pt25.takeHomeAnnual / ft.takeHomeAnnual;
-  const pt25Tax = pt25.incomeTax + pt25.medicareLevy;
-  // Name the actual reason: a lower top bracket, or (same bracket) the
-  // tax-free threshold and offsets covering more of a smaller income.
-  const ftFacts = salaryFacts(Math.round(ft.grossAnnual));
-  const ptFacts = salaryFacts(Math.round(pt25.grossAnnual));
-  const netCutReason =
-    ptFacts.bracketIndex < ftFacts.bracketIndex
-      ? `because the part-time income (${formatAUD(pt25.grossAnnual)}) tops out in the ${formatPercent(ptFacts.bracketRate, 0)} bracket and no longer reaches the ${formatPercent(ftFacts.bracketRate, 0)} rate`
-      : `because the tax-free threshold${ptFacts.breakdown.litoOffset > 0 ? " and the Low Income Tax Offset cover" : " covers"} a bigger share of the smaller income (both sit in the ${formatPercent(ftFacts.bracketRate, 0)} bracket)`;
-
-  const casualExtraWeek = casual.perWeek - ft.perWeek;
-  const rows: { label: string; f: HourlyAfterTax; note?: string }[] = [
-    { label: `Full time (${ft.hoursPerWeek} hrs)`, f: ft },
-    ...partTime.map((p) => ({ label: `Part time (${p.hoursPerWeek} hrs)`, f: p })),
-    {
-      label: `Casual (${ft.hoursPerWeek} hrs at ${formatAUD(casual.rate, 2)})`,
-      f: casual,
-      note: `${perHourLabel(rate)} base + ${formatPercent(EMPLOYMENT.casualLoading, 0)} loading`,
-    },
+  const per = (annual: number) => [
+    annual / hoursYear,
+    annual / (WEEKS * 5),
+    annual / WEEKS,
+    annual / (WEEKS / 2),
+    annual / 12,
+    annual,
   ];
+  const cell = (v: number) => (v < 0 ? formatNegAUD(-v, 2, "−") : formatAUD(v, 2));
 
   return (
     <section aria-labelledby="after-tax-heading">
-      <h2 id="after-tax-heading" style={G5_H2} className="text-2xl font-bold text-navy mb-4">
-        {perHourLabel(rate)} an Hour After Tax
+      <h2 id="after-tax-heading" style={H2} className="text-2xl font-bold text-navy mb-4">
+        {label} an Hour After Tax
       </h2>
       <p className="text-warmgray mb-4">
-        {perHourLabel(rate)} an hour after tax is{" "}
+        {label} an hour after tax is{" "}
         <strong className="text-navy">{formatAUD(ft.perWeek, 2)} a week</strong>,{" "}
         {formatAUD(ft.perFortnight, 2)} a fortnight, {formatAUD(ft.perMonth, 2)} a month and{" "}
         {formatAUD(ft.takeHomeAnnual)} a year on a {ft.hoursPerWeek}-hour week in {SITE_CONFIG.financialYear}.
-        You keep {formatAUD(ft.perHour, 2)} of every hour worked; {pct0(taxShare)} of gross pay goes to
-        income tax and the Medicare levy.
+        You keep {formatAUD(ft.perHour, 2)} of every hour worked. At {formatAUD(ft.grossAnnual)} a year the
+        effective tax rate is {formatPercent(breakdown.effectiveTaxRate)}, and the next dollar is taxed at{" "}
+        {formatPercent(breakdown.marginalTaxRate, 0)}.
       </p>
 
       <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
         <table className="w-full text-sm text-left text-warmgray">
           <caption className="sr-only">
-            {perHourLabel(rate)} an hour after tax per hour, week, fortnight, month and year
+            {label} an hour before and after tax per hour, day, week, fortnight, month and year
           </caption>
           <thead className="bg-sandstone font-semibold text-navy">
             <tr>
@@ -454,6 +263,7 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
                 {ft.hoursPerWeek} hrs a week
               </th>
               <th className="px-4 py-3 text-right" scope="col">Hour</th>
+              <th className="px-4 py-3 text-right" scope="col">Day</th>
               <th className="px-4 py-3 text-right" scope="col">Week</th>
               <th className="px-4 py-3 text-right" scope="col">Fortnight</th>
               <th className="px-4 py-3 text-right" scope="col">Month</th>
@@ -490,16 +300,56 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
         </table>
       </div>
       <p className="text-xs text-warmgray-light mt-2">
-        Resident rates for {SITE_CONFIG.financialYear}, tax-free threshold claimed, no HECS-HELP debt and no
-        Medicare Levy Surcharge. Super is the {formatPercent(SUPER_GUARANTEE.rate, 0)} Superannuation
-        Guarantee, which your employer pays on top of your wage rather than taking it out. Weekly and
-        fortnightly figures are the annual result spread evenly. The tax withheld from each pay follows the
-        ATO schedules and rounds a little differently, and the difference comes out in your tax return.
+        {SITE_CONFIG.financialYear} resident rates, tax-free threshold claimed, no Medicare Levy Surcharge; the{" "}
+        {formatPercent(SUPER_GUARANTEE.rate, 0)} super is paid on top.
+        {withHecs.hecsRepayment > 0
+          ? ` With a HECS-HELP debt, the compulsory repayment of ${formatAUD(withHecs.hecsRepayment)} brings the year to ${formatAUD(withHecs.takeHomePay)}.`
+          : " A HECS-HELP debt would not change these figures: the income is under the repayment threshold."}{" "}
+        Each pay&apos;s withholding follows the{" "}
+        <Link href="/payg-withholding-tables/" className={LINK}>
+          ATO tax tables
+        </Link>{" "}
+        and can differ by a few dollars.
       </p>
+    </section>
+  );
+}
 
-      <h3 style={G5_H2} className="text-xl font-bold text-navy mt-8 mb-3">
+function HourlyPartTimeSection({ rate }: { rate: number }) {
+  const ft = hourlyAfterTax(rate);
+  const partTime = AFTER_TAX_PART_TIME_HOURS.map((h) => hourlyAfterTax(rate, h));
+  const casual = casualAfterTax(rate);
+
+  // Part-time copy branches on what actually happens to the tax at 25 hours.
+  const pt25 = partTime[partTime.length - 1];
+  const grossCut = 1 - pt25.grossAnnual / ft.grossAnnual;
+  const netCut = 1 - pt25.takeHomeAnnual / ft.takeHomeAnnual;
+  const pt25Tax = pt25.incomeTax + pt25.medicareLevy;
+  // Name the actual reason: a lower top bracket, or (same bracket) the
+  // tax-free threshold and offsets covering more of a smaller income.
+  const ftFacts = salaryFacts(Math.round(ft.grossAnnual));
+  const ptFacts = salaryFacts(Math.round(pt25.grossAnnual));
+  const netCutReason =
+    ptFacts.bracketIndex < ftFacts.bracketIndex
+      ? `because the part-time income (${formatAUD(pt25.grossAnnual)}) tops out in the ${formatPercent(ptFacts.bracketRate, 0)} bracket and no longer reaches the ${formatPercent(ftFacts.bracketRate, 0)} rate`
+      : `because the tax-free threshold${ptFacts.breakdown.litoOffset > 0 ? " and the Low Income Tax Offset cover" : " covers"} a bigger share of the smaller income (both sit in the ${formatPercent(ftFacts.bracketRate, 0)} bracket)`;
+
+  const casualExtraWeek = casual.perWeek - ft.perWeek;
+  const rows: { label: string; f: HourlyAfterTax; note?: string }[] = [
+    { label: `Full time (${ft.hoursPerWeek} hrs)`, f: ft },
+    ...partTime.map((p) => ({ label: `Part time (${p.hoursPerWeek} hrs)`, f: p })),
+    {
+      label: `Casual (${ft.hoursPerWeek} hrs at ${formatAUD(casual.rate, 2)})`,
+      f: casual,
+      note: `${perHourLabel(rate)} base + ${formatPercent(EMPLOYMENT.casualLoading, 0)} loading`,
+    },
+  ];
+
+  return (
+    <section aria-labelledby="part-time-heading">
+      <h2 id="part-time-heading" style={H2} className="text-2xl font-bold text-navy mb-4">
         {perHourLabel(rate)} an Hour After Tax: Part-Time and Casual
-      </h3>
+      </h2>
       <div className="overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
         <table className="w-full text-sm text-left text-warmgray">
           <thead className="bg-sandstone font-semibold text-navy">
@@ -542,17 +392,11 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
         )}{" "}
         A casual on {formatAUD(casual.rate, 2)} an hour takes home {formatAUD(casual.perWeek, 2)} a week for{" "}
         {ft.hoursPerWeek} hours, {formatAUD(casualExtraWeek, 2)} more than a permanent employee on{" "}
-        {perHourLabel(rate)}. The loading is paid instead of annual and personal leave. It is 25% in most
-        modern awards, but an enterprise agreement can set a different figure, and some rates offered to
-        casuals already include it. Check yours on the{" "}
-        <Link href="/award-rates/" className={G5_LINK}>
-          award rates
-        </Link>{" "}
-        page or with the{" "}
-        <Link href="/casual-loading-calculator/" className={G5_LINK}>
-          casual loading calculator
+        {perHourLabel(rate)}, in place of paid leave (
+        <Link href="/casual-loading-calculator/" className={LINK}>
+          how the loading works
         </Link>
-        .
+        ).
       </p>
 
       <div className="mt-8">
@@ -562,8 +406,10 @@ function HourlyAfterTaxSection({ rate }: { rate: number }) {
   );
 }
 
-function RateNav({ rate }: { rate: number }) {
+function RateNav({ rate, gross }: { rate: number; gross: number }) {
   const { prev, next } = prevNextRate(rate);
+  const reverse = roundToSalaryStep(gross);
+  const takeHome = roundToTakeHomeStep(gross);
   const card =
     "block rounded-xl border border-sandstone-dark/20 bg-white p-4 hover:border-eucalyptus transition-colors";
   return (
@@ -593,17 +439,29 @@ function RateNav({ rate }: { rate: number }) {
         )}
       </div>
       <p className="text-sm text-warmgray">
-        Know the annual figure instead? See{" "}
-        <Link href={hubHref("take-home")} className={G5_LINK}>
-          take-home pay on every salary
+        Nearest salaries:{" "}
+        <Link href={`/salary-to-hourly/${reverse}/`} className={LINK}>
+          {formatAUD(reverse)} a year as an hourly rate
+        </Link>{" "}
+        ·{" "}
+        <Link href={`/take-home-pay-on/${takeHome}/`} className={LINK}>
+          take-home pay on {formatAUD(takeHome)}
+        </Link>
+        . Any rate or hours:{" "}
+        <Link href="/hourly-to-annual-salary-calculator/" className={LINK}>
+          hourly to annual salary calculator
+        </Link>
+        . Every salary:{" "}
+        <Link href={hubHref("take-home")} className={LINK}>
+          take-home
         </Link>
         ,{" "}
-        <Link href={hubHref("tax-on")} className={G5_LINK}>
-          tax on every salary
-        </Link>{" "}
-        or{" "}
-        <Link href={hubHref("salary-to-hourly")} className={G5_LINK}>
-          every salary as an hourly rate
+        <Link href={hubHref("tax-on")} className={LINK}>
+          tax
+        </Link>
+        ,{" "}
+        <Link href={hubHref("salary-to-hourly")} className={LINK}>
+          hourly
         </Link>
         .
       </p>
