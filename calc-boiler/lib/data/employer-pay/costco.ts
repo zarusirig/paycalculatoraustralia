@@ -80,7 +80,9 @@ export const COSTCO_PAY: EmployerPay = {
     "Percentages are of your ordinary hourly rate (cl 6.6.1 for permanent staff, cl 4.2.3 for casuals). The casual percentages replace the 25% loading rather than adding to it, so casual Sunday is 175% — the same as permanent staff.",
     "Premiums and overtime do not stack: \"There is no duplication of overtime and/or premium rates\" (cl 6.6).",
     "For a Service Assistant on the first step ($30.02), that is $37.53 an hour on a weekday evening or Saturday (casual $45.03), $52.54 on a Sunday and $82.56 for a casual on a public holiday — our arithmetic.",
-    "Operating a forklift or electric pallet jack adds $1.00 an hour for that time, but is not counted in the rate penalties are worked out from (cl 5.1.8).",
+  ],
+  allowances: [
+    { name: "Forklift or electric pallet jack", amount: "$1.00 an hour", when: "For time spent operating one; not counted in the rate penalties are worked out from (cl 5.1.8)" },
   ],
   overtime: [
     { when: "Over 8 hours a day or 38 a week (Monday to Saturday)", permanent: "150%", casual: "150%" },

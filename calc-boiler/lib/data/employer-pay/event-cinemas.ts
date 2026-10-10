@@ -67,14 +67,6 @@ export const EVENT_CINEMAS_PAY: EmployerPay = {
       a: "Event Cinemas advertises new crew at Cinema Worker Level 1 under the Broadcasting, Recorded Entertainment and Cinemas Award, which pays at least $28.56 an hour, or $35.70 as a casual, from the first full pay period on or after 1 July 2026. Level 2 pays $29.25 ($36.56 casual).",
     },
     {
-      q: "Does Event Cinemas pay weekend penalty rates?",
-      a: "No separate Saturday or Sunday penalty applies to cinema workers. Instead every cinema rate includes an 8% penalty averaging loading on all hours. Ordinary hours between 1am and 8am are paid at 200%.",
-    },
-    {
-      q: "How much does Event Cinemas pay a 16 or 17 year old?",
-      a: "Cinema juniors get a percentage of the Level 4 rate: 45% at 16 and under ($14.31 an hour, $17.89 casual) and 55% at 17 ($17.50, $21.88 casual). It is 65% at 18, 75% at 19 and 85% at 20 ($27.04).",
-    },
-    {
       q: "What does Event Cinemas pay on public holidays?",
       a: "200% of the minimum hourly rate for both permanent and casual staff — $57.12 an hour for a Level 1 crew member. Casuals do not get an extra loading on top.",
     },

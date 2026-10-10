@@ -69,16 +69,8 @@ export const JB_HI_FI_PAY: EmployerPay = {
       a: "Not for its stores, as far as we could find. The only JB Hi-Fi agreements approved by the Fair Work Commission since 2019 cover its Victorian Home Delivery Centre. Store staff are engaged under the General Retail Industry Award.",
     },
     {
-      q: "How much does JB Hi-Fi pay a 16 or 17 year old?",
-      a: "Under the Retail Award, 16-year-olds at Levels 1 to 3 get at least 50% of the adult rate ($13.91 an hour, or $17.39 as a casual) and 17-year-olds 60% ($16.69, casual $20.86). These are our arithmetic from the award percentages.",
-    },
-    {
-      q: "What does JB Hi-Fi pay on Sundays and public holidays?",
-      a: "Under the Retail Award, permanent staff get at least 150% on Sundays ($41.72 an hour at Level 1) and 225% on public holidays ($62.57). Casuals get 175% ($48.67) and 250% ($69.53), including the casual loading.",
-    },
-    {
-      q: "What is the casual rate at JB Hi-Fi?",
-      a: "At least the Retail Award rate plus a 25% casual loading: $34.76 an hour at Level 1. Weekday evenings after 6pm and Saturdays pay casuals 150%, which is $41.72 an hour at Level 1.",
+      q: "Are JB Hi-Fi warehouse staff paid these rates?",
+      a: "Not necessarily. JB Hi-Fi's Victorian Home Delivery Centre, a warehouse, has its own enterprise agreements (AE521349 and AE533888), and this page does not show their rates. The award rates here are for store staff.",
     },
   ],
 };

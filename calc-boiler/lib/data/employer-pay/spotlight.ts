@@ -65,16 +65,8 @@ export const SPOTLIGHT_PAY: EmployerPay = {
       a: "Not for its stores. The Spotlight Australian Stores Enterprise Agreement 2009 was terminated by the Fair Work Commission on 27 June 2014, and the only Spotlight agreements approved since 2016 cover its distribution centre.",
     },
     {
-      q: "How much does Spotlight pay a 15 or 16 year old?",
-      a: "Under the Retail Award, staff under 16 at Levels 1 to 3 get at least 45% of the adult rate ($12.51 an hour, or $15.64 as a casual) and 16-year-olds 50% ($13.91, casual $17.39). These are our arithmetic from the award percentages.",
-    },
-    {
-      q: "What does Spotlight pay on Sundays and public holidays?",
-      a: "Under the Retail Award, permanent staff get at least 150% on Sundays ($41.72 an hour at Level 1) and 225% on public holidays ($62.57). Casuals get 175% ($48.67) and 250% ($69.53), including the casual loading.",
-    },
-    {
-      q: "What is the casual rate at Spotlight?",
-      a: "At least the Retail Award rate plus a 25% casual loading: $34.76 an hour at Level 1. Weekday evenings after 6pm and Saturdays pay casuals 150%, which is $41.72 an hour at Level 1.",
+      q: "Are Spotlight distribution centre staff paid these rates?",
+      a: "No. Distribution centre staff are covered by the separate Spotlight Distribution Centre Enterprise Agreement 2024 (AE526901), not by the award rates on this page.",
     },
   ],
 };

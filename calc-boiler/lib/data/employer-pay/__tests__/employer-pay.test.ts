@@ -4,8 +4,11 @@ import { test } from "node:test";
 import {
   EMPLOYERS,
   EMPLOYER_PAY_BY_SLUG,
+  EMPLOYER_SECTOR,
   EMPLOYER_SLUGS,
   EXAMPLE_HOURS,
+  SECTOR_LABEL,
+  relatedEmployers,
   annualFullTime,
   deriveJuniorHourly,
   entryRate,
@@ -39,6 +42,67 @@ test("every slug is registered, and registered under its own slug", () => {
 test("slugs are URL-safe and unique", () => {
   assert.equal(new Set(EMPLOYER_SLUGS).size, EMPLOYER_SLUGS.length);
   for (const slug of EMPLOYER_SLUGS) assert.match(slug, /^[a-z0-9]+(-[a-z0-9]+)*$/);
+});
+
+// ---------------------------------------------------------------------------
+// Page uniqueness (10 Oct 2026): what makes each employer page its own.
+// ---------------------------------------------------------------------------
+
+test("related employers: same instrument first, then same sector, never self, at most 6", () => {
+  for (const e of EMPLOYERS) {
+    const { sameInstrument, sameSector } = relatedEmployers(e);
+    const all = [...sameInstrument, ...sameSector];
+    assert.ok(all.length <= 6, e.slug);
+    assert.ok(!all.some((o) => o.slug === e.slug), e.slug);
+    assert.equal(new Set(all.map((o) => o.slug)).size, all.length, e.slug);
+    for (const o of sameInstrument) assert.equal(o.instrument.reference, e.instrument.reference, `${e.slug} → ${o.slug}`);
+    for (const o of sameSector) {
+      assert.equal(EMPLOYER_SECTOR[o.slug], EMPLOYER_SECTOR[e.slug], `${e.slug} → ${o.slug}`);
+      assert.notEqual(o.instrument.reference, e.instrument.reference, `${e.slug} → ${o.slug}`);
+    }
+  }
+  // Liquorland is on the Coles agreement; Dan Murphy's on BWS's.
+  assert.deepEqual(relatedEmployers(EMPLOYER_PAY_BY_SLUG.liquorland).sameInstrument.map((o) => o.slug), ["coles"]);
+  assert.deepEqual(relatedEmployers(EMPLOYER_PAY_BY_SLUG["dan-murphys"]).sameInstrument.map((o) => o.slug), ["bws"]);
+  assert.ok(SECTOR_LABEL[EMPLOYER_SECTOR.qantas].length > 0);
+});
+
+test("allowance rows are complete, and only where the data has them", () => {
+  const withAllowances = EMPLOYERS.filter((e) => (e.allowances?.length ?? 0) > 0).map((e) => e.slug).sort();
+  assert.deepEqual(withAllowances, ["australia-post", "bws", "costco", "dominos", "liquorland", "qantas", "virgin-australia"]);
+  for (const e of EMPLOYERS) {
+    for (const a of e.allowances ?? []) {
+      assert.ok(a.name.length > 3 && a.amount.length > 1 && a.when.length > 5, `${e.slug} ${a.name}`);
+    }
+    // Moved out of the notes, not copied: an allowance amount is shown once.
+    const notes = [...e.penaltyNotes, ...e.notices].join(" ");
+    for (const a of e.allowances ?? []) {
+      const dollars = a.amount.match(/\$[\d,.]+/)?.[0];
+      if (dollars) assert.ok(!notes.includes(dollars), `${e.slug}: ${dollars} also in notes`);
+    }
+  }
+  // The BWS in-charge allowance is BWS Team Members only (cl 5.2).
+  assert.equal(EMPLOYER_PAY_BY_SLUG["dan-murphys"].allowances, undefined);
+});
+
+test("no FAQ is a word-for-word copy of another employer's answer", () => {
+  const seen = new Map<string, string>();
+  for (const e of EMPLOYERS) {
+    for (const f of e.faqs) {
+      const key = f.a.split(e.name).join("<employer>");
+      const other = seen.get(key);
+      assert.ok(!other, `${e.slug} repeats ${other}: ${f.q}`);
+      seen.set(key, e.slug);
+    }
+  }
+});
+
+test("only Subway's page uses Subway's job title", () => {
+  for (const e of EMPLOYERS) {
+    if (e.slug === "subway") continue;
+    const text = [...e.penaltyNotes, ...e.notices, ...e.faqs.map((f) => f.a), ...e.rates.map((r) => r.description)].join(" ");
+    assert.ok(!/sandwich artist/i.test(text), e.slug);
+  }
 });
 
 // ---------------------------------------------------------------------------

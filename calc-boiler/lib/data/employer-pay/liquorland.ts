@@ -62,8 +62,10 @@ export const LIQUORLAND_PAY: EmployerPay = {
   ],
   notices: [
     "Liquorland, First Choice Liquor Market and Vintage Cellars staff are covered by the same agreement as Coles supermarkets, so the hourly rates are identical to Coles. The 2026 dollars apply the agreement's rule of lifting every level by the Retail Award Level 1 increase each July (cl 3.4.1) — 4.75% in 2026 — so your payslip may differ by a cent.",
-    "If you hold a liquor licence required by state law, Coles Liquor pays a liquor licence allowance on top ($30.85 a week when the agreement was made, rising with the Retail Award allowance — cl A4.4.1).",
     "Long-serving staff on higher 2014 Liquor Agreement rates ($26.68 to $27.93) kept them only until the Coles rate caught up (cl A4.3); the 2026 rates are above all of them.",
+  ],
+  allowances: [
+    { name: "Liquor licence allowance", amount: "$30.85 a week when the agreement was made, rising with the Retail Award allowance", when: "If you hold a liquor licence required by state law (cl A4.4.1)" },
   ],
   unverified: [
     "Coles Liquor job titles are given only for Levels 1 and 3. If you are classified at Level 2, 4, 5 or 6, see the full table on the Coles page.",
@@ -86,10 +88,6 @@ export const LIQUORLAND_PAY: EmployerPay = {
     {
       q: "Does Liquorland pay junior rates?",
       a: "No. The Coles agreement's junior percentages apply to Coles supermarkets only, so Coles Liquor team members are paid the adult rate for their level whatever their age.",
-    },
-    {
-      q: "What are Liquorland penalty rates?",
-      a: "Weekday evenings from 6pm and Saturdays pay base + 25% (casual + 50%). Sundays from 9am pay base + 50% (casual + 75%), and public holidays base + 125% (casual + 150%).",
     },
     {
       q: "Do Liquorland staff get a liquor licence allowance?",

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ChevronRight, ArrowRight, Calculator, Info, AlertTriangle } from "lucide-react";
+import type { ReactNode } from "react";
+import { ChevronRight, Calculator, Info } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
@@ -7,47 +8,52 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import TrustBar from "@/components/common/trust-bar";
-import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { formatAUD } from "@/lib/constants";
 import {
-  EMPLOYERS,
-  // --- J7: salaried cabin crew ---
+  EMPLOYER_SECTOR,
+  SECTOR_LABEL,
   annualFor,
-  fullTimeHours,
-  takeHomeHrefForAnnual,
-  // --- end J7 ---
   entryRate,
   formatPct,
-  hourlyToSalaryLink,
+  fullTimeHours,
   juniorRates,
-  topRate,
-  weeklyExamples,
+  relatedEmployers,
+  takeHomeHrefForAnnual,
   type EmployerPay,
   type PenaltyRow,
 } from "@/lib/data/employer-pay";
 import FeaturedImage from "@/components/common/featured-image";
 
+// Everything below the header is built from the employer's own data file.
+// Generic explanations (casual loading, penalty rates, enterprise agreements,
+// junior rates, tax) are one line each with a link to the page that covers
+// them, and a section or table row appears only when the employer's data has
+// it (10 Oct 2026).
+
 const HEADING_FONT = { fontFamily: "'Bricolage Grotesque', sans-serif" } as const;
+
+const TABLE_WRAP = "not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm";
+const THEAD = "bg-sandstone font-semibold text-navy";
+const TBODY = "divide-y divide-sandstone-dark/20 bg-white";
 
 const money = (v: number) => formatAUD(v, 2);
 
 function PenaltyTable({ rows, caption }: { rows: PenaltyRow[]; caption: string }) {
   return (
-    <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+    <div className={TABLE_WRAP}>
       <table className="w-full min-w-[34rem] text-left text-sm text-warmgray">
         <caption className="sr-only">{caption}</caption>
-        <thead className="bg-sandstone font-semibold text-navy">
+        <thead className={THEAD}>
           <tr>
             <th scope="col" className="px-5 py-3">When</th>
             <th scope="col" className="px-5 py-3">Full-time &amp; part-time</th>
             <th scope="col" className="px-5 py-3">Casual</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+        <tbody className={TBODY}>
           {rows.map((row) => (
             <tr key={row.when}>
               <th scope="row" className="px-5 py-3 text-left font-medium text-navy">
@@ -67,18 +73,47 @@ function PenaltyTable({ rows, caption }: { rows: PenaltyRow[]; caption: string }
 export default function EmployerPayRatesPage({ employer }: { employer: EmployerPay }) {
   const e = employer;
   const entry = entryRate(e);
-  const top = topRate(e);
   const juniors = juniorRates(e);
   const anyDerivedJunior = juniors.some((j) => !j.published);
-  const examples = weeklyExamples(e);
-  // J7: salaried instruments (cabin crew) use their own annual salary / full-time hours.
+  // J7: salaried instruments (cabin crew, Australia Post) carry their own annual salary.
   const entryAnnual = annualFor(e, entry);
   const takeHome = takeHomeHrefForAnnual(entryAnnual);
-  const hourlyLink = hourlyToSalaryLink(entry.hourly);
   const loading = formatPct(e.casualLoading);
   const isAward = e.instrument.kind === "modern-award";
+  const instrumentWord = isAward ? "award" : "agreement";
   const authorship = getGuideAuthorship("pay-rates");
-  const others = EMPLOYERS.filter((o) => o.slug !== e.slug);
+  const related = relatedEmployers(e);
+  const allowances = e.allowances ?? [];
+
+  // A description repeated down the table (award levels 2–8 share one) is
+  // printed once, on its first row.
+  const shownDescriptions = new Set<string>();
+  const rateRows = e.rates.map((row) => {
+    const show = !shownDescriptions.has(row.description);
+    shownDescriptions.add(row.description);
+    return { row, description: show ? row.description : null };
+  });
+
+  const facts: { label: string; value: ReactNode }[] = [
+    {
+      label: isAward ? "Award" : "Agreement",
+      value: (
+        <a href={e.instrument.url} target="_blank" rel="noreferrer noopener">
+          {e.instrument.title}
+        </a>
+      ),
+    },
+    { label: isAward ? "Award code" : "Fair Work Commission IDs", value: e.instrument.reference },
+    ...(e.instrument.approvedOn ? [{ label: "Approved", value: e.instrument.approvedOn }] : []),
+    ...(e.instrument.nominalExpiry ? [{ label: "Nominal expiry", value: e.instrument.nominalExpiry }] : []),
+    { label: "Employer", value: e.employerEntity },
+    { label: "Rates on this page from", value: e.ratesEffectiveFrom },
+    { label: "Casual loading", value: loading },
+    ...(e.fullTimeWeeklyHours !== undefined
+      ? [{ label: "Full-time week", value: `${e.fullTimeWeeklyHours} hours` }]
+      : []),
+    { label: "Checked against the source", value: e.verifiedOn },
+  ];
 
   const sourceLinks: SourceLink[] = e.sources.map((s) => ({
     title: s.title,
@@ -104,23 +139,47 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
             {e.name} Pay Rates 2026 — Hourly Wage by Age &amp; Level
           </h1>
           <p className="mb-4 text-xl leading-relaxed text-warmgray">
-            An adult {e.name} employee at {entry.level} is paid{" "}
-            <strong className="text-navy">{money(entry.hourly)} an hour</strong> as a full-time or
-            part-time worker, or <strong className="text-navy">{money(entry.casualHourly)}</strong>{" "}
-            as a casual, under the {e.instrument.title}. Those rates apply from {e.ratesEffectiveFrom}.
-            Weekend, evening and public holiday work is paid at the penalty rates below.
+            {e.name} {e.industry} staff are paid under the {e.instrument.title} ({e.instrument.reference}).
+            From {e.ratesEffectiveFrom}, an adult at {entry.level} {isAward ? "must get at least" : "gets"}{" "}
+            <strong className="text-navy">{money(entry.hourly)} an hour</strong>, or{" "}
+            <strong className="text-navy">{money(entry.casualHourly)}</strong> as a casual.
           </p>
-          <p className="mb-6 text-sm text-warmgray">
+          <p className="text-sm text-warmgray">
             Pay Calculator Australia is independent and not affiliated with, endorsed by or sponsored
-            by {e.name}. Rates are read from the public {isAward ? "modern award" : "enterprise agreement"} on
-            the Fair Work {isAward ? "Ombudsman" : "Commission"} website, verified {e.verifiedOn}.
+            by {e.name}.
           </p>
-          <TrustBar className="!max-w-none" />
           <FeaturedImage className="mb-0 mt-6" />
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
           <article className="prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+            <section id="agreement">
+              <h2 style={HEADING_FONT}>
+                Which {instrumentWord} sets {e.name} pay
+              </h2>
+              <dl className="not-prose my-6 grid grid-cols-1 gap-x-6 gap-y-3 rounded-xl border border-sandstone-dark/20 bg-sandstone/40 p-5 text-sm sm:grid-cols-[minmax(0,12rem)_1fr]">
+                {facts.map((f) => (
+                  <div key={f.label} className="contents">
+                    <dt className="font-semibold text-navy">{f.label}</dt>
+                    <dd className="text-warmgray [&_a]:font-medium [&_a]:text-eucalyptus-dark [&_a]:underline">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p>{e.instrument.coverage}</p>
+              {e.nextIncrease && (
+                <p>
+                  <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
+                </p>
+              )}
+              {e.awardHref && e.awardLabel && (
+                <p className="text-base">
+                  {isAward ? "Every level: " : "Award floor: "}
+                  <Link href={e.awardHref}>{e.awardLabel}</Link>
+                  {isAward ? "." : <> (<Link href="/enterprise-agreement/">how agreements work</Link>).</>}
+                </p>
+              )}
+            </section>
+
             {e.notices.length > 0 && (
               <div className="not-prose mb-8 space-y-3">
                 {e.notices.map((notice) => (
@@ -132,60 +191,34 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
               </div>
             )}
 
-            <section id="agreement">
-              <h2 style={HEADING_FONT}>
-                Which {isAward ? "award" : "agreement"} sets {e.name} pay
-              </h2>
-              <p>
-                {e.name} {e.industry} staff are paid under the{" "}
-                <a href={e.instrument.url} target="_blank" rel="noreferrer noopener">
-                  {e.instrument.title}
-                </a>{" "}
-                ({e.instrument.reference}). {e.instrument.coverage}
-              </p>
-              {!isAward && (
-                <ul>
-                  {e.instrument.approvedOn && <li>Approved by the Fair Work Commission: {e.instrument.approvedOn}</li>}
-                  {e.instrument.nominalExpiry && <li>Nominal expiry date: {e.instrument.nominalExpiry}</li>}
-                  <li>Employer: {e.employerEntity}</li>
-                </ul>
-              )}
-              {isAward && <p>Employer: {e.employerEntity}</p>}
-              {e.nextIncrease && (
-                <p>
-                  <strong>Next scheduled increase:</strong> {e.nextIncrease.date}. {e.nextIncrease.detail}
-                </p>
-              )}
-              {e.awardHref && e.awardLabel && (
-                <p>
-                  For the underlying award minimums across every employer in the industry, see{" "}
-                  <Link href={e.awardHref}>{e.awardLabel}</Link>.
-                </p>
-              )}
-            </section>
-
             <section id="hourly-rates">
               <h2 style={HEADING_FONT}>{e.name} hourly pay rates by level (adults)</h2>
-              <p>
-                Base hourly rates before tax for adult employees. Casual rates include the {loading}{" "}
-                casual loading, paid instead of leave entitlements.
-              </p>
-              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+              {e.payBasisNote ? (
+                <p className="text-base">{e.payBasisNote}</p>
+              ) : (
+                // H1: where the casual rate is not base + loading, the note under the table explains it.
+                !e.casualRateNote && (
+                  <p className="text-base">
+                    Casual = base + {loading} (<Link href="/casual-loading-calculator/">casual loading</Link>).
+                  </p>
+                )
+              )}
+              <div className={TABLE_WRAP}>
                 <table className="w-full min-w-[36rem] text-left text-sm text-warmgray">
                   <caption className="sr-only">{e.name} adult hourly rates by classification</caption>
-                  <thead className="bg-sandstone font-semibold text-navy">
+                  <thead className={THEAD}>
                     <tr>
                       <th scope="col" className="px-5 py-3">Level</th>
                       <th scope="col" className="px-5 py-3 text-right">Full-time &amp; part-time</th>
-                      <th scope="col" className="px-5 py-3 text-right">Casual (incl. {loading})</th>
+                      <th scope="col" className="px-5 py-3 text-right">Casual</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                    {e.rates.map((row) => (
+                  <tbody className={TBODY}>
+                    {rateRows.map(({ row, description }) => (
                       <tr key={row.level}>
                         <th scope="row" className="px-5 py-3 text-left font-medium text-navy">
                           {row.level}
-                          <span className="mt-1 block text-xs font-normal text-warmgray">{row.description}</span>
+                          {description && <span className="mt-1 block text-xs font-normal text-warmgray">{description}</span>}
                         </th>
                         <td className="px-5 py-3 text-right font-medium text-navy">{money(row.hourly)}</td>
                         {/* J7: some airline classifications have no casual rate */}
@@ -195,22 +228,24 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                   </tbody>
                 </table>
               </div>
-              {/* J7: how the hourly figure relates to a salary (cabin crew) */}
-              {e.payBasisNote && <p className="text-sm">{e.payBasisNote}</p>}
               {/* H1: instruments whose casual rate is not base + loading */}
               {e.casualRateNote && <p className="text-sm">{e.casualRateNote}</p>}
+              <p className="text-base">
+                Full-time at {entry.level}: <strong>{formatAUD(entryAnnual)}</strong> a year before tax
+                {entry.annualSalary !== undefined ? " (the printed salary)" : ` (${fullTimeHours(e)} hours × 52 weeks)`}.
+                See <Link href={takeHome.href}>take-home pay on {formatAUD(takeHome.amount)}</Link>
+                {takeHome.amount === Math.round(entryAnnual) ? "" : " (nearest we publish)"}.
+              </p>
             </section>
 
-            {juniors.length > 0 && (
+            {juniors.length > 0 ? (
               <section id="junior-rates">
                 <h2 style={HEADING_FONT}>{e.name} pay rates by age (junior rates)</h2>
-                <p>
-                  Junior employees are paid a set percentage of the adult {e.juniorBaseLabel ?? entry.level} rate for their age. {e.juniorNote}
-                </p>
-                <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
+                {e.juniorNote && <p>{e.juniorNote}</p>}
+                <div className={TABLE_WRAP}>
                   <table className="w-full min-w-[32rem] text-left text-sm text-warmgray">
                     <caption className="sr-only">{e.name} junior hourly rates by age</caption>
-                    <thead className="bg-sandstone font-semibold text-navy">
+                    <thead className={THEAD}>
                       <tr>
                         <th scope="col" className="px-5 py-3">Age</th>
                         <th scope="col" className="px-5 py-3 text-right">% of adult</th>
@@ -218,7 +253,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                         <th scope="col" className="px-5 py-3 text-right">Casual</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-sandstone-dark/20 bg-white">
+                    <tbody className={TBODY}>
                       {juniors.map((j) => (
                         <tr key={j.age}>
                           <th scope="row" className="px-5 py-3 text-left font-medium text-navy">{j.age}</th>
@@ -230,27 +265,23 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                     </tbody>
                   </table>
                 </div>
-                {anyDerivedJunior && (
-                  <p className="text-sm">
-                    The percentages are the instrument&rsquo;s own. The dollar figures are our
-                    arithmetic — the percentage applied to the adult {entry.level} rate, rounded to
-                    the cent — because the instrument does not print junior dollars. Your payslip
-                    may differ by a cent.
-                  </p>
-                )}
-                <p>
-                  For how junior rates work across every award, and when you move to the adult rate,
-                  see <Link href="/junior-pay-rates/">junior pay rates in Australia</Link>.
+                <p className="text-sm">
+                  Percentages are of the adult {e.juniorBaseLabel ?? entry.level} rate
+                  {anyDerivedJunior ? "; the dollars are our arithmetic, rounded to the cent" : ""}.{" "}
+                  <Link href="/junior-pay-rates/">Junior rates under other awards</Link>.
                 </p>
               </section>
+            ) : (
+              e.juniorNote && (
+                <section id="junior-rates">
+                  <h2 style={HEADING_FONT}>Does {e.name} pay junior rates?</h2>
+                  <p>{e.juniorNote}</p>
+                </section>
+              )
             )}
 
             <section id="penalty-rates">
               <h2 style={HEADING_FONT}>{e.name} penalty rates: evenings, weekends and public holidays</h2>
-              <p>
-                Penalty rates are a percentage of the base hourly rate for your level (or, where
-                stated, a flat amount per hour) for hours worked at the times below.
-              </p>
               <PenaltyTable rows={e.penalties} caption={`${e.name} penalty rates`} />
               {e.penaltyNotes.length > 0 && (
                 <ul>
@@ -263,79 +294,43 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
                   <PenaltyTable rows={e.overtime} caption={`${e.name} overtime rates`} />
                 </>
               )}
-              <p>
-                To price a mix of weekday, weekend and overtime hours, use the{" "}
-                <Link href="/overtime-pay-calculator/">overtime and penalty rate calculator</Link>.
+              <p className="text-base">
+                <Link href="/overtime-penalty-rates-guide/">How penalty rates work</Link> ·{" "}
+                <Link href="/overtime-pay-calculator/">overtime calculator</Link>
               </p>
             </section>
 
-            <section id="weekly-pay">
-              <h2 style={HEADING_FONT}>How much {e.name} pays a week</h2>
-              <p>
-                Gross weekly pay for an adult at {entry.level}, with every hour at the ordinary
-                weekday rate. Weekend and evening shifts push these figures up; tax comes off them.
-              </p>
-              <div className="not-prose my-6 overflow-x-auto rounded-xl border border-sandstone-dark/20 shadow-sm">
-                <table className="w-full min-w-[30rem] text-left text-sm text-warmgray">
-                  <caption className="sr-only">{e.name} weekly gross pay examples</caption>
-                  <thead className="bg-sandstone font-semibold text-navy">
-                    <tr>
-                      <th scope="col" className="px-5 py-3">Hours a week</th>
-                      <th scope="col" className="px-5 py-3 text-right">Part-time / full-time</th>
-                      <th scope="col" className="px-5 py-3 text-right">Casual</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-sandstone-dark/20 bg-white">
-                    {examples.map((x) => (
-                      <tr key={x.hours}>
-                        <th scope="row" className="px-5 py-3 text-left font-medium text-navy">{x.hours} hours</th>
-                        <td className="px-5 py-3 text-right font-medium text-navy">{money(x.permanentWeekly)}</td>
-                        <td className="px-5 py-3 text-right">{money(x.casualWeekly)}</td>
+            {allowances.length > 0 && (
+              <section id="allowances">
+                <h2 style={HEADING_FONT}>{e.name} allowances</h2>
+                <div className={TABLE_WRAP}>
+                  <table className="w-full min-w-[34rem] text-left text-sm text-warmgray">
+                    <caption className="sr-only">{e.name} allowances</caption>
+                    <thead className={THEAD}>
+                      <tr>
+                        <th scope="col" className="px-5 py-3">Allowance</th>
+                        <th scope="col" className="px-5 py-3">Amount</th>
+                        <th scope="col" className="px-5 py-3">Who gets it</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p>
-                {entry.annualSalary !== undefined ? (
-                  <>
-                    A full-time year at {entry.level} is {formatAUD(entryAnnual)} before tax (the
-                    agreement&rsquo;s salary). See{" "}
-                  </>
-                ) : (
-                  <>
-                    A full-time year ({fullTimeHours(e)} hours × 52 weeks) at {money(entry.hourly)} is{" "}
-                    {formatAUD(entryAnnual)} before tax. See{" "}
-                  </>
-                )}
-                <Link href={takeHome.href}>take-home pay on {formatAUD(takeHome.amount)}</Link>{" "}
-                (the nearest salary we publish) and{" "}
-                <Link href={hourlyLink.href}>
-                  {money(hourlyLink.rate)} an hour as a yearly salary
-                </Link>
-                {hourlyLink.exact ? "" : " (the nearest hourly rate we publish)"}.
-              </p>
-              <div className="not-prose my-8 flex flex-wrap gap-3">
-                <Link
-                  href="/weekly-pay-calculator/"
-                  className="inline-flex items-center gap-2 rounded-lg bg-eucalyptus-dark px-6 py-3 font-semibold text-white transition-colors hover:bg-navy"
-                >
-                  <Calculator className="h-5 w-5" />
-                  Work out your {e.name} take-home pay
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-              <p className="text-sm">
-                Enter your hourly rate and hours in the weekly pay calculator to see tax withheld and
-                what lands in your account. Casual or part-time with a second job? Check the{" "}
-                <Link href="/second-job-tax-calculator/">second job tax calculator</Link>.
-              </p>
-            </section>
+                    </thead>
+                    <tbody className={TBODY}>
+                      {allowances.map((a) => (
+                        <tr key={a.name}>
+                          <th scope="row" className="px-5 py-3 text-left font-medium text-navy">{a.name}</th>
+                          <td className="px-5 py-3">{a.amount}</td>
+                          <td className="px-5 py-3">{a.when}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {e.allowancesNote && <p className="text-sm">{e.allowancesNote}</p>}
+              </section>
+            )}
 
             {e.unverified.length > 0 && (
               <section id="not-shown">
                 <h2 style={HEADING_FONT}>What this page does not show</h2>
-                <p>We publish only what we could read from a primary source. Left off rather than estimated:</p>
                 <ul>
                   {e.unverified.map((item) => <li key={item}>{item}</li>)}
                 </ul>
@@ -356,96 +351,54 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
               </section>
             )}
 
-            <section id="other-employers">
-              <h2 style={HEADING_FONT}>Pay rates at other employers</h2>
-              <div className="not-prose mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {others.map((o) => (
-                  <Link
-                    key={o.slug}
-                    href={`/pay-rates/${o.slug}/`}
-                    className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-4 transition-all hover:border-eucalyptus/40 hover:shadow-sm"
-                  >
-                    <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{o.name} pay rates</span>
-                    <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-                  </Link>
-                ))}
-              </div>
-            </section>
+            {related.sameInstrument.length + related.sameSector.length > 0 ? (
+              <section id="other-employers">
+                <h2 style={HEADING_FONT}>Related employers</h2>
+                {related.sameInstrument.length > 0 && (
+                  <>
+                    <h3 style={HEADING_FONT}>Also paid under the {e.instrument.title}</h3>
+                    <EmployerLinks employers={related.sameInstrument} />
+                  </>
+                )}
+                {related.sameSector.length > 0 && (
+                  <>
+                    <h3 style={HEADING_FONT}>Other {SECTOR_LABEL[EMPLOYER_SECTOR[e.slug]]} employers</h3>
+                    <EmployerLinks employers={related.sameSector} showInstrument />
+                  </>
+                )}
+                <p className="text-base">
+                  <Link href="/pay-rates/">All employers</Link>
+                </p>
+              </section>
+            ) : (
+              <p className="text-base">
+                <Link href="/pay-rates/">Pay rates at other employers</Link>
+              </p>
+            )}
 
             <div className="not-prose mt-12">
-              <MethodologyDisclosure title="How this page is sourced">
-                <p>
-                  Every rate on this page was read from the {e.instrument.title} ({e.instrument.reference})
-                  {isAward ? " and the Fair Work Ombudsman pay guide" : " as lodged with the Fair Work Commission"} on{" "}
-                  {e.verifiedOn}. Nothing is estimated or averaged. Junior dollar figures the instrument
-                  does not print are calculated from its own percentages and labelled as such.
-                </p>
-                <p>
-                  Rates change on dates written into the {isAward ? "award (usually 1 July each year)" : "agreement"},
-                  and a new agreement can replace this one. Re-check against your payslip and the
-                  instrument itself; the Fair Work Ombudsman (13 13 94) can confirm what applies to you.
-                </p>
-              </MethodologyDisclosure>
               <SourceAttribution sources={sourceLinks} lastVerified={e.verifiedOn} />
               {authorship ? (
-                <AuthorBox author={authorship.author} reviewer={authorship.reviewer} lastReviewed={authorship.lastReviewed} />
+                <AuthorBox
+                  author={authorship.author}
+                  reviewer={authorship.reviewer}
+                  lastReviewed={authorship.lastReviewed}
+                  compact
+                />
               ) : null}
             </div>
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="sticky top-8">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
-                  <h3 className="mb-3 font-bold text-navy">{e.name} pay at a glance</h3>
-                  <dl className="space-y-3 text-sm">
-                    <Row label={`Adult ${entry.level}`} value={`${money(entry.hourly)}/hr`} />
-                    <Row label="Adult casual" value={`${money(entry.casualHourly)}/hr`} />
-                    {top.level !== entry.level && <Row label={`Top: ${top.level}`} value={`${money(top.hourly)}/hr`} />}
-                    <Row label="Casual loading" value={loading} />
-                    <Row label="Rates from" value={e.ratesEffectiveFrom} />
-                    <Row label="Verified" value={e.verifiedOn} />
-                  </dl>
-                </CardContent>
-              </Card>
-
-              {e.unverified.length > 0 && (
-                <Card className="border-sandstone-dark/30 bg-white">
-                  <CardContent className="flex gap-3 p-6">
-                    <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-eucalyptus-dark" />
-                    <p className="text-sm text-warmgray">
-                      Some classifications are not shown because we could not read them from a
-                      primary source. See &ldquo;What this page does not show&rdquo;.
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
-
-              <Card className="border-sandstone-dark/20 bg-sandstone">
-                <CardContent className="p-6">
-                  <h3 className="mb-3 font-bold text-navy">Related calculators</h3>
-                  <div className="space-y-3">
-                    <SidebarLink href="/weekly-pay-calculator/" label="Weekly Pay Calculator" />
-                    <SidebarLink href="/overtime-pay-calculator/" label="Overtime & Penalty Rate Calculator" />
-                    <SidebarLink href={takeHome.href} label={`Take-Home Pay on ${formatAUD(takeHome.amount)}`} />
-                    <SidebarLink href="/junior-pay-rates/" label="Junior Pay Rates" />
-                    {e.awardHref && e.awardLabel && <SidebarLink href={e.awardHref} label={e.awardLabel} />}
-                    <SidebarLink href="/pay-rates/" label="Pay Rates by Employer" />
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-none bg-eucalyptus-dark text-white shadow-md">
-                <CardContent className="p-6">
-                  <h3 className="mb-2 text-lg font-bold">Check your {e.name} payslip</h3>
-                  <p className="mb-4 text-sm text-eucalyptus-light">
-                    Enter your hourly rate and hours to see the gross, tax and net your payslip should show.
-                  </p>
                   <Link
                     href="/weekly-pay-calculator/"
-                    className="block w-full rounded-md bg-white px-4 py-2.5 text-center text-sm font-semibold text-eucalyptus-dark transition-colors hover:bg-sandstone/50"
+                    className="flex w-full items-center justify-center gap-2 rounded-md bg-eucalyptus-dark px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-navy"
                   >
-                    Calculate weekly pay
+                    <Calculator className="h-4 w-4" />
+                    Check your take-home pay
                   </Link>
                 </CardContent>
               </Card>
@@ -457,23 +410,22 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
   );
 }
 
-function Row({ label, value }: { label: string; value: string }) {
+function EmployerLinks({ employers, showInstrument = false }: { employers: EmployerPay[]; showInstrument?: boolean }) {
   return (
-    <div className="flex items-baseline justify-between gap-3">
-      <dt className="text-warmgray">{label}</dt>
-      <dd className="text-right font-semibold text-navy">{value}</dd>
+    <div className="not-prose mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {employers.map((o) => (
+        <Link
+          key={o.slug}
+          href={`/pay-rates/${o.slug}/`}
+          className="group flex items-center justify-between gap-3 rounded-lg border border-sandstone-dark/20 bg-white p-4 transition-all hover:border-eucalyptus/40 hover:shadow-sm"
+        >
+          <span>
+            <span className="block text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{o.name} pay rates</span>
+            {showInstrument && <span className="mt-0.5 block text-xs text-warmgray">{o.instrument.title}</span>}
+          </span>
+          <ChevronRight className="h-4 w-4 shrink-0 text-warmgray-light group-hover:text-eucalyptus" />
+        </Link>
+      ))}
     </div>
-  );
-}
-
-function SidebarLink({ href, label }: { href: string; label: string }) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-3 transition-all hover:border-eucalyptus/40 hover:shadow-sm"
-    >
-      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{label}</span>
-      <ChevronRight className="h-4 w-4 text-warmgray-light group-hover:text-eucalyptus" />
-    </Link>
   );
 }

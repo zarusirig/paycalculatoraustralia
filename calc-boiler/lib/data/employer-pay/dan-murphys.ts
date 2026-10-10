@@ -23,6 +23,8 @@ export const DAN_MURPHYS_PAY: EmployerPay = {
   name: "Dan Murphy's",
   employerEntity: "Endeavour Group Limited, trading as Dan Murphy's",
   rates: [ENDEAVOUR_TEAM_MEMBER, ENDEAVOUR_SENIOR_TEAM_MEMBER, DUTY_MANAGER],
+  // The in-charge allowance in bws.ts is for BWS Team Members only (cl 5.2).
+  allowances: undefined,
   notices: [
     "Dan Murphy's and BWS staff share one agreement, the Endeavour Group Retail Agreement 2025, so their rates are the same apart from Dan Murphy's Duty Manager level. The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage — 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent.",
     "When it approved the agreement, the Fair Work Commission compared Team Member with Retail Award Levels 1 and 2, Senior Team Member with Levels 3 and 4 and Duty Manager with Level 6. In 2026 all three stay above those award rates ($28.45, $29.45 and $31.11).",
@@ -36,14 +38,6 @@ export const DAN_MURPHYS_PAY: EmployerPay = {
     {
       q: "Is Dan Murphy's pay the same as BWS?",
       a: "Yes, apart from the Duty Manager level, which only Dan Murphy's has. Both are run by Endeavour Group and covered by the Endeavour Group Retail Agreement 2025 (AE531119), which replaced their separate 2019 agreements.",
-    },
-    {
-      q: "Does Dan Murphy's pay junior rates?",
-      a: "No. The Endeavour Group agreement pays the adult rate to every team member regardless of age.",
-    },
-    {
-      q: "What does Dan Murphy's pay on Sundays and public holidays?",
-      a: "Between 9am and 11pm on a Sunday, permanent staff get base + 50% and casuals base + 75% (about $42.83 and $49.96 an hour for a Team Member). Public holidays pay base + 125%, or base + 150% for casuals.",
     },
     {
       q: "When does the Dan Murphy's agreement expire?",

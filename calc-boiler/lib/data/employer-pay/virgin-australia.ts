@@ -88,8 +88,11 @@ export const VIRGIN_AUSTRALIA_PAY: EmployerPay = {
   ],
   penaltyNotes: [
     "Virgin cabin crew have no percentage weekend or evening penalty: the base salary covers weekends and public holidays, and the agreement adds fixed payments instead (Schedule A Parts 3 to 5, from 1 November 2025).",
-    "A Daily Travel Allowance is paid for every hour from sign-on to sign-off at home base: $8.49 an hour for a single-day duty and $7.48 for a multi-day trip (from 1 November 2025).",
     "Overtime is paid on top of the Base Hourly Rate; the agreement's overtime clause does not apply to casuals (cl 2.12.4).",
+  ],
+  allowances: [
+    { name: "Daily Travel Allowance — single-day duty", amount: "$8.49 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
+    { name: "Daily Travel Allowance — multi-day trip", amount: "$7.48 an hour", when: "Every hour from sign-on to sign-off at home base (from 1 November 2025)" },
   ],
   overtime: [
     { when: "Domestic or short haul international: over 9 hours, up to 11", permanent: "+50% (time and a half)", casual: "—" },

@@ -96,8 +96,15 @@ export const QANTAS_PAY: EmployerPay = {
   penaltyNotes: [
     "Qantas short haul crew have no percentage weekend or evening penalty. Instead the agreement pays \"bands payments\" for unsociable hours, weekends and public holidays: each band has a point value, multiplied by $3.03 for a flight attendant ($3.35 for a CSM) from 1 January 2026 (cl 44, Part G). The agreement lists these amounts \"per instance\"; how instances are counted on a roster is not spelled out in the pages we transcribed.",
     "A flight attendant who is not being paid bands payments while on duty gets a 10% loading on weekly salary instead of a shift penalty (cl 44.7).",
-    "The same Part G table sets allowances from 1 January 2026, including a $370.17 monthly miscellaneous expense reimbursement, $25.91 a week cosmetic and hairdressing allowance, $13.89 hose and $17.93 shoe allowance a week, and route pay of $20.45 a day.",
   ],
+  allowances: [
+    { name: "Miscellaneous expense reimbursement", amount: "$370.17 a month", when: "Part G, from 1 January 2026" },
+    { name: "Cosmetic and hairdressing allowance", amount: "$25.91 a week", when: "Part G, from 1 January 2026" },
+    { name: "Hose allowance", amount: "$13.89 a week", when: "Part G, from 1 January 2026" },
+    { name: "Shoe allowance", amount: "$17.93 a week", when: "Part G, from 1 January 2026" },
+    { name: "Route pay", amount: "$20.45 a day", when: "Part G, from 1 January 2026" },
+  ],
+  allowancesNote: "These are the allowances we transcribed from the Part G table; it lists others.",
   overtime: [
     { when: "Daily duty over 8 hours 30 minutes, up to 10 hours", permanent: "Time and a half", casual: "+$20.97 an hour" },
     { when: "Daily duty over 10 hours", permanent: "Double time", casual: "+$41.91 an hour" },
