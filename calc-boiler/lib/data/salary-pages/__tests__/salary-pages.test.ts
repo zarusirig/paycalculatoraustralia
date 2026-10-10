@@ -51,7 +51,8 @@ test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
   assert.ok(!SALARY_GRID.includes(151_000));
   assert.equal(SALARY_GRID.length, 4 + 111 + 10 + HIGH_SALARY_TAIL.length);
   assert.equal(SALARY_GRID[SALARY_GRID.length - 1], 500_000);
-  assert.deepEqual(TAX_ON_SALARIES, SALARY_GRID);
+  assert.ok(TAX_ON_SALARIES.every((v) => v % 5_000 === 0));
+  assert.ok(TAX_ON_SALARIES.includes(80_000) && !TAX_ON_SALARIES.includes(81_000));
   assert.ok(SALARY_TO_HOURLY_SALARIES.includes(75_000));
   assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(72_000));
   assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(25_000));
@@ -117,7 +118,7 @@ test("prev/next and nearby links stay inside the grid", () => {
   assert.ok(!near.includes(150_000));
   for (const s of near) assert.ok(TAX_ON_SALARIES.includes(s));
   assert.equal(nearestSalary("take-home", 72_400), 70_000);
-  assert.equal(nearestSalary("tax-on", 72_400), 72_000);
+  assert.equal(nearestSalary("tax-on", 72_400), 70_000);
   assert.equal(nearestSalary("take-home", 237_000), 240_000);
 });
 

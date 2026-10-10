@@ -54,9 +54,11 @@ export default function GrossPayCalculatorPage({ children, afterCalculator }: { 
   const nextSteps = useMemo<ResultNextStep[]>(() => {
     const s = nearestSalary("take-home", requiredGross);
     const h = nearestSalary("salary-to-hourly", requiredGross);
+    // /tax-on/ has its own $5k grid (10 Oct 2026), so look it up separately.
+    const t = nearestSalary("tax-on", requiredGross);
     return [
       { href: salaryHref("take-home", s), label: `Check your take-home on ${formatAUD(s)}`, detail: "Nearest salary page, with super and HECS options" },
-      { href: salaryHref("tax-on", s), label: `See the tax on ${formatAUD(s)}` },
+      { href: salaryHref("tax-on", t), label: `See the tax on ${formatAUD(t)}` },
       { href: salaryHref("salary-to-hourly", h), label: `What ${formatAUD(h)} a year is an hour` },
     ];
   }, [requiredGross]);

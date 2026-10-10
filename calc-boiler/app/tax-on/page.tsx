@@ -31,8 +31,10 @@ function TaxOnHubPage() {
         crumb: "Tax on Salary",
         intro: (
           <p>
-            Income tax on {TAX_ON_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} at {SITE_CONFIG.financialYear} resident rates. Each page
-            splits the bill bracket by bracket, shows LITO, the Medicare levy and surcharge, HECS-HELP and what the next $1,000 is taxed at.
+            Income tax on {TAX_ON_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} at {SITE_CONFIG.financialYear} resident rates, in $5,000
+            steps. Each page splits the bill bracket by bracket, compares it with earlier years, lists the tax, levy and super thresholds within $15,000 and
+            places the salary among Australian earners (ABS). For any other figure, use the{" "}
+            <a href="/income-tax-calculator/" className="text-eucalyptus hover:text-navy transition-colors font-medium">income tax calculator</a>.
           </p>
         ),
         figure: (s) => formatAUD(calculatePayBreakdown({ grossSalary: s }).netIncomeTax),
