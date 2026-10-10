@@ -10,8 +10,8 @@ import type { ServicePayScale } from "@/lib/data/service-pay/types";
 import { HEADING_FONT, TableShell } from "./job-pay-shared";
 
 /**
- * A salary that links to its take-home page. /take-home-pay-on/ runs in $1,000
- * steps to $150k and wider steps above, so where the salary has no page of its
+ * A salary that links to its take-home page. /take-home-pay-on/ runs in $5,000
+ * steps to $200k and wider steps above, so where the salary has no page of its
  * own the link says it goes to the nearest one.
  */
 export function SalaryLink({ salary }: { salary: number }) {

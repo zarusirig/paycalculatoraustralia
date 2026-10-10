@@ -288,7 +288,7 @@ const salaryHubGroups: Group[] = [
   {
     title: "All salaries",
     items: [
-      { href: "/take-home-pay-on/", label: "Take-home pay on every salary", description: "$20,000 to $500,000, $1k steps from $40k to $150k" },
+      { href: "/take-home-pay-on/", label: "Take-home pay on every salary", description: "$20,000 to $500,000, $5k steps up to $200k" },
       { href: "/tax-on/", label: "Tax on every salary", description: "Income tax and Medicare levy, same grid" },
       { href: "/salary-to-hourly/", label: "Every salary as an hourly rate", description: "$30,000 to $500,000 on a 38-hour week" },
     ],

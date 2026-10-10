@@ -309,7 +309,7 @@ test("scenarios quote the published figures they name", () => {
 });
 
 test("take-home links land on a published take-home page", () => {
-  assert.deepEqual(takeHomePageFor(131_588), { amount: 132_000, href: "/take-home-pay-on/132000/" });
+  assert.deepEqual(takeHomePageFor(131_588), { amount: 130_000, href: "/take-home-pay-on/130000/" });
   assert.deepEqual(takeHomePageFor(457_287), { amount: 500_000, href: "/take-home-pay-on/500000/" });
 });
 

@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import {
   HIGH_SALARY_TAIL,
+  SALARY_GRID,
   SALARY_TO_HOURLY_SALARIES,
   TAKE_HOME_SALARIES,
   TAX_ON_SALARIES,
@@ -40,15 +43,60 @@ test("every pre-existing URL is still generated", () => {
 });
 
 test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
-  for (let s = 40_000; s <= 150_000; s += 1_000) assert.ok(TAKE_HOME_SALARIES.includes(s), `${s}`);
+  for (let s = 40_000; s <= 150_000; s += 1_000) assert.ok(SALARY_GRID.includes(s), `${s}`);
   for (const s of [20_000, 25_000, 210_000, 250_000, 300_000, 350_000, 400_000, 500_000]) {
+    assert.ok(SALARY_GRID.includes(s), `${s}`);
     assert.ok(TAKE_HOME_SALARIES.includes(s), `${s}`);
   }
-  assert.ok(!TAKE_HOME_SALARIES.includes(151_000));
-  assert.equal(TAKE_HOME_SALARIES.length, 4 + 111 + 10 + HIGH_SALARY_TAIL.length);
-  assert.equal(TAKE_HOME_SALARIES[TAKE_HOME_SALARIES.length - 1], 500_000);
+  assert.ok(!SALARY_GRID.includes(151_000));
+  assert.equal(SALARY_GRID.length, 4 + 111 + 10 + HIGH_SALARY_TAIL.length);
+  assert.equal(SALARY_GRID[SALARY_GRID.length - 1], 500_000);
+  assert.deepEqual(TAX_ON_SALARIES, SALARY_GRID);
   assert.ok(SALARY_TO_HOURLY_SALARIES.includes(72_000));
   assert.ok(!SALARY_TO_HOURLY_SALARIES.includes(25_000));
+});
+
+test("take-home keeps only the multiples of $5,000 (Oct 2026 prune)", () => {
+  assert.deepEqual(TAKE_HOME_SALARIES, SALARY_GRID.filter((s) => s % 5_000 === 0));
+  assert.equal(TAKE_HOME_SALARIES.length, 50);
+  for (const s of [85_000, 90_000, 95_000, 100_000, 110_000, 120_000, 130_000, 150_000, 200_000]) {
+    assert.ok(TAKE_HOME_SALARIES.includes(s), `${s}`);
+  }
+  assert.ok(!TAKE_HOME_SALARIES.includes(72_000));
+  assert.ok(!TAKE_HOME_SALARIES.includes(149_000));
+});
+
+/** firebase.json allows // comments (Firebase CLI reads it with cjson); drop them before JSON.parse. */
+function hostingRedirects(): { source?: string; regex?: string; destination: string; type: number }[] {
+  const raw = readFileSync(join(process.cwd(), "firebase.json"), "utf8");
+  const json = raw
+    .split("\n")
+    .filter((line) => !/^\s*\/\//.test(line))
+    .join("\n");
+  return JSON.parse(json).hosting.redirects;
+}
+
+test("every removed take-home URL 301s to the nearest kept page, with and without the slash", () => {
+  const redirects = hostingRedirects();
+  const bySource = new Map(redirects.filter((r) => r.source).map((r) => [r.source as string, r]));
+  const removed = SALARY_GRID.filter((s) => !TAKE_HOME_SALARIES.includes(s));
+  assert.equal(removed.length, 88);
+  for (const s of removed) {
+    const target = `/take-home-pay-on/${nearestSalary("take-home", s)}/`;
+    for (const src of [`/take-home-pay-on/${s}`, `/take-home-pay-on/${s}/`]) {
+      const r = bySource.get(src);
+      assert.ok(r, `no redirect for ${src}`);
+      assert.equal(r.destination, target, src);
+      assert.equal(r.type, 301, src);
+    }
+  }
+  assert.equal(bySource.get("/take-home-pay-on/146000/")?.destination, "/take-home-pay-on/145000/");
+  assert.equal(bySource.get("/take-home-pay-on/148000/")?.destination, "/take-home-pay-on/150000/");
+  // No kept page is redirected away.
+  for (const s of TAKE_HOME_SALARIES) {
+    assert.ok(!bySource.has(`/take-home-pay-on/${s}/`), `${s} is kept but redirected`);
+    assert.ok(!bySource.has(`/take-home-pay-on/${s}`), `${s} is kept but redirected`);
+  }
 });
 
 test("hub bands cover every salary exactly once", () => {
@@ -59,14 +107,16 @@ test("hub bands cover every salary exactly once", () => {
 });
 
 test("prev/next and nearby links stay inside the grid", () => {
-  assert.deepEqual(prevNext("take-home", 72_000), { prev: 71_000, next: 73_000 });
+  assert.deepEqual(prevNext("take-home", 70_000), { prev: 65_000, next: 75_000 });
+  assert.deepEqual(prevNext("take-home", 72_000), { prev: null, next: null });
   assert.deepEqual(prevNext("take-home", 20_000), { prev: null, next: 25_000 });
   assert.deepEqual(prevNext("take-home", 500_000), { prev: 400_000, next: null });
   assert.deepEqual(prevNext("salary-to-hourly", 30_000), { prev: null, next: 40_000 });
   const near = nearbySalaries("tax-on", 150_000);
   assert.ok(!near.includes(150_000));
   for (const s of near) assert.ok(TAX_ON_SALARIES.includes(s));
-  assert.equal(nearestSalary("take-home", 72_400), 72_000);
+  assert.equal(nearestSalary("take-home", 72_400), 70_000);
+  assert.equal(nearestSalary("tax-on", 72_400), 72_000);
   assert.equal(nearestSalary("take-home", 237_000), 240_000);
 });
 

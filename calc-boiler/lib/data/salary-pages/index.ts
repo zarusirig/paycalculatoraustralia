@@ -42,29 +42,37 @@ function range(from: number, to: number, step: number): number[] {
 export const HIGH_SALARY_TAIL: readonly number[] = [...range(210_000, 300_000, 10_000), 350_000, 400_000, 500_000];
 
 /**
- * Every salary with a /take-home-pay-on/ and a /tax-on/ page:
- * $20k–$35k in $5k steps, every $1,000 from $40k to $150k, $5k steps to
- * $200k, $10k steps to $300k, then $350k, $400k and $500k.
+ * The full salary grid (Wave 3 / T6): $20k–$35k in $5k steps, every $1,000
+ * from $40k to $150k, $5k steps to $200k, $10k steps to $300k, then $350k,
+ * $400k and $500k. /tax-on/ and /salary-to-hourly/ are built from it.
  */
-export const TAKE_HOME_SALARIES: readonly number[] = [
+export const SALARY_GRID: readonly number[] = [
   ...range(20_000, 35_000, 5_000),
   ...range(40_000, 150_000, 1_000),
   ...range(155_000, 200_000, 5_000),
   ...HIGH_SALARY_TAIL,
 ];
 
-/** /tax-on/ uses the same grid as /take-home-pay-on/ (a page pair per salary). */
-export const TAX_ON_SALARIES: readonly number[] = TAKE_HOME_SALARIES;
+/**
+ * Every salary with a /take-home-pay-on/ page: the multiples of $5,000 in the
+ * grid (Oct 2026). The $1k steps in between were near-copies of each other;
+ * each removed URL 301s to the nearest kept page (firebase.json, take-home
+ * block), which the unit tests check.
+ */
+export const TAKE_HOME_SALARIES: readonly number[] = SALARY_GRID.filter((s) => s % 5_000 === 0);
+
+/** /tax-on/ uses the full grid. */
+export const TAX_ON_SALARIES: readonly number[] = SALARY_GRID;
 
 /**
- * /salary-to-hourly/ — the take-home grid from $40k up, plus the long-standing
+ * /salary-to-hourly/ — the full grid from $40k up, plus the long-standing
  * $30,000 page. (No $20k/$25k/$35k: those were never hourly pages and a
  * sub-$40k annual salary is almost always a part-time figure, where a 38-hour
  * conversion misleads.)
  */
 export const SALARY_TO_HOURLY_SALARIES: readonly number[] = [
   30_000,
-  ...TAKE_HOME_SALARIES.filter((s) => s >= 40_000),
+  ...SALARY_GRID.filter((s) => s >= 40_000),
 ];
 
 export type SalaryFamily = "take-home" | "tax-on" | "salary-to-hourly";

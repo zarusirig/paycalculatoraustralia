@@ -129,12 +129,12 @@ test("take-home links resolve to a page that is actually built", () => {
   }
 });
 
-test("take-home resolver uses the $1,000 grid", () => {
+test("take-home resolver uses the $5,000 take-home grid", () => {
   assert.equal(nearestTakeHome(85_000), 85_000);
   assert.equal(isExactTakeHome(85_000), true);
   assert.equal(nearestTakeHome(85_420), 85_000);
-  assert.equal(nearestTakeHome(85_600), 86_000);
-  assert.equal(isExactTakeHome(85_600), false);
+  assert.equal(nearestTakeHome(87_600), 90_000);
+  assert.equal(isExactTakeHome(86_000), false);
   assert.equal(nearestTakeHome(152_000), 150_000);
   assert.throws(() => nearestTakeHome(Number.NaN));
 });

@@ -11,7 +11,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import TrustBar from "@/components/common/trust-bar";
 import MethodologyDisclosure from "@/components/common/methodology-disclosure";
 import SourceAttribution, { type SourceLink } from "@/components/common/source-attribution";
-import { salaryFacts, SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
+import { nearestSalary, salaryFacts, salaryHref, SALARY_TO_HOURLY_SALARIES } from "@/lib/data/salary-pages";
 import { AWE_HEADLINE, AWE_RELEASE, annualise } from "@/lib/data/average-salary";
 import { NeighbourTable, SalaryNav } from "@/modules/programmatic/salary-page-sections";
 import { FaqAnswer } from "@/components/common/faq-accordion";
@@ -48,6 +48,8 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
   const withHecs = calculatePayBreakdown({ grossSalary: salary, includeHECS: true });
 
   const formattedSalary = formatAUD(salary);
+  // /take-home-pay-on/ keeps $5k steps only, so link the nearest page.
+  const takeHomeSalary = nearestSalary("take-home", salary);
 
   // Hourly rate calculations
   const grossHourly = salary / HOURS_PER_YEAR;
@@ -261,9 +263,9 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
 
       <section>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <a href={`/take-home-pay-on/${salary}/`} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
-            <p className="font-semibold text-navy mb-1">Take-Home Pay on {formattedSalary}</p>
-            <p className="text-sm text-warmgray">Full net pay breakdown with tax, Medicare, and super.</p>
+          <a href={salaryHref("take-home", takeHomeSalary)} className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
+            <p className="font-semibold text-navy mb-1">Take-Home Pay on {formatAUD(takeHomeSalary)}</p>
+            <p className="text-sm text-warmgray">{takeHomeSalary === salary ? "Full net pay breakdown with tax, Medicare, and super." : `The nearest take-home page to ${formattedSalary}, with tax, Medicare and super.`}</p>
           </a>
           <a href="/hourly-to-annual-salary-calculator/" className="block rounded-xl border border-sandstone-dark/20 p-5 hover:bg-sandstone transition-colors">
             <p className="font-semibold text-navy mb-1">Hourly to Annual Salary Calculator</p>
