@@ -65,9 +65,13 @@ export const ATO_TABLE_15: OccupationSource = {
   url: ATO_TABLE_15_URL,
 };
 
-/** The caveat that travels with every ATO occupation figure. */
+/**
+ * The caveat that travels with every ATO occupation figure, in one line. The
+ * occupation page links the full explanation (average vs median, who is
+ * counted) on the average salary guide.
+ */
 export const ATO_DEFINITION =
-  "ATO figures come from 2023–24 individual tax returns: everyone who gave this occupation, including part-time and part-year workers. Salary or wages is the gross wage income people reported (averages and medians count only those who reported some); taxable income adds other income such as interest and business income and subtracts deductions. Neither figure is a full-time rate or a legal minimum.";
+  "Tax-return figures count everyone who gave the occupation, part-time and part-year workers included, so neither is a full-time rate or a legal minimum.";
 
 export function jsaUrl(codeAndSlug: string): string {
   return `https://www.jobsandskills.gov.au/data/occupation-and-industry-profiles/occupations-anzsco/${codeAndSlug}`;
@@ -80,6 +84,13 @@ export function jsaUrl(codeAndSlug: string): string {
  */
 export const MEDIAN_DEFINITION =
   "Median weekly pay of full-time, non-managerial adult employees before tax and salary sacrifice, from the ABS Survey of Employee Earnings and Hours (May 2025) as published by Jobs and Skills Australia. It reflects what employers actually pay, including people on enterprise agreements or above-award salaries, so it is a market figure, not a legal minimum.";
+
+/**
+ * MEDIAN_DEFINITION in one line, for the occupation and health salary pages,
+ * which link the full average-vs-median explanation instead of repeating it.
+ */
+export const MEDIAN_NOTE =
+  "Full-time, non-managerial adults before tax (ABS, May 2025): a market figure, not a legal minimum.";
 
 /**
  * A rate row read from the shared award constants in

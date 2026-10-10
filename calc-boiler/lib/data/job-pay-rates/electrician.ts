@@ -111,7 +111,6 @@ export const ELECTRICIAN: Occupation = {
   notShown: [
     "Apprentice rates, which are percentages of the grade 5 rate set by year and start date — see the construction and trades pay guide.",
     "Shiftwork rates and special site allowances such as the multistorey allowance.",
-    "Rates under enterprise agreements, which replace the award for employers that have one.",
   ],
   faqs: [
     {

@@ -115,10 +115,6 @@ export const MORTGAGE_BROKER: Occupation = {
       a: "No award names mortgage brokers. The Banking, Finance and Insurance Award covers lending and broking businesses, but only for employees whose work fits one of its classifications. If no award covers an employed broker, the National Minimum Wage and the National Employment Standards apply.",
     },
     {
-      q: "Does commission have to be shown on a payslip?",
-      a: "Yes, for an employee. The Fair Work Ombudsman says bonuses, incentive-based payments and other amounts that can be separated from ordinary pay must be listed on the payslip, alongside gross and net pay and the super paid.",
-    },
-    {
       q: "Do insurance brokers earn more than mortgage brokers?",
       a: "On 2023–24 tax returns, insurance brokers' median salary or wage income was $96,439, against $81,587 for finance brokers, the code that includes mortgage brokers.",
     },

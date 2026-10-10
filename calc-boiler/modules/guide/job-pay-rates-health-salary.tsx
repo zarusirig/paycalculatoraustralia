@@ -9,7 +9,7 @@ import SourceAttribution, { type SourceLink } from "@/components/common/source-a
 import AuthorBox from "@/components/common/author-box";
 import { getGuideAuthorship } from "@/lib/authors";
 import { SITE_CONFIG, formatAUD, formatNegAUD } from "@/lib/constants";
-import { MEDIAN_DEFINITION } from "@/lib/data/job-pay-rates/common";
+import { MEDIAN_NOTE } from "@/lib/data/job-pay-rates/common";
 import { ATO_INCOME_YEAR } from "@/lib/data/health-salary/ato-2023-24";
 import {
   DIVISION_293_THRESHOLD,
@@ -237,19 +237,16 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                 {page.name} salary in Australia: the ATO&rsquo;s {ATO_INCOME_YEAR} figures
               </h2>
               <p>
-                Every year the ATO publishes what people earned, grouped by the occupation they put on their tax return.
-                The {ATO_INCOME_YEAR} figures (released on 17 June 2026) are the most recent. For {page.atoOccupation},{" "}
-                {n(page.ato.individuals)} people reported an average taxable income of{" "}
+                For {page.atoOccupation}, {n(page.ato.individuals)} people reported an average taxable income of{" "}
                 {formatAUD(page.ato.averageTaxableIncome)} and a median of {formatAUD(page.ato.medianTaxableIncome)}.
                 Those who were paid a salary or wage had an average of {formatAUD(page.ato.averageSalaryOrWages)} and a
                 median of {formatAUD(page.ato.medianSalaryOrWages)} from it.
               </p>
               <AtoGrid rows={[page.ato, ...page.atoBySex]} rowHeading="Who" caption={`${page.name} income, ${ATO_INCOME_YEAR}`} />
               <p className="text-base">
-                <strong>Taxable income</strong> is everything a person earned — salary, business and contracting income,
-                investments — less their deductions; the ATO&rsquo;s averages and medians for it include everyone in the
-                occupation, whatever hours they worked. <strong>Salary or wages</strong> is only what employers paid, and
-                its figures cover only the people who were paid one. Neither is a full-time salary rate.
+                Taxable income includes business and investment income less deductions; salary or wages is employer pay
+                only. Neither is a full-time salary rate (
+                <Link href="/average-salary-australia/#average-vs-median">average and median pay explained</Link>).
               </p>
               {page.atoTables.map((t) => (
                 <AtoRowsTable key={t.id} table={t} />
@@ -270,7 +267,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                   week.
                 </p>
                 {page.jsa.caveat ? <p>{page.jsa.caveat}</p> : null}
-                <p className="text-base">{MEDIAN_DEFINITION}</p>
+                <p className="text-base">{MEDIAN_NOTE}</p>
               </section>
             )}
 
@@ -305,12 +302,7 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
             {page.staffSpecialist && (
               <section id="public-hospital">
                 <h2 style={HEADING_FONT}>Public hospital staff specialist salaries</h2>
-                <p>
-                  {withArticle(page.name).replace(/^a/, "A")} employed by a state public hospital is a staff specialist, paid on the same
-                  salary scale as every other specialty in that state. The scales below are the base salaries each state
-                  publishes, before the allowances most staff specialists also receive. We show only the states whose
-                  schedule we have read from the official source.
-                </p>
+                <p>Base salaries before allowances, for the states whose schedule we have read from the official source.</p>
                 {STAFF_SPECIALIST_SCALES.map((scale) => (
                   <div key={scale.state} className="not-prose my-8">
                     <h3 className="mb-2 text-xl font-bold text-navy" style={HEADING_FONT} id={`staff-specialist-${scale.state.toLowerCase()}`}>
@@ -352,32 +344,22 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                 ))}
                 {page.staffSpecialistNote ? <p>{page.staffSpecialistNote}</p> : null}
 
-                <h3 style={HEADING_FONT} id="salary-packaging">Salary packaging in a public hospital</h3>
-                <p>
-                  Public hospital employees can package part of their salary before tax under a{" "}
-                  {formatAUD(HOSPITAL_PACKAGING.grossedUpCap)} grossed-up fringe benefits tax cap — about{" "}
-                  {formatAUD(HOSPITAL_PACKAGING.faceValue)} a year of everyday expenses such as rent or a mortgage.
+                <p id="salary-packaging">
+                  Public hospital staff can also package about {formatAUD(HOSPITAL_PACKAGING.faceValue)} a year of
+                  expenses before tax ({formatAUD(HOSPITAL_PACKAGING.grossedUpCap)} grossed-up cap)
                   {packagingExample !== null ? (
                     <>
-                      {" "}On a {formatAUD(packagingExample)} salary, packaging the full amount leaves about{" "}
-                      {formatAUD(hospitalPackagingBenefit(packagingExample))} more to spend each year, before the packaging
-                      provider&rsquo;s fees.
+                      : on a {formatAUD(packagingExample)} salary that leaves about{" "}
+                      {formatAUD(hospitalPackagingBenefit(packagingExample))} more a year
                     </>
                   ) : null}{" "}
-                  It lowers the taxable income on your payment summary but raises your reportable fringe benefits, which
-                  count towards HELP repayments and the Medicare levy surcharge. See the{" "}
-                  <Link href="/salary-packaging-guide/">salary packaging guide</Link> for how it works.
+                  (<Link href="/salary-packaging-guide/">salary packaging guide</Link>).
                 </p>
               </section>
             )}
 
             <section id="after-tax">
               <h2 style={HEADING_FONT}>{page.name} salary after tax</h2>
-              <p>
-                What each figure above leaves after income tax and the Medicare levy at 2026–27 rates, treating it as
-                taxable income with no deductions. The ATO figures are from {ATO_INCOME_YEAR}, so this shows what the same
-                income takes home today, not what it took home then.
-              </p>
               <TableShell minWidth="46rem" caption={`${page.name} take-home pay`}>
                 <thead className="bg-sandstone font-semibold text-navy">
                   <tr>
@@ -408,26 +390,21 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
                 </tbody>
               </TableShell>
               <p>
-                2026–27 resident tax rates with the low income tax offset and the 2% Medicare levy, assuming private
-                hospital cover (without it, the Medicare levy surcharge adds up to 1.5% at these incomes — check yours with
-                the <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge calculator</Link>). The last
-                column is the compulsory repayment if you still have a HELP debt; it comes out of take-home pay on top of
-                tax. Super is paid on top by an employer at {Math.round(SG_RATE * 100)}%.
+                Each figure treated as taxable income at 2026–27 rates, with private hospital cover (
+                <Link href="/medicare-levy-surcharge-calculator/">Medicare levy surcharge</Link> otherwise); the last column
+                applies only with a HELP debt, and super is paid on top at {Math.round(SG_RATE * 100)}%.
                 {anyOver293 ? (
                   <>
-                    {" "}Above {formatAUD(DIVISION_293_THRESHOLD)} of income plus concessional super, an extra 15% applies
-                    to your super contributions — billed by the ATO after your tax return, not withheld from pay (see{" "}
-                    <Link href="/division-293-tax/">Division 293 tax</Link>).
+                    {" "}Above {formatAUD(DIVISION_293_THRESHOLD)} of income plus concessional super,{" "}
+                    <Link href="/division-293-tax/">Division 293 tax</Link> adds 15% on super contributions.
                   </>
-                ) : null}
-              </p>
-              <p>
-                For the full breakdown at the median, see{" "}
+                ) : null}{" "}
+                Full breakdown at the median:{" "}
                 <Link href={leadPage.href}>take-home pay on {formatAUD(leadPage.amount)}</Link>
                 {leadPage.amount === page.ato.medianTaxableIncome
                   ? ""
                   : ` (the nearest step to ${formatAUD(page.ato.medianTaxableIncome)})`}
-                , or put in your own salary below.
+                .
               </p>
               <div className="not-prose my-6">
                 <Link
@@ -443,19 +420,12 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
 
             <section id="payslip">
               <h2 style={HEADING_FONT}>What {withArticle(page.name)}&rsquo;s pay looks like on a payslip</h2>
-              <p>
-                An employed {page.name === "GP" ? "GP" : page.name.toLowerCase()} gets a payslip each pay day showing gross
-                pay, the PAYG tax withheld (which already allows for the Medicare levy), any HELP repayment withheld, and
-                the super the employer paid on top. Check the tax withheld against the{" "}
-                <Link href="/tax-withheld-calculator/">tax withheld calculator</Link> and each line against{" "}
-                <Link href="/understanding-your-payslip/">understanding your payslip</Link>.
-              </p>
               {page.payslip.map((p) => (
                 <p key={p}>{p}</p>
               ))}
               <p>
-                Contracting rather than employed? Compare the two with the{" "}
-                <Link href="/contractor-pay-calculator/">contractor pay calculator</Link>.
+                Check the tax withheld with the <Link href="/tax-withheld-calculator/">tax withheld calculator</Link> and
+                each line against <Link href="/understanding-your-payslip/">understanding your payslip</Link>.
               </p>
             </section>
 
@@ -488,16 +458,10 @@ export default function HealthSalaryPageView({ page }: { page: HealthSalaryPage 
             <div className="not-prose mt-12">
               <MethodologyDisclosure title="How this page is sourced">
                 <p>
-                  Income figures are the ATO&rsquo;s Taxation statistics {ATO_INCOME_YEAR}, Individuals Table 15, read from
-                  the spreadsheet the ATO publishes on data.gov.au on {page.verifiedOn} and transcribed to the dollar. They
-                  describe what people reported on their tax returns; they are not pay rates. Employee medians come from Jobs
-                  and Skills Australia&rsquo;s occupation profiles, and award and public hospital salaries from the
-                  instrument named beside each table.
-                </p>
-                <p>
-                  Take-home figures use the same tax engine as the rest of this site. Nothing on this page is estimated: a
-                  figure we could not read from a primary source is listed under &ldquo;What this page does not show&rdquo;
-                  instead.
+                  Income: ATO Taxation statistics {ATO_INCOME_YEAR}, Individuals Table 15 ({page.atoOccupation}), read on{" "}
+                  {page.verifiedOn} and transcribed to the dollar.
+                  {page.jsa ? ` Employee median: Jobs and Skills Australia, ${page.jsa.anzscoTitle} (ANZSCO ${page.jsa.anzscoCode}).` : ""}
+                  {page.awardTable || page.staffSpecialist ? " Award and hospital salaries: the instrument named beside each table." : ""}
                 </p>
               </MethodologyDisclosure>
               <SourceAttribution sources={sourceLinks} lastVerified={page.verifiedOn} />

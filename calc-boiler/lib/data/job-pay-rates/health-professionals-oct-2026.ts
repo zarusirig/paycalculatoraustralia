@@ -86,10 +86,13 @@ export const HPSS_OCT_2026_SOURCES: OccupationSource[] = [
   },
 ];
 
-/** The two notices every health professional page carries. */
+/**
+ * The one award-wide notice every health professional page carries. Kept to a
+ * line: the lede already gives the 1 October 2026 start date, and the award
+ * page covers the transition in full.
+ */
 export const HPSS_OCT_2026_NOTICES: string[] = [
-  "These are the rates from the first full pay period starting on or after 1 October 2026, under Fair Work Commission determination PR814029. They are the first stage of the Commission's gender undervaluation increases; further stages are due from 30 June 2027, 2028, 2029 and 2030.",
-  "If you were employed under this award on 30 September 2026, clause J.4 translates you into the new structure and clause J.4.3 keeps your old minimum rate if it was higher. Our Health Professionals Award rates page covers the full award.",
+  "Stage 1 of the gender undervaluation increases (determination PR814029); further stages are due from 30 June 2027, 2028, 2029 and 2030. If you were on this award on 30 September 2026, clause J.4.3 keeps your old minimum rate if it was higher.",
 ];
 
 /** The four Level 1 rows (1st year to 7th year+) for one AQF level, with the published casual rate. */
@@ -121,7 +124,9 @@ export function hpssOct2026Level1Table(aqf: HpssAqfLevel, id = "level-1"): RateT
   return {
     id,
     title: `Health professional level 1 — AQF Level ${aqf}, from 1 October 2026`,
-    intro: `Clause 17.1 as substituted by determination PR814029, from the first full pay period starting on or after 1 October 2026. Level 1 pay is set by the AQF level of the profession's standard minimum qualification (Schedule B) and years of experience in the profession at Level 1. Casual rates are Schedule C.2.3 exactly.`,
+    // How Level 1 pay is set (AQF level and years at Level 1) is in each
+    // profession's coverage paragraphs, so the intro does not repeat it.
+    intro: `Clause 17.1 as substituted by determination PR814029, AQF Level ${aqf} rows. Casual rates are Schedule C.2.3 exactly.`,
     rows: hpssOct2026Level1Rows(aqf),
   };
 }
@@ -130,8 +135,9 @@ export function hpssOct2026SeniorTable(): RateTable {
   return {
     id: "levels-2-4",
     title: "Health professional levels 2 to 4, from 1 October 2026",
-    intro:
-      "Clause 17.2 as substituted by PR814029. Level 2 is a senior clinician, specialist, supervisor or educator (2.1 under 5 years in the role, 2.2 for 5 years or more); level 3 an advanced clinician, senior specialist or section manager; level 4 a manager (Schedule A.2). Casual rates are Schedule C.2.3 exactly.",
+    // The level definitions are in the row labels and, on each profession's
+    // page, in its coverage paragraphs.
+    intro: "Clause 17.2 as substituted by PR814029; levels are defined in Schedule A.2. Casual rates are Schedule C.2.3 exactly.",
     rows: hpssOct2026SeniorRows(),
   };
 }

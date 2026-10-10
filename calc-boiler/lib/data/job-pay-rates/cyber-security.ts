@@ -133,7 +133,6 @@ export const CYBER_SECURITY: Occupation = {
   ],
   notShown: [
     "Security clearance allowances and public sector cyber security pay scales.",
-    "Contractor day rates: awards and the minimum wage apply to employees, not to independent contractors.",
     "Recruiter salary surveys: they are not official figures.",
   ],
   faqs: [

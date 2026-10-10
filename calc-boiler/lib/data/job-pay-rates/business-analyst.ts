@@ -88,7 +88,6 @@ export const BUSINESS_ANALYST: Occupation = {
   payslipNotes: [PAYSLIP_TIMING, PAYSLIP_BONUSES, PAYSLIP_SUPER_AND_DEDUCTIONS],
   notShown: [
     "An award rate for business analysts: none names the job, and coverage depends on your employer and duties.",
-    "Contractor day rates: awards and the minimum wage apply to employees, not to independent contractors.",
     "Recruiter salary bands by seniority: they are not official figures.",
   ],
   faqs: [
@@ -107,10 +106,6 @@ export const BUSINESS_ANALYST: Occupation = {
     {
       q: "Do business analysts earn more than systems analysts?",
       a: "About the same. On 2023–24 tax returns the median salary or wage income was $119,229 for business analysts and $119,204 for systems analysts, though systems analysts' average was higher ($125,940 against $123,441).",
-    },
-    {
-      q: "Do business analysts get paid overtime?",
-      a: "Not automatically. Without an award, there is no overtime rate: the National Employment Standards allow reasonable additional hours, and whether they are paid depends on your contract. If the Professional Employees Award covers you, it pays overtime at the ordinary hourly rate until your salary is 25% above your level's minimum.",
     },
   ],
   sources: [

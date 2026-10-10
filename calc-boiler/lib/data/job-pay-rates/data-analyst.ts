@@ -105,10 +105,6 @@ export const DATA_ANALYST: Occupation = {
       q: "What is the minimum wage for a data analyst?",
       a: "If no award covers you, the National Minimum Wage: $26.44 an hour or $1,004.90 a week for adults from the first full pay period on or after 1 July 2026. It is a floor, far below what data analysts typically report.",
     },
-    {
-      q: "Do data analysts get paid overtime?",
-      a: "Not automatically. Award-free employees have no award overtime rate; the National Employment Standards allow reasonable additional hours, and whether they are paid depends on your contract. If an industry award covers you, its overtime rules apply.",
-    },
   ],
   sources: [
     ATO_TABLE_15,

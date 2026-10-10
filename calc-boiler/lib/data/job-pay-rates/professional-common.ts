@@ -143,6 +143,17 @@ export const PAYSLIP_BONUSES =
   "Bonuses and incentive payments: any bonus, commission or other incentive-based payment that can be separated from your ordinary pay must be shown as its own amount on the payslip (Fair Work Ombudsman, pay slips).";
 
 /**
+ * The Fair Work Ombudsman payslip rules above apply to every employee, not to
+ * one job. The occupation page lists only a job's own payslip checks and links
+ * these to the payslip guide in one line.
+ */
+export const GENERIC_PAYSLIP_NOTES: ReadonlySet<string> = new Set([
+  PAYSLIP_SUPER_AND_DEDUCTIONS,
+  PAYSLIP_TIMING,
+  PAYSLIP_BONUSES,
+]);
+
+/**
  * The legal floor shown on a page whose job title no award names: the
  * National Minimum Wage, labelled so it reads as a floor, not a salary.
  */

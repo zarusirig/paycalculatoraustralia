@@ -138,7 +138,6 @@ export const SOFTWARE_ENGINEER: Occupation = {
   ],
   notShown: [
     "Equity and RSU values: this page shows salary or wage income as people reported it on their tax returns and does not estimate equity.",
-    "Contractor day rates: awards and the minimum wage apply to employees, not to independent contractors.",
     "Salary by state or seniority: ATO occupation figures are not published that way for software engineers alone.",
   ],
   faqs: [

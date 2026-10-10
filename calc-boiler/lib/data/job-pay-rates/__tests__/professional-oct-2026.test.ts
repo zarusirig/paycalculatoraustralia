@@ -47,7 +47,10 @@ test("P1: every page is registered, sourced and dated 9 October 2026", () => {
     assert.equal(o.verifiedOn, "9 October 2026");
     assert.equal(o.dateModified, "2026-10-09");
     assert.equal(OCCUPATION_SECTOR[o.slug], "office");
-    assert.ok(o.faqs.length >= 5, `${slug} faqs`);
+    // At least 4, as for every occupation: only questions whose answer turns on
+    // this job's own figures or coverage are kept (generic award-free overtime
+    // and payslip-rule questions were cut on 10 Oct 2026).
+    assert.ok(o.faqs.length >= 4, `${slug} faqs`);
     assert.ok(o.ato, `${slug} must carry ATO figures`);
     assert.equal(o.ato!.incomeYear, ATO_TAXSTATS_INCOME_YEAR);
     assert.equal(ATO_TAXSTATS_INCOME_YEAR, "2023–24");
