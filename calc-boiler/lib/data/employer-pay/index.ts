@@ -104,6 +104,88 @@ export function getEmployerPay(slug: string): EmployerPay | undefined {
 }
 
 // ---------------------------------------------------------------------------
+// Related employers (10 Oct 2026). Each page links the employers paid under the
+// same instrument and the others in its sector, instead of all 33 others; the
+// hub at /pay-rates/ still lists everyone.
+// ---------------------------------------------------------------------------
+
+export type EmployerSector =
+  | "supermarket-liquor"
+  | "retail"
+  | "pharmacy"
+  | "fast-food"
+  | "cinema"
+  | "airline"
+  | "postal";
+
+export const SECTOR_LABEL: Readonly<Record<EmployerSector, string>> = {
+  "supermarket-liquor": "supermarket and liquor",
+  retail: "retail",
+  pharmacy: "pharmacy",
+  "fast-food": "fast food",
+  cinema: "cinema",
+  airline: "airline",
+  postal: "postal",
+};
+
+export const EMPLOYER_SECTOR: Readonly<Record<EmployerSlug, EmployerSector>> = {
+  coles: "supermarket-liquor",
+  woolworths: "supermarket-liquor",
+  iga: "supermarket-liquor",
+  costco: "supermarket-liquor",
+  liquorland: "supermarket-liquor",
+  bws: "supermarket-liquor",
+  "dan-murphys": "supermarket-liquor",
+  bunnings: "retail",
+  kmart: "retail",
+  "big-w": "retail",
+  "jb-hi-fi": "retail",
+  "david-jones": "retail",
+  officeworks: "retail",
+  "harvey-norman": "retail",
+  target: "retail",
+  spotlight: "retail",
+  anaconda: "retail",
+  rebel: "retail",
+  "chemist-warehouse": "pharmacy",
+  priceline: "pharmacy",
+  mcdonalds: "fast-food",
+  subway: "fast-food",
+  "hungry-jacks": "fast-food",
+  kfc: "fast-food",
+  dominos: "fast-food",
+  "red-rooster": "fast-food",
+  starbucks: "fast-food",
+  "guzman-y-gomez": "fast-food",
+  zambrero: "fast-food",
+  hoyts: "cinema",
+  "event-cinemas": "cinema",
+  qantas: "airline",
+  "virgin-australia": "airline",
+  "australia-post": "postal",
+};
+
+export interface RelatedEmployers {
+  /** Paid under the same award or agreement (same FWC reference). */
+  sameInstrument: EmployerPay[];
+  /** Other employers in the same sector, by search demand. */
+  sameSector: EmployerPay[];
+}
+
+/** Employers to link from a page: same instrument first, then same sector, at most `limit` in all. */
+export function relatedEmployers(employer: EmployerPay, limit = 6): RelatedEmployers {
+  const others = EMPLOYERS.filter((o) => o.slug !== employer.slug);
+  const sameInstrument = others
+    .filter((o) => o.instrument.reference === employer.instrument.reference)
+    .slice(0, limit);
+  const sector = EMPLOYER_SECTOR[employer.slug];
+  const sameSector = others
+    .filter((o) => EMPLOYER_SECTOR[o.slug] === sector && !sameInstrument.includes(o))
+    .slice(0, Math.max(0, limit - sameInstrument.length));
+  return { sameInstrument, sameSector };
+}
+
+// ---------------------------------------------------------------------------
 // Arithmetic. Every derived figure on an employer page comes from here so the
 // tests can pin it.
 // ---------------------------------------------------------------------------

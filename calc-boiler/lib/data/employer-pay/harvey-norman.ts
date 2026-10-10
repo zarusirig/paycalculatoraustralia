@@ -72,13 +72,5 @@ export const HARVEY_NORMAN_PAY: EmployerPay = {
       q: "Does Harvey Norman have an enterprise agreement?",
       a: "We found no Harvey Norman agreement on the Fair Work Commission's lists of agreements approved since 2016. Store staff are covered by the General Retail Industry Award unless their franchisee has its own agreement.",
     },
-    {
-      q: "How much does Harvey Norman pay a 16 or 17 year old?",
-      a: "Under the Retail Award, 16-year-olds at Levels 1 to 3 get at least 50% of the adult rate ($13.91 an hour, or $17.39 as a casual) and 17-year-olds 60% ($16.69, casual $20.86). These are our arithmetic from the award percentages.",
-    },
-    {
-      q: "What does Harvey Norman pay on Sundays and public holidays?",
-      a: "Under the Retail Award, permanent staff get at least 150% on Sundays ($41.72 an hour at Level 1) and 225% on public holidays ($62.57). Casuals get 175% ($48.67) and 250% ($69.53), including the casual loading.",
-    },
   ],
 };

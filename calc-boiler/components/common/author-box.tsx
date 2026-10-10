@@ -7,9 +7,9 @@ type AuthorBoxProps = {
   lastReviewed: string;
   datePublished?: string;
   /**
-   * Leave out the bio and expertise tags, linking to the author's profile
-   * instead. For page families whose many sibling pages would otherwise repeat
-   * the same bio (state pay-scale pages); the family hub keeps the full box.
+   * Byline only: name, role, credentials, reviewer and dates, with a link to
+   * the full profile instead of the bio and expertise tags. For page families
+   * where the same bio would otherwise repeat on every page (10 Oct 2026).
    */
   compact?: boolean;
 };
@@ -81,14 +81,14 @@ export default function AuthorBox({
       </div>
 
       {compact ? (
-        <p className="mt-4 text-sm text-warmgray">
-          <a
-            href={author.profileUrl}
-            className="font-medium text-eucalyptus-dark underline decoration-eucalyptus/40 underline-offset-4 hover:text-navy"
-          >
-            About {author.name}
-          </a>
-        </p>
+        <>
+          <meta itemProp="description" content={author.bio} />
+          <p className="mt-3 text-sm">
+            <a href={author.profileUrl} className="font-medium text-eucalyptus-dark hover:text-navy hover:underline">
+              About {author.name}
+            </a>
+          </p>
+        </>
       ) : (
         <>
           {/* Bio */}

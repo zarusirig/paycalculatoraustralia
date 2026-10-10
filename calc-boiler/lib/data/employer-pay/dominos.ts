@@ -43,9 +43,9 @@ export const DOMINOS_PAY: EmployerPay = {
       ? { ...r, description: "In-store crew and pizza makers, and delivery drivers — the award's Level 1 includes preparing, serving and delivering food" }
       : r,
   ),
-  penaltyNotes: [
-    ...SUBWAY_PAY.penaltyNotes,
-    "Delivery drivers who use their own car are also paid $0.53 a kilometre (award cl 17.8(a), from 1 July 2026).",
+  penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 team member")),
+  allowances: [
+    { name: "Own car used for deliveries", amount: "$0.53 a kilometre", when: "Employee delivery drivers who use their own car (award cl 17.8(a), from 1 July 2026)" },
   ],
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to Domino's corporate and franchised stores. Some stores may pay more.",
@@ -75,14 +75,6 @@ export const DOMINOS_PAY: EmployerPay = {
     {
       q: "Does Domino's have an enterprise agreement?",
       a: "No. The old SDA–Domino's agreements were terminated with effect from 24 January 2018, and in March 2018 Domino's said its team members would stay on the Fast Food Industry Award rather than seek a new agreement.",
-    },
-    {
-      q: "How much does Domino's pay a 15 or 16 year old?",
-      a: "Under the Fast Food Award, staff under 16 get 40% of the adult rate ($11.12 an hour, or $13.90 as a casual) and 16-year-olds 50% ($13.91, casual $17.39). At 17 it is 60% ($16.69). The full adult rate applies from 21.",
-    },
-    {
-      q: "What are Domino's penalty rates?",
-      a: "Saturday is 125% (casual 150%), or $34.76 an hour for an adult Level 1. Sunday is 125% for Level 1 and 150% for Levels 2 and 3. Public holidays are 225% ($62.57), or 250% for casuals. Weekday work from 10pm to midnight is 110% and from midnight to 6am 115%.",
     },
   ],
 };

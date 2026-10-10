@@ -132,6 +132,21 @@ export interface PenaltyRow {
   note?: string;
 }
 
+/**
+ * An allowance the instrument itself sets for this employer's staff (10 Oct
+ * 2026). Only allowances already read from the instrument go here — never an
+ * award allowance assumed to apply. The page shows the table only when the
+ * array is non-empty.
+ */
+export interface AllowanceRow {
+  /** The allowance, as the instrument names it or as plainly as it allows. */
+  name: string;
+  /** The amount in the instrument's own terms: "$0.53 a kilometre", "15% of the ordinary rate". */
+  amount: string;
+  /** Who gets it and when, with the clause. */
+  when: string;
+}
+
 export interface EmployerPaySource {
   title: string;
   publisher: string;
@@ -228,4 +243,10 @@ export interface EmployerPay {
   /** Shown above the adult rate table: how the hourly figure relates to a salary. */
   payBasisNote?: string;
   // --- end J7 ---
+  // --- 10 Oct 2026: employer-specific allowances ---
+  /** Allowances the instrument sets for these staff. Omit when none were read. */
+  allowances?: AllowanceRow[];
+  /** One line under the allowance table, e.g. when the list is a selection. */
+  allowancesNote?: string;
+  // --- end 10 Oct 2026 ---
 }

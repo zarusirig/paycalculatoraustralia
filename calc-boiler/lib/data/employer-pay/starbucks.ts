@@ -42,6 +42,7 @@ export const STARBUCKS_PAY: EmployerPay = {
       ? { ...r, description: "Barista: taking orders, making coffee, preparing and serving food and drinks, and incidental cleaning" }
       : r,
   ),
+  penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 barista")),
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to Starbucks Coffee Australia's stores. Starbucks may pay more; it cannot pay less.",
     "In 2023 Starbucks gave the Fair Work Ombudsman an enforceable undertaking after finding it had underpaid 2,427 current and former staff $4.34 million (before superannuation and interest) between 2014 and 2020, mostly through the award's part-time and rostering rules. It concerns past pay, not current rates.",
@@ -64,14 +65,6 @@ export const STARBUCKS_PAY: EmployerPay = {
     {
       q: "Does Starbucks Australia have an enterprise agreement?",
       a: "We found none approved since 2016. The Fair Work Ombudsman's 2023 enforceable undertaking with Starbucks Coffee Australia dealt with its obligations under the Fast Food Industry Award, which sets the minimum pay for its staff.",
-    },
-    {
-      q: "How much does Starbucks pay a 16 or 17 year old?",
-      a: "Under the Fast Food Award, 16-year-olds get 50% of the adult rate ($13.91 an hour, or $17.39 as a casual) and 17-year-olds 60% ($16.69, casual $20.86). Staff under 16 get 40% ($11.12). The full adult rate applies from 21.",
-    },
-    {
-      q: "What does Starbucks pay on weekends and public holidays?",
-      a: "Saturday is 125% ($34.76 an hour for an adult Level 1 barista) or 150% for casuals. Sunday is 125% at Level 1 and 150% at Levels 2 and 3. Public holidays are 225% ($62.57), or 250% for casuals.",
     },
     {
       q: "Was Starbucks Australia fined for underpaying staff?",

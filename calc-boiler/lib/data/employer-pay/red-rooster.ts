@@ -35,6 +35,7 @@ export const RED_ROOSTER_PAY: EmployerPay = {
   rates: SUBWAY_PAY.rates.map((r, i) =>
     i === 0 ? { ...r, description: "Crew: taking orders, cooking, serving and delivering food, including cleaning" } : r,
   ),
+  penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
     "These are the Fast Food Industry Award minimums. Your employer may be Craveable Brands or a franchisee; either way, these are the least you can be paid, and some restaurants pay more.",
     "If your franchisee has its own approved enterprise agreement, that agreement sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
@@ -54,16 +55,8 @@ export const RED_ROOSTER_PAY: EmployerPay = {
       a: "Red Rooster staff are paid under the Fast Food Industry Award. An adult crew member (Level 1) must get at least $27.81 an hour, or $34.76 as a casual, from the first full pay period on or after 1 July 2026. Shift supervisors and trainers (Level 2) get $29.45, and staff in charge of a restaurant (Level 3) $29.91 or $30.27.",
     },
     {
-      q: "How much does Red Rooster pay a 15 or 16 year old?",
-      a: "Staff under 16 get 40% of the adult rate: $11.12 an hour, or $13.90 as a casual. At 16 it is 50% ($13.91, casual $17.39) and at 17 it is 60% ($16.69). The full adult rate applies from 21.",
-    },
-    {
       q: "Does Red Rooster have an enterprise agreement?",
       a: "Not any more. The Red Rooster Agreement 2009 was terminated by the Fair Work Commission on 31 May 2022, and no replacement has been approved, so the Fast Food Industry Award applies unless a franchisee has its own agreement.",
-    },
-    {
-      q: "What are Red Rooster penalty rates?",
-      a: "Saturday is 125% ($34.76 an hour for an adult Level 1) and 150% for casuals. Sunday is 125% for Level 1 and 150% for Levels 2 and 3. Public holidays are 225% ($62.57), or 250% for casuals ($69.53).",
     },
     {
       q: "Do Red Rooster junior rates go up in December 2026?",

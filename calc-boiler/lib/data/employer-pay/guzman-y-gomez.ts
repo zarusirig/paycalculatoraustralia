@@ -41,6 +41,7 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
       ? { ...r, description: "Crew: front counter, kitchen and drive-through — taking orders, preparing and serving food, and incidental cleaning" }
       : r,
   ),
+  penaltyNotes: SUBWAY_PAY.penaltyNotes.map((n) => n.replace("Level 1 sandwich artist", "Level 1 crew member")),
   notices: [
     "These are the Fast Food Industry Award minimums, which apply to GYG crew in corporate and franchised restaurants. Some restaurants may pay more.",
     "If you work in a franchised restaurant, your employer is the franchisee. If that franchisee has its own approved agreement, it sets your pay instead — but it cannot pay a base rate below these award rates (Fair Work Act s 206). Your payslip must name the award or agreement you are paid under.",
@@ -63,14 +64,6 @@ export const GUZMAN_Y_GOMEZ_PAY: EmployerPay = {
     {
       q: "Does GYG have an enterprise agreement?",
       a: "No. The Guzman Y Gomez Enterprise Agreement 2012 was terminated by the Fair Work Commission with effect from 15 November 2018 after workers applied, GYG withdrew the replacement agreement it had proposed, and its crew moved to the Fast Food Industry Award.",
-    },
-    {
-      q: "How much does GYG pay a 15 or 16 year old?",
-      a: "Under the Fast Food Award, crew under 16 get 40% of the adult rate ($11.12 an hour, or $13.90 as a casual) and 16-year-olds 50% ($13.91, casual $17.39). At 17 it is 60% ($16.69). The full adult rate applies from 21.",
-    },
-    {
-      q: "What are GYG penalty rates?",
-      a: "Saturday is 125% (casual 150%), or $34.76 an hour for an adult Level 1 crew member. Sunday is 125% for Level 1 and 150% for Levels 2 and 3. Public holidays are 225% ($62.57), or 250% for casuals. Weekday work from 10pm to midnight is 110% and from midnight to 6am 115%.",
     },
     {
       q: "Do GYG junior rates go up in December 2026?",

@@ -50,14 +50,14 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
   verifiedOn: "24 September 2026",
   casualLoading: 0.225,
   rates: [
-    { level: "Trainee Postal Delivery Officer (adult)", description: "New postie, for the first 3 months — $56,075 a year. Trainee Mail Officers and Parcel Post Officers are paid the same", hourly: 29.25, casualHourly: 35.83 },
-    { level: "Postal Delivery Officer — pay point 1", description: "Qualified postie, lowest point — $59,948 a year (Mail Officers the same)", hourly: 31.27, casualHourly: 38.31 },
-    { level: "Postal Delivery Officer — pay point 3", description: "Where Delivery Centre posties start after the trainee period (cl 11.8.4) — $64,138 a year", hourly: 33.46, casualHourly: 40.99 },
-    { level: "Postal Delivery Officer — pay point 5", description: "Top of the postie scale — $66,906 a year", hourly: 34.9, casualHourly: 42.75 },
-    { level: "Senior Postal Delivery Officer Grade 1", description: "$69,302 a year", hourly: 36.15, casualHourly: 44.28 },
-    { level: "Trainee Postal Services Officer (adult)", description: "New Post Office counter staff member, for the first 3 months — $56,979 a year", hourly: 29.72, casualHourly: 36.41 },
-    { level: "Postal Services Officer — pay point 1", description: "Post Office counter staff, lowest point — $60,903 a year", hourly: 31.77, casualHourly: 38.92 },
-    { level: "Postal Services Officer — pay point 5", description: "Top of the counter staff scale — $73,050 a year", hourly: 38.1, casualHourly: 46.67 },
+    { level: "Trainee Postal Delivery Officer (adult)", description: "New postie, for the first 3 months — $56,075 a year. Trainee Mail Officers and Parcel Post Officers are paid the same", hourly: 29.25, casualHourly: 35.83, annualSalary: 56075 },
+    { level: "Postal Delivery Officer — pay point 1", description: "Qualified postie, lowest point — $59,948 a year (Mail Officers the same)", hourly: 31.27, casualHourly: 38.31, annualSalary: 59948 },
+    { level: "Postal Delivery Officer — pay point 3", description: "Where Delivery Centre posties start after the trainee period (cl 11.8.4) — $64,138 a year", hourly: 33.46, casualHourly: 40.99, annualSalary: 64138 },
+    { level: "Postal Delivery Officer — pay point 5", description: "Top of the postie scale — $66,906 a year", hourly: 34.9, casualHourly: 42.75, annualSalary: 66906 },
+    { level: "Senior Postal Delivery Officer Grade 1", description: "$69,302 a year", hourly: 36.15, casualHourly: 44.28, annualSalary: 69302 },
+    { level: "Trainee Postal Services Officer (adult)", description: "New Post Office counter staff member, for the first 3 months — $56,979 a year", hourly: 29.72, casualHourly: 36.41, annualSalary: 56979 },
+    { level: "Postal Services Officer — pay point 1", description: "Post Office counter staff, lowest point — $60,903 a year", hourly: 31.77, casualHourly: 38.92, annualSalary: 60903 },
+    { level: "Postal Services Officer — pay point 5", description: "Top of the counter staff scale — $73,050 a year", hourly: 38.1, casualHourly: 46.67, annualSalary: 73050 },
   ],
   juniorScale: [],
   juniorNote:
@@ -73,7 +73,13 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
     "Penalties are percentages of the ordinary hourly rate (cl 18.1). They stand alone: they are not counted in overtime and not paid on top of another penalty (cl 18.2).",
     "Casuals get the same penalties as permanent staff, in addition to the 22.5% loading — the two are added, not multiplied (cl 10.3).",
     "For a trainee postie ($29.25 an hour) that is $43.88 on a Saturday ($50.46 casual) and $58.50 on a Sunday ($65.08 casual) — our arithmetic.",
-    "Posties are also paid a 15% Delivery Allowance for a shift on which they deliver, unless they already get a shift penalty (cl 13.23). Full-timers on shifts wholly between 6pm and 8am for more than 4 weeks get 30% instead of 15%.",
+  ],
+  allowances: [
+    {
+      name: "Delivery Allowance",
+      amount: "15% (30% for full-timers on shifts wholly between 6pm and 8am for more than 4 weeks)",
+      when: "Posties, for a shift on which they deliver, unless they already get a shift penalty (cl 13.23)",
+    },
   ],
   overtime: [
     { when: "Monday to Friday, first 3 hours", permanent: "150%", casual: "150%" },
@@ -83,7 +89,7 @@ export const AUSTRALIA_POST_PAY: EmployerPay = {
     { when: "Public holiday", permanent: "250%", casual: "250%" },
   ],
   notices: [
-    "Australia Post prints annual salaries, not hourly rates. The hourly rates here use the agreement's own formula (annual salary ÷ 313 × 6 ÷ 36.75) and match the union's September 2026 table. Full-time hours are 36.75 a week, so the 38-hour weekly example below slightly overstates a standard full-time week.",
+    "Australia Post prints annual salaries, not hourly rates. The hourly rates here use the agreement's own formula (annual salary ÷ 313 × 6 ÷ 36.75) and match the union's September 2026 table. Full-time hours are 36.75 a week, so the full-time year shown is the printed salary, not 38 hours × 52 weeks.",
     "The 4% rise in September 2026 is the last pay rise this agreement schedules. It reaches its nominal expiry on 9 October 2027; any later rise depends on a new agreement.",
     "These rates are for Australia Post itself. Staff at Licensed Post Offices work for the private licensee and are usually paid under the General Retail Industry Award, and StarTrack has its own agreements.",
   ],

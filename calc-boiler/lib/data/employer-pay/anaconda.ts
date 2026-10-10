@@ -61,14 +61,6 @@ export const ANACONDA_PAY: EmployerPay = {
       a: "We found none. No Anaconda retail agreement appears on the Fair Work Commission's lists of agreements approved since 2016, so the General Retail Industry Award sets the minimum pay for store staff.",
     },
     {
-      q: "How much does Anaconda pay a 16 or 17 year old?",
-      a: "Under the Retail Award, 16-year-olds at Levels 1 to 3 get at least 50% of the adult rate ($13.91 an hour, or $17.39 as a casual) and 17-year-olds 60% ($16.69, casual $20.86). These are our arithmetic from the award percentages.",
-    },
-    {
-      q: "What does Anaconda pay on Sundays and public holidays?",
-      a: "Under the Retail Award, permanent staff get at least 150% on Sundays ($41.72 an hour at Level 1) and 225% on public holidays ($62.57). Casuals get 175% ($48.67) and 250% ($69.53), including the casual loading.",
-    },
-    {
       q: "Is Anaconda pay the same as Spotlight?",
       a: "Both chains belong to Spotlight Retail Group and neither has a store agreement we could find, so the same General Retail Industry Award minimums apply to both. Actual pay above the award can differ.",
     },

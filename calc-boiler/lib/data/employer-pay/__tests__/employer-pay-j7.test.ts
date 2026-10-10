@@ -28,6 +28,8 @@ function pageText(e: EmployerPay): string {
     e.nextIncrease?.detail ?? "",
     e.casualRateNote ?? "",
     ...e.rates.map((r) => r.description),
+    ...(e.allowances ?? []).map((a) => `${a.name} ${a.amount} ${a.when}`),
+    e.allowancesNote ?? "",
   ].join(" ");
 }
 
@@ -130,10 +132,12 @@ test("Retail Award employers (Harvey Norman, Spotlight, Anaconda): same figures 
     assert.deepEqual(juniorRates(e), juniorRates(iga));
     assert.deepEqual(e.penalties, iga.penalties);
     assert.deepEqual(e.overtime, iga.overtime);
-    const text = e.faqs.map((f) => f.a).join(" ");
+    // 10 Oct 2026: the junior and Sunday FAQs that only repeated IGA's award
+    // answers were cut; the figures are still quoted in the penalty notes.
+    const text = [...e.penaltyNotes, ...e.faqs.map((f) => f.a)].join(" ");
     // L1 $27.81: casual x1.25, Sunday 150% / 175%, public holiday 225% / 250%.
     for (const pct of [1.25, 1.5, 1.75, 2.25, 2.5]) assert.ok(text.includes(money(27.81 * pct)), `${slug} ${pct}`);
-    assert.ok(text.includes("$27.81"), slug);
+    assert.ok(e.faqs.map((f) => f.a).join(" ").includes("$27.81"), slug);
   }
   // Junior FAQ dollars (award % of weekly $1,056.80, / 38; casual + 25%).
   for (const [pct, v] of [[0.45, 12.51], [0.5, 13.91], [0.6, 16.69]] as const) {
@@ -154,8 +158,11 @@ test("Fast Food Award employers (Starbucks, GYG, Zambrero): same figures as Subw
     assert.deepEqual(e.publishedJuniorRates, subway.publishedJuniorRates);
     assert.deepEqual(e.penalties, subway.penalties);
     assert.deepEqual(e.overtime, subway.overtime);
-    const text = e.faqs.map((f) => f.a).join(" ");
-    for (const v of ["$27.81", "$34.76", "$29.45", "$11.12", "$13.91", "$16.69", "$62.57"]) assert.ok(text.includes(v), `${slug} ${v}`);
+    // 10 Oct 2026: junior and penalty FAQs that only repeated Subway's award
+    // answers were cut (the junior dollars are the published table above).
+    const text = [...e.penaltyNotes, ...e.faqs.map((f) => f.a)].join(" ");
+    for (const v of ["$27.81", "$34.76", "$29.45", "$41.72", "$62.57", "$69.53"]) assert.ok(text.includes(v), `${slug} ${v}`);
+    assert.ok(!text.includes("sandwich artist"), `${slug}: Subway's job title`);
     // PR813654 Level 1 phase-in dollars in the next-increase note.
     for (const pct of [0.75, 0.85, 0.95]) {
       assert.ok(e.nextIncrease?.detail.includes(money((1056.8 * pct) / 38)), `${slug} ${pct}`);
@@ -179,7 +186,9 @@ test("Event Cinemas: same cinema award figures as Hoyts, Level 1 dollars quoted"
   const L1 = ev.rates[0];
   assert.deepEqual([L1.hourly, L1.casualHourly], [28.56, 35.7]);
   const text = pageText(ev);
-  for (const v of [money(L1.hourly), money(L1.casualHourly), money(L1.hourly * 2), "$29.25", "$36.56", "$14.31", "$17.50", "$27.04"]) {
+  // Junior dollars ($14.31, $17.50, $27.04) are the published table shared with
+  // Hoyts (checked above); the FAQ that repeated them was cut on 10 Oct 2026.
+  for (const v of [money(L1.hourly), money(L1.casualHourly), money(L1.hourly * 2), "$29.25", "$36.56"]) {
     assert.ok(text.includes(v), v);
   }
 });

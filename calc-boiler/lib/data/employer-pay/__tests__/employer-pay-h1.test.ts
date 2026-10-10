@@ -221,6 +221,8 @@ test("Australia Post: Booklet Sept 2026 salaries via A / 313 x 6 / 36.75, casual
     const a = annual[r.level];
     assert.ok(a, r.level);
     assert.ok(r.description.includes(`$${a.toLocaleString("en-AU")}`), r.level);
+    // The page's full-time year is the printed salary, not hourly x 38 x 52.
+    assert.equal(r.annualSalary, a, r.level);
     assert.equal(r.hourly, halfUp(((a / 313) * 6) / 36.75), r.level);
     assert.equal(r.casualHourly, halfUp(r.hourly * 1.225), r.level);
   }
@@ -244,8 +246,10 @@ test("JB Hi-Fi: the same Retail Award figures as IGA, and FAQ dollars match", ()
   );
   assert.deepEqual(juniorRates(jb), juniorRates(iga));
   assert.deepEqual(jb.penalties, iga.penalties);
-  const text = jb.faqs.map((f) => f.a).join(" ");
-  for (const v of ["$27.81", "$34.76", "$13.91", "$17.39", "$16.69", "$20.86", "$41.72", "$62.57", "$48.67", "$69.53"]) {
+  // 10 Oct 2026: the junior, Sunday and casual FAQs that repeated IGA's award
+  // answers were cut; junior dollars are juniorRates (checked above).
+  const text = [...jb.penaltyNotes, ...jb.faqs.map((f) => f.a)].join(" ");
+  for (const v of ["$27.81", "$34.76", "$41.72", "$62.57", "$48.67", "$69.53"]) {
     assert.ok(text.includes(v), v);
   }
 });
@@ -370,10 +374,13 @@ test("Domino's and Red Rooster pay the Fast Food Award: same figures as McDonald
     );
     assert.deepEqual(e.publishedJuniorRates, mcd.publishedJuniorRates);
     assert.deepEqual(e.penalties.map((p) => [p.permanent, p.casual]), mcd.penalties.map((p) => [p.permanent, p.casual]));
-    const text = e.faqs.map((f) => f.a).join(" ");
-    for (const v of ["$27.81", "$34.76", "$29.45", "$11.12", "$13.91", "$16.69", "$34.76", "$62.57"]) {
+    // 10 Oct 2026: the junior and penalty FAQs that repeated the award answers
+    // were cut; junior dollars are the published table checked above.
+    const text = [...e.penaltyNotes, ...e.faqs.map((f) => f.a)].join(" ");
+    for (const v of ["$27.81", "$34.76", "$29.45", "$41.72", "$62.57", "$69.53"]) {
       assert.ok(text.includes(v), `${slug} ${v}`);
     }
+    assert.ok(!text.includes("sandwich artist"), `${slug}: Subway's job title`);
     // L1 x 125% and x 225% (award cl 21 Table 6).
     assert.equal(halfUp(27.81 * 1.25), 34.76);
     assert.equal(halfUp(27.81 * 2.25), 62.57);

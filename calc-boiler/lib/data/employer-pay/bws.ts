@@ -103,7 +103,10 @@ export const BWS_PAY: EmployerPay = {
   notices: [
     "The agreement prints its starting rates ($27.26 an hour for a Team Member) and lifts them each July by the Retail Award's Annual Wage Review percentage — 4.75% in 2026. The 2026 figures here are our calculation from that rule, rounded to the cent; your payslip may differ by a cent.",
     "When it approved the agreement, the Fair Work Commission compared Team Member with Retail Award Levels 1 and 2 and Senior Team Member with Levels 3 and 4. In 2026 both stay above those award rates ($28.45 and $29.45).",
-    "Some staff who were paid the higher Level 2 rate under the old BWS or Dan Murphy's 2019 agreements keep it (undertakings 5–7): about $29.21 (ex-BWS) or $28.81 (ex-Dan Murphy's) an hour in 2026, by the same formula. BWS Team Members put in charge of a store get an in-charge allowance ($5.20 a shift when the agreement was made, rising with the award each July — undertaking 1 and cl 5.2).",
+    "Some staff who were paid the higher Level 2 rate under the old BWS or Dan Murphy's 2019 agreements keep it (undertakings 5–7): about $29.21 (ex-BWS) or $28.81 (ex-Dan Murphy's) an hour in 2026, by the same formula.",
+  ],
+  allowances: [
+    { name: "In-charge allowance", amount: "$5.20 a shift when the agreement was made, rising with the award each July", when: "BWS Team Members put in charge of a store (undertaking 1 and cl 5.2)" },
   ],
   unverified: [
     "Endeavour Group's own 2026 pay table — not public, so the 2026 dollars are calculated from the agreement's formula.",

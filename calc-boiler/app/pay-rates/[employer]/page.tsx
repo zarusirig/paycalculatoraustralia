@@ -33,14 +33,26 @@ function titleFor(e: EmployerPay) {
   return `${e.name} Pay Rates 2026 — Hourly Wage by Age & Level`;
 }
 
+/** What the page actually shows beyond the adult table, so the description claims nothing it lacks. */
+function contentsFor(e: EmployerPay): string {
+  const parts = [
+    "Every level",
+    ...(e.juniorScale.length > 0 ? ["junior rates by age"] : []),
+    "penalty rates",
+    ...((e.allowances?.length ?? 0) > 0 ? ["allowances"] : []),
+  ];
+  return `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
+}
+
 function descriptionFor(e: EmployerPay) {
   const entry = entryRate(e);
   const lead = `${e.name} pays adults ${formatAUD(entry.hourly, 2)}/hr (${formatAUD(entry.casualHourly, 2)} casual) at ${entry.level}`;
+  const contents = contentsFor(e);
   return fitDescription(
-    `${lead} under the ${e.instrument.title}. Every level, junior rates by age, penalty rates and weekly pay. Verified ${e.verifiedOn}.`,
-    `${lead} under the ${e.instrument.title}. Every level, junior rates by age, penalty rates and weekly pay.`,
-    `${lead} under the ${e.instrument.title}. Every level, junior and penalty rates.`,
-    `${lead}. Every level, junior rates by age, penalty rates and weekly pay.`,
+    `${lead} under the ${e.instrument.title}. ${contents}. Verified ${e.verifiedOn}.`,
+    `${lead} under the ${e.instrument.title}. ${contents}.`,
+    `${lead} under the ${e.instrument.title}.`,
+    `${lead}. ${contents}.`,
   );
 }
 
