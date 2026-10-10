@@ -189,8 +189,8 @@ export function scaleRanges(j: ServicePayJurisdiction) {
 }
 
 // ---------------------------------------------------------------------------
-// Take-home links. The /take-home-pay-on/ grid runs in $1,000 steps from $40k
-// to $150k, then $5k to $200k and a sparse tail (lib/data/salary-pages). We
+// Take-home links. The /take-home-pay-on/ grid runs in $5,000 steps to $200k,
+// then a sparse tail (lib/data/salary-pages). We
 // link to the nearest page that exists and the UI says "nearest" when it is
 // not the exact salary.
 // ---------------------------------------------------------------------------

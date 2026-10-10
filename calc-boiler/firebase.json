@@ -196,7 +196,893 @@
         "source": "/monthly-tax-table/2024-25/",
         "destination": "/monthly-tax-table/2025-26/",
         "type": 301
+      },
+      // ---- /take-home-pay-on/ prune (Oct 2026) ------------------------------
+      // Only multiples of $5,000 keep a take-home page (50 kept). The 88
+      // $1k-step pages in between 301 to the nearest kept salary, with and
+      // without the trailing slash. Source of truth: TAKE_HOME_SALARIES in
+      // lib/data/salary-pages; lib/data/salary-pages/__tests__ checks this block.
+      {
+        "source": "/take-home-pay-on/41000",
+        "destination": "/take-home-pay-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/41000/",
+        "destination": "/take-home-pay-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/42000",
+        "destination": "/take-home-pay-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/42000/",
+        "destination": "/take-home-pay-on/40000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/43000",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/43000/",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/44000",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/44000/",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/46000",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/46000/",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/47000",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/47000/",
+        "destination": "/take-home-pay-on/45000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/48000",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/48000/",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/49000",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/49000/",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/51000",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/51000/",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/52000",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/52000/",
+        "destination": "/take-home-pay-on/50000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/53000",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/53000/",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/54000",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/54000/",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/56000",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/56000/",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/57000",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/57000/",
+        "destination": "/take-home-pay-on/55000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/58000",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/58000/",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/59000",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/59000/",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/61000",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/61000/",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/62000",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/62000/",
+        "destination": "/take-home-pay-on/60000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/63000",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/63000/",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/64000",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/64000/",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/66000",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/66000/",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/67000",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/67000/",
+        "destination": "/take-home-pay-on/65000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/68000",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/68000/",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/69000",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/69000/",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/71000",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/71000/",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/72000",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/72000/",
+        "destination": "/take-home-pay-on/70000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/73000",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/73000/",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/74000",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/74000/",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/76000",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/76000/",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/77000",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/77000/",
+        "destination": "/take-home-pay-on/75000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/78000",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/78000/",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/79000",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/79000/",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/81000",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/81000/",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/82000",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/82000/",
+        "destination": "/take-home-pay-on/80000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/83000",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/83000/",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/84000",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/84000/",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/86000",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/86000/",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/87000",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/87000/",
+        "destination": "/take-home-pay-on/85000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/88000",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/88000/",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/89000",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/89000/",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/91000",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/91000/",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/92000",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/92000/",
+        "destination": "/take-home-pay-on/90000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/93000",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/93000/",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/94000",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/94000/",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/96000",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/96000/",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/97000",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/97000/",
+        "destination": "/take-home-pay-on/95000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/98000",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/98000/",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/99000",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/99000/",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/101000",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/101000/",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/102000",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/102000/",
+        "destination": "/take-home-pay-on/100000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/103000",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/103000/",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/104000",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/104000/",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/106000",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/106000/",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/107000",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/107000/",
+        "destination": "/take-home-pay-on/105000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/108000",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/108000/",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/109000",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/109000/",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/111000",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/111000/",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/112000",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/112000/",
+        "destination": "/take-home-pay-on/110000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/113000",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/113000/",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/114000",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/114000/",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/116000",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/116000/",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/117000",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/117000/",
+        "destination": "/take-home-pay-on/115000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/118000",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/118000/",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/119000",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/119000/",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/121000",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/121000/",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/122000",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/122000/",
+        "destination": "/take-home-pay-on/120000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/123000",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/123000/",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/124000",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/124000/",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/126000",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/126000/",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/127000",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/127000/",
+        "destination": "/take-home-pay-on/125000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/128000",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/128000/",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/129000",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/129000/",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/131000",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/131000/",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/132000",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/132000/",
+        "destination": "/take-home-pay-on/130000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/133000",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/133000/",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/134000",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/134000/",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/136000",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/136000/",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/137000",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/137000/",
+        "destination": "/take-home-pay-on/135000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/138000",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/138000/",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/139000",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/139000/",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/141000",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/141000/",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/142000",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/142000/",
+        "destination": "/take-home-pay-on/140000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/143000",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/143000/",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/144000",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/144000/",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/146000",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/146000/",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/147000",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/147000/",
+        "destination": "/take-home-pay-on/145000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/148000",
+        "destination": "/take-home-pay-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/148000/",
+        "destination": "/take-home-pay-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/149000",
+        "destination": "/take-home-pay-on/150000/",
+        "type": 301
+      },
+      {
+        "source": "/take-home-pay-on/149000/",
+        "destination": "/take-home-pay-on/150000/",
+        "type": 301
       }
+      // ---- end /take-home-pay-on/ prune --------------------------------------
     ],
     "headers": [
       {

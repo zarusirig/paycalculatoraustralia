@@ -18,8 +18,9 @@ interface PageProps {
   }>;
 }
 
-// The grid lives in lib/data/salary-pages (T6: $1k steps $40k-$150k plus the
-// high-salary tail) so the sitemap, hub and prev/next links cannot drift.
+// The grid lives in lib/data/salary-pages ($5k steps since the Oct 2026 prune,
+// plus the high-salary tail) so the sitemap, hub and prev/next links cannot
+// drift. Removed $1k-step URLs 301 to the nearest kept page (firebase.json).
 export async function generateStaticParams() {
   return TAKE_HOME_SALARIES.map((salary) => ({ salary: salary.toString() }));
 }

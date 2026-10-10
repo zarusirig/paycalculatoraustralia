@@ -5,7 +5,7 @@
 // EMPLOYMENT and the ABS average-earnings module; nothing is typed in.
 
 import { EMPLOYMENT, formatAUD } from "@/lib/constants/australian-tax";
-import { salaryFacts } from "@/lib/data/salary-pages";
+import { nearestSalary, salaryFacts, salaryHref } from "@/lib/data/salary-pages";
 import { AWE_HEADLINE, annualise } from "@/lib/data/average-salary";
 import type { FaqItem } from "@/lib/faq";
 
@@ -28,6 +28,9 @@ export function salaryToHourlyFaqs(salary: number): FaqItem[] {
   const averageHourly = annualise(AWE_HEADLINE.fullTimeOrdinaryWeekly) / HOURS_PER_YEAR;
   const vsAverage = grossHourly / averageHourly;
   const vsMinimum = grossHourly / MINIMUM_WAGE_HOURLY;
+  // /take-home-pay-on/ keeps $5k steps only, so link the nearest page.
+  const takeHome = nearestSalary("take-home", salary);
+  const takeHomePhrase = `take-home pay on ${formatAUD(takeHome)}`;
   const belowMinimum = grossHourly < MINIMUM_WAGE_HOURLY;
   const minWage = `$${MINIMUM_WAGE_HOURLY.toFixed(2)}`;
   const hours = HOURS_PER_YEAR.toLocaleString("en-AU");
@@ -58,8 +61,8 @@ export function salaryToHourlyFaqs(salary: number): FaqItem[] {
     },
     {
       q: `How much is ${s} a week and a fortnight after tax?`,
-      a: `${s} a year is ${formatAUD(salary / WEEKS_PER_YEAR)} a week or ${formatAUD(salary / 26)} a fortnight before tax. After income tax and Medicare levy, that is ${formatAUD(b.weekly)} a week and ${formatAUD(b.fortnightly)} a fortnight, with employer super of ${formatAUD(facts.employerSuper)} a year paid on top. See the take-home pay on ${s} for the full breakdown.`,
-      links: { [`take-home pay on ${s}`]: `/take-home-pay-on/${salary}/` },
+      a: `${s} a year is ${formatAUD(salary / WEEKS_PER_YEAR)} a week or ${formatAUD(salary / 26)} a fortnight before tax. After income tax and Medicare levy, that is ${formatAUD(b.weekly)} a week and ${formatAUD(b.fortnightly)} a fortnight, with employer super of ${formatAUD(facts.employerSuper)} a year paid on top. See the ${takeHomePhrase}${takeHome === salary ? "" : ", the nearest take-home page,"} for the full breakdown.`,
+      links: { [takeHomePhrase]: salaryHref("take-home", takeHome) },
     },
   ];
 }

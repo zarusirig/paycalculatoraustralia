@@ -184,7 +184,7 @@ export default function TakeHomePayCalculatorContent() {
             </p>
             {/* T6: hub linking every /take-home-pay-on/ page */}
             <p className="text-warmgray mb-4">
-              Need a specific figure? See <Link href="/take-home-pay-on/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay on every salary</Link> from $20,000 to $500,000, in $1,000 steps from $40,000 to $150,000, each with weekly, fortnightly and HECS-HELP figures.
+              Need a specific figure? See <Link href="/take-home-pay-on/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay on every salary</Link> from $20,000 to $500,000, in $5,000 steps up to $200,000, each with weekly, fortnightly and HECS-HELP figures.
             </p>
 
             <h3 className="text-lg font-semibold text-navy mb-2">Take-Home Pay on Part-Time and Casual Hours</h3>

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { calculatePayBreakdown, formatAUD, SITE_CONFIG } from "@/lib/constants/australian-tax";
 import { TAKE_HOME_SALARIES } from "@/lib/data/salary-pages";
 import { SalaryHub } from "@/modules/programmatic/salary-hub";
 import { withPageEnd } from "@/components/common/content-slots";
 import { withFeaturedImage } from "@/lib/featured-image";
 
-// Hub for /take-home-pay-on/[salary]/ (Wave 3 / T6). Every figure is computed
-// from the tax engine at build time.
+// Hub for /take-home-pay-on/[salary]/ (Wave 3 / T6; $5k steps since the Oct
+// 2026 prune). Every figure is computed from the tax engine at build time.
 const first = TAKE_HOME_SALARIES[0];
 const last = TAKE_HOME_SALARIES[TAKE_HOME_SALARIES.length - 1];
 const example = calculatePayBreakdown({ grossSalary: 100_000 });
@@ -32,7 +33,9 @@ function TakeHomePayHubPage() {
         intro: (
           <p>
             Take-home pay for {TAKE_HOME_SALARIES.length} salaries from {formatAUD(first)} to {formatAUD(last)} on {SITE_CONFIG.financialYear} rates — every
-            $1,000 from $40,000 to $150,000. Pick a salary for the weekly, fortnightly and monthly figures, the HECS-HELP case and super.
+            $5,000 up to $200,000, then wider steps. Pick a salary for the weekly, fortnightly and monthly figures, the HECS-HELP case, super and the
+            jobs whose median full-time pay is closest to it. For a figure between two pages, use the{" "}
+            <Link href="/take-home-pay-calculator/" className="text-eucalyptus-dark hover:underline font-medium">take-home pay calculator</Link>.
           </p>
         ),
         figure: (s) => formatAUD(calculatePayBreakdown({ grossSalary: s }).takeHomePay),
