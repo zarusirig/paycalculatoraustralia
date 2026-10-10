@@ -42,9 +42,9 @@ test("every pre-existing URL is still generated", () => {
   for (const s of LEGACY_HOURLY) assert.ok(SALARY_TO_HOURLY_SALARIES.includes(s), `salary-to-hourly ${s}`);
 });
 
-test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
+test("grid shape: $1k steps 40k-150k, 5k to 200k, then 250k/300k/400k/500k", () => {
   for (let s = 40_000; s <= 150_000; s += 1_000) assert.ok(SALARY_GRID.includes(s), `${s}`);
-  for (const s of [20_000, 25_000, 210_000, 250_000, 300_000, 350_000, 400_000, 500_000]) {
+  for (const s of [20_000, 25_000, 250_000, 300_000, 400_000, 500_000]) {
     assert.ok(SALARY_GRID.includes(s), `${s}`);
     assert.ok(TAKE_HOME_SALARIES.includes(s), `${s}`);
   }
@@ -60,7 +60,7 @@ test("grid shape: $1k steps 40k-150k, 5k to 200k, tail to 500k", () => {
 
 test("take-home keeps only the multiples of $5,000 (Oct 2026 prune)", () => {
   assert.deepEqual(TAKE_HOME_SALARIES, SALARY_GRID.filter((s) => s % 5_000 === 0));
-  assert.equal(TAKE_HOME_SALARIES.length, 50);
+  assert.equal(TAKE_HOME_SALARIES.length, 41);
   for (const s of [85_000, 90_000, 95_000, 100_000, 110_000, 120_000, 130_000, 150_000, 200_000]) {
     assert.ok(TAKE_HOME_SALARIES.includes(s), `${s}`);
   }
@@ -119,7 +119,7 @@ test("prev/next and nearby links stay inside the grid", () => {
   for (const s of near) assert.ok(TAX_ON_SALARIES.includes(s));
   assert.equal(nearestSalary("take-home", 72_400), 70_000);
   assert.equal(nearestSalary("tax-on", 72_400), 70_000);
-  assert.equal(nearestSalary("take-home", 237_000), 240_000);
+  assert.equal(nearestSalary("take-home", 237_000), 250_000);
 });
 
 test("$100,000 headline matches the tax engine (no HECS)", () => {

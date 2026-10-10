@@ -53,11 +53,12 @@ function firebaseRedirects(): { source?: string; regex?: string; destination: st
   return hosting.redirects;
 }
 
-test("tax-on keeps $5,000 steps only: 50 pages from $20k to $500k", () => {
-  assert.equal(TAX_ON_SALARIES.length, 50);
+test("tax-on keeps $5,000 steps to $200k, then $250k/$300k/$400k/$500k: 41 pages", () => {
+  assert.equal(TAX_ON_SALARIES.length, 41);
   for (const s of TAX_ON_SALARIES) assert.equal(s % 5_000, 0, `${s}`);
   for (let s = 20_000; s <= 200_000; s += 5_000) assert.ok(TAX_ON_SALARIES.includes(s), `${s}`);
-  for (const s of [210_000, 250_000, 300_000, 350_000, 400_000, 500_000]) assert.ok(TAX_ON_SALARIES.includes(s), `${s}`);
+  for (const s of [250_000, 300_000, 400_000, 500_000]) assert.ok(TAX_ON_SALARIES.includes(s), `${s}`);
+  for (const s of [210_000, 290_000, 350_000]) assert.ok(!TAX_ON_SALARIES.includes(s), `${s} should redirect`);
   for (let i = 1; i < TAX_ON_SALARIES.length; i++) assert.ok(TAX_ON_SALARIES[i] > TAX_ON_SALARIES[i - 1]);
 });
 
@@ -106,7 +107,7 @@ test("no redirect points at, or away from, a kept tax-on page", () => {
 test("hub bands, prev/next and nearby links stay inside the kept grid", () => {
   assert.deepEqual(groupByBand(TAX_ON_SALARIES).flatMap((g) => g.salaries), [...TAX_ON_SALARIES]);
   assert.deepEqual(prevNext("tax-on", 80_000), { prev: 75_000, next: 85_000 });
-  assert.deepEqual(prevNext("tax-on", 200_000), { prev: 195_000, next: 210_000 });
+  assert.deepEqual(prevNext("tax-on", 200_000), { prev: 195_000, next: 250_000 });
   for (const s of TAX_ON_SALARIES) {
     for (const n of nearbySalaries("tax-on", s)) assert.ok(TAX_ON_SALARIES.includes(n), `${s} links ${n}`);
   }
