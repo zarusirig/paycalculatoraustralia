@@ -12,6 +12,13 @@
 //    proceedings produced "an immediate administrative pay increase for
 //    firefighters" while bargaining continued.
 //
+// Re-checked 14 October 2026: the DFES page still prints the June 2024 table
+// (no "last updated" date shown), the WAIRC register still lists AG 35/2023 as
+// "In Force", and no replacement Fire Service agreement appears under "W".
+// Context only (not published): WA Legislative Assembly Hansard, 16 June 2026,
+// records an offer of 5%, 4% and 3.75% and that the union had sought WAIRC
+// arbitration. No arbitrated rates had been published when checked.
+//
 // Because an administrative increase was paid after June 2024 and no official
 // DFES or WAIRC table of the increased rates could be found, the June 2024
 // table is treated as superseded and NOT published. Nothing is estimated.
@@ -29,7 +36,7 @@ export const WA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   agreementUrl: "https://www.wairc.wa.gov.au/resources/agreements?id=WES335",
   ratesEffectiveFrom: "",
   nextIncrease: null,
-  verifiedOn: "24 September 2026",
+  verifiedOn: "14 October 2026",
 
   scales: [],
 
@@ -37,7 +44,7 @@ export const WA_FIREFIGHTER_PAY: ServicePayJurisdiction = {
   penalties: [],
   notices: [
     "The Western Australian Fire Service Enterprise Bargaining Agreement 2023 expired on 8 June 2025. Its last scheduled pay increase took effect in June 2024.",
-    "Bargaining for a replacement agreement between DFES and the United Professional Firefighters Union of WA has run since 2025. In December 2025 Western Australian Industrial Relations Commission proceedings resulted in an interim (administrative) pay increase while bargaining continued, but no replacement agreement had been registered with the WAIRC when we checked on 24 September 2026.",
+    "Bargaining for a replacement agreement between DFES and the United Professional Firefighters Union of WA has run since 2025. In December 2025 Western Australian Industrial Relations Commission proceedings resulted in an interim (administrative) pay increase while bargaining continued, but no replacement agreement had been registered with the WAIRC when we checked on 14 October 2026.",
     "DFES's careers page describes the roster as four days on, four days off: two 10-hour day shifts (0800–1800) followed by two 14-hour night shifts (1800–0800), an average of 42 hours a week, paid for 40 hours with the extra two hours accruing as additional annual leave.",
   ],
   unverified: [

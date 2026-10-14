@@ -13,6 +13,12 @@
 //   Declaration of General Ruling". Those are award minimums, not a confirmed
 //   statement of what Queensland Corrective Services pays.
 //
+// Re-checked 14 October 2026: the QIRC public service agreements page (last
+// updated 02 October 2026) still lists only the 2021 agreement for QCS; its
+// October 2026 additions are Stadiums Queensland and Visiting Medical Officers.
+// The QCS "Work for us" page (last updated 20 November 2024) still links the
+// 2016 agreement and an older award reprint. No interim increase is published.
+//
 // Per the no-guessing rule this file ships with empty scales; the hub shows a
 // "not yet verified" card with links to the official sources.
 
@@ -29,7 +35,7 @@ export const QLD_PRISON_OFFICER_PAY: ServicePayJurisdiction = {
   agreementUrl: "https://www.qirc.qld.gov.au/sites/default/files/2022_cb47.pdf",
   ratesEffectiveFrom: "",
   nextIncrease: null,
-  verifiedOn: "9 October 2026",
+  verifiedOn: "14 October 2026",
 
   scales: [],
   traineePay: [],
