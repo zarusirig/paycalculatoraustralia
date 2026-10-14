@@ -237,7 +237,7 @@ export default function MedicareLevySurchargePage() {
           </div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/medicare-levy/" label="Medicare Levy Calculator" /><SidebarLink href="/private-health-insurance-medicare/" label="Private Health Insurance & Medicare" /><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/novated-lease-calculator/" label="Novated Lease Calculator" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/medicare-levy/" label="Medicare Levy Calculator" /><SidebarLink href="/private-health-insurance-medicare/" label="Private Health Insurance & Medicare" /><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/novated-lease-calculator/" label="Novated Lease Calculator" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

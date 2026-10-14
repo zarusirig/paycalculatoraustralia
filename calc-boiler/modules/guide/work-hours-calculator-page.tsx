@@ -216,7 +216,7 @@ export default function WorkHoursCalculatorPage() {
             {(() => { const a = getGuideAuthorship("work-hours-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">
           <Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Quick facts</h3><dl className="space-y-3 text-sm">
             <div className="flex items-baseline justify-between gap-4"><dt className="text-warmgray">Standard full-time week</dt><dd className="font-semibold tabular-nums text-navy">{STANDARD_WEEKLY_HOURS} h</dd></div>
             <div className="flex items-baseline justify-between gap-4"><dt className="text-warmgray">Casual loading</dt><dd className="font-semibold tabular-nums text-navy">{CASUAL_LOADING * 100}%</dd></div>

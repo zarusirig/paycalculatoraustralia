@@ -268,7 +268,7 @@ function Footer() {
 function Sidebar({ current }: { current?: string }) {
   return (
     <aside className="lg:w-1/3">
-      <div className="sticky top-8 space-y-3">
+      <div className="mv-sidebar space-y-3">
         <h2 className="mb-2 text-base font-bold text-navy">ADF pay by service</h2>
         {current ? <SidebarLink href="/adf-pay-scales/" label="All ADF pay scales" /> : null}
         {ADF_SERVICE_LIST.filter((s) => s.slug !== current).map((s) => (

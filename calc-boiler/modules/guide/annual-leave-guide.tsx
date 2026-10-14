@@ -296,7 +296,7 @@ export default function AnnualLeaveGuidePage() {
               {(() => { const a = getGuideAuthorship("annual-leave-guide"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}
             </div>
           </article>
-          <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6">
+          <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6">
             <Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related Tools</h3><div className="space-y-3"><SidebarLink href="/leave-calculator/" label="Leave Calculator" /><SidebarLink href="/redundancy-pay-calculator/" label="Redundancy Calculator" /><SidebarLink href="/understanding-your-payslip/" label="Payslip Guide" /><SidebarLink href="/award-rates/" label="Award Rates Guide" /></div></CardContent></Card>
             <Card className="bg-violet-600 border-none text-white shadow-md"><CardContent className="p-6"><h3 className="text-lg font-bold mb-2">Calculate your leave balance</h3><p className="text-violet-100 text-sm mb-4">Enter your salary and years of service to see your full entitlements and payout value.</p><Link href="/leave-calculator/" className="block w-full py-2.5 px-4 bg-white text-violet-700 font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">Leave Calculator →</Link></CardContent></Card>
           </div></aside>

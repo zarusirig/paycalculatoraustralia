@@ -206,7 +206,7 @@ export default function ConcessionalContributionsCapPage() {
           </div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/super-guarantee-rate-history/" label="Super Guarantee Rate" /><SidebarLink href="/division-293-tax/" label="Division 293 Tax" /><SidebarLink href="/superannuation-calculator/" label="Super Calculator" /><SidebarLink href="/superannuation-guide/" label="Superannuation Guide" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/salary-sacrifice-calculator/" label="Salary Sacrifice Calculator" /><SidebarLink href="/super-guarantee-rate-history/" label="Super Guarantee Rate" /><SidebarLink href="/division-293-tax/" label="Division 293 Tax" /><SidebarLink href="/superannuation-calculator/" label="Super Calculator" /><SidebarLink href="/superannuation-guide/" label="Superannuation Guide" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

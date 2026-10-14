@@ -488,6 +488,21 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: var(--shadow-md);
 }
 
+/* ─── Mediavine sidebar ──────────────────────────── */
+/* .mv-sidebar is the innermost container of every right-hand sidebar (the div
+   inside <aside class="lg:w-1/3">). Mediavine inserts its sticky sidebar ad
+   inside it, which needs two things from us: nothing in the column may be
+   `position: sticky` itself (removed Oct 2026 — it was `sticky top-8`), and
+   the container must be as tall as the article so the ad can travel down the
+   page. The <aside> is a stretched flex item, so 100% here is the full column
+   height on desktop and resolves to auto once the sidebar stacks below the
+   article on smaller screens. */
+@media (min-width: 1024px) {
+  .mv-sidebar {
+    height: 100%;
+  }
+}
+
 /* ─── Source Badge ───────────────────────────────── */
 .source-badge {
   display: inline-flex;

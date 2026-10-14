@@ -229,7 +229,7 @@ export default function TaxFreeThresholdPage() {
           </div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/tax-brackets/" label="Tax Brackets" /><SidebarLink href="/second-job-tax-calculator/" label="Second Job Tax Calculator" /><SidebarLink href="/tax-file-number-declaration/" label="TFN Declaration" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset" /><SidebarLink href="/weekly-tax-table/" label="Weekly Tax Table" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/tax-brackets/" label="Tax Brackets" /><SidebarLink href="/second-job-tax-calculator/" label="Second Job Tax Calculator" /><SidebarLink href="/tax-file-number-declaration/" label="TFN Declaration" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset" /><SidebarLink href="/weekly-tax-table/" label="Weekly Tax Table" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

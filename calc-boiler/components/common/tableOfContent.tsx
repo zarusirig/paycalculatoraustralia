@@ -114,8 +114,9 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
         </Card>
       </div>
 
-      {/* Desktop Version - Sticky Sidebar */}
-      <div className="hidden lg:block sticky top-24">
+      {/* Desktop Version. Not sticky: Mediavine needs the sidebar column free of
+          sticky elements so its own sticky sidebar ad can use it. */}
+      <div className="hidden lg:block">
         <Card className="p-6">
           <h2 className="text-xl font-bold text-navy mb-4" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>In this article</h2>
           {tocContent}

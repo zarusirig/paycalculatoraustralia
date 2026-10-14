@@ -367,7 +367,7 @@ export default function OvertimePenaltyRatesGuidePage() {
             </div>
           </article>
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="mv-sidebar space-y-6">
               <Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related Tools</h3><div className="space-y-3"><SidebarLink href="/overtime-pay-calculator/" label="Overtime Calculator" /><SidebarLink href="/retail-award-rates/" label="Retail Award Rates" /><SidebarLink href="/hospitality-award-rates/" label="Hospitality Award Rates" /><SidebarLink href="/schads-award-pay-rates/" label="SCHADS Award Rates" /><SidebarLink href="/junior-pay-rates/" label="Junior Pay Rates" /><SidebarLink href="/award-rates/" label="Award Rates Guide" /></div></CardContent></Card>
               <Card className="bg-emerald-600 border-none text-white shadow-md"><CardContent className="p-6"><h3 className="text-lg font-bold mb-2">Calculate your overtime pay</h3><p className="text-emerald-100 text-sm mb-4">Enter your base rate and penalty type to see your after-tax overtime earnings.</p><Link href="/overtime-pay-calculator/" className="block w-full py-2.5 px-4 bg-white text-emerald-700 font-semibold text-sm text-center rounded-md hover:bg-sandstone/50 transition-colors">Overtime Calculator →</Link></CardContent></Card>
             </div>

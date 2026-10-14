@@ -635,7 +635,7 @@ export default function PublicServicePayJurisdictionPage({
 
           {/* SIDEBAR */}
           <aside className="lg:w-1/3">
-            <div className="sticky top-24 space-y-6">
+            <div className="mv-sidebar space-y-6">
               <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone/30 p-5">
                 <h2 className="mb-3 text-lg font-semibold text-navy" style={HEADING_FONT}>
                   Other public services

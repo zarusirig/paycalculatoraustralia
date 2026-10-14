@@ -583,7 +583,7 @@ export default function HospitalityAwardRatesPage() {
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="mv-sidebar space-y-6">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
                   <h2 className="mb-3 font-bold text-navy">Award Pay Rates A–Z</h2>

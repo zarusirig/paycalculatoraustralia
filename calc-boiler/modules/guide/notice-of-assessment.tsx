@@ -252,7 +252,7 @@ export default function NoticeOfAssessmentPage() {
 
           {/* SIDEBAR */}
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="mv-sidebar space-y-6">
               <Card className="bg-sandstone border-sandstone-dark/20">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-navy mb-3">Related Guides &amp; Tools</h3>

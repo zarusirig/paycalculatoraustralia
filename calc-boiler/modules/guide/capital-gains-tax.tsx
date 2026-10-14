@@ -319,7 +319,7 @@ export default function CapitalGainsTaxPage() {
             {(() => { const a = getGuideAuthorship("capital-gains-tax-calculator"); return a ? <AuthorBox author={a.author} reviewer={a.reviewer} lastReviewed={a.lastReviewed} /> : null; })()}</div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/tax-brackets/" label="Australian Tax Brackets" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/tax-deductions-guide/" label="Tax Deductions Guide" /><SidebarLink href="/tax-return-calculator/" label="Tax Return Calculator" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/tax-brackets/" label="Australian Tax Brackets" /><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/tax-deductions-guide/" label="Tax Deductions Guide" /><SidebarLink href="/tax-return-calculator/" label="Tax Return Calculator" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

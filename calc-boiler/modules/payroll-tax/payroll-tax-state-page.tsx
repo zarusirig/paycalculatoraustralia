@@ -186,7 +186,7 @@ export default function PayrollTaxStatePage({ code }: { code: PayrollTaxStateCod
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="mv-sidebar space-y-6">
               <RelatedCard
                 links={[
                   { href: "/payroll-tax-calculator/", label: "Payroll Tax Calculator (all states)" },

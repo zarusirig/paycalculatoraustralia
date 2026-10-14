@@ -9,6 +9,8 @@ import AdsterraBanner from "@/components/common/adsterra-banner";
 import DeferredSocialBar from "@/components/common/deferred-social-bar";
 import DeferredPopunder from "@/components/common/deferred-popunder";
 import EngagementTracking from "@/components/common/engagement-tracking";
+import BodyTemplateClass from "@/components/common/body-template-class";
+import { bodyClassScript } from "@/lib/page-template";
 
 export const viewport: Viewport = {
   themeColor: "#1a2744",
@@ -104,10 +106,22 @@ export default function RootLayout({
         <link rel="preload" href="/fonts/dm-sans-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/bricolage-grotesque-normal-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
+      {/* suppressHydrationWarning: the inline script below adds the Mediavine
+          template class to <body> before React hydrates, so the attribute
+          differs from the server-rendered one on purpose. One level deep only,
+          nothing else inherits it. */}
       <body
         className="font-sans antialiased bg-background text-foreground"
         style={{ fontFamily: "'DM Sans', ui-sans-serif, system-ui, sans-serif" }}
+        suppressHydrationWarning
       >
+        {/* Mediavine template class (`home`, `calculator`, `pay-rates`, ...).
+            Mediavine scopes every ad selector to it. The root layout cannot see
+            which page it wraps, so the class is derived from the URL — here,
+            synchronously, before any content parses, so their async <head>
+            script never waits for hydration. See lib/page-template.ts; the
+            <BodyTemplateClass/> below keeps it right on client navigations. */}
+        <script dangerouslySetInnerHTML={{ __html: bodyClassScript() }} />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:rounded-md focus:shadow-lg focus:text-eucalyptus-dark focus:font-semibold"
@@ -176,6 +190,7 @@ export default function RootLayout({
 
         <Footer />
         <EngagementTracking />
+        <BodyTemplateClass />
 
         {/* Adsterra social bar / popunder, deferred until the visitor has stayed
             45s or used a calculator. This is the one change here that costs

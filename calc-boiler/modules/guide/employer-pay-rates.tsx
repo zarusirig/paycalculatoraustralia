@@ -390,7 +390,7 @@ export default function EmployerPayRatesPage({ employer }: { employer: EmployerP
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8">
+            <div className="mv-sidebar">
               <Card className="border-sandstone-dark/20 bg-sandstone">
                 <CardContent className="p-6">
                   <Link

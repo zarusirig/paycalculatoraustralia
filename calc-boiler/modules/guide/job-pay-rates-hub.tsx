@@ -228,7 +228,7 @@ export default function JobPayRatesHubPage() {
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-3">
+            <div className="mv-sidebar space-y-3">
               <h2 className="mb-2 text-base font-bold text-navy">Pay rates by job</h2>
               {SECTORS_WITH_JOBS.map((sector) => (
                 <div key={sector.id} className="space-y-3">

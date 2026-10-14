@@ -240,7 +240,7 @@ export default function LowIncomeTaxOffsetPage() {
           </article>
 
           <aside className="lg:w-1/3">
-            <div className="sticky top-8 space-y-4 not-prose">
+            <div className="mv-sidebar space-y-4 not-prose">
               <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone p-5">
                 <p className="font-bold text-navy mb-3">Related</p>
                 <ul className="space-y-2 text-sm">

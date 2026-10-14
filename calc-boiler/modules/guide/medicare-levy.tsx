@@ -236,7 +236,7 @@ export default function MedicareLevyPage() {
           </div>
         </article>
 
-        <aside className="lg:w-1/3"><div className="sticky top-8 space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/medicare-levy-surcharge-calculator/" label="Medicare Levy Surcharge Calculator" /><SidebarLink href="/sapto-calculator/" label="SAPTO Calculator" /><SidebarLink href="/private-health-insurance-medicare/" label="Private Health Insurance & Medicare" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset" /></div></CardContent></Card></div></aside>
+        <aside className="lg:w-1/3"><div className="mv-sidebar space-y-6"><Card className="bg-sandstone border-sandstone-dark/20"><CardContent className="p-6"><h3 className="font-bold text-navy mb-3">Related</h3><div className="space-y-3"><SidebarLink href="/take-home-pay-calculator/" label="Take-Home Pay Calculator" /><SidebarLink href="/income-tax-calculator/" label="Income Tax Calculator" /><SidebarLink href="/medicare-levy-surcharge-calculator/" label="Medicare Levy Surcharge Calculator" /><SidebarLink href="/sapto-calculator/" label="SAPTO Calculator" /><SidebarLink href="/private-health-insurance-medicare/" label="Private Health Insurance & Medicare" /><SidebarLink href="/low-income-tax-offset/" label="Low Income Tax Offset" /></div></CardContent></Card></div></aside>
       </div>
     </div></div>
   );

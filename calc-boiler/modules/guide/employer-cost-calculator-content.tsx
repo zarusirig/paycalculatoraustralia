@@ -494,7 +494,7 @@ export function EmployerCostCalculatorSidebar() {
   return (
 
     <aside className="lg:w-1/3">
-      <div className="sticky top-8 space-y-6">
+      <div className="mv-sidebar space-y-6">
 
         <Card className="bg-navy border-none text-white shadow-xl overflow-hidden">
           <div className="h-2 w-full bg-gradient-to-r from-eucalyptus to-eucalyptus-dark"></div>
