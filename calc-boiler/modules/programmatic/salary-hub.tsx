@@ -109,7 +109,7 @@ export function SalaryHub({ copy, related }: { copy: HubCopy; related: { href: s
       </section>
 
       <div className="container px-4 md:px-6 py-12 pb-24">
-        <div className="max-w-5xl mx-auto space-y-10">
+        <div className="mv-content max-w-5xl mx-auto space-y-10">
           <TrustBar />
           <FeaturedImage className="mt-0 mb-10" />
 

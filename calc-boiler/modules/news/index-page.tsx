@@ -69,7 +69,7 @@ export default function NewsIndexPage({
           ))}
         </div>
 
-        <ul className="max-w-4xl divide-y divide-navy/10">
+        <ul className="mv-content max-w-4xl divide-y divide-navy/10">
           {articles.map((a) => (
             <li key={a.slug} className="py-6">
               <p className="mb-1.5 inline-flex items-center gap-1.5 rounded-full bg-eucalyptus/10 px-2.5 py-0.5 text-xs font-bold uppercase tracking-widest text-eucalyptus-dark">

@@ -189,7 +189,7 @@ export function RelatedSidebar({ links }: { links: { href: string; label: string
   );
 }
 
-export const ARTICLE_CLASS = "lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark";
+export const ARTICLE_CLASS = "mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark";
 export const PAGE_WRAP = "min-h-screen flex-grow bg-white";
 export const PAGE_INNER = "max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8";
 
