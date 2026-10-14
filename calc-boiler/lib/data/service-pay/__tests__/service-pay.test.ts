@@ -163,3 +163,27 @@ test("the client-side built-page list matches the verified jurisdictions", () =>
     );
   }
 });
+
+test("QLD firefighter rows match QFD's 1 September 2026 wage table (14 Oct 2026 re-check)", () => {
+  const j = SERVICE_PAY.firefighter.qld;
+  assert.equal(j.verifiedOn, "14 October 2026");
+  assert.ok(
+    j.sources.some((s) => s.url.endsWith("/2026-10/QFD-CA25-wage-tables-SWC-uplift-20260801.pdf")),
+    "QFD's 1 September 2026 table is not cited",
+  );
+  assert.ok(!j.sources.some((s) => s.url.endsWith("QFD-CA25-wage-tables-SWC-uplift-current.pdf")), "superseded QFD table still cited");
+  assert.ok(!j.unverified.some((u) => /not yet published/i.test(u)), "stale 'not yet published' caveat");
+  const steps = j.scales.flatMap((s) => s.steps);
+  // QFD marks exactly nine pay points as lifted to the award rate from 1 September 2026.
+  assert.equal(steps.filter((st) => st.note?.includes("award rate from 1 Sep 2026 per QFD's wage table")).length, 9);
+  for (const st of steps) {
+    const m = st.note?.match(/^\$([\d,]+\.\d{2}) per fortnight/);
+    assert.ok(m, `${st.label} note does not start with a fortnightly rate`);
+    assert.equal(st.salary, Math.round(Number(m[1].replace(/,/g, "")) * 26.0714), `${st.label} salary is not fortnightly × 26.0714`);
+  }
+  const note = (label: string) => steps.find((st) => st.label === label)?.note ?? "";
+  assert.match(note("Recruit"), /^\$2,291\.00 per fortnight/);
+  assert.match(note("Senior Firefighter PP2"), /^\$3,107\.00 per fortnight/);
+  assert.match(note("Leading Firefighter PP1"), /^\$3,304\.00 per fortnight/);
+  assert.match(note("Senior Firefighter PP4"), /^\$3,240\.88 per fortnight/);
+});

@@ -1,29 +1,30 @@
 // Queensland — Queensland Fire Department (QFD) career firefighter pay.
 //
-// Sources (all read 24 September 2026):
+// Sources (1 and 3 read 24 September 2026; 2 read 14 October 2026):
 //  1. Queensland Fire Department Certified Agreement 2025 (CA25), certified by
 //     the QIRC on 14 April 2026 (CB/2026/32), nominal expiry 31 July 2028.
 //     Clause 23: +2.5% from 1 August 2026 and +2.5% from 1 August 2027, plus a
 //     CPI Uplift Adjustment (CUA). Clause 8(5): State Wage Case increases are
 //     absorbed. Clause 8(6): "no employee will receive a base rate of pay that
 //     is less than the corresponding base rate of pay in the Award."
-//  2. QFD "CURRENT - Wages table" (QFD-CA25-wage-tables-SWC-uplift-current.pdf,
-//     linked from fire.qld.gov.au/about-us/corporate-knowledge-centre/ca25,
-//     page updated 6 May 2026). Prints fortnightly BASE rates for 1 Aug 2025
-//     (incl. the CUA and 2025 SWC), 1 Aug 2026 and 1 Aug 2027.
+//  2. QFD "CURRENT - Wages table" (QFD-CA25-wage-tables-SWC-uplift-20260801.pdf,
+//     "Wage Tables – effective 1 September 2026", linked from
+//     fire.qld.gov.au/about-us/corporate-knowledge-centre/ca25, page "Last
+//     updated 08 October 2026"). Prints fortnightly BASE rates for 1 Aug 2025
+//     (incl. the CUA and 2025 SWC), 1 Aug 2026 with the 2026 SWC award rate
+//     from 1 September 2026 for "classifications identified ... in blue", and
+//     1 Aug 2027. It replaces the May 2026 table (effective 1 September 2025),
+//     which QFD now marks SUPERSEDED.
 //  3. Queensland Fire and Emergency Service Employees Award – State 2016,
 //     QIRC reprint effective 1 September 2026 (after the 2026 State Wage Case,
 //     +4.75%), clause 12.4(a): fortnightly award minimums.
 //
-// HOW THE CURRENT RATE IS CHOSEN: on 24 September 2026 the CA25 1 August 2026
-// base rate applies, EXCEPT where the award minimum from 1 September 2026 is
-// higher — then clause 8(6) makes the award rate the floor. QFD's own 2025 wage
-// table applied exactly this rule (rows marked "*note identified roles have
-// increase by SWC"). No arithmetic is done: each row's `salary` is the higher
-// of two printed fortnightly rates, × 26.0714, rounded to the dollar, and the
-// `note` names which document the rate comes from. QFD has not yet published a
-// post-1 September 2026 table, so the award-floor rows are flagged in
-// `unverified`.
+// HOW THE CURRENT RATE IS CHOSEN: the CA25 1 August 2026 base rate applies,
+// EXCEPT where the award minimum from 1 September 2026 is higher — then clause
+// 8(6) makes the award rate the floor. QFD's 1 September 2026 table prints both
+// rates for those rows (the award rate marked "*") and confirms every row
+// below. No arithmetic is done: each row's `salary` is the printed fortnightly
+// rate × 26.0714, rounded to the dollar, and the `note` names which rate it is.
 //
 // Base rate only: QFD's "Total f/n" column also adds weekend shift, night
 // shift and 38-hour week allowances, which are excluded here.
@@ -45,7 +46,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     detail:
       "A further 2.5% under CA25 clause 23, already printed in QFD's wage table: Recruit $2,297.67, Firefighter $2,744.59, Senior Firefighter PP4 $3,321.90 and Station Officer 3 PP3 $4,125.81 per fortnight (base). A CPI Uplift Adjustment of up to 1% may also be added if Brisbane CPI exceeds 2.5%. Where a future State Wage Case lifts the award minimum above a CA25 rate, the award rate applies instead.",
   },
-  verifiedOn: "24 September 2026",
+  verifiedOn: "14 October 2026",
 
   scales: [
     {
@@ -58,32 +59,32 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Recruit",
           salary: 59_730,
-          note: "$2,291.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,241.63 is lower)",
+          note: "$2,291.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,241.63 is lower)",
         },
         {
           label: "Firefighter PP1 (including temporary Firefighter)",
           salary: 71_331,
-          note: "$2,736.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,677.65 is lower)",
+          note: "$2,736.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
         },
         {
           label: "Firefighter PP2",
           salary: 71_331,
-          note: "$2,736.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,677.65 is lower)",
+          note: "$2,736.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,677.65 is lower)",
         },
         {
           label: "First Class Firefighter PP1",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,879.21 is lower)",
+          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
         },
         {
           label: "First Class Firefighter PP2",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,879.21 is lower)",
+          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,879.21 is lower)",
         },
         {
           label: "First Class Firefighter PP3",
           salary: 76_702,
-          note: "$2,942.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $2,905.99 is lower)",
+          note: "$2,942.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $2,905.99 is lower)",
         },
         {
           label: "First Class Firefighter PP4",
@@ -93,12 +94,12 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Senior Firefighter PP1",
           salary: 81_004,
-          note: "$3,107.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $3,054.44 is lower)",
+          note: "$3,107.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,054.44 is lower)",
         },
         {
           label: "Senior Firefighter PP2",
           salary: 81_004,
-          note: "$3,107.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $3,085.00 is lower)",
+          note: "$3,107.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,085.00 is lower)",
         },
         {
           label: "Senior Firefighter PP3",
@@ -122,7 +123,7 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
         {
           label: "Leading Firefighter PP1",
           salary: 86_140,
-          note: "$3,304.00 per fortnight — award minimum from 1 Sep 2026 (CA25 rate $3,260.00 is lower)",
+          note: "$3,304.00 per fortnight — award rate from 1 Sep 2026 per QFD's wage table (CA25 rate $3,260.00 is lower)",
         },
         {
           label: "Leading Firefighter PP2",
@@ -152,15 +153,14 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
     "Firefighters on the 10/14 continuous shift roster (the recognised continuous shift roster under CA25 clause 49) are also paid a weekend shift allowance of 21.43% of base rate (clause 73) and a night shift allowance of 6.45% of base rate (clause 72).",
     "A 38-hour week allowance is paid fortnightly in lieu of reducing ordinary hours from 40 to 38: (base + weekend + night shift) ÷ 76 × 4 (clause 74). It is superannuated (clause 75).",
     "Firefighters and Station Officers in specified operational day-staff positions (for example roster, planning and building approval officers) receive a 2.5% Special Flexibility Allowance on base rate for normal hours worked, in compensation for the flexibility required.",
-    "With those allowances, QFD's table shows a total of $3,017.35 per fortnight for a Recruit and $4,362.38 for a Senior Firefighter PP4 from 1 August 2026 (before the 1 September 2026 award-floor adjustment).",
+    "With those allowances, QFD's wage table effective 1 September 2026 shows a total of $3,083.80 per fortnight for a Recruit (on the award rate) and $4,362.38 for a Senior Firefighter PP4.",
   ],
   notices: [
     "CA25 was certified by the Queensland Industrial Relations Commission on 14 April 2026 and replaced the Queensland Fire and Emergency Services Certified Agreement 2022. Its nominal expiry date is 31 July 2028.",
-    "The 2026 State Wage Case raised award wages by 4.75% from 1 September 2026. Because CA25 guarantees no employee is paid below the award base rate, several lower pay points now sit on the award rate rather than the CA25 rate. QFD had not published an updated table for 1 September 2026 when we checked.",
+    "The 2026 State Wage Case raised award wages by 4.75% from 1 September 2026. Because CA25 guarantees no employee is paid below the award base rate, several lower pay points now sit on the award rate rather than the CA25 rate. QFD's updated wage table, effective 1 September 2026 (page updated 8 October 2026), confirms these rows.",
     "A CPI Uplift Adjustment for the year from 1 August 2026 (CUA period 2) is triggered only if the March 2027 Brisbane CPI exceeds 2.5% (capped at 1%). Any such adjustment would be back-paid.",
   ],
   unverified: [
-    "Rows marked 'award minimum from 1 Sep 2026' apply CA25 clause 8(6) to the award's printed minimum; QFD has not yet published its own post-1 September 2026 wage table confirming these rows.",
     "The CUA for 1 August 2026 is not yet known, so it is not included.",
     "Rural Fire Service, Fire Communications and Senior Officer (Inspector and above) classifications are not shown.",
   ],
@@ -171,9 +171,9 @@ export const QLD_FIREFIGHTER_PAY: ServicePayJurisdiction = {
       url: "https://www.qirc.qld.gov.au/sites/default/files/2026-04/2026_cb32.pdf",
     },
     {
-      title: "CURRENT - Wages table (QFD CA25 wage tables, SWC uplift, effective as at 1 September 2025)",
+      title: "CURRENT - Wages table (QFD CA25 wage tables, effective as at 1 September 2026)",
       publisher: "Queensland Fire Department",
-      url: "https://www.fire.qld.gov.au/sites/default/files/2026-05/QFD-CA25-wage-tables-SWC-uplift-current.pdf",
+      url: "https://www.fire.qld.gov.au/sites/default/files/2026-10/QFD-CA25-wage-tables-SWC-uplift-20260801.pdf",
     },
     {
       title: "Queensland Fire Department Certified Agreement 2025 (CA25) — bargaining updates and key documents",
