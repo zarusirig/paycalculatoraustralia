@@ -20,6 +20,14 @@
 //   and does not print every increment, so it cannot be tied to a date or used
 //   as a full table.
 //
+// Re-checked on 14 October 2026: no change. The AGD current-agreements and
+// agreement-advices pages still list only the 2021 agreement, its April 2023
+// and February 2024 variations and the matching advices. SAET's current-notices
+// list has no SA Police agreement before it, so the proposed new agreement that
+// PASA backed in September 2026 is not approved. The SAPOL careers page prints
+// the same ranges (Probationary Constable $83,398; Constable $86,125 to
+// $102,491) and still states no effective date.
+//
 // Per the no-guessing rule this file ships with empty scales. The page renders
 // the "not yet verified" card with links to the official sources.
 
@@ -36,7 +44,7 @@ export const SA_POLICE_PAY: ServicePayJurisdiction = {
   agreementUrl: "https://www.agd.sa.gov.au/industrial-relations/current-agreements",
   ratesEffectiveFrom: "",
   nextIncrease: null,
-  verifiedOn: "24 September 2026",
+  verifiedOn: "14 October 2026",
 
   scales: [],
   traineePay: [],
