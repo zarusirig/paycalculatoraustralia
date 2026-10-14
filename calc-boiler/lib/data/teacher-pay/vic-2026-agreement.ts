@@ -12,7 +12,9 @@
 // after FWC approval (clause 5). Until then the VGSA 2022 rates in vic.ts are
 // what is payable. Lodged with the FWC on 23 September 2026 (AG2026/2746);
 // the FWC agreements-in-progress list showed "Initial assessment" on
-// 24 September 2026. When FWC approves it:
+// 24 September 2026 and "Member consideration" on 14 October 2026 (the FWC
+// defines Status as whether "we are assessing the application or we have
+// passed it to a Commission Member to consider"). When FWC approves it:
 //   1. move the current column into vic.ts scales,
 //   2. flip VIC_2026_AGREEMENT.status to "approved" and record the date,
 //   3. update vic.ts notices, nextIncrease, faqs and verifiedOn.
@@ -69,8 +71,8 @@ export const VIC_2026_AGREEMENT = {
   fwcMatter: "AG2026/2746",
   fwcLodged: "23 September 2026",
   /** Last date the FWC list was checked, and the stage it showed. */
-  fwcCheckedOn: "24 September 2026",
-  fwcStage: "initial assessment",
+  fwcCheckedOn: "14 October 2026",
+  fwcStage: "member consideration" as "initial assessment" | "member consideration",
   fwcProgressUrl:
     "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress",
   agreementUrl: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615",

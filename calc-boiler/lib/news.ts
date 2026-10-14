@@ -660,7 +660,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     description: "Victorian teachers voted 93.1% yes: top step rises from $118,063 to $133,456 from October 2026 and $151,419 by 2029, graduates to $92,882, plus a $2,000 lump sum.",
     category: "Wages",
     datePublished: "2026-09-17",
-    dateModified: "2026-09-24",
+    dateModified: "2026-10-14",
     authorId: "anita-bell",
     relatedCalculators: [
       { href: "/teacher-pay-australia/vic/", label: "Victorian Teacher Pay Scale" },
@@ -671,7 +671,7 @@ export const NEWS_ARTICLES: NewsArticleMeta[] = [
     sources: [
       { title: "Proposed Victorian Government Schools Agreement 2026 (Schedule 1: Salary Rates)", url: "https://content.sdp.education.vic.gov.au/media/proposed-vgsa-2026-3615", publisher: "Victorian Department of Education" },
       { title: "Enterprise Bargaining: Overview (updated 17 September 2026)", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/overview", publisher: "Victorian Department of Education" },
-      { title: "Agreements in progress — Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026)", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress", publisher: "Fair Work Commission" },
+      { title: "Agreements in progress — Victorian Government Schools Agreement 2026 (AG2026/2746, lodged 23 September 2026; member consideration on 14 October 2026)", url: "https://www.fwc.gov.au/work-conditions/enterprise-agreements/find-enterprise-agreement/agreements-progress", publisher: "Fair Work Commission" },
       { title: "Enterprise Bargaining: Resources — Agreement Explanation and Approval Process FAQs", url: "https://www2.education.vic.gov.au/pal/enterprise-bargaining/resources", publisher: "Victorian Department of Education" },
       { title: "Labor Seals The Deal For Education Staff Pay Rise (17 September 2026)", url: "https://www.premier.vic.gov.au/labor-seals-deal-education-staff-pay-rise", publisher: "Premier of Victoria" },
       { title: "Labor Is Giving Education Workers A Payrise (17 August 2026)", url: "https://www.premier.vic.gov.au/labor-giving-education-workers-payrise", publisher: "Premier of Victoria" },

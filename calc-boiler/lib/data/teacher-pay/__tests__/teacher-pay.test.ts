@@ -234,12 +234,61 @@ test("the first scale of each state runs graduate-low to top-high", () => {
 });
 
 test("graduate and top figures are the qualified-graduate and incremental-top rows", () => {
-  assert.equal(graduateSalary(getTeacherPayState("qld")!), 86_068, "QLD Band 2 Step 1, not the intern band");
-  assert.equal(topOfClassroomScale(getTeacherPayState("qld")!), 113_957, "QLD Band 3 Step 4");
+  assert.equal(graduateSalary(getTeacherPayState("qld")!), 90_164, "QLD Band 2 Step 1, not the intern band");
+  assert.equal(topOfClassroomScale(getTeacherPayState("qld")!), 119_357, "QLD Band 3 Step 4");
   assert.equal(graduateSalary(getTeacherPayState("sa")!), 84_971, "SA Step 1, not Special Authority");
   assert.equal(graduateSalary(getTeacherPayState("tas")!), 85_313, "TAS four-year-trained entry");
   assert.equal(graduateSalary(getTeacherPayState("nsw")!), 92_882, "NSW Step 1, 9 October 2026 column");
   assert.equal(graduateSalary(getTeacherPayState("vic")!), 79_589);
+});
+
+// ---------------------------------------------------------------------------
+// Queensland: the department's salary schedule re-published with the
+// September 2026 increases (read 14 October 2026). Award-rate rows match the
+// Teaching in State Education Award - State 2016 reprint operative
+// 1 September 2026 (clause 12.6, fortnightly rate x 26.089); interim rows sit
+// 3% above the 28 August 2026 read ([2026] QIRC 267, from 7 September 2026).
+// ---------------------------------------------------------------------------
+
+test("QLD tables the post-7 September 2026 salary schedule", () => {
+  const qld = getTeacherPayState("qld")!;
+  const rate = (scaleId: string, label: string) =>
+    qld.scales.find((s) => s.id === scaleId)!.steps.find((s) => s.label === label)!.salary;
+
+  assert.equal(qld.verifiedOn, "14 October 2026");
+  assert.equal(qld.nextIncrease, null, "no further rise has a date while arbitration continues");
+
+  // Award reprint rates (per fortnight): Senior Teacher $4,776, Experienced Senior Teacher $4,889.
+  assert.equal(rate("classroom-teachers", "Senior Teacher (4 year trained)"), Math.round(4_776 * 26.089));
+  assert.equal(rate("classroom-teachers", "Experienced Senior Teacher (ES401)"), Math.round(4_889 * 26.089));
+  assert.equal(rate("classroom-teachers", "Band 1, Step 1"), 80_615);
+  // Head of Program Level 1 Paypoint 3: the award's $148,003 beats 3% on $143,582.
+  assert.equal(rate("heads-of-program", "Level 1, Paypoint 3"), 148_003);
+  assert.ok(Math.round(143_582 * 1.03) < 148_003);
+
+  // Interim rows: the department's figure is within $3 of 3% on the previous one.
+  const interim: [string, string, number][] = [
+    ["classroom-teachers", "Highly Accomplished Teacher", 130_770],
+    ["classroom-teachers", "Lead Teacher", 142_766],
+    ["heads-of-program", "Level 1, Paypoint 2", 141_088],
+    ["deputy-principals", "Paypoint 3", 159_810],
+    ["principals", "Level 1, Paypoint 2", 142_500],
+    ["principals", "Level 10, Paypoint 2", 235_508],
+    ["assistant-and-community-teachers", "Senior Community Teacher", 89_126],
+  ];
+  for (const [scaleId, label, before] of interim) {
+    const now = rate(scaleId, label);
+    assert.ok(Math.abs(now - before * 1.03) <= 3, `${scaleId} ${label}: ${now} vs 3% on ${before}`);
+  }
+
+  // Supply teachers: Band 3 Step 1 ($4,126 a fortnight); a day is 1/10 of the fortnight plus 25%.
+  const daily = qld.casual.find((c) => c.unit === "day")!.rate;
+  assert.equal(daily, 515.75);
+  assert.equal(Math.round(4_126 / 10 * 1.25 * 100) / 100, daily);
+  assert.equal(qld.casual.find((c) => c.unit === "hour")!.rate, 103.15);
+
+  // No table still carries a pre-September 2026 date.
+  for (const scale of qld.scales) assert.match(scale.effectiveFrom ?? "", /September 2026/, scale.id);
 });
 
 test("scaleRanges summarises every published scale", () => {
