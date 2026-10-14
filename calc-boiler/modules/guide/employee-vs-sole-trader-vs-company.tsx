@@ -91,7 +91,7 @@ export default function EmployeeVsSoleTraderVsCompanyPage() {
         <div className="flex flex-col lg:flex-row gap-12">
 
           {/* MAIN ARTICLE CONTENT */}
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <div className="bg-sandstone border-l-4 border-ochre p-5 rounded-r-xl not-prose my-8">
               <p className="text-navy text-sm"><strong>Disclaimer:</strong> This is general information only, not business structuring advice. Business structure decisions involve legal, tax, and commercial considerations unique to your situation. Consult a qualified accountant or business adviser before making changes to your structure.</p>

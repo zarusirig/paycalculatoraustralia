@@ -88,7 +88,7 @@ export function HourlyToSalary({ rate }: HourlyToSalaryProps) {
   const scales = points.length > 0;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-12">
+    <div className="mv-content max-w-4xl mx-auto space-y-12">
       <FeaturedImage className="mt-0 mb-12" />
       {/* ── G5: after-tax breakdown (the answer table) ── */}
       <HourlyAfterTaxSection rate={rate} />

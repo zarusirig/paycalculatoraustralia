@@ -103,7 +103,7 @@ export function SalaryToHourly({ salary }: SalaryToHourlyProps) {
   const scales = points.length > 0;
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="mv-content max-w-4xl mx-auto space-y-8">
       {/* 10 Oct 2026: the "$1,000 rise" intro (the take-home page has it) and the badge strip went, as on
           /hourly-to-salary/; HECS is in the calculation line where it applies */}
       <FeaturedImage lazy className="mt-0" />

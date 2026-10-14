@@ -19,8 +19,8 @@ Every page now carries exactly one of these on `<body>`:
 
 | Body class | Pages | Layout |
 |---|---|---|
-| `home` | / | homepage, no sidebar |
-| `calculator` | 63 calculator pages, e.g. /income-tax-calculator/, /take-home-pay-calculator/, /pay-calculator-nsw/ | calculator widget + full-width sections, **no sidebar** |
+| `home` | / | full-bleed hero with the calculator, then content + sidebar |
+| `calculator` | 63 calculator pages, e.g. /income-tax-calculator/, /take-home-pay-calculator/, /pay-calculator-nsw/ | calculator widget + content column, sidebar beside it |
 | `pay-rates` | 194 — award rates (/award-rates/, /*-award-rates/), minimum / junior / apprentice wages, pay by job (/job-pay-rates/*), pay by employer (/pay-rates/*), public holiday pay | article + sidebar |
 | `pay-scales` | 80 — public service, teacher, nurse, police, fire, paramedic, prison officer and ADF pay scales (/public-service-pay-scales/*, /teacher-pay-australia/*, /police-pay/* …) and occupation salary pages | article + sidebar |
 | `tax-tables` | 11 — PAYG weekly / fortnightly / monthly / Schedule 5 tax tables | article + sidebar |
@@ -31,8 +31,8 @@ Every page now carries exactly one of these on `<body>`:
 
 The class is set from the URL before your script runs and is updated on client-side navigation, so it is always current.
 
-**3. `mv-sidebar`.**
-Added to the innermost sidebar container (the div inside `<aside class="lg:w-1/3">`) on every layout that has a sidebar: `pay-rates`, `pay-scales`, `tax-tables` and `guide`. The main content container on those pages is the `<article>` immediately before the aside. `calculator`, `salary-tables`, `news` and `home` have no sidebar column, so in-content units only there.
+**3. `mv-sidebar` and `mv-content`.**
+`mv-sidebar` is on the innermost sidebar container (the div inside the `<aside>`) on every layout that has a sidebar: `pay-rates`, `pay-scales`, `tax-tables`, `guide`, and — new today, added for you — `calculator` and `home`, which had no sidebar column before. The main content container on every page carries `mv-content` (the `<article>` on guide-style pages, the content column on calculator pages, the homepage and the salary tables). Only `salary-tables` and `news` have no sidebar column; happy to add one there too if you want it.
 
 Example pages for targeting:
 - https://pay-calculator-australia.com/ (home)
@@ -45,8 +45,8 @@ Example pages for targeting:
 - https://pay-calculator-australia.com/news/ (news)
 
 **One more thing — please tell us what else would let you place more ads.** We want to give you as much room as you can use, so treat the site as flexible. Things we are happy to change if they help revenue:
-- Add a right sidebar column to the layouts that do not have one yet — calculator, salary-tables, news and the homepage (about 300 pages, including our highest-traffic ones) — so the sticky sidebar unit can run there too.
-- Add fixed containers or extra semantic hooks for in-content units (e.g. a `mv-content` class, or spacing between sections) if that places more units than the `<article>` selector alone.
+- Add a right sidebar column to the two layouts that still do not have one — salary-tables (204 pages) and news (35) — so the sticky sidebar unit can run there too.
+- Add fixed containers or extra semantic hooks for in-content units (more classes, ids, or spacing between sections) if that places more units than `.mv-content` alone.
 - Adhesion, Universal Player / video, recipe-style or any other units you recommend for a calculator site — just say where you want the hooks.
 - Anything about the 64px fixed header, spacing or density that is limiting what you can run.
 

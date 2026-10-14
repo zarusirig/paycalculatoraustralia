@@ -48,7 +48,7 @@ export default function FullTimeVsPartTimeVsCasualPage() {
         <div className="flex flex-col lg:flex-row gap-12">
 
           {/* MAIN ARTICLE CONTENT */}
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             {/* SECTION 1: Quick Comparison Table */}
             <section id="comparison-table">

@@ -92,7 +92,7 @@ export default function ConcessionalContributionsCapPage() {
       <div className="mb-12"><ConcessionalCapCalculator /></div>
 
       <div className="flex flex-col lg:flex-row gap-12">
-        <article className="lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+        <article className="mv-content lg:w-2/3 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
           <FeaturedImage placement="content" className="mt-0" />
 
           <section>

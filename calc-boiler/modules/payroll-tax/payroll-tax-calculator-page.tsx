@@ -55,7 +55,7 @@ export default function PayrollTaxCalculatorPage() {
         </div>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+          <article className="mv-content prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <FeaturedImage placement="content" className="mt-0" />
             <section id="rates">
               <h2 style={H2_STYLE}>Payroll Tax Rates and Thresholds {PAYROLL_TAX_FY}</h2>

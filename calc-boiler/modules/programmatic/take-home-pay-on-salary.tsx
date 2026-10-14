@@ -121,7 +121,7 @@ export function TakeHomePayOnSalary({ salary }: TakeHomePayOnSalaryProps) {
   const hourlyHref = hasPage("salary-to-hourly", salary) ? salaryHref("salary-to-hourly", salary) : "/salary-to-hourly/";
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="mv-content max-w-4xl mx-auto space-y-8">
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">
           That is <strong>{formatAUD(breakdown.monthly)} a month</strong>{breakdown.netIncomeTax === 0 ? ", with no income tax to pay" : ""}.

@@ -95,7 +95,7 @@ export default function PublicServicePayScalesPage() {
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark lg:w-2/3">
+          <article className="mv-content prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark lg:w-2/3">
             {/* Jurisdiction cards */}
             <section id="jurisdictions">
               <h2 style={HEADING_FONT}>Pay scales by service</h2>

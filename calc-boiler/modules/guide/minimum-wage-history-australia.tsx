@@ -66,7 +66,7 @@ export default function MinimumWageHistoryPage() {
         </header>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <section id="wage-by-year">
               <h2 style={H2}>National Minimum Wage by Year</h2>

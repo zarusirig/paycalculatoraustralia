@@ -54,7 +54,7 @@ export default function EmployerCostCalculatorContent() {
 
   return (
 
-    <article className="prose prose-slate prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+    <article className="mv-content prose prose-slate prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
       {/* H2 #1 */}
       <section id="how-much-does-employee-cost">

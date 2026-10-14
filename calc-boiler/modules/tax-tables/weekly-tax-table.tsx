@@ -86,7 +86,7 @@ export default function WeeklyTaxTablePage() {
 
         <div className="flex flex-col lg:flex-row gap-12">
 
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <section id="weekly-tax-table-coefficients">
               <h2>Weekly Tax Table {PAYG_FINANCIAL_YEAR}: ATO Coefficients at a Glance</h2>

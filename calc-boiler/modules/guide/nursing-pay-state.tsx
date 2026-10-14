@@ -169,7 +169,7 @@ export default function NursingPayStatePage({ state }: { state: NursingStateData
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+          <article className="mv-content prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             {/* ── At a glance: one row per classification, linking to its full table ── */}
             <AtAGlance state={state} />
 

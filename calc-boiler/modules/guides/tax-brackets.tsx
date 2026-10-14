@@ -194,7 +194,7 @@ export default function TaxBracketsGuidePage() {
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          <article className="lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
+          <article className="mv-content lg:w-2/3 min-w-0 prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark">
 
             <section id="brackets-2026-27">
               <h2 style={FONT}>Australian Tax Brackets {FY} (Residents)</h2>

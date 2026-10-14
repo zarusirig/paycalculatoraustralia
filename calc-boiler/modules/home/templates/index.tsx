@@ -1,4 +1,5 @@
 import Link from "./home-link";
+import { PageSidebar } from "@/components/common/page-end";
 import { ArrowRight, GraduationCap, Heart, PiggyBank, Receipt } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import TrustBar from "@/components/common/trust-bar";
@@ -159,8 +160,13 @@ export default function HomePageTemplate() {
       {/* One native ad unit, after the calculator and its quick links. */}
       <HomeNativeBanner className="pt-10" />
 
-      {/* ═══ CONTENT SECTIONS ═══ */}
-      <div className="mx-auto max-w-4xl space-y-20 px-4 py-20 sm:px-6 lg:px-8">
+      {/* ═══ CONTENT SECTIONS ═══
+          Two columns from lg: the content, and beside it the same sidebar the
+          calculator pages get from withPageEndUsing (Mediavine sticky sidebar,
+          Oct 2026). The hero above stays full-bleed; the column was max-w-4xl
+          centred and is now simply the flexible column. */}
+      <div className="mx-auto max-w-7xl lg:flex lg:gap-4">
+      <div className="mv-content min-w-0 space-y-20 px-4 py-20 sm:px-6 lg:flex-1 lg:px-8">
         {/* Featured image: after the calculator, never above it (the first
             input stays within 600px of the top on a 390px phone). */}
         <FeaturedImage placement="content" className="mt-0 mb-20" />
@@ -674,6 +680,8 @@ export default function HomePageTemplate() {
 
         {/* ===== SOURCES ===== */}
         <SourceAttribution sources={SOURCES_LIST} lastVerified={SITE_CONFIG.lastVerified} />
+      </div>
+      <PageSidebar path="/" Link={Link} className="lg:pt-20" />
       </div>
     </div>
   );

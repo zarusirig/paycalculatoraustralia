@@ -119,7 +119,7 @@ export default function ModernAwardRatesPage({ awardKey }: { awardKey: ModernAwa
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+          <article className="mv-content prose prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <section id="rates">
               <h2 style={H2}>{meta.shortName} Pay Rates by Level</h2>
               {partTimeLoading !== undefined ? (

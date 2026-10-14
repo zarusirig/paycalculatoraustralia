@@ -87,7 +87,7 @@ export default function SuperGuaranteeRateHistoryPage() {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-12">
-          <article className="lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content lg:w-2/3 prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
 
             <section id="current-rate">
               <h2 style={FONT}>The Current Superannuation Rate</h2>

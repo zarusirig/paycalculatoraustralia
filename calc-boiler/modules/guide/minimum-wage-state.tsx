@@ -81,7 +81,7 @@ export default function MinimumWageStatePage({ state: s }: { state: MwStateInfo 
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+          <article className="mv-content prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <nav aria-label="On this page" className="not-prose mb-8 flex flex-wrap gap-2 text-sm">
               {[
                 ["#calculator", "Calculator"],

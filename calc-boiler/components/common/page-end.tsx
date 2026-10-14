@@ -1,9 +1,10 @@
-import type { ComponentType } from "react";
+import type { ComponentType, ReactNode } from "react";
 import type NextLink from "next/link";
 import type AdsterraBanner from "@/components/common/adsterra-banner";
 import { ChevronRight } from "lucide-react";
 import { getRelatedLinks } from "@/lib/related-links";
 import { setPageRoute } from "@/lib/page-route";
+import { templateFor } from "@/lib/page-template";
 
 /**
  * The end of every page: the 300x250 rectangle and "What to check next".
@@ -110,6 +111,84 @@ export function PageEnd({ path, Link, Banner }: { path: string } & PageEndCompon
   );
 }
 
+/** Site hubs, the same on every sidebar; the related card above it is per page. */
+const BROWSE_LINKS = [
+  { href: "/award-rates/", label: "Award rates A–Z" },
+  { href: "/job-pay-rates/", label: "Pay rates by job" },
+  { href: "/take-home-pay-on/", label: "Take-home pay on every salary" },
+  { href: "/tax-brackets/", label: "Tax brackets 2026-27" },
+  { href: "/payg-withholding-tables/", label: "PAYG tax tables" },
+  { href: "/news/", label: "Pay & tax news" },
+] as const;
+
+function SidebarLink({ href, label, Link }: { href: string; label: string; Link: LinkComponent }) {
+  return (
+    <Link
+      href={href}
+      data-engagement="next-step"
+      data-next-step-href={href}
+      data-next-step-origin="sidebar"
+      className="group flex items-center justify-between rounded-lg border border-sandstone-dark/20 bg-white p-3 transition-all hover:border-eucalyptus hover:shadow-sm"
+    >
+      <span className="text-sm font-medium text-navy group-hover:text-eucalyptus-dark">{label}</span>
+      <ChevronRight className="h-4 w-4 shrink-0 text-warmgray-light group-hover:text-eucalyptus" />
+    </Link>
+  );
+}
+
+function SidebarCard({ title, children }: { title: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-sandstone-dark/20 bg-sandstone p-6">
+      <h3 className="mb-3 font-bold text-navy">{title}</h3>
+      <div className="space-y-3">{children}</div>
+    </div>
+  );
+}
+
+/**
+ * The right-hand sidebar for layouts that did not have one: calculator pages
+ * (via withPageEndUsing below) and the homepage (modules/home/templates). Same
+ * markup contract as the guide sidebars — `<aside>` as a stretched flex item,
+ * `.mv-sidebar` as the innermost container, nothing sticky — so Mediavine's
+ * sticky sidebar unit can run on these pages too (Oct 2026). The column is
+ * sized for a 300px-wide unit at every breakpoint it exists on: 22rem minus
+ * the 2rem right gutter at lg, 26rem at xl.
+ *
+ * Links are the page's own related links (the first six; the page end shows
+ * all of them with blurbs) and the site hubs, so the column is useful before
+ * any ad fills, and differs between pages.
+ */
+export function PageSidebar({
+  path,
+  Link,
+  className = "lg:pt-8",
+}: {
+  path: string;
+  Link: LinkComponent;
+  /** Top padding at lg, matched to the content column's so the first card lines up with it. */
+  className?: string;
+}) {
+  const related = getRelatedLinks(path).slice(0, 6);
+  return (
+    <aside className={`shrink-0 px-4 pb-12 sm:px-6 lg:w-[22rem] lg:px-0 lg:pr-8 xl:w-[26rem] ${className}`}>
+      <div className="mv-sidebar space-y-6">
+        {related.length > 0 && (
+          <SidebarCard title="Related calculators">
+            {related.map((link) => (
+              <SidebarLink key={link.href} href={link.href} label={link.title} Link={Link} />
+            ))}
+          </SidebarCard>
+        )}
+        <SidebarCard title="Browse">
+          {BROWSE_LINKS.map((link) => (
+            <SidebarLink key={link.href} href={link.href} label={link.label} Link={Link} />
+          ))}
+        </SidebarCard>
+      </div>
+    </aside>
+  );
+}
+
 type RouteParams = Record<string, string | string[] | undefined>;
 
 /**
@@ -121,12 +200,20 @@ type RouteParams = Record<string, string | string[] | undefined>;
  * lib/__tests__/related-links.test.ts checks that every app page.tsx is wrapped
  * with the pattern that matches its folder, so no page can silently lose the
  * rectangle ad or its related links.
+ *
+ * Calculator-layout pages (lib/page-template.ts) are also given the two-column
+ * shell here: the page and its end in a `.mv-content` column, `<PageSidebar>`
+ * beside it. The page keeps its own `max-w-7xl … px-4 sm:px-6 lg:px-8`
+ * wrapper, which is why the shell has no horizontal padding of its own and
+ * the sidebar carries the right gutter. Guide-layout pages already render
+ * their own article + sidebar row and are left alone.
  */
 export function withPageEndUsing<P extends object>(
   Page: ComponentType<P>,
   route: string,
   components: PageEndComponents,
 ) {
+  const template = templateFor(route);
   async function PageWithEnd(props: P) {
     const maybeParams = (props as { params?: Promise<RouteParams> }).params;
     const params: RouteParams = maybeParams ? await maybeParams : {};
@@ -136,11 +223,18 @@ export function withPageEndUsing<P extends object>(
     });
     // For the featured image and JSON-LD further down the tree (lib/page-route.ts).
     setPageRoute(path);
-    return (
+    const body = (
       <>
         <Page {...props} />
         <PageEnd path={path} Link={components.Link} Banner={components.Banner} />
       </>
+    );
+    if (template !== "calculator") return body;
+    return (
+      <div className="mx-auto max-w-7xl lg:flex lg:gap-4">
+        <div className="mv-content min-w-0 lg:flex-1">{body}</div>
+        <PageSidebar path={path} Link={components.Link} />
+      </div>
     );
   }
   PageWithEnd.displayName = `withPageEnd(${Page.displayName ?? Page.name ?? "Page"})`;

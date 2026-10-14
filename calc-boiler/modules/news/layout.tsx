@@ -93,7 +93,7 @@ export default function NewsArticleLayout({ meta, children }: { meta: NewsArticl
         </header>
 
         <div className="max-w-4xl">
-          <article className="prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
+          <article className="mv-content prose prose-blue prose-lg max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy">
             {bodyWithFeaturedImage(children, <FeaturedImage key="featured-image" />)}
           </article>
 

@@ -147,7 +147,7 @@ export function TaxOnSalary({ salary }: TaxOnSalaryProps) {
           : "";
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="mv-content max-w-4xl mx-auto space-y-8">
       <section className="prose prose-eucalyptus max-w-none">
         <p className="text-lg text-navy leading-relaxed">{bracketPositionSentence(salary)}</p>
       </section>

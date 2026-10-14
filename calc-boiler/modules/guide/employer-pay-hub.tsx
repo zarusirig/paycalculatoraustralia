@@ -51,7 +51,7 @@ export default function EmployerPayHubPage() {
         </header>
 
         <div className="flex flex-col gap-12 lg:flex-row">
-          <article className="prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
+          <article className="mv-content prose prose-lg prose-blue max-w-none prose-headings:text-navy prose-a:text-eucalyptus-dark hover:prose-a:text-navy lg:w-2/3">
             <section id="employers">
               <h2 style={HEADING_FONT}>Entry-level adult pay rate at each employer</h2>
               <p>
