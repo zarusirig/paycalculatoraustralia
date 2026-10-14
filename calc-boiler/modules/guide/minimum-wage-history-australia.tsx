@@ -27,7 +27,7 @@ const money = (v: number) => formatAUD(v, 2);
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
-  { title: "National minimum wage orders and Annual Wage Reviews", url: "https://www.fwc.gov.au/agreements-awards/minimum-wages-conditions", publisher: SOURCES.fwc.name },
+  { title: "National minimum wage orders and Annual Wage Reviews", url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
   { title: "Minimum wages", url: "https://www.fairwork.gov.au/pay-and-wages/minimum-wages", publisher: SOURCES.fwo.name },
   { title: "Consumer Price Index, Australia", url: "https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia", publisher: "Australian Bureau of Statistics" },
 ];

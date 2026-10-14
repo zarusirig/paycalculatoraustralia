@@ -85,7 +85,7 @@ const dataset: WithContext<Dataset> = {
   spatialCoverage: { "@type": "Country", name: "Australia" },
   creator: { "@type": "Organization", name: "Australian Taxation Office", url: "https://www.ato.gov.au/" },
   includedInDataCatalog: { "@type": "DataCatalog", name: "ATO tax tables", url: ATO_TAX_TABLES_INDEX },
-  license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+  license: "https://www.ato.gov.au/about-ato/using-our-website",
   distribution: ATO_DOCS.flatMap((d) => [
     { "@type": "DataDownload" as const, name: `${d.title} (${d.nat})`, encodingFormat: "text/html", contentUrl: d.pageUrl },
     ...(d.pdfUrl ? [{ "@type": "DataDownload" as const, name: `${d.title} (${d.nat}) PDF`, encodingFormat: "application/pdf", contentUrl: d.pdfUrl }] : []),

@@ -25,7 +25,7 @@ const pct = (v: number) => `${Math.round(v * 1000) / 10}%`;
 
 const SOURCES_LIST: SourceLink[] = [
   { title: `${NMW_ORDER.citation} (${NMW_ORDER.reference})`, url: NMW_ORDER.url, publisher: SOURCES.fwc.name },
-  { title: "Casual employees", url: "https://www.fairwork.gov.au/employment-conditions/types-of-employees/casual-employees", publisher: SOURCES.fwo.name },
+  { title: "Casual employees", url: "https://www.fairwork.gov.au/starting-employment/types-of-employees/casual-employees", publisher: SOURCES.fwo.name },
   { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwo.name },
   { title: `${FAST_FOOD_LEVEL_1.award}, cl 11.2(b)`, url: FAST_FOOD_LEVEL_1.awardTextUrl, publisher: SOURCES.fwc.name },
 ];

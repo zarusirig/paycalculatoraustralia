@@ -27,9 +27,9 @@ import { getGuideAuthorship } from "@/lib/authors";
 import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
-  { title: "Notice of assessment", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return", publisher: SOURCES.ato.name },
-  { title: "Objecting to a decision", url: "https://www.ato.gov.au/about-ato/dealing-with-us", publisher: SOURCES.ato.name },
-  { title: "Amending your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/after-you-lodge-your-tax-return", publisher: SOURCES.ato.name },
+  { title: "Notice of assessment", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/your-notice-of-assessment", publisher: SOURCES.ato.name },
+  { title: "Objecting to a decision", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/if-you-disagree-with-an-ato-decision/object-to-a-decision", publisher: SOURCES.ato.name },
+  { title: "Amending your tax return", url: "https://www.ato.gov.au/individuals-and-families/your-tax-return/amend-your-tax-return", publisher: SOURCES.ato.name },
   { title: "Individual income tax rates", url: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents", publisher: SOURCES.ato.name },
 ];
 

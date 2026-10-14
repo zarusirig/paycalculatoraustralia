@@ -759,7 +759,6 @@ function G6_ARTICLES(): NewsArticleMeta[] {
       ],
       relatedArticles: ["age-pension-increase-march-2026", "deeming-rates-change-2026", "centrelink-changes-july-2026"],
       sources: [
-        { title: "Some payment rates are increasing on 20 September 2026 (8 September 2026)", url: "https://www.servicesaustralia.gov.au/some-payment-rates-are-increasing-20-september-2026", publisher: "Services Australia" },
         { title: "Deeming rates have increased (20 September 2026)", url: D.sources.news, publisher: "Services Australia" },
         { title: "Deeming", url: D.sources.deeming, publisher: "Services Australia" },
         { title: "Social Security Payment Parameters — 20 September 2026 indexation (rates list)", url: "https://www.dss.gov.au/system/files/documents/2026-08/rates-list-20-september-2026.pdf", publisher: "Department of Social Services" },

@@ -98,7 +98,7 @@ const dataset: WithContext<Dataset> = {
   creator: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },
   isBasedOn: { "@type": "CreativeWork", name: `ATO ${ATO_SCHEDULE_5.title} (${ATO_SCHEDULE_5.nat})`, url: ATO_SCHEDULE_5.pageUrl },
   includedInDataCatalog: { "@type": "DataCatalog", name: "ATO tax tables", url: ATO_TAX_TABLES_INDEX },
-  license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+  license: "https://www.ato.gov.au/about-ato/using-our-website",
   dateModified: MODIFIED,
 };
 

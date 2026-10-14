@@ -36,8 +36,8 @@ export const MARGINAL_RATES_VERIFIED_ON = "23 September 2026";
 
 export const MARGINAL_RATES_SOURCES = {
   atoResidentRates: "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents",
-  atoLitoPage: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/offsets-and-rebates/low-income-tax-offset",
-  atoMedicareLevy: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy/medicare-levy-reduction-for-low-income-earners",
+  atoLitoPage: "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-income-tax-offset",
+  atoMedicareLevy: "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy/medicare-levy-reduction/medicare-levy-reduction-for-low-income-earners",
   atoWithholding: "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-1-statement-of-formulas-for-calculating-amounts-to-be-withheld",
 } as const;
 

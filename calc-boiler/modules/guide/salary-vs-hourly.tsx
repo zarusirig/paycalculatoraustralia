@@ -18,8 +18,8 @@ import FeaturedImage from "@/components/common/featured-image";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Pay and wages", url: "https://www.fairwork.gov.au/pay-and-wages", publisher: SOURCES.fwo.name },
-  { title: "Hours of work, overtime and penalty rates", url: "https://www.fairwork.gov.au/pay-and-wages/penalty-rates", publisher: SOURCES.fwo.name },
-  { title: "Types of employees", url: "https://www.fairwork.gov.au/employment-conditions/types-of-employees", publisher: SOURCES.fwo.name },
+  { title: "Hours of work, overtime and penalty rates", url: "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/penalty-rates", publisher: SOURCES.fwo.name },
+  { title: "Types of employees", url: "https://www.fairwork.gov.au/starting-employment/types-of-employees", publisher: SOURCES.fwo.name },
   { title: "National Employment Standards", url: "https://www.fairwork.gov.au/employment-conditions/national-employment-standards", publisher: SOURCES.fwo.name },
 ];
 

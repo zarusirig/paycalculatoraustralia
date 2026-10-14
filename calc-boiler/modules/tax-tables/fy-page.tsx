@@ -115,7 +115,7 @@ export function FyRoutePage({ frequency, rawFy }: { frequency: PayFrequency; raw
     creator: { "@type": "Organization", name: SITE_CONFIG.name, url: BASE },
     isBasedOn: { "@type": "CreativeWork", name: `ATO ${ATO_SCHEDULE_1.title} (${ATO_SCHEDULE_1.nat})`, url: info.schedule1Url },
     includedInDataCatalog: { "@type": "DataCatalog", name: "ATO tax tables", url: ATO_TAX_TABLES_INDEX },
-    license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+    license: "https://www.ato.gov.au/about-ato/using-our-website",
   };
   const faq: WithContext<FAQPage> = {
     "@context": "https://schema.org",

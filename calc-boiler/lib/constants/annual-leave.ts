@@ -41,7 +41,7 @@ export const ANNUAL_LEAVE_SOURCES = {
   atoSchedule7:
     "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-7-tax-table-for-unused-leave-payments-on-termination-of-employment",
   atoSchedule5:
-    "https://www.ato.gov.au/tax-rates-and-codes/payg-withholding-schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments",
+    "https://www.ato.gov.au/tax-rates-and-codes/schedule-5-tax-table-for-back-payments-commissions-bonuses-and-similar-payments",
   fwAct: "https://www.legislation.gov.au/C2009A00028/latest/text",
 } as const;
 

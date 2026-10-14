@@ -53,7 +53,7 @@ const SCHADS_MATRIX = [
 const SOURCES_LIST: SourceLink[] = [
   { title: `Pay guide — ${SCHADS_AWARD.name} (${SCHADS_AWARD.code})`, url: "https://www.fairwork.gov.au/employment-conditions/awards/awards-summary/ma000100-summary", publisher: SOURCES.fwo.name },
   { title: `Consolidated award text ${SCHADS_AWARD.code}`, url: SCHADS_AWARD.awardTextUrl, publisher: SOURCES.fwo.name },
-  { title: `Equal Remuneration Order ${SCHADS_AWARD.eroReference}`, url: "https://www.fwc.gov.au/equal-remuneration-case", publisher: SOURCES.fwc.name },
+  { title: `Equal Remuneration Order ${SCHADS_AWARD.eroReference}`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/previous-major-cases/equal-remuneration-case-2010-12", publisher: SOURCES.fwc.name },
   { title: `Annual Wage Review 2026 — ${SCHADS_AWARD.decision}`, url: "https://www.fwc.gov.au/hearings-decisions/major-cases/annual-wage-reviews", publisher: SOURCES.fwc.name },
 ];
 

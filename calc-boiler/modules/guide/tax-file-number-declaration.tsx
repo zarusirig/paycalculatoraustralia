@@ -16,7 +16,7 @@ const SOURCES_LIST: SourceLink[] = [
   // Question numbering verified 23 Sep 2026 against the ATO paper form instructions:
   // Q1 TFN, Q2–6 personal details, Q7 basis of pay, Q8 residency, Q9 tax-free threshold, Q10 study and training loans.
   { title: "Paper TFN declaration form for payees (NAT 3092)", url: "https://www.ato.gov.au/forms-and-instructions/tfn-declaration/paper-tfn-declaration-form-for-payees", publisher: SOURCES.ato.name },
-  { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/payg-withholding", publisher: SOURCES.ato.name },
+  { title: "PAYG withholding", url: "https://www.ato.gov.au/businesses-and-organisations/hiring-and-paying-your-workers/payg-withholding", publisher: SOURCES.ato.name },
   { title: "Tax-free threshold", url: "https://www.ato.gov.au/individuals-and-families/coming-to-australia-or-going-overseas/your-tax-residency/australian-resident-for-tax-purposes", publisher: SOURCES.ato.name },
   { title: "Study and training loan obligations", url: "https://www.ato.gov.au/individuals-and-families/study-and-training-support-loans", publisher: SOURCES.ato.name },
 ];

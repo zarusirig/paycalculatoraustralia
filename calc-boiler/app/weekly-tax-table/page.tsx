@@ -102,7 +102,7 @@ const dataset: WithContext<Dataset> = {
       contentUrl: ATO_WEEKLY.xlsxUrl,
     },
   ],
-  license: "https://www.ato.gov.au/about-ato/website-information/copyright-notice",
+  license: "https://www.ato.gov.au/about-ato/using-our-website",
   dateModified: MODIFIED,
 };
 

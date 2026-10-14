@@ -23,8 +23,8 @@ import { WORK_HOURS_FAQS } from "@/modules/guide/work-hours-faqs";
 import FeaturedImage from "@/components/common/featured-image";
 
 const FWO_HOURS_URL = "https://www.fairwork.gov.au/employment-conditions/hours-of-work-breaks-and-rosters";
-const FWO_RECORDS_URL = "https://www.fairwork.gov.au/pay-and-wages/pay-records-and-payslips";
-const FWO_OVERTIME_URL = "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-and-allowances/overtime-pay";
+const FWO_RECORDS_URL = "https://www.fairwork.gov.au/pay-and-wages/paying-wages/record-keeping";
+const FWO_OVERTIME_URL = "https://www.fairwork.gov.au/pay-and-wages/penalty-rates-allowances-and-other-payments/overtime-pay";
 
 const SOURCES_LIST: SourceLink[] = [
   { title: "Hours of work, breaks and rosters", url: FWO_HOURS_URL, publisher: SOURCES.fwo.name },
