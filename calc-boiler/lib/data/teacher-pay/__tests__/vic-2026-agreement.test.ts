@@ -61,6 +61,11 @@ test("every step rises monotonically across columns and up the scale", () => {
 
 test("status and ballot facts", () => {
   assert.equal(VIC_2026_AGREEMENT.status, "pending-fwc");
+  // FWC agreements-in-progress list, 14 Oct 2026: AG2026/2746 lodged 23/09/2026, "Member consideration".
+  assert.equal(VIC_2026_AGREEMENT.fwcMatter, "AG2026/2746");
+  assert.equal(VIC_2026_AGREEMENT.fwcStage, "member consideration");
+  assert.equal(VIC_2026_AGREEMENT.fwcCheckedOn, "14 October 2026");
+  assert.equal(VIC_TEACHER_PAY.verifiedOn, VIC_2026_AGREEMENT.fwcCheckedOn);
   assert.equal(VIC_2026_AGREEMENT.ballotYesPct, 93.1);
   assert.equal(proposedRate("nope", "2-6", 0), null);
   assert.equal(proposedRate("classroom-teachers-2026", "2-6", 5), null);

@@ -1,34 +1,44 @@
 // Queensland — state school teacher salaries.
 //
 // Source of every figure: the Department of Education's own Salary Schedule
-// workbook (salaryschedule.xls), "Teachers" sheet, downloaded and read on
-// 28 August 2026. The workbook's cover sheet reads "Department of Education
-// Salary Schedule (Updated 1 September 2026)".
-//
-// That schedule dates its columns individually, and this file reproduces those
-// dates per table rather than flattening them:
-//   - Classroom Teaching (Stream 1) and supply teachers: 1 September 2025.
-//   - Promotional Teaching Positions (Stream 2), Deputy Principals and
-//     Principals (School Leaders Stream 3): 1 July 2024.
-// Both dates are the department's own, read from the column headers.
+// workbook (salaryschedule.xls), "Teachers" sheet, read on 14 October 2026.
+// The department re-published the workbook with the post-7 September 2026
+// rates between 24 September and 14 October 2026; its cover sheet still reads
+// "Department of Education Salary Schedule (Updated 1 September 2026)", and
+// the sheet no longer prints a date on each column. (The 28 August 2026 read
+// dated classroom columns 1 September 2025 and leadership columns 1 July 2024.)
 //
 // Queensland is the one state in this cluster whose agreement is in dispute.
 // The Department of Education State School Teachers' Certified Agreement 2022
 // (CB/2022/135) EXPIRED on 30 June 2025 and was referred to arbitration on
-// 31 December 2025. It remains the instrument in force.
+// 31 December 2025. It remains the instrument in force: the QIRC's public
+// service agreements page (updated 2 October 2026) lists no replacement.
 //
-// That expiry explains the two column dates. The agreement's own increases were
-// 4% on 1 July 2022, 4% on 1 July 2023 and 3% on 1 July 2024 (clause 6.1.2) —
-// which is why promotional and school leader rates still sit at 1 July 2024.
-// The classroom teacher column moved again on 1 September 2025, but from the
-// QIRC's 2025 State Wage Case general ruling rather than from the agreement.
+// Two QIRC instruments explain the new figures, and supply the dates this file
+// uses because the workbook no longer prints them:
+//   - [2026] QIRC 267, order 1: "an interim salary increase of 3% applied to
+//     the higher of the final rate under the Agreement or the relevant Award
+//     rate at the nominal expiry date of the Agreement (i.e. 30 June 2025)";
+//     order 2: "The operative date of the interim salary increase is
+//     7 September 2026".
+//   - The Teaching in State Education Award - State 2016 reprint, "Operative
+//     date of the modern award reprint: 1 September 2026" (the 4.75% 2026 State
+//     Wage Case, [2026] QIRC 280).
+// Where the award rate is higher the workbook prints it. These workbook
+// figures are printed identically in clause 12.6 of that reprint, so they are
+// dated 1 September 2026: classroom Bands 1 to 3, Senior Teacher ($4,776 a
+// fortnight), Experienced Senior Teacher ($4,889), assistant teachers, the
+// supply rate (Band 3 Step 1) and Head of Program Level 1 Paypoint 3
+// ($148,003). Every other row (Highly Accomplished and Lead Teacher, the other
+// Heads of Program rows, deputy principals, principals and community teachers)
+// is 3% above the department's previous figure, the interim increase, and is
+// dated 7 September 2026. Nothing here is computed: every salary is the
+// workbook's own.
 //
-// A 3% interim increase IS ordered, operative 7 September 2026, by State of
-// Queensland (Department of Education) v Queensland Teachers' Union of
-// Employees [2026] QIRC 267. Its base is "the higher of the final rate under
-// the Agreement or the relevant Award rate at the nominal expiry date
-// (30 June 2025)" — which is NOT the 1 September 2025 column below. No
-// resulting dollar figure has been published, so this file computes none.
+// Teach Queensland's summary page (updated 1 October 2026) quotes a lower
+// "approximately $86,601" for a beginning teacher. This file follows the
+// salary schedule ($90,164 for Band 2 Step 1), whose classroom figures match
+// the award reprint's rates.
 //
 // Paypoint 1 is published as "--" (no rate) for Promotional Levels 1 and 2, for
 // Deputy Principals and for Principal Levels 1 to 7. Those rows are omitted
@@ -53,13 +63,11 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   agreementUrl:
     "https://qed.qld.gov.au/workingwithus/induction/centralandregionaloffices/Documents/salaryschedule.xls",
   ratesEffectiveFrom:
-    "1 September 2025 for classroom teachers and 1 July 2024 for promotional and school leader positions",
-  nextIncrease: {
-    date: "7 September 2026 (now in effect; new department schedule not yet published)",
-    detail:
-      "From 7 September 2026 teachers are paid the higher of the 3% interim rate ordered in [2026] QIRC 267 or the applicable award rate, which itself rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). The QTU says some classifications get the 3% and others the 4.75% award increase. The department's own salary schedule had not been updated when this page was re-checked on 24 September 2026 (the workbook still reads \"Updated 1 September 2026\" and its classroom column is still dated 1 September 2025), so the new dollar figures are not tabled or calculated here.",
-  },
-  verifiedOn: "24 September 2026",
+    "1 September 2026 for classroom teachers and 7 September 2026 for promotional and school leader positions",
+  // The 3% interim increase runs "until determination of the proceedings or
+  // earlier order" ([2026] QIRC 267 at [24]); no further increase has a date.
+  nextIncrease: null,
+  verifiedOn: "14 October 2026",
 
   scales: [
     {
@@ -68,23 +76,23 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       intro:
         "The main scale. A beginning teacher with a four-year degree starts at Band 2, Step 1; Band 1 is for teachers on a Permission to Teach or working as an intern.",
       stepHeading: "Classification and step",
-      effectiveFrom: "1 September 2025",
+      effectiveFrom: "1 September 2026 (Highly Accomplished and Lead Teacher: 7 September 2026)",
       steps: [
-        { label: "Band 1, Step 1", salary: 76_963, note: "Permission to Teach or intern" },
-        { label: "Band 1, Step 2", salary: 79_519, note: "Permission to Teach or intern" },
-        { label: "Band 2, Step 1", salary: 86_068, note: "Four-year degree entry point" },
-        { label: "Band 2, Step 2", salary: 90_320 },
-        { label: "Band 2, Step 3", salary: 94_729 },
-        { label: "Band 2, Step 4", salary: 99_086 },
-        { label: "Band 3, Step 1", salary: 102_765 },
-        { label: "Band 3, Step 2", salary: 106_417 },
-        { label: "Band 3, Step 3", salary: 110_043 },
-        { label: "Band 3, Step 4", salary: 113_957, note: "Top of the incremental scale" },
-        { label: "Senior Teacher (4 year trained)", salary: 118_940, note: "By application" },
-        { label: "Experienced Senior Teacher (ES401)", salary: 121_757, note: "By application" },
-        { label: "Experienced Senior Teacher (ES402)", salary: 123_102 },
-        { label: "Highly Accomplished Teacher", salary: 130_770, note: "National certification" },
-        { label: "Lead Teacher", salary: 142_766, note: "National certification" },
+        { label: "Band 1, Step 1", salary: 80_615, note: "Permission to Teach or intern" },
+        { label: "Band 1, Step 2", salary: 83_302, note: "Permission to Teach or intern" },
+        { label: "Band 2, Step 1", salary: 90_164, note: "Four-year degree entry point" },
+        { label: "Band 2, Step 2", salary: 94_599 },
+        { label: "Band 2, Step 3", salary: 99_216 },
+        { label: "Band 2, Step 4", salary: 103_782 },
+        { label: "Band 3, Step 1", salary: 107_643 },
+        { label: "Band 3, Step 2", salary: 111_478 },
+        { label: "Band 3, Step 3", salary: 115_261 },
+        { label: "Band 3, Step 4", salary: 119_357, note: "Top of the incremental scale" },
+        { label: "Senior Teacher (4 year trained)", salary: 124_601, note: "By application" },
+        { label: "Experienced Senior Teacher (ES401)", salary: 127_549, note: "By application" },
+        { label: "Experienced Senior Teacher (ES402)", salary: 127_549 },
+        { label: "Highly Accomplished Teacher", salary: 134_694, note: "National certification" },
+        { label: "Lead Teacher", salary: 147_050, note: "National certification" },
       ],
     },
     {
@@ -93,12 +101,12 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       intro:
         "Head of Department, Head of Department (Curriculum), Guidance Officer, Senior Guidance Officer and Head of Special Education Services.",
       stepHeading: "Level and pay point",
-      effectiveFrom: "1 July 2024",
+      effectiveFrom: "7 September 2026 (Level 1, Paypoint 3: 1 September 2026)",
       steps: [
-        { label: "Level 1, Paypoint 2", salary: 141_088, note: "HODC, HOD, GO, HOSES 2" },
-        { label: "Level 1, Paypoint 3", salary: 143_582, note: "HODC, HOD, GO, HOSES 2" },
-        { label: "Level 2, Paypoint 2", salary: 148_205, note: "SGO, HOSES 3" },
-        { label: "Level 2, Paypoint 3", salary: 150_827, note: "SGO, HOSES 3" },
+        { label: "Level 1, Paypoint 2", salary: 145_320, note: "HODC, HOD, GO, HOSES 2" },
+        { label: "Level 1, Paypoint 3", salary: 148_003, note: "HODC, HOD, GO, HOSES 2" },
+        { label: "Level 2, Paypoint 2", salary: 152_651, note: "SGO, HOSES 3" },
+        { label: "Level 2, Paypoint 3", salary: 155_351, note: "SGO, HOSES 3" },
       ],
     },
     {
@@ -106,10 +114,10 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       title: "Deputy principals (School Leaders Stream 3)",
       intro: "Deputy principals, including Head of Special Education Services 4.",
       stepHeading: "Pay point",
-      effectiveFrom: "1 July 2024",
+      effectiveFrom: "7 September 2026",
       steps: [
-        { label: "Paypoint 2", salary: 157_034 },
-        { label: "Paypoint 3", salary: 159_810 },
+        { label: "Paypoint 2", salary: 161_746 },
+        { label: "Paypoint 3", salary: 164_605 },
       ],
     },
     {
@@ -118,28 +126,28 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       intro:
         "Ten principal levels, each with published pay points. The bracketed labels are the previous band and school leader numbering, which still appears on some payslips.",
       stepHeading: "Level and pay point",
-      effectiveFrom: "1 July 2024",
+      effectiveFrom: "7 September 2026",
       steps: [
-        { label: "Level 1, Paypoint 2", salary: 142_500, note: "Previously Band 5, SL1" },
-        { label: "Level 1, Paypoint 3", salary: 145_020, note: "Previously Band 5, SL1" },
-        { label: "Level 2, Paypoint 2", salary: 150_334, note: "Previously Band 6, SL2" },
-        { label: "Level 2, Paypoint 3", salary: 152_995, note: "Previously Band 6, SL2" },
-        { label: "Level 3, Paypoint 2", salary: 158_605, note: "Previously Band 7, SL3" },
-        { label: "Level 3, Paypoint 3", salary: 161_407, note: "Previously Band 7, SL3" },
-        { label: "Level 4, Paypoint 2", salary: 167_326, note: "Previously Band 8, SL4" },
-        { label: "Level 4, Paypoint 3", salary: 170_287, note: "Previously Band 8, SL4" },
-        { label: "Level 5, Paypoint 2", salary: 176_531, note: "Previously Band 9, SL5" },
-        { label: "Level 5, Paypoint 3", salary: 179_651, note: "Previously Band 9, SL5" },
-        { label: "Level 6, Paypoint 2", salary: 186_241, note: "Previously Band 10, SL6" },
-        { label: "Level 6, Paypoint 3", salary: 189_534, note: "Previously Band 10, SL6" },
-        { label: "Level 7, Paypoint 2", salary: 196_484, note: "Previously Band 11, SL7" },
-        { label: "Level 7, Paypoint 3", salary: 199_956, note: "Previously Band 11, SL7" },
-        { label: "Level 8, Paypoint 1", salary: 207_225 },
-        { label: "Level 8, Paypoint 2", salary: 210_953 },
-        { label: "Level 9, Paypoint 1", salary: 218_623 },
-        { label: "Level 9, Paypoint 2", salary: 222_557 },
-        { label: "Level 10, Paypoint 1", salary: 230_645 },
-        { label: "Level 10, Paypoint 2", salary: 235_508, note: "Top of the principal scale" },
+        { label: "Level 1, Paypoint 2", salary: 146_776, note: "Previously Band 5, SL1" },
+        { label: "Level 1, Paypoint 3", salary: 149_372, note: "Previously Band 5, SL1" },
+        { label: "Level 2, Paypoint 2", salary: 154_845, note: "Previously Band 6, SL2" },
+        { label: "Level 2, Paypoint 3", salary: 157_585, note: "Previously Band 6, SL2" },
+        { label: "Level 3, Paypoint 2", salary: 163_363, note: "Previously Band 7, SL3" },
+        { label: "Level 3, Paypoint 3", salary: 166_249, note: "Previously Band 7, SL3" },
+        { label: "Level 4, Paypoint 2", salary: 172_346, note: "Previously Band 8, SL4" },
+        { label: "Level 4, Paypoint 3", salary: 175_396, note: "Previously Band 8, SL4" },
+        { label: "Level 5, Paypoint 2", salary: 181_827, note: "Previously Band 9, SL5" },
+        { label: "Level 5, Paypoint 3", salary: 185_041, note: "Previously Band 9, SL5" },
+        { label: "Level 6, Paypoint 2", salary: 191_829, note: "Previously Band 10, SL6" },
+        { label: "Level 6, Paypoint 3", salary: 195_218, note: "Previously Band 10, SL6" },
+        { label: "Level 7, Paypoint 2", salary: 202_377, note: "Previously Band 11, SL7" },
+        { label: "Level 7, Paypoint 3", salary: 205_954, note: "Previously Band 11, SL7" },
+        { label: "Level 8, Paypoint 1", salary: 213_442 },
+        { label: "Level 8, Paypoint 2", salary: 217_282 },
+        { label: "Level 9, Paypoint 1", salary: 225_182 },
+        { label: "Level 9, Paypoint 2", salary: 229_234 },
+        { label: "Level 10, Paypoint 1", salary: 237_564 },
+        { label: "Level 10, Paypoint 2", salary: 242_573, note: "Top of the principal scale" },
       ],
     },
     {
@@ -148,17 +156,17 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
       intro:
         "Separate classifications used in Aboriginal and Torres Strait Islander community schools.",
       stepHeading: "Classification and step",
-      effectiveFrom: "1 September 2025",
+      effectiveFrom: "1 September 2026 (community teachers: 7 September 2026)",
       steps: [
-        { label: "Assistant Teacher, Step 1", salary: 61_100 },
-        { label: "Assistant Teacher, Step 2", salary: 62_457 },
-        { label: "Assistant Teacher, Step 3", salary: 63_892 },
-        { label: "Assistant Teacher, Step 4", salary: 65_170 },
-        { label: "Community Teacher, Step 1", salary: 74_083 },
-        { label: "Community Teacher, Step 2", salary: 76_870 },
-        { label: "Community Teacher, Step 3", salary: 79_653 },
-        { label: "Community Teacher, Step 4", salary: 82_440 },
-        { label: "Senior Community Teacher", salary: 89_126 },
+        { label: "Assistant Teacher, Step 1", salary: 63_996 },
+        { label: "Assistant Teacher, Step 2", salary: 65_431 },
+        { label: "Assistant Teacher, Step 3", salary: 66_918 },
+        { label: "Assistant Teacher, Step 4", salary: 68_275 },
+        { label: "Community Teacher, Step 1", salary: 76_306 },
+        { label: "Community Teacher, Step 2", salary: 79_176 },
+        { label: "Community Teacher, Step 3", salary: 82_043 },
+        { label: "Community Teacher, Step 4", salary: 84_913 },
+        { label: "Senior Community Teacher", salary: 91_800 },
       ],
     },
   ],
@@ -166,13 +174,13 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   casual: [
     {
       label: "Supply (relief) teacher",
-      rate: 98.475,
+      rate: 103.15,
       unit: "hour",
       note: "Band 3 Step 1 classification, including 25% casual loading",
     },
     {
       label: "Supply (relief) teacher — daily",
-      rate: 492.38,
+      rate: 515.75,
       unit: "day",
       note: "Including 25% casual loading",
     },
@@ -223,14 +231,14 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
   ],
 
   notices: [
-    "Queensland's certified agreement expired on 30 June 2025 and the replacement went to arbitration on 31 December 2025. It is still the instrument in force, and the rates below are what the department's own salary schedule publishes as at 28 August 2026.",
-    "Pay changed on 7 September 2026. Teachers now receive the higher of a 3% interim increase ([2026] QIRC 267) or the applicable award rate, and award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). The Queensland Teachers' Union published an updated schedule on 16 September 2026 (members only), but the Department of Education's public salary schedule had not been updated when re-checked on 24 September 2026 — its classroom column is still dated 1 September 2025, and Teach Queensland's pay page (updated 8 September 2026) still quotes the $86,068 beginning-teacher figure. The tables below are the department's last published rates, in force up to 6 September 2026 — your pay from 7 September 2026 is higher.",
-    "The department's schedule dates its columns differently: classroom teacher rates from 1 September 2025 (a QIRC State Wage Case general ruling, not the agreement), and promotional, deputy principal and principal rates from 1 July 2024 (the agreement's final increase). Each table below says which applies.",
+    "Queensland's certified agreement expired on 30 June 2025 and the replacement went to arbitration on 31 December 2025. No new agreement has been certified: the Queensland Industrial Relations Commission's agreements page (updated 2 October 2026) still lists the 2022 agreement, so it remains the instrument in force. The rates below are what the department's own salary schedule publishes, read on 14 October 2026.",
+    "The department has now published the September 2026 increases. From 7 September 2026 teachers are paid a 3% interim increase ([2026] QIRC 267) or the award rate where that is higher, and award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case ([2026] QIRC 280). Classroom teacher Bands 1 to 3, Senior Teacher, Experienced Senior Teacher, assistant teachers, supply teachers and Head of Program Level 1 Paypoint 3 are on the award rate, the same figures as the QIRC's award reprint operative 1 September 2026. Highly Accomplished and Lead Teacher, the other Head of Program rows, deputy principals, principals and community teachers are on the 3% interim rate.",
+    "The department's workbook no longer dates its columns, and its cover still reads \"Updated 1 September 2026\". Each table below gives the date its rates apply from: 1 September 2026 for award rates, and 7 September 2026, the operative date of the interim order, for the rest.",
+    "Teach Queensland's summary pay page (updated 1 October 2026) quotes a beginning-teacher salary of \"approximately $86,601\", below the $90,164 the department's salary schedule prints for Band 2 Step 1. This page follows the salary schedule.",
   ],
 
   unverified: [
-    "The dollar amounts in force from 7 September 2026 — the higher of the 3% interim rate or the award rate after the 4.75% State Wage Case increase. The department had not published them when this page was re-checked on 24 September 2026, and the QTU's schedule is members-only, so we will not compute them.",
-    "Rates under the Teaching in State Education Award - State 2016, which clause 5.11.2 defers to for the underlying increment mechanics and which forms one limb of the interim increase base.",
+    "The final arbitrated rates. The replacement agreement is still before the QIRC, and the 3% interim increase applies until the proceedings are determined, so no later increase or date is published yet.",
     "Paypoint 1 for Promotional Levels 1 and 2, for deputy principals, and for Principal Levels 1 to 7 — the department publishes those cells as \"--\" with no rate, so they are not shown.",
     "Coach classifications (Pedagogy, Literacy and Numeracy Coaches engaged before 1 July 2019), which the department directs to separate transition arrangements.",
     "Community Education Counsellor and school-based trainee scales, which are separate classifications.",
@@ -239,40 +247,50 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
 
   sources: [
     {
+      title: "Department of Education Salary Schedule — Teachers sheet (re-published with the 7 September 2026 rates; cover reads \"Updated 1 September 2026\")",
+      publisher: "Queensland Department of Education",
+      url: "https://qed.qld.gov.au/workingwithus/induction/centralandregionaloffices/Documents/salaryschedule.xls",
+    },
+    {
+      title: "State of Queensland (Department of Education) v Queensland Teachers' Union of Employees [2026] QIRC 267 — 3% interim increase operative 7 September 2026",
+      publisher: "Queensland Industrial Relations Commission (Supreme Court Library Queensland)",
+      url: "https://archive.sclqld.org.au/qjudgment/2026/QIRC26-267.pdf",
+    },
+    {
+      title: "Teaching in State Education Award - State 2016, reprint operative 1 September 2026 (clause 12.6)",
+      publisher: "Queensland Industrial Relations Commission",
+      url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/teaching_state_ed_010926.pdf",
+    },
+    {
       title: "Declaration of General Ruling (State Wage Case 2026) [2026] QIRC 280 — 4.75% from 1 September 2026",
       publisher: "Queensland Industrial Relations Commission",
       url: "https://www.qirc.qld.gov.au/sites/default/files/2026-09/2026_b59_b60_decision.pdf",
+    },
+    {
+      title: "Public service agreements (Department of Education State School Teachers' CA 2022; updated 2 October 2026)",
+      publisher: "Queensland Industrial Relations Commission",
+      url: "https://www.qirc.qld.gov.au/agreements/public-service-agreements",
+    },
+    {
+      title: "Pay and benefits — teaching in Queensland state schools (updated 1 October 2026)",
+      publisher: "Teach Queensland, Queensland Department of Education",
+      url: "https://teach.qld.gov.au/teach-in-state-schools/pay-and-benefits",
     },
     {
       title: "Salaries — Teachers CA 2022: updated salary schedule from 7 September 2026",
       publisher: "Queensland Teachers' Union",
       url: "https://www.qtu.asn.au/salaries-CA2022",
     },
-    {
-      title: "Department of Education Salary Schedule (updated 1 September 2026) — Teachers sheet",
-      publisher: "Queensland Department of Education",
-      url: "https://qed.qld.gov.au/workingwithus/induction/centralandregionaloffices/Documents/salaryschedule.xls",
-    },
-    {
-      title: "Pay and benefits — teaching in Queensland state schools",
-      publisher: "Teach Queensland, Queensland Department of Education",
-      url: "https://teach.qld.gov.au/teach-in-state-schools/pay-and-benefits",
-    },
-    {
-      title: "Public service agreements (Department of Education State School Teachers' CA 2022)",
-      publisher: "Queensland Industrial Relations Commission",
-      url: "https://www.qirc.qld.gov.au/agreements/public-service-agreements",
-    },
   ],
 
   faqs: [
     {
       q: "What is the graduate teacher salary in Queensland?",
-      a: "A beginning teacher with a four-year degree starts at Band 2, Step 1, $86,068 a year on the department's salary schedule dated 1 September 2025. Band 1, at $76,963, is not the graduate band — it is for teachers on a Permission to Teach or working as an intern.",
+      a: "A beginning teacher with a four-year degree starts at Band 2, Step 1, $90,164 a year on the department's salary schedule, the award rate in force from 1 September 2026. Band 1, at $80,615, is not the graduate band — it is for teachers on a Permission to Teach or working as an intern.",
     },
     {
       q: "What is the top of the QLD teacher pay scale?",
-      a: "Band 3, Step 4 at $113,957 is the top of the incremental scale. Above it, and still in the classroom, Senior Teacher pays $118,940, Experienced Senior Teacher $121,757 to $123,102, Highly Accomplished Teacher $130,770 and Lead Teacher $142,766.",
+      a: "Band 3, Step 4 at $119,357 is the top of the incremental scale. Above it, and still in the classroom, Senior Teacher pays $124,601, Experienced Senior Teacher $127,549, Highly Accomplished Teacher $134,694 and Lead Teacher $147,050.",
     },
     {
       q: "How many steps are there in the Queensland teacher pay scale?",
@@ -280,15 +298,15 @@ export const QLD_TEACHER_PAY: TeacherPayState = {
     },
     {
       q: "What is a principal paid in Queensland?",
-      a: "Principal salaries run from $142,500 at Level 1 to $235,508 at Level 10 on the department's schedule dated 1 July 2024. Deputy principals are paid $157,034 to $159,810 and heads of department $141,088 to $150,827.",
+      a: "Principal salaries run from $146,776 at Level 1 to $242,573 at Level 10 from 7 September 2026, on the department's salary schedule. Deputy principals are paid $161,746 to $164,605 and heads of department $145,320 to $155,351.",
     },
     {
       q: "What is the supply teacher rate in Queensland?",
-      a: "Supply teachers are paid at the Band 3 Step 1 classification: $98.48 an hour or $492.38 a day, both including the 25% casual loading, on the schedule dated 1 September 2025.",
+      a: "Supply teachers are paid at the Band 3 Step 1 classification: $103.15 an hour or $515.75 a day, both including the 25% casual loading, the award rate from 1 September 2026.",
     },
     {
       q: "When do Queensland teachers get a pay rise?",
-      a: "It has started. From 7 September 2026 Queensland state school teachers are paid the higher of a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267) or the applicable award rate, which rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The Department of Education had not published the resulting schedule when this page was re-checked on 24 September 2026, so the figures on this page are the ones in force up to 6 September 2026.",
+      a: "The latest rise has already been paid. From 7 September 2026 Queensland state school teachers are paid a 3% interim increase ordered by the Queensland Industrial Relations Commission ([2026] QIRC 267), or the award rate where that is higher; award rates rose 4.75% from 1 September 2026 under the 2026 State Wage Case. The department's salary schedule now prints those rates, and this page tables them. The interim increase applies until the QIRC decides the replacement agreement, which is still in arbitration, so no further rise has a date yet.",
     },
   ],
 };

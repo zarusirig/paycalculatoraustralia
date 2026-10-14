@@ -54,8 +54,11 @@ export default function VictorianTeachersPayRise2026() {
         <a href={VIC_2026_AGREEMENT.fwcProgressUrl} rel="noopener noreferrer" target="_blank">
           agreements in progress
         </a>{" "}
-        list showed it at {VIC_2026_AGREEMENT.fwcStage} on {VIC_2026_AGREEMENT.fwcCheckedOn}. It is not yet
-        approved, so the VGSA 2022 rates are still what is paid.
+        list showed it at {VIC_2026_AGREEMENT.fwcStage} on {VIC_2026_AGREEMENT.fwcCheckedOn}
+        {VIC_2026_AGREEMENT.fwcStage === "member consideration"
+          ? ", which means the Commission has passed the application to a Commission Member to consider"
+          : ""}
+        . It is not yet approved, so the VGSA 2022 rates are still what is paid.
       </p>
 
       <NewsKeyFacts
