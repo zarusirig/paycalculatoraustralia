@@ -44,7 +44,13 @@ Example pages for targeting:
 - https://pay-calculator-australia.com/tax-on/80000/ (salary-tables)
 - https://pay-calculator-australia.com/news/ (news)
 
-Happy to add anything else you need. Looking forward to the pre-launch checklist.
+**One more thing — please tell us what else would let you place more ads.** We want to give you as much room as you can use, so treat the site as flexible. Things we are happy to change if they help revenue:
+- Add a right sidebar column to the layouts that do not have one yet — calculator, salary-tables, news and the homepage (about 300 pages, including our highest-traffic ones) — so the sticky sidebar unit can run there too.
+- Add fixed containers or extra semantic hooks for in-content units (e.g. a `mv-content` class, or spacing between sections) if that places more units than the `<article>` selector alone.
+- Adhesion, Universal Player / video, recipe-style or any other units you recommend for a calculator site — just say where you want the hooks.
+- Anything about the 64px fixed header, spacing or density that is limiting what you can run.
+
+If you send a list, we will implement it before launch. Looking forward to the pre-launch checklist.
 
 Thanks,
 Suraj
