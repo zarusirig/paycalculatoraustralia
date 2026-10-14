@@ -21,7 +21,7 @@ export const CENTRELINK_DATES_FAQS: Faq[] = [
     q: "What are the Centrelink Christmas payment dates for 2026?",
     a: CHRISTMAS_2026_27_PUBLISHED
       ? "Services Australia has published the Christmas 2026 dates; see the tables on this page."
-      : "Services Australia hasn't published them yet (checked 24 September 2026). Last year's tables were on its public holiday page in a version dated 27 October 2025. Until then, your Centrelink online account shows your own dates, and last year's official tables on this page show how the changes work.",
+      : "Services Australia hasn't published them yet (checked 14 October 2026). Last year's tables were on its public holiday page in a version dated 27 October 2025. Until then, your Centrelink online account shows your own dates, and last year's official tables on this page show how the changes work.",
   },
   {
     q: "Does Centrelink pay early at Christmas?",

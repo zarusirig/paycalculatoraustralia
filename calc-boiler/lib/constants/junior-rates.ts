@@ -200,7 +200,7 @@ export const AWARD_JUNIOR_SCALES = [
 
 /**
  * The junior-rate transition for 18 to 20-year-olds under the Retail, Fast
- * Food and Pharmacy awards. DETERMINED, but not yet operative (as of 23 Sep
+ * Food and Pharmacy awards. DETERMINED, but not yet operative (as of 14 Oct
  * 2026), and NOT a jump to the adult rate.
  *
  * History of this constant:
@@ -214,6 +214,10 @@ export const AWARD_JUNIOR_SCALES = [
  *      PR813656  Pharmacy Industry Award 2020, cl 16.2 Table 4
  *    Each "comes into operation on 1 December 2026" and takes effect for an
  *    employee from their first full pay period starting on or after each date.
+ *  - 14 Oct 2026: re-checked. PR813654 clause B and [2026] FWCFB 222 [263]
+ *    re-read from the FWC PDFs, unchanged. The FWC case page (last updated
+ *    1 May 2026) and the FWO explainer (content last updated 8 April 2026,
+ *    still "could start from 1 December 2026") list nothing newer. No change.
  *
  * What the determinations actually do:
  *  - Retail and fast food: the provisional schedule was substantially adopted
