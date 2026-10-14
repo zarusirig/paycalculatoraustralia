@@ -453,6 +453,19 @@ test("Payday Super concessional cap relief is not presented as law", () => {
   assert.match(PAYDAY_SUPER_CAP_RELIEF.atoWording, /not yet law/i);
 });
 
+test("Payday Super cap relief bill is introduced but not passed (APH r7554, 14 Oct 2026)", () => {
+  const b = PAYDAY_SUPER_CAP_RELIEF.bill;
+  assert.equal(b.name, "Treasury Laws Amendment (Tax Reform No. 3) Bill 2026");
+  assert.equal(b.schedule, "Schedule 6");
+  assert.equal(b.introduced, "14 October 2026");
+  assert.equal(b.passed, false);
+  assert.match(b.url, /^https:\/\/www\.aph\.gov\.au\/.*bId=r7554$/);
+  // A bill before Parliament is not law: the two flags must agree.
+  assert.equal(PAYDAY_SUPER_CAP_RELIEF.isLaw, b.passed);
+  assert.equal(PAYDAY_SUPER_CAP_RELIEF.verifiedOn, "14 October 2026");
+  assert.match(PAYDAY_SUPER_CAP_RELIEF.atoPageUrl, /^https:\/\/www\.ato\.gov\.au\//);
+});
+
 test("the maximum contribution base is annual and derives from the concessional cap", () => {
   // $32,500 x 100 / 12, rounded down to the nearest $10.
   const derived = Math.floor((SUPER_GUARANTEE.concessionalCap * 100) / 12 / 10) * 10;

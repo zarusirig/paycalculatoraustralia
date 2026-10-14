@@ -301,21 +301,45 @@ export const QUALIFYING_EARNINGS = {
 /**
  * Concessional cap relief for the Payday Super changeover.
  *
- * ⚠️ ANNOUNCED BUT NOT LAW. The ATO's changeover page, last updated 27 July
- * 2026, says in terms: "This is not yet law." Treasury's February 2026 media
- * release is in the future tense ("We will introduce technical amendments").
- * No bill located as at 28 July 2026.
+ * ⚠️ ANNOUNCED, BILL INTRODUCED, NOT LAW. The ATO's changeover page ("Payday
+ * Super: How to manage super during the changeover", last updated 10 August
+ * 2026, read 14 October 2026) says in terms: "This is not yet law." Treasury's
+ * February 2026 media release is in the future tense ("We will introduce
+ * technical amendments"). No bill located as at 28 July 2026.
+ *
+ * 14 October 2026: the Treasury Laws Amendment (Tax Reform No. 3) Bill 2026
+ * was introduced in the House of Representatives and its second reading moved
+ * that day (APH bill page r7554: status "Before Reps"). Its explanatory
+ * memorandum, Schedule 6 "Transitional relief for excess concessional
+ * contributions due to Payday Superannuation", says certain employer
+ * contributions relating to the June 2026 quarter "are disregarded when working
+ * out concessional contributions for the 2026-27 income year", and that
+ * Schedule 6 "commences on the first 1 January, 1 April, 1 July or 1 October to
+ * occur after the day the Bill receives Royal Assent". It has not passed.
  *
  * Do not write "relief is available". Do not write "relief was abandoned".
- * The defensible line is: announced, not legislated, no bill located.
+ * The defensible line is: announced, bill before Parliament, not yet law.
+ * Flip isLaw only when the bill receives Royal Assent.
  */
 export const PAYDAY_SUPER_CAP_RELIEF = {
   announced: true,
   isLaw: false,
   announcedBy: "Treasury, 24 February 2026",
   atoWording: "This is not yet law.",
+  atoPageUrl:
+    "https://www.ato.gov.au/businesses-and-organisations/super-for-employers/payday-super-how-to-manage-super-during-the-changeover",
   purpose:
     "to avoid employees exceeding their concessional contributions cap in 2026-27 because Payday Super shifted the timing of contributions",
+  /** The bill that would legislate the relief. Introduced, NOT passed. */
+  bill: {
+    name: "Treasury Laws Amendment (Tax Reform No. 3) Bill 2026",
+    schedule: "Schedule 6",
+    introduced: "14 October 2026",
+    status: "before the House of Representatives",
+    passed: false,
+    url: "https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r7554",
+  },
+  verifiedOn: "14 October 2026",
 } as const;
 
 /**

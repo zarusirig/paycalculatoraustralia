@@ -4,9 +4,11 @@
 //
 // SOURCES
 //   Services Australia, "Public holiday reporting and payment dates" (QC 26071).
-//     Live page read 5 October 2026 (page last updated 23 April 2026; also read
-//     24 September 2026): lists the national holidays it closes for, but NO
-//     Christmas 2026 dates yet.
+//     Live page read 14 October 2026 (page last updated 23 April 2026; also read
+//     5 October and 24 September 2026): lists the national holidays it closes
+//     for, but NO Christmas 2026 dates yet. The Services Australia media
+//     releases list (read 14 October 2026; newest release 31 August 2026) has
+//     no 2026 holiday release either.
 //     https://www.servicesaustralia.gov.au/public-holiday-reporting-and-payment-dates
 //   The same page as it stood for Christmas 2025 (page last updated 27 October
 //   2025), read from the Internet Archive capture of 12 December 2025:
@@ -37,14 +39,14 @@ export const CENTRELINK_DATES_SOURCES = {
   onlineAccount: "https://www.servicesaustralia.gov.au/centrelink-online-account",
 } as const;
 
-export const CENTRELINK_DATES_VERIFIED_ON = "5 October 2026";
+export const CENTRELINK_DATES_VERIFIED_ON = "14 October 2026";
 
 /** Flip to true (and add the tables) once Services Australia publishes them. */
 export const CHRISTMAS_2026_27_PUBLISHED = false;
 
 /**
  * Christmas 2026 and New Year 2027 tables, exactly as Services Australia
- * publishes them. DELIBERATELY NULL: no dates are published as of 5 October
+ * publishes them. DELIBERATELY NULL: no dates are published as of 14 October
  * 2026 (the live page was last updated 23 April 2026), and nothing here may be
  * projected or inferred from last year.
  *
