@@ -229,13 +229,25 @@ export function withPageEndUsing<P extends object>(
         <PageEnd path={path} Link={components.Link} Banner={components.Banner} />
       </>
     );
-    if (template !== "calculator") return body;
-    return (
-      <div className="mx-auto max-w-7xl lg:flex lg:gap-4">
-        <div className="mv-content min-w-0 lg:flex-1">{body}</div>
-        <PageSidebar path={path} Link={components.Link} />
-      </div>
-    );
+    if (template === "calculator") {
+      return (
+        <div className="mx-auto max-w-7xl lg:flex lg:gap-4">
+          <div className="mv-content min-w-0 lg:flex-1">{body}</div>
+          <PageSidebar path={path} Link={components.Link} />
+        </div>
+      );
+    }
+    // Salary-table and news pages already carry their own `.mv-content`
+    // container inside the page, so the shell must not add a second one.
+    if (template === "salary-tables" || template === "news") {
+      return (
+        <div className="mx-auto max-w-7xl lg:flex lg:gap-4">
+          <div className="min-w-0 lg:flex-1">{body}</div>
+          <PageSidebar path={path} Link={components.Link} />
+        </div>
+      );
+    }
+    return body;
   }
   PageWithEnd.displayName = `withPageEnd(${Page.displayName ?? Page.name ?? "Page"})`;
   return PageWithEnd;
